@@ -18,8 +18,8 @@ const StegSkjema = ({ forrige, neste, children }: Props) => {
     return (
         <form>
             {children}
-            <Box marginBlock="8 0">
-                <HGrid gap={{ xs: '4', sm: '8 4' }} columns={{ xs: 1, sm: 2 }} width={{ sm: 'fit-content' }}>
+            <Box marginBlock="space-32 space-0">
+                <HGrid gap={{ xs: "space-16", sm: "space-32 space-16" }} columns={{ xs: 1, sm: 2 }} width={{ sm: 'fit-content' }}>
                     {forrige && (
                         <Button variant="secondary" icon={<ArrowLeftIcon aria-hidden />} iconPosition="left">
                             {forrige.tittel}

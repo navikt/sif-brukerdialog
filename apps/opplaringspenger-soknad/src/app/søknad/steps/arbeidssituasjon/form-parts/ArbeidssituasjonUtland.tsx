@@ -5,6 +5,7 @@ import UtenlandskNæringListAndDialog from '@navikt/sif-common-forms-ds/src/form
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getDate1YearAgo, getDate1YearFromNow } from '@navikt/sif-common-utils';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+
 import { useAppIntl } from '../../../../i18n';
 import { ArbeidssituasjonFormFields } from '../ArbeidssituasjonStep';
 
@@ -18,7 +19,7 @@ export const ArbeidssituasjonUtland = ({ harOpptjeningUtland, harUtenlandskNæri
     return (
         <>
             <FormLayout.Questions>
-                <VStack gap="3">
+                <VStack gap="space-12">
                     <FormikYesOrNoQuestion
                         legend={text('steg.arbeidssituasjon.opptjeningUtland.spm')}
                         name={ArbeidssituasjonFormFields.harOpptjeningUtland}
@@ -41,7 +42,7 @@ export const ArbeidssituasjonUtland = ({ harOpptjeningUtland, harUtenlandskNæri
                     )}
                 </VStack>
 
-                <VStack gap="3">
+                <VStack gap="space-12">
                     <FormikYesOrNoQuestion
                         legend={text('steg.arbeidssituasjon.utenlandskNæring.spm')}
                         name={ArbeidssituasjonFormFields.harUtenlandskNæring}

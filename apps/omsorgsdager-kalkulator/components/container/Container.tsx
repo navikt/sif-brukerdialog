@@ -1,14 +1,15 @@
 import { ReactNode } from 'react';
 import Banner from '../banner/Banner';
+import { Box } from '@navikt/ds-react';
 
 const Container = ({ children }: { children: ReactNode }) => {
     return (
-        <div className="min-h-container bg-bg-subtle">
+        <Box className="min-h-container" background="neutral-moderate">
             <Banner />
             <div className="px-4 md:px-12">
-                <main className="max-w-[900px] mx-auto pb-8">{children}</main>
+                <main className="max-w-255 mx-auto pb-8">{children}</main>
             </div>
-        </div>
+        </Box>
     );
 };
 

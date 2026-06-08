@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { withAmplitudeProvider } from '../../../storybook/decorators/withAmplitude';
+import { withAnalyticsProvider } from '../../../storybook/decorators/withAnalyticsProvider';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import UnavailablePage from './UnavailablePage';
 
 const meta: Meta<typeof UnavailablePage> = {
     title: 'Pages/UnavailablePage',
     component: UnavailablePage,
-    decorators: [withAmplitudeProvider, withIntl],
+    decorators: [withAnalyticsProvider, withIntl],
 };
 export default meta;
 

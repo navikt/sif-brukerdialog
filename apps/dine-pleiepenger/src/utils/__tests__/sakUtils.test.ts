@@ -1,45 +1,44 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { Behandling } from '../../server/api-models/BehandlingSchema';
-import { Behandlingsstatus } from '../../server/api-models/Behandlingsstatus';
-import {
-    PleiepengerEndringsmelding,
-    PleiepengerEttersendelse,
-    Pleiepengesøknad,
-} from '../../server/api-models/InnsendelseSchema';
-import { Innsendelsestype } from '../../server/api-models/Innsendelsestype';
-import { Sakshendelse, Sakshendelser } from '../../types/Sakshendelse';
-import { harBehandlingSøknadEllerEndringsmelding, sortBehandlingerNyesteFørst, sortSakshendelse } from '../sakUtils';
+
+import { Behandling, BehandlingStatus, SøknadISak } from '../../types';
+import { Innsendelsestype } from '../../types/Innsendelsestype';
+import { harBehandlingSøknadEllerEndringsmelding, sortBehandlingerNyesteFørst } from '../sakUtils';
 
 const behandling1: Behandling = {
-    status: Behandlingsstatus.UNDER_BEHANDLING,
+    status: BehandlingStatus.UNDER_BEHANDLING,
     innsendelser: [] as any,
     opprettetTidspunkt: ISODateToDate('2020-01-01'),
+    avsluttetTidspunkt: undefined,
     aksjonspunkter: [],
-    avsluttetTidspunkt: null,
 };
 const behandling2: Behandling = {
-    status: Behandlingsstatus.UNDER_BEHANDLING,
+    status: BehandlingStatus.UNDER_BEHANDLING,
     innsendelser: [] as any,
     opprettetTidspunkt: ISODateToDate('2020-01-03'),
     aksjonspunkter: [],
-    avsluttetTidspunkt: null,
+    avsluttetTidspunkt: undefined,
 };
 const behandling3: Behandling = {
-    status: Behandlingsstatus.UNDER_BEHANDLING,
+    status: BehandlingStatus.UNDER_BEHANDLING,
     innsendelser: [] as any,
     opprettetTidspunkt: ISODateToDate('2020-01-02'),
     aksjonspunkter: [],
-    avsluttetTidspunkt: null,
+    avsluttetTidspunkt: undefined,
 };
 
-const innsendtSøknad: Pleiepengesøknad = {
+const innsendtSøknad: SøknadISak = {
     innsendelsestype: Innsendelsestype.SØKNAD,
+    mottattTidspunkt: '2020-01-01T10:00:00Z',
 } as any;
-const innsendtEndringsmelding: PleiepengerEndringsmelding = {
+
+const innsendtEndringsmelding: SøknadISak = {
     innsendelsestype: Innsendelsestype.ENDRINGSMELDING,
+    mottattTidspunkt: '2020-01-01T10:00:00Z',
 } as any;
-const innsendtEttersendelse: PleiepengerEttersendelse = {
+
+const innsendtEttersendelse: SøknadISak = {
     innsendelsestype: Innsendelsestype.ETTERSENDELSE,
+    mottattTidspunkt: '2020-01-01T10:00:00Z',
 } as any;
 
 describe('sakUtils', () => {
@@ -50,36 +49,6 @@ describe('sakUtils', () => {
         });
     });
 
-    describe('sortSakshendelser', () => {
-        const hendelse1: Sakshendelse = {
-            dato: ISODateToDate('2020-01-01'),
-            type: Sakshendelser.FERDIG_BEHANDLET,
-        };
-        const hendelse2: Sakshendelse = {
-            dato: ISODateToDate('2020-01-03'),
-            type: Sakshendelser.MOTTATT_SØKNAD,
-            innsendelse: {} as any,
-        };
-        const hendelse3: Sakshendelse = {
-            dato: ISODateToDate('2020-01-03'),
-            type: Sakshendelser.FERDIG_BEHANDLET,
-        };
-
-        const hendelseForventetSvar: Sakshendelse = {
-            dato: ISODateToDate('2020-01-02'),
-            type: Sakshendelser.FORVENTET_SVAR,
-            søknadstyperIBehandling: [Innsendelsestype.SØKNAD],
-        };
-
-        it('sorterer riktig på hendelser som ikke er FORVENTET_SVAR', () => {
-            const result = [hendelse1, hendelse2, hendelse3].sort(sortSakshendelse);
-            expect(result).toEqual([hendelse1, hendelse3, hendelse2]);
-        });
-        it('sorterer alltid FORVENTET_SVAR sist', () => {
-            const result = [hendelseForventetSvar, hendelse1, hendelse2, hendelse3].sort(sortSakshendelse);
-            expect(result).toEqual([hendelse1, hendelse3, hendelse2, hendelseForventetSvar]);
-        });
-    });
     describe('harBehandlingSøknadEllerEndringsmelding', () => {
         it('returnerer true hvis behandling har kun søknad', () => {
             const medSøknad: Behandling = { ...behandling1, innsendelser: [innsendtSøknad] };

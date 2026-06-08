@@ -1,5 +1,252 @@
 # @navikt/omsorgsdager-kalkulator
 
+## 3.14.7
+
+### Patch Changes
+
+- Trigger deploy
+
+## 3.14.6
+
+### Patch Changes
+
+- Clean yarn.lock - trigger deploy
+
+## 3.14.5
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+
+## 3.14.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - ajv +
+
+## 3.14.3
+
+### Patch Changes
+
+- ca64a56: axios 1.3.5 fix
+
+## 3.14.2
+
+### Patch Changes
+
+- Pakkeoppdatering - @isaacs/brace-expansion5.0.1
+
+## 3.14.1
+
+### Patch Changes
+
+- Deploy etter at node-tar er lagt til i resolutions
+
+## 3.14.0
+
+### Minor Changes
+
+- Oppdatere til next16
+
+## 3.13.23
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.13.22
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.13.21
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+
+## 3.13.20
+
+### Patch Changes
+
+- Pakkeoppdateringer - major react-intl + sanity
+
+## 3.13.19
+
+### Patch Changes
+
+- fc216a0: Pakkeoppdateringer - minor/patch
+
+## 3.13.18
+
+### Patch Changes
+
+- e8491a9: Pakkeoppdateringer - minor/patch
+
+## 3.13.17
+
+### Patch Changes
+
+- 292ac7b: Pakkeoppdateringer - minor/patch
+
+## 3.13.16
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+
+## 3.13.15
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.13.14
+
+### Patch Changes
+
+- Next 15.5.7
+
+## 3.13.13
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.13.12
+
+### Patch Changes
+
+- Justere nais resources
+
+## 3.13.11
+
+### Patch Changes
+
+- Redusere nais-resources til anbefalte nivåer fra nais
+
+## 3.13.10
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+
+## 3.13.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 3.13.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 3.13.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.13.6
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.13.5
+
+### Patch Changes
+
+- Erstatte ds-icons med aksel-icons
+
+## 3.13.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
+## 3.13.3
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
+## 3.13.2
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.13.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.13.0
+
+### Minor Changes
+
+- Legge til tre moduler i outputFileTracingIncludes. De kom ikke med i bygget server feilet med melding om manglende filer.
+
+## 3.12.55
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 3.12.54
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.53
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.52
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.51
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.50
+
+### Patch Changes
+
+- 52d9b9e: Pakkeoppdateringer - minor/patch
+
+## 3.12.49
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.48
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.12.47
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Fjerne ubrukte pakker.
+
 ## 3.12.46
 
 ### Patch Changes

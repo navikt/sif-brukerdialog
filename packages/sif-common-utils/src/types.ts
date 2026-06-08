@@ -62,11 +62,11 @@ export type InputDateDurationMap = {
     };
 };
 export type DateDurationMap = {
-    [isoDate: ISODate]: {
-        hours: string;
-        minutes: string;
-        percentage?: number;
-    };
+    [isoDate: ISODate]: Duration;
+};
+
+export type DateDurationOrUndefinedMap = {
+    [isoDate: ISODate]: Duration | undefined;
 };
 
 export interface Time {

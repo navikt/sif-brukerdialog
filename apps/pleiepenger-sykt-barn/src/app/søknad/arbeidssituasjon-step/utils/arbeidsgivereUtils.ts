@@ -1,9 +1,18 @@
-import { FormikProps } from 'formik';
+import { FormikErrors } from 'formik';
 
 import { Arbeidsgiver, ArbeidsgiverType } from '../../../types';
 import { ArbeidsforholdFormValues } from '../../../types/søknad-form-values/ArbeidsforholdFormValues';
 import { SøknadFormField, SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 import appSentryLogger from '../../../utils/appSentryLogger';
+
+interface FormikHelpers {
+    values: SøknadFormValues;
+    setFieldValue: (
+        field: string,
+        value: unknown,
+        shouldValidate?: boolean,
+    ) => Promise<void | FormikErrors<SøknadFormValues>>;
+}
 
 const erOrganisasjonElerPrivatArbeidsgiver = (a: Arbeidsgiver) =>
     a.type === ArbeidsgiverType.ORGANISASJON || a.type === ArbeidsgiverType.PRIVATPERSON;
@@ -50,7 +59,7 @@ export const syncAnsattArbeidsforhold = (
  */
 export const oppdaterSøknadMedArbeidsgivere = (
     arbeidsgivere: Arbeidsgiver[],
-    { values, setFieldValue }: FormikProps<SøknadFormValues>,
+    { values, setFieldValue }: FormikHelpers,
 ) => {
     const ansattArbeidsforhold = syncAnsattArbeidsforhold(
         arbeidsgivere.filter(erOrganisasjonElerPrivatArbeidsgiver),

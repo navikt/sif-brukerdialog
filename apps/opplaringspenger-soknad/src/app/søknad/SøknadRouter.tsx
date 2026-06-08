@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useState } from 'react';
-import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { fetchSøkerId } from '@navikt/sif-common-api';
 import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
+import { useCallback, useEffect, useState } from 'react';
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+
 import { mellomlagringService } from '../api/mellomlagringService';
 import { usePersistSøknadState } from '../hooks/usePersistSøknadState';
 import { useResetSøknad } from '../hooks/useResetSøknad';
@@ -9,8 +10,8 @@ import useResetSøknadAfterDokumenterSendt from '../hooks/useResetSøknadAfterDo
 import KvitteringPage from '../pages/kvittering/KvitteringPage';
 import UnknownRoutePage from '../pages/unknown-route/UnknownRoutePage';
 import VelkommenPage from '../pages/velkommen/VelkommenPage';
-import { StepId } from '../types/StepId';
 import { SøknadRoutes, SøknadStepRoutePath } from '../types/SøknadRoutes';
+import { StepId } from '../types/StepId';
 import { relocateToWelcomePage } from '../utils/navigationUtils';
 import actionsCreator from './context/action/actionCreator';
 import { useSøknadContext } from './context/hooks/useSøknadContext';
@@ -26,7 +27,7 @@ const SøknadRouter = () => {
     const { pathname } = useLocation();
     const {
         dispatch,
-        state: { søknadsdata, kvitteringInfo, søker, søknadRoute: stateSøknadRoute },
+        state: { søknadsdata, søker, søknadRoute: stateSøknadRoute },
     } = useSøknadContext();
     const navigateTo = useNavigate();
     const [isFirstTimeLoadingApp, setIsFirstTimeLoadingApp] = useState(true);
@@ -80,10 +81,7 @@ const SøknadRouter = () => {
             <Route path={SøknadStepRoutePath[StepId.ARBEIDSTID]} element={<ArbeidstidStep />} />
             <Route path={SøknadStepRoutePath[StepId.MEDLEMSKAP]} element={<MedlemskapStep />} />
             <Route path={SøknadStepRoutePath[StepId.OPPSUMMERING]} element={<OppsummeringStep />} />
-            <Route
-                path={SøknadStepRoutePath[StepId.KVITTERING]}
-                element={<KvitteringPage kvitteringInfo={kvitteringInfo} />}
-            />
+            <Route path={SøknadStepRoutePath[StepId.KVITTERING]} element={<KvitteringPage />} />
             <Route
                 path="*"
                 element={

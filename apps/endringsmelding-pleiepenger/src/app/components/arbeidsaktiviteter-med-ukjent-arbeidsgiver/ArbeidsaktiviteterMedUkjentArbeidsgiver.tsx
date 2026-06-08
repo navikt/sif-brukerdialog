@@ -1,8 +1,8 @@
+import { AppText, useAppIntl } from '@app/i18n';
+import { getAktiviteterSomSkalEndres } from '@app/søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { Alert, Heading, List } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 
-import { AppText, useAppIntl } from '../../i18n';
-import { getAktiviteterSomSkalEndres } from '../../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { Arbeidsaktiviteter, ArbeidsaktivitetUkjentArbeidsgiver } from '../../types';
 import AAregisteret from '../aa-registeret/AARegisteret';
 

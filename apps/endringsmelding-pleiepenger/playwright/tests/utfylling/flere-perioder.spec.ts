@@ -1,6 +1,6 @@
+import { SøknadRoutes } from '@app/søknad/config/SøknadRoutes';
 import { expect, test } from '@playwright/test';
 
-import { SøknadRoutes } from '../../../src/app/søknad/config/SøknadRoutes';
 import { routeUtils } from '../../utils/routeUtils';
 import { setNow } from '../../utils/setNow';
 
@@ -18,41 +18,6 @@ test('test', async ({ page }) => {
     await page.getByLabel('Jeg bekrefter at jeg har').check();
     await page.getByTestId('typedFormikForm-submitButton').click();
 
-    /** Ferie */
-    await page.getByTestId('dateRangeAccordion_1_header').click();
-    await page.getByTestId('dateRangeAccordion_1').getByTestId('leggTilFerieKnapp').click();
-    await page
-        .locator('div')
-        .filter({ hasText: /^Fra og medÅpne datovelger$/ })
-        .getByRole('button')
-        .click();
-    await page.getByRole('button', { name: 'mandag 7' }).click();
-    await page
-        .locator('div')
-        .filter({ hasText: /^Til og medÅpne datovelger$/ })
-        .getByRole('button')
-        .click();
-    await page.getByRole('button', { name: 'søndag 13' }).click();
-    await page.getByRole('button', { name: 'Ok' }).click();
-    await page.getByTestId('dateRangeAccordion_0_header').click();
-    await page.getByLabel('Fjern ferie fredag 23.12.2022').click();
-    await page.getByLabel('Endre ferie lørdag 28.01.2023').click();
-    await page.getByLabel('Til og med').click();
-    await page.getByLabel('Til og med').fill('30.01.2023');
-    await page.getByLabel('Til og med').press('Tab');
-    await page
-        .locator('div')
-        .filter({ hasText: /^Til og medÅpne datovelger$/ })
-        .getByRole('button')
-        .press('Tab');
-    await page.getByRole('button', { name: 'Ok' }).click();
-    await page
-        .locator('li')
-        .filter({ hasText: 'tirsdag 31.01.2023Ferie' })
-        .getByTestId('angre_fjern_ferie_knapp')
-        .click();
-    await page.getByTestId('typedFormikForm-submitButton').click();
-
     /** Arbeid */
     await page.getByTestId('dateRangeAccordion_0_header').click();
     await page.getByTestId('uke_51').getByTestId('endre-button').click();
@@ -64,6 +29,28 @@ test('test', async ({ page }) => {
     await page.getByTestId('prosent-verdi').fill('0');
     await page.getByRole('button', { name: 'Ok' }).click();
     await page.getByTestId('dateRangeAccordion_1_header').click();
+    await page.getByTestId('typedFormikForm-submitButton').click();
+
+    /** Ferie */
+    await page.getByTestId('dateRangeAccordion_1_header').click();
+    await page.getByTestId('dateRangeAccordion_1').getByTestId('leggTilFerieKnapp').click();
+    await page.getByRole('button', { name: 'Åpne datovelger' }).first().click();
+    await page.getByRole('button', { name: 'mandag 7' }).click();
+    await page.getByRole('button', { name: 'Åpne datovelger' }).nth(1).click();
+    await page.getByRole('button', { name: 'søndag 13' }).click();
+    await page.getByRole('button', { name: 'Ok' }).click();
+    await page.getByTestId('dateRangeAccordion_0_header').click();
+    await page.getByLabel('Fjern ferie fredag 23.12.2022').click();
+    await page.getByLabel('Endre ferie lørdag 28.01.2023').click();
+    await page.getByLabel('Til og med').click();
+    await page.getByLabel('Til og med').fill('30.01.2023');
+    await page.getByLabel('Til og med').press('Tab');
+    await page.getByRole('button', { name: 'Ok' }).click();
+    await page
+        .locator('li')
+        .filter({ hasText: 'tirsdag 31.01.2023Ferie' })
+        .getByTestId('angre_fjern_ferie_knapp')
+        .click();
     await page.getByTestId('typedFormikForm-submitButton').click();
 
     /** Oppsummering */

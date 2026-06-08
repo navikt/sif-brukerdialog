@@ -1,5 +1,5 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { ArbeiderIPeriodenSvar, ArbeidsgiverMedAnsettelseperioder, ArbeidstakerApiData } from '@types';
+import { ArbeiderIPeriodenSvar, ArbeidsgiverMedAnsettelseperioder, ArbeidstakerApiData } from '@app/types';
 
 import { AppText } from '../../../i18n';
 import ArbeidstidUker from '../../../modules/arbeidstid-uker/ArbeidstidUker';
@@ -21,12 +21,12 @@ const ArbeidstidArbeidstakerOppsummering = ({ arbeidsgivere, arbeidstaker, arbei
     }
 
     return (
-        <VStack gap="4" data-testid={`oppsummering-${organisasjonsnummer}`}>
+        <VStack gap="space-16" data-testid={`oppsummering-${organisasjonsnummer}`}>
             <Heading level="3" size="small">
                 {arbeidsgiver.navn}
             </Heading>
             {arbeidstaker._erUkjentArbeidsforhold && arbeidstaker._arbeiderIPerioden && (
-                <VStack gap="2">
+                <VStack gap="space-8">
                     <Heading level="3" size="xsmall">
                         <AppText id="arbeidstidStep.arbeiderIPeriodenSpm.legend" values={{ navn: arbeidsgiver.navn }} />
                     </Heading>

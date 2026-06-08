@@ -1,10 +1,13 @@
-import { Page, expect } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 
 export const fyllUtPleietrengendeMedFnr = async (page: Page) => {
     await page.getByRole('heading', { level: 1, name: 'Om personen du pleier' });
     await page.getByLabel('Navn på den du skal pleie').fill('Test Testesen');
     await page.getByRole('textbox', { name: 'Fødselsnummer/D-nummer' }).fill('27857798800');
-    await page.getByRole('group', { name: 'Er dere flere som skal dele på pleiepengene?' }).getByLabel('Ja').check();
+    await page
+        .getByRole('radiogroup', { name: 'Er dere flere som skal dele på pleiepengene?' })
+        .getByLabel('Ja')
+        .check();
 };
 
 export const kontrollerPleietrengendeMedFnr = async (page: Page) => {

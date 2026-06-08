@@ -1,4 +1,5 @@
-import { Bleed, Box, BoxNew, BoxNewProps, Heading, HeadingProps, HStack, VStack, VStackProps } from '@navikt/ds-react';
+import { ArrowLeftIcon, ArrowRightIcon, PaperplaneIcon } from '@navikt/aksel-icons';
+import { Bleed, Box, BoxNewProps, Button, Heading, HeadingProps, HStack, VStack, VStackProps } from '@navikt/ds-react';
 import SifGuidePanel, {
     SifGuidePanelProps,
 } from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
@@ -7,7 +8,7 @@ import SifGuidePanel, {
  * Setter opp default spacing mellom sections
  */
 
-const Sections = ({ ...rest }: VStackProps) => <VStack gap="12" {...rest} />;
+const Sections = ({ ...rest }: VStackProps) => <VStack gap="space-48" {...rest} />;
 
 /**
  * Tittel og content i en seksjon
@@ -39,7 +40,7 @@ type SectionHeadingProps = { icon?: React.ReactNode } & HeadingProps;
 const SectionHeading = ({ children, icon, level = '2', size = 'medium', ...rest }: SectionHeadingProps) => (
     <Heading level={level} size={size} {...rest}>
         {icon ? (
-            <HStack gap="4">
+            <HStack gap="space-16">
                 {icon}
                 {children}
             </HStack>
@@ -54,7 +55,7 @@ const SectionHeading = ({ children, icon, level = '2', size = 'medium', ...rest 
  * @children Innholdet
  */
 export const QuestionRelatedMessage = ({ children }: { children: React.ReactNode }) => {
-    return <Bleed marginBlock="6 0">{children}</Bleed>;
+    return <Bleed marginBlock="space-24 space-0">{children}</Bleed>;
 };
 
 /**
@@ -62,7 +63,7 @@ export const QuestionRelatedMessage = ({ children }: { children: React.ReactNode
  * @children Innholdet
  */
 export const QuestionBleedTop = ({ children }: { children: React.ReactNode }) => {
-    return <Bleed marginBlock="6 0">{children}</Bleed>;
+    return <Bleed marginBlock="space-24 space-0">{children}</Bleed>;
 };
 
 /**
@@ -70,7 +71,7 @@ export const QuestionBleedTop = ({ children }: { children: React.ReactNode }) =>
  * @children Innholdet
  */
 export const QuestionBleedBottom = ({ children }: { children: React.ReactNode }) => {
-    return <Bleed marginBlock="0 4">{children}</Bleed>;
+    return <Bleed marginBlock="space-0 space-16">{children}</Bleed>;
 };
 
 /**
@@ -81,7 +82,7 @@ export const QuestionBleedBottom = ({ children }: { children: React.ReactNode })
  */
 
 export const Questions = ({ ...rest }: VStackProps) => {
-    return <VStack gap="8" {...rest} />;
+    return <VStack gap="space-32" {...rest} />;
 };
 
 /**
@@ -94,12 +95,12 @@ type PanelProps = { bleedTop?: boolean } & BoxNewProps;
 
 const Panel = ({ bleedTop, ...rest }: PanelProps) => {
     const content = (
-        <BoxNew
+        <Box
             borderColor="neutral-subtle"
             background="neutral-soft"
             borderRadius="8"
             borderWidth="1"
-            padding={{ xs: '2', sm: '4', md: '6' }}
+            padding={{ xs: 'space-8', sm: 'space-16', md: 'space-24' }}
             {...rest}
         />
     );
@@ -110,7 +111,7 @@ type StepGuideWrapperProps = { children: React.ReactNode } & React.HTMLAttribute
 
 const StepGuideWrapper = ({ children, ...rest }: StepGuideWrapperProps) => {
     return (
-        <Box marginBlock="0 12" {...rest}>
+        <Box marginBlock="space-0 space-48" {...rest}>
             {children}
         </Box>
     );
@@ -124,6 +125,58 @@ const Guide = (props: SifGuidePanelProps) => {
     );
 };
 
+interface FormButtonProps {
+    onPrevious?: () => void;
+    previousLabel?: string;
+    previousDisabled?: boolean;
+    submitPending?: boolean;
+    submitLabel?: string;
+    submitDisabled?: boolean;
+    isFinalSubmit?: boolean;
+}
+
+const FormButtons = ({
+    onPrevious,
+    previousLabel,
+    previousDisabled,
+    submitPending,
+    submitLabel,
+    submitDisabled,
+    isFinalSubmit,
+}: FormButtonProps) => {
+    return (
+        <HStack gap="space-16" justify="start">
+            {onPrevious && (
+                <Button
+                    variant="secondary"
+                    type="button"
+                    onClick={onPrevious}
+                    disabled={previousDisabled}
+                    icon={<ArrowLeftIcon aria-hidden />}>
+                    {previousLabel || 'Forrige steg'}
+                </Button>
+            )}
+            <Button
+                variant="primary"
+                type="submit"
+                loading={submitPending}
+                disabled={submitPending || submitDisabled}
+                iconPosition="right"
+                icon={isFinalSubmit ? <PaperplaneIcon aria-hidden /> : <ArrowRightIcon aria-hidden />}>
+                {submitLabel || isFinalSubmit ? 'Send inn' : 'Neste steg'}
+            </Button>
+        </HStack>
+    );
+};
+
+const Content = ({ children }: { children: React.ReactNode }) => {
+    return <VStack gap="space-48">{children}</VStack>;
+};
+
+const Summary = ({ children }: { children: React.ReactNode }) => {
+    return <VStack gap="space-24">{children}</VStack>;
+};
+
 export const FormLayout = {
     Guide,
     Panel,
@@ -135,4 +188,7 @@ export const FormLayout = {
     SectionHeading,
     Sections,
     StepGuideWrapper,
+    FormButtons,
+    Content,
+    Summary,
 };

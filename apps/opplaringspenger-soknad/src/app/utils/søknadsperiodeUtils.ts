@@ -1,6 +1,7 @@
 import { DateRange, getDateToday } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
+
 import { OmBarnetFormSøknadsdata } from '../types/søknadsdata/Søknadsdata';
 
 dayjs.extend(minMax);

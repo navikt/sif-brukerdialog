@@ -1,19 +1,20 @@
+import { RequestStatus } from '@app/types';
+import { appSentryLogger } from '@app/utils';
 import { Alert } from '@navikt/ds-react';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { RequestStatus } from '@types';
-import { appSentryLogger } from '@utils';
 import { isAxiosError } from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import { SkyraSlug, SkyraTestPage } from '@sif/surveys';
 import DevFooter from '../dev/DevFooter';
 import useSøknadInitialData from '../hooks/useSøknadInitialData';
 import IngenTilgangPage from '../pages/ingen-tilgang/IngenTilgangPage';
 import { SøknadRoutes } from './config/SøknadRoutes';
-import { SøknadContextProvider } from './context/SøknadContext';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
+import { SøknadContextProvider } from './context/SøknadContext';
 import SøknadRouter from './SøknadRouter';
 
 const Søknad = () => {
@@ -22,6 +23,10 @@ const Søknad = () => {
 
     const initialData = useSøknadInitialData();
     const { status } = initialData;
+
+    if (globalThis.location.pathname.includes('skyra/test')) {
+        return <SkyraTestPage slugs={[SkyraSlug.endringsmelding_pleiepenger]} />;
+    }
 
     if (status === RequestStatus.loading || status === RequestStatus.redirectingToLogin) {
         return <LoadingSpinner size="3xlarge" style="block" />;
@@ -39,9 +44,10 @@ const Søknad = () => {
 
     if (status === RequestStatus.error) {
         if (isAxiosError(initialData.error)) {
-            appSentryLogger.logApiError(initialData.error);
+            appSentryLogger.logApiError(initialData.error, 'useSøknadInitialData');
         } else {
-            appSentryLogger.logError('Søknad.requestStatus', initialData.error);
+            const e = initialData.error instanceof Error ? initialData.error : new Error(String(initialData.error));
+            appSentryLogger.logException(e, { context: 'Søknad.requestStatus' });
         }
         return (
             <ErrorPage

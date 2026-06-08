@@ -1,5 +1,5 @@
+import { FeriedagerMeta, LovbestemtFeriePeriode, LovbestemtFerieSøknadsdata } from '@app/types';
 import { DateRange, getDateRangesFromDates, sortDateRange } from '@navikt/sif-common-utils';
-import { FeriedagerMeta, LovbestemtFeriePeriode, LovbestemtFerieSøknadsdata } from '@types';
 
 import { Feriedag, FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
 import { getFeriedagerIPeriode } from './ferieUtils';

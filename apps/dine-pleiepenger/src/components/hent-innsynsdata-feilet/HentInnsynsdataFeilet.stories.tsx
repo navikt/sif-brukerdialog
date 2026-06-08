@@ -1,9 +1,9 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { AxiosError } from 'axios';
+
 import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
 import { withIntl } from '../../storybook/hooks/withIntl';
 import HentInnsynsdataFeilet from './HentInnsynsdataFeilet';
-
-import type { Meta, StoryObj } from '@storybook/react-vite';
 const meta: Meta<typeof HentInnsynsdataFeilet> = {
     component: HentInnsynsdataFeilet,
     title: 'Components/HentInnsynsdataFeilet',

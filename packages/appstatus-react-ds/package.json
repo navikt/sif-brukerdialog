@@ -1,36 +1,37 @@
 {
-    "author": "navikt",
+    "name": "@navikt/appstatus-react-ds",
+    "version": "2.20.74",
+    "private": true,
     "description": "Sanity utils for sykdom i familien",
     "license": "MIT",
-    "main": "src/index.ts",
-    "name": "@navikt/appstatus-react-ds",
-    "version": "2.20.42",
-    "private": true,
+    "author": "navikt",
     "type": "module",
-    "dependencies": {
-        "@navikt/sif-common-hooks": "workspace:*",
-        "@portabletext/react": "4.0.3",
-        "@sanity/client": "7.11.2"
-    },
-    "devDependencies": {
-        "@navikt/ds-css": "7.31.0",
-        "@navikt/ds-react": "7.31.0",
-        "@sif/eslint-config": "workspace:*",
-        "@types/node": "24.5.2",
-        "@types/react": "19.1.15",
-        "@types/react-dom": "19.1.9",
-        "config": "workspace:*",
-        "copyfiles": "2.4.1",
-        "postcss": "8.5.6",
-        "prop-types": "15.8.1",
-        "react": "19.1.1",
-        "react-dom": "19.1.1",
-        "rimraf": "6.0.1",
-        "sass": "1.93.2"
-    },
+    "main": "src/index.ts",
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
         "lint:tsc": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@navikt/sif-common-hooks": "workspace:*",
+        "@portabletext/react": "6.2.0",
+        "@sanity/client": "7.22.1"
+    },
+    "devDependencies": {
+        "@navikt/aksel-icons": "8.11.1",
+        "@navikt/ds-css": "8.11.1",
+        "@navikt/ds-react": "8.11.1",
+        "@sif/eslint-config": "workspace:*",
+        "@types/node": "25.9.1",
+        "@types/react": "19.2.16",
+        "@types/react-dom": "19.2.3",
+        "config": "workspace:*",
+        "copyfiles": "2.4.1",
+        "postcss": "8.5.15",
+        "prop-types": "15.8.1",
+        "react": "19.2.7",
+        "react-dom": "19.2.7",
+        "rimraf": "6.1.3",
+        "sass": "1.100.0"
     }
 }

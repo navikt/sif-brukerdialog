@@ -1,5 +1,168 @@
 # config
 
+## 0.11.55
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+
+## 0.11.54
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.53
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.52
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+
+## 0.11.51
+
+### Patch Changes
+
+- 69fe53c: Pakkeoppdateringer - minor/patch + major portable text
+
+## 0.11.50
+
+### Patch Changes
+
+- fc216a0: Pakkeoppdateringer - minor/patch
+
+## 0.11.49
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+
+## 0.11.48
+
+### Patch Changes
+
+- 292ac7b: Pakkeoppdateringer - minor/patch
+
+## 0.11.47
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+
+## 0.11.46
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.45
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+
+## 0.11.44
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 0.11.43
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 0.11.42
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.41
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.40
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
+## 0.11.39
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
+## 0.11.38
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.37
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.36
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 0.11.35
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.34
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.32
+
+### Patch Changes
+
+- 52d9b9e: Pakkeoppdateringer - minor/patch
+
+## 0.11.31
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.30
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.11.29
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Fjerne ubrukte pakker.
+
 ## 0.11.28
 
 ### Patch Changes

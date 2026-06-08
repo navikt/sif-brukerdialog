@@ -1,5 +1,168 @@
 # @sif/eslint-config
 
+## 1.1.84
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+
+## 1.1.83
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.82
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.81
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+
+## 1.1.80
+
+### Patch Changes
+
+- 69fe53c: Pakkeoppdateringer - minor/patch + major portable text
+
+## 1.1.79
+
+### Patch Changes
+
+- fc216a0: Pakkeoppdateringer - minor/patch
+
+## 1.1.78
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+
+## 1.1.77
+
+### Patch Changes
+
+- 292ac7b: Pakkeoppdateringer - minor/patch
+
+## 1.1.76
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+
+## 1.1.75
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.74
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+
+## 1.1.73
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 1.1.72
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 1.1.71
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.70
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.69
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
+## 1.1.68
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
+## 1.1.67
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.66
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.65
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 1.1.64
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.63
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.62
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.61
+
+### Patch Changes
+
+- 52d9b9e: Pakkeoppdateringer - minor/patch
+
+## 1.1.60
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.59
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 1.1.58
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Fjerne ubrukte pakker.
+
 ## 1.1.57
 
 ### Patch Changes

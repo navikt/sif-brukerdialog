@@ -6,9 +6,9 @@
 
 /** Variant blocks */
 .navds-list__item.sif_navds-form-summary-listItem--blocks {
-    background-color: var(--a-surface-subtle);
-    border-radius: var(--a-border-radius-large);
-    padding: var(--a-spacing-2) var(--a-spacing-3) !important;
+    background-color: var(--ax-bg-neutral-soft);
+    border-radius: var(--ax-radius-8);
+    padding: var(--ax-space-8) var(--ax-space-12) !important;
     list-style-position: inside;
     gap: 0 !important;
 }
@@ -24,5 +24,5 @@
 
 /** Variant bullet-blocks */
 .navds-list__item.sif_navds-form-summary-listItem--bullet-blocks:not(:last-child) {
-    margin-bottom: var(--a-spacing-6);
+    margin-bottom: var(--ax-space-24);
 }

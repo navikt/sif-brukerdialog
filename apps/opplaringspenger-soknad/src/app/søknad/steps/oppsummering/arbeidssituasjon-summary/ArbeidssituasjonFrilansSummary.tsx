@@ -1,5 +1,6 @@
 import { FormSummary, Heading, List } from '@navikt/ds-react';
 import { prettifyApiDate } from '@navikt/sif-common-utils';
+
 import { AppText } from '../../../../i18n';
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
 import { FrilansApiData } from '../../../../types/søknadApiData/SøknadApiData';

@@ -1,5 +1,5 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { ArbeidsgiverMedAnsettelseperioder, ArbeidstidApiData } from '@types';
+import { ArbeidsgiverMedAnsettelseperioder, ArbeidstidApiData } from '@app/types';
 
 import { AppText, useAppIntl } from '../../../i18n';
 import ArbeidstidUker from '../../../modules/arbeidstid-uker/ArbeidstidUker';
@@ -19,7 +19,7 @@ const ArbeidstidOppsummering = ({ arbeidstid, arbeidsgivere }: Props) => {
     const eksisterendeArbeidstakere = arbeidstakerList.filter((a) => a._erUkjentArbeidsforhold === false);
     const ukjenteArbeidsforhold = arbeidstakerList.filter((a) => a._erUkjentArbeidsforhold === true);
     return (
-        <VStack gap="8">
+        <VStack gap="space-32">
             {ukjenteArbeidsforhold &&
                 Object.keys(ukjenteArbeidsforhold).map((key) => (
                     <ArbeidstidArbeidstakerOppsummering

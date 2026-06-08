@@ -1,12 +1,12 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
+
 import { withEmptyPage } from '../../storybook/hooks/withEmptyPage';
 import { withIntl } from '../../storybook/hooks/withIntl';
-import { Venteårsak } from '../../types/Venteårsak';
-import Saksbehandlingstid from './Saksbehandlingstid';
-
-import type { Meta, StoryObj } from '@storybook/react-vite';
-const meta: Meta<typeof Saksbehandlingstid> = {
-    component: Saksbehandlingstid,
+import { Venteårsak } from '../../types';
+import SaksbehandlingstidPanel from './Saksbehandlingstid';
+const meta: Meta<typeof SaksbehandlingstidPanel> = {
+    component: SaksbehandlingstidPanel,
     title: 'Content/Saksbehandlingstid',
     parameters: {
         layout: 'centered',
@@ -15,32 +15,33 @@ const meta: Meta<typeof Saksbehandlingstid> = {
 };
 export default meta;
 
-type Story = StoryObj<typeof Saksbehandlingstid>;
+type Story = StoryObj<typeof SaksbehandlingstidPanel>;
 
 export const Default: Story = {
     name: 'Med frist',
     args: {
         frist: dayjs().add(10, 'day').toDate(),
+        sakErLastet: true,
     },
 };
 
 export const UtenFristMedBehandlingstid: Story = {
     name: 'Ingen frist',
-    args: {
-        saksbehandlingstidUker: 3,
-    },
+    args: { sakErLastet: true },
 };
 
 export const FristIGår: Story = {
     name: 'Frist i går',
     args: {
         frist: dayjs().subtract(1, 'day').toDate(),
+        sakErLastet: true,
     },
 };
 export const FristPassert: Story = {
     name: 'Frist i dag',
     args: {
         frist: dayjs().toDate(),
+        sakErLastet: true,
     },
 };
 export const VenteårsakMedisinsk: Story = {
@@ -48,6 +49,7 @@ export const VenteårsakMedisinsk: Story = {
     args: {
         frist: dayjs().toDate(),
         venteårsak: Venteårsak.MEDISINSK_DOKUMENTASJON,
+        sakErLastet: true,
     },
 };
 export const VenteårsakInntektsmelding: Story = {
@@ -55,6 +57,7 @@ export const VenteårsakInntektsmelding: Story = {
     args: {
         frist: dayjs().toDate(),
         venteårsak: Venteårsak.INNTEKTSMELDING,
+        sakErLastet: true,
     },
 };
 export const VenteårsakForTidligSøknad: Story = {
@@ -62,6 +65,7 @@ export const VenteårsakForTidligSøknad: Story = {
     args: {
         frist: dayjs().toDate(),
         venteårsak: Venteårsak.FOR_TIDLIG_SOKNAD,
+        sakErLastet: true,
     },
 };
 export const VenteårsakForTidligSøknadFristPassert: Story = {
@@ -69,6 +73,7 @@ export const VenteårsakForTidligSøknadFristPassert: Story = {
     args: {
         frist: dayjs().subtract(3, 'months').toDate(),
         venteårsak: Venteårsak.FOR_TIDLIG_SOKNAD,
+        sakErLastet: true,
     },
 };
 export const VenteårsakMeldekort: Story = {
@@ -76,5 +81,6 @@ export const VenteårsakMeldekort: Story = {
     args: {
         frist: dayjs().toDate(),
         venteårsak: Venteårsak.MELDEKORT,
+        sakErLastet: true,
     },
 };

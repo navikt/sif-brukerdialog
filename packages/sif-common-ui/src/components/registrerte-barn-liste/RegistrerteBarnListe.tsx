@@ -23,7 +23,7 @@ const RegistrerteBarnListe = ({ registrerteBarn }: Props) => {
             getItemId={(barn): string => barn.aktørId}
             getItemTitle={(barn): string => barn.etternavn}
             labelRenderer={(barn): React.ReactNode => (
-                <HStack gap="4">
+                <HStack gap="space-16">
                     <Box>
                         <UiText
                             id="registrertBarnListe.barn.født"

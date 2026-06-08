@@ -1,5 +1,41 @@
 # @navikt/sif-common-hooks
 
+## 0.3.11
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+
+## 0.3.10
+
+### Patch Changes
+
+- Inntektsmelding og splitt av sak i Dine pleiepenger. Tilhørende codegen + noe felleskoderoppdateringer
+
+## 0.3.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.3.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+
+## 0.3.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
+## 0.3.6
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 0.3.5
 
 ### Patch Changes

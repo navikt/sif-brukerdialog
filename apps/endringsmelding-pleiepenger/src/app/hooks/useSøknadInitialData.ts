@@ -1,7 +1,3 @@
-import { Søker } from '@navikt/sif-common-api';
-import { getMaybeEnv } from '@navikt/sif-common-env';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { DateRange } from '@navikt/sif-common-utils';
 import {
     ArbeidsgiverMedAnsettelseperioder,
     IngenTilgangÅrsak,
@@ -11,8 +7,13 @@ import {
     SøknadContextState,
     SøknadInitialDataState,
     TimerEllerProsent,
-} from '@types';
-import { appSentryLogger } from '@utils';
+    UgyldigBarnFormatDetails,
+} from '@app/types';
+import { appSentryLogger } from '@app/utils';
+import { Søker } from '@navikt/sif-common-api';
+import { getMaybeEnv } from '@navikt/sif-common-env';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { DateRange } from '@navikt/sif-common-utils';
 import { useState } from 'react';
 
 import { SøknadStatePersistence } from '../api/endpoints/søknadStateEndpoint';
@@ -25,7 +26,12 @@ import { getSakOgArbeidsgivereDebugInfo } from '../utils/getSakOgArbeidsgivereDe
 
 export type SøknadInitialData = Omit<SøknadContextState, 'sak'> & { sak: Sak | undefined };
 
-export type IngenTilgangMeta = { erArbeidstaker?: boolean; erSN?: boolean; erFrilanser?: boolean };
+export type IngenTilgangMeta = {
+    erArbeidstaker?: boolean;
+    erSN?: boolean;
+    erFrilanser?: boolean;
+    error?: UgyldigBarnFormatDetails;
+};
 
 export type SøknadInitialIkkeTilgang = {
     status: RequestStatus.success;
@@ -65,7 +71,8 @@ const prepInitialData = (
         }
         if (k9saker.length === 1) {
             const sak = getSakFromK9Sak(k9saker[0], arbeidsgivere, tillattEndringsperiode);
-            if (getMaybeEnv('DEBUG') === 'true') {
+
+            if (getMaybeEnv('SIF_PUBLIC_DEBUG') === 'true') {
                 appSentryLogger.logInfo(
                     'debug.maskedSakInfo',
                     JSON.stringify(
@@ -93,6 +100,7 @@ const prepInitialData = (
                 : {
                       arbeidstid: false,
                       lovbestemtFerie: false,
+                      tilsynsordning: false,
                   },
         søknadsdata: {} as any,
         søknadSteps: [],
@@ -121,7 +129,8 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 if (isSøknadInitialDataErrorState(error)) {
                     setInitialData(error);
                 } else {
-                    appSentryLogger.logError('fetchInitialData.error.else', error);
+                    const e = error instanceof Error ? error : new Error(String(error));
+                    appSentryLogger.logException(e, { context: 'fetchInitialData.error.else' });
                     setInitialData({
                         status: RequestStatus.error,
                         error,

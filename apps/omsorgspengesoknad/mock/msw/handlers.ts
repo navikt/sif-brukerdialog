@@ -35,7 +35,7 @@ export const getHandlers = () => [
                 title: 'invalid-request-parameters',
                 type: '/problem-details/invalid-request-parameters',
             },
-            { status: 400 },
+            { status: 200 },
         );
     }),
     ...getMellomlagringHandlers('omsorgspenger-utvidet-rett-mellomlagring'),

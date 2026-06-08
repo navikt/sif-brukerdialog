@@ -4,22 +4,20 @@
 
 For å kjøre opp app-en i dev:
 
-1.  `yarn clean` i root sif-brukerdialog.
-2.  `yarn` i root sif-brukerdialog.
-
-3.  `cp .env.example .env` i root omsorgsdager-aleneomsorg-dialog.
-4.  `yarn build` i root omsorgsdager-aleneomsorg-dialog.
-5.  `yarn dev-api` i root omsorgsdager-aleneomsorg-dialog.
-6.  `yarn dev` i root omsorgsdager-aleneomsorg-dialog.
+1.  `pnpm install` i root sif-brukerdialog.
+2.  `cp .env.example .env` i root omsorgsdager-aleneomsorg-dialog.
+3.  `pnpm build` i root omsorgsdager-aleneomsorg-dialog.
+4.  `pnpm dev-api` i root omsorgsdager-aleneomsorg-dialog.
+5.  `pnpm dev` i root omsorgsdager-aleneomsorg-dialog.
 
 For å kjøre enhetstester:
 
-1.  `yarn test`.
+1.  `pnpm test`.
 
 For å kjøre Playwright tester:
 
-1.  `yarn start-e2e-server`
-1.  `yarn e2e`
+1.  `pnpm start-e2e-server`
+1.  `pnpm e2e`
 
 ## Henvendelser
 

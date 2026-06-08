@@ -2,7 +2,7 @@ import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 
 export const SøkerMock: Søker = {
-    fødselsnummer: '30086421581',
+    fødselsnummer: '09908799647',
     fornavn: 'GODSLIG',
     aktørId: '132',
     fødselsdato: ISODateToDate('1990-01-01'),

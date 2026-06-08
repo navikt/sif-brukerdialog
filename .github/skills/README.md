@@ -1,0 +1,113 @@
+# Skills Index
+
+Bruk denne indeksen for rask routing til riktig skill.
+
+- `sif-api`
+    - Når: datahenting via `@sif/api`.
+    - Triggerord: `hente fra api`, `api-kall`, `react query`, `tanstack query`, `@sif/api`, `useQuery`, `queryKey`, `useKontonummer`, `env.schema.ts`, `initApiClients`, `*_API_URL`.
+    - Fil: `.github/skills/sif-api/SKILL.md`
+
+- `sif-intl`
+    - Når: opprette, endre eller verifisere i18n-tekster i app eller pakke.
+    - Triggerord: `i18n`, `intl`, `nb.ts`, `nn.ts`, `oversettelse`, `tekster`, `AppText`, `useAppIntl`, `parametersjekk`, `ICU`.
+    - Fil: `.github/skills/sif-intl/SKILL.md`
+
+- `sif-soknad-setup`
+    - Når: oppsett av `src/app/setup` og routing shell (`Soknad.tsx`, `VelkommenPage`, `KvitteringPage`) i app med `@sif/soknad` og `@sif/rhf`.
+    - Triggerord: `soknadContext`, `stepConfig`, `useStepSubmit`, `useStepDefaultValues`, `VelkommenPage`, `KvitteringPage`, `Soknad.tsx`, `routing-skall`.
+    - Fil: `.github/skills/sif-soknad-setup/SKILL.md`
+
+- `aksel-spacing`
+    - Når: layout/spacing med Aksel Design System.
+    - Triggerord: `Box`, `VStack`, `HStack`, `HGrid`, `space-*`.
+    - Fil: `.github/skills/aksel-spacing/SKILL.md`
+
+- `sif-soknad-add-step`
+    - Når: legge til et nytt steg i en søknadsapp.
+    - Triggerord: `nytt steg`, `legg til steg`, `ny side i søknaden`, `opprett steg`, `FormFields`, `StegUtils`.
+    - Fil: `.github/skills/sif-soknad-add-step/SKILL.md`
+
+- `sif-soknad-modify-step`
+    - Når: legge til nye felter/spørsmål i et eksisterende steg.
+    - Triggerord: `legg til spørsmål`, `nytt felt`, `ny checkbox`, `ny radiogruppe`, `utvid steg`, `følgespørsmål`, `betinget visning`.
+    - Fil: `.github/skills/sif-soknad-modify-step/SKILL.md`
+
+- `sif-formik-to-rhf`
+    - Når: migrering av ett skjema fra Formik (`@navikt/sif-common-formik-ds`) til RHF (`@sif/rhf`).
+    - Triggerord: `formik til rhf`, `konverter skjema`, `bytt ut formik`, `migrer form`, `sif-common-formik-ds`, `FormikWrapper`, `getTypedFormComponents`.
+    - Fil: `.github/skills/sif-formik-to-rhf/SKILL.md`
+
+- `sif-migration-baseline`
+    - Når: migrering av app til ny v2 setup.
+    - Triggerord: `migrering`, `baseline`, `bootstrap`, `sif-demo-app`.
+    - Fil: `.github/skills/sif-migration-baseline/SKILL.md`
+
+- `sif-initial-data-loader`
+    - Når: sette opp eller endre initial data-henting (useInitialData + InitialDataLoader) i en søknadsapp.
+    - Triggerord: `useInitialData`, `InitialDataLoader`, `InitialData`, `loading/error/success`, `required queries`, `optional queries`, `mellomlagringsvalidering`, `legg til hook`, `ny datakilde`, `blokkerer loading`, `fallback-verdi`.
+    - Fil: `.github/skills/sif-initial-data-loader/SKILL.md`
+
+- `sif-server-proxy-api-config`
+    - Når: verifisere eller feilsøke proxy/path-oppsett mellom app, env og backend.
+    - Triggerord: `reverse proxy`, `proxy`, `returnerer html`, `catch-all`, `api path`, `frontendPath`, `PUBLIC_PATH`, `baseURL`.
+    - Fil: `.github/skills/sif-server-proxy-api-config/SKILL.md`
+
+- `sif-playwright`
+    - Når: sette opp Playwright e2e-testing i en app-workspace, inkludert accessibility-testing med axe.
+    - Triggerord: `playwright`, `e2e`, `end-to-end`, `playwright.config`, `test:e2e`, `smoke test`, `første e2e test`, `a11y`, `uu`, `universell utforming`, `axe`, `@axe-core/playwright`, `testAccessibility`.
+    - Fil: `.github/skills/sif-playwright/SKILL.md`
+
+- `sif-soknad-oppsummering`
+    - Når: sette opp eller fylle inn innhold i oppsummeringssteget.
+    - Triggerord: `oppsummering`, `OppsummeringSteg`, `FormSummary`, `OmSøkerOppsummering`, `bekreftelsescheckbox`.
+    - Fil: `.github/skills/sif-soknad-oppsummering/SKILL.md`
+
+- `sif-soknad-vedlegg-step`
+    - Når: implementere eller endre vedleggssteg med opplasting, sletting, hydration og mellomlagring.
+    - Triggerord: `vedlegg`, `last opp`, `filvedlegg`, `VedleggPanel`, `PersistedVedlegg`, `lagreVedlegg`, `slettVedlegg`, `FileUpload`.
+    - Fil: `.github/skills/sif-soknad-vedlegg-step/SKILL.md`
+
+- `sif-codegen`
+    - Når: codegen med `@hey-api/openapi-ts`, genererte API-klienter eller post-prosessering.
+    - Triggerord: `codegen`, `@hey-api/openapi-ts`, `openapi-ts`, `genererte klienter`, `client.gen.ts`, `types.gen.ts`, `sdk.gen.ts`, `download-spec`, `codegenUtils`, `fix-generated`.
+    - Fil: `.github/skills/sif-codegen/SKILL.md`
+
+- `sif-dialog-migration`
+    - Når: porte en dialog fra `sif-common-forms-ds` (v1/Formik) til `sif-soknad-forms` (v2/RHF).
+    - Triggerord: `porter dialog`, `migrer ListAndDialog`, `flytt til sif-soknad-forms`, `ModalFormAndList`, `ListAndDialog`, `BostedUtlandListAndDialog`, `UtenlandsoppholdListAndDialog`.
+    - Fil: `.github/skills/sif-dialog-migration/SKILL.md`
+
+- `sif-gh-pages`
+    - Når: legge til en v2-app i gh-pages demo-deploy.
+    - Triggerord: `gh-pages`, `demo-deploy`, `legg til i gh-pages`, `vite.demo.config`, `demo:build`, `gh-pages:rebuild`, `dist-demo`.
+    - Fil: `.github/skills/sif-gh-pages/SKILL.md`
+
+- `nav-architecture-review`
+    - Når: arkitekturvurdering og generering av ADR (Architecture Decision Records).
+    - Triggerord: `ADR`, `architecture review`, `arkitekturbeslutning`, `beslutningsdokument`, `vurder arkitektur`.
+    - Fil: `.github/skills/nav-architecture-review/SKILL.md`
+
+- `nav-deep-interview`
+    - Når: avklaring av prosjektkrav og -scope gjennom strukturert intervju.
+    - Triggerord: `deep interview`, `avklar krav`, `prosjektintervju`, `scope`, `prosjektklargjøring`, `arketype`.
+    - Fil: `.github/skills/nav-deep-interview/SKILL.md`
+
+- `nav-plan`
+    - Når: generering av arkitekturplan og leveransedokumenter for et Nav-prosjekt.
+    - Triggerord: `arkitekturplan`, `lage plan`, `generer plan`, `beslutningstrær`, `leveranseplan`.
+    - Fil: `.github/skills/nav-plan/SKILL.md`
+
+- `nav-troubleshoot`
+    - Når: feilsøking av plattform-/driftsproblemer i Nav (pods, auth, Kafka, ingress).
+    - Triggerord: `feilsøk`, `troubleshoot`, `pod krasjer`, `CrashLoopBackOff`, `auth-feil`, `ingress-feil`, `Kafka-feil`.
+    - Fil: `.github/skills/nav-troubleshoot/SKILL.md`
+
+- `playwright-testing`
+    - Når: sette opp Playwright E2E-testing generelt med page objects, auth fixtures og tilgjengelighetstesting.
+    - Triggerord: `playwright`, `e2e`, `page object`, `auth fixture`, `axe`, `accessibility testing`, `MockOAuth2Server`.
+    - Fil: `.github/skills/playwright-testing/SKILL.md`
+
+- `web-design-reviewer`
+    - Når: gjennomgang og feilretting av visuelt design på nettsider.
+    - Triggerord: `designgjennomgang`, `design review`, `visuell inspeksjon`, `layout-feil`, `CSS-feil`.
+    - Fil: `.github/skills/web-design-reviewer/SKILL.md`

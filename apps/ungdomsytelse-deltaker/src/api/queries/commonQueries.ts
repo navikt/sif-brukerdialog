@@ -1,5 +1,4 @@
 export const commonQueryKeys = {
-    søker: ['søker'],
     deltakelseperioder: ['deltakelseperioder'],
 };
 

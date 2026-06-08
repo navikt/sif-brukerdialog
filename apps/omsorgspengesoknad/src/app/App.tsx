@@ -3,10 +3,11 @@ import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
 import { isProd } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
+    NoAccessPage,
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
-import { applicationIntlMessages } from './i18n';
+import { applicationIntlMessages, type AppMessageKeys } from './i18n';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
 import { appEnv } from './utils/appEnv';
@@ -16,8 +17,8 @@ const {
     PUBLIC_PATH,
     SIF_PUBLIC_APPSTATUS_DATASET,
     SIF_PUBLIC_APPSTATUS_PROJECT_ID,
-    SIF_PUBLIC_USE_AMPLITUDE,
-    SIF_PUBLIC_AMPLITUDE_API_KEY,
+    SIF_PUBLIC_USE_ANALYTICS,
+    SIF_PUBLIC_ANALYTICS_API_KEY,
     APP_VERSION,
 } = appEnv;
 
@@ -39,13 +40,17 @@ const App = () => {
                 },
             }}
             publicPath={PUBLIC_PATH}
-            useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}
-            amplitudeApiKey={SIF_PUBLIC_AMPLITUDE_API_KEY}>
+            useAnalytics={SIF_PUBLIC_USE_ANALYTICS ? SIF_PUBLIC_USE_ANALYTICS === 'true' : isProd()}
+            analyticsApiKey={SIF_PUBLIC_ANALYTICS_API_KEY}>
             <SoknadApplicationCommonRoutes
                 contentRoutes={[
                     <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
                     <Route path={SøknadRoutes.INNLOGGET_ROOT} key="soknad" element={<Søknad />} />,
-                    <Route path={SøknadRoutes.IKKE_TILGANG} key="ikke-tilgang" element={<>Ikke tilgang</>} />,
+                    <Route
+                        path={SøknadRoutes.IKKE_TILGANG}
+                        key="ikke-tilgang"
+                        element={<NoAccessPage<AppMessageKeys> tittelIntlKey="application.title" />}
+                    />,
                     <Route path="*" key="ukjent" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
                 ]}
             />

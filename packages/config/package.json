@@ -1,23 +1,26 @@
 {
-    "main": "index.js",
     "name": "config",
-    "version": "0.11.28",
+    "version": "0.11.55",
     "private": true,
-    "dependencies": {
-        "@typescript-eslint/eslint-plugin": "8.44.1",
-        "@typescript-eslint/parser": "8.44.1",
-        "eslint": "9.36.0",
-        "eslint-config-prettier": "10.1.8",
-        "eslint-plugin-jsx-a11y": "6.10.2",
-        "eslint-plugin-prettier": "5.5.4",
-        "eslint-plugin-react": "7.37.5",
-        "eslint-plugin-react-hooks": "5.2.0",
-        "eslint-plugin-storybook": "9.1.8",
-        "postcss": "8.5.6",
-        "prettier": "3.6.2",
-        "typescript": "5.9.2"
-    },
+    "main": "index.js",
     "files": [
         "tsconfig-base.json"
-    ]
+    ],
+    "dependencies": {
+        "@typescript-eslint/eslint-plugin": "8.60.1",
+        "@typescript-eslint/parser": "8.60.1",
+        "eslint": "10.4.1",
+        "eslint-config-prettier": "10.1.8",
+        "eslint-plugin-jsx-a11y": "6.10.2",
+        "eslint-plugin-prettier": "5.5.6",
+        "eslint-plugin-react": "7.37.5",
+        "eslint-plugin-react-hooks": "7.1.1",
+        "eslint-plugin-storybook": "10.4.2",
+        "postcss": "8.5.15",
+        "prettier": "3.8.3",
+        "typescript": "6.0.3"
+    },
+    "devDependencies": {
+        "storybook": "10.4.2"
+    }
 }

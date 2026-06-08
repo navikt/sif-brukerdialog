@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { withAmplitudeProvider } from '../../../storybook/decorators/withAmplitude';
+import { withAnalyticsProvider } from '../../../storybook/decorators/withAnalyticsProvider';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import ConfirmationPage from './ConfirmationPage';
 
 const meta: Meta<typeof ConfirmationPage> = {
     title: 'Pages/ConfirmationPage',
     component: ConfirmationPage,
-    decorators: [withAmplitudeProvider, withIntl],
+    decorators: [withAnalyticsProvider, withIntl],
     args: { onUnmount: () => {} },
     parameters: {
         // layout: 'centered',

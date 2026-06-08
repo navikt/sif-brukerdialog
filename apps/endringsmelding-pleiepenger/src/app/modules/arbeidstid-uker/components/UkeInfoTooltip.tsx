@@ -1,4 +1,4 @@
-import { InformationColored } from '@navikt/ds-icons';
+import { InformationIcon } from '@navikt/aksel-icons';
 import { Tooltip } from '@navikt/ds-react';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
 
@@ -16,7 +16,7 @@ const UkeInfoTooltip: React.FunctionComponent<Props> = ({ uke }) => {
         return (
             <Tooltip content={getKortUkeTooltipText(uke.periode)}>
                 <span style={{ fontSize: '1.4rem' }}>
-                    <InformationColored aria-label={`Kort uke - ${getDagerPeriode(uke.periode, false)}`} />
+                    <InformationIcon aria-label={`Kort uke - ${getDagerPeriode(uke.periode, false)}`} />
                 </span>
             </Tooltip>
         );

@@ -1,8 +1,11 @@
-import { http, HttpResponse } from 'msw';
+import { http, HttpResponse, passthrough } from 'msw';
+
 import { mockData } from '../data';
 import { getMellomlagringHandlers } from './mellomlagringHandlers';
 
 export const getHandlers = () => [
+    // La uxsignals-kall passere gjennom til faktisk server
+    http.all('https://widget.uxsignals.com/*', () => passthrough()),
     http.get('**/oppslag/soker', () => {
         return HttpResponse.json(mockData.søker);
     }),
@@ -12,7 +15,7 @@ export const getHandlers = () => [
     http.get('**/oppslag/arbeidsgiver', () => {
         return HttpResponse.json(mockData.arbeidsgiver);
     }),
-    http.get('**/opplaringsinstitusjoner', () => {
+    http.get('**/opplaringsinstitusjoner/aktive', () => {
         return HttpResponse.json(mockData.institusjoner);
     }),
     http.post('**/opplaringspenger/innsending', () => {

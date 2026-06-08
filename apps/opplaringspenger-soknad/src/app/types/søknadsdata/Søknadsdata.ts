@@ -6,12 +6,12 @@ import { KursSøknadsdata } from './KursSøknadsdata';
 import { LegeerklæringSøknadsdata } from './LegeerklæringSøknadsdata';
 import { MedlemskapSøknadsdata } from './MedlemskapSøknadsdata';
 
-export * from './LegeerklæringSøknadsdata';
-export * from './KursSøknadsdata';
+export * from '../../søknad/steps/om-barnet/om-barnet-form/types/OmBarnetFormSøknadsdata';
 export * from './ArbeidssituasjonSøknadsdata';
 export * from './ArbeidstidSøknadsdata';
+export * from './KursSøknadsdata';
+export * from './LegeerklæringSøknadsdata';
 export * from './MedlemskapSøknadsdata';
-export * from '../../søknad/steps/om-barnet/om-barnet-form/types/OmBarnetFormSøknadsdata';
 
 export interface Søknadsdata {
     id?: string;

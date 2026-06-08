@@ -125,7 +125,7 @@ const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({ per
                                         : undefined;
                                 }}
                                 name={FormFields['tidFasteDager.gruppe']}>
-                                <Box paddingBlock="2 0">
+                                <Box paddingBlock="space-8 space-0">
                                     <TidFasteUkedagerInput
                                         name={FormFields.tidFasteDager}
                                         validateDag={(dag, value) => {

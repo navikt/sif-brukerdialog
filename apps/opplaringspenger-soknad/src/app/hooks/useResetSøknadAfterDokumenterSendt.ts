@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+
 import { SøknadRoutes } from '../types/SøknadRoutes';
 
 const useResetSøknadAfterDokumenterSendt = (reset: () => void) => {

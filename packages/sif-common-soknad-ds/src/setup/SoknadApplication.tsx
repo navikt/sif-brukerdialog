@@ -1,11 +1,11 @@
 import '@formatjs/intl-pluralrules/locale-data/nb';
 import '@formatjs/intl-pluralrules/locale-data/nn';
-import '@formatjs/intl-pluralrules/polyfill';
+import '@formatjs/intl-pluralrules/polyfill.js';
 import 'dayjs/locale/nb';
 import 'dayjs/locale/nn';
 
 import { SanityConfig } from '@navikt/appstatus-react-ds/src/types';
-import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
+import { AnalyticsProvider } from '@navikt/sif-common-analytics';
 import AppStatusWrapper from '@navikt/sif-common-core-ds/src/components/app-status-wrapper/AppStatusWrapper';
 import SifAppWrapper from '@navikt/sif-common-core-ds/src/components/sif-app-wrapper/SifAppWrapper';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
@@ -20,7 +20,7 @@ import { FaroProvider } from '@navikt/sif-common-faro';
 import dayjs from 'dayjs';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 
 import DevBranchInfo from '../components/dev-branch-info/DevBranchInfo';
 import ErrorBoundary from '../components/errorBoundary/ErrorBoundary';
@@ -30,7 +30,7 @@ import ErrorPage from '../pages/error-page/ErrorPage';
 
 interface Props {
     appVersion: string;
-    /** Key used in amplitude and sentry logs */
+    /** Key used in analytics and sentry logs */
     appKey: string;
     /** App name - not visual to user */
     appName: string;
@@ -42,10 +42,10 @@ interface Props {
     intlMessages: MessageFileFormat;
     /** Toggle on/off languageselector in decorator */
     useLanguageSelector?: boolean;
-    /** If amplitude logging is active or not*/
-    useAmplitude: boolean;
-    /** Amplitude project api key */
-    amplitudeApiKey: string;
+    /** If analytics logging is active or not*/
+    useAnalytics: boolean;
+    /** Analytics project api key */
+    analyticsApiKey: string;
     /** Faro logging */
     useFaro?: boolean;
     naisFrontendTelemetryCollectorUrl?: string;
@@ -57,6 +57,8 @@ interface Props {
     children: React.ReactNode;
     /** Extra content in ErrorBoundary */
     onResetSoknad?: () => void;
+    /** Use HashRouter instead of BrowserRouter - useful for GitHub Pages */
+    useHashRouter?: boolean;
 }
 
 const localeFromSessionStorage = getLocaleFromSessionStorage();
@@ -67,8 +69,8 @@ const SoknadApplication = ({
     appStatus,
     publicPath,
     appKey,
-    useAmplitude,
-    amplitudeApiKey,
+    useAnalytics,
+    analyticsApiKey,
     useLanguageSelector,
     children,
     appTitle,
@@ -76,7 +78,9 @@ const SoknadApplication = ({
     naisFrontendTelemetryCollectorUrl,
     useFaro,
     onResetSoknad,
+    useHashRouter,
 }: Props) => {
+    const Router = useHashRouter ? HashRouter : BrowserRouter;
     const [locale, setLocale] = React.useState<Locale>(localeFromSessionStorage);
     const localeMessages = intlMessages[locale] || intlMessages['nb'];
     const locales = useLanguageSelector ? (Object.keys(intlMessages) as any) : [];
@@ -94,11 +98,11 @@ const SoknadApplication = ({
                 appVersion={appVersion}
                 isActive={useFaro}>
                 <ErrorBoundary appKey={appKey} onResetSoknad={onResetSoknad} appTitle={appTitle}>
-                    <AmplitudeProvider apiKey={amplitudeApiKey} applicationKey={appKey} isActive={useAmplitude}>
+                    <AnalyticsProvider apiKey={analyticsApiKey} applicationKey={appKey} isActive={useAnalytics}>
                         <IntlProvider
                             locale={locale === 'nb' ? getBokmålLocale() : getNynorskLocale()}
                             messages={localeMessages}>
-                            <BrowserRouter basename={publicPath}>
+                            <Router basename={useHashRouter ? undefined : publicPath}>
                                 {/* Staging-datasettet er slettet på grunn av økonomi */}
                                 {appStatus.sanityConfig.dataset === 'staging' ? (
                                     children
@@ -115,9 +119,9 @@ const SoknadApplication = ({
                                     />
                                 )}
                                 <DevBranchInfo />
-                            </BrowserRouter>
+                            </Router>
                         </IntlProvider>
-                    </AmplitudeProvider>
+                    </AnalyticsProvider>
                 </ErrorBoundary>
             </FaroProvider>
         </SifAppWrapper>

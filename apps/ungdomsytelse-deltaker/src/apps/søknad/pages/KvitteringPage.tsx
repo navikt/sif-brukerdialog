@@ -1,15 +1,16 @@
-import { Alert, BodyLong, Button, Heading, List, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, Button, Heading, Link, List, VStack } from '@navikt/ds-react';
+import ExternalLink from '@shared/components/external-link/ExternalLink';
+import { AppText, useAppIntl } from '@shared/i18n';
+import DefaultPageLayout from '@shared/pages/layout/DefaultPageLayout';
+import getLenker from '@shared/utils/lenker';
 
-import { AppText, useAppIntl } from '../../../i18n';
-import getLenker from '../../../utils/lenker';
-import DefaultPageLayout from '../../innsyn/pages/layout/DefaultPageLayout';
 import SøknadHeader from '../components/søknad-header/SøknadHeader';
 
 const KvitteringPage = () => {
     const { text } = useAppIntl();
     return (
         <DefaultPageLayout documentTitle={text('kvitteringPage.dokumentTittel')}>
-            <VStack gap="8">
+            <VStack gap="space-32">
                 <SøknadHeader />
 
                 <Alert variant="success">
@@ -27,13 +28,33 @@ const KvitteringPage = () => {
                     </Heading>
                     <List>
                         <List.Item>
-                            <AppText id="kvitteringPage.hvaSkjerVidere.1" />
+                            <AppText
+                                id="kvitteringPage.hvaSkjerVidere.1"
+                                values={{
+                                    Lenke: (children) => <Link href={getLenker().minSide}>{children}</Link>,
+                                }}
+                            />
                         </List.Item>
                         <List.Item>
                             <AppText id="kvitteringPage.hvaSkjerVidere.2" />
                         </List.Item>
                         <List.Item>
-                            <AppText id="kvitteringPage.hvaSkjerVidere.3" />
+                            <AppText
+                                id="kvitteringPage.hvaSkjerVidere.3"
+                                values={{
+                                    Lenke: (children) => <Link href={getLenker().minSide}>{children}</Link>,
+                                }}
+                            />
+                        </List.Item>
+                        <List.Item>
+                            <AppText
+                                id="kvitteringPage.hvaSkjerVidere.4"
+                                values={{
+                                    Lenke: (children) => (
+                                        <ExternalLink href={getLenker().skattekort}>{children}</ExternalLink>
+                                    ),
+                                }}
+                            />
                         </List.Item>
                     </List>
                 </div>

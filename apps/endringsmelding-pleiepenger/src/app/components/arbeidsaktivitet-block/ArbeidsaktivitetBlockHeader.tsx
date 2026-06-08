@@ -1,10 +1,10 @@
 import './arbeidsaktivitetBlockHeader.scss';
 
-import { Office1 } from '@navikt/ds-icons';
+import { AppText } from '@app/i18n';
+import { ArbeidsgiverMedAnsettelseperioder, ArbeidsaktivitetType } from '@app/types';
+import { Buildings3Icon } from '@navikt/aksel-icons';
 import { BodyLong, Box, Heading, VStack } from '@navikt/ds-react';
-import { ArbeidsaktivitetType, ArbeidsgiverMedAnsettelseperioder } from '@types';
 
-import { AppText } from '../../i18n';
 import EndretTag from '../tags/EndretTag';
 import NyTag from '../tags/NyTag';
 import TagsContainer from '../tags/tags-container/TagsContainer';
@@ -22,16 +22,16 @@ interface Props {
 
 const ArbeidsaktivitetBlockHeader = ({ type, arbeidsgiver, navn, endret, erUkjentAktivitet }: Props) => {
     return (
-        <Box marginBlock={type !== ArbeidsaktivitetType.arbeidstaker ? '4 0' : undefined}>
+        <Box>
             <div className="arbeidsaktivitetBlockHeader">
                 <div className="arbeidsaktivitetBlockHeader__icon">
-                    <Office1 role="presentation" aria-hidden={true} />
+                    <Buildings3Icon role="presentation" aria-hidden={true} />
                 </div>
                 <div className="arbeidsaktivitetBlockHeader__content">
                     <Heading level="2" size="medium">
                         {navn}
                     </Heading>
-                    <VStack gap="2">
+                    <VStack gap="space-8">
                         {type === ArbeidsaktivitetType.arbeidstaker && arbeidsgiver !== undefined ? (
                             <BodyLong as="div">
                                 <Box>

@@ -1,10 +1,9 @@
-import { ErrorPage, LoadingPage, SoknadErrorMessages } from '@navikt/sif-common-soknad-ds';
+import { ErrorPage, LoadingPage, NoAccessPage, SoknadErrorMessages } from '@navikt/sif-common-soknad-ds';
 import { ReactElement } from 'react';
 import { useParams } from 'react-router-dom';
 
 import useSoknadEssentials from '../hooks/useSoknadEssentials';
-import { useAppIntl } from '../i18n';
-import IkkeTilgangPage from '../pages/ikke-tilgang-page/ikkeTilgangPage';
+import { AppMessageKeys, useAppIntl } from '../i18n';
 import { RequestStatus } from '../types/RequestStatus';
 import { Søknadstype } from '../types/Søknadstype';
 import { redirectTo } from '../utils/navigationUtils';
@@ -65,7 +64,7 @@ const SoknadRemoteDataFetcher = (): ReactElement => {
     }
 
     if (status === RequestStatus.ikkeTilgang) {
-        return <IkkeTilgangPage søknadstype={søknadstype} />;
+        return <NoAccessPage<AppMessageKeys> variant="forenklet" tittelIntlKey={`application.title.${søknadstype}`} />;
     }
 
     return (

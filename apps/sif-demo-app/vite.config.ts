@@ -1,38 +1,55 @@
-/// <reference types="vitest" />
+import { sentryVitePlugin } from '@sentry/vite-plugin';
+import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
+import { resolve } from 'path';
+import { defineConfig, loadEnv } from 'vite';
 import checker from 'vite-plugin-checker';
-import { getDevAppSettings } from './src/devAppSettings';
 
-export default defineConfig({
-    plugins: [
-        react({
-            include: '**/*.{tsx}',
-        }),
-        checker({ typescript: true }),
-        {
-            name: 'crossorigin',
-            transformIndexHtml(html) {
-                return html.replace(/<link rel="stylesheet" crossorigin/g, '<link rel="stylesheet" type="text/css"');
+export default defineConfig(({ mode }) => {
+    const env = loadEnv(mode, process.cwd(), '');
+    const hasSentryAuthToken = Boolean(env.SENTRY_AUTH_TOKEN);
+
+    return {
+        plugins: [
+            tailwindcss(),
+            react({
+                include: '**/*.{tsx}',
+            }),
+            checker({ typescript: true }),
+            ...(hasSentryAuthToken
+                ? [
+                      sentryVitePlugin({
+                          org: 'nav',
+                          project: 'sif-demo-app',
+                          authToken: env.SENTRY_AUTH_TOKEN,
+                      }),
+                  ]
+                : []),
+        ],
+        resolve: {
+            alias: {
+                '@app': resolve(__dirname, './src/app'),
             },
         },
-        {
-            name: 'html-transform',
-            transformIndexHtml: (html) => html.replace('{{{APP_SETTINGS}}}', JSON.stringify(getDevAppSettings())),
+        base: '/sif-demo/',
+        preview: {
+            port: 8080,
         },
-    ],
-    server: {
-        port: 8080,
-    },
-    resolve: {},
-    build: {
-        sourcemap: true,
-    },
-    css: {
-        preprocessorOptions: {
-            scss: {
-                api: 'modern-compiler',
+        server: {
+            port: 8080,
+            proxy: {
+                '/mockServiceWorker.js': {
+                    target: 'http://localhost:8080',
+                    rewrite: () => '/sif-demo/mockServiceWorker.js',
+                },
             },
         },
-    },
+        build: {
+            sourcemap: 'inline',
+            minify: mode === 'production',
+        },
+        define: {
+            __SCENARIO_HEADER__: false,
+        },
+    };
 });

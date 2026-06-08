@@ -15,7 +15,7 @@ export default {
 };
 
 const Template = () => (
-    <Box paddingBlock="8">
+    <Box paddingBlock="space-32">
         <MessagesPreview messages={commonMessages} showExplanation={false} />
     </Box>
 );

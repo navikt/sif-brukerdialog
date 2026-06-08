@@ -2,7 +2,7 @@ import { Box } from '@navikt/ds-react';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 
 import { appMessages } from '../../../app/i18n';
-import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
+import { withAnalyticsProvider } from '../../decorators/withAnalyticsProvider';
 import { withFormikWrapper } from '../../decorators/withFormikWrapper';
 import { withIntl } from '../../decorators/withIntl';
 import { withRouterProvider } from '../../decorators/withRouter';
@@ -15,7 +15,7 @@ export default {
     decorators: [
         withIntl,
         withRouterProvider,
-        withAmplitudeProvider,
+        withAnalyticsProvider,
         withStepFormValuesContext,
         withFormikWrapper,
         withSøknadContextProvider,
@@ -23,7 +23,7 @@ export default {
 };
 
 const Template = () => (
-    <Box marginBlock="10" paddingBlock="8">
+    <Box marginBlock="space-40" paddingBlock="space-32">
         <MessagesPreview messages={appMessages} showExplanation={false} />
     </Box>
 );

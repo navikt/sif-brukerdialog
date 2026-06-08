@@ -1,11 +1,11 @@
-import { Alert, List } from '@navikt/ds-react';
+import { Alert, BodyLong, List, VStack } from '@navikt/ds-react';
 import { InvalidParameterViolation } from '@navikt/sif-common-api';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 
 const visFlereMeldinger = false;
 
 interface Props {
-    invalidParameter: InvalidParameterViolation[];
+    invalidParameter?: InvalidParameterViolation[];
 }
 
 enum HåndterteFeilFelter {
@@ -122,16 +122,25 @@ const renderFeilmelding = (invalidParameter: InvalidParameterViolation) => {
 const InnsendingFeiletInformasjon = ({ invalidParameter }: Props) => {
     return (
         <Alert variant="error">
-            <p style={{ marginTop: '.2em' }}>Oops, noe gikk galt.</p>
-            {visFlereMeldinger ? (
-                <List>
-                    {invalidParameter.map((ip, index) => (
-                        <List.Item key={index}>{renderFeilmelding(ip)}</List.Item>
-                    ))}
-                </List>
-            ) : (
-                renderFeilmelding(invalidParameter[0])
-            )}
+            <VStack gap="space-16">
+                <BodyLong spacing={false}>
+                    Oops, noe gikk galt - vennligst prøv på nytt. Hvis feilen fortsetter kan du prøve på nytt om litt.
+                </BodyLong>
+
+                {invalidParameter && (
+                    <>
+                        {visFlereMeldinger ? (
+                            <List>
+                                {invalidParameter.map((ip, index) => (
+                                    <List.Item key={index}>{renderFeilmelding(ip)}</List.Item>
+                                ))}
+                            </List>
+                        ) : (
+                            renderFeilmelding(invalidParameter[0])
+                        )}
+                    </>
+                )}
+            </VStack>
         </Alert>
     );
 };

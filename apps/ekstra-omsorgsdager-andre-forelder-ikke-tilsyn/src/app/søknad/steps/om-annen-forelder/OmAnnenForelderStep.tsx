@@ -74,7 +74,7 @@ const OmAnnenForelderStep = () => {
                 onSubmit={handleSubmit}
                 renderForm={() => {
                     return (
-                        <VStack gap="8">
+                        <VStack gap="space-32">
                             <PersistStepFormValues stepId={stepId} />
                             <Form
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}

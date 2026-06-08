@@ -1,5 +1,431 @@
 # @navikt/ung-common
 
+## 0.0.101
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.19
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.11
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.16
+
+## 0.0.100
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.18
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.10
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.15
+
+## 0.0.99
+
+### Patch Changes
+
+- Updated dependencies [062d83e]
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.17
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.9
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.14
+
+## 0.0.98
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.13
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.16
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.8
+
+## 0.0.97
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.15
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.7
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.12
+
+## 0.0.96
+
+### Patch Changes
+
+- @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.14
+
+## 0.0.95
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.11
+
+## 0.0.94
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.13
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.10
+
+## 0.0.93
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.12
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.6
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.9
+
+## 0.0.92
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.11
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.5
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.8
+
+## 0.0.91
+
+### Patch Changes
+
+- @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.10
+
+## 0.0.90
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.9
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.4
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.7
+
+## 0.0.89
+
+### Patch Changes
+
+- @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.8
+
+## 0.0.88
+
+### Patch Changes
+
+- Updated dependencies [69fe53c]
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.7
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.3
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.6
+
+## 0.0.87
+
+### Patch Changes
+
+- Updated dependencies [fc216a0]
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.6
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.2
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.5
+
+## 0.0.86
+
+### Patch Changes
+
+- @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.5
+
+## 0.0.85
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.4
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.1
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.4
+
+## 0.0.84
+
+### Patch Changes
+
+- @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.3
+
+## 0.0.83
+
+### Patch Changes
+
+- @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.2
+
+## 0.0.82
+
+### Patch Changes
+
+- @navikt/k9-brukerdialog-prosessering-api@0.3.3
+- @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.1
+- @navikt/ung-deltakelse-opplyser-api-veileder@0.3.0
+
+## 0.0.81
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.0
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.0
+
+## 0.0.80
+
+### Patch Changes
+
+- @navikt/k9-brukerdialog-prosessering-api@0.3.3
+- @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.8
+- @navikt/ung-deltakelse-opplyser-api-veileder@0.2.3
+
+## 0.0.79
+
+### Patch Changes
+
+- @navikt/k9-brukerdialog-prosessering-api@0.3.3
+- @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.7
+- @navikt/ung-deltakelse-opplyser-api-veileder@0.2.3
+
+## 0.0.78
+
+### Patch Changes
+
+- @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.6
+
+## 0.0.77
+
+### Patch Changes
+
+- @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.5
+
+## 0.0.76
+
+### Patch Changes
+
+- @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.4
+
+## 0.0.75
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.3
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.2.3
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.3
+
+## 0.0.74
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.2
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.2.2
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.2
+
+## 0.0.73
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.1
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.2.1
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.1
+
+## 0.0.72
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.2.0
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.2.0
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.0
+
+## 0.0.71
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.45
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.1.36
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.10
+
+## 0.0.70
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.44
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.1.35
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.9
+
+## 0.0.69
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.43
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.1.34
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.8
+
+## 0.0.68
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.42
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.1.33
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.7
+
+## 0.0.67
+
+### Patch Changes
+
+- @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.41
+
+## 0.0.66
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.6
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.40
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.1.32
+
+## 0.0.65
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.39
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.1.31
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.5
+
+## 0.0.64
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.38
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.1.30
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.4
+
+## 0.0.63
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.37
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.1.29
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.3
+
+## 0.0.62
+
+### Patch Changes
+
+- @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.36
+
+## 0.0.61
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.35
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.1.28
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.2
+
+## 0.0.60
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.34
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.1.27
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.1
+
+## 0.0.59
+
+### Patch Changes
+
+- Updated dependencies
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.33
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.1.26
+    - @navikt/k9-brukerdialog-prosessering-api@0.2.0
+
+## 0.0.58
+
+### Patch Changes
+
+- @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.32
+
+## 0.0.57
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.31
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.1.25
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.24
+
+## 0.0.56
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.30
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.1.24
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.23
+
+## 0.0.55
+
+### Patch Changes
+
+- 52d9b9e: Pakkeoppdateringer - minor/patch
+- Updated dependencies [52d9b9e]
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.29
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.1.23
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.22
+
+## 0.0.54
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.28
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.1.22
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.21
+
+## 0.0.53
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.27
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.1.21
+    - @navikt/k9-brukerdialog-prosessering-api@0.1.20
+
+## 0.0.52
+
+### Patch Changes
+
+- @navikt/k9-brukerdialog-prosessering-api@0.1.19
+- @navikt/ung-deltakelse-opplyser-api-deltaker@0.1.26
+- @navikt/ung-deltakelse-opplyser-api-veileder@0.1.20
+
 ## 0.0.51
 
 ### Patch Changes

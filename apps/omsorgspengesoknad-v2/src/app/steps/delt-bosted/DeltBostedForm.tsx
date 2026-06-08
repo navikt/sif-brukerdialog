@@ -1,0 +1,61 @@
+import { AppText, useAppIntl } from '@app/i18n';
+import { useLenker } from '@app/lenker';
+import { SøknadStepId } from '@app/setup/config/SoknadStepId';
+import { useSøknadRhfForm, useSøknadState, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
+import { AppForm } from '@app/setup/soknad/AppForm';
+import { DeltBostedSøknadsdata } from '@app/types/Soknadsdata';
+import { useSifValidate, UploadedFile } from '@sif/rhf';
+import { toUploadedFile, VedleggPanel } from '@sif/soknad-forms';
+import { FormLayout, SifGuidePanel } from '@sif/soknad-ui/components';
+import { getVedleggValidator } from '@navikt/sif-validation';
+
+import { toDeltBostedFormValues, toSøknadsdata } from './deltBostedStegUtils';
+import { DeltBostedFormFields, DeltBostedFormValues } from './types';
+
+const stepId = SøknadStepId.DELT_BOSTED;
+
+export const DeltBostedForm = () => {
+    const lenker = useLenker();
+    const { text } = useAppIntl();
+    const { validateField } = useSifValidate('deltBostedForm');
+    const { søknadsdata } = useSøknadState();
+    const legeerklæringFiles = (søknadsdata[SøknadStepId.LEGEERKLÆRING]?.vedlegg ?? []).map(toUploadedFile);
+    const defaultValues = useStepDefaultValues<DeltBostedFormValues, DeltBostedSøknadsdata>({
+        stepId,
+        toFormValues: toDeltBostedFormValues,
+    });
+    const { onSubmit, isPending } = useStepSubmit({ stepId, toSøknadsdata });
+    const methods = useSøknadRhfForm<DeltBostedFormValues>(stepId, defaultValues);
+    const samværsavtale: UploadedFile[] = methods.watch(DeltBostedFormFields.samværsavtale) ?? [];
+    const hasPendingUploads = samværsavtale.some((file) => file.pending);
+
+    return (
+        <AppForm
+            stepId={stepId}
+            methods={methods}
+            onSubmit={onSubmit}
+            isPending={isPending}
+            submitDisabled={hasPendingUploads}>
+            <FormLayout.Content>
+                <SifGuidePanel>
+                    <p>
+                        <AppText id="deltBostedSteg.counsellorpanel" />
+                    </p>
+                </SifGuidePanel>
+
+                <VedleggPanel<DeltBostedFormValues>
+                    name={DeltBostedFormFields.samværsavtale}
+                    initialFiles={defaultValues[DeltBostedFormFields.samværsavtale]}
+                    label={text('deltBostedSteg.samværsavtale.label')}
+                    uploadLaterURL={lenker.omsorgspengerEttersending}
+                    otherFiles={legeerklæringFiles}
+                    validate={validateField(
+                        DeltBostedFormFields.samværsavtale,
+                        getVedleggValidator({ otherFiles: legeerklæringFiles }),
+                    )}
+                    showPictureScanningGuide={true}
+                />
+            </FormLayout.Content>
+        </AppForm>
+    );
+};

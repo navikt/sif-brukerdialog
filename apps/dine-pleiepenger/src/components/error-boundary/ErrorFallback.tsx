@@ -1,14 +1,14 @@
-import { GuidePanel } from '@navikt/ds-react';
+import { Box, GuidePanel } from '@navikt/ds-react';
 import { ReactElement } from 'react';
 
 const ErrorFallback = (): ReactElement => {
     return (
-        <div className="p-5 pb-10 md:p-10 md:pb-20">
+        <Box padding={{ xs: 'space-16', sm: 'space-24' }}>
             <GuidePanel>
                 Beklager! En uventet feil har oppstått. Sannsynligvis jobber vi med saken allerede, men ta kontakt med
                 oss hvis det ikke har løst seg til i morgen.
             </GuidePanel>
-        </div>
+        </Box>
     );
 };
 

@@ -6,7 +6,7 @@ import { SøknadSvar, Spørsmål, Steg } from '../types';
 export const søknadSteg = [Steg.KONTONUMMER, Steg.BARN, Steg.OPPSUMMERING];
 
 export const getSkjemaStegIndex = (steg: Steg): number => {
-    return søknadSteg.findIndex((s) => s === steg);
+    return søknadSteg.indexOf(steg);
 };
 
 export const getStegFraPath = (path: string): Steg | undefined => {
@@ -38,5 +38,5 @@ export const getTilgjengeligeSteg = (svar: SøknadSvar, kontonummerInfo: Kontonu
 };
 
 export const erStegTilgjengelig = (steg: Steg, svar: SøknadSvar, kontonummerInfo: KontonummerInfo): boolean => {
-    return getTilgjengeligeSteg(svar, kontonummerInfo).find((s) => s === steg) !== undefined;
+    return getTilgjengeligeSteg(svar, kontonummerInfo).some((s) => s === steg);
 };

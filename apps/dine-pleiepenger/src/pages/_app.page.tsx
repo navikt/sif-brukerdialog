@@ -1,35 +1,60 @@
+import 'react-loading-skeleton/dist/skeleton.css';
+import '../style/global.css';
+
 import { Status, StatusMessage } from '@navikt/appstatus-react-ds';
-import { Theme } from '@navikt/ds-react';
-import { ReactElement } from 'react';
-import { IntlProvider } from 'react-intl';
+import { Box, Theme } from '@navikt/ds-react';
 import { configureLogger } from '@navikt/next-logger';
 import { InnsynPsbApp } from '@navikt/sif-app-register';
-import { AmplitudeProvider } from '@navikt/sif-common-amplitude';
-import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/storageParser';
+import { AnalyticsProvider } from '@navikt/sif-common-analytics';
 import axios, { AxiosError } from 'axios';
 import { AppProps } from 'next/app';
-import Head from 'next/head';
+import { ReactElement } from 'react';
+import { IntlProvider } from 'react-intl';
 import useSWR from 'swr';
-import ComponentLoader from '../components/component-loader/ComponentLoader';
+
 import ErrorBoundary from '../components/error-boundary/ErrorBoundary';
 import HentInnsynsdataFeilet from '../components/hent-innsynsdata-feilet/HentInnsynsdataFeilet';
 import EmptyPage from '../components/page-layout/empty-page/EmptyPage';
+import LoadingPage from '../components/page-layout/loading-page/LoadingPage';
+import { maxPageWidth } from '../constants';
 import { InnsynsdataContextProvider } from '../context/InnsynsdataContextProvider';
 import { getFaro, initInstrumentation, pinoLevelToFaroLevel } from '../faro/faro';
+import { useVerifyCurrentUser } from '../hooks/useVerifyCurrentUser';
 import { messages } from '../i18n';
-import { Innsynsdata } from '../types/InnsynData';
-import appSentryLogger from '../utils/appSentryLogger';
+import { SøkerDto } from '../server/dto-schemas/søkerDtoSchema';
+import { Innsynsdata } from '../types';
+import { innsynsdataClientSchema } from '../types/client-schemas/innsynsdataClientSchema';
+import { søkerClientSchema } from '../types/client-schemas/søkerClientSchema';
 import { browserEnv } from '../utils/env';
 import { Feature } from '../utils/features';
+import { reportClientParseError } from '../utils/reportClientParseError';
+import { logApiErrorToSentry } from '../utils/sentryApiErrorLogger';
+import { swrBaseConfig } from '../utils/swrBaseConfig';
 import UnavailablePage from './unavailable.page';
-import 'react-loading-skeleton/dist/skeleton.css';
-import '../components/process/process.css';
-import '../style/global.css';
 
-export const AMPLITUDE_APPLICATION_KEY = 'sif-innsyn';
+export const ANALYTICS_APPLICATION_KEY = 'sif-innsyn';
 
 const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> =>
-    axios.get(url, { transformResponse: storageParser }).then((res) => res.data);
+    axios.get(url).then((res) => {
+        const result = innsynsdataClientSchema.safeParse(res.data);
+        if (!result.success) {
+            reportClientParseError(result.error, 'innsynsdataClientSchema');
+            throw result.error;
+        }
+        return result.data;
+    });
+
+const søkerIdFetcher = async (): Promise<string> => {
+    const url = `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/soker`;
+    return axios.get<SøkerDto>(url).then((res) => {
+        const result = søkerClientSchema.safeParse(res.data);
+        if (!result.success) {
+            reportClientParseError(result.error, 'søkerClientSchema');
+            throw result.error;
+        }
+        return result.data.fødselsnummer;
+    });
+};
 
 if (Feature.FARO) {
     initInstrumentation();
@@ -46,24 +71,24 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
     const { data, error, isLoading } = useSWR<Innsynsdata, AxiosError>(
         `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/innsynsdata`,
         innsynsdataFetcher,
-        {
-            revalidateOnFocus: false,
-            shouldRetryOnError: false,
-            errorRetryCount: 0,
-        },
+        swrBaseConfig,
     );
+
+    // Legg inn sjekk på at innlogget bruker er den samme når vinduet vises/får fokus.
+    // Ligger her for å være aktiv i alle sider i løsningen.
+    useVerifyCurrentUser(data?.søker.fødselsnummer || '', søkerIdFetcher);
 
     if (isLoading) {
         return (
-            <EmptyPage>
-                <Head>Henter informasjon - Dine pleiepenger for sykt barn</Head>
-                <ComponentLoader />
-            </EmptyPage>
+            <LoadingPage
+                title="Henter informasjon ..."
+                documentTitle="Henter informasjon - Dine pleiepenger for sykt barn"
+            />
         );
     }
 
     if (error || !data) {
-        appSentryLogger.logError('fetchInnsynsdata-failed', JSON.stringify({ error }));
+        logApiErrorToSentry(error, 'fetchInnsynsdata-failed', { ignore401: true });
         return (
             <EmptyPage>
                 <HentInnsynsdataFeilet error={error} />
@@ -74,18 +99,18 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
     return (
         <Theme hasBackground={false}>
             <ErrorBoundary>
-                <AmplitudeProvider
+                <AnalyticsProvider
                     applicationKey={InnsynPsbApp.key}
-                    apiKey={browserEnv.NEXT_PUBLIC_AMPLITUDE_API_KEY}
+                    apiKey={browserEnv.NEXT_PUBLIC_ANALYTICS_KEY}
                     isActive={browserEnv.NEXT_PUBLIC_RUNTIME_ENVIRONMENT === 'production'}>
                     {data.appStatus?.status === Status.unavailable ? (
                         <UnavailablePage />
                     ) : (
                         <main>
                             {data.appStatus?.message && (
-                                <div className="max-w-[1128px] mx-auto p-5 mb-5">
+                                <Box maxWidth={maxPageWidth} marginInline="auto" marginBlock="space-48">
                                     <StatusMessage message={data.appStatus.message} />
-                                </div>
+                                </Box>
                             )}
                             <IntlProvider locale="nb" messages={messages.nb}>
                                 <InnsynsdataContextProvider innsynsdata={data}>
@@ -94,7 +119,7 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
                             </IntlProvider>
                         </main>
                     )}
-                </AmplitudeProvider>
+                </AnalyticsProvider>
             </ErrorBoundary>
         </Theme>
     );

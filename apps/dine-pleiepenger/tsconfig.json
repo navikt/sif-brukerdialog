@@ -1,10 +1,8 @@
 {
     "extends": "../../packages/config/tsconfig-apps.json",
     "compilerOptions": {
-        "target": "es5",
-        "lib": ["dom", "dom.iterable", "esnext"],
+        "lib": ["DOM", "ESNext"],
         "outDir": "build/dist",
-        "typeRoots": ["../../node_modules/@types", "./node_modules/@types"],
         "plugins": [
             {
                 "name": "next"
@@ -14,12 +12,10 @@
             "@/*": ["./src/*"]
         },
         "allowJs": true,
-        "strict": false,
         "incremental": true,
         "isolatedModules": true,
-        "resolveJsonModule": true,
         "jsx": "preserve"
     },
     "exclude": ["node_modules", "pages/build", "**.js", "dist"],
-    "include": ["src/**/*", "public", "e2e/**/*"]
+    "include": ["src/**/*", "public", "playwright/**/*", "mock/**/*"]
 }

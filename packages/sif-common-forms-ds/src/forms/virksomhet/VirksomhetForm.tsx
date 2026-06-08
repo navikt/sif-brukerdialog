@@ -352,7 +352,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                         <div>
                                             {erVirksomhetRegnetSomNyoppstartet(fomDate) ? (
                                                 <>
-                                                    <Heading level="3" size="small">
+                                                    <Heading level="2" size="small">
                                                         {text(
                                                             '@forms.virksomhet.nyoppstartet.næringsinntektFlere.header',
                                                         )}
@@ -365,7 +365,7 @@ const VirksomhetForm = ({ virksomhet, harFlereVirksomheter, onSubmit, onCancel, 
                                                 </>
                                             ) : (
                                                 <>
-                                                    <Heading level="3" size="small">
+                                                    <Heading level="2" size="small">
                                                         {text(
                                                             '@forms.virksomhet.ikkeNyoppstartet.næringsinntektFlere.header',
                                                         )}

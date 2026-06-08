@@ -1,9 +1,11 @@
+import '@navikt/ds-css';
+
 import { Panel } from '@navikt/ds-react';
 import * as React from 'react';
 import { IntlProvider } from 'react-intl';
+
 import TypedFormikForm from '../../src/components/typed-formik-form/TypedFormikForm';
 import TypedFormikWrapper from '../../src/components/typed-formik-wrapper/TypedFormikWrapper';
-import '@navikt/ds-css';
 
 interface Props {
     parameters?: {

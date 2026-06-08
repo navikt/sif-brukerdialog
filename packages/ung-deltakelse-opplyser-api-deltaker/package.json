@@ -1,38 +1,38 @@
 {
     "name": "@navikt/ung-deltakelse-opplyser-api-deltaker",
-    "main": "src/index.ts",
-    "types": "src/index.ts",
+    "version": "0.3.19",
     "private": true,
-    "type": "module",
-    "version": "0.1.25",
-    "devDependencies": {
-        "@hey-api/openapi-ts": "0.84.3",
-        "@sif/eslint-config": "workspace:*",
-        "config": "workspace:*",
-        "typescript": "5.9.2",
-        "vitest": "3.2.4",
-        "zod": "4.1.11"
-    },
-    "peerDependencies": {
-        "dayjs": "*",
-        "uuid": "*"
-    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
+    "type": "module",
+    "main": "src/index.ts",
+    "types": "src/index.ts",
     "scripts": {
+        "codegen:dev": "CODEGEN_ENV=dev pnpm download-spec && pnpm gen-types:fixed",
+        "codegen:prod": "CODEGEN_ENV=prod pnpm download-spec && pnpm gen-types:fixed",
+        "download-spec": "node scripts/download-spec.mjs",
         "fix-regexp": "node scripts/fix-generated-regex.mjs",
-        "gen-types:fixed": "yarn gen-types && yarn fix-regexp",
         "gen-types": "openapi-ts -f openapi-ts.deltaker.config.ts",
-        "codegen": "yarn gen-types:fixed",
+        "gen-types:fixed": "pnpm gen-types && pnpm fix-regexp",
         "lint:eslint": "eslint './src/deltaker/client/*.gen.ts'",
         "lint:fix": "eslint --quiet --fix './src/deltaker/client/*.gen.ts'",
         "lint:tsc": "tsc --noEmit"
     },
-    "dependencies": {
-        "@hey-api/client-axios": "0.9.1",
-        "@hey-api/client-fetch": "0.13.1",
-        "@navikt/sif-common-api": "workspace:*"
+    "devDependencies": {
+        "@hey-api/openapi-ts": "0.98.1",
+        "@sif/eslint-config": "workspace:*",
+        "axios": "1.16.1",
+        "config": "workspace:*",
+        "postcss": "8.5.15",
+        "prettier": "3.8.3",
+        "typescript": "6.0.3",
+        "vitest": "4.1.8",
+        "zod": "4.4.3"
+    },
+    "peerDependencies": {
+        "dayjs": "*",
+        "uuid": "*"
     }
 }

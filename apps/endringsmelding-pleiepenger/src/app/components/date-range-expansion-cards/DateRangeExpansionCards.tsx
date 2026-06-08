@@ -39,7 +39,7 @@ function DateRangeExpansionCards<Type extends DateRange>({
             {dateRanges.length === 1 ? (
                 renderContent(dateRanges[0])
             ) : (
-                <VStack gap="4">
+                <VStack gap="space-16">
                     {dateRanges.map((dateRange, index) => {
                         const ariaLabel = `${dateFormatter.full(dateRange.from)} - ${dateFormatter.full(dateRange.to)}`;
                         return (

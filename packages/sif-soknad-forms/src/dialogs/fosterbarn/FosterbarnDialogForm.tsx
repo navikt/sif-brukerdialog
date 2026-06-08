@@ -1,0 +1,90 @@
+import { FormLayout } from '@navikt/sif-common-ui';
+import { getFødselsnummerValidator, getStringValidator } from '@navikt/sif-validation';
+import { createSifFormComponents, useSifValidate } from '@sif/rhf';
+import { FormProvider, useForm } from 'react-hook-form';
+
+import { useSifSoknadFormsIntl } from '../../i18n';
+import { Fosterbarn } from './types';
+
+export interface FosterbarnDialogFormConfig {
+    disallowedFødselsnumre?: string[];
+}
+
+interface Props extends FosterbarnDialogFormConfig {
+    formId: string;
+    fosterbarn?: Fosterbarn;
+    onValidSubmit: (fosterbarn: Fosterbarn) => void;
+}
+
+enum FosterbarnFormFields {
+    navn = 'navn',
+    fødselsnummer = 'fødselsnummer',
+}
+
+type FosterbarnFormValues = {
+    [FosterbarnFormFields.navn]: string;
+    [FosterbarnFormFields.fødselsnummer]: string;
+};
+
+const { TextField } = createSifFormComponents<FosterbarnFormValues>();
+
+const fosterbarnToFormValues = (fosterbarn: Fosterbarn): FosterbarnFormValues => ({
+    navn: fosterbarn.navn,
+    fødselsnummer: fosterbarn.fødselsnummer,
+});
+
+const formValuesToFosterbarn = (values: FosterbarnFormValues, id?: string): Fosterbarn => ({
+    id: id || crypto.randomUUID(),
+    navn: values.navn,
+    fødselsnummer: values.fødselsnummer,
+});
+
+export const FosterbarnDialogForm = ({ formId, fosterbarn, disallowedFødselsnumre = [], onValidSubmit }: Props) => {
+    const sifIntl = useSifSoknadFormsIntl();
+    const { validateField } = useSifValidate('@sifSoknadForms.fosterbarnForm');
+    const methods = useForm<FosterbarnFormValues>({
+        defaultValues: fosterbarn ? fosterbarnToFormValues(fosterbarn) : undefined,
+    });
+
+    const handleValidSubmit = (values: FosterbarnFormValues): void => {
+        onValidSubmit(formValuesToFosterbarn(values, fosterbarn?.id));
+    };
+
+    const disallowedValues = disallowedFødselsnumre.filter((f) => f !== fosterbarn?.fødselsnummer);
+
+    return (
+        <FormProvider {...methods}>
+            <form
+                id={formId}
+                onSubmit={(event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    methods.handleSubmit(handleValidSubmit)();
+                }}
+                noValidate>
+                <FormLayout.Content>
+                    <FormLayout.Questions>
+                        <TextField
+                            name={FosterbarnFormFields.navn}
+                            label={sifIntl.text('@sifSoknadForms.fosterbarn.form.navn.label')}
+                            validate={validateField(FosterbarnFormFields.navn, getStringValidator({ required: true }))}
+                        />
+                        <TextField
+                            name={FosterbarnFormFields.fødselsnummer}
+                            label={sifIntl.text('@sifSoknadForms.fosterbarn.form.fødselsnummer.label')}
+                            inputMode="numeric"
+                            maxLength={11}
+                            validate={validateField(
+                                FosterbarnFormFields.fødselsnummer,
+                                getFødselsnummerValidator({
+                                    required: true,
+                                    disallowedValues,
+                                }),
+                            )}
+                        />
+                    </FormLayout.Questions>
+                </FormLayout.Content>
+            </form>
+        </FormProvider>
+    );
+};

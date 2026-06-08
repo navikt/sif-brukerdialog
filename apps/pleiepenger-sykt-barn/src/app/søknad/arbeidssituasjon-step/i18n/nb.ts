@@ -71,8 +71,7 @@ export const arbeidssituasjonMessages_nb = {
 
     'arbeidsforhold.erAnsatt.spm': 'Stemmer det at du er ansatt hos {navn} i perioden du søker for?',
     'arbeidsforhold.sluttetFørSøknadsperiode.spm': 'Sluttet du hos {navn} før {fraDato}?',
-    'arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm':
-        'Hvor mange timer {jobber} du vanligvis {hvor}? Oppgi tiden i et snitt per uke:',
+    'arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.spm': 'Hvor mange timer {jobber} du normalt per uke {hvor}?',
     'arbeidsforhold.arbeiderNormaltTimerPerUke.snitt.infoOmsorgsstønad':
         'Du skal ikke inkludere timer for omsorgsstønad/fosterhjemsgodtgjørelse.',
 
@@ -96,6 +95,11 @@ export const arbeidssituasjonMessages_nb = {
     'arbeidsforhold.frilanser.normalTimer.frilans.FRILANS_HONORAR.info.3': 'Eksempel på hvordan du regner ut:',
     'arbeidsforhold.frilanser.normalTimer.frilans.FRILANS_HONORAR.info.4':
         'Du har de siste 12 ukene jobbet 40 timer som frilanser, og du har brukt 20 timer på det du mottar honorar for. Da får du til sammen 60 timer, som du deler på 12 = 5. Du oppgir altså at du jobber 5 timer i snitt per uke.',
+    'arbeidsforhold.frilanser.avsluttet.info.tittel': 'Hva betyr dette?',
+    'arbeidsforhold.frilanser.avsluttet.info.tekst':
+        'Vi må vite hvor mange timer du jobbet i snitt som frilanser. Hvis du kun har jobbet i korte perioder av gangen, kan du regne et gjennomsnitt for en lengre periode.',
+    'arbeidsforhold.frilanser.normalarbeidstidIkkeFrilanser.intro':
+        'Fordi du er registrert som frilanser i Aa-registeret, trenger vi å vite hvor mye du vanligvis jobbet som frilanser. Hvis du ikke lengre skal være registrert som frilanser, må du kontakte oppdragsgiver for å oppdatere registeret.',
 
     'arbeidsforhold.normalTimer.info.turnus':
         'Når du jobber turnus, eller har annen varierende arbeidstid, oppgir du et snitt per uke.',
@@ -162,8 +166,6 @@ export const arbeidssituasjonMessages_nb = {
     'frilanser.startdato.spm': 'Når startet du å jobbe som frilanser?',
 
     'frilanser.erFortsattFrilanser.spm': 'Jobber du fortsatt som frilanser?',
-    'frilanser.ingenFrilans.info':
-        'Hvis det ikke stemmer at du skal være registrert med frilansoppdrag i AA-registeret må du be de som har gjort registreringen om å oppdatere informasjonen. Du kan likevel fortsette å fylle ut og sende inn søknaden.',
 
     'frilanser.sluttdato.spm': 'Når sluttet du å jobbe som frilanser?',
     'frilanser.misterHonorar.tittle': 'Mister du honorar fordi du må pleie barnet?',

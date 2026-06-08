@@ -1,16 +1,24 @@
-FROM gcr.io/distroless/nodejs22-debian12:nonroot
+FROM node:26-alpine
+
+RUN apk add --no-cache tini \
+    && addgroup --system --gid 1069 nodejs \
+    && adduser --system --uid 1069 nextjs \
+    && rm -rf /usr/local/lib/node_modules/npm /usr/local/bin/npm /usr/local/bin/npx /usr/local/bin/corepack
+
 WORKDIR /app
 
-COPY /apps/omsorgsdager-kalkulator/next.config.js .
+COPY --chown=nextjs:nodejs /apps/omsorgsdager-kalkulator/next.config.js .
+COPY --chown=nextjs:nodejs /apps/omsorgsdager-kalkulator/.next/standalone ./
+COPY --chown=nextjs:nodejs /apps/omsorgsdager-kalkulator/.next/static ./apps/omsorgsdager-kalkulator/.next/static
+COPY --chown=nextjs:nodejs /apps/omsorgsdager-kalkulator/public ./public
 
-COPY /apps/omsorgsdager-kalkulator/.next/standalone ./
-COPY /apps/omsorgsdager-kalkulator/.next/static ./apps/omsorgsdager-kalkulator/.next/static
-
-COPY /apps/omsorgsdager-kalkulator/public ./public
+USER nextjs
 
 ENV NODE_ENV=production
 ENV PORT=8080
 
 EXPOSE 8080
 
-CMD ["apps/omsorgsdager-kalkulator/server.js"]
+ENTRYPOINT ["/sbin/tini", "--"]
+CMD ["node", "apps/omsorgsdager-kalkulator/server.js"]
+

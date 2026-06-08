@@ -20,7 +20,7 @@
 
 .daySelector__calendarWrapper {
     border: 2px solid var(--ax-border-neutral-subtle);
-    padding: var(--a-spacing-1);
+    padding: var(--ax-space-4);
 }
 .daySelector__calendarWrapper button[name='week-number'] .aksel-button__icon {
     font-size: 1rem;

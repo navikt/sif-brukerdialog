@@ -1,11 +1,10 @@
 import axios from 'axios';
 import { vi } from 'vitest';
 
-import { axiosConfigPsb } from '../../config/axiosConfig';
 import { ResourceType } from '../../types/ResourceType';
 import { StepID } from '../../types/StepID';
-import { deleteFile, getArbeidsgiver, getPersistUrl, persist, sendApplication, uploadFile } from '../api';
-import { axiosJsonConfig, sendMultipartPostRequest } from '../utils/apiUtils';
+import { getArbeidsgiver, getPersistUrl, persist, sendApplication } from '../api';
+import { axiosJsonConfig } from '../utils/apiUtils';
 
 vi.mock('@navikt/sif-common-env', () => {
     return {
@@ -44,21 +43,6 @@ describe('api', () => {
             const data = {} as any;
             sendApplication(data);
             expect(axios.post).toHaveBeenCalledWith(ResourceType.SEND_SØKNAD, data, axiosJsonConfig);
-        });
-    });
-
-    describe('uploadFile', () => {
-        it('should send a multipart request with the specified file in a FormData object', () => {
-            const fileMock = new File([''], 'filename', { type: 'text/png' });
-            uploadFile(fileMock);
-            expect(sendMultipartPostRequest).toHaveBeenCalled();
-        });
-    });
-
-    describe('deleteFile', () => {
-        it('should call axios.delete on the specified url', () => {
-            deleteFile(mockedApiUrl);
-            expect(axios.delete).toHaveBeenCalledWith(mockedApiUrl, axiosConfigPsb);
         });
     });
 

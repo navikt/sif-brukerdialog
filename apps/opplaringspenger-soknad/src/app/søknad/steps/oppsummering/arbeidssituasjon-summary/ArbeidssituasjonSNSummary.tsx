@@ -1,5 +1,6 @@
 import { FormSummary, Heading, List } from '@navikt/ds-react';
 import VirksomhetFormSummary from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetFormSummary';
+
 import { AppText, useAppIntl } from '../../../../i18n';
 import { SelvstendigNæringsdrivendeApiData } from '../../../../types/søknadApiData/SøknadApiData';
 

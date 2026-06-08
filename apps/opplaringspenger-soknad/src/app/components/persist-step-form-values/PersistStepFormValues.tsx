@@ -1,4 +1,5 @@
 import { FormikValuesObserver } from '@navikt/sif-common-formik-ds';
+
 import { useStepFormValuesContext } from '../../søknad/context/StepFormValuesContext';
 import { StepId } from '../../types/StepId';
 

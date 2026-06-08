@@ -1,12 +1,12 @@
 import { Box, FormProgress, Heading, VStack } from '@navikt/ds-react';
+import { useAppIntl } from '@shared/i18n';
+import DefaultPageLayout from '@shared/pages/layout/DefaultPageLayout';
+import { useSøknadContext } from '@søknad/hooks/context/useSøknadContext';
+import { useKontrollerOmStegErTilgjengelig } from '@søknad/hooks/utils/useKontrollerOmStegErTilgjengelig';
+import { useSøknadNavigation } from '@søknad/hooks/utils/useSøknadNavigation';
+import { Steg } from '@søknad/types';
+import { getSkjemaStegIndex, søknadSteg } from '@søknad/utils/stegUtils';
 
-import { useAppIntl } from '../../../../i18n';
-import DefaultPageLayout from '../../../innsyn/pages/layout/DefaultPageLayout';
-import { useSøknadContext } from '../../hooks/context/useSøknadContext';
-import { useKontrollerOmStegErTilgjengelig } from '../../hooks/utils/useKontrollerOmStegErTilgjengelig';
-import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
-import { Steg } from '../../types';
-import { getSkjemaStegIndex, søknadSteg } from '../../utils/stegUtils';
 import SøknadHeader from '../søknad-header/SøknadHeader';
 import StegFooter from './StegFooter';
 
@@ -34,10 +34,10 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
     return (
         <DefaultPageLayout documentTitle={`${tittel} - ${text('søknad.tittel')}`}>
             <section aria-label="Skjema">
-                <VStack gap="8">
+                <VStack gap="space-32">
                     <SøknadHeader />
                     <div>
-                        <Box paddingBlock="6 5">
+                        <Box paddingBlock="space-24 space-20">
                             <Heading level="2" size="large">
                                 {tittel}
                             </Heading>
@@ -56,7 +56,7 @@ const SøknadSteg = ({ steg, tittel, children }: Props) => {
                         </FormProgress>
                     </div>
 
-                    <Box marginBlock="4 0">{children}</Box>
+                    <Box marginBlock="space-16 space-0">{children}</Box>
 
                     <StegFooter
                         slett={{

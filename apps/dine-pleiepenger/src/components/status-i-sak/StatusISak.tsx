@@ -1,37 +1,56 @@
-import { Alert, BodyLong, BodyShort, Box, Heading, Link, Switch, VStack } from '@navikt/ds-react';
-import { useState } from 'react';
-import { ChevronRightIcon } from '@navikt/aksel-icons';
+import { Alert, BodyLong, Box, Switch, VStack } from '@navikt/ds-react';
 import { default as NextLink } from 'next/link';
+import { useMemo, useState } from 'react';
+
 import { AppText, useAppIntl } from '../../i18n';
-import { Sak } from '../../server/api-models/SakSchema';
-import { formatSakshendelseTidspunkt, getAlleHendelserISak } from '../../utils/sakUtils';
+import { Inntektsmelding, Sak } from '../../types';
+import { ProcessStepData } from '../../types/ProcessStepData';
+import { getAlleHendelserISak } from '../../utils/sakUtils';
 import SkrivTilOssLenke from '../lenker/SkrivTilOssLenke';
-import { Process } from '../process';
-import ProcessStep from '../process/ProcessStep';
+import LinkButton from '../link-button/LinkButton';
 import StatusISakHeading from './parts/StatusISakHeading';
+import StatusISakSteps from './StatusISakSteps';
 import { getProcessStepsFraSakshendelser } from './statusISakUtils';
 
 interface Props {
     sak: Sak;
     tittel?: string;
     visAlleHendelser?: boolean;
+    inntektsmeldinger: Inntektsmelding[];
 }
 
-const StatusISak = ({ sak, visAlleHendelser, tittel }: Props) => {
-    const [reverseDirection, setReverseDirection] = useState(false);
+const sortProcessStepDescending = (a: ProcessStepData, b: ProcessStepData) =>
+    (b.timestamp?.getTime() || 0) - (a.timestamp?.getTime() || 0);
+
+const sortProcessStepAscending = (a: ProcessStepData, b: ProcessStepData) =>
+    (a.timestamp?.getTime() || 0) - (b.timestamp?.getTime() || 0);
+
+const StatusISak = ({ sak, visAlleHendelser, tittel, inntektsmeldinger }: Props) => {
+    const [sortDescending, setSortDescending] = useState(true);
     const { text } = useAppIntl();
-    const hendelser = getAlleHendelserISak(sak);
-    const processSteps = getProcessStepsFraSakshendelser(text, hendelser);
+
+    const processSteps = useMemo(() => {
+        const sakshendelser = getAlleHendelserISak(sak, inntektsmeldinger);
+        const steps = getProcessStepsFraSakshendelser(text, sakshendelser);
+        return steps.sort(sortDescending ? sortProcessStepDescending : sortProcessStepAscending);
+    }, [sak, inntektsmeldinger, text, sortDescending]);
+
+    const visibleSteps = useMemo(
+        () => (visAlleHendelser ? processSteps : processSteps.slice(0, 3)),
+        [visAlleHendelser, processSteps],
+    );
+
+    const finnesFlereHendelser = visibleSteps.length < processSteps.length;
 
     if (processSteps.length === 0) {
         return (
-            <VStack gap="3">
-                <StatusISakHeading tittel={tittel} />
+            <VStack gap="space-12">
+                {tittel ? <StatusISakHeading tittel={tittel} /> : null}
                 <Alert variant="info">
                     <AppText
                         id="statusISak.ingenHendelser"
                         values={{
-                            p: (txt) => <BodyLong>{txt}</BodyLong>,
+                            p: (txt: string) => <BodyLong>{txt}</BodyLong>,
                             lenke: <SkrivTilOssLenke tekst={text('statusISak.ingenHendelser.skrivTilOssLenkeTekst')} />,
                         }}
                     />
@@ -40,61 +59,36 @@ const StatusISak = ({ sak, visAlleHendelser, tittel }: Props) => {
         );
     }
 
-    if (reverseDirection) {
-        processSteps.reverse();
-    }
-    const visibleSteps = visAlleHendelser ? processSteps : [...processSteps].splice(-3);
-    const finnnesFlereHendelser = visibleSteps.length < processSteps.length;
-
     return (
-        <VStack gap="3">
-            <StatusISakHeading tittel={tittel} />
+        <VStack gap="space-12">
+            {tittel ? <StatusISakHeading tittel={tittel} /> : null}
             {visAlleHendelser ? (
                 <Box>
                     <Switch
-                        checked={reverseDirection}
+                        checked={sortDescending}
                         onChange={(e) => {
-                            setReverseDirection(e.target.checked);
+                            setSortDescending(e.target.checked);
                         }}>
                         Vis nyeste øverst
                     </Switch>
                 </Box>
             ) : null}
-            <Box className="bg-white p-6 pb-4 pt-4">
-                <Process>
-                    {visibleSteps.map((step, idx) => {
-                        const headingId = `process-heading-${idx}`;
-                        return (
-                            <ProcessStep
-                                key={idx}
-                                completed={step.completed}
-                                current={step.current}
-                                isLastStep={step.isLastStep}
-                                isContinuation={finnnesFlereHendelser && idx === 0}>
-                                <VStack gap="1">
-                                    <Heading size="small" level="3" id={headingId} aria-hidden={true}>
-                                        {step.title}{' '}
-                                        {step.timestamp ? (
-                                            <BodyShort className="mb-2">
-                                                {formatSakshendelseTidspunkt(step.timestamp)}
-                                            </BodyShort>
-                                        ) : null}
-                                    </Heading>
-                                    <div>{step.content}</div>
-                                </VStack>
-                            </ProcessStep>
-                        );
-                    })}
-                </Process>
+            <Box background="default" borderRadius="16" padding="space-24">
+                <VStack gap="space-32">
+                    <StatusISakSteps
+                        steps={visibleSteps}
+                        isTruncated={finnesFlereHendelser ? 'end' : undefined}
+                        pageSize={visAlleHendelser ? 8 : undefined}
+                    />
+                    {finnesFlereHendelser && !visAlleHendelser ? (
+                        <div>
+                            <LinkButton direction="right" as={NextLink} href={`/sak/${sak.saksnummer}/historikk`}>
+                                Se tidligere hendelser
+                            </LinkButton>
+                        </div>
+                    ) : null}
+                </VStack>
             </Box>
-            {finnnesFlereHendelser && visAlleHendelser === undefined ? (
-                <Box className="ml-4 mb-4">
-                    <Link as={NextLink} href={`/sak/${sak.saksnummer}/historikk`}>
-                        Se alle hendelser
-                        <ChevronRightIcon role="presentation" />
-                    </Link>
-                </Box>
-            ) : null}
         </VStack>
     );
 };

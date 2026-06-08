@@ -1,4 +1,4 @@
-import { Alert, Heading } from '@navikt/ds-react';
+import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { isDevMode } from '@navikt/sif-common-env';
@@ -19,6 +19,7 @@ import {
     ValidateDateError,
 } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
+
 import { AppText } from '../../../../../i18n';
 import { OmBarnetFormText as Text, useOmBarnetFormIntl } from '../omBarnetFormMessages';
 import { OmBarnetFormFields, OmBarnetFormValues, RelasjonTilBarnet } from '../types';
@@ -180,19 +181,26 @@ const AnnetBarnPart = ({
                         label={text('omBarnetForm.relasjonAnnet.spm')}
                         description={
                             <>
+                                <BodyLong>
+                                    <Text id="omBarnetForm.relasjonAnnet.tekst" />
+                                </BodyLong>
                                 <ExpandableInfo title={text('omBarnetForm.relasjonAnnet.info.tittel')}>
-                                    <div>
+                                    <BodyLong>
                                         <Text id="omBarnetForm.relasjonAnnet.info.hjelpetekst.1" />
-                                    </div>
-                                    <p>
+                                    </BodyLong>
+                                    <BodyLong>
                                         <Text id="omBarnetForm.relasjonAnnet.info.hjelpetekst.2" />
-                                    </p>
+                                    </BodyLong>
                                 </ExpandableInfo>
                             </>
                         }
                         name={OmBarnetFormFields.relasjonTilBarnetBeskrivelse}
                         validate={(value) => {
-                            const error = getStringValidator({ required: true, maxLength: 2000 })(value);
+                            const error = getStringValidator({
+                                required: true,
+                                maxLength: 2000,
+                                disallowInvalidBackendCharacters: true,
+                            })(value);
                             return error
                                 ? {
                                       key: error,

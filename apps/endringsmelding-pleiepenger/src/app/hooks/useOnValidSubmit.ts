@@ -1,6 +1,6 @@
-import { useSøknadContext } from '@hooks';
-import { SøknadContextState } from '@types';
-import { relocateToLoginPage } from '@utils';
+import { useSøknadContext } from '@app/hooks';
+import { SøknadContextState } from '@app/types';
+import { relocateToLoginPage } from '@app/utils';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 

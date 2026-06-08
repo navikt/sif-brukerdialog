@@ -13,35 +13,35 @@ on:
                 type: boolean
                 required: false
 
+permissions: {}
+
 jobs:
     deploy-to-prod:
         name: Deploy ${{ inputs.app-name }} to prod
         runs-on: ubuntu-latest
         permissions:
+            contents: read # required: actions/checkout
             id-token: write # required: nais/docker-build-push
         outputs:
             image: ${{ steps.docker-push.outputs.image }}
         steps:
             - name: Checkout code
-              uses: actions/checkout@v5
-
-            - name: Setup .yarnrc.yml
-              run: |
-                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
-                  yarn config set npmScopes.navikt.npmAlwaysAuth true
-                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
-
-            - name: Setup Node.js environment
-              uses: actions/setup-node@v5
+              uses: actions/checkout@v6.0.2
               with:
-                  node-version: 22
-                  cache: 'yarn'
-            - run: yarn set version 4.x
+                  persist-credentials: false
 
-            - name: Install dependencies (yarn)
-              run: yarn
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v6
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v6.4.0
+              with:
+                  node-version: 24
+                  cache: "pnpm"
+
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+              env:
+                  NPM_TOKEN: ${{ secrets.READER_TOKEN }}
 
             - name: Copy .env.prod for next.js build
               if: ${{ inputs.is-next-app == true }}
@@ -51,7 +51,7 @@ jobs:
                   cp apps/${{inputs.app-name}}/nais/envs/.env.prod apps/${{inputs.app-name}}/.env.production
 
             - name: Build application
-              run: yarn turbo run build --filter=@navikt/${{ inputs.app-name }}
+              run: pnpm turbo run build --filter=@navikt/${{ inputs.app-name }}
 
             - name: Build and publish docker image
               uses: nais/docker-build-push@v0
@@ -65,6 +65,8 @@ jobs:
                   image_suffix: ${{inputs.app-name}}-mono
                   project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
                   identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+                  build_secrets: |
+                      NPM_TOKEN=${{ secrets.READER_TOKEN }}
 
             - name: Deploy to prod
               uses: nais/deploy/actions/deploy@v2
@@ -73,7 +75,6 @@ jobs:
                   RESOURCE: nais-config/nais.yml
                   VARS: apps/${{ inputs.app-name }}/nais/prod-gcp.json
                   VAR: GITHUB_REF_NAME=${{ github.ref_name }} # brukes i applikasjonerna
-                  APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
                   IMAGE: ${{ steps.docker-push.outputs.image }}
 
     trivy:

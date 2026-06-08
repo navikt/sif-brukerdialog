@@ -25,13 +25,16 @@ const nb = {
         'Vi innhenter og mottar opplysninger om deg for å behandle saken din. Det er nødvendig for at du skal få riktig tjeneste.',
     'personopplysninger.3': 'Hvilke opplysninger innhenter vi?',
     'personopplysninger.4':
-        'Opplysningene vi innhenter kommer enten fra deg, arbeidsgiver eller fra offentlige registre:',
+        'Opplysningene vi innhenter, kommer enten fra deg, arbeidsgiver eller fra offentlige registre:',
     'personopplysninger.4.1': 'opplysninger om helsen til den du skal søke opplæringspenger for',
-    'personopplysninger.4.2': 'arbeidsforholdene dine og inntekten din',
+    'personopplysninger.4.2': 'arbeidsforholdene dine og inntekten din hos arbeidsgivere du har fravær fra',
     'personopplysninger.4.3': 'ytelser du mottar fra Nav',
     'personopplysninger.4.4': 'tilknytningen din til Norge',
     'personopplysninger.4.5':
         'trygdeordninger du kan ha rett til i andre land. Vi kan også sende opplysninger om deg til trygdemyndigheter i andre land',
+
+    'personopplysninger.5':
+        'Vi lagrer opplysningene vi får inn om barnet du søker opplæringspenger for. Dette gjør vi for å kunne gjenbruke opplysningene hvis andre omsorgspersoner søker opplæringspenger for samme barn.',
 
     'personopplysninger.6':
         'Du har rett til innsyn i saken din. Vil du vite mer om hvordan Nav behandler personopplysninger? Se <Lenke>nav.no/personvern</Lenke>.',
@@ -65,14 +68,15 @@ const nn: Record<keyof typeof nb, string> = {
         'Me hentar inn og mottar opplysningar om deg for å behandle saka di. Det er nødvendig for at du skal få riktig teneste.',
     'personopplysninger.3': 'Kva for opplysningar hentar me inn?',
     'personopplysninger.4':
-        'Opplysningane me hentar inn kjem anten frå deg, arbeidsgivar eller frå offentlege register:',
+        'Opplysningane vi innhentar, kjem anten frå deg, arbeidsgjevar eller frå offentlege register:',
     'personopplysninger.4.1': 'opplysningar om helsa til den du skal søkje opplæringspengar for',
-    'personopplysninger.4.2': 'arbeidsforholda dine og inntekta di',
+    'personopplysninger.4.2': 'arbeidsforholda dine og inntekta di hos arbeidsgjevarar du har fråvær frå',
     'personopplysninger.4.3': 'ytingar du mottar frå Nav',
     'personopplysninger.4.4': 'tilknytinga di til Noreg',
     'personopplysninger.4.5':
         'trygdeordningar du kan ha rett til i andre land. Me kan også sende opplysningar om deg til trygdemyndigheiter i andre land.',
-
+    'personopplysninger.5':
+        'Me lagrar opplysningane me får inn om barnet du søkjer opplæringspengar for. Dette gjer me for å kunne bruke opplysningane om att viss andre omsorgspersonar søkjer opplæringspengar for same barn.',
     'personopplysninger.6':
         'Du har rett til innsyn i saka di. Vil du vite meir om korleis Nav behandlar personopplysningar? Sjå <Lenke>nav.no/personvern</Lenke>.',
 };

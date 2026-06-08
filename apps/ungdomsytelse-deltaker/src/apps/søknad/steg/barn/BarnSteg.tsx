@@ -2,17 +2,17 @@ import { Alert, BodyLong, Heading, Radio, RadioGroup, VStack } from '@navikt/ds-
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { FormLayout, RegistrerteBarnListeHeading } from '@navikt/sif-common-ui';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
+import AriaLiveRegion from '@shared/components/aria-live-region/AriaLiveRegion';
+import ExternalLink from '@shared/components/external-link/ExternalLink';
+import { AppText, useAppIntl } from '@shared/i18n';
+import getLenker from '@shared/utils/lenker';
+import SøknadSteg from '@søknad/components/søknad-steg/SøknadSteg';
+import SkjemaFooter from '@søknad/components/steg-skjema/SkjemaFooter';
+import { useSøknadContext } from '@søknad/hooks/context/useSøknadContext';
+import { useSøknadNavigation } from '@søknad/hooks/utils/useSøknadNavigation';
+import { Spørsmål, Steg } from '@søknad/types';
 import { useState } from 'react';
 
-import AriaLiveRegion from '../../../../components/aria-live-region/AriaLiveRegion';
-import { AppText, useAppIntl } from '../../../../i18n';
-import getLenker from '../../../../utils/lenker';
-import ExternalLink from '../../components/external-link/ExternalLink';
-import SøknadSteg from '../../components/søknad-steg/SøknadSteg';
-import SkjemaFooter from '../../components/steg-skjema/SkjemaFooter';
-import { useSøknadContext } from '../../hooks/context/useSøknadContext';
-import { useSøknadNavigation } from '../../hooks/utils/useSøknadNavigation';
-import { Spørsmål, Steg } from '../../types';
 import BarnInfo from './BarnInfo';
 
 const BarnSteg = () => {
@@ -38,14 +38,13 @@ const BarnSteg = () => {
             <FormLayout.Guide>
                 <AppText id="barnSteg.beskrivelse" />
             </FormLayout.Guide>
-
             <form
                 onSubmit={(evt) => {
                     evt.preventDefault();
                     handleOnSubmit();
                 }}>
                 <FormLayout.Questions>
-                    <VStack gap="4">
+                    <VStack gap="space-16">
                         <RegistrerteBarnListeHeading level="2" size="xsmall">
                             {text('barnSteg.registrerteBarn.tittel')}
                         </RegistrerteBarnListeHeading>

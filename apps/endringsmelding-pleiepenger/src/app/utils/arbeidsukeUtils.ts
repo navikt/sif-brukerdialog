@@ -1,3 +1,4 @@
+import { ArbeidstidEnkeltdagMap, Arbeidsuke } from '@app/types';
 import {
     dateFormatter,
     DateRange,
@@ -5,7 +6,6 @@ import {
     getDatesInDateRange,
     ISODate,
 } from '@navikt/sif-common-utils';
-import { ArbeidstidEnkeltdagMap, Arbeidsuke } from '@types';
 import dayjs from 'dayjs';
 
 export const sorterArbeidsuker = (a1: Arbeidsuke, a2: Arbeidsuke): number => {

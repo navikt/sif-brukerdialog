@@ -43,18 +43,23 @@ const logToSentryOrConsole = (
     }
 };
 
-const logApiCallErrorToSentryOrConsole = (error: AxiosError, application: string): void => {
+const logApiCallErrorToSentryOrConsole = (error: AxiosError, application: string, context?: string): void => {
     const headers = error?.response?.headers;
     const maybeXRequestId: string | undefined = headers ? headers['x-request-id'] : undefined;
+    const maybeCorrelationId: string | undefined = headers ? headers['x-correlation-id'] : undefined;
     const errorMsg: string | undefined = error?.message;
 
-    if (['0', '401'].includes(`${error.response?.status || ''}`)) {
+    const status = error.response?.status;
+
+    // Axios gir ikke alltid status 0, men gir ERR_NETWORK
+    if (status === 401 || status === 0 || error.code === 'ERR_NETWORK') {
         return;
     }
-
-    logToSentryOrConsole('Api call error', 'fatal', application, {
+    logToSentryOrConsole('Api call error', 'error', application, {
         XRequestId: maybeXRequestId || undefined,
         errorMsg: errorMsg,
+        context,
+        maybeCorrelationId,
     });
 };
 
@@ -115,12 +120,41 @@ export const setupIgnoreErrorsAndAllowUrls = (
     return { allowUrls, ignoreErrors };
 };
 
+const dekoratorenTimeoutPatterns = ['Request timeout', 'dekoratoren'];
+
+export const isErrorFromDekoratøren = (event: Sentry.ErrorEvent): boolean => {
+    const values = event.exception?.values ?? [];
+
+    const frames = values.flatMap((v) => v.stacktrace?.frames ?? []);
+    if (frames.some((f) => (f.filename ?? '').includes('/dekoratoren/'))) {
+        return true;
+    }
+
+    const firstValue = values[0];
+    if (firstValue?.type === 'UnhandledRejection') {
+        const message = firstValue.value ?? '';
+        if (dekoratorenTimeoutPatterns.some((pattern) => message.includes(pattern))) {
+            return true;
+        }
+    }
+
+    return false;
+};
+
+export const beforeSendFilter = (event: Sentry.ErrorEvent): Sentry.ErrorEvent | null => {
+    if (isErrorFromDekoratøren(event)) {
+        return null;
+    }
+    return event;
+};
+
 const initSentryForSIF = (initProps: SentryInitProps = {}) => {
     Sentry.init({
         dsn: 'https://20da9cbb958c4f5695d79c260eac6728@sentry.gc.nav.no/30',
         environment: setSentryEnvironmentFromHost(),
         ...initProps,
         ...setupIgnoreErrorsAndAllowUrls(initProps),
+        beforeSend: beforeSendFilter,
     });
 };
 
@@ -132,9 +166,11 @@ const getSentryLoggerForApp = (application: string, allowUrls: AllowUrlsType, ig
         logToSentryOrConsole(message, 'info', application, payload ? { info: payload } : undefined),
     logError: (message: string, payload?: string) =>
         logToSentryOrConsole(message, 'error', application, payload ? { info: payload } : undefined),
-    logApiError: (error: AxiosError) => logApiCallErrorToSentryOrConsole(error, application),
+    logApiError: (error: AxiosError, context?: string) => logApiCallErrorToSentryOrConsole(error, application, context),
     logToSentry: (message: string, severity: Sentry.SeverityLevel, payload?: string) =>
         logToSentry(message, severity, application, payload ? { info: payload } : undefined),
 });
 
 export default getSentryLoggerForApp;
+
+export * from './v2';

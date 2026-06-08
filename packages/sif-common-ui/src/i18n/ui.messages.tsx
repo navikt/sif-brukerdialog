@@ -3,6 +3,8 @@ import { FormattedMessage, IntlShape, useIntl } from 'react-intl';
 
 import { durationTextMessages_nb } from '../components/duration-text/i18n/nb';
 import { durationTextMessages_nn } from '../components/duration-text/i18n/nn';
+import { hentArbeidsforholdFeiletInfo_nb } from '../components/hent-arbeidsforhold-feilet-info/i18n/nb';
+import { hentArbeidsforholdFeiletInfo_nn } from '../components/hent-arbeidsforhold-feilet-info/i18n/nn';
 import { progressStepperMessages_nb } from '../components/progress-stepper/i18n/nb';
 import { progressStepperMessages_nn } from '../components/progress-stepper/i18n/nn';
 import { registrerteBarnKildeInfoMessages_nb } from '../components/registrerte-barn-kilde/i18n/nb';
@@ -26,6 +28,7 @@ const nb = {
     ...tidFasteUkedagerInputMessages_nb,
     ...registrerteBarnListeMessages_nb,
     ...registrerteBarnKildeInfoMessages_nb,
+    ...hentArbeidsforholdFeiletInfo_nb,
 };
 
 const nn: Record<keyof typeof nb, string> = {
@@ -38,6 +41,7 @@ const nn: Record<keyof typeof nb, string> = {
     ...tidFasteUkedagerInputMessages_nn,
     ...registrerteBarnListeMessages_nn,
     ...registrerteBarnKildeInfoMessages_nn,
+    ...hentArbeidsforholdFeiletInfo_nn,
 };
 
 export const getUiIntl = (intl: IntlShape) => {

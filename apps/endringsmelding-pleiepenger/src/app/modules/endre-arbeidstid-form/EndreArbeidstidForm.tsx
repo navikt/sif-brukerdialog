@@ -1,6 +1,17 @@
 import './endreArbeidstidForm.scss';
 
-import { useSøknadContext } from '@hooks';
+import { useSøknadContext } from '@app/hooks';
+import { AppIntlShape, AppText, useAppIntl } from '@app/i18n';
+import actionsCreator from '@app/søknad/context/action/actionCreator';
+import { ArbeidstidEndring, Arbeidsuke, LovbestemtFerieSøknadsdata, TimerEllerProsent } from '@app/types';
+import {
+    arbeidsukerHarLikNormaltidPerDag,
+    erKortArbeidsuke,
+    getArbeidsukeUkenummer,
+    getDagerTekst,
+    getFeriedagerIUke,
+    getFeriedagerIUkeTekst,
+} from '@app/utils';
 import { Alert, BodyShort, Heading, ToggleGroup, VStack } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import {
@@ -12,19 +23,8 @@ import {
 import { FormLayout, getDurationString } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
 import { getNumberValidator } from '@navikt/sif-validation';
-import { ArbeidstidEndring, Arbeidsuke, LovbestemtFerieSøknadsdata, TimerEllerProsent } from '@types';
-import {
-    arbeidsukerHarLikNormaltidPerDag,
-    erKortArbeidsuke,
-    getArbeidsukeUkenummer,
-    getDagerTekst,
-    getFeriedagerIUke,
-    getFeriedagerIUkeTekst,
-} from '@utils';
 import dayjs from 'dayjs';
 
-import { AppIntlShape, AppText, useAppIntl } from '../../i18n';
-import actionsCreator from '../../søknad/context/action/actionCreator';
 import UkeTags from '../arbeidstid-uker/components/UkeTags';
 import { getArbeidstidSpørsmålDescription, getArbeidsukerPerÅr } from './endreArbeidstidFormUtils';
 import { getEndreArbeidstidIntlValues } from './endreArbeidstidIntlValues';
@@ -143,7 +143,7 @@ const EndreArbeidstidForm = ({
                 });
 
                 return (
-                    <VStack gap="8" className="endreArbeidstidForm">
+                    <VStack gap="space-32" className="endreArbeidstidForm">
                         <div>
                             <Heading size="large" level="2" spacing={true}>
                                 {arbeidsuker.length === 1
@@ -156,7 +156,6 @@ const EndreArbeidstidForm = ({
                                 {getUkerOgÅrBeskrivelse(arbeidsuker, appIntl, lovbestemtFerie)}
                             </BodyShort>
                         </div>
-
                         {dagerMedFjernetFerie && dagerMedFjernetFerie.length > 0 && (
                             <Alert variant="warning">
                                 <AppText
@@ -270,8 +269,8 @@ const getUkerOgÅrBeskrivelse = (
             ? getFeriedagerIUke(lovbestemtFerie.feriedagerMeta.datoerMedFerie, arbeidsuker[0].periode, true)
             : [];
         return (
-            <VStack gap="2">
-                <BodyShort as="div" className="capsFirstChar">
+            <VStack gap="space-8">
+                <BodyShort as="div" className="capsFirstLetter">
                     {getArbeidstidSpørsmålDescription(arbeidsuker[0], intl.locale)}
                 </BodyShort>
                 {dagerMedFerie.length > 0 && <UkeTags visDagNavn={true} dagerMedFerie={dagerMedFerie} />}

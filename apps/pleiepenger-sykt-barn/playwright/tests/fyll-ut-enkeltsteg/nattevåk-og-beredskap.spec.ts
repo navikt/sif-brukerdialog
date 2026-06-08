@@ -6,6 +6,7 @@ import { YesOrNoOrDoNotKnow } from '../../../src/app/types/YesOrNoOrDoNotKnow';
 import { mellomlagringMock } from '../../mock-data/mellomlagring';
 import { routeUtils } from '../../utils/routeUtils';
 import { setNow } from '../../utils/setNow';
+import { testAccessibility } from '../../utils/testAccessibility';
 
 const formValues: SøknadFormValues = {
     ...mellomlagringMock.formValues,
@@ -38,5 +39,6 @@ test('Fyll ut arbeidssituasjon', async ({ page }) => {
     await page.getByTestId('nattevåk-tilleggsinfo').fill('Dette er en tekst');
     await page.getByTestId('beredskap').getByText('Ja').click();
     await page.getByTestId('beredskap-tilleggsinfo').fill('Dette er en annen tekst');
+    await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 });

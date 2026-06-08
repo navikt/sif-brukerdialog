@@ -2,8 +2,11 @@ import { RegistrertBarn } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { Næringstype, OpptjeningAktivitet, UtenlandskNæringstype } from '@navikt/sif-common-forms-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { getDatoerIKursperioder } from '../../app/søknad/steps/kurs/kursStepUtils';
+
+import { EnkeltdagEllerPeriode } from '../../app/søknad/steps/kurs/KursStepForm';
+import { getDatoerIKursperioder } from '../../app/søknad/steps/kurs/utils/kursStepUtils';
 import { ArbeidsgiverType } from '../../app/types/Arbeidsgiver';
+import { Kursdag } from '../../app/types/Kursdag';
 import { Kursperiode } from '../../app/types/Kursperiode';
 import { SøknadContextState } from '../../app/types/SøknadContextState';
 import { SøknadRoutes } from '../../app/types/SøknadRoutes';
@@ -18,6 +21,8 @@ const kursperioder: Kursperiode[] = [
         },
     },
 ];
+
+const kursdager: Kursdag[] = [];
 
 const barn1: RegistrertBarn = {
     fornavn: 'ALFABETISK',
@@ -72,7 +77,9 @@ export const søknadContextMock: SøknadContextState = {
                 reisedagerBeskrivelse: 'Kombinerer med ferie',
             },
             kursholder: '',
+            enkeltdagEllerPeriode: EnkeltdagEllerPeriode.PERIODE,
             kursperioder,
+            kursdager,
         },
         arbeidssituasjon: {
             arbeidsgivere: {
@@ -82,7 +89,7 @@ export const søknadContextMock: SøknadContextState = {
                         type: ArbeidsgiverType.ORGANISASJON,
                         id: '123451234',
                         organisasjonsnummer: '123451234',
-                        navn: 'Arbeids- og velferdsetaten',
+                        navn: 'SNODIG FISKER',
                     },
                     erAnsattISøknadsperiode: true,
                     jobberNormaltTimer: 20,

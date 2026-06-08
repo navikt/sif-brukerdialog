@@ -1,7 +1,5 @@
 /// <reference types="vitest" />
-// @ts-expect-error: vite-plugin has no types
 import tailwindcss from '@tailwindcss/vite';
-// @ts-expect-error: vite-plugin has no types
 import react from '@vitejs/plugin-react';
 import * as path from 'path';
 import { defineConfig } from 'vite';
@@ -32,9 +30,13 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            '@utils': path.resolve(__dirname, './src/app/utils'),
-            '@types': path.resolve(__dirname, './src/app/types'),
-            '@hooks': path.resolve(__dirname, './src/app/hooks'),
+            '@app': path.resolve(__dirname, './src/app'),
+            '@app/utils': path.resolve(__dirname, './src/app/utils'),
+            '@app/types': path.resolve(__dirname, './src/app/types'),
+            '@app/hooks': path.resolve(__dirname, './src/app/hooks'),
+            '@app/modules': path.resolve(__dirname, './src/app/modules'),
+            '@app/components': path.resolve(__dirname, './src/app/components'),
+            '@app/i18n': path.resolve(__dirname, './src/app/i18n'),
         },
     },
     define: {
@@ -54,12 +56,5 @@ export default defineConfig({
         },
         outDir: './dist-demo',
         emptyOutDir: true,
-    },
-    css: {
-        preprocessorOptions: {
-            scss: {
-                api: 'modern-compiler',
-            },
-        },
     },
 });

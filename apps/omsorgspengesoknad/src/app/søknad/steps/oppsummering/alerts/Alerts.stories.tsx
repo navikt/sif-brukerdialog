@@ -11,7 +11,7 @@ export default {
 
 const Template: StoryFn = () => {
     return (
-        <VStack gap="8">
+        <VStack gap="space-32">
             <AlertStoryWrapper title="Feilmelding når innsending feiler" intlScope="innsendingFeilet.">
                 <InnsendingFeiletAlert invalidParameter={[{ parameterName: 'enVerdiSomFeilet' } as any]} />
             </AlertStoryWrapper>

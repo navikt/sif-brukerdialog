@@ -1,5 +1,5 @@
 import type { Preview } from '@storybook/react-vite';
-import '@navikt/ds-css/darkside';
+import '@navikt/ds-css';
 
 const preview: Preview = {
     globalTypes: {

@@ -62,7 +62,7 @@ const MedlemskapStep = () => {
                             <MedlemskapForm
                                 goBack={goBack}
                                 isSubmitting={isSubmitting}
-                                medlemskapInfoUrl={getLenker().medlemskap}
+                                medlemskapInfoUrl={getLenker().medlemskapIFolketrygden}
                                 values={values}
                             />
                         </>

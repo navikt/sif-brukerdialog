@@ -1,8 +1,8 @@
-import { useSøknadContext } from '@hooks';
+import { useSøknadContext } from '@app/hooks';
+import { SøknadApiData } from '@app/types';
+import { appSentryLogger } from '@app/utils';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import { SøknadApiData } from '@types';
-import { appSentryLogger } from '@utils';
+import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { AxiosError, isAxiosError } from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -25,7 +25,7 @@ export const useSendSøknad = () => {
     const { locale } = useAppIntl();
     const navigateTo = useNavigate();
 
-    const { logSoknadSent, logSoknadFailed, logInfo } = useAmplitudeInstance();
+    const { logSoknadSent, logSoknadFailed, logInfo } = useAnalyticsInstance();
 
     const sendSøknad = (apiData: SøknadApiData) => {
         setIsSubmitting(true);
@@ -34,7 +34,7 @@ export const useSendSøknad = () => {
             .then(async () => onSøknadSendSuccess(getSøknadApiDataMetadata(apiData, søknadsdata, valgteEndringer, sak)))
             .catch((error) => {
                 if (isAxiosError(error)) {
-                    appSentryLogger.logError('Innsending feilet', error.message);
+                    appSentryLogger.logApiError(error, 'Innsending feilet');
                 }
                 logSoknadFailed(EndringsmeldingPsbApp.navn);
                 setSendSøknadError(error);

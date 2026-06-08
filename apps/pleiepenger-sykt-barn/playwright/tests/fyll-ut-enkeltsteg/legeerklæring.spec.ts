@@ -6,6 +6,7 @@ import { YesOrNoOrDoNotKnow } from '../../../src/app/types/YesOrNoOrDoNotKnow';
 import { mellomlagringMock } from '../../mock-data/mellomlagring';
 import { routeUtils } from '../../utils/routeUtils';
 import { setNow } from '../../utils/setNow';
+import { testAccessibility } from '../../utils/testAccessibility';
 
 const formValues: SøknadFormValues = {
     ...mellomlagringMock.formValues,
@@ -39,6 +40,7 @@ test.describe('Fyll ut legeerklæring', () => {
         const listItems = await page.getByText('navlogopng.png');
         await expect(listItems).toHaveCount(1);
 
+        await testAccessibility(page);
         await page.getByTestId('typedFormikForm-submitButton').click();
     });
     test('Flere vedlegg', async ({ page }) => {
@@ -55,6 +57,7 @@ test.describe('Fyll ut legeerklæring', () => {
         const listItems = await page.getByText('navlogopng.png');
         await expect(listItems).toHaveCount(2);
 
+        await testAccessibility(page);
         await page.getByTestId('typedFormikForm-submitButton').click();
     });
 });

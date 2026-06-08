@@ -1,12 +1,11 @@
 /// <reference types="vitest" />
 import { sentryVitePlugin } from '@sentry/vite-plugin';
-// @ts-expect-error: vite-plugin has no types
 import react from '@vitejs/plugin-react';
 import * as path from 'path';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
     plugins: [
         react({
             include: '**/*.{jsx,tsx}',
@@ -32,19 +31,26 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            '@utils': path.resolve(__dirname, './src/app/utils'),
-            '@types': path.resolve(__dirname, './src/app/types'),
-            '@hooks': path.resolve(__dirname, './src/app/hooks'),
+            '@app': path.resolve(__dirname, './src/app'),
         },
     },
     build: {
+        chunkSizeWarningLimit: 2000,
         sourcemap: true,
-    },
-    css: {
-        preprocessorOptions: {
-            scss: {
-                api: 'modern-compiler',
+        minify: mode === 'production',
+        target: 'esnext',
+        rolldownOptions: {
+            output: {
+                codeSplitting: {
+                    groups: [
+                        { name: 'vendor', test: /node_modules[\\/](react|react-dom|react-intl)/, priority: 5 },
+                        { name: 'router', test: /node_modules[\\/]react-router/, priority: 4 },
+                        { name: 'forms', test: /node_modules[\\/]formik/, priority: 3 },
+                        { name: 'utils', test: /node_modules[\\/](lodash|date-fns|dayjs|axios|uuid|zod)/, priority: 2 },
+                        { name: 'navikt', test: /node_modules[\\/]@navikt[\\/](ds-react|aksel-icons)/, priority: 1 },
+                    ],
+                },
             },
         },
     },
-});
+}));

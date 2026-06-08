@@ -1,0 +1,10 @@
+.calendarGrid__day:has(.tidsbrukKalenderDag__endret) {
+    background-color: var(--ax-bg-accent-soft);
+    border-color: var(--ax-border-info);
+}
+.calendarGrid__day:has(.tidsbrukKalenderDag__harTid) {
+    background-color: var(--ax-bg-default);
+}
+.calendarGrid__day:hover {
+    background-color: var(--ax-bg-accent-soft);
+}

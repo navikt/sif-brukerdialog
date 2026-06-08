@@ -6,7 +6,7 @@ import { serializeArrayParam, serializeObjectParam, serializePrimitiveParam } fr
 import { getUrl } from '../core/utils.gen';
 import type { Client, ClientOptions, Config, RequestOptions } from './types.gen';
 
-export const createQuerySerializer = <T = unknown>({ allowReserved, array, object }: QuerySerializerOptions = {}) => {
+export const createQuerySerializer = <T = unknown>({ parameters = {}, ...args }: QuerySerializerOptions = {}) => {
     const querySerializer = (queryParams: T) => {
         const search: string[] = [];
         if (queryParams && typeof queryParams === 'object') {
@@ -17,29 +17,31 @@ export const createQuerySerializer = <T = unknown>({ allowReserved, array, objec
                     continue;
                 }
 
+                const options = parameters[name] || args;
+
                 if (Array.isArray(value)) {
                     const serializedArray = serializeArrayParam({
-                        allowReserved,
+                        allowReserved: options.allowReserved,
                         explode: true,
                         name,
                         style: 'form',
                         value,
-                        ...array,
+                        ...options.array,
                     });
                     if (serializedArray) search.push(serializedArray);
                 } else if (typeof value === 'object') {
                     const serializedObject = serializeObjectParam({
-                        allowReserved,
+                        allowReserved: options.allowReserved,
                         explode: true,
                         name,
                         style: 'deepObject',
                         value: value as Record<string, unknown>,
-                        ...object,
+                        ...options.object,
                     });
                     if (serializedObject) search.push(serializedObject);
                 } else {
                     const serializedPrimitive = serializePrimitiveParam({
-                        allowReserved,
+                        allowReserved: options.allowReserved,
                         name,
                         value: value as string,
                     });
@@ -70,14 +72,12 @@ const checkForExistence = (
     return false;
 };
 
-export const setAuthParams = async ({
-    security,
-    ...options
-}: Pick<Required<RequestOptions>, 'security'> &
-    Pick<RequestOptions, 'auth' | 'query'> & {
+export async function setAuthParams(
+    options: Pick<RequestOptions, 'auth' | 'query' | 'security'> & {
         headers: Record<any, unknown>;
-    }) => {
-    for (const auth of security) {
+    },
+): Promise<void> {
+    for (const auth of options.security ?? []) {
         if (checkForExistence(options, auth.name)) {
             continue;
         }
@@ -111,12 +111,12 @@ export const setAuthParams = async ({
                 break;
         }
     }
-};
+}
 
 export const buildUrl: Client['buildUrl'] = (options) => {
     const instanceBaseUrl = options.axios?.defaults?.baseURL;
 
-    const baseUrl = !!options.baseURL && typeof options.baseURL === 'string' ? options.baseURL : instanceBaseUrl;
+    const baseUrl = options.baseURL && typeof options.baseURL === 'string' ? options.baseURL : instanceBaseUrl;
 
     return getUrl({
         baseUrl: baseUrl as string,
@@ -164,11 +164,11 @@ export const mergeHeaders = (...headers: Array<Required<Config>['headers'] | und
                 delete mergedHeaders[key];
             } else if (Array.isArray(value)) {
                 for (const v of value) {
-                    // @ts-expect-error
+                    // @ts-ignore
                     mergedHeaders[key] = [...(mergedHeaders[key] ?? []), v as string];
                 }
             } else if (value !== undefined) {
-                // assume object headers are meant to be JSON stringified, i.e. their
+                // assume object headers are meant to be JSON stringified, i.e., their
                 // content value in OpenAPI specification is 'application/json'
                 mergedHeaders[key] = typeof value === 'object' ? JSON.stringify(value) : (value as string);
             }

@@ -1,5 +1,405 @@
 # @navikt/sif-common-core-ds
 
+## 10.3.56
+
+### Patch Changes
+
+- Justeringer av tekst og legge til validering av vedlegg i sif-validation
+    - @navikt/sif-common-api@0.4.95
+
+## 10.3.55
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.94
+
+## 10.3.54
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.93
+    - @navikt/sif-common-env@0.1.10
+    - @navikt/sif-common-utils@3.49.61
+
+## 10.3.53
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.92
+
+## 10.3.52
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.60
+    - @navikt/sif-common-api@0.4.91
+
+## 10.3.51
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.59
+    - @navikt/sif-common-api@0.4.90
+
+## 10.3.50
+
+### Patch Changes
+
+- Updated dependencies [522fe9f]
+    - @navikt/sif-common-utils@3.49.58
+    - @navikt/sif-common-api@0.4.89
+
+## 10.3.49
+
+### Patch Changes
+
+- CSS margin fix for aksel-list header.
+
+## 10.3.48
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.57
+    - @navikt/sif-common-api@0.4.88
+
+## 10.3.47
+
+### Patch Changes
+
+- Pakkeoppdateringer - major react-intl + sanity
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.56
+    - @navikt/sif-common-api@0.4.87
+
+## 10.3.46
+
+### Patch Changes
+
+- 69fe53c: Pakkeoppdateringer - minor/patch + major portable text
+- Updated dependencies [69fe53c]
+    - @navikt/sif-common-api@0.4.86
+    - @navikt/sif-common-utils@3.49.55
+
+## 10.3.45
+
+### Patch Changes
+
+- fc216a0: Pakkeoppdateringer - minor/patch
+- Updated dependencies [fc216a0]
+    - @navikt/sif-common-utils@3.49.55
+    - @navikt/sif-common-api@0.4.85
+
+## 10.3.44
+
+### Patch Changes
+
+- e8491a9: Pakkeoppdateringer - minor/patch
+- Updated dependencies [e8491a9]
+    - @navikt/sif-common-api@0.4.84
+
+## 10.3.43
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.54
+    - @navikt/sif-common-api@0.4.83
+
+## 10.3.42
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.82
+
+## 10.3.41
+
+### Patch Changes
+
+- bc42630: Rydder opp i feilhåndtering for vedleggsopplasting. Error ved opplastingen ble ikke fanget riktig, og ble til slutt sett på som unhandled.
+- Updated dependencies [bc42630]
+    - @navikt/sif-common-api@0.4.81
+
+## 10.3.40
+
+### Patch Changes
+
+- 292ac7b: Pakkeoppdateringer - minor/patch
+- Updated dependencies [292ac7b]
+    - @navikt/sif-common-api@0.4.80
+    - @navikt/sif-common-utils@3.49.53
+
+## 10.3.39
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.53
+    - @navikt/sif-common-api@0.4.79
+
+## 10.3.38
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.78
+    - @navikt/sif-common-utils@3.49.52
+
+## 10.3.37
+
+### Patch Changes
+
+- Updated dependencies [3aeced0]
+    - @navikt/sif-common-api@0.4.77
+
+## 10.3.36
+
+### Patch Changes
+
+- Updated dependencies [ff62092]
+    - @navikt/sif-common-api@0.4.76
+
+## 10.3.35
+
+### Patch Changes
+
+- d80e3cd: - Refactoring av dockerfiler. Bruke turbo sin prune funksjonalitet og yarn --immutable.
+    - Justere workflows for deploy
+    - Skru av prometheus metrics - var ikke brukt
+    - Korrigere dependencies pga --immutable
+    - Forenkle getDisabledDates pga ts warning
+    - @navikt/sif-common-api@0.4.75
+
+## 10.3.34
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.52
+    - @navikt/sif-common-api@0.4.74
+
+## 10.3.33
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-env@0.1.9
+
+## 10.3.32
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.51
+    - @navikt/sif-common-api@0.4.73
+
+## 10.3.31
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.50
+    - @navikt/sif-common-api@0.4.72
+
+## 10.3.30
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.49
+    - @navikt/sif-common-api@0.4.71
+
+## 10.3.29
+
+### Patch Changes
+
+- fe1a62a: Pakkeoppdatering - major portable text + msw minor. Oppdatere deps til @navikt/appstatus-react-ds
+
+## 10.3.28
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.48
+    - @navikt/sif-common-api@0.4.70
+
+## 10.3.27
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.47
+    - @navikt/sif-common-api@0.4.69
+
+## 10.3.26
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.46
+    - @navikt/sif-common-api@0.4.68
+
+## 10.3.25
+
+### Patch Changes
+
+- Erstatte ds-icons med aksel-icons
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.67
+
+## 10.3.24
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.66
+    - @navikt/sif-common-env@0.1.8
+    - @navikt/sif-common-utils@3.49.45
+
+## 10.3.23
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.44
+    - @navikt/sif-common-api@0.4.65
+
+## 10.3.22
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.43
+    - @navikt/sif-common-api@0.4.64
+
+## 10.3.21
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.42
+    - @navikt/sif-common-api@0.4.63
+
+## 10.3.20
+
+### Patch Changes
+
+- Patch oppdatering av vite + fjerne react-syntax-highlighter i sif-common-core
+    - @navikt/sif-common-api@0.4.62
+
+## 10.3.19
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.41
+    - @navikt/sif-common-api@0.4.61
+
+## 10.3.18
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.40
+    - @navikt/sif-common-api@0.4.60
+
+## 10.3.17
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.39
+    - @navikt/sif-common-api@0.4.59
+
+## 10.3.16
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.38
+    - @navikt/sif-common-api@0.4.58
+
+## 10.3.15
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.37
+    - @navikt/sif-common-api@0.4.57
+
+## 10.3.14
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.56
+    - @navikt/sif-common-utils@3.49.36
+
+## 10.3.13
+
+### Patch Changes
+
+- 52d9b9e: Pakkeoppdateringer - minor/patch
+- Updated dependencies [52d9b9e]
+    - @navikt/sif-common-utils@3.49.36
+    - @navikt/sif-common-api@0.4.55
+
+## 10.3.12
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.35
+    - @navikt/sif-common-api@0.4.54
+
+## 10.3.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.34
+    - @navikt/sif-common-api@0.4.53
+    - @navikt/sif-common-env@0.1.7
+
+## 10.3.10
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Fjerne ubrukte pakker.
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.33
+    - @navikt/sif-common-api@0.4.52
+
 ## 10.3.9
 
 ### Patch Changes

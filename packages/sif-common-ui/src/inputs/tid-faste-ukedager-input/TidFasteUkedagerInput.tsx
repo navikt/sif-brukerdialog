@@ -56,7 +56,7 @@ const TidFasteUkedagerInput = ({
     };
     const hasHiddenDays = disabledDays !== undefined && disabledDays.length > 0 && hideDisabledDays;
     return (
-        <Box marginBlock="8 0">
+        <Box marginBlock="space-32 space-0">
             <div className={classNames(bem.block, bem.modifierConditional('withHiddenDays', hasHiddenDays))}>
                 {renderWeekdayTimeInput(
                     Weekday.monday,

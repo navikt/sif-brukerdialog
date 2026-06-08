@@ -1,5 +1,5 @@
 import { Heading, Show, Stack, VStack } from '@navikt/ds-react';
-import { ApplicationPictogram } from '@navikt/sif-common-soknad-ds/src/components/application-pictogram/ApplicationPictogram';
+import { ApplicationPictogram } from '../application-pictogram/ApplicationPictogram';
 
 import SoknadHeader from '../soknad-header/SoknadHeader';
 
@@ -15,7 +15,7 @@ const VelkommenPageHeader = ({ title, useStandard }: Props) => {
 
     return (
         <Stack
-            gap="6"
+            gap="space-24"
             direction={{ sm: 'row-reverse', md: 'row' }}
             justify={{ sm: 'space-between', md: 'start' }}
             align="center"
@@ -23,7 +23,7 @@ const VelkommenPageHeader = ({ title, useStandard }: Props) => {
             <Show above="sm">
                 <ApplicationPictogram />
             </Show>
-            <VStack gap="1">
+            <VStack gap="space-4">
                 <Heading level="1" size="large">
                     {title}
                 </Heading>

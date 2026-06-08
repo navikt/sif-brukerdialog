@@ -4,29 +4,32 @@ on:
     workflow_call:
         inputs:
             app:
-                description: 'App-mappen under ./apps'
+                description: "App-mappen under ./apps"
                 required: true
                 type: string
             working-directory:
                 type: string
                 required: true
 
+permissions: {}
+
 jobs:
     scan:
         runs-on: ubuntu-latest
         permissions:
+            contents: read # required: actions/checkout
             id-token: none
         steps:
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v6.0.2
               with:
                   fetch-depth: 0
 
             - name: SonarQube Scan
-              uses: SonarSource/sonarqube-scan-action@v6
+              uses: SonarSource/sonarqube-scan-action@v8.1.0
               with:
                   args: >
-                      -Dproject.settings=apps/${{ inputs.app }}/sonar-project.properties
-                      -Dsonar.projectBaseDir=apps/${{ inputs.app }}
+                      -Dproject.settings=${{ inputs.working-directory }}/sonar-project.properties
+                      -Dsonar.projectBaseDir=${{ inputs.working-directory }}
                   #   -Dsonar.verbose=true
                   #   -Dsonar.log.level=DEBUG
               env:

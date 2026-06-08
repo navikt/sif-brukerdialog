@@ -13,11 +13,11 @@ const RegistrertBarnSpørsmål = ({ registrerteBarn }: Props) => {
     const { text } = useAppIntl();
 
     return (
-        <VStack gap="4">
+        <VStack gap="space-16">
             <Heading level="2" size="medium">
                 {text('steg.omBarnet.spm.barnetSøknadenGjelder.label')}
             </Heading>
-            <VStack gap="2">
+            <VStack gap="space-8">
                 <VelgBarnFormPart
                     name={OmBarnetFormFields.barnetSøknadenGjelder}
                     registrerteBarn={registrerteBarn}

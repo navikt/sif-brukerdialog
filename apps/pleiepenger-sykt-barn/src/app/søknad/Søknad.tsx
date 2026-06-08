@@ -1,26 +1,29 @@
-import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { ApplikasjonHendelse, useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
-import { useNavigate } from 'react-router-dom';
+import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
-import { navigateToErrorPage } from '../utils/navigationUtils';
 import SøknadContent from './SøknadContent';
 import SøknadEssentialsLoader from './SøknadEssentialsLoader';
 import SøknadsdataWrapper from './SøknadsdataWrapper';
+import { SkyraSlug, SkyraTestPage } from '@sif/surveys';
 
 const Søknad = () => {
-    const navigate = useNavigate();
-    const { logHendelse } = useAmplitudeInstance();
+    const { logHendelse } = useAnalyticsInstance();
+
+    if (globalThis.location.pathname.includes('skyra/test')) {
+        return <SkyraTestPage slugs={[SkyraSlug.pleiepenger_sykt_barn]} />;
+    }
+
     return (
         <SøknadEssentialsLoader
             onUgyldigMellomlagring={() => logHendelse(ApplikasjonHendelse.ugyldigMellomlagring)}
             onError={() => {
-                navigateToErrorPage(navigate);
+                return <ErrorPage />;
             }}
             contentLoadedRenderer={({ formValues, mellomlagringMetadata, søkerdata }) => {
                 if (!søkerdata) {
-                    navigateToErrorPage(navigate);
-                    return;
+                    return <ErrorPage />;
                 }
                 return (
                     <SøknadsdataWrapper initialValues={formValues}>

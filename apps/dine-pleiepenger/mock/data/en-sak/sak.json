@@ -1,0 +1,301 @@
+{
+    "saksnummer": "100242W",
+    "utledetStatus": { "status": "UNDER_BEHANDLING", "aksjonspunkter": [], "saksbehandlingsFrist": null },
+    "saksbehandlingsFrist": null,
+    "fagsakYtelseType": { "kode": "PSB", "kodeverk": "FAGSAK_YTELSE" },
+    "ytelseType": "PSB",
+    "behandlinger": [
+        {
+            "status": "UNDER_BEHANDLING",
+            "opprettetTidspunkt": "2025-09-15T14:45:21.000Z",
+            "avsluttetTidspunkt": null,
+            "innsendelser": [
+                {
+                    "søknadId": "ed8b20c3-ab49-463f-96a2-4d7de92703ae",
+                    "mottattTidspunkt": "2025-11-13T15:32:54Z",
+                    "innsendelsestype": "SØKNAD",
+                    "k9FormatInnsendelse": {
+                        "søknadId": "ed8b20c3-ab49-463f-96a2-4d7de92703ae",
+                        "versjon": "1.0.0",
+                        "mottattDato": "2025-11-13T15:32:52.250Z",
+                        "søker": { "norskIdentitetsnummer": "31489506540" },
+                        "språk": "nb",
+                        "ytelse": {
+                            "type": "PLEIEPENGER_SYKT_BARN",
+                            "barn": { "norskIdentitetsnummer": "10501898177", "fødselsdato": null },
+                            "søknadsperiode": ["2025-12-22/2025-12-27"],
+                            "endringsperiode": [],
+                            "trekkKravPerioder": [],
+                            "opptjeningAktivitet": {},
+                            "dataBruktTilUtledning": null,
+                            "annetDataBruktTilUtledning": {
+                                "harForståttRettigheterOgPlikter": true,
+                                "harBekreftetOpplysninger": true,
+                                "soknadDialogCommitSha": "2025.11.13-14.28-e20d3d0",
+                                "annetData": null
+                            },
+                            "infoFraPunsj": null,
+                            "bosteder": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                            "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                            "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                            "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                            "tilsynsordning": {
+                                "perioder": { "2025-12-22/2025-12-27": { "etablertTilsynTimerPerDag": "PT0S" } }
+                            },
+                            "lovbestemtFerie": { "perioder": {} },
+                            "arbeidstid": {
+                                "arbeidstakerList": [
+                                    {
+                                        "norskIdentitetsnummer": null,
+                                        "organisasjonsnummer": "967170232",
+                                        "organisasjonsnavn": "SNILL TORPEDO",
+                                        "arbeidstidInfo": {
+                                            "perioder": {
+                                                "2025-12-22/2025-12-27": {
+                                                    "jobberNormaltTimerPerDag": "PT8H",
+                                                    "faktiskArbeidTimerPerDag": "PT0S"
+                                                }
+                                            }
+                                        }
+                                    }
+                                ],
+                                "frilanserArbeidstidInfo": {
+                                    "perioder": {
+                                        "2025-12-22/2025-12-27": {
+                                            "jobberNormaltTimerPerDag": "PT0S",
+                                            "faktiskArbeidTimerPerDag": "PT0S"
+                                        }
+                                    }
+                                },
+                                "selvstendigNæringsdrivendeArbeidstidInfo": null
+                            },
+                            "uttak": {
+                                "perioder": { "2025-12-22/2025-12-27": { "timerPleieAvBarnetPerDag": "PT7H30M" } }
+                            },
+                            "omsorg": { "relasjonTilBarnet": null, "beskrivelseAvOmsorgsrollen": null },
+                            "erSammenMedBarnet": null
+                        },
+                        "journalposter": [],
+                        "begrunnelseForInnsending": { "tekst": null },
+                        "kildesystem": "søknadsdialog"
+                    },
+                    "dokumenter": [
+                        {
+                            "journalpostId": "454046688",
+                            "dokumentInfoId": "454460473",
+                            "saksnummer": "100242W",
+                            "tittel": "Søknad om pleiepenger for sykt barn",
+                            "dokumentType": "PLEIEPENGER_SYKT_BARN_SOKNAD",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/454046688/454460473/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2025-11-13T16:32:54", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2025-11-13T16:32:54", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2025-11-13T16:33:02", "datotype": "DATO_JOURNALFOERT" },
+                                { "dato": "2025-11-13T16:32:52", "datotype": "DATO_REGISTRERT" }
+                            ]
+                        }
+                    ],
+                    "arbeidsgivere": [{ "organisasjonsnummer": "967170232", "navn": "SNILL TORPEDO" }]
+                },
+                {
+                    "søknadId": "cc3233f1-d2fe-4422-9edb-e4aed51163ea",
+                    "mottattTidspunkt": "2025-11-13T15:48:49Z",
+                    "innsendelsestype": "SØKNAD",
+                    "k9FormatInnsendelse": {
+                        "søknadId": "cc3233f1-d2fe-4422-9edb-e4aed51163ea",
+                        "versjon": "1.0.0",
+                        "mottattDato": "2025-11-13T15:48:47.571Z",
+                        "søker": { "norskIdentitetsnummer": "31489506540" },
+                        "språk": "nb",
+                        "ytelse": {
+                            "type": "PLEIEPENGER_SYKT_BARN",
+                            "barn": { "norskIdentitetsnummer": "10501898177", "fødselsdato": null },
+                            "søknadsperiode": ["2025-04-28/2025-05-04"],
+                            "endringsperiode": [],
+                            "trekkKravPerioder": [],
+                            "opptjeningAktivitet": {},
+                            "dataBruktTilUtledning": null,
+                            "annetDataBruktTilUtledning": {
+                                "harForståttRettigheterOgPlikter": true,
+                                "harBekreftetOpplysninger": true,
+                                "soknadDialogCommitSha": "2025.11.13-14.28-e20d3d0",
+                                "annetData": null
+                            },
+                            "infoFraPunsj": null,
+                            "bosteder": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                            "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                            "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                            "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                            "tilsynsordning": {
+                                "perioder": { "2025-04-28/2025-05-04": { "etablertTilsynTimerPerDag": "PT0S" } }
+                            },
+                            "lovbestemtFerie": { "perioder": {} },
+                            "arbeidstid": {
+                                "arbeidstakerList": [
+                                    {
+                                        "norskIdentitetsnummer": null,
+                                        "organisasjonsnummer": "967170232",
+                                        "organisasjonsnavn": "SNILL TORPEDO",
+                                        "arbeidstidInfo": {
+                                            "perioder": {
+                                                "2025-04-28/2025-05-04": {
+                                                    "jobberNormaltTimerPerDag": "PT6H",
+                                                    "faktiskArbeidTimerPerDag": "PT0S"
+                                                }
+                                            }
+                                        }
+                                    }
+                                ],
+                                "frilanserArbeidstidInfo": {
+                                    "perioder": {
+                                        "2025-04-28/2025-05-04": {
+                                            "jobberNormaltTimerPerDag": "PT0S",
+                                            "faktiskArbeidTimerPerDag": "PT0S"
+                                        }
+                                    }
+                                },
+                                "selvstendigNæringsdrivendeArbeidstidInfo": null
+                            },
+                            "uttak": {
+                                "perioder": { "2025-04-28/2025-05-04": { "timerPleieAvBarnetPerDag": "PT7H30M" } }
+                            },
+                            "omsorg": { "relasjonTilBarnet": null, "beskrivelseAvOmsorgsrollen": null },
+                            "erSammenMedBarnet": null
+                        },
+                        "journalposter": [],
+                        "begrunnelseForInnsending": { "tekst": null },
+                        "kildesystem": "søknadsdialog"
+                    },
+                    "dokumenter": [
+                        {
+                            "journalpostId": "454046691",
+                            "dokumentInfoId": "454460476",
+                            "saksnummer": "100242W",
+                            "tittel": "Søknad om pleiepenger for sykt barn",
+                            "dokumentType": "PLEIEPENGER_SYKT_BARN_SOKNAD",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/454046691/454460476/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2025-11-13T16:48:49", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2025-11-13T16:48:49", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2025-11-13T16:48:54", "datotype": "DATO_JOURNALFOERT" },
+                                { "dato": "2025-11-13T16:48:47", "datotype": "DATO_REGISTRERT" }
+                            ]
+                        }
+                    ],
+                    "arbeidsgivere": [{ "organisasjonsnummer": "967170232", "navn": "SNILL TORPEDO" }]
+                },
+                {
+                    "søknadId": "5c109f94-f61a-4f52-9494-39fa1c10ed72",
+                    "mottattTidspunkt": "2025-09-15T14:44:12Z",
+                    "innsendelsestype": "SØKNAD",
+                    "k9FormatInnsendelse": {
+                        "søknadId": "5c109f94-f61a-4f52-9494-39fa1c10ed72",
+                        "versjon": "1.0.0",
+                        "mottattDato": "2025-09-15T14:44:10.526Z",
+                        "søker": { "norskIdentitetsnummer": "31489506540" },
+                        "språk": "nb",
+                        "ytelse": {
+                            "type": "PLEIEPENGER_SYKT_BARN",
+                            "barn": { "norskIdentitetsnummer": "10501898177", "fødselsdato": null },
+                            "søknadsperiode": ["2025-07-01/2025-07-31"],
+                            "endringsperiode": [],
+                            "trekkKravPerioder": [],
+                            "opptjeningAktivitet": {},
+                            "dataBruktTilUtledning": null,
+                            "annetDataBruktTilUtledning": {
+                                "harForståttRettigheterOgPlikter": true,
+                                "harBekreftetOpplysninger": true,
+                                "soknadDialogCommitSha": "2025.09.15-13.09-5ca685b",
+                                "annetData": null
+                            },
+                            "infoFraPunsj": null,
+                            "bosteder": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                            "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                            "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                            "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                            "tilsynsordning": {
+                                "perioder": { "2025-07-01/2025-07-31": { "etablertTilsynTimerPerDag": "PT0S" } }
+                            },
+                            "lovbestemtFerie": { "perioder": {} },
+                            "arbeidstid": {
+                                "arbeidstakerList": [
+                                    {
+                                        "norskIdentitetsnummer": null,
+                                        "organisasjonsnummer": "967170232",
+                                        "organisasjonsnavn": "SNILL TORPEDO",
+                                        "arbeidstidInfo": {
+                                            "perioder": {
+                                                "2025-07-01/2025-07-31": {
+                                                    "jobberNormaltTimerPerDag": "PT8H",
+                                                    "faktiskArbeidTimerPerDag": "PT0S"
+                                                }
+                                            }
+                                        }
+                                    }
+                                ],
+                                "frilanserArbeidstidInfo": {
+                                    "perioder": {
+                                        "2025-07-01/2025-07-31": {
+                                            "jobberNormaltTimerPerDag": "PT0S",
+                                            "faktiskArbeidTimerPerDag": "PT0S"
+                                        }
+                                    }
+                                },
+                                "selvstendigNæringsdrivendeArbeidstidInfo": null
+                            },
+                            "uttak": {
+                                "perioder": { "2025-07-01/2025-07-31": { "timerPleieAvBarnetPerDag": "PT7H30M" } }
+                            },
+                            "omsorg": { "relasjonTilBarnet": null, "beskrivelseAvOmsorgsrollen": null },
+                            "erSammenMedBarnet": null
+                        },
+                        "journalposter": [],
+                        "begrunnelseForInnsending": { "tekst": null },
+                        "kildesystem": "søknadsdialog"
+                    },
+                    "dokumenter": [
+                        {
+                            "journalpostId": "454018081",
+                            "dokumentInfoId": "454428379",
+                            "saksnummer": "100242W",
+                            "tittel": "Søknad om pleiepenger for sykt barn",
+                            "dokumentType": "PLEIEPENGER_SYKT_BARN_SOKNAD",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/454018081/454428379/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2025-09-15T16:44:12", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2025-09-15T16:44:12", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2025-09-15T16:44:19", "datotype": "DATO_JOURNALFOERT" },
+                                { "dato": "2025-09-15T16:44:10", "datotype": "DATO_REGISTRERT" }
+                            ]
+                        },
+                        {
+                            "journalpostId": "454018081",
+                            "dokumentInfoId": "454428380",
+                            "saksnummer": "100242W",
+                            "tittel": "70før18.pdf",
+                            "dokumentType": "PLEIEPENGER_SYKT_BARN_SOKNAD",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/454018081/454428380/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2025-09-15T16:44:12", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2025-09-15T16:44:12", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2025-09-15T16:44:19", "datotype": "DATO_JOURNALFOERT" },
+                                { "dato": "2025-09-15T16:44:10", "datotype": "DATO_REGISTRERT" }
+                            ]
+                        }
+                    ],
+                    "arbeidsgivere": [{ "organisasjonsnummer": "967170232", "navn": "SNILL TORPEDO" }]
+                }
+            ],
+            "aksjonspunkter": [],
+            "utgåendeDokumenter": []
+        }
+    ]
+}

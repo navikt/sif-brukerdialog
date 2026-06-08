@@ -39,7 +39,7 @@ const TidEnkeltdager = ({ dager }: Props) => {
 
     const months = groupBy(days, ({ dato }) => `${dato.getFullYear()}.${dato.getMonth()}`);
     return (
-        <VStack gap="6">
+        <VStack gap="space-24">
             {Object.keys(months).map((key) => {
                 const dagerMedTid = months[key];
                 if (dagerMedTid.length === 0) {

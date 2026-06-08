@@ -2,7 +2,7 @@ import { Box, Button, Heading } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import getSentryLoggerForApp from '@navikt/sif-common-sentry';
-import { SoknadHeader } from '@navikt/sif-common-soknad-ds';
+import SoknadHeader from '../soknad-header/SoknadHeader';
 import React from 'react';
 
 interface State {
@@ -46,14 +46,14 @@ class ErrorBoundary extends React.Component<Props, State> {
                 <Page
                     title="Det oppstod en feil"
                     topContentRenderer={() => <SoknadHeader title={this.props.appTitle} />}>
-                    <Box marginBlock="12">
+                    <Box marginBlock="space-48">
                         <SifGuidePanel mood="uncertain">
                             <Heading level="2" size="medium">
                                 Det oppstod en feil
                             </Heading>
 
                             <p>Dersom feilen vedvarer, kan du prøve å starte på nytt.</p>
-                            <Box marginBlock="4 0">
+                            <Box marginBlock="space-16 space-0">
                                 {this.props.onResetSoknad && (
                                     <Button
                                         type="button"

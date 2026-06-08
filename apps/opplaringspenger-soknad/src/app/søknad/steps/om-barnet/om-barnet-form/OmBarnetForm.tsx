@@ -6,6 +6,7 @@ import { VelgBarn_AnnetBarnValue, VelgBarnFormPart } from '@navikt/sif-common-fo
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
 import { useFormikContext } from 'formik';
+
 import AnnetBarnPart from './components/AnnetBarnPart';
 import { OmBarnetFormComponents } from './components/OmBarnetFormComponents';
 import { useOmBarnetFormIntl } from './omBarnetFormMessages';
@@ -42,7 +43,7 @@ const OmBarnetForm = ({
             submitPending={isSubmitting}
             onBack={goBack}
             runDelayedFormValidation={true}>
-            <VStack gap="8">
+            <VStack gap="space-32">
                 {harRegistrerteBarn ? (
                     <Box>
                         <Heading level="2" size="medium" spacing={true}>

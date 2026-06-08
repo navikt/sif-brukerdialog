@@ -5,17 +5,30 @@ import useSøknadInitialData from '../api/useSøknadInitialData';
 import ResetMellomagringButton from '../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { AppText, useAppIntl } from '../i18n';
 import { RequestStatus } from '../types/RequestStatus';
+import { relocateToNoAccessPage } from '../utils/navigationUtils';
 import { SøknadContextProvider } from './context/SøknadContext';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import SøknadRouter from './SøknadRouter';
+import { SkyraHandler, SkyraSlug, SkyraTestPage } from '@sif/surveys';
 
 const Søknad = () => {
     const initialData = useSøknadInitialData();
     const { text } = useAppIntl();
     const { status } = initialData;
 
+    if (globalThis.location.pathname.includes('skyra/test')) {
+        return <SkyraTestPage slugs={[SkyraSlug.pleiepenger_i_livets_sluttfase]} />;
+    }
+
     /** Loading */
-    if (status === RequestStatus.loading || status === RequestStatus.redirectingToLogin) {
+    if (
+        status === RequestStatus.loading ||
+        status === RequestStatus.redirectingToLogin ||
+        status === RequestStatus.noAccess
+    ) {
+        if (status === RequestStatus.noAccess) {
+            relocateToNoAccessPage();
+        }
         return <LoadingSpinner size="3xlarge" style="block" />;
     }
     /** Error */
@@ -44,6 +57,7 @@ const Søknad = () => {
     return (
         <SøknadContextProvider initialData={data}>
             <StepFormValuesContextProvider>
+                <SkyraHandler />
                 <SøknadRouter />
             </StepFormValuesContextProvider>
         </SøknadContextProvider>

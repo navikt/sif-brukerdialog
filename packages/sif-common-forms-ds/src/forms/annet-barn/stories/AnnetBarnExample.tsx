@@ -35,7 +35,7 @@ const AnnetBarnExample = () => {
 
     return (
         <Tabs defaultValue="list">
-            <VStack gap="4">
+            <VStack gap="space-16">
                 <Tabs.List>
                     <Tabs.Tab value="list" label="ListAndDialog" />
                     <Tabs.Tab value="form" label="Form" />
@@ -43,7 +43,7 @@ const AnnetBarnExample = () => {
                     <Tabs.Tab value="validationMessages" label="Valideringsmeldinger" />
                 </Tabs.List>
                 <Tabs.Panel value="list" style={{ maxWidth: '50rem' }}>
-                    <VStack gap="6">
+                    <VStack gap="space-24">
                         <TypedFormikWrapper<FormValues>
                             initialValues={initialValues}
                             onSubmit={setListFormValues}

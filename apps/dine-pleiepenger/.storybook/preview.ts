@@ -1,5 +1,4 @@
 import { Preview } from '@storybook/react-vite';
-import '../src/components/process/process.css';
 import '../src/style/global.css';
 
 /** @type { import('@storybook/react-vite').Preview } */

@@ -5,11 +5,13 @@ import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import minMax from 'dayjs/plugin/minMax';
 import { isDate, uniq, uniqBy } from 'lodash';
 
-import { DateRange, getFirstOfTwoDates, ISODate, ISODateRange, ISODateRangeMap, MaybeDateRange } from './';
+import { DateRange, getFirstOfTwoDates, ISODate, ISODateRange, ISODateRangeMap, MaybeDateRange } from '.';
 import {
     dateToISODate,
     getFirstWeekDayInMonth,
+    getFirstWeekdayOnOrAfterDate,
     getLastWeekDayInMonth,
+    getLastWeekdayOnOrBeforeDate,
     isDateWeekDay,
     ISODateToDate,
     sortDates,
@@ -413,6 +415,14 @@ export const getNumberOfDaysInDateRange = (dateRange: DateRange, onlyWeekDays = 
         : Math.abs(dayjs(dateRange.to).startOf('day').diff(dayjs(dateRange.from).startOf('day'), 'days')) + 1;
 
 /**
+ * Returns the number of weekdays (Monday–Friday) in the date range.
+ * Inclusive: both from- and to-date are counted (same convention as isDateInDateRange).
+ * @param dateRange The date range to count weekdays in
+ */
+export const getNumberOfWeekdaysInDateRange = (dateRange: DateRange): number =>
+    getNumberOfDaysInDateRange(dateRange, true);
+
+/**
  * Gets a dateRange from a list of @dates
  * @param dates
  * @returns dateRange
@@ -777,24 +787,48 @@ export const getDateRangesBetweenDateRangesWithinDateRange = (
     return getDateRangesBetweenDateRanges([preDateRange, ...dateRanges, postDateRange]);
 };
 
+export const dateRangeIncludesWeekdays = (dateRange: DateRange): boolean => {
+    const dates = getDatesInDateRange(dateRange);
+    return dates.some((date) => isDateWeekDay(date));
+};
+
+export const trimDateRangeToWeekdays = (range: DateRange): DateRange | undefined => {
+    const from = getFirstWeekdayOnOrAfterDate(range.from);
+    const to = getLastWeekdayOnOrBeforeDate(range.to);
+    if (dayjs(from).isAfter(to, 'day')) {
+        return undefined;
+    }
+    return { from, to };
+};
+
+export const getDateRangeWithinDateRange = (range: DateRange, limitRange: DateRange): DateRange => {
+    return {
+        from: dayjs.max(dayjs(range.from), dayjs(limitRange.from))!.toDate(),
+        to: dayjs.min(dayjs(range.to), dayjs(limitRange.to))!.toDate(),
+    };
+};
+
 export const dateRangeUtils = {
+    dateRangeIncludesWeekdays,
     dateRangeIsAdjacentToDateRange,
     dateRangesCollide,
     dateRangeToISODateRange,
     ensureDateRange,
     datesCollideWithDateRanges,
-    getDateRangeFromDates,
     getDateRangeFromDateRanges,
+    getDateRangeFromDates,
     getDateRangesBetweenDateRanges,
     getDateRangesFromDates,
     getDateRangesFromISODateRangeMap,
     getDateRangesWithinDateRange,
+    getDateRangeWithinDateRange,
     getDatesInDateRanges,
     getDatesInWeekOutsideDateRange,
     getIsoWeekDateRangeForDate,
     getMonthDateRange,
     getMonthsInDateRange,
     getNumberOfDaysInDateRange,
+    getNumberOfWeekdaysInDateRange,
     getWeekDateRange,
     includeWeekendIfDateRangeEndsOnFridayOrLater,
     isDateInDateRange,
@@ -809,4 +843,5 @@ export const dateRangeUtils = {
     limitDateRangeToDateRange,
     sortDateRange,
     sortDateRangeByToDate,
+    trimDateRangeToWeekdays,
 };

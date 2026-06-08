@@ -1,45 +1,45 @@
 {
     "name": "appstatus-sanity-config",
-    "version": "1.2.35",
+    "version": "1.2.61",
     "description": "",
-    "main": "package.json",
-    "author": "frodehansen2 <frode.hansen@bekk.no>",
-    "license": "UNLICENSED",
-    "scripts": {
-        "dev": "sanity dev",
-        "start": "sanity start",
-        "build": "sanity build",
-        "deploy": "sanity deploy",
-        "deploy-graphql": "sanity graphql deploy"
-    },
     "keywords": [
         "sanity"
     ],
-    "dependencies": {
-        "@sanity/vision": "4.10.1",
-        "react": "19.1.1",
-        "react-dom": "19.1.1",
-        "sanity": "4.10.1",
-        "styled-components": "6.1.19"
-    },
-    "devDependencies": {
-        "@sanity/eslint-config-studio": "5.0.2",
-        "@types/react": "19.1.15",
-        "dayjs": "1.11.18",
-        "eslint": "9.36.0",
-        "prettier": "3.6.2",
-        "react-is": "19.1.1",
-        "typescript": "5.9.2"
+    "license": "UNLICENSED",
+    "author": "frodehansen2 <frode.hansen@bekk.no>",
+    "main": "package.json",
+    "scripts": {
+        "build": "sanity build",
+        "deploy": "sanity deploy",
+        "deploy-graphql": "sanity graphql deploy",
+        "dev": "sanity dev",
+        "start": "sanity start"
     },
     "prettier": {
-        "useTabs": false,
-        "bracketSpacing": true,
-        "bracketSameLine": true,
-        "tabWidth": 4,
         "arrowParens": "always",
-        "singleQuote": true,
+        "bracketSameLine": true,
+        "bracketSpacing": true,
+        "ordered-imports": false,
         "printWidth": 120,
-        "ordered-imports": false
+        "singleQuote": true,
+        "tabWidth": 4,
+        "useTabs": false
     },
-    "packageManager": "yarn@4.3.1"
+    "dependencies": {
+        "@sanity/vision": "5.30.0",
+        "react": "19.2.7",
+        "react-dom": "19.2.7",
+        "sanity": "5.30.0"
+    },
+    "devDependencies": {
+        "@sanity/eslint-config-studio": "6.0.0",
+        "@types/react": "19.2.16",
+        "dayjs": "1.11.21",
+        "eslint": "10.4.1",
+        "postcss": "8.5.15",
+        "prettier": "3.8.3",
+        "react-is": "19.2.7",
+        "styled-components": "6.4.2",
+        "typescript": "6.0.3"
+    }
 }

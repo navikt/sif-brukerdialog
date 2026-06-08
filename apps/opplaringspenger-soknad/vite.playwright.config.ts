@@ -1,9 +1,10 @@
+import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import { copyFileSync } from 'fs';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
+
 import { getDevAppSettings } from './mock/devAppSettings';
-import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
     mode: 'playwright',
@@ -33,7 +34,9 @@ export default defineConfig({
         },
     ],
     define: {
-        INJECT_DECORATOR: true,
+        __IS_GITHUB_PAGES__: false,
+        'import.meta.env.INJECT_DECORATOR': false,
+        'import.meta.env.IS_PLAYWRIGHT': true,
     },
     server: {
         port: 8080,
@@ -52,11 +55,4 @@ export default defineConfig({
         copyPublicDir: false,
     },
     publicDir: false,
-    css: {
-        preprocessorOptions: {
-            scss: {
-                api: 'modern-compiler',
-            },
-        },
-    },
 });

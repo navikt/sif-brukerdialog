@@ -1,4 +1,5 @@
-import { Heading, VStack } from '@navikt/ds-react';
+import { BodyLong, Heading, VStack } from '@navikt/ds-react';
+
 import { AppText } from '../../../../../i18n';
 import { Arbeidsgiver } from '../../../../../types/Arbeidsgiver';
 import FrilansoppdragListe from '../frilansoppdrag-liste/FrilansoppdragListe';
@@ -8,14 +9,16 @@ interface Props {
 }
 
 const FrilansoppdragInfo = ({ frilansoppdrag }: Props) => (
-    <VStack gap="4">
+    <VStack gap="space-16">
         <Heading level="2" size="small">
             <AppText id="frilansoppdragInfo.tittel" />
         </Heading>
 
         <FrilansoppdragListe frilansoppdrag={frilansoppdrag} />
 
-        <AppText id="frilansoppdragInfo.tekst" />
+        <BodyLong>
+            <AppText id="frilansoppdragInfo.tekst" />
+        </BodyLong>
     </VStack>
 );
 export default FrilansoppdragInfo;

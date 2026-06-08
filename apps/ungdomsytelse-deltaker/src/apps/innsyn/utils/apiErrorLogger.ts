@@ -1,6 +1,5 @@
-import { ApiError, isApiAxiosError } from '@navikt/ung-common';
-
-import { logFaroError } from '../../../utils/faroUtils';
+import { logFaroError } from '@shared/utils/faroUtils';
+import { ApiError, ApiErrorType, isApiAxiosError } from '@sif/api';
 
 export const logApiErrorFaro = (hookName: string, error: ApiError): void => {
     const logData = {
@@ -9,10 +8,10 @@ export const logApiErrorFaro = (hookName: string, error: ApiError): void => {
         message: error.message,
         type: error.type,
         timestamp: new Date().toISOString(),
-        url: window.location.href,
+        url: globalThis.location.href,
     };
 
-    // Legg til sikkert metadata fra AxiosError uten sensitive data
+    // Legg til metadata fra AxiosError uten sensitive data
     if (isApiAxiosError(error)) {
         const axiosError = error.originalError;
         Object.assign(logData, {
@@ -27,6 +26,10 @@ export const logApiErrorFaro = (hookName: string, error: ApiError): void => {
                   }
                 : undefined,
             errorCode: axiosError.code,
+        });
+    } else if (error.type === ApiErrorType.ZodValidationError) {
+        Object.assign(logData, {
+            originalError: error.originalError,
         });
     }
 

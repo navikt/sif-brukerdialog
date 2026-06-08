@@ -115,7 +115,7 @@ const ArbeidIPeriodeSpørsmål = ({
         ).length;
 
         return (
-            <HStack gap="4" align="center">
+            <HStack gap="space-16" align="center">
                 <div style={{ minWidth: '10rem' }}>
                     <AppText
                         id="arbeidIPeriode.jobberIPerioden.accordionHeader"
@@ -160,7 +160,6 @@ const ArbeidIPeriodeSpørsmål = ({
                     radios={getJobberIPeriodenRadios(appIntl, skjulJobberNormaltValg)}
                 />
             )}
-
             {(jobberIPerioden === JobberIPeriodeSvar.redusert || skjulJobberNormaltValg) && (
                 <FormLayout.Panel bleedTop={!skjulJobberNormaltValg}>
                     <InputGroup
@@ -185,7 +184,7 @@ const ArbeidIPeriodeSpørsmål = ({
                                 <AppText id="arbeidIPeriode.jobberIPerioden.ingenJobbInfo" />
                             </Alert>
                         }>
-                        <Box paddingBlock="4 0">
+                        <Box paddingBlock="space-16 space-0">
                             <DurationWeekdaysInput
                                 dateRange={periode}
                                 disabledDates={getDagerSomSkalDisables(periode, dagerMedPleie)}

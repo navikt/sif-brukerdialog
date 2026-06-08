@@ -2,7 +2,7 @@
     "extends": "../config/tsconfig-packages.json",
     "compilerOptions": {
         "rootDir": "src",
-        "baseUrl": "src"
+        "types": ["vitest/globals"]
     },
     "include": ["src/**/*"],
     "exclude": ["node_modules"]

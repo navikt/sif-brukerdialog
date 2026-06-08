@@ -1,57 +1,33 @@
-interface Lenker {
-    inntektsmelding: string;
-    medlemskap: string;
-    papirskjemaPrivat: string;
-    vilkårOmsorgspenger: string;
-    personvern: string;
-    rettOgPlikt: string;
-    saksbehandlingstider: string;
-    søkeEkstraDager: string;
-    veiledningEttersendelse: string;
-    skatteetaten: string;
-    skatteetatenSN: string;
-    ettersending: string;
-}
+import { SifCommonLenker, sifCommonLenkerBokmål, sifCommonLenkerNynorsk } from '@navikt/sif-common-soknad-ds';
 
-const LenkerBokmål: Lenker = {
-    inntektsmelding: 'https://www.nav.no/arbeidsgiver/inntektsmelding',
-    medlemskap:
-        'https://www.nav.no/no/Person/Flere+tema/Arbeid+og+opphold+i+Norge/Relatert+informasjon/medlemskap-i-folketrygden',
+const lenkerBokmål = {
     papirskjemaPrivat: 'https://www.nav.no/soknader/nb/person/familie/omsorgspenger/NAV%2009-06.05/brev',
-    vilkårOmsorgspenger: 'https://www.nav.no/familie/sykdom-i-familien/nb/omsorgspenger',
-    personvern: 'https://www.nav.no/personvernerklaering',
-    rettOgPlikt: 'https://nav.no/rettOgPlikt',
-    saksbehandlingstider: 'https://www.nav.no/saksbehandlingstider',
-
-    søkeEkstraDager: 'https://www.nav.no/familie/sykdom-i-familien/nb/omsorgspenger#Nar-kan-du-soke-om-ekstra-dager',
-    veiledningEttersendelse: 'https://www.nav.no/soknader/nb/person/familie/omsorgspenger/NAV%2009-35.01/ettersendelse',
-    skatteetaten: 'https://www.skatteetaten.no/skjema/mine-inntekter-og-arbeidsforhold/',
-    skatteetatenSN:
-        'https://www.skatteetaten.no/person/skatt/hjelp-til-riktig-skatt/arbeid-trygd-og-pensjon/hobby-ekstrainntekt-og-smajobber/lonnsarbeid-i-hjemmet/lonn-betalt-over-60-000/naringsdrivende-oppdragstakere',
-    ettersending: 'https://www.nav.no/soknader/nb/person/familie/omsorgspenger/NAV%2009-35.01/ettersendelse',
+    vilkårOmsorgspenger: 'https://www.nav.no/omsorgspenger',
+    søkeEkstraDager: 'https://www.nav.no/omsorgspenger#ekstra-dager',
+    ettersending: 'https://www.nav.no/start/ettersend-soknad-omsorgspenger-selvstendig-frilansere',
 };
+
+type Lenker = typeof lenkerBokmål;
 
 const LenkerNynorsk: Partial<Lenker> = {
-    inntektsmelding: 'https://www.nav.no/arbeidsgiver/inntektsmelding',
-    medlemskap: 'https://www.nav.no/no/Person/Flere+tema/Arbeid+og+opphold+i+Norge/Nynorsk/medlemskap-i-folketrygda',
-    papirskjemaPrivat: 'https://www.nav.no/soknader/nb/person/familie/omsorgspenger/NAV%2009-06.05/brev',
-    vilkårOmsorgspenger: 'https://www.nav.no/familie/sykdom-i-familien/nn/omsorgspenger',
-    rettOgPlikt:
-        'https://www.nav.no/no/NAV+og+samfunn/Om+NAV/Nynorsk/du-har-plikt-til-%C3%A5-gje-nav-riktige-opplysningar',
-    skatteetaten: 'https://www.skatteetaten.no/nn/skjema/mine-inntekter-og-arbeidsforhold/',
-    skatteetatenSN:
-        'https://www.skatteetaten.no/person/skatt/hjelp-til-riktig-skatt/arbeid-trygd-og-pensjon/hobby-ekstrainntekt-og-smajobber/lonnsarbeid-i-hjemmet/lonn-betalt-over-60-000/naringsdrivende-oppdragstakere',
+    vilkårOmsorgspenger: 'https://www.nav.no/omsorgspenger/nn',
+    søkeEkstraDager: 'https://www.nav.no/omsorgspenger/nn#ekstra-dagar',
+    ettersending: 'https://www.nav.no/start/ettersend-soknad-omsorgspenger-selvstendig-frilansere/nn',
 };
 
-const getLenker = (locale?: string): Lenker => {
+const getLenker = (locale?: string): Lenker & SifCommonLenker => {
     switch (locale) {
         case 'nn':
             return {
-                ...LenkerBokmål,
+                ...sifCommonLenkerNynorsk,
+                ...lenkerBokmål,
                 ...LenkerNynorsk,
             };
         default:
-            return LenkerBokmål;
+            return {
+                ...sifCommonLenkerBokmål,
+                ...lenkerBokmål,
+            };
     }
 };
 

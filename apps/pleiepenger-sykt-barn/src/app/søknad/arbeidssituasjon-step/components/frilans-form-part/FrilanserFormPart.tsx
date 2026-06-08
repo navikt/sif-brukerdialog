@@ -4,6 +4,7 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 
+import { AppText } from '../../../../i18n';
 import { ArbeidsforholdFormField } from '../../../../types/søknad-form-values/ArbeidsforholdFormValues';
 import {
     FrilansFormField,
@@ -11,7 +12,9 @@ import {
     Frilanstype,
 } from '../../../../types/søknad-form-values/FrilansFormValues';
 import { SøknadFormValues } from '../../../../types/søknad-form-values/SøknadFormValues';
+import { skalSpørreOmNormalarbeidstidForIkkeFrilanser } from '../../utils/normalarbeidstidFrilansUtils';
 import ErFortsattFrilanserSpørsmål from './spørsmål/ErFortsattFrilanserSpørsmål';
+import FrilansAvsluttetNormalarbeidstidSpørsmål from './spørsmål/FrilansAvsluttetNormalarbeidstidSpørsmål';
 import FrilansertypeSpørsmål from './spørsmål/FrilansertypeSpørsmål';
 import FrilansNormalarbeidstidSpørsmål from './spørsmål/FrilansNormalarbeidstidSpørsmål';
 import FrilansSluttdatoSpørsmål from './spørsmål/FrilansSluttdatoSpørsmål';
@@ -34,7 +37,7 @@ const FrilanserFormPart = ({ søknadsperiode, søkerHarFrilansoppdrag, søknadsd
     const { harHattInntektSomFrilanser, misterHonorar, erFortsattFrilanser, frilanstype } = values.frilans;
     const { omsorgsstønad } = values;
 
-    const visNormalarbeidstidSpørsmål = () => {
+    const visNormalarbeidstidSpørsmålVedJaPåFrilanser = () => {
         switch (frilanstype) {
             case Frilanstype.FRILANS:
             case Frilanstype.FRILANS_HONORAR:
@@ -82,7 +85,7 @@ const FrilanserFormPart = ({ søknadsperiode, søkerHarFrilansoppdrag, søknadsd
                             </FormLayout.QuestionRelatedMessage>
                         )}
 
-                        {frilanstype && visNormalarbeidstidSpørsmål() && (
+                        {frilanstype && visNormalarbeidstidSpørsmålVedJaPåFrilanser() && (
                             <>
                                 <FrilansStartetFørSisteTreHeleMånederSpørsmål søknadsperiode={søknadsperiode} />
                                 {values.frilans.startetFørSisteTreHeleMåneder === YesOrNo.NO && (
@@ -118,6 +121,19 @@ const FrilanserFormPart = ({ søknadsperiode, søkerHarFrilansoppdrag, søknadsd
                         )}
                     </FormLayout.Questions>
                 </FormLayout.Panel>
+            )}
+            {skalSpørreOmNormalarbeidstidForIkkeFrilanser(values) && (
+                <FormLayout.Questions>
+                    <Alert variant="info">
+                        <AppText id="arbeidsforhold.frilanser.normalarbeidstidIkkeFrilanser.intro" />
+                    </Alert>
+                    <FrilansAvsluttetNormalarbeidstidSpørsmål
+                        fieldName={
+                            `${FrilansFormField.arbeidsforhold}.${ArbeidsforholdFormField.normalarbeidstid_TimerPerUke}` as any
+                        }
+                        arbeidsforhold={values.frilans.arbeidsforhold || {}}
+                    />
+                </FormLayout.Questions>
             )}
         </FormLayout.Questions>
     );

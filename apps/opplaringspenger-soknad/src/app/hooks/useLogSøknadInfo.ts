@@ -5,10 +5,10 @@ export enum LogSøknadInfoType {
     'avkrefterIngenFraværFraArbeid' = 'avkrefterIngenFraværFraArbeid',
 }
 
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 
 function useLogSøknadInfo() {
-    const { logInfo } = useAmplitudeInstance();
+    const { logInfo } = useAnalyticsInstance();
 
     const logArbeidPeriodeRegistrert = (data: { verdi: 'prosent' | 'ukeplan'; prosent?: string }) => {
         logInfo({

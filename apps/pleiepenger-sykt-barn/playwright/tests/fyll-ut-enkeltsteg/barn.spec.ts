@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test';
 
 import { routeUtils } from '../../utils/routeUtils';
 import { setNow } from '../../utils/setNow';
+import { testAccessibility } from '../../utils/testAccessibility';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);
@@ -20,6 +21,7 @@ test.afterEach(async ({ page }) => {
 test.describe('Barn steg', () => {
     test('Registrert barn', async ({ page }) => {
         await page.getByLabel('ALFABETISK FAGGOTTFødt').check();
+        await testAccessibility(page);
         await page.getByTestId('typedFormikForm-submitButton').click();
     });
     test('Annet barn - utlandet', async ({ page }) => {
@@ -31,7 +33,7 @@ test.describe('Barn steg', () => {
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByLabel('torsdag 1', { exact: true }).click();
         await page.getByText('Fosterforelder').click();
-        await page.getByRole('group', { name: 'Hvilken relasjon har du til' }).getByLabel('Annet').check();
+        await page.getByRole('radiogroup', { name: 'Hvilken relasjon har du til' }).getByLabel('Annet').check();
         await page.getByTestId('opplysninger-om-barnet-relasjonAnnetBeskrivelse').click();
         await page.getByTestId('opplysninger-om-barnet-relasjonAnnetBeskrivelse').fill('Beskrivelse');
         const [fileChooser] = await Promise.all([
@@ -42,16 +44,18 @@ test.describe('Barn steg', () => {
         const listItems = await page.getByText('navlogopng.png');
         await expect(listItems).toHaveCount(1);
 
+        await testAccessibility(page);
         await page.getByTestId('typedFormikForm-submitButton').click();
     });
     test('Annet barn', async ({ page }) => {
         await page.getByText('Søknaden gjelder et annet barn', { exact: true }).click();
         await page.getByLabel('Barnets fødselsnummer/D-nummer').click();
-        await page.getByLabel('Barnets fødselsnummer/D-nummer').fill('02869599258');
+        await page.getByLabel('Barnets fødselsnummer/D-nummer').fill('08861999573');
         await page.getByLabel('Barnets navn').click();
         await page.getByLabel('Barnets navn').fill('Tore');
         await page.getByLabel('Barnets navn').press('Tab');
         await page.getByLabel('Mor', { exact: true }).check();
+        await testAccessibility(page);
         await page.getByTestId('typedFormikForm-submitButton').click();
     });
 });

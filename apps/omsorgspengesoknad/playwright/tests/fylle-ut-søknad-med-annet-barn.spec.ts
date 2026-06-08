@@ -1,7 +1,9 @@
-import { test, expect } from '@playwright/test';
-import { setNow } from '../utils/setNow';
-import { setupMockRoutes } from '../utils/setupMockApi';
+import { expect, test } from '@playwright/test';
+
 import { barnMock } from '../mock-data/barnMock';
+import { setNow } from '../utils/setNow';
+import { setupMockRoutes } from '../utils/setupMockRoutes';
+import { testAccessibility } from '../utils/testAccessibility';
 
 const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspenger/soknad/velkommen';
 
@@ -16,6 +18,7 @@ test('Fyll ut søknad med annet barn', async ({ page }) => {
     /** Velkommen side */
     await page.getByRole('heading', { level: 1, name: 'Hei, PRESENTABEL' });
     await page.getByLabel('Jeg bekrefter at jeg har forstått mitt ansvar som søker').click();
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Start søknad' }).click();
 
     /** Barn */
@@ -29,9 +32,10 @@ test('Fyll ut søknad med annet barn', async ({ page }) => {
     await page.getByLabel('Måned', { exact: true }).selectOption('5');
     await page.getByLabel('Lørdag 8').click();
     await page.getByLabel('Min relasjon til barnet').selectOption('mor');
-    await page.getByRole('group', { name: 'Bor du sammen med barnet?' }).getByLabel('Ja', { exact: true }).check();
-    await page.getByRole('group', { name: 'Har barnet kronisk/langvarig' }).getByLabel('Ja').check();
-    await page.getByRole('group', { name: 'Har du høyere risiko for frav' }).getByLabel('Nei').check();
+    await page.getByRole('radiogroup', { name: 'Bor du sammen med barnet?' }).getByLabel('Ja', { exact: true }).check();
+    await page.getByRole('radiogroup', { name: 'Har barnet kronisk/langvarig' }).getByLabel('Ja').check();
+    await page.getByRole('radiogroup', { name: 'Har du høyere risiko for frav' }).getByLabel('Nei').check();
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Legeerklæring */
@@ -43,6 +47,7 @@ test('Fyll ut søknad med annet barn', async ({ page }) => {
     await fileChooser.setFiles('./playwright/files/navlogopng.png');
     const listItems = await page.getByText('navlogopng.png');
     await expect(listItems).toHaveCount(1);
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Oppsummering */
@@ -62,6 +67,7 @@ test('Fyll ut søknad med annet barn', async ({ page }) => {
             'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til omsorgspenger.',
         )
         .check();
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Send søknad', exact: true }).click();
 
     /** Kvittering */
@@ -74,4 +80,5 @@ test('Fyll ut søknad med annet barn', async ({ page }) => {
             name: 'Vi har mottatt søknad om ekstra omsorgsdager for barn som har kronisk/langvarig sykdom eller funksjonshemning',
         }),
     ).toBeVisible();
+    await testAccessibility(page);
 });

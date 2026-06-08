@@ -1,5 +1,5 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
 import debounce from 'lodash.debounce';
+import { useEffect, useLayoutEffect, useState } from 'react';
 
 export const useElementDimensions = (
     ref: React.RefObject<HTMLElement | null>,

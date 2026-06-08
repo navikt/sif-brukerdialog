@@ -1,5 +1,5 @@
-import { StepId } from '../types/StepId';
 import { SøknadRoutes } from '../types/SøknadRoutes';
+import { StepId } from '../types/StepId';
 
 export const getSøknadStepRoute = (stepId: StepId): SøknadRoutes => {
     switch (stepId) {

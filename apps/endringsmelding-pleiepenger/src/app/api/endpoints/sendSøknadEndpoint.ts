@@ -1,7 +1,7 @@
-import { SøknadApiData } from '@types';
+import { SøknadApiData } from '@app/types';
 
 import api from '../api';
-import { ApiEndpointPsb } from './';
+import { ApiEndpointPsb } from '.';
 
 export const sendSøknadEndpoint = {
     send: (data: SøknadApiData) => api.psb.post(ApiEndpointPsb.sendEndringsmelding, data),

@@ -1,28 +1,39 @@
 import { dateRangeToISODateRange, dateToISODate } from '@navikt/sif-common-utils';
+
 import { Institusjoner } from '../../api/institusjonService';
-import { KursApiData } from '../../types/søknadApiData/SøknadApiData';
+import { EnkeltdagEllerPeriode } from '../../søknad/steps/kurs/KursStepForm';
+import { Kursdag } from '../../types/Kursdag';
+import { KursApiData, KursdagApiData } from '../../types/søknadApiData/SøknadApiData';
 import { KursSøknadsdata } from '../../types/søknadsdata/KursSøknadsdata';
 
+const getKursdagApiDataFromKursdag = (kursdag: Kursdag): KursdagApiData => ({
+    dato: dateToISODate(kursdag.dato),
+});
+
 export const getKursApiDataFromSøknadsdata = (
-    { kursholder, kursperioder, reisedager }: KursSøknadsdata,
+    { kursholder, kursperioder, kursdager, reisedager, enkeltdagEllerPeriode }: KursSøknadsdata,
     institusjoner: Institusjoner,
 ): KursApiData => {
     const valgtInstitusjon = institusjoner.find((i) => i.navn === kursholder);
+    const gjelderPerioder = enkeltdagEllerPeriode === EnkeltdagEllerPeriode.PERIODE;
 
     const apiData: KursApiData = {
         kursholder: {
             uuid: valgtInstitusjon?.uuid,
             navn: kursholder,
         },
-        kursperioder: kursperioder.map((p) => dateRangeToISODateRange(p.periode)),
-        reise:
-            reisedager.reiserUtenforKursdager === true
+        enkeltdagEllerPeriode,
+        kursperioder: gjelderPerioder ? kursperioder.map((p) => dateRangeToISODateRange(p.periode)) : [],
+        kursdager: !gjelderPerioder ? kursdager.map(getKursdagApiDataFromKursdag) : [],
+        reise: gjelderPerioder
+            ? reisedager?.reiserUtenforKursdager === true
                 ? {
                       reiserUtenforKursdager: true,
                       reisedager: reisedager.reisedager.map((d) => dateToISODate(d.dato)),
                       reisedagerBeskrivelse: reisedager.reisedagerBeskrivelse,
                   }
-                : { reiserUtenforKursdager: false },
+                : { reiserUtenforKursdager: false }
+            : undefined,
     };
     return apiData;
 };

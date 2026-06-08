@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
 
-import { withAmplitudeProvider } from '../../../../storybook/decorators/withAmplitude';
+import { withAnalyticsProvider } from '../../../../storybook/decorators/withAnalyticsProvider';
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withRouterProvider } from '../../../../storybook/decorators/withRouter';
 import { withSøknadContextProvider } from '../../../../storybook/decorators/withSøknadContext';
@@ -9,7 +9,7 @@ import OppsummeringStep from './OppsummeringStep';
 const meta: Meta<typeof OppsummeringStep> = {
     title: 'Steps/Oppsummering',
     component: OppsummeringStep,
-    decorators: [withIntl, (Story) => withSøknadContextProvider(Story), withAmplitudeProvider, withRouterProvider],
+    decorators: [withIntl, (Story) => withSøknadContextProvider(Story), withAnalyticsProvider, withRouterProvider],
 };
 
 export default meta;

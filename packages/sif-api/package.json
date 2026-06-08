@@ -1,0 +1,46 @@
+{
+    "name": "@sif/api",
+    "version": "0.0.5",
+    "private": true,
+    "description": "Api, types and TanStack Query hooks for SIF applications",
+    "type": "module",
+    "exports": {
+        ".": "./src/index.ts",
+        "./k9-prosessering": "./src/k9-prosessering/index.ts",
+        "./ung-brukerdialog": "./src/ung-brukerdialog/index.ts",
+        "./ung-deltaker": "./src/ung-deltaker/index.ts",
+        "./k9-sak-innsyn-api": "./src/k9-sak-innsyn-api/index.ts",
+        "./components": "./src/components/index.ts",
+        "./schemas": "./src/schemas/index.ts",
+        "./mock-data": "./src/mock-data/index.ts",
+        "./mock-utils": "./src/mock-utils/index.ts"
+    },
+    "main": "src/index.ts",
+    "types": "src/index.ts",
+    "scripts": {
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@navikt/ds-react": "8.11.1",
+        "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
+        "@navikt/k9-sak-innsyn-api": "workspace:*",
+        "@navikt/sif-common-env": "workspace:*",
+        "@navikt/sif-common-utils": "workspace:*",
+        "@navikt/ung-brukerdialog-api": "workspace:*",
+        "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
+        "@tanstack/react-query": "5.101.0",
+        "axios": "1.16.1",
+        "dayjs": "1.11.21",
+        "object-hash": "3.0.0",
+        "uuid": "14.0.0"
+    },
+    "devDependencies": {
+        "@sif/eslint-config": "workspace:*",
+        "@types/react": "19.2.16",
+        "react": "19.2.7",
+        "typescript": "6.0.3",
+        "zod": "4.4.3"
+    }
+}

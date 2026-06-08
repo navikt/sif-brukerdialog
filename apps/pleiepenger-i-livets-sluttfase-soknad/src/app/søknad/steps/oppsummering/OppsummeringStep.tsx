@@ -5,6 +5,7 @@ import { MedlemskapSummary } from '@navikt/sif-common-forms-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
+import { useSkyraReloader } from '@sif/surveys';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -41,6 +42,7 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 >();
 
 const OppsummeringStep = () => {
+    useSkyraReloader();
     const { text, intl, locale } = useAppIntl();
     const {
         state: { søknadsdata, søker, frilansoppdrag },
@@ -111,7 +113,7 @@ const OppsummeringStep = () => {
                 }}
                 renderForm={() => {
                     return (
-                        <VStack gap="8" data-testid="oppsummering">
+                        <VStack gap="space-32" data-testid="oppsummering">
                             <Form
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 submitDisabled={isSubmitting || hasInvalidSteps}
@@ -121,7 +123,7 @@ const OppsummeringStep = () => {
                                 submitPending={isSubmitting}
                                 backButtonDisabled={isSubmitting}
                                 onBack={goBack}>
-                                <VStack gap="8">
+                                <VStack gap="space-32">
                                     <OmSøkerOppsummering søker={søker} />
 
                                     <PleietrengendePersonSummary

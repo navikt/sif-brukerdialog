@@ -1,7 +1,7 @@
 import { Box, Tabs } from '@navikt/ds-react';
 import { Meta, StoryFn } from '@storybook/react-vite';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
-import { withAmplitudeProvider } from '../../../../storybook/decorators/withAmplitudeProvider';
+import { withAnalyticsProvider } from '../../../../storybook/decorators/withAnalyticsProvider';
 import { withEnvSettings } from '../../../../storybook/decorators/withEnvSettings';
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withRouterProvider } from '../../../../storybook/decorators/withRouter';
@@ -17,7 +17,7 @@ import LegeerklæringStep from './LegeerklæringStep';
 export default {
     title: 'Steps/Legeerklæring/Step',
     component: LegeerklæringStep,
-    decorators: [withIntl, withRouterProvider, withStepFormValuesContext, withEnvSettings, withAmplitudeProvider],
+    decorators: [withIntl, withRouterProvider, withStepFormValuesContext, withEnvSettings, withAnalyticsProvider],
 } as Meta<typeof LegeerklæringStep>;
 
 interface Props {
@@ -32,12 +32,12 @@ const Template: StoryFn<Props> = ({ context }: Props) => (
                 <Tabs.Tab value="tekster" label="Tekster" />
             </Tabs.List>
             <Tabs.Panel value="steg">
-                <Box paddingBlock="10">
+                <Box paddingBlock="space-40">
                     <LegeerklæringStep />
                 </Box>
             </Tabs.Panel>
             <Tabs.Panel value="tekster">
-                <Box paddingBlock="10">
+                <Box paddingBlock="space-40">
                     <MessagesPreview
                         messages={legeerklæringMessages}
                         showMissingTextSummary={true}

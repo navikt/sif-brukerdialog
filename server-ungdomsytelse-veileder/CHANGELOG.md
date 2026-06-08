@@ -1,5 +1,157 @@
 # @navikt/sif-server
 
+## 0.0.57
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+- Updated dependencies
+    - @navikt/sif-common-env@0.1.10
+
+## 0.0.56
+
+### Patch Changes
+
+- Pakkeoppdatering - @isaacs/brace-expansion5.0.1
+
+## 0.0.55
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.0.54
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+
+## 0.0.53
+
+### Patch Changes
+
+- fc216a0: Pakkeoppdateringer - minor/patch
+
+## 0.0.52
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+
+## 0.0.51
+
+### Patch Changes
+
+- 292ac7b: Pakkeoppdateringer - minor/patch
+
+## 0.0.50
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+
+## 0.0.49
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-env@0.1.9
+
+## 0.0.48
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+
+## 0.0.47
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 0.0.46
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.0.45
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.0.44
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+- Updated dependencies
+    - @navikt/sif-common-env@0.1.8
+
+## 0.0.43
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
+## 0.0.42
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.0.41
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.0.40
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.0.39
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 0.0.38
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.0.37
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.0.36
+
+### Patch Changes
+
+- 52d9b9e: Pakkeoppdateringer - minor/patch
+
+## 0.0.35
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-env@0.1.7
+
+## 0.0.34
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Fjerne ubrukte pakker.
+
 ## 0.0.33
 
 ### Patch Changes

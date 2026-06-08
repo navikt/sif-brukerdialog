@@ -1,5 +1,6 @@
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { ErrorPage, SoknadErrorMessages } from '@navikt/sif-common-soknad-ds';
+
 import appSentryLogger from '../../utils/appSentryLogger';
 
 interface Props {

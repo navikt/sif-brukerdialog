@@ -3,7 +3,7 @@
 import { expect, test } from '@playwright/test';
 
 import { ScenarioType } from '../../../mock/scenarios/types';
-import { memoryStore } from '../../../mock/state/memoryStore';
+import { store } from '../../../mock/state/store';
 import { registerMockRoutes } from '../../utils/registerMockRoutes';
 import { setNow } from '../../utils/setNow';
 import { testAccessibility } from '../../utils/testAccessibility';
@@ -11,7 +11,7 @@ import { testAccessibility } from '../../utils/testAccessibility';
 test.beforeEach(async ({ page, context }) => {
     await setNow(page);
     await registerMockRoutes(page, context);
-    memoryStore.setScenario(ScenarioType.harSøkt);
+    store.setScenario(ScenarioType.søknadSendt);
     await page.goto(`./`);
 });
 
@@ -25,21 +25,26 @@ test.describe('Innsyn - oppgaver', () => {
         await page.getByRole('link', { name: 'Søknad for' }).click();
         await testAccessibility(page);
         await expect(page.getByRole('heading', { name: 'Søknad for ungdoms' })).toBeVisible();
-        await expect(page.getByText('Startdato1. mai')).toBeVisible();
+        await expect(page.getByText('Startdato1. juni')).toBeVisible();
         await expect(page.getByText('Du kan se alle dine svar i sø')).toBeVisible();
         await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
         await expect(page.getByRole('heading', { name: 'Din ungdomsprogramytelse' })).toBeVisible();
     });
 
     test.describe('Endret startdato', () => {
+        test.beforeEach(async ({ page }) => {
+            store.setScenario(ScenarioType.endretStartdato);
+            await page.goto(`./`);
+        });
+
         test('Ingen tilbakemelding', async ({ page }) => {
             await page.getByRole('link', { name: 'Se og gi tilbakemelding på' }).click();
 
             // Detaljer
             await expect(page.getByRole('heading', { name: 'Tilbakemelding på endret' })).toBeVisible();
             await testAccessibility(page);
-            await expect(page.getByRole('strong').getByText('1. mai')).toBeVisible();
-            await expect(page.getByText('Fristen for å svare er 4. juni')).toBeVisible();
+            await expect(page.getByRole('strong').getByText('22. juni')).toBeVisible();
+            await expect(page.getByText('Fristen for å svare er senest 14. aug')).toBeVisible();
             await page.getByRole('radio', { name: 'Nei' }).check();
             await page.getByRole('button', { name: 'Send inn svaret ditt' }).click();
 
@@ -67,8 +72,8 @@ test.describe('Innsyn - oppgaver', () => {
             // Detaljer
             await expect(page.getByRole('heading', { name: 'Tilbakemelding på endret' })).toBeVisible();
             await testAccessibility(page);
-            await expect(page.getByRole('strong').getByText('1. mai')).toBeVisible();
-            await expect(page.getByText('Fristen for å svare er 4. juni')).toBeVisible();
+            await expect(page.getByRole('strong').getByText('22. juni')).toBeVisible();
+            await expect(page.getByText('Fristen for å svare er senest 14. aug')).toBeVisible();
             await page.getByRole('radio', { name: 'Ja' }).check();
             await page.getByRole('textbox', { name: 'Tilbakemelding' }).click();
             await page.getByRole('textbox', { name: 'Tilbakemelding' }).fill('Startdatoen er ikke riktig');
@@ -95,85 +100,143 @@ test.describe('Innsyn - oppgaver', () => {
     });
 
     test.describe('Meld fra om inntekt', async () => {
-        test('Ingen inntekt', async ({ page }) => {
-            const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
-            await nyeOppgaver.getByRole('link', { name: 'Meld fra om du fikk utbetalt lønn i august' }).click();
-            await expect(page.getByRole('heading', { name: 'Lønn i august' })).toBeVisible();
-            await page.getByText('Nei', { exact: true }).click();
-            await page.getByRole('button', { name: 'Send inn svaret ditt' }).click();
-            await expect(page.getByText('Svaret ditt er sendt innTakk')).toBeVisible();
-            await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
+        test.describe('Besvare oppgave', async () => {
+            test.beforeEach(async ({ page }) => {
+                store.setScenario(ScenarioType.rapporterInntekt);
+                await page.goto(`./`);
+            });
 
-            const tidligereOppgaver = page.getByRole('heading', { name: 'Tidligere oppgaver' }).locator('..');
-            await tidligereOppgaver.getByRole('link', { name: 'Meld fra om du fikk utbetalt lønn i august' }).click();
-            await expect(page.getByText('Fikk du utbetalt lønn i august?Nei')).toBeVisible();
+            test('Ingen inntekt', async ({ page }) => {
+                const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
+                await nyeOppgaver.getByRole('link', { name: 'Meld fra om du hadde inntekt i august' }).click();
+                await expect(page.getByRole('heading', { name: 'Inntekt i august' })).toBeVisible();
+                await page.getByLabel('Hadde du inntekt i august?').getByText('Nei').click();
+                await page.getByRole('button', { name: 'Send inn svaret ditt' }).click();
+                await expect(page.getByText('Svaret ditt er sendt innTakk')).toBeVisible();
+                await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
+
+                const tidligereOppgaver = page.getByRole('heading', { name: 'Tidligere oppgaver' }).locator('..');
+                await tidligereOppgaver.getByRole('link', { name: 'Meld fra om du hadde inntekt i august' }).click();
+                await expect(page.getByText('Hadde du inntekt i august?Nei')).toBeVisible();
+            });
+            test('Med inntekt', async ({ page }) => {
+                const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
+                await nyeOppgaver.getByRole('link', { name: 'Meld fra om du hadde inntekt i august' }).click();
+                await expect(page.getByRole('heading', { name: 'Inntekt i august' })).toBeVisible();
+                await page.getByRole('radio', { name: 'Ja' }).click();
+                await page.getByRole('textbox', { name: 'Hvor mye hadde du i inntekt før' }).fill('2350');
+                await page.getByRole('button', { name: 'Send inn svaret ditt' }).click();
+                await expect(page.getByText('Svaret ditt er sendt innVi får')).toBeVisible();
+                await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
+
+                const tidligereOppgaver = page.getByRole('heading', { name: 'Tidligere oppgaver' }).locator('..');
+                await tidligereOppgaver.getByRole('link', { name: 'Meld fra om du hadde inntekt i august' }).click();
+                await expect(page.getByText('Hadde du inntekt i august?Ja')).toBeVisible();
+                await expect(page.getByText('Inntekt før skatt2 350')).toBeVisible();
+                await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
+            });
         });
-        test('Med inntekt', async ({ page }) => {
-            const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
-            await nyeOppgaver.getByRole('link', { name: 'Meld fra om du fikk utbetalt lønn i august' }).click();
-            await expect(page.getByRole('heading', { name: 'Lønn i august' })).toBeVisible();
-            await page.getByRole('radio', { name: 'Ja' }).click();
-            await page.getByRole('textbox', { name: 'Hvor mye fikk du i lønn før' }).fill('2350');
-            await page.getByRole('button', { name: 'Send inn svaret ditt' }).click();
-            await expect(page.getByText('Svaret ditt er sendt innVi får')).toBeVisible();
-            await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
-
-            const tidligereOppgaver = page.getByRole('heading', { name: 'Tidligere oppgaver' }).locator('..');
-            await tidligereOppgaver.getByRole('link', { name: 'Meld fra om du fikk utbetalt lønn i august' }).click();
-            await expect(page.getByText('Fikk du utbetalt lønn i august?Ja')).toBeVisible();
-            await expect(page.getByText('Lønn (før skatt)2 350')).toBeVisible();
-            await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
+        test.describe('Tekstforskjeller', async () => {
+            test('Hel måned', async ({ page }) => {
+                store.setScenario(ScenarioType.rapporterInntekt);
+                await page.goto(`./`);
+                const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
+                await nyeOppgaver.getByRole('link', { name: 'Meld fra om du hadde inntekt i august' }).click();
+                await expect(
+                    page.getByText('selv om du ikke hadde ungdomsprogramytelsen hele måneden'),
+                ).not.toBeVisible();
+            });
+            test('Deler av måned', async ({ page }) => {
+                store.setScenario(ScenarioType.rapporterInntektDelerAvMåned);
+                await page.goto(`./`);
+                const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
+                await nyeOppgaver.getByRole('link', { name: 'Meld fra om du hadde inntekt i august' }).click();
+                await expect(page.getByRole('heading', { name: 'Inntekt i august' })).toBeVisible();
+                await expect(page.getByText('selv om du ikke hadde ungdomsprogramytelsen hele måneden')).toBeVisible();
+            });
         });
     });
+
     test.describe('Tilbakemelding om avvik i inntekt', async () => {
-        test('Ingen tilbakemelding', async ({ page }) => {
-            const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
-            await nyeOppgaver.getByRole('link', { name: 'Sjekk lønn i september 2025' }).click();
-            await expect(page.getByRole('heading', { name: 'Tilbakemelding på lønn i september 2025' })).toBeVisible();
-            await expect(page.getByRole('row', { name: 'SJOKKERENDE ELEKTRIKER 20' })).toBeVisible();
-            await expect(page.getByText('30. oktober 2025', { exact: true })).toBeVisible();
-            await page.getByRole('radio', { name: 'Nei' }).check();
-            await page.getByTestId('typedFormikForm-submitButton').click();
-            // Kvittering
-            await expect(page.getByText('Svaret ditt er sendt innVi')).toBeVisible();
-            await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
+        test.describe('Besvare oppgave', async () => {
+            test.beforeEach(async ({ page }) => {
+                store.setScenario(ScenarioType.avvikInntekt);
+                await page.goto(`./`);
+            });
+            test('Ingen tilbakemelding/stemmer inntekten', async ({ page }) => {
+                const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
+                await nyeOppgaver.getByRole('link', { name: 'Sjekk inntekten din i juli 2025' }).click();
+                await expect(
+                    page.getByRole('heading', { name: 'Tilbakemelding på inntekt i juli 2025' }),
+                ).toBeVisible();
+                await expect(page.getByRole('row', { name: 'SJOKKERENDE ELEKTRIKER 20' })).toBeVisible();
+                await expect(page.getByText('28. august 2025', { exact: true })).toBeVisible();
+                await page.getByRole('radio', { name: 'Ja, inntekten stemmer' }).check();
+                await page.getByRole('button', { name: 'Send inn svaret ditt' }).click();
+                // Kvittering
+                await expect(page.getByText('Svaret ditt er sendt innVi')).toBeVisible();
+                await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
 
-            const tidligereOppgaver = page.getByRole('heading', { name: 'Tidligere oppgaver' }).locator('..');
-            await tidligereOppgaver.getByRole('link', { name: 'Sjekk lønn i september 2025' }).click();
-            await expect(page.getByRole('row', { name: 'SJOKKERENDE ELEKTRIKER 20' }).getByRole('cell')).toBeVisible();
-            await expect(page.getByText('Har du en tilbakemelding?Nei')).toBeVisible();
-            await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
-            await expect(page.getByText('Din ungdomsprogramytelseStartdato 2. juli')).toBeVisible();
+                const tidligereOppgaver = page.getByRole('heading', { name: 'Tidligere oppgaver' }).locator('..');
+                await tidligereOppgaver.getByRole('link', { name: 'Sjekk inntekten din i juli 2025' }).click();
+                await expect(
+                    page.getByRole('row', { name: 'SJOKKERENDE ELEKTRIKER 20' }).getByRole('cell'),
+                ).toBeVisible();
+                await expect(page.getByText('Stemmer inntekten vi har fått oppgitt?Ja')).toBeVisible();
+                await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
+                await expect(page.getByText('Din ungdomsprogramytelseStartdato 15. juni')).toBeVisible();
+            });
+            test('Med tilbakemelding/er inntekten feil', async ({ page }) => {
+                const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
+                await nyeOppgaver.getByRole('link', { name: 'Sjekk inntekten din i juli 2025' }).click();
+                await expect(
+                    page.getByRole('heading', { name: 'Tilbakemelding på inntekt i juli 2025' }),
+                ).toBeVisible();
+                await expect(page.getByRole('row', { name: 'SJOKKERENDE ELEKTRIKER 20' })).toBeVisible();
+                await expect(page.getByText('28. august 2025', { exact: true })).toBeVisible();
+                await page.getByRole('radio', { name: 'Nei' }).check();
+                await page.getByRole('textbox', { name: 'Tilbakemelding' }).fill('Inntekten fra SJOKKERENDE');
+                await page.getByRole('button', { name: 'Send inn svaret ditt' }).click();
+
+                // Kvittering
+                await expect(
+                    page.getByRole('heading', { name: 'Tilbakemelding på inntekt i juli 2025' }),
+                ).toBeVisible();
+                await testAccessibility(page);
+                await expect(page.getByText('Svaret ditt er sendt innVi')).toBeVisible();
+                await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
+
+                // Forside
+                const tidligereOppgaver = page.getByRole('heading', { name: 'Tidligere oppgaver' }).locator('..');
+                await tidligereOppgaver.getByRole('link', { name: 'Sjekk inntekten din i juli 2025' }).click();
+
+                // Oppsummering
+                await expect(
+                    page.getByRole('row', { name: 'SJOKKERENDE ELEKTRIKER 20' }).getByRole('cell'),
+                ).toBeVisible();
+                await expect(page.getByText('Stemmer inntekten vi har fått oppgitt?Nei')).toBeVisible();
+                await expect(page.getByText('TilbakemeldingInntekten fra')).toBeVisible();
+                await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
+
+                // Forside
+                await expect(page.getByText('Din ungdomsprogramytelseStartdato 15. juni')).toBeVisible();
+            });
         });
-        test('Med tilbakemelding', async ({ page }) => {
-            const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
-            await nyeOppgaver.getByRole('link', { name: 'Sjekk lønn i september 2025' }).click();
-            await expect(page.getByRole('heading', { name: 'Tilbakemelding på lønn i september 2025' })).toBeVisible();
-            await expect(page.getByRole('row', { name: 'SJOKKERENDE ELEKTRIKER 20' })).toBeVisible();
-            await expect(page.getByText('30. oktober 2025', { exact: true })).toBeVisible();
-            await page.getByRole('radio', { name: 'Ja' }).check();
-            await page.getByRole('textbox', { name: 'Tilbakemelding' }).click();
-            await page.getByRole('textbox', { name: 'Tilbakemelding' }).fill('Lønnen fra SJOKKERENDE');
-            await page.getByRole('button', { name: 'Send inn svaret ditt' }).click();
-
-            // Kvittering
-            await expect(page.getByRole('heading', { name: 'Tilbakemelding på lønn i september 2025' })).toBeVisible();
-            await testAccessibility(page);
-            await expect(page.getByText('Svaret ditt er sendt innVi')).toBeVisible();
-            await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
-
-            // Forside
-            const tidligereOppgaver = page.getByRole('heading', { name: 'Tidligere oppgaver' }).locator('..');
-            await tidligereOppgaver.getByRole('link', { name: 'Sjekk lønn i september 2025' }).click();
-
-            // Oppsummering
-            await expect(page.getByRole('row', { name: 'SJOKKERENDE ELEKTRIKER 20' }).getByRole('cell')).toBeVisible();
-            await expect(page.getByText('Har du en tilbakemelding?Ja')).toBeVisible();
-            await expect(page.getByText('TilbakemeldingLønnen fra')).toBeVisible();
-            await page.getByRole('button', { name: 'Tilbake til oversikten' }).click();
-
-            // Forside
-            await expect(page.getByText('Din ungdomsprogramytelseStartdato 2. juli')).toBeVisible();
+        test.describe('Tekstforskjeller', async () => {
+            test('Hel måned', async ({ page }) => {
+                store.setScenario(ScenarioType.avvikInntekt);
+                await page.goto(`./`);
+                const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
+                await nyeOppgaver.getByRole('link', { name: 'Sjekk inntekten din i juli 2025' }).click();
+                await expect(page.getByText('Vi bruker ikke hele inntekten din')).not.toBeVisible();
+            });
+            test('Deler av måned', async ({ page }) => {
+                store.setScenario(ScenarioType.avvikInntektDelerAvMåned);
+                await page.goto(`./`);
+                const nyeOppgaver = page.getByRole('heading', { name: 'Dine oppgaver' }).locator('..');
+                await nyeOppgaver.getByRole('link', { name: 'Sjekk inntekten din i juli 2025' }).click();
+                await expect(page.getByText('Vi bruker ikke hele inntekten din')).toBeVisible();
+            });
         });
     });
 });

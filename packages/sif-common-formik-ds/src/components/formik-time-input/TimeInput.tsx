@@ -3,7 +3,7 @@ import './timeInput.scss';
 import { TextField } from '@navikt/ds-react';
 import { hasValue } from '@navikt/sif-validation';
 import classNames from 'classnames';
-import React, { RefObject, useState } from 'react';
+import React, { RefObject, useEffect, useState } from 'react';
 
 import { InputTime, TestProps } from '../../types';
 import bemUtils from '../../utils/bemUtils';
@@ -30,6 +30,7 @@ export interface TimeInputLayoutProps {
     direction?: TimeInputLayout;
     compact?: boolean;
     justifyContent?: 'left' | 'center' | 'right';
+    wide?: boolean;
     placeholders?: {
         hours: string;
         minutes: string;
@@ -65,6 +66,7 @@ const TimeInput = ({
     maxMinutes = MAX_MINUTES,
     direction: layout = 'horizontal',
     compact = true,
+    wide = false,
     justifyContent = 'center',
     placeholders,
     description,
@@ -81,6 +83,10 @@ const TimeInput = ({
     const [stateTime, setStateTime] = useState<Partial<InputTime> | undefined>(time);
     const testKey = restProps['data-testid'];
 
+    useEffect(() => {
+        setStateTime(time);
+    }, [time?.hours, time?.minutes]);
+
     return (
         <div
             data-testid={testKey}
@@ -89,6 +95,7 @@ const TimeInput = ({
                 bem.modifier(layout),
                 bem.modifier(`content-${justifyContent}`),
                 bem.modifierConditional('compact', compact),
+                bem.modifierConditional('wide', wide),
                 bem.modifierConditional('withValue', hasValue(time.hours) || hasValue(time.minutes)),
                 bem.modifierConditional('withHours', hasValue(time.hours)),
                 bem.modifierConditional('withMinutes', hasValue(time.minutes)),
@@ -166,7 +173,7 @@ const TimeInput = ({
 const DisabledInput = ({ className }: { className: string }) => {
     return (
         <div className={className} role="presentation" aria-hidden={true}>
-            <div className="navds-text-field__input navds-form-field--medium fakeDisabledInput"> </div>
+            <div className="aksel-text-field__input aksel-form-field--medium fakeDisabledInput"> </div>
         </div>
     );
 };

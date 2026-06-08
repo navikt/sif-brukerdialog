@@ -49,7 +49,10 @@ const FrilansFormPart = ({ values, fraværPeriode }: Props) => {
                     <ExpandableInfo title={text('step.arbeidssituasjon.frilanser.hjelpetekst.tittel')}>
                         <>
                             {text('step.arbeidssituasjon.frilanser.hjelpetekst')}{' '}
-                            <Link href={getLenker(intl.locale).skatteetaten} target="_blank">
+                            <Link
+                                href={getLenker(intl.locale).skatt_arbeidstakerinntekt}
+                                target="_blank"
+                                rel="noopener noreferrer">
                                 <AppText id="step.arbeidssituasjon.frilanser.hjelpetekst.skatteetatenLenke" />
                             </Link>
                         </>

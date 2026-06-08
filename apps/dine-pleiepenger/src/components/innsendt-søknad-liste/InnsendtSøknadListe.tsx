@@ -1,9 +1,9 @@
-import { Alert, Box, Button, ExpansionCard, HStack, VStack } from '@navikt/ds-react';
+import { PlusIcon } from '@navikt/aksel-icons';
+import { Alert, Button, ExpansionCard, HStack, VStack } from '@navikt/ds-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import Skeleton from 'react-loading-skeleton';
-import { Add } from '@navikt/ds-icons';
+
 import { AppText } from '../../i18n';
-import { InnsendtSøknad } from '../../types/InnsendtSøknad';
+import { InnsendtSøknad } from '../../types';
 import InnsendtSøknadContent from './InnsendtSøknadContent';
 import InnsendtSøknadTitle from './InnsendtSøknadTitle';
 
@@ -40,7 +40,7 @@ const InnsendtSøknadListe = ({ søknader = [] }: Props) => {
     };
 
     return (
-        <VStack gap="2">
+        <VStack gap="space-8">
             {søknader.slice(0, antall).map((søknad, index) => {
                 const labelId = `søknad-${søknad.journalpostId}`;
                 return (
@@ -61,36 +61,17 @@ const InnsendtSøknadListe = ({ søknader = [] }: Props) => {
                 );
             })}
             {antall < totalt ? (
-                <Box className="flex justify-start">
+                <div>
                     <Button variant="tertiary-neutral" type="button" onClick={visFlereSøknader}>
-                        <HStack gap="2" align="center" wrap={false}>
-                            <Add role="presentation" />
+                        <HStack gap="space-8" align="center" wrap={false}>
+                            <PlusIcon role="presentation" aria-hidden="true" />
                             <AppText id="innsendtSøknadListe.visFlereInnsendinger" />
                         </HStack>
                     </Button>
-                </Box>
+                </div>
             ) : null}
         </VStack>
     );
-};
-
-export const SøknadListeSkeleton = ({ rows = 3 }: { rows: number }) => {
-    const skeleton: any[] = [];
-    for (let i = 0; i < rows; i++) {
-        const card = (
-            <Skeleton
-                key={i}
-                height="5.9rem"
-                baseColor="#ffffff"
-                highlightColor="#99C4DD"
-                style={{ borderRadius: '.5rem' }}
-                containerClassName="flex"
-                className="border border-gray-500"
-            />
-        );
-        skeleton.push(card);
-    }
-    return <VStack gap="2">{skeleton}</VStack>;
 };
 
 export default InnsendtSøknadListe;

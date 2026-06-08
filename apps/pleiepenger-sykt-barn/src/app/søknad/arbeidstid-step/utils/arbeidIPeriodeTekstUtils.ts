@@ -1,4 +1,4 @@
-import { AppIntlShape, AppMessageKeys } from '../../../i18n';
+import { AppIntlShape, type AppMessageKeys } from '../../../i18n';
 import { ArbeidIPeriodeIntlValues, ArbeidsforholdType } from '../../../local-sif-common-pleiepenger';
 import { ArbeidIPeriodeFormField } from '../../../types/søknad-form-values/ArbeidIPeriodeFormValues';
 

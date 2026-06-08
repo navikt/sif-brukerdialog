@@ -8,13 +8,16 @@ const nb = {
     'velkommenPage.guide.tittel': 'Hei {navn}',
     'velkommenPage.guide.tekst':
         'Du kan melde fra om endringer i pleiepenger for {barnetsNavn} i tidsrommet {samletSøknadsperiodeTekst}.',
+    'velkommenPage.guide.tekst.anonymisertBarn':
+        'Du kan melde fra om endringer i pleiepenger i tidsrommet {samletSøknadsperiodeTekst}.',
 
     'velkommenPage.endre.spm': 'Hva ønsker du å endre?',
     'velkommenPage.endre.ferie': 'Ferie',
     'velkommenPage.endre.jobb': 'Jobb',
+    'velkommenPage.endre.tilsynsordning': 'Tid i omsorgstilbud',
 
     'velkommenPage.omSøknaden.tittel': 'Om utfylling av skjemaet',
-    'velkommenPage.omSøknaden.1': 'Du får veiledning underveis om hva du skal fylle ut, og hvordan.',
+    'velkommenPage.omSøknaden.1': 'Du får veiledning underveis om hva du skal fylle inn, og hvordan.',
     'velkommenPage.omSøknaden.2':
         'Vi tar vare på svarene dine i 72 timer. Hvis du innenfor den tiden for eksempel vil ta en pause eller blir automatisk logget ut, fortsetter du der du var når du kommer tilbake.',
     'velkommenPage.omSøknaden.3': 'Du må svare på alle spørsmålene for å kunne gå videre.',

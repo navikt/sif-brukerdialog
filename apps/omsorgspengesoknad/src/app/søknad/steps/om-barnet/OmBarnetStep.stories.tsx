@@ -6,7 +6,7 @@ import OmBarnetStep from './OmBarnetStep';
 import { omBarnetMessages } from './omBarnetMessages';
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import { withAmplitudeProvider } from '../../../../storybook/decorators/withAmplitudeProvider';
+import { withAnalyticsProvider } from '../../../../storybook/decorators/withAnalyticsProvider';
 import { withEnvSettings } from '../../../../storybook/decorators/withEnvSettings';
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withRouterProvider } from '../../../../storybook/decorators/withRouter';
@@ -16,7 +16,7 @@ import { mockInitialSøknadContextState } from '../../../../storybook/decorators
 export default {
     title: 'Steps/OmBarnet/Step',
     component: OmBarnetStep,
-    decorators: [withIntl, withRouterProvider, withStepFormValuesContext, withEnvSettings, withAmplitudeProvider],
+    decorators: [withIntl, withRouterProvider, withStepFormValuesContext, withEnvSettings, withAnalyticsProvider],
 } as Meta<typeof OmBarnetStep>;
 
 interface Props {
@@ -31,12 +31,12 @@ const Template: StoryFn<Props> = ({ context }: Props) => (
                 <Tabs.Tab value="tekster" label="Tekster" />
             </Tabs.List>
             <Tabs.Panel value="steg">
-                <Box paddingBlock="10">
+                <Box paddingBlock="space-40">
                     <OmBarnetStep />
                 </Box>
             </Tabs.Panel>
             <Tabs.Panel value="tekster">
-                <Box paddingBlock="10">
+                <Box paddingBlock="space-40">
                     <MessagesPreview
                         messages={omBarnetMessages}
                         showMissingTextSummary={true}

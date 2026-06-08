@@ -1,5 +1,4 @@
 import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
-import { KvitteringInfo } from '../../../types/KvitteringInfo';
 import { TempFormValues } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { ArbeidstidSøknadsdata } from '../../../types/søknadsdata/ArbeidstidSøknadsdata';
@@ -30,7 +29,6 @@ export enum SøknadContextActionKeys {
     REQUEST_LAGRE_SØKNAD = 'requestLargeSøknad',
     SET_SØKNAD_LAGRET = 'setSøknadLagret',
     SET_SØKNAD_SENDT = 'setSøknadSendt',
-    SET_SØKNAD_KVITTERING_INFO = '',
     SET_UNSUBMITTED_STEP_FORM_VALUES = 'setUnsubmittedStepFormValues',
     SYNC_ARBEIDSTID_MED_KURSPERIODER = 'syncArbeidstidMedKursperioder',
 }
@@ -103,11 +101,6 @@ interface SetSøknadMedlemskap {
 interface SetSøknadHarBekreftetOpplysninger {
     type: SøknadContextActionKeys.SET_SØKNAD_HAR_BEKREFTET_OPPLYSNINGER;
     payload: OppsummeringFormValues;
-}
-
-interface SetSøknadKvitteringInfo {
-    type: SøknadContextActionKeys.SET_SØKNAD_KVITTERING_INFO;
-    payload?: KvitteringInfo;
 }
 
 interface SyncArbeidstidMedKursperioder {
@@ -186,11 +179,6 @@ const setSøknadHarBekreftetOpplysninger = (payload: OppsummeringFormValues): Se
     payload,
 });
 
-const setSøknadKvitteringInfo = (payload: KvitteringInfo): SetSøknadKvitteringInfo => ({
-    type: SøknadContextActionKeys.SET_SØKNAD_KVITTERING_INFO,
-    payload,
-});
-
 const setSøknadRoute = (payload: SøknadRoutes): SetSøknadRoute => ({
     type: SøknadContextActionKeys.SET_SØKNAD_ROUTE,
     payload,
@@ -218,7 +206,6 @@ export type SøknadContextAction =
     | SetSøknadFrilansoppdrag
     | SetSøknadMedlemskap
     | SetSøknadHarBekreftetOpplysninger
-    | SetSøknadKvitteringInfo
     | SetSøknadRoute
     | SyncArbeidstidMedKursperioder;
 
@@ -237,7 +224,6 @@ const actionsCreator = {
     setSøknadFrilansoppdrag,
     setSøknadMedlemskap,
     setSøknadHarBekreftetOpplysninger,
-    setSøknadKvitteringInfo,
     setSøknadLagret,
     setSøknadOmBarnet,
     setSøknadSendt,

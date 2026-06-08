@@ -1,0 +1,15 @@
+[
+    {
+        "saksnummer": "1002VJS",
+        "pleietrengende": {
+            "fødselsdato": "2018-10-10",
+            "aktørId": "2904002733783",
+            "fornavn": "JURIDISK",
+            "mellomnavn": null,
+            "etternavn": "GORILLA"
+        },
+        "fagsakYtelseType": "PSB",
+        "fagsakOpprettetTidspunkt": "2025-03-19T07:43:05Z",
+        "fagsakAvsluttetTidspunkt": null
+    }
+]

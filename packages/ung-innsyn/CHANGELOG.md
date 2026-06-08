@@ -1,0 +1,60 @@
+# @sif/ung-innsyn
+
+## 0.0.7
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.56
+    - @navikt/sif-validation@1.0.21
+    - @navikt/sif-common-ui@0.11.57
+    - @navikt/sif-common-formik-ds@2.5.46
+
+## 0.0.6
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.16
+    - @navikt/ung-brukerdialog-api@0.0.6
+    - @sif/api@0.0.5
+
+## 0.0.5
+
+### Patch Changes
+
+- Updated dependencies
+    - @sif/api@0.0.4
+    - @sif/rhf@0.0.3
+
+## 0.0.4
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.15
+    - @navikt/ung-brukerdialog-api@0.0.5
+    - @sif/api@0.0.3
+
+## 0.0.3
+
+### Patch Changes
+
+- @navikt/sif-common-ui@0.11.56
+
+## 0.0.2
+
+### Patch Changes
+
+- 062d83e: Utvide med oppgavebekreftelse for aktivitetspenger + tilhørende refactoring
+- Updated dependencies [062d83e]
+- Updated dependencies [062d83e]
+    - @sif/api@0.0.2
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.14
+    - @navikt/ung-brukerdialog-api@0.0.4
+
+## 0.0.1
+
+### Patch Changes
+
+- init

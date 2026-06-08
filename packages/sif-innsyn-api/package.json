@@ -1,0 +1,42 @@
+{
+    "name": "@sif/sif-innsyn-api",
+    "version": "0.3.18",
+    "private": true,
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/navikt/sif-brukerdialog.git"
+    },
+    "type": "module",
+    "main": "src/index.ts",
+    "types": "src/index.ts",
+    "scripts": {
+        "codegen:dev": "CODEGEN_ENV=dev pnpm download-spec && pnpm gen-types:fixed",
+        "codegen:prod": "CODEGEN_ENV=prod pnpm download-spec && pnpm gen-types:fixed",
+        "download-spec": "node scripts/download-spec.mjs",
+        "fix-regexp": "node scripts/fix-generated-regex.mjs",
+        "gen-types": "openapi-ts -f openapi-ts.sif-innsyn-api.config.ts",
+        "gen-types:fixed": "pnpm gen-types && pnpm fix-regexp",
+        "lint:eslint": "eslint './src/sif-innsyn-api/client/*.gen.ts'",
+        "lint:fix": "eslint --quiet --fix './src/sif-innsyn-api/client/*.gen.ts'",
+        "lint:tsc": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@navikt/sif-common-api": "workspace:*",
+        "@navikt/sif-common-env": "workspace:*"
+    },
+    "devDependencies": {
+        "@hey-api/openapi-ts": "0.98.1",
+        "@sif/eslint-config": "workspace:*",
+        "axios": "1.16.1",
+        "config": "workspace:*",
+        "postcss": "8.5.15",
+        "prettier": "3.8.3",
+        "typescript": "6.0.3",
+        "vitest": "4.1.8",
+        "zod": "4.4.3"
+    },
+    "peerDependencies": {
+        "dayjs": "*",
+        "uuid": "*"
+    }
+}

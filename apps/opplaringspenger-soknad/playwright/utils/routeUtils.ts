@@ -1,4 +1,6 @@
-import { BrowserContext, Page } from '@playwright/test';
+import { Page } from '@playwright/test';
+
+import { mockData } from '../../mock/data';
 import { SøknadRoutes } from '../../src/app/types/SøknadRoutes';
 import { Søknadsdata } from '../../src/app/types/søknadsdata/Søknadsdata';
 import { mellomlagringMock } from '../mock-data/mellomlagringMock';
@@ -16,9 +18,9 @@ const getRouteUrl = (route: SøknadRoutes): string => {
 
 const resumeFromRoute = async (
     page: Page,
-    context: BrowserContext,
     route: SøknadRoutes,
     søknadsdata?: Partial<Søknadsdata>,
+    mockdata: Partial<typeof mockData> = {},
 ) => {
     const mellomlagringToUse = {
         ...mellomlagringMock,
@@ -29,8 +31,9 @@ const resumeFromRoute = async (
         },
     };
 
-    await setupMockRoutes(page, context, {
+    await setupMockRoutes(page, {
         mellomlagring: mellomlagringToUse,
+        mockData: mockdata,
     });
 
     await page.goto(getRouteUrl(SøknadRoutes.VELKOMMEN));

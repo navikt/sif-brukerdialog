@@ -9,12 +9,12 @@ export const createAliasConfig = (baseDir: string = __dirname) => ({
     '@shared/context': resolve(baseDir, './src/context'),
     '@shared/components': resolve(baseDir, './src/components'),
     '@shared/hooks': resolve(baseDir, './src/hooks'),
+    '@shared/pages': resolve(baseDir, './src/pages'),
     '@shared/mock': resolve(baseDir, './mock'),
     '@shared/storybook': resolve(baseDir, './storybook'),
 
     // Innsyn-app alias
     '@innsyn': resolve(baseDir, './src/apps/innsyn'),
-    '@innsyn/atoms': resolve(baseDir, './src/apps/innsyn/atoms'),
     '@innsyn/components': resolve(baseDir, './src/apps/innsyn/components'),
     '@innsyn/modules': resolve(baseDir, './src/apps/innsyn/modules'),
     '@innsyn/pages': resolve(baseDir, './src/apps/innsyn/pages'),

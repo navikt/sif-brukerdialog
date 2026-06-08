@@ -13,7 +13,7 @@ const InfoForFarVedNyttBarn = () => {
                     id="infoForFarVedNyttBarn.info.1"
                     values={{
                         Lenke: (children) => (
-                            <Link href="https://farskapsportal.nav.no/nb/" target="_blank">
+                            <Link href="https://farskapsportal.nav.no/nb/" target="_blank" rel="noopener noreferrer">
                                 {children}
                             </Link>
                         ),

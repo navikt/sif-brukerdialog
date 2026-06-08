@@ -1,5 +1,6 @@
-import { Meta, StoryObj } from '@storybook/react-vite';
 import { ISODateToDate } from '@navikt/sif-common-utils';
+import { Meta, StoryObj } from '@storybook/react-vite';
+
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import CalendarGrid from './CalendarGrid';
 

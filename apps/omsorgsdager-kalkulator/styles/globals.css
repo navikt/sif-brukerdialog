@@ -42,12 +42,12 @@ a {
     box-sizing: border-box;
 }
 .subtle-card {
-    --ac-expansioncard-bg: var(--a-green-100);
-    --ac-expansioncard-border-open-color: var(--a-green-100);
-    --ac-expansioncard-border-color: var(--a-green-100);
-    --ac-expansioncard-border-hover-color: var(--a-green-100);
+    --ac-expansioncard-bg: var(--ax-success-200);
+    --ac-expansioncard-border-open-color: var(--ax-success-200);
+    --ac-expansioncard-border-color: var(--ax-success-200);
+    --ac-expansioncard-border-hover-color: var(--ax-success-200);
 }
 
 .customBox {
-    --__ac-box-background: var(--a-green-100);
+    --__ac-box-background: var(--ax-success-200);
 }

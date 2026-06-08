@@ -6,7 +6,7 @@ interface Props extends HTMLProps<HTMLDivElement> {
 }
 
 const TagsContainer = ({ children }: Props) => {
-    return <HStack gap="2">{children}</HStack>;
+    return <HStack gap="space-8">{children}</HStack>;
 };
 
 export default TagsContainer;

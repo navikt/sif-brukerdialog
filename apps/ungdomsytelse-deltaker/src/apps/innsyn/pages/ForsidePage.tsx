@@ -1,28 +1,36 @@
-import ForsideHeader from '@innsyn/components/forside-header/ForsideHeader';
+import DeltakelseContent from '@innsyn/components/deltakelse-content/DeltakelseContent';
 import { useInnsynBreadcrumbs } from '@innsyn/hooks/useInnsynBreadcrumbs';
-import DeltakelseContent from '@innsyn/modules/deltakelse-content/DeltakelseContent';
 import { VStack } from '@navikt/ds-react';
-import { UxSignalsPanel } from '@navikt/sif-common-core-ds';
+import { dateFormatter } from '@navikt/sif-common-utils';
 import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
 import { useAppIntl } from '@shared/i18n';
+import { InnsynForsideHeader } from '@sif/ung-innsyn/components';
 
+import UXRapportertInntekt from '../ux-signals/UXRapportertInntekt';
 import ForsidePageLayout from './layout/ForsidePageLayout';
 import ForsidePageFooter from './parts/ForsidePageFooter';
 
-const USE_SIGNALS_PANEL = true;
-
 const ForsidePage = () => {
     const { text } = useAppIntl();
-    const { deltakelsePeriode } = useDeltakerContext();
+    const { deltakelsePeriode, oppgaver } = useDeltakerContext();
 
     useInnsynBreadcrumbs();
 
     return (
         <ForsidePageLayout documentTitle={text('forsidePage.dokumentTittel')} footer={<ForsidePageFooter />}>
-            <VStack gap="8">
-                <ForsideHeader startdato={deltakelsePeriode.programPeriode.from} />
-                {USE_SIGNALS_PANEL && <UxSignalsPanel panelId="zpvvyjk4ss" />}
-                <DeltakelseContent deltakelsePeriode={deltakelsePeriode} />
+            <VStack gap="space-32">
+                <InnsynForsideHeader
+                    title={text('innsynAppHeader.ytelseNavn')}
+                    subtitle={
+                        deltakelsePeriode.harOpphørsvedtak
+                            ? undefined
+                            : text('innsynAppHeader.startdato', {
+                                  dato: dateFormatter.full(deltakelsePeriode.programPeriode.from),
+                              })
+                    }
+                />
+                <UXRapportertInntekt />
+                <DeltakelseContent deltakelsePeriode={deltakelsePeriode} oppgaver={oppgaver} />
             </VStack>
         </ForsidePageLayout>
     );

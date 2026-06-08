@@ -30,6 +30,7 @@ const BeskrivelseStep = ({ søknadstype }: Props) => {
                         required: true,
                         maxLength: MAX_BESKRIVELSE_LENGTH,
                         minLength: MIN_BESKRIVELSE_LENGTH,
+                        disallowInvalidBackendCharacters: true,
                     })(value);
                     return error
                         ? {

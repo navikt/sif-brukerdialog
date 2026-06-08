@@ -1,8 +1,10 @@
-import { VStack } from '@navikt/ds-react';
-import { useState } from 'react';
+import { BodyLong, ReadMore, VStack } from '@navikt/ds-react';
 import ConfirmationDialog from '@navikt/sif-common-core-ds/src/components/dialogs/confirmation-dialog/ConfirmationDialog';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { FormLayout } from '@navikt/sif-common-ui';
+import { useState } from 'react';
+
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import useLogSøknadInfo from '../../../hooks/useLogSøknadInfo';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
@@ -10,9 +12,10 @@ import { usePersistTempFormValues } from '../../../hooks/usePersistTempFormValue
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
 import { ConfirmationDialogType } from '../../../types/ConfirmationDialog';
-import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { StepId } from '../../../types/StepId';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
+import { getSøknadStepRoute } from '../../../utils/søknadRoutesUtils';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
 import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
@@ -20,10 +23,14 @@ import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import { getPeriodeSomFrilanserInnenforPeriode } from '../arbeidssituasjon/form-parts/arbeidssituasjonFrilansUtils';
 import { getPeriodeSomSelvstendigInnenforPeriode } from '../arbeidssituasjon/form-parts/arbeidssituasjonSelvstendigUtils';
-import { getArbeidstidStepInitialValues, getArbeidstidSøknadsdataFromFormValues } from './arbeidstidStepUtils';
+import { getArbeidstidSøknadsdataFromFormValues, getArbeidstidStepInitialValues } from './arbeidstidStepUtils';
 import { ArbeidIPeriode } from './ArbeidstidTypes';
-import ArbeidIPeriodeSpørsmål from './form-parts/arbeid-i-periode-spørsmål/ArbeidIPeriodeSpørsmål';
-import { harFraværIPerioden } from './form-parts/arbeidstidUtils';
+import {
+    cleanArbeidIPerioder,
+    getAlleArbeidIPerioder,
+    harKunValgtJobberSomNormalt,
+} from './form-parts/arbeidstidUtils';
+import FraværIPeriodeSpørsmål from './form-parts/fravær-i-periode-spørsmål/FraværIPeriodeSpørsmål';
 import { ArbeidsforholdType } from './form-parts/types';
 
 export enum ArbeidsaktivitetType {
@@ -64,7 +71,7 @@ const ArbeidstidStep = () => {
     const { text, intl } = appIntl;
 
     const {
-        state: { søknadsdata, tempFormData },
+        state: { søknadsdata, tempFormData, søknadRoute },
         dispatch,
     } = useSøknadContext();
     const [confirmationDialog, setConfirmationDialog] = useState<ConfirmationDialogType | undefined>(undefined);
@@ -74,22 +81,42 @@ const ArbeidstidStep = () => {
     const stepId = StepId.ARBEIDSTID;
     const step = getSøknadStepConfigForStep(stepId, søknadsdata);
 
+    useEffectOnce(() => {
+        /** Ekstralagring for å sørge for at riktig route lagres på mellomlagringen (pga steget ikke alltid er med) */
+        if (søknadRoute !== getSøknadStepRoute(stepId)) {
+            dispatch(actionsCreator.setSøknadRoute(getSøknadStepRoute(stepId)));
+            dispatch(actionsCreator.requestLagreSøknad());
+        }
+    });
+
     const { goBack } = useStepNavigation(step);
 
     const { clearStepFormValues } = useStepFormValuesContext();
 
     const onBeforeValidSubmit = (values: ArbeidstidFormValues) => {
-        const { ansattArbeidstid, frilansArbeidstid, selvstendigArbeidstid } = values;
         return new Promise((resolve) => {
-            if (harFraværIPerioden(frilansArbeidstid, selvstendigArbeidstid, ansattArbeidstid) === false) {
+            const perioderMedArbeid = cleanArbeidIPerioder(getAlleArbeidIPerioder(values));
+            const jobberKunSomNormalt = harKunValgtJobberSomNormalt(perioderMedArbeid);
+
+            if (jobberKunSomNormalt) {
+                const antallDagerSøktFor = søknadsdata.kurs?.søknadsdatoer.length;
                 setTimeout(() => {
                     setConfirmationDialog({
-                        title: text('ingenFraværConfirmation.title'),
+                        title: jobberKunSomNormalt
+                            ? text('ingenFraværConfirmation.title')
+                            : text('ingenFraværConfirmation.enkeltdag.title'),
                         okLabel: text('ingenFraværConfirmation.okLabel'),
                         cancelLabel: text('ingenFraværConfirmation.cancelLabel'),
                         content: (
                             <div style={{ maxWidth: '35rem' }}>
-                                <AppText id="ingenFraværConfirmation.content" />
+                                {jobberKunSomNormalt ? (
+                                    <AppText id="ingenFraværConfirmation.content" />
+                                ) : (
+                                    <AppText
+                                        id="ingenFraværConfirmation.enkeltdag.content"
+                                        values={{ antallDager: antallDagerSøktFor }}
+                                    />
+                                )}
                             </div>
                         ),
                         onCancel: () => {
@@ -199,19 +226,29 @@ const ArbeidstidStep = () => {
                                 )}
 
                                 <FormLayout.Guide>
-                                    <p>
-                                        <AppText id="arbeidIPeriode.StepInfo.1" />
-                                    </p>
+                                    <BodyLong spacing>
+                                        <AppText id="fraværIPeriode.StepInfo.1" />
+                                    </BodyLong>
+                                    <BodyLong spacing weight="semibold">
+                                        <AppText id="fraværIPeriode.StepInfo.1.b" />
+                                    </BodyLong>
+                                    <BodyLong spacing>
+                                        <AppText id="fraværIPeriode.StepInfo.2" />
+                                    </BodyLong>
+                                    <ReadMore header={text('fraværIPeriode.StepInfo.3.header')}>
+                                        <AppText id="fraværIPeriode.StepInfo.3.text" />
+                                    </ReadMore>
                                 </FormLayout.Guide>
+
                                 <FormLayout.Sections>
-                                    {ansattArbeidstid && (
-                                        <VStack gap="8">
+                                    {ansattArbeidstid && ansattArbeidstid.length > 0 && (
+                                        <VStack gap="space-24">
                                             {ansattArbeidstid.map((arbeidsforhold, index) => {
                                                 return (
                                                     <FormLayout.Section
                                                         title={arbeidsforhold.navn}
                                                         key={arbeidsforhold.organisasjonsnummer}>
-                                                        <ArbeidIPeriodeSpørsmål
+                                                        <FraværIPeriodeSpørsmål
                                                             arbeidsstedNavn={arbeidsforhold.navn}
                                                             arbeidsforholdType={ArbeidsforholdType.ANSATT}
                                                             arbeidIPeriode={arbeidsforhold.arbeidIPeriode}
@@ -230,11 +267,10 @@ const ArbeidstidStep = () => {
                                             })}
                                         </VStack>
                                     )}
-
                                     {frilansArbeidstid && periodeSomFrilanserISøknadsperiode && (
-                                        <FormLayout.Section title={text('arbeidIPeriode.FrilansLabel')}>
-                                            <ArbeidIPeriodeSpørsmål
-                                                arbeidsstedNavn={text('arbeidIPeriode.arbeidstidSted.frilansoppdrag')}
+                                        <FormLayout.Section title={text('fraværIPeriode.FrilansLabel')}>
+                                            <FraværIPeriodeSpørsmål
+                                                arbeidsstedNavn={text('fraværIPeriode.arbeidstidSted.frilansoppdrag')}
                                                 arbeidsforholdType={ArbeidsforholdType.FRILANSER}
                                                 arbeidIPeriode={frilansArbeidstid.arbeidIPeriode}
                                                 jobberNormaltTimer={frilansArbeidstid.jobberNormaltTimer}
@@ -247,13 +283,12 @@ const ArbeidstidStep = () => {
                                             />
                                         </FormLayout.Section>
                                     )}
-
                                     {selvstendigArbeidstid &&
                                         søknadsperiode &&
                                         periodeSomSelvstendigISøknadsperiode && (
-                                            <FormLayout.Section title={text('arbeidIPeriode.SNLabel')}>
-                                                <ArbeidIPeriodeSpørsmål
-                                                    arbeidsstedNavn={text('arbeidIPeriode.arbeidstidSted.sn')}
+                                            <FormLayout.Section title={text('fraværIPeriode.SNLabel')}>
+                                                <FraværIPeriodeSpørsmål
+                                                    arbeidsstedNavn={text('fraværIPeriode.arbeidstidSted.sn')}
                                                     arbeidsforholdType={ArbeidsforholdType.SELVSTENDIG}
                                                     jobberNormaltTimer={selvstendigArbeidstid.jobberNormaltTimer}
                                                     arbeidIPeriode={selvstendigArbeidstid.arbeidIPeriode}

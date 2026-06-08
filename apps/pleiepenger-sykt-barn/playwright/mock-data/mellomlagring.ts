@@ -35,7 +35,7 @@ export const mellomlagringMock = {
         omsorgstilbud: { erIOmsorgstilbudFremtid: 'no' },
         harNattevåk: 'unanswered',
         harBeredskap: 'unanswered',
-        frilans: { harHattInntektSomFrilanser: 'no' },
+        frilans: { harHattInntektSomFrilanser: 'no', arbeidsforhold: { normalarbeidstid: { timerPerUke: '30' } } },
         omsorgsstønad: { mottarOmsorgsstønad: 'no' },
         fosterhjemsgodtgjørelse: { mottarFosterhjemsgodtgjørelse: 'no' },
         selvstendig: { harHattInntektSomSN: 'no' },
@@ -47,7 +47,7 @@ export const mellomlagringMock = {
     },
     metadata: {
         lastStepID: 'medlemskap',
-        version: '14.3.0',
+        version: '14.4.0',
         updatedTimestemp: '2023-01-01T00:00:00.000Z',
         featureToggles: {
             spørOmSluttetISøknadsperiode: false,

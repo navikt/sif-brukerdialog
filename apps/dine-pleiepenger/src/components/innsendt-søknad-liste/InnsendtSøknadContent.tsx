@@ -1,12 +1,10 @@
-import { Box, Heading, Link, List } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
-import { File } from '@navikt/ds-icons';
+import { FileIcon } from '@navikt/aksel-icons';
+import { BodyLong, Box, Heading, Link, List, VStack } from '@navikt/ds-react';
 import intlHelper from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { useIntl } from 'react-intl';
+
 import { AppText } from '../../i18n';
-import { InnsendtSøknadArbeidsgiver } from '../../server/api-models/ArbeidsgivereSchema';
-import { InnsendtSøknad, InnsendtSøknadstype } from '../../types/InnsendtSøknad';
-import { InnsendtSøknadDokument } from '../../types/InnsendtSøknadDocument';
-import { Organisasjon } from '../../types/Organisasjon';
+import { Dokument, InnsendtSøknad, InnsendtSøknadstype, Organisasjon } from '../../types';
 import { getDokumentFrontendUrl, getSøknadDokumentFilnavn } from '../../utils/dokumentUtils';
 import { browserEnv } from '../../utils/env';
 import { getOrganisasjonsnavnEllerOrgNummer } from '../../utils/sakUtils';
@@ -37,7 +35,7 @@ const InnsendtSøknadContent = ({ søknad }: Props) => {
         return false;
     };
 
-    const mapOrganisasjoner = (organisasjon: Organisasjon | InnsendtSøknadArbeidsgiver) => {
+    const mapOrganisasjoner = (organisasjon: Organisasjon) => {
         return (
             <li key={organisasjon.organisasjonsnummer}>
                 <Link
@@ -46,7 +44,7 @@ const InnsendtSøknadContent = ({ søknad }: Props) => {
                         søknad.søknadId,
                         organisasjon.organisasjonsnummer,
                     )}>
-                    <File title="Dokumentikon" />
+                    <FileIcon title="Dokumentikon" />
                     <AppText
                         id="dokumenterSomKanLastesNed.bekreftelse"
                         values={{
@@ -58,7 +56,7 @@ const InnsendtSøknadContent = ({ søknad }: Props) => {
         );
     };
 
-    const mapDokumenter = (dokument: InnsendtSøknadDokument) => {
+    const mapDokumenter = (dokument: Dokument) => {
         return (
             <li key={dokument.dokumentInfoId}>
                 <Link
@@ -66,7 +64,7 @@ const InnsendtSøknadContent = ({ søknad }: Props) => {
                     href={`${getDokumentFrontendUrl(dokument.url)}?dokumentTittel=${getSøknadDokumentFilnavn(
                         dokument,
                     )}`}>
-                    <File title="Dokumentikon" />
+                    <FileIcon title="Dokumentikon" />
                     <span>{`${dokument.tittel} (PDF)`}</span>
                 </Link>
             </li>
@@ -74,53 +72,55 @@ const InnsendtSøknadContent = ({ søknad }: Props) => {
     };
 
     return (
-        <>
+        <VStack gap="space-24">
             <Box>
-                <Heading size="xsmall" level="4" spacing={true}>
+                <Heading size="xsmall" level="3" spacing>
                     <AppText id={`dokumenterTittel.${søknad.søknadstype}`} />
                 </Heading>
                 {søknad.dokumenter && søknad.dokumenter.length > 0 && (
                     <List>{søknad.dokumenter.map((dokument) => mapDokumenter(dokument))}</List>
                 )}
                 {(søknad.dokumenter === undefined || søknad.dokumenter.length === 0) && (
-                    <p>{intlHelper(intl, 'dokumenter.ingenDokumenter')}</p>
+                    <BodyLong>{intlHelper(intl, 'dokumenter.ingenDokumenter')}</BodyLong>
                 )}
             </Box>
 
             {søknad.søknadstype === InnsendtSøknadstype.PP_SYKT_BARN && harArbeidsgiver() && (
-                <Box className="mt-8">
-                    <Heading size="xsmall" level="4" spacing={true}>
+                <Box>
+                    <Heading size="xsmall" level="3" spacing>
                         <AppText id="bekreftelseTilArbeidsgiver.title" />
                     </Heading>
-                    <p>
-                        <AppText id="bekreftelseTilArbeidsgiver.info" />
-                    </p>
+                    <VStack gap="space-16" marginBlock="space-0 space-16">
+                        <BodyLong>
+                            <AppText id="bekreftelseTilArbeidsgiver.info" />
+                        </BodyLong>
+                        <BodyLong>
+                            <AppText id="bekreftelseTilArbeidsgiver.info.1" />
+                        </BodyLong>
 
-                    <p className="mt-4">
-                        <AppText id="bekreftelseTilArbeidsgiver.info.1" />
-                    </p>
-                    {'arbeidsgivere' in søknad.søknad &&
-                        'organisasjoner' in søknad.søknad.arbeidsgivere &&
-                        søknad.søknad.arbeidsgivere.organisasjoner.length > 0 && (
-                            <List className="mt-4">
-                                {søknad.søknad.arbeidsgivere.organisasjoner.map((organisasjon) =>
-                                    mapOrganisasjoner(organisasjon),
-                                )}
-                            </List>
-                        )}
-                    {'arbeidsgivere' in søknad.søknad &&
-                        Array.isArray(søknad.søknad.arbeidsgivere) &&
-                        søknad.søknad.arbeidsgivere.length > 0 && (
-                            <List className="mt-4">
-                                {søknad.søknad.arbeidsgivere.map(
-                                    (organisasjon) =>
-                                        !organisasjon.sluttetFørSøknadsperiode && mapOrganisasjoner(organisasjon),
-                                )}
-                            </List>
-                        )}
+                        {'arbeidsgivere' in søknad.søknad &&
+                            'organisasjoner' in søknad.søknad.arbeidsgivere &&
+                            søknad.søknad.arbeidsgivere.organisasjoner.length > 0 && (
+                                <List>
+                                    {søknad.søknad.arbeidsgivere.organisasjoner.map((organisasjon) =>
+                                        mapOrganisasjoner(organisasjon),
+                                    )}
+                                </List>
+                            )}
+                        {'arbeidsgivere' in søknad.søknad &&
+                            Array.isArray(søknad.søknad.arbeidsgivere) &&
+                            søknad.søknad.arbeidsgivere.length > 0 && (
+                                <List>
+                                    {søknad.søknad.arbeidsgivere.map(
+                                        (organisasjon) =>
+                                            !organisasjon.sluttetFørSøknadsperiode && mapOrganisasjoner(organisasjon),
+                                    )}
+                                </List>
+                            )}
+                    </VStack>
                 </Box>
             )}
-        </>
+        </VStack>
     );
 };
 

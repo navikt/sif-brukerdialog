@@ -38,6 +38,14 @@ export type LovbestemtFerieApiData = {
     perioder: ISODateRangeMap<LovbestemtFerieType>;
 };
 
+export type TilsynsordningPeriodeApiData = {
+    etablertTilsynTimerPerDag: ISODuration;
+};
+
+export type TilsynsordningApiData = {
+    perioder: ISODateRangeMap<TilsynsordningPeriodeApiData>;
+};
+
 interface BarnApiData {
     fødselsdato?: ISODate;
     norskIdentitetsnummer: string;
@@ -57,6 +65,7 @@ interface YtelseApiData {
     type: 'PLEIEPENGER_SYKT_BARN';
     arbeidstid?: ArbeidstidApiData;
     lovbestemtFerie?: LovbestemtFerieApiData;
+    tilsynsordning?: TilsynsordningApiData;
     barn: BarnApiData;
     dataBruktTilUtledning: DataBruktTilUtledningApiData;
     annetDataBruktTilUtledning: {

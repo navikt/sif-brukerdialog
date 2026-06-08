@@ -5,14 +5,15 @@ import { OmsorgspengerutbetalingSNFriApp } from '@navikt/sif-app-register';
 import { getMaybeEnv, isProd } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
+    NoAccessPage,
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
 import MockDate from 'mockdate';
 import { Navigate, Route } from 'react-router-dom';
 
-import { applicationIntlMessages } from './i18n';
-import IkkeTilgangPage from './pages/ikke-tilgang-page/IkkeTilgangPage';
+import { applicationIntlMessages, type AppMessageKeys } from './i18n';
+import getLenker from './lenker';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
 import { appEnv } from './utils/appEnv';
@@ -22,8 +23,8 @@ const {
     SIF_PUBLIC_APPSTATUS_DATASET: SIF_PUBLIC_APPSTATUS_DATASET,
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
     APP_VERSION,
-    SIF_PUBLIC_USE_AMPLITUDE,
-    SIF_PUBLIC_AMPLITUDE_API_KEY,
+    SIF_PUBLIC_USE_ANALYTICS,
+    SIF_PUBLIC_ANALYTICS_API_KEY,
 } = appEnv;
 
 const envNow = getMaybeEnv('MOCK_DATE');
@@ -51,13 +52,22 @@ const App = () => (
                 },
             }}
             publicPath={PUBLIC_PATH}
-            useAmplitude={SIF_PUBLIC_USE_AMPLITUDE ? SIF_PUBLIC_USE_AMPLITUDE === 'true' : isProd()}
-            amplitudeApiKey={SIF_PUBLIC_AMPLITUDE_API_KEY}>
+            useAnalytics={SIF_PUBLIC_USE_ANALYTICS ? SIF_PUBLIC_USE_ANALYTICS === 'true' : isProd()}
+            analyticsApiKey={SIF_PUBLIC_ANALYTICS_API_KEY}>
             <SoknadApplicationCommonRoutes
                 contentRoutes={[
                     <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
                     <Route path={SøknadRoutes.INNLOGGET_ROOT} key="soknad" element={<Søknad />} />,
-                    <Route path={SøknadRoutes.IKKE_TILGANG} key="ikke-tilgang" element={<IkkeTilgangPage />} />,
+                    <Route
+                        path={SøknadRoutes.IKKE_TILGANG}
+                        key="ikke-tilgang"
+                        element={
+                            <NoAccessPage<AppMessageKeys>
+                                tittelIntlKey="application.title"
+                                papirskjemaUrl={getLenker().papirskjemaPrivat}
+                            />
+                        }
+                    />,
                     <Route path="*" key="ukjent" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
                 ]}
             />

@@ -1,0 +1,10 @@
+{
+    "extends": "../config/tsconfig-packages.json",
+    "compilerOptions": {
+        "rootDir": "./src",
+        "types": ["vitest/globals"]
+    },
+
+    "include": ["src/**/*", "src/storybook/**/*"],
+    "exclude": ["node_modules"]
+}

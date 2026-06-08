@@ -1,4 +1,4 @@
-import '@navikt/ds-css/darkside';
+import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 
 import { Theme } from '@navikt/ds-react';
@@ -9,6 +9,7 @@ import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
+import { SkyraHandler } from '@sif/surveys';
 import DevPage from './dev/DevPage';
 import { applicationIntlMessages } from './i18n';
 import { SøknadRoutes } from './søknad/config/SøknadRoutes';
@@ -22,7 +23,7 @@ const {
     SIF_PUBLIC_APPSTATUS_DATASET,
     SIF_PUBLIC_APPSTATUS_PROJECT_ID,
     APP_VERSION,
-    SIF_PUBLIC_AMPLITUDE_API_KEY,
+    SIF_PUBLIC_ANALYTICS_API_KEY,
 } = appEnv;
 
 const isE2E = getMaybeEnv('E2E_TEST') === 'true';
@@ -37,8 +38,8 @@ const App = () => (
             appName={EndringsmeldingPsbApp.navn}
             appTitle={EndringsmeldingPsbApp.tittel.nb}
             intlMessages={applicationIntlMessages}
-            useAmplitude={!isE2E}
-            amplitudeApiKey={SIF_PUBLIC_AMPLITUDE_API_KEY}
+            useAnalytics={!isE2E}
+            analyticsApiKey={SIF_PUBLIC_ANALYTICS_API_KEY}
             appStatus={{
                 sanityConfig: {
                     projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
@@ -46,6 +47,7 @@ const App = () => (
                 },
             }}
             publicPath={PUBLIC_PATH}>
+            <SkyraHandler />
             <Routes>
                 <Route key="dev" path="/dev" element={<DevPage />} />,
                 <Route

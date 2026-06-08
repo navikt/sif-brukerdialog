@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { testAccessibility } from './testAccessibility';
 
 const year = new Date().getFullYear();
 
@@ -10,6 +11,7 @@ test('Test text info part', async ({ page }) => {
     });
     await expect(appTitle).toBeVisible();
     await expect(appTitle).toHaveText('Kalkulator for omsorgsdager');
+    await testAccessibility(page);
 
     const appTitleDescription = page.getByText('Finn ut hvor mange omsorgsdager du kan ha rett til');
     await expect(appTitleDescription).toBeVisible();
@@ -44,17 +46,17 @@ test('Test kalkulator 1 barn', async ({ page }) => {
 
     await page.getByLabel('Hvilket årstall er barnet født?').selectOption(year.toString());
 
-    await page.getByRole('group', { name: 'Bor barnet fast hos deg?' }).getByLabel('Ja').check();
+    await page.getByRole('radiogroup', { name: 'Bor barnet fast hos deg?' }).getByLabel('Ja').check();
 
     await page
-        .getByRole('group', {
+        .getByRole('radiogroup', {
             name: 'Har du fått ekstra omsorgsdager fordi barnet har en sykdom eller funksjonshemning som gjør at du oftere må være borte fra jobb?',
         })
         .getByLabel('Ja')
         .check();
 
     await page
-        .getByRole('group', {
+        .getByRole('radiogroup', {
             name: 'Har du fått vedtak om ekstra omsorgsdager fordi du er alene om omsorgen for barnet?',
         })
         .getByLabel('Ja')
@@ -72,6 +74,7 @@ test('Test kalkulator 1 barn', async ({ page }) => {
     await page.getByText('Barn med kronisk sykdom10 dager').isVisible();
     await page.getByText('Ekstra pga. aleneomsorg10 dager').nth(1).isVisible();
     await page.getByText('Totalt antall omsorgsdager= 40 dager').isVisible();
+    await testAccessibility(page);
 });
 
 test('Test kalkulator Barn bor ikke fast med', async ({ page }) => {
@@ -81,7 +84,7 @@ test('Test kalkulator Barn bor ikke fast med', async ({ page }) => {
 
     await page.getByLabel('Hvilket årstall er barnet født?').selectOption(year.toString());
 
-    await page.getByRole('group', { name: 'Bor barnet fast hos deg?' }).getByLabel('Nei').check();
+    await page.getByRole('radiogroup', { name: 'Bor barnet fast hos deg?' }).getByLabel('Nei').check();
 
     await page.getByText('For å ha rett på omsorgsdager for dette barnet, må barnet bo fast hos deg.').isVisible();
 
@@ -116,10 +119,10 @@ test('Test kalkulator Barn 13 år', async ({ page }) => {
 
     await page.getByLabel('Hvilket årstall er barnet født?').selectOption((year - 13).toString());
 
-    await page.getByRole('group', { name: 'Bor barnet fast hos deg?' }).getByLabel('Ja').check();
+    await page.getByRole('radiogroup', { name: 'Bor barnet fast hos deg?' }).getByLabel('Ja').check();
 
     await page
-        .getByRole('group', {
+        .getByRole('radiogroup', {
             name: 'Har du fått ekstra omsorgsdager fordi barnet har en sykdom eller funksjonshemning som gjør at du oftere må være borte fra jobb?',
         })
         .getByLabel('Nei')
@@ -130,14 +133,14 @@ test('Test kalkulator Barn 13 år', async ({ page }) => {
         .isVisible();
 
     await page
-        .getByRole('group', {
+        .getByRole('radiogroup', {
             name: 'Har du fått ekstra omsorgsdager fordi barnet har en sykdom eller funksjonshemning som gjør at du oftere må være borte fra jobb?',
         })
         .getByLabel('Ja')
         .check();
 
     await page
-        .getByRole('group', {
+        .getByRole('radiogroup', {
             name: 'Har du fått vedtak om ekstra omsorgsdager fordi du er alene om omsorgen for barnet?',
         })
         .getByLabel('Nei')
@@ -153,6 +156,8 @@ test('Test kalkulator Barn 13 år', async ({ page }) => {
     await page.getByText('Grunnrett for 1 barn10 dager').isVisible();
     await page.getByText('Barn med kronisk sykdom10 dager').isVisible();
     await page.getByText('Totalt antall omsorgsdager= 20 dager').isVisible();
+
+    await testAccessibility(page);
 });
 
 test('Test kalkulator 2 barn test paneler', async ({ page }) => {

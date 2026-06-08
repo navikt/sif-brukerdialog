@@ -17,7 +17,7 @@ const offScreenStyle: React.CSSProperties = {
 };
 
 const AriaLiveRegion = ({ visible, politeness = 'off', children }: Props) => (
-    <div aria-live={politeness} style={!visible ? offScreenStyle : undefined}>
+    <div aria-live={politeness} style={visible ? undefined : offScreenStyle}>
         {visible ? children : null}
     </div>
 );

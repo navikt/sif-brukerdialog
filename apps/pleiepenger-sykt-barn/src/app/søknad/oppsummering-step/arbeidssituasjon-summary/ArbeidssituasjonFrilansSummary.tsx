@@ -29,6 +29,16 @@ const ArbeidssituasjonFrilansSummary = ({ frilans, frilansoppdrag, søknadsperio
                             <AppText id="oppsummering.arbeidssituasjon.frilans.erIkkeFrilanser" />
                         </List.Item>
                     </List>
+                    {frilans.arbeidsforhold && (
+                        <List>
+                            <List.Item>
+                                <NormalarbeidstidSummary
+                                    erAnsatt={false}
+                                    normalarbeidstidApiData={frilans.arbeidsforhold.normalarbeidstid}
+                                />
+                            </List.Item>
+                        </List>
+                    )}
                 </FormSummary.Value>
             </FormSummary.Answer>
         );

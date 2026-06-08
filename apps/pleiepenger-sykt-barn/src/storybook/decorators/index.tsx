@@ -1,4 +1,4 @@
-export * from './withAmplitude';
+export * from './withAnalyticsProvider';
 export * from './withEnvSettings';
 export * from './withFormikWrapper';
 export * from './withIntl';

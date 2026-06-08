@@ -1,4 +1,10 @@
 import {
+    ArbeidsgiverMedAnsettelseperioder,
+    ArbeidstidEnkeltdagMap,
+    FaktiskOgNormalArbeidstid,
+    K9SakArbeidstidPeriodeMap,
+} from '@app/types';
+import {
     DateRange,
     dateRangeToISODateRange,
     dateToISODate,
@@ -9,12 +15,6 @@ import {
     ISODuration,
     ISODurationToDuration,
 } from '@navikt/sif-common-utils';
-import {
-    ArbeidsgiverMedAnsettelseperioder,
-    ArbeidstidEnkeltdagMap,
-    FaktiskOgNormalArbeidstid,
-    K9SakArbeidstidPeriodeMap,
-} from '@types';
 
 import { _getSakFromK9Sak } from '../getSakFromK9Sak';
 

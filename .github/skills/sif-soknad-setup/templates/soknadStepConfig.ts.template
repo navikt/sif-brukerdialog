@@ -1,0 +1,28 @@
+// Eksempel: setup/config/soknadStepConfig.ts
+// Tilpass: SøknadStepId, SøknadState, routes, isCompleted, stepOrder
+import { RegistrertBarn, Søker } from '@sif/api';
+import { StepConfig } from '@sif/soknad/types';
+import { Søknadsdata } from '../../types/Soknadsdata';
+
+export enum SøknadStepId {
+    MITT_STEG = 'mitt-steg',
+    OPPSUMMERING = 'oppsummering',
+}
+
+export interface SøknadState {
+    søker: Søker;
+    barn: RegistrertBarn[]; // inkluder om appen har barn-steg
+    søknadsdata: Søknadsdata;
+}
+
+export const søknadStepConfig: StepConfig<SøknadStepId, Søknadsdata> = {
+    [SøknadStepId.MITT_STEG]: {
+        route: 'mitt-steg',
+        isCompleted: (s) => s.mittSteg !== undefined,
+    },
+    [SøknadStepId.OPPSUMMERING]: {
+        route: 'oppsummering',
+    },
+};
+
+export const søknadStepOrder: SøknadStepId[] = [SøknadStepId.MITT_STEG, SøknadStepId.OPPSUMMERING];

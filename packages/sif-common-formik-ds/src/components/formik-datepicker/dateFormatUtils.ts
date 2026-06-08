@@ -61,22 +61,22 @@ export const ISODateStringToInputDateString = (isoDateString: ISODateString): In
 };
 
 const twoDigitYearFormats = ['DDMMYY', 'D.M.YY', 'DD.MM.YY'];
-const hasTwoDigitYear = (dateString) => {
+const hasTwoDigitYear = (dateString: string) => {
     return dayjs(dateString, twoDigitYearFormats, true).isValid();
 };
 
-const extractTwoDigitYear = (dateString) => {
+const extractTwoDigitYear = (dateString: string) => {
     return dateString.slice(-2);
 };
 
-const appendCenturyToTwoYearDigitDateString = (dateString, century: '19' | '20') => {
+const appendCenturyToTwoYearDigitDateString = (dateString: string, century: '19' | '20') => {
     const twoDigitYear = extractTwoDigitYear(dateString);
     return `${dateString.slice(0, dateString.length - 2)}${century}${twoDigitYear}`;
 };
 
 const date80YearsAgo = dayjs().subtract(80, 'year');
 
-const assignCenturyToDateWithTwoYearDigits = (dateString) => {
+const assignCenturyToDateWithTwoYearDigits = (dateString: string) => {
     const twoDigitYearFormatsWith4YearDigits = ['DDMMYYYY', 'D.M.YYYY', 'DD.MM.YYYY'];
 
     const dateStringIn20thCentury = appendCenturyToTwoYearDigitDateString(dateString, '19');

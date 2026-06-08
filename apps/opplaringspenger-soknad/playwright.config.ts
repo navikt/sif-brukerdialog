@@ -6,6 +6,7 @@ export default defineConfig({
     forbidOnly: !!process.env.CI,
     retries: process.env.CI ? 2 : 0,
     workers: process.env.CI ? 1 : undefined,
+    timeout: process.env.CI ? 60000 : 30000,
     reporter: 'html',
     use: {
         trace: 'on-first-retry',
@@ -20,7 +21,7 @@ export default defineConfig({
         },
     ],
     webServer: {
-        command: 'yarn pw:build && yarn pw:start',
+        command: 'pnpm pw:build && pnpm pw:start',
         url: 'http://localhost:8080',
         reuseExistingServer: true,
     },

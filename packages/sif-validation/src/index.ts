@@ -1,5 +1,7 @@
 export { default as getCheckedValidator } from './getCheckedValidator';
 export * from './getCheckedValidator';
+export { default as getVedleggValidator } from './getVedleggValidator';
+export * from './getVedleggValidator';
 export { default as getDateRangeValidator } from './getDateRangeValidator';
 export * from './getDateRangeValidator';
 export { default as getDateValidator } from './getDateValidator';

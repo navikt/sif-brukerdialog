@@ -1,28 +1,37 @@
 {
-    "author": "NAV",
-    "description": "Monorepo for felleskode og selvbetjeningsdialoger i Sykdom i familien",
-    "license": "MIT",
     "name": "@navikt/sif-brukerdialog",
-    "repository": "https://github.com/navikt/sif-brukerdialog",
     "version": "0.0.1",
+    "private": true,
+    "description": "Monorepo for felleskode og selvbetjeningsdialoger i Sykdom i familien",
     "bugs": {
         "url": "https://github.com/navikt/sif-brukerdialog/issues"
     },
-    "dependencies": {
-        "@changesets/cli": "2.29.7",
-        "tailwindcss": "4.1.13",
-        "turbo": "2.5.8"
-    },
-    "devDependencies": {
-        "@sif/eslint-config": "workspace:*",
-        "config": "workspace:*",
-        "gh-pages": "6.3.0",
-        "husky": "9.1.7",
-        "lint-staged": "16.2.3",
-        "prettier": "3.6.2",
-        "typescript": "5.9.2"
+    "repository": "https://github.com/navikt/sif-brukerdialog",
+    "license": "MIT",
+    "author": "NAV",
+    "type": "module",
+    "scripts": {
+        "build": "turbo build",
+        "build-storybook": "turbo build-storybook",
+        "clean": "turbo clean",
+        "clean:output": "node scripts/clean-output.mjs",
+        "clean-all": "turbo clean && rm -rf node_modules",
+        "codegen:dev": "turbo run codegen:dev",
+        "codegen:prod": "turbo run codegen:prod",
+        "deploy-gh-pages": "gh-pages -d gh-pages",
+        "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+        "lint": "turbo lint",
+        "lint:eslint": "turbo lint:eslint",
+        "lint:fix": "turbo lint:fix",
+        "lint:tsc": "turbo lint:tsc",
+        "prepare": "husky install",
+        "sort-package-json": "sort-package-json \"package.json\" \"apps/*/package.json\" \"apps-intern/*/package.json\" \"packages/*/package.json\" \"server*/package.json\"",
+        "test": "turbo test"
     },
     "lint-staged": {
+        "**/package.json": [
+            "sort-package-json"
+        ],
         "apps/**/*.{ts,tsx,js,jsx, css}": [
             "prettier --write"
         ],
@@ -30,36 +39,33 @@
             "prettier --write"
         ]
     },
-    "scripts": {
-        "build": "turbo build",
-        "build-storybook": "turbo build-storybook",
-        "clean-all": "turbo clean && rm -rf node_modules",
-        "clean": "turbo clean",
-        "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-        "lint": "turbo lint",
-        "lint:eslint": "turbo lint:eslint",
-        "lint:tsc": "turbo lint:tsc",
-        "lint:fix": "turbo lint:fix",
-        "prepare": "husky install",
-        "test": "turbo test",
-        "codegen": "turbo run codegen",
-        "deploy-gh-pages": "gh-pages -d gh-pages"
+    "dependencies": {
+        "@changesets/cli": "2.31.0",
+        "glob": "13.0.6",
+        "tailwindcss": "4.3.0",
+        "turbo": "2.9.16"
     },
-    "workspaces": [
-        "apps/*",
-        "packages/*",
-        "server",
-        "server-ungdomsytelse-veileder"
-    ],
-    "overrides": {
-        "glob-parent": ">=5.1.2"
+    "devDependencies": {
+        "@sif/eslint-config": "workspace:*",
+        "config": "workspace:*",
+        "gh-pages": "6.3.0",
+        "husky": "9.1.7",
+        "lint-staged": "17.0.7",
+        "prettier": "3.8.3",
+        "sort-package-json": "4.0.0",
+        "typescript": "6.0.3",
+        "vitest": "4.1.8"
     },
-    "private": true,
-    "packageManager": "yarn@4.5.3",
-    "resolutions": {
-        "@swc/core": "1.5.7",
-        "react": "19.1.0",
-        "react-dom": "19.1.0",
-        "@types/react": "19.1.7"
+    "packageManager": "pnpm@10.33.4",
+    "pnpm": {
+        "overrides": {
+            "axios": "1.16.1",
+            "brace-expansion@^5": ">=5.0.5",
+            "js-yaml@3.13.1": "^3.14.2",
+            "jsdom": "28.1.0",
+            "picomatch@^2": "^2.3.2",
+            "picomatch@^4": "^4.0.4",
+            "protobufjs": "8.0.2"
+        }
     }
 }

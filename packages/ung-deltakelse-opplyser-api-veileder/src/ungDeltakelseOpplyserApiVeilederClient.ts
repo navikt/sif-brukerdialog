@@ -1,10 +1,11 @@
 import { EnvKey, getUngDeltakelseOpplyserBrowserEnv } from '@navikt/sif-common-env';
 import { AxiosError } from 'axios';
 import { v4 } from 'uuid';
+
 import { client } from './veileder';
 
 interface InitOptions {
-    onUnAuthorized?: () => void;
+    onUnauthorized?: () => void;
     isUnauthorized?: (error: AxiosError) => boolean;
     headers?: Record<string, string>;
 }
@@ -24,8 +25,8 @@ export const initUngDeltakelseOpplyserApiVeilederClient = (options?: InitOptions
     client.instance.interceptors.response.use(
         (response) => response,
         (error) => {
-            if (options?.isUnauthorized && options.isUnauthorized(error) && options?.onUnAuthorized) {
-                options.onUnAuthorized();
+            if (options?.isUnauthorized && options.isUnauthorized(error) && options?.onUnauthorized) {
+                options.onUnauthorized();
             }
             return Promise.reject(error);
         },

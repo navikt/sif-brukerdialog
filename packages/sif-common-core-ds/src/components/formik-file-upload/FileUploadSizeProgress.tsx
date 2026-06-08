@@ -16,7 +16,7 @@ const formatFileSize = (sizeInBytes: number) => {
 const FileUploadSizeProgress = ({ maxSize, usedSize }: Props) => {
     const id = useMemo(() => guid(), []);
     return (
-        <VStack gap="2">
+        <VStack gap="space-8">
             <ProgressBar value={usedSize} valueMax={maxSize} size="small" aria-labelledby={id} />
             <BodyShort size="small" id={id}>
                 Samlet størrelse for filene som er lastet opp er {formatFileSize(usedSize)}. Du kan laste opp maks{' '}

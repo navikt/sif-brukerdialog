@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { kvitteringMessages_nb } from '../pages/kvittering/i18n/nb';
 import { velkommenPageMessages_nb } from '../pages/velkommen/i18n/nb';
 import { deltBostedMessages_nb } from '../søknad/steps/delt-bosted/i18n/nb';
@@ -107,7 +108,10 @@ export const appMessages_nb = {
     'validation.arbeidsforhold.utbetalingsårsak.konfliktForklaring.stringIsTooShort':
         'Forklaringen må være på minst {min} tegn.',
     'validation.arbeidsforhold.utbetalingsårsak.konfliktForklaring.stringIsTooLong':
-        'Forklaringn kan være på maks {maks} tegn.',
+        'Forklaringen kan være på maks {maks} tegn.',
+    'validation.arbeidsforhold.utbetalingsårsak.konfliktForklaring.stringHasInvalidCharacters':
+        'Forklaringen inneholder ugyldige tegn. Ugyldige tegn kan for eksempel være emojier, spesialtegn som « », §, @, eller skjulte formateringstegn som innrykk, tabulatorer og listeformatering. Dette kan blant annet oppstå dersom tekst kopieres fra andre steder. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
+
     'validation.arbeidsforhold.utbetalingsårsak.vedlegg.noVedleggUploaded':
         'Ingen dokumenter med forklaring fra {arbeidsgivernavn} er lastet opp.',
     'validation.barn.ingenBarn': 'Du må legge til minst ett barn du har omsorg for',

@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+
 import { SøknadRoutes } from '../../../src/app/types/SøknadRoutes';
 import {
     fyllUtAnnetBarn,
@@ -8,9 +9,9 @@ import {
 import { routeUtils } from '../../utils/routeUtils';
 import { setNow } from '../../utils/setNow';
 
-test.beforeEach(async ({ page, context }) => {
+test.beforeEach(async ({ page }) => {
     await setNow(page);
-    await routeUtils.resumeFromRoute(page, context, SøknadRoutes.BARN);
+    await routeUtils.resumeFromRoute(page, SøknadRoutes.BARN);
     await expect(page.getByRole('heading', { name: 'Om barnet' })).toBeVisible();
 });
 

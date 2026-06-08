@@ -2,6 +2,7 @@ import { avbrytSøknadDialogMessages_nb } from '../components/avbrytSøknadDialo
 import { fortsettSøknadSenereDialogMessages_nb } from '../components/fortsettSøknadSenereDialog/i18n/nb';
 import { soknadErrorMessages_nb } from '../components/soknad-error-messages/i18n/nb';
 import { samtykkeFormMessages_nb } from '../modules/samtykke-form/i18n/nb';
+import { noAccessPageMessages_nb } from '../pages/no-access-page/i18n/nb';
 
 export const soknadMessages_nb = {
     'application.title': 'Applikasjonen', // Kun fallback - skal overstyres i hver app
@@ -14,4 +15,5 @@ export const soknadMessages_nb = {
     ...soknadErrorMessages_nb,
     ...avbrytSøknadDialogMessages_nb,
     ...fortsettSøknadSenereDialogMessages_nb,
+    ...noAccessPageMessages_nb,
 };

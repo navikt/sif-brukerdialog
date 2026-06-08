@@ -1,4 +1,5 @@
 import { dateToISODate } from '@navikt/sif-common-utils';
+
 import { FerieuttakIPeriodenApiData } from '../../types/søknadApiData/SøknadApiData';
 import { FerieuttakIPeriodenSøknadsdata } from '../../types/søknadsdata/FerieuttakIPeriodenSøknadsdata';
 

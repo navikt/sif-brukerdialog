@@ -1,4 +1,4 @@
-import { client } from '@navikt/k9-brukerdialog-prosessering-api/src/generated/ungdomsytelse/client.gen';
+import { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { getCommonEnv, getMaybeEnv } from '@navikt/sif-common-env';
 import { v4 } from 'uuid';
 
@@ -7,7 +7,7 @@ import { commonRequestHeader, isUnauthorized } from './';
 export const initK9BrukerdialogProsesseringApiClient = () => {
     const apiBaseUrl = (typeof window !== 'undefined' && window.location.origin) || '';
     /** Set config for generert klient */
-    client.setConfig({
+    ungdomsytelse.client.setConfig({
         withCredentials: false,
         headers: commonRequestHeader,
         baseURL: `${apiBaseUrl}${getMaybeEnv('K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH')}`,
@@ -16,7 +16,7 @@ export const initK9BrukerdialogProsesseringApiClient = () => {
     /**
      * Håndterer 401 (Unauthorized) feil ved å sende brukeren til innloggingssiden.
      */
-    client.instance.interceptors.response.use(
+    ungdomsytelse.client.instance.interceptors.response.use(
         (response) => response,
         (error) => {
             if (isUnauthorized(error)) {
@@ -29,7 +29,7 @@ export const initK9BrukerdialogProsesseringApiClient = () => {
     /**
      * Legg på X-Correlation-ID til alle requests for å kunne spore en request gjennom systemet.
      */
-    client.instance.interceptors.request.use(
+    ungdomsytelse.client.instance.interceptors.request.use(
         (config) => {
             config.headers.set('X-Correlation-ID', v4());
             return config;
@@ -56,7 +56,7 @@ export const initK9BrukerdialogProsesseringApiClient = () => {
     };
 
     /** Erstatter alle null verdier med undefined */
-    client.instance.interceptors.response.use(
+    ungdomsytelse.client.instance.interceptors.response.use(
         (response) => {
             response.data = convertNullToUndefined(response.data);
             return response;

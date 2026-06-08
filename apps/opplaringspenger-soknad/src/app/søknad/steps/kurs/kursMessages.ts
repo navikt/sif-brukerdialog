@@ -10,12 +10,28 @@ const nb = {
         'Hvis du ikke får treff på den institusjonen du har fått opplæring hos, trykker du på "Legg til" når du har skrevet navnet på institusjonen.',
     'steg.kurs.opplæringsinstitusjon.stringHasNoValue': '',
 
-    'steg.kurs.kursperioder.tittel': 'Hvilke dager søker du opplæringspenger?',
-    'steg.kurs.kursperioder.tekst':
-        'Du kan få opplæringspenger for perioder du er på opplæring, og eventuell reisetid til og fra opplæringen.',
+    'steg.kurs.enkeltdagEllerPeriode.spm': 'Gjelder søknaden enkeltdag eller sammenhengende periode?',
+    'steg.kurs.enkeltdagEllerPeriode.description':
+        'Du kan legge til flere enkeltdager eller perioder etter du har valgt.',
+    'steg.kurs.enkeltdagEllerPeriode.enkeltdag': 'Enkeltdag',
+    'steg.kurs.enkeltdagEllerPeriode.periode': 'Sammenhengende periode',
+
+    'steg.kurs.enkeltdager.tittel': 'Hvilke dager søker du opplæringspenger?',
+    'steg.kurs.enkeltdager.tekst': 'Legg til dager du er på opplæring eller kurs.',
+    'steg.kurs.enkeltdager.leggTil.label': 'Legg til ny dag',
+    'steg.kurs.enkeltdager.dag.tittel': 'Dag {dagNr}',
+
+    'steg.kurs.kursperioder.periode.tittel': 'Periode {periodeNr}',
+    'steg.kurs.kursperioder.tittel': 'Hvilke perioder søker du opplæringspenger for?',
+    'steg.kurs.kursperioder.tekst.tittel': 'Om opplæring eller reise på helgedager',
+    'steg.kurs.kursperioder.tekst.1':
+        'Legg til perioder du er på opplæring. Hvis du har reisedager i tillegg, legger du inn disse også.',
+    'steg.kurs.kursperioder.tekst.2':
+        'Du kan kun få opplæringspenger for ukedager (mandag til fredag). Derfor kan du ikke velge lørdager og søndager.',
     'steg.kurs.kursperioder.leggTil.label': 'Legg til ny periode',
 
-    'steg.kurs.reiserUtenforKursdager.label': 'Reiser du på dager du ikke har kurs eller opplæring?',
+    'steg.kurs.reiserUtenforKursdager.label':
+        'Er noen av dagene i {antallPerioder, plural, one {perioden} other {periodene}} som du søker for, kun reisedager?',
     'steg.kurs.reiserUtenforKursdager.info.tittel': 'Hva betyr dette?',
     'steg.kurs.reiserUtenforKursdager.info.tekst.1':
         'Hvis du må være borte fra jobb flere dager enn du har opplæring, kan du ha rett til opplæringspenger også de dagene du er på reise.',
@@ -26,8 +42,10 @@ const nb = {
 
     'steg.kurs.validation.opplæringsinstitusjon.stringIsTooShort':
         'Du må beskrive hvor opplæringen foregår med minst 2 tegn.',
+    'steg.kurs.validation.enkeltdagEllerPeriode.noValue':
+        'Du må velge om søknaden gjelder enkeltdag eller sammenhengende periode.',
     'steg.kurs.validation.reiserUtenforKursdager.yesOrNoIsUnanswered':
-        'Du må svare på om du reiser på dager du ikke har kurs eller opplæring.',
+        'Du må svare på noen av dagene i periodene som du søker for, kun er reisedager.',
     'steg.kurs.validation.reisedager.listIsEmpty':
         'Du har krysset av for at du reiser på dager du ikke har kurs eller opplæring, da må du legge til minst én dag med reise.',
     'steg.kurs.validation.reisedagerBeskrivelse.stringHasNoValue':
@@ -36,8 +54,12 @@ const nb = {
         'For få tegn. Du må beskrive hvorfor du reiser på andre dager enn du har kurs eller opplæring med flere tegn.',
     'steg.kurs.validation.reisedagerBeskrivelse.stringIsTooLong':
         'For mange tegn. Beskrivelsen kan ikke bestå av flere enn {antall} tegn.',
+    'steg.kurs.validation.reisedagerBeskrivelse.stringHasInvalidCharacters':
+        'Beskrivelsen inneholder ugyldige tegn. Ugyldige tegn kan for eksempel være emojier, spesialtegn som « », §, @, eller skjulte formateringstegn som innrykk, tabulatorer og listeformatering. Dette kan blant annet oppstå dersom tekst kopieres fra andre steder. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
+
     'steg.kurs.validation.reisedager.reisedagUtenforKursperiode':
         '{antallDager, plural, one {Én reisedag} other {# reisedager}} er utenfor søknadsperioden: {dager}. Dette kan skje hvis du har endret hvilke dager du søker opplæringspenger, etter at du har lagt til reisedag. Hvis du vil søke om opplæringspenger for disse dagene, må du inkludere dem i perioden du søker om opplæringspenger. Hvis du ikke søker opplæringspenger disse dagene, må du fjerne dem her.',
+    'steg.kurs.validation.reisedager.reisedagPåHelg': 'En reisedag kan ikke være en lørdag eller søndag.',
     'steg.kurs.validation.ferieuttak.ferieperiodeUtenforKursperiode':
         'Ferie er ikke innenfor dagene du søker. Dette kan skje hvis du har endret hvilke dager du søker opplæringspenger, etter at du har lagt til ferie. Du må endre eller fjerne ferie som ikke er innenfor dager du søker. Feriedager utenfor søknadsperiode: {dager}.',
     'steg.kurs.validation.opplæringsinstitusjon.stringHasNoValue': 'Du må fylle ut hvor opplæringen foregår.',
@@ -103,21 +125,39 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.kurs.opplæringsinstitusjon.readMore.content':
         'Viss du ikkje finn institusjonen der du har fått opplæring, trykk på "Legg til" etter at du har skrive inn namnet på institusjonen.',
     'steg.kurs.opplæringsinstitusjon.stringHasNoValue': '',
-    'steg.kurs.kursperioder.tittel': 'Kva for dagar søkjer du opplæringspengar?',
-    'steg.kurs.kursperioder.tekst':
-        'Du kan få opplæringspengar for periodar du er på opplæring, og eventuell reisetid til og frå opplæringa.',
+
+    'steg.kurs.enkeltdagEllerPeriode.spm': 'Gjeld søknaden enkeltdag eller samanhengande periode?',
+    'steg.kurs.enkeltdagEllerPeriode.description':
+        'Du kan leggje til fleire enkeltdagar eller periodar etter du har valt.',
+    'steg.kurs.enkeltdagEllerPeriode.enkeltdag': 'Enkeltdag',
+    'steg.kurs.enkeltdagEllerPeriode.periode': 'Samanhengande periode',
+
+    'steg.kurs.enkeltdager.tittel': 'Kva dagar søkjer du opplæringspengar?',
+    'steg.kurs.enkeltdager.tekst': 'Legg til dagar du er på opplæring eller kurs.',
+    'steg.kurs.enkeltdager.leggTil.label': 'Legg til ny dag',
+    'steg.kurs.enkeltdager.dag.tittel': 'Dag {dagNr}',
+
+    'steg.kurs.kursperioder.periode.tittel': 'Periode {periodeNr}',
+
+    'steg.kurs.kursperioder.tittel': 'Kva periodar søkjer du opplæringspengar for?',
+    'steg.kurs.kursperioder.tekst.tittel': 'Om opplæring eller reise på helgedagar',
+    'steg.kurs.kursperioder.tekst.1':
+        'Legg til periodar du er på opplæring. Om du har reisedagar i tillegg, legg du inn desse òg.',
+    'steg.kurs.kursperioder.tekst.2':
+        'Du kan berre få opplæringspengar for vekedagar (måndag til fredag). Difor kan du ikkje velje laurdagar og sundagar.',
     'steg.kurs.kursperioder.leggTil.label': 'Legg til ny periode',
-    'steg.kurs.reiserUtenforKursdager.label': 'Reiser du på dagar du ikkje har kurs eller opplæring?',
+    'steg.kurs.reiserUtenforKursdager.label': 'Er nokon av dagane i perioden du søkjer for, berre reisedagar?',
     'steg.kurs.reiserUtenforKursdager.info.tittel': 'Kva tyder dette?',
     'steg.kurs.reiserUtenforKursdager.info.tekst.1':
-        'Hvis du må være borte fra jobb flere dager enn du har opplæring, kan du ha rett til opplæringspenger også de dagene du er på reise.',
+        'Dersom du må vere borte frå jobb fleire dagar enn du har opplæring, kan du ha rett til opplæringspengar også dei dagane du er på reise.',
     'steg.kurs.reiserUtenforKursdager.info.tekst.2':
-        'Her informerer du oss om hvilke dager i søknadsperioden du må bruke for å reise til opplæringsstedet, og derfor ikke kunne jobbe som vanlig. Du kan kun registrere reisesdager som er innenfor perioden du søker om opplæringspenger.',
+        'Her informerer du oss om kva dagar i søknadsperioden du må bruke for å reise til opplæringsstaden, og difor ikkje kunne jobbe som vanleg. Du kan berre registrere reisedagar som er innanfor perioden du søkjer om opplæringspengar.',
     'steg.kurs.reiserUtenforKursdager.info.tekst.3':
-        'Du trenger ikke å fylle ut noe her hvis du reiser til og fra opplæringen samme dag som du har opplæring.',
-
+        'Du treng ikkje å fylle ut noko her dersom du reiser til og frå opplæringa same dag som du har opplæring.',
     'steg.kurs.validation.opplæringsinstitusjon.stringIsTooShort':
         'Du må beskrive kvar opplæringa føregår med minst 2 teikn.',
+    'steg.kurs.validation.enkeltdagEllerPeriode.noValue':
+        'Du må velje om søknaden gjeld enkeltdag eller samanhengande periode.',
     'steg.kurs.validation.reiserUtenforKursdager.yesOrNoIsUnanswered':
         'Du må svare på om du reiser på dagar du ikkje har kurs eller opplæring.',
     'steg.kurs.validation.reisedager.listIsEmpty':
@@ -128,6 +168,9 @@ const nn: Record<keyof typeof nb, string> = {
         'For få teikn. Du må beskrive kvifor du reiser på andre dagar enn du har kurs eller opplæring med fleire teikn.',
     'steg.kurs.validation.reisedagerBeskrivelse.stringIsTooLong':
         'For mange teikn. Beskrivinga kan ikkje bestå av fleire enn {antall} teikn.',
+    'steg.kurs.validation.reisedagerBeskrivelse.stringHasInvalidCharacters':
+        'Skildringa inneheld ugyldige teikn. Ugyldige teikn kan til dømes vere emojar, spesialteikn som « », §, @, eller skjulte formateringsteikn som innrykk, tabulatorar og listeformatering. Dette kan mellom anna oppstå dersom tekst vert kopiert frå andre stader. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
+    'steg.kurs.validation.reisedager.reisedagPåHelg': 'Ein reisedag kan ikkje vera ein laurdag eller sundag.',
     'steg.kurs.validation.reisedager.reisedagUtenforKursperiode':
         'Reisedag er ikkje innanfor dagane du søkjer. Dette kan skje om du har endra kva dagar du søkjer opplæringspengar, etter at du har lagt til reisedag. Du må endre eller fjerne reisedag som ikkje er innanfor dagane du søkjer.',
     'steg.kurs.validation.ferieuttak.ferieperiodeUtenforKursperiode':

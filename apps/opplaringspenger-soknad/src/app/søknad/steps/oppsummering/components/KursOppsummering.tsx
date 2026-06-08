@@ -1,4 +1,4 @@
-import { FormSummary, HStack, List, VStack } from '@navikt/ds-react';
+import { FormSummary, HStack, List } from '@navikt/ds-react';
 import EditStepLink from '@navikt/sif-common-soknad-ds/src/components/edit-step-link/EditStepLink';
 import { JaNeiSvar, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 import {
@@ -8,23 +8,26 @@ import {
     ISODateRangeToDateRange,
     ISODateToDate,
 } from '@navikt/sif-common-utils';
+
 import { AppText, useAppIntl } from '../../../../i18n';
 import {
     FerieuttakIPeriodenApiData,
     KursApiData,
     UtenlandsoppholdIPeriodenApiData,
 } from '../../../../types/søknadApiData/SøknadApiData';
+import { EnkeltdagEllerPeriode } from '../../kurs/KursStepForm';
 
 interface Props {
     kurs: KursApiData;
-    ferieuttakIPerioden: FerieuttakIPeriodenApiData;
-    utenlandsoppholdIPerioden: UtenlandsoppholdIPeriodenApiData;
+    ferieuttakIPerioden?: FerieuttakIPeriodenApiData;
+    utenlandsoppholdIPerioden?: UtenlandsoppholdIPeriodenApiData;
     onEdit?: () => void;
 }
 
 const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdIPerioden }: Props) => {
-    const { kursholder, kursperioder } = kurs;
+    const { kursholder, kursperioder, kursdager, enkeltdagEllerPeriode } = kurs;
     const { locale } = useAppIntl();
+
     return (
         <>
             <FormSummary>
@@ -42,51 +45,80 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdI
                             {typeof kursholder === 'string' ? kursholder : kursholder.navn}
                         </FormSummary.Value>
                     </FormSummary.Answer>
-                    <FormSummary.Answer>
-                        <FormSummary.Label>
-                            <AppText id="oppsummering.kurs.perioder" />
-                        </FormSummary.Label>
-                        <FormSummary.Value>
-                            <List>
-                                {kursperioder.map((kursperiode) => {
-                                    const periodeString = dateRangeFormatter.getDateRangeText(
-                                        ISODateRangeToDateRange(kursperiode),
-                                        locale,
-                                    );
-                                    return <List.Item key={periodeString}>{periodeString}</List.Item>;
-                                })}
-                            </List>
-                        </FormSummary.Value>
-                    </FormSummary.Answer>
-                    <FormSummary.Answer>
-                        <FormSummary.Label>Reiser du på dager du ikke har kurs eller opplæring?</FormSummary.Label>
-                        <FormSummary.Value>
-                            <JaNeiSvar harSvartJa={kurs.reise.reiserUtenforKursdager} />
-                        </FormSummary.Value>
-                    </FormSummary.Answer>
+                    {enkeltdagEllerPeriode === EnkeltdagEllerPeriode.PERIODE ? (
+                        <FormSummary.Answer>
+                            <FormSummary.Label>
+                                <AppText id="oppsummering.kurs.perioder" />
+                            </FormSummary.Label>
+                            <FormSummary.Value>
+                                <List>
+                                    {kursperioder.map((kursperiode) => {
+                                        const periodeString = dateRangeFormatter.getDateRangeText(
+                                            ISODateRangeToDateRange(kursperiode),
+                                            locale,
+                                            { compact: false },
+                                        );
+                                        return <List.Item key={periodeString}>{periodeString}</List.Item>;
+                                    })}
+                                </List>
+                            </FormSummary.Value>
+                        </FormSummary.Answer>
+                    ) : (
+                        <FormSummary.Answer>
+                            <FormSummary.Label>
+                                <AppText id="oppsummering.kurs.enkeltdager" />
+                            </FormSummary.Label>
+                            <FormSummary.Value>
+                                <List>
+                                    {kursdager.map((kursdag) => {
+                                        return (
+                                            <List.Item key={kursdag.dato}>
+                                                <div>
+                                                    <span>{dateFormatter.full(ISODateToDate(kursdag.dato))}</span>
+                                                </div>
+                                            </List.Item>
+                                        );
+                                    })}
+                                </List>
+                            </FormSummary.Value>
+                        </FormSummary.Answer>
+                    )}
+                    {kurs.reise ? (
+                        <FormSummary.Answer>
+                            <FormSummary.Label>
+                                <AppText
+                                    id="steg.kurs.reiserUtenforKursdager.label"
+                                    values={{ antallPerioder: kursperioder.length }}
+                                />
+                            </FormSummary.Label>
+                            <FormSummary.Value>
+                                <JaNeiSvar harSvartJa={kurs.reise.reiserUtenforKursdager} />
+                            </FormSummary.Value>
+                        </FormSummary.Answer>
+                    ) : null}
 
-                    {kurs.reise.reiserUtenforKursdager ? (
+                    {kurs.reise?.reiserUtenforKursdager ? (
                         <>
                             <FormSummary.Answer>
-                                <FormSummary.Label>Reisedager uten kurs eller opplæring</FormSummary.Label>
+                                <FormSummary.Label>
+                                    <AppText id="oppsummering.kurs.reisedager.utenforKurs" />
+                                </FormSummary.Label>
                                 <FormSummary.Value>
-                                    <VStack>
-                                        <List>
-                                            {kurs.reise.reisedager.map((reisedag) => {
-                                                return (
-                                                    <List.Item key={reisedag}>
-                                                        {capsFirstCharacter(
-                                                            dateFormatter.dayCompactDate(ISODateToDate(reisedag)),
-                                                        )}
-                                                    </List.Item>
-                                                );
-                                            })}
-                                        </List>
-                                    </VStack>
+                                    <List>
+                                        {kurs.reise.reisedager.map((reisedag) => {
+                                            return (
+                                                <List.Item key={reisedag}>
+                                                    {capsFirstCharacter(dateFormatter.full(ISODateToDate(reisedag)))}
+                                                </List.Item>
+                                            );
+                                        })}
+                                    </List>
                                 </FormSummary.Value>
                             </FormSummary.Answer>
                             <FormSummary.Answer>
-                                <FormSummary.Label>Årsak til reisetid</FormSummary.Label>
+                                <FormSummary.Label>
+                                    <AppText id="oppsummering.kurs.reisedager.utenforKurs.arsak" />
+                                </FormSummary.Label>
                                 <FormSummary.Value>
                                     <Sitat>
                                         <TextareaSvar text={kurs.reise.reisedagerBeskrivelse} />
@@ -116,8 +148,8 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdI
                                         <List>
                                             {ferieuttakIPerioden.ferieuttak.map((ferieuttak) => (
                                                 <List.Item key={ferieuttak.fraOgMed}>
-                                                    {dateFormatter.compact(ISODateToDate(ferieuttak.fraOgMed))} -{' '}
-                                                    {dateFormatter.compact(ISODateToDate(ferieuttak.tilOgMed))}
+                                                    {dateFormatter.full(ISODateToDate(ferieuttak.fraOgMed))} -{' '}
+                                                    {dateFormatter.full(ISODateToDate(ferieuttak.tilOgMed))}
                                                 </List.Item>
                                             ))}
                                         </List>
@@ -148,10 +180,10 @@ const KursOppsummering = ({ onEdit, kurs, ferieuttakIPerioden, utenlandsoppholdI
                                         <List>
                                             {utenlandsoppholdIPerioden.opphold.map((opphold) => (
                                                 <List.Item key={opphold.fraOgMed}>
-                                                    <HStack gap="2">
+                                                    <HStack gap="space-8">
                                                         <div>
-                                                            {dateFormatter.compact(ISODateToDate(opphold.fraOgMed))} -{' '}
-                                                            {dateFormatter.compact(ISODateToDate(opphold.tilOgMed))}
+                                                            {dateFormatter.full(ISODateToDate(opphold.fraOgMed))} -{' '}
+                                                            {dateFormatter.full(ISODateToDate(opphold.tilOgMed))}:
                                                         </div>
                                                         <div>{opphold.landnavn}</div>
                                                     </HStack>

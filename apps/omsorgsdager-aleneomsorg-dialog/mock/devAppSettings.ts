@@ -6,7 +6,7 @@ export const getDevAppSettings = () => ({
     GITHUB_REF_NAME: 'main',
     NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL: '',
 
-    SIF_PUBLIC_AMPLITUDE_API_KEY: '123',
+    SIF_PUBLIC_ANALYTICS_API_KEY: '123',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
     SIF_PUBLIC_DEKORATOR_URL:
@@ -15,7 +15,7 @@ export const getDevAppSettings = () => ({
         'https://omsorgsdager-aleneomsorg-dialog.intern.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/soknad',
     SIF_PUBLIC_MINSIDE_URL: 'https://www.intern.dev.nav.no/minside',
     SIF_PUBLIC_OMS_IKKE_TILSYN_URL: 'https://ekstra-omsorgsdager-andre-forelder-ikke-tilsyn.intern.dev.nav.no/',
-    SIF_PUBLIC_USE_AMPLITUDE: 'true',
+    SIF_PUBLIC_USE_ANALYTICS: 'true',
     SIF_PUBLIC_FEATURE_NYNORSK: 'on',
     SIF_PUBLIC_USE_FARO: 'true',
 

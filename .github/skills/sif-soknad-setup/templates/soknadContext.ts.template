@@ -1,0 +1,11 @@
+// Eksempel: setup/context/soknadContext.ts
+// Tilpass: basePath, formValuesToSøknadsdata-referanse
+
+export const { SøknadContextProvider, useSøknadsflyt } = createSøknadContext<Søknadsdata, SøknadStepId>({
+    useStore: useSøknadStore as any,
+    stepConfig: søknadStepConfig,
+    stepOrder: søknadStepOrder,
+    formValuesToSøknadsdata,
+    getSøknadsdataForStep: (stepId, søknadsdata) => søknadsdata?.[stepId],
+    basePath: '/soknad', // ← tilpass
+});

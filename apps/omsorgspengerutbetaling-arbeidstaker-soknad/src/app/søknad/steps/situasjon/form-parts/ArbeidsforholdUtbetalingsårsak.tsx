@@ -39,7 +39,7 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName, andr
     });
 
     return (
-        <VStack gap="8">
+        <VStack gap="space-32">
             <RadioGroup
                 radios={[
                     {
@@ -70,13 +70,17 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName, andr
                         : undefined;
                 }}
             />
-
             {utbetalingsårsak === Utbetalingsårsak.konfliktMedArbeidsgiver && (
                 <>
                     <Textarea
                         name={getFieldName(ArbeidsforholdFormFields.konfliktForklaring)}
                         validate={(value) => {
-                            const error = getStringValidator({ minLength: 5, maxLength: 2000, required: true })(value);
+                            const error = getStringValidator({
+                                minLength: 5,
+                                maxLength: 2000,
+                                required: true,
+                                disallowInvalidBackendCharacters: true,
+                            })(value);
                             switch (error) {
                                 case ValidateStringError.stringHasNoValue:
                                     return {
@@ -105,7 +109,7 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName, andr
                         )}
                         data-testid="konfliktMedArbeidsgiver-forklaring"
                     />
-                    <VStack gap="4">
+                    <VStack gap="space-16">
                         <FormikFileUpload
                             headingLevel="3"
                             label={text('step.situasjon.arbeidsforhold.utbetalingsårsak.vedlegg')}

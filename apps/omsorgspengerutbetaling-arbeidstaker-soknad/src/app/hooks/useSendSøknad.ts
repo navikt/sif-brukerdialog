@@ -1,5 +1,5 @@
 import { OmsorgspengerutbetalingArbeidstakerApp } from '@navikt/sif-app-register';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { getInnsendingService, InnsendingType } from '@navikt/sif-common-api';
 import { AxiosError } from 'axios';
 import { useState } from 'react';
@@ -16,7 +16,7 @@ export const useSendSøknad = () => {
     const { locale } = useAppIntl();
     const navigateTo = useNavigate();
 
-    const { logSoknadSent } = useAmplitudeInstance();
+    const { logSoknadSent } = useAnalyticsInstance();
 
     const sendSøknad = (apiData: SøknadApiData) => {
         setIsSubmitting(true);

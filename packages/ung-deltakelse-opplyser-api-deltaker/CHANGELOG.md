@@ -1,5 +1,360 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.3.19
+
+### Patch Changes
+
+- Oppdatere versjonsnumre etter codegen endringer + utvide codegenUtils pga | null fra openapi
+
+## 0.3.18
+
+### Patch Changes
+
+- Oppdatert codegen:prod
+
+## 0.3.17
+
+### Patch Changes
+
+- 062d83e: Codegen prod
+
+## 0.3.16
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.93
+
+## 0.3.15
+
+### Patch Changes
+
+- Codegen:prod
+
+## 0.3.14
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.92
+
+## 0.3.13
+
+### Patch Changes
+
+- Inntektsmelding og splitt av sak i Dine pleiepenger. Tilhørende codegen + noe felleskoderoppdateringer
+
+## 0.3.12
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.91
+
+## 0.3.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.90
+
+## 0.3.10
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.89
+
+## 0.3.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.88
+
+## 0.3.8
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.87
+
+## 0.3.7
+
+### Patch Changes
+
+- 69fe53c: Pakkeoppdateringer - minor/patch + major portable text
+- Updated dependencies [69fe53c]
+    - @navikt/sif-common-api@0.4.86
+
+## 0.3.6
+
+### Patch Changes
+
+- fc216a0: Pakkeoppdateringer - minor/patch
+- Updated dependencies [fc216a0]
+    - @navikt/sif-common-api@0.4.85
+
+## 0.3.5
+
+### Patch Changes
+
+- Updated dependencies [e8491a9]
+    - @navikt/sif-common-api@0.4.84
+
+## 0.3.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.83
+
+## 0.3.3
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.82
+
+## 0.3.2
+
+### Patch Changes
+
+- Updated dependencies [bc42630]
+    - @navikt/sif-common-api@0.4.81
+
+## 0.3.1
+
+### Patch Changes
+
+- Updated dependencies [292ac7b]
+    - @navikt/sif-common-api@0.4.80
+
+## 0.3.0
+
+### Minor Changes
+
+- Oppdatere til gjelderDelerAvMåned flagg på oppgaver for inntekt og kontroll av inntekt
+
+## 0.2.8
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.79
+
+## 0.2.7
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.78
+
+## 0.2.6
+
+### Patch Changes
+
+- Updated dependencies [3aeced0]
+    - @navikt/sif-common-api@0.4.77
+
+## 0.2.5
+
+### Patch Changes
+
+- Updated dependencies [ff62092]
+    - @navikt/sif-common-api@0.4.76
+
+## 0.2.4
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.75
+
+## 0.2.3
+
+### Patch Changes
+
+- Pakkeoppdateringer
+    - @navikt/sif-common-api@0.4.74
+
+## 0.2.2
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.73
+
+## 0.2.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.72
+
+## 0.2.0
+
+### Minor Changes
+
+- Regenererte codegens med mer cleanup
+
+## 0.1.45
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.71
+
+## 0.1.44
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.70
+
+## 0.1.43
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.69
+
+## 0.1.42
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.68
+
+## 0.1.41
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.67
+
+## 0.1.40
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.66
+
+## 0.1.39
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.65
+
+## 0.1.38
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.64
+
+## 0.1.37
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.63
+
+## 0.1.36
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.62
+
+## 0.1.35
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.61
+
+## 0.1.34
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.60
+
+## 0.1.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+    - @navikt/sif-common-api@0.4.59
+
+## 0.1.32
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.58
+
+## 0.1.31
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.57
+
+## 0.1.30
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.56
+
+## 0.1.29
+
+### Patch Changes
+
+- 52d9b9e: Pakkeoppdateringer - minor/patch
+- Updated dependencies [52d9b9e]
+    - @navikt/sif-common-api@0.4.55
+
+## 0.1.28
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.54
+
+## 0.1.27
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.53
+
+## 0.1.26
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-api@0.4.52
+
 ## 0.1.25
 
 ### Patch Changes

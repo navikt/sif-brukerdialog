@@ -6,7 +6,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Container from '../components/container/Container';
 import { messages } from '../utils/message';
-import '@navikt/ds-css/darkside';
+import '@navikt/ds-css';
 import '../components/section-panel/circle-mask/circleMask.scss';
 import '../components/section-panel/sectionPanel.scss';
 import '../styles/buttonRow.scss';

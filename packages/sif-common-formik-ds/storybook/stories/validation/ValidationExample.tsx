@@ -42,7 +42,6 @@ const ValidationExample = () => {
         <>
             <h2>Validering</h2>
             <p>sif-common-formik komponenter med validering</p>
-
             <TypedFormikWrapper<FormValues>
                 initialValues={initialValues}
                 onSubmit={(values) => {
@@ -85,7 +84,6 @@ const error = getYesOrNoValidator()(value);
                                     }}
                                 />
                             </ValidationPanel>
-
                             <ValidationPanel
                                 title="Fritekst"
                                 code={`
@@ -336,7 +334,7 @@ const errorToDate = getDateRangeValidator(options).validateToDate(value);
                                         },
                                     }}
                                 />
-                                <Box marginBlock="10 0">
+                                <Box marginBlock="space-40 space-0">
                                     <ValidationErrorList
                                         title="Feilmeldinger - Sluttdato"
                                         errors={{
@@ -399,11 +397,11 @@ const error = getFødselsnummerValidator(options)(value);
                                     <Form.TextField
                                         name={FormFields.fødselsnummer}
                                         width="m"
-                                        description='Eksempelfødselsnummeret "19081988075" er ditt eget, og er ikke tillatt'
+                                        description='Eksempelfødselsnummeret "17420373147" er ditt eget, og er ikke tillatt'
                                         label="Hva er barnets fødselsnummer / D-nummer?"
                                         validate={getFødselsnummerValidator({
                                             required: true,
-                                            disallowedValues: ['19081988075'],
+                                            disallowedValues: ['17420373147'],
                                         })}
                                     />
                                 </Panel>
@@ -645,7 +643,6 @@ const error = getCheckedValidator()(value);
                                     }}
                                 />
                             </ValidationPanel>
-
                             <ValidationPanel
                                 title="TimeInput"
                                 code={`

@@ -1,56 +1,40 @@
-import { Box, Tabs, VStack } from '@navikt/ds-react';
-import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
-import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import SøkerInfo from './components/SøkerInfo';
-import { useInitialData } from './hooks/useInitialData';
 import '@navikt/ds-css';
-import BarnInfo from './components/BarnInfo';
-import ArbeidsgiverInfo from './components/ArbeidsgiverInfo';
-import DemoForm from './forms/DemoForm';
+import './app.css';
 
-const App = () => {
-    const { initialData, isLoading } = useInitialData();
+import { FaroProvider } from '@navikt/sif-common-faro';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { IntlProvider } from 'react-intl';
+import { BrowserRouter } from 'react-router-dom';
 
-    if (isLoading || !initialData) {
-        return (
-            <Page title="Henter informasjon">
-                <center>
-                    <LoadingSpinner size="3xlarge" />
-                </center>
-            </Page>
-        );
-    }
+import { initApiClients } from './app/api/initApiClients';
+import { applicationIntlMessages } from './app/i18n';
+import { getAppEnv } from './app/setup/env/appEnv';
+import { AppErrorBoundary } from './app/setup/wrappers/AppErrorBoundary';
+import { ScenarioHeader } from './demo/ScenarioHeader';
+import { InitialDataLoader } from './InitialDataLoader';
 
-    const { søker, barn, arbeidsgivere } = initialData;
+initApiClients();
+
+const appEnv = getAppEnv();
+const queryClient = new QueryClient();
+const basePath = appEnv.PUBLIC_PATH;
+
+export const App = () => {
     return (
-        <Page title="Forside">
-            <VStack gap="10">
-                <DemoForm />
-                <Tabs defaultValue="arbeidsgivere">
-                    <Tabs.List>
-                        <Tabs.Tab value="søker" label="Søker" />
-                        <Tabs.Tab value="barn" label="Barn" />
-                        <Tabs.Tab value="arbeidsgivere" label="Arbeidsgivere" />
-                    </Tabs.List>
-                    <Tabs.Panel value="søker">
-                        <Box paddingBlock="4">
-                            <SøkerInfo søker={søker} />
-                        </Box>
-                    </Tabs.Panel>
-                    <Tabs.Panel value="barn">
-                        <Box paddingBlock="4">
-                            <BarnInfo barn={barn} />
-                        </Box>
-                    </Tabs.Panel>
-                    <Tabs.Panel value="arbeidsgivere">
-                        <Box paddingBlock="4">
-                            <ArbeidsgiverInfo arbeidsgivere={arbeidsgivere} />
-                        </Box>
-                    </Tabs.Panel>
-                </Tabs>
-            </VStack>
-        </Page>
+        <FaroProvider
+            applicationKey="sif-demo-app"
+            appVersion={appEnv.APP_VERSION}
+            isActive={appEnv.SIF_PUBLIC_USE_FARO === 'true'}>
+            <AppErrorBoundary>
+                <QueryClientProvider client={queryClient}>
+                    <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
+                        <BrowserRouter basename={basePath}>
+                            {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
+                            <InitialDataLoader />
+                        </BrowserRouter>
+                    </IntlProvider>
+                </QueryClientProvider>
+            </AppErrorBoundary>
+        </FaroProvider>
     );
 };
-
-export default App;

@@ -1,10 +1,10 @@
-import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { ApplikasjonHendelse, useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import * as apiUtils from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { isAxiosError } from 'axios';
 import { useEffect } from 'react';
 
 export const useVerifyUserOnWindowFocus = (userId: string, getUserId: () => Promise<string>) => {
-    const { logHendelse } = useAmplitudeInstance();
+    const { logHendelse } = useAnalyticsInstance();
     useEffect(() => {
         const handleFocus = async () => {
             try {

@@ -1,23 +1,20 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
+
 import { IntlTextFn } from '../../i18n';
-import { Pleietrengende } from '../../server/api-models/PleietrengendeSchema';
+import { Pleietrengende } from '../../types';
 import { personaliaUtils } from '../personaliaUtils';
 
 const pleietrengendeMedNavn: Pleietrengende = {
     anonymisert: false,
-    aktørId: '123',
     fødselsdato: ISODateToDate('2021-01-01'),
     fornavn: 'Ola',
     etternavn: 'Nordmann',
     mellomnavn: 'Nord',
-    identitetsnummer: '12345678910',
 };
 
 const pleietrengendeAnonymisert: Pleietrengende = {
     anonymisert: true,
-    aktørId: '123',
     fødselsdato: ISODateToDate('2021-01-01'),
-    identitetsnummer: '12345678910',
 };
 
 describe('personaliaUtils', () => {

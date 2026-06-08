@@ -1,5 +1,7 @@
 import { Theme } from '@navikt/ds-react';
-import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { useRegistrerteBarn } from '@sif/api/k9-prosessering';
+import { ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
+import { kontonummerFallback, useKontonummer } from '@sif/api/ung-deltaker';
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -11,19 +13,13 @@ import IngenSendSøknadOppgave from '../../pages/IngenSendSøknadOppgave';
 import UngLoadingPage from '../../pages/UngLoadingPage';
 import { AppRoutes } from '../../utils/AppRoutes';
 import { SøknadProvider } from './context/SøknadContext';
-import { useBarn } from './hooks/api/useBarn';
-import { useKontonummer } from './hooks/api/useKontonummer';
 import SøknadRouter from './SøknadRouter';
-import { HarKontonummerEnum } from './steg/oppsummering/oppsummeringUtils';
-import { KontonummerOppslagInfo } from './types';
-import { formaterKontonummer } from './utils/formaterKontonummer';
-
 const SøknadApp = () => {
-    const { søker, deltakelsePeriode } = useDeltakerContext();
+    const { søker, deltakelsePeriode, oppgaver } = useDeltakerContext();
     const { pathname } = useLocation();
     const navigate = useNavigate();
     const kontonummer = useKontonummer();
-    const barn = useBarn();
+    const barn = useRegistrerteBarn();
     const { text } = useAppIntl();
     const { logApiError } = useAnalyticsInstance();
 
@@ -44,37 +40,20 @@ const SøknadApp = () => {
         return <HentDeltakerErrorPage error={text('søknadApp.loading.error')} />;
     }
 
-    const getKontonummerInfo = (): KontonummerOppslagInfo => {
-        if (kontonummer.error) {
-            return {
-                harKontonummer: HarKontonummerEnum.UVISST,
-            };
-        }
-
-        return kontonummer.data?.harKontonummer && kontonummer.data.kontonummer
-            ? {
-                  harKontonummer: HarKontonummerEnum.JA,
-                  kontonummerFraRegister: kontonummer.data.kontonummer,
-                  formatertKontonummer: formaterKontonummer(kontonummer.data.kontonummer),
-              }
-            : {
-                  harKontonummer: HarKontonummerEnum.NEI,
-              };
-    };
-
-    const søknadOppgave = deltakelsePeriode.oppgaver.find((o) => o.oppgavetype === Oppgavetype.SØK_YTELSE);
+    const søknadOppgave = oppgaver.find((o) => o.parsedOppgavetype === ParsedOppgavetype.SØK_YTELSE);
 
     if (!søknadOppgave) {
         return <IngenSendSøknadOppgave />;
     }
 
     return (
-        <Theme>
+        <Theme hasBackground={!__IS_VEILEDER_DEMO__}>
             <SøknadProvider
                 søknadOppgave={søknadOppgave}
                 søker={søker}
                 deltakelsePeriode={deltakelsePeriode}
-                kontonummerInfo={getKontonummerInfo()}
+                oppgaver={oppgaver}
+                kontonummerInfo={kontonummer.data || kontonummerFallback}
                 barn={barn.data || []}>
                 <SøknadRouter />
             </SøknadProvider>

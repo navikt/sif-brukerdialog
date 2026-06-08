@@ -2,6 +2,7 @@ import { Accordion, Heading, VStack } from '@navikt/ds-react';
 import { ISODate, ISODateToDate, ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
+
 import { AppText } from '../../i18n';
 import { DagMedTid } from '../../types/DagMedTid';
 import DagerMedTidListe from '../dager-med-tid-liste/DagerMedTidListe';
@@ -37,7 +38,7 @@ const TidEnkeltdager = ({ dager, renderAsAccordion = false, visUke = false, head
     const months = groupBy(days, ({ dato }) => `${dato.getFullYear()}.${dato.getMonth()}`);
     if (!renderAsAccordion) {
         return (
-            <VStack gap="8">
+            <VStack gap="space-32">
                 {Object.keys(months).map((key) => {
                     const dagerMedTid = months[key];
                     if (dagerMedTid.length === 0) {
@@ -60,7 +61,7 @@ const TidEnkeltdager = ({ dager, renderAsAccordion = false, visUke = false, head
         );
     }
     return (
-        <Accordion data-color="info">
+        <Accordion data-color="neutral">
             {Object.keys(months).map((key) => {
                 const dagerMedTid = months[key];
                 if (dagerMedTid.length === 0) {

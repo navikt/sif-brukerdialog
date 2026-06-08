@@ -1,3 +1,18 @@
+import ArbeidsaktivitetBlock from '@app/components/arbeidsaktivitet-block/ArbeidsaktivitetBlock';
+import IkkeAnsattMelding from '@app/components/ikke-ansatt-melding/IkkeAnsattMelding';
+import InfoNormalarbeidstid from '@app/components/info-normalarbeidstid/InfoNormalarbeidstid';
+import { useOnValidSubmit } from '@app/hooks';
+import PersistStepFormValues from '@app/components/persist-step-form-values/PersistStepFormValues';
+import { StepId } from '@app/søknad/config/StepId';
+import actionsCreator from '@app/søknad/context/action/actionCreator';
+import { useStepFormValuesContext } from '@app/søknad/context/StepFormValuesContext';
+import {
+    ArbeidsaktivitetType,
+    SøknadContextState,
+    UkjentArbeidsforholdSøknadsdata,
+    ArbeidsgiverMedAnsettelseperioder,
+} from '@app/types';
+import { lagreSøknadState } from '@app/utils/lagreSøknadState';
 import { VStack } from '@navikt/ds-react';
 import {
     FormikNumberInput,
@@ -8,23 +23,8 @@ import {
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
-import {
-    ArbeidsaktivitetType,
-    ArbeidsgiverMedAnsettelseperioder,
-    SøknadContextState,
-    UkjentArbeidsforholdSøknadsdata,
-} from '@types';
 import { useIntl } from 'react-intl';
 
-import ArbeidsaktivitetBlock from '../../../components/arbeidsaktivitet-block/ArbeidsaktivitetBlock';
-import IkkeAnsattMelding from '../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
-import InfoNormalarbeidstid from '../../../components/info-normalarbeidstid/InfoNormalarbeidstid';
-import { useOnValidSubmit } from '../../../hooks';
-import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
-import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import { StepId } from '../../config/StepId';
-import actionsCreator from '../../context/action/actionCreator';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import {
     getErAnsattValidator,
     getTimerPerUkeValidator,
@@ -116,7 +116,7 @@ const UkjentArbeidsforholdForm = ({
                             submitPending={isSubmitting}
                             runDelayedFormValidation={true}
                             onBack={goBack}>
-                            <VStack gap="8">
+                            <VStack gap="space-32">
                                 {arbeidsgivereIkkeISak.map((arbeidsgiver) => {
                                     const arbeidsgiverFieldName = `${UkjentArbeidsforholdFormFields.arbeidsforhold}.${arbeidsgiver.key}`;
                                     const arbeidsgiverValues = (values.arbeidsforhold || {})[arbeidsgiver.key];

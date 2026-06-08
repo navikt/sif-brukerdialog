@@ -1,0 +1,26 @@
+[
+    {
+        "ytelseType": "PLEIEPENGER_SYKT_BARN",
+        "status": "I_BRUK",
+        "saksnummer": "1003QQ0",
+        "innsendingstidspunkt": "2026-02-06T14:22:16.848",
+        "kildesystem": "NAV_NO",
+        "arbeidsgiver": {
+            "organisasjon": { "navn": "INTERESSANT INTUITIV KATT DIAMETER", "organisasjonsnummer": "315853370" }
+        },
+        "nærRelasjon": false,
+        "journalpostId": "454079012",
+        "mottattDato": "2026-02-06",
+        "inntektBeløp": 45000,
+        "innsendingsårsak": "NY",
+        "erstattetAv": [],
+        "graderinger": [],
+        "naturalYtelser": [],
+        "utsettelsePerioder": [],
+        "startDatoPermisjon": "2025-12-15",
+        "oppgittFravær": [],
+        "refusjon": { "refusjonBeløpPerMnd": 45000, "refusjonOpphører": "2025-12-31" },
+        "inntektsmeldingType": "ORDINÆR",
+        "endringerRefusjon": []
+    }
+]

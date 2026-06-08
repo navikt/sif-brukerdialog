@@ -1,6 +1,8 @@
 import { OpptjeningAktivitet, UtenlandskNæringstype, VirksomhetApiData } from '@navikt/sif-common-forms-ds';
 import { ISODate, ISODateRange, ISODuration } from '@navikt/sif-common-utils';
+
 import { JobberIPeriodeSvar } from '../../søknad/steps/arbeidstid/ArbeidstidTypes';
+import { EnkeltdagEllerPeriode } from '../../søknad/steps/kurs/KursStepForm';
 import { VedleggType } from '../../søknad/steps/legeerklæring/LegeerklæringForm';
 import { ArbeidsgiverType } from '../Arbeidsgiver';
 import { OmBarnetApiData } from './OmBarnetApiData';
@@ -12,6 +14,10 @@ interface KursholderApiData {
     navn: string;
 }
 
+export interface KursdagApiData {
+    dato: ISODate;
+}
+
 export interface KursApiData {
     kursholder: KursholderApiData;
     reise:
@@ -20,8 +26,11 @@ export interface KursApiData {
               reisedager: ISODate[];
               reisedagerBeskrivelse?: string;
           }
-        | { reiserUtenforKursdager: false };
+        | { reiserUtenforKursdager: false }
+        | undefined;
+    enkeltdagEllerPeriode: EnkeltdagEllerPeriode;
     kursperioder: ISODateRange[];
+    kursdager: KursdagApiData[];
 }
 
 export interface TidEnkeltdagApiData {
@@ -30,7 +39,7 @@ export interface TidEnkeltdagApiData {
 }
 export interface ArbeidIPeriodeApiData {
     jobberIPerioden: JobberIPeriodeSvar;
-    enkeltdager: TidEnkeltdagApiData[];
+    enkeltdagerFravær: TidEnkeltdagApiData[];
 }
 
 export interface TidFasteDagerApiData {
@@ -155,7 +164,7 @@ export interface SøknadApiData {
         skalEttersendeVedlegg: boolean;
         vedleggSomSkalEttersendes?: VedleggType[];
     };
-    ferieuttakIPerioden: FerieuttakIPeriodenApiData;
-    utenlandsoppholdIPerioden: UtenlandsoppholdIPeriodenApiData;
+    ferieuttakIPerioden?: FerieuttakIPeriodenApiData;
+    utenlandsoppholdIPerioden?: UtenlandsoppholdIPeriodenApiData;
     dataBruktTilUtledningAnnetData: DataBruktTilUtledningAnnetDataJsonString;
 }

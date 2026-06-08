@@ -43,7 +43,7 @@ function delay(ms: number) {
 const Example = () => {
     const { values } = useFormikContext<any>();
     return (
-        <VStack gap="6">
+        <VStack gap="space-24">
             <FormikFileUpload
                 fieldName="vedlegg"
                 label="Last opp dokumenter"

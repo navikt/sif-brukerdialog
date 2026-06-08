@@ -80,7 +80,7 @@ const FormikFileUpload = ({
     });
 
     return (
-        <VStack gap="4">
+        <VStack gap="space-16">
             <Field validate={validate ? (value: any) => validate(value, fieldName) : undefined} name={fieldName}>
                 {({ field, form }: FieldProps) => {
                     const error = getErrorPropForFormikInput({
@@ -108,11 +108,9 @@ const FormikFileUpload = ({
                     );
                 }}
             </Field>
-
             {totalSizeExceedsLimit ? <VedleggTotalSizeAlert uploadLaterURL={uploadLaterURL} /> : null}
-
             {acceptedFiles.length > 0 && (
-                <VStack gap="2">
+                <VStack gap="space-8">
                     <Heading level={headingLevel} size="xsmall">
                         <CoreText
                             id="@core.formikFileUpload.dokumenterLastetOpp.tittel"
@@ -120,11 +118,11 @@ const FormikFileUpload = ({
                         />
                     </Heading>
                     {showSizeProgress && (
-                        <Box marginBlock="0 4">
+                        <Box marginBlock="space-0 space-16">
                             <FileUploadSizeProgress maxSize={MAX_TOTAL_VEDLEGG_SIZE_BYTES} usedSize={totalSize} />
                         </Box>
                     )}
-                    <VStack as="ul" gap="3">
+                    <VStack as="ul" gap="space-12">
                         {acceptedFiles.map((file, index) => (
                             <FileUpload.Item
                                 as="li"
@@ -144,13 +142,12 @@ const FormikFileUpload = ({
                     </VStack>
                 </VStack>
             )}
-
             {rejectedFiles.length > 0 && (
-                <VStack gap="2">
+                <VStack gap="space-8">
                     <Heading level={headingLevel} size="xsmall">
                         <CoreText id="@core.formikFileUpload.dokumenterAvvist.tittel" />
                     </Heading>
-                    <VStack as="ul" gap="3">
+                    <VStack as="ul" gap="space-12">
                         {rejectedFiles.map((rejected, index) => (
                             <FileUpload.Item
                                 as="li"

@@ -5,6 +5,7 @@ import useSøknadInitialData from '../api/useSøknadInitialData';
 import ResetMellomagringButton from '../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { AppText, useAppIntl } from '../i18n';
 import { RequestStatus } from '../types/RequestStatus';
+import { relocateToNoAccessPage } from '../utils/navigationUtils';
 import { SøknadContextProvider } from './context/SøknadContext';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import SøknadRouter from './SøknadRouter';
@@ -15,7 +16,14 @@ const Søknad = () => {
     const { status } = initialData;
 
     /** Loading */
-    if (status === RequestStatus.loading || status === RequestStatus.redirectingToLogin) {
+    if (
+        status === RequestStatus.loading ||
+        status === RequestStatus.redirectingToLogin ||
+        status === RequestStatus.noAccess
+    ) {
+        if (status === RequestStatus.noAccess) {
+            relocateToNoAccessPage();
+        }
         return <LoadingSpinner size="3xlarge" style="block" />;
     }
     /** Error */

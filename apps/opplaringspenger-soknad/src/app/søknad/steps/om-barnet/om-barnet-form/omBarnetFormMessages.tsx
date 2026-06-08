@@ -1,5 +1,6 @@
-import { FormattedMessage, useIntl } from 'react-intl';
+/* eslint-disable max-len */
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 const nb = {
     'omBarnetForm.hvilketBarn.spm': 'Hvilket barn gjelder søknaden?',
@@ -19,11 +20,13 @@ const nb = {
     'omBarnetForm.relasjon.spm': 'Hvilken relasjon har du til barnet?',
     'omBarnetForm.relasjonAnnet.spm':
         'Beskriv hvem du er i forhold til barnet, og i hvilke situasjoner du tar deg av og pleier barnet',
-    'omBarnetForm.relasjonAnnet.info.tittel': 'Hva betyr dette?',
+    'omBarnetForm.relasjonAnnet.tekst':
+        'Du må ikke skrive noe om andre enn deg selv og barnet, for eksempel skal du ikke skrive hvorfor du hjelper foreldre med omsorgen for barnet.',
+    'omBarnetForm.relasjonAnnet.info.tittel': 'Hvorfor trenger vi denne informasjonen?',
     'omBarnetForm.relasjonAnnet.info.hjelpetekst.1':
-        'For å få opplæringspenger må det være nødvendig med opplæring for at du skal kunne ta deg av og pleie barnet. Dette kan være andre omsorgspersoner enn barnets foreldre, så lenge du i perioder tar deg av barnet.',
+        'Hvis det er nødvendig med opplæring for å ta deg av og pleie et barn, kan du ha rett til opplæringspenger. Det kan også gjelde for andre omsorgspersoner enn barnets foreldre, så lenge du i perioder tar deg av barnet.',
     'omBarnetForm.relasjonAnnet.info.hjelpetekst.2':
-        'Vi må derfor vite mer om hvilken rolle du har overfor barnet, for å vurdere om det er nødvendig at du får denne opplæringen.',
+        'For å kunne vurdere om det er nødvendig at du får denne opplæringen, må vi derfor vite mer om hvilken rolle du har overfor barnet. Vi skal ikke ha opplysninger om hva andre omsorgspersoner gjør, kun opplysninger om din rolle overfor barnet du søker for.',
     'omBarnetForm.relasjonTilBarnet.MOR': 'Mor',
     'omBarnetForm.relasjonTilBarnet.FAR': 'Far',
     'omBarnetForm.relasjonTilBarnet.ANNET': 'Annet',
@@ -56,6 +59,8 @@ const nb = {
     'omBarnetForm.validation.relasjonTilBarnet.noValue': 'Du må velge din relasjon til barnet.',
     'omBarnetForm.validation.relasjonTilBarnetBeskrivelse.stringHasNoValue':
         'Du må beskrive hvem du er i forhold til barnet, og hvilken tilsynsrolle du har i perioden du søker for.',
+    'omBarnetForm.validation.relasjonTilBarnetBeskrivelse.stringHasInvalidCharacters':
+        'Beskrivelsen inneholder ugyldige tegn. Ugyldige tegn kan for eksempel være emojier, spesialtegn som « », §, @, eller skjulte formateringstegn som innrykk, tabulatorer og listeformatering. Dette kan blant annet oppstå dersom tekst kopieres fra andre steder. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
     'omBarnetForm.validation.sammeAdresse.noValue': 'Du må svare ja eller nei på om du bor sammen med barnet.',
     'omBarnetForm.validation.kroniskEllerFunksjonshemming.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om barnet har en kronisk/langvarig sykdom eller funksjonshemning.',
@@ -86,22 +91,24 @@ const nn: Record<keyof typeof nb, string> = {
     'omBarnetForm.gjelderAnnetBarn': 'Søknaden gjeld eit anna barn',
     'omBarnetForm.hvilketBarn.født': 'Fødd {dato}',
     'omBarnetForm.annetBarn.tittel': 'Anna barn',
-    'omBarnetForm.fnr.spm': 'Barnets fødselsnummer/D-nummer',
+    'omBarnetForm.fnr.spm': 'Fødselsnummer/D-nummer til barnet',
     'omBarnetForm.fnr.barnHarIkkeFnr': 'Barnet har ikkje fødselsnummer/D-nummer',
     'omBarnetForm.årsakManglerIdentitetsnummer.spm': 'Kvifor har ikkje barnet fødselsnummer eller D-nummer?',
     'omBarnetForm.årsakManglerIdentitetsnummer.NYFØDT': 'Barnet er nyfødd og har ikkje fått fødselsnummer enno',
     'omBarnetForm.årsakManglerIdentitetsnummer.BARNET_BOR_I_UTLANDET': 'Barnet bur i utlandet',
     'omBarnetForm.årsakManglerIdentitetsnummer.ANNET': 'Anna',
-    'omBarnetForm.navn': 'Barnets namn',
-    'omBarnetForm.fødselsdato': 'Barnets fødselsdato',
+    'omBarnetForm.navn': 'Namnet til barnet',
+    'omBarnetForm.fødselsdato': 'Fødselsdato til barnet',
     'omBarnetForm.relasjon.spm': 'Kva relasjon har du til barnet?',
     'omBarnetForm.relasjonAnnet.spm':
         'Skildr kven du er i forhold til barnet, og i kva situasjonar du tek deg av og pleier barnet.',
-    'omBarnetForm.relasjonAnnet.info.tittel': 'Kva tyder dette?',
+    'omBarnetForm.relasjonAnnet.tekst':
+        'Du må ikkje skrive noko om andre enn deg sjølv og barnet, til dømes skal du ikkje skrive kvifor du hjelper foreldre med omsorga for barnet.',
+    'omBarnetForm.relasjonAnnet.info.tittel': 'Kvifor treng me denne informasjonen?',
     'omBarnetForm.relasjonAnnet.info.hjelpetekst.1':
-        'For å få opplæringspengar må det vere naudsynt med opplæring for at du skal kunne ta deg av og pleie barnet. Dette kan vere andre omsorgspersonar enn barnets foreldre, så lenge du i periodar tek deg av barnet.',
+        'Viss det er naudsynt med opplæring for å ta deg av og pleie eit barn, kan du ha rett til opplæringspengar. Det kan også gjelde for andre omsorgspersonar enn foreldra til barnet, så lenge du i periodar tek deg av barnet.',
     'omBarnetForm.relasjonAnnet.info.hjelpetekst.2':
-        'Vi må difor vite meir om kva rolle du har overfor barnet for å vurdere om det er naudsynt at du får denne opplæringa.',
+        'For å kunne vurdere om det er naudsynt at du får denne opplæringa, må me difor vite meir om kva rolle du har overfor barnet. Me skal ikkje ha opplysningar om kva andre omsorgspersonar gjer, berre opplysningar om rolla di overfor barnet du søkjer for.',
     'omBarnetForm.relasjonTilBarnet.MOR': 'Mor',
     'omBarnetForm.relasjonTilBarnet.FAR': 'Far',
     'omBarnetForm.relasjonTilBarnet.ANNET': 'Anna',
@@ -115,23 +122,23 @@ const nn: Record<keyof typeof nb, string> = {
     'omBarnetForm.fødselsattest.vedlegg.legend': 'Dokument',
     'omBarnetForm.validation.barnetSøknadenGjelder.noValue':
         'Du må velje kva barn søknaden gjeld, eller velje at søknaden gjeld eit anna barn.',
-    'omBarnetForm.validation.barnetsFødselsnummer.fødselsnummerHasNoValue': 'Skriv inn barnets fødselsnummer.',
+    'omBarnetForm.validation.barnetsFødselsnummer.fødselsnummerHasNoValue': 'Skriv inn fødselsnummer til barnet.',
     'omBarnetForm.validation.barnetsFødselsnummer.fødselsnummerIsInvalid':
         'Du har oppgitt eit ugyldig fødselsnummer. Kontroller at du har skrive inn rett.',
     'omBarnetForm.validation.barnetsFødselsnummer.fødselsnummerIsNot11Chars':
         'Du har oppgitt eit ugyldig fødselsnummer. Eit gyldig fødselsnummer består av 11 siffer.',
     'omBarnetForm.validation.barnetsFødselsnummer.fødselsnummerIsNotAllowed':
-        'Du har oppgitt ditt eige fødselsnummer som barnets fødselsnummer. Skriv inn barnets fødselsnummer.',
+        'Du har oppgitt ditt eige fødselsnummer som fødselsnummer til barnet. Skriv inn fødselsnummer til barnet.',
     'omBarnetForm.validation.barnetsFødselsnummer.fødselsnummerAsHnrIsNotAllowed':
         'Du har oppgitt eit fødselsnummer som ikkje er tillate.',
-    'omBarnetForm.validation.barnetsFødselsdato.dateHasNoValue': 'Skriv inn barnets fødselsdato.',
+    'omBarnetForm.validation.barnetsFødselsdato.dateHasNoValue': 'Skriv inn fødselsdato til barnet.',
     'omBarnetForm.validation.barnetsFødselsdato.dateHasInvalidFormat':
-        'Barnets fødselsdato er ugyldig. Gyldig format er dd.mm.åååå.',
+        'Fødselsdato til barnet er ugyldig. Gyldig format er dd.mm.åååå.',
     'omBarnetForm.validation.barnetsFødselsdato.dateIsAfterMax':
         'Fødselsdato kan ikkje vere etter dagens dato. Skriv inn eller vel dato frå datoveljar.',
-    'omBarnetForm.validation.barnetsNavn.stringHasNoValue': 'Skriv inn barnets namn.',
+    'omBarnetForm.validation.barnetsNavn.stringHasNoValue': 'Skriv inn namn til barnet.',
     'omBarnetForm.validation.barnetsNavn.stringIsTooLong':
-        'Namnet på barnet kan ikkje innehalde meir enn {maks} teikn.',
+        'Namnet til barnet kan ikkje innehalde meir enn {maks} teikn.',
     'omBarnetForm.validation.relasjonTilBarnet.noValue': 'Du må velje din relasjon til barnet.',
     'omBarnetForm.validation.relasjonTilBarnetBeskrivelse.stringHasNoValue':
         'Du må skildre kven du er i forhold til barnet, og kva tilsynsrolle du har i perioden du søkjer for.',
@@ -146,6 +153,8 @@ const nn: Record<keyof typeof nb, string> = {
         'Skildringa av korleis barnets sjukdom eller funksjonshemming gir høgare risiko for fråvær frå jobb kan ikkje innehalde meir enn 2000 teikn.',
     'omBarnetForm.validation.høyereRisikoForFraværBeskrivelse.stringIsTooShort':
         'Skildringa av korleis barnets sjukdom eller funksjonshemming gir høgare risiko for fråvær frå jobb må vere minst 5 teikn.',
+    'omBarnetForm.validation.relasjonTilBarnetBeskrivelse.stringHasInvalidCharacters':
+        'Skildringa inneheld ugyldige teikn. Ugyldige teikn kan til dømes vere emojar, spesialteikn som « », §, @, eller skjulte formateringsteikn som innrykk, tabulatorar og listeformatering. Dette kan mellom anna oppstå dersom tekst vert kopiert frå andre stader. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
     'omBarnetForm.validation.årsakManglerIdentitetsnummer.noValue':
         'Du må svare på spørsmålet om kvifor barnet ikkje har fødselsnummer eller D-nummer.',
     'omBarnetForm.infoForFarVedNyttBarn.tittel': 'Er du registrert som far i folkeregisteret?',

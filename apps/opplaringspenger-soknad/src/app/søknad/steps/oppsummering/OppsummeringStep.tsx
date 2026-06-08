@@ -1,28 +1,30 @@
 import { ErrorSummary, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
-import { useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
+import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
+import { useSkyraReloader } from '@sif/surveys';
 import { useSøknadContext } from '../../../søknad/context/hooks/useSøknadContext';
 import SøknadStep from '../../../søknad/SøknadStep';
 import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';
 import { StepId } from '../../../types/StepId';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
-import ArbeidIPeriodenSummary from './arbeid-i-perioden-summary/ArbeidIPeriodenSummary';
 import ArbeidssituasjonSummary from './arbeidssituasjon-summary/ArbeidssituasjonSummary';
 import KursOppsummering from './components/KursOppsummering';
 import LegeerklæringOppsummering from './components/LegeerklæringOppsummering';
 import MedlemskapOppsummering from './components/MedlemskapOppsummering';
 import OmSøkerOppsummering from './components/OmSøkerOppsummering';
+import FraværIPeriodenSummary from './fravær-i-perioden-summary/FraværIPeriodenSummary';
 import OmBarnetSummary from './om-barnet-summary/OmBarnetSummary';
 import { getOppsummeringStepInitialValues } from './oppsummeringStepUtils';
 
@@ -44,6 +46,8 @@ const OppsummeringStep = () => {
     const {
         state: { søknadsdata, søker, frilansoppdrag, registrerteBarn, institusjoner },
     } = useSøknadContext();
+
+    useSkyraReloader();
 
     const stepId = StepId.OPPSUMMERING;
     const stepConfig = getSøknadStepConfig(søknadsdata);
@@ -93,20 +97,15 @@ const OppsummeringStep = () => {
                 initialValues={getOppsummeringStepInitialValues(søknadsdata)}
                 onSubmit={(values) => {
                     if (apiData) {
-                        sendSøknad(
-                            {
-                                ...apiData,
-                                harBekreftetOpplysninger:
-                                    values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
-                            },
-                            søker,
-                        );
+                        sendSøknad({
+                            ...apiData,
+                            harBekreftetOpplysninger: values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
+                        });
                     }
                 }}
                 renderForm={() => {
-                    const valgteDatoer = søknadsdata.kurs?.søknadsdatoer || [];
                     return (
-                        <VStack gap="8" data-testid="oppsummering">
+                        <VStack gap="space-32" data-testid="oppsummering">
                             <Form
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 submitDisabled={isSubmitting || hasInvalidSteps}
@@ -116,7 +115,7 @@ const OppsummeringStep = () => {
                                 submitPending={isSubmitting}
                                 backButtonDisabled={isSubmitting}
                                 onBack={goBack}>
-                                <VStack gap="8">
+                                <VStack gap="space-32">
                                     <OmSøkerOppsummering søker={søker} />
 
                                     <OmBarnetSummary
@@ -142,9 +141,8 @@ const OppsummeringStep = () => {
                                         onEdit={() => navigate(stepConfig[StepId.ARBEIDSSITUASJON].route)}
                                     />
 
-                                    <ArbeidIPeriodenSummary
+                                    <FraværIPeriodenSummary
                                         apiValues={apiData}
-                                        valgteDatoer={valgteDatoer}
                                         søknadsperiode={{
                                             from: ISODateToDate(apiData.fraOgMed),
                                             to: ISODateToDate(apiData.tilOgMed),

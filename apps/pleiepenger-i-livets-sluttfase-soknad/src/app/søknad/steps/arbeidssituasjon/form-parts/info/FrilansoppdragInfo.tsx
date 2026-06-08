@@ -9,7 +9,7 @@ interface Props {
 }
 
 const FrilansoppdragInfo = ({ frilansoppdrag }: Props) => (
-    <VStack gap="4">
+    <VStack gap="space-16">
         <Heading level="2" size="small">
             <AppText id="frilansoppdragInfo.tittel" />
         </Heading>

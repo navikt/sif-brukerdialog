@@ -3,7 +3,7 @@ import './oppsummeringStep.less';
 import { useAppIntl } from '@i18n/index';
 import { VStack } from '@navikt/ds-react';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { InvalidParameterViolation } from '@navikt/sif-common-api';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
@@ -19,7 +19,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { purge, sendApplication } from '../../api/api';
-import routeConfig from '../../config/routeConfig';
 import { SøkerdataContextConsumer } from '../../context/SøkerdataContext';
 import useLogSøknadInfo from '../../hooks/useLogSøknadInfo';
 import { AppText } from '../../i18n';
@@ -47,6 +46,7 @@ import NattevågOgBeredskapSummary from './nattevåk-og-beredskap-summary/Nattev
 import OmsorgstilbudSummary from './omsorgstilbud-summary/OmsorgstilbudSummary';
 import PeriodeSummary from './periode-summary/PeriodeSummary';
 import SøkerSummary from './søker-summary/SøkerSummary';
+import { useSkyraReloader } from '@sif/surveys';
 
 interface Props {
     values: SøknadFormValues;
@@ -57,7 +57,10 @@ interface Props {
 const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) => {
     const [sendingInProgress, setSendingInProgress] = useState<boolean>(false);
     const [soknadSent, setSoknadSent] = useState<boolean>(false);
+    const [sendSoknadFailed, setSendSoknadFailed] = useState<boolean>(false);
     const [invalidParameters, setInvalidParameters] = useState<InvalidParameterViolation[] | undefined>();
+
+    useSkyraReloader();
 
     const appIntl = useAppIntl();
     const { text, intl, locale } = appIntl;
@@ -65,7 +68,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
 
     const søknadStepConfig = getSøknadStepConfig(values);
 
-    const { logSoknadSent, logSoknadFailed, logUserLoggedOut } = useAmplitudeInstance();
+    const { logSoknadSent, logSoknadFailed, logUserLoggedOut } = useAnalyticsInstance();
     const { logSenderInnSøknadMedIngenFravær } = useLogSøknadInfo();
     const { søknadsdata } = useSøknadsdataContext();
 
@@ -79,6 +82,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
         }
         setInvalidParameters(undefined);
         setSendingInProgress(true);
+        setSendSoknadFailed(false);
         try {
             await sendApplication(apiValues);
             await logSoknadSent(PleiepengerSyktBarnApp.key, locale);
@@ -89,17 +93,21 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
             setSoknadSent(true);
             onApplicationSent(apiValues, søkerdata);
         } catch (error: any) {
-            if (isAxiosError(error) && isInvalidParameterErrorResponse(error.response?.data)) {
+            if (isAxiosError(error)) {
                 setSendingInProgress(false);
-                setInvalidParameters(error.response.data.violations);
-                appSentryLogger.logApiError(error as any);
+                setSendSoknadFailed(true);
+                if (isInvalidParameterErrorResponse(error.response?.data)) {
+                    setInvalidParameters(error.response.data.violations);
+                }
+                appSentryLogger.logApiError(error as any, 'sendSøknad-invalidParameters');
             } else if (isUnauthorized(error)) {
                 logUserLoggedOut('Ved innsending av søknad');
                 relocateToLoginPage();
             } else {
+                setSendingInProgress(false);
+                setSendSoknadFailed(true);
                 await logSoknadFailed(PleiepengerSyktBarnApp.navn);
-                appSentryLogger.logApiError(error);
-                navigate(routeConfig.ERROR_PAGE_ROUTE);
+                appSentryLogger.logApiError(error, 'sendSøknad');
             }
         }
     };
@@ -164,13 +172,13 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                         showSubmitButton={apiValuesValidationErrors === undefined}
                         isFinalSubmit={true}
                         buttonDisabled={sendingInProgress}
-                        showButtonSpinner={sendingInProgress}>
+                        requestPending={sendingInProgress}>
                         <FormLayout.Guide>
                             <p>
                                 <AppText id="steg.oppsummering.info" />
                             </p>
                         </FormLayout.Guide>
-                        <VStack gap="8">
+                        <VStack gap="space-32">
                             {apiValuesValidationErrors && apiValuesValidationErrors.length > 0 && (
                                 <ApiValidationSummary
                                     errors={apiValuesValidationErrors}
@@ -253,6 +261,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                 {invalidParameters && (
                                     <InnsendingFeiletInformasjon invalidParameter={invalidParameters} />
                                 )}
+                                {sendSoknadFailed && !invalidParameters && <InnsendingFeiletInformasjon />}
                             </div>
                         </VStack>
                     </SøknadFormStep>

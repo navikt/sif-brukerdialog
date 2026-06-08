@@ -9,10 +9,10 @@ export enum EnvKey {
     'SIF_PUBLIC_LOGIN_URL' = 'SIF_PUBLIC_LOGIN_URL',
     'SIF_PUBLIC_MINSIDE_URL' = 'SIF_PUBLIC_MINSIDE_URL',
     'SIF_PUBLIC_INNSYN_URL' = 'SIF_PUBLIC_INNSYN_URL',
-    'SIF_PUBLIC_AMPLITUDE_API_KEY' = 'SIF_PUBLIC_AMPLITUDE_API_KEY',
+    'SIF_PUBLIC_ANALYTICS_API_KEY' = 'SIF_PUBLIC_ANALYTICS_API_KEY',
     'SIF_PUBLIC_APPSTATUS_PROJECT_ID' = 'SIF_PUBLIC_APPSTATUS_PROJECT_ID',
     'SIF_PUBLIC_APPSTATUS_DATASET' = 'SIF_PUBLIC_APPSTATUS_DATASET',
-    'SIF_PUBLIC_USE_AMPLITUDE' = 'SIF_PUBLIC_USE_AMPLITUDE',
+    'SIF_PUBLIC_USE_ANALYTICS' = 'SIF_PUBLIC_USE_ANALYTICS',
     'SIF_PUBLIC_FEATURE_NYNORSK' = 'SIF_PUBLIC_FEATURE_NYNORSK',
     'K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH' = 'K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH',
     'K9_BRUKERDIALOG_PROSESSERING_API_SCOPE' = 'K9_BRUKERDIALOG_PROSESSERING_API_SCOPE',
@@ -26,6 +26,9 @@ export enum EnvKey {
     'UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH' = 'UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH',
     'UNG_DELTAKELSE_OPPLYSER_API_SCOPE' = 'UNG_DELTAKELSE_OPPLYSER_API_SCOPE',
     'UNG_DELTAKELSE_OPPLYSER_API_URL' = 'UNG_DELTAKELSE_OPPLYSER_API_URL',
+    'UNG_BRUKERDIALOG_API_FRONTEND_PATH' = 'UNG_BRUKERDIALOG_API_FRONTEND_PATH',
+    'UNG_BRUKERDIALOG_API_API_SCOPE' = 'UNG_BRUKERDIALOG_API_API_SCOPE',
+    'UNG_BRUKERDIALOG_API_API_URL' = 'UNG_BRUKERDIALOG_API_API_URL',
 }
 /**
  * ZOD schemas
@@ -39,14 +42,14 @@ export const baseEnvSchema = z.object({
 });
 
 export const commonEnvSchema = baseEnvSchema.extend({
-    [EnvKey.SIF_PUBLIC_AMPLITUDE_API_KEY]: z.string().min(1),
+    [EnvKey.SIF_PUBLIC_ANALYTICS_API_KEY]: z.string().min(1),
     [EnvKey.SIF_PUBLIC_APPSTATUS_DATASET]: z.string().min(1),
     [EnvKey.SIF_PUBLIC_APPSTATUS_PROJECT_ID]: z.string().min(1),
     [EnvKey.SIF_PUBLIC_DEKORATOR_URL]: z.string().min(1),
     [EnvKey.SIF_PUBLIC_LOGIN_URL]: z.string().min(1),
     [EnvKey.SIF_PUBLIC_MINSIDE_URL]: z.string().min(1),
     [EnvKey.SIF_PUBLIC_FEATURE_NYNORSK]: z.enum(['on', 'off']).optional(),
-    [EnvKey.SIF_PUBLIC_USE_AMPLITUDE]: z.string().optional(),
+    [EnvKey.SIF_PUBLIC_USE_ANALYTICS]: z.string().optional(),
     [EnvKey.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH]: z.string().min(1),
     [EnvKey.K9_BRUKERDIALOG_PROSESSERING_API_SCOPE]: z.string().min(1),
     [EnvKey.K9_BRUKERDIALOG_PROSESSERING_API_URL]: z.string().min(1),
@@ -84,3 +87,13 @@ export const ungDeltakelseOpplyserEnvSchema = z.object({
     [EnvKey.UNG_DELTAKELSE_OPPLYSER_API_URL]: z.string().min(1),
 });
 export type UngDeltakelseOpplyserBrowserEnv = z.infer<typeof ungDeltakelseOpplyserEnvSchema>;
+
+/**
+ * UngBrukerdialogApi
+ */
+export const ungBrukerdialogApiEnvSchema = z.object({
+    [EnvKey.UNG_BRUKERDIALOG_API_FRONTEND_PATH]: z.string().min(1),
+    [EnvKey.UNG_BRUKERDIALOG_API_API_SCOPE]: z.string().min(1),
+    [EnvKey.UNG_BRUKERDIALOG_API_API_URL]: z.string().min(1),
+});
+export type UngBrukerdialogApiBrowserEnv = z.infer<typeof ungBrukerdialogApiEnvSchema>;

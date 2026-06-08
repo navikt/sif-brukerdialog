@@ -11,7 +11,7 @@ interface Props {
 const ArbeidssituasjonArbeidsgivereIntro = ({ antallArbeidsforhold }: Props) => {
     const { text } = useAppIntl();
     return (
-        <VStack gap="2">
+        <VStack gap="space-8">
             <BodyLong>
                 {antallArbeidsforhold > 0 && (
                     <AppText
@@ -21,7 +21,6 @@ const ArbeidssituasjonArbeidsgivereIntro = ({ antallArbeidsforhold }: Props) => 
                 )}
                 {antallArbeidsforhold === 0 && <AppText id="steg.arbeidssituasjon.veileder.ingenArbeidsgiverFunnet" />}
             </BodyLong>
-
             <ExpandableInfo title={text('steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver.tittel')}>
                 <BodyLong>
                     <AppText id="steg.arbeidssituasjon.veileder.manglerDetArbeidsgiver" />

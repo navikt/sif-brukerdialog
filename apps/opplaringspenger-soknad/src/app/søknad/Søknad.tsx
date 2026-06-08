@@ -1,11 +1,14 @@
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
+
 import useSøknadInitialData from '../api/useSøknadInitialData';
 import ResetMellomagringButton from '../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { AppText, useAppIntl } from '../i18n';
+import { SkyraHandler, SkyraTestPage, SkyraSlug } from '@sif/surveys';
 import { RequestStatus } from '../types/RequestStatus';
-import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
+import { relocateToNoAccessPage } from '../utils/navigationUtils';
 import { SøknadContextProvider } from './context/SøknadContext';
+import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import SøknadRouter from './SøknadRouter';
 
 const Søknad = () => {
@@ -13,8 +16,19 @@ const Søknad = () => {
     const { text } = useAppIntl();
     const { status } = initialData;
 
+    if (globalThis.location.pathname.includes('skyra/test')) {
+        return <SkyraTestPage slugs={[SkyraSlug.opplaringspenger]} />;
+    }
+
     /** Loading */
-    if (status === RequestStatus.loading || status === RequestStatus.redirectingToLogin) {
+    if (
+        status === RequestStatus.loading ||
+        status === RequestStatus.redirectingToLogin ||
+        status === RequestStatus.noAccess
+    ) {
+        if (status === RequestStatus.noAccess) {
+            relocateToNoAccessPage();
+        }
         return <LoadingSpinner size="3xlarge" style="block" />;
     }
     /** Error */
@@ -43,6 +57,7 @@ const Søknad = () => {
     return (
         <SøknadContextProvider initialData={data}>
             <StepFormValuesContextProvider>
+                <SkyraHandler />
                 <SøknadRouter />
             </StepFormValuesContextProvider>
         </SøknadContextProvider>

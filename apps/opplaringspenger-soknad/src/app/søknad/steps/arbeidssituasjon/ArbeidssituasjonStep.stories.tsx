@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
-import { withAmplitudeProvider } from '../../../../storybook/decorators/withAmplitude';
+
+import { withAnalyticsProvider } from '../../../../storybook/decorators/withAnalyticsProvider';
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withRouterProvider } from '../../../../storybook/decorators/withRouter';
 import { withSøknadContextProvider } from '../../../../storybook/decorators/withSøknadContext';
@@ -8,7 +9,7 @@ import ArbeidssituasjonStep from './ArbeidssituasjonStep';
 const meta: Meta<typeof ArbeidssituasjonStep> = {
     title: 'Step/Arbeidssituasjon',
     component: ArbeidssituasjonStep,
-    decorators: [withIntl, (Story) => withSøknadContextProvider(Story), withAmplitudeProvider, withRouterProvider],
+    decorators: [withIntl, (Story) => withSøknadContextProvider(Story), withAnalyticsProvider, withRouterProvider],
     parameters: {
         mockData: [
             {
@@ -18,7 +19,7 @@ const meta: Meta<typeof ArbeidssituasjonStep> = {
                 response: {
                     organisasjoner: [
                         {
-                            navn: 'Arbeids- og velferdsetaten',
+                            navn: 'SNODIG FISKER',
                             organisasjonsnummer: '123451234',
                             ansattFom: '2019-09-25',
                             ansattTom: null,

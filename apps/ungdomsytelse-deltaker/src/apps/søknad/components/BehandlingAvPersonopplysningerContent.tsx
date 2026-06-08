@@ -1,12 +1,11 @@
 import { Box, Heading, List, VStack } from '@navikt/ds-react';
-
-import { AppText } from '../../../i18n';
-import getLenker from '../../../utils/lenker';
-import ExternalLink from './external-link/ExternalLink';
+import ExternalLink from '@shared/components/external-link/ExternalLink';
+import { AppText } from '@shared/i18n';
+import getLenker from '@shared/utils/lenker';
 
 const BehandlingAvPersonopplysningerContent = () => {
     return (
-        <VStack gap="2" paddingBlock="2 0">
+        <VStack gap="space-8" paddingBlock="space-8 space-0">
             <div>
                 <Heading level="3" size="xsmall" spacing={true} as="div">
                     <AppText id="personopplysninger.1" />
@@ -15,7 +14,6 @@ const BehandlingAvPersonopplysningerContent = () => {
                     <AppText id="personopplysninger.2" />
                 </p>
             </div>
-
             <div>
                 <Heading level="3" size="xsmall" as="div">
                     <AppText id="personopplysninger.3" />
@@ -35,8 +33,7 @@ const BehandlingAvPersonopplysningerContent = () => {
                     </List.Item>
                 </List>
             </div>
-
-            <Box marginBlock="0 5">
+            <Box marginBlock="space-0 space-20">
                 <AppText
                     id="personopplysninger.5"
                     values={{

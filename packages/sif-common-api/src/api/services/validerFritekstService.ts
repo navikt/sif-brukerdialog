@@ -5,10 +5,13 @@ export const validerFritekst = async (value: string): Promise<InvalidParameterEr
     try {
         await k9BrukerdialogApiClient.post(`/valider/fritekstfelt`, { verdi: value });
     } catch (e) {
-        if (e.response?.status === 400) {
-            const parseResult = invalidParameterErrorResponse.safeParse(e.response.data);
-            if (parseResult.success) {
-                return parseResult.data;
+        if (e !== null && typeof e === 'object' && 'response' in e) {
+            const err = e as { response: { status: number; data: unknown } };
+            if (err.response?.status === 400) {
+                const parseResult = invalidParameterErrorResponse.safeParse(err.response.data);
+                if (parseResult.success) {
+                    return parseResult.data;
+                }
             }
         }
     }

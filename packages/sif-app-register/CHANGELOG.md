@@ -1,5 +1,29 @@
 # @navikt/sif-app-register
 
+## 0.1.13
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+
+## 0.1.12
+
+### Patch Changes
+
+- Erstatte begrepet amplitude med analytics. Ingen logikk forandring. Dette er på grunn av at amplitude fases ut.
+
+## 0.1.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
+## 0.1.10
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 0.1.9
 
 ### Patch Changes

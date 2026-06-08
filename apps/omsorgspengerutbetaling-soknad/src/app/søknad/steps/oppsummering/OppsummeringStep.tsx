@@ -4,6 +4,7 @@ import { usePrevious } from '@navikt/sif-common-hooks';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { useEffect, useRef } from 'react';
+import { useSkyraReloader } from '@sif/surveys';
 
 import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
@@ -43,6 +44,8 @@ const OppsummeringStep = () => {
     const {
         state: { søknadsdata, søker, registrerteBarn },
     } = useSøknadContext();
+
+    useSkyraReloader();
 
     const stepId = StepId.OPPSUMMERING;
     const step = getSøknadStepConfigForStep(søknadsdata, stepId);
@@ -102,7 +105,7 @@ const OppsummeringStep = () => {
                 }}
                 renderForm={() => {
                     return (
-                        <VStack gap="8" data-testid="oppsummering">
+                        <VStack gap="space-32" data-testid="oppsummering">
                             <Form
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
                                 submitDisabled={isSubmitting || hasInvalidSteps}
@@ -112,7 +115,7 @@ const OppsummeringStep = () => {
                                 submitPending={isSubmitting}
                                 backButtonDisabled={isSubmitting}
                                 onBack={goBack}>
-                                <VStack gap="8">
+                                <VStack gap="space-32">
                                     <OmSøkerOppsummering søker={søker} />
 
                                     <DineBarnOppsummering

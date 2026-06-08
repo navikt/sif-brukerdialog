@@ -2,7 +2,6 @@ import { Box, Tabs, VStack } from '@navikt/ds-react';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import { TypedFormikWrapper, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { flatten } from 'flat';
-import JSONView from 'react-json-view';
 
 import FormValidationErrorMessages from '../../../../storybook/components/validation-error-messages/ValidationErrorMessages';
 import MedlemskapForm, { MedlemskapFormErrors, MedlemskapFormValues } from '../form/MedlemskapForm';
@@ -47,7 +46,7 @@ const medlemskapApiData: MedlemskapApiData = {
 const MedlemskapFormExample = () => {
     return (
         <Tabs defaultValue="form">
-            <VStack gap="4">
+            <VStack gap="space-16">
                 <Tabs.List>
                     <Tabs.Tab value="form" label="MedlemskapForm" />
                     <Tabs.Tab value="summary" label="MedlemskapSummary" />
@@ -56,7 +55,7 @@ const MedlemskapFormExample = () => {
                     <Tabs.Tab value="apiData" label="ApiData" />
                 </Tabs.List>
                 <Tabs.Panel value="form" style={{ maxWidth: '50rem' }}>
-                    <Box padding="10">
+                    <Box padding="space-40">
                         <TypedFormikWrapper<MedlemskapFormValues>
                             initialValues={initialValues}
                             onSubmit={() => {}}
@@ -79,16 +78,6 @@ const MedlemskapFormExample = () => {
                         }}
                         formName="medlemskapForm"
                         intlMessages={medlemskapFormMessages}
-                    />
-                </Tabs.Panel>
-                <Tabs.Panel value="apiData">
-                    <JSONView
-                        src={medlemskapApiData}
-                        style={{ fontSize: '.8rem', padding: '1rem' }}
-                        theme="ashes"
-                        displayDataTypes={false}
-                        displayObjectSize={false}
-                        shouldCollapse={false}
                     />
                 </Tabs.Panel>
             </VStack>

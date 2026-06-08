@@ -1,14 +1,12 @@
-import { Innsendelse } from '../server/api-models/InnsendelseSchema';
-import { Innsendelsestype } from '../server/api-models/Innsendelsestype';
-import { Venteårsak } from './Venteårsak';
+import { InnsendelseISak, Inntektsmelding, Venteårsak } from '.';
 
 export enum Sakshendelser {
     'UKJENT' = 'UKJENT',
     'MOTTATT_SØKNAD' = 'MOTTATT_SØKNAD',
     'AKSJONSPUNKT' = 'AKSJONSPUNKT',
     'FERDIG_BEHANDLET' = 'FERDIG_BEHANDLET',
-    'FORVENTET_SVAR' = 'FORVENTET_SVAR',
     'ETTERSENDELSE' = 'ETTERSENDELSE',
+    'INNTEKTSMELDING' = 'INNTEKTSMELDING',
 }
 
 interface SakshendelseBase {
@@ -17,14 +15,14 @@ interface SakshendelseBase {
 
 interface SakshendelseMottattSøknad extends SakshendelseBase {
     type: Sakshendelser.MOTTATT_SØKNAD;
-    innsendelse: Innsendelse;
+    innsendelse: InnsendelseISak;
     /** Mottatt dato */
     dato: Date;
 }
 
 interface SakshendelseMottattEttersendelse extends SakshendelseBase {
     type: Sakshendelser.ETTERSENDELSE;
-    innsendelse: Innsendelse;
+    innsendelse: InnsendelseISak;
     /** Mottatt dato */
     dato: Date;
 }
@@ -35,23 +33,24 @@ interface SakshendelseAksjonspunkt extends SakshendelseBase {
     /** Tidspunkt satt på vent */
     dato?: Date;
 }
-export interface SakshendelseForventetSvar extends SakshendelseBase {
-    type: Sakshendelser.FORVENTET_SVAR;
-    /** saksbehandlingFrist */
-    dato?: Date;
-    /** Søknad, endringsmelding eller ettersendelse */
-    søknadstyperIBehandling: Innsendelsestype[];
-}
+
 interface SakshendelseFerdigBehandlet extends SakshendelseBase {
     type: Sakshendelser.FERDIG_BEHANDLET;
     /** avsluttet dato */
     dato: Date;
 }
 
+interface SakshendelseInntektsmelding extends SakshendelseBase {
+    type: Sakshendelser.INNTEKTSMELDING;
+    /** avsluttet dato */
+    dato: Date;
+    inntektsmelding: Inntektsmelding;
+}
+
 export type Sakshendelse =
     | SakshendelseMottattSøknad
     | SakshendelseAksjonspunkt
-    | SakshendelseAksjonspunkt
-    | SakshendelseForventetSvar
+    // | SakshendelseForventetSvar
     | SakshendelseMottattEttersendelse
-    | SakshendelseFerdigBehandlet;
+    | SakshendelseFerdigBehandlet
+    | SakshendelseInntektsmelding;

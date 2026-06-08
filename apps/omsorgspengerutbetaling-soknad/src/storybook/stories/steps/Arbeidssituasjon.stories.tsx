@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react-vite';
 
 import ArbeidssituasjonStep from '../../../app/søknad/steps/arbeidssituasjon/ArbeidssituasjonStep';
-import { withAmplitudeProvider } from '../../decorators/withAmplitudeProvider';
+import { withAnalyticsProvider } from '../../decorators/withAnalyticsProvider';
 import { withFormikWrapper } from '../../decorators/withFormikWrapper';
 import { withIntl } from '../../decorators/withIntl';
 import { withRouterProvider } from '../../decorators/withRouter';
@@ -14,7 +14,7 @@ export default {
     decorators: [
         withIntl,
         withRouterProvider,
-        withAmplitudeProvider,
+        withAnalyticsProvider,
         withStepFormValuesContext,
         withFormikWrapper,
         withSøknadContextProvider,

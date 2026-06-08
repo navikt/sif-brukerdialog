@@ -24,7 +24,7 @@ body.sif-ds-theme {
     margin-top: 1rem;
 }
 .navds-form-summary__answers .navds-form-summary__answers {
-    background-color: var(--a-surface-subtle);
+    background-color: var(--ax-bg-neutral-soft);
 }
 .navds-form-summary__answers--compact .navds-form-summary__answer {
     padding-bottom: 0.125rem !important;
@@ -45,10 +45,15 @@ body.sif-ds-theme {
     display: block;
 }
 
-p:not(.aksel-error-message):not(.aksel-textarea__counter) {
+p:not(.aksel-error-message):not(.aksel-textarea__counter):not(.noPadding) {
     margin: 1rem 0;
     padding: unset;
 }
+.aksel-list__item > div > p.aksel-body-short--medium:first-child,
+.aksel-list__item > div > p.aksel-body-long--medium:first-child {
+    margin: 0.125rem 0 !important;
+}
+
 .aksel-combobox__list p {
     margin: 0 !important;
     padding: 0 !important;

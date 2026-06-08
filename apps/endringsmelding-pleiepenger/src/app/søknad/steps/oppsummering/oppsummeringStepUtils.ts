@@ -1,20 +1,28 @@
-import {
-    getDatesInDateRange,
-    ISODateRange,
-    ISODateRangeToDateRange,
-    ISODurationToDecimalDuration,
-    ISODurationToDuration,
-} from '@navikt/sif-common-utils';
+import { ArbeidstidUkerItem } from '@app/modules/arbeidstid-uker/types/ArbeidstidUkerItem';
 import {
     ArbeidstidApiData,
     ArbeidstidPeriodeApiData,
     ArbeidstidPeriodeApiDataMap,
     LovbestemtFerieApiData,
     Søknadsdata,
-} from '@types';
-import { erKortArbeidsuke, getTimerPerUkeFraTimerPerDag } from '@utils';
+    TilsynsordningApiData,
+} from '@app/types';
+import {
+    DagMedEndretTilsyn,
+    erKortArbeidsuke,
+    getTilsynsordningOppsummeringInfo,
+    getTimerPerUkeFraTimerPerDag,
+} from '@app/utils';
+import {
+    DateDurationMap,
+    dateFormatter,
+    getDatesInDateRange,
+    ISODateRange,
+    ISODateRangeToDateRange,
+    ISODurationToDecimalDuration,
+    ISODurationToDuration,
+} from '@navikt/sif-common-utils';
 
-import { ArbeidstidUkerItem } from '../../../modules/arbeidstid-uker/types/ArbeidstidUkerItem';
 import { OppsummeringFormValues } from './OppsummeringStep';
 
 export const getOppsummeringStepInitialValues = (søknadsdata: Søknadsdata): OppsummeringFormValues => {
@@ -40,6 +48,13 @@ const harEndringerILovbestemtFerieApiData = (lovbestemtFerie?: LovbestemtFerieAp
         return false;
     }
     return Object.keys(lovbestemtFerie.perioder).length > 0;
+};
+
+const harEndringerITilsynsordningApiData = (tilsynsordning?: TilsynsordningApiData): boolean => {
+    if (!tilsynsordning) {
+        return false;
+    }
+    return Object.keys(tilsynsordning.perioder).length > 0;
 };
 
 const getArbeidsukeListItemFromArbeidstidPeriodeApiData = (
@@ -127,10 +142,33 @@ const erArbeidstidEndringerGyldig = (arbeidstid?: ArbeidstidApiData): boolean =>
     return ugyldigArbeidstid.length === 0;
 };
 
+export type MånedMedDagerMedEndretTilsyn = {
+    måned: Date;
+    dagerMedEndretTilsyn: DagMedEndretTilsyn[];
+};
+export const getMånederMedDagerEndretTilsyn = (
+    tilsynsordning: TilsynsordningApiData,
+    tidOpprinnelig: DateDurationMap | undefined,
+): MånedMedDagerMedEndretTilsyn[] => {
+    const dagerMedEndretTilsyn = getTilsynsordningOppsummeringInfo(tilsynsordning, tidOpprinnelig);
+
+    const månederMedDager: Record<string, MånedMedDagerMedEndretTilsyn> = {};
+    for (const dag of dagerMedEndretTilsyn) {
+        const måned = dateFormatter.monthFullYear(dag.dato);
+        if (!månederMedDager[måned]) {
+            månederMedDager[måned] = { måned: dag.dato, dagerMedEndretTilsyn: [] };
+        }
+        månederMedDager[måned].dagerMedEndretTilsyn.push(dag);
+    }
+    return Object.values(månederMedDager);
+};
+
 export const oppsummeringStepUtils = {
     getArbeidstidUkerItems,
     harEndringerILovbestemtFerieApiData,
     harEndringerIArbeidstid,
+    harEndringerITilsynsordningApiData,
     erArbeidstidEndringerGyldig,
+    getMånederMedDagerEndretTilsyn,
     getOppsummeringStepInitialValues,
 };

@@ -12,8 +12,11 @@ export const publicEnvSchema = z.object({
     /** Faro telemetry */
     NEXT_PUBLIC_TELEMETRY_URL: z.string(),
 
-    /** Amplitude */
-    NEXT_PUBLIC_AMPLITUDE_API_KEY: z.string(),
+    /** Analytics */
+    NEXT_PUBLIC_ANALYTICS_KEY: z.string(),
+
+    /** Sentry */
+    NEXT_PUBLIC_SCRUB_SENTRY: z.union([z.literal('on'), z.literal('off'), z.undefined()]),
 
     /** Appstatus */
     NEXT_PUBLIC_APPSTATUS_PROJECT_ID: z.string(),
@@ -36,7 +39,6 @@ export const publicEnvSchema = z.object({
     NEXT_PUBLIC_SAKSBEHANDLINGSTID_INFO_URL: z.string(),
     NEXT_PUBLIC_BESKJED_URL: z.string(),
     NEXT_PUBLIC_SKRIV_TIL_OSS_URL: z.string(),
-    NEXT_PUBLIC_SYKDOM_I_FAMILIEN_INFO_URL: z.string(),
     NEXT_PUBLIC_ARBEIDSGIVER_PLEIEPENGER_URL: z.string(),
     NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL: z.string(),
     NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL: z.string(),
@@ -44,9 +46,7 @@ export const publicEnvSchema = z.object({
     /** Features */
     NEXT_PUBLIC_FEATURE_APPSTATUS: z.union([z.literal('on'), z.literal('off'), z.undefined()]),
     NEXT_PUBLIC_FEATURE_FARO: z.union([z.literal('on'), z.literal('off'), z.undefined()]),
-    NEXT_PUBLIC_FEATURE_HENT_SAKER: z.union([z.literal('on'), z.literal('off'), z.undefined()]),
-    NEXT_PUBLIC_FEATURE_HENT_BEHANDLINGSTID: z.union([z.literal('on'), z.literal('off'), z.undefined()]),
-    NEXT_PUBLIC_FEATURE_HENT_MELLOMLAGRING: z.union([z.literal('on'), z.literal('off'), z.undefined()]),
+    NEXT_PUBLIC_FEATURE_INNTEKTSMELDING: z.union([z.literal('on'), z.literal('off'), z.undefined()]),
 });
 
 export type ServerEnv = z.infer<typeof serverEnvSchema>;
@@ -55,7 +55,7 @@ export const serverEnvSchema = z.object({
     NEXT_PUBLIC_INNSYN_BACKEND_SCOPE: z.string(),
     NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE: z.string(),
     NEXT_PUBLIC_K9_SAK_INNSYN_BACKEND_SCOPE: z.string(),
-    NEXT_PUBLIC_GITHUB_REF_NAME: z.string(),
+    GITHUB_REF_NAME: z.string(),
 
     IDPORTEN_CLIENT_ID: z.union([z.string(), z.undefined()]),
     IDPORTEN_WELL_KNOWN_URL: z.union([z.string(), z.undefined()]),
@@ -63,6 +63,9 @@ export const serverEnvSchema = z.object({
     TOKEN_X_PRIVATE_JWK: z.union([z.string(), z.undefined()]),
     TOKEN_X_CLIENT_ID: z.union([z.string(), z.undefined()]),
     NAIS_CLIENT_ID: z.union([z.string(), z.undefined()]),
+
+    /** Features */
+    NEXT_PUBLIC_FEATURE_INNTEKTSMELDING: z.union([z.literal('on'), z.literal('off'), z.undefined()]),
 });
 
 /**
@@ -75,14 +78,14 @@ export const browserEnv = publicEnvSchema.parse({
     NEXT_PUBLIC_BASE_PATH: process.env.NEXT_PUBLIC_BASE_PATH,
     NEXT_PUBLIC_LOGIN_URL: process.env.NEXT_PUBLIC_LOGIN_URL,
     NEXT_PUBLIC_RUNTIME_ENVIRONMENT: process.env.NEXT_PUBLIC_RUNTIME_ENVIRONMENT,
-    NEXT_PUBLIC_AMPLITUDE_API_KEY: process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY,
+    NEXT_PUBLIC_ANALYTICS_KEY: process.env.NEXT_PUBLIC_ANALYTICS_KEY,
+    NEXT_PUBLIC_SCRUB_SENTRY: process.env.NEXT_PUBLIC_SCRUB_SENTRY,
     NEXT_PUBLIC_APPSTATUS_PROJECT_ID: process.env.NEXT_PUBLIC_APPSTATUS_PROJECT_ID,
     NEXT_PUBLIC_APPSTATUS_DATASET: process.env.NEXT_PUBLIC_APPSTATUS_DATASET,
     NEXT_PUBLIC_API_URL_BRUKERDIALOG: process.env.NEXT_PUBLIC_API_URL_BRUKERDIALOG,
     NEXT_PUBLIC_API_URL_K9_SAK_INNSYN: process.env.NEXT_PUBLIC_API_URL_K9_SAK_INNSYN,
     NEXT_PUBLIC_API_URL_INNSYN: process.env.NEXT_PUBLIC_API_URL_INNSYN,
     NEXT_PUBLIC_SAKSBEHANDLINGSTID_INFO_URL: process.env.NEXT_PUBLIC_SAKSBEHANDLINGSTID_INFO_URL,
-    NEXT_PUBLIC_SYKDOM_I_FAMILIEN_INFO_URL: process.env.NEXT_PUBLIC_SYKDOM_I_FAMILIEN_INFO_URL,
     NEXT_PUBLIC_SKJEMA_ETTERSENDELSE_URL: process.env.NEXT_PUBLIC_SKJEMA_ETTERSENDELSE_URL,
     NEXT_PUBLIC_KLAGE_INFO_URL: process.env.NEXT_PUBLIC_KLAGE_INFO_URL,
     NEXT_PUBLIC_REGELVERK_INFO_URL: process.env.NEXT_PUBLIC_REGELVERK_INFO_URL,
@@ -101,9 +104,7 @@ export const browserEnv = publicEnvSchema.parse({
     NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL: process.env.NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL,
     NEXT_PUBLIC_FEATURE_FARO: process.env.NEXT_PUBLIC_FEATURE_FARO,
     NEXT_PUBLIC_FEATURE_APPSTATUS: process.env.NEXT_PUBLIC_FEATURE_APPSTATUS,
-    NEXT_PUBLIC_FEATURE_HENT_SAKER: process.env.NEXT_PUBLIC_FEATURE_HENT_SAKER,
-    NEXT_PUBLIC_FEATURE_HENT_MELLOMLAGRING: process.env.NEXT_PUBLIC_FEATURE_HENT_MELLOMLAGRING,
-    NEXT_PUBLIC_FEATURE_HENT_BEHANDLINGSTID: process.env.NEXT_PUBLIC_FEATURE_HENT_BEHANDLINGSTID,
+    NEXT_PUBLIC_FEATURE_INNTEKTSMELDING: process.env.NEXT_PUBLIC_FEATURE_INNTEKTSMELDING,
 } satisfies Record<keyof PublicEnv, string | undefined>);
 
 const getRawServerConfig = (): Partial<unknown> =>
@@ -112,7 +113,7 @@ const getRawServerConfig = (): Partial<unknown> =>
         NEXT_PUBLIC_K9_SAK_INNSYN_BACKEND_SCOPE: process.env.NEXT_PUBLIC_K9_SAK_INNSYN_BACKEND_SCOPE,
         NEXT_PUBLIC_INNSYN_BACKEND_SCOPE: process.env.NEXT_PUBLIC_INNSYN_BACKEND_SCOPE,
         NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE: process.env.NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE,
-        NEXT_PUBLIC_GITHUB_REF_NAME: `${process.env.NEXT_PUBLIC_GITHUB_REF_NAME}`,
+        GITHUB_REF_NAME: `${process.env.GITHUB_REF_NAME}`,
 
         // Provided by nais
         IDPORTEN_CLIENT_ID: process.env.IDPORTEN_CLIENT_ID,
@@ -121,6 +122,9 @@ const getRawServerConfig = (): Partial<unknown> =>
         TOKEN_X_PRIVATE_JWK: process.env.TOKEN_X_PRIVATE_JWK,
         TOKEN_X_CLIENT_ID: process.env.TOKEN_X_CLIENT_ID,
         NAIS_CLIENT_ID: process.env.NAIS_CLIENT_ID,
+
+        // Features
+        NEXT_PUBLIC_FEATURE_INNTEKTSMELDING: process.env.NEXT_PUBLIC_FEATURE_INNTEKTSMELDING,
     }) satisfies Record<keyof ServerEnv, string | undefined>;
 
 /**

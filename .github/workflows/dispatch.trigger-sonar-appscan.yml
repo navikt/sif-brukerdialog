@@ -8,8 +8,12 @@ on:
                 description: Choose application
                 type: choice
                 options:
+                    - aktivitetspenger-soknad
                     - ungdomsytelse-deltaker
+                    - ungdomsytelse-veileder
                 required: true
+
+permissions: {}
 
 jobs:
     trigger-scan:
@@ -17,7 +21,8 @@ jobs:
         uses: ./.github/workflows/.sonarcloud.app-scan.yml
         secrets: inherit
         permissions:
+            contents: read
             id-token: write
         with:
-            app: '${{ inputs.app-name }}'
-            working-directory: 'apps/${{ inputs.app-name }}'
+            app: "${{ inputs.app-name }}"
+            working-directory: "${{ inputs.app-name == 'ungdomsytelse-veileder' && 'apps-intern' || 'apps' }}/${{ inputs.app-name }}"

@@ -1,8 +1,9 @@
+import { SøknadRoutes } from '@app/søknad/config/SøknadRoutes';
 import { expect, test } from '@playwright/test';
 
-import { SøknadRoutes } from '../../../src/app/søknad/config/SøknadRoutes';
 import { routeUtils } from '../../utils/routeUtils';
 import { setNow as setNow } from '../../utils/setNow';
+import { testAccessibility } from '../../utils/testAccessibility';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);
@@ -13,6 +14,7 @@ test('Ugyldig k9format på sak', async ({ page }) => {
     await expect(page).toHaveTitle('Ingen tilgang - Endringsmelding for pleiepenger sykt barn');
     await expect(page.getByText('Hei Nora')).toBeVisible();
     await expect(page.getByTestId('ugyldigK9FormatSak')).toBeVisible();
+    await testAccessibility(page);
 });
 
 test('Ingen sak funnet', async ({ page }) => {
@@ -20,6 +22,7 @@ test('Ingen sak funnet', async ({ page }) => {
     await expect(page).toHaveTitle('Ingen tilgang - Endringsmelding for pleiepenger sykt barn');
     await expect(page.getByText('Hei Nora')).toBeVisible();
     await expect(page.getByTestId('ingenSak')).toBeVisible();
+    await testAccessibility(page);
 });
 
 test('Flere saker', async ({ page }) => {
@@ -27,6 +30,7 @@ test('Flere saker', async ({ page }) => {
     await expect(page).toHaveTitle('Ingen tilgang - Endringsmelding for pleiepenger sykt barn');
     await expect(page.getByText('Hei Nora')).toBeVisible();
     await expect(page.getByTestId('flereSaker')).toBeVisible();
+    await testAccessibility(page);
 });
 
 test('Er selvstendig næringsdrivende', async ({ page }) => {
@@ -34,6 +38,7 @@ test('Er selvstendig næringsdrivende', async ({ page }) => {
     await expect(page).toHaveTitle('Ingen tilgang - Endringsmelding for pleiepenger sykt barn');
     await expect(page.getByText('Hei Nora')).toBeVisible();
     await expect(page.getByTestId('erSN')).toBeVisible();
+    await testAccessibility(page);
 });
 
 test('Har en arbeidsgiver med to ansettelsesforhold som slutter og starter samme uke med opphold', async ({ page }) => {

@@ -1,4 +1,3 @@
-import { durationToISODuration } from '@navikt/sif-common-utils';
 import {
     ArbeiderIPeriodenSvar,
     Arbeidsforhold,
@@ -9,7 +8,8 @@ import {
     UkjentArbeidsforholdApiData,
     UkjentArbeidsforholdSøknadsdata,
     ValgteEndringer,
-} from '@types';
+} from '@app/types';
+import { durationToISODuration } from '@navikt/sif-common-utils';
 
 import { getOrgNummerFromArbeidsgiverKey } from '../arbeidsgiverUtils';
 
@@ -18,13 +18,20 @@ export const getDataBruktTilUtledningApiData = (
     arbeidstid: ArbeidstidSøknadsdata | undefined,
     arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
 ): DataBruktTilUtledningApiData => {
-    return {
-        ukjenteArbeidsforhold: getUkjentArbeidsforholdApiDataFromSøknadsdata(
-            ukjentArbeidsforhold?.arbeidsforhold,
-            arbeidstid,
-            arbeidsgivere,
-        ),
-    };
+    try {
+        return {
+            ukjenteArbeidsforhold: getUkjentArbeidsforholdApiDataFromSøknadsdata(
+                ukjentArbeidsforhold?.arbeidsforhold,
+                arbeidstid,
+                arbeidsgivere,
+            ),
+        };
+    } catch {
+        /** Fallback for å håndtere feil ved mapping av ukjente arbeidsforhold. Midlertidig pga
+         * feil i prod som er fikset.
+         */
+        return {};
+    }
 };
 export const getDataBruktTilUtledningAnnetDataApiData = (
     valgteEndringer: ValgteEndringer,

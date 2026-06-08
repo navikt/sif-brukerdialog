@@ -1,4 +1,4 @@
-import { ApiError } from '@navikt/ung-common';
+import { ApiError } from '@sif/api';
 import { useQuery } from '@tanstack/react-query';
 
 import { DeltakelsePeriode } from '../../types/DeltakelsePeriode';

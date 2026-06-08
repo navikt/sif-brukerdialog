@@ -106,12 +106,12 @@ const DaySelector = ({ dateRange, selectedDates = [], onChange, reverseOrder, mo
                         onSelect={(dates) => onSelectDates(currentMonth, dates || [])}
                     />
                     <div className="daySelector__tags">
-                        <VStack gap="2" paddingBlock="6 0">
+                        <VStack gap="space-8" paddingBlock="space-24 space-0">
                             <BodyShort as="div" spacing={false} size="small">
                                 {text('@ui.daySelector.antallValgteDager')}
                             </BodyShort>
 
-                            <HStack gap="2" align="center" wrap={true}>
+                            <HStack gap="space-8" align="center" wrap={true}>
                                 {monthsWithSelectedDates.map((m, index) => {
                                     const antallValgteDager = selectedDaysInMonths[getMonthKey(m.from)].length;
                                     return (
@@ -139,7 +139,7 @@ const DaySelector = ({ dateRange, selectedDates = [], onChange, reverseOrder, mo
                     return (
                         <Accordion.Item key={dateRangeToISODateRange(month)}>
                             <Accordion.Header style={{ width: '100%' }}>
-                                <HStack gap="4" align="center">
+                                <HStack gap="space-16" align="center">
                                     <div style={{ minWidth: '10rem' }} className="capitalize">
                                         {title}
                                     </div>

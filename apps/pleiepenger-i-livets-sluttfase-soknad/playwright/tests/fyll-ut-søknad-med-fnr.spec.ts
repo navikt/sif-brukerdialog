@@ -3,6 +3,7 @@ import { expect, test } from '@playwright/test';
 import { fyllUtPleietrengendeMedFnr } from '../utfylling-utils/pleietrengendeUtfyllingUtils';
 import { setNow } from '../utils/setNow';
 import { setupMockRoutes } from '../utils/setupMockRoutes';
+import { testAccessibility } from '../utils/testAccessibility';
 
 const startUrl =
     'http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/soknad/velkommen';
@@ -18,10 +19,12 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     /** Velkommen side */
     await expect(page.getByRole('heading', { level: 2, name: 'Hei, PRESENTABEL' })).toBeVisible();
     await page.getByLabel('Jeg bekrefter at jeg har forstått mitt ansvar som søker').click();
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Start søknad' }).click();
 
     /** Pleietrengende side */
     await fyllUtPleietrengendeMedFnr(page);
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Tidsrom side */
@@ -39,23 +42,24 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.getByLabel('Mandag 18').click();
     await page.getByLabel('Mandag 25').click();
     await page
-        .getByRole('group', { name: 'Skal du pleie personen hjemme i de dagene du søker for?' })
+        .getByRole('radiogroup', { name: 'Skal du pleie personen hjemme i de dagene du søker for?' })
         .getByLabel('Ja')
         .check();
     await page
-        .getByRole('group', { name: 'Skal du jobbe delvis i noen av dagene du søker for?' })
+        .getByRole('radiogroup', { name: 'Skal du jobbe delvis i noen av dagene du søker for?' })
         .getByLabel('Ja')
         .check();
     await page
-        .getByRole('group', { name: 'Oppholder du deg i utlandet i noen av dagene du søker for?' })
+        .getByRole('radiogroup', { name: 'Oppholder du deg i utlandet i noen av dagene du søker for?' })
         .getByLabel('Nei')
         .check();
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Arbeidssituasjon */
     await expect(page.getByRole('heading', { level: 1, name: 'Arbeidssituasjon' })).toBeVisible();
     await page
-        .getByRole('group', {
+        .getByRole('radiogroup', {
             name: 'Stemmer det at du er ansatt hos Arbeids- og velferdsetaten i perioden du søker for?',
         })
         .getByLabel('Ja')
@@ -66,23 +70,24 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page
         .getByLabel('Hvor mange timer jobber du normalt per uke hos Arbeids- og velferdsetaten når du ikke har fravær?')
         .fill('37,5');
-    await page.getByRole('group', { name: 'Er du frilanser i perioden du søker for?' }).getByLabel('Nei').check();
+    await page.getByRole('radiogroup', { name: 'Er du frilanser i perioden du søker for?' }).getByLabel('Nei').check();
     await page
-        .getByRole('group', { name: 'Er du selvstendig næringsdrivende i perioden du søker for?' })
+        .getByRole('radiogroup', { name: 'Er du selvstendig næringsdrivende i perioden du søker for?' })
         .getByLabel('Nei')
         .check();
     await page
-        .getByRole('group', {
+        .getByRole('radiogroup', {
             name: 'Har du jobbet som arbeidstaker eller frilanser i et annet EØS-land i løpet av de 3 siste månedene før perioden du søker om?',
         })
         .getByLabel('Nei')
         .check();
     await page
-        .getByRole('group', {
+        .getByRole('radiogroup', {
             name: 'Har du jobbet som selvstendig næringsdrivende i et annet EØS-land i løpet av de 3 siste årene før perioden du søker om?',
         })
         .getByLabel('Nei')
         .check();
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Jobb i søknadsperioden */
@@ -98,18 +103,20 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await page.getByRole('group', { name: 'Uke 38' }).getByLabel('Timer').click();
     await page.getByRole('group', { name: 'Uke 38' }).getByLabel('Timer').fill('3');
     await page.getByRole('group', { name: 'Uke 38' }).getByLabel('Minutt').fill('30');
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Medlemsskap */
     await expect(page.getByRole('heading', { level: 1, name: 'Medlemskap i folketrygden' })).toBeVisible();
     await page
-        .getByRole('group', { name: 'Har du bodd i utlandet i hele eller deler av de siste 12 månedene?' })
+        .getByRole('radiogroup', { name: 'Har du bodd i utlandet i hele eller deler av de siste 12 månedene?' })
         .getByLabel('Nei')
         .click();
     await page
-        .getByRole('group', { name: 'Planlegger du å bo i utlandet i hele eller deler av de neste 12 månedene?' })
+        .getByRole('radiogroup', { name: 'Planlegger du å bo i utlandet i hele eller deler av de neste 12 månedene?' })
         .getByLabel('Nei')
         .click();
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Legeerklæring */
@@ -121,6 +128,7 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
     await fileChooser.setFiles('./playwright/files/navlogopng.png');
     const listItems = await page.getByText('navlogopng.png');
     await expect(listItems).toHaveCount(1);
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Neste steg', exact: true }).click();
 
     /** Oppsummering */
@@ -130,8 +138,10 @@ test('Fyll ut søknad med fnr', async ({ page }) => {
             'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger.',
         )
         .check();
+    await testAccessibility(page);
     await page.getByRole('button', { name: 'Send søknad', exact: true }).click();
 
     /** Kvittering */
     await expect(page.getByText('Vi har mottatt søknad om pleiepenger i livets sluttfase')).toBeVisible();
+    await testAccessibility(page);
 });

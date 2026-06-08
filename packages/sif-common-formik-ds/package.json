@@ -1,85 +1,25 @@
 {
-    "author": "navikt",
-    "homepage": "https://navikt.github.io/sif-common-formik-ds",
-    "license": "MIT",
-    "main": "src/index.ts",
     "name": "@navikt/sif-common-formik-ds",
-    "version": "2.5.8",
-    "type": "module",
+    "version": "2.5.46",
+    "homepage": "https://navikt.github.io/sif-common-formik-ds",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-formik-ds/issues"
-    },
-    "dependencies": {
-        "@navikt/ds-icons": "3.4.3",
-        "@navikt/sif-common-utils": "workspace:*",
-        "@navikt/sif-validation": "workspace:*",
-        "classnames": "2.5.1",
-        "i18n-iso-countries": "7.14.0",
-        "lodash": "4.17.21",
-        "react-dropzone": "14.3.8",
-        "react-fast-compare": "3.2.2",
-        "uuid": "13.0.0"
-    },
-    "devDependencies": {
-        "@navikt/ds-css": "7.31.0",
-        "@navikt/ds-react": "7.31.0",
-        "@navikt/fnrvalidator": "2.1.5",
-        "@sif/eslint-config": "workspace:*",
-        "@storybook/addon-a11y": "9.1.8",
-        "@storybook/addon-actions": "9.0.8",
-        "@storybook/builder-vite": "9.1.8",
-        "@storybook/jest": "0.2.3",
-        "@storybook/preset-scss": "1.0.3",
-        "@storybook/react-vite": "9.1.8",
-        "@storybook/test-runner": "0.23.0",
-        "@storybook/testing-library": "0.2.2",
-        "@types/jest": "30.0.0",
-        "@types/node": "24.5.2",
-        "@types/react": "19.1.15",
-        "@types/react-dom": "19.1.9",
-        "@vitejs/plugin-react": "5.0.4",
-        "config": "workspace:*",
-        "copyfiles": "2.4.1",
-        "css-loader": "7.1.2",
-        "date-fns": "4.1.0",
-        "dayjs": "1.11.18",
-        "formik": "2.4.6",
-        "jest": "30.2.0",
-        "prop-types": "15.8.1",
-        "react": "19.1.1",
-        "react-day-picker": "9.11.0",
-        "react-dom": "19.1.1",
-        "react-intl": "7.1.11",
-        "react-syntax-highlighter": "15.6.6",
-        "rimraf": "6.0.1",
-        "sass-loader": "16.0.5",
-        "storybook": "9.1.8",
-        "style-loader": "4.0.0",
-        "typescript": "5.9.2",
-        "vite": "7.1.7",
-        "vite-plugin-checker": "0.10.3",
-        "vitest": "3.2.4",
-        "webpack": "5.101.3"
-    },
-    "directories": {
-        "lib": "lib"
-    },
-    "jest": {
-        "transformIgnorePatterns": [
-            "node_modules/(?!(@navikt)).*\\.js$"
-        ]
-    },
-    "overrides": {
-        "react-refresh": "0.11.0"
-    },
-    "peerDependencies": {
-        "formik": "2",
-        "react-intl": "7"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/navikt/sif-common-formik-ds.git"
     },
+    "license": "MIT",
+    "author": "navikt",
+    "type": "module",
+    "main": "src/index.ts",
+    "directories": {
+        "lib": "lib"
+    },
+    "files": [
+        "package.json",
+        "/lib"
+    ],
     "scripts": {
         "build-storybook": "storybook build",
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
@@ -89,8 +29,50 @@
         "test": "vitest run",
         "test-storybook": "test-storybook"
     },
-    "files": [
-        "package.json",
-        "/lib"
-    ]
+    "overrides": {
+        "react-refresh": "0.11.0"
+    },
+    "dependencies": {
+        "@navikt/sif-common-utils": "workspace:*",
+        "@navikt/sif-validation": "workspace:*",
+        "classnames": "2.5.1",
+        "formik": "2.4.9",
+        "i18n-iso-countries": "7.14.0",
+        "lodash": "4.18.1",
+        "react-day-picker": "9.14.0",
+        "react-fast-compare": "3.2.2",
+        "react-intl": "10.1.13",
+        "uuid": "14.0.0"
+    },
+    "devDependencies": {
+        "@navikt/aksel-icons": "8.11.1",
+        "@navikt/ds-css": "8.11.1",
+        "@navikt/ds-react": "8.11.1",
+        "@navikt/fnrvalidator": "2.2.1",
+        "@sif/eslint-config": "workspace:*",
+        "@storybook/addon-a11y": "10.4.2",
+        "@storybook/addon-actions": "9.0.8",
+        "@storybook/builder-vite": "10.4.2",
+        "@storybook/react-vite": "10.4.2",
+        "@storybook/test-runner": "0.24.4",
+        "@types/node": "25.9.1",
+        "@types/react": "19.2.16",
+        "@types/react-dom": "19.2.3",
+        "@vitejs/plugin-react": "6.0.2",
+        "config": "workspace:*",
+        "copyfiles": "2.4.1",
+        "date-fns": "4.4.0",
+        "dayjs": "1.11.21",
+        "prop-types": "15.8.1",
+        "react": "19.2.7",
+        "react-dom": "19.2.7",
+        "react-syntax-highlighter": "16.1.1",
+        "rimraf": "6.1.3",
+        "sass": "1.100.0",
+        "storybook": "10.4.2",
+        "typescript": "6.0.3",
+        "vite": "8.0.16",
+        "vite-plugin-checker": "0.14.1",
+        "vitest": "4.1.8"
+    }
 }

@@ -38,7 +38,7 @@ const TidEnkeltdager = ({ dager, renderAsAccordion = false, visUke = false, head
     const months = groupBy(days, ({ dato }) => `${dato.getFullYear()}.${dato.getMonth()}`);
     if (!renderAsAccordion) {
         return (
-            <VStack gap="8">
+            <VStack gap="space-32">
                 {Object.keys(months).map((key) => {
                     const dagerMedTid = months[key];
                     if (dagerMedTid.length === 0) {

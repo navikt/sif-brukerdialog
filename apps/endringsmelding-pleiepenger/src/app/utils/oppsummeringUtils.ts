@@ -1,4 +1,3 @@
-import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import {
     ArbeidstidApiData,
     LovbestemtFerieApiData,
@@ -6,8 +5,18 @@ import {
     Sak,
     SøknadApiData,
     Søknadsdata,
+    TilsynsordningApiData,
     ValgteEndringer,
-} from '@types';
+} from '@app/types';
+import {
+    DateDurationMap,
+    dateToISODate,
+    Duration,
+    durationToISODuration,
+    getDatesInDateRange,
+    ISODateRangeToDateRange,
+    ISODurationToDuration,
+} from '@navikt/sif-common-utils';
 
 import { oppsummeringStepUtils } from '../søknad/steps/oppsummering/oppsummeringStepUtils';
 
@@ -32,15 +41,44 @@ interface LovbestemtFerieMetadata {
     fjernetFerie?: boolean;
 }
 
+interface OmsorgstilbudMetadata {
+    omsAntallEndredeDager?: number;
+    omsAntallDagerMedTid?: number;
+    omsAntallDagerUtenTid?: number;
+    endretOmsorgstilbud?: boolean;
+}
+
 export type SøknadApiDataMetadata = {
     antallAktiviteterSomKanEndres: number;
 } & LovbestemtFerieMetadata &
     ArbeidstidMetadata &
+    OmsorgstilbudMetadata &
     UkjentArbeidsforholdMetadata &
     ArbeidsgiverIkkeIAaregMetadata & {
         valgtEndreArbeidstid: boolean;
         valgtEndreFerie: boolean;
+        valgtEndreOmsorgstilbud: boolean;
     };
+
+const getOmsorgstilbudMetadata = (tilsynsordning?: TilsynsordningApiData): OmsorgstilbudMetadata => {
+    if (!tilsynsordning) {
+        return {
+            omsAntallEndredeDager: 0,
+        };
+    }
+    const antallEndredeDager = Object.keys(tilsynsordning.perioder).length;
+    const ingenTid = durationToISODuration({ hours: '0', minutes: '0' });
+    return {
+        omsAntallEndredeDager: antallEndredeDager,
+        omsAntallDagerMedTid: Object.values(tilsynsordning.perioder).filter(
+            (p) => p.etablertTilsynTimerPerDag !== ingenTid,
+        ).length,
+        omsAntallDagerUtenTid: Object.values(tilsynsordning.perioder).filter(
+            (p) => p.etablertTilsynTimerPerDag === ingenTid,
+        ).length,
+        endretOmsorgstilbud: antallEndredeDager > 0,
+    };
+};
 
 const getArbeidstidMetadata = (arbeidstid?: ArbeidstidApiData): ArbeidstidMetadata | undefined => {
     return arbeidstid
@@ -89,9 +127,10 @@ export const getSøknadApiDataMetadata = (
     valgteEndringer: ValgteEndringer,
     sak: Sak,
 ): SøknadApiDataMetadata => {
-    const { arbeidstid, lovbestemtFerie } = apiData.ytelse;
+    const { arbeidstid, lovbestemtFerie, tilsynsordning } = apiData.ytelse;
 
     return {
+        valgtEndreOmsorgstilbud: valgteEndringer?.tilsynsordning || false,
         valgtEndreArbeidstid: valgteEndringer?.arbeidstid || false,
         valgtEndreFerie: valgteEndringer?.lovbestemtFerie || false,
         antallAktiviteterSomKanEndres: sak.utledet.aktiviteterSomKanEndres.length,
@@ -99,6 +138,7 @@ export const getSøknadApiDataMetadata = (
         ...getFerieMetadata(lovbestemtFerie),
         ...getArbeidstidMetadata(arbeidstid),
         ...getArbeidsgiverIkkeIAaregMetadata(sak),
+        ...getOmsorgstilbudMetadata(tilsynsordning),
     };
 };
 
@@ -117,4 +157,52 @@ export const getLovbestemtFerieOppsummeringInfo = (lovbestemtFerie: LovbestemtFe
         perioderLagtTil,
         perioderFjernet,
     };
+};
+
+export type DagMedEndretTilsyn = {
+    dato: Date;
+    tid: Duration;
+    tidOpprinnelig?: Duration;
+};
+
+export const getTilsynsordningOppsummeringInfo = (
+    tilsynsordning: TilsynsordningApiData,
+    tidOpprinnelig?: DateDurationMap,
+): DagMedEndretTilsyn[] => {
+    const dagerMedEndretTilsyn: DagMedEndretTilsyn[] = [];
+    const dagerMedTilsyn: DateDurationMap = {};
+    /** Hent ut igjen alle dager som er endret ut fra periodene som sendes inn  */
+    Object.keys(tilsynsordning.perioder).forEach((isoDateRange) => {
+        const duration = ISODurationToDuration(tilsynsordning.perioder[isoDateRange].etablertTilsynTimerPerDag);
+        const dateRange = ISODateRangeToDateRange(isoDateRange);
+        getDatesInDateRange(dateRange, true).forEach((dato) => {
+            const isoDateKey = dateToISODate(dato);
+            dagerMedTilsyn[isoDateKey] = duration;
+            const tidDagOpprinnelig = tidOpprinnelig ? tidOpprinnelig[isoDateKey] : undefined;
+            const dagMedEndretTilsyn: DagMedEndretTilsyn = {
+                dato,
+                tid: duration,
+                tidOpprinnelig: tidDagOpprinnelig,
+            };
+            dagerMedEndretTilsyn.push(dagMedEndretTilsyn);
+        });
+    });
+    return dagerMedEndretTilsyn;
+};
+
+/** Bug etter lansering av endring i omsorgstilbud
+ *  Feilen oppstår når bruker kun velger omsorgstilbud, men har ukjent arbeidsforhold. Da ble ikke
+ * steget for arbeidstid vist.
+ */
+
+export const harUkjentArbeidsforholdMenHarIkkeBesvartArbeidstid = (sak: Sak, apiData: SøknadApiData): boolean => {
+    if (sak.harArbeidsgivereIkkeISak === false) {
+        return false;
+    }
+    if (apiData.ytelse.dataBruktTilUtledning) {
+        if (Object.keys(apiData.ytelse.dataBruktTilUtledning).length === 0) {
+            return true;
+        }
+    }
+    return false;
 };

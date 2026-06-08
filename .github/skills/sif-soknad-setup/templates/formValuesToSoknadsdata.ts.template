@@ -1,0 +1,14 @@
+// Eksempel: utils/formValuesToSoknadsdata.ts
+// Tilpass: legg til case per steg etter hvert
+import { SøknadStepId } from '@app/setup/config/SoknadStepId';
+import { StepFormValues, StepSøknadsdata } from '@sif/soknad/types';
+
+export const formValuesToSøknadsdata = (stepId: string, formValues: StepFormValues): StepSøknadsdata | undefined => {
+    switch (stepId) {
+        case SøknadStepId.MITT_STEG:
+            // TODO: implementer når steget er klart
+            return undefined;
+        default:
+            return undefined;
+    }
+};

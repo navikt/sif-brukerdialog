@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { kvitteringMessages_nn } from '../pages/kvittering/i18n/nn';
 import { velkommenPageMessages_nn } from '../pages/velkommen/i18n/nn';
 import { deltBostedMessages_nn } from '../søknad/steps/delt-bosted/i18n/nn';
@@ -110,6 +111,8 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
         'Forklaringa må vere på minst {min} teikn.',
     'validation.arbeidsforhold.utbetalingsårsak.konfliktForklaring.stringIsTooLong':
         'Forklaringa kan vere på maks {maks} teikn.',
+    'validation.arbeidsforhold.utbetalingsårsak.konfliktForklaring.stringHasInvalidCharacters':
+        'Forklaringa inneheld ugyldige teikn. Ugyldige teikn kan til dømes vere emojar, spesialteikn som « », §, @, eller skjulte formateringsteikn som innrykk, tabulatorar og listeformatering. Dette kan mellom anna oppstå dersom tekst vert kopiert frå andre stader. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
     'validation.arbeidsforhold.utbetalingsårsak.vedlegg.noVedleggUploaded':
         'Ingen dokument med forklaring frå {arbeidsgivernavn} er lasta opp.',
     'validation.barn.ingenBarn': 'Du må leggje til minst eitt barn du har omsorg for',

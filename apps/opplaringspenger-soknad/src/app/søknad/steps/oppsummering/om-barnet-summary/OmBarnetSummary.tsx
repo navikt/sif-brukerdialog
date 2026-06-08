@@ -5,7 +5,8 @@ import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { EditStepLink } from '@navikt/sif-common-soknad-ds';
 import { Sitat, TextareaSvar } from '@navikt/sif-common-ui';
-import { ISODateToDate, prettifyDate } from '@navikt/sif-common-utils';
+import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
+
 import { AppText } from '../../../../i18n';
 import {
     AnnetBarnApiData,
@@ -13,7 +14,7 @@ import {
     isRegistrertBarnApiData,
     OmBarnetApiData,
 } from '../../../../types/søknadApiData/SøknadApiData';
-import { RelasjonTilBarnet, ÅrsakBarnetManglerIdentitetsnummer } from '../../om-barnet/om-barnet-form/types';
+import { ÅrsakBarnetManglerIdentitetsnummer, RelasjonTilBarnet } from '../../om-barnet/om-barnet-form/types';
 import { OmBarnetFormSøknadsdata } from '../../om-barnet/om-barnet-form/types/OmBarnetFormSøknadsdata';
 
 interface Props {
@@ -34,7 +35,7 @@ const RegistrertBarn = ({ barn }: { barn: RegistrertBarn }) => (
             <FormSummary.Label>
                 <AppText id="steg.oppsummering.barnet.fødselsdato" />
             </FormSummary.Label>
-            <FormSummary.Value>{prettifyDate(barn.fødselsdato)}</FormSummary.Value>
+            <FormSummary.Value>{dateFormatter.full(barn.fødselsdato)}</FormSummary.Value>
         </FormSummary.Answer>
     </>
 );
@@ -45,7 +46,7 @@ const AnnetBarnSummary = ({ apiData, fødselsattester }: { apiData: AnnetBarnApi
             <FormSummary.Label>
                 <AppText id="steg.oppsummering.barnet.fødselsdato" />
             </FormSummary.Label>
-            <FormSummary.Value>{prettifyDate(ISODateToDate(apiData.fødselsdato))}</FormSummary.Value>
+            <FormSummary.Value>{dateFormatter.full(ISODateToDate(apiData.fødselsdato))}</FormSummary.Value>
         </FormSummary.Answer>
 
         {apiData._harFødselsnummer ? (

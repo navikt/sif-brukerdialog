@@ -1,5 +1,47 @@
 # @navikt/sif-common-faro
 
+## 0.2.13
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+
+## 0.2.12
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.2.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.2.10
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+
+## 0.2.9
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+
+## 0.2.8
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
+## 0.2.7
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 0.2.6
 
 ### Patch Changes

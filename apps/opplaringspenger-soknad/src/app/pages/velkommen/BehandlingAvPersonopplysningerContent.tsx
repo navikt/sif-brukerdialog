@@ -1,11 +1,12 @@
 import { Heading, Link, List, VStack } from '@navikt/ds-react';
 import React from 'react';
+
 import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
 
 const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
     return (
-        <VStack gap="2" paddingBlock="2 0">
+        <VStack gap="space-8" paddingBlock="space-8 space-0">
             <div>
                 <Heading level="3" size="xsmall" spacing={true}>
                     <AppText id="personopplysninger.1" />
@@ -40,11 +41,18 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
                 </List>
             </div>
             <div>
+                <p>
+                    <AppText id="personopplysninger.5" />
+                </p>
                 <AppText
                     id="personopplysninger.6"
                     values={{
                         Lenke: (children) => (
-                            <Link href={getLenker().personvern} target="_blank" key="personvernLenke">
+                            <Link
+                                href={getLenker().personvernerklæring}
+                                target="_blank"
+                                key="personvernLenke"
+                                rel="noopener noreferrer">
                                 {children}
                             </Link>
                         ),

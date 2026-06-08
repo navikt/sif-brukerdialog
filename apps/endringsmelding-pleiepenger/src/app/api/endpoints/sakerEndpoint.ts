@@ -1,6 +1,4 @@
-import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { getMaybeEnv } from '@navikt/sif-common-env';
-import { isK9FormatError, K9Format, K9FormatArbeidstid, K9Sak, UgyldigK9SakFormat } from '@types';
+import { isK9FormatError, K9Format, K9FormatArbeidstid, K9Sak, UgyldigK9SakFormat } from '@app/types';
 import {
     appSentryLogger,
     getEndringsdato,
@@ -8,12 +6,13 @@ import {
     isK9SakErInnenforGyldigEndringsperiode,
     maskString,
     parseK9Format,
-} from '@utils';
+} from '@app/utils';
+import { getMaybeEnv } from '@navikt/sif-common-env';
 import { isAxiosError } from 'axios';
 
 import { verifyK9Format } from '../../utils/verifyk9Format';
 import api from '../api';
-import { ApiEndpointInnsyn } from './';
+import { ApiEndpointInnsyn } from '.';
 
 export type K9SakResult = K9Sak | UgyldigK9SakFormat;
 
@@ -29,10 +28,13 @@ const maskK9FormatArbeidstid = (arbeidstid: K9FormatArbeidstid) => {
 };
 
 const maskK9FormatSak = (sak: K9Format) => {
-    const { søknadsperiode, arbeidstid } = sak.søknad.ytelse;
+    const ytelse = sak?.søknad?.ytelse;
+    if (!ytelse) {
+        return { søknadsperiode: undefined, arbeidstid: undefined };
+    }
     return {
-        søknadsperiode,
-        arbeidstid: maskK9FormatArbeidstid(arbeidstid),
+        søknadsperiode: ytelse.søknadsperiode,
+        arbeidstid: ytelse.arbeidstid ? maskK9FormatArbeidstid(ytelse.arbeidstid) : undefined,
     };
 };
 
@@ -43,43 +45,44 @@ const sakerEndpoint = {
             const { data } = await api.innsyn.get<K9Format[]>(ApiEndpointInnsyn.sak);
             const k9Saker: K9SakResult[] = [];
             const eldreSaker: K9SakResult[] = [];
-            data.forEach((sak) => {
+            data.forEach((sak, index) => {
                 try {
-                    const erGyldig = verifyK9Format(sak);
-                    if (erGyldig) {
-                        const parsedSak = parseK9Format(sak);
-                        if (isK9SakErInnenforGyldigEndringsperiode(parsedSak, endringsperiode)) {
-                            k9Saker.push(parsedSak);
-                        } else {
-                            eldreSaker.push(parsedSak);
-                        }
-                        if (getMaybeEnv('DEBUG') === 'true') {
-                            appSentryLogger.logInfo('debug.k9format.gyldig', JSON.stringify(maskK9FormatSak(sak)));
-                        }
+                    verifyK9Format(sak);
+                    const parsedSak = parseK9Format(sak);
+                    if (isK9SakErInnenforGyldigEndringsperiode(parsedSak, endringsperiode)) {
+                        k9Saker.push(parsedSak);
                     } else {
-                        /** Beholder denne enn så lenge, selv om DEBUG !== true */
-                        appSentryLogger.logInfo('debug.k9format.ikkeGyldig', JSON.stringify(maskK9FormatSak(sak)));
+                        eldreSaker.push(parsedSak);
+                    }
+                    if (getMaybeEnv('SIF_PUBLIC_DEBUG') === 'true') {
+                        appSentryLogger.logInfo('debug.k9format.gyldig', JSON.stringify(maskK9FormatSak(sak)));
                     }
                 } catch (error) {
                     if (isK9FormatError(error)) {
-                        const ugyldigSak: UgyldigK9SakFormat = {
+                        const ugyldigeFelt = error.error.cause?.ugyldigeFelt;
+                        k9Saker.push({
                             erUgyldigK9SakFormat: true,
-                        };
-                        k9Saker.push(ugyldigSak);
-                        appSentryLogger.logError('ugyldigK9Format', JSON.stringify(error));
-                        appSentryLogger.logInfo('debug.k9format.ikkeGyldig', JSON.stringify(maskK9FormatSak(sak)));
+                            detaljer: Array.isArray(ugyldigeFelt) ? { ugyldigeFelt } : undefined,
+                        });
+                        appSentryLogger.logException(error.error, {
+                            sakIndex: index,
+                            cause: error.error instanceof Error ? error.error.cause : undefined,
+                        });
                     } else {
+                        appSentryLogger.logException(error, {
+                            context: 'sakerEndpoint.parseK9Format',
+                            sakIndex: index,
+                        });
                         throw error;
                     }
                 }
             });
-            return Promise.resolve({ k9Saker, eldreSaker });
+            return { k9Saker, eldreSaker };
         } catch (error) {
             if (isAxiosError(error)) {
-                if (!isUnauthorized(error)) {
-                    appSentryLogger.logError(`sakerEndpoint.fetch failed - ${error.message}`);
-                }
-                appSentryLogger.logError('sakerEndpoint.fetch failed - unauthorized');
+                appSentryLogger.logApiError(error, 'sakerEndpoint.fetch');
+            } else if (!isK9FormatError(error)) {
+                appSentryLogger.logException(error, { context: 'sakerEndpoint.fetch failed - unexpected' });
             }
             return Promise.reject(error);
         }

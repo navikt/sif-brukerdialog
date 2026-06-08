@@ -1,5 +1,6 @@
-import { Link } from '@navikt/ds-react';
-import { ExternalLink } from '@navikt/ds-icons';
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
+import { HStack, Link } from '@navikt/ds-react';
+
 import { browserEnv } from '../../utils/env';
 
 interface Props {
@@ -8,7 +9,9 @@ interface Props {
 
 const DokumentarkivLenke = ({ tekst }: Props) => (
     <Link href={browserEnv.NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL}>
-        {tekst} <ExternalLink className="ml-1" role="presentation" />
+        <HStack gap="space-8">
+            <span>{tekst}</span> <ExternalLinkIcon role="presentation" />
+        </HStack>
     </Link>
 );
 

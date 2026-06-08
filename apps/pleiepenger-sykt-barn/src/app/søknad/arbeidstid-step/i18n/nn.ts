@@ -79,11 +79,11 @@ export const arbeidIPeriodeMessages_nn: Record<keyof typeof arbeidIPeriodeMessag
     'arbeidstidPeriode.timer.ikkeTall': `{timer} timar`,
     'arbeidIPeriode.info.frilanser.tittel': 'Delvis jobb som frilansar i perioden',
     'arbeidIPeriode.info.frilanser.tekst.FRILANS':
-        'No må vi vite kor mange timar du jobbar som frilansar i perioden du søkjer for.',
+        'No må me vite kor mange timar du jobbar som frilansar i perioden du søkjer for.',
     'arbeidIPeriode.info.frilanser.tekst.FRILANS_HONORAR':
-        'No må vi vite kor mange timar du jobbar som frilansar i perioden du søkjer for. Du skal altså leggje saman tida du jobbar som frilansar, med tida du brukar på det du mottek honorar for. Du skal oppgje denne tida samla.',
+        'No må me vite kor mange timar du jobbar som frilansar i perioden du søkjer for. Du skal altså leggje saman tida du jobbar som frilansar, med tida du brukar på det du mottek honorar for. Du skal oppgje denne tida samla.',
     'arbeidIPeriode.info.frilanser.tekst.HONORAR':
-        'No må vi vite kor mange timar du jobbar som frilansar i perioden du søkjer for. Det vil seie kor mange timar du brukar på arbeidet du får honorar for.',
+        'No må me vite kor mange timar du jobbar som frilansar i perioden du søkjer for. Det vil seie kor mange timar du brukar på arbeidet du får honorar for.',
 
     'step.arbeidstid.pageTitle': 'Pleiepengesøknad - opplysningar om arbeidstid',
     'step.arbeidstid.stepTitle': 'Jobb i søknadsperioden',
@@ -94,7 +94,7 @@ export const arbeidIPeriodeMessages_nn: Record<keyof typeof arbeidIPeriodeMessag
     'arbeidIPeriode.StepInfo.2':
         'Pleiepengane blir gradert mot den tida du jobbar. Det vil seie at viss du til dømes i søknadsperioden jobbar 30 prosent, kan du ha rett til opptil 70 prosent pleiepengar.',
     'arbeidIPeriode.StepInfo.3':
-        'Viss du søkjer for fyrste gong, eller du har hatt eit opphald i pleiepengane i minst fire veker, vil vi kontakte arbeidsgjevarar som du har heilt eller delvis fråvær frå for å innhente inntektsmelding.',
+        'Viss du søkjer for fyrste gong, eller du har hatt eit opphald i pleiepengane i minst fire veker, vil me kontakte arbeidsgjevarar som du har heilt eller delvis fråvær frå for å innhente inntektsmelding.',
 
     'arbeidIPeriode.redusert.info.tekst':
         'Viss du er usikker på kor mykje du skal jobbe framover i tid, legg du inn slik du trur du skal jobbe. Viss det seinare viser seg at du jobbar meir eller mindre enn du trur no, melder du frå om endring i slutten av den aktuelle månaden.',

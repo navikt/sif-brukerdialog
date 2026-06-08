@@ -1,4 +1,4 @@
-import { BodyShort, Radio, RadioGroup, RadioGroupProps, RadioProps, Stack } from '@navikt/ds-react';
+import { BodyShort, Box, Detail, Radio, RadioGroup, RadioGroupProps, RadioProps, Stack } from '@navikt/ds-react';
 import { FastField, Field, FieldProps } from 'formik';
 import React, { useContext } from 'react';
 
@@ -9,6 +9,7 @@ import { TypedFormikFormContext, TypedFormikFormContextType } from '../typed-for
 
 export type FormikRadioProp = Omit<RadioProps, 'children' | 'name'> & {
     label: React.ReactNode;
+    isSeparator?: boolean;
 } & TestProps;
 
 interface OwnProps<FieldName> extends Omit<RadioGroupProps, 'name' | 'onChange' | 'children' | 'radios'> {
@@ -30,7 +31,16 @@ const renderRadiobuttons = (
     afterOnChange?: (newValue: string) => void,
 ) => {
     return radios.map((rb, idx) => {
-        const { label, ...rest } = rb;
+        const { label, isSeparator, ...rest } = rb;
+        if (isSeparator) {
+            return (
+                <Box key={idx} marginBlock="space-24 space-4" role="presentation">
+                    <Detail weight="semibold" uppercase>
+                        {label}
+                    </Detail>
+                </Box>
+            );
+        }
         return (
             <Radio
                 key={idx}
@@ -80,7 +90,7 @@ function FormikRadioGroup<FieldName, ErrorType>({
                         value={field.value || ''}>
                         {renderHorizontal ? (
                             <Stack
-                                gap="0 6"
+                                gap="space-0 space-24"
                                 direction={{ xs: 'column', sm: 'row' }}
                                 wrap={false}
                                 style={{ marginTop: '-.25rem', marginBottom: '.5rem' }}>

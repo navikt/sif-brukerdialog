@@ -1,33 +1,25 @@
 {
     "name": "@navikt/k9-brukerdialog-prosessering-api",
-    "main": "src/index.ts",
-    "types": "src/index.ts",
+    "version": "0.3.16",
     "private": true,
-    "type": "module",
-    "version": "0.1.19",
-    "devDependencies": {
-        "@hey-api/openapi-ts": "0.84.3",
-        "@sif/eslint-config": "workspace:*",
-        "config": "workspace:*",
-        "typescript": "5.9.2",
-        "vitest": "3.2.4",
-        "zod": "4.1.11"
-    },
-    "peerDependencies": {
-        "dayjs": "*",
-        "uuid": "*"
-    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
+    "type": "module",
+    "main": "src/index.ts",
+    "types": "src/index.ts",
     "scripts": {
+        "codegen:dev": "CODEGEN_ENV=dev pnpm download-spec && pnpm gen-types:all:fixed",
+        "codegen:prod": "CODEGEN_ENV=prod pnpm download-spec && pnpm gen-types:all:fixed",
+        "download-spec": "node scripts/download-spec.mjs",
         "fix-regex": "node scripts/fix-generated-regex.mjs",
-        "gen-types:all:fixed": "yarn gen-types:all && yarn fix-regex",
-        "gen-types:all": "yarn gen-types:omsorgspenger && yarn gen-types:ungdomsytelse && yarn gen-types:ettersendelse && yarn gen-types:omsorgspenger-aleneomsorg && yarn gen-types:omsorgspenger-midlertidig-alene && yarn gen-types:omsorgspengerutbetaling-arbeidstaker && yarn gen-types:omsorgspengerutbetaling-snf && yarn gen-types:opplaeringspenger && yarn gen-types:pleiepenger-livets-sluttfase && yarn gen-types:pleiepenger-sykt-barn-endringsmelding && yarn gen-types:pleiepenger-sykt-barn-soknad && yarn gen-types:legacy",
-        "gen-types:omsorgspenger": "openapi-ts --file configs/openapi-ts.config-omsorgspenger.ts",
-        "gen-types:ungdomsytelse": "openapi-ts --file configs/openapi-ts.config-ungdomsytelse.ts",
+        "gen-types:aktivitetspenger": "openapi-ts --file configs/openapi-ts.config-aktivitetspenger.ts",
+        "gen-types:all": "pnpm gen-types:aktivitetspenger && pnpm gen-types:omsorgspenger && pnpm gen-types:ungdomsytelse && pnpm gen-types:ettersendelse && pnpm gen-types:omsorgspenger-aleneomsorg && pnpm gen-types:omsorgspenger-midlertidig-alene && pnpm gen-types:omsorgspengerutbetaling-arbeidstaker && pnpm gen-types:omsorgspengerutbetaling-snf && pnpm gen-types:opplaeringspenger && pnpm gen-types:pleiepenger-livets-sluttfase && pnpm gen-types:pleiepenger-sykt-barn-endringsmelding && pnpm gen-types:pleiepenger-sykt-barn-soknad && pnpm gen-types:legacy",
+        "gen-types:all:fixed": "pnpm gen-types:all && pnpm fix-regex",
         "gen-types:ettersendelse": "openapi-ts --file configs/openapi-ts.config-ettersendelse.ts",
+        "gen-types:legacy": "openapi-ts --file configs/openapi-ts.config.ts",
+        "gen-types:omsorgspenger": "openapi-ts --file configs/openapi-ts.config-omsorgspenger.ts",
         "gen-types:omsorgspenger-aleneomsorg": "openapi-ts --file configs/openapi-ts.config-omsorgspenger-aleneomsorg.ts",
         "gen-types:omsorgspenger-midlertidig-alene": "openapi-ts --file configs/openapi-ts.config-omsorgspenger-midlertidig-alene.ts",
         "gen-types:omsorgspengerutbetaling-arbeidstaker": "openapi-ts --file configs/openapi-ts.config-omsorgspengerutbetaling-arbeidstaker.ts",
@@ -36,14 +28,24 @@
         "gen-types:pleiepenger-livets-sluttfase": "openapi-ts --file configs/openapi-ts.config-pleiepenger-livets-sluttfase.ts",
         "gen-types:pleiepenger-sykt-barn-endringsmelding": "openapi-ts --file configs/openapi-ts.config-pleiepenger-sykt-barn-endringsmelding.ts",
         "gen-types:pleiepenger-sykt-barn-soknad": "openapi-ts --file configs/openapi-ts.config-pleiepenger-sykt-barn-soknad.ts",
-        "gen-types:legacy": "openapi-ts --file configs/openapi-ts.config.ts",
-        "codegen": "yarn gen-types:all:fixed",
+        "gen-types:ungdomsytelse": "openapi-ts --file configs/openapi-ts.config-ungdomsytelse.ts",
         "lint:eslint": "eslint './src/*/*.gen.ts'",
         "lint:fix": "eslint --quiet --fix './src/generated/*/*.gen.ts'",
         "lint:tsc": "tsc --noEmit"
     },
-    "dependencies": {
-        "@hey-api/client-axios": "0.9.1",
-        "@hey-api/client-fetch": "0.13.1"
+    "devDependencies": {
+        "@hey-api/openapi-ts": "0.98.1",
+        "@sif/eslint-config": "workspace:*",
+        "axios": "1.16.1",
+        "config": "workspace:*",
+        "postcss": "8.5.15",
+        "prettier": "3.8.3",
+        "typescript": "6.0.3",
+        "vitest": "4.1.8",
+        "zod": "4.4.3"
+    },
+    "peerDependencies": {
+        "dayjs": "*",
+        "uuid": "*"
     }
 }

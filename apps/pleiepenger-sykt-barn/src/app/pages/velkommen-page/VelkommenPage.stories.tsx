@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { søkerMock } from '../../../storybook/data/søkerMock';
-import { withAmplitudeProvider, withFormikWrapper, withIntl } from '../../../storybook/decorators';
+import { withAnalyticsProvider, withFormikWrapper, withIntl } from '../../../storybook/decorators';
 import VelkommenPage from './VelkommenPage';
 
 const meta: Meta<typeof VelkommenPage> = {
     title: 'Pages/VelkommenPage',
     component: VelkommenPage,
-    decorators: [withAmplitudeProvider, withIntl, withFormikWrapper],
+    decorators: [withAnalyticsProvider, withIntl, withFormikWrapper],
     args: {
         søker: søkerMock,
     },

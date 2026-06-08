@@ -1,8 +1,7 @@
 {
     "extends": "../../packages/config/tsconfig-apps.json",
     "compilerOptions": {
-        "outDir": "./lib",
-        "typeRoots": ["../../node_modules/@types", "./node_modules/@types"]
+        "outDir": "./lib"
     },
     "exclude": ["node_modules"],
     "include": ["storybook"]

@@ -1,5 +1,6 @@
 import { Link } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+
 import { OmBarnetFormText as Text, useOmBarnetFormIntl } from '../omBarnetFormMessages';
 
 const InfoForFarVedNyttBarn = () => {
@@ -11,7 +12,7 @@ const InfoForFarVedNyttBarn = () => {
                     id="omBarnetForm.infoForFarVedNyttBarn.info.1"
                     values={{
                         Lenke: (children) => (
-                            <Link href="https://farskapsportal.nav.no/nb/" target="_blank">
+                            <Link href="https://farskapsportal.nav.no/nb/" target="_blank" rel="noopener noreferrer">
                                 {children}
                             </Link>
                         ),

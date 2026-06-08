@@ -1,4 +1,26 @@
 import {
+    Arbeidsaktivitet,
+    ArbeidsaktivitetArbeidstaker,
+    Arbeidsaktiviteter,
+    ArbeidsaktivitetFrilanser,
+    ArbeidsaktivitetSelvstendigNæringsdrivende,
+    ArbeidsaktivitetType,
+    ArbeidsgiverIkkeFunnetError,
+    ArbeidsgiverMedAnsettelseperioder,
+    ArbeidstidEnkeltdagMap,
+    Arbeidsuke,
+    ArbeidsukeMap,
+    K9Sak,
+    K9SakArbeidstaker,
+    K9SakArbeidstidInfo,
+    K9SakArbeidstidPeriodeMap,
+    K9SakLovbestemtFerie,
+    K9SakTilsynsordningPeriodeMap,
+    PeriodeMedArbeidstid,
+    Sak,
+} from '@app/types';
+import {
+    DateDurationMap,
     DateRange,
     dateRangesCollide,
     dateRangeToISODateRange,
@@ -19,26 +41,6 @@ import {
     numberDurationAsDuration,
     sortMaybeDateRange,
 } from '@navikt/sif-common-utils';
-import {
-    Arbeidsaktivitet,
-    ArbeidsaktivitetArbeidstaker,
-    Arbeidsaktiviteter,
-    ArbeidsaktivitetFrilanser,
-    ArbeidsaktivitetSelvstendigNæringsdrivende,
-    ArbeidsaktivitetType,
-    ArbeidsgiverMedAnsettelseperioder,
-    ArbeidsgiverIkkeFunnetError,
-    ArbeidstidEnkeltdagMap,
-    Arbeidsuke,
-    ArbeidsukeMap,
-    K9Sak,
-    K9SakArbeidstaker,
-    K9SakArbeidstidInfo,
-    K9SakArbeidstidPeriodeMap,
-    K9SakLovbestemtFerie,
-    PeriodeMedArbeidstid,
-    Sak,
-} from '@types';
 import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 
@@ -102,10 +104,12 @@ export const getSakFromK9Sak = (
     );
 
     const frilanser = getArbeidsaktivitetFrilanser(frilanserArbeidstidInfo, tillattEndringsperiode);
+
     const selvstendigNæringsdrivende = getArbeidsaktivitetSelvstendigNæringsdrivende(
         selvstendigNæringsdrivendeArbeidstidInfo,
         tillattEndringsperiode,
     );
+
     const aktiviteterSomKanEndres = getAktiviteterSomKanEndres({
         arbeidstakerAktiviteter,
         frilanser,
@@ -133,7 +137,28 @@ export const getSakFromK9Sak = (
         utledet: {
             aktiviteterSomKanEndres,
         },
+        tilsynsordning: {
+            tilsynsdagerMap: getSakTilsynsdagerMapFromK9Sak(k9sak.ytelse.tilsynsordning.perioder),
+        },
     };
+};
+
+/**
+ * Henter ut dager med tilsynsordning
+ * Går gjennom periodene med tilsynsordning og legger tiden til enkeltdager i periodene
+ */
+export const getSakTilsynsdagerMapFromK9Sak = (perioder: K9SakTilsynsordningPeriodeMap): DateDurationMap => {
+    const tilsynsdagerMap: DateDurationMap = {};
+    Object.keys(perioder).forEach((key) => {
+        const periode = ISODateRangeToDateRange(key);
+        const duration = perioder[key].etablertTilsynTimerPerDag;
+
+        getDatesInDateRange(periode, true).forEach((date) => {
+            tilsynsdagerMap[dateToISODate(date)] = duration;
+        });
+    });
+
+    return tilsynsdagerMap;
 };
 
 /** Henter utk9SakArbeidstakere med arbeidsgiver funnet i AA-reg */

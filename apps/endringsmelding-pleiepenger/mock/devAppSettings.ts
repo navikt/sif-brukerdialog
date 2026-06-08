@@ -7,7 +7,7 @@ export const getDevAppSettings = (isTest?: boolean) => {
         PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger',
         GITHUB_REF_NAME: 'some_branch_name',
 
-        SIF_PUBLIC_AMPLITUDE_API_KEY: 'key',
+        SIF_PUBLIC_ANALYTICS_API_KEY: 'key',
         SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
         SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
         SIF_PUBLIC_DEKORATOR_URL:
@@ -18,7 +18,7 @@ export const getDevAppSettings = (isTest?: boolean) => {
         SIF_PUBLIC_LOGIN_URL:
             'http://localhost:8081/auth-mock/cookie?subject=mockSubject&redirect_location=http://localhost:8080',
         SIF_PUBLIC_MINSIDE_URL: 'https://www.nav.no/minside',
-        SIF_PUBLIC_USE_AMPLITUDE: 'false',
+        SIF_PUBLIC_USE_ANALYTICS: 'false',
 
         K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH:
             '/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/api/k9-brukerdialog',
@@ -28,9 +28,12 @@ export const getDevAppSettings = (isTest?: boolean) => {
         SIF_INNSYN_API_SCOPE: 'dev-gcp:dusseldorf:sif-innsyn-api',
         SIF_INNSYN_API_URL: 'http://sif-innsyn-api',
 
+        SIF_PUBLIC_ENDRE_OMSORGSTILBUD: 'on', //isTest ? 'off' : 'on',
+
         VELG_SCENARIO: isTest ? 'on' : 'on',
         MSW: isTest ? 'off' : 'on',
         E2E_TEST: isTest ? 'true' : false,
-        NOW: '2023-01-25',
+        NOW: '2023-01-01',
+        SIF_PUBLIC_DEBUG: 'true',
     };
 };

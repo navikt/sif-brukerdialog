@@ -8,8 +8,8 @@ interface Props {
 
 const Kvittering = ({ tittel, children }: Props) => {
     return (
-        <VStack gap="10">
-            <VStack align="center" gap="10">
+        <VStack gap="space-40">
+            <VStack align="center" gap="space-40">
                 <CheckmarkIcon />
                 <Heading level="1" size="large">
                     {tittel}

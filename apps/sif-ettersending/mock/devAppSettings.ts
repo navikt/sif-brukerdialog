@@ -5,7 +5,7 @@ export const getDevAppSettings = () => ({
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/ettersending',
     GITHUB_REF_NAME: 'branch-name',
 
-    SIF_PUBLIC_AMPLITUDE_API_KEY: '123',
+    SIF_PUBLIC_ANALYTICS_API_KEY: '123',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
     SIF_PUBLIC_DEKORATOR_URL:
@@ -15,7 +15,7 @@ export const getDevAppSettings = () => ({
     SIF_PUBLIC_LOGIN_URL:
         'http://localhost:8081/auth-mock/cookie?subject=mockSubject&redirect_location=http://localhost:8080',
     SIF_PUBLIC_MINSIDE_URL: 'https://www.nav.no/minside',
-    SIF_PUBLIC_USE_AMPLITUDE: 'true',
+    SIF_PUBLIC_USE_ANALYTICS: 'true',
 
     SIF_PUBLIC_PLEIEPENGER_SYKT_BARN_URL: 'https://pleiepengesoknad.intern.dev.nav.no',
     SIF_PUBLIC_FEATURE_NYNORSK: 'on',

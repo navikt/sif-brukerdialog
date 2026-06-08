@@ -1,18 +1,20 @@
 import { ReadMore, VStack } from '@navikt/ds-react';
+
 import { useAppIntl } from '../../../i18n';
-import { Pleiepengesøknad } from '../../../server/api-models/InnsendelseSchema';
-import { getArbeidsgiverinfoFraSøknad } from '../../../utils/sakUtils';
+import { SøknadISak } from '../../../types';
+import { getOrgArbeidsgivereFraSøknad } from '../../../utils/sakUtils';
 import ArbeidsgivereISøknad from './ArbeidsgivereISøknad';
 import Dokumenter from './Dokumenter';
 
 interface Props {
-    søknad: Pleiepengesøknad;
+    søknad: SøknadISak;
 }
 
 const SøknadStatusContent = ({ søknad }: Props) => {
     const { text } = useAppIntl();
-    const arbeidsgivere = getArbeidsgiverinfoFraSøknad(søknad);
+    const arbeidsgivere = getOrgArbeidsgivereFraSøknad(søknad);
     const harArbeidsgivere = arbeidsgivere.length > 0;
+
     return (
         <ReadMore
             header={text(
@@ -20,7 +22,7 @@ const SøknadStatusContent = ({ søknad }: Props) => {
                     ? 'statusISak.søknadStatusContent.readMoreHeader'
                     : 'statusISak.søknadStatusContent.readMoreHeader.ingenArbeidsgiver',
             )}>
-            <VStack gap="2" className="pt-2">
+            <VStack gap="space-16">
                 <Dokumenter
                     dokumenter={søknad.dokumenter}
                     tittel={text('statusISak.søknadStatusContent.dokumenterISøknad')}

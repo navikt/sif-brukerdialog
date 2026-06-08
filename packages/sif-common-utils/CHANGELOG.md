@@ -1,5 +1,180 @@
 # @navikt/sif-common-utils
 
+## 3.49.61
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+
+## 3.49.60
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.59
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.58
+
+### Patch Changes
+
+- 522fe9f: lodash@4.17.23
+
+## 3.49.57
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+
+## 3.49.56
+
+### Patch Changes
+
+- Pakkeoppdateringer - major react-intl + sanity
+
+## 3.49.55
+
+### Patch Changes
+
+- fc216a0: Pakkeoppdateringer - minor/patch
+
+## 3.49.54
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+
+## 3.49.53
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+
+## 3.49.52
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 3.49.51
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.50
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+
+## 3.49.49
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 3.49.48
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 3.49.47
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.46
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.45
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
+## 3.49.44
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
+## 3.49.43
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.42
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.41
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.40
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 3.49.39
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.38
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.37
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.36
+
+### Patch Changes
+
+- 52d9b9e: Pakkeoppdateringer - minor/patch
+
+## 3.49.35
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.34
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 3.49.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Fjerne ubrukte pakker.
+
 ## 3.49.32
 
 ### Patch Changes

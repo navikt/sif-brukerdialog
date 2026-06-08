@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+import { ScenarioType } from '@app/dev/scenarioer';
+import { SøknadRoutes } from '@app/søknad/config/SøknadRoutes';
 import { Page } from '@playwright/test';
 
-import { ScenarioType } from '../../src/app/dev/scenarioer';
-import { SøknadRoutes } from '../../src/app/søknad/config/SøknadRoutes';
 import { mellomlagring } from '../mock-data/mellomlagring.mock';
 import { setupMockRoutes } from './setupMockRoutes';
 

@@ -1,4 +1,4 @@
-import { BoxNew, Heading, HGrid, VStack } from '@navikt/ds-react';
+import { Box, Heading, HGrid, VStack } from '@navikt/ds-react';
 import { DurationText } from '@navikt/sif-common-ui';
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
@@ -19,8 +19,8 @@ const renderDagMedTid = (dag: DagMedTid, visNormaltid?: boolean): React.ReactNod
     const timer = dag.tid.hours || '0';
     const minutter = dag.tid.minutes || '0';
     return (
-        <BoxNew borderColor="info-subtle" padding="2" borderWidth="1 0 0 0">
-            <HGrid gap="2" columns={{ sm: '12rem auto', xs: '1fr' }} align="center">
+        <Box borderColor="info-subtle" padding="space-8" borderWidth="1 0 0 0">
+            <HGrid gap="space-8" columns={{ sm: '12rem auto', xs: '1fr' }} align="center">
                 <span className="capsFirstLetter">{dayjs(dag.dato).format('dddd DD.MM.YYYY')}:</span>
                 <span>
                     <DurationText duration={{ hours: timer, minutes: minutter }} fullText={true} />
@@ -31,7 +31,7 @@ const renderDagMedTid = (dag: DagMedTid, visNormaltid?: boolean): React.ReactNod
                     )}
                 </span>
             </HGrid>
-        </BoxNew>
+        </Box>
     );
 };
 
@@ -48,13 +48,13 @@ const renderDagerMedTid = (dager: DagMedTid[], visNormaltid?: boolean) => {
 export const DagerMedTidListe = ({ dagerMedTid, viseUke, visNormaltid, ukeHeadingLevel = '5' }: Props) => {
     const weeksWithDays = groupBy(dagerMedTid, (dag) => `${dag.dato.getFullYear()}-${dayjs(dag.dato).isoWeek()}`);
     return (
-        <VStack gap="8">
+        <VStack gap="space-32">
             {viseUke ? (
                 <div>
                     {Object.keys(weeksWithDays).map((key) => {
                         const days = weeksWithDays[key];
                         return (
-                            <VStack gap="4" key={key}>
+                            <VStack gap="space-16" key={key}>
                                 {viseUke && (
                                     <Heading level={`${ukeHeadingLevel}` as any} size="xsmall">
                                         <AppText id="dagerMedTid.uke" values={{ uke: dayjs(days[0].dato).isoWeek() }} />

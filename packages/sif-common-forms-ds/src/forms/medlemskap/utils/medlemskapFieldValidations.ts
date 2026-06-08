@@ -1,4 +1,3 @@
-import { Utenlandsopphold } from '@navikt/sif-common-forms-ds';
 import {
     dateRangesCollide,
     dateRangesExceedsRange,
@@ -6,6 +5,8 @@ import {
     getDate1YearFromNow,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+
+import type { Utenlandsopphold } from '../../utenlandsopphold/types';
 
 export enum MedlemskapFormErrorKeys {
     'utenlandsopphold_ikke_registrert' = 'utenlandsopphold_ikke_registrert',

@@ -1,31 +1,33 @@
-import AxeBuilder from '@axe-core/playwright'; // 1
 import { expect, Page } from '@playwright/test';
 
 import { DokumentType } from '../../src/app/types/DokumentType';
 import { YtelseKey } from '../../src/app/types/Ytelser';
+import { testAccessibility } from './testAccessibility';
 
 export const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/ettersending';
 
 const velgYtelsePleiepenger = async (page: Page) => {
     await page.goto(startUrl);
     await page.getByLabel('Pleiepenger for sykt barn').click();
+    testAccessibility(page);
     await page.getByRole('button').getByText('Gå videre').click();
 };
 
 const velgYtelseOpplæringspenger = async (page: Page) => {
     await page.goto(startUrl);
     await page.getByLabel('Opplæringspenger').click();
+    testAccessibility(page);
     await page.getByRole('button').getByText('Gå videre').click();
 };
 
 const startSøknad = async (page: Page) => {
     await page.getByTestId('bekreft-label').click();
+    testAccessibility(page);
     await page.getByRole('button').getByText('Start ettersendelse').click();
 };
 
 const fyllUtdokumentTypeSteg = async (page: Page, dokumentttype?: DokumentType) => {
     await expect(page.getByRole('heading', { name: 'Hva skal du ettersende?', level: 1 })).toBeVisible();
-
     await page.getByRole('button').getByText('Neste').click();
     await expect(page.getByRole('heading', { name: 'Feil i skjema' })).toBeVisible();
 
@@ -36,7 +38,7 @@ const fyllUtdokumentTypeSteg = async (page: Page, dokumentttype?: DokumentType) 
     } else {
         await page.getByText('Annet').click();
     }
-
+    testAccessibility(page);
     await page.getByRole('button').getByText('Neste').click();
 };
 
@@ -60,6 +62,7 @@ const fyllUtBarnSteg = async (page: Page, barnFnr?: string) => {
         await page.getByText('ALFABETISK FAGGOTT').click();
     }
 
+    testAccessibility(page);
     await page.getByRole('button').getByText('Neste').click();
 };
 
@@ -74,6 +77,7 @@ const fyllUtDokumenterSteg = async (page: Page) => {
     const listItems = await page.getByText('navlogopng.png');
 
     await expect(listItems).toHaveCount(1);
+    testAccessibility(page);
     await page.getByRole('button').getByText('Neste').click();
 };
 
@@ -100,8 +104,7 @@ const kontrollerOppsummeringBarn = async (
         await expect(page.getByText(`Fødselsnummer: ${barnFnr}`)).toBeVisible();
     }
 
-    const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
-    expect(accessibilityScanResults.violations).toEqual([]);
+    testAccessibility(page);
 };
 
 const sendInnDokumenter = async (page: Page) => {

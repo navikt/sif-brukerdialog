@@ -69,9 +69,8 @@ const DineBarnForm = ({
                     </p>
                 </ExpandableInfo>
             </FormLayout.Guide>
-
             <FormLayout.Questions>
-                <VStack gap="4">
+                <VStack gap="space-16">
                     <RegistrerteBarnListe.Heading level="2" size="medium">
                         {text('step.dineBarn.seksjonsTittel')}
                     </RegistrerteBarnListe.Heading>

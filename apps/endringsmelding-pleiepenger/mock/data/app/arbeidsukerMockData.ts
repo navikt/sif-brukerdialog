@@ -1,3 +1,4 @@
+import { ArbeidstidEnkeltdagMap, Arbeidsuke } from '@app/types';
 import {
     dateRangeUtils,
     dateToISODate,
@@ -9,7 +10,6 @@ import {
     ISODateRangeToDateRange,
     ISODateToDate,
 } from '@navikt/sif-common-utils';
-import { ArbeidstidEnkeltdagMap, Arbeidsuke } from '@types';
 
 const getMockArbeidsuke = (
     isoDateRange: ISODateRange,

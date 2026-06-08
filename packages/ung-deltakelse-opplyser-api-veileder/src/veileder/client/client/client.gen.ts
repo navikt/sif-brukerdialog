@@ -29,13 +29,15 @@ export const createClient = (config: Config = {}): Client => {
         instance.defaults = {
             ...instance.defaults,
             ..._config,
-            // @ts-expect-error
+            // @ts-ignore
             headers: mergeHeaders(instance.defaults.headers, _config.headers),
         };
         return getConfig();
     };
 
-    const beforeRequest = async (options: RequestOptions) => {
+    const beforeRequest = async <TData = unknown, ThrowOnError extends boolean = boolean, Url extends string = string>(
+        options: RequestOptions<TData, ThrowOnError, Url>,
+    ) => {
         const opts = {
             ..._config,
             ...options,
@@ -44,10 +46,7 @@ export const createClient = (config: Config = {}): Client => {
         };
 
         if (opts.security) {
-            await setAuthParams({
-                ...opts,
-                security: opts.security,
-            });
+            await setAuthParams(opts);
         }
 
         if (opts.requestValidator) {
@@ -63,7 +62,7 @@ export const createClient = (config: Config = {}): Client => {
         return { opts, url };
     };
 
-    // @ts-expect-error
+    // @ts-ignore
     const request: Client['request'] = async (options) => {
         const { opts, url } = await beforeRequest(options);
         try {
@@ -102,7 +101,7 @@ export const createClient = (config: Config = {}): Client => {
             if (opts.throwOnError) {
                 throw e;
             }
-            // @ts-expect-error
+            // @ts-ignore
             e.error = e.response?.data ?? {};
             return e;
         }
@@ -118,14 +117,17 @@ export const createClient = (config: Config = {}): Client => {
             body: opts.body as BodyInit | null | undefined,
             headers: opts.headers as Record<string, string>,
             method,
-            // @ts-expect-error
+            serializedBody: getValidRequestBody(opts) as BodyInit | null | undefined,
+            // @ts-ignore
             signal: opts.signal,
             url,
         });
     };
 
+    const _buildUrl: Client['buildUrl'] = (options) => buildUrl({ axios: instance, ..._config, ...options });
+
     return {
-        buildUrl,
+        buildUrl: _buildUrl,
         connect: makeMethodFn('CONNECT'),
         delete: makeMethodFn('DELETE'),
         get: makeMethodFn('GET'),

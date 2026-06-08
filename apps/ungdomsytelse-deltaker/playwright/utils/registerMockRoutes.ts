@@ -1,12 +1,7 @@
 import { BrowserContext, Page } from '@playwright/test';
 
-import { memoryStore } from '../../mock/state/memoryStore';
+import { store } from '../../mock/state/store';
 import { mockUtils } from '../../mock/utils/mockUtils';
-
-function extractOppgaveReferanse(url: string) {
-    const parts = url.split('/');
-    return parts[parts.length - 2];
-}
 
 const setupNavnoConsentCookieForPlaywrightTests = async (context: BrowserContext) => {
     return await context.addCookies([
@@ -39,7 +34,7 @@ export async function registerMockRoutes(page: Page, context: BrowserContext) {
         await route.fulfill({
             status: 200,
             contentType: 'application/json',
-            body: JSON.stringify(memoryStore.get().søker),
+            body: JSON.stringify(store.get().søker),
         });
     });
 
@@ -47,7 +42,7 @@ export async function registerMockRoutes(page: Page, context: BrowserContext) {
         await route.fulfill({
             status: 200,
             contentType: 'application/json',
-            body: JSON.stringify(memoryStore.get().barn),
+            body: JSON.stringify(store.get().barn),
         });
     });
 
@@ -55,43 +50,49 @@ export async function registerMockRoutes(page: Page, context: BrowserContext) {
         await route.fulfill({
             status: 200,
             contentType: 'application/json',
-            body: JSON.stringify(memoryStore.get().arbeidsgiver),
+            body: JSON.stringify(store.get().arbeidsgiver),
         });
     });
 
-    await page.route('**/deltakelse/register/hent/alle', async (route) => {
+    await page.route('**/deltakelse/register/hent/alle/v2', async (route) => {
         await route.fulfill({
             status: 200,
             contentType: 'application/json',
-            body: JSON.stringify(memoryStore.get().deltakelser),
+            body: JSON.stringify(store.get().deltakelser),
         });
     });
 
-    await page.route('**/ung-deltakelse-opplyser/deltakelse/register/:id/marker-har-sokt', async (route) => {
-        await route.fulfill({ status: 500 });
+    await page.route(/\/oppgave\/hent\/alle\?ytelsetype=UNGDOMSYTELSE/, async (route) => {
+        await route.fulfill({
+            status: 200,
+            contentType: 'application/json',
+            body: JSON.stringify(store.get().oppgaver),
+        });
     });
 
-    await page.route(
-        '**/ung-deltakelse-opplyser/deltakelse/register/oppgave/:oppgaveReferanse/åpnet',
-        async (route) => {
-            const ref = extractOppgaveReferanse(route.request().url());
-            if (!ref) return route.fulfill({ status: 400 });
-            mockUtils.setOppgaveSomÅpnet(ref);
+    await page.route('**/mellomlagring/**', async (route) => {
+        const method = route.request().method();
+        if (method === 'GET') {
             await route.fulfill({
                 status: 200,
+                contentType: 'application/json',
+                body: JSON.stringify(store.get().mellomlagring ?? {}),
             });
-        },
-    );
+        } else if (method === 'POST' || method === 'PUT') {
+            const text = await route.request().postData();
+            const data = text ? JSON.parse(text) : {};
+            store.update({ mellomlagring: data });
+            await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({}) });
+        } else if (method === 'DELETE') {
+            store.update({ mellomlagring: undefined });
+            await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({}) });
+        } else {
+            await route.fulfill({ status: 200 });
+        }
+    });
 
-    await page.route('**/*lukk', async (route) => {
-        const ref = extractOppgaveReferanse(route.request().url());
-        if (!ref) return route.fulfill({ status: 400 });
-        const oppgave = mockUtils.setOppgaveSomLukket(ref);
-        await route.fulfill({
-            status: 200,
-            contentType: 'application/json',
-            body: JSON.stringify(oppgave),
-        });
+    await page.route('**/ung-deltakelse-opplyser/deltakelse/register/:id/marker-har-sokt/v2', async (route) => {
+        await route.fulfill({ status: 500 });
     });
 
     await page.route('**/ungdomsytelse/soknad/innsending', async (route) => {

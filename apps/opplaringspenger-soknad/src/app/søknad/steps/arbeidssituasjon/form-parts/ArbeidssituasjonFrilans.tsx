@@ -11,6 +11,7 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import { ISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
+
 import { AppText, useAppIntl } from '../../../../i18n';
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
 import { getFrilanserSluttdatoValidator, getFrilanserStartdatoValidator } from '../../../../utils/frilansValidation';
@@ -95,15 +96,15 @@ const ArbeidssituasjonFrilans = ({
                     description={
                         søkerHarFrilansoppdrag ? undefined : (
                             <ExpandableInfo title={text('frilanser.hjelpetekst.spm')}>
-                                <VStack gap="6">
+                                <VStack gap="space-24">
                                     <BodyShort>
                                         {text('frilanser.hjelpetekst')}{' '}
-                                        <Link href={urlSkatteetaten} target="_blank">
+                                        <Link href={urlSkatteetaten} target="_blank" rel="noopener noreferrer">
                                             <AppText id="frilanser.hjelpetekst.skatteetatenLenke" />
                                         </Link>
                                         .
                                     </BodyShort>
-                                    <VStack gap="2">
+                                    <VStack gap="space-8">
                                         <Heading level="3" size="xsmall">
                                             <AppText id="frilanser.hjelpetekst.2.heading" />
                                         </Heading>
@@ -120,7 +121,7 @@ const ArbeidssituasjonFrilans = ({
             {(harHattInntektSomFrilanser === YesOrNo.YES || søkerHarFrilansoppdrag) && (
                 <FormLayout.Panel bleedTop>
                     {søkerHarFrilansoppdrag && (
-                        <Heading level="2" size="small">
+                        <Heading level="2" size="small" spacing>
                             <AppText id="arbeidssituasjonFrilanser.frilanserPart.tittel" />
                         </Heading>
                     )}

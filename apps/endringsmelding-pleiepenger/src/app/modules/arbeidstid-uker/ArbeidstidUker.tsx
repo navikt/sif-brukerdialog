@@ -1,16 +1,16 @@
 import './arbeidstidUker.scss';
 
-import { AddCircle } from '@navikt/ds-icons';
+import EditButton from '@app/components/buttons/EditButton';
+import { AppText, useAppIntl } from '@app/i18n';
+import { PlusCircleIcon } from '@navikt/aksel-icons';
 import { Button, HStack, VStack } from '@navikt/ds-react';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { getDateRangeText } from '@navikt/sif-common-utils';
 import { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
-import EditButton from '../../components/buttons/EditButton';
 import { usePagination } from '../../hooks/usePagination';
 import { useSelectableList } from '../../hooks/useSelectableList';
-import { AppText, useAppIntl } from '../../i18n';
 import ArbeidstidUkeListe from './components/ArbeidstidUkeListe';
 import ArbeidstidUkeTabell from './components/ArbeidstidUkeTabell';
 import EndreUkerFooter from './components/EndreUkerFooter';
@@ -110,17 +110,17 @@ const ArbeidstidUker = ({
     const renderLastInnFlereUker = () => {
         if (paginering && hasMoreItems) {
             return (
-                <HStack gap="2">
+                <HStack gap="space-8">
                     <Button
                         variant="tertiary"
-                        icon={<AddCircle role="presentation" aria-hidden={true} />}
+                        icon={<PlusCircleIcon role="presentation" aria-hidden={true} />}
                         type="button"
                         onClick={showMoreItems}>
                         <AppText id="arbeidstidUker.visMer.visFlereUker.label" />
                     </Button>
                     <Button
                         variant="tertiary"
-                        icon={<AddCircle role="presentation" aria-hidden={true} />}
+                        icon={<PlusCircleIcon role="presentation" aria-hidden={true} />}
                         type="button"
                         onClick={showAllItems}>
                         <AppText id="arbeidstidUker.visMer.visAlleUker.label" />
@@ -148,7 +148,7 @@ const ArbeidstidUker = ({
 
     if (renderAsList) {
         return (
-            <VStack gap="4" className="arbeidstidUkeListeWrapper">
+            <VStack gap="space-16" className="arbeidstidUkeListeWrapper">
                 {renderEndreUkerHeader()}
                 <ArbeidstidUkeListe
                     uker={visibleItems}
@@ -162,9 +162,8 @@ const ArbeidstidUker = ({
     }
 
     return (
-        <VStack gap="4">
+        <VStack gap="space-16">
             {renderEndreUkerHeader()}
-
             <ArbeidstidUkeTabell
                 uker={visibleItems}
                 selectableList={selectableList}

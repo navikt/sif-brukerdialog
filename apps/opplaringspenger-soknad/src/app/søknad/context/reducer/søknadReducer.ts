@@ -1,4 +1,5 @@
 import { guid } from '@navikt/sif-common-utils';
+
 import { SøknadContextState } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { syncArbeidstidMedKursperioder } from '../../steps/arbeidstid/arbeidstidStepUtils';
@@ -136,12 +137,6 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     børMellomlagres: false,
                     søknadsdata: {},
                     søknadSendt: true,
-                };
-
-            case SøknadContextActionKeys.SET_SØKNAD_KVITTERING_INFO:
-                return {
-                    ...state,
-                    kvitteringInfo: action.payload,
                 };
 
             case SøknadContextActionKeys.RESET_SØKNAD:

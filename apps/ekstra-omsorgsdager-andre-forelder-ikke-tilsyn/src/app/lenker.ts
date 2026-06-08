@@ -1,30 +1,27 @@
-interface Lenker {
-    navno: string;
-    personvern: string;
-    rettOgPlikt: string;
-    saksbehandlingstider: string;
-    merOmFastBostedOgSamvær: string;
-    soknadRegnetSomAleneBrev: string;
-}
+import { SifCommonLenker, sifCommonLenkerBokmål, sifCommonLenkerNynorsk } from '@navikt/sif-common-soknad-ds';
 
-const LenkerBokmål: Lenker = {
-    navno: 'https://www.nav.no/',
-    personvern: 'https://www.nav.no/personvernerklaering',
-    rettOgPlikt: 'https://nav.no/rettOgPlikt',
-    saksbehandlingstider: 'https://www.nav.no/saksbehandlingstider',
-    merOmFastBostedOgSamvær: `https://www.regjeringen.no/no/tema/familie-og-barn/innsiktsartikler/bosted-og-samvar/samvar/id749587/`,
-    soknadRegnetSomAleneBrev: `https://www.nav.no/soknader/nb/person/familie/omsorgspenger/NAV%2009-06.07/brev`,
+const lenkerBokmål = {
+    papirskjema: 'https://www.nav.no/start/soknad-ekstra-omsorgsdager-andre-forelder',
 };
 
-const getLenker = (locale?: string): Lenker => {
+type Lenker = typeof lenkerBokmål;
+
+const lenkerNynorsk = {
+    ...lenkerBokmål,
+    papirskjema: 'https://www.nav.no/start/soknad-ekstra-omsorgsdager-andre-forelder/nn',
+};
+
+export const getLenker = (locale?: string): Lenker & SifCommonLenker => {
     switch (locale) {
         case 'nn':
             return {
-                ...LenkerBokmål,
+                ...sifCommonLenkerNynorsk,
+                ...lenkerNynorsk,
             };
         default:
-            return LenkerBokmål;
+            return {
+                ...sifCommonLenkerBokmål,
+                ...lenkerBokmål,
+            };
     }
 };
-
-export default getLenker;

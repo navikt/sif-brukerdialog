@@ -1,5 +1,6 @@
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
+import { SkyraHandler, SkyraTestPage, SkyraSlug } from '@sif/surveys';
 import useSøknadInitialData from '../api/useSøknadInitialData';
 import ResetMellomagringButton from '../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { RequestStatus } from '../types/RequestStatus';
@@ -7,16 +8,29 @@ import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import { SøknadContextProvider } from './context/SøknadContext';
 import SøknadRouter from './SøknadRouter';
 import { AppText, useAppIntl } from '../i18n';
+import { relocateToNoAccessPage } from '../utils/navigationUtils';
 
 const Søknad = () => {
     const initialData = useSøknadInitialData();
     const { text } = useAppIntl();
     const { status } = initialData;
 
+    if (globalThis.location.pathname.includes('skyra/test')) {
+        return <SkyraTestPage slugs={[SkyraSlug.ekstra_omsorgsdager_kronisk_syk]} />;
+    }
+
     /** Loading */
-    if (status === RequestStatus.loading || status === RequestStatus.redirectingToLogin) {
+    if (
+        status === RequestStatus.loading ||
+        status === RequestStatus.redirectingToLogin ||
+        status === RequestStatus.noAccess
+    ) {
+        if (status === RequestStatus.noAccess) {
+            relocateToNoAccessPage();
+        }
         return <LoadingSpinner size="3xlarge" style="block" />;
     }
+
     /** Error */
     if (status === 'error') {
         return (
@@ -43,6 +57,7 @@ const Søknad = () => {
     return (
         <SøknadContextProvider initialData={data}>
             <StepFormValuesContextProvider>
+                <SkyraHandler />
                 <SøknadRouter />
             </StepFormValuesContextProvider>
         </SøknadContextProvider>

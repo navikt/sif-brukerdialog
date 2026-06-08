@@ -1,39 +1,35 @@
 name: Changeset release - build PR
 
 on:
-    workflow_dispatch:
+  workflow_dispatch:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-    release:
-        name: Release
-        runs-on: ubuntu-latest
-        permissions:
-            contents: 'write'
-            pull-requests: 'write'
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v5
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: "write"
+      pull-requests: "write"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.2
 
-            - name: Setup .yarnrc.yml
-              run: |
-                  yarn config set npmScopes.navikt.npmRegistryServer "https://npm.pkg.github.com"
-                  yarn config set npmScopes.navikt.npmAlwaysAuth true
-                  yarn config set npmScopes.navikt.npmAuthToken $NODE_AUTH_TOKEN
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+      - name: Setup Node.js
+        uses: actions/setup-node@v6.4.0
+        with:
+          node-version: 24
+          cache: "pnpm"
 
-            - name: Setup Node.js 18.x
-              uses: actions/setup-node@v5
-              with:
-                  node-version: 22.x
-            - run: yarn set version 4.x
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+        env:
+          NPM_TOKEN: ${{ secrets.READER_TOKEN }}
 
-            - name: Install Dependencies
-              run: yarn
-
-            - name: Create Release Pull Request
-              uses: changesets/action@v1
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Release Pull Request
+        uses: changesets/action@v1.8.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

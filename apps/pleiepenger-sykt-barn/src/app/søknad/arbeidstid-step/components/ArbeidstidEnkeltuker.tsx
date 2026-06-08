@@ -40,7 +40,7 @@ const ArbeidstidEnkeltuker = ({ periode, parentFieldName, label: spørsmål, tim
             name={`${parentFieldName}_ukerGroup` as any}
             data-testid="arbeidsuker"
             legend={spørsmål}>
-            <VStack gap="6" paddingBlock="4 0">
+            <VStack gap="space-24" paddingBlock="space-16 space-0">
                 {arbeidsuker.map((arbeidsuke) => {
                     return (
                         <div key={dateRangeToISODateRange(arbeidsuke.periode)}>

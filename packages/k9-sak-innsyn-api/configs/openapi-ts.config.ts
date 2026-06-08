@@ -1,16 +1,14 @@
-import { defaultPlugins, defineConfig } from '@hey-api/openapi-ts';
+import { defineConfig, type UserConfig } from '@hey-api/openapi-ts';
 
-export default defineConfig({
-    input: 'https://k9-sak-innsyn-api.intern.dev.nav.no/v3/api-docs/k9-sak',
+export const createConfig = (): UserConfig => ({
+    input: './specs/k9-sak.json',
     output: {
-        format: 'prettier',
-        lint: 'eslint',
+        postProcess: ['prettier', 'eslint'],
         path: './src/generated/client',
     },
     plugins: [
-        ...defaultPlugins,
         { name: 'zod', exportFromIndex: true },
-        { asClass: true, name: '@hey-api/sdk', validator: true },
+        { operations: { strategy: 'byTags' }, name: '@hey-api/sdk', validator: true },
         { name: '@hey-api/client-axios', throwOnError: true },
         {
             enums: 'typescript', // default
@@ -18,3 +16,5 @@ export default defineConfig({
         },
     ],
 });
+
+export default defineConfig(createConfig());

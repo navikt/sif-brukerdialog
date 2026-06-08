@@ -1,7 +1,3 @@
-import { fetchSøker, Søker } from '@navikt/sif-common-api';
-import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { getMaybeEnv } from '@navikt/sif-common-env';
-import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 import {
     ArbeidsgiverMedAnsettelseperioder,
     IngenTilgangÅrsak,
@@ -11,8 +7,12 @@ import {
     RequestStatus,
     SøknadInitialIkkeTilgang,
     UgyldigK9SakFormat,
-} from '@types';
-import { appSentryLogger } from '@utils';
+} from '@app/types';
+import { appSentryLogger } from '@app/utils';
+import { fetchSøker, Søker } from '@navikt/sif-common-api';
+import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
+import { getMaybeEnv } from '@navikt/sif-common-env';
+import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 
 import { IngenTilgangMeta, isSøknadInitialDataErrorState } from '../hooks/useSøknadInitialData';
 import { maskK9Sak } from '../utils/getSakOgArbeidsgivereDebugInfo';
@@ -137,7 +137,12 @@ const kontrollerSaker = (
     const k9saker: K9Sak[] = k9sakerResult.filter(isK9Sak);
 
     if (ugyldigk9FormatSaker.length > 0) {
-        return Promise.reject(getKanIkkeBrukeSøknadRejection([IngenTilgangÅrsak.harUgyldigK9FormatSak]));
+        return Promise.reject(
+            getKanIkkeBrukeSøknadRejection(
+                [IngenTilgangÅrsak.harUgyldigK9FormatSak],
+                ugyldigk9FormatSaker[0]?.detaljer ? { error: ugyldigk9FormatSaker[0].detaljer } : undefined,
+            ),
+        );
     }
     const dateRangeAlleSaker = getSamletDateRangeForK9Saker(k9saker);
     if (dateRangeAlleSaker === undefined) {
@@ -162,7 +167,7 @@ const kontrollerTilgang = async (
     if (resultat.kanBrukeSøknad) {
         return Promise.resolve(true);
     }
-    if (getMaybeEnv('DEBUG') === 'true') {
+    if (getMaybeEnv('SIF_PUBLIC_DEBUG') === 'true') {
         if (k9saker.length === 1) {
             appSentryLogger.logInfo(
                 'IkkeTilgangSakInfo',

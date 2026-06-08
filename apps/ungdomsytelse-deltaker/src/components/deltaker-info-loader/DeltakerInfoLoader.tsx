@@ -1,12 +1,14 @@
-import { ApiError } from '@navikt/ung-common';
-import { Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
+import { ApiError } from '@sif/api';
+import { useSøker } from '@sif/api/k9-prosessering';
+import { ParsedOppgavetype, useOppgaver } from '@sif/api/ung-brukerdialog';
+import { Navigate, Route, Routes, useParams } from 'react-router-dom';
 
 import { ApiErrorKey, ApplikasjonHendelse, useAnalyticsInstance } from '../../analytics/analytics';
 import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
-import { useSøker } from '../../api/hooks/useSøker';
 import AppRouter from '../../AppRouter';
 import InnsynApp from '../../apps/innsyn/InnsynApp';
+import { SkyraSlug, SkyraTestPage } from '@sif/surveys';
 import SøknadApp from '../../apps/søknad/SøknadApp';
 import { DeltakerContextProvider } from '../../context/DeltakerContext';
 import FlereDeltakelserPage from '../../pages/FlereDeltakelserPage';
@@ -24,13 +26,24 @@ const getErrorInfoToLog = (error: ApiError | null) => {
     return { context, message, type };
 };
 
+const OppgaveRedirect = () => {
+    const { oppgaveId } = useParams<{ oppgaveId: string }>();
+    return <Navigate to={`${AppRoutes.innsyn}/oppgave/${oppgaveId}`} replace />;
+};
+
 const DeltakerInfoLoader = () => {
     const søker = useSøker();
     const deltakelsePerioder = useDeltakelsePerioder();
-
-    const isLoading = søker.isLoading || deltakelsePerioder.isLoading;
-    const error = søker.isError || deltakelsePerioder.isError;
+    const oppgaver = useOppgaver(OppgaveYtelsetype.UNGDOMSYTELSE);
     const { logApiError, logHendelse } = useAnalyticsInstance();
+
+    // Sjekk om URL inneholder skyra/test - dette er en midlertidig testside for å teste skyra-integrasjon
+    if (globalThis.location.pathname.includes('skyra/test')) {
+        return <SkyraTestPage slugs={[SkyraSlug.ungdomsytelse_rapporter_inntekt]} />;
+    }
+
+    const isLoading = søker.isLoading || deltakelsePerioder.isLoading || oppgaver.isLoading;
+    const error = søker.isError || deltakelsePerioder.isError || oppgaver.isError;
 
     if (isLoading) {
         return <UngLoadingPage />;
@@ -39,18 +52,19 @@ const DeltakerInfoLoader = () => {
     if (error) {
         const søkerError = getErrorInfoToLog(søker.error);
         const deltakelsePerioderError = getErrorInfoToLog(deltakelsePerioder.error);
-        logApiError(ApiErrorKey.oppstartsinfo, { søkerError, deltakelsePerioderError });
-        logFaroError('DeltakerInfoLoader.Error', JSON.stringify({ søkerError, deltakelsePerioderError }));
-        return <HentDeltakerErrorPage error="Feil ved lasting" />;
+        const oppgaverError = getErrorInfoToLog(oppgaver.error);
+        logApiError(ApiErrorKey.oppstartsinfo, { søkerError, deltakelsePerioderError, oppgaverError });
+        return <HentDeltakerErrorPage error="Feil ved henting av info" />;
     }
 
-    if (!deltakelsePerioder.data || !søker.data) {
+    if (!deltakelsePerioder.data || !søker.data || !oppgaver.data) {
         logApiError(ApiErrorKey.oppstartsinfo, { info: 'Ingen data lastet' });
         logFaroError(
             'DeltakerInfoLoader.ManglendeData',
             JSON.stringify({
                 søkerHarData: søker.data !== undefined,
-                deltakelsePerioder: deltakelsePerioder.data !== undefined,
+                deltakelsePerioderHarData: deltakelsePerioder.data !== undefined,
+                oppgaverHarData: oppgaver.data !== undefined,
             }),
         );
         return <HentDeltakerErrorPage error="Ingen data lastet" />;
@@ -68,6 +82,7 @@ const DeltakerInfoLoader = () => {
             JSON.stringify({
                 søker: søker.error,
                 deltakelsePerioder: deltakelsePerioder.error,
+                oppgaver: oppgaver.error,
             }),
         );
         return <FlereDeltakelserPage />;
@@ -79,13 +94,12 @@ const DeltakerInfoLoader = () => {
 
     const deltakelsePeriode = deltakelsePerioder.data[0];
 
-    const sendSøknadOppgave = deltakelsePeriode.oppgaver.find(
-        (oppgave) => oppgave.oppgavetype === Oppgavetype.SØK_YTELSE,
+    const sendSøknadOppgave = oppgaver.data.find(
+        (oppgave) => oppgave.parsedOppgavetype === ParsedOppgavetype.SØK_YTELSE,
     );
 
     const deltakerHarSøkt =
-        deltakelsePeriode.søktTidspunkt !== undefined ||
-        (deltakelsePeriode.oppgaver.length > 0 && sendSøknadOppgave === undefined);
+        deltakelsePeriode.søktTidspunkt !== undefined || (oppgaver.data.length > 0 && sendSøknadOppgave === undefined);
 
     const aktivPathBasertPåDeltaker = deltakerHarSøkt ? AppRoutes.innsyn : AppRoutes.soknad;
 
@@ -93,11 +107,15 @@ const DeltakerInfoLoader = () => {
         <DeltakerContextProvider
             søker={søker.data}
             deltakelsePeriode={deltakelsePeriode}
-            refetchDeltakelser={deltakelsePerioder.refetch}>
+            oppgaver={oppgaver.data}
+            refetchDeltakelser={async () => {
+                await Promise.all([deltakelsePerioder.refetch(), oppgaver.refetch()]);
+            }}>
             <AppRouter>
                 <Routes>
                     <Route path={`${AppRoutes.soknad}/*`} element={<SøknadApp />} />
                     <Route path={`${AppRoutes.innsyn}/*`} element={<InnsynApp />} />
+                    <Route path="/oppgave/:oppgaveId" element={<OppgaveRedirect />} />
                     {/* Fallback for andre routes */}
                     <Route path="*" element={<Navigate to={aktivPathBasertPåDeltaker} />} />
                 </Routes>

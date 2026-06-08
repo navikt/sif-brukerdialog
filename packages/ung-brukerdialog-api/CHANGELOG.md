@@ -1,0 +1,35 @@
+# @navikt/ung-brukerdialog-api
+
+## 0.0.6
+
+### Patch Changes
+
+- Oppdatere versjonsnumre etter codegen endringer + utvide codegenUtils pga | null fra openapi
+
+## 0.0.5
+
+### Patch Changes
+
+- Oppdatert codegen:prod
+
+## 0.0.4
+
+### Patch Changes
+
+- 062d83e: Codegen prod
+
+## 0.0.3
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+
+## 0.0.2
+
+### Patch Changes
+
+- Codegen:prod
+
+## 0.0.1
+
+### Init

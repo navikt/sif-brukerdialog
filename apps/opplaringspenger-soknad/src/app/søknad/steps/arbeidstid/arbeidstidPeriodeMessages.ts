@@ -1,5 +1,5 @@
-import { IntlShape } from 'react-intl';
 import { typedIntlHelper } from '@navikt/sif-common-core-ds/src/utils/intlUtils';
+import { IntlShape } from 'react-intl';
 
 const nb = {
     'arbeidstidPeriode.arbeidIPeriodeIntlValues.jobber': 'jobber',

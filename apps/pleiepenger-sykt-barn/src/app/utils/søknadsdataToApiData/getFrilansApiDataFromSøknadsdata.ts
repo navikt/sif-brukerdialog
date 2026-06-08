@@ -1,5 +1,6 @@
 import { dateToISODate, decimalDurationToISODuration } from '@navikt/sif-common-utils';
 
+import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
 import { ArbeidsforholdApiData } from '../../types/søknad-api-data/ArbeidsforholdApiData';
 import { FrilansApiData, FrilanserMedArbeidsforholdApiDataPart } from '../../types/søknad-api-data/FrilansApiData';
 import { Frilanstype } from '../../types/søknad-form-values/FrilansFormValues';
@@ -22,6 +23,12 @@ export const getFrilansApiDataFromSøknadsdata = ({
     if (arbeidssituasjon.harInntektSomFrilanser === false) {
         return {
             harInntektSomFrilanser: false,
+            /** Behold normalarbeidstid hvis dette er på søknadsdata */
+            arbeidsforhold: arbeidssituasjon.normalarbeidstid
+                ? getFrilansArbeidsforholdApiData(arbeidssituasjon.normalarbeidstid, {
+                      type: ArbeidIPeriodeType.ikkeBesvart,
+                  })
+                : undefined,
         };
     }
     const { misterInntektSomFrilanser, type } = arbeidssituasjon;

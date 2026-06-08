@@ -1,9 +1,9 @@
 import { useAppIntl } from '@i18n/index';
-import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { ApplikasjonHendelse, useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { soknadStepUtils, Step as SøknadStep } from '@navikt/sif-common-soknad-ds';
 import { useFormikContext } from 'formik';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { purge } from '../api/api';
@@ -21,7 +21,7 @@ interface Props {
     children: React.ReactNode;
     showSubmitButton?: boolean;
     isFinalSubmit?: boolean;
-    showButtonSpinner?: boolean;
+    requestPending?: boolean;
     buttonDisabled?: boolean;
     skipValidation?: boolean;
     onValidFormSubmit?: () => void;
@@ -34,15 +34,21 @@ const SøknadFormStep = (props: Props) => {
     const {
         children,
         onValidFormSubmit,
-        showButtonSpinner,
+        requestPending,
         buttonDisabled,
         stepId,
-
         isFinalSubmit,
         showSubmitButton = true,
     } = props;
+    const [nextButtonPending, setNextButtonPending] = useState(false);
     const navigate = useNavigate();
-    const { logHendelse } = useAmplitudeInstance();
+    const { logHendelse } = useAnalyticsInstance();
+
+    useEffect(() => {
+        if (!requestPending && nextButtonPending) {
+            setNextButtonPending(false);
+        }
+    }, [requestPending]);
 
     const søknadStepConfig = getSøknadStepConfig(formik.values);
     const currentStepConfig = søknadStepConfig[stepId];
@@ -51,6 +57,12 @@ const SøknadFormStep = (props: Props) => {
         return <InvalidStepPage stepId={stepId} />;
     }
     const { index } = currentStepConfig;
+    const handleOnValidFormSubmit = async () => {
+        if (onValidFormSubmit) {
+            setNextButtonPending(true);
+            onValidFormSubmit();
+        }
+    };
 
     const handleAvbrytSøknad = async () => {
         await purge();
@@ -75,7 +87,7 @@ const SøknadFormStep = (props: Props) => {
             onContinueLater={handleAvsluttOgFortsettSenere}
             steps={soknadStepUtils.getProgressStepsFromConfig(søknadStepConfig, index, intl)}>
             <SøknadFormComponents.Form
-                onValidSubmit={onValidFormSubmit}
+                onValidSubmit={handleOnValidFormSubmit}
                 includeButtons={true}
                 isFinalSubmit={isFinalSubmit}
                 showSubmitButton={showSubmitButton}
@@ -83,7 +95,7 @@ const SøknadFormStep = (props: Props) => {
                 includeValidationSummary={true}
                 runDelayedFormValidation={true}
                 onBack={previousStepRoute ? () => navigate(previousStepRoute) : undefined}
-                submitPending={showButtonSpinner}
+                submitPending={requestPending || nextButtonPending}
                 submitDisabled={buttonDisabled}
                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}>
                 {children}

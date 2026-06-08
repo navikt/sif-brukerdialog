@@ -5,7 +5,7 @@ export const getDevAppSettings = () => ({
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn',
     GITHUB_REF_NAME: 'branch-name',
 
-    SIF_PUBLIC_AMPLITUDE_API_KEY: '123',
+    SIF_PUBLIC_ANALYTICS_API_KEY: '123',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
     SIF_PUBLIC_DEKORATOR_URL: 'https://www.nav.no/dekoratoren/?simple=true&chatbot=false',

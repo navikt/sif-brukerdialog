@@ -1,11 +1,11 @@
 import { BodyShort, Box, Heading, HStack, VStack } from '@navikt/ds-react';
 import { getDateRangeText } from '@navikt/sif-common-utils';
+import { SelectableListType } from '@app/hooks/useSelectableList';
+import { AppText } from '@app/i18n';
 import dayjs from 'dayjs';
 import React, { ReactElement } from 'react';
 import { useIntl } from 'react-intl';
 
-import { SelectableListType } from '../../../hooks/useSelectableList';
-import { AppText } from '../../../i18n';
 import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
 import ArbeidstidUkeInfoListe from './ArbeidstidUkeInfoListe';
 import { getKortUkeTooltipText } from './UkeInfoTooltip';
@@ -50,16 +50,16 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                 </div>
                             )}
                             <div className="arbeidstidUke__info">
-                                <VStack gap="2">
+                                <VStack gap="space-8">
                                     <Heading level="3" size="xsmall">
                                         <AppText id="arbeidstidUkeListe.heading" values={{ ukenummer }} />
                                     </Heading>
 
                                     <BodyShort as="div">
-                                        <HStack gap="4">
+                                        <HStack gap="space-16">
                                             <Box>{getDateRangeText(uke.periode, intl.locale)}</Box>
                                         </HStack>
-                                        <Box marginBlock="2 0">
+                                        <Box marginBlock="space-8 space-0">
                                             <UkeTags
                                                 kortUkeTooltip={getKortUkeTooltipText(uke.periode)}
                                                 erKortUke={uke.erKortUke}

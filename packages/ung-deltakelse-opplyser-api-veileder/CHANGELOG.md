@@ -1,5 +1,198 @@
 # @navikt/ung-deltakelse-opplyser-api
 
+## 0.3.11
+
+### Patch Changes
+
+- Oppdatere versjonsnumre etter codegen endringer + utvide codegenUtils pga | null fra openapi
+
+## 0.3.10
+
+### Patch Changes
+
+- Oppdatert codegen:prod
+
+## 0.3.9
+
+### Patch Changes
+
+- 062d83e: Codegen prod
+
+## 0.3.8
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+
+## 0.3.7
+
+### Patch Changes
+
+- Codegen:prod
+
+## 0.3.6
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.3.5
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.3.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+
+## 0.3.3
+
+### Patch Changes
+
+- 69fe53c: Pakkeoppdateringer - minor/patch + major portable text
+
+## 0.3.2
+
+### Patch Changes
+
+- fc216a0: Pakkeoppdateringer - minor/patch
+
+## 0.3.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+
+## 0.3.0
+
+### Minor Changes
+
+- Oppdatere til gjelderDelerAvMåned flagg på oppgaver for inntekt og kontroll av inntekt
+
+## 0.2.3
+
+### Patch Changes
+
+- Pakkeoppdateringer
+
+## 0.2.2
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.2.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+
+## 0.2.0
+
+### Minor Changes
+
+- Regenererte codegens med mer cleanup
+
+## 0.1.36
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 0.1.35
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 0.1.34
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.1.33
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.1.32
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+
+## 0.1.31
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+
+## 0.1.30
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.1.29
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.1.28
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.1.27
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+
+## 0.1.26
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.1.25
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.1.24
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.1.23
+
+### Patch Changes
+
+- 52d9b9e: Pakkeoppdateringer - minor/patch
+
+## 0.1.22
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
+## 0.1.21
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+
 ## 0.1.20
 
 ### Patch Changes

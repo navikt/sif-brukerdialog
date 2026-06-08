@@ -16,10 +16,10 @@ export const useKontrollerOmStegErTilgjengelig = (steg: Steg) => {
                 gotoVelkommenPage();
             } else {
                 const sisteTilgjengeligeSteg = getTilgjengeligeSteg(svar, kontonummerInfo).pop();
-                if (!sisteTilgjengeligeSteg) {
-                    gotoVelkommenPage();
-                } else {
+                if (sisteTilgjengeligeSteg) {
                     gotoSteg(søknadSteg[activeIndex - 1]);
+                } else {
+                    gotoVelkommenPage();
                 }
             }
         }

@@ -44,7 +44,7 @@ const AnsettelsesperioderInfo = ({ ansettelsesperioder }: Props) => {
         <Ansettelsesperiode periode={ansettelsesperioder[0]} />
     ) : (
         <ExpandableInfo title={text('arbeidsaktivitetBlockHeader.arbeidsgiver.ansettelsesperioder')}>
-            <Box marginBlock="0 6">
+            <Box marginBlock="space-0 space-24">
                 <List>
                     {ansettelsesperioder
                         .sort(sortMaybeDateRange)

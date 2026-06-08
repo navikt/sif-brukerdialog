@@ -1,6 +1,7 @@
 import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common-api';
-import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { useEffect, useState } from 'react';
+import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useState } from 'react';
 
 import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
 import { RequestStatus } from '../types/RequestStatus';
@@ -29,10 +30,16 @@ type SøknadInitialNotLoggedIn = {
     status: RequestStatus.redirectingToLogin;
 };
 
+type SøknadInitialNoAccess = {
+    status: RequestStatus.noAccess;
+};
+
 export type SøknadInitialDataState =
     | SøknadInitialSuccess
     | SøknadInitialFailed
     | SøknadInitialLoading
+    | SøknadInitialLoading
+    | SøknadInitialNoAccess
     | SøknadInitialNotLoggedIn;
 
 export const defaultSøknadState: Partial<SøknadContextState> = {
@@ -75,6 +82,10 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 setInitialData({
                     status: RequestStatus.redirectingToLogin,
                 });
+            } else if (isForbidden(error)) {
+                setInitialData({
+                    status: RequestStatus.noAccess,
+                });
             } else {
                 appSentryLogger.logError('fetchInitialData', error);
                 setInitialData({
@@ -85,9 +96,9 @@ function useSøknadInitialData(): SøknadInitialDataState {
         }
     };
 
-    useEffect(() => {
+    useEffectOnce(() => {
         fetch();
-    }, []);
+    });
 
     return initialData;
 }

@@ -1,5 +1,691 @@
 # @navikt/dine-pleiepenger
 
+## 2.2.14
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.56
+
+## 2.2.13
+
+### Patch Changes
+
+- Oppdatere versjonsnumre etter codegen endringer + utvide codegenUtils pga | null fra openapi
+- Updated dependencies
+    - @navikt/k9-sak-innsyn-api@0.2.18
+
+## 2.2.12
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-sak-innsyn-api@0.2.17
+
+## 2.2.11
+
+### Patch Changes
+
+- @navikt/sif-common-core-ds@10.3.55
+
+## 2.2.10
+
+### Patch Changes
+
+- Trigger deploy
+
+## 2.2.9
+
+### Patch Changes
+
+- Updated dependencies [062d83e]
+    - @navikt/k9-sak-innsyn-api@0.2.16
+
+## 2.2.8
+
+### Patch Changes
+
+- Clean yarn.lock - trigger deploy
+
+## 2.2.7
+
+### Patch Changes
+
+- Versjonering og trigge deploy
+- Updated dependencies
+    - @navikt/k9-sak-innsyn-api@0.2.15
+    - @navikt/sif-app-register@0.1.13
+    - @navikt/sif-common-analytics@0.0.7
+    - @navikt/sif-common-core-ds@10.3.54
+    - @navikt/sif-common-utils@3.49.61
+
+## 2.2.6
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-sak-innsyn-api@0.2.14
+
+## 2.2.5
+
+### Patch Changes
+
+- Pakkeoppdateringer - ajv +
+
+## 2.2.4
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-sentry@0.28.63
+    - @navikt/sif-common-core-ds@10.3.53
+
+## 2.2.3
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-sak-innsyn-api@0.2.13
+
+## 2.2.2
+
+### Patch Changes
+
+- ca64a56: axios 1.3.5 fix
+
+## 2.2.1
+
+### Patch Changes
+
+- Pakkeoppdatering - @isaacs/brace-expansion5.0.1
+
+## 2.2.0
+
+### Minor Changes
+
+- Inntektsmelding og splitt av sak i Dine pleiepenger. Tilhørende codegen + noe felleskoderoppdateringer
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-sak-innsyn-api@0.2.12
+
+## 2.1.1
+
+### Patch Changes
+
+- Deploy etter at node-tar er lagt til i resolutions
+
+## 2.1.0
+
+### Minor Changes
+
+- Oppdatere til next16
+
+## 2.0.28
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-analytics@0.0.6
+    - @navikt/sif-common-core-ds@10.3.52
+    - @navikt/k9-sak-innsyn-api@0.2.11
+    - @navikt/sif-common-sentry@0.28.62
+    - @navikt/sif-common-utils@3.49.60
+    - @navikt/sif-app-register@0.1.12
+
+## 2.0.27
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-analytics@0.0.5
+    - @navikt/sif-common-core-ds@10.3.51
+    - @navikt/k9-sak-innsyn-api@0.2.10
+    - @navikt/sif-common-sentry@0.28.61
+    - @navikt/sif-common-utils@3.49.59
+    - @navikt/sif-app-register@0.1.12
+
+## 2.0.26
+
+### Patch Changes
+
+- Updated dependencies [522fe9f]
+    - @navikt/sif-common-utils@3.49.58
+    - @navikt/sif-common-core-ds@10.3.50
+
+## 2.0.25
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.49
+
+## 2.0.24
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + react-router@7.12
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.48
+    - @navikt/k9-sak-innsyn-api@0.2.9
+    - @navikt/sif-common-utils@3.49.57
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-analytics@0.0.4
+    - @navikt/sif-common-sentry@0.28.60
+
+## 2.0.23
+
+### Patch Changes
+
+- Pakkeoppdateringer - major react-intl + sanity
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.47
+    - @navikt/sif-common-utils@3.49.56
+
+## 2.0.22
+
+### Patch Changes
+
+- 69fe53c: Pakkeoppdateringer - minor/patch + major portable text
+- Updated dependencies [69fe53c]
+    - @navikt/sif-common-core-ds@10.3.46
+    - @navikt/k9-sak-innsyn-api@0.2.8
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-analytics@0.0.4
+    - @navikt/sif-common-sentry@0.28.60
+    - @navikt/sif-common-utils@3.49.55
+
+## 2.0.21
+
+### Patch Changes
+
+- fc216a0: Pakkeoppdateringer - minor/patch
+- Updated dependencies [fc216a0]
+    - @navikt/sif-common-analytics@0.0.4
+    - @navikt/sif-common-core-ds@10.3.45
+    - @navikt/k9-sak-innsyn-api@0.2.7
+    - @navikt/sif-common-sentry@0.28.60
+    - @navikt/sif-common-utils@3.49.55
+    - @navikt/sif-app-register@0.1.12
+
+## 2.0.20
+
+### Patch Changes
+
+- e8491a9: Pakkeoppdateringer - minor/patch
+- Updated dependencies [e8491a9]
+    - @navikt/sif-common-core-ds@10.3.44
+    - @navikt/sif-common-sentry@0.28.59
+
+## 2.0.19
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Major grafana/faro
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.43
+    - @navikt/k9-sak-innsyn-api@0.2.6
+    - @navikt/sif-common-sentry@0.28.58
+    - @navikt/sif-common-utils@3.49.54
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-analytics@0.0.3
+
+## 2.0.18
+
+### Patch Changes
+
+- Updated dependencies [81a4e75]
+    - @navikt/sif-common-sentry@0.28.57
+    - @navikt/sif-common-core-ds@10.3.42
+
+## 2.0.17
+
+### Patch Changes
+
+- Updated dependencies [bc42630]
+    - @navikt/sif-common-core-ds@10.3.41
+
+## 2.0.16
+
+### Patch Changes
+
+- 292ac7b: Pakkeoppdateringer - minor/patch
+- Updated dependencies [292ac7b]
+    - @navikt/sif-common-core-ds@10.3.40
+    - @navikt/k9-sak-innsyn-api@0.2.5
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-analytics@0.0.3
+    - @navikt/sif-common-sentry@0.28.56
+    - @navikt/sif-common-utils@3.49.53
+
+## 2.0.15
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-sak-innsyn-api@0.2.5
+
+## 2.0.14
+
+### Patch Changes
+
+- Pakkeoppdateringer - react@19.2.1 + npmPreapprovedPackages
+- Updated dependencies
+    - @navikt/sif-common-analytics@0.0.3
+    - @navikt/sif-common-core-ds@10.3.39
+    - @navikt/sif-common-sentry@0.28.56
+    - @navikt/sif-common-utils@3.49.53
+    - @navikt/k9-sak-innsyn-api@0.2.4
+    - @navikt/sif-app-register@0.1.12
+
+## 2.0.13
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.38
+    - @navikt/k9-sak-innsyn-api@0.2.4
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-analytics@0.0.2
+    - @navikt/sif-common-sentry@0.28.55
+    - @navikt/sif-common-utils@3.49.52
+
+## 2.0.12
+
+### Patch Changes
+
+- Next 15.5.7
+
+## 2.0.11
+
+### Patch Changes
+
+- @navikt/sif-common-core-ds@10.3.37
+
+## 2.0.10
+
+### Patch Changes
+
+- @navikt/sif-common-core-ds@10.3.36
+
+## 2.0.9
+
+### Patch Changes
+
+- d80e3cd: - Refactoring av dockerfiler. Bruke turbo sin prune funksjonalitet og yarn --immutable.
+    - Justere workflows for deploy
+    - Skru av prometheus metrics - var ikke brukt
+    - Korrigere dependencies pga --immutable
+    - Forenkle getDisabledDates pga ts warning
+- Updated dependencies [d80e3cd]
+    - @navikt/sif-common-core-ds@10.3.35
+
+## 2.0.8
+
+### Patch Changes
+
+- Pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.34
+    - @navikt/k9-sak-innsyn-api@0.2.4
+    - @navikt/sif-common-sentry@0.28.55
+    - @navikt/sif-common-utils@3.49.52
+
+## 2.0.7
+
+### Patch Changes
+
+- Erstatte begrepet amplitude med analytics. Ingen logikk forandring. Dette er på grunn av at amplitude fases ut.
+- Updated dependencies
+    - @navikt/sif-common-analytics@0.0.2
+    - @navikt/sif-app-register@0.1.12
+    - @navikt/sif-common-core-ds@10.3.33
+
+## 2.0.6
+
+### Patch Changes
+
+- Håndtere Behandlingsstatus UKJENT som settes hvis en sak ikke har behandlinger.
+- Updated dependencies
+    - @navikt/k9-sak-innsyn-api@0.2.3
+
+## 2.0.5
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.32
+    - @navikt/k9-sak-innsyn-api@0.2.2
+    - @navikt/sif-common-sentry@0.28.54
+    - @navikt/sif-common-utils@3.49.51
+
+## 2.0.4
+
+### Patch Changes
+
+- Justere nais resources
+
+## 2.0.3
+
+### Patch Changes
+
+- Redusere nais-resources til anbefalte nivåer fra nais
+
+## 2.0.2
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+  Codegen - ingen type-endringer, kun struktur
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.51
+    - @navikt/sif-common-core-ds@10.3.31
+    - @navikt/k9-sak-innsyn-api@0.2.1
+    - @navikt/sif-common-sentry@0.28.53
+    - @navikt/sif-common-utils@3.49.50
+    - @navikt/sif-app-register@0.1.11
+
+## 2.0.1
+
+### Patch Changes
+
+- Rydde loggmeldinger, redirect hvis sak ikke i metadata, smårydding ellers
+
+## 2.0.0
+
+### Major Changes
+
+- Stor refactoring av hvordan informasjon lastes inn i innsyn. Nye backend-endepunkter, caching i client. Rydding i kode, og forbedret sjekk av innlogget bruker.
+- Ta i bruk genererte zod skjemaer for henting av data i backend; noen justeringer pga feil i genererte skjemaer, og for avgrensning av data som returneres til klient
+- Skrive egne zodClientSkjemaer for typer som kommer fra api-endepunktene. I hovedsak for å konvertere dateString til Date, men også noen for å utvide/begrense typen
+- Skrive om mockData og legge til playwright-tester
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-sak-innsyn-api@0.2.0
+
+## 1.12.5
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.50
+    - @navikt/sif-common-core-ds@10.3.30
+    - @navikt/sif-common-sentry@0.28.52
+    - @navikt/sif-common-utils@3.49.49
+    - @navikt/sif-app-register@0.1.11
+
+## 1.12.4
+
+### Patch Changes
+
+- fe1a62a: Pakkeoppdatering - major portable text + msw minor. Oppdatere deps til @navikt/appstatus-react-ds
+- Updated dependencies [fe1a62a]
+    - @navikt/sif-common-core-ds@10.3.29
+
+## 1.12.3
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.49
+    - @navikt/appstatus-react-ds@2.20.58
+    - @navikt/sif-common-core-ds@10.3.28
+    - @navikt/sif-common-sentry@0.28.51
+    - @navikt/sif-common-utils@3.49.48
+    - @navikt/sif-app-register@0.1.11
+
+## 1.12.2
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.48
+    - @navikt/appstatus-react-ds@2.20.57
+    - @navikt/sif-common-core-ds@10.3.27
+    - @navikt/sif-common-sentry@0.28.50
+    - @navikt/sif-common-utils@3.49.47
+    - @navikt/sif-app-register@0.1.11
+
+## 1.12.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.47
+    - @navikt/appstatus-react-ds@2.20.56
+    - @navikt/sif-common-core-ds@10.3.26
+    - @navikt/sif-common-sentry@0.28.49
+    - @navikt/sif-common-utils@3.49.46
+    - @navikt/sif-app-register@0.1.11
+
+## 1.12.0
+
+### Minor Changes
+
+- Endre på hvordan data lastes inn i applikasjonen, slik at den ikke laster mer enn den trenger, og laster i riktig rekkefølge.
+
+## 1.11.7
+
+### Patch Changes
+
+- Erstatte ds-icons med aksel-icons
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.20.55
+    - @navikt/sif-common-core-ds@10.3.25
+
+## 1.11.6
+
+### Patch Changes
+
+- Pakkeoppdateringer - aksel
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.20.54
+    - @navikt/sif-app-register@0.1.11
+    - @navikt/sif-common-amplitude@2.28.46
+    - @navikt/sif-common-core-ds@10.3.24
+    - @navikt/sif-common-sentry@0.28.48
+    - @navikt/sif-common-utils@3.49.45
+
+## 1.11.5
+
+### Patch Changes
+
+- Oppgradere til storybook 10; Minor/patch pakkeoppdateringer
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.45
+    - @navikt/appstatus-react-ds@2.20.53
+    - @navikt/sif-common-core-ds@10.3.23
+    - @navikt/sif-common-sentry@0.28.47
+    - @navikt/sif-common-utils@3.49.44
+    - @navikt/sif-app-register@0.1.10
+
+## 1.11.4
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.22
+    - @navikt/sif-common-sentry@0.28.46
+    - @navikt/sif-common-utils@3.49.43
+
+## 1.11.3
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.44
+    - @navikt/sif-common-core-ds@10.3.21
+    - @navikt/sif-common-sentry@0.28.45
+    - @navikt/sif-common-utils@3.49.42
+    - @navikt/appstatus-react-ds@2.20.52
+    - @navikt/sif-app-register@0.1.10
+
+## 1.11.2
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-core-ds@10.3.20
+
+## 1.11.1
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.43
+    - @navikt/appstatus-react-ds@2.20.52
+    - @navikt/sif-common-core-ds@10.3.19
+    - @navikt/sif-common-sentry@0.28.44
+    - @navikt/sif-common-utils@3.49.41
+    - @navikt/sif-app-register@0.1.10
+
+## 1.11.0
+
+### Minor Changes
+
+- Legge til tre moduler i outputFileTracingIncludes. De kom ikke med i bygget server feilet med melding om manglende filer.
+
+## 1.10.21
+
+### Patch Changes
+
+- Korrigere lenke fra VelgSak siden
+
+## 1.10.20
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch + codegen
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.42
+    - @navikt/appstatus-react-ds@2.20.51
+    - @navikt/sif-common-core-ds@10.3.18
+    - @navikt/sif-common-sentry@0.28.43
+    - @navikt/sif-common-utils@3.49.40
+    - @navikt/sif-app-register@0.1.10
+
+## 1.10.19
+
+### Patch Changes
+
+- Erstatte egen Process komponent med Aksel komponent
+
+## 1.10.18
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.41
+    - @navikt/appstatus-react-ds@2.20.50
+    - @navikt/sif-common-core-ds@10.3.17
+    - @navikt/sif-common-utils@3.49.39
+    - @navikt/sif-app-register@0.1.10
+    - @navikt/sif-common-sentry@0.28.42
+
+## 1.10.17
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.40
+    - @navikt/appstatus-react-ds@2.20.49
+    - @navikt/sif-common-core-ds@10.3.16
+    - @navikt/sif-common-sentry@0.28.42
+    - @navikt/sif-common-utils@3.49.38
+
+## 1.10.16
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.39
+    - @navikt/appstatus-react-ds@2.20.48
+    - @navikt/sif-common-core-ds@10.3.15
+    - @navikt/sif-common-sentry@0.28.41
+    - @navikt/sif-common-utils@3.49.37
+    - @navikt/sif-app-register@0.1.10
+
+## 1.10.15
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.20.47
+    - @navikt/sif-common-core-ds@10.3.14
+    - @navikt/sif-common-sentry@0.28.40
+    - @navikt/sif-app-register@0.1.10
+    - @navikt/sif-common-amplitude@2.28.38
+    - @navikt/sif-common-utils@3.49.36
+
+## 1.10.14
+
+### Patch Changes
+
+- 52d9b9e: Pakkeoppdateringer - minor/patch
+- Updated dependencies [52d9b9e]
+    - @navikt/sif-common-amplitude@2.28.38
+    - @navikt/appstatus-react-ds@2.20.46
+    - @navikt/sif-common-core-ds@10.3.13
+    - @navikt/sif-common-sentry@0.28.39
+    - @navikt/sif-common-utils@3.49.36
+    - @navikt/sif-app-register@0.1.10
+
+## 1.10.13
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.37
+    - @navikt/appstatus-react-ds@2.20.45
+    - @navikt/sif-common-core-ds@10.3.12
+    - @navikt/sif-common-utils@3.49.35
+    - @navikt/sif-app-register@0.1.10
+    - @navikt/sif-common-sentry@0.28.38
+
+## 1.10.12
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.36
+    - @navikt/appstatus-react-ds@2.20.44
+    - @navikt/sif-common-core-ds@10.3.11
+    - @navikt/sif-common-sentry@0.28.38
+    - @navikt/sif-app-register@0.1.10
+    - @navikt/sif-common-utils@3.49.34
+
+## 1.10.11
+
+### Patch Changes
+
+- Pakkeoppdateringer - minor/patch. Fjerne ubrukte pakker.
+- Updated dependencies
+    - @navikt/sif-common-amplitude@2.28.35
+    - @navikt/appstatus-react-ds@2.20.43
+    - @navikt/sif-common-core-ds@10.3.10
+    - @navikt/sif-common-sentry@0.28.37
+    - @navikt/sif-common-utils@3.49.33
+    - @navikt/sif-app-register@0.1.9
+
 ## 1.10.10
 
 ### Patch Changes

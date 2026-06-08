@@ -20,7 +20,7 @@ Denne mappen inneholder analytics-funksjonalitet for ungdomsytelse-deltaker appe
     - `UløstOppgavebekreftelse.tsx` - ved oppgavebekreftelse
 - **Data**:
     - **Søknad**: Omfattende metadata om deltakelse, barn, kontonummer, oppgaver og responstid
-    - **Oppgavebekreftelse**: Oppgavetype, responstid, om bruker la til uttalelse
+    - **Oppgavebekreftelse**: OppgaveType, responstid, om bruker la til uttalelse
 
 #### `logSkjemaFeilet`
 
@@ -81,7 +81,7 @@ Denne mappen inneholder analytics-funksjonalitet for ungdomsytelse-deltaker appe
 
 ```typescript
 {
-  oppgavetype: Oppgavetype,
+  oppgavetype: OppgaveType,
   antallDagerMellomOpprettetOgBesvart: number,
   antallMinutterMellomOpprettetOgBesvart: number,
   harUttalelse: boolean

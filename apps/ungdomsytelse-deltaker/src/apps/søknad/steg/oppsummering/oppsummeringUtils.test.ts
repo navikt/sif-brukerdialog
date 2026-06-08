@@ -1,8 +1,9 @@
 import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 import { describe, expect, it } from 'vitest';
 
-import { KontonummerOppslagInfo, SøknadSvar, Spørsmål } from '../../types';
+import { SøknadSvar, Spørsmål } from '../../types';
 import { buildSøknadFromSvar, HarKontonummerEnum } from './oppsummeringUtils';
 
 const deltakelseId = '12345';
@@ -12,7 +13,7 @@ describe('buildSøknadFromSvar', () => {
     const søkerNorskIdent = '12345678910';
     const startdato = new Date('2023-01-01');
 
-    const kontonummerInfo: KontonummerOppslagInfo = {
+    const kontonummerInfo: UtvidetKontonummerInfo = {
         harKontonummer: HarKontonummerEnum.JA,
         formatertKontonummer: '1234 56 78901',
         kontonummerFraRegister: '12345678901',

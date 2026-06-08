@@ -1,9 +1,10 @@
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { mapVirksomhetToVirksomhetApiData } from '@navikt/sif-common-forms-ds/src/forms/virksomhet/mapVirksomhetToApiData';
+
 import { ArbeidsforholdApiData, SelvstendigNæringsdrivendeApiData } from '../../types/søknadApiData/SøknadApiData';
 import { ArbeidIPeriodeSøknadsdata } from '../../types/søknadsdata/ArbeidIPeriodeSøknadsdata';
 import { ArbeidSelvstendigSøknadsdata } from '../../types/søknadsdata/ArbeidSelvstendigSøknadsdata';
-import { getArbeidIPeriodeApiDataFromSøknadsdata } from './getArbeidIPeriodeApiDataFromSøknadsdata';
+import { getFraværIPeriodeApiDataFromSøknadsdata } from './getFraværIPeriodeApiDataFromSøknadsdata';
 
 export const getSelvstendigApiDataFromSøknadsdata = (props: {
     søknadsperiode: DateRange;
@@ -25,12 +26,12 @@ export const getSelvstendigApiDataFromSøknadsdata = (props: {
             const virksomhetApi = mapVirksomhetToVirksomhetApiData('nb', virksomhet, harFlereVirksomheter);
             const arbeidsforhold: ArbeidsforholdApiData = {
                 jobberNormaltTimer,
-                arbeidIPeriode: getArbeidIPeriodeApiDataFromSøknadsdata(
-                    arbeidIperiode,
-                    søknadsperiode,
+                arbeidIPeriode: getFraværIPeriodeApiDataFromSøknadsdata({
+                    arbeidIPeriodeSøknadsdata: arbeidIperiode,
+                    periode: søknadsperiode,
                     jobberNormaltTimer,
-                    dagerMedOpplæring,
-                ),
+                    valgteDatoer: dagerMedOpplæring,
+                }),
             };
 
             return { virksomhet: virksomhetApi, arbeidsforhold };

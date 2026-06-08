@@ -4,6 +4,7 @@ import { StepID } from '../../../src/app/types/StepID';
 import { mellomlagringMock } from '../../mock-data/mellomlagring';
 import { routeUtils } from '../../utils/routeUtils';
 import { setNow } from '../../utils/setNow';
+import { testAccessibility } from '../../utils/testAccessibility';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);
@@ -19,24 +20,20 @@ test.describe('Arbeidssituasjon', () => {
     test('Fyll ut arbeidssituasjon', async ({ page }) => {
         await page.getByTestId('er-ansatt').getByText('Ja').click();
         await page.getByLabel('Hvor mange timer jobber du').fill('20');
-        await page.getByRole('group', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Nei').check();
-        await page.getByRole('group', { name: 'Mottar du omsorgs' }).getByLabel('Nei').check();
-        await page.getByRole('group', { name: 'Jobber du som frilanser eller' }).getByLabel('Ja').check();
+        await page.getByRole('radiogroup', { name: 'Mottar du fosterhjemsgodtgjø' }).getByLabel('Nei').check();
+        await page.getByRole('radiogroup', { name: 'Mottar du omsorgs' }).getByLabel('Nei').check();
+        await page.getByRole('radiogroup', { name: 'Jobber du som frilanser eller' }).getByLabel('Ja').check();
         await page.getByLabel('Jeg jobber både som frilanser').check();
-        await page.getByRole('group', { name: 'Startet du som frilanser før' }).getByLabel('Ja').click();
+        await page.getByRole('radiogroup', { name: 'Startet du som frilanser før' }).getByLabel('Ja').click();
         await page.getByTestId('erFortsattFrilanser').getByText('Ja').click();
         await page.getByTestId('erFortsattFrilanser').getByText('Nei').click();
-        await page
-            .locator('div')
-            .filter({ hasText: /^Når sluttet du å jobbe som frilanser\?Åpne datovelger$/ })
-            .getByRole('button')
-            .click();
+        await page.getByRole('button', { name: 'Åpne datovelger' }).click();
         await page.getByTestId('er-frilanser-sluttdato').getByLabel('søndag 1', { exact: true }).click();
-        await page.getByRole('group', { name: 'Startet du som frilanser før' }).getByLabel('Nei').click();
+        await page.getByRole('radiogroup', { name: 'Startet du som frilanser før' }).getByLabel('Nei').click();
         await page
             .locator('div')
-            .filter({ hasText: /^Når startet du å jobbe som frilanser\?Åpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Når sluttet du å jobbe som frilanser\?$/ })
+            .getByRole('button', { name: 'Åpne datovelger' })
             .click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
@@ -53,20 +50,12 @@ test.describe('Arbeidssituasjon', () => {
         await page.getByLabel('Opplysninger om den eldste').getByLabel('Ja').check();
         await page.getByLabel('Hva er organisasjonsnummeret?').click();
         await page.getByLabel('Hva er organisasjonsnummeret?').fill('991012133');
-        await page
-            .locator('div')
-            .filter({ hasText: /^StartdatoÅpne datovelger$/ })
-            .getByRole('button')
-            .click();
+        await page.getByRole('button', { name: 'Åpne datovelger' }).nth(2).click();
         await page.getByRole('dialog', { name: 'Velg dato' }).getByLabel('År').selectOption('2018');
         await page.getByLabel('onsdag 17').click();
         await page.getByText('Er pågående').click();
-        await page.getByRole('group', { name: 'Har du hatt en varig endring' }).getByLabel('Ja').check();
-        await page
-            .locator('div')
-            .filter({ hasText: /^Oppgi dato for endringenÅpne datovelger$/ })
-            .getByRole('button')
-            .click();
+        await page.getByRole('radiogroup', { name: 'Har du hatt en varig endring' }).getByLabel('Ja').check();
+        await page.getByRole('button', { name: 'Åpne datovelger' }).nth(4).click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByRole('button', { name: 'tirsdag 15' }).click();
@@ -74,7 +63,7 @@ test.describe('Arbeidssituasjon', () => {
         await page.getByLabel('Oppgi næringsinntekten din').fill('20000');
         await page.getByLabel('Oppgi næringsinntekten din').press('Tab');
         await page.getByLabel('Her kan du skrive kort hva').fill('Det endret seg');
-        await page.getByRole('group', { name: 'Har du regnskapsfører?' }).getByLabel('Ja').check();
+        await page.getByRole('radiogroup', { name: 'Har du regnskapsfører?' }).getByLabel('Ja').check();
         await page.getByLabel('Oppgi navnet til regnskapsfø').click();
         await page.getByLabel('Oppgi navnet til regnskapsfø').fill('Regn Skap');
         await page.getByLabel('Oppgi telefonnummeret til').click();
@@ -83,6 +72,7 @@ test.describe('Arbeidssituasjon', () => {
         await page.getByTestId('arbeidssituasjonSelvstendig').getByLabel('Hvor mange timer jobber du').click();
         await page.getByTestId('arbeidssituasjonSelvstendig').getByLabel('Hvor mange timer jobber du').fill('5');
         await page.getByTestId('arbeidssituasjonOpptjeningUtland').getByText('Ja').check();
+        await testAccessibility(page);
     });
     test('Jobb i annet EØS land', async ({ page }) => {
         /** Jobb i annet EØS land */
@@ -90,8 +80,8 @@ test.describe('Arbeidssituasjon', () => {
         await page.getByRole('button', { name: 'Legg til jobb i et annet EØS-' }).click();
         await page
             .locator('div')
-            .filter({ hasText: /^Fra og medÅpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Fra og med$/ })
+            .getByRole('button', { name: 'Åpne datovelger' })
             .click();
         await page.getByRole('button', { name: 'Gå til neste måned' }).click();
         await page.getByRole('button', { name: 'Gå til neste måned' }).click();
@@ -100,8 +90,8 @@ test.describe('Arbeidssituasjon', () => {
         await page.getByLabel('mandag 22').click();
         await page
             .locator('div')
-            .filter({ hasText: /^Til og medÅpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Til og med$/ })
+            .getByRole('button', { name: 'Åpne datovelger' })
             .click();
         await page.getByRole('button', { name: 'onsdag 24' }).click();
         await page.getByLabel('Velg land').selectOption('BGR');
@@ -109,6 +99,7 @@ test.describe('Arbeidssituasjon', () => {
         await page.getByLabel('Skriv inn navnet på').click();
         await page.getByLabel('Skriv inn navnet på').fill('frt');
         await page.getByRole('button', { name: 'Ok' }).click();
+        await testAccessibility(page);
     });
 
     test('Næringsvirksomhet i et annet EØS-land', async ({ page }) => {
@@ -122,19 +113,21 @@ test.describe('Arbeidssituasjon', () => {
         await page.getByLabel('Skriv inn virksomhetens').fill('1234');
         await page
             .locator('div')
-            .filter({ hasText: /^StartdatoÅpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Startdato$/ })
+            .getByRole('button', { name: 'Åpne datovelger' })
             .click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByRole('button', { name: 'mandag 7' }).click();
         await page
             .locator('div')
-            .filter({ hasText: /^SluttdatoÅpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Sluttdato$/ })
+            .getByRole('button', { name: 'Åpne datovelger' })
+
             .click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByRole('button', { name: 'fredag 30' }).click();
         await page.getByRole('button', { name: 'Ok' }).click();
+        await testAccessibility(page);
     });
 });

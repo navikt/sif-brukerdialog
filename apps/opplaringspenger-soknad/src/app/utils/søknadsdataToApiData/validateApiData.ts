@@ -1,6 +1,6 @@
 import { AppIntlShape } from '../../i18n';
-import { StepId } from '../../types/StepId';
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
+import { StepId } from '../../types/StepId';
 
 export enum API_DATA_VALIDATION_ERROR {
     'undefined' = 'undefined',

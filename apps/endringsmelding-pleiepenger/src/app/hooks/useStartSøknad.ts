@@ -1,12 +1,12 @@
-import { useSøknadContext } from '@hooks';
+import { useSøknadContext } from '@app/hooks';
+import { EndringType } from '@app/types';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
-import { EndringType } from '@types';
+import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 
 import actionsCreator from '../søknad/context/action/actionCreator';
 
 export const useStartSøknad = () => {
-    const { logSoknadStartet, logInfo } = useAmplitudeInstance();
+    const { logSoknadStartet, logInfo } = useAnalyticsInstance();
     const {
         state: { sak, antallSakerFørEndringsperiode },
         dispatch,

@@ -1,9 +1,9 @@
+import { getSøknadStepRoute, SøknadRoutes } from '@app/søknad/config/SøknadRoutes';
+import { getSøknadSteps } from '@app/søknad/config/søknadStepConfig';
+import { EndringType, SøknadContextState, Søknadsdata, ValgteEndringer } from '@app/types';
+import { getFeriedagerMeta } from '@app/utils';
 import { guid } from '@navikt/sif-common-utils';
-import { EndringType, SøknadContextState, Søknadsdata, ValgteEndringer } from '@types';
-import { getFeriedagerMeta } from '@utils';
 
-import { getSøknadStepRoute, SøknadRoutes } from '../../config/SøknadRoutes';
-import { getSøknadSteps } from '../../config/søknadStepConfig';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
 
 const initialSøknadsdata: Søknadsdata = {
@@ -13,6 +13,7 @@ const initialSøknadsdata: Søknadsdata = {
 const getValgteEndringer = (endringer: EndringType[]): ValgteEndringer => ({
     arbeidstid: endringer.some((a) => a === EndringType.arbeidstid),
     lovbestemtFerie: endringer.some((a) => a === EndringType.lovbestemtFerie),
+    tilsynsordning: endringer.some((a) => a === EndringType.tilsynsordning),
 });
 
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
@@ -69,8 +70,8 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     børMellomlagres: false,
                 };
-            case SøknadContextActionKeys.SET_SØKNAD_UKJENT_ARBEIDSFOHOLD:
-                return {
+            case SøknadContextActionKeys.SET_SØKNAD_UKJENT_ARBEIDSFOHOLD: {
+                const newState: SøknadContextState = {
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
@@ -79,6 +80,17 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         },
                     },
                 };
+                const søknadSteps = getSøknadSteps(
+                    state.valgteEndringer,
+                    state.sak.harArbeidsgivereIkkeISak,
+                    newState.søknadsdata,
+                );
+
+                return {
+                    ...newState,
+                    søknadSteps,
+                };
+            }
             case SøknadContextActionKeys.SET_SØKNAD_ARBEIDSTID:
                 return {
                     ...state,
@@ -90,7 +102,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     },
                 };
             case SøknadContextActionKeys.SET_SØKNAD_LOVBESTEMT_FERIE: {
-                const newState: SøknadContextState = {
+                return {
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
@@ -99,15 +111,16 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         },
                     },
                 };
-                const søknadSteps = getSøknadSteps(
-                    state.valgteEndringer,
-                    state.sak.harArbeidsgivereIkkeISak,
-                    state.søknadsdata,
-                );
-
+            }
+            case SøknadContextActionKeys.SET_SØKNAD_TILSYNSORDNING: {
                 return {
-                    ...newState,
-                    søknadSteps,
+                    ...state,
+                    søknadsdata: {
+                        ...state.søknadsdata,
+                        tilsynsordning: {
+                            ...action.payload,
+                        },
+                    },
                 };
             }
 
@@ -129,6 +142,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     valgteEndringer: {
                         arbeidstid: false,
                         lovbestemtFerie: false,
+                        tilsynsordning: false,
                     },
                     endringsmeldingSendt: true,
                 };
@@ -141,6 +155,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     valgteEndringer: {
                         arbeidstid: false,
                         lovbestemtFerie: false,
+                        tilsynsordning: false,
                     },
                     søknadRoute: SøknadRoutes.VELKOMMEN,
                 };
@@ -165,6 +180,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                         ...action.payload.inputPreferanser,
                     },
                 };
+
             default:
                 // eslint-disable-next-line no-console
                 console.log('Unhandled action', action);

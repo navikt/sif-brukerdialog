@@ -2,6 +2,7 @@ import { Heading, VStack } from '@navikt/ds-react';
 import { FormikFileUpload, getVedleggValidator, useVedleggHelper } from '@navikt/sif-common-core-ds';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { useFormikContext } from 'formik';
+
 import actionsCreator from '../../../../context/action/actionCreator';
 import { useSøknadContext } from '../../../../context/hooks/useSøknadContext';
 import { OmBarnetFormText as Text, useOmBarnetFormIntl } from '../omBarnetFormMessages';
@@ -26,7 +27,7 @@ const FødselsattestPart = ({ fødselsattester, andreVedlegg, ettersendelseURL }
     useVedleggHelper(fødselsattester, andreVedlegg, onVedleggChange);
 
     return (
-        <VStack gap="6">
+        <VStack gap="space-24">
             <div>
                 <Heading level="2" size="medium" spacing={true}>
                     {text('omBarnetForm.fødselsattest.tittel')}

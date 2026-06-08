@@ -1,17 +1,17 @@
-import { IngenTilgangMeta } from '@hooks';
+import { IngenTilgangMeta } from '@app/hooks';
+import { AppText, useAppIntl } from '@app/i18n';
+import { SøknadContextProvider } from '@app/søknad/context/SøknadContext';
+import { IngenTilgangÅrsak } from '@app/types';
 import { BodyLong, Heading } from '@navikt/ds-react';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { Søker } from '@navikt/sif-common-api';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { IngenTilgangÅrsak } from '@types';
 
 import DevFooter from '../../dev/DevFooter';
-import { AppText, useAppIntl } from '../../i18n';
 import { SendBeskjedLink, SkrivTilOssLink } from '../../lenker';
-import { SøknadContextProvider } from '../../søknad/context/SøknadContext';
 import { ANTALL_MÅNEDER_TILLATT_FOR_ENDRING } from '../../utils/endringsperiode';
 
 export interface IngenTilgangPageProps {
@@ -123,11 +123,13 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
 };
 
 const IngenTilgangPage = ({ årsak = [], søker, ingenTilgangMeta }: IngenTilgangPageProps) => {
-    const { logInfo } = useAmplitudeInstance();
+    const { logInfo, logEvent } = useAnalyticsInstance();
     const { text } = useAppIntl();
 
     useEffectOnce(() => {
-        logInfo({ brukerIkkeTilgang: årsak, ...ingenTilgangMeta });
+        const årsakStr = årsak.length > 0 ? årsak[0] : 'ukjent';
+        logEvent('brukerIkkeTilgang', { årsak: årsakStr, ...ingenTilgangMeta });
+        logInfo({ brukerIkkeTilgang: årsakStr, ...ingenTilgangMeta });
     });
 
     return (

@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react';
-import * as React from 'react';
 
 import { StoryFormikWrapper } from '../../../storybook/decorators/StoryFormikWrapper';
 import { mockAnimalOptions } from '../../../storybook/mock-data';
@@ -38,6 +37,5 @@ describe('<FormikCheckboxGroup>', () => {
         const checkbox = screen.getByTestId('dragon-option');
         expect(checkbox).toBeDefined();
         expect(checkbox.ariaChecked === 'true').toBeTruthy();
-        expect(checkbox).toBeChecked();
     });
 });

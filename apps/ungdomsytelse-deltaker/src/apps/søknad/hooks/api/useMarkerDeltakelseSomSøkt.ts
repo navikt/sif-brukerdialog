@@ -1,8 +1,7 @@
-import { ApiError } from '@navikt/ung-common';
+import { commonQueries } from '@shared/api/queries/commonQueries';
+import { ApiError, sifApiQueryKeys } from '@sif/api';
+import { markerDeltakelseSomSøkt } from '@søknad/api/deltakelse/markerDeltakelseSomSøkt';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-
-import { commonQueries } from '../../../../api/queries/commonQueries';
-import { markerDeltakelseSomSøkt } from '../../api/deltakelse/markerDeltakelseSomSøkt';
 
 /**
  * Setter en deltakelse som søkt. Brukes for å oppdatere direkte, uten å måtte
@@ -15,6 +14,7 @@ export const useMarkerDeltakelseSomSøkt = ({ deltakelseId }: { deltakelseId: st
         mutationFn: () => markerDeltakelseSomSøkt(deltakelseId),
         onSuccess: () => {
             queryClient.invalidateQueries(commonQueries.deltakelseperioder);
+            queryClient.invalidateQueries({ queryKey: sifApiQueryKeys.oppgaver });
         },
     });
 };

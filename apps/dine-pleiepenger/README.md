@@ -4,14 +4,17 @@ Innsynsløsning på nav.no for dem som har søkt om Pleiepenger for sykt barn.
 
 ```bash
 # Installer prosjekt
-yarn install
+pnpm install
 
-# Start next server på http://localhost:8080
-yarn dev
+# Start Next.js med MSW mocking
+pnpm dev
 
-# Start mock server på http://localhost:1234.
-# Denne simulerer sin-innsyn-api og k9-brukerdialog-api
-yarn dev-api
+```
+
+**Bytte mock-scenario:**
+
+```bash
+MOCK_SCENARIO=en-sak pnpm dev
 ```
 
 #### Storybook
@@ -19,10 +22,8 @@ yarn dev-api
 Komponenter og sider er lagt inn i storybook. Start lokalt ved å kjøre:
 
 ```bash
-yarn storybook
+pnpm storybook
 ```
-
-Storybook ligger også deployet på [Chromatic](https://www.chromatic.com/library?appId=65675d8dbb43385e5aaaa45c&inviteToken=chpi_1d3a6eab65174ab3ae3775296636362e)
 
 #### Henvendelser
 

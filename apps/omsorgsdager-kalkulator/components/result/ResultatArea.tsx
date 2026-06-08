@@ -21,14 +21,14 @@ const ResultatArea = ({ resultView }: Props) => {
         () => null,
         () => (
             <ResultBox type={'WARNING'}>
-                <Box.New borderRadius="large" padding={'5'} background="warning-moderate" className="mb-3">
+                <Box borderRadius="16" padding="space-20" background="warning-moderate" className="mb-3">
                     <Heading level="3" size="medium">
                         <FormattedMessage id={'resultat-area.green.2.1.a'} values={{ result: 0 }} />{' '}
                         <span className="font-normal">
                             <FormattedMessage id={'resultat-area.green.2.1.b'} values={{ year }} />
                         </span>
                     </Heading>
-                </Box.New>
+                </Box>
                 <BodyLong className="pt-4 pb-9 text-justify" size="small">
                     <FormattedMessage id={'resultat-area.orange.3'} />
                 </BodyLong>
@@ -46,8 +46,8 @@ const ResultatArea = ({ resultView }: Props) => {
             return (
                 <>
                     <ResultBox type={'SUCCESS'}>
-                        <VStack gap="4">
-                            <Box.New borderRadius="large" padding={'5'} background="success-moderate">
+                        <VStack gap="space-16">
+                            <Box borderRadius="16" padding="space-20" background="success-moderate">
                                 <Heading level="3" size="medium">
                                     <FormattedMessage
                                         id={'resultat-area.green.2.1.a'}
@@ -57,7 +57,7 @@ const ResultatArea = ({ resultView }: Props) => {
                                         <FormattedMessage id={'resultat-area.green.2.1.b'} values={{ year }} />
                                     </span>
                                 </Heading>
-                            </Box.New>
+                            </Box>
 
                             <div className="subtle-card">
                                 <ExpansionCard

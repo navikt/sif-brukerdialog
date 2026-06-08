@@ -1,50 +1,37 @@
-import { Alert, Box } from '@navikt/ds-react';
-import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { withAuthenticatedPage } from '../../../auth/withAuthentication';
-import DefaultPageLayout from '../../../components/page-layout/default-page-layout/DefaultPageLayout';
-import { useInnsynsdataContext } from '../../../hooks/useInnsynsdataContext';
-import { PleietrengendeMedSak } from '../../../server/api-models/PleietrengendeMedSakSchema';
-import SakPage from '../SakPage';
+import { useEffect } from 'react';
 
-const getSakFromSaksnr = (
-    saker: PleietrengendeMedSak[],
-    saksnr?: string | string[],
-): PleietrengendeMedSak | undefined => {
-    if (!saksnr || typeof saksnr !== 'string' || saker.length === 0) {
-        return undefined;
-    }
-    return saker.find((sak) => sak.sak.saksnummer === saksnr);
-};
+import { withAuthenticatedPage } from '../../../auth/withAuthentication';
+import LoadingPage from '../../../components/page-layout/loading-page/LoadingPage';
+import SakIkkeFunnetPage from '../../../components/sak-pages/SakIkkeFunnetPage';
+import SakPage from '../../../components/sak-pages/SakPage';
+import { useInnsynsdataContext } from '../../../hooks/useInnsynsdataContext';
+import { usePleietrengendeMedSakFromRoute } from '../../../hooks/usePleietrengendeMedSakFromRoute';
 
 export default function SakRoutePage() {
-    const {
-        innsynsdata: { saker, saksbehandlingstidUker },
-    } = useInnsynsdataContext();
     const router = useRouter();
-    const { saksnr } = router.query;
-    const pleietrengendeMedSak = getSakFromSaksnr(saker, saksnr);
+    const { pleietrengendeMedSak, saksnr, isLoading, error } = usePleietrengendeMedSakFromRoute();
+    const {
+        innsynsdata: { sakerMetadata },
+    } = useInnsynsdataContext();
 
-    if (!pleietrengendeMedSak) {
-        return (
-            <DefaultPageLayout>
-                <Head>
-                    <title>Sak ikke funnet</title>
-                </Head>
-                <Box className="mb-10">
-                    <Alert variant="error">Kunne ikke finne sak med saksnr &quot;{router.query.saksnr}&quot;</Alert>
-                </Box>
-            </DefaultPageLayout>
-        );
+    useEffect(() => {
+        if (saksnr && sakerMetadata && !sakerMetadata.find((s) => s.saksnummer === saksnr)) {
+            router.push('/');
+        }
+    }, [saksnr, sakerMetadata, router]);
+
+    if (!saksnr) {
+        return <SakIkkeFunnetPage saksnr={saksnr} />;
+    }
+
+    /** Viser loading skjerm frem til sjekk er gjort */
+    if (sakerMetadata && !sakerMetadata.find((s) => s.saksnummer === saksnr)) {
+        return <LoadingPage />;
     }
 
     return (
-        <SakPage
-            sak={pleietrengendeMedSak.sak}
-            pleietrengende={pleietrengendeMedSak.pleietrengende}
-            saksbehandlingstidUker={saksbehandlingstidUker}
-            antallSaker={saker.length}
-        />
+        <SakPage saksnr={saksnr} pleietrengendeMedSak={pleietrengendeMedSak} isLoading={isLoading} isError={!!error} />
     );
 }
 

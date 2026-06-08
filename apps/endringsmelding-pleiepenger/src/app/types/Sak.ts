@@ -1,4 +1,4 @@
-import { DateRange, Duration, ISODate, ISODateRangeMap } from '@navikt/sif-common-utils';
+import { DateDurationMap, DateRange, Duration, ISODate, ISODateRangeMap } from '@navikt/sif-common-utils';
 
 import { FeriedagMap } from '../søknad/steps/lovbestemt-ferie/LovbestemtFerieStep';
 import { ArbeidsgiverMedAnsettelseperioder } from './ArbeidsgiverMedAnsettelseperioder';
@@ -17,6 +17,8 @@ export interface Sak {
     arbeidsaktiviteter: Arbeidsaktiviteter;
     /** Ferie i søknadsperiodene */
     lovbestemtFerie: SakLovbestemtFerie;
+    /** Omsorgstilbud i søknadsperiodene */
+    tilsynsordning: SakTilsynsordning;
     /** Søknadsperioder som er innenfor tillatt endringsperiode. Periodene som overlapper kuttes. */
     søknadsperioder: DateRange[];
     /** DateRange med alle søknadsperioder som er innenfor tillatt endringsperiode */
@@ -111,4 +113,10 @@ export interface Arbeidsaktiviteter {
 
 export interface SakLovbestemtFerie {
     feriedager: FeriedagMap;
+}
+
+export type SakTilsynsperioderMap = ISODateRangeMap<Duration>;
+
+export interface SakTilsynsordning {
+    tilsynsdagerMap: DateDurationMap;
 }

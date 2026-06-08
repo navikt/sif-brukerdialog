@@ -9,6 +9,8 @@ export { EnsureCorrectSøknadRouteErrorType } from './hooks/useEnsureCorrectSøk
 export { useEnsureCorrectSøknadRoute } from './hooks/useEnsureCorrectSøknadRoute';
 export { useVerifyUserOnWindowFocus } from './hooks/useVerifyUserOnWindowFocus';
 export { soknadMessages, type SoknadMessagesType } from './i18n/soknad.messages';
+export type { SifCommonLenker } from './lenker/index';
+export { sifCommonLenkerBokmål, sifCommonLenkerNynorsk } from './lenker/index';
 export type { SamtykkeFormValues } from './modules/samtykke-form/SamtykkeForm';
 export { default as SamtykkeForm, SamtykkeFormPart } from './modules/samtykke-form/SamtykkeForm';
 export type { SoknadStepsConfig, StepConfig } from './modules/soknad-step/soknadStepTypes';
@@ -17,6 +19,7 @@ export { default as soknadStepUtils } from './modules/soknad-step/soknadStepUtil
 export { default as Step } from './modules/soknad-step/step/Step';
 export { default as ErrorPage } from './pages/error-page/ErrorPage';
 export { default as LoadingPage } from './pages/loading-page/LoadingPage';
+export { default as NoAccessPage } from './pages/no-access-page/NoAccessPage';
 export { default as SoknadApplication } from './setup/SoknadApplication';
 export { default as SoknadApplicationCommonRoutes } from './setup/SoknadApplicationCommonRoutes';
 export { GlobalSoknadApplicationRoutes } from './setup/SoknadApplicationCommonRoutes';

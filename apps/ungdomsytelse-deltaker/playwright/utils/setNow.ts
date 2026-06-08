@@ -1,26 +1,12 @@
 import { Page } from '@playwright/test';
+import MockDate from 'mockdate';
 
-const testDate = new Date('2025-05-04');
+import { getMockToday } from '../../mock/utils/mockDate';
 
-const getSetDateScript = (timestamp: number) => `
-{
-    // Extend Date constructor to default to fakeNow
-    Date = class extends Date {
-      constructor(...args) {
-        if (args.length === 0) {
-          super(${timestamp});
-        } else {
-          super(...args);
-        }
-      }
-    }
-    // Override Date.now() to start from fakeNow
-    const __DateNowOffset = ${timestamp} - Date.now();
-    const __DateNow = Date.now;
-    Date.now = () => __DateNow() + __DateNowOffset;
-  }
-`;
+const testDate = new Date(getMockToday());
 
 export const setNow = async (page: Page, date: Date = testDate) => {
-    await page.addInitScript(getSetDateScript(date.valueOf()));
+    await page.addInitScript((dateString: string) => {
+        MockDate.set(new Date(dateString));
+    }, date.toISOString());
 };

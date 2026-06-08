@@ -60,7 +60,7 @@ const Template: StoryFn<typeof ItemList> = (args) => {
                 items={items.filter((item) => item.id !== undefined)}
                 useTrashcan={args.useTrashcan}
             />
-            <Box marginBlock="8">
+            <Box marginBlock="space-32">
                 <Button variant="tertiary" size="small" onClick={addItem}>
                     Add item
                 </Button>

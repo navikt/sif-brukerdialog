@@ -4,10 +4,11 @@ import {
     EnvKey,
     K9SakInnsynBrowserEnv,
     SifInnsynBrowserEnv,
+    UngBrukerdialogApiBrowserEnv,
     UngDeltakelseOpplyserBrowserEnv,
 } from './schemas';
 
-let envs;
+let envs: Record<string, string | undefined> | undefined;
 
 const getEnvFromAppSettings = (envName: string): string | undefined => {
     if (!envs) {
@@ -15,7 +16,8 @@ const getEnvFromAppSettings = (envName: string): string | undefined => {
         const appSettingsInline = settingsNode ? JSON.parse(settingsNode.text) : undefined;
         envs = appSettingsInline || (window as any).appSettings || {};
     }
-    const envValue = envs[envName] || envs[`SIF_PUBLIC_${envName}`];
+    const resolvedEnvs = envs!;
+    const envValue = resolvedEnvs[envName] || resolvedEnvs[`SIF_PUBLIC_${envName}`];
     return envValue === undefined || envValue === 'undefined' ? undefined : envValue;
 };
 
@@ -62,8 +64,8 @@ export const getCommonEnv = (): CommonEnv => {
         [EnvKey.SIF_PUBLIC_DEKORATOR_URL]: getRequiredEnv(EnvKey.SIF_PUBLIC_DEKORATOR_URL),
         [EnvKey.SIF_PUBLIC_LOGIN_URL]: getRequiredEnv(EnvKey.SIF_PUBLIC_LOGIN_URL),
         [EnvKey.SIF_PUBLIC_MINSIDE_URL]: getRequiredEnv(EnvKey.SIF_PUBLIC_MINSIDE_URL),
-        [EnvKey.SIF_PUBLIC_USE_AMPLITUDE]: getMaybeEnv(EnvKey.SIF_PUBLIC_USE_AMPLITUDE),
-        [EnvKey.SIF_PUBLIC_AMPLITUDE_API_KEY]: getRequiredEnv(EnvKey.SIF_PUBLIC_AMPLITUDE_API_KEY),
+        [EnvKey.SIF_PUBLIC_USE_ANALYTICS]: getMaybeEnv(EnvKey.SIF_PUBLIC_USE_ANALYTICS),
+        [EnvKey.SIF_PUBLIC_ANALYTICS_API_KEY]: getRequiredEnv(EnvKey.SIF_PUBLIC_ANALYTICS_API_KEY),
         [EnvKey.SIF_PUBLIC_APPSTATUS_PROJECT_ID]: getRequiredEnv(EnvKey.SIF_PUBLIC_APPSTATUS_PROJECT_ID),
         [EnvKey.SIF_PUBLIC_APPSTATUS_DATASET]: getRequiredEnv(EnvKey.SIF_PUBLIC_APPSTATUS_DATASET),
         [EnvKey.SIF_PUBLIC_FEATURE_NYNORSK]: getMaybeEnv(EnvKey.SIF_PUBLIC_FEATURE_NYNORSK) === 'on' ? 'on' : 'off',
@@ -89,10 +91,19 @@ export const getSifInnsynBrowserEnv = (): SifInnsynBrowserEnv => {
         [EnvKey.SIF_INNSYN_API_URL]: getRequiredEnv(EnvKey.SIF_INNSYN_API_URL),
     };
 };
+
 export const getUngDeltakelseOpplyserBrowserEnv = (): UngDeltakelseOpplyserBrowserEnv => {
     return {
         [EnvKey.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH]: getRequiredEnv(EnvKey.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH),
         [EnvKey.UNG_DELTAKELSE_OPPLYSER_API_SCOPE]: getRequiredEnv(EnvKey.UNG_DELTAKELSE_OPPLYSER_API_SCOPE),
         [EnvKey.UNG_DELTAKELSE_OPPLYSER_API_URL]: getRequiredEnv(EnvKey.UNG_DELTAKELSE_OPPLYSER_API_URL),
+    };
+};
+
+export const getUngBrukerdialogApiBrowserEnv = (): UngBrukerdialogApiBrowserEnv => {
+    return {
+        [EnvKey.UNG_BRUKERDIALOG_API_FRONTEND_PATH]: getRequiredEnv(EnvKey.UNG_BRUKERDIALOG_API_FRONTEND_PATH),
+        [EnvKey.UNG_BRUKERDIALOG_API_API_SCOPE]: getRequiredEnv(EnvKey.UNG_BRUKERDIALOG_API_API_SCOPE),
+        [EnvKey.UNG_BRUKERDIALOG_API_API_URL]: getRequiredEnv(EnvKey.UNG_BRUKERDIALOG_API_API_URL),
     };
 };

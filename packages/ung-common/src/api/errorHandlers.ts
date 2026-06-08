@@ -4,7 +4,7 @@ import { z, ZodError } from 'zod';
 
 // Generelle feiltyper
 export enum ApiErrorType {
-    ValidationError = 'ValidationError',
+    ZodValidationError = 'ZodValidationError',
     NetworkError = 'NetworkError',
     UnknownError = 'UnknownError',
 }
@@ -60,7 +60,7 @@ export const handleApiError = (
 ): ApiError => {
     if (error instanceof ZodError) {
         return {
-            type: ApiErrorType.ValidationError,
+            type: ApiErrorType.ZodValidationError,
             context,
             message: error.issues.map((err) => err.message).join(', '),
             originalError: error,

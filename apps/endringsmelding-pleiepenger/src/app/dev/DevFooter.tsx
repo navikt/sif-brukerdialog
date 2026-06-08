@@ -1,7 +1,7 @@
 import './devFooter.scss';
 
-import { useSøknadContext } from '@hooks';
-import { Settings } from '@navikt/ds-icons';
+import { useSøknadContext } from '@app/hooks';
+import { CogIcon } from '@navikt/aksel-icons';
 import { Button, Modal, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import React, { useState } from 'react';
@@ -39,7 +39,7 @@ const DevFooter: React.FunctionComponent = () => {
                     size="small"
                     variant="secondary"
                     onClick={() => setShowModal(true)}
-                    icon={<Settings role="presentation" aria-hidden={true} />}>
+                    icon={<CogIcon role="presentation" aria-hidden={true} />}>
                     {scenario.name}
                 </Button>
             </div>
@@ -53,7 +53,7 @@ const DevFooter: React.FunctionComponent = () => {
                 className="scenario-modal"
                 style={{ width: '100%' }}>
                 <Modal.Body>
-                    <VStack gap="8">
+                    <VStack gap="space-32">
                         <div className="scenarioes">
                             <RadioGroup
                                 value={scenario.value}

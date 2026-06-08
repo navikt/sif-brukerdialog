@@ -1,5 +1,8 @@
+import '../sentry/instrument';
+
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { getMaybeEnv } from '@navikt/sif-common-env';
+import { reactErrorHandler } from '@sentry/react';
 import MockDate from 'mockdate';
 import { createRoot } from 'react-dom/client';
 
@@ -22,5 +25,9 @@ enableMocking().then(() => {
         MockDate.set(new Date(envNow));
     }
 
-    createRoot(document.getElementById('root')!).render(<App />);
+    createRoot(document.getElementById('root')!, {
+        onUncaughtError: reactErrorHandler(),
+        onCaughtError: reactErrorHandler(),
+        onRecoverableError: reactErrorHandler(),
+    }).render(<App />);
 });

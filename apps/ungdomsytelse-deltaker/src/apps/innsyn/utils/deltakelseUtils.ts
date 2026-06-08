@@ -1,5 +1,7 @@
 import { getDateToday } from '@navikt/sif-common-utils';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
+import { Oppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import dayjs from 'dayjs';
 
 /**
@@ -26,4 +28,13 @@ export const erDeltakelseStartet = (deltakelsePeriode: DeltakelsePeriode): boole
         return false;
     }
     return true;
+};
+
+export const harRapportertInntekt = (oppgaver: Oppgave[]): boolean => {
+    return oppgaver.some(
+        (o) =>
+            o.parsedOppgavetype === ParsedOppgavetype.RAPPORTER_INNTEKT &&
+            o.status !== OppgaveStatus.ULØST &&
+            o.respons?.arbeidstakerOgFrilansInntekt !== undefined,
+    );
 };

@@ -1,4 +1,6 @@
 import { VStack } from '@navikt/ds-react';
+import { SifAppKeys } from '@navikt/sif-app-register';
+import { HentArbeidsforholdFeiletInfo } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
 
@@ -8,17 +10,20 @@ import ArbeidssituasjonArbeidsgivereIntro from './info/ArbeidssituasjonArbeidsgi
 
 interface Props {
     søknadsperiode: DateRange;
+    hentArbeidsgivereFeilet: boolean;
 }
 
-const ArbeidssituasjonArbeidsgivere = ({ søknadsperiode }: Props) => {
+const ArbeidssituasjonArbeidsgivere = ({ søknadsperiode, hentArbeidsgivereFeilet }: Props) => {
     const {
         values: { ansatt_arbeidsforhold },
     } = useFormikContext<SøknadFormValues>();
-    return (
+    return hentArbeidsgivereFeilet ? (
+        <HentArbeidsforholdFeiletInfo app={SifAppKeys.PleiepengerSyktBarn} />
+    ) : (
         <>
-            <VStack gap="6">
+            <VStack gap="space-24">
                 <ArbeidssituasjonArbeidsgivereIntro antallArbeidsforhold={ansatt_arbeidsforhold.length} />
-                <VStack gap="4">
+                <VStack gap="space-16">
                     {ansatt_arbeidsforhold.map((forhold, index) => (
                         <div key={forhold.arbeidsgiver.id}>
                             <ArbeidssituasjonAnsatt

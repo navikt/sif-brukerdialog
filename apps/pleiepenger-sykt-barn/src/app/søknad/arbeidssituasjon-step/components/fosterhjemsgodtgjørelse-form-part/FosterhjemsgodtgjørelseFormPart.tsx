@@ -81,7 +81,11 @@ const FosterhjemsgodtgjørelseFormPart = ({ søknadsperiode }: Props) => {
                                         </List.Item>
                                     </List>
                                 }
-                                validate={getStringValidator({ required: true, maxLength: 1000 })}
+                                validate={getStringValidator({
+                                    required: true,
+                                    maxLength: 1000,
+                                    disallowInvalidBackendCharacters: true,
+                                })}
                                 maxLength={1000}
                             />
                         ) : null}

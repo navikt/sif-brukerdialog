@@ -1,27 +1,29 @@
 import { createChildLogger } from '@navikt/next-logger';
 import { requestOboToken } from '@navikt/oasis';
+
 import { browserEnv, getServerEnv, isLocal, ServerEnv } from '../../utils/env';
-import { ApiService } from '../apiService';
+import { ApiServices } from '../types/ApiServices';
+import { validateRelativeApiPath } from './validatePathSegment';
 
 const getAudienceAndServerUrl = (
-    service: ApiService,
+    service: ApiServices,
     serverEnv: ServerEnv,
 ): {
     audience: string;
     serverUrl: string;
 } => {
     switch (service) {
-        case ApiService.k9Brukerdialog:
+        case ApiServices.k9Brukerdialog:
             return {
                 audience: serverEnv.NEXT_PUBLIC_BRUKERDIALOG_BACKEND_SCOPE!,
                 serverUrl: browserEnv.NEXT_PUBLIC_API_URL_BRUKERDIALOG!,
             };
-        case ApiService.k9SakInnsyn:
+        case ApiServices.k9SakInnsyn:
             return {
                 audience: serverEnv.NEXT_PUBLIC_K9_SAK_INNSYN_BACKEND_SCOPE!,
                 serverUrl: browserEnv.NEXT_PUBLIC_API_URL_K9_SAK_INNSYN!,
             };
-        case ApiService.sifInnsyn:
+        case ApiServices.sifInnsyn:
             return {
                 audience: serverEnv.NEXT_PUBLIC_INNSYN_BACKEND_SCOPE!,
                 serverUrl: browserEnv.NEXT_PUBLIC_API_URL_INNSYN!,
@@ -30,18 +32,32 @@ const getAudienceAndServerUrl = (
 };
 
 export const exchangeTokenAndPrepRequest = async (
-    service: ApiService,
-    context,
-    path,
-    contentType,
+    service: ApiServices,
+    context: any,
+    path: string,
+    contentType: string,
 ): Promise<{
     headers: any;
     url: string;
 }> => {
+    // Validerer path for å beskytte mot SSRF - defense in depth
+    // Dette sikrer at selv om validering mangler i kall-stedene, så er vi beskyttet
+    const safePath = validateRelativeApiPath(path, 'API path');
+
     const childLogger = createChildLogger(context.requestId);
     const serverEnv = getServerEnv();
 
     const { audience, serverUrl } = getAudienceAndServerUrl(service, serverEnv);
+
+    // Construct safe URL using URL constructor
+    const url = new URL(safePath, serverUrl);
+
+    const baseHeaders = {
+        'Content-Type': contentType,
+        'x-request-id': context.requestId,
+        'X-K9-Brukerdialog': serverEnv.NAIS_CLIENT_ID!,
+        'X-Correlation-ID': context.requestId,
+    };
 
     if (!isLocal) {
         childLogger.info(`Exchanging token for ${audience}`);
@@ -53,23 +69,16 @@ export const exchangeTokenAndPrepRequest = async (
         }
 
         return {
-            url: `${serverUrl}/${path}`,
+            url: url.toString(),
             headers: {
+                ...baseHeaders,
                 Authorization: `Bearer ${tokenX.token}`,
-                'Content-Type': contentType,
-                'x-request-id': context.requestId,
-                'X-K9-Brukerdialog': serverEnv.NAIS_CLIENT_ID!,
-                'X-Correlation-ID': context.requestId,
             },
         };
     }
+
     return {
-        url: `${serverUrl}/${path}`,
-        headers: {
-            'Content-Type': contentType,
-            'x-request-id': context.requestId,
-            'X-K9-Brukerdialog': serverEnv.NAIS_CLIENT_ID!,
-            'X-Correlation-ID': context.requestId,
-        },
+        url: url.toString(),
+        headers: baseHeaders,
     };
 };

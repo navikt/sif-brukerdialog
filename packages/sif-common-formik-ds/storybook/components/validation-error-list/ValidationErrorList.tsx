@@ -17,13 +17,13 @@ interface Props {
 
 const ValidationErrorList = ({ errors, title }: Props) => {
     return (
-        <Box marginBlock="10 0">
+        <Box marginBlock="space-40 space-0">
             {title && (
                 <Heading level="4" size="small">
                     {title}
                 </Heading>
             )}
-            <Box marginBlock="6">
+            <Box marginBlock="space-24">
                 <table className="validationErrorList">
                     <thead>
                         <tr>

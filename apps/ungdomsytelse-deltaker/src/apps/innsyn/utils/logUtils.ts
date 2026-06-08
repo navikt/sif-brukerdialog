@@ -1,9 +1,9 @@
 import { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
-import { OppgaveStatus, Oppgavetype } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
-import { BekreftelseOppgave, SøkYtelseOppgave } from '@shared/types/Oppgave';
+import { BekreftelseOppgave, Oppgave, ParsedOppgavetype, SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
+import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 import { HarKontonummerEnum } from '@søknad/steg/oppsummering/oppsummeringUtils';
-import { KontonummerOppslagInfo } from '@søknad/types';
 import dayjs from 'dayjs';
 
 type DeltakelsePeriodeMeta = {
@@ -14,7 +14,6 @@ type DeltakelsePeriodeMeta = {
     antallLøsteOppgaver: number;
     antallUløsteOppgaver: number;
     antallAvbrutteOppgaver: number;
-    antallLukkedeOppgaver: number;
     harSluttdato: boolean;
     antallEndretStartdatoOppgaver: number;
     antallEndretSluttdatoOppgaver: number;
@@ -25,12 +24,12 @@ type DeltakelsePeriodeMeta = {
     antallDagerMellomInnmeldtOgSøknad?: number;
 };
 
-const getDeltakelsePeriodeMeta = (deltakelse: DeltakelsePeriode): DeltakelsePeriodeMeta => {
+const getDeltakelsePeriodeMeta = (deltakelse: DeltakelsePeriode, oppgaver: Oppgave[]): DeltakelsePeriodeMeta => {
     const harSøkt = deltakelse.søktTidspunkt !== undefined;
     const harStartet = dayjs(deltakelse.programPeriode.from).isBefore(dayjs());
-    const erAvsluttet = dayjs(deltakelse.programPeriode.to).isAfter(dayjs());
+    const erAvsluttet = dayjs(deltakelse.programPeriode.to).isBefore(dayjs());
 
-    const søkYtelseOppgave = deltakelse.oppgaver.find((oppgave) => oppgave.oppgavetype === Oppgavetype.SØK_YTELSE);
+    const søkYtelseOppgave = oppgaver.find((oppgave) => oppgave.parsedOppgavetype === ParsedOppgavetype.SØK_YTELSE);
     return {
         harSøkt,
         harStartet,
@@ -39,27 +38,26 @@ const getDeltakelsePeriodeMeta = (deltakelse: DeltakelsePeriode): DeltakelsePeri
         antallDagerMellomInnmeldtOgSøknad: søkYtelseOppgave
             ? dayjs(deltakelse.søktTidspunkt).diff(søkYtelseOppgave.opprettetDato, 'day')
             : undefined,
-        antallOppgaverTotalt: deltakelse.oppgaver.length,
-        antallLøsteOppgaver: deltakelse.oppgaver.filter((oppgave) => oppgave.status === OppgaveStatus.LØST).length,
-        antallUløsteOppgaver: deltakelse.oppgaver.filter((oppgave) => oppgave.status === OppgaveStatus.ULØST).length,
-        antallAvbrutteOppgaver: deltakelse.oppgaver.filter((oppgave) => oppgave.status === OppgaveStatus.AVBRUTT)
-            .length,
-        antallLukkedeOppgaver: deltakelse.oppgaver.filter((oppgave) => oppgave.status === OppgaveStatus.LUKKET).length,
+        antallOppgaverTotalt: oppgaver.length,
+        antallLøsteOppgaver: oppgaver.filter((oppgave) => oppgave.status === OppgaveStatus.LØST).length,
+        antallUløsteOppgaver: oppgaver.filter((oppgave) => oppgave.status === OppgaveStatus.ULØST).length,
+        antallAvbrutteOppgaver: oppgaver.filter((oppgave) => oppgave.status === OppgaveStatus.AVBRUTT).length,
         harSluttdato: deltakelse.programPeriode.to !== undefined,
-        antallEndretStartdatoOppgaver: deltakelse.oppgaver.filter(
-            (oppgave) => oppgave.oppgavetype === Oppgavetype.BEKREFT_ENDRET_STARTDATO,
+        antallEndretStartdatoOppgaver: oppgaver.filter(
+            (oppgave) => oppgave.parsedOppgavetype === ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO,
         ).length,
-        antallEndretSluttdatoOppgaver: deltakelse.oppgaver.filter(
-            (oppgave) => oppgave.oppgavetype === Oppgavetype.BEKREFT_ENDRET_SLUTTDATO,
+        antallEndretSluttdatoOppgaver: oppgaver.filter(
+            (oppgave) => oppgave.parsedOppgavetype === ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO,
         ).length,
-        antallAvvikInntektOppgaver: deltakelse.oppgaver.filter(
-            (oppgave) => oppgave.oppgavetype === Oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
+        antallAvvikInntektOppgaver: oppgaver.filter(
+            (oppgave) => oppgave.parsedOppgavetype === ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
         ).length,
-        antallRapporterInntektOppgaver: deltakelse.oppgaver.filter(
-            (oppgave) => oppgave.oppgavetype === Oppgavetype.RAPPORTER_INNTEKT,
+        antallRapporterInntektOppgaver: oppgaver.filter(
+            (oppgave) => oppgave.parsedOppgavetype === ParsedOppgavetype.RAPPORTER_INNTEKT,
         ).length,
-        antallSøkYtelseOppgaver: deltakelse.oppgaver.filter((oppgave) => oppgave.oppgavetype === Oppgavetype.SØK_YTELSE)
-            .length,
+        antallSøkYtelseOppgaver: oppgaver.filter(
+            (oppgave) => oppgave.parsedOppgavetype === ParsedOppgavetype.SØK_YTELSE,
+        ).length,
     };
 };
 
@@ -75,10 +73,11 @@ const getSøknadInnsendingMeta = (
         antallBarn: number;
         barnStemmer: boolean;
         kontonummerStemmer?: boolean;
-        kontonummerOppslagInfo: KontonummerOppslagInfo;
+        kontonummerOppslagInfo: UtvidetKontonummerInfo;
     },
+    oppgaver: Oppgave[],
 ) => {
-    const meta = getDeltakelsePeriodeMeta(deltakelse);
+    const meta = getDeltakelsePeriodeMeta(deltakelse, oppgaver);
     const { harKontonummer } = kontonummerOppslagInfo;
     return {
         harBarn: antallBarn > 0,
@@ -101,7 +100,7 @@ export const getOppgaveBekreftelseMeta = (
     uttalelse: ungdomsytelse.UngdomsytelseOppgaveUttalelseDto,
 ) => {
     return {
-        oppgavetype: oppgave.oppgavetype,
+        oppgavetype: oppgave.parsedOppgavetype,
         antallDagerMellomOpprettetOgBesvart: dayjs().diff(oppgave.opprettetDato, 'day'),
         antallMinutterMellomOpprettetOgBesvart: dayjs().diff(oppgave.opprettetDato, 'minutes'),
         harUttalelse: uttalelse.harUttalelse,

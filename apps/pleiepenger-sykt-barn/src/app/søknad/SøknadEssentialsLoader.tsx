@@ -1,20 +1,21 @@
 import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import * as apiUtils from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { LoadingPage } from '@navikt/sif-common-soknad-ds';
+import { LoadingPage, NoAccessPage } from '@navikt/sif-common-soknad-ds';
 import { AxiosError, AxiosResponse } from 'axios';
 import React from 'react';
 
 import { purge, rehydrate } from '../api/api';
 import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
 import { SøkerdataContextProvider } from '../context/SøkerdataContext';
-import IkkeTilgangPage from '../pages/ikke-tilgang-page/IkkeTilgangPage';
+import { AppMessageKeys } from '../i18n';
+import getLenker from '../lenker';
 import { Søkerdata } from '../types/Søkerdata';
 import { initialValues, SøknadFormField, SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { MellomlagringMetadata, SøknadTempStorageData } from '../types/SøknadTempStorageData';
 import appSentryLogger from '../utils/appSentryLogger';
 import { getFeatureToggles } from '../utils/featureToggleUtils';
-import { relocateToLoginPage, userIsCurrentlyOnErrorPage } from '../utils/navigationUtils';
+import { relocateToLoginPage } from '../utils/navigationUtils';
 
 interface Props {
     onUgyldigMellomlagring: () => void;
@@ -105,9 +106,6 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
 
         this.updateSøkerdata(formValuesToUse, søkerdata, mellomlagring?.metadata, () => {
             this.stopLoading();
-            if (userIsCurrentlyOnErrorPage()) {
-                this.props.onError();
-            }
         });
     }
 
@@ -139,17 +137,11 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
             relocateToLoginPage();
         } else if (apiUtils.isForbidden(error)) {
             this.setState({ ...this.state, harIkkeTilgang: true });
-        } else if (!userIsCurrentlyOnErrorPage()) {
-            appSentryLogger.logApiError(error);
+        } else {
+            appSentryLogger.logApiError(error, 'fetchSøkerdata');
             this.props.onError();
         }
-        /**
-         * this timeout is set because if isLoading is updated in the state too soon,
-         * the contentLoadedRenderer() will be called while the user is still on the wrong route,
-         * because the redirect to routeConfig.ERROR_PAGE_ROUTE will not have happened yet.
-         */
-
-        setTimeout(this.stopLoading, 200);
+        this.stopLoading();
     }
 
     render() {
@@ -161,7 +153,12 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
             return <LoadingPage />;
         }
         if (harIkkeTilgang) {
-            return <IkkeTilgangPage />;
+            return (
+                <NoAccessPage<AppMessageKeys>
+                    tittelIntlKey="application.title"
+                    papirskjemaUrl={getLenker().papirskjemaPrivat}
+                />
+            );
         }
         return (
             <SøkerdataContextProvider value={søkerdata}>

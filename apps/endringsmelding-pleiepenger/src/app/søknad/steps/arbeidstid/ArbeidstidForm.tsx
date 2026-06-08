@@ -1,4 +1,12 @@
-import { useOnValidSubmit, useSøknadContext } from '@hooks';
+import { useOnValidSubmit, useSøknadContext } from '@app/hooks';
+import { AppText } from '@app/i18n';
+import PersistStepFormValues from '@app/components/persist-step-form-values/PersistStepFormValues';
+import { StepId } from '@app/søknad/config/StepId';
+import actionsCreator from '@app/søknad/context/action/actionCreator';
+import { useStepFormValuesContext } from '@app/søknad/context/StepFormValuesContext';
+import { ArbeiderIPeriodenSvar, ArbeidsaktivitetType, ArbeidstidEndringMap, SøknadContextState } from '@app/types';
+import { getArbeidsaktiviteterForUkjenteArbeidsforhold } from '@app/utils';
+import { lagreSøknadState } from '@app/utils/lagreSøknadState';
 import { Alert, Link, VStack } from '@navikt/ds-react';
 import {
     getIntlFormErrorHandler,
@@ -6,17 +14,10 @@ import {
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
-import { ArbeiderIPeriodenSvar, ArbeidsaktivitetType, ArbeidstidEndringMap, SøknadContextState } from '@types';
-import { getArbeidsaktiviteterForUkjenteArbeidsforhold, getEndringsdato, getTillattEndringsperiode } from '@utils';
+import { getEndringsdato, getTillattEndringsperiode } from '@app/utils';
 import { useIntl } from 'react-intl';
 
-import { AppText } from '../../../i18n';
 import { getLenker } from '../../../lenker';
-import PersistStepFormValues from '../../../modules/persist-step-form-values/PersistStepFormValues';
-import { lagreSøknadState } from '../../../utils/lagreSøknadState';
-import { StepId } from '../../config/StepId';
-import actionsCreator from '../../context/action/actionCreator';
-import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import ArbeidsaktivitetFormPart from './arbeidsaktivitet-form-part/ArbeidsaktivitetFormPart';
 import {
     getAktiviteterSomSkalEndres,
@@ -126,7 +127,7 @@ const ArbeidstidForm = ({ goBack }: Props) => {
                                 id="arbeidstidStep.ingenArbeidsaktiviteter"
                                 values={{
                                     Lenke: (txt: string) => (
-                                        <Link href={getLenker(intl.locale).beskjedOmFamilie}>{txt}</Link>
+                                        <Link href={getLenker(intl.locale).skrivTilOss}>{txt}</Link>
                                     ),
                                 }}
                             />
@@ -143,7 +144,7 @@ const ArbeidstidForm = ({ goBack }: Props) => {
                             submitPending={isSubmitting}
                             runDelayedFormValidation={true}
                             onBack={goBack}>
-                            <VStack gap="4">
+                            <VStack gap="space-16">
                                 {arbeidsaktiviteter.map((arbeidsaktivitet) => (
                                     <ArbeidsaktivitetFormPart
                                         key={arbeidsaktivitet.key}

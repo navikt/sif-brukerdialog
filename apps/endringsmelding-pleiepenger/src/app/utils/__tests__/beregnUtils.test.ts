@@ -1,5 +1,5 @@
+import { TimerEllerProsent } from '@app/types';
 import { decimalDurationToDuration, Duration } from '@navikt/sif-common-utils';
-import { TimerEllerProsent } from '@types';
 
 import {
     avrundDesimaltid,

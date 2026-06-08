@@ -6,10 +6,10 @@ export const getPlaywrightAppSettings = (): AppEnv => ({
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase',
     GITHUB_REF_NAME: 'main',
     SIF_PUBLIC_FEATURE_SOKE_TIDLIGERE: 'on',
-    SIF_PUBLIC_AMPLITUDE_API_KEY: 'default',
+    SIF_PUBLIC_ANALYTICS_API_KEY: 'default',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
-    SIF_PUBLIC_USE_AMPLITUDE: 'false',
+    SIF_PUBLIC_USE_ANALYTICS: 'false',
     SIF_PUBLIC_DEKORATOR_URL: 'https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&',
     SIF_PUBLIC_FEATURE_NYNORSK: 'on',
     SIF_PUBLIC_LOGIN_URL:

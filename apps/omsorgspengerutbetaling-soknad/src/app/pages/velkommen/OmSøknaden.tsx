@@ -5,7 +5,7 @@ import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysnin
 
 const OmSøknaden = () => {
     return (
-        <VStack gap="6">
+        <VStack gap="space-24">
             <Box>
                 <Heading level="2" size="medium" spacing={true}>
                     <AppText id="page.velkommen.omSøknaden.tittel" />

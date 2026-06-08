@@ -42,6 +42,9 @@ export interface K9FormatUtenlandsopphold {
     årsak: UtenlandsoppholdÅrsak;
 }
 
+export interface K9FormatTilsynsordning {
+    perioder: K9FormatTilsynsordningPerioder;
+}
 interface K9FormatYtelseIkkeIBruk {
     endringsperiode: any;
     trekkKravPerioder: any;
@@ -74,6 +77,10 @@ export interface K9FormatYtelse {
         perioder: K9FormatTilsynsordningPerioder;
     };
     arbeidstid: K9FormatArbeidstid;
+}
+
+export interface UgyldigBarnFormatDetails {
+    ugyldigeFelt: string[];
 }
 
 export interface K9FormatBarn {

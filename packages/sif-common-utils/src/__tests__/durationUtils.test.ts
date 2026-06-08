@@ -13,7 +13,7 @@ import {
     ISODurationToNumberDuration,
     isValidDuration,
     numberDurationAsDuration,
-} from '../';
+} from '..';
 import { dateToISODate, ISODateToDate } from '../dateUtils';
 import {
     durationIsGreatherThanZero,

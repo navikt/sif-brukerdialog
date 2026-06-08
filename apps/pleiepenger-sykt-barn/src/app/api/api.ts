@@ -10,7 +10,7 @@ import { SøknadTempStorageData } from '../types/SøknadTempStorageData';
 import { StepID } from '../types/StepID';
 import { getFeatureToggles } from '../utils/featureToggleUtils';
 import { AAregArbeidsgiverRemoteData } from './getArbeidsgivereRemoteData';
-import { axiosJsonConfig, sendMultipartPostRequest } from './utils/apiUtils';
+import { axiosJsonConfig } from './utils/apiUtils';
 
 export const getPersistUrl = (stepID?: StepID) =>
     stepID ? `${ResourceType.MELLOMLAGRING}?lastStepID=${encodeURI(stepID)}` : ResourceType.MELLOMLAGRING;
@@ -47,10 +47,3 @@ export const getArbeidsgiver = (fom: string, tom: string): Promise<AxiosResponse
 };
 
 export const sendApplication = (data: SøknadApiData) => axios.post(ResourceType.SEND_SØKNAD, data, axiosJsonConfig);
-
-export const uploadFile = (file: File) => {
-    const formData = new FormData();
-    formData.append('vedlegg', file);
-    return sendMultipartPostRequest(ResourceType.VEDLEGG, formData);
-};
-export const deleteFile = (url: string) => axios.delete(url, axiosConfigPsb);

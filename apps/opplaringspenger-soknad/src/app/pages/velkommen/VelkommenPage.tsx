@@ -1,6 +1,7 @@
 import { OpplæringspengerApp } from '@navikt/sif-app-register';
-import { useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
+
 import { useAppIntl } from '../../i18n';
 import actionsCreator from '../../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../../søknad/context/hooks/useSøknadContext';
@@ -15,7 +16,7 @@ const VelkommenPage = () => {
         dispatch,
     } = useSøknadContext();
 
-    const { logSoknadStartet } = useAmplitudeInstance();
+    const { logSoknadStartet } = useAnalyticsInstance();
 
     const startSøknad = async () => {
         await logSoknadStartet(OpplæringspengerApp.navn);

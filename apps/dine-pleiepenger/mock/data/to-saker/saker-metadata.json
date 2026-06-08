@@ -1,0 +1,26 @@
+[
+    {
+        "saksnummer": "100097Y",
+        "pleietrengende": {
+            "fødselsdato": "2017-04-14",
+            "aktørId": "2840470257247",
+            "fornavn": "BEVISST",
+            "mellomnavn": null,
+            "etternavn": "SANS"
+        },
+        "fagsakYtelseType": "PSB",
+        "fagsakOpprettetTidspunkt": "2025-12-14T22:49:33.000Z"
+    },
+    {
+        "saksnummer": "1001F8G",
+        "pleietrengende": {
+            "fødselsdato": "2018-12-22",
+            "aktørId": "2959134453538",
+            "fornavn": null,
+            "mellomnavn": null,
+            "etternavn": null
+        },
+        "fagsakYtelseType": "PSB",
+        "fagsakOpprettetTidspunkt": "2022-01-06T22:50:33.000Z"
+    }
+]

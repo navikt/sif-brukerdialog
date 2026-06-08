@@ -5,7 +5,7 @@ export const getDevAppSettings = () => ({
     IMAGE: 'unknown',
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/opplaringspenger',
 
-    SIF_PUBLIC_AMPLITUDE_API_KEY: 'default',
+    SIF_PUBLIC_ANALYTICS_API_KEY: 'default',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
     SIF_PUBLIC_DEKORATOR_URL:
@@ -14,7 +14,7 @@ export const getDevAppSettings = () => ({
         'http://localhost:8081/auth-mock/cookie?subject=mockSubject&redirect_location=http://localhost:8080',
     SIF_PUBLIC_MINSIDE_URL: 'https://www.nav.no/minside',
     SIF_PUBLIC_SKIP_ORGNUM_VALIDATION: 'true',
-    SIF_PUBLIC_USE_AMPLITUDE: 'true',
+    SIF_PUBLIC_USE_ANALYTICS: 'true',
     SIF_PUBLIC_FEATURE_NYNORSK: 'on',
 
     K9_BRUKERDIALOG_PROSESSERING_API_URL: '#',

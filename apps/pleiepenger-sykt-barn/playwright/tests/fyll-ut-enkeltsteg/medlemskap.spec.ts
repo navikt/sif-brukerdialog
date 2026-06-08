@@ -4,6 +4,7 @@ import { StepID } from '../../../src/app/types/StepID';
 import { mellomlagringMock } from '../../mock-data/mellomlagring';
 import { routeUtils } from '../../utils/routeUtils';
 import { setNow } from '../../utils/setNow';
+import { testAccessibility } from '../../utils/testAccessibility';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);
@@ -21,25 +22,26 @@ test.afterEach(async ({ page }) => {
 
 test.describe('Medlemskap', () => {
     test('Har ikke bodd/skal ikke bo i utlandet', async ({ page }) => {
-        await page.getByRole('group', { name: 'Har du bodd i utlandet i hele' }).getByLabel('Nei').check();
-        await page.getByRole('group', { name: 'Planlegger du å bo i utlandet' }).getByLabel('Nei').check();
+        await page.getByRole('radiogroup', { name: 'Har du bodd i utlandet i hele' }).getByLabel('Nei').check();
+        await page.getByRole('radiogroup', { name: 'Planlegger du å bo i utlandet' }).getByLabel('Nei').check();
+        await testAccessibility(page);
         await page.getByTestId('typedFormikForm-submitButton').click();
     });
     test('Har bodd/skal bo i utlandet', async ({ page }) => {
-        await page.getByRole('group', { name: 'Har du bodd i utlandet i hele' }).getByLabel('Ja').check();
+        await page.getByRole('radiogroup', { name: 'Har du bodd i utlandet i hele' }).getByLabel('Ja').check();
         await page.getByRole('button', { name: 'Legg til nytt utenlandsopphold' }).click();
         await page
             .locator('div')
-            .filter({ hasText: /^Fra og medÅpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Fra og med$/ })
+            .getByRole('button', { name: 'Åpne datovelger' })
             .click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByLabel('fredag 7').click();
         await page
             .locator('div')
-            .filter({ hasText: /^Til og medÅpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Til og med$/ })
+            .getByRole('button', { name: 'Åpne datovelger' })
             .click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByLabel('mandag 14').click();
@@ -48,36 +50,36 @@ test.describe('Medlemskap', () => {
         await page.getByRole('button', { name: 'Legg til nytt utenlandsopphold' }).click();
         await page
             .locator('div')
-            .filter({ hasText: /^Fra og medÅpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Fra og med$/ })
+            .getByRole('button', { name: 'Åpne datovelger' })
             .click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByLabel('tirsdag 15').click();
         await page
             .locator('div')
-            .filter({ hasText: /^Til og medÅpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Til og med$/ })
+            .getByRole('button', { name: 'Åpne datovelger' })
             .click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByRole('button', { name: 'fredag 18' }).click();
         await page.getByLabel('Velg land').selectOption('ABW');
         await page.getByRole('button', { name: 'Ok' }).click();
         await page.getByLabel('Fjern Bahrain').click();
-        await page.getByRole('group', { name: 'Planlegger du å bo i utlandet' }).getByLabel('Ja').click();
+        await page.getByRole('radiogroup', { name: 'Planlegger du å bo i utlandet' }).getByLabel('Ja').click();
         await page
             .getByTestId('bostedUtlandList-annetLandNeste12')
             .getByRole('button', { name: 'Legg til nytt utenlandsopphold' })
             .click();
         await page
             .locator('div')
-            .filter({ hasText: /^Fra og medÅpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Fra og med$/ })
+            .getByRole('button', { name: 'Åpne datovelger' })
             .click();
         await page.getByRole('button', { name: 'mandag 9' }).click();
         await page
             .locator('div')
-            .filter({ hasText: /^Til og medÅpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Til og med$/ })
+            .getByRole('button', { name: 'Åpne datovelger' })
             .click();
         await page.getByRole('button', { name: 'søndag 15' }).click();
         await page.getByLabel('Velg land').selectOption('AUS');
@@ -85,11 +87,12 @@ test.describe('Medlemskap', () => {
         await page.getByRole('link', { name: 'Australia' }).click();
         await page
             .locator('div')
-            .filter({ hasText: /^Til og medÅpne datovelger$/ })
-            .getByRole('button')
+            .filter({ hasText: /^Til og med$/ })
+            .getByRole('button', { name: 'Åpne datovelger' })
             .click();
         await page.getByRole('button', { name: 'søndag 22' }).click();
         await page.getByRole('button', { name: 'Ok' }).click();
+        await testAccessibility(page);
         await page.getByTestId('typedFormikForm-submitButton').click();
     });
 });

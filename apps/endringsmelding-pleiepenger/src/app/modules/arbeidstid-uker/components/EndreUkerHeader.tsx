@@ -1,6 +1,5 @@
+import { AppText } from '@app/i18n';
 import { Alert, Checkbox, VStack } from '@navikt/ds-react';
-
-import { AppText } from '../../../i18n';
 
 interface Props {
     visKorteUkerMelding?: boolean;
@@ -14,7 +13,7 @@ const EndreUkerHeader = ({
     visKorteUkerMelding,
 }: Props) => {
     return (
-        <VStack gap="2">
+        <VStack gap="space-8">
             <Checkbox
                 checked={ukerKanVelges}
                 onChange={(evt) => {

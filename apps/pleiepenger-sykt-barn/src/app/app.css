@@ -1,6 +1,6 @@
 @import 'tailwindcss';
-@import '@navikt/ds-css/darkside';
-@import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css' layer(components);
+@import '@navikt/ds-css';
+@import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css' layer(aksel.components);
 
 @config '../../tailwind.config.ts';
 
@@ -22,9 +22,9 @@
     }
 }
 
-.navds-guide-panel__content > .navds-body-long p:first-child {
+.aksel-guide-panel__content > .aksel-body-long p:first-child {
     margin-top: 0;
 }
-.navds-guide-panel__content > .navds-body-long p:last-child {
+.aksel-guide-panel__content > .aksel-body-long p:last-child {
     margin-bottom: 0;
 }

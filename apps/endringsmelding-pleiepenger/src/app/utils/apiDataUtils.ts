@@ -1,4 +1,4 @@
-import { ArbeidstakerApiData } from '@types';
+import { ArbeidstakerApiData } from '@app/types';
 
 export const harEndretArbeidstidForArbeidsgiverIApiData = (
     arbeidsgiverId: string,

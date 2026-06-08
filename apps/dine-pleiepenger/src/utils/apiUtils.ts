@@ -1,4 +1,7 @@
+import { isAxiosError } from 'axios';
 import { NextApiRequest } from 'next';
+import z from 'zod';
+
 import { createDemoRequestContext, createRequestContext } from '../auth/withAuthentication';
 import { isLocal } from './env';
 
@@ -18,11 +21,62 @@ export const getContextForApiHandler = (req: NextApiRequest) => {
     return context;
 };
 
-export const trimAxiosError = (error: any) => {
-    try {
-        const { config, ...rest } = error;
-        return rest;
-    } catch {
-        return 'invalid error object';
+/**
+ * Går gjennom objekt og sletter alle nøkler med null-verdier, erstatter med undefined
+ */
+export const deleteNullValues = (obj: unknown): unknown => {
+    if (obj === null) {
+        return undefined;
     }
+    if (Array.isArray(obj)) {
+        return obj.map(deleteNullValues);
+    }
+    if (typeof obj === 'object') {
+        return Object.fromEntries(
+            Object.entries(obj)
+                .filter(([, value]) => value !== null)
+                .map(([key, value]) => [key, deleteNullValues(value)]),
+        );
+    }
+    return obj;
+};
+
+/**
+ * Transform response data for server-side axios calls
+ * Brukes som transformResponse i axios config
+ */
+export const serverResponseTransform = (data: string): unknown => {
+    try {
+        if (data === '') {
+            return '';
+        }
+        const parsed = JSON.parse(data);
+        return deleteNullValues(parsed);
+    } catch {
+        return data;
+    }
+};
+
+export const prepApiError = (err: unknown): Record<string, unknown> => {
+    if (isAxiosError(err)) {
+        const { code, message, response } = err;
+        return {
+            axiosError: {
+                code,
+                message,
+                response: response ? { status: response.status, statusText: response.statusText } : undefined,
+            },
+        };
+    } else if (err instanceof z.ZodError) {
+        return {
+            zodError: {
+                issues: err.issues.map((i) => ({ path: i.path.join('.'), message: i.message })),
+            },
+        };
+    } else if (typeof err === 'string') {
+        return { stringError: err };
+    } else if (err instanceof Error) {
+        return { error: err.message, name: err.name };
+    }
+    return { unknownError: String(err) };
 };

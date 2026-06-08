@@ -15,6 +15,7 @@ interface Props<FieldNames> extends TypedFormInputValidationProps<FieldNames, Va
     labels: ModalFormAndListLabels;
     minDate: Date;
     maxDate: Date;
+    disableWeekends?: boolean;
     labelRenderer?: (dato: Enkeltdato) => React.ReactNode;
     disabledDateRanges?: DateRange[];
 }
@@ -24,6 +25,7 @@ function EnkeltdatoListAndDialog<FieldNames>({
     minDate,
     maxDate,
     disabledDateRanges = [],
+    disableWeekends,
     validate,
     labelRenderer,
     labels,
@@ -41,6 +43,7 @@ function EnkeltdatoListAndDialog<FieldNames>({
                         enkeltdato={item}
                         maxDate={maxDate}
                         minDate={minDate}
+                        disableWeekends={disableWeekends}
                         alleEnkeltdatoer={allItems}
                         disabledDateRanges={disabledDateRanges}
                         onSubmit={onSubmit}

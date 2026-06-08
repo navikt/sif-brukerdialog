@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Box } from '@navikt/ds-react';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import {
@@ -9,19 +9,19 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { OpptjeningUtland } from '@navikt/sif-common-forms-ds/src/forms/opptjening-utland/types';
 import { UtenlandskNæring } from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/types';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateToday } from '@navikt/sif-common-utils';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
-import { appArbeidsgivereService } from '../../../api/appArbeidsgiverService';
+
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
+import { useArbeidsgivereQuery } from '../../../hooks/useArbeidsgivereQuery';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
 import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
-import { StepId } from '../../../types/StepId';
 import { SøknadContextState } from '../../../types/SøknadContextState';
+import { StepId } from '../../../types/StepId';
 import { lagreSøknadState } from '../../../utils/lagreSøknadState';
 import actionsCreator from '../../context/action/actionCreator';
 import { useSøknadContext } from '../../context/hooks/useSøknadContext';
@@ -29,8 +29,8 @@ import { useStepFormValuesContext } from '../../context/StepFormValuesContext';
 import SøknadStep from '../../SøknadStep';
 import { getSøknadStepConfigForStep } from '../../søknadStepConfig';
 import {
-    getArbeidssituasjonStepInitialValues,
     getArbeidssituasjonSøknadsdataFromFormValues,
+    getArbeidssituasjonStepInitialValues,
     visVernepliktSpørsmål,
 } from './arbeidssituasjonStepUtils';
 import { AnsattFormData } from './form-parts/ArbeidssituasjonAnsatt';
@@ -38,6 +38,7 @@ import ArbeidssituasjonArbeidsgivere from './form-parts/ArbeidssituasjonArbeidsg
 import ArbeidssituasjonFrilans, { FrilansFormData } from './form-parts/ArbeidssituasjonFrilans';
 import ArbeidssituasjonSN, { SelvstendigFormData } from './form-parts/ArbeidssituasjonSN';
 import { ArbeidssituasjonUtland } from './form-parts/ArbeidssituasjonUtland';
+import KravTilJobbInfo from './form-parts/info/KravTilJobbInfo';
 
 export enum ArbeidssituasjonFormFields {
     ansatt_arbeidsforhold = 'ansatt_arbeidsforhold',
@@ -69,40 +70,14 @@ const { FormikWrapper, Form, YesOrNoQuestion } = getTypedFormComponents<
     ValidationError
 >();
 
-interface LoadState {
-    isLoading: boolean;
-    isLoaded: boolean;
-}
-
 const ArbeidssituasjonStep = () => {
     const { text, intl } = useAppIntl();
     const {
         state: { søknadsdata },
     } = useSøknadContext();
-    const [arbeidsgivereIPerioden, setArbeidsgivereIPerioden] = useState<Arbeidsgiver[]>([]);
-    const [loadState, setLoadState] = useState<LoadState>({ isLoading: false, isLoaded: false });
-
-    const { isLoading, isLoaded } = loadState;
 
     const søknadsperiode = søknadsdata.kurs?.søknadsperiode;
-
-    useEffectOnce(() => {
-        const fetchData = async () => {
-            if (søknadsperiode) {
-                try {
-                    const arbeidsgivere = await appArbeidsgivereService.fetch(søknadsperiode);
-                    setArbeidsgivereIPerioden(arbeidsgivere);
-                    setLoadState({ isLoading: false, isLoaded: true });
-                } catch {
-                    setLoadState({ isLoading: false, isLoaded: true });
-                }
-            }
-        };
-        if (søknadsperiode && !isLoaded && !isLoading) {
-            setLoadState({ isLoading: true, isLoaded: false });
-            fetchData();
-        }
-    });
+    const { data: arbeidsgivereIPerioden = [], isLoading, isSuccess, error } = useArbeidsgivereQuery(søknadsperiode);
 
     const stepId = StepId.ARBEIDSSITUASJON;
     const step = getSøknadStepConfigForStep(stepId, søknadsdata);
@@ -131,7 +106,7 @@ const ArbeidssituasjonStep = () => {
         },
     );
 
-    if (isLoading || !isLoaded) {
+    if (isLoading || (!isSuccess && !error)) {
         return <LoadingSpinner size="3xlarge" style="block" />;
     }
 
@@ -152,11 +127,19 @@ const ArbeidssituasjonStep = () => {
                         selvstendig,
                         harOpptjeningUtland,
                         harUtenlandskNæring,
+                        harVærtEllerErVernepliktig,
                     },
                 }) => {
                     if (!søknadsperiode || !ansatt_arbeidsforhold || !frilans || !selvstendig) {
                         return undefined;
                     }
+                    const skalViseVernepliktSpørsmål = visVernepliktSpørsmål(
+                        søknadsperiode,
+                        ansatt_arbeidsforhold,
+                        frilans,
+                        selvstendig,
+                        frilansoppdrag,
+                    );
 
                     return (
                         <>
@@ -180,6 +163,7 @@ const ArbeidssituasjonStep = () => {
                                             parentFieldName={ArbeidssituasjonFormFields.ansatt_arbeidsforhold}
                                             ansatt_arbeidsforhold={ansatt_arbeidsforhold}
                                             søknadsperiode={søknadsperiode}
+                                            error={!!error}
                                         />
                                     </FormLayout.Section>
 
@@ -189,14 +173,14 @@ const ArbeidssituasjonStep = () => {
                                             frilansoppdrag={frilansoppdrag || []}
                                             søknadsperiode={søknadsperiode}
                                             søknadsdato={getDateToday()}
-                                            urlSkatteetaten={getLenker(intl.locale).skatteetaten}
+                                            urlSkatteetaten={getLenker(intl.locale).skatt_arbeidstakerinntekt}
                                         />
                                     </FormLayout.Section>
 
                                     <FormLayout.Section title={text('steg.arbeidssituasjon.sn.tittel')}>
                                         <ArbeidssituasjonSN
                                             formValues={selvstendig}
-                                            urlSkatteetatenSN={getLenker(intl.locale).skatteetatenSN}
+                                            urlSkatteetatenSN={getLenker(intl.locale).skatt_SNInntekt}
                                             søknadsperiode={søknadsperiode}
                                         />
                                     </FormLayout.Section>
@@ -208,13 +192,7 @@ const ArbeidssituasjonStep = () => {
                                         />
                                     </FormLayout.Section>
 
-                                    {visVernepliktSpørsmål(
-                                        søknadsperiode,
-                                        ansatt_arbeidsforhold,
-                                        frilans,
-                                        selvstendig,
-                                        frilansoppdrag,
-                                    ) && (
+                                    {skalViseVernepliktSpørsmål && (
                                         <FormLayout.Section title={text('steg.arbeidssituasjon.verneplikt.tittel')}>
                                             <YesOrNoQuestion
                                                 name={ArbeidssituasjonFormFields.harVærtEllerErVernepliktig}
@@ -230,6 +208,11 @@ const ArbeidssituasjonStep = () => {
                                         </FormLayout.Section>
                                     )}
                                 </FormLayout.Sections>
+                                {skalViseVernepliktSpørsmål && harVærtEllerErVernepliktig === YesOrNo.NO && (
+                                    <Box marginBlock="space-24 space-0">
+                                        <KravTilJobbInfo />
+                                    </Box>
+                                )}
                             </Form>
                         </>
                     );

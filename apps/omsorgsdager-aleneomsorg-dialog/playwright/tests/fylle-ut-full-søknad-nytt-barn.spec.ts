@@ -1,13 +1,13 @@
 import { expect, test } from '@playwright/test';
 
 import { setNow } from '../utils/setNow';
-import { setupMockApi } from '../utils/setupMockApi';
+import { setupMockRoutes } from '../utils/setupMockRoutes';
 
 const startUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/velkommen';
 
 test.beforeEach(async ({ page }) => {
     await setNow(page);
-    await setupMockApi(page);
+    await setupMockRoutes(page);
 });
 
 test('Fyll ut full søknad nytt barn', async ({ page }) => {

@@ -1,3 +1,7 @@
+import { AppText, useAppIntl } from '@app/i18n';
+import LovbestemtFerieListe from '@app/modules/lovbestemt-ferie-liste/LovbestemtFerieListe';
+import LovbestemtFerieModal from '@app/modules/lovbestemt-ferie-modal/LovbestemtFerieModal';
+import { getFeriedagerIPeriode, getFeriedagerMeta } from '@app/utils';
 import { Button, VStack } from '@navikt/ds-react';
 import FerieuttakForm from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/FerieuttakForm';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/types';
@@ -8,12 +12,8 @@ import {
     getDatesInDateRange,
     ISODateToDate,
 } from '@navikt/sif-common-utils';
-import { getFeriedagerIPeriode, getFeriedagerMeta } from '@utils';
 import { useState } from 'react';
 
-import { AppText, useAppIntl } from '../../../i18n';
-import LovbestemtFerieListe from '../../../modules/lovbestemt-ferie-liste/LovbestemtFerieListe';
-import LovbestemtFerieModal from '../../../modules/lovbestemt-ferie-modal/LovbestemtFerieModal';
 import { FeriedagMap } from './LovbestemtFerieStep';
 
 interface Props {
@@ -38,7 +38,7 @@ const FeriedagerISøknadsperiode = ({ alleFeriedager, søknadsperiode, onChange 
     };
 
     return (
-        <VStack gap="4">
+        <VStack gap="space-16">
             <LovbestemtFerieListe
                 perioder={perioder}
                 onUndoDelete={(periode) => {
@@ -53,7 +53,6 @@ const FeriedagerISøknadsperiode = ({ alleFeriedager, søknadsperiode, onChange 
                     onChange(fjernFerie(alleFeriedager, periode));
                 }}
             />
-
             <div>
                 <Button
                     data-testid="leggTilFerieKnapp"
@@ -68,7 +67,6 @@ const FeriedagerISøknadsperiode = ({ alleFeriedager, søknadsperiode, onChange 
                     <AppText id="feriedagerISøknadsperiode.leggTilFerie" />
                 </Button>
             </div>
-
             {visFerieModal && (
                 <LovbestemtFerieModal
                     onClose={() => setVisFerieModal(undefined)}

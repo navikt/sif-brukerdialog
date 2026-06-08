@@ -87,10 +87,6 @@ export const appCommonMessages_nb = {
         'Du er kommet til en side du ikke trenger å fylle ut. Dette kan skje hvis du går frem og tilbake i søknaden gjennom pilene i nettleseren (pilene helt øverst til venstre på siden). Du unngår dette problemet hvis du heller bruker knapper og lenker som ligger inne i selve søknaden for å gå frem eller tilbake.',
     'page.invalidStepPage.tilbakeLenke': 'Gå tilbake til forrige side',
 
-    'page.ikkeTilgang.tekst':
-        'Du har ikke tilgang til denne siden. Dersom du er under 18 år, må en av foreldrene dine eller en foresatt skrive under på søknaden sammen med deg. Du må derfor fylle ut søknaden på papir og sende den i posten.',
-    'page.ikkeTilgang.lastNed': 'Her kan du laste ned papirsøknaden',
-
     'validation.harForståttRettigheterOgPlikter.notChecked': 'Du må bekrefte at du har lest og forstått dine plikter.',
     'validation.omsorgsstønad.mottarOmsorgsstønad.yesOrNoIsUnanswered':
         'Du må svare ja eller nei på om du mottar omsorgsstønad.',
@@ -98,6 +94,14 @@ export const appCommonMessages_nb = {
         'Du må svare ja eller nei på om du mottar fosterhjemsgodtgjørelse.',
     'validation.fosterhjemsgodtgjørelse.erFrikjøptFraJobb.noValue':
         'Du må svare ja eller nei på om du er frikjøpt fra jobb',
+
+    'validation.fosterhjemsgodtgjørelse.frikjøptBeskrivelse.stringHasNoValue':
+        'Du må beskrive detaljer om frikjøp og fosterhjemsgodtgjørelse',
+    'validation.fosterhjemsgodtgjørelse.frikjøptBeskrivelse.stringIsTooLong':
+        'Du har brukt for mange tegn i beskrivelsen din. Teksten kan ikke inneholde flere enn 1000 tegn.',
+    'validation.fosterhjemsgodtgjørelse.frikjøptBeskrivelse.stringHasInvalidCharacters':
+        'Beskrivelsen inneholder ugyldige tegn. Ugyldige tegn kan for eksempel være emojier, spesialtegn som « », §, @, eller skjulte formateringstegn som innrykk, tabulatorer og listeformatering. Dette kan blant annet oppstå dersom tekst kopieres fra andre steder. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
+
     'validation.fosterhjemsgodtgjørelse.frikjøptArbeidsgivere.listHasTooFewItems':
         'Du må velge hvilken arbeidsgiver du er frikjøpt fra',
     'validation.fosterhjemsgodtgjørelse.frikjøptArbeidsgivere.listIsEmpty':

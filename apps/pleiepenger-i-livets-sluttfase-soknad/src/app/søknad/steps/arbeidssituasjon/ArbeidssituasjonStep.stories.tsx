@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
 
-import { withAmplitudeProvider } from '../../../../storybook/decorators/withAmplitude';
+import { withAnalyticsProvider } from '../../../../storybook/decorators/withAnalyticsProvider';
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withRouterProvider } from '../../../../storybook/decorators/withRouter';
 import { withSøknadContextProvider } from '../../../../storybook/decorators/withSøknadContext';
@@ -9,7 +9,7 @@ import ArbeidssituasjonStep from './ArbeidssituasjonStep';
 const meta: Meta<typeof ArbeidssituasjonStep> = {
     title: 'Steps/Arbeidssituasjon',
     component: ArbeidssituasjonStep,
-    decorators: [withIntl, (Story) => withSøknadContextProvider(Story), withAmplitudeProvider, withRouterProvider],
+    decorators: [withIntl, (Story) => withSøknadContextProvider(Story), withAnalyticsProvider, withRouterProvider],
     parameters: {
         mockData: [
             {

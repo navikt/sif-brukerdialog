@@ -1,49 +1,49 @@
 .block {
     &--s {
-        margin-top: var(--a-spacing-1);
+        margin-top: var(--ax-space-4);
     }
 
     &--m {
-        margin-top: var(--a-spacing-2);
+        margin-top: var(--ax-space-8);
     }
 
     &--l {
-        margin-top: var(--a-spacing-4);
+        margin-top: var(--ax-space-16);
     }
 
     &--xl {
-        margin-top: var(--a-spacing-8);
+        margin-top: var(--ax-space-32);
     }
 
     &--xxl {
-        margin-top: var(--a-spacing-12);
+        margin-top: var(--ax-space-48);
     }
 
     &--xxxl {
-        margin-top: var(--a-spacing-16);
+        margin-top: var(--ax-space-64);
     }
     &--bottom-s {
-        padding-bottom: var(--a-spacing-1);
+        padding-bottom: var(--ax-space-4);
     }
 
     &--bottom-m {
-        padding-bottom: var(--a-spacing-2);
+        padding-bottom: var(--ax-space-8);
     }
 
     &--bottom-l {
-        padding-bottom: var(--a-spacing-4);
+        padding-bottom: var(--ax-space-16);
     }
 
     &--bottom-xl {
-        padding-bottom: var(--a-spacing-8);
+        padding-bottom: var(--ax-space-32);
     }
 
     &--bottom-xxl {
-        padding-bottom: var(--a-spacing-12);
+        padding-bottom: var(--ax-space-48);
     }
 
     &--bottom-xxxl {
-        padding-bottom: var(--a-spacing-16);
+        padding-bottom: var(--ax-space-64);
     }
 
     &--textAlignCenter {

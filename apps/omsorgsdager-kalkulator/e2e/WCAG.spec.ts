@@ -12,13 +12,13 @@ test('Gå gjennom kalkulatoren og sjekk WCAG', async ({ page }) => {
     await page.getByLabel('Hvilket årstall er barnet født?').selectOption(year.toString());
     await page.getByLabel('Ja').check();
     await page
-        .getByRole('group', {
+        .getByRole('radiogroup', {
             name: 'Har du fått ekstra omsorgsdager fordi barnet har en sykdom eller funksjonshemning som gjør at du oftere må være borte fra jobb?',
         })
         .getByLabel('Ja')
         .check();
     await page
-        .getByRole('group', {
+        .getByRole('radiogroup', {
             name: 'Har du fått vedtak om ekstra omsorgsdager fordi du er alene om omsorgen for barnet?',
         })
         .getByLabel('Ja')

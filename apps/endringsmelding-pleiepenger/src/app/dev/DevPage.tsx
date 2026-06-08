@@ -11,7 +11,6 @@ const DevPage = () => {
             <Heading level="2" size="medium" spacing={true}>
                 Mellomlagring
             </Heading>
-
             <Button
                 type="button"
                 onClick={() => {
@@ -19,8 +18,7 @@ const DevPage = () => {
                 }}>
                 Tøm mellomlagring
             </Button>
-
-            <VStack marginBlock="10">
+            <VStack marginBlock="space-40">
                 <Heading level="3" size="medium" spacing={true}>
                     Aktiv brukerprofil (mockdata)
                 </Heading>

@@ -1,7 +1,6 @@
-import { Edit } from '@navikt/ds-icons';
+import { AppText } from '@app/i18n';
+import { PencilIcon } from '@navikt/aksel-icons';
 import { Alert, Button, VStack } from '@navikt/ds-react';
-
-import { AppText } from '../../../i18n';
 
 interface Props {
     visVelgUkerMelding: boolean;
@@ -11,7 +10,7 @@ interface Props {
 
 const EndreUkerFooter = ({ visVelgUkerMelding, onEndreUker }: Props) => {
     return (
-        <VStack gap="5" className="arbeidstidUkeFooter" as="span">
+        <VStack gap="space-20" className="arbeidstidUkeFooter" as="span">
             <div aria-relevant="additions removals" aria-live="polite">
                 {visVelgUkerMelding && (
                     <Alert variant="info">
@@ -21,7 +20,7 @@ const EndreUkerFooter = ({ visVelgUkerMelding, onEndreUker }: Props) => {
             </div>
             <div>
                 <Button
-                    icon={<Edit role="presentation" aria-hidden={true} />}
+                    icon={<PencilIcon role="presentation" aria-hidden={true} />}
                     variant="primary"
                     type="button"
                     data-testid="endre-flere-uker-button"

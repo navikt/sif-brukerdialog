@@ -1,93 +1,75 @@
-// import { OppgaveStatus } from '@navikt/ung-common';
-
 import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
-import { OppgaveDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { BrukerdialogOppgaveDto, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { RapporterInntektOppgave } from '@sif/api/ung-brukerdialog';
+import dayjs from 'dayjs';
 
-import { RapporterInntektOppgave } from '../../src/types/Oppgave';
 import { store } from '../state/store';
-// import { OppgaveDto } from '@navikt/ung-deltakelse-opplyser-api';
+import { getMockToday } from './mockDate';
+
+const ISODateFormat = 'YYYY-MM-DD';
+
+const dateToISODate = (date: Date): string => dayjs(date).format(ISODateFormat);
 
 function updateOppgave(ref: string, oppgaveUpdaterFunc: (oppgave: any) => any) {
     const state = store.get();
-    const deltakelser = state.deltakelser.map((deltakelse, idx) => {
-        if (idx !== 0) return deltakelse;
-        return {
-            ...deltakelse,
-            oppgaver: deltakelse.oppgaver.map((oppgave: any) =>
-                oppgave.oppgaveReferanse === ref ? oppgaveUpdaterFunc(oppgave) : oppgave,
-            ),
-        };
-    });
-    store.set({ ...state, deltakelser });
-    return deltakelser[0].oppgaver.find((o: any) => o.oppgaveReferanse === ref);
+    const oppgaver = state.oppgaver.map((oppgave: any) =>
+        oppgave.oppgaveReferanse === ref ? oppgaveUpdaterFunc(oppgave) : oppgave,
+    );
+    store.set({ ...state, oppgaver });
+    return oppgaver.find((o: any) => o.oppgaveReferanse === ref);
 }
 
 export const mockUtils = {
-    setOppgaveSomÅpnet: (ref: string) =>
-        updateOppgave(ref, (oppgave) => ({
-            ...oppgave,
-            åpnetDato: new Date().toISOString(),
-        })),
-
-    setOppgaveSomLukket: (ref: string) =>
-        updateOppgave(ref, (oppgave) => ({
-            ...oppgave,
-            status: 'LUKKET',
-            lukketDato: new Date().toISOString(),
-        })),
-
     setDeltakelseSøktFor: () => {
         const state = store.get();
         const deltakelser = state.deltakelser.map((deltakelse, idx) =>
-            idx === 0 ? { ...deltakelse, søktTidspunkt: new Date().toISOString() } : deltakelse,
+            idx === 0 ? { ...deltakelse, søktTidspunkt: getMockToday().toISOString() } : deltakelse,
         );
         store.set({ ...state, deltakelser });
     },
 
     setOppgavebekreftelse: (ref: string, data: any) => {
-        const oppdatertData: Partial<any> = {
-            bekreftelse: {
+        const oppdatertData: Partial<BrukerdialogOppgaveDto> = {
+            respons: {
+                type: 'VARSEL_SVAR',
                 harUttalelse: data.oppgave.uttalelse.harUttalelse,
-                uttalelseFraBruker: data.oppgave.uttalelse.uttalelseFraDeltaker,
+                uttalelseFraBruker: data.oppgave.uttalelse.uttalelseFraDeltaker, // brukerdialog prosessering kaller det uttalelseFraDeltaker, ikke uttalelseFraBruker
             },
-            løstDato: new Date().toISOString(),
-            status: 'LØST',
+            løstDato: getMockToday().toISOString(),
+            status: OppgaveStatus.LØST,
         };
-        return updateOppgave(ref, (oppgave) => ({
-            ...oppgave,
-            ...oppdatertData,
-        }));
+        return updateOppgave(ref, (oppgave) => {
+            return {
+                ...oppgave,
+                ...oppdatertData,
+            };
+        });
     },
 
     setRapportertInntekt: (ref: string, data: UngdomsytelseInntektsrapportering) => {
-        const getOppdatertData = (oppgave: RapporterInntektOppgave): Partial<OppgaveDto> =>
-            ({
+        const getOppdatertData = (oppgave: RapporterInntektOppgave): Partial<BrukerdialogOppgaveDto> => {
+            const oppdatertOppgave: Partial<BrukerdialogOppgaveDto> = {
                 oppgavetypeData: {
-                    fraOgMed: oppgave.oppgavetypeData.fraOgMed,
-                    tilOgMed: oppgave.oppgavetypeData.fraOgMed,
-                    rapportertInntekt: {
-                        fraOgMed: oppgave.oppgavetypeData.fraOgMed,
-                        tilOgMed: oppgave.oppgavetypeData.fraOgMed,
-                        arbeidstakerOgFrilansInntekt: data.oppgittInntekt.arbeidstakerOgFrilansInntekt || 0,
-                    },
+                    ...oppgave.oppgavetypeData,
+                    type: 'INNTEKTSRAPPORTERING',
+                    fraOgMed: dateToISODate(oppgave.oppgavetypeData.fraOgMed),
+                    tilOgMed: dateToISODate(oppgave.oppgavetypeData.tilOgMed),
                 },
-                løstDato: new Date().toISOString(),
-                status: 'LØST',
-            }) as any;
-
-        setTimeout(() => {
-            updateOppgave(ref, (oppgave) => ({
-                ...oppgave,
-                ...getOppdatertData(oppgave),
-            }));
-        }, 2500);
-
-        return updateOppgave(ref, (oppgave): OppgaveDto => {
-            return {
-                ...oppgave,
-                løstDato: new Date().toISOString(),
-                status: 'LØST',
+                respons: {
+                    type: 'RAPPORTERT_INNTEKT',
+                    fraOgMed: dateToISODate(oppgave.oppgavetypeData.fraOgMed),
+                    tilOgMed: dateToISODate(oppgave.oppgavetypeData.tilOgMed),
+                    arbeidstakerOgFrilansInntekt: data.oppgittInntekt.arbeidstakerOgFrilansInntekt || 0,
+                },
+                løstDato: getMockToday().toISOString(),
+                status: OppgaveStatus.LØST,
             };
-        });
+            return oppdatertOppgave;
+        };
+
+        return updateOppgave(ref, (oppgave) => ({
+            ...oppgave,
+            ...getOppdatertData(oppgave),
+        }));
     },
 };

@@ -2,6 +2,7 @@ import { DateRange } from '@navikt/sif-common-utils';
 
 import { SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { ArbeidssituasjonSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonSøknadsdata';
+import { harFrilansoppdrag } from '../frilanserUtils';
 import { extractArbeidssituasjonAnsattSøknadsdata } from './extractArbeidssituasjonAnsattSøknadsdata';
 import { extractArbeidssituasjonFrilansSøknadsdata } from './extractArbeidssituasjonFrilansSøknadsdata';
 import { extractArbeidssituasjonSelvstendigSøknadsdata } from './extractArbeidssituasjonSelvstendigSøknadsdata';
@@ -15,7 +16,12 @@ export const extractArbeidssituasjonSøknadsdata = (
     try {
         const data: ArbeidssituasjonSøknadsdata = {
             arbeidsgivere: extractArbeidssituasjonAnsattSøknadsdata(søknadsperiode, formValues.ansatt_arbeidsforhold),
-            frilans: extractArbeidssituasjonFrilansSøknadsdata(søknadsperiode, formValues.frilans),
+            frilans: extractArbeidssituasjonFrilansSøknadsdata(
+                søknadsperiode,
+                formValues.frilans,
+                harFrilansoppdrag(formValues.frilansoppdrag),
+                formValues.omsorgsstønad.mottarOmsorgsstønad,
+            ),
             selvstendig: extractArbeidssituasjonSelvstendigSøknadsdata(søknadsperiode, formValues.selvstendig),
             opptjeningUtland: extractOpptjeningUtlandSøknadsdata(formValues),
             utenlandskNæring: extractUtenlandskNæringSøknadsdata(formValues),

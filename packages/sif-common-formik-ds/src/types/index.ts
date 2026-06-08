@@ -1,5 +1,3 @@
-import { Accept } from 'react-dropzone';
-
 export enum YesOrNo {
     'YES' = 'yes',
     'NO' = 'no',
@@ -42,9 +40,3 @@ export interface CustomFormErrorHandler<ErrorType> {
 
 export type FieldErrorHandler<ErrorType> = (error: ErrorType, fieldName: string) => string;
 export type ErrorTypeChecker<ErrorType = any> = (error: ErrorType) => boolean;
-
-export const FileDropAcceptImagesAndPdf: Accept = {
-    'image/jpeg': ['.jpg', '.jpeg'],
-    'image/png': [],
-    'application/pdf': [],
-};

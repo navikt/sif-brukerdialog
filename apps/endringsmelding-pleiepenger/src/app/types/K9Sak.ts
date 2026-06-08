@@ -1,9 +1,21 @@
 import { UtenlandsoppholdÅrsak } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import { DateRange, Duration, ISODateRange, ISODateRangeMap } from '@navikt/sif-common-utils';
 
+import { UgyldigBarnFormatDetails } from './K9Format';
+
 export interface K9SakArbeidstidPeriode {
     jobberNormaltTimerPerDag: Duration;
     faktiskArbeidTimerPerDag: Duration;
+}
+
+export interface K9SakTilsynsordningPeriode {
+    etablertTilsynTimerPerDag: Duration;
+}
+
+export type K9SakTilsynsordningPeriodeMap = ISODateRangeMap<K9SakTilsynsordningPeriode>;
+
+export interface K9SakTilsynsordning {
+    perioder: K9SakTilsynsordningPeriodeMap;
 }
 
 export type K9SakArbeidstidPeriodeMap = ISODateRangeMap<K9SakArbeidstidPeriode>;
@@ -60,6 +72,7 @@ interface K9SakYtelse {
             jobberFortsattSomFrilanser: boolean;
         };
     };
+    tilsynsordning: K9SakTilsynsordning;
     arbeidstid: K9SakArbeidstid;
 }
 
@@ -80,6 +93,7 @@ export const isK9Sak = (sak: any): sak is K9Sak => {
 
 export interface UgyldigK9SakFormat {
     erUgyldigK9SakFormat: true;
+    detaljer: undefined | UgyldigBarnFormatDetails;
 }
 
 export const isUgyldigK9SakFormat = (sak: any): sak is UgyldigK9SakFormat => {

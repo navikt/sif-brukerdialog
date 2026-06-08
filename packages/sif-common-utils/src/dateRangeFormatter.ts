@@ -31,6 +31,14 @@ export const getDateRangeText = (
     return `${fromString} - ${toString}`;
 };
 
+export const compact = ({ from, to }: DateRange): string => {
+    if (dayjs(from).isSame(to, 'date')) {
+        return dateFormatter.compact(from);
+    }
+    return `${dateFormatter.compact(from)} - ${dateFormatter.compact(to)}`;
+};
+
 export const dateRangeFormatter = {
     getDateRangeText,
+    compact,
 };

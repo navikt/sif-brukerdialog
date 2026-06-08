@@ -1,10 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-
 import { BodyShort, Box, Button, HStack, VStack } from '@navikt/ds-react';
 import { getDateValidator } from '@navikt/sif-validation';
-import { expect } from '@storybook/jest';
-import { userEvent, within } from '@storybook/testing-library';
+import { expect, userEvent, within } from 'storybook/test';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useFormikContext } from 'formik';
+
 import { datepickerUtils } from '../../../src/components/formik-datepicker/datepickerUtils';
 import FormikDatepicker, { FormikDatepickerProps } from '../../../src/components/formik-datepicker/FormikDatepicker';
 import { withFormikWrapper } from '../../decorators/StoryFormikWrapper';
@@ -35,7 +34,7 @@ const Wrapper = ({ children }) => {
 const ModifyValueButtons = () => {
     const { setFieldValue } = useFormikContext();
     return (
-        <HStack gap="2">
+        <HStack gap="space-8">
             <Button type="button" onClick={() => setFieldValue('date', '')} variant="secondary" size="small">
                 Tøm felt
             </Button>
@@ -49,7 +48,7 @@ const ModifyValueButtons = () => {
 export const Default: Story = {
     render: () => (
         <Wrapper>
-            <VStack gap="2">
+            <VStack gap="space-8">
                 <FormikDatepicker {...defaultProps} />
                 <Box>
                     <ModifyValueButtons />

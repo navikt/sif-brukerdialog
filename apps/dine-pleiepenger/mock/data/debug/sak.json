@@ -1,0 +1,287 @@
+{
+    "saksnummer": "1003QQ0",
+    "utledetStatus": { "status": "AVSLUTTET", "aksjonspunkter": [], "saksbehandlingsFrist": null },
+    "saksbehandlingsFrist": null,
+    "fagsakYtelseType": { "kode": "PSB", "kodeverk": "FAGSAK_YTELSE" },
+    "ytelseType": "PSB",
+    "behandlinger": [
+        {
+            "status": "AVSLUTTET",
+            "opprettetTidspunkt": "2026-02-06T12:54:43.000Z",
+            "avsluttetTidspunkt": "2026-02-06T13:18:12.000Z",
+            "innsendelser": [
+                {
+                    "søknadId": "f56d095c-6552-4c15-bd40-dc0104a65662",
+                    "mottattTidspunkt": "2026-02-06T12:53:36Z",
+                    "innsendelsestype": "SØKNAD",
+                    "k9FormatInnsendelse": {
+                        "søknadId": "f56d095c-6552-4c15-bd40-dc0104a65662",
+                        "versjon": "1.0.0",
+                        "mottattDato": "2026-02-06T12:53:34.193Z",
+                        "søker": { "norskIdentitetsnummer": "18419625937" },
+                        "språk": "nb",
+                        "ytelse": {
+                            "type": "PLEIEPENGER_SYKT_BARN",
+                            "annetDataBruktTilUtledning": {
+                                "annetData": null,
+                                "harBekreftetOpplysninger": true,
+                                "harForståttRettigheterOgPlikter": true,
+                                "soknadDialogCommitSha": "2026.02.04-15.25-7c32529"
+                            },
+                            "arbeidstid": {
+                                "arbeidstakerList": [
+                                    {
+                                        "arbeidstidInfo": {
+                                            "perioder": {
+                                                "2025-12-15/2026-01-23": {
+                                                    "faktiskArbeidTimerPerDag": "PT0S",
+                                                    "jobberNormaltTimerPerDag": "PT8H"
+                                                }
+                                            }
+                                        },
+                                        "norskIdentitetsnummer": null,
+                                        "organisasjonsnavn": "INTERESSANT INTUITIV KATT DIAMETER",
+                                        "organisasjonsnummer": "315853370"
+                                    },
+                                    {
+                                        "arbeidstidInfo": {
+                                            "perioder": {
+                                                "2025-12-15/2026-01-23": {
+                                                    "faktiskArbeidTimerPerDag": "PT0S",
+                                                    "jobberNormaltTimerPerDag": "PT8H"
+                                                }
+                                            }
+                                        },
+                                        "norskIdentitetsnummer": null,
+                                        "organisasjonsnavn": "LAV BLØT KATT MOSKUS",
+                                        "organisasjonsnummer": "315630304"
+                                    }
+                                ],
+                                "frilanserArbeidstidInfo": {
+                                    "perioder": {
+                                        "2025-12-15/2026-01-23": {
+                                            "faktiskArbeidTimerPerDag": "PT0S",
+                                            "jobberNormaltTimerPerDag": "PT0S"
+                                        }
+                                    }
+                                },
+                                "selvstendigNæringsdrivendeArbeidstidInfo": null
+                            },
+                            "barn": { "fødselsdato": null, "norskIdentitetsnummer": "29462087649" },
+                            "beredskap": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                            "bosteder": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                            "dataBruktTilUtledning": null,
+                            "endringsperiode": [],
+                            "erSammenMedBarnet": null,
+                            "infoFraPunsj": null,
+                            "lovbestemtFerie": { "perioder": {} },
+                            "nattevåk": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                            "omsorg": { "beskrivelseAvOmsorgsrollen": null, "relasjonTilBarnet": null },
+                            "opptjeningAktivitet": {},
+                            "søknadsperiode": ["2025-12-15/2026-01-23"],
+                            "tilsynsordning": {
+                                "perioder": { "2025-12-15/2026-01-23": { "etablertTilsynTimerPerDag": "PT0S" } }
+                            },
+                            "trekkKravPerioder": [],
+                            "utenlandsopphold": { "perioder": {}, "perioderSomSkalSlettes": {} },
+                            "uttak": {
+                                "perioder": { "2025-12-15/2026-01-23": { "timerPleieAvBarnetPerDag": "PT7H30M" } }
+                            }
+                        },
+                        "begrunnelseForInnsending": { "tekst": null },
+                        "journalposter": [],
+                        "kildesystem": "søknadsdialog"
+                    },
+                    "dokumenter": [
+                        {
+                            "journalpostId": "454078824",
+                            "dokumentInfoId": "454500428",
+                            "saksnummer": "1003QQ0",
+                            "tittel": "Søknad om pleiepenger for sykt barn",
+                            "dokumentType": "PLEIEPENGER_SYKT_BARN_SOKNAD",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/454078824/454500428/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2026-02-06T13:53:36", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2026-02-06T13:53:36", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2026-02-06T13:53:42", "datotype": "DATO_JOURNALFOERT" },
+                                { "dato": "2026-02-06T13:53:34", "datotype": "DATO_REGISTRERT" }
+                            ]
+                        },
+                        {
+                            "journalpostId": "454078824",
+                            "dokumentInfoId": "454500429",
+                            "saksnummer": "1003QQ0",
+                            "tittel": "Innsendelse (1).pdf",
+                            "dokumentType": "PLEIEPENGER_SYKT_BARN_SOKNAD",
+                            "filtype": "PDF",
+                            "harTilgang": true,
+                            "url": "http://sif-innsyn-api/dokument/454078824/454500429/ARKIV",
+                            "relevanteDatoer": [
+                                { "dato": "2026-02-06T13:53:36", "datotype": "DATO_OPPRETTET" },
+                                { "dato": "2026-02-06T13:53:36", "datotype": "DATO_DOKUMENT" },
+                                { "dato": "2026-02-06T13:53:42", "datotype": "DATO_JOURNALFOERT" },
+                                { "dato": "2026-02-06T13:53:34", "datotype": "DATO_REGISTRERT" }
+                            ]
+                        }
+                    ],
+                    "arbeidsgivere": [
+                        { "organisasjonsnummer": "315853370", "navn": "INTERESSANT INTUITIV KATT DIAMETER" },
+                        { "organisasjonsnummer": "315630304", "navn": "LAV BLØT KATT MOSKUS" }
+                    ]
+                }
+            ],
+            "aksjonspunkter": [],
+            "utgåendeDokumenter": [
+                {
+                    "journalpostId": "454079040",
+                    "dokumentInfoId": "454500656",
+                    "saksnummer": "1003QQ0",
+                    "tittel": "Pleiepenger barn Endring",
+                    "dokumentType": "VEDTAK_ENDRING",
+                    "filtype": "PDF",
+                    "harTilgang": true,
+                    "url": "http://sif-innsyn-api/dokument/454079040/454500656/ARKIV",
+                    "relevanteDatoer": [
+                        { "dato": "2026-02-06T14:26:37", "datotype": "DATO_OPPRETTET" },
+                        { "dato": "2026-02-06T14:26:37", "datotype": "DATO_DOKUMENT" },
+                        { "dato": "2026-02-06T14:26:37", "datotype": "DATO_JOURNALFOERT" }
+                    ]
+                },
+                {
+                    "journalpostId": "454078986",
+                    "dokumentInfoId": "454500600",
+                    "saksnummer": "1003QQ0",
+                    "tittel": "Pleiepenger barn Innvilgelse",
+                    "dokumentType": "VEDTAK_INNVILGELSE",
+                    "filtype": "PDF",
+                    "harTilgang": true,
+                    "url": "http://sif-innsyn-api/dokument/454078986/454500600/ARKIV",
+                    "relevanteDatoer": [
+                        { "dato": "2026-02-06T14:18:20", "datotype": "DATO_OPPRETTET" },
+                        { "dato": "2026-02-06T14:18:20", "datotype": "DATO_DOKUMENT" },
+                        { "dato": "2026-02-06T14:18:20", "datotype": "DATO_JOURNALFOERT" }
+                    ]
+                }
+            ]
+        },
+        {
+            "status": "AVSLUTTET",
+            "opprettetTidspunkt": "2026-02-06T13:20:19.000Z",
+            "avsluttetTidspunkt": "2026-02-06T13:20:30.000Z",
+            "innsendelser": [],
+            "aksjonspunkter": [],
+            "utgåendeDokumenter": [
+                {
+                    "journalpostId": "454079040",
+                    "dokumentInfoId": "454500656",
+                    "saksnummer": "1003QQ0",
+                    "tittel": "Pleiepenger barn Endring",
+                    "dokumentType": "VEDTAK_ENDRING",
+                    "filtype": "PDF",
+                    "harTilgang": true,
+                    "url": "http://sif-innsyn-api/dokument/454079040/454500656/ARKIV",
+                    "relevanteDatoer": [
+                        { "dato": "2026-02-06T14:26:37", "datotype": "DATO_OPPRETTET" },
+                        { "dato": "2026-02-06T14:26:37", "datotype": "DATO_DOKUMENT" },
+                        { "dato": "2026-02-06T14:26:37", "datotype": "DATO_JOURNALFOERT" }
+                    ]
+                },
+                {
+                    "journalpostId": "454078986",
+                    "dokumentInfoId": "454500600",
+                    "saksnummer": "1003QQ0",
+                    "tittel": "Pleiepenger barn Innvilgelse",
+                    "dokumentType": "VEDTAK_INNVILGELSE",
+                    "filtype": "PDF",
+                    "harTilgang": true,
+                    "url": "http://sif-innsyn-api/dokument/454078986/454500600/ARKIV",
+                    "relevanteDatoer": [
+                        { "dato": "2026-02-06T14:18:20", "datotype": "DATO_OPPRETTET" },
+                        { "dato": "2026-02-06T14:18:20", "datotype": "DATO_DOKUMENT" },
+                        { "dato": "2026-02-06T14:18:20", "datotype": "DATO_JOURNALFOERT" }
+                    ]
+                }
+            ]
+        },
+        {
+            "status": "AVSLUTTET",
+            "opprettetTidspunkt": "2026-02-06T13:23:23.000Z",
+            "avsluttetTidspunkt": "2026-02-06T13:26:35.000Z",
+            "innsendelser": [],
+            "aksjonspunkter": [],
+            "utgåendeDokumenter": [
+                {
+                    "journalpostId": "454079040",
+                    "dokumentInfoId": "454500656",
+                    "saksnummer": "1003QQ0",
+                    "tittel": "Pleiepenger barn Endring",
+                    "dokumentType": "VEDTAK_ENDRING",
+                    "filtype": "PDF",
+                    "harTilgang": true,
+                    "url": "http://sif-innsyn-api/dokument/454079040/454500656/ARKIV",
+                    "relevanteDatoer": [
+                        { "dato": "2026-02-06T14:26:37", "datotype": "DATO_OPPRETTET" },
+                        { "dato": "2026-02-06T14:26:37", "datotype": "DATO_DOKUMENT" },
+                        { "dato": "2026-02-06T14:26:37", "datotype": "DATO_JOURNALFOERT" }
+                    ]
+                },
+                {
+                    "journalpostId": "454078986",
+                    "dokumentInfoId": "454500600",
+                    "saksnummer": "1003QQ0",
+                    "tittel": "Pleiepenger barn Innvilgelse",
+                    "dokumentType": "VEDTAK_INNVILGELSE",
+                    "filtype": "PDF",
+                    "harTilgang": true,
+                    "url": "http://sif-innsyn-api/dokument/454078986/454500600/ARKIV",
+                    "relevanteDatoer": [
+                        { "dato": "2026-02-06T14:18:20", "datotype": "DATO_OPPRETTET" },
+                        { "dato": "2026-02-06T14:18:20", "datotype": "DATO_DOKUMENT" },
+                        { "dato": "2026-02-06T14:18:20", "datotype": "DATO_JOURNALFOERT" }
+                    ]
+                }
+            ]
+        },
+        {
+            "status": "AVSLUTTET",
+            "opprettetTidspunkt": "2026-02-06T13:29:00.000Z",
+            "avsluttetTidspunkt": "2026-02-06T13:29:07.000Z",
+            "innsendelser": [],
+            "aksjonspunkter": [],
+            "utgåendeDokumenter": [
+                {
+                    "journalpostId": "454079040",
+                    "dokumentInfoId": "454500656",
+                    "saksnummer": "1003QQ0",
+                    "tittel": "Pleiepenger barn Endring",
+                    "dokumentType": "VEDTAK_ENDRING",
+                    "filtype": "PDF",
+                    "harTilgang": true,
+                    "url": "http://sif-innsyn-api/dokument/454079040/454500656/ARKIV",
+                    "relevanteDatoer": [
+                        { "dato": "2026-02-06T14:26:37", "datotype": "DATO_OPPRETTET" },
+                        { "dato": "2026-02-06T14:26:37", "datotype": "DATO_DOKUMENT" },
+                        { "dato": "2026-02-06T14:26:37", "datotype": "DATO_JOURNALFOERT" }
+                    ]
+                },
+                {
+                    "journalpostId": "454078986",
+                    "dokumentInfoId": "454500600",
+                    "saksnummer": "1003QQ0",
+                    "tittel": "Pleiepenger barn Innvilgelse",
+                    "dokumentType": "VEDTAK_INNVILGELSE",
+                    "filtype": "PDF",
+                    "harTilgang": true,
+                    "url": "http://sif-innsyn-api/dokument/454078986/454500600/ARKIV",
+                    "relevanteDatoer": [
+                        { "dato": "2026-02-06T14:18:20", "datotype": "DATO_OPPRETTET" },
+                        { "dato": "2026-02-06T14:18:20", "datotype": "DATO_DOKUMENT" },
+                        { "dato": "2026-02-06T14:18:20", "datotype": "DATO_JOURNALFOERT" }
+                    ]
+                }
+            ]
+        }
+    ]
+}

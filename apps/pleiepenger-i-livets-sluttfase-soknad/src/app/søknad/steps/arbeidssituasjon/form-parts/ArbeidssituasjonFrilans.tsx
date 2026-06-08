@@ -98,7 +98,7 @@ const ArbeidssituasjonFrilans = ({
                             <ExpandableInfo title={text('frilanser.hjelpetekst.spm')}>
                                 <>
                                     {text('frilanser.hjelpetekst')}{' '}
-                                    <Link href={urlSkatteetaten} target="_blank">
+                                    <Link href={urlSkatteetaten} target="_blank" rel="noopener noreferrer">
                                         <AppText id="frilanser.hjelpetekst.skatteetatenLenke" />
                                     </Link>
                                 </>

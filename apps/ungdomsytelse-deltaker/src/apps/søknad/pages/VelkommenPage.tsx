@@ -1,11 +1,11 @@
 import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { BodyLong, Box, Button, Checkbox, CheckboxGroup, VStack } from '@navikt/ds-react';
+import ExternalLink from '@shared/components/external-link/ExternalLink';
+import { AppText, useAppIntl } from '@shared/i18n';
+import DefaultPageLayout from '@shared/pages/layout/DefaultPageLayout';
+import getLenker from '@shared/utils/lenker';
 import { useState } from 'react';
 
-import { AppText, useAppIntl } from '../../../i18n';
-import getLenker from '../../../utils/lenker';
-import DefaultPageLayout from '../../innsyn/pages/layout/DefaultPageLayout';
-import ExternalLink from '../components/external-link/ExternalLink';
 import SøknadHeader from '../components/søknad-header/SøknadHeader';
 import VelkommenMelding from '../components/VelkommenMelding';
 import { useSøknadContext } from '../hooks/context/useSøknadContext';
@@ -17,19 +17,21 @@ const VelkommenPage = () => {
 
     const [infoStemmer, setInfoStemmer] = useState<boolean>(svar[Spørsmål.FORSTÅR_PLIKTER] || false);
     const [error, setError] = useState<string | undefined>(undefined);
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
         evt.preventDefault();
-        if (!infoStemmer) {
-            setError(text('velkommenPage.validering.bekrefterIkkeValgt'));
-        } else {
+        if (infoStemmer) {
+            setLoading(true);
             startSøknad(infoStemmer);
+        } else {
+            setError(text('velkommenPage.validering.bekrefterIkkeValgt'));
         }
     };
 
     return (
         <DefaultPageLayout documentTitle={text('søknad.tittel')}>
-            <VStack gap="8">
+            <VStack gap="space-32">
                 <SøknadHeader />
 
                 <VelkommenMelding fornavn={søker.fornavn} startdato={deltakelsePeriode.programPeriode.from} />
@@ -47,7 +49,7 @@ const VelkommenPage = () => {
                             />
                         </BodyLong>
 
-                        <Box paddingBlock="4 8">
+                        <Box paddingBlock="space-16 space-32">
                             <CheckboxGroup
                                 error={error}
                                 name="bekreftelse"
@@ -64,7 +66,11 @@ const VelkommenPage = () => {
                             </CheckboxGroup>
                         </Box>
 
-                        <Button variant="primary" icon={<ArrowRightIcon aria-hidden />} iconPosition="right">
+                        <Button
+                            variant="primary"
+                            icon={<ArrowRightIcon aria-hidden />}
+                            iconPosition="right"
+                            loading={loading}>
                             <AppText id="velkommenPage.startSøknad" />
                         </Button>
                     </form>

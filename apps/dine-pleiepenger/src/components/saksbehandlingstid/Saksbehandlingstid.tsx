@@ -1,97 +1,80 @@
 'use client';
-import { BodyShort, Box, Heading, Link } from '@navikt/ds-react';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { Box, Heading, HGrid, Hide, Link, Skeleton, VStack } from '@navikt/ds-react';
+import axios from 'axios';
+import useSWR from 'swr';
+
 import { AppText } from '../../i18n';
-import { Venteårsak } from '../../types/Venteårsak';
+import SaksbehandlingstidPictogram from '../../svg/SaksbehandlingstidPictogram';
+import { Saksbehandlingstid, Venteårsak } from '../../types';
+import { saksbehandlingstidClientSchema } from '../../types/client-schemas/saksbehandlingstidClientSchema';
 import { browserEnv } from '../../utils/env';
-import { erSaksbehandlingsfristPassert } from '../../utils/sakUtils';
+import { reportClientParseError } from '../../utils/reportClientParseError';
+import { swrBaseConfig } from '../../utils/swrBaseConfig';
+import LinkButton from '../link-button/LinkButton';
+import { SaksbehandlingstidMelding } from './SaksbehandlingstidMelding';
 
 interface Props {
     frist?: Date;
-    saksbehandlingstidUker?: number;
     venteårsak?: Venteårsak;
+    sakErLastet?: boolean;
 }
 
-const SaksbehandlingstidMelding = ({ frist, venteårsak, saksbehandlingstidUker }: Props) => {
-    if (!frist) {
-        return <AppText id="svarfrist.forventetBehandlingstid" values={{ saksbehandlingstidUker }} />;
-    }
-
-    if (erSaksbehandlingsfristPassert(frist)) {
-        if (venteårsak === Venteårsak.FOR_TIDLIG_SOKNAD) {
-            return (
-                <AppText
-                    id="svarfrist.forTidligSoknad.fristPassert"
-                    values={{
-                        frist: dateFormatter.full(frist),
-                        dato: (chunk) => <strong>{chunk}</strong>,
-                        saksbehandlingstidUker,
-                    }}
-                />
-            );
-        }
-        return (
-            <div>
-                <BodyShort spacing={true}>
-                    <AppText id="svarfrist.fristPassert.1" />
-                </BodyShort>
-                <BodyShort spacing={true}>
-                    <AppText id="svarfrist.fristPassert.2" />
-                </BodyShort>
-            </div>
-        );
-    }
-
-    switch (venteårsak) {
-        case Venteårsak.INNTEKTSMELDING:
-        case Venteårsak.MEDISINSK_DOKUMENTASJON:
-        case Venteårsak.MELDEKORT:
-            return (
-                <AppText
-                    id="svarfrist.dokumenterManglerFrist"
-                    values={{ frist: dateFormatter.full(frist), dato: (chunk) => <strong>{chunk}</strong> }}
-                />
-            );
-        case Venteårsak.FOR_TIDLIG_SOKNAD:
-            return (
-                <AppText
-                    id="svarfrist.forTidligSoknad"
-                    values={{ frist: dateFormatter.full(frist), dato: (chunk) => <strong>{chunk}</strong> }}
-                />
-            );
-        default:
-            return (
-                <AppText
-                    id="svarfrist.generellFrist"
-                    values={{
-                        frist: dateFormatter.full(frist),
-                        dato: (chunk) => <strong>{chunk}</strong>,
-                    }}
-                />
-            );
-    }
-};
-
-const Saksbehandlingstid = ({ frist, venteårsak, saksbehandlingstidUker = 7 }: Props) => {
+const SaksbehandlingstidPanel = ({ frist, venteårsak, sakErLastet }: Props) => {
+    const { data, isLoading } = useSWR<Saksbehandlingstid>(
+        `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/saksbehandlingstid`,
+        (url) =>
+            axios.get(url).then((res) => {
+                const result = saksbehandlingstidClientSchema.safeParse(res.data);
+                if (!result.success) {
+                    reportClientParseError(result.error, 'saksbehandlingstidClientSchema');
+                    throw result.error;
+                }
+                return result.data;
+            }),
+        swrBaseConfig,
+    );
+    const saksbehandlingstidUker = data?.saksbehandlingstidUker ?? 7;
     return (
         <Box>
             <Heading size="medium" level="2" spacing={true}>
                 <AppText id="svarfrist.tittel" />
             </Heading>
-            <Box.New paddingBlock="4 6" paddingInline={'6'} borderRadius="large" background="info-moderateA">
-                <Box className="mb-4">
-                    <SaksbehandlingstidMelding
-                        frist={frist}
-                        venteårsak={venteårsak}
-                        saksbehandlingstidUker={saksbehandlingstidUker}
-                    />
+            {isLoading || !sakErLastet ? (
+                <Skeleton height="6rem" variant="rounded" />
+            ) : (
+                <Box
+                    paddingBlock="space-24 space-24"
+                    paddingInline="space-24"
+                    borderRadius="16"
+                    background="info-moderateA">
+                    <HGrid gap="space-16" columns={{ sm: 'auto 96px' }} align="center">
+                        <VStack gap="space-16">
+                            <div>
+                                <SaksbehandlingstidMelding
+                                    frist={frist}
+                                    venteårsak={venteårsak}
+                                    saksbehandlingstidUker={saksbehandlingstidUker}
+                                />
+                            </div>
+                            <div>
+                                <LinkButton
+                                    as={Link}
+                                    direction="external"
+                                    href={browserEnv.NEXT_PUBLIC_SAKSBEHANDLINGSTID_INFO_URL}>
+                                    <AppText id="svarfrist.lesMerLenke" />
+                                </LinkButton>
+                            </div>
+                        </VStack>
+                        <Hide below="sm">
+                            <Box>
+                                <SaksbehandlingstidPictogram role="presentation" />
+                            </Box>
+                        </Hide>
+                    </HGrid>
                 </Box>
-                <Link variant="neutral" href={browserEnv.NEXT_PUBLIC_SAKSBEHANDLINGSTID_INFO_URL}>
-                    <AppText id="svarfrist.lesMerLenke" />
-                </Link>
-            </Box.New>
+            )}
         </Box>
     );
 };
 
-export default Saksbehandlingstid;
+export default SaksbehandlingstidPanel;

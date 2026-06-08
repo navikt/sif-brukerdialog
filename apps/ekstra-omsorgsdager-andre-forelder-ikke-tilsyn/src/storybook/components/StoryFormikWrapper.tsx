@@ -29,9 +29,9 @@ export const StoryFormikWrapper = (props: Props) => {
                 renderForm={() => {
                     return (
                         <TypedFormikForm includeButtons={includeButtons}>
-                            <Box.New style={{ maxWidth: maxWidth }} borderColor="neutral" borderWidth="1">
+                            <Box style={{ maxWidth: maxWidth }} borderColor="neutral" borderWidth="1">
                                 {children}
-                            </Box.New>
+                            </Box>
                         </TypedFormikForm>
                     );
                 }}

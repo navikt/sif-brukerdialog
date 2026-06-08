@@ -1,5 +1,5 @@
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
-import { ApplikasjonHendelse, useAmplitudeInstance } from '@navikt/sif-common-amplitude';
+import { ApplikasjonHendelse, useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { fetchSøkerId, Søker } from '@navikt/sif-common-api';
 import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';
 import { getDateToday } from '@navikt/sif-common-utils';
@@ -55,7 +55,7 @@ const SøknadContent = ({ mellomlagringMetadata, søker }: PleiepengesøknadCont
 
     const [confirmationDialog, setConfirmationDialog] = useState<ConfirmationDialog | undefined>(undefined);
     const { values, setValues, resetForm } = useFormikContext<SøknadFormValues>();
-    const { logHendelse, logSoknadStartet } = useAmplitudeInstance();
+    const { logHendelse, logSoknadStartet } = useAnalyticsInstance();
     const { setSøknadsdata } = useSøknadsdataContext();
     const { logBekreftIngenFraværFraJobb } = useLogSøknadInfo();
     const { persistSoknad } = usePersistSoknad();

@@ -1,9 +1,10 @@
 /// <reference types="vitest" />
+import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
+
 import { getDevAppSettings } from './mock/devAppSettings';
-import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
     mode: 'msw',
@@ -27,7 +28,8 @@ export default defineConfig({
         },
     ],
     define: {
-        INJECT_DECORATOR: true,
+        __IS_GITHUB_PAGES__: false,
+        'import.meta.env.INJECT_DECORATOR': true,
     },
     server: {
         port: 8080,
@@ -43,12 +45,5 @@ export default defineConfig({
         },
         outDir: './dist-demo',
         emptyOutDir: true,
-    },
-    css: {
-        preprocessorOptions: {
-            scss: {
-                api: 'modern-compiler',
-            },
-        },
     },
 });

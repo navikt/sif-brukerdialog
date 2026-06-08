@@ -8,6 +8,8 @@ on:
                 description: Choose application
                 type: choice
                 options:
+                    - aktivitetspenger-innsyn
+                    - aktivitetspenger-soknad
                     - ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
                     - endringsmelding-pleiepenger
                     - omsorgsdager-aleneomsorg-dialog
@@ -15,13 +17,15 @@ on:
                     - omsorgspengerutbetaling-arbeidstaker-soknad
                     - omsorgspengerutbetaling-soknad
                     - omsorgspengesoknad
+                    - omsorgspengesoknad-v2
                     - opplaringspenger-soknad
                     - pleiepenger-i-livets-sluttfase-soknad
                     - pleiepenger-sykt-barn
-                    - sif-demo-app
                     - sif-ettersending
                     - ungdomsytelse-deltaker
                 required: true
+
+permissions: {}
 
 jobs:
     deploy-to-dev:
@@ -29,7 +33,8 @@ jobs:
         uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
         secrets: inherit
         permissions:
+            contents: read
             id-token: write
         with:
-            app-name: '${{ inputs.app-name }}'
-            working-directory: 'apps/${{ inputs.app-name }}'
+            app-name: "${{ inputs.app-name }}"
+            working-directory: "apps/${{ inputs.app-name }}"

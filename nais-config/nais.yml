@@ -22,11 +22,10 @@ spec:
         timeout: 1
     resources:
         limits:
-            cpu: 2000m
-            memory: 512Mi
+            memory: {{#if resources.limits.memory}}{{resources.limits.memory}}{{else}}512Mi{{/if}}
         requests:
-            cpu: 50m
-            memory: 128Mi
+            cpu: {{#if resources.requests.cpu}}{{resources.requests.cpu}}{{else}}40m{{/if}}
+            memory: {{#if resources.requests.memory}}{{resources.requests.memory}}{{else}}128Mi{{/if}}
     accessPolicy:
         outbound:
             rules:
@@ -53,9 +52,6 @@ spec:
         generatedConfig:
             mountPath: /apps/{{app}}/dist/assets/nais.js
     {{/if}}
-    prometheus:
-        enabled: true
-        path: /metrics
     vault:
         enabled: false
     observability:

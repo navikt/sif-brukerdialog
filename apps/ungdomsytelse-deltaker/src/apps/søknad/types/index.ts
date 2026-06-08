@@ -1,9 +1,8 @@
-import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
-import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-
-import { DeltakelsePeriode } from '../../../types/DeltakelsePeriode';
-import { SøkYtelseOppgave } from '../../../types/Oppgave';
+import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
+import { RegistrertBarn, Søker } from '@sif/api/k9-prosessering';
+import { SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
+import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 
 export enum Steg {
     'KONTONUMMER' = 'kontonummer',
@@ -23,10 +22,6 @@ export type SøknadSvar = {
     [Spørsmål.BARN]?: YesOrNo;
 };
 
-export type KontonummerOppslagInfo = Omit<KontonummerInfo, 'kontonummerErRiktig'> & {
-    formatertKontonummer?: string;
-};
-
 export interface SøknadContextType {
     søker: Søker;
     deltakelsePeriode: DeltakelsePeriode;
@@ -34,7 +29,7 @@ export interface SøknadContextType {
     svar: SøknadSvar;
     søknadStartet: boolean;
     søknadSendt: boolean;
-    kontonummerInfo: KontonummerOppslagInfo;
+    kontonummerInfo: UtvidetKontonummerInfo;
     barn: RegistrertBarn[];
     setSpørsmålSvar: (key: Spørsmål, value: unknown) => void;
     setSøknadSendt: () => void;

@@ -34,6 +34,7 @@ const RegistrertBarnPart = ({ registrertBarn }: Props) => {
         <VelgBarnFormPart
             name={SoknadFormField.registrertBarnAktørId}
             legend={text('formPart.registrertBarn.spm')}
+            headerLevel="2"
             description={
                 <p>
                     <AppText id="formPart.registrertBarn.spm.description" />

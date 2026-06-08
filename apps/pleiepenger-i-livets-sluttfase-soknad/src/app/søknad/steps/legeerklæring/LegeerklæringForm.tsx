@@ -35,7 +35,7 @@ const LegeerklæringForm = ({ legeerklæringer = [], andreVedlegg = [], goBack, 
             submitDisabled={hasPendingUploads}
             runDelayedFormValidation={true}
             onBack={goBack}>
-            <VStack gap="6">
+            <VStack gap="space-24">
                 <SifGuidePanel>
                     <p>
                         <AppText id="step.legeerklæring.counsellorPanel.info" />

@@ -6,7 +6,12 @@ import { mockData } from '../mock-data';
 
 export const setupMockRoutes = async (
     page: Page,
-    props?: { barnRespons?: { barn: RegistrertBarn[] }; mellomlagring?: any; lastStep?: StepID },
+    props?: {
+        barnRespons?: { barn: RegistrertBarn[] };
+        mellomlagring?: any;
+        lastStep?: StepID;
+        arbeidsgiveroppslagError?: boolean;
+    },
 ) => {
     await page.route('**/oppslag/soker', async (route) => {
         await route.fulfill({ status: 200, body: JSON.stringify(mockData.søker) });
@@ -15,6 +20,10 @@ export const setupMockRoutes = async (
         await route.fulfill({ status: 200, body: JSON.stringify(props?.barnRespons || mockData.barn) });
     });
     await page.route('**/oppslag/arbeidsgiver*', async (route) => {
+        if (props?.arbeidsgiveroppslagError) {
+            await route.fulfill({ status: 500 });
+            return;
+        }
         await route.fulfill({ status: 200, body: JSON.stringify(mockData.arbeidsgiver) });
     });
     await page.route('**/vedlegg', async (route) => {
