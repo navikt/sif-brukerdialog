@@ -20,7 +20,7 @@ type Story = StoryObj;
 
 const oppgave: BostedVilkårOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: ParsedOppgavetype.BEKREFT_BOSTED,
+    parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED,
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
     sisteDatoEnKanSvare: dayjs().add(14, 'days').toDate(),

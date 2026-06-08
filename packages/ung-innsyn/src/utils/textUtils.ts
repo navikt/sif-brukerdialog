@@ -10,26 +10,26 @@ const renderDatoOgKlokkeslett = (dato?: Date) => {
 };
 
 export const getOppgaveTittel = (oppgave: Oppgave | BekreftelseOppgave, { text }: UngUiIntlShape): string => {
-    switch (oppgave.oppgavetype) {
+    switch (oppgave.parsedOppgavetype) {
         case ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
-            return text(`@ungInnsyn.oppgavetype.${oppgave.oppgavetype}.oppgavetittel`, {
+            return text(`@ungInnsyn.oppgavetype.${oppgave.parsedOppgavetype}.oppgavetittel`, {
                 månedOgÅr: oppgave.oppgavetypeData ? dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed) : '',
             });
         case ParsedOppgavetype.RAPPORTER_INNTEKT:
-            return text(`@ungInnsyn.oppgavetype.${oppgave.oppgavetype}.oppgavetittel`, {
+            return text(`@ungInnsyn.oppgavetype.${oppgave.parsedOppgavetype}.oppgavetittel`, {
                 månedOgÅr: oppgave.oppgavetypeData ? dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed) : '',
                 måned: oppgave.oppgavetypeData ? dateFormatter.month(oppgave.oppgavetypeData.fraOgMed) : '',
             });
         case ParsedOppgavetype.SØK_YTELSE:
-            return text(`@ungInnsyn.oppgavetype.${oppgave.oppgavetype}.${oppgave.ytelsetype}.oppgavetittel`);
+            return text(`@ungInnsyn.oppgavetype.${oppgave.parsedOppgavetype}.${oppgave.ytelsetype}.oppgavetittel`);
 
         default:
-            return text(`@ungInnsyn.oppgavetype.${oppgave.oppgavetype}.oppgavetittel`);
+            return text(`@ungInnsyn.oppgavetype.${oppgave.parsedOppgavetype}.oppgavetittel`);
     }
 };
 
 export const getOppgavePanelTittel = (oppgave: Oppgave | BekreftelseOppgave, { text }: UngUiIntlShape): string => {
-    switch (oppgave.oppgavetype) {
+    switch (oppgave.parsedOppgavetype) {
         case ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return text('@ungInnsyn.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.paneltittel', {
                 månedOgÅr: oppgave.oppgavetypeData ? dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed) : '',
@@ -40,14 +40,14 @@ export const getOppgavePanelTittel = (oppgave: Oppgave | BekreftelseOppgave, { t
                 måned: oppgave.oppgavetypeData ? dateFormatter.month(oppgave.oppgavetypeData.fraOgMed) : '',
             });
         case ParsedOppgavetype.SØK_YTELSE:
-            return text(`@ungInnsyn.oppgavetype.${oppgave.oppgavetype}.${oppgave.ytelsetype}.paneltittel`);
+            return text(`@ungInnsyn.oppgavetype.${oppgave.parsedOppgavetype}.${oppgave.ytelsetype}.paneltittel`);
         default:
-            return text(`@ungInnsyn.oppgavetype.${oppgave.oppgavetype}.paneltittel`);
+            return text(`@ungInnsyn.oppgavetype.${oppgave.parsedOppgavetype}.paneltittel`);
     }
 };
 
 export const getOppgaveInfo = (oppgave: Oppgave, { text }: UngUiIntlShape): string => {
-    switch (oppgave.oppgavetype) {
+    switch (oppgave.parsedOppgavetype) {
         case ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return text('@ungInnsyn.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info', {
                 måned: dateFormatter.month(oppgave.oppgavetypeData.fraOgMed),
@@ -57,9 +57,9 @@ export const getOppgaveInfo = (oppgave: Oppgave, { text }: UngUiIntlShape): stri
                 måned: dateFormatter.month(oppgave.oppgavetypeData.fraOgMed),
             });
         case ParsedOppgavetype.SØK_YTELSE:
-            return text(`@ungInnsyn.oppgavetype.${oppgave.oppgavetype}.${oppgave.ytelsetype}.info`);
+            return text(`@ungInnsyn.oppgavetype.${oppgave.parsedOppgavetype}.${oppgave.ytelsetype}.info`);
         default:
-            return text(`@ungInnsyn.oppgavetype.${oppgave.oppgavetype}.info`);
+            return text(`@ungInnsyn.oppgavetype.${oppgave.parsedOppgavetype}.info`);
     }
 };
 
@@ -77,7 +77,7 @@ export const getOppgaveStatusText = (oppgave: ParsedOppgaveBase): string => {
 };
 
 export const getTilbakemeldingSpørsmål = (oppgave: BekreftelseOppgave, { text }: UngUiIntlShape) => {
-    return text(`@ungInnsyn.oppgavetype.${oppgave.oppgavetype}.harTilbakemeldingSpørsmål`);
+    return text(`@ungInnsyn.oppgavetype.${oppgave.parsedOppgavetype}.harTilbakemeldingSpørsmål`);
 };
 
 export const getSvaralternativer = (
@@ -85,13 +85,13 @@ export const getSvaralternativer = (
     { text }: UngUiIntlShape,
 ): UttalelseSvaralternativer => {
     return {
-        harIkkeUttalelseLabel: text(`@ungInnsyn.oppgavetype.${oppgave.oppgavetype}.harIkkeUttalelseLabel`),
-        harUttalelseLabel: text(`@ungInnsyn.oppgavetype.${oppgave.oppgavetype}.harUttalelseLabel`),
+        harIkkeUttalelseLabel: text(`@ungInnsyn.oppgavetype.${oppgave.parsedOppgavetype}.harIkkeUttalelseLabel`),
+        harUttalelseLabel: text(`@ungInnsyn.oppgavetype.${oppgave.parsedOppgavetype}.harUttalelseLabel`),
     };
 };
 
 export const getTilbakemeldingFritekstLabel = (oppgave: BekreftelseOppgave, { text }: UngUiIntlShape) => {
-    return text(`@ungInnsyn.oppgavetype.${oppgave.oppgavetype}.tilbakemeldingFritekstLabel`);
+    return text(`@ungInnsyn.oppgavetype.${oppgave.parsedOppgavetype}.tilbakemeldingFritekstLabel`);
 };
 
 export const getOppgaveDokumentTittel = (applikasjonTittel: string, oppgave: Oppgave, intl: UngUiIntlShape) => {

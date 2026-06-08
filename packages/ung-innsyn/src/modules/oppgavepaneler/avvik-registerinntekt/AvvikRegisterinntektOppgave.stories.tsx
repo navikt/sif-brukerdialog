@@ -52,7 +52,7 @@ const registerInntektEnArbeidsgiver: RegisterinntektDto = {
 
 const oppgave: AvvikRegisterinntektOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
+    parsedOppgavetype: ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
     oppgavetypeData: {
         fraOgMed: dayjs('2025-05-01').toDate(),
         tilOgMed: dayjs('2025-05-31').toDate(),

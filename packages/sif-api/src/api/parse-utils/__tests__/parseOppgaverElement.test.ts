@@ -27,7 +27,7 @@ describe('parseOppgaverElement – BEKREFT_OPPHOR_VED_MAKSDATO', () => {
         ]);
 
         const oppgave = result as OpphorVedMaksdatoOppgave;
-        expect(oppgave.oppgavetype).toBe(ParsedOppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO);
+        expect(oppgave.parsedOppgavetype).toBe(ParsedOppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO);
         expect(oppgave.oppgavetypeData.maksdato).toEqual(new Date('2026-06-30'));
     });
 

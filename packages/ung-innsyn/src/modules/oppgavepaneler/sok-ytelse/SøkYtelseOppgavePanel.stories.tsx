@@ -19,7 +19,7 @@ type Story = StoryObj;
 
 const oppgave: SøkYtelseOppgave = {
     oppgaveReferanse: 'e632b20a-b0c9-4953-97ec-851ebd1a0e91',
-    oppgavetype: ParsedOppgavetype.SØK_YTELSE,
+    parsedOppgavetype: ParsedOppgavetype.SØK_YTELSE,
     oppgavetypeData: {
         fomDato: new Date('2025-05-01'),
     },

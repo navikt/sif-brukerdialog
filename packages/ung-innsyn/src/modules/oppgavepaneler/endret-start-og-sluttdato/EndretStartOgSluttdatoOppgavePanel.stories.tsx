@@ -20,7 +20,7 @@ type Story = StoryObj;
 
 const oppgave: EndretStartOgSluttdatoOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO,
+    parsedOppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO,
     oppgavetypeData: {
         forrigePeriode: { from: dayjs('2025-05-04').toDate() },
         nyPeriode: {
