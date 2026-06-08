@@ -109,5 +109,7 @@ export const getLovLenkerForOppgave = (
             } else {
                 return [LoverOgLenker.arbeidsmarkedslovenP_13, LoverOgLenker.forskriftUngdomsprogrammet];
             }
+        default:
+            return [];
     }
 };
