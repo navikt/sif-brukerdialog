@@ -45,10 +45,6 @@ test('ukjent arbeidsforhold med kun ferie valgt', async ({ page }) => {
     await page.getByTestId('timer-verdi').click();
     await page.getByTestId('timer-verdi').fill('5');
     await page.getByRole('button', { name: 'Ok' }).click();
-    await page.getByLabel('Endre uke 5 (01.02.2023 - 05.').click();
-    await page.getByTestId('timer-verdi').click();
-    await page.getByTestId('timer-verdi').fill('5');
-    await page.getByRole('button', { name: 'Ok' }).click();
     await page.getByTestId('typedFormikForm-submitButton').click();
 
     /** Ferie */
@@ -99,10 +95,6 @@ test('ukjent arbeidsforhold med kun omsorgstilbud valgt', async ({ page }) => {
     await page.getByRole('button', { name: 'Ok' }).click();
     await page.getByLabel('Endre uke 5 (29.01.2024 - 31.').click();
     await page.getByTestId('toggle-timer').click();
-    await page.getByTestId('timer-verdi').click();
-    await page.getByTestId('timer-verdi').fill('5');
-    await page.getByRole('button', { name: 'Ok' }).click();
-    await page.getByLabel('Endre uke 5 (01.02.2023 - 05.').click();
     await page.getByTestId('timer-verdi').click();
     await page.getByTestId('timer-verdi').fill('5');
     await page.getByRole('button', { name: 'Ok' }).click();
