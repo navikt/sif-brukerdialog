@@ -23,23 +23,23 @@
         "lint:tsc": "tsc --noEmit"
     },
     "dependencies": {
-        "@navikt/ds-react": "8.11.0",
+        "@navikt/ds-react": "8.11.1",
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
         "@navikt/k9-sak-innsyn-api": "workspace:*",
         "@navikt/sif-common-env": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/ung-brukerdialog-api": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
-        "@tanstack/react-query": "5.100.14",
+        "@tanstack/react-query": "5.101.0",
         "axios": "1.16.1",
-        "dayjs": "1.11.20",
+        "dayjs": "1.11.21",
         "object-hash": "3.0.0",
         "uuid": "14.0.0"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/react": "19.2.15",
-        "react": "19.2.6",
+        "@types/react": "19.2.16",
+        "react": "19.2.7",
         "typescript": "6.0.3",
         "zod": "4.4.3"
     }
