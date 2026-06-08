@@ -1,5 +1,5 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { OppgaveStatus, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
+import { OppgaveStatus, OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { ParsedOppgavetype, SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
@@ -19,6 +19,7 @@ type Story = StoryObj;
 
 const oppgave: SøkYtelseOppgave = {
     oppgaveReferanse: 'e632b20a-b0c9-4953-97ec-851ebd1a0e91',
+    oppgavetype: OppgaveType.SØK_YTELSE,
     parsedOppgavetype: ParsedOppgavetype.SØK_YTELSE,
     oppgavetypeData: {
         fomDato: new Date('2025-05-01'),

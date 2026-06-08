@@ -2,11 +2,13 @@ import { BodyLong, Link, List, ReadMore, VStack } from '@navikt/ds-react';
 
 import { UngUiText, useUngUiIntl } from '../../i18n';
 import { Lovlenke } from '../../modules/oppgavepaneler/utils/lovverk';
+import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 
 interface Props {
     lenker: Lovlenke[];
+    ytelsetype: OppgaveYtelsetype;
 }
-export const RegelverkOgInnsynReadMore = ({ lenker }: Props) => {
+export const RegelverkOgInnsynReadMore = ({ lenker, ytelsetype }: Props) => {
     const { text } = useUngUiIntl();
 
     if (lenker.length === 0) {
@@ -16,7 +18,9 @@ export const RegelverkOgInnsynReadMore = ({ lenker }: Props) => {
     return (
         <ReadMore header={text('@ungInnsyn.regelverkOgInnsyn.readMore.tittel')}>
             <BodyLong>
-                <UngUiText id="@ungInnsyn.regelverkOgInnsyn.readMore.tekst.1" />
+                {ytelsetype === OppgaveYtelsetype.UNGDOMSYTELSE
+                    ? text('@ungInnsyn.regelverkOgInnsyn.readMore.ungdomsytelse')
+                    : text('@ungInnsyn.regelverkOgInnsyn.readMore.aktivitetspenger')}
             </BodyLong>
             <VStack gap="space-24">
                 <List>

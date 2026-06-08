@@ -32,7 +32,7 @@ export type SvarPåVarselRespons = SvarPåVarselDto & {
 };
 export interface ParsedOppgaveBase extends Omit<
     BrukerdialogOppgaveDto,
-    'oppgavetype' | 'opprettetDato' | 'løstDato' | 'åpnetDato' | 'lukketDato' | 'oppgavetypeData' | 'frist' | 'respons'
+    'opprettetDato' | 'løstDato' | 'åpnetDato' | 'lukketDato' | 'oppgavetypeData' | 'frist' | 'respons'
 > {
     oppgaveReferanse: string;
     parsedOppgavetype: ParsedOppgavetype;

@@ -96,7 +96,10 @@ const Ubesvart = ({ children }: UbesvartProps) => {
                         </Heading>
                         <Box maxWidth="90%">{children}</Box>
                         <Box marginBlock="space-0 space-16">
-                            <RegelverkOgInnsynReadMore lenker={getLovLenkerForOppgave(oppgave.parsedOppgavetype)} />
+                            <RegelverkOgInnsynReadMore
+                                ytelsetype={oppgave.ytelsetype}
+                                lenker={getLovLenkerForOppgave(oppgave.oppgavetype, oppgave.ytelsetype)}
+                            />
                         </Box>
                     </VStack>
                 </GuidePanel>

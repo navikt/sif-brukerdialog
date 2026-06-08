@@ -92,11 +92,12 @@ const parseRapportertInntektRespons = (respons?: any): RapportertInntektRespons 
     return undefined;
 };
 
-const getOppgaveBaseProps = (oppgave: BrukerdialogOppgaveDto): Omit<ParsedOppgaveBase, 'oppgavetype'> => {
+const getOppgaveBaseProps = (oppgave: BrukerdialogOppgaveDto): Omit<ParsedOppgaveBase, 'parsedOppgavetype'> => {
     const løstDato = oppgave.løstDato ? dayjs.utc(oppgave.løstDato).toDate() : undefined;
     const opprettetDato = dayjs.utc(oppgave.opprettetDato).toDate();
     const svarfrist = oppgave.frist ? dayjs.utc(oppgave.frist).toDate() : ISODateToDate('2099-01-01');
     return {
+        oppgavetype: oppgave.oppgavetype,
         oppgaveReferanse: oppgave.oppgaveReferanse,
         status: getOppgaveStatusEnum(oppgave.status),
         opprettetDato,

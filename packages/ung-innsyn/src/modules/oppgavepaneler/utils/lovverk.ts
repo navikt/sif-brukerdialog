@@ -1,4 +1,4 @@
-import { ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
+import { OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 
 export type Lovlenke = {
     url: string;
@@ -49,41 +49,65 @@ Bekreft_automatisk_opphør:
 
  */
 export const LoverOgLenker = {
+    forskriftAktivitetspenger: {
+        url: 'https://www.nav.no#todo',
+        tekst: '[TODO] Forskrift om aktivitetspenger (lovdata.no)',
+    },
     forskriftUngdomsprogrammet: {
         url: 'https://lovdata.no/dokument/LTI/forskrift/2025-06-20-1182',
         tekst: '§ 11 i Forskrift om forsøk med ungdomsprogram og ungdomsprogramytelse (gjelder fra 1. august 2025) (lovdata.no)',
     },
     /** Endret periode upy */
-    arbeidsmarkedslovenParagraf12_13: {
+    arbeidsmarkedslovenP_12_13: {
         url: 'https://lovdata.no/lov/2004-12-10-76/§12',
-        tekst: '§ 12 tredje ledd og § 13 fjerde ledd i arbeidsmarkedsloven',
+        tekst: '§ 12 tredje ledd og § 13 fjerde ledd i arbeidsmarkedsloven (lovdata.no)',
     },
     /** Rapporter inntekt, Avvik inntekt */
-    arbeidsmarkedslovenParagraf13: {
+    arbeidsmarkedslovenP_13: {
         url: 'https://lovdata.no/lov/2004-12-10-76/§13',
-        tekst: '§ 13 fjerde ledd i arbeidsmarkedsloven',
+        tekst: '§ 13 fjerde ledd i arbeidsmarkedsloven (lovdata.no)',
     },
 } satisfies Record<string, Lovlenke>;
 
-export const getLovLenkerForOppgave = (oppgavetype: ParsedOppgavetype): Lovlenke[] => {
+/** Denne er under arbeid frem til alle referanser for aktivitetspenger er avklart */
+export const getLovLenkerForOppgave = (
+    oppgavetype: OppgaveType,
+    oppgaveYtelsetype: OppgaveYtelsetype,
+    /** Settes true hvis en skal returnere lenker ut fra ytelse og oppgavetype */
+    utvidetVersjon: boolean = false,
+): Lovlenke[] => {
+    if (!utvidetVersjon) {
+        return [LoverOgLenker.arbeidsmarkedslovenP_13, LoverOgLenker.forskriftUngdomsprogrammet];
+    }
+    if (!oppgaveYtelsetype) {
+        return [];
+    }
     switch (oppgavetype) {
-        case ParsedOppgavetype.BEKREFT_BOSTED:
-            return [LoverOgLenker.arbeidsmarkedslovenParagraf12_13, LoverOgLenker.forskriftUngdomsprogrammet];
-        case ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO:
-            return [LoverOgLenker.arbeidsmarkedslovenParagraf12_13, LoverOgLenker.forskriftUngdomsprogrammet];
-        case ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO:
-            return [LoverOgLenker.arbeidsmarkedslovenParagraf12_13, LoverOgLenker.forskriftUngdomsprogrammet];
-        case ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO:
-            return [LoverOgLenker.arbeidsmarkedslovenParagraf12_13, LoverOgLenker.forskriftUngdomsprogrammet];
-        case ParsedOppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO:
-            return [LoverOgLenker.arbeidsmarkedslovenParagraf12_13, LoverOgLenker.forskriftUngdomsprogrammet];
-        case ParsedOppgavetype.RAPPORTER_INNTEKT:
-            return [LoverOgLenker.arbeidsmarkedslovenParagraf13, LoverOgLenker.forskriftUngdomsprogrammet];
-        case ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
-            return [LoverOgLenker.arbeidsmarkedslovenParagraf13, LoverOgLenker.forskriftUngdomsprogrammet];
-        case ParsedOppgavetype.SØK_YTELSE:
-            return [LoverOgLenker.arbeidsmarkedslovenParagraf12_13];
-        default:
-            return [];
+        /** Aktivitetspenger */
+        case OppgaveType.BEKREFT_BOSTED:
+            return [LoverOgLenker.arbeidsmarkedslovenP_12_13, LoverOgLenker.forskriftAktivitetspenger];
+
+        /** Ungdomsytelse */
+        case OppgaveType.BEKREFT_ENDRET_PERIODE:
+        case OppgaveType.BEKREFT_ENDRET_SLUTTDATO:
+        case OppgaveType.BEKREFT_ENDRET_STARTDATO:
+        case OppgaveType.BEKREFT_OPPHOR_VED_MAKSDATO:
+            return [LoverOgLenker.arbeidsmarkedslovenP_12_13, LoverOgLenker.forskriftUngdomsprogrammet];
+        case OppgaveType.RAPPORTER_INNTEKT:
+            return [LoverOgLenker.arbeidsmarkedslovenP_13, LoverOgLenker.forskriftUngdomsprogrammet];
+
+        /** Felles for aktivitetspenger og ungdomsytelse */
+        case OppgaveType.BEKREFT_AVVIK_REGISTERINNTEKT:
+            if (oppgaveYtelsetype === OppgaveYtelsetype.AKTIVITETSPENGER) {
+                return [LoverOgLenker.arbeidsmarkedslovenP_13, LoverOgLenker.forskriftAktivitetspenger];
+            } else {
+                return [LoverOgLenker.arbeidsmarkedslovenP_13, LoverOgLenker.forskriftUngdomsprogrammet];
+            }
+        case OppgaveType.SØK_YTELSE:
+            if (oppgaveYtelsetype === OppgaveYtelsetype.AKTIVITETSPENGER) {
+                return [LoverOgLenker.arbeidsmarkedslovenP_13, LoverOgLenker.forskriftAktivitetspenger];
+            } else {
+                return [LoverOgLenker.arbeidsmarkedslovenP_13, LoverOgLenker.forskriftUngdomsprogrammet];
+            }
     }
 };

@@ -1,5 +1,5 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { OppgaveStatus, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
+import { OppgaveStatus, OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { EndretStartOgSluttdatoOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
@@ -20,6 +20,7 @@ type Story = StoryObj;
 
 const oppgave: EndretStartOgSluttdatoOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
+    oppgavetype: OppgaveType.BEKREFT_ENDRET_PERIODE,
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO,
     oppgavetypeData: {
         forrigePeriode: { from: dayjs('2025-05-04').toDate() },
