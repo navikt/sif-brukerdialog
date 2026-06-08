@@ -11,7 +11,7 @@
     },
     "dependencies": {
         "@navikt/nav-dekoratoren-moduler": "4.2.1",
-        "constate": "3.3.3"
+        "constate": "4.0.0"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
