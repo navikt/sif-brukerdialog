@@ -1,5 +1,5 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { OppgaveStatus, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
+import { OppgaveStatus, OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { MeldtUtOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
@@ -19,7 +19,8 @@ type Story = StoryObj;
 
 const oppgave: MeldtUtOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: ParsedOppgavetype.BEKREFT_MELDT_UT,
+    oppgavetype: OppgaveType.BEKREFT_ENDRET_SLUTTDATO,
+    parsedOppgavetype: ParsedOppgavetype.BEKREFT_MELDT_UT,
     oppgavetypeData: {
         sluttdato: dayjs('2025-05-01').toDate(),
     },

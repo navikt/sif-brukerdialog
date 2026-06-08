@@ -1,5 +1,5 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { OppgaveStatus, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
+import { OppgaveStatus, OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { ParsedOppgavetype, RapporterInntektOppgave } from '@sif/api/ung-brukerdialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
@@ -20,7 +20,8 @@ type Story = StoryObj;
 const oppgave: RapporterInntektOppgave = {
     oppgaveYtelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: ParsedOppgavetype.RAPPORTER_INNTEKT,
+    oppgavetype: OppgaveType.RAPPORTER_INNTEKT,
+    parsedOppgavetype: ParsedOppgavetype.RAPPORTER_INNTEKT,
     oppgavetypeData: {
         fraOgMed: dayjs('2025-05-01').toDate(),
         tilOgMed: dayjs('2025-05-31').toDate(),
@@ -52,7 +53,8 @@ const besvartOppgave: RapporterInntektOppgave = {
 const utløptUbesvartOppgave: RapporterInntektOppgave = {
     oppgaveYtelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     oppgaveReferanse: 'ab0a18f8-8a6e-485b-b2b6-8d43a438165d',
-    oppgavetype: ParsedOppgavetype.RAPPORTER_INNTEKT,
+    oppgavetype: OppgaveType.RAPPORTER_INNTEKT,
+    parsedOppgavetype: ParsedOppgavetype.RAPPORTER_INNTEKT,
     oppgavetypeData: {
         fraOgMed: dayjs('2025-09-01').toDate(),
         tilOgMed: dayjs('2025-09-30').toDate(),

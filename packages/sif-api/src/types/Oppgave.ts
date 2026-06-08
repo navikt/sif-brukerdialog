@@ -32,10 +32,10 @@ export type SvarPåVarselRespons = SvarPåVarselDto & {
 };
 export interface ParsedOppgaveBase extends Omit<
     BrukerdialogOppgaveDto,
-    'oppgavetype' | 'opprettetDato' | 'løstDato' | 'åpnetDato' | 'lukketDato' | 'oppgavetypeData' | 'frist' | 'respons'
+    'opprettetDato' | 'løstDato' | 'åpnetDato' | 'lukketDato' | 'oppgavetypeData' | 'frist' | 'respons'
 > {
     oppgaveReferanse: string;
-    oppgavetype: ParsedOppgavetype;
+    parsedOppgavetype: ParsedOppgavetype;
     opprettetDato: Date;
     status: OppgaveStatus;
     løstDato?: Date;
@@ -49,7 +49,7 @@ export interface ParsedRapportertInntektOppgave extends ParsedOppgaveBase {
 }
 
 export interface AvvikRegisterinntektOppgave extends ParsedOppgaveBase {
-    oppgavetype: ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT;
+    parsedOppgavetype: ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT;
     oppgavetypeData: {
         fraOgMed: Date;
         tilOgMed: Date;
@@ -60,7 +60,7 @@ export interface AvvikRegisterinntektOppgave extends ParsedOppgaveBase {
 }
 
 export interface EndretStartdatoOppgave extends ParsedOppgaveBase {
-    oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO;
+    parsedOppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO;
     oppgavetypeData: {
         forrigeStartdato: Date;
         nyStartdato: Date;
@@ -68,7 +68,7 @@ export interface EndretStartdatoOppgave extends ParsedOppgaveBase {
     respons?: SvarPåVarselRespons;
 }
 export interface BostedVilkårOppgave extends ParsedOppgaveBase {
-    oppgavetype: ParsedOppgavetype.BEKREFT_BOSTED;
+    parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED;
     oppgavetypeData: {
         periode: DateRange;
         erBosattITrondheim: boolean;
@@ -77,7 +77,7 @@ export interface BostedVilkårOppgave extends ParsedOppgaveBase {
 }
 
 export interface EndretSluttdatoOppgave extends ParsedOppgaveBase {
-    oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO;
+    parsedOppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO;
     oppgavetypeData: {
         forrigeSluttdato: Date;
         nySluttdato: Date;
@@ -86,7 +86,7 @@ export interface EndretSluttdatoOppgave extends ParsedOppgaveBase {
 }
 
 export interface MeldtUtOppgave extends ParsedOppgaveBase {
-    oppgavetype: ParsedOppgavetype.BEKREFT_MELDT_UT;
+    parsedOppgavetype: ParsedOppgavetype.BEKREFT_MELDT_UT;
     oppgavetypeData: {
         sluttdato: Date;
     };
@@ -94,7 +94,7 @@ export interface MeldtUtOppgave extends ParsedOppgaveBase {
 }
 
 export interface EndretStartOgSluttdatoOppgave extends ParsedOppgaveBase {
-    oppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO;
+    parsedOppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO;
     oppgavetypeData: {
         forrigePeriode: OpenDateRange;
         nyPeriode: DateRange;
@@ -103,12 +103,12 @@ export interface EndretStartOgSluttdatoOppgave extends ParsedOppgaveBase {
 }
 
 export interface FjernetPeriodeOppgave extends ParsedOppgaveBase {
-    oppgavetype: ParsedOppgavetype.BEKREFT_FJERNET_PERIODE;
+    parsedOppgavetype: ParsedOppgavetype.BEKREFT_FJERNET_PERIODE;
     respons?: SvarPåVarselRespons;
 }
 
 export interface OpphorVedMaksdatoOppgave extends ParsedOppgaveBase {
-    oppgavetype: ParsedOppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO;
+    parsedOppgavetype: ParsedOppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO;
     oppgavetypeData: {
         maksdato: Date;
         sluttdato: Date;
@@ -130,7 +130,7 @@ export type BekreftelseOppgave =
 
 export interface RapporterInntektOppgave extends ParsedRapportertInntektOppgave {
     oppgaveYtelsetype: OppgaveYtelsetype;
-    oppgavetype: ParsedOppgavetype.RAPPORTER_INNTEKT;
+    parsedOppgavetype: ParsedOppgavetype.RAPPORTER_INNTEKT;
     oppgavetypeData: {
         fraOgMed: Date;
         tilOgMed: Date;
@@ -139,7 +139,7 @@ export interface RapporterInntektOppgave extends ParsedRapportertInntektOppgave 
 }
 
 export interface SøkYtelseOppgave extends ParsedOppgaveBase {
-    oppgavetype: ParsedOppgavetype.SØK_YTELSE;
+    parsedOppgavetype: ParsedOppgavetype.SØK_YTELSE;
     oppgavetypeData: {
         fomDato: Date;
     };

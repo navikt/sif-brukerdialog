@@ -16,7 +16,7 @@ import { UngInnsynPage } from './UngInnsynPage';
 import { OpphorVedMaksdatoOppgavePanel } from '../modules/oppgavepaneler/opphor-ved-maksdato/OpphorVedMaksdatoOppgavePanel';
 
 const getOppgavePageComponent = (navn: string, oppgave: Oppgave): React.JSX.Element => {
-    switch (oppgave.oppgavetype) {
+    switch (oppgave.parsedOppgavetype) {
         case ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return <AvvikRegisterinntektOppgavePanel oppgave={oppgave} navn={navn} />;
         case ParsedOppgavetype.BEKREFT_BOSTED:

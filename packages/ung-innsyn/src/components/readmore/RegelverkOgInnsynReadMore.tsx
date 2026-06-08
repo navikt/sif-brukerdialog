@@ -1,26 +1,36 @@
 import { BodyLong, Link, List, ReadMore, VStack } from '@navikt/ds-react';
 
 import { UngUiText, useUngUiIntl } from '../../i18n';
+import { Lovlenke } from '../../modules/oppgavepaneler/utils/lovverk';
+import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 
-export const RegelverkOgInnsynReadMore = () => {
+interface Props {
+    lenker: Lovlenke[];
+    ytelsetype: OppgaveYtelsetype;
+}
+export const RegelverkOgInnsynReadMore = ({ lenker, ytelsetype }: Props) => {
     const { text } = useUngUiIntl();
+
+    if (lenker.length === 0) {
+        return null;
+    }
+
     return (
         <ReadMore header={text('@ungInnsyn.regelverkOgInnsyn.readMore.tittel')}>
             <BodyLong>
-                <UngUiText id="@ungInnsyn.regelverkOgInnsyn.readMore.tekst.1" />
+                {ytelsetype === OppgaveYtelsetype.UNGDOMSYTELSE
+                    ? text('@ungInnsyn.regelverkOgInnsyn.readMore.ungdomsytelse')
+                    : text('@ungInnsyn.regelverkOgInnsyn.readMore.aktivitetspenger')}
             </BodyLong>
             <VStack gap="space-24">
                 <List>
-                    <List.Item>
-                        <Link href="https://lovdata.no/dokument/NL/lov/2004-12-10-76">
-                            <UngUiText id="@ungInnsyn.regelverkOgInnsyn.readMore.paragraf" />
-                        </Link>
-                    </List.Item>
-                    <List.Item>
-                        <Link href="https://lovdata.no/dokument/LTI/forskrift/2025-06-20-1182">
-                            <UngUiText id="@ungInnsyn.regelverkOgInnsyn.readMore.forskrift" />
-                        </Link>
-                    </List.Item>
+                    {lenker.map((lenke) => (
+                        <List.Item key={lenke.url}>
+                            <Link href={lenke.url} target="_blank" rel="noopener noreferrer">
+                                {lenke.tekst}
+                            </Link>
+                        </List.Item>
+                    ))}
                 </List>
                 <BodyLong>
                     <UngUiText

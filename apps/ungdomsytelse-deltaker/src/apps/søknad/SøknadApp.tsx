@@ -40,7 +40,7 @@ const SøknadApp = () => {
         return <HentDeltakerErrorPage error={text('søknadApp.loading.error')} />;
     }
 
-    const søknadOppgave = oppgaver.find((o) => o.oppgavetype === ParsedOppgavetype.SØK_YTELSE);
+    const søknadOppgave = oppgaver.find((o) => o.parsedOppgavetype === ParsedOppgavetype.SØK_YTELSE);
 
     if (!søknadOppgave) {
         return <IngenSendSøknadOppgave />;

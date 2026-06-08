@@ -1,5 +1,5 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { OppgaveStatus, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
+import { OppgaveStatus, OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { OpphorVedMaksdatoOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
@@ -20,7 +20,8 @@ type Story = StoryObj;
 
 const oppgave: OpphorVedMaksdatoOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: ParsedOppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO,
+    oppgavetype: OppgaveType.BEKREFT_OPPHOR_VED_MAKSDATO,
+    parsedOppgavetype: ParsedOppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO,
     oppgavetypeData: {
         maksdato: dayjs('2025-05-01').toDate(),
         sluttdato: dayjs('2025-05-01').toDate(),

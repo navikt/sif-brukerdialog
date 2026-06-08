@@ -33,7 +33,7 @@ export const erDeltakelseStartet = (deltakelsePeriode: DeltakelsePeriode): boole
 export const harRapportertInntekt = (oppgaver: Oppgave[]): boolean => {
     return oppgaver.some(
         (o) =>
-            o.oppgavetype === ParsedOppgavetype.RAPPORTER_INNTEKT &&
+            o.parsedOppgavetype === ParsedOppgavetype.RAPPORTER_INNTEKT &&
             o.status !== OppgaveStatus.ULØST &&
             o.respons?.arbeidstakerOgFrilansInntekt !== undefined,
     );

@@ -5,13 +5,15 @@ import { OppgaveResponsDto, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { useEffect, useRef } from 'react';
 
 import { ForsideLenkeButton, OppgaveStatusInfo } from '../../components';
-import { RegelverkOgInnsynReadMore } from '../../components/readmore/RegelverkOgInnsynReadMore';
+
 import { UngUiText, useUngUiIntl } from '../../i18n';
 import { useOppgavePage } from '../../pages/hooks/useOppgavePage';
 import { UttalelseSvaralternativer } from '../../types';
 import { getSvaralternativer, getTilbakemeldingFritekstLabel, getTilbakemeldingSpørsmål } from '../../utils/textUtils';
 import { UtalelseForm } from '../forms/uttalelse-form/UtalelseForm';
 import { useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
+import { RegelverkOgInnsynReadMore } from '../../components/readmore/RegelverkOgInnsynReadMore';
+import { getLovLenkerForOppgave } from '../oppgavepaneler/utils/lovverk';
 
 interface OppgaveOgTilbakemeldingProps {
     beskjedFraNav: React.ReactNode;
@@ -94,7 +96,10 @@ const Ubesvart = ({ children }: UbesvartProps) => {
                         </Heading>
                         <Box maxWidth="90%">{children}</Box>
                         <Box marginBlock="space-0 space-16">
-                            <RegelverkOgInnsynReadMore />
+                            <RegelverkOgInnsynReadMore
+                                ytelsetype={oppgave.ytelsetype}
+                                lenker={getLovLenkerForOppgave(oppgave.oppgavetype, oppgave.ytelsetype)}
+                            />
                         </Box>
                     </VStack>
                 </GuidePanel>
