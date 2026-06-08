@@ -51,7 +51,7 @@ jobs:
       NPM_TOKEN: ${{ secrets.READER_TOKEN }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6.0.2
         with:
           persist-credentials: false
 
@@ -81,7 +81,7 @@ jobs:
       NPM_TOKEN: ${{ secrets.READER_TOKEN }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6.0.2
         with:
           persist-credentials: false
 
