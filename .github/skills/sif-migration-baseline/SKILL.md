@@ -95,7 +95,7 @@ Dette gjelder:
 
 Referanseapp for v2-mønsteret er `apps/omsorgspengesoknad-v2`. Sammenlign alltid med denne når det er tvil om riktig implementasjon.
 
-**Når det ikke finnes et direkte v2-alternativ** (f.eks. `AppStatusWrapper`, locale-utils, `sif-ds-theme.css`): spør brukeren hva som skal gjøres fremfor å beholde gammel kode stilltiende. Ikke la gammel logikk bli stående uten at det er en bevisst avgjørelse.
+**Når det ikke finnes et direkte v2-alternativ** spør brukeren hva som skal gjøres fremfor å beholde gammel kode stilltiende. Ikke la gammel logikk bli stående uten at det er en bevisst avgjørelse.
 
 ## Migrering av dialoger til `sif-soknad-forms`
 
@@ -426,14 +426,11 @@ Verifiser at ingen av de nye filene importerer disse før du sletter.
 
 ### Rydding i Storybook
 
-Etter migrering er Storybook-decoratorer og komponenter som er knyttet til v1-oppsett ugyldige:
+Etter migrering må Storybook ryddes på et mer overordnet nivå:
 
-- `storybook/decorators/withSøknadContext.tsx` — erstatt gammel v1-provider med en v2-wrapper som initialiserer `useSøknadStore`, pakker stories i `SøknadContextProvider`, og eventuelt appens parent-context (f.eks. `DeltakerContextProvider`). Ikke behold gammel `SøknadProvider`.
-- `storybook/decorators/withFormikWrapper.tsx` og `storybook/components/StoryFormikWrapper.tsx` — slett; Formik er ikke lenger i bruk
-
-Sjekk om `withSøknadContext` brukes i eksisterende stories. Stories som trengte kontekst-data for å rendre meningsfull UI (f.eks. barn, kontonummer, kontoinfo, oppgaver eller søknadsdata) skal fortsatt ha tilsvarende v2-storydata. Ikke reduser flere scenario-stories til én `Default` uten eksplisitt avklaring — migrer variantene, spesielt der de dekker betinget tekst, alerts eller summary-logikk.
-
-Når v2-storywrapperen bruker hooks som leser i18n (f.eks. `useStepTitles()` eller `useAppIntl()`), må wrapperen selv ligge under `StoryIntlProvider`/`IntlProvider`. Ikke stol på Storybooks decorator-rekkefølge alene; ellers kan stories feile med `React Intl: Could not find required intl object` selv om `withIntl` står i decorators-listen.
+- Verifiser at decorators, providers og eventuelle story-wrappere fortsatt matcher appens faktiske v2-oppsett, og fjern eller oppdater alt som fortsatt antar v1/Formik eller gammel søknadskontekst.
+- Verifiser at alle relevante stories faktisk er portet over, ikke bare komponentenes `Default`-variant. Behold scenarioer og varianter som dekker ulike tilstander, betinget innhold, alerts, oppsummeringer og nødvendig kontekstdata.
+- Sjekk at stories som bruker hooks eller kontekst fortsatt rendrer under riktig i18n- og app-kontekst etter migreringen.
 
 ### Fjern ubrukte avhengigheter fra `package.json`
 
