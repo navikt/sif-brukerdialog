@@ -1,8 +1,13 @@
+/* eslint-disable max-len */
 import { ungSoknadMessages_nb } from './nb';
 
 export const ungSoknadMessages_nn: typeof ungSoknadMessages_nb = {
     'søknad.tittel': 'Søknad om ungdomsprogramytelsen',
     'søknad.tittel.shy': 'Søknad om ungdoms\u00ADprogram\u00ADytelsen',
+
+    'step.kontonummer.title': 'Kontonummer for utbetaling',
+    'step.barn.title': 'Barn',
+    'step.oppsummering.title': 'Oppsummering',
 
     'personopplysninger.accordion.header': 'Om korleis vi hentar inn opplysningar om deg',
     'personopplysninger.1': 'Slik handsamar Nav personopplysningane dine',
@@ -54,6 +59,15 @@ export const ungSoknadMessages_nn: typeof ungSoknadMessages_nb = {
     'velkommenMelding.readMore.dato.content':
         'Då tek du kontakt med rettleiaren din og seier frå om dette, før du sender inn denne søknaden.',
 
+    /** TODO: Disse tekstene er ikke oversatt til nynorsk — bokmålstekst brukes som placeholder */
+    'velkommenMelding.readMore.rettsregler.header': 'Rettsregler og automatisk behandling',
+    'velkommenMelding.readMore.rettsregler.content.1':
+        'Når Nav behandler søknaden din og vurderer om du har rett til å motta penger når du er med i ungdomsprogrammet, så er det disse rettsreglene som gjelder: Arbeidsmarkedsloven §§ 12 tredje ledd og 13 fjerde ledd og forskrift om forsøk med ungdomsprogram og ungdomsprogramytelse § 8 jf. §§ 1 til 4 og §§ 6 til 12.',
+    'velkommenMelding.readMore.rettsregler.content.2':
+        'Etter at du har sendt inn søknaden blir det gjennomført en automatisk behandling, og som hovedregel mottas et digitalt vedtaksbrev innen noen minutter. Siden behandlingen er rask, sikres det også at du får penger til rett tid.',
+    'velkommenMelding.readMore.rettsregler.content.3':
+        'Dersom du ønsker å motsette deg automatisk behandling, så må du ikke sende inn denne søknaden. Da må du ta kontakt med din veileder for å informere om dette.',
+
     /** KvitteringPage */
     'kvitteringPage.dokumentTittel': 'Søknad er sendt – Søknad om ungdomsprogramytelsen',
     'kvitteringPage.tittel': 'Søknaden er sendt!',
@@ -78,6 +92,7 @@ export const ungSoknadMessages_nn: typeof ungSoknadMessages_nb = {
     'kontonummerSteg.kontonummer.spm': 'Er kontonummeret ditt {kontonummer}?',
     'kontonummerSteg.kontonummer.ja.label': 'Ja',
     'kontonummerSteg.kontonummer.nei.label': 'Nei',
+    'kontonummerSteg.validation.kontonummerErRiktig.yesOrNoIsUnanswered': 'Du må svare på om kontonummeret stemmer',
     'kontonummerSteg.kontonummer.stemmerIkke.info':
         'Gå til <Lenke>personopplysningar på Min side</Lenke> for å endre kontonummeret ditt.',
     'kontonummerSteg.kontonummer.stemmerIkke.info.2':
@@ -102,6 +117,7 @@ export const ungSoknadMessages_nn: typeof ungSoknadMessages_nb = {
     'barnSteg.spørsmål.ingenBarn': 'Stemmer det at du ikkje har barn?',
     'barnSteg.spørsmål.harBarn': 'Stemmer opplysningen om {antallBarn, plural, one {barnet} other {barna}}?',
     'barnSteg.validering.ikkeSvart': 'Du må svare på om informasjonen stemmer',
+    'barnSteg.validation.barnStemmer.yesOrNoIsUnanswered': 'Du må svare på om informasjonen stemmer',
     'barnSteg.opplysninger.info.tittel': 'Vi hentar opplysningar frå folkeregisteret',
     'barnSteg.opplysninger.info.text':
         'Du må vere registrert som forelder med foreldreansvar i Folkeregisteret for å ha rett på barnetillegg. Meiner du opplysningane frå Folkeregisteret er feil, må du ta <Lenke>kontakt med Skatteetaten</Lenke>. Hos Skatteetaten kan du registrere foreldreansvar.',

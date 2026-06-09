@@ -1,39 +1,47 @@
 import { Alert, Checkbox, CheckboxGroup, FormSummary, VStack } from '@navikt/ds-react';
-import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { AppText, useAppIntl } from '@shared/i18n';
 import { DeltakerSkjemaId } from '@shared/types/DeltakerSkjemaId';
 import { ApiErrorAlert } from '@sif/api';
-import SøknadSteg from '@søknad/components/søknad-steg/SøknadSteg';
-import SkjemaFooter from '@søknad/components/steg-skjema/SkjemaFooter';
-import { useSendSøknad } from '@søknad/hooks/api/useSendSøknad';
-import { useSøknadContext } from '@søknad/hooks/context/useSøknadContext';
-import { useSøknadNavigation } from '@søknad/hooks/utils/useSøknadNavigation';
-import { Spørsmål, Steg } from '@søknad/types';
+import { YesOrNo } from '@sif/rhf';
+import { FormLayout } from '@sif/soknad-ui/components';
 import { useState } from 'react';
 
 import { useAnalyticsInstance } from '../../../../analytics/analytics';
+import { useDeltakerContext } from '../../../../hooks/useDeltakerContext';
+import { SøknadStepId } from '../../setup/config/SøknadStepId';
+import { useSøknadsflyt } from '../../setup/context/søknadContext';
+import { useSøknadState } from '../../setup/hooks/useSøknadState';
+import { useSøknadStore } from '../../setup/hooks/useSøknadStore';
+import { SøknadStep } from '../../setup/soknad/SøknadStep';
+import { useSendSøknad } from '../../hooks/api/useSendSøknad';
 import BarnInfo from '../barn/BarnInfo';
 import { buildSøknadFromSvar, HarKontonummerEnum } from './oppsummeringUtils';
 
+const stepId = SøknadStepId.OPPSUMMERING;
+
 const OppsummeringSteg = () => {
     const { text } = useAppIntl();
-    const { søker, deltakelsePeriode, søknadOppgave, setSøknadSendt, kontonummerInfo, barn, svar } = useSøknadContext();
-    const { gotoSteg, gotoKvittering } = useSøknadNavigation();
-    const { logSkjemaFeilet } = useAnalyticsInstance();
+    const { søker, barn, kontoInfo, søknadOppgave } = useSøknadState();
+    const { deltakelsePeriode } = useDeltakerContext();
+    const { søknadsdata, navigateToStep } = useSøknadsflyt();
+    const setSøknadSendt = useSøknadStore((s) => s.setSøknadSendt);
+    const { logSkjemaFeilet, logSkjemaFullført } = useAnalyticsInstance();
 
     const [bekrefterOpplysninger, setBekrefterOpplysninger] = useState<boolean>(false);
     const [bekreftError, setBekreftError] = useState<string | undefined>();
     const { error, isPending, mutateAsync } = useSendSøknad();
 
-    const søknad = buildSøknadFromSvar({
-        deltakelseId: deltakelsePeriode.id,
-        oppgaveReferanse: søknadOppgave.oppgaveReferanse,
-        svar,
-        søkerNorskIdent: søker.fødselsnummer,
-        startdato: deltakelsePeriode.programPeriode.from,
-        kontonummerInfo,
-    });
+    const søknad = søknadsdata
+        ? buildSøknadFromSvar({
+              deltakelseId: deltakelsePeriode.id,
+              oppgaveReferanse: søknadOppgave.oppgaveReferanse,
+              søknadsdata,
+              søkerNorskIdent: søker.fødselsnummer,
+              startdato: deltakelsePeriode.programPeriode.from,
+              kontonummerInfo: kontoInfo,
+          })
+        : undefined;
 
     const søknadError = søknad ? undefined : text('oppsummeringSteg.søknadIkkeGyldig');
 
@@ -46,17 +54,19 @@ const OppsummeringSteg = () => {
             }
             try {
                 await mutateAsync({ ...søknad, harBekreftetOpplysninger: bekrefterOpplysninger });
+                logSkjemaFullført(DeltakerSkjemaId.SØKNAD);
                 setSøknadSendt();
-                gotoKvittering();
             } catch {
-                // Håndteres gjennom error objektet i useSendSøknad
                 logSkjemaFeilet(DeltakerSkjemaId.SØKNAD);
             }
         }
     };
 
+    const kontonummerSvar = søknadsdata?.kontonummer?.kontonummerErRiktig;
+    const barnSvar = søknadsdata?.barn?.barnStemmer;
+
     return (
-        <SøknadSteg tittel={text('oppsummeringSteg.tittel')} steg={Steg.OPPSUMMERING}>
+        <SøknadStep stepId={stepId}>
             <VStack gap="space-32">
                 <VStack gap="space-16">
                     <FormSummary>
@@ -83,22 +93,22 @@ const OppsummeringSteg = () => {
                             </FormSummary.Heading>
                         </FormSummary.Header>
                         <FormSummary.Answers>
-                            {kontonummerInfo.harKontonummer === HarKontonummerEnum.JA && (
+                            {kontoInfo.harKontonummer === HarKontonummerEnum.JA && (
                                 <FormSummary.Answer>
                                     <FormSummary.Label>
                                         <AppText
                                             id="kontonummerSteg.kontonummer.spm"
-                                            values={{ kontonummer: kontonummerInfo.formatertKontonummer }}
+                                            values={{ kontonummer: kontoInfo.formatertKontonummer }}
                                         />
                                     </FormSummary.Label>
                                     <FormSummary.Value>
-                                        {svar[Spørsmål.KONTONUMMER] === YesOrNo.YES
+                                        {kontonummerSvar === YesOrNo.YES
                                             ? text('kontonummerSteg.kontonummer.ja.label')
                                             : text('kontonummerSteg.kontonummer.nei.label')}
                                     </FormSummary.Value>
                                 </FormSummary.Answer>
                             )}
-                            {kontonummerInfo.harKontonummer === HarKontonummerEnum.NEI && (
+                            {kontoInfo.harKontonummer === HarKontonummerEnum.NEI && (
                                 <FormSummary.Answer>
                                     <FormSummary.Label>
                                         <AppText id="oppsummeringSteg.kontonummer.ingenKontonummer.tittel" />
@@ -108,7 +118,7 @@ const OppsummeringSteg = () => {
                                     </FormSummary.Value>
                                 </FormSummary.Answer>
                             )}
-                            {kontonummerInfo.harKontonummer === HarKontonummerEnum.UVISST && (
+                            {kontoInfo.harKontonummer === HarKontonummerEnum.UVISST && (
                                 <FormSummary.Answer>
                                     <FormSummary.Label>
                                         <AppText id="oppsummeringSteg.kontonummer.kontonummerInfoMangler.tittel" />
@@ -125,7 +135,7 @@ const OppsummeringSteg = () => {
                                 onClick={(evt) => {
                                     evt.preventDefault();
                                     evt.stopPropagation();
-                                    gotoSteg(Steg.KONTONUMMER);
+                                    navigateToStep(SøknadStepId.KONTONUMMER);
                                 }}
                             />
                         </FormSummary.Footer>
@@ -153,13 +163,11 @@ const OppsummeringSteg = () => {
                                                 ? 'barnSteg.spørsmål.ingenBarn'
                                                 : 'barnSteg.spørsmål.harBarn'
                                         }
-                                        values={{
-                                            antallBarn: barn.length,
-                                        }}
+                                        values={{ antallBarn: barn.length }}
                                     />
                                 </FormSummary.Label>
                                 <FormSummary.Value>
-                                    {svar[Spørsmål.BARN] === YesOrNo.YES
+                                    {barnSvar === YesOrNo.YES
                                         ? text('barnSteg.barnStemmer.ja.label')
                                         : text('barnSteg.barnStemmer.nei.label')}
                                 </FormSummary.Value>
@@ -171,7 +179,7 @@ const OppsummeringSteg = () => {
                                 onClick={(evt) => {
                                     evt.preventDefault();
                                     evt.stopPropagation();
-                                    gotoSteg(Steg.BARN);
+                                    navigateToStep(SøknadStepId.BARN);
                                 }}
                             />
                         </FormSummary.Footer>
@@ -183,7 +191,6 @@ const OppsummeringSteg = () => {
                 <form
                     onSubmit={(evt) => {
                         evt.preventDefault();
-                        setBekreftError(undefined);
                         handleOnSubmit();
                     }}>
                     <VStack gap="space-16">
@@ -203,22 +210,18 @@ const OppsummeringSteg = () => {
                         </CheckboxGroup>
 
                         {error ? <ApiErrorAlert error={error} /> : null}
-                        <SkjemaFooter
-                            pending={isPending}
-                            forrige={{
-                                tittel: text('søknadApp.forrigeSteg.label'),
-                                onClick: () => gotoSteg(Steg.BARN),
-                            }}
-                            submit={{
-                                tittel: text('søknadApp.sendSøknad.label'),
-                                disabled: !!søknadError,
-                                erSendInn: true,
-                            }}
+
+                        <FormLayout.FormButtons
+                            submitPending={isPending}
+                            submitDisabled={!!søknadError}
+                            onPrevious={() => navigateToStep(SøknadStepId.BARN)}
+                            isFinalSubmit={true}
+                            submitLabel={text('søknadApp.sendSøknad.label')}
                         />
                     </VStack>
                 </form>
             </VStack>
-        </SøknadSteg>
+        </SøknadStep>
     );
 };
 export default OppsummeringSteg;

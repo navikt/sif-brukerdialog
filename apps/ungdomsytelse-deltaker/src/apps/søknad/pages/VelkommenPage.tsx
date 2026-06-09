@@ -1,82 +1,84 @@
-import { ArrowRightIcon } from '@navikt/aksel-icons';
-import { BodyLong, Box, Button, Checkbox, CheckboxGroup, VStack } from '@navikt/ds-react';
+import { dateFormatter } from '@navikt/sif-common-utils';
+import { BodyLong, ReadMore, VStack } from '@navikt/ds-react';
 import ExternalLink from '@shared/components/external-link/ExternalLink';
 import { AppText, useAppIntl } from '@shared/i18n';
-import DefaultPageLayout from '@shared/pages/layout/DefaultPageLayout';
 import getLenker from '@shared/utils/lenker';
-import { useState } from 'react';
+import { StartPage } from '@sif/soknad-ui/pages';
 
-import SøknadHeader from '../components/søknad-header/SøknadHeader';
-import VelkommenMelding from '../components/VelkommenMelding';
-import { useSøknadContext } from '../hooks/context/useSøknadContext';
-import { Spørsmål } from '../types';
+import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
+import BehandlingAvPersonopplysningerContent from '../components/BehandlingAvPersonopplysningerContent';
+import { søknadStepOrder } from '../setup/config/søknadStepConfig';
+import { useSøknadsflyt } from '../setup/context/søknadContext';
 
 const VelkommenPage = () => {
     const { text } = useAppIntl();
-    const { søker, deltakelsePeriode, startSøknad, svar } = useSøknadContext();
+    const { søker, deltakelsePeriode } = useDeltakerContext();
+    const { startSøknad, navigateToStep } = useSøknadsflyt();
 
-    const [infoStemmer, setInfoStemmer] = useState<boolean>(svar[Spørsmål.FORSTÅR_PLIKTER] || false);
-    const [error, setError] = useState<string | undefined>(undefined);
-    const [loading, setLoading] = useState(false);
-
-    const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
-        evt.preventDefault();
-        if (infoStemmer) {
-            setLoading(true);
-            startSøknad(infoStemmer);
-        } else {
-            setError(text('velkommenPage.validering.bekrefterIkkeValgt'));
-        }
+    const handleStart = (harForståttRettigheterOgPlikter: true) => {
+        const førsteStegId = søknadStepOrder[0];
+        startSøknad(førsteStegId, harForståttRettigheterOgPlikter);
+        navigateToStep(førsteStegId);
     };
 
     return (
-        <DefaultPageLayout documentTitle={text('søknad.tittel')}>
-            <VStack gap="space-32">
-                <SøknadHeader />
-
-                <VelkommenMelding fornavn={søker.fornavn} startdato={deltakelsePeriode.programPeriode.from} />
-
-                <div>
-                    <form onSubmit={handleSubmit}>
+        <StartPage
+            onStart={handleStart}
+            isPending={false}
+            guide={{
+                navn: søker.fornavn,
+                content: (
+                    <VStack gap="space-16">
                         <BodyLong>
                             <AppText
-                                id="velkommenPage.infoStemmer"
+                                id="velkommenMelding.deltakelsePeriode"
                                 values={{
-                                    Lenke: (children: string) => (
-                                        <ExternalLink href={getLenker().rettOgPlikt}>{children}</ExternalLink>
+                                    startdato: dateFormatter.dayDateMonthYear(deltakelsePeriode.programPeriode.from),
+                                    strong: (children) => <strong>{children}</strong>,
+                                }}
+                            />
+                        </BodyLong>
+                        <BodyLong>
+                            <AppText id="velkommenMelding.ytelseBeskrivelse" />
+                        </BodyLong>
+                        <BodyLong>
+                            <AppText
+                                id="velkommenMelding.søknadBeskrivelse"
+                                values={{
+                                    Lenke: (children) => (
+                                        <ExternalLink href={getLenker().omUngdomsprogramytelsen}>
+                                            {children}
+                                        </ExternalLink>
                                     ),
                                 }}
                             />
                         </BodyLong>
-
-                        <Box paddingBlock="space-16 space-32">
-                            <CheckboxGroup
-                                error={error}
-                                name="bekreftelse"
-                                legend={text('velkommenPage.bekreftelse.skjultLegend')}
-                                hideLegend={true}>
-                                <Checkbox
-                                    value="bekrefter"
-                                    onChange={(evt) => {
-                                        setError(undefined);
-                                        setInfoStemmer(evt.target.checked);
-                                    }}>
-                                    <AppText id="velkommenPage.bekrefter" />
-                                </Checkbox>
-                            </CheckboxGroup>
-                        </Box>
-
-                        <Button
-                            variant="primary"
-                            icon={<ArrowRightIcon aria-hidden />}
-                            iconPosition="right"
-                            loading={loading}>
-                            <AppText id="velkommenPage.startSøknad" />
-                        </Button>
-                    </form>
-                </div>
-            </VStack>
-        </DefaultPageLayout>
+                        <VStack gap="space-0">
+                            <ReadMore header={text('velkommenMelding.readMore.dato.header')}>
+                                <BodyLong spacing>
+                                    <AppText id="velkommenMelding.readMore.dato.content" />
+                                </BodyLong>
+                            </ReadMore>
+                            <ReadMore header={text('personopplysninger.accordion.header')}>
+                                <BehandlingAvPersonopplysningerContent />
+                            </ReadMore>
+                            <ReadMore header={text('velkommenMelding.readMore.rettsregler.header')}>
+                                <BodyLong spacing>
+                                    <AppText id="velkommenMelding.readMore.rettsregler.content.1" />
+                                </BodyLong>
+                                <BodyLong spacing>
+                                    <AppText id="velkommenMelding.readMore.rettsregler.content.2" />
+                                </BodyLong>
+                                <BodyLong spacing>
+                                    <AppText id="velkommenMelding.readMore.rettsregler.content.3" />
+                                </BodyLong>
+                            </ReadMore>
+                        </VStack>
+                    </VStack>
+                ),
+            }}
+            title={text('søknad.tittel')}
+        />
     );
 };
 

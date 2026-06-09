@@ -12,8 +12,8 @@ import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
 import IngenSendSøknadOppgave from '../../pages/IngenSendSøknadOppgave';
 import UngLoadingPage from '../../pages/UngLoadingPage';
 import { AppRoutes } from '../../utils/AppRoutes';
-import { SøknadProvider } from './context/SøknadContext';
-import SøknadRouter from './SøknadRouter';
+import Søknad from './Søknad';
+
 const SøknadApp = () => {
     const { søker, deltakelsePeriode, oppgaver } = useDeltakerContext();
     const { pathname } = useLocation();
@@ -48,15 +48,12 @@ const SøknadApp = () => {
 
     return (
         <Theme hasBackground={!__IS_VEILEDER_DEMO__}>
-            <SøknadProvider
-                søknadOppgave={søknadOppgave}
+            <Søknad
                 søker={søker}
-                deltakelsePeriode={deltakelsePeriode}
-                oppgaver={oppgaver}
+                barn={barn.data || []}
                 kontonummerInfo={kontonummer.data || kontonummerFallback}
-                barn={barn.data || []}>
-                <SøknadRouter />
-            </SøknadProvider>
+                søknadOppgave={søknadOppgave}
+            />
         </Theme>
     );
 };

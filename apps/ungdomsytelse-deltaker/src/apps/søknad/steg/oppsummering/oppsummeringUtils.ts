@@ -1,9 +1,9 @@
 import { KontonummerInfo, ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
-import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { YesOrNo } from '@sif/rhf';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 
-import { SøknadSvar, Spørsmål } from '../../types';
+import { Søknadsdata } from '../../setup/types/Søknadsdata';
 
 const isYesOrNoAnswered = (answer?: YesOrNo) => {
     return answer === YesOrNo.YES || answer === YesOrNo.NO;
@@ -47,23 +47,23 @@ export const getKontonummerApiInfo = (
 export const buildSøknadFromSvar = ({
     deltakelseId,
     oppgaveReferanse,
-    svar,
+    søknadsdata,
     søkerNorskIdent,
     startdato,
     kontonummerInfo,
 }: {
     deltakelseId: string;
     oppgaveReferanse: string;
-    svar: SøknadSvar;
+    søknadsdata: Søknadsdata;
     søkerNorskIdent: string;
     startdato: Date;
     kontonummerInfo: UtvidetKontonummerInfo;
 }): SøknadApiData | undefined => {
-    if (svar[Spørsmål.FORSTÅR_PLIKTER] !== true || !isYesOrNoAnswered(svar[Spørsmål.BARN])) {
+    if (søknadsdata.harForståttRettigheterOgPlikter !== true || søknadsdata.barn?.barnStemmer === undefined) {
         return undefined;
     }
-    const harForståttRettigheterOgPlikter = svar[Spørsmål.FORSTÅR_PLIKTER] === true;
-    const kontonummerApiInfo = getKontonummerApiInfo(kontonummerInfo, svar[Spørsmål.KONTONUMMER]);
+    const harForståttRettigheterOgPlikter = true;
+    const kontonummerApiInfo = getKontonummerApiInfo(kontonummerInfo, søknadsdata.kontonummer?.kontonummerErRiktig);
 
     if (!kontonummerApiInfo) {
         // eslint-disable-next-line no-console
@@ -77,7 +77,7 @@ export const buildSøknadFromSvar = ({
         språk: 'nb',
         startdato: dateToISODate(startdato),
         harForståttRettigheterOgPlikter,
-        barnErRiktig: svar[Spørsmål.BARN] === YesOrNo.YES,
+        barnErRiktig: søknadsdata.barn.barnStemmer === YesOrNo.YES,
         kontonummerInfo: kontonummerApiInfo,
         søkerNorskIdent,
     };

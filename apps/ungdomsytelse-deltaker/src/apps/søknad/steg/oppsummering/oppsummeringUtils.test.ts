@@ -1,9 +1,9 @@
 import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
-import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { YesOrNo } from '@sif/rhf';
 import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 import { describe, expect, it } from 'vitest';
 
-import { SøknadSvar, Spørsmål } from '../../types';
+import { Søknadsdata } from '../../setup/types/Søknadsdata';
 import { buildSøknadFromSvar, HarKontonummerEnum } from './oppsummeringUtils';
 
 const deltakelseId = '12345';
@@ -19,16 +19,16 @@ describe('buildSøknadFromSvar', () => {
         kontonummerFraRegister: '12345678901',
     };
     it('returnerer undefined hvis FORSTÅR_PLIKTER ikke er true', () => {
-        const svar: SøknadSvar = {
-            [Spørsmål.FORSTÅR_PLIKTER]: false,
-            [Spørsmål.BARN]: YesOrNo.YES,
-            [Spørsmål.KONTONUMMER]: YesOrNo.YES,
+        const søknadsdata: Søknadsdata = {
+            harForståttRettigheterOgPlikter: false,
+            barn: { barnStemmer: YesOrNo.YES },
+            kontonummer: { kontonummerErRiktig: YesOrNo.YES },
         };
 
         const result = buildSøknadFromSvar({
             deltakelseId,
             oppgaveReferanse,
-            svar,
+            søknadsdata,
             søkerNorskIdent,
             startdato,
             kontonummerInfo,
@@ -37,16 +37,16 @@ describe('buildSøknadFromSvar', () => {
     });
 
     it('returnerer undefined hvis BARN ikke er besvart med YES eller NO', () => {
-        const svar: SøknadSvar = {
-            [Spørsmål.FORSTÅR_PLIKTER]: true,
-            [Spørsmål.BARN]: undefined,
-            [Spørsmål.KONTONUMMER]: YesOrNo.YES,
+        const søknadsdata: Søknadsdata = {
+            harForståttRettigheterOgPlikter: true,
+            barn: undefined,
+            kontonummer: { kontonummerErRiktig: YesOrNo.YES },
         };
 
         const result = buildSøknadFromSvar({
             deltakelseId,
             oppgaveReferanse,
-            svar,
+            søknadsdata,
             søkerNorskIdent,
             startdato,
             kontonummerInfo,
@@ -55,16 +55,16 @@ describe('buildSøknadFromSvar', () => {
     });
 
     it('returnerer undefined hvis KONTONUMMER ikke er besvart med YES eller NO når kontonummer finnes', () => {
-        const svar: SøknadSvar = {
-            [Spørsmål.FORSTÅR_PLIKTER]: true,
-            [Spørsmål.BARN]: YesOrNo.YES,
-            [Spørsmål.KONTONUMMER]: undefined,
+        const søknadsdata: Søknadsdata = {
+            harForståttRettigheterOgPlikter: true,
+            barn: { barnStemmer: YesOrNo.YES },
+            kontonummer: { kontonummerErRiktig: undefined },
         };
 
         const result = buildSøknadFromSvar({
             deltakelseId,
             oppgaveReferanse,
-            svar,
+            søknadsdata,
             søkerNorskIdent,
             startdato,
             kontonummerInfo,
@@ -73,16 +73,16 @@ describe('buildSøknadFromSvar', () => {
     });
 
     it('returnerer gyldig søknadsobjekt når alle krav er oppfylt og kontonummer finnes', () => {
-        const svar: SøknadSvar = {
-            [Spørsmål.FORSTÅR_PLIKTER]: true,
-            [Spørsmål.BARN]: YesOrNo.YES,
-            [Spørsmål.KONTONUMMER]: YesOrNo.YES,
+        const søknadsdata: Søknadsdata = {
+            harForståttRettigheterOgPlikter: true,
+            barn: { barnStemmer: YesOrNo.YES },
+            kontonummer: { kontonummerErRiktig: YesOrNo.YES },
         };
 
         const result = buildSøknadFromSvar({
             deltakelseId,
             oppgaveReferanse,
-            svar,
+            søknadsdata,
             søkerNorskIdent,
             startdato,
             kontonummerInfo,
@@ -107,15 +107,15 @@ describe('buildSøknadFromSvar', () => {
     });
 
     it('returnerer gyldig søknadsobjekt når alle krav er oppfylt og kontonummer ikke finnes', () => {
-        const svar: SøknadSvar = {
-            [Spørsmål.FORSTÅR_PLIKTER]: true,
-            [Spørsmål.BARN]: YesOrNo.NO,
+        const søknadsdata: Søknadsdata = {
+            harForståttRettigheterOgPlikter: true,
+            barn: { barnStemmer: YesOrNo.NO },
         };
 
         const result = buildSøknadFromSvar({
             deltakelseId,
             oppgaveReferanse,
-            svar,
+            søknadsdata,
             søkerNorskIdent,
             startdato,
             kontonummerInfo: {

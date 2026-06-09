@@ -1,10 +1,10 @@
 import { Bleed, Heading, Show, Stack, VStack } from '@navikt/ds-react';
-import { ApplicationPictogram } from '@navikt/sif-common-soknad-ds/src/components/application-pictogram/ApplicationPictogram';
+import { ApplicationPictogram } from '@sif/soknad-ui';
 import { AppText } from '@shared/i18n';
 
 const SøknadHeader = () => {
     return (
-        <Bleed marginInline={{ lg: "space-96" }}>
+        <Bleed marginInline={{ lg: 'space-96' }}>
             <Stack
                 gap="space-24"
                 direction={{ sm: 'row-reverse', lg: 'row' }}

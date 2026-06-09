@@ -1,6 +1,6 @@
-import { MessageFileFormat } from '@navikt/sif-common-core-ds/src/types';
-
 import { applicationIntlMessages } from '../../src/i18n';
+
+type MessageFileFormat = { nb: Record<string, string>; nn: Record<string, string> };
 
 const getIntlMessagesFromKeys = (keys: string[]): MessageFileFormat => {
     const messages: MessageFileFormat = {

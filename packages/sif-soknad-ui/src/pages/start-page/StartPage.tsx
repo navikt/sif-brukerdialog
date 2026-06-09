@@ -29,7 +29,7 @@ interface Props {
     isPending: boolean;
     onStart: (bekrefterVilkår: true) => void;
     /** Innhold mellom guide og skjema */
-    children: ReactNode;
+    children?: ReactNode;
 }
 
 export const StartPage = ({ title, guide, children, onStart, isPending }: Props) => {
@@ -66,8 +66,7 @@ export const StartPage = ({ title, guide, children, onStart, isPending }: Props)
                         <BodyLong as="div">{guide.content}</BodyLong>
                     </Box>
                 </GuidePanel>
-
-                <div>{children}</div>
+                {children && <div>{children}</div>}
                 <section aria-label={text('@sifSoknadUi.startPage.form.ariaLabel')}>
                     <form onSubmit={handleSubmit}>
                         <VStack gap="space-24">
@@ -116,7 +115,7 @@ export const StartPage = ({ title, guide, children, onStart, isPending }: Props)
                                     type="submit"
                                     loading={isPending}
                                     disabled={isPending}
-                                    icon={<ArrowRightIcon />}
+                                    icon={<ArrowRightIcon role="presentation" />}
                                     iconPosition="right">
                                     <SifSoknadUiText id="@sifSoknadUi.startPage.submitButton" />
                                 </Button>

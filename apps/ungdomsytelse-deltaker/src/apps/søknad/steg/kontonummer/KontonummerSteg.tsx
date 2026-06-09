@@ -1,71 +1,62 @@
-import { Alert, BodyLong, BodyShort, Heading, Radio, RadioGroup } from '@navikt/ds-react';
-import { YesOrNo } from '@navikt/sif-common-core-ds/src';
-import { FormLayout } from '@navikt/sif-common-ui';
+import { Alert, BodyLong, BodyShort, Heading } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
-import AriaLiveRegion from '@shared/components/aria-live-region/AriaLiveRegion';
-import ExternalLink from '@shared/components/external-link/ExternalLink';
 import { AppText, useAppIntl } from '@shared/i18n';
 import getLenker from '@shared/utils/lenker';
-import SøknadSteg from '@søknad/components/søknad-steg/SøknadSteg';
-import SkjemaFooter from '@søknad/components/steg-skjema/SkjemaFooter';
-import { useSøknadContext } from '@søknad/hooks/context/useSøknadContext';
-import { useSøknadNavigation } from '@søknad/hooks/utils/useSøknadNavigation';
-import { Spørsmål, Steg } from '@søknad/types';
-import { useState } from 'react';
+import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
+import { AriaLiveRegion, ExternalLink, FormLayout } from '@sif/soknad-ui/components';
 
+import { SøknadStepId } from '../../setup/config/SøknadStepId';
+import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '../../setup/hooks';
+import { useSøknadState } from '../../setup/hooks/useSøknadState';
+import { AppForm } from '../../setup/soknad/AppForm';
+import { SøknadStep } from '../../setup/soknad/SøknadStep';
 import { HarKontonummerEnum } from '../oppsummering/oppsummeringUtils';
+import { KontonummerFormFields, KontonummerFormValues } from './types';
+
+const { YesOrNoQuestion } = createSifFormComponents<KontonummerFormValues>();
+
+const stepId = SøknadStepId.KONTONUMMER;
 
 const KontonummerSteg = () => {
     const { text } = useAppIntl();
-    const { setSpørsmålSvar, svar, kontonummerInfo } = useSøknadContext();
-    const { gotoSteg } = useSøknadNavigation();
+    const { validateField } = useSifValidate('kontonummerSteg');
+    const { kontoInfo } = useSøknadState();
 
-    const infoStemmer = svar[Spørsmål.KONTONUMMER];
-    const [error, setError] = useState<string | undefined>(undefined);
-
-    const handleOnSubmit = () => {
-        if (kontonummerInfo.harKontonummer === HarKontonummerEnum.JA) {
-            const err = getYesOrNoValidator()(infoStemmer);
-            if (err) {
-                setError('Du må svare på spørsmålet');
-                return;
-            }
-            setError(undefined);
-        }
-        gotoSteg(Steg.BARN);
-    };
+    const defaultValues = useStepDefaultValues<KontonummerFormValues, { kontonummerErRiktig: YesOrNo | undefined }>({
+        stepId,
+        toFormValues: (s) => ({ kontonummerErRiktig: s?.kontonummerErRiktig }),
+    });
+    const { onSubmit, isPending } = useStepSubmit<KontonummerFormValues, { kontonummerErRiktig: YesOrNo | undefined }>({
+        stepId,
+        toSøknadsdata: (values) => ({ kontonummerErRiktig: values.kontonummerErRiktig }),
+    });
+    const methods = useSøknadRhfForm(stepId, defaultValues);
+    const kontonummerErRiktig = methods.watch(KontonummerFormFields.kontonummerErRiktig);
 
     return (
-        <SøknadSteg tittel={text('kontonummerSteg.tittel')} steg={Steg.KONTONUMMER}>
+        <SøknadStep stepId={stepId}>
             <FormLayout.Guide>
                 <AppText id="kontonummerSteg.beskrivelse" />
             </FormLayout.Guide>
-            <form
-                onSubmit={(evt) => {
-                    evt.preventDefault();
-                    handleOnSubmit();
-                }}>
+            <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
                 <FormLayout.Questions>
-                    {kontonummerInfo.harKontonummer === HarKontonummerEnum.JA && (
+                    {kontoInfo.harKontonummer === HarKontonummerEnum.JA && (
                         <>
-                            <RadioGroup
+                            <YesOrNoQuestion
+                                name={KontonummerFormFields.kontonummerErRiktig}
                                 legend={text('kontonummerSteg.kontonummer.spm', {
-                                    kontonummer: kontonummerInfo.formatertKontonummer,
+                                    kontonummer: kontoInfo.formatertKontonummer,
                                 })}
-                                error={error}
-                                value={infoStemmer}
-                                onChange={(value: YesOrNo) => {
-                                    setError(undefined);
-                                    setSpørsmålSvar(Spørsmål.KONTONUMMER, value);
-                                }}>
-                                <Radio value={YesOrNo.YES} checked={infoStemmer === YesOrNo.YES}>
-                                    <AppText id="kontonummerSteg.kontonummer.ja.label" />
-                                </Radio>
-                                <Radio value={YesOrNo.NO} checked={infoStemmer === YesOrNo.NO}>
-                                    <AppText id="kontonummerSteg.kontonummer.nei.label" />
-                                </Radio>
-                            </RadioGroup>
-                            <AriaLiveRegion visible={infoStemmer === YesOrNo.NO}>
+                                labels={{
+                                    yes: text('kontonummerSteg.kontonummer.ja.label'),
+                                    no: text('kontonummerSteg.kontonummer.nei.label'),
+                                }}
+                                validate={validateField(
+                                    KontonummerFormFields.kontonummerErRiktig,
+                                    getYesOrNoValidator(),
+                                )}
+                            />
+                            <AriaLiveRegion visible={kontonummerErRiktig === YesOrNo.NO}>
                                 <FormLayout.QuestionRelatedMessage>
                                     <Alert variant="info">
                                         <BodyShort spacing>
@@ -88,7 +79,7 @@ const KontonummerSteg = () => {
                             </AriaLiveRegion>
                         </>
                     )}
-                    {kontonummerInfo.harKontonummer === HarKontonummerEnum.NEI && (
+                    {kontoInfo.harKontonummer === HarKontonummerEnum.NEI && (
                         <Alert variant="warning">
                             <Heading level="3" size="small" spacing>
                                 <AppText id="kontonummerSteg.harIkkeKontonummer.info.1" />
@@ -108,7 +99,7 @@ const KontonummerSteg = () => {
                             </BodyLong>
                         </Alert>
                     )}
-                    {kontonummerInfo.harKontonummer === HarKontonummerEnum.UVISST && (
+                    {kontoInfo.harKontonummer === HarKontonummerEnum.UVISST && (
                         <Alert variant="warning">
                             <Heading level="3" size="small" spacing>
                                 <AppText id="kontonummerSteg.kontonummerInfoMangler.info.1" />
@@ -128,10 +119,9 @@ const KontonummerSteg = () => {
                             </BodyLong>
                         </Alert>
                     )}
-                    <SkjemaFooter submit={{ tittel: text('søknadApp.nesteSteg.label'), erSendInn: false }} />
                 </FormLayout.Questions>
-            </form>
-        </SøknadSteg>
+            </AppForm>
+        </SøknadStep>
     );
 };
 

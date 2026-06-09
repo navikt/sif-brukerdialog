@@ -51,6 +51,24 @@ description: Lettvekts runbook for migrering av en dialog-app til ny v2 setup me
 - For hvert felt: alle mulige error-koder fra validatoren **må** ha tilhørende i18n-nøkkel i `nb.ts` og `nn.ts`. Sjekk feilkode-enumen i `packages/sif-validation/src/get*Validator.ts` mot nøklene i kildeappen.
 - Ikke fjern validering under migrering. Strengere validering kan bare legges til med eksplisitt bestilling.
 
+### `useSifValidate` og i18n-nøkkelformat
+
+`useSifValidate(scope)` fra `@sif/rhf` genererer feilnøkler på formatet:
+
+```
+{scope}.validation.{fieldName}.{errorCode}
+```
+
+Eksempel: `useSifValidate('barnSteg').validateField('barnStemmer', getYesOrNoValidator())` forventer nøkkelen `barnSteg.validation.barnStemmer.yesOrNoIsUnanswered` i `nb.ts` og `nn.ts`.
+
+Sjekkliste per steg som bruker `useSifValidate`:
+
+1. Finn scope-streng i `useSifValidate('...')` — dette er prefiks.
+2. For hvert `validateField(fieldName, validator)`-kall: finn alle feilkode-enums i `packages/sif-validation/src/get*Validator.ts`.
+3. Legg til nøkkel `{scope}.validation.{fieldName}.{errorCode}` i `nb.ts` og `nn.ts` for **alle** kombinasjoner.
+
+Old-format nøkler (f.eks. `barnSteg.validering.ikkeSvart`) beholdes om de brukes andre steder (f.eks. manuell `setError`), men er ikke tilstrekkelige for `useSifValidate`-validering.
+
 ## Regler for tester i migrering
 
 - Når kildeappen har tester for utility-funksjoner som overføres til målappen, **må** testene også overføres.
@@ -62,6 +80,21 @@ description: Lettvekts runbook for migrering av en dialog-app til ny v2 setup me
 
 - Ikke importer fra gamle pakker (`@navikt/sif-common-core-ds`, `@navikt/sif-common-formik-ds`, `@navikt/sif-common-ui`). Bruk Aksel-komponenter (`@navikt/ds-react`) eller pakker fra `@sif/*` i stedet.
 - Vanlige erstatninger: `ExpandableInfo` → `ReadMore` fra `@navikt/ds-react`.
+
+## Hovedregel: Bruk v2-logikk og v2-oppsett overalt
+
+Når en app migreres til v2-oppsett (`@sif/soknad`, `@sif/rhf`), **skal v2-logikken og v2-mønstrene brukes konsekvent i alle deler av appen** — ikke bare i de delene som er direkte berørt av hvert enkelt migreringssteg.
+
+Dette gjelder:
+- Routing og navigasjon (`Søknad.tsx`, `SøknadApp.tsx`, render-guards, `useEffect`-navigasjon)
+- Steg-setup og kontekst (`SøknadContextProvider`, `useSøknadStore`, `useStepTitles`)
+- Skjemakomponenter og validering (`useSifValidate`, `AppForm`, `SøknadStep`, `createSifFormComponents`)
+- Sidestrukturer (`ApplicationPage`, `StartPage` fra `@sif/soknad-ui/pages`)
+- Komponenter (`SifGuidePanel`, `DevBranchInfo`, `ApplicationPictogram` fra `@sif/soknad-ui`)
+
+Referanseapp for v2-mønsteret er `apps/omsorgspengesoknad-v2`. Sammenlign alltid med denne når det er tvil om riktig implementasjon.
+
+**Når det ikke finnes et direkte v2-alternativ** (f.eks. `AppStatusWrapper`, locale-utils, `sif-ds-theme.css`): spør brukeren hva som skal gjøres fremfor å beholde gammel kode stilltiende. Ikke la gammel logikk bli stående uten at det er en bevisst avgjørelse.
 
 ## Migrering av dialoger til `sif-soknad-forms`
 
@@ -80,6 +113,28 @@ Sammenlign Formik-originalen i `sif-common-forms-ds` med RHF-varianten i `sif-so
 - [ ] **Locale**: Locale-avhengig presentasjon følger originalen
 - [ ] **nn.ts**: Typet med `Record<keyof typeof nb, string>`, ingen spread fra `nb`
 - [ ] **Props-paritet**: Props, inkludert hva som er optional og obligatorisk, matcher originalen
+
+## Søknad.tsx — render-guards for kvittering (fallgruve)
+
+`Soknad.tsx.template` i `sif-soknad-setup` har to tidlige render-guards **i tillegg til** `useEffect`-navigasjonen. Disse er påkrevd for å unngå en blank flash eller feil side mellom innsending og kvittering:
+
+```tsx
+if (søknadSendt && location.pathname !== '/kvittering') {
+    return <KvitteringPage />;
+}
+
+if (!søknadSendt && location.pathname === '/kvittering') {
+    return (
+        <SøknadContextProvider stepTitles={stepTitles}>
+            <VelkommenPage />
+        </SøknadContextProvider>
+    );
+}
+```
+
+Uten disse vil `useEffect`-navigasjonen skje én render-syklus for sent, og brukeren ser et blinkt av blank side / velkomstside før kvitteringen vises.
+
+Sjekk at **begge** rendervakter og `useEffect` er på plass i `Søknad.tsx` etter migrering.
 
 ## appEnv-singleton
 
@@ -259,6 +314,37 @@ Gjør alle disse endringene i én operasjon med `multi_replace_string_in_file` f
 - `initApiClients()` skal kalles synkront i `App`-komponenten (etter `getAppEnv()`, før render), ikke i `useEffect`. Queries i `InitialDataLoader` kjører ved første render og trenger konfigurerte klienter.
 - Env-feil fra `getAppEnv()` fanges av `reactErrorHandler` (Sentry). Faro er utilgjengelig for env-feil siden `FaroProvider` er inne i `App` — dette er akseptabelt.
 - `enableMocking.ts` inneholder ENV-sjekker — MSW starter kun når `ENV === 'development'` og `import.meta.env.MODE === 'msw'`. Ikke fjern disse guardene.
+- **`sifSoknadUiMessages` må inkluderes i `applicationIntlMessages`**: `@sif/soknad-ui`-komponenter som `StepPage`, `FormLayout` og `FormLayout.FormButtons` har egne oversettelsesnøkler. Disse vises som råe nøkkelstrenger i UI hvis `sifSoknadUiMessages` ikke er spredt inn i `applicationIntlMessages` i `src/i18n/index.tsx`. Legg til dette umiddelbart etter at steg-komponenter er på plass:
+  ```ts
+  import { sifSoknadUiMessages } from '@sif/soknad-ui';
+  // ...
+  const nb = { ...sifSoknadUiMessages.nb, /* app-spesifikke nøkler */ };
+  const nn = { ...sifSoknadUiMessages.nn, /* app-spesifikke nøkler */ };
+  ```
+- **`VelkommenPage` skal bruke `StartPage` fra `@sif/soknad-ui/pages`**: `StartPage` håndterer GuidePanel, bekreftelsescheckbox og form-submit internt. Ikke importer `DefaultPageLayout`, `CheckboxGroup` eller `Button` manuelt. Mønster:
+  ```tsx
+  import { StartPage } from '@sif/soknad-ui/pages';
+
+  const handleStart = (harForståttRettigheterOgPlikter: true) => {
+      const førsteStegId = søknadStepOrder[0];
+      startSøknad(førsteStegId, harForståttRettigheterOgPlikter);
+      navigateToStep(førsteStegId);
+  };
+
+  return (
+      <StartPage onStart={handleStart} isPending={false} guide={{ navn: søker.fornavn, content: <></> }} title={text('søknad.tittel')}>
+          <></>  {/* children er påkrevd — bruk tom fragment hvis ingen innhold */}
+      </StartPage>
+  );
+  ```
+  Hvis appen har mellomlagring, bruk `isPending={isPending}` og `await opprettMellomlagring()` i `handleStart`. `StartPage` har `children` som påkrevd prop — send `<></>` hvis det ikke er noe innhold mellom guide og bekreftelsescheckbox.
+- **`useSøknadState()` kaster feil før store-initialisering**: I apper der søknaden er en del av en større app (ikke standalone), rendres noen sider — typisk `VelkommenPage` — *før* `useEffectOnce`-initialisering har kjørt. `useSøknadState()` kaster i dette tilfellet en `ErrorBoundary`-feil. Bruk i stedet en parent-context (f.eks. en `DeltakerContext` eller tilsvarende) som alltid er satt av forelderkomponenten. Mønster:
+  ```ts
+  // Feil — kaster feil hvis store ikke er initiert ennå:
+  const { søker } = useSøknadState();
+  // Riktig — bruker parent context som alltid er satt:
+  const { søker } = useDeltakerContext();
+  ```
 - `vite.config.ts` bruker en betinget Sentry-plugin som kun aktiveres når `SENTRY_AUTH_TOKEN` er satt. Sentry-build-advarsler er forventet lokalt uten token.
 - Data loading er delt i `useInitialData.ts` (hook med datalogikk) og `InitialDataLoader.tsx` (tynn komponent). Behold denne separasjonen når du tilpasser, og deleger detaljveiledning til `sif-initial-data-loader`.
 - Eksterne brukerlenker skal ikke eies av målappen etter migrering. Flytt dem til den delte lenkekilden i `@sif/soknad-ui/lenker`. Appen kan fortsatt beholde en tynn adapter som skjuler locale/env-oppslag og eksponerer et enklere API som `useLenker()` og `getLenke()`.
@@ -300,6 +386,53 @@ Forventet oppførsel tidlig i fasen:
 - Kjør workspace-lokale scripts først (for eksempel `lint:eslint`, `lint:tsc`, `test`).
 - I bootstrap-fasen: hold validering app-lokal og hopp over root-level build/lint/test-kommandoer.
 - Kjør bredere root-sjekker kun ved behov utenfor bootstrap-omfanget (`pnpm lint`, `pnpm test`).
+
+## Opprydding etter migrering
+
+Når alle steg er migrert og appen fungerer, gjenstår opprydding av gammel kode som ikke lenger er i bruk.
+
+### Finn orphaned filer
+
+Bruk grep til å kartlegge hvilke filer som ikke lenger importeres av ny kode:
+
+```bash
+grep -rn "GammelKomponent\|GammelHook\|gammelUtil" src/ --include="*.tsx" --include="*.ts" | grep "import "
+```
+
+Typiske kandidater etter en v1→v2-migrering:
+
+| Fil/mappe | Hva det var |
+|---|---|
+| `SøknadRouter.tsx` / `SøknadContext.tsx` | Gammel context og routing |
+| `hooks/context/useSøknadContext.ts` | Gammel context-hook |
+| `hooks/utils/useSøknadNavigation.ts` | Gammel navigasjon |
+| `hooks/utils/useKontrollerOmStegErTilgjengelig.tsx` | Gammel steg-guard |
+| `utils/stegUtils.ts`, `utils/søknadRouteUtils.ts` | Gammelt routing-verktøy |
+| `types/index.ts` | Gamle søknad-typer |
+| `components/søknad-steg/`, `components/steg-skjema/` | Gammel steg-wrapper og footer |
+| `components/VelkommenMelding.tsx` | Erstattet av `guide.content` i `StartPage` |
+
+Verifiser at ingen av de nye filene importerer disse før du sletter.
+
+### Rydding i Storybook
+
+Etter migrering er Storybook-decoratorer og komponenter som er knyttet til v1-oppsett ugyldige:
+
+- `storybook/decorators/withSøknadContext.tsx` — slett; v2-steg bruker ikke gammel `SøknadContext`
+- `storybook/decorators/withFormikWrapper.tsx` og `storybook/components/StoryFormikWrapper.tsx` — slett; Formik er ikke lenger i bruk
+
+Sjekk om `withSøknadContext` brukes i eksisterende stories og erstatt med bare `withIntl`/`withRouter`/`withQueryClient`. Stories som trengte kontekst-data for å rendre meningsfull UI (f.eks. barn, kontonummer) trenger ny decorator basert på v2-mønsteret — dette kan gjøres etterpå, stories behøver ikke være komplette for at migreringen er ferdig.
+
+### Fjern ubrukte avhengigheter fra `package.json`
+
+Etter at Formik og gammel kode er fjernet, fjern avhengigheter som ikke lenger brukes:
+
+```bash
+# Typiske kandidater etter Formik-fjerning:
+"@navikt/sif-common-formik-ds": "workspace:*"
+```
+
+Kjør `pnpm tsc --noEmit` etter sletting for å verifisere at ingen gjenværende kode fortsatt importerer fjernede pakker.
 
 ## Ferdigkriterier
 

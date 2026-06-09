@@ -1,5 +1,5 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import MessagesList from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesList';
+import { I18nMessagesPreview } from '@sif/soknad-ui';
 import { ReactNode } from 'react';
 
 import { storybookIntlUtils } from '../utils/intlUtils';
@@ -27,7 +27,7 @@ const AlertStoryWrapper = ({
                     <div>{children}</div>
                 </VStack>
             </ShadowBox>
-            {messages && <MessagesList messages={messages} />}
+            {messages && <I18nMessagesPreview nb={messages.nb} nn={messages.nn} />}
         </>
     );
 };
