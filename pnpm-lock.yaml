@@ -3603,9 +3603,6 @@ importers:
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
-      '@navikt/sif-common-forms-ds':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-forms-ds
       '@navikt/sif-common-hooks':
         specifier: workspace:*
         version: link:../../packages/sif-common-hooks
