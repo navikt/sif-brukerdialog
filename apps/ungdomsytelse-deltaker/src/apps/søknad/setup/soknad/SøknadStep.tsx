@@ -1,4 +1,5 @@
 import { useAppIntl } from '@shared/i18n';
+import getLenker from '@shared/utils/lenker';
 import { Box } from '@navikt/ds-react';
 import { InconsistentFormValuesMessage } from '@sif/soknad/consistency';
 import { getProgressSteps } from '@sif/soknad/utils';
@@ -9,6 +10,7 @@ import { søknadStepConfig } from '../config/søknadStepConfig';
 import { SøknadStepId } from '../config/SøknadStepId';
 import { useSøknadsflyt } from '../context/søknadContext';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
+import { useSøknadMellomlagring } from '../hooks/useSøknadMellomlagring';
 import { useStepTitles } from '../hooks/useStepTitles';
 
 interface Props {
@@ -22,6 +24,12 @@ export const SøknadStep = ({ stepId, children }: Props) => {
     const søknadsflyt = useSøknadsflyt();
     const stepTitles = useStepTitles();
     const avbrytSøknad = useAvbrytSøknad();
+    const { lagreSøknad } = useSøknadMellomlagring();
+
+    const fortsettSenere = async () => {
+        await lagreSøknad();
+        window.location.href = getLenker().minSide;
+    };
 
     const inconsistentStepId = søknadsflyt.checkConsistency(stepId);
 
@@ -32,7 +40,8 @@ export const SøknadStep = ({ stepId, children }: Props) => {
             stepId={stepId}
             steps={getProgressSteps(søknadsflyt.includedSteps, stepTitles)}
             onStepSelect={søknadsflyt.navigateToStep}
-            onAbort={avbrytSøknad}>
+            onAbort={avbrytSøknad}
+            onResumeLater={fortsettSenere}>
             {inconsistentStepId ? (
                 <Box marginBlock="space-0 space-32">
                     <InconsistentFormValuesMessage

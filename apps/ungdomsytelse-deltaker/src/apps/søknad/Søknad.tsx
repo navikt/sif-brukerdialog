@@ -7,25 +7,34 @@ import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 import { AppRoutes } from '../../utils/AppRoutes';
+import { SøknadMellomlagring } from './setup/types/Mellomlagring';
+import { søknadStepConfig } from './setup/config/søknadStepConfig';
 import KvitteringPage from './pages/KvitteringPage';
 import VelkommenPage from './pages/VelkommenPage';
 import { SøknadContextProvider } from './setup/context/søknadContext';
 import { useSøknadStore } from './setup/hooks/useSøknadStore';
 import { useStepTitles } from './setup/hooks/useStepTitles';
-import { søknadStepConfig } from './setup/config/søknadStepConfig';
 import { SøknadStepId } from './setup/config/SøknadStepId';
 import KontonummerSteg from './steg/kontonummer/KontonummerSteg';
 import BarnSteg from './steg/barn/BarnSteg';
 import OppsummeringSteg from './steg/oppsummering/OppsummeringSteg';
+
+const getValidertMellomlagring = (data: SøknadMellomlagring | undefined): SøknadMellomlagring | undefined => {
+    if (!data) return undefined;
+    const currentStepId = data.currentStepId && søknadStepConfig[data.currentStepId] ? data.currentStepId : undefined;
+    return { ...data, currentStepId };
+};
 
 interface Props {
     søker: Søker;
     barn: RegistrertBarn[];
     kontonummerInfo: UtvidetKontonummerInfo;
     søknadOppgave: SøkYtelseOppgave;
+    mellomlagring?: SøknadMellomlagring;
 }
 
-const SøknadInner = ({ søker, barn, kontonummerInfo, søknadOppgave }: Props) => {
+const SøknadInner = ({ søker, barn, kontonummerInfo, søknadOppgave, mellomlagring }: Props) => {
+    const validertMellomlagring = getValidertMellomlagring(mellomlagring);
     const init = useSøknadStore((s) => s.init);
     const søknadSendt = useSøknadStore((s) => s.søknadSendt);
     const currentStepId = useSøknadStore((s) => s.currentStepId);
@@ -37,7 +46,11 @@ const SøknadInner = ({ søker, barn, kontonummerInfo, søknadOppgave }: Props) 
     const navigate = useNavigate();
 
     useEffectOnce(() => {
-        init({ søker, barn, kontoInfo: kontonummerInfo, søknadOppgave }, undefined, undefined);
+        init(
+            { søker, barn, kontoInfo: kontonummerInfo, søknadOppgave },
+            validertMellomlagring?.søknadsdata,
+            validertMellomlagring?.currentStepId,
+        );
     });
 
     const kvitteringPath = `${AppRoutes.soknad}/kvittering`;
@@ -70,7 +83,7 @@ const SøknadInner = ({ søker, barn, kontonummerInfo, søknadOppgave }: Props) 
     }
 
     return (
-        <SøknadContextProvider stepTitles={stepTitles}>
+        <SøknadContextProvider initialFormValues={validertMellomlagring?.skjemadata} stepTitles={stepTitles}>
             <Routes>
                 <Route index element={<VelkommenPage />} />
                 <Route path="kvittering" element={<KvitteringPage />} />

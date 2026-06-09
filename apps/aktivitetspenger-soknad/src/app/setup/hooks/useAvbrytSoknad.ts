@@ -12,9 +12,12 @@ export const useAvbrytSøknad = () => {
     const { slettMellomlagring } = useSøknadMellomlagring();
 
     return useCallback(() => {
-        resetSøknad();
-        clearSøknadFormValues();
-        slettMellomlagring().catch(() => {});
-        navigate('/');
+        slettMellomlagring()
+            .catch(() => {})
+            .then(() => {
+                resetSøknad();
+                clearSøknadFormValues();
+                // Bruker blir redirectet til start automatisk pga state nulles ut
+            });
     }, [resetSøknad, clearSøknadFormValues, slettMellomlagring, navigate]);
 };

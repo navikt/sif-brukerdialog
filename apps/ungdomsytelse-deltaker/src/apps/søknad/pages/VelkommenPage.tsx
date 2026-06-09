@@ -9,22 +9,25 @@ import { useDeltakerContext } from '../../../hooks/useDeltakerContext';
 import BehandlingAvPersonopplysningerContent from '../components/BehandlingAvPersonopplysningerContent';
 import { søknadStepOrder } from '../setup/config/søknadStepConfig';
 import { useSøknadsflyt } from '../setup/context/søknadContext';
+import { useSøknadMellomlagring } from '../setup/hooks/useSøknadMellomlagring';
 
 const VelkommenPage = () => {
     const { text } = useAppIntl();
     const { søker, deltakelsePeriode } = useDeltakerContext();
     const { startSøknad, navigateToStep } = useSøknadsflyt();
+    const { opprettMellomlagring, isPending } = useSøknadMellomlagring();
 
-    const handleStart = (harForståttRettigheterOgPlikter: true) => {
+    const handleStart = async (harForståttRettigheterOgPlikter: true) => {
         const førsteStegId = søknadStepOrder[0];
         startSøknad(førsteStegId, harForståttRettigheterOgPlikter);
+        await opprettMellomlagring();
         navigateToStep(førsteStegId);
     };
 
     return (
         <StartPage
             onStart={handleStart}
-            isPending={false}
+            isPending={isPending}
             guide={{
                 navn: søker.fornavn,
                 content: (

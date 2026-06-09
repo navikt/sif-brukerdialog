@@ -110,7 +110,7 @@ src/app/
 | `hooks/useSoknadState.ts`         | Ingen                                      |
 | `hooks/useStepDefaultValues.ts`   | Ingen                                      |
 | `hooks/useStepSubmit.ts`          | Ingen                                      |
-| `hooks/useAvbrytSoknad.ts`        | `navigate('/')` — destinasjon etter avbryt |
+| `hooks/useAvbrytSoknad.ts`        | Ingen — slett på server før reset av lokal state. Ingen `navigate` nødvendig (routing reagerer på store-endring). |
 | `hooks/index.ts`                  | Ingen                                      |
 | `soknad/SoknadFormButtons.tsx`    | Ingen                                      |
 | `soknad/AppForm.tsx`              | Ingen                                      |

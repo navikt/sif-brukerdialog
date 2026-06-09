@@ -1,1 +1,5 @@
+import { MellomlagringYtelse } from '@sif/api/k9-prosessering';
+
+export const APP_YTELSE = MellomlagringYtelse.UNGDOMSYTELSE;
+
 export const MELLOMLAGRING_VERSJON = '1.0.0';

@@ -1,8 +1,8 @@
 import { Theme } from '@navikt/ds-react';
-import { useRegistrerteBarn } from '@sif/api/k9-prosessering';
+import { useRegistrerteBarn, useYtelseMellomlagring } from '@sif/api/k9-prosessering';
 import { ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import { kontonummerFallback, useKontonummer } from '@sif/api/ung-deltaker';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { ApiErrorKey, useAnalyticsInstance } from '../../analytics/analytics';
@@ -12,6 +12,8 @@ import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
 import IngenSendSøknadOppgave from '../../pages/IngenSendSøknadOppgave';
 import UngLoadingPage from '../../pages/UngLoadingPage';
 import { AppRoutes } from '../../utils/AppRoutes';
+import { APP_YTELSE, MELLOMLAGRING_VERSJON } from './setup/constants';
+import { MellomlagringMetaData, SøknadMellomlagring } from './setup/types/Mellomlagring';
 import Søknad from './Søknad';
 
 const SøknadApp = () => {
@@ -23,6 +25,20 @@ const SøknadApp = () => {
     const { text } = useAppIntl();
     const { logApiError } = useAnalyticsInstance();
 
+    const mellomlagringMetadata = useMemo<MellomlagringMetaData | undefined>(() => {
+        if (!barn.isFetched || !barn.data) return undefined;
+        return {
+            MELLOMLAGRING_VERSJON,
+            søker,
+            barn: barn.data,
+        };
+    }, [barn.isFetched, barn.data, søker]);
+
+    const mellomlagring = useYtelseMellomlagring<SøknadMellomlagring, MellomlagringMetaData>(
+        APP_YTELSE,
+        mellomlagringMetadata,
+    );
+
     const { søktTidspunkt } = deltakelsePeriode;
     useEffect(() => {
         if (deltakelsePeriode.søktTidspunkt !== undefined && !pathname.includes('kvittering')) {
@@ -30,7 +46,7 @@ const SøknadApp = () => {
         }
     }, [søktTidspunkt, pathname]);
 
-    if (barn.isLoading || kontonummer.isLoading) {
+    if (barn.isLoading || kontonummer.isLoading || (mellomlagringMetadata && mellomlagring.isLoading)) {
         return <UngLoadingPage />;
     }
 
@@ -46,6 +62,8 @@ const SøknadApp = () => {
         return <IngenSendSøknadOppgave />;
     }
 
+    const mellomlagringData = mellomlagring.data ?? undefined;
+
     return (
         <Theme hasBackground={!__IS_VEILEDER_DEMO__}>
             <Søknad
@@ -53,6 +71,7 @@ const SøknadApp = () => {
                 barn={barn.data || []}
                 kontonummerInfo={kontonummer.data || kontonummerFallback}
                 søknadOppgave={søknadOppgave}
+                mellomlagring={mellomlagringData}
             />
         </Theme>
     );
