@@ -86,6 +86,7 @@ Old-format nøkler (f.eks. `barnSteg.validering.ikkeSvart`) beholdes om de bruke
 Når en app migreres til v2-oppsett (`@sif/soknad`, `@sif/rhf`), **skal v2-logikken og v2-mønstrene brukes konsekvent i alle deler av appen** — ikke bare i de delene som er direkte berørt av hvert enkelt migreringssteg.
 
 Dette gjelder:
+
 - Routing og navigasjon (`Søknad.tsx`, `SøknadApp.tsx`, render-guards, `useEffect`-navigasjon)
 - Steg-setup og kontekst (`SøknadContextProvider`, `useSøknadStore`, `useStepTitles`)
 - Skjemakomponenter og validering (`useSifValidate`, `AppForm`, `SøknadStep`, `createSifFormComponents`)
@@ -315,36 +316,45 @@ Gjør alle disse endringene i én operasjon med `multi_replace_string_in_file` f
 - Env-feil fra `getAppEnv()` fanges av `reactErrorHandler` (Sentry). Faro er utilgjengelig for env-feil siden `FaroProvider` er inne i `App` — dette er akseptabelt.
 - `enableMocking.ts` inneholder ENV-sjekker — MSW starter kun når `ENV === 'development'` og `import.meta.env.MODE === 'msw'`. Ikke fjern disse guardene.
 - **`sifSoknadUiMessages` må inkluderes i `applicationIntlMessages`**: `@sif/soknad-ui`-komponenter som `StepPage`, `FormLayout` og `FormLayout.FormButtons` har egne oversettelsesnøkler. Disse vises som råe nøkkelstrenger i UI hvis `sifSoknadUiMessages` ikke er spredt inn i `applicationIntlMessages` i `src/i18n/index.tsx`. Legg til dette umiddelbart etter at steg-komponenter er på plass:
-  ```ts
-  import { sifSoknadUiMessages } from '@sif/soknad-ui';
-  // ...
-  const nb = { ...sifSoknadUiMessages.nb, /* app-spesifikke nøkler */ };
-  const nn = { ...sifSoknadUiMessages.nn, /* app-spesifikke nøkler */ };
-  ```
+    ```ts
+    import { sifSoknadUiMessages } from '@sif/soknad-ui';
+    // ...
+    const nb = { ...sifSoknadUiMessages.nb /* app-spesifikke nøkler */ };
+    const nn = { ...sifSoknadUiMessages.nn /* app-spesifikke nøkler */ };
+    ```
 - **`VelkommenPage` skal bruke `StartPage` fra `@sif/soknad-ui/pages`**: `StartPage` håndterer GuidePanel, bekreftelsescheckbox og form-submit internt. Ikke importer `DefaultPageLayout`, `CheckboxGroup` eller `Button` manuelt. Mønster:
-  ```tsx
-  import { StartPage } from '@sif/soknad-ui/pages';
 
-  const handleStart = (harForståttRettigheterOgPlikter: true) => {
-      const førsteStegId = søknadStepOrder[0];
-      startSøknad(førsteStegId, harForståttRettigheterOgPlikter);
-      navigateToStep(førsteStegId);
-  };
+    ```tsx
+    import { StartPage } from '@sif/soknad-ui/pages';
 
-  return (
-      <StartPage onStart={handleStart} isPending={false} guide={{ navn: søker.fornavn, content: <></> }} title={text('søknad.tittel')}>
-          <></>  {/* children er påkrevd — bruk tom fragment hvis ingen innhold */}
-      </StartPage>
-  );
-  ```
-  Hvis appen har mellomlagring, bruk `isPending={isPending}` og `await opprettMellomlagring()` i `handleStart`. `StartPage` har `children` som påkrevd prop — send `<></>` hvis det ikke er noe innhold mellom guide og bekreftelsescheckbox.
-- **`useSøknadState()` kaster feil før store-initialisering**: I apper der søknaden er en del av en større app (ikke standalone), rendres noen sider — typisk `VelkommenPage` — *før* `useEffectOnce`-initialisering har kjørt. `useSøknadState()` kaster i dette tilfellet en `ErrorBoundary`-feil. Bruk i stedet en parent-context (f.eks. en `DeltakerContext` eller tilsvarende) som alltid er satt av forelderkomponenten. Mønster:
-  ```ts
-  // Feil — kaster feil hvis store ikke er initiert ennå:
-  const { søker } = useSøknadState();
-  // Riktig — bruker parent context som alltid er satt:
-  const { søker } = useDeltakerContext();
-  ```
+    const handleStart = (harForståttRettigheterOgPlikter: true) => {
+        const førsteStegId = søknadStepOrder[0];
+        startSøknad(førsteStegId, harForståttRettigheterOgPlikter);
+        navigateToStep(førsteStegId);
+    };
+
+    return (
+        <StartPage
+            onStart={handleStart}
+            isPending={false}
+            guide={{ navn: søker.fornavn, content: <></> }}
+            title={text('søknad.tittel')}>
+            <></> {/* children er påkrevd — bruk tom fragment hvis ingen innhold */}
+        </StartPage>
+    );
+    ```
+
+    Hvis appen har mellomlagring, bruk `isPending={isPending}` og `await opprettMellomlagring()` i `handleStart`. `StartPage` har `children` som påkrevd prop — send `<></>` hvis det ikke er noe innhold mellom guide og bekreftelsescheckbox.
+
+- **`useSøknadState()` kaster feil før store-initialisering**: I apper der søknaden er en del av en større app (ikke standalone), rendres noen sider — typisk `VelkommenPage` — _før_ `useEffectOnce`-initialisering har kjørt. `useSøknadState()` kaster i dette tilfellet en `ErrorBoundary`-feil. Bruk i stedet en parent-context (f.eks. en `DeltakerContext` eller tilsvarende) som alltid er satt av forelderkomponenten. Mønster:
+    ```ts
+    // Feil — kaster feil hvis store ikke er initiert ennå:
+    const { søker } = useSøknadState();
+    // Riktig — bruker parent context som alltid er satt:
+    const { søker } = useDeltakerContext();
+    ```
+- **Ikke eksponer `fortsett senere` uten reell mellomlagring**: `StepPage` kan vise en "fortsett senere"-handling når `onResumeLater` sendes inn. Hvis `useSøknadMellomlagring` foreløpig er en stub/no-op, skal `onResumeLater` ikke sendes videre. Ellers får brukeren inntrykk av at svar er lagret selv om de bare ligger i client state. Skjul handlingen til `lagreSøknad`, `slettMellomlagring` og eventuell `opprettMellomlagring` faktisk er koblet til API/mellomlagring.
+- **Invalidér alle cache-kilder som styrer routing etter innsending**: Etter vellykket innsending må `useSendSøknad` invalidere både oppgave-query og andre queries som brukes til å avgjøre om brukeren skal til søknad eller innsyn (f.eks. `deltakelseperioder`/`søktTidspunkt`). Ikke fjern eksisterende invalidation ved migrering uten å verifisere at den ikke lenger trengs. Spesielt ved `staleTime` og `refetchOnWindowFocus: false` kan stale data låse brukeren i feil flyt i samme sesjon.
 - `vite.config.ts` bruker en betinget Sentry-plugin som kun aktiveres når `SENTRY_AUTH_TOKEN` er satt. Sentry-build-advarsler er forventet lokalt uten token.
 - Data loading er delt i `useInitialData.ts` (hook med datalogikk) og `InitialDataLoader.tsx` (tynn komponent). Behold denne separasjonen når du tilpasser, og deleger detaljveiledning til `sif-initial-data-loader`.
 - Eksterne brukerlenker skal ikke eies av målappen etter migrering. Flytt dem til den delte lenkekilden i `@sif/soknad-ui/lenker`. Appen kan fortsatt beholde en tynn adapter som skjuler locale/env-oppslag og eksponerer et enklere API som `useLenker()` og `getLenke()`.
@@ -401,16 +411,16 @@ grep -rn "GammelKomponent\|GammelHook\|gammelUtil" src/ --include="*.tsx" --incl
 
 Typiske kandidater etter en v1→v2-migrering:
 
-| Fil/mappe | Hva det var |
-|---|---|
-| `SøknadRouter.tsx` / `SøknadContext.tsx` | Gammel context og routing |
-| `hooks/context/useSøknadContext.ts` | Gammel context-hook |
-| `hooks/utils/useSøknadNavigation.ts` | Gammel navigasjon |
-| `hooks/utils/useKontrollerOmStegErTilgjengelig.tsx` | Gammel steg-guard |
-| `utils/stegUtils.ts`, `utils/søknadRouteUtils.ts` | Gammelt routing-verktøy |
-| `types/index.ts` | Gamle søknad-typer |
-| `components/søknad-steg/`, `components/steg-skjema/` | Gammel steg-wrapper og footer |
-| `components/VelkommenMelding.tsx` | Erstattet av `guide.content` i `StartPage` |
+| Fil/mappe                                            | Hva det var                                |
+| ---------------------------------------------------- | ------------------------------------------ |
+| `SøknadRouter.tsx` / `SøknadContext.tsx`             | Gammel context og routing                  |
+| `hooks/context/useSøknadContext.ts`                  | Gammel context-hook                        |
+| `hooks/utils/useSøknadNavigation.ts`                 | Gammel navigasjon                          |
+| `hooks/utils/useKontrollerOmStegErTilgjengelig.tsx`  | Gammel steg-guard                          |
+| `utils/stegUtils.ts`, `utils/søknadRouteUtils.ts`    | Gammelt routing-verktøy                    |
+| `types/index.ts`                                     | Gamle søknad-typer                         |
+| `components/søknad-steg/`, `components/steg-skjema/` | Gammel steg-wrapper og footer              |
+| `components/VelkommenMelding.tsx`                    | Erstattet av `guide.content` i `StartPage` |
 
 Verifiser at ingen av de nye filene importerer disse før du sletter.
 
@@ -418,10 +428,12 @@ Verifiser at ingen av de nye filene importerer disse før du sletter.
 
 Etter migrering er Storybook-decoratorer og komponenter som er knyttet til v1-oppsett ugyldige:
 
-- `storybook/decorators/withSøknadContext.tsx` — slett; v2-steg bruker ikke gammel `SøknadContext`
+- `storybook/decorators/withSøknadContext.tsx` — erstatt gammel v1-provider med en v2-wrapper som initialiserer `useSøknadStore`, pakker stories i `SøknadContextProvider`, og eventuelt appens parent-context (f.eks. `DeltakerContextProvider`). Ikke behold gammel `SøknadProvider`.
 - `storybook/decorators/withFormikWrapper.tsx` og `storybook/components/StoryFormikWrapper.tsx` — slett; Formik er ikke lenger i bruk
 
-Sjekk om `withSøknadContext` brukes i eksisterende stories og erstatt med bare `withIntl`/`withRouter`/`withQueryClient`. Stories som trengte kontekst-data for å rendre meningsfull UI (f.eks. barn, kontonummer) trenger ny decorator basert på v2-mønsteret — dette kan gjøres etterpå, stories behøver ikke være komplette for at migreringen er ferdig.
+Sjekk om `withSøknadContext` brukes i eksisterende stories. Stories som trengte kontekst-data for å rendre meningsfull UI (f.eks. barn, kontonummer, kontoinfo, oppgaver eller søknadsdata) skal fortsatt ha tilsvarende v2-storydata. Ikke reduser flere scenario-stories til én `Default` uten eksplisitt avklaring — migrer variantene, spesielt der de dekker betinget tekst, alerts eller summary-logikk.
+
+Når v2-storywrapperen bruker hooks som leser i18n (f.eks. `useStepTitles()` eller `useAppIntl()`), må wrapperen selv ligge under `StoryIntlProvider`/`IntlProvider`. Ikke stol på Storybooks decorator-rekkefølge alene; ellers kan stories feile med `React Intl: Could not find required intl object` selv om `withIntl` står i decorators-listen.
 
 ### Fjern ubrukte avhengigheter fra `package.json`
 
