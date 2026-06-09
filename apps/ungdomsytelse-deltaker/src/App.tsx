@@ -1,12 +1,11 @@
 import '@navikt/ds-css';
 import './app.css';
 
-import { SanityConfig } from '@navikt/appstatus-react-ds';
+import { AppStatusWrapper, SanityConfig } from '@navikt/appstatus-react-ds';
 import { BodyShort } from '@navikt/ds-react';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
 import { UxSignalsLoaderProvider } from '@sif/surveys';
-import AppStatusWrapper from '@navikt/sif-common-core-ds/src/components/app-status-wrapper/AppStatusWrapper';
 import { EnvKey } from '@navikt/sif-common-env';
 import { FaroProvider } from '@navikt/sif-common-faro';
 import { DevBranchInfo, SifGuidePanel } from '@sif/soknad-ui';

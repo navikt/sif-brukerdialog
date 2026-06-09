@@ -1,3 +1,4 @@
+export { AppStatusWrapper } from './components/app-status-wrapper/AppStatusWrapper';
 export { SanityAppStatus } from './components/sanity-app-status/SanityAppStatus';
 export { type SanityAppStatusProps } from './components/sanity-app-status/SanityAppStatus';
 export { default as StatusMessage } from './components/status-message/StatusMessage';
