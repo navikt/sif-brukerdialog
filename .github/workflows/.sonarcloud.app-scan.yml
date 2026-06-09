@@ -20,7 +20,7 @@ jobs:
             contents: read # required: actions/checkout
             id-token: none
         steps:
-            - uses: actions/checkout@v6.0.2
+            - uses: actions/checkout@v6.0.3
               with:
                   fetch-depth: 0
 
