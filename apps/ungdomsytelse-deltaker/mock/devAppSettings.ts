@@ -13,6 +13,7 @@ export const getDevAppSettings = (): AppEnv => ({
     SIF_PUBLIC_LOGIN_URL: '#',
     SIF_PUBLIC_MINSIDE_URL: '#',
     SIF_PUBLIC_USE_ANALYTICS: 'true',
+    SIF_PUBLIC_USE_MELLOMLAGRING: 'false',
     SIF_PUBLIC_USE_FARO: 'true',
     SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL: '#',
 

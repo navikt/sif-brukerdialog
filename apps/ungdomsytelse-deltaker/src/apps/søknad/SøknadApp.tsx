@@ -14,6 +14,7 @@ import UngLoadingPage from '../../pages/UngLoadingPage';
 import { AppRoutes } from '../../utils/AppRoutes';
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from './setup/constants';
 import { MellomlagringMetaData, SøknadMellomlagring } from './setup/types/Mellomlagring';
+import { Features } from '../../utils/Features';
 import Søknad from './Søknad';
 
 const SøknadApp = () => {
@@ -26,6 +27,7 @@ const SøknadApp = () => {
     const { logApiError } = useAnalyticsInstance();
 
     const mellomlagringMetadata = useMemo<MellomlagringMetaData | undefined>(() => {
+        if (!Features.useMellomlagring) return undefined;
         if (!barn.isFetched || !barn.data) return undefined;
         return {
             MELLOMLAGRING_VERSJON,

@@ -4,6 +4,7 @@ import { useSøknadFormValues } from '@sif/soknad/consistency';
 import { SøknadFormValues, StepFormValues } from '@sif/soknad/types';
 import { useMemo } from 'react';
 
+import { Features } from '../../../../utils/Features';
 import { SøknadStepId } from '../config/SøknadStepId';
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '../constants';
 import { MellomlagringMetaData, SøknadMellomlagring } from '../types/Mellomlagring';
@@ -14,6 +15,7 @@ export const useSøknadMellomlagring = () => {
     const { søknadFormValues } = useSøknadFormValues();
 
     const metadata = useMemo<MellomlagringMetaData | undefined>(() => {
+        if (!Features.useMellomlagring) return undefined;
         if (!søknadState) return undefined;
         return {
             MELLOMLAGRING_VERSJON,
@@ -85,6 +87,17 @@ export const useSøknadMellomlagring = () => {
             }
         }
     };
+
+    if (!Features.useMellomlagring) {
+        return {
+            lagreSøknad: async () => {},
+            opprettMellomlagring: async () => {},
+            lagreSøknadOgSkjemadata: async () => {},
+            lagreSøknadSteg: async () => {},
+            slettMellomlagring: async () => {},
+            isPending: false,
+        };
+    }
 
     return {
         lagreSøknad,
