@@ -2,7 +2,7 @@
 
 import * as z from 'zod';
 
-import type { Client, Options as Options2, TDataShape } from './client';
+import type { Client, Options as Options2, RequestResult, TDataShape } from './client';
 import { client } from './client.gen';
 import type {
     HentAktiveOpplæringsinstitusjonerData,
@@ -43,7 +43,7 @@ export type Options<
 export class K9SakController {
     public static hentSisteGyldigeVedtakForAktorId<ThrowOnError extends boolean = true>(
         options: Options<HentSisteGyldigeVedtakForAktorIdData, ThrowOnError>,
-    ) {
+    ): RequestResult<HentSisteGyldigeVedtakForAktorIdResponses, HentSisteGyldigeVedtakForAktorIdErrors, ThrowOnError> {
         return (options.client ?? client).post<
             HentSisteGyldigeVedtakForAktorIdResponses,
             HentSisteGyldigeVedtakForAktorIdErrors,
@@ -60,8 +60,16 @@ export class K9SakController {
             responseType: 'json',
             responseValidator: async (data) => await zHentSisteGyldigeVedtakForAktorIdResponse2.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/k9sak/omsorgsdager-kronisk-sykt-barn/har-gyldig-vedtak',
             ...options,
@@ -74,7 +82,7 @@ export class K9SakController {
 
     public static hentOpplæringsinstitusjoner<ThrowOnError extends boolean = true>(
         options?: Options<HentOpplæringsinstitusjonerData, ThrowOnError>,
-    ) {
+    ): RequestResult<HentOpplæringsinstitusjonerResponses, HentOpplæringsinstitusjonerErrors, ThrowOnError> {
         return (options?.client ?? client).get<
             HentOpplæringsinstitusjonerResponses,
             HentOpplæringsinstitusjonerErrors,
@@ -91,8 +99,16 @@ export class K9SakController {
             responseType: 'json',
             responseValidator: async (data) => await zHentOpplæringsinstitusjonerResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/k9sak/opplaringsinstitusjoner',
             ...options,
@@ -101,7 +117,11 @@ export class K9SakController {
 
     public static hentAktiveOpplæringsinstitusjoner<ThrowOnError extends boolean = true>(
         options?: Options<HentAktiveOpplæringsinstitusjonerData, ThrowOnError>,
-    ) {
+    ): RequestResult<
+        HentAktiveOpplæringsinstitusjonerResponses,
+        HentAktiveOpplæringsinstitusjonerErrors,
+        ThrowOnError
+    > {
         return (options?.client ?? client).get<
             HentAktiveOpplæringsinstitusjonerResponses,
             HentAktiveOpplæringsinstitusjonerErrors,
@@ -118,8 +138,16 @@ export class K9SakController {
             responseType: 'json',
             responseValidator: async (data) => await zHentAktiveOpplæringsinstitusjonerResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/k9sak/opplaringsinstitusjoner/aktive',
             ...options,
