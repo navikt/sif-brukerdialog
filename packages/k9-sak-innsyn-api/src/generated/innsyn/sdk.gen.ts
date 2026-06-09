@@ -2,7 +2,7 @@
 
 import * as z from 'zod';
 
-import type { Client, Options as Options2, TDataShape } from './client';
+import type { Client, Options as Options2, RequestResult, TDataShape } from './client';
 import { client } from './client.gen';
 import type {
     HentDokumentData,
@@ -66,7 +66,9 @@ export type Options<
 };
 
 export class DokumentController {
-    public static hentDokument<ThrowOnError extends boolean = true>(options: Options<HentDokumentData, ThrowOnError>) {
+    public static hentDokument<ThrowOnError extends boolean = true>(
+        options: Options<HentDokumentData, ThrowOnError>,
+    ): RequestResult<HentDokumentResponses, HentDokumentErrors, ThrowOnError> {
         return (options.client ?? client).get<HentDokumentResponses, HentDokumentErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -79,8 +81,16 @@ export class DokumentController {
             responseType: 'blob',
             responseValidator: async (data) => await zHentDokumentResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/dokument/{journalpostId}/{dokumentInfoId}/{variantFormat}',
             ...options,
@@ -92,7 +102,9 @@ export class SakController {
     /**
      * Henter saken registrert på pleietrengende som bruker har omsorgen for
      */
-    public static hentSak<ThrowOnError extends boolean = true>(options: Options<HentSakData, ThrowOnError>) {
+    public static hentSak<ThrowOnError extends boolean = true>(
+        options: Options<HentSakData, ThrowOnError>,
+    ): RequestResult<HentSakResponses, HentSakErrors, ThrowOnError> {
         return (options.client ?? client).get<HentSakResponses, HentSakErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -105,8 +117,16 @@ export class SakController {
             responseType: 'json',
             responseValidator: async (data) => await zHentSakResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/sak/{saksnummer}',
             ...options,
@@ -118,7 +138,7 @@ export class SakController {
      */
     public static hentMineSaker<ThrowOnError extends boolean = true>(
         options?: Options<HentMineSakerData, ThrowOnError>,
-    ) {
+    ): RequestResult<HentMineSakerResponses, HentMineSakerErrors, ThrowOnError> {
         return (options?.client ?? client).get<HentMineSakerResponses, HentMineSakerErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -131,8 +151,16 @@ export class SakController {
             responseType: 'json',
             responseValidator: async (data) => await zHentMineSakerResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/saker',
             ...options,
@@ -144,7 +172,7 @@ export class SakController {
      */
     public static hentSakerMetadata<ThrowOnError extends boolean = true>(
         options?: Options<HentSakerMetadataData, ThrowOnError>,
-    ) {
+    ): RequestResult<HentSakerMetadataResponses, HentSakerMetadataErrors, ThrowOnError> {
         return (options?.client ?? client).get<HentSakerMetadataResponses, HentSakerMetadataErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -157,8 +185,16 @@ export class SakController {
             responseType: 'json',
             responseValidator: async (data) => await zHentSakerMetadataResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/saker/metadata',
             ...options,
@@ -167,7 +203,7 @@ export class SakController {
 
     public static hentSaksbehandlingstid<ThrowOnError extends boolean = true>(
         options?: Options<HentSaksbehandlingstidData, ThrowOnError>,
-    ) {
+    ): RequestResult<HentSaksbehandlingstidResponses, HentSaksbehandlingstidErrors, ThrowOnError> {
         return (options?.client ?? client).get<
             HentSaksbehandlingstidResponses,
             HentSaksbehandlingstidErrors,
@@ -184,8 +220,16 @@ export class SakController {
             responseType: 'json',
             responseValidator: async (data) => await zHentSaksbehandlingstidResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/saker/saksbehandlingstid',
             ...options,
@@ -196,7 +240,7 @@ export class SakController {
 export class SakInntektsmeldingerController {
     public static hentInntektsmeldingerPåSak<ThrowOnError extends boolean = true>(
         options: Options<HentInntektsmeldingerPåSakData, ThrowOnError>,
-    ) {
+    ): RequestResult<HentInntektsmeldingerPåSakResponses, HentInntektsmeldingerPåSakErrors, ThrowOnError> {
         return (options.client ?? client).get<
             HentInntektsmeldingerPåSakResponses,
             HentInntektsmeldingerPåSakErrors,
@@ -212,8 +256,16 @@ export class SakInntektsmeldingerController {
                     .parseAsync(data),
             responseValidator: async (data) => await zHentInntektsmeldingerPåSakResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/sak/{saksnummer}/inntektsmeldinger',
             ...options,
@@ -222,7 +274,9 @@ export class SakInntektsmeldingerController {
 }
 
 export class SØknadController {
-    public static hentSøknader<ThrowOnError extends boolean = true>(options?: Options<HentSøknaderData, ThrowOnError>) {
+    public static hentSøknader<ThrowOnError extends boolean = true>(
+        options?: Options<HentSøknaderData, ThrowOnError>,
+    ): RequestResult<HentSøknaderResponses, HentSøknaderErrors, ThrowOnError> {
         return (options?.client ?? client).get<HentSøknaderResponses, HentSøknaderErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -235,8 +289,16 @@ export class SØknadController {
             responseType: 'json',
             responseValidator: async (data) => await zHentSøknaderResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/soknad',
             ...options,
@@ -245,7 +307,7 @@ export class SØknadController {
 
     public static lastNedArbeidsgivermelding<ThrowOnError extends boolean = true>(
         options: Options<LastNedArbeidsgivermeldingData, ThrowOnError>,
-    ) {
+    ): RequestResult<LastNedArbeidsgivermeldingResponses, LastNedArbeidsgivermeldingErrors, ThrowOnError> {
         return (options.client ?? client).get<
             LastNedArbeidsgivermeldingResponses,
             LastNedArbeidsgivermeldingErrors,
@@ -262,8 +324,16 @@ export class SØknadController {
             responseType: 'blob',
             responseValidator: async (data) => await zLastNedArbeidsgivermeldingResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/soknad/{søknadId}/arbeidsgivermelding',
             ...options,
