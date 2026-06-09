@@ -31,14 +31,14 @@
         "@navikt/ung-brukerdialog-api": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
         "@tanstack/react-query": "5.101.0",
-        "axios": "1.16.1",
+        "axios": "1.17.0",
         "dayjs": "1.11.21",
         "object-hash": "3.0.0",
         "uuid": "14.0.0"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/react": "19.2.16",
+        "@types/react": "19.2.17",
         "react": "19.2.7",
         "typescript": "6.0.3",
         "zod": "4.4.3"

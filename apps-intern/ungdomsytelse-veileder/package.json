@@ -8,6 +8,7 @@
     "type": "module",
     "scripts": {
         "build": "vite build --base=/",
+        "build-storybook": "storybook build",
         "check:types": "tsc --noemit",
         "clean": "rm -rf node_modules dist",
         "demo:build": "run-s demo:build-app demo:copy-app-files",
@@ -28,7 +29,6 @@
         "pw:run": "playwright test",
         "pw:start": "vite preview --base /sif-brukerdialog/ungdomsytelse-veileder/ --outDir dist-playwright --config vite.playwright.config.ts",
         "storybook": "storybook dev -p 6006",
-        "build-storybook": "storybook build",
         "test": "vitest run"
     },
     "eslintConfig": {
@@ -57,7 +57,7 @@
         "@navikt/ung-common": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-veileder": "workspace:*",
         "@tanstack/react-query": "5.101.0",
-        "axios": "1.16.1",
+        "axios": "1.17.0",
         "clsx": "2.1.1",
         "constate": "4.0.0",
         "csp-header": "6.3.1",
@@ -83,8 +83,8 @@
         "@storybook/react-vite": "10.4.2",
         "@tailwindcss/postcss": "4.3.0",
         "@tailwindcss/vite": "4.3.0",
-        "@types/node": "25.9.1",
-        "@types/react": "19.2.16",
+        "@types/node": "25.9.2",
+        "@types/react": "19.2.17",
         "@types/react-dom": "19.2.3",
         "@typescript-eslint/parser": "8.60.1",
         "@vitejs/plugin-react": "6.0.2",
