@@ -111,14 +111,16 @@ export const StartPage = ({ title, guide, children, onStart, isPending }: Props)
                                     </ErrorSummary>
                                 </div>
                             )}
-                            <Button
-                                type="submit"
-                                loading={isPending}
-                                disabled={isPending}
-                                icon={<ArrowRightIcon />}
-                                iconPosition="right">
-                                <SifSoknadUiText id="@sifSoknadUi.startPage.submitButton" />
-                            </Button>
+                            <div>
+                                <Button
+                                    type="submit"
+                                    loading={isPending}
+                                    disabled={isPending}
+                                    icon={<ArrowRightIcon />}
+                                    iconPosition="right">
+                                    <SifSoknadUiText id="@sifSoknadUi.startPage.submitButton" />
+                                </Button>
+                            </div>
                         </VStack>
                     </form>
                 </section>
