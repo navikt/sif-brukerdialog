@@ -4,7 +4,7 @@ import { ApplicationPage } from '@sif/soknad-ui/pages';
 interface Props {
     pageTitle?: string;
     bannerTitle: string;
-    children?: React.ReactNode;
+    children: React.ReactNode;
 }
 const ErrorPage = ({ children, pageTitle, bannerTitle }: Props) => {
     return (
