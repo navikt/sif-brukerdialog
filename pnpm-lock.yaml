@@ -3606,9 +3606,6 @@ importers:
       '@navikt/sif-common-sentry':
         specifier: workspace:*
         version: link:../../packages/sif-common-sentry
-      '@navikt/sif-common-soknad-ds':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-soknad-ds
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../../packages/sif-common-ui

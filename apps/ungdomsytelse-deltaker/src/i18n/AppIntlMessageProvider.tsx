@@ -1,5 +1,4 @@
-import { decoratorLocaleUtils } from '@sif/soknad-ui';
-import useDecoratorLanguageSelector from '@navikt/sif-common-soknad-ds/src/hooks/useDecoratorLanguageSelector';
+import { decoratorLocaleUtils, useDecoratorLanguageSelector } from '@sif/soknad-ui';
 import { useState } from 'react';
 import { IntlProvider } from 'react-intl';
 

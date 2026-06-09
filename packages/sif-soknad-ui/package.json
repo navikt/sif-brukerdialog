@@ -10,9 +10,12 @@
     "exports": {
         ".": "./src/index.ts",
         "./components": "./src/components/index.ts",
+        "./hooks": "./src/hooks/index.ts",
         "./lenker": "./src/lenker/index.ts",
         "./i18n": "./src/i18n/index.tsx",
-        "./pages": "./src/pages/index.ts"
+        "./pages": "./src/pages/index.ts",
+        "./styles/sif-ds-theme.css": "./src/styles/sif-ds-theme.css",
+        "./utils": "./src/utils/index.ts"
     },
     "main": "src/index.ts",
     "types": "src/index.ts",
