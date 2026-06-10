@@ -18,5 +18,3 @@ export const getAppEnv = (): AppEnv => ({
         AppEnvKey.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL,
     ),
 });
-
-export const appEnv = getAppEnv();

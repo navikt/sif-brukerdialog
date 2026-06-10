@@ -19,8 +19,8 @@ export const StepFooter = ({ onDelete, onResumeLater }: StepFooterProps) => {
             borderWidth="1 0 0 0"
             style={{ borderStyle: 'dashed' }}>
             <HStack gap="space-16">
-                <ResumeLagerDialogAndTrigger onResumeLater={onResumeLater} />
-                <DeleteDialogAndTrigger onDelete={onDelete} />
+                {onResumeLater && <ResumeLagerDialogAndTrigger onResumeLater={onResumeLater} />}
+                {onDelete && <DeleteDialogAndTrigger onDelete={onDelete} />}
             </HStack>
         </Box>
     );

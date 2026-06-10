@@ -22,7 +22,10 @@ const ForsidePageLayout = ({ children, documentTitle, footer }: Props) => {
                 <VStack gap="space-40">{children}</VStack>
             </PageContentWrapper>
             {footer && (
-                <Box className="bg-[#FFEBC7]" marginBlock={{ sm: "space-32 space-0", xs: "space-12 space-0" }} paddingBlock={{ sm: "space-32 space-0" }}>
+                <Box
+                    className="bg-[#FFEBC7]"
+                    marginBlock={{ sm: 'space-32 space-0', xs: 'space-12 space-0' }}
+                    paddingBlock={{ sm: 'space-32 space-0' }}>
                     <PageContentWrapper>{footer}</PageContentWrapper>
                 </Box>
             )}

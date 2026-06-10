@@ -4,7 +4,7 @@ export const DemoInformasjon = () => {
     return (
         <Theme hasBackground={false}>
             <VStack gap="space-40">
-                <div className="max-w-[704px] mx-auto">
+                <div className="max-w-176 mx-auto">
                     <GlobalAlert status="announcement">
                         <GlobalAlert.Header>
                             <GlobalAlert.Title>Demo</GlobalAlert.Title>

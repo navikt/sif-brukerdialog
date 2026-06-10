@@ -6,7 +6,7 @@ interface Props {
 }
 
 const PageContentWrapper = ({ children }: Props) => (
-    <Box paddingBlock="space-40" className="mx-auto max-w-176">
+    <Box paddingBlock="space-40" marginInline="auto" maxWidth="704px">
         {children}
     </Box>
 );

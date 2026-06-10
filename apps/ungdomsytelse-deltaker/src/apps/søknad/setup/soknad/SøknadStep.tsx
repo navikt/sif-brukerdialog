@@ -12,6 +12,7 @@ import { useSøknadsflyt } from '../context/søknadContext';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
 import { useSøknadMellomlagring } from '../hooks/useSøknadMellomlagring';
 import { useStepTitles } from '../hooks/useStepTitles';
+import { Features } from '../../../../utils/Features';
 
 interface Props {
     stepId: SøknadStepId;
@@ -41,7 +42,7 @@ export const SøknadStep = ({ stepId, children }: Props) => {
             steps={getProgressSteps(søknadsflyt.includedSteps, stepTitles)}
             onStepSelect={søknadsflyt.navigateToStep}
             onAbort={avbrytSøknad}
-            onResumeLater={fortsettSenere}>
+            onResumeLater={Features.useMellomlagring ? fortsettSenere : undefined}>
             {inconsistentStepId ? (
                 <Box marginBlock="space-0 space-32">
                     <InconsistentFormValuesMessage

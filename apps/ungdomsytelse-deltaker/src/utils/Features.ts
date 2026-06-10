@@ -1,5 +1,5 @@
-import { appEnv } from './appEnv';
+import { getAppEnv } from './appEnv';
 
 export const Features = {
-    useMellomlagring: appEnv.SIF_PUBLIC_USE_MELLOMLAGRING === 'true',
+    useMellomlagring: getAppEnv().SIF_PUBLIC_USE_MELLOMLAGRING === 'true',
 };
