@@ -42,6 +42,7 @@ export function AppForm<T extends StepFormValues>({
                 <FormLayout.FormButtons
                     submitPending={isPending}
                     submitDisabled={submitIsDisabled}
+                    previousDisabled={isPending}
                     onPrevious={onPrevious}
                     isFinalSubmit={isFinalSubmit}
                     submitLabel={submitLabel}

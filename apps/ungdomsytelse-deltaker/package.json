@@ -59,6 +59,7 @@
         "@sif/surveys": "workspace:*",
         "@sif/ung-innsyn": "workspace:*",
         "@tanstack/react-query": "5.101.0",
+        "@types/object-hash": "3.0.6",
         "axios": "1.17.0",
         "clsx": "2.1.1",
         "constate": "4.0.0",

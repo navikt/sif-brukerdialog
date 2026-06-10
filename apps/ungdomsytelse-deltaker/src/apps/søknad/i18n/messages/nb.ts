@@ -127,10 +127,10 @@ export const ungSoknadMessages_nb = {
     'oppsummeringSteg.kontonummer.kontonummerInfoMangler.tekst':
         'Vi klarer ikke se om du har registrert kontonummer hos oss.',
     'oppsummeringSteg.barn.tittel': 'Barn',
-    'oppsummeringSteg.bekreft.hiddenLegend': 'Bekreft opplysninger',
-    'oppsummeringSteg.bekreft.tekst':
+    'oppsummeringSteg.bekrefterOpplysninger.label':
         'Jeg bekrefter at opplysningene over er riktige og at jeg ønsker søke om ungdoms\u00ADprogram\u00ADytelsen.',
-    'oppsummeringSteg.bekreft.validering.bekreftIkkeValgt': 'Du må bekrefte at opplysningene er riktige',
-    'oppsummeringSteg.søknadIkkeGyldig':
+    'oppsummeringSteg.feil.tittel': 'Søknaden kan ikke sendes inn',
+    'oppsummeringSteg.feil.innhold':
         'Det mangler opplysninger i søknaden din. Vennligst gå tilbake og fyll ut de nødvendige feltene.',
+    'oppsummeringForm.validation.bekrefterOpplysninger.notChecked': 'Du må bekrefte at opplysningene er riktige',
 };

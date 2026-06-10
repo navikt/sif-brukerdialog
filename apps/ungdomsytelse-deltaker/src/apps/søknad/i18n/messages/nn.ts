@@ -133,10 +133,10 @@ export const ungSoknadMessages_nn: typeof ungSoknadMessages_nb = {
     'oppsummeringSteg.kontonummer.kontonummerInfoMangler.tekst':
         'Vi klarer ikkje sjå om du har registrert kontonummer hos oss.',
     'oppsummeringSteg.barn.tittel': 'Barn',
-    'oppsummeringSteg.bekreft.hiddenLegend': 'Stadfest opplysningar',
-    'oppsummeringSteg.bekreft.tekst':
+    'oppsummeringSteg.bekrefterOpplysninger.label':
         'Eg stadfestar at opplysningane over er riktige og at eg ønskjer å søkje om ungdoms\u00ADprogram\u00ADytelsen.',
-    'oppsummeringSteg.bekreft.validering.bekreftIkkeValgt': 'Du må stadfeste at opplysningane er riktige',
-    'oppsummeringSteg.søknadIkkeGyldig':
+    'oppsummeringSteg.feil.tittel': 'Søknaden kan ikkje sendast inn',
+    'oppsummeringSteg.feil.innhold':
         'Det manglar opplysningar i søknaden din. Gå tilbake og fyll ut dei nødvendige felta.',
+    'oppsummeringForm.validation.bekrefterOpplysninger.notChecked': 'Du må stadfeste at opplysningane er riktige',
 };

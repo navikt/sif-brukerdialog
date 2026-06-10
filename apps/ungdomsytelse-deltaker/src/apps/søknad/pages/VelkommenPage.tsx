@@ -10,15 +10,18 @@ import BehandlingAvPersonopplysningerContent from '../components/BehandlingAvPer
 import { søknadStepOrder } from '../setup/config/søknadStepConfig';
 import { useSøknadsflyt } from '../setup/context/søknadContext';
 import { useSøknadMellomlagring } from '../setup/hooks/useSøknadMellomlagring';
+import { useAnalyticsInstance } from '../../../analytics/analytics';
 
 const VelkommenPage = () => {
     const { text } = useAppIntl();
     const { søker, deltakelsePeriode } = useDeltakerContext();
     const { startSøknad, navigateToStep } = useSøknadsflyt();
     const { opprettMellomlagring, isPending } = useSøknadMellomlagring();
+    const { logSkjemaStartet } = useAnalyticsInstance();
 
     const handleStart = async (harForståttRettigheterOgPlikter: true) => {
         const førsteStegId = søknadStepOrder[0];
+        logSkjemaStartet(førsteStegId);
         startSøknad(førsteStegId, harForståttRettigheterOgPlikter);
         await opprettMellomlagring();
         navigateToStep(førsteStegId);
