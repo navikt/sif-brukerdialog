@@ -175,13 +175,15 @@ const legeerklæring = state.søknadsdata[SøknadStepId.LEGEERKLÆRING]?.vedlegg
 
 DTO-feltene inneholder backend-URLer (strenger). Lenkelista trenger `name`, `url` og gjerne `size`, og må derfor bruke `PersistedVedlegg[]` fra søknadsdata. `PersistedVedlegg` importeres fra `@sif/soknad-forms`.
 
-### Feil-tilstand
+### Feil-tilstand og consistency-sjekk
 
 Hvis DTO ikke kan bygges (`dto === undefined`), vis `LocalAlert status="error"` og disable submit:
 
 ```tsx
 submitDisabled={!dto}
 ```
+
+**Viktig:** `AppForm` sjekker consistency automatisk via `checkConsistency` i `useSøknadsflyt()`. `submitDisabled` kombineres med `||` (ikke `??`), slik at submit blokkeres dersom *enten* `submitDisabled` er `true` *eller* consistency-sjekken feiler. Du skal **ikke** sjekke consistency manuelt i OppsummeringSteg — det håndteres av `AppForm`.
 
 ```tsx
 {

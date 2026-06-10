@@ -36,7 +36,8 @@ export function AppForm<T extends StepFormValues>({
 
     const canGoPrevious = søknadsflyt.canGoPrevious(stepId);
     const onPrevious = canGoPrevious ? () => søknadsflyt.navigateToPreviousStep(stepId) : undefined;
-    const submitIsDisabled = submitDisabled ?? søknadsflyt.checkConsistency(stepId) !== undefined;
+    const isConsistencyInvalid = søknadsflyt.checkConsistency(stepId) !== undefined;
+    const submitIsDisabled = submitDisabled || isConsistencyInvalid;
 
     return (
         <SifForm

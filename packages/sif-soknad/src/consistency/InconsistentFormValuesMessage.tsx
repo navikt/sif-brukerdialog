@@ -1,4 +1,5 @@
 import { Box, Link, LocalAlert } from '@navikt/ds-react';
+import { useEffect, useRef } from 'react';
 
 interface Props {
     /** StepId som har ugyldige/ulagrede endringer */
@@ -24,6 +25,12 @@ export const InconsistentFormValuesMessage = ({
     heading = 'Oops, dette stemmer ikke helt',
     description,
 }: Props) => {
+    const ref = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        ref.current?.focus();
+    }, []);
+
     if (!stepId) {
         return null;
     }
@@ -38,7 +45,7 @@ export const InconsistentFormValuesMessage = ({
 
     return (
         <Box marginBlock="space-8">
-            <LocalAlert status="warning">
+            <LocalAlert ref={ref} status="warning" tabIndex={-1}>
                 <LocalAlert.Header>
                     <LocalAlert.Title>{heading}</LocalAlert.Title>
                 </LocalAlert.Header>
