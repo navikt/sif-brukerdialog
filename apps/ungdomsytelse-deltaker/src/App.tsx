@@ -2,7 +2,7 @@ import '@navikt/ds-css';
 import './app.css';
 
 import { AppStatusWrapper, SanityConfig } from '@navikt/appstatus-react-ds';
-import { BodyShort } from '@navikt/ds-react';
+import { BodyShort, Box } from '@navikt/ds-react';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
 import { UxSignalsLoaderProvider } from '@sif/surveys';
@@ -82,10 +82,12 @@ function App() {
                         unavailableContentRenderer={() => (
                             <ErrorPage bannerTitle="Ungdomsprogramytelsen" pageTitle="Vi utfører vedlikehold">
                                 <SifGuidePanel mood="happy" title="Vi utfører vedlikehold" poster={true}>
-                                    <BodyShort className="pt-4" size="large">
-                                        Sidene for ungdomsprogramytelsen er midlertidig utilgjengelige. Vi regner med å
-                                        være ferdige snart, så prøv gjerne igjen om en liten stund.
-                                    </BodyShort>
+                                    <Box marginBlock="space-8 space-0">
+                                        <BodyShort size="large">
+                                            Sidene for ungdomsprogramytelsen er midlertidig utilgjengelige. Vi regner
+                                            med å være ferdige snart, så prøv gjerne igjen om en liten stund.
+                                        </BodyShort>
+                                    </Box>
                                 </SifGuidePanel>
                             </ErrorPage>
                         )}
