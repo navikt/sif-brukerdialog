@@ -11,6 +11,7 @@ import { useSøknadState } from '../../setup/hooks/useSøknadState';
 import { AppForm } from '../../setup/soknad/AppForm';
 import { SøknadStep } from '../../setup/soknad/SøknadStep';
 import { HarKontonummerEnum } from '../oppsummering/oppsummeringUtils';
+import { toKontonummerFormValues, toKontonummerSøknadsdata } from './kontonummerStegUtils';
 import { KontonummerFormFields, KontonummerFormValues } from './types';
 
 const { YesOrNoQuestion } = createSifFormComponents<KontonummerFormValues>();
@@ -22,13 +23,13 @@ const KontonummerSteg = () => {
     const { validateField } = useSifValidate('kontonummerSteg');
     const { kontoInfo } = useSøknadState();
 
-    const defaultValues = useStepDefaultValues<KontonummerFormValues, { kontonummerErRiktig: YesOrNo | undefined }>({
+    const defaultValues = useStepDefaultValues({
         stepId,
-        toFormValues: (s) => ({ kontonummerErRiktig: s?.kontonummerErRiktig }),
+        toFormValues: toKontonummerFormValues,
     });
-    const { onSubmit, isPending } = useStepSubmit<KontonummerFormValues, { kontonummerErRiktig: YesOrNo | undefined }>({
+    const { onSubmit, isPending } = useStepSubmit({
         stepId,
-        toSøknadsdata: (values) => ({ kontonummerErRiktig: values.kontonummerErRiktig }),
+        toSøknadsdata: toKontonummerSøknadsdata,
     });
     const methods = useSøknadRhfForm(stepId, defaultValues);
     const kontonummerErRiktig = methods.watch(KontonummerFormFields.kontonummerErRiktig);

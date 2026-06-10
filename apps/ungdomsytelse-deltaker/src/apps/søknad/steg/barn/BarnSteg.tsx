@@ -11,6 +11,7 @@ import { useSøknadState } from '../../setup/hooks/useSøknadState';
 import { AppForm } from '../../setup/soknad/AppForm';
 import { SøknadStep } from '../../setup/soknad/SøknadStep';
 import BarnInfo from './BarnInfo';
+import { toBarnFormValues, toBarnSøknadsdata } from './barnStegUtils';
 import { BarnFormFields, BarnFormValues } from './types';
 
 const { YesOrNoQuestion } = createSifFormComponents<BarnFormValues>();
@@ -22,13 +23,13 @@ const BarnSteg = () => {
     const { validateField } = useSifValidate('barnSteg');
     const { barn } = useSøknadState();
 
-    const defaultValues = useStepDefaultValues<BarnFormValues, { barnStemmer: YesOrNo }>({
+    const defaultValues = useStepDefaultValues({
         stepId,
-        toFormValues: (s) => ({ barnStemmer: s?.barnStemmer }),
+        toFormValues: toBarnFormValues,
     });
-    const { onSubmit, isPending } = useStepSubmit<BarnFormValues, { barnStemmer: YesOrNo }>({
+    const { onSubmit, isPending } = useStepSubmit({
         stepId,
-        toSøknadsdata: (values) => ({ barnStemmer: values.barnStemmer! }),
+        toSøknadsdata: toBarnSøknadsdata,
     });
     const methods = useSøknadRhfForm(stepId, defaultValues);
     const barnStemmer = methods.watch(BarnFormFields.barnStemmer);
