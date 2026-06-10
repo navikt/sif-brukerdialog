@@ -62,8 +62,9 @@ export const checkConsistencyForSteps = <TStepId extends string>({
 
         const søknadsdata = getSøknadsdataForStep(stepId);
         const converted = formValuesToSøknadsdata(stepId, stepFormValues);
+        const convertedForStep = converted ? (converted as Record<string, unknown>)[stepId] : undefined;
 
-        if (!søknadsdata || !isEqualNormalized(converted, søknadsdata)) {
+        if (!isEqualNormalized(convertedForStep, søknadsdata)) {
             return stepId;
         }
     }
