@@ -1,8 +1,7 @@
 import { useDocumentTitle } from '@navikt/sif-common-hooks';
 import { useAppIntl } from '@shared/i18n';
+import { InnsynPageBoundary } from '@sif/ung-innsyn';
 import React, { useEffect } from 'react';
-
-import PageContentWrapper from './PageContentWrapper';
 
 interface Props {
     documentTitle: string;
@@ -17,7 +16,7 @@ const DefaultPageLayout = ({ documentTitle, children }: Props) => {
     useDocumentTitle(documentTitle);
     return (
         <main aria-label={text('pageLayout.main.ariaLabel')}>
-            <PageContentWrapper>{children}</PageContentWrapper>
+            <InnsynPageBoundary paddingBlock="space-40">{children}</InnsynPageBoundary>
         </main>
     );
 };
