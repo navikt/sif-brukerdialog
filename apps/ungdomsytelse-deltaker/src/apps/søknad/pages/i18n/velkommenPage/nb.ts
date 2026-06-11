@@ -1,12 +1,5 @@
 /* eslint-disable max-len */
 export const velkommenPageMessages_nb = {
-    'velkommenPage.startSøknad': 'Start søknad',
-    'velkommenPage.bekrefter': 'Jeg vil svare så godt jeg kan på spørsmålene i søknaden.',
-    'velkommenPage.infoStemmer':
-        'Det er viktig at du gir oss riktige opplysninger slik at vi kan behandle saken din. <Lenke>Les mer om viktigheten av å gi riktige opplysninger</Lenke>.',
-    'velkommenPage.bekreftelse.skjultLegend': 'Bekreftelse',
-    'velkommenPage.validering.bekrefterIkkeValgt': 'Du må bekrefte at du vil svare så riktig som du kan.',
-    'velkommenMelding.hei': 'Hei {fornavn}!',
     'velkommenMelding.deltakelsePeriode': 'Du er meldt inn i ungdomsprogrammet fra <strong>{startdato}</strong>.',
     'velkommenMelding.ytelseBeskrivelse':
         'Når du er med i ungdomsprogrammet, kan du søke om å få penger. Da får du utbetalt penger hver måned så lenge du deltar i programmet.',

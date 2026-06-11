@@ -2,13 +2,6 @@
 import { velkommenPageMessages_nb } from './nb';
 
 export const velkommenPageMessages_nn: Record<keyof typeof velkommenPageMessages_nb, string> = {
-    'velkommenPage.startSøknad': 'Start søknad',
-    'velkommenPage.bekrefter': 'Eg vil svare så godt eg kan på spørsmåla i søknaden.',
-    'velkommenPage.infoStemmer':
-        'Det er viktig at du gjev oss riktige opplysningar slik at vi kan handsame saka di. <Lenke>Les meir om kvifor det er viktig å gje riktige opplysningar</Lenke>.',
-    'velkommenPage.bekreftelse.skjultLegend': 'Stadfesting',
-    'velkommenPage.validering.bekrefterIkkeValgt': 'Du må stadfeste at du vil svare så riktig som du kan.',
-    'velkommenMelding.hei': 'Hei {fornavn}!',
     'velkommenMelding.deltakelsePeriode': 'Du er meldt inn i ungdomsprogrammet frå <strong>{startdato}</strong>.',
     'velkommenMelding.ytelseBeskrivelse':
         'Når du er med i ungdomsprogrammet, kan du søkje om å få pengar. Då får du utbetalt pengar kvar månad så lenge du deltek i programmet.',

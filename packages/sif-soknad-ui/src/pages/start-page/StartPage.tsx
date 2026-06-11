@@ -7,7 +7,6 @@ import {
     ErrorSummary,
     GuidePanel,
     Heading,
-    Link,
     VStack,
 } from '@navikt/ds-react';
 import { ReactNode, SubmitEvent, useRef, useState } from 'react';
@@ -15,6 +14,8 @@ import { ReactNode, SubmitEvent, useRef, useState } from 'react';
 import { SifSoknadUiText, useSifSoknadUiIntl } from '../../i18n';
 import { ApplicationPage } from '../application-page/ApplicationPage';
 import { ArrowRightIcon } from '@navikt/aksel-icons';
+import { ExternalLink } from '../../components';
+import { getSifLenker } from '../../lenker';
 
 interface Props {
     /** Tittel på søknad/app */
@@ -71,10 +72,14 @@ export const StartPage = ({ title, guide, children, onStart, isPending }: Props)
                     <form onSubmit={handleSubmit}>
                         <VStack gap="space-24">
                             <BodyLong>
-                                <SifSoknadUiText id="@sifSoknadUi.startPage.disclosure.text" />{' '}
-                                <Link href="https://www.nav.no/endringer">
-                                    <SifSoknadUiText id="@sifSoknadUi.startPage.disclosure.linkText" />
-                                </Link>
+                                <SifSoknadUiText
+                                    id="@sifSoknadUi.startPage.disclosure.text"
+                                    values={{
+                                        Lenke: (children) => (
+                                            <ExternalLink href={getSifLenker().navRettOgPlikt}>{children}</ExternalLink>
+                                        ),
+                                    }}
+                                />
                                 .
                             </BodyLong>
 
