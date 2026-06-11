@@ -1,5 +1,4 @@
 import { useAppIntl } from '@shared/i18n';
-import getLenker from '@shared/utils/lenker';
 import { Box } from '@navikt/ds-react';
 import { InconsistentFormValuesMessage } from '@sif/soknad/consistency';
 import { getProgressSteps } from '@sif/soknad/utils';
@@ -10,9 +9,9 @@ import { søknadStepConfig } from '../config/søknadStepConfig';
 import { SøknadStepId } from '../config/SøknadStepId';
 import { useSøknadsflyt } from '../context/søknadContext';
 import { useAvbrytSøknad } from '../hooks/useAvbrytSøknad';
-import { useSøknadMellomlagring } from '../hooks/useSøknadMellomlagring';
 import { useStepTitles } from '../hooks/useStepTitles';
 import { Features } from '../../../../utils/Features';
+import { useFortsettSøknadSenere } from '../hooks/useFortsettSøknadSenere';
 
 interface Props {
     stepId: SøknadStepId;
@@ -24,13 +23,9 @@ export const SøknadStep = ({ stepId, children }: Props) => {
     const navigate = useNavigate();
     const søknadsflyt = useSøknadsflyt();
     const stepTitles = useStepTitles();
-    const avbrytSøknad = useAvbrytSøknad();
-    const { lagreSøknad } = useSøknadMellomlagring();
 
-    const fortsettSenere = async () => {
-        await lagreSøknad();
-        window.location.href = getLenker().minSide;
-    };
+    const avbrytSøknad = useAvbrytSøknad();
+    const fortsettSenere = useFortsettSøknadSenere();
 
     const inconsistentStepId = søknadsflyt.checkConsistency(stepId);
 

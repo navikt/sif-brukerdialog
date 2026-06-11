@@ -9,16 +9,15 @@ import OmSøknaden from './OmSoknaden';
 export const VelkommenPage = () => {
     const { text } = useAppIntl();
     const søknadState = useSøknadStore((s) => s.søknadState);
-    const { startSøknad, navigateToStep } = useSøknadsflyt();
+    const { startSøknad } = useSøknadsflyt();
     const { clearSøknadFormValues } = useSøknadFormValues();
     const { opprettMellomlagring, isPending } = useSøknadMellomlagring();
 
     const handleStart = async (harForståttRettigheterOgPlikter: true) => {
         const førsteStegId = søknadStepOrder[0];
         clearSøknadFormValues();
-        startSøknad(førsteStegId, harForståttRettigheterOgPlikter);
         await opprettMellomlagring();
-        navigateToStep(førsteStegId);
+        startSøknad(førsteStegId, harForståttRettigheterOgPlikter);
     };
 
     return (

@@ -80,10 +80,10 @@ const OppsummeringSteg = () => {
             await mutateAsync({ ...dto, harBekreftetOpplysninger });
             await slettMellomlagring();
             clearSøknadFormValues();
-            logSkjemaFullført(DeltakerSkjemaId.SØKNAD);
+            await logSkjemaFullført(DeltakerSkjemaId.SØKNAD);
             setSøknadSendt();
         } catch {
-            logSkjemaFeilet(DeltakerSkjemaId.SØKNAD);
+            await logSkjemaFeilet(DeltakerSkjemaId.SØKNAD);
         }
     };
 

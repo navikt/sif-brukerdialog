@@ -52,7 +52,7 @@ src/app/
     constants.ts
     context/soknadContext.ts
     env/appEnv.ts
-    hooks/ (index.ts, useAvbrytSoknad, useSoknadMellomlagring, useSoknadRhfForm,
+    hooks/ (index.ts, useAvbrytSoknad, useFortsettSoknadSenere, useSoknadMellomlagring, useSoknadRhfForm,
             useSoknadState, useSoknadStore, useStepDefaultValues, useStepSubmit, useStepTitles)
     config/soknadStepConfig.ts
     soknad/ (AppForm.tsx, SoknadFormButtons.tsx, SoknadStep.tsx)
@@ -94,7 +94,7 @@ src/app/
 | `types/Soknadsdata.ts`             | Per-steg søknadsdata-typer                                      |
 | `types/Mellomlagring.ts`           | `MellomlagringMetaData` (fjern `barn` om ikke relevant)         |
 | `utils/formValuesToSoknadsdata.ts` | Case per steg — fyll ut etter hvert                             |
-| `soknad/SoknadStep.tsx`            | `text('application.title')`, `window.location.href` via delt lenkekilde |
+| `soknad/SoknadStep.tsx`            | `text('application.title')`; `onResumeLater` bruker `useFortsettSøknadSenere` (egen fil) — navigerer til minSide og logger hendelse; `onAbort` bruker `useAvbrytSøknad` (egen fil) — sletter mellomlagring og nullstiller state |
 | `i18n/nb/appMessages.ts`           | `application.title`, `step.<id>.title` per steg                 |
 | `hooks/useStepTitles.ts`           | `Record<SøknadStepId, string>` via `useAppIntl()`               |
 | `Soknad.tsx`                       | `Props`, `init()`-argumenter, Route-elementer                   |
@@ -111,6 +111,7 @@ src/app/
 | `hooks/useStepDefaultValues.ts`   | Ingen                                      |
 | `hooks/useStepSubmit.ts`          | Ingen                                      |
 | `hooks/useAvbrytSoknad.ts`        | Ingen — slett på server før reset av lokal state. Ingen `navigate` nødvendig (routing reagerer på store-endring). |
+| `hooks/useFortsettSoknadSenere.ts` | Tilpass URL (via delt lenkekilde) og analytics-hendelse ved behov. Lagrer søknad, logger hendelse og navigerer til minSide. |
 | `hooks/index.ts`                  | Ingen                                      |
 | `soknad/SoknadFormButtons.tsx`    | Ingen                                      |
 | `soknad/AppForm.tsx`              | Ingen                                      |

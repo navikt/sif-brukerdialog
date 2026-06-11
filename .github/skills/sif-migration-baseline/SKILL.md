@@ -327,10 +327,11 @@ Gjør alle disse endringene i én operasjon med `multi_replace_string_in_file` f
     ```tsx
     import { StartPage } from '@sif/soknad-ui/pages';
 
-    const handleStart = (harForståttRettigheterOgPlikter: true) => {
+    const handleStart = async (harForståttRettigheterOgPlikter: true) => {
         const førsteStegId = søknadStepOrder[0];
+        clearSøknadFormValues();
+        await opprettMellomlagring();
         startSøknad(førsteStegId, harForståttRettigheterOgPlikter);
-        navigateToStep(førsteStegId);
     };
 
     return (
@@ -344,7 +345,7 @@ Gjør alle disse endringene i én operasjon med `multi_replace_string_in_file` f
     );
     ```
 
-    Hvis appen har mellomlagring, bruk `isPending={isPending}` og `await opprettMellomlagring()` i `handleStart`. `StartPage` har `children` som påkrevd prop — send `<></>` hvis det ikke er noe innhold mellom guide og bekreftelsescheckbox.
+    Hvis appen har mellomlagring: bruk `isPending={isPending}` og kall `await opprettMellomlagring()` **før** `startSøknad` — ellers kan React navigere bort (via `StepRouteGuard`) før mellomlagringen rekker å fullføre. `StartPage` har `children` som påkrevd prop — send `<></>` hvis det ikke er noe innhold mellom guide og bekreftelsescheckbox.
 
 - **`useSøknadState()` kaster feil før store-initialisering**: I apper der søknaden er en del av en større app (ikke standalone), rendres noen sider — typisk `VelkommenPage` — _før_ `useEffectOnce`-initialisering har kjørt. `useSøknadState()` kaster i dette tilfellet en `ErrorBoundary`-feil. Bruk i stedet en parent-context (f.eks. en `DeltakerContext` eller tilsvarende) som alltid er satt av forelderkomponenten. Mønster:
     ```ts

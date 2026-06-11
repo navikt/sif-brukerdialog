@@ -11,20 +11,23 @@ import { søknadStepOrder } from '../setup/config/søknadStepConfig';
 import { useSøknadsflyt } from '../setup/context/søknadContext';
 import { useSøknadMellomlagring } from '../setup/hooks/useSøknadMellomlagring';
 import { useAnalyticsInstance } from '../../../analytics/analytics';
+import { DeltakerSkjemaId } from '../../../types/DeltakerSkjemaId';
+import { useSøknadFormValues } from '@sif/soknad/consistency';
 
 const VelkommenPage = () => {
     const { text } = useAppIntl();
     const { søker, deltakelsePeriode } = useDeltakerContext();
-    const { startSøknad, navigateToStep } = useSøknadsflyt();
+    const { startSøknad } = useSøknadsflyt();
     const { opprettMellomlagring, isPending } = useSøknadMellomlagring();
+    const { clearSøknadFormValues } = useSøknadFormValues();
     const { logSkjemaStartet } = useAnalyticsInstance();
 
     const handleStart = async (harForståttRettigheterOgPlikter: true) => {
         const førsteStegId = søknadStepOrder[0];
-        logSkjemaStartet(førsteStegId);
+        clearSøknadFormValues();
         startSøknad(førsteStegId, harForståttRettigheterOgPlikter);
+        await logSkjemaStartet(DeltakerSkjemaId.SØKNAD);
         await opprettMellomlagring();
-        navigateToStep(førsteStegId);
     };
 
     return (

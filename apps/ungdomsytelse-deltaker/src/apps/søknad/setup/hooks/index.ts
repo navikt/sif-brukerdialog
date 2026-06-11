@@ -1,5 +1,6 @@
 export { SøknadContextProvider, useSøknadsflyt } from '../context/søknadContext';
 export * from './useAvbrytSøknad';
+export * from './useFortsettSøknadSenere';
 export * from './useSøknadMellomlagring';
 export * from './useSøknadRhfForm';
 export * from './useSøknadState';

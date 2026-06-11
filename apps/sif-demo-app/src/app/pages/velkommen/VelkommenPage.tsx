@@ -1,15 +1,13 @@
-import { søknadStepConfig, søknadStepOrder } from '@app/setup/config/soknadStepConfig';
+import { søknadStepOrder } from '@app/setup/config/soknadStepConfig';
 import { useSøknadMellomlagring, useSøknadsflyt, useSøknadStore } from '@app/setup/hooks';
 import { useSøknadFormValues } from '@sif/soknad/consistency';
 import { StartPage } from '@sif/soknad-ui/pages';
-import { useNavigate } from 'react-router-dom';
 
 import { useAppIntl } from '../../i18n';
 import OmSøknaden from './OmSoknaden';
 
 export const VelkommenPage = () => {
     const { text } = useAppIntl();
-    const navigate = useNavigate();
     const søknadState = useSøknadStore((s) => s.søknadState);
     const { startSøknad } = useSøknadsflyt();
     const { clearSøknadFormValues } = useSøknadFormValues();
@@ -17,11 +15,9 @@ export const VelkommenPage = () => {
 
     const handleStart = async (harForståttRettigheterOgPlikter: true) => {
         const førsteStegId = søknadStepOrder[0];
-        const førsteSteg = søknadStepConfig[førsteStegId];
         clearSøknadFormValues();
-        startSøknad(førsteStegId, harForståttRettigheterOgPlikter);
         await lagreSøknad();
-        navigate(`/soknad/${førsteSteg.route}`);
+        startSøknad(førsteStegId, harForståttRettigheterOgPlikter);
     };
 
     return (
