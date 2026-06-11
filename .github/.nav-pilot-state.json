@@ -1,7 +1,7 @@
 {
   "collection": "nextjs-frontend",
   "version": "2026.06.02-095814-6d4adbb",
-  "source_sha": "6d4adbb",
+  "source_sha": "d01e504",
   "installed_at": "2026-04-14T05:51:44Z",
   "files": [
     {
@@ -91,6 +91,10 @@
     {
       "path": ".github/prompts/nais-manifest.prompt.md",
       "hash": "8576571223ffef8a"
+    },
+    {
+      "path": ".github/skills/nav-dekoratoren/",
+      "hash": "d3b9c25e5b3a8ff4"
     }
   ]
 }
