@@ -29,7 +29,7 @@ export const InconsistentFormValuesMessage = ({
 
     useEffect(() => {
         requestAnimationFrame(() => {
-            ref.current?.scrollIntoView({ behavior: 'instant', block: 'center' });
+            ref.current?.scrollIntoView({ behavior: 'auto', block: 'center' });
             ref.current?.focus({ preventScroll: true });
         });
     }, []);
