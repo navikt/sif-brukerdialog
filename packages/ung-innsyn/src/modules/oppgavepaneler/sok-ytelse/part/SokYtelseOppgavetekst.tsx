@@ -63,9 +63,7 @@ export const SøkYtelseOppgavetekst = ({ oppgave, dokumentarkivUrl }: Props) => 
                                     id={`@ungInnsyn.søkYtelseOppgave.${oppgave.ytelsetype}.oppsummering.dineSvar.tekst`}
                                     values={{
                                         link: (chunks: React.ReactNode) => (
-                                            <Link href={dokumentarkivUrl} target="_blank" rel="noreferrer">
-                                                {chunks}
-                                            </Link>
+                                            <Link href={dokumentarkivUrl}>{chunks}</Link>
                                         ),
                                     }}
                                 />
