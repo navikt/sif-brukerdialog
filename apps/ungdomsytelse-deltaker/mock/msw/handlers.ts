@@ -9,7 +9,8 @@ store.init(ScenarioType.søknad);
 
 export const handlers = [
     http.get('**/deltaker/hent-kontonummer', () => {
-        return HttpResponse.json({ harKontonummer: true, kontonummer: '12345678901' });
+        // return HttpResponse.json({ harKontonummer: true, kontonummer: '12345678901' });
+        return HttpResponse.json({ harKontonummer: false, kontonummer: null });
     }),
 
     http.get('**/oppslag/soker', () => HttpResponse.json(store.get().søker)),

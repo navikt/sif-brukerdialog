@@ -21,7 +21,7 @@ const runCheck = ({
         stepOrder,
         formValues,
         getSøknadsdataForStep: (stepId) => søknadsdataByStep[stepId],
-        formValuesToSøknadsdata: (_stepId, stepFormValues) => stepFormValues,
+        formValuesToSøknadsdata: (stepId, stepFormValues) => ({ [stepId]: stepFormValues }),
     });
 };
 
@@ -142,10 +142,52 @@ describe('checkConsistencyForSteps', () => {
             getSøknadsdataForStep: () => ({
                 fom: '2026-03-14T00:00:00.000Z',
             }),
-            formValuesToSøknadsdata: (_stepId, stepFormValues) => stepFormValues,
+            formValuesToSøknadsdata: (stepId, stepFormValues) => ({ [stepId]: stepFormValues }),
         });
 
         expect(result).toBeUndefined();
+    });
+
+    it('formValuesToSøknadsdata returnerer undefined for steg uten mapping — regnes som konsistent', () => {
+        const result = checkConsistencyForSteps<StepId>({
+            currentStepId: 'steg2',
+            stepOrder,
+            formValues: {
+                steg1: { barnStemmer: 'yes' },
+            },
+            getSøknadsdataForStep: () => undefined,
+            formValuesToSøknadsdata: () => undefined,
+        });
+
+        expect(result).toBeUndefined();
+    });
+
+    it('formValuesToSøknadsdata returnerer wrapped objekt ({ [stepId]: data }) — ingen endring', () => {
+        const result = checkConsistencyForSteps<StepId>({
+            currentStepId: 'steg2',
+            stepOrder,
+            formValues: {
+                steg1: { barnStemmer: 'yes' },
+            },
+            getSøknadsdataForStep: () => ({ barnStemmer: 'yes' }),
+            formValuesToSøknadsdata: (stepId, formValues) => ({ [stepId]: formValues }),
+        });
+
+        expect(result).toBeUndefined();
+    });
+
+    it('formValuesToSøknadsdata returnerer wrapped objekt ({ [stepId]: data }) — endring oppdages', () => {
+        const result = checkConsistencyForSteps<StepId>({
+            currentStepId: 'steg2',
+            stepOrder,
+            formValues: {
+                steg1: { barnStemmer: 'no' },
+            },
+            getSøknadsdataForStep: () => ({ barnStemmer: 'yes' }),
+            formValuesToSøknadsdata: (stepId, formValues) => ({ [stepId]: formValues }),
+        });
+
+        expect(result).toBe('steg1');
     });
 
     it('støtter extractor mot domenemodell som ikke er strukturert per steg', () => {
@@ -171,7 +213,7 @@ describe('checkConsistencyForSteps', () => {
                         return undefined;
                 }
             },
-            formValuesToSøknadsdata: (_stepId, stepFormValues) => stepFormValues,
+            formValuesToSøknadsdata: (stepId, stepFormValues) => ({ [stepId]: stepFormValues }),
         });
 
         expect(result).toBe('steg2');
