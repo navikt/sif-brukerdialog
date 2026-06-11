@@ -240,7 +240,7 @@ const OppsummeringSteg = () => {
                     </Checkbox>
 
                     {sendSøknadError && !invalidParameters && (
-                        <ErrorSummary ref={sendSøknadErrorSummary}>
+                        <ErrorSummary ref={sendSøknadErrorSummary} heading={text('oppsummeringSteg.sendSøknadFeilet')}>
                             <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
                         </ErrorSummary>
                     )}

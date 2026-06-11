@@ -16,4 +16,5 @@ export const oppsummeringStegMessages_nn: Record<keyof typeof oppsummeringStegMe
     'oppsummeringSteg.feil.innhold':
         'Det manglar opplysningar i søknaden din. Gå tilbake og fyll ut dei nødvendige felta.',
     'oppsummeringForm.validation.bekrefterOpplysninger.notChecked': 'Du må stadfeste at opplysningane er riktige',
+    'oppsummeringSteg.sendSøknadFeilet': 'Det oppstod ein feil ved innsending av søknaden',
 };

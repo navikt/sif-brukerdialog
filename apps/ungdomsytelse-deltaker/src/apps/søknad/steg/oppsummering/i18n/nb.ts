@@ -14,4 +14,5 @@ export const oppsummeringStegMessages_nb = {
     'oppsummeringSteg.feil.innhold':
         'Det mangler opplysninger i søknaden din. Vennligst gå tilbake og fyll ut de nødvendige feltene.',
     'oppsummeringForm.validation.bekrefterOpplysninger.notChecked': 'Du må bekrefte at opplysningene er riktige',
+    'oppsummeringSteg.sendSøknadFeilet': 'Det skjedde en feil ved innsending av søknaden',
 };

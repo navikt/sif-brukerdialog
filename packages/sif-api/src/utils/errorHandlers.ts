@@ -2,7 +2,7 @@ import { ProblemDetail, zProblemDetail } from '@navikt/k9-brukerdialog-prosesser
 import axios, { AxiosError, isAxiosError } from 'axios';
 import { z, ZodError } from 'zod';
 
-import { invalidParameterViolationSchema, InvalidParameterViolation } from '../types';
+import { InvalidParameterViolation, invalidParameterViolationSchema } from '../types';
 
 export enum ApiErrorType {
     ZodValidationError = 'ZodValidationError',
