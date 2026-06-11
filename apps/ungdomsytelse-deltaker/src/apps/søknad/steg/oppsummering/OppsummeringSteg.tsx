@@ -99,7 +99,7 @@ const OppsummeringSteg = () => {
                 isPending={isPending}
                 isFinalSubmit={true}
                 submitDisabled={!dto}>
-                <FormLayout.Content>
+                <FormLayout.Summary>
                     {!dto && (
                         <LocalAlert status="error">
                             <LocalAlert.Header>
@@ -231,18 +231,20 @@ const OppsummeringSteg = () => {
                             </FormSummary>
                         </>
                     )}
+
                     <Checkbox
                         disabled={isPending}
                         name={FormFields.bekrefterOpplysninger}
                         validate={validateField(FormFields.bekrefterOpplysninger, getCheckedValidator())}>
                         <AppText id="oppsummeringSteg.bekrefterOpplysninger.label" />
                     </Checkbox>
+
                     {sendSøknadError && !invalidParameters && (
                         <ErrorSummary ref={sendSøknadErrorSummary}>
                             <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
                         </ErrorSummary>
                     )}
-                </FormLayout.Content>
+                </FormLayout.Summary>
             </AppForm>
         </SøknadStep>
     );

@@ -83,18 +83,16 @@ export const OppsummeringSteg = () => {
                     </InfoCard>
                 )}
                 {dto && (
-                    <>
-                        <FormLayout.Summary>
-                            <StartdatoOppsummering startdato={ISODateToDate(dto.startdato)} />
-                            <KontonummerOppsummering
-                                kontonummerInfo={dto.kontonummerInfo}
-                                kontoOppslagInfo={state.kontoInfo}
-                            />
-                            <BostedOppsummering erBosattITrondheim={dto.erBosattITrondheim} />
-                            <BostedUtlandOppsummering forutgåendeBosteder={dto.forutgåendeBosteder} />
-                            <BarnOppsummering barn={state.barn} barnErRiktig={dto.barnErRiktig} />
-                        </FormLayout.Summary>
-                    </>
+                    <FormLayout.Summary>
+                        <StartdatoOppsummering startdato={ISODateToDate(dto.startdato)} />
+                        <KontonummerOppsummering
+                            kontonummerInfo={dto.kontonummerInfo}
+                            kontoOppslagInfo={state.kontoInfo}
+                        />
+                        <BostedOppsummering erBosattITrondheim={dto.erBosattITrondheim} />
+                        <BostedUtlandOppsummering forutgåendeBosteder={dto.forutgåendeBosteder} />
+                        <BarnOppsummering barn={state.barn} barnErRiktig={dto.barnErRiktig} />
+                    </FormLayout.Summary>
                 )}
                 <FormLayout.Questions>
                     <Checkbox
