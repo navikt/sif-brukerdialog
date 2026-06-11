@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { DefaultValues, useForm, UseFormReturn } from 'react-hook-form';
 
 import { useSaveSøknadFormValues } from '../consistency/useSaveSoknadFormValues';
@@ -12,7 +13,9 @@ export const createSøknadReactHookForm = <TStepId extends string>() => {
         defaultValues: DefaultValues<T>,
     ): UseFormReturn<T> {
         const form = useForm<T>({ defaultValues });
-        useSaveSøknadFormValues(stepId, form.getValues);
+        const isDirtyRef = useRef(false);
+        isDirtyRef.current = form.formState.isDirty;
+        useSaveSøknadFormValues(stepId, form.getValues, () => isDirtyRef.current);
         return form;
     };
 };

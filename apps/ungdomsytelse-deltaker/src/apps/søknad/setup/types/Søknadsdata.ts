@@ -11,6 +11,8 @@ export type BarnSøknadsdata = {
     barnStemmer: YesOrNo;
 };
 
+export type StepSøknadsdata = KontonummerSøknadsdata | BarnSøknadsdata;
+
 export interface Søknadsdata extends BaseSøknadsdata {
     [SøknadStepId.KONTONUMMER]?: KontonummerSøknadsdata;
     [SøknadStepId.BARN]?: BarnSøknadsdata;

@@ -21,7 +21,7 @@ const runCheck = ({
         stepOrder,
         formValues,
         getSøknadsdataForStep: (stepId) => søknadsdataByStep[stepId],
-        formValuesToSøknadsdata: (stepId, stepFormValues) => ({ [stepId]: stepFormValues }),
+        formValuesToSøknadsdata: (_stepId, stepFormValues) => stepFormValues,
     });
 };
 
@@ -142,7 +142,7 @@ describe('checkConsistencyForSteps', () => {
             getSøknadsdataForStep: () => ({
                 fom: '2026-03-14T00:00:00.000Z',
             }),
-            formValuesToSøknadsdata: (stepId, stepFormValues) => ({ [stepId]: stepFormValues }),
+            formValuesToSøknadsdata: (_stepId, stepFormValues) => stepFormValues,
         });
 
         expect(result).toBeUndefined();
@@ -160,34 +160,6 @@ describe('checkConsistencyForSteps', () => {
         });
 
         expect(result).toBeUndefined();
-    });
-
-    it('formValuesToSøknadsdata returnerer wrapped objekt ({ [stepId]: data }) — ingen endring', () => {
-        const result = checkConsistencyForSteps<StepId>({
-            currentStepId: 'steg2',
-            stepOrder,
-            formValues: {
-                steg1: { barnStemmer: 'yes' },
-            },
-            getSøknadsdataForStep: () => ({ barnStemmer: 'yes' }),
-            formValuesToSøknadsdata: (stepId, formValues) => ({ [stepId]: formValues }),
-        });
-
-        expect(result).toBeUndefined();
-    });
-
-    it('formValuesToSøknadsdata returnerer wrapped objekt ({ [stepId]: data }) — endring oppdages', () => {
-        const result = checkConsistencyForSteps<StepId>({
-            currentStepId: 'steg2',
-            stepOrder,
-            formValues: {
-                steg1: { barnStemmer: 'no' },
-            },
-            getSøknadsdataForStep: () => ({ barnStemmer: 'yes' }),
-            formValuesToSøknadsdata: (stepId, formValues) => ({ [stepId]: formValues }),
-        });
-
-        expect(result).toBe('steg1');
     });
 
     it('støtter extractor mot domenemodell som ikke er strukturert per steg', () => {
@@ -213,7 +185,7 @@ describe('checkConsistencyForSteps', () => {
                         return undefined;
                 }
             },
-            formValuesToSøknadsdata: (stepId, stepFormValues) => ({ [stepId]: stepFormValues }),
+            formValuesToSøknadsdata: (_stepId, stepFormValues) => stepFormValues,
         });
 
         expect(result).toBe('steg2');

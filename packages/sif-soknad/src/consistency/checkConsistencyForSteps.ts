@@ -1,5 +1,6 @@
 import { SøknadFormValues, StepFormValues, StepSøknadsdata } from '../types';
 
+/** Returnerer søknadsdata for ett gitt steg basert på skjemaverdier */
 type FormValuesToSøknadsdataFn<TStepId extends string> = (
     stepId: TStepId,
     formValues: StepFormValues,
@@ -40,7 +41,9 @@ const normalizeForComparison = (value: unknown): unknown => {
 };
 
 const isEqualNormalized = (a: unknown, b: unknown): boolean => {
-    return JSON.stringify(normalizeForComparison(a)) === JSON.stringify(normalizeForComparison(b));
+    const aNormalized = normalizeForComparison(a);
+    const bNormalized = normalizeForComparison(b);
+    return JSON.stringify(aNormalized) === JSON.stringify(bNormalized);
 };
 
 export const checkConsistencyForSteps = <TStepId extends string>({
@@ -61,10 +64,9 @@ export const checkConsistencyForSteps = <TStepId extends string>({
         if (!stepFormValues) continue;
 
         const søknadsdata = getSøknadsdataForStep(stepId);
-        const converted = formValuesToSøknadsdata(stepId, stepFormValues);
-        const convertedForStep = converted ? (converted as Record<string, unknown>)[stepId] : undefined;
+        const convertedStepSøknadsdata = formValuesToSøknadsdata(stepId, stepFormValues);
 
-        if (!isEqualNormalized(convertedForStep, søknadsdata)) {
+        if (!isEqualNormalized(convertedStepSøknadsdata, søknadsdata)) {
             return stepId;
         }
     }
