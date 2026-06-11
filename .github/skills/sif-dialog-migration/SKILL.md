@@ -223,9 +223,9 @@ For hver komponenttype som finnes i v1:
 - [ ] Tittel/header for hvert element matcher
 - [ ] Formatering av datoer, landnavn og andre verdier er lik
 
-### Sjekkliste — Summary
+### Sjekkliste — Oppsummeringssteg
 
-- [ ] Alle felter fra v1 Summary er representert i v2 Summary
+- [ ] Alle felter fra v1 Oppsummeringssteg er representert i v2 Oppsummeringssteg
 - [ ] Betingede blokker har samme betingelse (f.eks. `erNyoppstartet`, `registrertINorge`)
 - [ ] Ja/Nei-spørsmål som vises i v1 vises også i v2 (ikke bare detaljfeltene)
 - [ ] Datoer, tall og tekst formateres likt
@@ -284,22 +284,3 @@ export const BostedUtlandListAndDialog = ({ minDate, maxDate, bosteder, addButto
     />
 );
 ```
-
----
-
-## Dialoger som skal porteres
-
-Fra `packages/sif-common-forms-ds/src/forms/`:
-
-| v1-mappe                    | Porteringsstatus |
-| --------------------------- | ---------------- |
-| `bosted-utland`             | Ferdig           |
-| `utenlandsopphold`          | Ikke startet     |
-| `tidsperiode`               | Ikke startet     |
-| `ferieuttak`                | Ikke startet     |
-| `opptjening-utland`         | Ikke startet     |
-| `enkeltdatoer`              | Ikke startet     |
-| `annet-barn`                | Ferdig           |
-| `utenlandsk-næring`         | Ikke startet     |
-| `fravær` (perioder + dager) | Ikke startet     |
-| `fosterbarn`                | Ikke startet     |

@@ -100,6 +100,7 @@ export const søknadsdataToSøknadDTO = ({
 ```
 
 Viktige detaljer:
+
 - Returner `undefined` om obligatoriske steg mangler i søknadsdata
 - Vedlegg mappes til backend-URL-array: `.map(v => v.backendUrl)` — DTO-kontrakten forventer `string[]` med fulle API-URLer
 - `backendUrl` er allerede satt på `PersistedVedlegg` av `toPersistedVedlegg` i steg-utils
@@ -183,7 +184,7 @@ Hvis DTO ikke kan bygges (`dto === undefined`), vis `LocalAlert status="error"` 
 submitDisabled={!dto}
 ```
 
-**Viktig:** `AppForm` sjekker consistency automatisk via `checkConsistency` i `useSøknadsflyt()`. `submitDisabled` kombineres med `||` (ikke `??`), slik at submit blokkeres dersom *enten* `submitDisabled` er `true` *eller* consistency-sjekken feiler. Du skal **ikke** sjekke consistency manuelt i OppsummeringSteg — det håndteres av `AppForm`.
+**Viktig:** `AppForm` sjekker consistency automatisk via `checkConsistency` i `useSøknadsflyt()`. `submitDisabled` kombineres med `||` (ikke `??`), slik at submit blokkeres dersom _enten_ `submitDisabled` er `true` _eller_ consistency-sjekken feiler. Du skal **ikke** sjekke consistency manuelt i OppsummeringSteg — det håndteres av `AppForm`.
 
 ```tsx
 {
@@ -205,7 +206,7 @@ Nøkkelprefikset for oppsummeringssteget er `oppsummeringSteg.*`. Alltid inklude
 
 - `oppsummeringSteg.bekrefterOpplysninger.label`
 - `oppsummeringSteg.feil.tittel` + `oppsummeringSteg.feil.innhold`
-- `oppsummeringForm.validation.bekrefterOpplysninger.notChecked`
+- `oppsummeringSteg.validation.bekrefterOpplysninger.notChecked`
 
 ### Innsendingsfeil
 
@@ -236,17 +237,20 @@ const onSubmit = async () => {
 };
 
 // I JSX:
-{sendSøknadError && invalidParameters && (
-    <InnsendingFeiletAlert invalidParameters={invalidParameters} />
-)}
-{sendSøknadError && !invalidParameters && (
-    <ErrorSummary ref={errorSummaryRef}>
-        <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
-    </ErrorSummary>
-)}
+{
+    sendSøknadError && invalidParameters && <InnsendingFeiletAlert invalidParameters={invalidParameters} />;
+}
+{
+    sendSøknadError && !invalidParameters && (
+        <ErrorSummary ref={errorSummaryRef}>
+            <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
+        </ErrorSummary>
+    );
+}
 ```
 
 i18n-nøkler for innsendingsfeil (prefiks `oppsummeringSteg.innsendingFeilet.*`):
+
 - `oppsummeringSteg.innsendingFeilet.tittel`
 - Domenespesifikke feilmeldinger per `parameterName`
 - Generelle fallback-tekster

@@ -86,36 +86,36 @@ src/app/
 
 ## Tilpasningspunkter per app
 
-| Fil                                | Hva som tilpasses                                               |
-| ---------------------------------- | --------------------------------------------------------------- |
-| `constants.ts`                     | `APP_YTELSE`, `MELLOMLAGRING_VERSJON`                           |
-| `soknadStepConfig.ts`              | `SøknadStepId`, `SøknadState`, routes, `isCompleted`, stepOrder |
-| `context/soknadContext.ts`         | `basePath`, referanse til `formValuesToSøknadsdata`             |
-| `types/Soknadsdata.ts`             | Per-steg søknadsdata-typer                                      |
-| `types/Mellomlagring.ts`           | `MellomlagringMetaData` (fjern `barn` om ikke relevant)         |
-| `utils/formValuesToSoknadsdata.ts` | Case per steg — fyll ut etter hvert                             |
+| Fil                                | Hva som tilpasses                                                                                                                                                                                                               |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `constants.ts`                     | `APP_YTELSE`, `MELLOMLAGRING_VERSJON`                                                                                                                                                                                           |
+| `soknadStepConfig.ts`              | `SøknadStepId`, `SøknadState`, routes, `isCompleted`, stepOrder                                                                                                                                                                 |
+| `context/soknadContext.ts`         | `basePath`, referanse til `formValuesToSøknadsdata`                                                                                                                                                                             |
+| `types/Soknadsdata.ts`             | Per-steg søknadsdata-typer                                                                                                                                                                                                      |
+| `types/Mellomlagring.ts`           | `MellomlagringMetaData` (fjern `barn` om ikke relevant)                                                                                                                                                                         |
+| `utils/formValuesToSoknadsdata.ts` | Case per steg — fyll ut etter hvert                                                                                                                                                                                             |
 | `soknad/SoknadStep.tsx`            | `text('application.title')`; `onResumeLater` bruker `useFortsettSøknadSenere` (egen fil) — navigerer til minSide og logger hendelse; `onAbort` bruker `useAvbrytSøknad` (egen fil) — sletter mellomlagring og nullstiller state |
-| `i18n/nb/appMessages.ts`           | `application.title`, `step.<id>.title` per steg                 |
-| `hooks/useStepTitles.ts`           | `Record<SøknadStepId, string>` via `useAppIntl()`               |
-| `Soknad.tsx`                       | `Props`, `init()`-argumenter, Route-elementer                   |
-| `sentry/instrument.ts`             | `application`-tag                                               |
+| `i18n/nb/appMessages.ts`           | `application.title`, `step.<id>.title` per steg                                                                                                                                                                                 |
+| `hooks/useStepTitles.ts`           | `Record<SøknadStepId, string>` via `useAppIntl()`                                                                                                                                                                               |
+| `Soknad.tsx`                       | `Props`, `init()`-argumenter, Route-elementer                                                                                                                                                                                   |
+| `sentry/instrument.ts`             | `application`-tag                                                                                                                                                                                                               |
 
 ## Boilerplate-filer (kopier uendret)
 
-| Fil                               | Evt. tilpasning                            |
-| --------------------------------- | ------------------------------------------ |
-| `hooks/useSoknadStore.ts`         | Ingen                                      |
-| `hooks/useSoknadRhfForm.ts`       | Ingen                                      |
-| `hooks/useSoknadMellomlagring.ts` | Ingen                                      |
-| `hooks/useSoknadState.ts`         | Ingen                                      |
-| `hooks/useStepDefaultValues.ts`   | Ingen                                      |
-| `hooks/useStepSubmit.ts`          | Ingen                                      |
-| `hooks/useAvbrytSoknad.ts`        | Ingen — slett på server før reset av lokal state. Ingen `navigate` nødvendig (routing reagerer på store-endring). |
+| Fil                                | Evt. tilpasning                                                                                                             |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `hooks/useSoknadStore.ts`          | Ingen                                                                                                                       |
+| `hooks/useSoknadRhfForm.ts`        | Ingen                                                                                                                       |
+| `hooks/useSoknadMellomlagring.ts`  | Ingen                                                                                                                       |
+| `hooks/useSoknadState.ts`          | Ingen                                                                                                                       |
+| `hooks/useStepDefaultValues.ts`    | Ingen                                                                                                                       |
+| `hooks/useStepSubmit.ts`           | Ingen                                                                                                                       |
+| `hooks/useAvbrytSoknad.ts`         | Ingen — slett på server før reset av lokal state. Ingen `navigate` nødvendig (routing reagerer på store-endring).           |
 | `hooks/useFortsettSoknadSenere.ts` | Tilpass URL (via delt lenkekilde) og analytics-hendelse ved behov. Lagrer søknad, logger hendelse og navigerer til minSide. |
-| `hooks/index.ts`                  | Ingen                                      |
-| `soknad/SoknadFormButtons.tsx`    | Ingen                                      |
-| `soknad/AppForm.tsx`              | Ingen                                      |
-| `wrappers/AppErrorBoundary.tsx`   | Ingen — bruker FaroErrorBoundary, ikke SentryErrorBoundary. Sentry dekkes av `reactErrorHandler` i `main.tsx`. |
+| `hooks/index.ts`                   | Ingen                                                                                                                       |
+| `soknad/SoknadFormButtons.tsx`     | Ingen                                                                                                                       |
+| `soknad/AppForm.tsx`               | Ingen                                                                                                                       |
+| `wrappers/AppErrorBoundary.tsx`    | Ingen — bruker FaroErrorBoundary, ikke SentryErrorBoundary. Sentry dekkes av `reactErrorHandler` i `main.tsx`.              |
 
 ## Viktige regler og fallgruver
 
@@ -191,9 +191,11 @@ Navngivingsprinsipp for delte lenker:
 - Bruk samme `ScenarioType` som Playwright-tester
 - Definer `scenarioGroups` på modul-nivå, ikke inne i komponenten
 - Mont i `App.tsx` inne i `BrowserRouter` bak build-time define `__SCENARIO_HEADER__`:
-  ```tsx
-  {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
-  ```
+    ```tsx
+    {
+        __SCENARIO_HEADER__ ? <ScenarioHeader /> : null;
+    }
+    ```
 - Deklarer typen i `vite-env.d.ts`: `declare const __SCENARIO_HEADER__: boolean;`
 - Sett `__SCENARIO_HEADER__: false` i `vite.config.ts` og `__SCENARIO_HEADER__: true` i `vite.dev.config.ts`
 
