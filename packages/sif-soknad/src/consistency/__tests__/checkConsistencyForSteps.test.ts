@@ -21,7 +21,7 @@ const runCheck = ({
         stepOrder,
         formValues,
         getSøknadsdataForStep: (stepId) => søknadsdataByStep[stepId],
-        formValuesToSøknadsdata: (_stepId, stepFormValues) => stepFormValues,
+        formValuesToSøknadsdata: (stepId, stepFormValues) => ({ [stepId]: stepFormValues }),
     });
 };
 
@@ -142,7 +142,7 @@ describe('checkConsistencyForSteps', () => {
             getSøknadsdataForStep: () => ({
                 fom: '2026-03-14T00:00:00.000Z',
             }),
-            formValuesToSøknadsdata: (_stepId, stepFormValues) => stepFormValues,
+            formValuesToSøknadsdata: (stepId, stepFormValues) => ({ [stepId]: stepFormValues }),
         });
 
         expect(result).toBeUndefined();
@@ -171,7 +171,7 @@ describe('checkConsistencyForSteps', () => {
                         return undefined;
                 }
             },
-            formValuesToSøknadsdata: (_stepId, stepFormValues) => stepFormValues,
+            formValuesToSøknadsdata: (stepId, stepFormValues) => ({ [stepId]: stepFormValues }),
         });
 
         expect(result).toBe('steg2');
