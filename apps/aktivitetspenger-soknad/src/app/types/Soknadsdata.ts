@@ -1,5 +1,4 @@
 import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
-import { BaseSøknadsdata } from '@sif/soknad/types';
 import { BostedUtland } from '@sif/soknad-forms';
 
 import { SøknadStepId } from '../setup/config/SoknadStepId';
@@ -27,7 +26,8 @@ export type BarnSøknadsdata = {
  * Strukturert data for hvert steg som settes når bruker
  * fyller ut og submitter et gyldig steg i søknaden.
  */
-export interface Søknadsdata extends BaseSøknadsdata {
+export interface Søknadsdata {
+    harForståttRettigheterOgPlikter?: boolean;
     [SøknadStepId.STARTDATO]?: StartdatoSøknadsdata;
     [SøknadStepId.KONTONUMMER]?: KontonummerSøknadsdata;
     [SøknadStepId.BOSTED]?: BostedSøknadsdata;

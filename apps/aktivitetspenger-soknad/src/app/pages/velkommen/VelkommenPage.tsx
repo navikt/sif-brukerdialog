@@ -1,31 +1,25 @@
 import { useAppIntl } from '@app/i18n';
-import { søknadStepOrder } from '@app/setup/config/soknadStepConfig';
-import { useSøknadMellomlagring, useSøknadsflyt, useSøknadStore } from '@app/setup/hooks';
-import { useSøknadFormValues } from '@sif/soknad/consistency';
+import { useAppContext } from '@app/context/AppContext';
 import { StartPage } from '@sif/soknad-ui/pages';
+import { useStartSøknad } from '@sif/soknad-app';
 
 import OmSøknaden from './OmSoknaden';
 
 export const VelkommenPage = () => {
     const { text } = useAppIntl();
-    const søknadState = useSøknadStore((s) => s.søknadState);
-    const { startSøknad } = useSøknadsflyt();
-    const { clearSøknadFormValues } = useSøknadFormValues();
-    const { opprettMellomlagring, isPending } = useSøknadMellomlagring();
+    const { søker } = useAppContext();
+    const { startSøknad } = useStartSøknad();
 
     const handleStart = async (harForståttRettigheterOgPlikter: true) => {
-        const førsteStegId = søknadStepOrder[0];
-        clearSøknadFormValues();
-        await opprettMellomlagring();
-        startSøknad(førsteStegId, harForståttRettigheterOgPlikter);
+        await startSøknad({ harForståttRettigheterOgPlikter });
     };
 
     return (
         <StartPage
             onStart={handleStart}
-            isPending={isPending}
+            isPending={false}
             guide={{
-                navn: søknadState?.søker.fornavn || '',
+                navn: søker.fornavn || '',
                 content: (
                     <>
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique quo a laudantium debitis

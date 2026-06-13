@@ -1,15 +1,15 @@
 import { FormSummary } from '@navikt/ds-react';
 import { JaNeiSvar } from '@sif/soknad-ui';
+import { useStepNavigation } from '@sif/soknad-app';
 
 import { SøknadStepId } from '../../../setup/config/SoknadStepId';
-import { useSøknadsflyt } from '../../../setup/hooks';
 
 interface Props {
     erBosattITrondheim: boolean;
 }
 
 export const BostedOppsummering = ({ erBosattITrondheim }: Props) => {
-    const { navigateToStep } = useSøknadsflyt();
+    const { navigateToStep } = useStepNavigation();
     return (
         <FormSummary>
             <FormSummary.Header>
