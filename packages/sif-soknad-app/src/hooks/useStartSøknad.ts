@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { useAnalyticsInstance } from '../analytics/analytics';
 import { useSøknadAppContext } from '../context/SøknadAppContext';
 import { buildStepPath } from '../utils/routeUtils';
 
@@ -18,6 +19,7 @@ import { buildStepPath } from '../utils/routeUtils';
 export function useStartSøknad() {
     const { store, config, stepOrder, basePath, versjon, lagreMellomlagring } = useSøknadAppContext();
     const navigate = useNavigate();
+    const { logSkjemaStartet } = useAnalyticsInstance();
 
     const startSøknad = useCallback(
         async (initialSøknadsdata: Record<string, unknown> = {}): Promise<void> => {
@@ -38,11 +40,13 @@ export function useStartSøknad() {
                 søknadsdata: initialSøknadsdata,
             });
 
+            await logSkjemaStartet();
+
             if (firstRoute) {
                 navigate(buildStepPath(basePath, firstRoute));
             }
         },
-        [store, stepOrder, config, basePath, versjon, lagreMellomlagring, navigate],
+        [store, stepOrder, config, basePath, versjon, lagreMellomlagring, navigate, logSkjemaStartet],
     );
 
     return { startSøknad };

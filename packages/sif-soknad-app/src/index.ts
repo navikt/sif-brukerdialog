@@ -1,3 +1,11 @@
+// Analytics
+export {
+    AnalyticsProvider,
+    ApplikasjonHendelse,
+    CustomAnalyticsEvents,
+    useAnalyticsInstance,
+} from './analytics/analytics';
+
 // Komponenter
 export { AppErrorBoundary } from './components/AppErrorBoundary';
 export { SifQueryClientProvider } from './components/SifQueryClientProvider';

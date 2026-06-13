@@ -5370,6 +5370,9 @@ importers:
       '@navikt/ds-react':
         specifier: 8.11.1
         version: 8.11.1(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@navikt/nav-dekoratoren-moduler':
+        specifier: 4.2.1
+        version: 4.2.1(html-react-parser@6.1.3(@types/react@19.2.17)(react@19.2.7))(react@19.2.7)
       '@navikt/sif-common-faro':
         specifier: workspace:*
         version: link:../sif-common-faro
@@ -8352,9 +8355,6 @@ packages:
     peerDependencies:
       html-react-parser: '>=5.x'
       react: '>=17.x'
-    peerDependenciesMeta:
-      react:
-        optional: true
 
   '@navikt/next-logger@5.0.0':
     resolution: {integrity: sha512-VQ2VM/k5uDYnb7BYG3ITJZgMZq8B3TECOnhdvNOQeltJyy8+KQzGqLsrYajKPWuUiPuLjYFk0HbU2W22onB9mQ==, tarball: https://npm.pkg.github.com/download/@navikt/next-logger/5.0.0/510dccac519d1227515e4c8a8268570d90305b3e}
@@ -20254,7 +20254,6 @@ snapshots:
       csp-header: 6.3.1
       html-react-parser: 6.1.3(@types/react@19.2.17)(react@19.2.7)
       js-cookie: 3.0.7
-    optionalDependencies:
       react: 19.2.7
 
   '@navikt/next-logger@5.0.0(next@16.2.7(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@playwright/test@1.60.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(sass@1.100.0))(pino@10.3.1)':
