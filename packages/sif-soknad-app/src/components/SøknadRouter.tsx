@@ -74,6 +74,7 @@ export const SøknadRouter = ({
     }
     const store = storeRef.current;
     const søknadSendt = store((s) => s.søknadSendt);
+    const isInitialized = store((s) => s.isInitialized);
     const navigate = useNavigate();
 
     // Naviger til kvitteringssti når søknad er sendt
@@ -167,7 +168,7 @@ export const SøknadRouter = ({
     return (
         <SøknadFormValuesProvider>
             <SøknadAppContext.Provider value={contextValue}>
-                {søknadSendt && kvitteringElement ? kvitteringElement : children}
+                {søknadSendt && kvitteringElement ? kvitteringElement : isInitialized ? children : null}
             </SøknadAppContext.Provider>
         </SøknadFormValuesProvider>
     );
