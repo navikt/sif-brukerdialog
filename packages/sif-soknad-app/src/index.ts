@@ -1,4 +1,7 @@
 // Komponenter
+export { AppErrorBoundary } from './components/AppErrorBoundary';
+export { SifQueryClientProvider } from './components/SifQueryClientProvider';
+export { SøknadAppProvider } from './components/SøknadAppProvider';
 export { SøknadRouter } from './components/SøknadRouter';
 export { SøknadStep } from './components/SøknadStep';
 export { SøknadStepGuard } from './components/SøknadStepGuard';

@@ -34,11 +34,7 @@ class FaroErrorBoundary extends React.Component<FaroErrorBoundaryProps, State> {
     }
 }
 
-interface Props {
-    children: React.ReactNode;
-}
-
-export const AppErrorBoundary = ({ children }: Props) => {
+export const AppErrorBoundary = ({ children }: { children: React.ReactNode }) => {
     const { logError } = useFaroInstance();
     return (
         <FaroErrorBoundary onError={logError} fallback={<AppErrorFallback />}>

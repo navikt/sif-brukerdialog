@@ -20,9 +20,12 @@
     },
     "dependencies": {
         "@navikt/ds-react": "8.11.1",
+        "@navikt/sif-common-faro": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
+        "@sentry/react": "10.56.0",
         "@sif/api": "workspace:*",
         "@sif/soknad-ui": "workspace:*",
+        "@tanstack/react-query": "5.101.0",
         "react-intl": "10.1.13",
         "react-router-dom": "7.17.0",
         "zustand": "5.0.14"
