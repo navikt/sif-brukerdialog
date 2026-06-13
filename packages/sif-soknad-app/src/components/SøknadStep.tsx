@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { InconsistentFormValuesMessage } from '../consistency/InconsistentFormValuesMessage';
 import { useSøknadAppContext } from '../context/SøknadAppContext';
+import { useAnalyticsInstance, ApplikasjonHendelse } from '../analytics/analytics';
 import { useCheckConsistency } from '../hooks/useCheckConsistency';
 import { SøknadStepProps } from '../types';
 import { buildStepPath } from '../utils/routeUtils';
@@ -47,6 +48,7 @@ export const SøknadStep = ({ stepId, children }: SøknadStepProps) => {
     const documentTitle = intl.formatMessage({ id: `step.${stepId}.title` });
 
     const inconsistentStepId = useCheckConsistency(stepId);
+    const { logHendelse } = useAnalyticsInstance();
 
     const onStepSelect = (selectedStepId: string) => {
         const route = config[selectedStepId]?.route;
@@ -56,12 +58,14 @@ export const SøknadStep = ({ stepId, children }: SøknadStepProps) => {
     };
 
     const onAbort = async () => {
+        await logHendelse(ApplikasjonHendelse.avbryt);
         await slettMellomlagring();
         reset();
         navigate('/');
     };
 
     const onResumeLater = async () => {
+        await logHendelse(ApplikasjonHendelse.fortsettSenere);
         if (resumeStepId) {
             await lagreMellomlagring({ versjon, resumeStepId, søknadsdata });
         }

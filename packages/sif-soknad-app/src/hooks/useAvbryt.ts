@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { ApplikasjonHendelse, useAnalyticsInstance } from '../analytics/analytics';
 import { useSøknadAppContext } from '../context/SøknadAppContext';
 
 /**
@@ -10,12 +11,14 @@ import { useSøknadAppContext } from '../context/SøknadAppContext';
 export function useAvbryt(): { avbryt: () => Promise<void> } {
     const { store, slettMellomlagring } = useSøknadAppContext();
     const navigate = useNavigate();
+    const { logHendelse } = useAnalyticsInstance();
 
     const avbryt = useCallback(async (): Promise<void> => {
+        await logHendelse(ApplikasjonHendelse.avbryt);
         await slettMellomlagring();
         store.getState().reset();
         navigate('/');
-    }, [store, slettMellomlagring, navigate]);
+    }, [store, slettMellomlagring, navigate, logHendelse]);
 
     return { avbryt };
 }
