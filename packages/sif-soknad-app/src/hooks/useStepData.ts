@@ -8,34 +8,44 @@ import { buildStepPath } from '../utils/routeUtils';
 /**
  * Hoved-hook for steg-data og commit-flyt.
  *
- * ```tsx
- * const { lagretData, commit, formData, setFormData } = useStepData<StartdatoFormData>(SøknadStepId.STARTDATO)
- * ```
+ * - `lagretData` — committet domendata for steget (fra `søknadsdata[stepId]`)
+ * - `draftFormValues` — midlertidige RHF-verdier fra mellomlagring; bruk som `defaultValues`
+ *   foran `lagretData` ved reload: `defaultValues: draftFormValues ?? toXxxFormValues(lagretData)`
+ * - `commit(data)` — gjennomfører trinn 1–8 i commit-algoritmen:
+ *   1. Oppdaterer søknadsdata i storen
+ *   2. Sletter data for steg som ikke lenger er inkludert
+ *   3. Reberegner includedSteps
+ *   4. Lagrer mellomlagring (fire-and-forget)
+ *   5. Navigerer til neste steg
  *
- * `commit(data)` gjennomfører trinn 1–8 i commit-algoritmen:
- *  - Oppdaterer søknadsdata i storen
- *  - Sletter data for steg som ikke lenger er inkludert
- *  - Reberegner includedSteps
- *  - Lagrer mellomlagring (debounset 500 ms)
- *  - Navigerer til neste steg
+ * @example
+ * ```tsx
+ * const { lagretData, draftFormValues, commit } = useStepData<StartdatoSøknadsdata, StartdatoFormValues>(stepId);
+ * const methods = useForm({ defaultValues: draftFormValues ?? toStartdatoFormValues(lagretData) });
+ * ```
  */
-export function useStepData<T = unknown>(
+export function useStepData<TCommitted = unknown, TDraft = Record<string, unknown>>(
     stepId: string,
 ): {
-    lagretData: T | undefined;
-    commit: (data: T) => Promise<void>;
-    formData: unknown | undefined;
-    setFormData: (data: unknown) => void;
+    /** Committet domendata for steget — undefined før bruker har submittet steget */
+    lagretData: TCommitted | undefined;
+    /**
+     * Midlertidige RHF-skjemaverdier fra mellomlagring — finnes etter reload hvis bruker
+     * lagret manuelt (useMellomlagring) uten å ha submittet steget.
+     * Bruk som defaultValues foran lagretData.
+     */
+    draftFormValues: Partial<TDraft> | undefined;
+    commit: (data: TCommitted) => Promise<void>;
 } {
     const { store, basePath, versjon, lagreMellomlagring } = useSøknadAppContext();
     const { markSkipNextUnmountSaveForStep, clearFormValuesForStep } = useSøknadFormValues();
     const navigate = useNavigate();
 
-    const lagretData = store((s) => s.søknadsdata[stepId]) as T | undefined;
-    const formData = store((s) => s.formData[stepId]);
+    const lagretData = store((s) => s.søknadsdata[stepId]) as TCommitted | undefined;
+    const draftFormValues = store((s) => s.draftFormValues[stepId]) as Partial<TDraft> | undefined;
 
     const commit = useCallback(
-        async (data: T): Promise<void> => {
+        async (data: TCommitted): Promise<void> => {
             // Trinn 1–6: oppdater state i storen
             const { newRoute } = store.getState().commitState(stepId, data);
 
@@ -43,6 +53,7 @@ export function useStepData<T = unknown>(
             // og fjern eventuelt lagrede draft-verdier fra context
             markSkipNextUnmountSaveForStep(stepId);
             clearFormValuesForStep(stepId);
+            store.getState().clearDraftFormValues(stepId);
 
             // Lagre mellomlagring (fire-and-forget)
             const storeState = store.getState();
@@ -69,12 +80,5 @@ export function useStepData<T = unknown>(
         ],
     );
 
-    const setFormData = useCallback(
-        (data: unknown) => {
-            store.getState().setFormData(stepId, data);
-        },
-        [store, stepId],
-    );
-
-    return { lagretData, commit, formData, setFormData };
+    return { lagretData, draftFormValues, commit };
 }

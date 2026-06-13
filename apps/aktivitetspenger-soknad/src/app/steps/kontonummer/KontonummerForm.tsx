@@ -25,8 +25,10 @@ export const KontonummerForm = () => {
     const { validateField } = useSifValidate('kontonummerForm');
     const { kontoInfo: kontonummerInfo } = useAppContext();
 
-    const { lagretData, commit } = useStepData<KontonummerSøknadsdata>(stepId);
-    const methods = useForm<KontonummerFormValues>({ defaultValues: toKontonummerFormValues(lagretData) });
+    const { lagretData, commit, draftFormValues } = useStepData<KontonummerSøknadsdata, KontonummerFormValues>(stepId);
+    const methods = useForm<KontonummerFormValues>({
+        defaultValues: draftFormValues ?? toKontonummerFormValues(lagretData),
+    });
     useSaveSøknadFormValues(stepId, methods.getValues);
 
     const onSubmit = (data: KontonummerFormValues) => commit(toKontonummerSøknadsdata(data));

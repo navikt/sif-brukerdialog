@@ -4,9 +4,17 @@ import { IncludedStep, MellomlagringBlob, StepDefinition } from '../types';
 import { getIncludedSteps } from '../utils/stepUtils';
 
 export interface SøknadStoreState {
+    /** Committet søknadsdata per steg — oppdateres kun ved submit. Domeneverdier, ikke rå skjemaverdier. */
     søknadsdata: Record<string, unknown>;
-    formData: Record<string, unknown>;
+    /**
+     * Midlertidige RHF-skjemaverdier per steg — lagres til/leses fra mellomlagring-blob.
+     * Brukes som `defaultValues` etter reload slik at brukeren ikke mister utfylte verdier.
+     * Nøkkel: stepId. Ryddes for et steg ved commit eller reset.
+     */
+    draftFormValues: Record<string, Record<string, unknown>>;
+    /** Hvilket steg som er "aktivt" (neste steg som ikke er fullført). */
     currentStepId: string | undefined;
+    /** Beregnede inkluderte steg med completed-flag — utledet fra søknadsdata + config. */
     includedSteps: IncludedStep[];
     søknadSendt: boolean;
     isInitialized: boolean;
@@ -24,8 +32,8 @@ export interface SøknadStoreActions {
         stepId: string,
         data: unknown,
     ) => { newCurrentStepId: string | undefined; newRoute: string | undefined };
-    setFormData: (stepId: string, data: unknown) => void;
-    clearFormData: (stepId: string) => void;
+    /** Rydder draft-verdier for ett steg (etter commit eller ved reset). */
+    clearDraftFormValues: (stepId: string) => void;
     setSøknadSendt: () => void;
     reset: () => void;
 }
@@ -56,7 +64,7 @@ export const createSøknadAppStore = (options: StoreOptions): UseBoundStore<Stor
 
     const storeCreator: StateCreator<SøknadStore> = (set, get) => ({
         søknadsdata: {},
-        formData: {},
+        draftFormValues: {},
         currentStepId: undefined,
         includedSteps: [],
         søknadSendt: false,
@@ -66,7 +74,7 @@ export const createSøknadAppStore = (options: StoreOptions): UseBoundStore<Stor
             if (!mellomlagring) {
                 set({
                     søknadsdata: {},
-                    formData: {},
+                    draftFormValues: {},
                     currentStepId: undefined,
                     includedSteps: computeIncludedSteps(stepOrder, config, {}),
                     søknadSendt: false,
@@ -75,10 +83,10 @@ export const createSøknadAppStore = (options: StoreOptions): UseBoundStore<Stor
                 return;
             }
 
-            const { søknadsdata, currentStepId } = mellomlagring;
+            const { søknadsdata, currentStepId, draftFormValues } = mellomlagring;
             set({
                 søknadsdata,
-                formData: {},
+                draftFormValues: draftFormValues ?? {},
                 currentStepId,
                 includedSteps: computeIncludedSteps(stepOrder, config, søknadsdata),
                 søknadSendt: false,
@@ -102,12 +110,6 @@ export const createSøknadAppStore = (options: StoreOptions): UseBoundStore<Stor
                     delete oppdatertSøknadsdata[ekskludertId];
                 }
             }
-            const oppdatertFormData = { ...state.formData };
-            for (const ekskludertId of tidligereInkluderte) {
-                if (!nyInkluderteIds.includes(ekskludertId)) {
-                    delete oppdatertFormData[ekskludertId];
-                }
-            }
 
             // Trinn 5: Reberegn inkluderte steg med oppdatert søknadsdata
             const nyeIncludedSteps = computeIncludedSteps(stepOrder, config, oppdatertSøknadsdata);
@@ -118,7 +120,6 @@ export const createSøknadAppStore = (options: StoreOptions): UseBoundStore<Stor
 
             set({
                 søknadsdata: oppdatertSøknadsdata,
-                formData: oppdatertFormData,
                 includedSteps: nyeIncludedSteps,
                 currentStepId: newCurrentStepId,
             });
@@ -126,28 +127,24 @@ export const createSøknadAppStore = (options: StoreOptions): UseBoundStore<Stor
             return { newCurrentStepId, newRoute };
         },
 
-        setFormData: (stepId, data) =>
-            set((state) => ({
-                formData: { ...state.formData, [stepId]: data },
-            })),
-
-        clearFormData: (stepId) =>
+        clearDraftFormValues: (stepId) =>
             set((state) => {
-                const newFormData = { ...state.formData };
-                delete newFormData[stepId];
-                return { formData: newFormData };
+                const newDraft = { ...state.draftFormValues };
+                delete newDraft[stepId];
+                return { draftFormValues: newDraft };
             }),
 
         setSøknadSendt: () =>
             set({
                 søknadSendt: true,
                 currentStepId: undefined,
+                draftFormValues: {},
             }),
 
         reset: () =>
             set({
                 søknadsdata: {},
-                formData: {},
+                draftFormValues: {},
                 currentStepId: undefined,
                 includedSteps: computeIncludedSteps(stepOrder, config, {}),
                 søknadSendt: false,

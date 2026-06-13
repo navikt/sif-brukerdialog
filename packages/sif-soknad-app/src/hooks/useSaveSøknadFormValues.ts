@@ -17,12 +17,21 @@ import { StepFormValues, useSøknadFormValues } from '../consistency/SøknadForm
  * ```
  */
 export const useSaveSøknadFormValues = (stepId: string, getValues: () => unknown) => {
-    const { setFormValuesForStep, shouldSaveOnUnmountForStep } = useSøknadFormValues();
+    const { setFormValuesForStep, shouldSaveOnUnmountForStep, registerGetValuesForStep, unregisterGetValuesForStep } =
+        useSøknadFormValues();
     const getValuesRef = useRef(getValues);
 
     useEffect(() => {
         getValuesRef.current = getValues;
     });
+
+    // Registrer live getter slik at useMellomlagring kan hente verdier mens komponenten er montert
+    useEffect(() => {
+        registerGetValuesForStep(stepId, () => getValuesRef.current() as StepFormValues);
+        return () => {
+            unregisterGetValuesForStep(stepId);
+        };
+    }, [stepId, registerGetValuesForStep, unregisterGetValuesForStep]);
 
     useEffect(() => {
         return () => {

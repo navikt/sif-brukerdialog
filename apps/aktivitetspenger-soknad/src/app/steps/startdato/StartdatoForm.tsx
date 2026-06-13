@@ -22,8 +22,10 @@ export const StartdatoForm = () => {
     const { text } = useAppIntl();
     const { validateField } = useSifValidate('startdatoForm');
 
-    const { lagretData, commit } = useStepData<StartdatoSøknadsdata>(stepId);
-    const methods = useForm<StartdatoFormValues>({ defaultValues: toStartdatoFormValues(lagretData) });
+    const { lagretData, commit, draftFormValues } = useStepData<StartdatoSøknadsdata, StartdatoFormValues>(stepId);
+    const methods = useForm<StartdatoFormValues>({
+        defaultValues: draftFormValues ?? toStartdatoFormValues(lagretData),
+    });
     useSaveSøknadFormValues(stepId, methods.getValues);
 
     const onSubmit = (data: StartdatoFormValues) => commit(toStartdatoSøknadsdata(data));

@@ -23,8 +23,8 @@ export const BarnForm = () => {
     const { text } = useAppIntl();
     const { barn: registrerteBarn } = useAppContext();
 
-    const { lagretData, commit } = useStepData<BarnSøknadsdata>(stepId);
-    const methods = useForm<BarnFormValues>({ defaultValues: toBarnFormValues(lagretData) });
+    const { lagretData, commit, draftFormValues } = useStepData<BarnSøknadsdata, BarnFormValues>(stepId);
+    const methods = useForm<BarnFormValues>({ defaultValues: draftFormValues ?? toBarnFormValues(lagretData) });
     useSaveSøknadFormValues(stepId, methods.getValues);
 
     const onSubmit = (data: BarnFormValues) => commit(toBarnSøknadsdata(data));
