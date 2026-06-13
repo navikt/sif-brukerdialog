@@ -17,9 +17,10 @@ test('Fyll ut søknad og kontroller oppsummering', async ({ page }) => {
     await page.goto(`./`);
 
     /** Velkommen */
-    await expect(page.getByRole('heading', { name: 'Hei Test' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Hei Test!' })).toBeVisible();
     await testAccessibility(page);
-    await page.getByText('Jeg bekrefter at jeg vil svare så riktig som jeg kan.').check();
+    await page.getByRole('heading', { name: 'Hei Test!' }).click();
+    await page.getByRole('checkbox', { name: 'Jeg vil svare så godt jeg kan' }).check();
     await page.getByRole('button', { name: 'Start søknad' }).click();
 
     /** Kontonummer */

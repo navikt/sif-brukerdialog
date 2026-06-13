@@ -1,64 +1,75 @@
-import { Alert, BodyLong, Heading, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, Heading, Radio, RadioGroup, VStack } from '@navikt/ds-react';
+import { YesOrNo } from '@navikt/sif-common-core-ds/src';
+import { FormLayout, RegistrerteBarnListeHeading } from '@navikt/sif-common-ui';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
+import AriaLiveRegion from '@shared/components/aria-live-region/AriaLiveRegion';
+import ExternalLink from '@shared/components/external-link/ExternalLink';
 import { AppText, useAppIntl } from '@shared/i18n';
 import getLenker from '@shared/utils/lenker';
-import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
-import { AriaLiveRegion, ExternalLink, FormLayout } from '@sif/soknad-ui/components';
+import SøknadSteg from '@søknad/components/søknad-steg/SøknadSteg';
+import SkjemaFooter from '@søknad/components/steg-skjema/SkjemaFooter';
+import { useSøknadContext } from '@søknad/hooks/context/useSøknadContext';
+import { useSøknadNavigation } from '@søknad/hooks/utils/useSøknadNavigation';
+import { Spørsmål, Steg } from '@søknad/types';
+import { useState } from 'react';
 
-import { SøknadStepId } from '../../setup/config/SøknadStepId';
-import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '../../setup/hooks';
-import { useSøknadState } from '../../setup/hooks/useSøknadState';
-import { AppForm } from '../../setup/soknad/AppForm';
-import { SøknadStep } from '../../setup/soknad/SøknadStep';
 import BarnInfo from './BarnInfo';
-import { toBarnFormValues, toBarnSøknadsdata } from './barnStegUtils';
-import { BarnFormFields, BarnFormValues } from './types';
-
-const { YesOrNoQuestion } = createSifFormComponents<BarnFormValues>();
-
-const stepId = SøknadStepId.BARN;
 
 const BarnSteg = () => {
     const { text } = useAppIntl();
-    const { validateField } = useSifValidate('barnSteg');
-    const { barn } = useSøknadState();
+    const { setSpørsmålSvar, svar, barn } = useSøknadContext();
+    const { gotoSteg } = useSøknadNavigation();
 
-    const defaultValues = useStepDefaultValues({
-        stepId,
-        toFormValues: toBarnFormValues,
-    });
-    const { onSubmit, isPending } = useStepSubmit({
-        stepId,
-        toSøknadsdata: toBarnSøknadsdata,
-    });
-    const methods = useSøknadRhfForm(stepId, defaultValues);
-    const barnStemmer = methods.watch(BarnFormFields.barnStemmer);
+    const infoStemmer = svar[Spørsmål.BARN];
+    const [error, setError] = useState<string | undefined>(undefined);
+
+    const handleOnSubmit = () => {
+        const err = getYesOrNoValidator()(infoStemmer);
+        if (err) {
+            setError(text('barnSteg.validering.ikkeSvart'));
+            return;
+        }
+        setError(undefined);
+        gotoSteg(Steg.OPPSUMMERING);
+    };
 
     return (
-        <SøknadStep stepId={stepId}>
+        <SøknadSteg tittel={text('barnSteg.tittel')} steg={Steg.BARN}>
             <FormLayout.Guide>
                 <AppText id="barnSteg.beskrivelse" />
             </FormLayout.Guide>
-            <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
+            <form
+                onSubmit={(evt) => {
+                    evt.preventDefault();
+                    handleOnSubmit();
+                }}>
                 <FormLayout.Questions>
                     <VStack gap="space-16">
-                        <Heading level="2" size="xsmall">
+                        <RegistrerteBarnListeHeading level="2" size="xsmall">
                             {text('barnSteg.registrerteBarn.tittel')}
-                        </Heading>
+                        </RegistrerteBarnListeHeading>
+
                         <BarnInfo barn={barn} />
                     </VStack>
-                    <YesOrNoQuestion
-                        name={BarnFormFields.barnStemmer}
+
+                    <RadioGroup
                         legend={text(barn.length === 0 ? 'barnSteg.spørsmål.ingenBarn' : 'barnSteg.spørsmål.harBarn', {
                             antallBarn: barn.length,
                         })}
-                        labels={{
-                            yes: text('barnSteg.barnStemmer.ja.label'),
-                            no: text('barnSteg.barnStemmer.nei.label'),
-                        }}
-                        validate={validateField(BarnFormFields.barnStemmer, getYesOrNoValidator())}
-                    />
-                    <AriaLiveRegion visible={barnStemmer === YesOrNo.NO}>
+                        error={error}
+                        value={infoStemmer}
+                        onChange={(value: YesOrNo) => {
+                            setError(undefined);
+                            setSpørsmålSvar(Spørsmål.BARN, value);
+                        }}>
+                        <Radio value={YesOrNo.YES} checked={infoStemmer === YesOrNo.YES}>
+                            <AppText id="barnSteg.barnStemmer.ja.label" />
+                        </Radio>
+                        <Radio value={YesOrNo.NO} checked={infoStemmer === YesOrNo.NO}>
+                            <AppText id="barnSteg.barnStemmer.nei.label" />
+                        </Radio>
+                    </RadioGroup>
+                    <AriaLiveRegion visible={infoStemmer === YesOrNo.NO}>
                         <FormLayout.QuestionRelatedMessage>
                             <Alert variant="info">
                                 <Heading level="3" size="small" spacing>
@@ -77,9 +88,17 @@ const BarnSteg = () => {
                             </Alert>
                         </FormLayout.QuestionRelatedMessage>
                     </AriaLiveRegion>
+
+                    <SkjemaFooter
+                        forrige={{
+                            tittel: text('søknadApp.forrigeSteg.label'),
+                            onClick: () => gotoSteg(Steg.KONTONUMMER),
+                        }}
+                        submit={{ tittel: text('søknadApp.nesteSteg.label'), erSendInn: false }}
+                    />
                 </FormLayout.Questions>
-            </AppForm>
-        </SøknadStep>
+            </form>
+        </SøknadSteg>
     );
 };
 

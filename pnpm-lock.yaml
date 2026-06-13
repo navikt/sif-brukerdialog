@@ -3594,6 +3594,9 @@ importers:
       '@navikt/sif-common-api':
         specifier: workspace:*
         version: link:../../packages/sif-common-api
+      '@navikt/sif-common-core-ds':
+        specifier: workspace:*
+        version: link:../../packages/sif-common-core-ds
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../../packages/sif-common-env
@@ -3603,12 +3606,18 @@ importers:
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
+      '@navikt/sif-common-forms-ds':
+        specifier: workspace:*
+        version: link:../../packages/sif-common-forms-ds
       '@navikt/sif-common-hooks':
         specifier: workspace:*
         version: link:../../packages/sif-common-hooks
       '@navikt/sif-common-sentry':
         specifier: workspace:*
         version: link:../../packages/sif-common-sentry
+      '@navikt/sif-common-soknad-ds':
+        specifier: workspace:*
+        version: link:../../packages/sif-common-soknad-ds
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../../packages/sif-common-ui
@@ -3630,12 +3639,6 @@ importers:
       '@sif/api':
         specifier: workspace:*
         version: link:../../packages/sif-api
-      '@sif/rhf':
-        specifier: workspace:*
-        version: link:../../packages/sif-rhf
-      '@sif/soknad':
-        specifier: workspace:*
-        version: link:../../packages/sif-soknad
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../../packages/sif-soknad-ui
@@ -3648,9 +3651,6 @@ importers:
       '@tanstack/react-query':
         specifier: 5.101.0
         version: 5.101.0(react@19.2.7)
-      '@types/object-hash':
-        specifier: 3.0.6
-        version: 3.0.6
       axios:
         specifier: 1.16.1
         version: 1.16.1
@@ -3684,9 +3684,6 @@ importers:
       react-error-boundary:
         specifier: 6.1.2
         version: 6.1.2(react@19.2.7)
-      react-hook-form:
-        specifier: 7.77.0
-        version: 7.77.0(react@19.2.7)
       react-intl:
         specifier: 10.1.13
         version: 10.1.13(@types/react@19.2.17)(react@19.2.7)
@@ -8364,6 +8361,9 @@ packages:
     peerDependencies:
       html-react-parser: '>=5.x'
       react: '>=17.x'
+    peerDependenciesMeta:
+      react:
+        optional: true
 
   '@navikt/next-logger@5.0.0':
     resolution: {integrity: sha512-VQ2VM/k5uDYnb7BYG3ITJZgMZq8B3TECOnhdvNOQeltJyy8+KQzGqLsrYajKPWuUiPuLjYFk0HbU2W22onB9mQ==, tarball: https://npm.pkg.github.com/download/@navikt/next-logger/5.0.0/510dccac519d1227515e4c8a8268570d90305b3e}
@@ -20263,6 +20263,7 @@ snapshots:
       csp-header: 6.3.1
       html-react-parser: 6.1.3(@types/react@19.2.17)(react@19.2.7)
       js-cookie: 3.0.7
+    optionalDependencies:
       react: 19.2.7
 
   '@navikt/next-logger@5.0.0(next@16.2.7(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@playwright/test@1.60.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(sass@1.100.0))(pino@10.3.1)':

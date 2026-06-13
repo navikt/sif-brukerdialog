@@ -1,4 +1,4 @@
-import { decoratorLocaleUtils } from '@sif/soknad-ui';
+import { getLocaleFromSessionStorage } from '@navikt/sif-common-core-ds/src/utils/localeUtils';
 import { getSifLenker } from '@sif/soknad-ui/lenker';
 
 import { getAppEnv } from './appEnv';
@@ -20,7 +20,7 @@ interface Lenker {
 const getEnvironment = () => (getAppEnv().ENV === 'dev' ? 'dev' : 'prod');
 
 const getLenker = (): Lenker => {
-    const lenker = getSifLenker(decoratorLocaleUtils.getLocaleFromSessionStorage(), getEnvironment());
+    const lenker = getSifLenker(getLocaleFromSessionStorage(), getEnvironment());
 
     return {
         omUngdomsprogramytelsen: lenker.navUngdomsprogrammet,

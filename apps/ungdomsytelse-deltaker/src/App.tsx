@@ -1,14 +1,17 @@
 import '@navikt/ds-css';
 import './app.css';
 
-import { AppStatusWrapper, SanityConfig } from '@navikt/appstatus-react-ds';
-import { BodyShort, Box } from '@navikt/ds-react';
+import { SanityConfig } from '@navikt/appstatus-react-ds';
+import { BodyShort } from '@navikt/ds-react';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
 import { UxSignalsLoaderProvider } from '@sif/surveys';
+import AppStatusWrapper from '@navikt/sif-common-core-ds/src/components/app-status-wrapper/AppStatusWrapper';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { EnvKey } from '@navikt/sif-common-env';
 import { FaroProvider } from '@navikt/sif-common-faro';
-import { DevBranchInfo, SifGuidePanel } from '@sif/soknad-ui';
+import { ErrorPage } from '@navikt/sif-common-soknad-ds';
+import DevBranchInfo from '@navikt/sif-common-soknad-ds/src/components/dev-branch-info/DevBranchInfo';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import MockDate from 'mockdate';
 
@@ -18,7 +21,6 @@ import DeltakerInfoLoader from './components/deltaker-info-loader/DeltakerInfoLo
 import AppErrorFallback from './components/error-boundary/AppErrorFallback';
 import ErrorBoundary from './components/error-boundary/ErrorBoundary';
 import { AppIntlMessageProvider } from './i18n/AppIntlMessageProvider';
-import ErrorPage from './pages/ErrorPage';
 import { getAppEnv } from './utils/appEnv';
 import { initApiClients } from './utils/initApiClients';
 
@@ -80,16 +82,18 @@ function App() {
                             </FaroProvider>
                         )}
                         unavailableContentRenderer={() => (
-                            <ErrorPage bannerTitle="Ungdomsprogramytelsen" pageTitle="Vi utfører vedlikehold">
-                                <SifGuidePanel mood="happy" title="Vi utfører vedlikehold" poster={true}>
-                                    <Box marginBlock="space-8 space-0">
-                                        <BodyShort size="large">
+                            <ErrorPage
+                                bannerTitle="Ungdomsprogramytelsen"
+                                pageTitle="Vi utfører vedlikehold"
+                                contentRenderer={() => (
+                                    <SifGuidePanel mood="happy" title="Vi utfører vedlikehold" poster={true}>
+                                        <BodyShort className="pt-4" size="large">
                                             Sidene for ungdomsprogramytelsen er midlertidig utilgjengelige. Vi regner
                                             med å være ferdige snart, så prøv gjerne igjen om en liten stund.
                                         </BodyShort>
-                                    </Box>
-                                </SifGuidePanel>
-                            </ErrorPage>
+                                    </SifGuidePanel>
+                                )}
+                            />
                         )}
                     />
                     <DevBranchInfo />

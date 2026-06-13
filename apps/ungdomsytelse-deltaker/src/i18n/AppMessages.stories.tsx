@@ -1,5 +1,5 @@
 import { Box, Heading } from '@navikt/ds-react';
-import { I18nMessagesPreview } from '@sif/soknad-ui';
+import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { withIntl } from '../../storybook/decorators/withIntl';
@@ -23,7 +23,13 @@ export const InnsynTeksterStory: Story = {
             <Heading level="1" size="large" spacing>
                 Innsynstekster
             </Heading>
-            <I18nMessagesPreview nb={innsynMessages_nb} nn={innsynMessages_nn} />
+            <MessagesPreview
+                messages={{
+                    nb: innsynMessages_nb,
+                    nn: innsynMessages_nn,
+                }}
+                showExplanation={false}
+            />
         </Box>
     ),
 };
@@ -34,7 +40,13 @@ export const SøknadTeksterStory: Story = {
             <Heading level="1" size="large" spacing>
                 Søknadstekster
             </Heading>
-            <I18nMessagesPreview nb={ungSoknadMessages_nb} nn={ungSoknadMessages_nn} />
+            <MessagesPreview
+                messages={{
+                    nb: ungSoknadMessages_nb,
+                    nn: ungSoknadMessages_nn,
+                }}
+                showExplanation={false}
+            />
         </Box>
     ),
 };

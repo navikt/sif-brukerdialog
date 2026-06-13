@@ -1,7 +1,7 @@
 import { Box, VStack } from '@navikt/ds-react';
 import { useDocumentTitle } from '@navikt/sif-common-hooks';
 import { useAppIntl } from '@shared/i18n';
-import { InnsynPageBoundary } from '@sif/ung-innsyn';
+import PageContentWrapper from '@shared/pages/layout/PageContentWrapper';
 import React, { useEffect } from 'react';
 
 interface Props {
@@ -18,15 +18,15 @@ const ForsidePageLayout = ({ children, documentTitle, footer }: Props) => {
     useDocumentTitle(documentTitle);
     return (
         <main aria-label={text('pageLayout.main.ariaLabel')}>
-            <InnsynPageBoundary paddingBlock="space-40">
+            <PageContentWrapper>
                 <VStack gap="space-40">{children}</VStack>
-            </InnsynPageBoundary>
+            </PageContentWrapper>
             {footer && (
                 <Box
                     className="bg-[#FFEBC7]"
                     marginBlock={{ sm: 'space-32 space-0', xs: 'space-12 space-0' }}
                     paddingBlock={{ sm: 'space-32 space-0' }}>
-                    <InnsynPageBoundary paddingBlock="space-40">{footer}</InnsynPageBoundary>
+                    <PageContentWrapper>{footer}</PageContentWrapper>
                 </Box>
             )}
         </main>

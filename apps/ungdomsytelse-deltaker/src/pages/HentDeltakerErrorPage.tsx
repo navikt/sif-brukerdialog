@@ -1,5 +1,5 @@
 import { Alert, BodyShort, Box, Button, Heading } from '@navikt/ds-react';
-import { SifGuidePanel } from '@sif/soknad-ui';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 
 import { ScenarioType } from '../../mock/scenarios/types';
 import { store } from '../../mock/state/store';

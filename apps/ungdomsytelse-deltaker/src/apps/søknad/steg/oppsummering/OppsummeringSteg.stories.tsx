@@ -1,21 +1,28 @@
-import { YesOrNo } from '@sif/rhf';
+import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
+import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withQueryClient } from '../../../../../storybook/decorators/withQueryClient';
+import { withRouter } from '../../../../../storybook/decorators/withRouter';
 import { withSøknadContext } from '../../../../../storybook/decorators/withSøknadContext';
-import { SøknadStepId } from '../../setup/config/SøknadStepId';
 import OppsummeringSteg from './OppsummeringSteg';
-
-const oppsummeringStepData = {
-    harForståttRettigheterOgPlikter: true,
-    kontonummer: { kontonummerErRiktig: YesOrNo.YES },
-    barn: { barnStemmer: YesOrNo.YES },
-};
 
 const meta: Meta = {
     title: 'Søknad/Steg/Oppsummering',
     parameters: {},
-    decorators: [withQueryClient],
+    decorators: [
+        withIntl,
+        (Story) =>
+            withSøknadContext(Story, {
+                svar: {
+                    harForståttRettigheterOgPlikter: true,
+                    barn: YesOrNo.YES,
+                    kontonummer: YesOrNo.YES,
+                },
+            }),
+        withRouter,
+        withQueryClient,
+    ],
 };
 
 export default meta;
@@ -24,11 +31,4 @@ type Story = StoryObj;
 
 export const Oppsummering: Story = {
     render: () => <OppsummeringSteg />,
-    decorators: [
-        (Story) =>
-            withSøknadContext(Story, {
-                currentStepId: SøknadStepId.OPPSUMMERING,
-                søknadsdata: oppsummeringStepData,
-            }),
-    ],
 };

@@ -1,16 +1,17 @@
-import { Events, getAnalyticsInstance } from '@navikt/nav-dekoratoren-moduler';
+import { getAnalyticsInstance } from '@navikt/nav-dekoratoren-moduler';
 import constate from 'constate';
-import { DeltakerSkjemaId } from '../types/DeltakerSkjemaId';
 
 const MAX_AWAIT_TIME = 500;
 
-export { Events };
-
-export enum CustomAnalyticsEvents {
+export enum AnalyticsEvents {
+    'skjemaStartet' = 'skjema startet',
+    'skjemaSendt' = 'skjema fullført',
+    'skjemaFeilet' = 'skjemainnsending feilet',
     'applikasjonInfo' = 'applikasjon-info',
     'applikasjonHendelse' = 'applikasjon-hendelse',
     'apiError' = 'api-error',
 }
+
 export enum ApplikasjonHendelse {
     'avbryt' = 'avbryt',
     'fortsettSenere' = 'fortsettSenere',
@@ -24,56 +25,78 @@ export enum ApiErrorKey {
     'kontonummer' = 'kontonummer',
 }
 
-type EventProperties = {
-    [key: string]: any;
-};
-
 interface Props {
     applicationKey: string;
     isActive?: boolean;
     children: React.ReactNode;
+    maxAwaitTime?: number;
 }
 
+type EventProperties = {
+    [key: string]: any;
+};
+
 export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props) => {
-    const { applicationKey, isActive = true } = props;
-    const logger = isActive ? getAnalyticsInstance(applicationKey) : null;
+    const { applicationKey, isActive = true, maxAwaitTime = MAX_AWAIT_TIME } = props;
 
-    async function logEvent(event: (typeof Events)[keyof typeof Events], properties?: Record<string, unknown>) {
-        if (!logger) return;
-        const timeout = new Promise<void>((resolve) => setTimeout(resolve, MAX_AWAIT_TIME));
-        const log = Promise.resolve(logger(event, properties))
-            .then(() => undefined)
-            .catch(() => undefined);
-        return Promise.race([timeout, log]);
+    async function logEvent(eventName: string, eventProperties?: EventProperties) {
+        const logger = getAnalyticsInstance('dekoratoren');
+        if (isActive && logger) {
+            const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve(null), maxAwaitTime));
+            const logPromise = new Promise((resolve) => {
+                const eventProps = { ...eventProperties, applikasjon: applicationKey };
+                logger
+                    .custom(eventName, eventProps)
+                    .then(resolve)
+                    .catch(() => resolve(true));
+            });
+            return Promise.race([timeoutPromise, logPromise]);
+        }
     }
 
-    async function logCustom(event: string, properties?: Record<string, unknown>) {
-        if (!logger) return;
-        const timeout = new Promise<void>((resolve) => setTimeout(resolve, MAX_AWAIT_TIME));
-        const log = logger
-            .custom(event, properties)
-            .then(() => undefined)
-            .catch(() => undefined);
-        return Promise.race([timeout, log]);
+    async function logSkjemaStartet(skjemanavn: string) {
+        return logEvent(AnalyticsEvents.skjemaStartet, {
+            skjemanavn,
+        });
     }
 
-    async function logSkjemaStartet(skjemaId: DeltakerSkjemaId) {
-        return logEvent(Events.SKJEMA_STARTET, { skjemaId });
+    async function logSkjemaFullført(skjemanavn: string, metadata?: EventProperties) {
+        return logEvent(AnalyticsEvents.skjemaSendt, {
+            skjemanavn,
+            ...metadata,
+        });
     }
-    async function logSkjemaFullført(skjemaId: DeltakerSkjemaId) {
-        return logEvent(Events.SKJEMA_FULLFORT, { skjemaId });
+
+    async function logSkjemaFeilet(skjemanavn: string) {
+        return logEvent(AnalyticsEvents.skjemaFeilet, {
+            skjemanavn,
+        });
     }
 
     async function logHendelse(hendelse: ApplikasjonHendelse, details?: EventProperties) {
-        return logCustom(CustomAnalyticsEvents.applikasjonHendelse, { hendelse, details });
-    }
-    async function logSkjemaFeilet(skjemaId: DeltakerSkjemaId) {
-        return logEvent(Events.SKJEMA_INNSENDING_FEILET, { skjemaId });
+        return logEvent(AnalyticsEvents.applikasjonHendelse, {
+            hendelse,
+            details,
+        });
     }
 
     async function logApiError(error: ApiErrorKey, details?: EventProperties) {
-        return logCustom(CustomAnalyticsEvents.apiError, { error, details });
+        return logEvent(AnalyticsEvents.apiError, {
+            error,
+            details,
+        });
     }
 
-    return { logEvent, logCustom, logSkjemaStartet, logSkjemaFullført, logSkjemaFeilet, logHendelse, logApiError };
+    async function logInfo(details: EventProperties) {
+        return logEvent(AnalyticsEvents.applikasjonInfo, { ...details });
+    }
+
+    return {
+        logSkjemaStartet,
+        logSkjemaFullført,
+        logSkjemaFeilet,
+        logHendelse,
+        logInfo,
+        logApiError,
+    };
 });

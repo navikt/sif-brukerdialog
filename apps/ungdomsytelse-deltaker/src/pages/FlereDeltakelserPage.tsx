@@ -1,5 +1,5 @@
 import { BodyLong, Box, Heading } from '@navikt/ds-react';
-import { SifGuidePanel } from '@sif/soknad-ui';
+import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 
 import ErrorPage from './ErrorPage';
 

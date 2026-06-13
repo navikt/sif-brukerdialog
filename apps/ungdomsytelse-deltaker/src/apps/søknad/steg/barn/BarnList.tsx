@@ -1,5 +1,5 @@
 import { List } from '@navikt/ds-react';
-import { formatName } from '@navikt/sif-common-utils';
+import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { RegistrertBarn } from '@sif/api/k9-prosessering';
 
 interface Props {

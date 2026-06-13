@@ -1,16 +1,21 @@
 import { Box } from '@navikt/ds-react';
-import { ApplicationPage } from '@sif/soknad-ui/pages';
+import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
+import { SoknadErrorMessages, SoknadHeader } from '@navikt/sif-common-soknad-ds';
+import { useSoknadIntl } from '@navikt/sif-common-soknad-ds/src/hooks/useSoknadIntl';
 
 interface Props {
     pageTitle?: string;
-    bannerTitle: string;
-    children: React.ReactNode;
+    bannerTitle?: string;
+    children?: React.ReactNode;
 }
 const ErrorPage = ({ children, pageTitle, bannerTitle }: Props) => {
+    const { text } = useSoknadIntl();
     return (
-        <ApplicationPage documentTitle={pageTitle} applicationTitle={bannerTitle}>
-            <Box paddingBlock="space-40">{children}</Box>
-        </ApplicationPage>
+        <Page
+            title={pageTitle || text('@soknad.errorPage.defaultTitle')}
+            topContentRenderer={() => <SoknadHeader title={bannerTitle || text('application.title')} />}>
+            <Box paddingBlock="space-40">{children || <SoknadErrorMessages.GeneralApplicationError />}</Box>
+        </Page>
     );
 };
 

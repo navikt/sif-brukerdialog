@@ -48,8 +48,7 @@ export const handlers = [
         return HttpResponse.json({});
     }),
 
-    http.post('**/ungdomsytelse/soknad/innsending', async () => {
-        await delay(250);
+    http.post('**/ungdomsytelse/soknad/innsending', () => {
         store.setScenario(ScenarioType.søknadSendt);
         return HttpResponse.json({});
     }),
