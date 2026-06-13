@@ -12,8 +12,12 @@ export interface SøknadStoreState {
      * Nøkkel: stepId. Ryddes for et steg ved commit eller reset.
      */
     draftFormValues: Record<string, Record<string, unknown>>;
-    /** Hvilket steg som er "aktivt" (neste steg som ikke er fullført). */
-    currentStepId: string | undefined;
+    /**
+     * Gjenopptakingspunkt — steget brukeren skal landes på ved reload.
+     * Settes til neste steg etter siste commit, IKKE nødvendigvis det steget brukeren ser på nå
+     * (React Router styrer navigasjon uavhengig av denne verdien).
+     */
+    resumeStepId: string | undefined;
     /** Beregnede inkluderte steg med completed-flag — utledet fra søknadsdata + config. */
     includedSteps: IncludedStep[];
     søknadSendt: boolean;
@@ -25,13 +29,13 @@ export interface SøknadStoreActions {
     init: (mellomlagring: MellomlagringBlob | null) => void;
     /**
      * Trinn 1–6 i commit-algoritmen (rent tilstand, ingen side-effekter).
-     * Returnerer ny currentStepId og route slik at kallet etter kan håndtere
+     * Returnerer nytt resumeStepId og route slik at kallet etter kan håndtere
      * mellomlagring-PUT og navigering (trinn 7–8).
      */
     commitState: (
         stepId: string,
         data: unknown,
-    ) => { newCurrentStepId: string | undefined; newRoute: string | undefined };
+    ) => { newResumeStepId: string | undefined; newRoute: string | undefined };
     /** Rydder draft-verdier for ett steg (etter commit eller ved reset). */
     clearDraftFormValues: (stepId: string) => void;
     setSøknadSendt: () => void;
@@ -65,7 +69,7 @@ export const createSøknadAppStore = (options: StoreOptions): UseBoundStore<Stor
     const storeCreator: StateCreator<SøknadStore> = (set, get) => ({
         søknadsdata: {},
         draftFormValues: {},
-        currentStepId: undefined,
+        resumeStepId: undefined,
         includedSteps: [],
         søknadSendt: false,
         isInitialized: false,
@@ -75,7 +79,7 @@ export const createSøknadAppStore = (options: StoreOptions): UseBoundStore<Stor
                 set({
                     søknadsdata: {},
                     draftFormValues: {},
-                    currentStepId: undefined,
+                    resumeStepId: undefined,
                     includedSteps: computeIncludedSteps(stepOrder, config, {}),
                     søknadSendt: false,
                     isInitialized: true,
@@ -83,11 +87,11 @@ export const createSøknadAppStore = (options: StoreOptions): UseBoundStore<Stor
                 return;
             }
 
-            const { søknadsdata, currentStepId, draftFormValues } = mellomlagring;
+            const { søknadsdata, resumeStepId, draftFormValues } = mellomlagring;
             set({
                 søknadsdata,
                 draftFormValues: draftFormValues ?? {},
-                currentStepId,
+                resumeStepId,
                 includedSteps: computeIncludedSteps(stepOrder, config, søknadsdata),
                 søknadSendt: false,
                 isInitialized: true,
@@ -114,17 +118,17 @@ export const createSøknadAppStore = (options: StoreOptions): UseBoundStore<Stor
             // Trinn 5: Reberegn inkluderte steg med oppdatert søknadsdata
             const nyeIncludedSteps = computeIncludedSteps(stepOrder, config, oppdatertSøknadsdata);
 
-            // Trinn 6: Neste currentStepId = første uferdige steg etter dette steget
-            const newCurrentStepId = findNextStepAfterCommit(nyeIncludedSteps, stepId);
-            const newRoute = newCurrentStepId ? config[newCurrentStepId]?.route : undefined;
+            // Trinn 6: resumeStepId = neste steg etter dette i sekvensen
+            const newResumeStepId = findNextStepAfterCommit(nyeIncludedSteps, stepId);
+            const newRoute = newResumeStepId ? config[newResumeStepId]?.route : undefined;
 
             set({
                 søknadsdata: oppdatertSøknadsdata,
                 includedSteps: nyeIncludedSteps,
-                currentStepId: newCurrentStepId,
+                resumeStepId: newResumeStepId,
             });
 
-            return { newCurrentStepId, newRoute };
+            return { newResumeStepId, newRoute };
         },
 
         clearDraftFormValues: (stepId) =>
@@ -137,7 +141,7 @@ export const createSøknadAppStore = (options: StoreOptions): UseBoundStore<Stor
         setSøknadSendt: () =>
             set({
                 søknadSendt: true,
-                currentStepId: undefined,
+                resumeStepId: undefined,
                 draftFormValues: {},
             }),
 
@@ -145,7 +149,7 @@ export const createSøknadAppStore = (options: StoreOptions): UseBoundStore<Stor
             set({
                 søknadsdata: {},
                 draftFormValues: {},
-                currentStepId: undefined,
+                resumeStepId: undefined,
                 includedSteps: computeIncludedSteps(stepOrder, config, {}),
                 søknadSendt: false,
                 isInitialized: false,

@@ -23,6 +23,11 @@ interface SøknadFormValuesContextValue {
     unregisterGetValuesForStep: (stepId: string) => void;
     /** Returnerer nåværende (live) skjemaverdier for et steg, hvis steget er montert. */
     getLiveFormValuesForStep: (stepId: string) => StepFormValues | undefined;
+    /**
+     * Returnerer live skjemaverdier for alle monterte steg.
+     * Brukes av useMellomlagring for å fange opp verdier uavhengig av resumeStepId i storen.
+     */
+    getAllLiveFormValues: () => Record<string, StepFormValues>;
 }
 
 const SøknadFormValuesContext = createContext<SøknadFormValuesContextValue | null>(null);
@@ -70,6 +75,14 @@ export const SøknadFormValuesProvider = ({ children }: { children: ReactNode })
         return liveGettersRef.current.get(stepId)?.();
     }, []);
 
+    const getAllLiveFormValues = useCallback((): Record<string, StepFormValues> => {
+        const result: Record<string, StepFormValues> = {};
+        liveGettersRef.current.forEach((getter, stepId) => {
+            result[stepId] = getter();
+        });
+        return result;
+    }, []);
+
     return (
         <SøknadFormValuesContext.Provider
             value={{
@@ -81,6 +94,7 @@ export const SøknadFormValuesProvider = ({ children }: { children: ReactNode })
                 registerGetValuesForStep,
                 unregisterGetValuesForStep,
                 getLiveFormValuesForStep,
+                getAllLiveFormValues,
             }}>
             {children}
         </SøknadFormValuesContext.Provider>

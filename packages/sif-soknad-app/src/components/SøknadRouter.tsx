@@ -17,7 +17,7 @@ const isMellomlagringBlob = (value: unknown): value is MellomlagringBlob => {
     const v = value as Record<string, unknown>;
     return (
         typeof v['versjon'] === 'number' &&
-        typeof v['currentStepId'] === 'string' &&
+        typeof v['resumeStepId'] === 'string' &&
         typeof v['søknadsdata'] === 'object' &&
         v['søknadsdata'] !== null
     );
@@ -93,7 +93,7 @@ export const SøknadRouter = ({
                 if (payload && Object.keys(payload).length > 0 && isMellomlagringBlob(payload)) {
                     if (payload.versjon !== versjon) {
                         blob = null;
-                    } else if (!stepOrder.includes(payload.currentStepId)) {
+                    } else if (!stepOrder.includes(payload.resumeStepId)) {
                         blob = null;
                     } else {
                         blob = validateMellomlagring ? validateMellomlagring(payload) : payload;
