@@ -5,7 +5,7 @@ import { BostedSøknadsdata } from '@app/types/Soknadsdata';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
-import { SøknadStep, useStepData } from '@sif/soknad-app';
+import { SøknadStep, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { SifInfoCard } from '@sif/soknad-ui';
 import { useForm } from 'react-hook-form';
 
@@ -22,6 +22,7 @@ export const BostedForm = () => {
 
     const { lagretData, commit } = useStepData<BostedSøknadsdata>(stepId);
     const methods = useForm<BostedFormValues>({ defaultValues: toBostedFormValues(lagretData) });
+    useSaveSøknadFormValues(stepId, methods.getValues);
 
     const onSubmit = (data: BostedFormValues) => commit(toBostedSøknadsdata(data));
 

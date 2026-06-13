@@ -1,6 +1,7 @@
 import { søknadStepConfig, søknadStepOrder } from '@app/setup/config/soknadStepConfig';
 import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '@app/setup/constants';
+import { formValuesToSøknadsdata } from '@app/utils/formValuesToSøknadsdata';
 import { SøknadRouter, SøknadStepGuard } from '@sif/soknad-app';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
@@ -18,6 +19,7 @@ export const Søknad = () => {
             ytelse={APP_YTELSE}
             versjon={MELLOMLAGRING_VERSJON}
             applicationTitle={text('application.title')}
+            formValuesToSøknadsdata={formValuesToSøknadsdata}
             kvitteringElement={<KvitteringPage />}>
             <Routes>
                 <Route path="/" element={<VelkommenPage />} />

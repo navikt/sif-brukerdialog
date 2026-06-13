@@ -8,6 +8,7 @@ import {
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { SøknadFormValuesProvider } from '../consistency/SøknadFormValuesContext';
 import { SøknadAppContext, SøknadAppContextValue } from '../context/SøknadAppContext';
 import { createSøknadAppStore } from '../store/createSøknadAppStore';
 import { MellomlagringBlob, SøknadRouterProps } from '../types';
@@ -63,10 +64,9 @@ export const SøknadRouter = ({
     validateMellomlagring,
     resumeLaterUrl = DEFAULT_RESUME_LATER_URL,
     kvitteringElement,
+    formValuesToSøknadsdata,
     children,
 }: SøknadRouterProps) => {
-    const debounceTimerRef = useRef<ReturnType<typeof setTimeout>>(null);
-
     // Én stabil store-instans per SøknadRouter-mount
     const storeRef = useRef<ReturnType<typeof createSøknadAppStore>>(null);
     if (!storeRef.current) {
@@ -113,33 +113,12 @@ export const SøknadRouter = ({
 
         return () => {
             cancelled = true;
-            if (debounceTimerRef.current) {
-                clearTimeout(debounceTimerRef.current);
-            }
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const lagreMellomlagring = useCallback(
-        (blobData: MellomlagringBlob) => {
-            if (debounceTimerRef.current) {
-                clearTimeout(debounceTimerRef.current);
-            }
-            debounceTimerRef.current = setTimeout(() => {
-                oppdaterYtelseMellomlagring(
-                    ytelse as MellomlagringYtelse,
-                    blobData as unknown as Record<string, unknown>,
-                ).catch(() => {});
-            }, 500);
-        },
-        [ytelse],
-    );
-
-    const lagreMellomlagringNow = useCallback(
-        async (blobData: MellomlagringBlob) => {
-            if (debounceTimerRef.current) {
-                clearTimeout(debounceTimerRef.current);
-            }
+        async (blobData: MellomlagringBlob): Promise<void> => {
             await oppdaterYtelseMellomlagring(
                 ytelse as MellomlagringYtelse,
                 blobData as unknown as Record<string, unknown>,
@@ -149,9 +128,6 @@ export const SøknadRouter = ({
     );
 
     const slettMellomlagring = useCallback(async () => {
-        if (debounceTimerRef.current) {
-            clearTimeout(debounceTimerRef.current);
-        }
         await slettYtelseMellomlagring(ytelse as MellomlagringYtelse).catch(() => {});
     }, [ytelse]);
 
@@ -165,8 +141,8 @@ export const SøknadRouter = ({
             applicationTitle,
             resumeLaterUrl,
             lagreMellomlagring,
-            lagreMellomlagringNow,
             slettMellomlagring,
+            formValuesToSøknadsdata,
         }),
         [
             store,
@@ -177,14 +153,16 @@ export const SøknadRouter = ({
             applicationTitle,
             resumeLaterUrl,
             lagreMellomlagring,
-            lagreMellomlagringNow,
             slettMellomlagring,
+            formValuesToSøknadsdata,
         ],
     );
 
     return (
-        <SøknadAppContext.Provider value={contextValue}>
-            {søknadSendt && kvitteringElement ? kvitteringElement : children}
-        </SøknadAppContext.Provider>
+        <SøknadFormValuesProvider>
+            <SøknadAppContext.Provider value={contextValue}>
+                {søknadSendt && kvitteringElement ? kvitteringElement : children}
+            </SøknadAppContext.Provider>
+        </SøknadFormValuesProvider>
     );
 };

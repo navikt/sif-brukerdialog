@@ -65,6 +65,15 @@ export interface SøknadRouterProps {
     };
     /** Element som vises etter vellykket innsending (kvitteringside) */
     kvitteringElement?: ReactNode;
+    /**
+     * Konverterer RHF-skjemaverdier for et steg til søknadsdata-format.
+     * Nødvendig for å aktivere konsistenssjekk (browser back/forward-advarsel).
+     * Uten denne prop-en er konsistenssjekken deaktivert.
+     */
+    formValuesToSøknadsdata?: (
+        stepId: string,
+        formValues: Record<string, unknown>,
+    ) => Record<string, unknown> | undefined;
     children: ReactNode;
 }
 

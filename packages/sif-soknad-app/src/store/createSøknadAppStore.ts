@@ -48,8 +48,7 @@ const findNextStepAfterCommit = (includedSteps: IncludedStep[], fromStepId: stri
     if (fromIndex === -1) {
         return includedSteps.find((s) => !s.completed)?.stepId;
     }
-    const remaining = includedSteps.slice(fromIndex + 1);
-    return remaining.find((s) => !s.completed)?.stepId ?? remaining[0]?.stepId;
+    return includedSteps[fromIndex + 1]?.stepId;
 };
 
 export const createSøknadAppStore = (options: StoreOptions): UseBoundStore<StoreApi<SøknadStore>> => {

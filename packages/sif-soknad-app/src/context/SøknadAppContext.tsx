@@ -12,11 +12,14 @@ export interface SøknadAppContextValue {
     basePath: string;
     applicationTitle: string;
     resumeLaterUrl: string;
-    /** Debounset mellomlagring-PUT (500 ms) */
-    lagreMellomlagring: (blob: MellomlagringBlob) => void;
-    /** Umiddelbar mellomlagring-PUT — brukes f.eks. ved "fortsett senere" */
-    lagreMellomlagringNow: (blob: MellomlagringBlob) => Promise<void>;
+    /** Lagrer søknadsdata til mellomlagring — kall ved submit eller manuelt */
+    lagreMellomlagring: (blob: MellomlagringBlob) => Promise<void>;
     slettMellomlagring: () => Promise<void>;
+    /** Konverterer RHF-verdier til søknadsdata — brukes av konsistenssjekken */
+    formValuesToSøknadsdata?: (
+        stepId: string,
+        formValues: Record<string, unknown>,
+    ) => Record<string, unknown> | undefined;
 }
 
 export const SøknadAppContext = createContext<SøknadAppContextValue | null>(null);

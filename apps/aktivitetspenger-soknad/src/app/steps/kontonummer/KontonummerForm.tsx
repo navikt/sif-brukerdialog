@@ -7,7 +7,7 @@ import { BodyLong, BodyShort, Heading } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { HarKontonummerEnum } from '@sif/api/ung-deltaker';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
-import { SøknadStep, useStepData } from '@sif/soknad-app';
+import { SøknadStep, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { FormLayout } from '@sif/soknad-ui';
 import { AriaLiveRegion, ExternalLink, SifInfoCard } from '@sif/soknad-ui/components';
 import { useForm } from 'react-hook-form';
@@ -27,6 +27,7 @@ export const KontonummerForm = () => {
 
     const { lagretData, commit } = useStepData<KontonummerSøknadsdata>(stepId);
     const methods = useForm<KontonummerFormValues>({ defaultValues: toKontonummerFormValues(lagretData) });
+    useSaveSøknadFormValues(stepId, methods.getValues);
 
     const onSubmit = (data: KontonummerFormValues) => commit(toKontonummerSøknadsdata(data));
 

@@ -4,7 +4,7 @@ import { AppForm } from '@app/setup/soknad/AppForm';
 import { StartdatoSøknadsdata } from '@app/types/Soknadsdata';
 import { getDateValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
-import { SøknadStep, useStepData } from '@sif/soknad-app';
+import { SøknadStep, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { FormLayout } from '@sif/soknad-ui';
 import { useForm } from 'react-hook-form';
 
@@ -24,6 +24,7 @@ export const StartdatoForm = () => {
 
     const { lagretData, commit } = useStepData<StartdatoSøknadsdata>(stepId);
     const methods = useForm<StartdatoFormValues>({ defaultValues: toStartdatoFormValues(lagretData) });
+    useSaveSøknadFormValues(stepId, methods.getValues);
 
     const onSubmit = (data: StartdatoFormValues) => commit(toStartdatoSøknadsdata(data));
 
