@@ -1,0 +1,44 @@
+{
+    "name": "@sif/soknad-app",
+    "version": "0.0.1",
+    "private": true,
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/navikt/sif-brukerdialog.git"
+    },
+    "type": "module",
+    "exports": {
+        ".": "./src/index.ts"
+    },
+    "main": "src/index.ts",
+    "types": "src/index.ts",
+    "scripts": {
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
+        "test": "vitest run"
+    },
+    "dependencies": {
+        "@navikt/ds-react": "8.11.1",
+        "@navikt/sif-common-ui": "workspace:*",
+        "@sif/api": "workspace:*",
+        "@sif/soknad-ui": "workspace:*",
+        "react-intl": "10.1.13",
+        "react-router-dom": "7.17.0",
+        "zustand": "5.0.14"
+    },
+    "devDependencies": {
+        "@sif/eslint-config": "workspace:*",
+        "@testing-library/react": "16.3.2",
+        "@types/react": "19.2.17",
+        "@types/react-dom": "19.2.3",
+        "react": "19.2.7",
+        "react-dom": "19.2.7",
+        "typescript": "6.0.3",
+        "vitest": "4.1.8"
+    },
+    "peerDependencies": {
+        "react": ">=19",
+        "react-dom": ">=19"
+    }
+}
