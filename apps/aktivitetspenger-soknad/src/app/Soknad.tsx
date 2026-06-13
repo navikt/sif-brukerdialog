@@ -17,10 +17,10 @@ export const Søknad = () => {
             stepOrder={søknadStepOrder}
             ytelse={APP_YTELSE}
             versjon={MELLOMLAGRING_VERSJON}
-            applicationTitle={text('application.title')}>
+            applicationTitle={text('application.title')}
+            kvitteringElement={<KvitteringPage />}>
             <Routes>
                 <Route path="/" element={<VelkommenPage />} />
-                <Route path="/kvittering" element={<KvitteringPage />} />
                 <Route path="/soknad" element={<SøknadStepGuard basePath="/soknad" />}>
                     <Route path={søknadStepConfig[SøknadStepId.STARTDATO].route} element={<StartdatoForm />} />
                     <Route path={søknadStepConfig[SøknadStepId.KONTONUMMER].route} element={<KontonummerForm />} />

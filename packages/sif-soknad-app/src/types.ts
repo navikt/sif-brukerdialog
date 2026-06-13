@@ -63,6 +63,10 @@ export interface SøknadRouterProps {
         avbryt?: ComponentType<DialogProps>;
         fortsettSenere?: ComponentType<DialogProps>;
     };
+    /** Element som vises etter vellykket innsending (kvitteringside) */
+    kvitteringElement?: ReactNode;
+    /** URL-sti det navigeres til etter innsending. Default: '/kvittering' */
+    kvitteringPath?: string;
     children: ReactNode;
 }
 
