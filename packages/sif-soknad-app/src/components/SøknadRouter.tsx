@@ -11,6 +11,7 @@ import { SøknadFormValuesProvider } from '../consistency/SøknadFormValuesConte
 import { SøknadAppContext, SøknadAppContextValue } from '../context/SøknadAppContext';
 import { createSøknadAppStore } from '../store/createSøknadAppStore';
 import { MellomlagringBlob, SøknadRouterProps } from '../types';
+import { buildStepPath } from '../utils/routeUtils';
 
 const isMellomlagringBlob = (value: unknown): value is MellomlagringBlob => {
     if (typeof value !== 'object' || value === null) return false;
@@ -105,6 +106,12 @@ export const SøknadRouter = ({
 
             if (!cancelled) {
                 store.getState().init(blob);
+                if (blob !== null) {
+                    const route = config[blob.resumeStepId]?.route;
+                    if (route) {
+                        navigate(buildStepPath(basePath, route), { replace: true });
+                    }
+                }
             }
         };
 
