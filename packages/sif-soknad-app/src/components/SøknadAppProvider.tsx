@@ -2,6 +2,7 @@ import { FaroProvider } from '@navikt/sif-common-faro';
 import { DevBranchInfo } from '@sif/soknad-ui';
 import { PropsWithChildren } from 'react';
 
+import { AnalyticsProvider } from '../analytics/analytics';
 import { AppErrorBoundary } from './AppErrorBoundary';
 import { SifQueryClientProvider } from './SifQueryClientProvider';
 
@@ -26,7 +27,11 @@ export const SøknadAppProvider = ({
             isActive={isActive}
             telemetryCollectorURL={telemetryCollectorURL}>
             <AppErrorBoundary>
-                <SifQueryClientProvider>{children}</SifQueryClientProvider>
+                <SifQueryClientProvider>
+                    <AnalyticsProvider applicationKey={applicationKey} isActive={isActive}>
+                        {children}
+                    </AnalyticsProvider>
+                </SifQueryClientProvider>
             </AppErrorBoundary>
             <DevBranchInfo />
         </FaroProvider>
