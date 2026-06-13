@@ -71,7 +71,7 @@ export const BostedUtlandForm = () => {
     const oppdaterBosteder = (oppdaterteBosteder: BostedUtlandFormValues[typeof BostedUtlandFormFields.bosteder]) => {
         methods.setValue(BostedUtlandFormFields.bosteder, oppdaterteBosteder);
         methods.trigger(BostedUtlandFormFields.bosteder);
-        lagre();
+        void lagre();
     };
 
     return (

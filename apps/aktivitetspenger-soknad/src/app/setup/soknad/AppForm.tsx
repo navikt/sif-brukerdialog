@@ -1,5 +1,5 @@
 import { SifForm } from '@sif/rhf';
-import { useStepNavigation } from '@sif/soknad-app';
+import { useCheckConsistency, useStepNavigation } from '@sif/soknad-app';
 import { FormLayout } from '@sif/soknad-ui/components';
 import type { ReactNode } from 'react';
 import type { FieldValues, SubmitHandler, UseFormReturn } from 'react-hook-form';
@@ -29,6 +29,7 @@ export function AppForm<T extends FieldValues>({
 }: Readonly<Props<T>>) {
     const { canGoPrevious, navigateToPreviousStep } = useStepNavigation();
     const onPrevious = canGoPrevious(stepId) ? () => navigateToPreviousStep(stepId) : undefined;
+    const inconsistentStepId = useCheckConsistency(stepId);
 
     return (
         <SifForm
@@ -37,7 +38,7 @@ export function AppForm<T extends FieldValues>({
             buttons={
                 <FormLayout.FormButtons
                     submitPending={isPending}
-                    submitDisabled={submitDisabled}
+                    submitDisabled={submitDisabled || !!inconsistentStepId}
                     onPrevious={onPrevious}
                     isFinalSubmit={isFinalSubmit}
                     submitLabel={submitLabel}

@@ -1,11 +1,11 @@
 import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 
-import { toBostedUtlandStegSøknadsdata } from '../steps/bosted-utland/bostedUtlandStegUtils';
-import { BostedUtlandFormValues } from '../steps/bosted-utland/types';
-import { toBostedSøknadsdata } from '../steps/bosted/bostedStegUtils';
-import { BostedFormValues } from '../steps/bosted/types';
 import { toBarnSøknadsdata } from '../steps/barn/barnStegUtils';
 import { BarnFormValues } from '../steps/barn/types';
+import { toBostedSøknadsdata } from '../steps/bosted/bostedStegUtils';
+import { BostedFormValues } from '../steps/bosted/types';
+import { toBostedUtlandStegSøknadsdata } from '../steps/bosted-utland/bostedUtlandStegUtils';
+import { BostedUtlandFormValues } from '../steps/bosted-utland/types';
 import { toKontonummerSøknadsdata } from '../steps/kontonummer/kontonummerStegUtils';
 import { KontonummerFormValues } from '../steps/kontonummer/types';
 import { toStartdatoSøknadsdata } from '../steps/startdato/startdatoStegUtils';
