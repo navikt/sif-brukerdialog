@@ -63,7 +63,6 @@ export const SøknadRouter = ({
     validateMellomlagring,
     resumeLaterUrl = DEFAULT_RESUME_LATER_URL,
     kvitteringElement,
-    kvitteringPath = '/kvittering',
     children,
 }: SøknadRouterProps) => {
     const debounceTimerRef = useRef<ReturnType<typeof setTimeout>>(null);
@@ -79,10 +78,10 @@ export const SøknadRouter = ({
 
     // Naviger til kvitteringssti når søknad er sendt
     useEffect(() => {
-        if (søknadSendt && kvitteringPath) {
-            navigate(kvitteringPath, { replace: true });
+        if (søknadSendt) {
+            navigate('/kvittering', { replace: true });
         }
-    }, [søknadSendt, navigate, kvitteringPath]);
+    }, [søknadSendt, navigate]);
 
     // Hent og initialiser fra mellomlagring ved mount
     useEffect(() => {
