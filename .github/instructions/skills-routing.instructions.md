@@ -25,6 +25,11 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
     - API-henting i app: `hente fra api`, `api-kall`, `fetch`, `react query`, `tanstack query`, `preutfyll fra api`, `last inn data`.
     - Hooks og query: `@sif/api`, `useQuery`, `queryKey`, `queryFn`, `useKontonummer`, `useSøker`, `useRegistrerteBarn`, `useYtelseMellomlagring`, `ApiErrorAlert`.
     - Oppsett: `env.schema.ts`, `initApiClients`, API-klient-init, `*_API_URL`, `*_API_SCOPE`, `*_FRONTEND_PATH`.
+- `sif-soknad-app`:
+    - Rammeverket selv: `@sif/soknad-app`, `sif-soknad-app`, `packages/sif-soknad-app`, `utvide rammeverket`, `endre rammeverket`.
+    - Komponenter: `SøknadRouter`, `SøknadStep`, `SøknadStepGuard`, `StepRouteGuard`, `SøknadAppContext`, `SøknadFormValuesProvider`.
+    - Hooks: `useStepData`, `useMellomlagring`, `useSaveSøknadFormValues`, `useCheckConsistency`, `useStartSøknad`, `useSøknadSendt`.
+    - Store og typer: `createSøknadAppStore`, `commitState`, `MellomlagringBlob`, `resumeStepId`, `draftFormValues`, `SøknadStoreState`, `formValuesToSøknadsdata`.
 - `sif-soknad-setup`:
     - Oppsett av `src/app/setup`, `soknadContext`, `soknadStepConfig`, `useStepSubmit`, `useStepDefaultValues`.
     - Routing shell og pages: `Soknad.tsx`, `VelkommenPage`, `KvitteringPage`, `steps/index.ts`, `pages/index.ts`, `routing-skall`, `sett opp sider`, `legg til routing`.
@@ -85,3 +90,4 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
 - Hvis oppgaven handler om filvedlegg i et steg (`VedleggPanel`, `PersistedVedlegg`, opplasting), prioriter `sif-soknad-vedlegg-step`.
 - Hvis oppgaven handler om å porte en `*ListAndDialog`-dialog fra `sif-common-forms-ds` til `sif-soknad-forms`, prioriter `sif-dialog-migration` over `sif-formik-to-rhf`.
 - Hvis oppgaven handler om Skyra (`skyra-survey`, slug/reload/testside), prioriter `sif-surveys`.
+- Hvis oppgaven handler om å endre eller utvide selve rammeverk-pakken (`packages/sif-soknad-app`), prioriter `sif-soknad-app` over `sif-soknad-setup`/`sif-soknad-add-step`.
