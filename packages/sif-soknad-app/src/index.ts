@@ -2,9 +2,13 @@
 export { SøknadRouter } from './components/SøknadRouter';
 export { SøknadStep } from './components/SøknadStep';
 export { SøknadStepGuard } from './components/SøknadStepGuard';
+export { InconsistentFormValuesMessage } from './consistency/InconsistentFormValuesMessage';
 
 // Hooks
 export { useAvbryt } from './hooks/useAvbryt';
+export { useCheckConsistency } from './hooks/useCheckConsistency';
+export { useMellomlagring } from './hooks/useMellomlagring';
+export { useSaveSøknadFormValues } from './hooks/useSaveSøknadFormValues';
 export { useStartSøknad } from './hooks/useStartSøknad';
 export { useSøknadSendt } from './hooks/useSøknadSendt';
 export { useStepData } from './hooks/useStepData';

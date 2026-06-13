@@ -6,7 +6,7 @@ import { useAppContext } from '@app/context/AppContext';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
-import { SøknadStep, useStepData } from '@sif/soknad-app';
+import { SøknadStep, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { AriaLiveRegion, ExternalLink, FormLayout, RegistrerteBarnListe, SifInfoCard } from '@sif/soknad-ui/components';
 import { useForm } from 'react-hook-form';
 
@@ -25,6 +25,7 @@ export const BarnForm = () => {
 
     const { lagretData, commit } = useStepData<BarnSøknadsdata>(stepId);
     const methods = useForm<BarnFormValues>({ defaultValues: toBarnFormValues(lagretData) });
+    useSaveSøknadFormValues(stepId, methods.getValues);
 
     const onSubmit = (data: BarnFormValues) => commit(toBarnSøknadsdata(data));
 

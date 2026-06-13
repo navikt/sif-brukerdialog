@@ -1,9 +1,12 @@
+import { Box } from '@navikt/ds-react';
 import { ProgressStep } from '@navikt/sif-common-ui';
 import { StepPage } from '@sif/soknad-ui/pages';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 
+import { InconsistentFormValuesMessage } from '../consistency/InconsistentFormValuesMessage';
 import { useSøknadAppContext } from '../context/SøknadAppContext';
+import { useCheckConsistency } from '../hooks/useCheckConsistency';
 import { SøknadStepProps } from '../types';
 import { buildStepPath } from '../utils/routeUtils';
 
@@ -25,7 +28,7 @@ export const SøknadStep = ({ stepId, children }: SøknadStepProps) => {
         applicationTitle,
         resumeLaterUrl,
         versjon,
-        lagreMellomlagringNow,
+        lagreMellomlagring,
         slettMellomlagring,
     } = useSøknadAppContext();
 
@@ -43,6 +46,8 @@ export const SøknadStep = ({ stepId, children }: SøknadStepProps) => {
 
     const documentTitle = intl.formatMessage({ id: `step.${stepId}.title` });
 
+    const inconsistentStepId = useCheckConsistency(stepId);
+
     const onStepSelect = (selectedStepId: string) => {
         const route = config[selectedStepId]?.route;
         if (route) {
@@ -58,7 +63,7 @@ export const SøknadStep = ({ stepId, children }: SøknadStepProps) => {
 
     const onResumeLater = async () => {
         if (currentStepId) {
-            await lagreMellomlagringNow({ versjon, currentStepId, søknadsdata });
+            await lagreMellomlagring({ versjon, currentStepId, søknadsdata });
         }
         window.location.href = resumeLaterUrl;
     };
@@ -72,6 +77,18 @@ export const SøknadStep = ({ stepId, children }: SøknadStepProps) => {
             onStepSelect={onStepSelect}
             onAbort={onAbort}
             onResumeLater={onResumeLater}>
+            {inconsistentStepId ? (
+                <Box marginBlock="space-0 space-32">
+                    <InconsistentFormValuesMessage
+                        stepId={inconsistentStepId}
+                        stepTitle={intl.formatMessage({ id: `step.${inconsistentStepId}.title` })}
+                        onNavigateToStep={() => {
+                            const route = config[inconsistentStepId]?.route;
+                            if (route) navigate(buildStepPath(basePath, route));
+                        }}
+                    />
+                </Box>
+            ) : null}
             {children}
         </StepPage>
     );

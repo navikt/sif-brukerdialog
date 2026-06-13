@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { useSøknadFormValues } from '../consistency/SøknadFormValuesContext';
 import { useSøknadAppContext } from '../context/SøknadAppContext';
 import { buildStepPath } from '../utils/routeUtils';
 
@@ -27,6 +28,7 @@ export function useStepData<T = unknown>(
     setFormData: (data: unknown) => void;
 } {
     const { store, basePath, versjon, lagreMellomlagring } = useSøknadAppContext();
+    const { markSkipNextUnmountSaveForStep, clearFormValuesForStep } = useSøknadFormValues();
     const navigate = useNavigate();
 
     const lagretData = store((s) => s.søknadsdata[stepId]) as T | undefined;
@@ -37,20 +39,34 @@ export function useStepData<T = unknown>(
             // Trinn 1–6: oppdater state i storen
             const { newRoute } = store.getState().commitState(stepId, data);
 
-            // Trinn 7: debounset mellomlagring-PUT
+            // Marker at unmount-handleren ikke skal lagre draft-verdier for dette steget,
+            // og fjern eventuelt lagrede draft-verdier fra context
+            markSkipNextUnmountSaveForStep(stepId);
+            clearFormValuesForStep(stepId);
+
+            // Lagre mellomlagring (fire-and-forget)
             const storeState = store.getState();
             lagreMellomlagring({
                 versjon,
                 currentStepId: storeState.currentStepId ?? stepId,
                 søknadsdata: storeState.søknadsdata,
-            });
+            }).catch(() => {});
 
             // Trinn 8: naviger til neste steg
             if (newRoute) {
                 navigate(buildStepPath(basePath, newRoute));
             }
         },
-        [store, stepId, versjon, basePath, lagreMellomlagring, navigate],
+        [
+            store,
+            stepId,
+            versjon,
+            basePath,
+            lagreMellomlagring,
+            navigate,
+            markSkipNextUnmountSaveForStep,
+            clearFormValuesForStep,
+        ],
     );
 
     const setFormData = useCallback(

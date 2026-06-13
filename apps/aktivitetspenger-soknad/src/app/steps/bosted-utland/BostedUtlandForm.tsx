@@ -6,7 +6,7 @@ import { Heading, VStack } from '@navikt/ds-react';
 import { getDateToday } from '@navikt/sif-common-utils';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
-import { SøknadStep, useStepData } from '@sif/soknad-app';
+import { SøknadStep, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { BostedUtlandListAndDialog } from '@sif/soknad-forms';
 import { FormLayout } from '@sif/soknad-ui';
 import { useEffect, useMemo } from 'react';
@@ -38,6 +38,7 @@ export const BostedUtlandForm = () => {
 
     const { lagretData, commit } = useStepData<BostedUtlandSøknadsdata>(stepId);
     const methods = useForm<BostedUtlandFormValues>({ defaultValues: toBostedUtlandStegFormValues(lagretData) });
+    useSaveSøknadFormValues(stepId, methods.getValues);
 
     const onSubmit = (data: BostedUtlandFormValues) => commit(toBostedUtlandStegSøknadsdata(data));
 
