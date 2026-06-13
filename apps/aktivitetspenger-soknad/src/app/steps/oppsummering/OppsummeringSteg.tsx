@@ -1,14 +1,15 @@
 import { AppText } from '@app/i18n';
 import { SøknadStepId } from '@app/setup/config/SoknadStepId';
-import { useSøknadMellomlagring, useSøknadRhfForm, useSøknadsflyt, useSøknadState } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
-import { SøknadStep } from '@app/setup/soknad/SoknadStep';
+import { useAppContext } from '@app/context/AppContext';
+import { Søknadsdata } from '@app/types/Soknadsdata';
 import { InfoCard } from '@navikt/ds-react';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
-import { useSøknadFormValues } from '@sif/soknad/consistency';
+import { SøknadStep, useSøknadAppContext, useSøknadSendt } from '@sif/soknad-app';
 import { FormLayout } from '@sif/soknad-ui';
+import { useForm } from 'react-hook-form';
 
 import { useSendSøknad } from '../../hooks/useSendSoknad';
 import { søknadsdataToSøknadDTO } from '../../utils/soknadsdataToSoknadDTO';
@@ -33,19 +34,20 @@ export const OppsummeringSteg = () => {
 
     const { validateField } = useSifValidate('oppsummeringForm');
 
-    const methods = useSøknadRhfForm<FormValues>(stepId, {});
+    const { søker, kontoInfo, barn } = useAppContext();
+    const { store } = useSøknadAppContext();
+    const søknadsdata = store((s) => s.søknadsdata) as Søknadsdata;
 
-    const { setSøknadSendt } = useSøknadsflyt();
-    const { clearSøknadFormValues } = useSøknadFormValues();
-    const { slettMellomlagring } = useSøknadMellomlagring();
-    const state = useSøknadState();
+    const { onSøknadSendt } = useSøknadSendt();
+
+    const methods = useForm<FormValues>({ defaultValues: {} });
 
     const { isPending, mutateAsync } = useSendSøknad();
 
     const dto = søknadsdataToSøknadDTO({
-        søker: state.søker,
-        kontoInfo: state.kontoInfo,
-        søknadsdata: state.søknadsdata,
+        søker,
+        kontoInfo,
+        søknadsdata,
         språk: 'nb',
     });
 
@@ -56,13 +58,11 @@ export const OppsummeringSteg = () => {
             return;
         }
         await mutateAsync({ ...dto, harBekreftetOpplysninger });
-        await slettMellomlagring();
-        clearSøknadFormValues();
-        setSøknadSendt();
+        await onSøknadSendt();
     };
 
     return (
-        <SøknadStep stepId={SøknadStepId.OPPSUMMERING}>
+        <SøknadStep stepId={stepId}>
             <AppForm
                 stepId={stepId}
                 methods={methods}
@@ -83,18 +83,13 @@ export const OppsummeringSteg = () => {
                     </InfoCard>
                 )}
                 {dto && (
-                    <>
-                        <FormLayout.Summary>
-                            <StartdatoOppsummering startdato={ISODateToDate(dto.startdato)} />
-                            <KontonummerOppsummering
-                                kontonummerInfo={dto.kontonummerInfo}
-                                kontoOppslagInfo={state.kontoInfo}
-                            />
-                            <BostedOppsummering erBosattITrondheim={dto.erBosattITrondheim} />
-                            <BostedUtlandOppsummering forutgåendeBosteder={dto.forutgåendeBosteder} />
-                            <BarnOppsummering barn={state.barn} barnErRiktig={dto.barnErRiktig} />
-                        </FormLayout.Summary>
-                    </>
+                    <FormLayout.Summary>
+                        <StartdatoOppsummering startdato={ISODateToDate(dto.startdato)} />
+                        <KontonummerOppsummering kontonummerInfo={dto.kontonummerInfo} kontoOppslagInfo={kontoInfo} />
+                        <BostedOppsummering erBosattITrondheim={dto.erBosattITrondheim} />
+                        <BostedUtlandOppsummering forutgåendeBosteder={dto.forutgåendeBosteder} />
+                        <BarnOppsummering barn={barn} barnErRiktig={dto.barnErRiktig} />
+                    </FormLayout.Summary>
                 )}
                 <FormLayout.Questions>
                     <Checkbox

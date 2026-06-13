@@ -6,12 +6,10 @@ import {
     slettYtelseMellomlagring,
 } from '@sif/api/k9-prosessering';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { SøknadAppContext, SøknadAppContextValue } from '../context/SøknadAppContext';
 import { createSøknadAppStore } from '../store/createSøknadAppStore';
 import { MellomlagringBlob, SøknadRouterProps } from '../types';
-import { StepRouteGuard } from './StepRouteGuard';
 
 const isMellomlagringBlob = (value: unknown): value is MellomlagringBlob => {
     if (typeof value !== 'object' || value === null) return false;
@@ -29,18 +27,24 @@ const DEFAULT_RESUME_LATER_URL = 'https://www.nav.no/minside';
 /**
  * Hoved-inngangskomponent for søknadsrammeverket.
  *
- * Setter opp Zustand-store, henter og validerer mellomlagring ved mount,
- * og eksponerer kontekst for useStepData, useAvbryt og useSøknadSendt.
+ * Fungerer som en ren kontekst-provider: setter opp Zustand-store,
+ * henter og validerer mellomlagring ved mount, og eksponerer kontekst
+ * for useStepData, useAvbryt, useSøknadSendt, useStartSøknad og useStepNavigation.
+ *
+ * Appen er ansvarlig for <Routes>-oppsett. Bruk <SøknadStepGuard> for å
+ * beskytte steg-rutene.
  *
  * Bruk i app (eksempel):
  * ```tsx
- * // App.tsx routing:
- * <Route path="/soknad/*" element={<Soknad />} />
- *
  * // Soknad.tsx:
  * <SøknadRouter config={...} stepOrder={...} ytelse="aktivitetspenger" versjon={1} applicationTitle="...">
- *   <Route path="startdato" element={<StartdatoForm />} />
- *   <Route path="oppsummering" element={<OppsummeringForm />} />
+ *   <Routes>
+ *     <Route path="/" element={<VelkommenPage />} />
+ *     <Route path="/kvittering" element={<KvitteringPage />} />
+ *     <Route path="/soknad" element={<SøknadStepGuard />}>
+ *       <Route path="startdato" element={<StartdatoForm />} />
+ *     </Route>
+ *   </Routes>
  * </SøknadRouter>
  * ```
  */
@@ -163,26 +167,5 @@ export const SøknadRouter = ({
         ],
     );
 
-    const isInitialized = store((s) => s.isInitialized);
-    const currentStepId = store((s) => s.currentStepId);
-    const includedSteps = store((s) => s.includedSteps);
-
-    return (
-        <SøknadAppContext.Provider value={contextValue}>
-            <Routes>
-                <Route
-                    element={
-                        <StepRouteGuard
-                            steps={includedSteps}
-                            currentStepId={currentStepId}
-                            isInitialized={isInitialized}
-                            basePath={basePath}
-                        />
-                    }>
-                    {children}
-                    <Route path="*" element={<Navigate to="/" replace />} />
-                </Route>
-            </Routes>
-        </SøknadAppContext.Provider>
-    );
+    return <SøknadAppContext.Provider value={contextValue}>{children}</SøknadAppContext.Provider>;
 };

@@ -1,13 +1,12 @@
 import { SifForm } from '@sif/rhf';
-import { StepFormValues } from '@sif/soknad/types';
+import { useStepNavigation } from '@sif/soknad-app';
 import { FormLayout } from '@sif/soknad-ui/components';
 import type { ReactNode } from 'react';
-import type { SubmitHandler, UseFormReturn } from 'react-hook-form';
+import type { FieldValues, SubmitHandler, UseFormReturn } from 'react-hook-form';
 
 import { SøknadStepId } from '../config/SoknadStepId';
-import { useSøknadsflyt } from '../context/soknadContext';
 
-interface Props<T extends StepFormValues> {
+interface Props<T extends FieldValues> {
     stepId: SøknadStepId;
     methods: UseFormReturn<T>;
     onSubmit: SubmitHandler<T>;
@@ -18,7 +17,7 @@ interface Props<T extends StepFormValues> {
     children: ReactNode;
 }
 
-export function AppForm<T extends StepFormValues>({
+export function AppForm<T extends FieldValues>({
     stepId,
     methods,
     onSubmit,
@@ -28,11 +27,8 @@ export function AppForm<T extends StepFormValues>({
     submitLabel,
     children,
 }: Readonly<Props<T>>) {
-    const søknadsflyt = useSøknadsflyt();
-
-    const canGoPrevious = søknadsflyt.canGoPrevious(stepId);
-    const onPrevious = canGoPrevious ? () => søknadsflyt.navigateToPreviousStep(stepId) : undefined;
-    const submitIsDisabled = submitDisabled ?? søknadsflyt.checkConsistency(stepId) !== undefined;
+    const { canGoPrevious, navigateToPreviousStep } = useStepNavigation();
+    const onPrevious = canGoPrevious(stepId) ? () => navigateToPreviousStep(stepId) : undefined;
 
     return (
         <SifForm
@@ -41,7 +37,7 @@ export function AppForm<T extends StepFormValues>({
             buttons={
                 <FormLayout.FormButtons
                     submitPending={isPending}
-                    submitDisabled={submitIsDisabled}
+                    submitDisabled={submitDisabled}
                     onPrevious={onPrevious}
                     isFinalSubmit={isFinalSubmit}
                     submitLabel={submitLabel}

@@ -1,15 +1,16 @@
 import { AppText, useAppIntl } from '@app/i18n';
 import { SøknadStepId } from '@app/setup/config/SoknadStepId';
-import { useSøknadMellomlagring, useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
 import { AppForm } from '@app/setup/soknad/AppForm';
 import { BostedUtlandSøknadsdata } from '@app/types/Soknadsdata';
 import { Heading, VStack } from '@navikt/ds-react';
 import { getDateToday } from '@navikt/sif-common-utils';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
+import { SøknadStep, useStepData } from '@sif/soknad-app';
 import { BostedUtlandListAndDialog } from '@sif/soknad-forms';
 import { FormLayout } from '@sif/soknad-ui';
 import { useEffect, useMemo } from 'react';
+import { useForm } from 'react-hook-form';
 
 import { toBostedUtlandStegFormValues, toBostedUtlandStegSøknadsdata } from './bostedUtlandStegUtils';
 import { BostedUtlandFormFields, BostedUtlandFormValues } from './types';
@@ -34,19 +35,12 @@ const getMaxDate = () => {
 export const BostedUtlandForm = () => {
     const { text } = useAppIntl();
     const { validateField } = useSifValidate('bostedUtlandForm');
-    const { lagreSøknadSteg } = useSøknadMellomlagring();
 
-    const defaultValues = useStepDefaultValues<BostedUtlandFormValues, BostedUtlandSøknadsdata>({
-        stepId,
-        toFormValues: toBostedUtlandStegFormValues,
-    });
+    const { lagretData, commit } = useStepData<BostedUtlandSøknadsdata>(stepId);
+    const methods = useForm<BostedUtlandFormValues>({ defaultValues: toBostedUtlandStegFormValues(lagretData) });
 
-    const { onSubmit, isPending } = useStepSubmit<BostedUtlandFormValues, BostedUtlandSøknadsdata>({
-        stepId,
-        toSøknadsdata: toBostedUtlandStegSøknadsdata,
-    });
+    const onSubmit = (data: BostedUtlandFormValues) => commit(toBostedUtlandStegSøknadsdata(data));
 
-    const methods = useSøknadRhfForm(stepId, defaultValues);
     const minDate = useMemo(() => getMinDate(), []);
     const maxDate = useMemo(() => getMaxDate(), []);
     const { trigger } = methods;
@@ -71,33 +65,34 @@ export const BostedUtlandForm = () => {
     const oppdaterBosteder = (oppdaterteBosteder: BostedUtlandFormValues[typeof BostedUtlandFormFields.bosteder]) => {
         methods.setValue(BostedUtlandFormFields.bosteder, oppdaterteBosteder);
         methods.trigger(BostedUtlandFormFields.bosteder);
-        lagreSøknadSteg(stepId, methods.getValues());
     };
 
     return (
-        <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
-            <FormLayout.Questions>
-                <YesOrNoQuestion
-                    name={BostedUtlandFormFields.harBoddIUtlandetSiste5år}
-                    legend={text('bostedUtlandSteg.spørsmål.harBoddIUtlandetSiste5år')}
-                    validate={validateField(BostedUtlandFormFields.harBoddIUtlandetSiste5år, getYesOrNoValidator())}
-                />
-                {harBoddIUtlandetSiste5år === YesOrNo.YES && (
-                    <VStack gap="space-16">
-                        <Heading size="xsmall" level="3">
-                            <AppText id="bostedUtlandSteg.bosteder.tittel" />
-                        </Heading>
-                        <BostedUtlandListAndDialog
-                            minDate={minDate}
-                            maxDate={maxDate}
-                            bosteder={bosteder}
-                            addButtonId={BostedUtlandFormFields.bosteder}
-                            addButtonLabel={<AppText id="bostedUtlandSteg.bosteder.leggTil" />}
-                            onChange={oppdaterBosteder}
-                        />
-                    </VStack>
-                )}
-            </FormLayout.Questions>
-        </AppForm>
+        <SøknadStep stepId={stepId}>
+            <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
+                <FormLayout.Questions>
+                    <YesOrNoQuestion
+                        name={BostedUtlandFormFields.harBoddIUtlandetSiste5år}
+                        legend={text('bostedUtlandSteg.spørsmål.harBoddIUtlandetSiste5år')}
+                        validate={validateField(BostedUtlandFormFields.harBoddIUtlandetSiste5år, getYesOrNoValidator())}
+                    />
+                    {harBoddIUtlandetSiste5år === YesOrNo.YES && (
+                        <VStack gap="space-16">
+                            <Heading size="xsmall" level="3">
+                                <AppText id="bostedUtlandSteg.bosteder.tittel" />
+                            </Heading>
+                            <BostedUtlandListAndDialog
+                                minDate={minDate}
+                                maxDate={maxDate}
+                                bosteder={bosteder}
+                                addButtonId={BostedUtlandFormFields.bosteder}
+                                addButtonLabel={<AppText id="bostedUtlandSteg.bosteder.leggTil" />}
+                                onChange={oppdaterBosteder}
+                            />
+                        </VStack>
+                    )}
+                </FormLayout.Questions>
+            </AppForm>
+        </SøknadStep>
     );
 };

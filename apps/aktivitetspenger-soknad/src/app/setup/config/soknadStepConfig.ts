@@ -1,28 +1,27 @@
-import { Søknadsdata } from '@app/types/Soknadsdata';
-import { StepConfig } from '@sif/soknad/types';
+import { StepDefinition } from '@sif/soknad-app';
 
 import { SøknadStepId } from './SoknadStepId';
 
-export const søknadStepConfig: StepConfig<SøknadStepId, Søknadsdata> = {
+export const søknadStepConfig: Record<SøknadStepId, StepDefinition> = {
     [SøknadStepId.STARTDATO]: {
         route: 'startdato',
-        isCompleted: (s) => s.startdato !== undefined,
+        isCompleted: (s) => s['startdato'] !== undefined,
     },
     [SøknadStepId.KONTONUMMER]: {
         route: 'kontonummer',
-        isCompleted: (s) => s.kontonummer !== undefined,
+        isCompleted: (s) => s['kontonummer'] !== undefined,
     },
     [SøknadStepId.BOSTED]: {
         route: 'bosted',
-        isCompleted: (s) => s.bosted !== undefined,
+        isCompleted: (s) => s['bosted'] !== undefined,
     },
     [SøknadStepId.BOSTED_UTLAND]: {
         route: 'bosted-utland',
-        isCompleted: (s) => s.bostedUtland !== undefined,
+        isCompleted: (s) => s['bostedUtland'] !== undefined,
     },
     [SøknadStepId.BARN]: {
         route: 'barn',
-        isCompleted: (s) => s.barn !== undefined,
+        isCompleted: (s) => s['barn'] !== undefined,
     },
     [SøknadStepId.OPPSUMMERING]: {
         route: 'oppsummering',

@@ -2,10 +2,10 @@ import { BodyShort, FormSummary, List } from '@navikt/ds-react';
 import { RegistrertBarn } from '@sif/api/k9-prosessering';
 import { formatName } from '@navikt/sif-common-utils';
 import { JaNeiSvar } from '@sif/soknad-ui';
+import { useStepNavigation } from '@sif/soknad-app';
 
 import { AppText } from '../../../i18n';
 import { SøknadStepId } from '../../../setup/config/SoknadStepId';
-import { useSøknadsflyt } from '../../../setup/hooks';
 
 interface Props {
     barnErRiktig: boolean;
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export const BarnOppsummering = ({ barnErRiktig, barn }: Props) => {
-    const { navigateToStep } = useSøknadsflyt();
+    const { navigateToStep } = useStepNavigation();
     return (
         <FormSummary>
             <FormSummary.Header>
