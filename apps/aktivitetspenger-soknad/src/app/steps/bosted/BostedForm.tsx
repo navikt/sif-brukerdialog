@@ -20,8 +20,8 @@ export const BostedForm = () => {
     const { text } = useAppIntl();
     const { validateField } = useSifValidate('bostedForm');
 
-    const { lagretData, commit } = useStepData<BostedSøknadsdata>(stepId);
-    const methods = useForm<BostedFormValues>({ defaultValues: toBostedFormValues(lagretData) });
+    const { lagretData, commit, draftFormValues } = useStepData<BostedSøknadsdata, BostedFormValues>(stepId);
+    const methods = useForm<BostedFormValues>({ defaultValues: draftFormValues ?? toBostedFormValues(lagretData) });
     useSaveSøknadFormValues(stepId, methods.getValues);
 
     const onSubmit = (data: BostedFormValues) => commit(toBostedSøknadsdata(data));
