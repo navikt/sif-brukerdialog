@@ -5,7 +5,7 @@ import { buildStepPath } from '../utils/routeUtils';
 
 interface Props {
     steps: IncludedStep[];
-    currentStepId?: string;
+    resumeStepId?: string;
     isInitialized?: boolean;
     basePath?: string;
     initialPath?: string;
@@ -13,13 +13,13 @@ interface Props {
 
 /**
  * Guard for søknadssteg. Venter på at storen er initialisert, deretter:
- * - Redirecter til initialPath hvis currentStepId ikke er satt
- * - Redirecter til currentStepId hvis URL-en peker på et ikke-inkludert steg
+ * - Redirecter til initialPath hvis resumeStepId ikke er satt
+ * - Redirecter til resumeStepId hvis URL-en peker på et ikke-inkludert steg
  * - Redirecter til første uferdige steg hvis bruker prøver å hoppe over uferdige steg
  */
 export const StepRouteGuard = ({
     steps,
-    currentStepId,
+    resumeStepId,
     isInitialized = true,
     basePath = '/soknad',
     initialPath = '/',
@@ -30,7 +30,7 @@ export const StepRouteGuard = ({
         return null;
     }
 
-    if (!currentStepId) {
+    if (!resumeStepId) {
         return <Navigate to={initialPath} replace />;
     }
 
@@ -39,8 +39,8 @@ export const StepRouteGuard = ({
     );
 
     if (!stepAtPath) {
-        const currentRoute = steps.find((s) => s.stepId === currentStepId)?.stepRoute;
-        const fallbackRoute = currentRoute ?? steps[0]?.stepRoute;
+        const resumeRoute = steps.find((s) => s.stepId === resumeStepId)?.stepRoute;
+        const fallbackRoute = resumeRoute ?? steps[0]?.stepRoute;
         if (fallbackRoute) {
             return <Navigate to={buildStepPath(basePath, fallbackRoute)} replace />;
         }

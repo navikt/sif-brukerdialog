@@ -22,13 +22,13 @@ interface Props {
 export const SøknadStepGuard = ({ basePath = '/soknad', initialPath = '/' }: Props) => {
     const { store } = useSøknadAppContext();
     const isInitialized = store((s) => s.isInitialized);
-    const currentStepId = store((s) => s.currentStepId);
+    const resumeStepId = store((s) => s.resumeStepId);
     const includedSteps = store((s) => s.includedSteps);
 
     return (
         <StepRouteGuard
             steps={includedSteps}
-            currentStepId={currentStepId}
+            resumeStepId={resumeStepId}
             isInitialized={isInitialized}
             basePath={basePath}
             initialPath={initialPath}

@@ -7,7 +7,7 @@ import { buildStepPath } from '../utils/routeUtils';
 /**
  * Hook for å starte en ny søknad fra velkomst-siden.
  *
- * Initialiserer storen med `currentStepId = stepOrder[0]` og valgfri startdata,
+ * Initialiserer storen med `resumeStepId = stepOrder[0]` og valgfri startdata,
  * trigger debounset mellomlagring-PUT og navigerer til første steg.
  *
  * ```tsx
@@ -28,13 +28,13 @@ export function useStartSøknad() {
 
             store.getState().init({
                 versjon,
-                currentStepId: firstStepId,
+                resumeStepId: firstStepId,
                 søknadsdata: initialSøknadsdata,
             });
 
             lagreMellomlagring({
                 versjon,
-                currentStepId: firstStepId,
+                resumeStepId: firstStepId,
                 søknadsdata: initialSøknadsdata,
             });
 

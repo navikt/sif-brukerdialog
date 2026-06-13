@@ -34,7 +34,7 @@ export const SøknadStep = ({ stepId, children }: SøknadStepProps) => {
 
     const includedSteps = store((s) => s.includedSteps);
     const søknadsdata = store((s) => s.søknadsdata);
-    const currentStepId = store((s) => s.currentStepId);
+    const resumeStepId = store((s) => s.resumeStepId);
     const reset = store((s) => s.reset);
 
     const steps: ProgressStep[] = includedSteps.map((s, index) => ({
@@ -62,8 +62,8 @@ export const SøknadStep = ({ stepId, children }: SøknadStepProps) => {
     };
 
     const onResumeLater = async () => {
-        if (currentStepId) {
-            await lagreMellomlagring({ versjon, currentStepId, søknadsdata });
+        if (resumeStepId) {
+            await lagreMellomlagring({ versjon, resumeStepId, søknadsdata });
         }
         window.location.href = resumeLaterUrl;
     };

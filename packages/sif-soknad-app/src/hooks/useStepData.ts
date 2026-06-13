@@ -59,7 +59,7 @@ export function useStepData<TCommitted = unknown, TDraft = Record<string, unknow
             const storeState = store.getState();
             lagreMellomlagring({
                 versjon,
-                currentStepId: storeState.currentStepId ?? stepId,
+                resumeStepId: storeState.resumeStepId ?? stepId,
                 søknadsdata: storeState.søknadsdata,
             }).catch(() => {});
 

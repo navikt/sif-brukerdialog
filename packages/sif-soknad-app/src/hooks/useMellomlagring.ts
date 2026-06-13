@@ -15,21 +15,27 @@ import { useSøknadAppContext } from '../context/SøknadAppContext';
  */
 export function useMellomlagring(): { lagre: () => Promise<void> } {
     const { store, versjon, lagreMellomlagring } = useSøknadAppContext();
-    const { søknadFormValues, getLiveFormValuesForStep } = useSøknadFormValues();
+    const { søknadFormValues, getAllLiveFormValues } = useSøknadFormValues();
 
     const lagre = useCallback(async (): Promise<void> => {
-        const { currentStepId, søknadsdata } = store.getState();
-        if (!currentStepId) return;
+        const { resumeStepId, søknadsdata } = store.getState();
 
-        // Bygg draftFormValues: unmount-lagrede verdier for andre steg + live verdier for aktivt steg
-        const liveValues = getLiveFormValuesForStep(currentStepId);
+        // Hent live verdier fra alle monterte steg (uavhengig av resumeStepId i storen)
+        const allLiveValues = getAllLiveFormValues();
+
+        // Bygg draftFormValues: unmount-lagrede verdier + live verdier for monterte steg
         const draftFormValues: Record<string, Record<string, unknown>> = {
             ...søknadFormValues,
-            ...(liveValues ? { [currentStepId]: liveValues } : {}),
+            ...allLiveValues,
         };
 
-        await lagreMellomlagring({ versjon, currentStepId, søknadsdata, draftFormValues });
-    }, [store, versjon, lagreMellomlagring, søknadFormValues, getLiveFormValuesForStep]);
+        // resumeStepId er "neste steg å fullføre" — kan avvike fra steget bruker ser på.
+        // Fall tilbake til det monterte stegets ID hvis resumeStepId er undefined.
+        const stepIdForBlob = resumeStepId ?? Object.keys(allLiveValues)[0];
+        if (!stepIdForBlob) return;
+
+        await lagreMellomlagring({ versjon, resumeStepId: stepIdForBlob, søknadsdata, draftFormValues });
+    }, [store, versjon, lagreMellomlagring, søknadFormValues, getAllLiveFormValues]);
 
     return { lagre };
 }

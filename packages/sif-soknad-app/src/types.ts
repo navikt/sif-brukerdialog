@@ -5,7 +5,8 @@ import { ComponentType, ReactNode } from 'react';
  */
 export interface MellomlagringBlob {
     versjon: number;
-    currentStepId: string;
+    /** Gjenopptakingspunkt — steget brukeren skal landes på ved reload. */
+    resumeStepId: string;
     søknadsdata: Record<string, unknown>;
     /** Midlertidige skjemaverdier (ikke submittet) — brukes som defaultValues etter reload */
     draftFormValues?: Record<string, Record<string, unknown>>;
