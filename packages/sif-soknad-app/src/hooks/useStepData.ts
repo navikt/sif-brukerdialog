@@ -11,10 +11,10 @@ import { buildStepPath } from '../utils/routeUtils';
  * - `lagretData` — committet domendata for steget (fra `søknadsdata[stepId]`)
  * - `draftFormValues` — midlertidige RHF-verdier fra mellomlagring; bruk som `defaultValues`
  *   foran `lagretData` ved reload: `defaultValues: draftFormValues ?? toXxxFormValues(lagretData)`
- * - `commit(data)` — gjennomfører trinn 1–8 i commit-algoritmen:
+ * - `commit(data)` — gjennomfører commit-algoritmen:
  *   1. Oppdaterer søknadsdata i storen
  *   2. Sletter data for steg som ikke lenger er inkludert
- *   3. Reberegner includedSteps
+ *   3. Reberegner includedSteps og resumeStepId
  *   4. Lagrer mellomlagring (fire-and-forget)
  *   5. Navigerer til neste steg
  *

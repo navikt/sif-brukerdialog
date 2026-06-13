@@ -9,7 +9,7 @@ import { buildStepPath } from '../utils/routeUtils';
  * Hook for å starte en ny søknad fra velkomst-siden.
  *
  * Initialiserer storen med `resumeStepId = stepOrder[0]` og valgfri startdata,
- * trigger debounset mellomlagring-PUT og navigerer til første steg.
+ * lagrer mellomlagring (fire-and-forget) og navigerer til første steg.
  *
  * ```tsx
  * const { startSøknad } = useStartSøknad()

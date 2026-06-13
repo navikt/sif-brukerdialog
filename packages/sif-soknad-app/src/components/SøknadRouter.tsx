@@ -33,8 +33,11 @@ const DEFAULT_RESUME_LATER_URL = 'https://www.nav.no/minside';
  * henter og validerer mellomlagring ved mount, og eksponerer kontekst
  * for useStepData, useAvbryt, useSøknadSendt, useStartSøknad og useStepNavigation.
  *
- * Etter vellykket innsending vises `kvitteringElement` og URL settes til `kvitteringPath`
- * (default '/kvittering'). Ved reload resetter state og bruker sendes til '/'.
+ * Venter på mellomlagring-henting uten å rendre children (unngår blinking).
+ * Dersom gyldig mellomlagring finnes, navigeres bruker automatisk til
+ * gjenopptakingspunktet. Uten mellomlagring vises children (velkommensiden).
+ *
+ * Etter vellykket innsending vises `kvitteringElement` og URL settes til '/kvittering'.
  *
  * Appen er ansvarlig for <Routes>-oppsett. Bruk <SøknadStepGuard> for å
  * beskytte steg-rutene.
