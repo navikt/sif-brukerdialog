@@ -3,21 +3,18 @@ import './app.css';
 
 import { AktivitetspengerApp } from '@navikt/sif-app-register';
 import { EnvKey } from '@navikt/sif-common-env';
-import { FaroProvider } from '@navikt/sif-common-faro';
-import { DevBranchInfo } from '@sif/soknad-ui';
+import { SøknadAppProvider } from '@sif/soknad-app';
+import { ErrorPage, LoadingPage } from '@sif/soknad-ui';
 import { IntlProvider } from 'react-intl';
 import { BrowserRouter } from 'react-router-dom';
 
-import { AppErrorBoundary } from './app/AppErrorBoundary';
+import { initApiClients } from './app/api/initApiClients';
 import { AppContextProvider } from './app/context/AppContext';
 import { applicationIntlMessages, useAppIntl } from './app/i18n';
-import { SifQueryClientProvider } from './app/SifQueryClientProvider';
-import { initApiClients } from './app/api/initApiClients';
 import { getAppEnv } from './app/setup/env/appEnv';
 import { Søknad } from './app/Soknad';
 import { ScenarioHeader } from './demo/ScenarioHeader';
 import { useInitialData } from './useInitialData';
-import { ErrorPage, LoadingPage } from '@sif/soknad-ui';
 
 const SøknadDataWrapper = () => {
     const result = useInitialData();
@@ -56,21 +53,16 @@ export const App = () => {
     }
 
     return (
-        <FaroProvider
+        <SøknadAppProvider
             applicationKey={AktivitetspengerApp.key}
             appVersion={appEnv.APP_VERSION}
             isActive={appEnv.SIF_PUBLIC_USE_FARO === 'true'}>
-            <AppErrorBoundary>
-                <SifQueryClientProvider>
-                    <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
-                        <BrowserRouter basename={basePath}>
-                            {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
-                            <SøknadDataWrapper />
-                        </BrowserRouter>
-                    </IntlProvider>
-                </SifQueryClientProvider>
-            </AppErrorBoundary>
-            <DevBranchInfo />
-        </FaroProvider>
+            <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
+                <BrowserRouter basename={basePath}>
+                    {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
+                    <SøknadDataWrapper />
+                </BrowserRouter>
+            </IntlProvider>
+        </SøknadAppProvider>
     );
 };

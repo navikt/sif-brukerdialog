@@ -5370,15 +5370,24 @@ importers:
       '@navikt/ds-react':
         specifier: 8.11.1
         version: 8.11.1(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      '@navikt/sif-common-faro':
+        specifier: workspace:*
+        version: link:../sif-common-faro
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../sif-common-ui
+      '@sentry/react':
+        specifier: 10.56.0
+        version: 10.56.0(react@19.2.7)
       '@sif/api':
         specifier: workspace:*
         version: link:../sif-api
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../sif-soknad-ui
+      '@tanstack/react-query':
+        specifier: 5.101.0
+        version: 5.101.0(react@19.2.7)
       react-intl:
         specifier: 10.1.13
         version: 10.1.13(@types/react@19.2.17)(react@19.2.7)
