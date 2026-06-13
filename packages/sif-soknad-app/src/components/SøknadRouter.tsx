@@ -6,6 +6,7 @@ import {
     slettYtelseMellomlagring,
 } from '@sif/api/k9-prosessering';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { SøknadAppContext, SøknadAppContextValue } from '../context/SøknadAppContext';
 import { createSøknadAppStore } from '../store/createSøknadAppStore';
@@ -31,16 +32,20 @@ const DEFAULT_RESUME_LATER_URL = 'https://www.nav.no/minside';
  * henter og validerer mellomlagring ved mount, og eksponerer kontekst
  * for useStepData, useAvbryt, useSøknadSendt, useStartSøknad og useStepNavigation.
  *
+ * Etter vellykket innsending vises `kvitteringElement` og URL settes til `kvitteringPath`
+ * (default '/kvittering'). Ved reload resetter state og bruker sendes til '/'.
+ *
  * Appen er ansvarlig for <Routes>-oppsett. Bruk <SøknadStepGuard> for å
  * beskytte steg-rutene.
  *
  * Bruk i app (eksempel):
  * ```tsx
  * // Soknad.tsx:
- * <SøknadRouter config={...} stepOrder={...} ytelse="aktivitetspenger" versjon={1} applicationTitle="...">
+ * <SøknadRouter
+ *   config={...} stepOrder={...} ytelse="aktivitetspenger" versjon={1}
+ *   applicationTitle="..." kvitteringElement={<KvitteringPage />}>
  *   <Routes>
  *     <Route path="/" element={<VelkommenPage />} />
- *     <Route path="/kvittering" element={<KvitteringPage />} />
  *     <Route path="/soknad" element={<SøknadStepGuard />}>
  *       <Route path="startdato" element={<StartdatoForm />} />
  *     </Route>
@@ -57,6 +62,8 @@ export const SøknadRouter = ({
     basePath = '/soknad',
     validateMellomlagring,
     resumeLaterUrl = DEFAULT_RESUME_LATER_URL,
+    kvitteringElement,
+    kvitteringPath = '/kvittering',
     children,
 }: SøknadRouterProps) => {
     const debounceTimerRef = useRef<ReturnType<typeof setTimeout>>(null);
@@ -67,6 +74,15 @@ export const SøknadRouter = ({
         storeRef.current = createSøknadAppStore({ config, stepOrder });
     }
     const store = storeRef.current;
+    const søknadSendt = store((s) => s.søknadSendt);
+    const navigate = useNavigate();
+
+    // Naviger til kvitteringssti når søknad er sendt
+    useEffect(() => {
+        if (søknadSendt && kvitteringPath) {
+            navigate(kvitteringPath, { replace: true });
+        }
+    }, [søknadSendt, navigate, kvitteringPath]);
 
     // Hent og initialiser fra mellomlagring ved mount
     useEffect(() => {
@@ -167,5 +183,9 @@ export const SøknadRouter = ({
         ],
     );
 
-    return <SøknadAppContext.Provider value={contextValue}>{children}</SøknadAppContext.Provider>;
+    return (
+        <SøknadAppContext.Provider value={contextValue}>
+            {søknadSendt && kvitteringElement ? kvitteringElement : children}
+        </SøknadAppContext.Provider>
+    );
 };
