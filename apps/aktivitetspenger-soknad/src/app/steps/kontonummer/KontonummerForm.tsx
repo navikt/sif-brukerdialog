@@ -1,6 +1,6 @@
 import { AppText, useAppIntl } from '@app/i18n';
 import { SøknadStepId } from '@app/setup/config/SoknadStepId';
-import { AppForm } from '@app/setup/soknad/AppForm';
+import { SøknadStepForm } from '@sif/soknad-app';
 import { KontonummerSøknadsdata } from '@app/types/Soknadsdata';
 import { useAppContext } from '@app/context/AppContext';
 import { BodyLong, BodyShort, Heading } from '@navikt/ds-react';
@@ -37,7 +37,7 @@ export const KontonummerForm = () => {
 
     return (
         <SøknadStep stepId={stepId}>
-            <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
+            <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
                 <FormLayout.Questions>
                     {kontonummerInfo.harKontonummer === HarKontonummerEnum.JA && (
                         <>
@@ -119,7 +119,7 @@ export const KontonummerForm = () => {
                         </SifInfoCard>
                     )}
                 </FormLayout.Questions>
-            </AppForm>
+            </SøknadStepForm>
         </SøknadStep>
     );
 };

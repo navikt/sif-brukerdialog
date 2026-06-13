@@ -1,6 +1,6 @@
 import { useAppIntl } from '@app/i18n';
 import { SøknadStepId } from '@app/setup/config/SoknadStepId';
-import { AppForm } from '@app/setup/soknad/AppForm';
+import { SøknadStepForm } from '@sif/soknad-app';
 import { StartdatoSøknadsdata } from '@app/types/Soknadsdata';
 import { getDateValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
@@ -32,7 +32,7 @@ export const StartdatoForm = () => {
 
     return (
         <SøknadStep stepId={stepId}>
-            <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
+            <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
                 <FormLayout.Content>
                     <FormLayout.Questions>
                         <Datepicker
@@ -47,7 +47,7 @@ export const StartdatoForm = () => {
                         />
                     </FormLayout.Questions>
                 </FormLayout.Content>
-            </AppForm>
+            </SøknadStepForm>
         </SøknadStep>
     );
 };

@@ -26,7 +26,7 @@ Disse skillene handler om å *bruke* rammeverket fra en app. Denne skillen handl
 
 ```
 packages/sif-soknad-app/src/
-  components/       SøknadRouter, SøknadStep, SøknadStepGuard, StepRouteGuard
+  components/       SøknadRouter, SøknadStep, SøknadStepForm, SøknadStepGuard, StepRouteGuard
   consistency/      SøknadFormValuesContext, checkConsistencyForSteps, InconsistentFormValuesMessage
   context/          SøknadAppContext
   hooks/            useStepData, useMellomlagring, useSaveSøknadFormValues,
@@ -51,6 +51,7 @@ Referanseimplementasjon: `apps/aktivitetspenger-soknad`
 ```
 
 - `SøknadRouter` er ren provider — ingen routing-logikk
+- `SøknadRouter` holder `children` tilbake til mellomlagring er hentet (`isInitialized`). Dersom gyldig mellomlagring finnes, navigeres bruker automatisk til `resumeStepId` uten at velkommensiden vises.
 - `SøknadStepGuard` styrer redirect basert på `resumeStepId` fra Zustand-storen
 - `SøknadStep` er wrapper for ett steg — henter tittel via `step.${stepId}.title`, bygger progress-stepper, kjører konsistenssjekk
 
@@ -131,6 +132,25 @@ Sjekker om foregående stegs umonterte skjemaverdier avviker fra committet `søk
 
 ---
 
+## `SøknadStepForm` — standard RHF steg-skjema
+
+Standard wrapper for RHF-baserte steg-skjema. Eksporteres fra `@sif/soknad-app`.
+
+```tsx
+<SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
+  {/* skjemafelter */}
+</SøknadStepForm>
+```
+
+Håndterer automatisk:
+- Forrige-knapp via `useStepNavigation`
+- Deaktivering av submit-knapp ved konsistenssjekk-treff (`useCheckConsistency`)
+- Valgfri `submitDisabled`, `isFinalSubmit`, `submitLabel`
+
+Erstatter app-spesifikk `AppForm`-boilerplate. Alle apper som bruker `@sif/soknad-app` + RHF skal bruke denne.
+
+---
+
 ## `MellomlagringBlob` — format
 
 ```ts
@@ -181,3 +201,6 @@ kvitteringElement?: ReactNode;
 | Konsistenssjekk virker ikke | `formValuesToSøknadsdata` ikke satt på `SøknadRouter` | Legg til prop og implementer switch per stepId |
 | Kvitteringssiden vises ikke | `setSøknadSendt()` setter `resumeStepId: undefined` → `SøknadStepGuard` redirecter | `SøknadRouter` renderer `kvitteringElement` state-basert, ikke route-basert |
 | Navigerer til feil steg etter back+re-submit | `resumeStepId` peker på et steg lenger frem | `commitState` bruker alltid `includedSteps[fromIndex + 1]` — løst |
+| Velkommensiden blinker ved reload med mellomlagring | `children` ble rendret før init + navigate | `SøknadRouter` holder `children` tilbake til `isInitialized = true` — løst |
+| Bruker sendes til velkommensiden i stedet for riktig steg ved reload | `init(blob)` uten påfølgende `navigate` | `SøknadRouter` navigerer automatisk til `resumeStepId` etter init — løst |
+| Submit aktivt selv om `InconsistentFormValuesMessage` vises | `submitDisabled`-prop videresendt uten konsistenssjekk | Bruk `SøknadStepForm` — deaktiverer submit automatisk via `useCheckConsistency` |

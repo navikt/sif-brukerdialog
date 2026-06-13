@@ -1,13 +1,13 @@
 import { SifForm } from '@sif/rhf';
-import { useCheckConsistency, useStepNavigation } from '@sif/soknad-app';
 import { FormLayout } from '@sif/soknad-ui/components';
 import type { ReactNode } from 'react';
 import type { FieldValues, SubmitHandler, UseFormReturn } from 'react-hook-form';
 
-import { SøknadStepId } from '../config/SoknadStepId';
+import { useCheckConsistency } from '../hooks/useCheckConsistency';
+import { useStepNavigation } from '../hooks/useStepNavigation';
 
 interface Props<T extends FieldValues> {
-    stepId: SøknadStepId;
+    stepId: string;
     methods: UseFormReturn<T>;
     onSubmit: SubmitHandler<T>;
     isPending: boolean;
@@ -17,7 +17,13 @@ interface Props<T extends FieldValues> {
     children: ReactNode;
 }
 
-export function AppForm<T extends FieldValues>({
+/**
+ * Standard RHF-basert steg-skjema for søknadsapper.
+ *
+ * Håndterer forrige/neste-navigasjon og deaktiverer submit automatisk
+ * når konsistenssjekken slår ut (ulagrede endringer i tidligere steg).
+ */
+export function SøknadStepForm<T extends FieldValues>({
     stepId,
     methods,
     onSubmit,

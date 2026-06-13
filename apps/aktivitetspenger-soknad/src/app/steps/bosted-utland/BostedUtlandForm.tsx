@@ -1,6 +1,6 @@
 import { AppText, useAppIntl } from '@app/i18n';
 import { SøknadStepId } from '@app/setup/config/SoknadStepId';
-import { AppForm } from '@app/setup/soknad/AppForm';
+import { SøknadStepForm } from '@sif/soknad-app';
 import { BostedUtlandSøknadsdata } from '@app/types/Soknadsdata';
 import { Heading, VStack } from '@navikt/ds-react';
 import { getDateToday } from '@navikt/sif-common-utils';
@@ -76,7 +76,7 @@ export const BostedUtlandForm = () => {
 
     return (
         <SøknadStep stepId={stepId}>
-            <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
+            <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
                 <FormLayout.Questions>
                     <YesOrNoQuestion
                         name={BostedUtlandFormFields.harBoddIUtlandetSiste5år}
@@ -99,7 +99,7 @@ export const BostedUtlandForm = () => {
                         </VStack>
                     )}
                 </FormLayout.Questions>
-            </AppForm>
+            </SøknadStepForm>
         </SøknadStep>
     );
 };

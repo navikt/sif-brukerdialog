@@ -12,6 +12,7 @@ export { SifQueryClientProvider } from './components/SifQueryClientProvider';
 export { SøknadAppProvider } from './components/SøknadAppProvider';
 export { SøknadRouter } from './components/SøknadRouter';
 export { SøknadStep } from './components/SøknadStep';
+export { SøknadStepForm } from './components/SøknadStepForm';
 export { SøknadStepGuard } from './components/SøknadStepGuard';
 export { InconsistentFormValuesMessage } from './consistency/InconsistentFormValuesMessage';
 

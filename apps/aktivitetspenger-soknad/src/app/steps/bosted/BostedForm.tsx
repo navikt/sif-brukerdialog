@@ -1,6 +1,6 @@
 import { useAppIntl } from '@app/i18n';
 import { SøknadStepId } from '@app/setup/config/SoknadStepId';
-import { AppForm } from '@app/setup/soknad/AppForm';
+import { SøknadStepForm } from '@sif/soknad-app';
 import { BostedSøknadsdata } from '@app/types/Soknadsdata';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
@@ -30,7 +30,7 @@ export const BostedForm = () => {
 
     return (
         <SøknadStep stepId={stepId}>
-            <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
+            <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
                 <YesOrNoQuestion
                     name={BostedFormFields.erBosattITrondheim}
                     legend={text('bostedSteg.spørsmål.erBosattITrondheim')}
@@ -44,7 +44,7 @@ export const BostedForm = () => {
                         <BodyLong spacing>Info</BodyLong>
                     </SifInfoCard>
                 )}
-            </AppForm>
+            </SøknadStepForm>
         </SøknadStep>
     );
 };

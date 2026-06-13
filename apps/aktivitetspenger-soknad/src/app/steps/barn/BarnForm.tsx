@@ -1,6 +1,6 @@
 import { AppText, useAppIntl } from '@app/i18n';
 import { SøknadStepId } from '@app/setup/config/SoknadStepId';
-import { AppForm } from '@app/setup/soknad/AppForm';
+import { SøknadStepForm } from '@sif/soknad-app';
 import { BarnSøknadsdata } from '@app/types/Soknadsdata';
 import { useAppContext } from '@app/context/AppContext';
 import { BodyLong, Heading } from '@navikt/ds-react';
@@ -33,7 +33,7 @@ export const BarnForm = () => {
 
     return (
         <SøknadStep stepId={stepId}>
-            <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
+            <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
                 <FormLayout.Content>
                     <FormLayout.Questions>
                         {registrerteBarn.length > 0 && (
@@ -78,7 +78,7 @@ export const BarnForm = () => {
                         </AriaLiveRegion>
                     </FormLayout.Questions>
                 </FormLayout.Content>
-            </AppForm>
+            </SøknadStepForm>
         </SøknadStep>
     );
 };

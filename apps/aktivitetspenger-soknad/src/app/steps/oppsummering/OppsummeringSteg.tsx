@@ -1,6 +1,6 @@
 import { AppText } from '@app/i18n';
 import { SøknadStepId } from '@app/setup/config/SoknadStepId';
-import { AppForm } from '@app/setup/soknad/AppForm';
+import { SøknadStepForm } from '@sif/soknad-app';
 import { useAppContext } from '@app/context/AppContext';
 import { Søknadsdata } from '@app/types/Soknadsdata';
 import { InfoCard } from '@navikt/ds-react';
@@ -63,7 +63,7 @@ export const OppsummeringSteg = () => {
 
     return (
         <SøknadStep stepId={stepId}>
-            <AppForm
+            <SøknadStepForm
                 stepId={stepId}
                 methods={methods}
                 onSubmit={onSubmit}
@@ -98,7 +98,7 @@ export const OppsummeringSteg = () => {
                         <AppText id="oppsummeringSteg.bekrefterOpplysninger.label" />
                     </Checkbox>
                 </FormLayout.Questions>
-            </AppForm>
+            </SøknadStepForm>
         </SøknadStep>
     );
 };
