@@ -1,12 +1,12 @@
 {
   "collection": "nextjs-frontend",
-  "version": "2026.06.02-095814-6d4adbb",
-  "source_sha": "d01e504",
+  "version": "2026.06.12-113744-10c4a25",
+  "source_sha": "10c4a25",
   "installed_at": "2026-04-14T05:51:44Z",
   "files": [
     {
       "path": ".github/agents/accessibility.agent.md",
-      "hash": "243143499e16befb"
+      "hash": "c35b6db4d15e6f9f"
     },
     {
       "path": ".github/agents/accessibility.metadata.json",
@@ -14,7 +14,7 @@
     },
     {
       "path": ".github/agents/aksel.agent.md",
-      "hash": "7103fb8df66fb0b1"
+      "hash": "5619d05aa37ec8f9"
     },
     {
       "path": ".github/agents/aksel.metadata.json",
@@ -30,7 +30,7 @@
     },
     {
       "path": ".github/agents/nav-pilot.agent.md",
-      "hash": "8fe80cd04579ad96"
+      "hash": "f490eb3f9ca1e9a3"
     },
     {
       "path": ".github/agents/nav-pilot.metadata.json",
@@ -38,7 +38,7 @@
     },
     {
       "path": ".github/skills/playwright-testing/",
-      "hash": "d8991a8ed8a5e0b5"
+      "hash": "5c618cd99c79df64"
     },
     {
       "path": ".github/skills/web-design-reviewer/",
@@ -94,7 +94,7 @@
     },
     {
       "path": ".github/skills/nav-dekoratoren/",
-      "hash": "d3b9c25e5b3a8ff4"
+      "hash": "45775b35b0507194"
     }
   ]
 }
