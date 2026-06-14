@@ -15,6 +15,8 @@ export const appMessages_nb = {
     ...oppsummeringStegMessages_nb,
     ...velkommenPageMessages_nb,
     'application.title': 'Søknad om aktivitetspenger',
+    'kvittering.documentTitle': 'Søknad om aktivitetspenger mottatt',
+    'kvittering.title': 'Vi har mottatt søknaden din om aktivitetspenger',
     'step.startdato.title': 'Startdato',
     'step.kontonummer.title': 'Kontonummer',
     'step.bosted.title': 'Bosted',
