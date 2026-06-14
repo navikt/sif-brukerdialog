@@ -5,23 +5,23 @@ import { SøknadStepId } from './SoknadStepId';
 export const søknadStepConfig: Record<SøknadStepId, StepDefinition> = {
     [SøknadStepId.STARTDATO]: {
         route: 'startdato',
-        isCompleted: (s) => s['startdato'] !== undefined,
+        isCompleted: (s) => s[SøknadStepId.STARTDATO] !== undefined,
     },
     [SøknadStepId.KONTONUMMER]: {
         route: 'kontonummer',
-        isCompleted: (s) => s['kontonummer'] !== undefined,
+        isCompleted: (s) => s[SøknadStepId.KONTONUMMER] !== undefined,
     },
     [SøknadStepId.BOSTED]: {
         route: 'bosted',
-        isCompleted: (s) => s['bosted'] !== undefined,
+        isCompleted: (s) => s[SøknadStepId.BOSTED] !== undefined,
     },
     [SøknadStepId.BOSTED_UTLAND]: {
         route: 'bosted-utland',
-        isCompleted: (s) => s['bostedUtland'] !== undefined,
+        isCompleted: (s) => s[SøknadStepId.BOSTED_UTLAND] !== undefined,
     },
     [SøknadStepId.BARN]: {
         route: 'barn',
-        isCompleted: (s) => s['barn'] !== undefined,
+        isCompleted: (s) => s[SøknadStepId.BARN] !== undefined,
     },
     [SøknadStepId.OPPSUMMERING]: {
         route: 'oppsummering',
