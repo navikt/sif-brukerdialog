@@ -29,6 +29,9 @@ export function useMellomlagring(): { lagre: () => Promise<void> } {
             ...allLiveValues,
         };
 
+        // Oppdater storen umiddelbart så back→forward-navigasjon får riktige defaultValues
+        store.getState().setDraftFormValues(draftFormValues);
+
         // resumeStepId er "neste steg å fullføre" — kan avvike fra steget bruker ser på.
         // Fall tilbake til det monterte stegets ID hvis resumeStepId er undefined.
         const stepIdForBlob = resumeStepId ?? Object.keys(allLiveValues)[0];

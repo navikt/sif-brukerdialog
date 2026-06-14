@@ -5,7 +5,7 @@ import { JaNeiSvar } from '@sif/soknad-ui';
 import { useStepNavigation } from '@sif/soknad-app';
 
 import { AppText } from '../../../i18n';
-import { SøknadStepId } from '../../../setup/config/SoknadStepId';
+import { SøknadStepId } from '../../../types/SoknadStepId';
 
 interface Props {
     barnErRiktig: boolean;

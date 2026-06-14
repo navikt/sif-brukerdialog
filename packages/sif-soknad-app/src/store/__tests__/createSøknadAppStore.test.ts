@@ -147,6 +147,39 @@ describe('createSøknadAppStore — clearDraftFormValues', () => {
     });
 });
 
+describe('createSøknadAppStore — setDraftFormValues', () => {
+    it('erstatter hele draftFormValues-mappet', () => {
+        const store = createStore();
+        store.getState().init({
+            versjon: 1,
+            resumeStepId: 'start',
+            søknadsdata: {},
+            draftFormValues: { start: { harBarn: true } },
+        });
+
+        store.getState().setDraftFormValues({ barn: { navn: 'Kari' }, arbeid: { timerPerUke: 37 } });
+
+        expect(store.getState().draftFormValues).toEqual({
+            barn: { navn: 'Kari' },
+            arbeid: { timerPerUke: 37 },
+        });
+    });
+
+    it('setter draftFormValues til tomt objekt når tom map sendes inn', () => {
+        const store = createStore();
+        store.getState().init({
+            versjon: 1,
+            resumeStepId: 'start',
+            søknadsdata: {},
+            draftFormValues: { start: { harBarn: true } },
+        });
+
+        store.getState().setDraftFormValues({});
+
+        expect(store.getState().draftFormValues).toEqual({});
+    });
+});
+
 describe('createSøknadAppStore — setSøknadSendt og reset', () => {
     it('setSøknadSendt markerer søknad som sendt og nullstiller draft og resumeStepId', () => {
         const store = createStore();
@@ -164,7 +197,7 @@ describe('createSøknadAppStore — setSøknadSendt og reset', () => {
         expect(state.draftFormValues).toEqual({});
     });
 
-    it('reset tømmer alt og setter isInitialized til false', () => {
+    it('reset tømmer alt og setter isInitialized til true', () => {
         const store = createStore();
         store.getState().init({
             versjon: 1,
@@ -175,7 +208,7 @@ describe('createSøknadAppStore — setSøknadSendt og reset', () => {
         store.getState().reset();
 
         const state = store.getState();
-        expect(state.isInitialized).toBe(false);
+        expect(state.isInitialized).toBe(true);
         expect(state.søknadsdata).toEqual({});
         expect(state.resumeStepId).toBeUndefined();
         expect(state.søknadSendt).toBe(false);

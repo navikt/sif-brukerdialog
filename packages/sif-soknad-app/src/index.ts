@@ -10,10 +10,12 @@ export {
 export { AppErrorBoundary } from './components/AppErrorBoundary';
 export { SifQueryClientProvider } from './components/SifQueryClientProvider';
 export { SøknadAppProvider } from './components/SøknadAppProvider';
+export { SøknadKvitteringPage } from './components/SøknadKvitteringPage';
 export { SøknadRouter } from './components/SøknadRouter';
 export { SøknadStep } from './components/SøknadStep';
 export { SøknadStepForm } from './components/SøknadStepForm';
 export { SøknadStepGuard } from './components/SøknadStepGuard';
+export { SøknadVelkommenPage } from './components/SøknadVelkommenPage';
 export { InconsistentFormValuesMessage } from './consistency/InconsistentFormValuesMessage';
 
 // Hooks

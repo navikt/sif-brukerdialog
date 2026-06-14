@@ -2,7 +2,6 @@ import '@navikt/ds-css';
 import './app.css';
 
 import { AktivitetspengerApp } from '@navikt/sif-app-register';
-import { EnvKey } from '@navikt/sif-common-env';
 import { SøknadAppProvider } from '@sif/soknad-app';
 import { ErrorPage, LoadingPage } from '@sif/soknad-ui';
 import { IntlProvider } from 'react-intl';
@@ -11,7 +10,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { initApiClients } from './app/api/initApiClients';
 import { AppContextProvider } from './app/context/AppContext';
 import { applicationIntlMessages, useAppIntl } from './app/i18n';
-import { getAppEnv } from './app/setup/env/appEnv';
+import { getAppEnv } from './app/setup/appEnv';
 import { Søknad } from './app/Soknad';
 import { ScenarioHeader } from './demo/ScenarioHeader';
 import { useInitialData } from './useInitialData';
@@ -42,23 +41,26 @@ const SøknadDataWrapper = () => {
 };
 
 export const App = () => {
-    const appEnv = getAppEnv();
-    const basePath = appEnv[EnvKey.PUBLIC_PATH];
+    const env = getAppEnv();
 
-    initApiClients();
+    initApiClients(env);
 
     if (globalThis.location.pathname === '/') {
-        globalThis.location.pathname = basePath;
+        globalThis.location.pathname = env.PUBLIC_PATH;
         return null;
     }
 
     return (
         <SøknadAppProvider
             applicationKey={AktivitetspengerApp.key}
-            appVersion={appEnv.APP_VERSION}
-            isActive={appEnv.SIF_PUBLIC_USE_FARO === 'true'}>
+            appVersion={env.APP_VERSION}
+            isActive={env.SIF_PUBLIC_USE_FARO === 'true'}
+            sentryConfig={{
+                dsn: 'https://20da9cbb958c4f5695d79c260eac6728@sentry.gc.nav.no/30',
+                application: 'aktivitetspenger-soknad',
+            }}>
             <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
-                <BrowserRouter basename={basePath}>
+                <BrowserRouter basename={env.PUBLIC_PATH}>
                     {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
                     <SøknadDataWrapper />
                 </BrowserRouter>

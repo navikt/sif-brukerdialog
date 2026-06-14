@@ -16,8 +16,7 @@
         "./vite-env.d.ts",
         "./tailwind.config.ts",
         "./vite.config.ts",
-        "./vite.dev.config.ts",
-        "./vite.e2e.config.ts",
+        "./vite.local.config.ts",
         "./playwright.config.ts",
         "env.schema.ts"
     ]
