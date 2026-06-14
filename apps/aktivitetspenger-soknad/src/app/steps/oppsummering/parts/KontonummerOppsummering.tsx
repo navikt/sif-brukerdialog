@@ -2,10 +2,10 @@ import { FormSummary } from '@navikt/ds-react';
 import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
 import { HarKontonummerEnum, UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 import { JaNeiSvar } from '@sif/soknad-ui';
+import { useStepNavigation } from '@sif/soknad-app';
 
 import { AppText } from '../../../i18n';
 import { SøknadStepId } from '../../../setup/config/SoknadStepId';
-import { useSøknadsflyt } from '../../../setup/hooks';
 
 interface Props {
     kontonummerInfo: KontonummerInfo;
@@ -16,7 +16,7 @@ export const KontonummerOppsummering = ({
     kontonummerInfo: { harKontonummer, kontonummerErRiktig },
     kontoOppslagInfo: utvidetInfo,
 }: Props) => {
-    const { navigateToStep } = useSøknadsflyt();
+    const { navigateToStep } = useStepNavigation();
     return (
         <FormSummary>
             <FormSummary.Header>

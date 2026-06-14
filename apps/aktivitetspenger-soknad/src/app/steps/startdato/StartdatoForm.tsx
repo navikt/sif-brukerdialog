@@ -1,11 +1,12 @@
 import { useAppIntl } from '@app/i18n';
 import { SøknadStepId } from '@app/setup/config/SoknadStepId';
-import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
-import { AppForm } from '@app/setup/soknad/AppForm';
+import { SøknadStepForm } from '@sif/soknad-app';
 import { StartdatoSøknadsdata } from '@app/types/Soknadsdata';
 import { getDateValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
+import { SøknadStep, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { FormLayout } from '@sif/soknad-ui';
+import { useForm } from 'react-hook-form';
 
 import { toStartdatoFormValues, toStartdatoSøknadsdata } from './startdatoStegUtils';
 import { StartdatoFormFields, StartdatoFormValues } from './types';
@@ -21,34 +22,32 @@ export const StartdatoForm = () => {
     const { text } = useAppIntl();
     const { validateField } = useSifValidate('startdatoForm');
 
-    const defaultValues = useStepDefaultValues<StartdatoFormValues, StartdatoSøknadsdata>({
-        stepId,
-        toFormValues: toStartdatoFormValues,
+    const { lagretData, commit, draftFormValues } = useStepData<StartdatoSøknadsdata, StartdatoFormValues>(stepId);
+    const methods = useForm<StartdatoFormValues>({
+        defaultValues: draftFormValues ?? toStartdatoFormValues(lagretData),
     });
+    useSaveSøknadFormValues(stepId, methods.getValues);
 
-    const { onSubmit, isPending } = useStepSubmit<StartdatoFormValues, StartdatoSøknadsdata>({
-        stepId,
-        toSøknadsdata: toStartdatoSøknadsdata,
-    });
-
-    const methods = useSøknadRhfForm(stepId, defaultValues);
+    const onSubmit = (data: StartdatoFormValues) => commit(toStartdatoSøknadsdata(data));
 
     return (
-        <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
-            <FormLayout.Content>
-                <FormLayout.Questions>
-                    <Datepicker
-                        name={StartdatoFormFields.startdato}
-                        label={text('startdatoSteg.startdato.label')}
-                        minDate={minDate}
-                        maxDate={maxDate}
-                        validate={validateField(
-                            StartdatoFormFields.startdato,
-                            getDateValidator({ required: true, min: minDate, max: maxDate }),
-                        )}
-                    />
-                </FormLayout.Questions>
-            </FormLayout.Content>
-        </AppForm>
+        <SøknadStep stepId={stepId}>
+            <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
+                <FormLayout.Content>
+                    <FormLayout.Questions>
+                        <Datepicker
+                            name={StartdatoFormFields.startdato}
+                            label={text('startdatoSteg.startdato.label')}
+                            minDate={minDate}
+                            maxDate={maxDate}
+                            validate={validateField(
+                                StartdatoFormFields.startdato,
+                                getDateValidator({ required: true, min: minDate, max: maxDate }),
+                            )}
+                        />
+                    </FormLayout.Questions>
+                </FormLayout.Content>
+            </SøknadStepForm>
+        </SøknadStep>
     );
 };

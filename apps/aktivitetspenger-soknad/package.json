@@ -36,7 +36,7 @@
         "@sentry/react": "10.56.0",
         "@sif/api": "workspace:*",
         "@sif/rhf": "workspace:*",
-        "@sif/soknad": "workspace:*",
+        "@sif/soknad-app": "workspace:*",
         "@sif/soknad-forms": "workspace:*",
         "@sif/soknad-ui": "workspace:*",
         "@tanstack/react-query": "5.101.0",
