@@ -26,7 +26,8 @@ Disse skillene handler om å *bruke* rammeverket fra en app. Denne skillen handl
 
 ```
 packages/sif-soknad-app/src/
-  components/       SøknadRouter, SøknadStep, SøknadStepForm, SøknadStepGuard, StepRouteGuard
+  components/       SøknadAppProvider, SøknadRouter, SøknadStep, SøknadStepForm,
+                    SøknadStepGuard, SøknadVelkommenPage, SøknadKvitteringPage, StepRouteGuard
   consistency/      SøknadFormValuesContext, checkConsistencyForSteps, InconsistentFormValuesMessage
   context/          SøknadAppContext
   hooks/            useStepData, useMellomlagring, useSaveSøknadFormValues,
@@ -44,13 +45,16 @@ Referanseimplementasjon: `apps/aktivitetspenger-soknad`
 ## Arkitektur
 
 ```
-<SøknadRouter>                   ← context-provider, ingen <Routes>
-  <SøknadFormValuesProvider>     ← draft-verdier for konsistenssjekk og live getters
-    <SøknadAppContext.Provider>  ← store + config eksponert til alle hooks
-      {children}                 ← appen sine <Routes> bor her
+<SøknadAppProvider>              ← Faro, AppErrorBoundary, QueryClient, Analytics, Sentry-init
+  <SøknadRouter>                 ← Zustand-store, mellomlagring-init, context-provider
+    <SøknadFormValuesProvider>   ← draft-verdier for konsistenssjekk og live getters
+      <SøknadAppContext.Provider>← store + config eksponert til alle hooks
+        {children}               ← appen sine <Routes> bor her
 ```
 
-- `SøknadRouter` er ren provider — ingen routing-logikk
+- `SøknadRouter` er primært en kontekst-provider, men har to `useEffect` med navigering:
+  - Ved mount: henter mellomlagring → kaller `init(blob)` → navigerer til `resumeStepId` hvis gyldig blob
+  - Ved `søknadSendt`: navigerer til `/kvittering`
 - `SøknadRouter` holder `children` tilbake til mellomlagring er hentet (`isInitialized`). Dersom gyldig mellomlagring finnes, navigeres bruker automatisk til `resumeStepId` uten at velkommensiden vises.
 - `SøknadStepGuard` styrer redirect basert på `resumeStepId` fra Zustand-storen
 - `SøknadStep` er wrapper for ett steg — henter tittel via `step.${stepId}.title`, bygger progress-stepper, kjører konsistenssjekk
@@ -102,7 +106,7 @@ const methods = useForm({ defaultValues: draftFormValues ?? toMyFormValues(lagre
 
 - `lagretData` — committet domendata (`søknadsdata[stepId]`), `undefined` første gang
 - `draftFormValues` — midlertidige RHF-verdier fra mellomlagring-blob (`draftFormValues[stepId]`), bruk som `defaultValues` foran `lagretData` etter reload
-- `commit(data)` — commitState + rydder draft + lagrer mellomlagring + navigerer til neste steg
+- `commit(data)` — commitState + rydder draft + lagrer mellomlagring (uten `draftFormValues` — de er nettopp ryddet) + navigerer til neste steg
 
 ### `useSaveSøknadFormValues(stepId, getValues)`
 
@@ -130,6 +134,32 @@ await lagre();
 
 Sjekker om foregående stegs umonterte skjemaverdier avviker fra committet `søknadsdata`. Returnerer første inkonsistente `stepId`, eller `undefined`. Aktiveres automatisk i `SøknadStep`. Krever at `formValuesToSøknadsdata` er satt på `SøknadRouter`.
 
+Merk: `SøknadStepForm` kaller også `useCheckConsistency` internt for å deaktivere submit-knappen. De to kallene (fra `SøknadStep` og `SøknadStepForm`) er uavhengige og harmløse.
+
+---
+
+## `SøknadAppProvider`
+
+Ytterste wrapper-komponent — brukes av apper som ikke setter opp providers selv.
+
+```tsx
+<SøknadAppProvider
+  applicationKey="min-app"
+  appVersion={import.meta.env.VITE_APP_VERSION}
+  sentryConfig={{ dsn: '...', application: 'min-app' }}
+  telemetryCollectorURL={import.meta.env.VITE_TELEMETRY_URL}>
+  <App />
+</SøknadAppProvider>
+```
+
+Setter opp:
+- `FaroProvider` — Grafana Faro observability
+- `AppErrorBoundary` — global error boundary
+- `SifQueryClientProvider` — React Query-klient
+- `AnalyticsProvider` — analytics-instans
+- `DevBranchInfo` — vises kun i dev/PR-bygg
+- Sentry-init — kjøres én gang (modul-global flaggvariabel)
+
 ---
 
 ## `SøknadStepForm` — standard RHF steg-skjema
@@ -148,6 +178,53 @@ Håndterer automatisk:
 - Valgfri `submitDisabled`, `isFinalSubmit`, `submitLabel`
 
 Erstatter app-spesifikk `AppForm`-boilerplate. Alle apper som bruker `@sif/soknad-app` + RHF skal bruke denne.
+
+---
+
+## `SøknadVelkommenPage`
+
+Ferdig velkomstside — wrapper rundt `StartPage` fra `@sif/soknad-ui`.
+
+```tsx
+<SøknadVelkommenPage
+  title="Søknad om aktivitetspenger"
+  guide={{ navn: 'Kari Veileder', content: <p>...</p> }}>
+  {/* valgfritt ekstra innhold */}
+</SøknadVelkommenPage>
+```
+
+Bruker `useStartSøknad` internt — kaller `startSøknad({ harForståttRettigheterOgPlikter })` ved klikk.
+
+---
+
+## `SøknadKvitteringPage`
+
+Ferdig kvitteringsside.
+
+```tsx
+<SøknadKvitteringPage
+  documentTitle="Søknad sendt"
+  applicationTitle="Aktivitetspenger"
+  tittel="Vi har mottatt søknaden din"
+  appRootUrl={import.meta.env.BASE_URL}>
+  <p>Forventet saksbehandlingstid er ...</p>
+</SøknadKvitteringPage>
+```
+
+Props: `documentTitle`, `applicationTitle`, `tittel`, `appRootUrl?`, `restartLabel?` (default: `'Tilbake til forsiden'`).
+
+---
+
+## `useStartSøknad()`
+
+```tsx
+const { startSøknad } = useStartSøknad();
+await startSøknad({ harForståttRettigheterOgPlikter: true });
+// eller med startdata:
+await startSøknad({ harForståttRettigheterOgPlikter: true, annenData: '...' });
+```
+
+Aksepterer `initialSøknadsdata: Record<string, unknown>` (default `{}`). Initialiserer storen med `resumeStepId = stepOrder[0]`, lagrer mellomlagring (fire-and-forget) og navigerer til første steg.
 
 ---
 
@@ -187,9 +264,29 @@ formValuesToSøknadsdata?: (stepId: string, formValues: Record<string, unknown>)
 
 // Vises etter vellykket innsending; URL settes til /kvittering
 kvitteringElement?: ReactNode;
+
+// Basepath for steg-ruter (default: '/soknad')
+basePath?: string;
+
+// URL for "fortsett senere"-navigering (default: 'https://www.nav.no/minside')
+resumeLaterUrl?: string;
+
+// Valgfri tilleggsvalidering av mellomlagret blob — returner null for å forkaste
+validateMellomlagring?: (blob: MellomlagringBlob) => MellomlagringBlob | null;
 ```
 
 `formValuesToSøknadsdata` er opt-in — uten den er konsistenssjekken deaktivert.
+
+> **Merk:** `SøknadRouterProps` har også `dialogs`-prop i typedefinisjon (`avbryt` og `fortsettSenere` override-komponenter), men denne brukes ikke av `SøknadRouter` i dag — dead prop.
+
+## `SøknadStepGuard` — props
+
+```tsx
+<SøknadStepGuard basePath="/soknad" initialPath="/" />
+```
+
+- `basePath` — skal matche `<Route path="...">` i appen (default: `'/soknad'`)
+- `initialPath` — redirect-sti ved ugyldig steg-URL (default: `'/'`)
 
 ---
 
