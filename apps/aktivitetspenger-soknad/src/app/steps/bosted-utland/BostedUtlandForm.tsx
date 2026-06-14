@@ -1,5 +1,5 @@
 import { AppText, useAppIntl } from '@app/i18n';
-import { SøknadStepId } from '@app/setup/config/SoknadStepId';
+import { SøknadStepId } from '@app/types/SoknadStepId';
 import { SøknadStepForm } from '@sif/soknad-app';
 import { BostedUtlandSøknadsdata } from '@app/types/Soknadsdata';
 import { Heading, VStack } from '@navikt/ds-react';

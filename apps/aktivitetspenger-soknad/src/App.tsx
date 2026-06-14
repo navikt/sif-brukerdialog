@@ -10,7 +10,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { initApiClients } from './app/api/initApiClients';
 import { AppContextProvider } from './app/context/AppContext';
 import { applicationIntlMessages, useAppIntl } from './app/i18n';
-import { getAppEnv } from './app/setup/env/appEnv';
+import { getAppEnv } from './app/setup/appEnv';
 import { Søknad } from './app/Soknad';
 import { ScenarioHeader } from './demo/ScenarioHeader';
 import { useInitialData } from './useInitialData';

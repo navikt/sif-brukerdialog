@@ -2,7 +2,7 @@ import { FormSummary } from '@navikt/ds-react';
 import { JaNeiSvar } from '@sif/soknad-ui';
 import { useStepNavigation } from '@sif/soknad-app';
 
-import { SøknadStepId } from '../../../setup/config/SoknadStepId';
+import { SøknadStepId } from '../../../types/SoknadStepId';
 
 interface Props {
     erBosattITrondheim: boolean;

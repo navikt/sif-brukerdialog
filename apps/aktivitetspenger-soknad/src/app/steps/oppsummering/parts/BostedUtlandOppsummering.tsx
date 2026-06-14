@@ -4,7 +4,7 @@ import { dateRangeFormatter, ISODateToDate } from '@navikt/sif-common-utils';
 import { JaNeiSvar } from '@sif/soknad-ui';
 import { useStepNavigation } from '@sif/soknad-app';
 
-import { SøknadStepId } from '../../../setup/config/SoknadStepId';
+import { SøknadStepId } from '../../../types/SoknadStepId';
 
 interface Props {
     forutgåendeBosteder: ForutgåendeBosteder;

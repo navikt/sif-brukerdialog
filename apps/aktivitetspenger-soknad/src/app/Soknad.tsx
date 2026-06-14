@@ -1,5 +1,5 @@
-import { søknadStepConfig, søknadStepOrder } from '@app/setup/config/soknadStepConfig';
-import { SøknadStepId } from '@app/setup/config/SoknadStepId';
+import { søknadStepConfig, søknadStepOrder } from '@app/setup/soknadStepConfig';
+import { SøknadStepId } from '@app/types/SoknadStepId';
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '@app/setup/constants';
 import { formValuesToSøknadsdata } from '@app/utils/formValuesToSøknadsdata';
 import { SøknadRouter, SøknadStepGuard } from '@sif/soknad-app';
