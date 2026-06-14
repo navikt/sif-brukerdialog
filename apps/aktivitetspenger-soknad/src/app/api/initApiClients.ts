@@ -1,8 +1,7 @@
 import { initK9BrukerdialogProsesseringApiClients } from '@navikt/k9-brukerdialog-prosessering-api';
 import { EnvKey, getRequiredEnv } from '@navikt/sif-common-env';
+import { setRedirectingToLogin } from '@navikt/sif-common-sentry';
 import { initUngDeltakelseOpplyserApiDeltakerClient } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
-
-import { setRedirectingToLogin } from '../../sentry/instrument';
 
 export const initApiClients = () => {
     initUngDeltakelseOpplyserApiDeltakerClient({

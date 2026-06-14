@@ -56,7 +56,11 @@ export const App = () => {
         <SøknadAppProvider
             applicationKey={AktivitetspengerApp.key}
             appVersion={appEnv.APP_VERSION}
-            isActive={appEnv.SIF_PUBLIC_USE_FARO === 'true'}>
+            isActive={appEnv.SIF_PUBLIC_USE_FARO === 'true'}
+            sentryConfig={{
+                dsn: 'https://20da9cbb958c4f5695d79c260eac6728@sentry.gc.nav.no/30',
+                application: 'aktivitetspenger-soknad',
+            }}>
             <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
                 <BrowserRouter basename={basePath}>
                     {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}

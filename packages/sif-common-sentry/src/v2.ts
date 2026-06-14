@@ -1,5 +1,9 @@
 import * as Sentry from '@sentry/react';
 
+import { isErrorFromDekoratøren } from './sentryFilters';
+
+export { isErrorFromDekoratøren, beforeSendFilter } from './sentryFilters';
+
 let redirectingToLogin = false;
 
 export const setRedirectingToLogin = (): void => {
@@ -47,3 +51,32 @@ export const defaultSentryIgnoreErrors: Array<string | RegExp> = [
     /\[0\]/,
     /Non-Error promise rejection captured with value: Request timeout/,
 ];
+
+export interface SentryConfig {
+    dsn: string;
+    application: string;
+}
+
+export const initSentry = ({ dsn, application }: SentryConfig): void => {
+    const importMetaEnv = (import.meta as { env?: { MODE?: string } }).env;
+    Sentry.init({
+        dsn,
+        environment: window.location.hostname.includes('localhost') ? 'localhost' : (importMetaEnv?.MODE ?? 'unknown'),
+        enabled: window.location.hostname.endsWith('.nav.no') || window.location.hostname === 'nav.no',
+        initialScope: {
+            tags: { application },
+        },
+        ignoreErrors: defaultSentryIgnoreErrors,
+        allowUrls: [/https?:\/\/.*\.?nav\.no/],
+        sendDefaultPii: false,
+        beforeSend(event) {
+            if (isRedirectingToLogin()) {
+                return null;
+            }
+            if (isErrorFromDekoratøren(event)) {
+                return null;
+            }
+            return scrubEvent(event);
+        },
+    });
+};
