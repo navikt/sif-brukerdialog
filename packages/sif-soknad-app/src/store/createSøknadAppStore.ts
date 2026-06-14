@@ -38,6 +38,8 @@ export interface SøknadStoreActions {
     ) => { newResumeStepId: string | undefined; newRoute: string | undefined };
     /** Rydder draft-verdier for ett steg (etter commit eller ved reset). */
     clearDraftFormValues: (stepId: string) => void;
+    /** Oppdaterer hele draftFormValues-mappet i storen (etter manuell lagre()). */
+    setDraftFormValues: (values: Record<string, Record<string, unknown>>) => void;
     setSøknadSendt: () => void;
     reset: () => void;
 }
@@ -137,6 +139,8 @@ export const createSøknadAppStore = (options: StoreOptions): UseBoundStore<Stor
                 delete newDraft[stepId];
                 return { draftFormValues: newDraft };
             }),
+
+        setDraftFormValues: (values) => set({ draftFormValues: values }),
 
         setSøknadSendt: () =>
             set({

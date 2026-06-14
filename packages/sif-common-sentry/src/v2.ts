@@ -2,7 +2,7 @@ import * as Sentry from '@sentry/react';
 
 import { isErrorFromDekoratøren } from './sentryFilters';
 
-export { isErrorFromDekoratøren, beforeSendFilter } from './sentryFilters';
+export { beforeSendFilter, isErrorFromDekoratøren } from './sentryFilters';
 
 let redirectingToLogin = false;
 
