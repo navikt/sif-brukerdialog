@@ -4805,12 +4805,6 @@ importers:
       '@sentry/browser':
         specifier: 10.56.0
         version: 10.56.0
-      '@sentry/react':
-        specifier: 10.56.0
-        version: 10.56.0(react@19.2.7)
-      '@sentry/types':
-        specifier: 10.56.0
-        version: 10.56.0
     devDependencies:
       '@sif/eslint-config':
         specifier: workspace:*
@@ -9799,10 +9793,6 @@ packages:
     peerDependenciesMeta:
       rollup:
         optional: true
-
-  '@sentry/types@10.56.0':
-    resolution: {integrity: sha512-I9JtS/EtzpV5o9MwLNOKBCTmGU61HRT3E9MS9k68cKxAwexNH2zFW0E9EnQYLDhANXsvHA6moGA+nqt2rbD92Q==}
-    engines: {node: '>=18'}
 
   '@sentry/vercel-edge@10.56.0':
     resolution: {integrity: sha512-2e5rtVjLpIVYKssFcTuKsNWYJeLAnNsQCcq7Mscw1rQal5UdBgxwclw7K2SN+QHDZlKradRBdhwOU0svENOnQw==}
@@ -21835,10 +21825,6 @@ snapshots:
     transitivePeerDependencies:
       - encoding
       - supports-color
-
-  '@sentry/types@10.56.0':
-    dependencies:
-      '@sentry/core': 10.56.0
 
   '@sentry/vercel-edge@10.56.0':
     dependencies:
