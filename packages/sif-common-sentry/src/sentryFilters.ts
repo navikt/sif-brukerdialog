@@ -1,8 +1,8 @@
-import * as Sentry from '@sentry/react';
+import type { ErrorEvent } from '@sentry/browser';
 
 const dekoratorenTimeoutPatterns = ['Request timeout', 'dekoratoren'];
 
-export const isErrorFromDekoratøren = (event: Sentry.ErrorEvent): boolean => {
+export const isErrorFromDekoratøren = (event: ErrorEvent): boolean => {
     const values = event.exception?.values ?? [];
     const frames = values.flatMap((v) => v.stacktrace?.frames ?? []);
     if (frames.some((f) => (f.filename ?? '').includes('/dekoratoren/'))) {
@@ -18,7 +18,7 @@ export const isErrorFromDekoratøren = (event: Sentry.ErrorEvent): boolean => {
     return false;
 };
 
-export const beforeSendFilter = (event: Sentry.ErrorEvent): Sentry.ErrorEvent | null => {
+export const beforeSendFilter = (event: ErrorEvent): ErrorEvent | null => {
     if (isErrorFromDekoratøren(event)) {
         return null;
     }

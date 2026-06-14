@@ -1,4 +1,5 @@
-import * as Sentry from '@sentry/react';
+import * as Sentry from '@sentry/browser';
+import type { ErrorEvent } from '@sentry/browser';
 
 import { isErrorFromDekoratøren } from './sentryFilters';
 
@@ -14,7 +15,7 @@ export const isRedirectingToLogin = (): boolean => redirectingToLogin;
 
 export const scrubUrl = (url: string): string => url.replace(/\/[0-9]+(?=\/|$)/g, '/[id]');
 
-export const scrubEvent = (event: Sentry.ErrorEvent): Sentry.ErrorEvent => {
+export const scrubEvent = (event: ErrorEvent): ErrorEvent => {
     if (event.request?.url) {
         event.request.url = scrubUrl(event.request.url);
     }
