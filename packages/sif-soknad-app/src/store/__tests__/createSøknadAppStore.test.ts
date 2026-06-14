@@ -164,7 +164,7 @@ describe('createSøknadAppStore — setSøknadSendt og reset', () => {
         expect(state.draftFormValues).toEqual({});
     });
 
-    it('reset tømmer alt og setter isInitialized til false', () => {
+    it('reset tømmer alt og setter isInitialized til true', () => {
         const store = createStore();
         store.getState().init({
             versjon: 1,
@@ -175,7 +175,7 @@ describe('createSøknadAppStore — setSøknadSendt og reset', () => {
         store.getState().reset();
 
         const state = store.getState();
-        expect(state.isInitialized).toBe(false);
+        expect(state.isInitialized).toBe(true);
         expect(state.søknadsdata).toEqual({});
         expect(state.resumeStepId).toBeUndefined();
         expect(state.søknadSendt).toBe(false);

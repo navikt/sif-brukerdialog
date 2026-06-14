@@ -156,7 +156,7 @@ export const createSøknadAppStore = (options: StoreOptions): UseBoundStore<Stor
                 resumeStepId: undefined,
                 includedSteps: computeIncludedSteps(stepOrder, config, {}),
                 søknadSendt: false,
-                isInitialized: false,
+                isInitialized: true,
             }),
     });
 
