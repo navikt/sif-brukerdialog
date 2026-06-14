@@ -1,23 +1,16 @@
-import { useAppIntl } from '@app/i18n';
 import { useAppContext } from '@app/context/AppContext';
-import { StartPage } from '@sif/soknad-ui/pages';
-import { useStartSøknad } from '@sif/soknad-app';
+import { useAppIntl } from '@app/i18n';
+import { SøknadVelkommenPage } from '@sif/soknad-app';
 
 import OmSøknaden from './OmSoknaden';
 
-export const VelkommenPage = () => {
+export const Velkommen = () => {
     const { text } = useAppIntl();
     const { søker } = useAppContext();
-    const { startSøknad } = useStartSøknad();
-
-    const handleStart = async (harForståttRettigheterOgPlikter: true) => {
-        await startSøknad({ harForståttRettigheterOgPlikter });
-    };
 
     return (
-        <StartPage
-            onStart={handleStart}
-            isPending={false}
+        <SøknadVelkommenPage
+            title={text('application.title')}
             guide={{
                 navn: søker.fornavn || '',
                 content: (
@@ -27,9 +20,8 @@ export const VelkommenPage = () => {
                         vel asperiores molestias, fugit consequatur?
                     </>
                 ),
-            }}
-            title={text('application.title')}>
+            }}>
             <OmSøknaden />
-        </StartPage>
+        </SøknadVelkommenPage>
     );
 };

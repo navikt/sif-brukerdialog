@@ -1,4 +1,4 @@
-import { velkommenPageMessages_nb } from '../../pages/velkommen/i18n/nb';
+import { velkommenPageMessages_nb } from '../../content/velkommen/i18n/nb';
 import { barnStegMessages_nb } from '../../steps/barn/i18n/nb';
 import { bostedStegMessages_nb } from '../../steps/bosted/i18n/nb';
 import { bostedUtlandStegMessages_nb } from '../../steps/bosted-utland/i18n/nb';

@@ -2,11 +2,12 @@ import { søknadStepConfig, søknadStepOrder } from '@app/setup/config/soknadSte
 import { SøknadStepId } from '@app/setup/config/SoknadStepId';
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '@app/setup/constants';
 import { formValuesToSøknadsdata } from '@app/utils/formValuesToSøknadsdata';
-import { SøknadKvitteringPage, SøknadRouter, SøknadStepGuard } from '@sif/soknad-app';
+import { SøknadRouter, SøknadStepGuard } from '@sif/soknad-app';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { useAppIntl } from './i18n';
-import { VelkommenPage } from './pages';
+import { Kvittering } from './content/kvittering/Kvittering';
+import { Velkommen } from './content/velkommen/Velkommen';
 import { BarnForm, BostedForm, BostedUtlandForm, KontonummerForm, OppsummeringSteg, StartdatoForm } from './steps';
 
 export const Søknad = () => {
@@ -20,16 +21,9 @@ export const Søknad = () => {
             versjon={MELLOMLAGRING_VERSJON}
             applicationTitle={text('application.title')}
             formValuesToSøknadsdata={formValuesToSøknadsdata}
-            kvitteringElement={
-                <SøknadKvitteringPage
-                    documentTitle={text('kvittering.documentTitle')}
-                    applicationTitle={text('application.title')}
-                    tittel={text('kvittering.title')}
-                    appRootUrl={import.meta.env.BASE_URL}
-                />
-            }>
+            kvitteringElement={<Kvittering />}>
             <Routes>
-                <Route path="/" element={<VelkommenPage />} />
+                <Route path="/" element={<Velkommen />} />
                 <Route path="/soknad" element={<SøknadStepGuard basePath="/soknad" />}>
                     <Route path={søknadStepConfig[SøknadStepId.STARTDATO].route} element={<StartdatoForm />} />
                     <Route path={søknadStepConfig[SøknadStepId.KONTONUMMER].route} element={<KontonummerForm />} />
