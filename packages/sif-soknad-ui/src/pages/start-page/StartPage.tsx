@@ -116,7 +116,7 @@ export const StartPage = ({ title, guide, children, onStart, isPending }: Props)
                                     type="submit"
                                     loading={isPending}
                                     disabled={isPending}
-                                    icon={<ArrowRightIcon />}
+                                    icon={<ArrowRightIcon role="presentation" />}
                                     iconPosition="right">
                                     <SifSoknadUiText id="@sifSoknadUi.startPage.submitButton" />
                                 </Button>
