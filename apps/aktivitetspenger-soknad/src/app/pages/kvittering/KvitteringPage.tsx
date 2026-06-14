@@ -1,15 +1,15 @@
 import { useAppIntl } from '@app/i18n';
 import { Button } from '@navikt/ds-react';
-import { EnvKey, getRequiredEnv } from '@navikt/sif-common-env';
+import { useSøknadAppContext } from '@sif/soknad-app';
 import { Kvittering } from '@sif/soknad-ui/components';
 import { ApplicationPage } from '@sif/soknad-ui/pages';
 
 export const KvitteringPage = () => {
     const { text } = useAppIntl();
-    const path = getRequiredEnv(EnvKey.PUBLIC_PATH);
+    const { basePath } = useSøknadAppContext();
 
     const onRestart = () => {
-        window.location.replace(path);
+        window.location.replace(basePath);
     };
 
     return (
