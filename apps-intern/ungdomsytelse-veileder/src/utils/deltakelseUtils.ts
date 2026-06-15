@@ -113,8 +113,8 @@ export const getDeltakelseHandlinger = (deltakelse: Deltakelse, today: Date = ge
 };
 
 export const getTidligsteStartdato = (): Date => {
-    const env = getAppEnv();
-    return ISODateToDate(env.SIF_PUBLIC_TIDLIGSTE_STARTDATO);
+    const tidligsteStartdato = getMaybeEnv('SIF_PUBLIC_TIDLIGSTE_STARTDATO') || '2025-08-01';
+    return ISODateToDate(tidligsteStartdato);
 };
 
 export const getGyldigStartdatoRange = (
