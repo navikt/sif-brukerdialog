@@ -4,7 +4,7 @@ import { createContext, useContext } from 'react';
 
 export interface AppContextData {
     søker: Søker;
-    barn: RegistrertBarn[];
+    registrerteBarn: RegistrertBarn[];
     kontoInfo: UtvidetKontonummerInfo;
 }
 

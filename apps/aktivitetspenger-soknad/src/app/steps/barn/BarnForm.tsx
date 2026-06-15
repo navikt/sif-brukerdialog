@@ -21,7 +21,7 @@ const stepId = SøknadStepId.BARN;
 export const BarnForm = () => {
     const { validateField } = useSifValidate('barnForm');
     const { text } = useAppIntl();
-    const { barn: registrerteBarn } = useAppContext();
+    const { registrerteBarn } = useAppContext();
 
     const { lagretData, commit, draftFormValues } = useStepData<BarnSøknadsdata, BarnFormValues>(stepId);
     const methods = useForm<BarnFormValues>({ defaultValues: draftFormValues ?? toBarnFormValues(lagretData) });
