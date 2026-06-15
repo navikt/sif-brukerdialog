@@ -9,7 +9,7 @@ const deltakerPersonalia: DeltakerPersonalia = {
         etternavn: 'TØFFEL',
     },
     fødselsdato: '1998-12-31',
-    førsteMuligeInnmeldingsdato: '2025-01-01',
+    førsteMuligeInnmeldingsdato: '2025-08-01',
     sisteMuligeInnmeldingsdato: '2029-12-31',
     diskresjonskoder: [],
 };

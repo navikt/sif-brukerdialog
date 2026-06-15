@@ -1,10 +1,11 @@
 import { getRequiredEnv } from '@navikt/sif-common-env';
-import { DateRange, dateRangeUtils, getDateToday } from '@navikt/sif-common-utils';
+import { DateRange, dateRangeUtils, getDateToday, ISODateToDate } from '@navikt/sif-common-utils';
 import { DeltakelseHistorikkDto, Endringstype } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import dayjs from 'dayjs';
 import { DeltakelseHistorikkInnslag } from '../types';
 import { Deltakelse } from '../types/Deltakelse';
 import { Features } from '../types/Features';
+import { getAppEnv } from './appEnv';
 
 /** Antall måneder før og etter i dag som startdato kan endres innenfor */
 export const TILLATT_ENDRINGSPERIODE_MÅNEDER = 10;
@@ -111,7 +112,10 @@ export const getDeltakelseHandlinger = (deltakelse: Deltakelse, today: Date = ge
     };
 };
 
-export const TIDLIGSTE_STARTDATO = dayjs('2025-08-01');
+export const getTidligsteStartdato = (): Date => {
+    const env = getAppEnv();
+    return ISODateToDate(env.SIF_PUBLIC_TIDLIGSTE_STARTDATO);
+};
 
 export const getGyldigStartdatoRange = (
     deltaker: { førsteMuligeInnmeldingsdato: Date; sisteMuligeInnmeldingsdato: Date },
@@ -120,7 +124,7 @@ export const getGyldigStartdatoRange = (
     const endringsperiode = getEndringsperiode(today);
 
     const from = dayjs
-        .max([dayjs(deltaker.førsteMuligeInnmeldingsdato), dayjs(endringsperiode.from), TIDLIGSTE_STARTDATO])
+        .max([dayjs(deltaker.førsteMuligeInnmeldingsdato), dayjs(endringsperiode.from), dayjs(getTidligsteStartdato())])
         .toDate();
     const to = dayjs.min([dayjs(deltaker.sisteMuligeInnmeldingsdato), dayjs(endringsperiode.to)]).toDate();
 
