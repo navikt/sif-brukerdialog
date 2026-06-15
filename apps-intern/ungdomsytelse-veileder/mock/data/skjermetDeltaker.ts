@@ -16,7 +16,7 @@ const deltakerPersonalia: DeltakerPersonalia = {
         etternavn: 'FROKOSTBLANDING',
     },
     fødselsdato: '2005-03-26',
-    førsteMuligeInnmeldingsdato: '2025-08-01',
+    førsteMuligeInnmeldingsdato: '2025-01-01',
     sisteMuligeInnmeldingsdato: '2034-03-26',
     diskresjonskoder: [Diskresjonskode.SKJERMET, Diskresjonskode.KODE6],
 };
