@@ -67,6 +67,7 @@ export const SøknadRouter = ({
     validateMellomlagring,
     resumeLaterUrl = DEFAULT_RESUME_LATER_URL,
     kvitteringElement,
+    loadingElement,
     formValuesToSøknadsdata,
     children,
 }: SøknadRouterProps) => {
@@ -171,7 +172,11 @@ export const SøknadRouter = ({
     return (
         <SøknadFormValuesProvider>
             <SøknadAppContext.Provider value={contextValue}>
-                {søknadSendt && kvitteringElement ? kvitteringElement : isInitialized ? children : null}
+                {søknadSendt && kvitteringElement
+                    ? kvitteringElement
+                    : isInitialized
+                      ? children
+                      : loadingElement || null}
             </SøknadAppContext.Provider>
         </SøknadFormValuesProvider>
     );
