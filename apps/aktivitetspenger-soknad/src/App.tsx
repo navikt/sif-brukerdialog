@@ -4,7 +4,6 @@ import './app.css';
 import { AktivitetspengerApp } from '@navikt/sif-app-register';
 import { SøknadAppProvider } from '@sif/soknad-app';
 import { ErrorPage, LoadingPage } from '@sif/soknad-ui';
-import { IntlProvider } from 'react-intl';
 import { BrowserRouter } from 'react-router-dom';
 
 import { initApiClients } from './app/api/initApiClients';
@@ -18,7 +17,6 @@ import { useInitialData } from './useInitialData';
 const SøknadDataWrapper = () => {
     const result = useInitialData();
     const { text } = useAppIntl();
-
     switch (result.status) {
         case 'loading':
             return <LoadingPage applicationTitle={text('application.title')} />;
@@ -58,17 +56,20 @@ export const App = () => {
         <SøknadAppProvider
             applicationKey={AktivitetspengerApp.key}
             appVersion={env.APP_VERSION}
-            isActive={env.SIF_PUBLIC_USE_FARO === 'true'}
+            faroConfig={{
+                isActive: env.SIF_PUBLIC_USE_FARO === 'true',
+                telemetryCollectorURL: env.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL,
+            }}
+            analyticsConfig={{ isActive: env.SIF_PUBLIC_USE_ANALYTICS === 'true' }}
             sentryConfig={{
                 dsn: 'https://20da9cbb958c4f5695d79c260eac6728@sentry.gc.nav.no/30',
                 application: 'aktivitetspenger-soknad',
-            }}>
-            <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
-                <BrowserRouter basename={env.PUBLIC_PATH}>
-                    {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
-                    <SøknadDataWrapper />
-                </BrowserRouter>
-            </IntlProvider>
+            }}
+            intlConfig={{ intlMessages: applicationIntlMessages }}>
+            <BrowserRouter basename={env.PUBLIC_PATH}>
+                {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
+                <SøknadDataWrapper />
+            </BrowserRouter>
         </SøknadAppProvider>
     );
 };

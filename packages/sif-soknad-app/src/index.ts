@@ -8,6 +8,8 @@ export {
 
 // Komponenter
 export { AppErrorBoundary } from './components/AppErrorBoundary';
+export type { AppIntlConfig, IntlMessageObjectFormat } from './components/AppIntlProvider';
+export { AppIntlProvider } from './components/AppIntlProvider';
 export { SifQueryClientProvider } from './components/SifQueryClientProvider';
 export { SøknadAppProvider } from './components/SøknadAppProvider';
 export { SøknadKvitteringPage } from './components/SøknadKvitteringPage';
@@ -23,8 +25,8 @@ export { useAvbryt } from './hooks/useAvbryt';
 export { useCheckConsistency } from './hooks/useCheckConsistency';
 export { useMellomlagring } from './hooks/useMellomlagring';
 export { useSaveSøknadFormValues } from './hooks/useSaveSøknadFormValues';
-export { useStartSøknad } from './hooks/useStartSøknad';
 export { useSøknadSendt } from './hooks/useSøknadSendt';
+export { useStartSøknad } from './hooks/useStartSøknad';
 export { useStepData } from './hooks/useStepData';
 export { useStepNavigation } from './hooks/useStepNavigation';
 

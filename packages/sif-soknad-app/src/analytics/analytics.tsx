@@ -46,6 +46,9 @@ interface AnalyticsProviderProps {
     applicationKey: string;
     isActive?: boolean;
 }
+export interface AnalyticsProviderConfig {
+    isActive: boolean;
+}
 
 export const AnalyticsProvider = ({
     applicationKey,
