@@ -8,9 +8,12 @@ vi.mock('../../types/Features', () => ({
     },
 }));
 
-vi.mock('../../utils/appEnv', () => ({
-    getAppEnv: (): Partial<AppEnv> => {
-        return { SIF_PUBLIC_TIDLIGSTE_STARTDATO: '2025-08-01' };
+vi.mock('@navikt/sif-common-env', () => ({
+    getRequiredEnv: (key: string) => {
+        if (key === 'SIF_PUBLIC_TIDLIGSTE_STARTDATO') {
+            return '2025-08-01';
+        }
+        return undefined;
     },
 }));
 
@@ -25,7 +28,6 @@ import {
     addUkedagerToDate,
 } from '../deltakelseUtils';
 import { Deltakelse } from '../../types/Deltakelse';
-import { AppEnv } from '../../../env.schema';
 
 const lagDeltakelse = (overrides: Partial<Deltakelse> = {}): Deltakelse => ({
     id: 'test-id',
