@@ -34,7 +34,7 @@ export const OppsummeringSteg = () => {
 
     const { validateField } = useSifValidate('oppsummeringForm');
 
-    const { søker, kontoInfo, barn } = useAppContext();
+    const { søker, kontoInfo, registrerteBarn } = useAppContext();
     const { store } = useSøknadAppContext();
     const søknadsdata = store((s) => s.søknadsdata) as Søknadsdata;
 
@@ -88,7 +88,7 @@ export const OppsummeringSteg = () => {
                         <KontonummerOppsummering kontonummerInfo={dto.kontonummerInfo} kontoOppslagInfo={kontoInfo} />
                         <BostedOppsummering erBosattITrondheim={dto.erBosattITrondheim} />
                         <BostedUtlandOppsummering forutgåendeBosteder={dto.forutgåendeBosteder} />
-                        <BarnOppsummering barn={barn} barnErRiktig={dto.barnErRiktig} />
+                        <BarnOppsummering barn={registrerteBarn} barnErRiktig={dto.barnErRiktig} />
                     </FormLayout.Summary>
                 )}
                 <FormLayout.Questions>

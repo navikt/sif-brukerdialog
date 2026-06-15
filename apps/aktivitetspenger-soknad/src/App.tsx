@@ -33,7 +33,11 @@ const SøknadDataWrapper = () => {
         case 'success':
             return (
                 <AppContextProvider
-                    value={{ søker: result.data.søker, barn: result.data.barn, kontoInfo: result.data.kontonummer }}>
+                    value={{
+                        søker: result.data.søker,
+                        registrerteBarn: result.data.barn,
+                        kontoInfo: result.data.kontonummer,
+                    }}>
                     <Søknad />
                 </AppContextProvider>
             );
