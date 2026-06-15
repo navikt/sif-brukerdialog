@@ -8,6 +8,15 @@ vi.mock('../../types/Features', () => ({
     },
 }));
 
+vi.mock('@navikt/sif-common-env', () => ({
+    getMaybeEnv: (key: string) => {
+        if (key === 'SIF_PUBLIC_TILLAT_TIDLIG_INNMELDING') {
+            return '2025-08-01';
+        }
+        return undefined;
+    },
+}));
+
 import {
     getDeltakelseHandlinger,
     getGyldigStartdatoRange,
