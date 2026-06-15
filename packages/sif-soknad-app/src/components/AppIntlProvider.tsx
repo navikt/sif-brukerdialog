@@ -1,5 +1,5 @@
 import { Locale } from '@navikt/sif-common-utils';
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { IntlProvider, MessageFormatElement } from 'react-intl';
 
 import useDecoratorLanguageSelector from '../hooks/useDecoratorLanguageSelector';
@@ -7,7 +7,7 @@ import { decoratorLocaleUtils } from '../utils/decoratorLocaleUtils';
 
 interface Props {
     config?: AppIntlConfig;
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 export interface IntlMessageObjectFormat {
@@ -19,11 +19,8 @@ export type AppIntlConfig = {
     useLanguageSelector?: boolean;
 };
 
-export const AppIntlProvider = ({ config, children }: Props) => {
-    if (!config) {
-        return <>{children}</>;
-    }
-
+const Renderer = (props: Omit<Props, 'config'> & { config: AppIntlConfig }) => {
+    const { config, children } = props;
     const { intlMessages, useLanguageSelector = true } = config;
     const [locale, setLocale] = useState<Locale>(() => decoratorLocaleUtils.getLocaleFromSessionStorage());
     const localeMessages = intlMessages[locale] || intlMessages['nb'];
@@ -39,4 +36,11 @@ export const AppIntlProvider = ({ config, children }: Props) => {
             {children}
         </IntlProvider>
     );
+};
+
+export const AppIntlProvider = (props: Props) => {
+    if (!props.config) {
+        return <>{props.children}</>;
+    }
+    return <Renderer config={props.config} children={props.children} />;
 };
