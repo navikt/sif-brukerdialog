@@ -29,11 +29,11 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@sentry/browser": "10.56.0"
+        "@sentry/browser": "10.57.0"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "25.9.2",
+        "@types/node": "25.9.3",
         "axios": "1.17.0",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
