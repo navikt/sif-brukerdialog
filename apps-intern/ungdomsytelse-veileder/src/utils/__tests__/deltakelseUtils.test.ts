@@ -8,6 +8,12 @@ vi.mock('../../types/Features', () => ({
     },
 }));
 
+vi.mock('../../utils/appEnv', () => ({
+    getAppEnv: (): Partial<AppEnv> => {
+        return { SIF_PUBLIC_TIDLIGSTE_STARTDATO: '2025-08-01' };
+    },
+}));
+
 import {
     getDeltakelseHandlinger,
     getGyldigStartdatoRange,
@@ -19,6 +25,7 @@ import {
     addUkedagerToDate,
 } from '../deltakelseUtils';
 import { Deltakelse } from '../../types/Deltakelse';
+import { AppEnv } from '../../../env.schema';
 
 const lagDeltakelse = (overrides: Partial<Deltakelse> = {}): Deltakelse => ({
     id: 'test-id',
