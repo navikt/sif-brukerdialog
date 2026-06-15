@@ -12,7 +12,6 @@ export type { AppIntlConfig, IntlMessageObjectFormat } from './components/AppInt
 export { AppIntlProvider } from './components/AppIntlProvider';
 export { SifQueryClientProvider } from './components/SifQueryClientProvider';
 export { SøknadAppProvider } from './components/SøknadAppProvider';
-export { SøknadKvitteringPage } from './components/SøknadKvitteringPage';
 export { SøknadRouter } from './components/SøknadRouter';
 export { SøknadStep } from './components/SøknadStep';
 export { SøknadStepForm } from './components/SøknadStepForm';
