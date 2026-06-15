@@ -5,7 +5,6 @@ import dayjs from 'dayjs';
 import { DeltakelseHistorikkInnslag } from '../types';
 import { Deltakelse } from '../types/Deltakelse';
 import { Features } from '../types/Features';
-import { getAppEnv } from './appEnv';
 
 /** Antall måneder før og etter i dag som startdato kan endres innenfor */
 export const TILLATT_ENDRINGSPERIODE_MÅNEDER = 10;
@@ -113,7 +112,7 @@ export const getDeltakelseHandlinger = (deltakelse: Deltakelse, today: Date = ge
 };
 
 export const getTidligsteStartdato = (): Date => {
-    const tidligsteStartdato = getMaybeEnv('SIF_PUBLIC_TIDLIGSTE_STARTDATO') || '2025-08-01';
+    const tidligsteStartdato = getRequiredEnv('SIF_PUBLIC_TIDLIGSTE_STARTDATO');
     return ISODateToDate(tidligsteStartdato);
 };
 
