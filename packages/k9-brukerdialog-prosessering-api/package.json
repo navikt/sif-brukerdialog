@@ -34,12 +34,12 @@
         "lint:tsc": "tsc --noEmit"
     },
     "devDependencies": {
-        "@hey-api/openapi-ts": "0.98.1",
+        "@hey-api/openapi-ts": "0.98.2",
         "@sif/eslint-config": "workspace:*",
         "axios": "1.17.0",
         "config": "workspace:*",
         "postcss": "8.5.15",
-        "prettier": "3.8.3",
+        "prettier": "3.8.4",
         "typescript": "6.0.3",
         "vitest": "4.1.8",
         "zod": "4.4.3"

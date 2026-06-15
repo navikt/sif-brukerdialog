@@ -10,12 +10,12 @@
         "lint:tsc": "tsc --noEmit"
     },
     "dependencies": {
-        "@navikt/nav-dekoratoren-moduler": "4.2.1",
+        "@navikt/nav-dekoratoren-moduler": "4.2.2",
         "constate": "4.0.0"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "25.9.2",
+        "@types/node": "25.9.3",
         "@types/react": "19.2.17",
         "config": "workspace:*",
         "react": "19.2.7",
