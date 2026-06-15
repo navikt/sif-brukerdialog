@@ -1,4 +1,4 @@
-import { getRequiredEnv } from '@navikt/sif-common-env';
+import { getMaybeEnv, getRequiredEnv } from '@navikt/sif-common-env';
 import { DateRange, dateRangeUtils, getDateToday, ISODateToDate } from '@navikt/sif-common-utils';
 import { DeltakelseHistorikkDto, Endringstype } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import dayjs from 'dayjs';
@@ -112,8 +112,8 @@ export const getDeltakelseHandlinger = (deltakelse: Deltakelse, today: Date = ge
 };
 
 export const getTidligsteStartdato = (): Date => {
-    const tidligsteStartdato = getRequiredEnv('SIF_PUBLIC_TIDLIGSTE_STARTDATO');
-    return ISODateToDate(tidligsteStartdato);
+    const tidligsteStartdato = getMaybeEnv('SIF_PUBLIC_DEV_TIDLIGSTE_STARTDATO');
+    return ISODateToDate(tidligsteStartdato || '2025-08-01');
 };
 
 export const getGyldigStartdatoRange = (

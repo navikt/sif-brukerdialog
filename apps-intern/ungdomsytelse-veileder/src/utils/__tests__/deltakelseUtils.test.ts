@@ -9,8 +9,8 @@ vi.mock('../../types/Features', () => ({
 }));
 
 vi.mock('@navikt/sif-common-env', () => ({
-    getRequiredEnv: (key: string) => {
-        if (key === 'SIF_PUBLIC_TIDLIGSTE_STARTDATO') {
+    getMaybeEnv: (key: string) => {
+        if (key === 'SIF_PUBLIC_DEV_TIDLIGSTE_STARTDATO') {
             return '2025-08-01';
         }
         return undefined;

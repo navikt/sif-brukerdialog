@@ -11,7 +11,7 @@ const localSchema = z.object({
         .union([z.boolean(), z.string()])
         .optional()
         .transform((val) => (typeof val === 'boolean' ? val : val === 'true')),
-    SIF_PUBLIC_TIDLIGSTE_STARTDATO: z.string(),
+    SIF_PUBLIC_DEV_TIDLIGSTE_STARTDATO: z.string().optional(),
 
     SIF_PUBLIC_FEATURE_FORLENGE_PERIODE: z.string().optional().default('off'),
     SIF_PUBLIC_FEATURE_SLETT_AKTIV_DELTAKELSE: z.string().optional().default('off'),

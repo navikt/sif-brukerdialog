@@ -1,10 +1,4 @@
-import {
-    getBaseEnv,
-    getMaybeBoolEnv,
-    getMaybeEnv,
-    getRequiredEnv,
-    getUngDeltakelseOpplyserBrowserEnv,
-} from '@navikt/sif-common-env';
+import { getBaseEnv, getMaybeBoolEnv, getMaybeEnv, getUngDeltakelseOpplyserBrowserEnv } from '@navikt/sif-common-env';
 import { AppEnv } from '../../env.schema';
 
 export const getAppEnv = (): AppEnv => ({
@@ -13,7 +7,7 @@ export const getAppEnv = (): AppEnv => ({
     DEV_IS_STORYBOOK: getMaybeBoolEnv('DEV_IS_STORYBOOK'),
     SIF_PUBLIC_FEATURE_FORLENGE_PERIODE: getMaybeEnv('SIF_PUBLIC_FEATURE_FORLENGE_PERIODE') || 'off',
     SIF_PUBLIC_FEATURE_SLETT_AKTIV_DELTAKELSE: getMaybeEnv('SIF_PUBLIC_FEATURE_SLETT_AKTIV_DELTAKELSE') || 'off',
-    SIF_PUBLIC_TIDLIGSTE_STARTDATO: getRequiredEnv('SIF_PUBLIC_TIDLIGSTE_STARTDATO'),
+    SIF_PUBLIC_DEV_TIDLIGSTE_STARTDATO: getMaybeEnv('SIF_PUBLIC_DEV_TIDLIGSTE_STARTDATO'),
     SIF_PUBLIC_IGNORER_BEGRENSNING_FORLENGE_PERIODE:
         getMaybeEnv('SIF_PUBLIC_IGNORER_BEGRENSNING_FORLENGE_PERIODE') || 'off',
     SIF_PUBLIC_UMAMI_NETTSIDE_ID: getMaybeEnv('SIF_PUBLIC_UMAMI_NETTSIDE_ID'),
