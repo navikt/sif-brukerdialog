@@ -5,6 +5,16 @@ vi.mock('../../types/Features', () => ({
         forlengePeriode: false,
         slettAktivDeltakelse: false,
         ignorerBegrensningForlengePeriode: false,
+        tillatTidligInnmelding: false,
+    },
+}));
+
+vi.mock('@navikt/sif-common-env', () => ({
+    getMaybeEnv: (key: string) => {
+        if (key === 'SIF_PUBLIC_TILLAT_TIDLIG_INNMELDING') {
+            return 'off';
+        }
+        return undefined;
     },
 }));
 

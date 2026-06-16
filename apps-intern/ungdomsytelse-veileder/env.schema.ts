@@ -11,9 +11,10 @@ const localSchema = z.object({
         .union([z.boolean(), z.string()])
         .optional()
         .transform((val) => (typeof val === 'boolean' ? val : val === 'true')),
-
+    SIF_PUBLIC_TILLAT_TIDLIG_INNMELDING: z.string().optional().default('off'),
     SIF_PUBLIC_FEATURE_FORLENGE_PERIODE: z.string().optional().default('off'),
     SIF_PUBLIC_FEATURE_SLETT_AKTIV_DELTAKELSE: z.string().optional().default('off'),
+
     /** Om en skal ignorere begrensning for når en kan forlenge periode */
     SIF_PUBLIC_IGNORER_BEGRENSNING_FORLENGE_PERIODE: z.string().optional().default('off'),
     SIF_PUBLIC_UMAMI_NETTSIDE_ID: z.string().optional(),
