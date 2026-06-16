@@ -128,12 +128,20 @@ describe('deltakelseUtils', () => {
             expect(periodeKanForlenges(deltakelse, TODAY)).toBe(false);
         });
 
-        it('false når periode utløpt', () => {
+        it('false når periode nylig utløpt (innenfor 6-ukersvindu)', () => {
             const deltakelse = lagDeltakelse({
                 søktTidspunkt: new Date(),
-                periodeMaksDato: ISODateToDate('2026-01-01'),
+                periodeMaksDato: ISODateToDate('2026-04-01'), // utløpt, men TODAY < 2026-04-01 + 6 uker (2026-05-13)
             });
             expect(periodeKanForlenges(deltakelse, TODAY)).toBe(false);
+        });
+
+        it('true når periode utløpt og 6-ukersgrense er passert', () => {
+            const deltakelse = lagDeltakelse({
+                søktTidspunkt: new Date(),
+                periodeMaksDato: ISODateToDate('2026-01-01'), // utløpt, TODAY (2026-05-07) > 2026-01-01 + 6 uker (2026-02-12)
+            });
+            expect(periodeKanForlenges(deltakelse, TODAY)).toBe(true);
         });
 
         it('false når ikke innenfor siste 2 måneder før periodeutløp', () => {
