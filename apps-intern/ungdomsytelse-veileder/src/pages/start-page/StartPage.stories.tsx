@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { BrowserRouter } from 'react-router-dom';
 import { http, HttpResponse } from 'msw';
-import { nyDeltakerMock } from '../../../mock/data/nyDeltakerMock';
+import { nyDeltakerScenario } from '../../../mock/scenarioer/nyDeltaker';
 import { withDarkBg } from '../../../storybook/decorators/withDarkBg';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withPageWidth } from '../../../storybook/decorators/withPageWidth';
@@ -47,7 +47,7 @@ export const UregistrertDeltaker: Story = {
             handlers: [
                 http.post('http://localhost:6006/api/ung-deltakelse-opplyser/oppslag/deltaker', async () => {
                     await delay(200);
-                    return HttpResponse.json(nyDeltakerMock.deltakerPersonalia);
+                    return HttpResponse.json(nyDeltakerScenario.deltakerPersonalia);
                 }),
             ],
         },

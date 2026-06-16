@@ -29,7 +29,7 @@ const erInnenforSisteMånederFørPeriodeslutt = (deltakelse: Deltakelse, today: 
 };
 
 const erInnenforSiste6UkerEtterPeriodeslutt = (deltakelse: Deltakelse, today: Date): boolean => {
-    return dayjs(today).isSameOrAfter(dayjs(deltakelse.periodeMaksDato).add(6, 'weeks'), 'day');
+    return dayjs(today).isBefore(dayjs(deltakelse.periodeMaksDato).add(6, 'weeks'), 'day');
 };
 
 export const kanEndreStartdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
@@ -78,9 +78,9 @@ export const periodeKanForlenges = (deltakelse: Deltakelse, today: Date = getDat
     if (deltakelse.harForlengetPeriode) return false;
     if (deltakelse.tilOgMed !== undefined) return false;
     if (periodeErUtløpt(deltakelse, today)) {
-        return erInnenforSiste6UkerEtterPeriodeslutt(deltakelse, today) || Features.ignorerBegrensningForlengePeriode;
+        return erInnenforSiste6UkerEtterPeriodeslutt(deltakelse, today);
     }
-    return erInnenforSisteMånederFørPeriodeslutt(deltakelse, today) || Features.ignorerBegrensningForlengePeriode;
+    return erInnenforSisteMånederFørPeriodeslutt(deltakelse, today);
 };
 
 export interface DeltakelseHandlinger {

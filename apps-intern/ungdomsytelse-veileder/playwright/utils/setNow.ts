@@ -1,6 +1,5 @@
 import { Page } from '@playwright/test';
-
-const testDate = new Date('2025-12-10');
+import { demoMockDate } from '../../mock/mockConstants';
 
 const getSetDateScript = (timestamp: number) => `
 {
@@ -21,6 +20,6 @@ const getSetDateScript = (timestamp: number) => `
   }
 `;
 
-export const setNow = async (page: Page, date: Date = testDate) => {
+export const setNow = async (page: Page, date: Date = demoMockDate) => {
     await page.addInitScript(getSetDateScript(date.valueOf()));
 };

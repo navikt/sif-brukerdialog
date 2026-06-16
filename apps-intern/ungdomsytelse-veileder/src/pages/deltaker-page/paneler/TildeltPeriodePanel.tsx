@@ -17,7 +17,7 @@ const TildeltPeriodePanel = ({ deltaker, deltakelse, onDeltakelseChanged }: Dato
     const [visDialog, setVisDialog] = useState(false);
 
     const { harForlengetPeriode, periodeMaksDato, tilOgMed } = deltakelse;
-    const { kanForlengePeriode } = getDeltakelseHandlinger(deltakelse);
+    const handlinger = getDeltakelseHandlinger(deltakelse);
 
     return (
         <>
@@ -31,8 +31,7 @@ const TildeltPeriodePanel = ({ deltaker, deltakelse, onDeltakelseChanged }: Dato
                             Siste dag i perioden er <strong>{dateFormatter.dayCompactDate(periodeMaksDato)}</strong>.
                         </BodyLong>
                     )}
-
-                    {kanForlengePeriode && (
+                    {handlinger.kanForlengePeriode && (
                         <Box paddingBlock="space-8 space-0">
                             <Button variant="secondary" size="small" onClick={() => setVisDialog(true)}>
                                 Registrer forlenget periode
