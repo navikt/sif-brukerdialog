@@ -15,10 +15,8 @@ import { StartdatoFormFields, StartdatoFormValues } from './types';
 const { Datepicker } = createSifFormComponents<StartdatoFormValues>();
 
 const stepId = SøknadStepId.STARTDATO;
-/** Tillater eldre startdato pga testing */
-const minDate = dayjs().subtract(2, 'year').toDate();
-const maxDate = dayjs().add(6, 'months').toDate();
-
+const minDate = dayjs().subtract(2, 'year').startOf('day').toDate();
+const maxDate = dayjs().add(6, 'months').endOf('day').toDate();
 export const StartdatoForm = () => {
     const { text } = useAppIntl();
     const { validateField } = useSifValidate('startdatoForm');
