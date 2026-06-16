@@ -7,6 +7,7 @@ import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { SøknadStep, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { FormLayout } from '@sif/soknad-ui';
 import { useForm } from 'react-hook-form';
+import dayjs from 'dayjs';
 
 import { toStartdatoFormValues, toStartdatoSøknadsdata } from './startdatoStegUtils';
 import { StartdatoFormFields, StartdatoFormValues } from './types';
@@ -14,9 +15,9 @@ import { StartdatoFormFields, StartdatoFormValues } from './types';
 const { Datepicker } = createSifFormComponents<StartdatoFormValues>();
 
 const stepId = SøknadStepId.STARTDATO;
-const currentYear = new Date().getFullYear();
-const minDate = new Date(currentYear - 2, 0, 1);
-const maxDate = new Date(currentYear, 11, 31);
+/** Tillater eldre startdato pga testing */
+const minDate = dayjs().subtract(2, 'year').toDate();
+const maxDate = dayjs().add(6, 'months').toDate();
 
 export const StartdatoForm = () => {
     const { text } = useAppIntl();
