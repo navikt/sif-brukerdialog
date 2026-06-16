@@ -112,7 +112,7 @@ export const getDeltakelseHandlinger = (deltakelse: Deltakelse, today: Date = ge
 };
 
 const DEV_TIDLIGSTE_STARTDATO = ISODateToDate('2025-01-01');
-const PROD_TIDLIGSTE_STARTDATO = ISODateToDate('2025-08-11');
+const PROD_TIDLIGSTE_STARTDATO = ISODateToDate('2025-08-01');
 
 export const getGyldigStartdatoRange = (
     deltaker: { førsteMuligeInnmeldingsdato: Date; sisteMuligeInnmeldingsdato: Date },
