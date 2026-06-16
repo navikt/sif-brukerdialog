@@ -31,7 +31,7 @@
         "@navikt/ung-brukerdialog-api": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
         "@tanstack/react-query": "5.101.0",
-        "axios": "1.17.0",
+        "axios": "1.16.1",
         "dayjs": "1.11.21",
         "object-hash": "3.0.0",
         "uuid": "14.0.0"
