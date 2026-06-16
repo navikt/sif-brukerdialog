@@ -36,7 +36,7 @@
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "@sentry/react": "10.57.0",
-        "react-hook-form": "7.78.0",
+        "react-hook-form": "7.79.0",
         "react-intl": "10.1.13",
         "react-router-dom": "7.17.0",
         "zustand": "5.0.14"

@@ -23,7 +23,7 @@
         "@types/express": "5.0.6",
         "@types/morgan": "1.9.10",
         "@types/node": "25.9.3",
-        "axios": "1.17.0",
+        "axios": "1.16.1",
         "esbuild": "0.28.1",
         "morgan": "1.11.0",
         "postcss": "8.5.15",

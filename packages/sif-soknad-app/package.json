@@ -31,7 +31,7 @@
         "@sif/soknad-ui": "workspace:*",
         "@tanstack/react-query": "5.101.0",
         "js-cookie": "3.0.8",
-        "react-hook-form": "7.78.0",
+        "react-hook-form": "7.79.0",
         "react-intl": "10.1.13",
         "react-router-dom": "7.17.0",
         "zustand": "5.0.14"

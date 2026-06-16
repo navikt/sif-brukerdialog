@@ -24,7 +24,7 @@
         "@navikt/ds-react": "8.12.1",
         "@navikt/sif-common-utils": "workspace:*",
         "@sif/eslint-config": "workspace:*",
-        "axios": "1.17.0",
+        "axios": "1.16.1",
         "config": "workspace:*",
         "dayjs": "1.11.21",
         "postcss": "8.5.15",
