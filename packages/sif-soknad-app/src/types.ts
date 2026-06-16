@@ -66,6 +66,8 @@ export interface SøknadRouterProps {
         avbryt?: ComponentType<DialogProps>;
         fortsettSenere?: ComponentType<DialogProps>;
     };
+    /** Element som vises mens en routeren initialiseres; typisk LoadingPage komponent. */
+    loadingElement?: ReactNode;
     /** Element som vises etter vellykket innsending (kvitteringside) */
     kvitteringElement?: ReactNode;
     /**

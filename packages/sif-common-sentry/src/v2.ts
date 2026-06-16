@@ -1,5 +1,5 @@
-import * as Sentry from '@sentry/browser';
 import type { ErrorEvent } from '@sentry/browser';
+import * as Sentry from '@sentry/browser';
 
 import { isErrorFromDekoratøren } from './sentryFilters';
 

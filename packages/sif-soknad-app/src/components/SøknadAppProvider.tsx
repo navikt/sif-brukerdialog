@@ -1,18 +1,20 @@
 import { initSentry, SentryConfig } from '@navikt/sif-common-sentry';
-import { FaroProvider } from '@navikt/sif-common-faro';
+import { FaroProvider, FaroProviderConfig } from '@navikt/sif-common-faro';
 import { DevBranchInfo } from '@sif/soknad-ui';
 import { PropsWithChildren } from 'react';
 
-import { AnalyticsProvider } from '../analytics/analytics';
+import { AnalyticsProvider, AnalyticsProviderConfig } from '../analytics/analytics';
 import { AppErrorBoundary } from './AppErrorBoundary';
 import { SifQueryClientProvider } from './SifQueryClientProvider';
+import { AppIntlConfig, AppIntlProvider } from './AppIntlProvider';
 
 interface SøknadAppProviderProps {
     applicationKey: string;
     appVersion: string;
-    isActive?: boolean;
-    telemetryCollectorURL?: string;
+    faroConfig?: FaroProviderConfig;
+    analyticsConfig?: AnalyticsProviderConfig;
     sentryConfig?: SentryConfig;
+    intlConfig?: AppIntlConfig;
 }
 
 let sentryInitialized = false;
@@ -20,26 +22,26 @@ let sentryInitialized = false;
 export const SøknadAppProvider = ({
     applicationKey,
     appVersion,
-    isActive,
-    telemetryCollectorURL,
+    analyticsConfig,
+    faroConfig,
     sentryConfig,
+    intlConfig,
     children,
 }: PropsWithChildren<SøknadAppProviderProps>) => {
     if (sentryConfig && !sentryInitialized) {
         initSentry(sentryConfig);
         sentryInitialized = true;
     }
-
     return (
         <FaroProvider
             applicationKey={applicationKey}
             appVersion={appVersion}
-            isActive={isActive}
-            telemetryCollectorURL={telemetryCollectorURL}>
+            isActive={faroConfig?.isActive}
+            telemetryCollectorURL={faroConfig?.telemetryCollectorURL}>
             <AppErrorBoundary>
                 <SifQueryClientProvider>
-                    <AnalyticsProvider applicationKey={applicationKey} isActive={isActive}>
-                        {children}
+                    <AnalyticsProvider applicationKey={applicationKey} isActive={analyticsConfig?.isActive}>
+                        <AppIntlProvider config={intlConfig}>{children}</AppIntlProvider>
                     </AnalyticsProvider>
                 </SifQueryClientProvider>
             </AppErrorBoundary>

@@ -9,6 +9,7 @@ import { useAppIntl } from './i18n';
 import { Kvittering } from './content/kvittering/Kvittering';
 import { Velkommen } from './content/velkommen/Velkommen';
 import { BarnForm, BostedForm, BostedUtlandForm, KontonummerForm, OppsummeringSteg, StartdatoForm } from './steps';
+import { LoadingPage } from '@sif/soknad-ui';
 
 export const Søknad = () => {
     const { text } = useAppIntl();
@@ -21,7 +22,8 @@ export const Søknad = () => {
             versjon={MELLOMLAGRING_VERSJON}
             applicationTitle={text('application.title')}
             formValuesToSøknadsdata={formValuesToSøknadsdata}
-            kvitteringElement={<Kvittering />}>
+            kvitteringElement={<Kvittering />}
+            loadingElement={<LoadingPage applicationTitle={text('application.title')} />}>
             <Routes>
                 <Route path="/" element={<Velkommen />} />
                 <Route path="/soknad" element={<SøknadStepGuard basePath="/soknad" />}>

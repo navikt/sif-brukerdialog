@@ -3,6 +3,7 @@ import { sifSoknadFormsMessages } from '@sif/soknad-forms';
 import { sifSoknadUiMessages } from '@sif/soknad-ui/i18n';
 import { FormattedMessage, useIntl } from 'react-intl';
 
+import { IntlMessageObjectFormat } from '@sif/soknad-app';
 import { appMessages_nb } from './nb';
 
 const libMessages = {
@@ -39,7 +40,7 @@ export const AppText = (props: AppTextProps) => {
     return <FormattedMessage {...props} />;
 };
 
-export const applicationIntlMessages = {
+export const applicationIntlMessages: IntlMessageObjectFormat = {
     nb,
     nn,
 };

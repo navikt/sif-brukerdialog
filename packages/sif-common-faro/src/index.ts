@@ -20,6 +20,11 @@ const initFaro = (appKey: string, telemetryCollectorURL: string, appVersion?: st
     });
 };
 
+export type FaroProviderConfig = {
+    isActive: boolean;
+    telemetryCollectorURL?: string;
+};
+
 export const [FaroProvider, useFaroInstance] = constate((props: Props) => {
     const { applicationKey, isActive = true, appVersion, telemetryCollectorURL } = props;
 

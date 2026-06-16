@@ -1,7 +1,7 @@
 import { Button } from '@navikt/ds-react';
-import { Kvittering } from '@sif/soknad-ui/components';
-import { ApplicationPage } from '@sif/soknad-ui/pages';
 import { PropsWithChildren } from 'react';
+import { ApplicationPage } from '../application-page/ApplicationPage';
+import { Kvittering } from '../../components';
 
 interface SøknadKvitteringPageProps {
     documentTitle: string;

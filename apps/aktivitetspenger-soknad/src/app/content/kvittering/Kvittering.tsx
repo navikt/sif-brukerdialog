@@ -1,5 +1,5 @@
 import { useAppIntl } from '@app/i18n';
-import { SøknadKvitteringPage } from '@sif/soknad-app';
+import { SøknadKvitteringPage } from '@sif/soknad-ui';
 
 export const Kvittering = () => {
     const { text } = useAppIntl();
