@@ -15,7 +15,7 @@ const { Datepicker } = createSifFormComponents<StartdatoFormValues>();
 
 const stepId = SøknadStepId.STARTDATO;
 const currentYear = new Date().getFullYear();
-const minDate = new Date(currentYear, 0, 1);
+const minDate = new Date(currentYear - 2, 0, 1);
 const maxDate = new Date(currentYear, 11, 31);
 
 export const StartdatoForm = () => {
