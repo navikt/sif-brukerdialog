@@ -5,6 +5,7 @@ vi.mock('../../types/Features', () => ({
         forlengePeriode: false,
         slettAktivDeltakelse: false,
         ignorerBegrensningForlengePeriode: false,
+        tillatTidligInnmelding: false,
     },
 }));
 
