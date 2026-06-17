@@ -32,6 +32,11 @@ describe('dateUtils', () => {
             const result = ISODateToDate('2021-01-01');
             expect(dayjs(result).isUTC()).toBeFalsy();
         });
+        it('round-trip ISODateToDate → dateToISODate er stabil (tidssone-uavhengig)', () => {
+            for (const iso of ['2021-01-01', '2024-06-15', '2024-12-31', '2000-02-29']) {
+                expect(dateToISODate(ISODateToDate(iso))).toBe(iso);
+            }
+        });
     });
     describe('dateToISODate', () => {
         it('converts a date to iso formatted date', () => {
@@ -249,7 +254,7 @@ describe('dateUtils', () => {
     describe('ISODateToDate - edge cases', () => {
         it('håndterer ledende null-år (0001-01-01)', () => {
             const result = ISODateToDate('0001-01-01');
-            expect(result.getUTCFullYear()).toBe(1);
+            expect(result.getFullYear()).toBe(1);
         });
     });
 

@@ -26,14 +26,14 @@ export const isISODateString = (value: unknown): value is ISODate => {
 };
 
 export const ISODateToDate = (isoDate: ISODate): Date => {
+    const [year, month, day] = isoDate.split('-').map(Number);
     if (isoDate.charAt(0) === '0') {
-        // Håndterer hvis verdien er f.eks. 0001; en verdi som indikerer "tidenes morgen" i backend
-        const year = parseInt(isoDate.substring(0, 4), 10);
-        const date = dayjs.utc(isoDate, ISODateFormat).toDate();
-        date.setUTCFullYear(year);
+        // Håndterer hvis verdien er f.eks. 0001; JS-konstruktøren tolker år 0-99 som 1900+år
+        const date = new Date(year, (month ?? 1) - 1, day ?? 1);
+        date.setFullYear(year);
         return date;
     }
-    return dayjs.utc(isoDate, ISODateFormat).toDate();
+    return new Date(year, month - 1, day);
 };
 
 export const getISOWeekdayFromISODate = (isoDate: ISODate): number => {

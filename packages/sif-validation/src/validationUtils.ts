@@ -9,7 +9,8 @@ const getDateFromDateString = (dateString: string | undefined): Date | undefined
         return undefined;
     }
     if (isISODateString(dateString) && dayjs(dateString, 'YYYY-MM-DD', true).isValid()) {
-        return new Date(dateString);
+        const [year, month, day] = dateString.split('-').map(Number);
+        return new Date(year, month - 1, day);
     }
     return undefined;
 };
