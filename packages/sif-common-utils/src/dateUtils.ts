@@ -26,7 +26,6 @@ export const isISODateString = (value: unknown): value is ISODate => {
 };
 
 export const ISODateToDate = (isoDate: ISODate): Date => {
-    debugger;
     const [year, month, day] = isoDate.split('-').map(Number);
     if (isoDate.charAt(0) === '0') {
         // Håndterer hvis verdien er f.eks. 0001; JS-konstruktøren tolker år 0-99 som 1900+år
