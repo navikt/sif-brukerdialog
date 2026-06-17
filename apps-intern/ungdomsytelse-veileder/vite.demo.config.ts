@@ -11,7 +11,7 @@ const appSettings: AppEnv = {
     PUBLIC_PATH: '/sif-brukerdialog/ungdomsytelse-veileder',
     GITHUB_REF_NAME: 'local',
 
-    SIF_PUBLIC_FEATURE_FORLENGE_PERIODE: 'off',
+    SIF_PUBLIC_FEATURE_FORLENGE_PERIODE: 'on',
     SIF_PUBLIC_FEATURE_SLETT_AKTIV_DELTAKELSE: 'on',
     SIF_PUBLIC_TILLAT_TIDLIG_INNMELDING: 'on',
 
