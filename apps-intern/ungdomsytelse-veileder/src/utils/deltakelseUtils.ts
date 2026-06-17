@@ -29,7 +29,10 @@ const erInnenforSisteMånederFørPeriodeslutt = (deltakelse: Deltakelse, today: 
 };
 
 const erInnenforSiste6UkerEtterPeriodeslutt = (deltakelse: Deltakelse, today: Date): boolean => {
-    return dayjs(today).isBefore(dayjs(deltakelse.periodeMaksDato).add(6, 'weeks'), 'day');
+    return (
+        dayjs(today).isSameOrAfter(dayjs(deltakelse.periodeMaksDato), 'day') &&
+        dayjs(today).isBefore(dayjs(deltakelse.periodeMaksDato).add(6, 'weeks'), 'day')
+    );
 };
 
 export const kanEndreStartdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
