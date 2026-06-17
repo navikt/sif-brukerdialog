@@ -1,15 +1,11 @@
-import { ISODateToDate } from '@navikt/sif-common-utils';
+import { ISODateToDate, isISODateString } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
-import utc from 'dayjs/plugin/utc';
 import { Matcher } from 'react-day-picker';
 
-import { ISODateString } from './dateFormatUtils';
 import { DatepickerLimitations } from './FormikDatepicker';
 
 dayjs.extend(customParseFormat);
-
-dayjs.extend(utc);
 
 const isoStringFormat = 'YYYY-MM-DD';
 
@@ -59,15 +55,7 @@ const isValidFormattedDateString = (dateString = ''): boolean => {
     return /\d{1,2}.\d{1,2}.(\d{2}|\d{4})$/.test(dateString);
 };
 
-export const isISODateString = (value: any): value is ISODateString => {
-    if (value && typeof value === 'string') {
-        const reg = /^\d{4}-\d{2}-\d{2}$/;
-        const match: RegExpMatchArray | null = value.match(reg);
-        return match !== null;
-    } else {
-        return false;
-    }
-};
+export { isISODateString };
 
 export const datepickerUtils = {
     getDateFromDateString,
