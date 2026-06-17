@@ -67,6 +67,7 @@ export const kanSlettesScenario: MockScenario = {
         kanForlengePeriode: false,
     },
     deltakerPersonalia,
+    skjultPåGithubPages: true,
     deltakelse,
     historikk,
 };
