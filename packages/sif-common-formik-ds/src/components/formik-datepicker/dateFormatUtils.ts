@@ -1,3 +1,4 @@
+import { dateToISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import utc from 'dayjs/plugin/utc';
@@ -41,8 +42,8 @@ const dateToInputDateString = (date?: Date): InputDateString | INVALID_DATE_TYPE
     date ? dayjs.utc(date).format(INPUT_DATE_STRING_FORMAT) : INVALID_DATE_VALUE;
 
 export const dateToISODateString = (date: Date): ISODateString | INVALID_DATE_TYPE => {
-    const d = dayjs(date);
-    return d.isValid() ? d.format(ISO_DATE_STRING_FORMAT) : date.toString();
+    const result = dateToISODate(date);
+    return result as ISODateString | INVALID_DATE_TYPE;
 };
 
 export const ISODateStringToUTCDate = (isoDateString?: ISODateString): Date | undefined => {
@@ -53,7 +54,7 @@ export const ISODateStringToLocalDate = (isoDateString?: ISODateString): Date | 
     if (!isoDateString || isoDateString.length < 10) return undefined;
     const [year, month, day] = isoDateString.split('-').map(Number);
     if (!year || !month || !day) return undefined;
-    const date = new Date(year, month - 1, day);
+    const date = ISODateToDate(isoDateString);
     if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) {
         return undefined;
     }
