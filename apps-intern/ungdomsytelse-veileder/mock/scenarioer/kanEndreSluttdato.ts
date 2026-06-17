@@ -81,6 +81,7 @@ export const kanEndreSluttdatoScenario: MockScenario = {
         kanForlengePeriode: false,
     },
     deltakerPersonalia,
+    skjultPåGithubPages: true,
     deltakelse,
     historikk,
 };
