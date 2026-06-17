@@ -16,8 +16,7 @@
     },
     "dependencies": {
         "@navikt/fnrvalidator": "2.2.1",
-        "@navikt/sif-common-api": "workspace:*",
-        "date-fns": "4.4.0"
+        "@navikt/sif-common-api": "workspace:*"
     },
     "devDependencies": {
         "@formatjs/intl-pluralrules": "6.3.10",
