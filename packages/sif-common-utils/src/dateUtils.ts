@@ -27,17 +27,13 @@ export const isISODateString = (value: unknown): value is ISODate => {
 
 export const ISODateToDate = (isoDate: ISODate): Date => {
     const [year, month, day] = isoDate.split('-').map(Number);
-    console.info(`Parsing ISO date: ${isoDate} -> year: ${year}, month: ${month}, day: ${day}`);
     if (isoDate.charAt(0) === '0') {
         // Håndterer hvis verdien er f.eks. 0001; JS-konstruktøren tolker år 0-99 som 1900+år
         const date = new Date(year, (month ?? 1) - 1, day ?? 1);
         date.setFullYear(year);
-        console.info(date);
         return date;
     }
-    const date = new Date(year, month - 1, day);
-    console.info(date);
-    return date;
+    return new Date(year, month - 1, day);
 };
 
 export const getISOWeekdayFromISODate = (isoDate: ISODate): number => {

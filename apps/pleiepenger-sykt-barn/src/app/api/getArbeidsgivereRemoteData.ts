@@ -32,16 +32,13 @@ export type AAregArbeidsgiverRemoteData = {
 const mapAAregArbeidsgiverRemoteDataToArbeidsgiver = (data: AAregArbeidsgiverRemoteData): Arbeidsgiver[] => {
     const arbeidsgivere: Arbeidsgiver[] = [];
     data.organisasjoner?.forEach((a) => {
-        const ansattFom = a.ansattFom ? ISODateToDate(a.ansattFom) : undefined;
-        const ansattTom = a.ansattTom ? ISODateToDate(a.ansattTom) : undefined;
-
         arbeidsgivere.push({
             type: ArbeidsgiverType.ORGANISASJON,
             id: a.organisasjonsnummer,
             organisasjonsnummer: a.organisasjonsnummer,
             navn: a.navn || a.organisasjonsnummer,
-            ansattFom,
-            ansattTom,
+            ansattFom: a.ansattFom ? ISODateToDate(a.ansattFom) : undefined,
+            ansattTom: a.ansattTom ? ISODateToDate(a.ansattTom) : undefined,
         });
     });
     /*
@@ -75,11 +72,6 @@ export async function getArbeidsgivereRemoteData(periode: DateRange): Promise<Ar
     try {
         const response = await getArbeidsgiver(dateToISODate(periode.from), dateToISODate(periode.to));
         const arbeidsgivere = mapAAregArbeidsgiverRemoteDataToArbeidsgiver(response.data);
-        console.debug(
-            'getArbeidsgivereRemoteData - hentet arbeidsgivere:',
-            arbeidsgivere,
-            JSON.stringify(arbeidsgivere),
-        );
         return Promise.resolve(arbeidsgivere);
     } catch (error: any) {
         if (apiUtils.isUnauthorized(error)) {
