@@ -41,7 +41,7 @@ const dateToInputDateString = (date?: Date): InputDateString | INVALID_DATE_TYPE
     date ? dayjs.utc(date).format(INPUT_DATE_STRING_FORMAT) : INVALID_DATE_VALUE;
 
 export const dateToISODateString = (date: Date): ISODateString | INVALID_DATE_TYPE => {
-    const d = dayjs.utc(date);
+    const d = dayjs(date);
     return d.isValid() ? d.format(ISO_DATE_STRING_FORMAT) : date.toString();
 };
 
@@ -97,9 +97,9 @@ const assignCenturyToDateWithTwoYearDigits = (dateString: string) => {
 
     if (dateIn20thCentury.isValid() && dateIn21stCentury.isValid()) {
         if (dateIn20thCentury.isBefore(date80YearsAgo)) {
-            return dateToISODateString(dateIn21stCentury.toDate());
+            return dateIn21stCentury.format(ISO_DATE_STRING_FORMAT);
         } else {
-            return dateToISODateString(dateIn20thCentury.toDate());
+            return dateIn20thCentury.format(ISO_DATE_STRING_FORMAT);
         }
     }
     return INVALID_DATE_VALUE;
@@ -111,5 +111,5 @@ export const InputDateStringToISODateString = (inputDateString: InputDateString)
     }
 
     const date = dayjs(inputDateString, ALLOWED_INPUT_FORMATS, true).utc(true);
-    return date.isValid() ? dateToISODateString(date.toDate()) : INVALID_DATE_VALUE;
+    return date.isValid() ? date.format(ISO_DATE_STRING_FORMAT) : INVALID_DATE_VALUE;
 };
