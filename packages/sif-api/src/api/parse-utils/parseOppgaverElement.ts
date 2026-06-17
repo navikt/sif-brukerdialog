@@ -19,6 +19,9 @@ import {
     SvarPåVarselDto,
 } from '@navikt/ung-brukerdialog-api';
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+
+dayjs.extend(utc);
 
 import {
     AvvikRegisterinntektOppgave,
