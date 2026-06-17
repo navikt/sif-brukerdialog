@@ -12,7 +12,13 @@ test.beforeEach(async ({ page }) => {
 
 test('kanIkkeForlengePeriode: alle handlinger false', async ({ page }) => {
     await åpneDeltakelseHandlingerPanel(page);
-    for (const handling of ['kanEndreStartdato', 'kanMeldesUt', 'kanEndreSluttdato', 'kanForlengePeriode', 'kanSlettes']) {
+    for (const handling of [
+        'kanEndreStartdato',
+        'kanMeldesUt',
+        'kanEndreSluttdato',
+        'kanForlengePeriode',
+        'kanSlettes',
+    ]) {
         const rad = page.locator(`text=${handling}`).locator('..');
         await expect(rad.getByText('false')).toBeVisible();
     }
@@ -20,6 +26,6 @@ test('kanIkkeForlengePeriode: alle handlinger false', async ({ page }) => {
 
 test('kanIkkeForlengePeriode: ingen handlingsknapper synlige', async ({ page }) => {
     await expect(page.getByRole('button', { name: 'Endre startdato' })).not.toBeVisible();
-    await expect(page.getByRole('button', { name: 'Meld ut' })).not.toBeVisible();
-    await expect(page.getByRole('button', { name: 'Forleng periode' })).not.toBeVisible();
+    await expect(page.getByRole('button', { name: 'Registrer sluttdato' })).not.toBeVisible();
+    await expect(page.getByRole('button', { name: 'Registrer forlenget periode' })).not.toBeVisible();
 });
