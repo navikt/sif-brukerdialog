@@ -42,8 +42,10 @@ const dateToInputDateString = (date?: Date): InputDateString | INVALID_DATE_TYPE
     date ? dayjs.utc(date).format(INPUT_DATE_STRING_FORMAT) : INVALID_DATE_VALUE;
 
 export const dateToISODateString = (date: Date): ISODateString | INVALID_DATE_TYPE => {
-    const result = dateToISODate(date);
-    return result as ISODateString | INVALID_DATE_TYPE;
+    if (isNaN(date.getTime())) {
+        return INVALID_DATE_VALUE;
+    }
+    return dateToISODate(date) as ISODateString;
 };
 
 export const ISODateStringToUTCDate = (isoDateString?: ISODateString): Date | undefined => {

@@ -1,9 +1,11 @@
 import { describe, expect, it } from 'vitest';
+
 import {
     dateToISODateString,
+    InputDateStringToISODateString,
+    INVALID_DATE_VALUE,
     ISODateStringToLocalDate,
     ISODateStringToUTCDate,
-    InputDateStringToISODateString,
 } from '../dateFormatUtils';
 
 describe('ISODateStringToLocalDate', () => {
@@ -34,9 +36,9 @@ describe('dateToISODateString', () => {
         expect(dateToISODateString(date)).toBe('2024-06-15');
     });
 
-    it('returnerer "Invalid Date" for ugyldig dato', () => {
+    it(`returnerer ${INVALID_DATE_VALUE} for ugyldig dato`, () => {
         const invalid = new Date('not-a-date');
-        expect(dateToISODateString(invalid)).toBe('Invalid Date');
+        expect(dateToISODateString(invalid)).toBe(INVALID_DATE_VALUE);
     });
 });
 
