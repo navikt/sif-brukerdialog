@@ -8,7 +8,7 @@ import {
     InputDateStringToISODateString,
     INVALID_DATE_VALUE,
     ISODateString,
-    ISODateStringToUTCDate,
+    ISODateStringToLocalDate,
 } from '../dateFormatUtils';
 import { datepickerUtils, isISODateString } from '../datepickerUtils';
 import { DatepickerLimitations } from '../FormikDatepicker';
@@ -102,14 +102,14 @@ const DateInputAndPicker = ({
         toDate: restProps.maxDate,
         onDateChange: onDateChange,
         ...restProps,
-        defaultSelected: ISODateStringToUTCDate(value),
+        defaultSelected: ISODateStringToLocalDate(value),
     });
 
     const previous = usePrevious(value);
     useEffect(() => {
         if (previous !== value && listenForInputValueChange === false) {
             if (isISODateString(value)) {
-                setSelected(ISODateStringToUTCDate(value));
+                setSelected(ISODateStringToLocalDate(value));
             } else {
                 setSelected(undefined);
             }
