@@ -50,6 +50,13 @@ export const ISODateStringToUTCDate = (isoDateString?: ISODateString): Date | un
     return stringToUTCDate(isoDateString, ISO_DATE_STRING_FORMAT);
 };
 
+export const ISODateStringToLocalDate = (isoDateString?: ISODateString): Date | undefined => {
+    if (!isoDateString || isoDateString.length < 10) return undefined;
+    const [year, month, day] = isoDateString.split('-').map(Number);
+    if (!year || !month || !day) return undefined;
+    return new Date(year, month - 1, day);
+};
+
 export const InputDateStringToUTCDate = (inputDateString?: InputDateString): Date | undefined => {
     return stringToUTCDate(inputDateString, INPUT_DATE_STRING_FORMAT);
 };
