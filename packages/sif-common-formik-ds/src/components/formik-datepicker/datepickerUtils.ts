@@ -1,4 +1,4 @@
-import { ISODateToDate, isISODateString } from '@navikt/sif-common-utils';
+import { isISODateString, ISODateToDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { Matcher } from 'react-day-picker';
