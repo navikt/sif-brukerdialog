@@ -28,7 +28,7 @@ const TildeltPeriodePanel = ({ deltaker, deltakelse, onDeltakelseChanged }: Dato
                     </BodyShort>
                     {!tilOgMed && (
                         <BodyLong>
-                            Siste dag i perioden er <strong>{dateFormatter.dayCompactDate(periodeMaksDato)}</strong>.
+                            Maksdato: <strong>{dateFormatter.dayCompactDate(periodeMaksDato)}</strong>.
                         </BodyLong>
                     )}
                     {handlinger.kanForlengePeriode && (
