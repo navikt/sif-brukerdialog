@@ -75,6 +75,11 @@ export async function getArbeidsgivereRemoteData(periode: DateRange): Promise<Ar
     try {
         const response = await getArbeidsgiver(dateToISODate(periode.from), dateToISODate(periode.to));
         const arbeidsgivere = mapAAregArbeidsgiverRemoteDataToArbeidsgiver(response.data);
+        console.debug(
+            'getArbeidsgivereRemoteData - hentet arbeidsgivere:',
+            arbeidsgivere,
+            JSON.stringify(arbeidsgivere),
+        );
         return Promise.resolve(arbeidsgivere);
     } catch (error: any) {
         if (apiUtils.isUnauthorized(error)) {
