@@ -11,9 +11,8 @@ const appSettings: AppEnv = {
     PUBLIC_PATH: 'sif-brukerdialog/ungdomsytelse-veileder',
     GITHUB_REF_NAME: 'local',
 
-    SIF_PUBLIC_FEATURE_FORLENGE_PERIODE: 'off',
+    SIF_PUBLIC_FEATURE_FORLENGE_PERIODE: 'on',
     SIF_PUBLIC_FEATURE_SLETT_AKTIV_DELTAKELSE: 'off',
-    SIF_PUBLIC_IGNORER_BEGRENSNING_FORLENGE_PERIODE: 'off',
     SIF_PUBLIC_TILLAT_TIDLIG_INNMELDING: 'off',
 
     UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH: '/api/ung-deltakelse-opplyser',
@@ -22,6 +21,7 @@ const appSettings: AppEnv = {
 
     SIF_PUBLIC_UMAMI_NETTSIDE_ID: 'abc',
     SIF_PUBLIC_USE_FARO: true,
+    SIF_PUBLIC_VIS_DEV_INFO: true,
     SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL: 'http://localhost:12347/collect',
 };
 

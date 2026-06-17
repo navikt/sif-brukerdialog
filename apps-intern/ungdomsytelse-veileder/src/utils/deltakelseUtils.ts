@@ -13,7 +13,7 @@ dayjs.extend(utc);
 export const TILLATT_ENDRINGSPERIODE_MÅNEDER = 10;
 
 /** Startdato kan ikke endres når det er færre måneder enn dette til perioden er ferdig */
-export const MÅNEDER_PERIODE_KAN_FORLENGES = 2;
+export const MÅNEDER_FØR_PERIODESLUTT_ÅPEN_FOR_FORLENGELSE = 2;
 
 const getEndringsperiode = (today: Date): DateRange => ({
     from: dayjs(today).subtract(TILLATT_ENDRINGSPERIODE_MÅNEDER, 'months').toDate(),
@@ -26,8 +26,15 @@ const periodeErUtløpt = (deltakelse: Deltakelse, today: Date): boolean => {
 
 const erInnenforSisteMånederFørPeriodeslutt = (deltakelse: Deltakelse, today: Date): boolean => {
     return dayjs(today).isSameOrAfter(
-        dayjs(deltakelse.periodeMaksDato).subtract(MÅNEDER_PERIODE_KAN_FORLENGES, 'months'),
+        dayjs(deltakelse.periodeMaksDato).subtract(MÅNEDER_FØR_PERIODESLUTT_ÅPEN_FOR_FORLENGELSE, 'months'),
         'day',
+    );
+};
+
+const erInnenforSiste6UkerEtterPeriodeslutt = (deltakelse: Deltakelse, today: Date): boolean => {
+    return (
+        dayjs(today).isSameOrAfter(dayjs(deltakelse.periodeMaksDato), 'day') &&
+        dayjs(today).isBefore(dayjs(deltakelse.periodeMaksDato).add(6, 'weeks'), 'day')
     );
 };
 
@@ -73,18 +80,13 @@ export const deltakelseKanSlettes = (deltakelse: Deltakelse): boolean => {
 };
 
 export const periodeKanForlenges = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
-    return (
-        // Deltaker har søkt
-        deltakelse.søktTidspunkt !== undefined &&
-        // Deltaker har ikke allerede forlenget periode
-        deltakelse.harForlengetPeriode === false &&
-        // Deltaker har ikke periode som er utløpt
-        !periodeErUtløpt(deltakelse, today) &&
-        // Deltaker har ikke sluttdato
-        deltakelse.tilOgMed === undefined &&
-        // Deltaker er innenfor siste måneder før periodeslutt
-        (erInnenforSisteMånederFørPeriodeslutt(deltakelse, today) || Features.ignorerBegrensningForlengePeriode)
-    );
+    if (!deltakelse.søktTidspunkt) return false;
+    if (deltakelse.harForlengetPeriode) return false;
+    if (deltakelse.tilOgMed !== undefined) return false;
+    if (periodeErUtløpt(deltakelse, today)) {
+        return erInnenforSiste6UkerEtterPeriodeslutt(deltakelse, today);
+    }
+    return erInnenforSisteMånederFørPeriodeslutt(deltakelse, today);
 };
 
 export interface DeltakelseHandlinger {

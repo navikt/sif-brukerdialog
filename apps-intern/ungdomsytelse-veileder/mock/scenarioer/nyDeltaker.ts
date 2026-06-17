@@ -1,6 +1,5 @@
 import { DeltakerPersonalia } from '@navikt/ung-deltakelse-opplyser-api-veileder';
-
-const nyDeltakerId = '7c6a3e15-4f5b-4cab-badd-198fe0247111';
+import { MockScenario } from './types';
 
 const deltakerPersonalia: DeltakerPersonalia = {
     deltakerIdent: '56857102105',
@@ -14,7 +13,9 @@ const deltakerPersonalia: DeltakerPersonalia = {
     diskresjonskoder: [],
 };
 
-export const nyDeltakerMock = {
-    nyDeltakerId,
+export const nyDeltakerScenario: MockScenario = {
+    fnr: '56857102105',
+    beskrivelse: 'Ny deltaker (ikke registrert)',
+    gruppe: 'grunnscenarioer',
     deltakerPersonalia,
 };
