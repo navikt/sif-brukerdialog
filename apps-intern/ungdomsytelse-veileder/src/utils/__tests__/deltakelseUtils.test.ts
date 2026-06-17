@@ -4,7 +4,6 @@ vi.mock('../../types/Features', () => ({
     Features: {
         forlengePeriode: false,
         slettAktivDeltakelse: false,
-        ignorerBegrensningForlengePeriode: false,
         tillatTidligInnmelding: false,
     },
 }));
@@ -128,10 +127,44 @@ describe('deltakelseUtils', () => {
             expect(periodeKanForlenges(deltakelse, TODAY)).toBe(false);
         });
 
-        it('false når periode utløpt', () => {
+        it('true når periode nylig utløpt (innenfor 6-ukersvindu)', () => {
             const deltakelse = lagDeltakelse({
                 søktTidspunkt: new Date(),
-                periodeMaksDato: ISODateToDate('2026-01-01'),
+                periodeMaksDato: ISODateToDate('2026-04-01'), // utløpt, men TODAY < 2026-04-01 + 6 uker (2026-05-13)
+            });
+            expect(periodeKanForlenges(deltakelse, TODAY)).toBe(true);
+        });
+
+        it('true dagen etter periodeslutt (nedre grense for 6-ukersvindu)', () => {
+            const maksDato = ISODateToDate('2026-05-06'); // TODAY er dagen etter
+            const deltakelse = lagDeltakelse({ søktTidspunkt: new Date(), periodeMaksDato: maksDato });
+            expect(periodeKanForlenges(deltakelse, TODAY)).toBe(true);
+        });
+
+        it('true siste dag innenfor 6-ukersvindu (6 uker - 1 dag etter periodeslutt)', () => {
+            // periodeMaksDato + 6 uker = 2026-03-18 + 42 dager = 2026-04-29 → TODAY (2026-05-07) > 2026-04-29 → false
+            // Setter maksDato slik at maksDato + 6 uker - 1 dag = TODAY
+            // maksDato + 41 dager = 2026-05-07 → maksDato = 2026-03-27
+            const deltakelse = lagDeltakelse({
+                søktTidspunkt: new Date(),
+                periodeMaksDato: ISODateToDate('2026-03-27'), // + 41 dager = 2026-05-07 (TODAY)
+            });
+            expect(periodeKanForlenges(deltakelse, TODAY)).toBe(true);
+        });
+
+        it('false nøyaktig 6 uker etter periodeslutt', () => {
+            // periodeMaksDato + 42 dager = TODAY → maksDato = 2026-03-26
+            const deltakelse = lagDeltakelse({
+                søktTidspunkt: new Date(),
+                periodeMaksDato: ISODateToDate('2026-03-26'), // + 42 dager = 2026-05-07 (TODAY) — utenfor vindu
+            });
+            expect(periodeKanForlenges(deltakelse, TODAY)).toBe(false);
+        });
+
+        it('false når periode utløpt og 6-ukersgrense er passert', () => {
+            const deltakelse = lagDeltakelse({
+                søktTidspunkt: new Date(),
+                periodeMaksDato: ISODateToDate('2026-01-01'), // utløpt, TODAY (2026-05-07) > 2026-01-01 + 6 uker (2026-02-12)
             });
             expect(periodeKanForlenges(deltakelse, TODAY)).toBe(false);
         });

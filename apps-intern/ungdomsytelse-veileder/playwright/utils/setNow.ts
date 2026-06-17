@@ -1,6 +1,8 @@
 import { Page } from '@playwright/test';
 
-const testDate = new Date('2025-12-10');
+// Ankerdato for alle mock-scenarioer — må matche demoMockDate i mock/mockConstants.ts
+// Bruk native Date her for å unngå import-kjede via sif-common-utils/dayjs som feiler i Node
+const DEMO_MOCK_DATE = new Date('2025-12-10');
 
 const getSetDateScript = (timestamp: number) => `
 {
@@ -21,6 +23,6 @@ const getSetDateScript = (timestamp: number) => `
   }
 `;
 
-export const setNow = async (page: Page, date: Date = testDate) => {
+export const setNow = async (page: Page, date: Date = DEMO_MOCK_DATE) => {
     await page.addInitScript(getSetDateScript(date.valueOf()));
 };

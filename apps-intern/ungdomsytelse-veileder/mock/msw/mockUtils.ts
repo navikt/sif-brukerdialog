@@ -10,13 +10,9 @@ import {
 } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import dayjs from 'dayjs';
 import { v4 } from 'uuid';
-import { nyDeltakerMock } from '../data/nyDeltakerMock';
-import { registrertDeltakerMock } from '../data/registrertDeltakerMock';
-import { skjermetDeltakerMock } from '../data/skjermetDeltaker';
-import { slettetDeltakerMock } from '../data/slettetDeltakerMock';
-import { søktNyligRegistrertDeltakerMock } from '../data/søktNyligRegistrertDeltakerMock';
 import { addUkedagerToDate } from '../../src/utils/deltakelseUtils';
 import { mockVersjon } from '../mockConstants';
+import { alleScenarioer } from '../scenarioer';
 
 interface DbDeltakelse {
     deltakelse: DeltakelseDto;
@@ -66,31 +62,10 @@ const getEndretSluttdatoHistorikk = (opprinneligDato: string | undefined, nyDato
 /** Data */
 
 const initialDb: TempDB = {
-    deltakere: [
-        registrertDeltakerMock.deltakerPersonalia,
-        nyDeltakerMock.deltakerPersonalia,
-        skjermetDeltakerMock.deltakerPersonalia,
-        slettetDeltakerMock.deltakerPersonalia,
-        søktNyligRegistrertDeltakerMock.deltakerPersonalia,
-    ],
-    deltakelser: [
-        {
-            deltakelse: registrertDeltakerMock.deltakelse,
-            historikk: registrertDeltakerMock.deltakelseHistorikk,
-        },
-        {
-            deltakelse: søktNyligRegistrertDeltakerMock.deltakelse,
-            historikk: søktNyligRegistrertDeltakerMock.deltakelseHistorikk,
-        },
-        {
-            deltakelse: skjermetDeltakerMock.deltakelse,
-            historikk: skjermetDeltakerMock.historikk,
-        },
-        {
-            deltakelse: slettetDeltakerMock.deltakelse,
-            historikk: slettetDeltakerMock.deltakelseHistorikk,
-        },
-    ],
+    deltakere: alleScenarioer.filter((s) => s.deltakerPersonalia).map((s) => s.deltakerPersonalia!),
+    deltakelser: alleScenarioer
+        .filter((s) => s.deltakelse)
+        .map((s) => ({ deltakelse: s.deltakelse!, historikk: s.historikk ?? [] })),
 };
 
 const save = (db: TempDB) => {
