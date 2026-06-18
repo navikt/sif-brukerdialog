@@ -1,6 +1,6 @@
 # Mellomlagring og tidssone-problematikk for datoer
 
-> Status: Kjent teknisk gjeld — skal løses som del av mellomlagrings-rewrite (innen oktober 2026)
+> Status: Kjent teknisk gjeld — skal løses som del av mellomlagrings-rewrite
 
 ---
 
