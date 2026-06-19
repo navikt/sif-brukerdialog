@@ -60,6 +60,9 @@ export const kanMeldesUt = (deltakelse: Deltakelse, today: Date = getDateToday()
 export const kanEndreSluttdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
     return kanSetteEllerEndreSluttdato(deltakelse, today) && deltakelse.tilOgMed !== undefined;
 };
+export const kanSletteSluttdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
+    return Features.slettSluttdato && kanEndreSluttdato(deltakelse, today);
+};
 
 export const deltakelsePeriodeErUtløpt = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
     return periodeErUtløpt(deltakelse, today);
@@ -90,6 +93,7 @@ export interface DeltakelseHandlinger {
     kanEndreStartdato: boolean;
     kanMeldesUt: boolean;
     kanEndreSluttdato: boolean;
+    kanSletteSluttdato: boolean;
     kanForlengePeriode: boolean;
     kanSlettes: boolean;
 }
@@ -100,6 +104,7 @@ export const getDeltakelseHandlinger = (deltakelse: Deltakelse, today: Date = ge
             kanEndreStartdato: false,
             kanMeldesUt: false,
             kanEndreSluttdato: false,
+            kanSletteSluttdato: false,
             kanForlengePeriode: false,
             kanSlettes: false,
         };
@@ -108,6 +113,7 @@ export const getDeltakelseHandlinger = (deltakelse: Deltakelse, today: Date = ge
         kanEndreStartdato: kanEndreStartdato(deltakelse, today),
         kanMeldesUt: kanMeldesUt(deltakelse, today),
         kanEndreSluttdato: kanEndreSluttdato(deltakelse, today),
+        kanSletteSluttdato: kanSletteSluttdato(deltakelse, today),
         kanForlengePeriode: periodeKanForlenges(deltakelse, today),
         kanSlettes: deltakelseKanSlettes(deltakelse),
     };

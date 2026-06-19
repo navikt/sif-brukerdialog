@@ -4,6 +4,7 @@ import EndreStartdatoForm from '../../forms/endre-periode-forms/EndreStartdatoFo
 import { Deltakelse } from '../../types/Deltakelse';
 import { Deltaker } from '../../types/Deltaker';
 import { EndrePeriodeVariant } from '../../types/EndrePeriodeVariant';
+import { DeltakelseHandlinger } from '../../utils/deltakelseUtils';
 
 const getModalHeader = (formVariant: EndrePeriodeVariant) => {
     switch (formVariant) {
@@ -21,6 +22,7 @@ interface Props {
     deltaker: Deltaker;
     deltakelse: Deltakelse;
     deltakelseChanged?: boolean;
+    deltakelseHandlinger: DeltakelseHandlinger;
     onDeltakelseChanged: (deltakelse: Deltakelse) => void;
     onClose: () => void;
 }
@@ -32,6 +34,7 @@ const EndrePeriodeModal = ({
     onClose,
     onDeltakelseChanged,
     deltakelseChanged,
+    deltakelseHandlinger,
 }: Props) => {
     return (
         <Modal open={true} onClose={() => onClose()} aria-labelledby="oppgave-modal-heading" width="medium">
@@ -57,6 +60,7 @@ const EndrePeriodeModal = ({
                             deltaker={deltaker}
                             onCancel={onClose}
                             onDeltakelseChanged={onDeltakelseChanged}
+                            kanSletteSluttdato={deltakelseHandlinger.kanSletteSluttdato}
                         />
                     )}
                 </Box>

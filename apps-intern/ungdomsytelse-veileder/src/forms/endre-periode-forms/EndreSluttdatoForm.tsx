@@ -43,11 +43,18 @@ const { FormikWrapper, Form, DatePicker, ConfirmationCheckbox } = getTypedFormCo
 interface Props {
     deltaker: Deltaker;
     deltakelse: Deltakelse;
+    kanSletteSluttdato?: boolean;
     onCancel?: () => void;
     onDeltakelseChanged: (oppdatertDeltakelse: Deltakelse) => void;
 }
 
-const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChanged }: Props) => {
+const EndreSluttdatoForm = ({
+    deltakelse,
+    deltaker,
+    kanSletteSluttdato = true,
+    onCancel,
+    onDeltakelseChanged,
+}: Props) => {
     const intl = useIntl();
     const { log } = useAppEventLogger();
 
@@ -61,7 +68,7 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
 
     const handleOnSubmit = async (values: FormValues) => {
         const { sluttdato } = values;
-        if (!sluttdato) {
+        if (!sluttdato && kanSletteSluttdato !== true) {
             return;
         }
         mutate(
@@ -141,8 +148,13 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                                                 maxDate={sluttdatoMinMax.to}
                                                 defaultMonth={deltakelse.tilOgMed}
                                                 disableWeekends={true}
-                                                validate={getPeriodeDatoValidator(sluttdatoMinMax, deltakelse.tilOgMed)}
+                                                validate={getPeriodeDatoValidator({
+                                                    periode: sluttdatoMinMax,
+                                                    registrertDato: deltakelse.tilOgMed,
+                                                    kanSletteSluttdato,
+                                                })}
                                             />
+
                                             {erEndringAvSluttdato === false && (
                                                 <FormikRadioGroup
                                                     name={FieldNames.årsak}

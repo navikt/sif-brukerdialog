@@ -97,6 +97,7 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
                     deltaker={deltaker}
                     onDeltakelseChanged={handleOnDeltakelseChanged}
                     deltakelseChanged={endretDeltakelse !== undefined}
+                    deltakelseHandlinger={handlinger}
                 />
             ) : null}
         </>
