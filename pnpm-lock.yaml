@@ -122,7 +122,7 @@ importers:
         version: 5.101.0(react@19.2.7)
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       clsx:
         specifier: 2.1.1
         version: 2.1.1
@@ -707,7 +707,7 @@ importers:
         version: 4.7.9
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       csp-header:
         specifier: 6.3.1
         version: 6.3.1
@@ -909,7 +909,7 @@ importers:
         version: link:../../packages/sif-validation
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       csp-header:
         specifier: 6.3.1
         version: 6.3.1
@@ -1099,7 +1099,7 @@ importers:
         version: link:../../packages/sif-surveys
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       classnames:
         specifier: 2.5.1
         version: 2.5.1
@@ -1343,7 +1343,7 @@ importers:
         version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       csp-header:
         specifier: 6.3.1
         version: 6.3.1
@@ -1663,7 +1663,7 @@ importers:
         version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       busboy:
         specifier: 1.6.0
         version: 1.6.0
@@ -1871,7 +1871,7 @@ importers:
         version: link:../../packages/sif-surveys
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       csp-header:
         specifier: 6.3.1
         version: 6.3.1
@@ -2079,7 +2079,7 @@ importers:
         version: link:../../packages/sif-surveys
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       csp-header:
         specifier: 6.3.1
         version: 6.3.1
@@ -2489,7 +2489,7 @@ importers:
         version: 5.101.0(react@19.2.7)
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       classnames:
         specifier: 2.5.1
         version: 2.5.1
@@ -2712,7 +2712,7 @@ importers:
         version: 5.101.0(react@19.2.7)
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       busboy:
         specifier: 1.6.0
         version: 1.6.0
@@ -2923,7 +2923,7 @@ importers:
         version: 5.101.0(react@19.2.7)
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       classnames:
         specifier: 2.5.1
         version: 2.5.1
@@ -3327,7 +3327,7 @@ importers:
         version: link:../../packages/sif-validation
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       classnames:
         specifier: 2.5.1
         version: 2.5.1
@@ -3644,7 +3644,7 @@ importers:
         version: 5.101.0(react@19.2.7)
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       clsx:
         specifier: 2.1.1
         version: 2.1.1
@@ -4022,7 +4022,7 @@ importers:
         version: link:../eslint-config-sif
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       config:
         specifier: workspace:*
         version: link:../config
@@ -4059,7 +4059,7 @@ importers:
         version: link:../eslint-config-sif
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       config:
         specifier: workspace:*
         version: link:../config
@@ -4096,7 +4096,7 @@ importers:
         version: link:../eslint-config-sif
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       config:
         specifier: workspace:*
         version: link:../config
@@ -4144,7 +4144,7 @@ importers:
         version: 5.101.0(react@19.2.7)
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       dayjs:
         specifier: 1.11.21
         version: 1.11.21
@@ -4245,7 +4245,7 @@ importers:
         version: link:../sif-validation
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       classnames:
         specifier: 2.5.1
         version: 2.5.1
@@ -4406,7 +4406,7 @@ importers:
         version: 6.0.2(@rolldown/plugin-babel@0.2.3(@babel/core@7.29.7)(@babel/plugin-transform-runtime@7.29.7(@babel/core@7.29.7))(@babel/runtime@7.29.7)(rolldown@1.0.3)(vite@8.0.16(@types/node@25.9.3)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0)))(vite@8.0.16(@types/node@25.9.3)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       config:
         specifier: workspace:*
         version: link:../config
@@ -4704,7 +4704,7 @@ importers:
         version: 6.0.2(@rolldown/plugin-babel@0.2.3(@babel/core@7.29.7)(@babel/plugin-transform-runtime@7.29.7(@babel/core@7.29.7))(@babel/runtime@7.29.7)(rolldown@1.0.3)(vite@8.0.16(@types/node@25.9.3)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0)))(vite@8.0.16(@types/node@25.9.3)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       config:
         specifier: workspace:*
         version: link:../config
@@ -4805,7 +4805,7 @@ importers:
         version: 25.9.3
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       config:
         specifier: workspace:*
         version: link:../config
@@ -4962,7 +4962,7 @@ importers:
         version: 6.0.2(@rolldown/plugin-babel@0.2.3(@babel/core@7.29.7)(@babel/plugin-transform-runtime@7.29.7(@babel/core@7.29.7))(@babel/runtime@7.29.7)(rolldown@1.0.3)(vite@8.0.16(@types/node@25.9.3)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0)))(vite@8.0.16(@types/node@25.9.3)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.48.0)(tsx@4.22.4)(yaml@2.9.0))
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       copyfiles:
         specifier: 2.4.1
         version: 2.4.1
@@ -5214,7 +5214,7 @@ importers:
         version: link:../eslint-config-sif
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       config:
         specifier: workspace:*
         version: link:../config
@@ -5660,7 +5660,7 @@ importers:
         version: link:../eslint-config-sif
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       config:
         specifier: workspace:*
         version: link:../config
@@ -5706,7 +5706,7 @@ importers:
         version: link:../eslint-config-sif
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       config:
         specifier: workspace:*
         version: link:../config
@@ -5752,7 +5752,7 @@ importers:
         version: link:../eslint-config-sif
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       config:
         specifier: workspace:*
         version: link:../config
@@ -5792,7 +5792,7 @@ importers:
         version: link:../eslint-config-sif
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       config:
         specifier: workspace:*
         version: link:../config
@@ -5977,7 +5977,7 @@ importers:
         version: 25.9.3
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       esbuild:
         specifier: 0.28.1
         version: 0.28.1
@@ -6044,7 +6044,7 @@ importers:
         version: 25.9.3
       axios:
         specifier: 1.16.1
-        version: 1.18.0
+        version: 1.16.1
       esbuild:
         specifier: 0.28.1
         version: 0.28.1
@@ -11051,9 +11051,6 @@ packages:
 
   axios@1.16.1:
     resolution: {integrity: sha512-caYkukvroVPO8KrzuJEb50Hm07KwfBZPEC3VeFHTsqWHvKTsy54hjJz9BS/cdaypROE2rH6xvm9mHX4fgWkr3A==}
-
-  axios@1.18.0:
-    resolution: {integrity: sha512-E32NzpYKp++W7XRe52rHiXV2ehxmh3wbdgO7MHeFM+vqxLBYHzt0ElkiImtOBxtOmyp0yoC8C6uESVV84Y2/hw==}
 
   axobject-query@4.1.0:
     resolution: {integrity: sha512-qIj0G9wZbMGNLjLmg1PT6v2mE9AH2zlnADJD/2tC6E00hgmhUOfEB6greHPAfLRSufHqROIUTkw6E+M3lH0PTQ==}
@@ -23090,16 +23087,6 @@ snapshots:
   axe-core@4.12.1: {}
 
   axios@1.16.1:
-    dependencies:
-      follow-redirects: 1.16.0
-      form-data: 4.0.6
-      https-proxy-agent: 5.0.1
-      proxy-from-env: 2.1.0
-    transitivePeerDependencies:
-      - debug
-      - supports-color
-
-  axios@1.18.0:
     dependencies:
       follow-redirects: 1.16.0
       form-data: 4.0.6
