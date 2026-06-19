@@ -24,7 +24,7 @@
         "@hey-api/openapi-ts": "0.98.2",
         "@navikt/sif-common-env": "workspace:*",
         "@sif/eslint-config": "workspace:*",
-        "axios": "1.18.0",
+        "axios": "1.16.1",
         "config": "workspace:*",
         "postcss": "8.5.15",
         "prettier": "3.8.4",

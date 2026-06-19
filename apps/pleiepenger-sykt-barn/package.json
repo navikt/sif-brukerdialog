@@ -46,7 +46,7 @@
         "@navikt/sif-validation": "workspace:*",
         "@sif/surveys": "workspace:*",
         "@tanstack/react-query": "5.101.0",
-        "axios": "1.18.0",
+        "axios": "1.16.1",
         "classnames": "2.5.1",
         "csp-header": "6.3.1",
         "date-fns": "4.4.0",
