@@ -35,7 +35,7 @@
         "@navikt/sif-common-hooks": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
-        "@sentry/react": "10.57.0",
+        "@sentry/react": "10.58.0",
         "react-hook-form": "7.79.0",
         "react-intl": "10.1.13",
         "react-router-dom": "7.17.0",
@@ -49,7 +49,7 @@
         "react": "19.2.7",
         "react-dom": "19.2.7",
         "typescript": "6.0.3",
-        "vitest": "4.1.8"
+        "vitest": "4.1.9"
     },
     "peerDependencies": {
         "react": ">=19",

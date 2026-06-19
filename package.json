@@ -54,7 +54,7 @@
         "prettier": "3.8.4",
         "sort-package-json": "4.0.0",
         "typescript": "6.0.3",
-        "vitest": "4.1.8"
+        "vitest": "4.1.9"
     },
     "packageManager": "pnpm@10.33.4",
     "pnpm": {
