@@ -29,7 +29,9 @@ describe('parseDatePickerValue', () => {
     it('converts valid ISO string to Date', () => {
         const date = parseDatePickerValue('2024-03-15');
         expect(date).toBeInstanceOf(Date);
-        expect(date!.toISOString()).toBe('2024-03-15T00:00:00.000Z');
+        expect(date!.getFullYear()).toBe(2024);
+        expect(date!.getMonth()).toBe(2);
+        expect(date!.getDate()).toBe(15);
     });
     it('returns undefined for missing/short input', () => {
         expect(parseDatePickerValue(undefined)).toBeUndefined();

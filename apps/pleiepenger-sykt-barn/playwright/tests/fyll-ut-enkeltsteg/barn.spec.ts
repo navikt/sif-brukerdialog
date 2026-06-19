@@ -32,6 +32,7 @@ test.describe('Barn steg', () => {
         await page.getByRole('button', { name: 'Åpne datovelger' }).click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByLabel('torsdag 1', { exact: true }).click();
+        await expect(page.getByRole('textbox', { name: 'Barnets fødselsdato' })).toHaveValue('01.12.2022');
         await page.getByText('Fosterforelder').click();
         await page.getByRole('radiogroup', { name: 'Hvilken relasjon har du til' }).getByLabel('Annet').check();
         await page.getByTestId('opplysninger-om-barnet-relasjonAnnetBeskrivelse').click();

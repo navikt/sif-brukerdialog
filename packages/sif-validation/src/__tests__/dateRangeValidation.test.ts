@@ -9,8 +9,8 @@ describe('dateRangeValidation', () => {
         it('returns undefined if toDate is undefined', () => {
             expect(getDateRangeValidator({}).validateFromDate('2020-10-10')).toBeUndefined();
         });
-        it(`returns ${ValidateDateRangeError.fromDateIsAfterToDate} if toDate is undefined`, () => {
-            expect(getDateRangeValidator({ toDate: new Date('2020-10-09') }).validateFromDate('2020-10-10')).toBe(
+        it(`returns ${ValidateDateRangeError.fromDateIsAfterToDate} if fromDate is after toDate`, () => {
+            expect(getDateRangeValidator({ toDate: new Date(2020, 9, 9) }).validateFromDate('2020-10-10')).toBe(
                 ValidateDateRangeError.fromDateIsAfterToDate,
             );
         });
@@ -27,8 +27,8 @@ describe('dateRangeValidation', () => {
         it('returns undefined if toDate is undefined', () => {
             expect(getDateRangeValidator({}).validateToDate('2020-10-10')).toBeUndefined();
         });
-        it(`returns ${ValidateDateRangeError.fromDateIsAfterToDate} if toDate is undefined`, () => {
-            expect(getDateRangeValidator({ fromDate: new Date('2020-10-11') }).validateToDate('2020-10-10')).toBe(
+        it(`returns ${ValidateDateRangeError.toDateIsBeforeFromDate} if toDate is before fromDate`, () => {
+            expect(getDateRangeValidator({ fromDate: new Date(2020, 9, 11) }).validateToDate('2020-10-10')).toBe(
                 ValidateDateRangeError.toDateIsBeforeFromDate,
             );
         });
