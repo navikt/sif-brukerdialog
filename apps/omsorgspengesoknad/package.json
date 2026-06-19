@@ -50,7 +50,7 @@
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@sif/surveys": "workspace:*",
-        "axios": "1.16.1",
+        "axios": "1.18.0",
         "csp-header": "6.3.1",
         "dayjs": "1.11.21",
         "formik": "2.4.9",
@@ -104,7 +104,7 @@
         "typescript": "6.0.3",
         "typescript-eslint": "8.61.1",
         "vite": "8.0.16",
-        "vite-plugin-checker": "0.14.1",
+        "vite-plugin-checker": "0.14.3",
         "vitest": "4.1.9"
     },
     "msw": {
