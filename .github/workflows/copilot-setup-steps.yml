@@ -15,7 +15,7 @@ jobs:
               with:
                   node-version: 24
 
-            - uses: pnpm/action-setup@v6
+            - uses: pnpm/action-setup@v6.0.8
             - run: pnpm install --frozen-lockfile
               env:
                   NPM_TOKEN: ${{ secrets.READER_TOKEN }}
