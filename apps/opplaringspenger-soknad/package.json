@@ -90,7 +90,7 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.11.3",
-        "@playwright/test": "1.61.0",
+        "@playwright/test": "1.60.0",
         "@sif/eslint-config": "workspace:*",
         "@storybook/react-vite": "10.4.5",
         "@tailwindcss/postcss": "4.3.1",
@@ -108,7 +108,7 @@
         "eslint-plugin-storybook": "10.4.5",
         "helmet": "8.2.0",
         "msw": "2.14.6",
-        "playwright-core": "1.61.0",
+        "playwright-core": "1.60.0",
         "postcss": "8.5.15",
         "postcss-nesting": "14.0.0",
         "storybook": "10.4.5",
