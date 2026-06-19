@@ -59,7 +59,7 @@ export const getFirstWeekDayInMonth = (month: Date): Date => {
 
 export const getWeekFromDate = (date: Date, withinSameMonth = false): DateRange => {
     const from = dayjs(date).startOf('isoWeek').toDate();
-    const to = dayjs(date).endOf('isoWeek').toDate();
+    const to = dayjs(date).endOf('isoWeek').startOf('day').toDate();
 
     if (withinSameMonth === false || (dayjs(date).isSame(from, 'month') && dayjs(date).isSame(to, 'month'))) {
         return {
@@ -69,12 +69,12 @@ export const getWeekFromDate = (date: Date, withinSameMonth = false): DateRange 
     }
     return {
         from: getLastOfTwoDates(from, dayjs(date).startOf('month').toDate()),
-        to: getFirstOfTwoDates(to, dayjs(date).endOf('month').toDate()),
+        to: getFirstOfTwoDates(to, dayjs(date).endOf('month').startOf('day').toDate()),
     };
 };
 
 export const getLastWeekDayInMonth = (month: Date): Date => {
-    return getLastWeekdayOnOrBeforeDate(dayjs(month).endOf('month').toDate());
+    return getLastWeekdayOnOrBeforeDate(dayjs(month).endOf('month').startOf('day').toDate());
 };
 
 export const getLastWeekdayOnOrBeforeDate = (date: Date): Date => {
@@ -96,7 +96,7 @@ export const getWeeksInMonth = (month: Date, includeWholeWeeks = false): DateRan
         to:
             includeWholeWeeks === false
                 ? range.to
-                : getLastOfTwoDates(range.to, dayjs(range.to).endOf('isoWeek').toDate()),
+                : getLastOfTwoDates(range.to, dayjs(range.to).endOf('isoWeek').startOf('day').toDate()),
     });
 };
 

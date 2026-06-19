@@ -219,7 +219,7 @@ export const getMonthsInDateRange = (dateRange: DateRange, returnFullMonths = fa
     let current = dayjs(dateRange.from);
     do {
         const from: Date = returnFullMonths ? current.startOf('month').toDate() : current.toDate();
-        const endOfMonth = dayjs(from).endOf('month').toDate();
+        const endOfMonth = dayjs(from).endOf('month').startOf('day').toDate();
         const to =
             dayjs(endOfMonth).isAfter(dateRange.to, 'day') && returnFullMonths === false ? dateRange.to : endOfMonth;
 
@@ -254,7 +254,7 @@ export const getMonthsInDates = (dates: Date[]): Date[] => {
  */
 export const getMonthDateRange = (date: Date, onlyWeekDays = false): DateRange => ({
     from: onlyWeekDays ? getFirstWeekDayInMonth(date) : dayjs(date).startOf('month').toDate(),
-    to: onlyWeekDays ? getLastWeekDayInMonth(date) : dayjs(date).endOf('month').toDate(),
+    to: onlyWeekDays ? getLastWeekDayInMonth(date) : dayjs(date).endOf('month').startOf('day').toDate(),
 });
 
 /**
@@ -266,7 +266,7 @@ export const includeWeekendIfDateRangeEndsOnFridayOrLater = (dateRange: DateRang
     if (dayjs(dateRange.to).isoWeekday() >= 5) {
         return {
             ...dateRange,
-            to: dayjs(dateRange.to).endOf('isoWeek').toDate(),
+            to: dayjs(dateRange.to).endOf('isoWeek').startOf('day').toDate(),
         };
     }
     return dateRange;
@@ -349,6 +349,7 @@ export const getWeekDateRange = (date: Date, onlyWeekDays = false): DateRange =>
         from: dayjs(date).startOf('isoWeek').toDate(),
         to: dayjs(date)
             .endOf('isoWeek')
+            .startOf('day')
             .subtract(onlyWeekDays ? 2 : 0, 'days')
             .toDate(),
     };
@@ -363,7 +364,10 @@ export const getWeeksInDateRange = (dateRange: DateRange): DateRange[] => {
     const weeks: DateRange[] = [];
     let current = dayjs(dateRange.from);
     do {
-        const weekDateRange: DateRange = { from: current.toDate(), to: current.endOf('isoWeek').toDate() };
+        const weekDateRange: DateRange = {
+            from: current.toDate(),
+            to: current.endOf('isoWeek').startOf('day').toDate(),
+        };
         const rangeToPush: DateRange = {
             from: weekDateRange.from,
             to: getFirstOfTwoDates(weekDateRange.to, dateRange.to),
@@ -662,7 +666,7 @@ export const ISODateToISODateRange = (isoDate: ISODate): ISODateRange => {
 
 export const getIsoWeekDateRangeForDate = (date: Date): DateRange => {
     const from = dayjs(date).startOf('isoWeek').toDate();
-    const to = dayjs(date).endOf('isoWeek').toDate();
+    const to = dayjs(date).endOf('isoWeek').startOf('day').toDate();
     return {
         from,
         to,
