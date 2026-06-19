@@ -37,6 +37,12 @@ describe('dateUtils', () => {
                 expect(dateToISODate(ISODateToDate(iso))).toBe(iso);
             }
         });
+        it('returnerer ugyldig Date for datoer som ikke finnes i kalenderen', () => {
+            expect(isNaN(ISODateToDate('2024-02-31').getTime())).toBe(true);
+            expect(isNaN(ISODateToDate('2023-02-29').getTime())).toBe(true);
+            expect(isNaN(ISODateToDate('2024-04-31').getTime())).toBe(true);
+            expect(isNaN(ISODateToDate('2024-13-01').getTime())).toBe(true);
+        });
     });
     describe('dateToISODate', () => {
         it('converts a date to iso formatted date', () => {
