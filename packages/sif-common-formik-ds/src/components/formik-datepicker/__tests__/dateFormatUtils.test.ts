@@ -60,6 +60,6 @@ describe('InputDateStringToISODateString', () => {
     });
 
     it('returnerer Invalid date for ugyldig input', () => {
-        expect(InputDateStringToISODateString('ikke-en-dato')).toBe('Invalid date');
+        expect(InputDateStringToISODateString('ikke-en-dato')).toBe(INVALID_DATE_VALUE);
     });
 });
