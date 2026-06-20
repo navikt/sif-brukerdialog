@@ -15,7 +15,11 @@ const compactFormat = 'DD.MM.YYYY';
 const compactFormatWithTime = 'DD.MM.YYYY kl. HH.mm';
 const OSLO = 'Europe/Oslo';
 
+/** For UTC-timestamps fra backend — konverterer til norsk tid */
 const oslo = (date: Date, locale?: string) => dayjs(date).tz(OSLO).locale(getValidLocale(locale));
+
+/** For dato-only verdier (bruker-input, ISODateToDate) — ingen tz-konvertering */
+const local = (date: Date, locale?: string) => dayjs(date).locale(getValidLocale(locale));
 
 /** Brukt i eldre apper */
 export const prettifyDate = (date: Date, locale?: string): string => {
@@ -34,27 +38,28 @@ export const dateFormatter = {
     /**
      * @returns 01.01.2020
      */
-    compact: (date: Date, locale?: string) => oslo(date, locale).format(compactFormat),
+    compact: (date: Date, locale?: string) => local(date, locale).format(compactFormat),
 
     /**
      * @returns 01.01.2020 kl. 08.29
+     * NB: Kun for UTC-timestamps fra backend — konverterer til Europe/Oslo
      */
     compactWithTime: (date: Date, locale?: string) => oslo(date, locale).format(compactFormatWithTime),
 
     /**
      * @returns 1. jan. 2021
      */
-    dateShortMonthYear: (date: Date, locale?: string) => oslo(date, locale).format('D. MMM YYYY'),
+    dateShortMonthYear: (date: Date, locale?: string) => local(date, locale).format('D. MMM YYYY'),
 
     /**
      * @returns 1. januar 2021
      */
-    full: (date: Date, locale?: string) => oslo(date, locale).format('D. MMMM YYYY'),
+    full: (date: Date, locale?: string) => local(date, locale).format('D. MMMM YYYY'),
 
     /**
      * @returns fredag
      */
-    day: (date: Date, locale?: string) => oslo(date, locale).format('dddd'),
+    day: (date: Date, locale?: string) => local(date, locale).format('dddd'),
 
     /**
      * @returns fredag 01.01.2021
@@ -77,25 +82,25 @@ export const dateFormatter = {
     /**
      * @returns fredag 1. januar
      */
-    dayDateMonth: (date: Date, locale?: string) => oslo(date, locale).format('dddd D. MMMM'),
+    dayDateMonth: (date: Date, locale?: string) => local(date, locale).format('dddd D. MMMM'),
 
     /**
      * @returns fredag 1. jan.
      */
-    dayDateShortMonth: (date: Date, locale?: string) => oslo(date, locale).format('dddd D. MMM'),
+    dayDateShortMonth: (date: Date, locale?: string) => local(date, locale).format('dddd D. MMM'),
 
     /**
      * @returns januar 2021
      */
-    monthFullYear: (date: Date, locale?: string) => oslo(date, locale).format('MMMM YYYY'),
+    monthFullYear: (date: Date, locale?: string) => local(date, locale).format('MMMM YYYY'),
 
     /**
      * @returns januar
      */
-    month: (date: Date, locale?: string) => oslo(date, locale).format('MMMM'),
+    month: (date: Date, locale?: string) => local(date, locale).format('MMMM'),
 
     /**
      * @returns Januar 2021
      */
-    MonthFullYear: (date: Date, locale?: string) => capsFirstCharacter(oslo(date, locale).format('MMMM YYYY')),
+    MonthFullYear: (date: Date, locale?: string) => capsFirstCharacter(local(date, locale).format('MMMM YYYY')),
 };
