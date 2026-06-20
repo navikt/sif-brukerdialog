@@ -2,7 +2,7 @@ import { Page } from '@playwright/test';
 
 // Ankerdato for alle mock-scenarioer — må matche demoMockDate i mock/mockConstants.ts
 // Bruk native Date her for å unngå import-kjede via sif-common-utils/dayjs som feiler i Node
-const DEMO_MOCK_DATE = new Date('2025-12-10');
+const DEMO_MOCK_DATE = new Date('2025-12-10T12:00:00');
 
 const getSetDateScript = (timestamp: number) => `
 {
