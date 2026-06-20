@@ -1,7 +1,7 @@
 import { zOrganisasjon } from '@navikt/k9-sak-innsyn-api/src/generated/innsyn';
 import { z } from 'zod';
 
-import { zOptionalDateFromISODateString } from './zDateFromString';
+import { zOptionalDateFromDateTimeString, zOptionalDateFromISODateString } from './zDateFromString';
 
 const innsendtSøknadArbeidsgivereSchema = z.union([
     z.array(
@@ -55,8 +55,8 @@ const innsendtSøknadBaseSchema = z.object({
     status: z.enum(InnsendtSøknadsstatus),
     journalpostId: z.string(),
     dokumenter: z.array(z.union([innsendtSøknadDokumentSchema, z.any()])),
-    opprettet: zOptionalDateFromISODateString,
-    endret: zOptionalDateFromISODateString,
+    opprettet: zOptionalDateFromDateTimeString,
+    endret: zOptionalDateFromDateTimeString,
     behandlingsdato: zOptionalDateFromISODateString,
 });
 

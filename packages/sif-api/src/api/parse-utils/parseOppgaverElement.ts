@@ -15,10 +15,11 @@ import {
     OppgaveYtelsetype,
     PeriodeEndringType,
     RapportertInntektDto,
-    SøkYtelseOppgavetypeDataDto,
     SvarPåVarselDto,
+    SøkYtelseOppgavetypeDataDto,
 } from '@navikt/ung-brukerdialog-api';
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 
 import {
     AvvikRegisterinntektOppgave,
@@ -35,6 +36,8 @@ import {
     RapportertInntektRespons,
     SvarPåVarselRespons,
 } from '../../types/Oppgave';
+
+dayjs.extend(utc);
 
 const getSisteDatoEnKanSvare = (svarfrist: Date): Date => dayjs(svarfrist).startOf('day').subtract(1, 'day').toDate();
 
