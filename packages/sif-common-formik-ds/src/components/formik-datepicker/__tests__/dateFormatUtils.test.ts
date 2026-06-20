@@ -5,7 +5,6 @@ import {
     InputDateStringToISODateString,
     INVALID_DATE_VALUE,
     ISODateStringToLocalDate,
-    ISODateStringToUTCDate,
 } from '../dateFormatUtils';
 
 describe('ISODateStringToLocalDate', () => {
@@ -48,16 +47,6 @@ describe('round-trip: ISODateStringToLocalDate + dateToISODateString', () => {
         for (const iso of dates) {
             expect(dateToISODateString(ISODateStringToLocalDate(iso)!)).toBe(iso);
         }
-    });
-});
-
-describe('ISODateStringToUTCDate (eksisterende funksjon, brukes ikke i datepicker lenger)', () => {
-    it('returnerer UTC-midnatt Date', () => {
-        const date = ISODateStringToUTCDate('2024-06-15')!;
-        expect(date.getUTCFullYear()).toBe(2024);
-        expect(date.getUTCMonth()).toBe(5);
-        expect(date.getUTCDate()).toBe(15);
-        expect(date.getUTCHours()).toBe(0);
     });
 });
 

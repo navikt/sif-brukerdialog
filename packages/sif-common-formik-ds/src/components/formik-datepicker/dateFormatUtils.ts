@@ -48,10 +48,6 @@ export const dateToISODateString = (date: Date): ISODateString | INVALID_DATE_TY
     return dateToISODate(date) as ISODateString;
 };
 
-export const ISODateStringToUTCDate = (isoDateString?: ISODateString): Date | undefined => {
-    return stringToUTCDate(isoDateString, ISO_DATE_STRING_FORMAT);
-};
-
 export const ISODateStringToLocalDate = (isoDateString?: ISODateString): Date | undefined => {
     if (!isoDateString || isoDateString.length < 10) return undefined;
     const [year, month, day] = isoDateString.split('-').map(Number);
