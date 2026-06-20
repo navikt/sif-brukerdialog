@@ -1,7 +1,9 @@
 import { ISODateToDate, OpenDateRange } from '@navikt/sif-common-utils';
 import { zDeltakelseDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 import { z } from 'zod';
+dayjs.extend(utc);
 
 export const deltakelsePeriodeSchema = zDeltakelseDto
     .extend({

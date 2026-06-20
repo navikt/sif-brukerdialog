@@ -101,7 +101,7 @@ describe('formValuesToVirksomhet', () => {
     });
 
     it('inkluderer tom når ikke pågående', () => {
-        const tomDate = new Date('2020-06-01');
+        const tomDate = new Date(2020, 5, 1);
         const result = formValuesToVirksomhet({
             ...baseFormValues,
             erPågående: false,

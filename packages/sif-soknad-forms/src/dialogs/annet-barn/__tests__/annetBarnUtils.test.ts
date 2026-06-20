@@ -6,7 +6,7 @@ import { AnnetBarn, AnnetBarnFormValues } from '../index';
 
 const id = '123';
 const fnr = '234';
-const fødselsdato = new Date('2000-10-10');
+const fødselsdato = new Date(2000, 9, 10);
 const navn = 'Annet barns navn';
 
 const annetBarn: AnnetBarn = {

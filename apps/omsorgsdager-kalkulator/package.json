@@ -21,7 +21,6 @@
         "@navikt/nav-dekoratoren-moduler": "4.2.2",
         "classnames": "2.5.1",
         "csp-header": "6.3.1",
-        "date-fns": "4.4.0",
         "dayjs": "1.11.21",
         "formik": "2.4.9",
         "html-react-parser": "6.1.3",

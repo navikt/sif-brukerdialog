@@ -21,6 +21,7 @@ index-decorated.html
 .copilot-workspace
 specs
 .sisyphus
+.node-version
 
 .env.sentry-build-plugin
 apps-depr

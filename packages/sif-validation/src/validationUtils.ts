@@ -1,6 +1,4 @@
-import dayjs from 'dayjs';
-
-type ISODateString = string;
+import { ISODateToDate, isISODateString } from '@navikt/sif-common-utils';
 
 const ISOStringToDate = (dateString = ''): Date | undefined => getDateFromDateString(dateString);
 
@@ -8,20 +6,15 @@ const getDateFromDateString = (dateString: string | undefined): Date | undefined
     if (dateString === undefined) {
         return undefined;
     }
-    if (isISODateString(dateString) && dayjs(dateString, 'YYYY-MM-DD', true).isValid()) {
-        return new Date(dateString);
+    if (isISODateString(dateString)) {
+        const date = ISODateToDate(dateString);
+        const [, month, day] = dateString.split('-').map(Number);
+        if (date.getMonth() !== month - 1 || date.getDate() !== day) {
+            return undefined;
+        }
+        return date;
     }
     return undefined;
-};
-
-const isISODateString = (value: any): value is ISODateString => {
-    if (value && typeof value === 'string') {
-        const reg = /^\d{4}-\d{2}-\d{2}$/;
-        const match: RegExpMatchArray | null = value.match(reg);
-        return match !== null;
-    } else {
-        return false;
-    }
 };
 
 /* Returns a number from a string value, if the string value is a valid number */

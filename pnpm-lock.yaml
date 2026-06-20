@@ -132,9 +132,6 @@ importers:
       csp-header:
         specifier: 6.3.1
         version: 6.3.1
-      date-fns:
-        specifier: 4.4.0
-        version: 4.4.0
       dayjs:
         specifier: 1.11.21
         version: 1.11.21
@@ -711,9 +708,6 @@ importers:
       csp-header:
         specifier: 6.3.1
         version: 6.3.1
-      date-fns:
-        specifier: 4.4.0
-        version: 4.4.0
       html-react-parser:
         specifier: 6.1.3
         version: 6.1.3(@types/react@19.2.17)(react@19.2.7)
@@ -1106,9 +1100,6 @@ importers:
       csp-header:
         specifier: 6.3.1
         version: 6.3.1
-      date-fns:
-        specifier: 4.4.0
-        version: 4.4.0
       dayjs:
         specifier: 1.11.21
         version: 1.11.21
@@ -1504,9 +1495,6 @@ importers:
       csp-header:
         specifier: 6.3.1
         version: 6.3.1
-      date-fns:
-        specifier: 4.4.0
-        version: 4.4.0
       dayjs:
         specifier: 1.11.21
         version: 1.11.21
@@ -2930,9 +2918,6 @@ importers:
       csp-header:
         specifier: 6.3.1
         version: 6.3.1
-      date-fns:
-        specifier: 4.4.0
-        version: 4.4.0
       formik:
         specifier: 2.4.9
         version: 2.4.9(@types/react@19.2.17)(react@19.2.7)
@@ -3334,9 +3319,6 @@ importers:
       csp-header:
         specifier: 6.3.1
         version: 6.3.1
-      date-fns:
-        specifier: 4.4.0
-        version: 4.4.0
       dayjs:
         specifier: 1.11.21
         version: 1.11.21
@@ -3507,9 +3489,6 @@ importers:
       copyfiles:
         specifier: 2.4.1
         version: 2.4.1
-      date-fns:
-        specifier: 4.4.0
-        version: 4.4.0
       dayjs:
         specifier: 1.11.21
         version: 1.11.21
@@ -4277,9 +4256,6 @@ importers:
       copyfiles:
         specifier: 2.4.1
         version: 2.4.1
-      date-fns:
-        specifier: 4.4.0
-        version: 4.4.0
       globals:
         specifier: 17.6.0
         version: 17.6.0
@@ -4337,9 +4313,6 @@ importers:
       classnames:
         specifier: 2.5.1
         version: 2.5.1
-      date-fns:
-        specifier: 4.4.0
-        version: 4.4.0
       dayjs:
         specifier: 1.11.21
         version: 1.11.21
@@ -4584,9 +4557,6 @@ importers:
       copyfiles:
         specifier: 2.4.1
         version: 2.4.1
-      date-fns:
-        specifier: 4.4.0
-        version: 4.4.0
       dayjs:
         specifier: 1.11.21
         version: 1.11.21
@@ -4641,9 +4611,6 @@ importers:
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../sif-common-ui
-      date-fns:
-        specifier: 4.4.0
-        version: 4.4.0
     devDependencies:
       '@formatjs/intl-pluralrules':
         specifier: 6.3.10
@@ -4866,9 +4833,6 @@ importers:
       csp-header:
         specifier: 6.3.1
         version: 6.3.1
-      date-fns:
-        specifier: 4.4.0
-        version: 4.4.0
       fp-ts:
         specifier: 2.16.11
         version: 2.16.11
@@ -5090,9 +5054,6 @@ importers:
       copyfiles:
         specifier: 2.4.1
         version: 2.4.1
-      date-fns:
-        specifier: 4.4.0
-        version: 4.4.0
       dayjs:
         specifier: 1.11.21
         version: 1.11.21
@@ -5614,6 +5575,9 @@ importers:
       '@navikt/fnrvalidator':
         specifier: '2'
         version: 2.2.1
+      '@navikt/sif-common-utils':
+        specifier: workspace:*
+        version: link:../sif-common-utils
       dayjs:
         specifier: '1'
         version: 1.11.21
