@@ -11,7 +11,7 @@ overrides:
   jsdom: 28.1.0
   picomatch@^2: ^2.3.2
   picomatch@^4: ^4.0.4
-  undici@^6: ^6.26.0
+  undici@^6: ^6.27.0
   undici@^7: ^7.28.0
 
 importers:
