@@ -4027,6 +4027,9 @@ importers:
       config:
         specifier: workspace:*
         version: link:../config
+      eslint:
+        specifier: 10.5.0
+        version: 10.5.0(jiti@2.7.0)
       postcss:
         specifier: 8.5.15
         version: 8.5.15
@@ -4064,6 +4067,9 @@ importers:
       config:
         specifier: workspace:*
         version: link:../config
+      eslint:
+        specifier: 10.5.0
+        version: 10.5.0(jiti@2.7.0)
       postcss:
         specifier: 8.5.15
         version: 8.5.15
@@ -4101,6 +4107,9 @@ importers:
       config:
         specifier: workspace:*
         version: link:../config
+      eslint:
+        specifier: 10.5.0
+        version: 10.5.0(jiti@2.7.0)
       postcss:
         specifier: 8.5.15
         version: 8.5.15
@@ -5219,6 +5228,9 @@ importers:
       config:
         specifier: workspace:*
         version: link:../config
+      eslint:
+        specifier: 10.5.0
+        version: 10.5.0(jiti@2.7.0)
       postcss:
         specifier: 8.5.15
         version: 8.5.15
@@ -5665,6 +5677,9 @@ importers:
       config:
         specifier: workspace:*
         version: link:../config
+      eslint:
+        specifier: 10.5.0
+        version: 10.5.0(jiti@2.7.0)
       postcss:
         specifier: 8.5.15
         version: 8.5.15
@@ -5757,6 +5772,9 @@ importers:
       config:
         specifier: workspace:*
         version: link:../config
+      eslint:
+        specifier: 10.5.0
+        version: 10.5.0(jiti@2.7.0)
       postcss:
         specifier: 8.5.15
         version: 8.5.15
@@ -5797,6 +5815,9 @@ importers:
       config:
         specifier: workspace:*
         version: link:../config
+      eslint:
+        specifier: 10.5.0
+        version: 10.5.0(jiti@2.7.0)
       postcss:
         specifier: 8.5.15
         version: 8.5.15
