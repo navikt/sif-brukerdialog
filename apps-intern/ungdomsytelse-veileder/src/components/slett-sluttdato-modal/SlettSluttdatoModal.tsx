@@ -3,7 +3,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Deltaker } from '../../types/Deltaker';
 import { Deltakelse } from '../../types/Deltakelse';
-import SlettSluttdatoForm from '../../forms/slet-sluttdato-form/SlettSluttdatoForm';
+import SlettSluttdatoForm from '../../forms/slett-sluttdato-form/SlettSluttdatoForm';
 
 interface Props {
     deltaker: Deltaker;
