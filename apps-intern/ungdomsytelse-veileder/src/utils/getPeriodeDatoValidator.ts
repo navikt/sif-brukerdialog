@@ -1,15 +1,11 @@
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
 import { getDateValidator } from '@navikt/sif-validation';
 
-export const getPeriodeDatoValidator = (options: {
-    periode: DateRange;
-    registrertDato?: Date;
-    kanSletteSluttdato?: boolean;
-}) => {
+export const getPeriodeDatoValidator = (options: { periode: DateRange; registrertDato?: Date }) => {
     const { from: min, to: max } = options.periode;
     return (value) => {
         const error = getDateValidator({
-            required: options.kanSletteSluttdato ? false : true,
+            required: true,
             min,
             max,
             originalDate: options.registrertDato,

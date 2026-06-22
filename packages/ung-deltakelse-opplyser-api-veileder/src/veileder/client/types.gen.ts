@@ -84,6 +84,7 @@ export enum Endringstype {
     DELTAKER_MELDT_UT = 'DELTAKER_MELDT_UT',
     ENDRET_STARTDATO = 'ENDRET_STARTDATO',
     ENDRET_SLUTTDATO = 'ENDRET_SLUTTDATO',
+    SLUTTDATO_SLETTET = 'SLUTTDATO_SLETTET',
     DELTAKER_HAR_SØKT_YTELSE = 'DELTAKER_HAR_SØKT_YTELSE',
     DELTAKELSE_FJERNET = 'DELTAKELSE_FJERNET',
     FORLENGET_PERIODE = 'FORLENGET_PERIODE',
@@ -360,6 +361,41 @@ export type DeltakelseHistorikkResponses = {
 };
 
 export type DeltakelseHistorikkResponse = DeltakelseHistorikkResponses[keyof DeltakelseHistorikkResponses];
+
+export type SlettSluttdatoData = {
+    body?: never;
+    path: {
+        deltakelseId: string;
+    };
+    query?: never;
+    url: '/veileder/register/deltakelse/{deltakelseId}/slett/sluttdato';
+};
+
+export type SlettSluttdatoErrors = {
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type SlettSluttdatoError = SlettSluttdatoErrors[keyof SlettSluttdatoErrors];
+
+export type SlettSluttdatoResponses = {
+    /**
+     * OK
+     */
+    200: DeltakelseDto;
+};
+
+export type SlettSluttdatoResponse = SlettSluttdatoResponses[keyof SlettSluttdatoResponses];
 
 export type MeldInnDeltakerData = {
     body: DeltakelseInnmeldingDto;

@@ -25,6 +25,8 @@ const getEndringstypeTekst = (type: Endringstype): string => {
             return 'Endret startdato';
         case Endringstype.DELTAKELSE_FJERNET:
             return 'Deltakelse slettet';
+        case Endringstype.SLUTTDATO_SLETTET:
+            return 'Sluttdato slettet';
         case Endringstype.UKJENT:
             return 'Ukjent endringstype';
     }

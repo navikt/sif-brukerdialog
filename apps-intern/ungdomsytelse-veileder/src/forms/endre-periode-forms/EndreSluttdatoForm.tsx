@@ -43,18 +43,11 @@ const { FormikWrapper, Form, DatePicker, ConfirmationCheckbox } = getTypedFormCo
 interface Props {
     deltaker: Deltaker;
     deltakelse: Deltakelse;
-    kanSletteSluttdato?: boolean;
     onCancel?: () => void;
     onDeltakelseChanged: (oppdatertDeltakelse: Deltakelse) => void;
 }
 
-const EndreSluttdatoForm = ({
-    deltakelse,
-    deltaker,
-    kanSletteSluttdato = true,
-    onCancel,
-    onDeltakelseChanged,
-}: Props) => {
+const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChanged }: Props) => {
     const intl = useIntl();
     const { log } = useAppEventLogger();
 
@@ -68,9 +61,6 @@ const EndreSluttdatoForm = ({
 
     const handleOnSubmit = async (values: FormValues) => {
         const { sluttdato } = values;
-        if (!sluttdato && kanSletteSluttdato !== true) {
-            return;
-        }
         mutate(
             {
                 dato: sluttdato,
@@ -151,7 +141,6 @@ const EndreSluttdatoForm = ({
                                                 validate={getPeriodeDatoValidator({
                                                     periode: sluttdatoMinMax,
                                                     registrertDato: deltakelse.tilOgMed,
-                                                    kanSletteSluttdato,
                                                 })}
                                             />
 

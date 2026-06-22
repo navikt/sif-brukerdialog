@@ -73,6 +73,12 @@ export const handlers = [
         const response = mockUtils.endreSluttdato(deltakelseId, dato);
         return HttpResponse.json(response);
     }),
+    http.delete<any, any>('**/veileder/register/deltakelse/:deltakelseId/slett/sluttdato', async ({ params }) => {
+        const { deltakelseId } = params;
+        await slowDown(75);
+        const response = mockUtils.slettSluttdato(deltakelseId);
+        return HttpResponse.json(response);
+    }),
     http.put<any, any>('**/veileder/register/deltakelse/:deltakelseId/avslutt', async ({ request, params }) => {
         const { utmeldingsdato } = await request.json();
         const { deltakelseId } = params;
