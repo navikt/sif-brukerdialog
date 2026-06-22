@@ -1,5 +1,17 @@
 # @navikt/aktivitetspenger-soknad
 
+## 0.0.10
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.17
+    - @navikt/k9-sak-innsyn-api@0.2.19
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.20
+    - @sif/api@0.0.6
+    - @sif/soknad-app@0.0.2
+    - @sif/soknad-forms@0.0.7
+
 ## 0.0.9
 
 ### Patch Changes
