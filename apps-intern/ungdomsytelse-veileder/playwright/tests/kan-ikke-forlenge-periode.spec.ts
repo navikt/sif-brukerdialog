@@ -17,7 +17,8 @@ test('kanIkkeForlengePeriode: alle handlinger false', async ({ page }) => {
         'kanMeldesUt',
         'kanEndreSluttdato',
         'kanForlengePeriode',
-        'kanSlettes',
+        'kanSletteDeltakelse',
+        'kanSletteSluttdato',
     ]) {
         const rad = page.locator(`text=${handling}`).locator('..');
         await expect(rad.getByText('false')).toBeVisible();

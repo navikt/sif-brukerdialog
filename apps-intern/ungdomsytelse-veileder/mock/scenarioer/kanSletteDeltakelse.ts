@@ -10,7 +10,7 @@ import { MockScenario } from './types';
 
 /**
  * Scenario: Deltaker registrert men ikke søkt ennå (søktTidspunkt=undefined).
- * Forventede handlinger: kanSlettes=true, kanEndreStartdato=true.
+ * Forventede handlinger: kanSletteDeltakelse=true, kanEndreStartdato=true.
  */
 
 const DELTAKER_ID = 'a9d51b57-ccae-4e42-90ce-a22f8a745050';
@@ -60,7 +60,7 @@ export const kanSlettesScenario: MockScenario = {
     beskrivelse: 'Kan slettes (registrert, ikke søkt)',
     gruppe: 'handlinger',
     forventedeHandlinger: {
-        kanSlettes: true,
+        kanSletteDeltakelse: true,
         kanEndreStartdato: true,
         kanMeldesUt: false,
         kanEndreSluttdato: false,

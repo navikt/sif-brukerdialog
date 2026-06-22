@@ -194,14 +194,14 @@ describe('deltakelseUtils', () => {
             expect(h.kanMeldesUt).toBe(false);
             expect(h.kanEndreSluttdato).toBe(false);
             expect(h.kanForlengePeriode).toBe(false);
-            expect(h.kanSlettes).toBe(true);
+            expect(h.kanSletteDeltakelse).toBe(true);
         });
 
         it('A2: Ny deltaker, startdato låst (utvidet periode)', () => {
             const deltakelse = lagDeltakelse({ fraOgMed: ISODateToDate('2026-03-01'), harForlengetPeriode: true });
             const h = getDeltakelseHandlinger(deltakelse, TODAY);
             expect(h.kanEndreStartdato).toBe(false);
-            expect(h.kanSlettes).toBe(true);
+            expect(h.kanSletteDeltakelse).toBe(true);
         });
 
         it('B1: Aktiv deltaker, startdato endrbar', () => {
@@ -210,7 +210,7 @@ describe('deltakelseUtils', () => {
             expect(h.kanEndreStartdato).toBe(true);
             expect(h.kanMeldesUt).toBe(true);
             expect(h.kanForlengePeriode).toBe(false);
-            expect(h.kanSlettes).toBe(false);
+            expect(h.kanSletteDeltakelse).toBe(false);
         });
 
         it('B4: Aktiv deltaker, utvidet periode', () => {
@@ -261,7 +261,7 @@ describe('deltakelseUtils', () => {
             expect(h.kanMeldesUt).toBe(false);
             expect(h.kanEndreSluttdato).toBe(false);
             expect(h.kanForlengePeriode).toBe(false);
-            expect(h.kanSlettes).toBe(false);
+            expect(h.kanSletteDeltakelse).toBe(false);
         });
     });
 
