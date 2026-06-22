@@ -32,7 +32,7 @@ const { Form, FormikWrapper, ConfirmationCheckbox } = getTypedFormComponents<Fie
 
 const SlettSluttdatoForm = ({ deltaker, deltakelse, onCancel, onSluttdatoSlettet }: Props) => {
     const { error, isPending, mutate } = useSlettSluttdato(deltaker.id, deltakelse.id);
-    const [bekreftSlettInfo, setBekreftSlettSluttdato] = useState<boolean>(false);
+    const [bekreftSlett, setBekreftSlett] = useState<boolean>(false);
 
     const intl = useIntl();
 
@@ -45,7 +45,7 @@ const SlettSluttdatoForm = ({ deltaker, deltakelse, onCancel, onSluttdatoSlettet
             <FormikWrapper
                 initialValues={{}}
                 onSubmit={() => {
-                    setBekreftSlettSluttdato(true);
+                    setBekreftSlett(true);
                 }}
                 renderForm={() => {
                     return (
@@ -114,10 +114,10 @@ const SlettSluttdatoForm = ({ deltaker, deltakelse, onCancel, onSluttdatoSlettet
                     );
                 }}
             />
-            {bekreftSlettInfo && (
+            {bekreftSlett && (
                 <BekreftSlettSluttdatoDialog
                     deltakerNavn={formatName(deltaker.navn)}
-                    onAvbryt={() => setBekreftSlettSluttdato(false)}
+                    onAvbryt={() => setBekreftSlett(false)}
                     onBekreft={doSlettSluttdato}
                     open={true}
                 />
