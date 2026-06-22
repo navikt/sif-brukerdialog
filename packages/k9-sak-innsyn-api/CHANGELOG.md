@@ -1,4 +1,4 @@
-# @navikt/k9-brukerdialog-prosessering-api
+# @navikt/k9-sak-innsyn-api
 
 ## 0.2.19
 
