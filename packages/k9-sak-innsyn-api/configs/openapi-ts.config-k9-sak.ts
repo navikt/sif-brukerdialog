@@ -3,7 +3,7 @@ import { defineConfig, type UserConfig } from '@hey-api/openapi-ts';
 export const createConfig = (): UserConfig => ({
     input: './specs/k9-sak.json',
     output: {
-        postProcess: ['prettier', 'eslint'],
+        postProcess: ['prettier'],
         path: './src/generated/k9-sak', // Separat mappe
     },
     plugins: [

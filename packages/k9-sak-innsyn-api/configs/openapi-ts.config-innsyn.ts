@@ -3,7 +3,7 @@ import { defineConfig, type UserConfig } from '@hey-api/openapi-ts';
 export const createConfig = (): UserConfig => ({
     input: './specs/innsyn.json',
     output: {
-        postProcess: ['prettier', 'eslint'],
+        postProcess: ['prettier'],
         path: './src/generated/innsyn', // Separat mappe
     },
     plugins: [
