@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.0.6
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.17
+    - @navikt/k9-sak-innsyn-api@0.2.19
+    - @navikt/ung-brukerdialog-api@0.0.7
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.20
+
 ## 0.0.5
 
 ### Patch Changes

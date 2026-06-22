@@ -1,6 +1,6 @@
 {
     "name": "@navikt/ung-common",
-    "version": "0.0.101",
+    "version": "0.0.102",
     "private": true,
     "repository": {
         "type": "git",
