@@ -3,7 +3,7 @@ import { defineConfig, type UserConfig } from '@hey-api/openapi-ts';
 export const createConfig = (): UserConfig => ({
     input: './openapi-spec.json',
     output: {
-        postProcess: ['prettier', 'eslint'],
+        postProcess: ['prettier'],
         path: './src/ung-brukerdialog-api/client',
     },
     plugins: [

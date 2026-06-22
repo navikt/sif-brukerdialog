@@ -13,7 +13,7 @@ export const createOpenApiConfig = (options: ConfigOptions): UserConfig => {
     return {
         input: `./specs/${specFile}`,
         output: {
-            postProcess: ['prettier', 'eslint'],
+            postProcess: ['prettier'],
             path: options.outputPath,
         },
         plugins: [
