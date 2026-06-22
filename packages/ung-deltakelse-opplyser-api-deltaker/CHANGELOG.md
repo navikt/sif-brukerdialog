@@ -1,4 +1,4 @@
-# @navikt/ung-deltakelse-opplyser-api
+# @navikt/ung-deltakelse-opplyser-api-deltaker
 
 ## 0.3.20
 
