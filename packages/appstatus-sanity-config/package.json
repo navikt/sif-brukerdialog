@@ -26,10 +26,10 @@
         "useTabs": false
     },
     "dependencies": {
-        "@sanity/vision": "6.0.0",
+        "@sanity/vision": "6.1.0",
         "react": "19.2.7",
         "react-dom": "19.2.7",
-        "sanity": "6.0.0"
+        "sanity": "6.1.0"
     },
     "devDependencies": {
         "@sanity/eslint-config-studio": "6.0.0",
