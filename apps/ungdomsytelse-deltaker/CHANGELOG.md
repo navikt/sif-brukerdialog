@@ -1,4 +1,4 @@
-# @navikt/ungdomsytelse-søknad
+# @navikt/ungdomsytelse-deltaker
 
 ## 1.5.58
 
