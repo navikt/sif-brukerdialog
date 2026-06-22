@@ -40,7 +40,7 @@ async function cleanOutputFolders() {
         for (const match of fileMatches) {
             if (existsSync(match)) {
                 console.log(`  🗑️  ${match}`);
-                rmSync(match, { force: true });
+                rmSync(match, { recursive: true, force: true });
             }
         }
     }
