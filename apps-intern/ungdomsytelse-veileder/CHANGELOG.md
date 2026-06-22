@@ -1,4 +1,4 @@
-# @navikt/sif-demo-app
+# @navikt/ungdomsytelse-veileder
 
 ## 0.9.69
 
