@@ -13,11 +13,12 @@ interface Props {
 }
 
 export const Unntakshandlinger = ({ deltakelse, deltaker }: Props) => {
+    const [ekspandert, setEkspandert] = useState(false);
+
     if (deltakelse.erSlettet || !deltakelse.søktTidspunkt) {
         return null;
     }
 
-    const [ekspandert, setEkspandert] = useState(false);
     const handlinger = getDeltakelseHandlinger(deltakelse);
 
     return (
