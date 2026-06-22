@@ -13,6 +13,8 @@ const foldersToDelete = [
 
 const searchPaths = ['apps', 'apps-intern', 'packages'];
 
+const filePatterns = searchPaths.map((base) => `${base}/**/openapi-ts-error-*.log`).concat('openapi-ts-error-*.log');
+
 async function cleanOutputFolders() {
     const patterns = searchPaths.flatMap((base) => foldersToDelete.map((folder) => `${base}/**/${folder}`));
 
@@ -20,15 +22,26 @@ async function cleanOutputFolders() {
 
     if (matches.length === 0) {
         console.log('Ingen output-mapper funnet.');
-        return;
+    } else {
+        console.log(`Sletter ${matches.length} mapper:\n`);
     }
-
-    console.log(`Sletter ${matches.length} mapper:\n`);
 
     for (const match of matches) {
         if (existsSync(match)) {
             console.log(`  🗑️  ${match}`);
             rmSync(match, { recursive: true, force: true });
+        }
+    }
+
+    const fileMatches = await glob(filePatterns);
+
+    if (fileMatches.length > 0) {
+        console.log(`\nSletter ${fileMatches.length} loggfiler:\n`);
+        for (const match of fileMatches) {
+            if (existsSync(match)) {
+                console.log(`  🗑️  ${match}`);
+                rmSync(match, { force: true });
+            }
         }
     }
 
