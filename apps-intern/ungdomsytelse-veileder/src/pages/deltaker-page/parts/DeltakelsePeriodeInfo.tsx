@@ -10,6 +10,7 @@ import TildeltPeriodePanel from '../paneler/TildeltPeriodePanel';
 import EndrePeriodeModal from '../../../components/endre-periode-modal/EndrePeriodeModal';
 import InfoBox from '../../../atoms/InfoBox';
 import { Features } from '../../../types/Features';
+import { DevDeltakelseHandlinger } from '../../../components/dev-deltakelse-handlinger/DevDeltakelseHandlinger';
 
 interface Props {
     deltaker: Deltaker;
@@ -39,6 +40,7 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
                 </Heading>
 
                 <InfoBox>
+                    <DevDeltakelseHandlinger deltakelse={deltakelse} />
                     <dl className="deltakelseInfoDL">
                         {Features.forlengePeriode && (
                             <>

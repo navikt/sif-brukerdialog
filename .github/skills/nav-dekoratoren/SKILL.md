@@ -2,9 +2,10 @@
 name: nav-dekoratoren
 description: Integrer og konfigurer Nav Dekoratøren – felles header og footer for nav.no-applikasjoner. Bruk når et team skal ta i bruk Dekoratøren, oppdatere konfigurasjon, legge til breadcrumbs/språkvelger/analytics, håndtere samtykke (ekomloven), CSP eller feilsøke integrasjon mot dekoratøren.
 license: MIT
+compatibility: Web applications on nav.no (Next.js, Remix, Vite, Express/Node)
 metadata:
-  domain: frontend
-  tags: nav dekoratoren header footer integration ssr analytics consent
+    domain: frontend
+    tags: nav dekoratoren header footer integration ssr analytics consent
 ---
 
 # Nav Dekoratøren – integrasjon
@@ -61,7 +62,7 @@ npm login --registry=https://npm.pkg.github.com --auth-type=legacy
 ```yaml
 - uses: actions/setup-node@v4
   with:
-      registry-url: "https://npm.pkg.github.com"
+      registry-url: 'https://npm.pkg.github.com'
 
 - run: npm ci
   env:
@@ -104,18 +105,14 @@ hente dekoratøren direkte.
 
 ```tsx
 // app/layout.tsx
-import { fetchDecoratorReact } from "@navikt/nav-dekoratoren-moduler/ssr";
-import type { ReactNode } from "react";
-import Script from "next/script";
+import { fetchDecoratorReact } from '@navikt/nav-dekoratoren-moduler/ssr';
+import type { ReactNode } from 'react';
+import Script from 'next/script';
 
-export default async function RootLayout({
-    children,
-}: {
-    children: ReactNode;
-}) {
+export default async function RootLayout({ children }: { children: ReactNode }) {
     const Decorator = await fetchDecoratorReact({
-        env: "prod",
-        params: { context: "privatperson", language: "nb" },
+        env: 'prod',
+        params: { context: 'privatperson', language: 'nb' },
     });
 
     return (
@@ -142,31 +139,19 @@ HTML-shellen.
 
 ```tsx
 // pages/_document.tsx
-import {
-    fetchDecoratorReact,
-    type DecoratorComponentsReact,
-} from "@navikt/nav-dekoratoren-moduler/ssr";
-import Document, {
-    Head,
-    Html,
-    Main,
-    NextScript,
-    type DocumentContext,
-    type DocumentInitialProps,
-} from "next/document";
+import { fetchDecoratorReact, type DecoratorComponentsReact } from '@navikt/nav-dekoratoren-moduler/ssr';
+import Document, { Head, Html, Main, NextScript, type DocumentContext, type DocumentInitialProps } from 'next/document';
 
 type MyDocumentProps = DocumentInitialProps & {
     Decorator: DecoratorComponentsReact;
 };
 
 class MyDocument extends Document<MyDocumentProps> {
-    static async getInitialProps(
-        ctx: DocumentContext,
-    ): Promise<MyDocumentProps> {
+    static async getInitialProps(ctx: DocumentContext): Promise<MyDocumentProps> {
         const initialProps = await Document.getInitialProps(ctx);
         const Decorator = await fetchDecoratorReact({
-            env: "prod",
-            params: { context: "privatperson", language: "nb" },
+            env: 'prod',
+            params: { context: 'privatperson', language: 'nb' },
         });
 
         return { ...initialProps, Decorator };
@@ -197,25 +182,20 @@ export default MyDocument;
 ### 3.3 Express/Node (HTML-fragmenter)
 
 ```ts
-import { fetchDecoratorHtml } from "@navikt/nav-dekoratoren-moduler/ssr";
+import { fetchDecoratorHtml } from '@navikt/nav-dekoratoren-moduler/ssr';
 
-const {
-    DECORATOR_HEAD_ASSETS,
-    DECORATOR_HEADER,
-    DECORATOR_FOOTER,
-    DECORATOR_SCRIPTS,
-} = await fetchDecoratorHtml({
-    env: "dev",
-    params: { context: "privatperson" },
+const { DECORATOR_HEAD_ASSETS, DECORATOR_HEADER, DECORATOR_FOOTER, DECORATOR_SCRIPTS } = await fetchDecoratorHtml({
+    env: 'dev',
+    params: { context: 'privatperson' },
 });
 ```
 
 ### 3.4 Cache-invalidering
 
 ```ts
-import { addDecoratorUpdateListener } from "@navikt/nav-dekoratoren-moduler/ssr";
+import { addDecoratorUpdateListener } from '@navikt/nav-dekoratoren-moduler/ssr';
 
-addDecoratorUpdateListener({ env: "prod" }, (versionId) => {
+addDecoratorUpdateListener({ env: 'prod' }, (versionId) => {
     console.log(`Ny dekoratørversjon: ${versionId} – tømmer cache`);
     myHtmlCache.clear();
 });
@@ -253,16 +233,13 @@ Bruk `handleInApp: true` når appen selv skal håndtere navigasjonen. Bytt `navi
 rammeverkets router, for eksempel `router.push` i Next.js eller `navigate` fra React Router.
 
 ```ts
-import {
-    setBreadcrumbs,
-    onBreadcrumbClick,
-} from "@navikt/nav-dekoratoren-moduler";
+import { setBreadcrumbs, onBreadcrumbClick } from '@navikt/nav-dekoratoren-moduler';
 
 setBreadcrumbs([
-    { title: "Ditt Nav", url: "https://www.nav.no/person/dittnav" },
+    { title: 'Ditt Nav', url: 'https://www.nav.no/person/dittnav' },
     {
-        title: "Kontakt oss",
-        url: "https://www.nav.no/person/kontakt-oss",
+        title: 'Kontakt oss',
+        url: 'https://www.nav.no/person/kontakt-oss',
         handleInApp: true,
     },
 ]);
@@ -277,14 +254,11 @@ onBreadcrumbClick((breadcrumb) => {
 Samme mønster gjelder språkvalg med `handleInApp: true`.
 
 ```ts
-import {
-    setAvailableLanguages,
-    onLanguageSelect,
-} from "@navikt/nav-dekoratoren-moduler";
+import { setAvailableLanguages, onLanguageSelect } from '@navikt/nav-dekoratoren-moduler';
 
 setAvailableLanguages([
-    { locale: "nb", url: "https://www.nav.no/min-side/nb" },
-    { locale: "en", url: "https://www.nav.no/min-side/en", handleInApp: true },
+    { locale: 'nb', url: 'https://www.nav.no/min-side/nb' },
+    { locale: 'en', url: 'https://www.nav.no/min-side/en', handleInApp: true },
 ]);
 
 onLanguageSelect((language) => {
@@ -295,15 +269,15 @@ onLanguageSelect((language) => {
 ### 5.3 Analytics (Umami)
 
 ```ts
-import { getAnalyticsInstance, Events } from "@navikt/nav-dekoratoren-moduler";
+import { getAnalyticsInstance, Events } from '@navikt/nav-dekoratoren-moduler';
 
-const logger = getAnalyticsInstance("min-app-origin");
+const logger = getAnalyticsInstance('min-app-origin');
 
 // Taksonomi-event (strengt typet fra @navikt/analytics-types)
-logger(Events.SKJEMA_STARTET, { skjemaId: "1234", skjemanavn: "aap" });
+logger(Events.SKJEMA_STARTET, { skjemaId: '1234', skjemanavn: 'aap' });
 
 // Custom event
-logger.custom("feedback åpnet", { komponent: "feedback-widget", steg: 2 });
+logger.custom('feedback åpnet', { komponent: 'feedback-widget', steg: 2 });
 ```
 
 > ⚠️ `getAmplitudeInstance()` er fjernet i v4+. Bruk `getAnalyticsInstance()`.
@@ -311,7 +285,7 @@ logger.custom("feedback åpnet", { komponent: "feedback-widget", steg: 2 });
 ### 5.4 Chatbot
 
 ```ts
-import { openChatbot } from "@navikt/nav-dekoratoren-moduler";
+import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 
 openChatbot(); // åpner Frida og setter chatbotVisible=true
 ```
@@ -329,18 +303,18 @@ import {
     setNavCookie,
     getNavCookie,
     navLocalStorage,
-} from "@navikt/nav-dekoratoren-moduler";
+} from '@navikt/nav-dekoratoren-moduler';
 
 // Vent til dekoratøren har lastet samtykke
 await awaitDecoratorData();
 
 // Sjekk om en nøkkel er tillatt
-if (isStorageKeyAllowed("min-nøkkel")) {
-    setNavCookie("min-nøkkel", "verdi");
+if (isStorageKeyAllowed('min-nøkkel')) {
+    setNavCookie('min-nøkkel', 'verdi');
 }
 
 // Bruk navLocalStorage (respekterer samtykke automatisk)
-navLocalStorage.setItem("min-nøkkel", "verdi");
+navLocalStorage.setItem('min-nøkkel', 'verdi');
 ```
 
 ---
@@ -348,28 +322,25 @@ navLocalStorage.setItem("min-nøkkel", "verdi");
 ## Steg 7: CSP-header
 
 ```ts
-import { buildCspHeader } from "@navikt/nav-dekoratoren-moduler/ssr";
+import { buildCspHeader } from '@navikt/nav-dekoratoren-moduler/ssr';
 
-const csp = await buildCspHeader(
-    { "default-src": ["min-cdn.nav.no"], "style-src": ["css.nav.no"] },
-    { env: "prod" },
-);
+const csp = await buildCspHeader({ 'default-src': ['min-cdn.nav.no'], 'style-src': ['css.nav.no'] }, { env: 'prod' });
 
-res.setHeader("Content-Security-Policy", csp);
+res.setHeader('Content-Security-Policy', csp);
 ```
 
 ---
 
 ## Vanlige feil og løsninger
 
-| Problem                                  | Årsak                     | Løsning                                                    |
-| ---------------------------------------- | ------------------------- | ---------------------------------------------------------- |
-| `403` ved npm install                    | Mangler PAT eller SSO     | Generer PAT med `read:packages`, aktiver navikt SSO        |
-| Dekoratøren vises ikke                   | Mangler access policy     | Legg til `nav-dekoratoren` i `accessPolicy.outbound.rules` |
-| Layout shift                             | CSR brukes                | Bytt til SSR via `fetchDecoratorReact`                     |
-| Cookie ikke satt                         | Samtykke ikke innhentet   | Bruk `awaitDecoratorData()` + `setNavCookie`               |
-| `getAmplitudeInstance is not a function` | Moduler v4+ (API endret)   | Oppgrader til v4+ og bytt til `getAnalyticsInstance`       |
-| `availableLanguages`-URL feil            | URL utenfor nav.no        | Kun `nav.no` og underdomener er tillatt                    |
+| Problem                                  | Årsak                    | Løsning                                                    |
+| ---------------------------------------- | ------------------------ | ---------------------------------------------------------- |
+| `403` ved npm install                    | Mangler PAT eller SSO    | Generer PAT med `read:packages`, aktiver navikt SSO        |
+| Dekoratøren vises ikke                   | Mangler access policy    | Legg til `nav-dekoratoren` i `accessPolicy.outbound.rules` |
+| Layout shift                             | CSR brukes               | Bytt til SSR via `fetchDecoratorReact`                     |
+| Cookie ikke satt                         | Samtykke ikke innhentet  | Bruk `awaitDecoratorData()` + `setNavCookie`               |
+| `getAmplitudeInstance is not a function` | Moduler v4+ (API endret) | Oppgrader til v4+ og bytt til `getAnalyticsInstance`       |
+| `availableLanguages`-URL feil            | URL utenfor nav.no       | Kun `nav.no` og underdomener er tillatt                    |
 
 ---
 

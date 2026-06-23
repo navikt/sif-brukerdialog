@@ -1,5 +1,5 @@
 import { getRequiredEnv } from '@navikt/sif-common-env';
-import { DateRange, dateRangeUtils, getDateToday } from '@navikt/sif-common-utils';
+import { DateRange, dateRangeUtils, getDateToday, ISODateToDate } from '@navikt/sif-common-utils';
 import { DeltakelseHistorikkDto, Endringstype } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import dayjs from 'dayjs';
 import { DeltakelseHistorikkInnslag } from '../types';
@@ -10,7 +10,7 @@ import { Features } from '../types/Features';
 export const TILLATT_ENDRINGSPERIODE_MÅNEDER = 10;
 
 /** Startdato kan ikke endres når det er færre måneder enn dette til perioden er ferdig */
-export const MÅNEDER_PERIODE_KAN_FORLENGES = 2;
+export const MÅNEDER_FØR_PERIODESLUTT_ÅPEN_FOR_FORLENGELSE = 2;
 
 const getEndringsperiode = (today: Date): DateRange => ({
     from: dayjs(today).subtract(TILLATT_ENDRINGSPERIODE_MÅNEDER, 'months').toDate(),
@@ -23,8 +23,15 @@ const periodeErUtløpt = (deltakelse: Deltakelse, today: Date): boolean => {
 
 const erInnenforSisteMånederFørPeriodeslutt = (deltakelse: Deltakelse, today: Date): boolean => {
     return dayjs(today).isSameOrAfter(
-        dayjs(deltakelse.periodeMaksDato).subtract(MÅNEDER_PERIODE_KAN_FORLENGES, 'months'),
+        dayjs(deltakelse.periodeMaksDato).subtract(MÅNEDER_FØR_PERIODESLUTT_ÅPEN_FOR_FORLENGELSE, 'months'),
         'day',
+    );
+};
+
+const erInnenforSiste6UkerEtterPeriodeslutt = (deltakelse: Deltakelse, today: Date): boolean => {
+    return (
+        dayjs(today).isSameOrAfter(dayjs(deltakelse.periodeMaksDato), 'day') &&
+        dayjs(today).isBefore(dayjs(deltakelse.periodeMaksDato).add(6, 'weeks'), 'day')
     );
 };
 
@@ -70,18 +77,13 @@ export const deltakelseKanSlettes = (deltakelse: Deltakelse): boolean => {
 };
 
 export const periodeKanForlenges = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
-    return (
-        // Deltaker har søkt
-        deltakelse.søktTidspunkt !== undefined &&
-        // Deltaker har ikke allerede forlenget periode
-        deltakelse.harForlengetPeriode === false &&
-        // Deltaker har ikke periode som er utløpt
-        !periodeErUtløpt(deltakelse, today) &&
-        // Deltaker har ikke sluttdato
-        deltakelse.tilOgMed === undefined &&
-        // Deltaker er innenfor siste måneder før periodeslutt
-        (erInnenforSisteMånederFørPeriodeslutt(deltakelse, today) || Features.ignorerBegrensningForlengePeriode)
-    );
+    if (!deltakelse.søktTidspunkt) return false;
+    if (deltakelse.harForlengetPeriode) return false;
+    if (deltakelse.tilOgMed !== undefined) return false;
+    if (periodeErUtløpt(deltakelse, today)) {
+        return erInnenforSiste6UkerEtterPeriodeslutt(deltakelse, today);
+    }
+    return erInnenforSisteMånederFørPeriodeslutt(deltakelse, today);
 };
 
 export interface DeltakelseHandlinger {
@@ -111,7 +113,8 @@ export const getDeltakelseHandlinger = (deltakelse: Deltakelse, today: Date = ge
     };
 };
 
-export const TIDLIGSTE_STARTDATO = dayjs('2025-08-01');
+const DEV_TIDLIGSTE_STARTDATO = ISODateToDate('2025-01-01');
+const PROD_TIDLIGSTE_STARTDATO = ISODateToDate('2025-08-01');
 
 export const getGyldigStartdatoRange = (
     deltaker: { førsteMuligeInnmeldingsdato: Date; sisteMuligeInnmeldingsdato: Date },
@@ -119,9 +122,16 @@ export const getGyldigStartdatoRange = (
 ): DateRange | 'fomFørTom' => {
     const endringsperiode = getEndringsperiode(today);
 
-    const from = dayjs
-        .max([dayjs(deltaker.førsteMuligeInnmeldingsdato), dayjs(endringsperiode.from), TIDLIGSTE_STARTDATO])
-        .toDate();
+    const from = Features.tillatTidligInnmelding
+        ? dayjs.max([dayjs(deltaker.førsteMuligeInnmeldingsdato), dayjs(DEV_TIDLIGSTE_STARTDATO)]).toDate()
+        : dayjs
+              .max([
+                  dayjs(deltaker.førsteMuligeInnmeldingsdato),
+                  dayjs(endringsperiode.from),
+                  dayjs(PROD_TIDLIGSTE_STARTDATO),
+              ])
+              .toDate();
+
     const to = dayjs.min([dayjs(deltaker.sisteMuligeInnmeldingsdato), dayjs(endringsperiode.to)]).toDate();
 
     if (dayjs(from).isAfter(to)) {

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { registrertDeltakerMock } from '../../../mock/data/registrertDeltakerMock';
+import { registrertDeltakerScenario } from '../../../mock/scenarioer/registrertDeltaker';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withModalWrapper } from '../../../storybook/decorators/withModalWrapper';
 import { withQueryClientProvider } from '../../../storybook/decorators/withQueryClientProvider';
@@ -19,8 +19,8 @@ export default meta;
 
 type Story = StoryObj<typeof EndreStartdatoForm>;
 
-const deltakelse = deltakelseSchema.parse(registrertDeltakerMock.deltakelse);
-const deltaker = registrertDeltakerSchema.parse(registrertDeltakerMock.deltakerPersonalia);
+const deltakelse = deltakelseSchema.parse(registrertDeltakerScenario.deltakelse);
+const deltaker = registrertDeltakerSchema.parse(registrertDeltakerScenario.deltakerPersonalia);
 
 export const EndreStartdato: Story = {
     name: 'Endre startdato',

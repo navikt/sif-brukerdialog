@@ -2,47 +2,74 @@ import '@navikt/ds-css';
 import './app.css';
 
 import { AktivitetspengerApp } from '@navikt/sif-app-register';
-import { EnvKey } from '@navikt/sif-common-env';
-import { FaroProvider } from '@navikt/sif-common-faro';
-import { DevBranchInfo } from '@sif/soknad-ui';
-import { IntlProvider } from 'react-intl';
+import { SøknadAppProvider } from '@sif/soknad-app';
+import { ErrorPage, LoadingPage } from '@sif/soknad-ui';
 import { BrowserRouter } from 'react-router-dom';
 
 import { initApiClients } from './app/api/initApiClients';
-import { applicationIntlMessages } from './app/i18n';
-import { getAppEnv } from './app/setup/env/appEnv';
-import { AppErrorBoundary } from './app/setup/wrappers/AppErrorBoundary';
-import { SifQueryClientProvider } from './app/setup/wrappers/SifQueryClientProvider';
+import { AppContextProvider } from './app/context/AppContext';
+import { applicationIntlMessages, useAppIntl } from './app/i18n';
+import { getAppEnv } from './app/setup/appEnv';
+import { Søknad } from './app/Soknad';
 import { ScenarioHeader } from './demo/ScenarioHeader';
-import { InitialDataLoader } from './InitialDataLoader';
+import { useInitialData } from './useInitialData';
+
+const SøknadDataWrapper = () => {
+    const result = useInitialData();
+    const { text } = useAppIntl();
+    switch (result.status) {
+        case 'loading':
+            return <LoadingPage applicationTitle={text('application.title')} />;
+        case 'error':
+            if (import.meta.env.MODE === 'development') {
+                // eslint-disable-next-line no-console
+                console.error(
+                    result.errors.map((e) => (e as Error).message).join(', ') || 'Ukjent feil ved innlasting',
+                );
+            }
+            return <ErrorPage applicationTitle={text('application.title')} />;
+        case 'success':
+            return (
+                <AppContextProvider
+                    value={{
+                        søker: result.data.søker,
+                        registrerteBarn: result.data.barn,
+                        kontoInfo: result.data.kontonummer,
+                    }}>
+                    <Søknad />
+                </AppContextProvider>
+            );
+    }
+};
 
 export const App = () => {
-    const appEnv = getAppEnv();
-    const basePath = appEnv[EnvKey.PUBLIC_PATH];
+    const env = getAppEnv();
 
-    initApiClients();
+    initApiClients(env);
 
     if (globalThis.location.pathname === '/') {
-        globalThis.location.pathname = basePath;
+        globalThis.location.pathname = env.PUBLIC_PATH;
         return null;
     }
 
     return (
-        <FaroProvider
+        <SøknadAppProvider
             applicationKey={AktivitetspengerApp.key}
-            appVersion={appEnv.APP_VERSION}
-            isActive={appEnv.SIF_PUBLIC_USE_FARO === 'true'}>
-            <AppErrorBoundary>
-                <SifQueryClientProvider>
-                    <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
-                        <BrowserRouter basename={basePath}>
-                            {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
-                            <InitialDataLoader />
-                        </BrowserRouter>
-                    </IntlProvider>
-                </SifQueryClientProvider>
-            </AppErrorBoundary>
-            <DevBranchInfo />
-        </FaroProvider>
+            appVersion={env.APP_VERSION}
+            faroConfig={{
+                isActive: env.SIF_PUBLIC_USE_FARO === 'true',
+                telemetryCollectorURL: env.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL,
+            }}
+            analyticsConfig={{ isActive: env.SIF_PUBLIC_USE_ANALYTICS === 'true' }}
+            sentryConfig={{
+                dsn: 'https://20da9cbb958c4f5695d79c260eac6728@sentry.gc.nav.no/30',
+                application: 'aktivitetspenger-soknad',
+            }}
+            intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
+            <BrowserRouter basename={env.PUBLIC_PATH}>
+                {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
+                <SøknadDataWrapper />
+            </BrowserRouter>
+        </SøknadAppProvider>
     );
 };

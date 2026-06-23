@@ -37,7 +37,7 @@ export type Field =
 
 export interface Fields {
     allowExtra?: Partial<Record<Slot, boolean>>;
-    args?: readonly Field[];
+    args?: ReadonlyArray<Field>;
 }
 
 export type FieldsConfig = ReadonlyArray<Field | Fields>;
@@ -104,7 +104,7 @@ function stripEmptySlots(params: ParamsSlotMap): void {
     }
 }
 
-export function buildClientParams(args: readonly unknown[], fields: FieldsConfig): Params {
+export function buildClientParams(args: ReadonlyArray<unknown>, fields: FieldsConfig): Params {
     const params: ParamsSlotMap = {
         body: Object.create(null),
         headers: Object.create(null),

@@ -37,7 +37,7 @@
 
         "SIF_PUBLIC_FEATURE_FORLENGE_PERIODE": "on",
         "SIF_PUBLIC_FEATURE_SLETT_AKTIV_DELTAKELSE": "on",
-        "SIF_PUBLIC_IGNORER_BEGRENSNING_FORLENGE_PERIODE": "on",
+        "SIF_PUBLIC_TILLAT_TIDLIG_INNMELDING": "on",
 
         "UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH": "/api/ung-deltakelse-opplyser",
         "UNG_DELTAKELSE_OPPLYSER_API_SCOPE": "api://dev-gcp.k9saksbehandling.ung-deltakelse-opplyser/.default",
@@ -45,6 +45,7 @@
 
         "SIF_PUBLIC_UMAMI_NETTSIDE_ID": "a9f8b8e4-a401-47ad-93c4-df596c00bed6",
         "SIF_PUBLIC_USE_FARO": true,
+        "SIF_PUBLIC_VIS_DEV_INFO": true,
         "SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL": "https://telemetry.ekstern.dev.nav.no/collect"
     }
 }

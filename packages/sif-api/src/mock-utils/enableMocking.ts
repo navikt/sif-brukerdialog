@@ -11,8 +11,10 @@ interface EnableMockingOptions {
 
 export async function enableMocking({ loadWorker, mode }: EnableMockingOptions) {
     const ENV = getMaybeEnv('ENV');
+    const isDevelopment = ENV === 'development';
+    const isMockMode = mode === 'msw' || mode === 'playwright';
 
-    if (ENV !== 'development' || mode !== 'msw') {
+    if (!isDevelopment || !isMockMode) {
         return;
     }
 

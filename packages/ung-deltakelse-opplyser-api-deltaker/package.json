@@ -1,6 +1,6 @@
 {
     "name": "@navikt/ung-deltakelse-opplyser-api-deltaker",
-    "version": "0.3.19",
+    "version": "0.3.20",
     "private": true,
     "repository": {
         "type": "git",
@@ -21,14 +21,15 @@
         "lint:tsc": "tsc --noEmit"
     },
     "devDependencies": {
-        "@hey-api/openapi-ts": "0.98.1",
+        "@hey-api/openapi-ts": "0.98.2",
         "@sif/eslint-config": "workspace:*",
-        "axios": "1.17.0",
+        "axios": "1.18.0",
         "config": "workspace:*",
+        "eslint": "10.5.0",
         "postcss": "8.5.15",
-        "prettier": "3.8.3",
+        "prettier": "3.8.4",
         "typescript": "6.0.3",
-        "vitest": "4.1.8",
+        "vitest": "4.1.9",
         "zod": "4.4.3"
     },
     "peerDependencies": {

@@ -1,16 +1,16 @@
 import { FormSummary } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import { useStepNavigation } from '@sif/soknad-app';
 
 import { AppText } from '../../../i18n';
-import { SøknadStepId } from '../../../setup/config/SoknadStepId';
-import { useSøknadsflyt } from '../../../setup/hooks';
+import { SøknadStepId } from '../../../types/SoknadStepId';
 
 interface Props {
     startdato: Date;
 }
 
 export const StartdatoOppsummering = ({ startdato }: Props) => {
-    const { navigateToStep } = useSøknadsflyt();
+    const { navigateToStep } = useStepNavigation();
     return (
         <FormSummary>
             <FormSummary.Header>
