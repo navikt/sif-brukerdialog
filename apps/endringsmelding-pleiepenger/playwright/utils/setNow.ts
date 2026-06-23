@@ -10,4 +10,6 @@ export const setNow = async (page: Page, date: Date = testDate) => {
     const browserTz = await page.evaluate(() => Intl.DateTimeFormat().resolvedOptions().timeZone);
     // eslint-disable-next-line no-console
     console.log(`[setNow] Nettlesertidssone: ${browserTz}`);
+    // eslint-disable-next-line no-console
+    console.log(`[setNow] Dato satt til: ${date.toISOString()}`);
 };

@@ -21,6 +21,7 @@ test('Sende endring om tid omsorgstilbud', async ({ page }) => {
     await page.getByTestId('typedFormikForm-submitButton').click();
     await page.getByRole('button', { name: 'Legg til endring for en periode' }).click();
     await page.getByRole('button', { name: 'Åpne datovelger' }).first().click();
+    await expect(page.getByLabel('Velg dato').getByText('januar 2023')).toBeVisible();
     await page.getByRole('button', { name: 'Gå til neste måned' }).click();
     await page.getByRole('button', { name: 'mandag 6' }).click();
     await page.getByRole('button', { name: 'Åpne datovelger' }).nth(1).click();
