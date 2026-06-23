@@ -35,6 +35,9 @@ import type {
     MeldUtDeltakerData,
     MeldUtDeltakerErrors,
     MeldUtDeltakerResponses,
+    SlettSluttdatoData,
+    SlettSluttdatoErrors,
+    SlettSluttdatoResponses,
 } from './types.gen';
 import {
     zDeltakelseHistorikkPath,
@@ -60,6 +63,8 @@ import {
     zMeldUtDeltakerBody,
     zMeldUtDeltakerPath,
     zMeldUtDeltakerResponse,
+    zSlettSluttdatoPath,
+    zSlettSluttdatoResponse,
 } from './zod.gen';
 
 export type Options<
@@ -373,6 +378,44 @@ export class Veileder {
                 },
             ],
             url: '/veileder/register/deltakelse/{deltakelseId}/historikk',
+            ...options,
+        });
+    }
+
+    /**
+     * Sletter sluttdato på en deltakelse i ungdomsprogrammet
+     */
+    public static slettSluttdato<ThrowOnError extends boolean = true>(
+        options: Options<SlettSluttdatoData, ThrowOnError>,
+    ): RequestResult<SlettSluttdatoResponses, SlettSluttdatoErrors, ThrowOnError> {
+        return (options.client ?? client).delete<SlettSluttdatoResponses, SlettSluttdatoErrors, ThrowOnError>({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: zSlettSluttdatoPath,
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
+            responseValidator: async (data) => await zSlettSluttdatoResponse.parseAsync(data),
+            security: [
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'entraObo',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            url: '/veileder/register/deltakelse/{deltakelseId}/slett/sluttdato',
             ...options,
         });
     }
