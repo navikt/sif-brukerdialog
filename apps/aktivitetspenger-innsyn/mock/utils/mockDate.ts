@@ -4,7 +4,7 @@ declare const __USE_FIXED_MOCKED_DATE__: boolean | undefined;
 /**
  * Delt mock-dato som brukes overalt (både server og client)
  */
-export const MOCK_DATE = '2025-08-01';
+export const MOCK_DATE = '2025-08-01T12:00:00';
 
 /**
  * Henter mock-dato basert på kontekst:

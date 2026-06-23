@@ -14,6 +14,20 @@ export default defineConfig({
             name: 'chromium',
             use: { ...devices['Desktop Chrome'] },
         },
+        {
+            name: 'chromium-san-francisco',
+            use: {
+                ...devices['Desktop Chrome'],
+                timezoneId: 'America/Los_Angeles',
+            },
+        },
+        {
+            name: 'chromium-sydney',
+            use: {
+                ...devices['Desktop Chrome'],
+                timezoneId: 'Australia/Sydney',
+            },
+        },
     ],
     webServer: {
         command: 'pnpm pw:dev',
