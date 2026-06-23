@@ -11,11 +11,14 @@ import { dateToISODate } from '../../utils/dateUtils';
 import { getMockToday } from '../../utils/mockDate';
 
 const getDatoer = () => {
-    const datoer = {
-        deltakelseFraOgMed: dayjs(getMockToday()).subtract(46, 'days').startOf('week'),
-        oppgaveMåned: dayjs(getMockToday()).startOf('month'),
+    const mockToday = getMockToday();
+    // Bruk UTC-delene fra mockToday for å unngå at startOf('month') gir feil måned
+    // i tidssoner vest for UTC (f.eks. America/Los_Angeles).
+    const startOfUtcMonth = new Date(mockToday.getUTCFullYear(), mockToday.getUTCMonth(), 1);
+    return {
+        deltakelseFraOgMed: dayjs(startOfUtcMonth).subtract(46, 'days').startOf('week'),
+        oppgaveMåned: dayjs(startOfUtcMonth),
     };
-    return datoer;
 };
 
 const getSøkYtelseOppgaveDto = (): BrukerdialogOppgaveDto => {

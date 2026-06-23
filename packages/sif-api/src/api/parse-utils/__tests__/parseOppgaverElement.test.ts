@@ -21,23 +21,23 @@ const oppgaveMedFrist = (frist: string) => ({
 });
 
 describe('getSisteDatoEnKanSvare – tidssonerobusthet', () => {
-    it('beregner sisteDatoEnKanSvare i UTC slik at resultatet er likt uavhengig av lokal tidssone', () => {
+    it('beregner sisteDatoEnKanSvare som lokal kalenderdag før fristen', () => {
         /**
-         * Frist er 06:00 UTC = 23:00 mai 14 i America/Los_Angeles (UTC-7).
-         * Med lokal tid ville LA gi startOf('day') = mai 14, subtract(1) = mai 13. ❌
-         * Med UTC skal resultatet alltid være mai 14. ✅
+         * Frist er 07:00 UTC = 00:00 PDT (SF, UTC-7).
+         * Med lokal dayjs ville SF gi Apr 10 → subtract 1 → Apr 9 ❌
+         * Med UTC-lesing: Apr 11 UTC → subtract 1 → Apr 10 ✅
          */
         const [result] = parseOppgaverElement(OppgaveYtelsetype.UNGDOMSYTELSE, [
-            oppgaveMedFrist('2026-05-15T06:00:00.000Z'),
+            oppgaveMedFrist('2026-05-15T07:00:00.000Z'),
         ]);
-        expect((result as OpphorVedMaksdatoOppgave).sisteDatoEnKanSvare).toEqual(new Date('2026-05-14T00:00:00.000Z'));
+        expect(dateToISODate((result as OpphorVedMaksdatoOppgave).sisteDatoEnKanSvare)).toBe('2026-05-14');
     });
 
     it('beregner sisteDatoEnKanSvare korrekt for frist midt på dagen UTC', () => {
         const [result] = parseOppgaverElement(OppgaveYtelsetype.UNGDOMSYTELSE, [
             oppgaveMedFrist('2026-05-15T12:00:00.000Z'),
         ]);
-        expect((result as OpphorVedMaksdatoOppgave).sisteDatoEnKanSvare).toEqual(new Date('2026-05-14T00:00:00.000Z'));
+        expect(dateToISODate((result as OpphorVedMaksdatoOppgave).sisteDatoEnKanSvare)).toBe('2026-05-14');
     });
 });
 

@@ -39,8 +39,12 @@ import {
 
 dayjs.extend(utc);
 
-const getSisteDatoEnKanSvare = (svarfrist: Date): Date =>
-    dayjs.utc(svarfrist).startOf('day').subtract(1, 'day').toDate();
+const getSisteDatoEnKanSvare = (svarfrist: Date): Date => {
+    // Les dato i UTC, trekk fra én dag, og konverter til lokal midnatt via ISODateToDate.
+    // Konsekvent UTC-lesing sikrer at resultatet er riktig uavhengig av klienttidssone.
+    const isoDate = dayjs.utc(svarfrist).subtract(1, 'day').format('YYYY-MM-DD');
+    return ISODateToDate(isoDate);
+};
 
 const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
     switch (status) {
