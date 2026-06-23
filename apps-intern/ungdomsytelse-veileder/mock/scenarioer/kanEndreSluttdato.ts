@@ -74,7 +74,7 @@ export const kanEndreSluttdatoScenario: MockScenario = {
     beskrivelse: 'Kan endre sluttdato (utmeldt, aktiv periode)',
     gruppe: 'handlinger',
     forventedeHandlinger: {
-        kanSlettes: false,
+        kanSletteDeltakelse: false,
         kanEndreStartdato: true,
         kanMeldesUt: false,
         kanEndreSluttdato: true,

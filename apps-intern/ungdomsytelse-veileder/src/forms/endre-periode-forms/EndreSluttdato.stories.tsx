@@ -6,24 +6,26 @@ import { withQueryClientProvider } from '../../../storybook/decorators/withQuery
 import { withVeilederContext } from '../../../storybook/decorators/withVeilederContext';
 import { deltakelseSchema } from '../../types/Deltakelse';
 import { registrertDeltakerSchema } from '../../types/Deltaker';
-import EndreStartdatoForm from './EndreStartdatoForm';
+import EndreSluttdatoForm from './EndreSluttdatoForm';
 import { nyligRegistrertScenario } from '../../../mock/scenarioer/nyligRegistrert';
+import dayjs from 'dayjs';
 
-const meta: Meta<typeof EndreStartdatoForm> = {
-    component: EndreStartdatoForm,
-    title: 'Skjema/Endre startdato',
+const meta: Meta<typeof EndreSluttdatoForm> = {
+    component: EndreSluttdatoForm,
+    title: 'Skjema/Endre sluttdato',
     parameters: {},
     decorators: [withIntl, withVeilederContext, withQueryClientProvider],
 };
 export default meta;
 
-type Story = StoryObj<typeof EndreStartdatoForm>;
+type Story = StoryObj<typeof EndreSluttdatoForm>;
 
 const deltakelse = deltakelseSchema.parse(nyligRegistrertScenario.deltakelse);
+deltakelse.tilOgMed = dayjs(deltakelse.fraOgMed).add(9, 'month').toDate();
 const deltaker = registrertDeltakerSchema.parse(nyligRegistrertScenario.deltakerPersonalia);
 
-export const EndreStartdato: Story = {
-    name: 'Endre startdato',
-    decorators: [(Story) => withModalWrapper(Story, { header: 'Endre startdato' })],
+export const EndreSluttdato: Story = {
+    name: 'Endre sluttdato',
+    decorators: [(Story) => withModalWrapper(Story, { header: 'Endre sluttdato' })],
     args: { deltakelse, deltaker },
 };

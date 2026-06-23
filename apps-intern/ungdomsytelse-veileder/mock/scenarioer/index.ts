@@ -1,7 +1,7 @@
 import { kanEndreSluttdatoScenario } from './kanEndreSluttdato';
 import { kanForlengePeriodeScenario } from './kanForlengePeriode';
 import { kanIkkeForlengePeriodeScenario } from './kanIkkeForlengePeriode';
-import { kanSlettesScenario } from './kanSlettes';
+import { kanSlettesScenario } from './kanSletteDeltakelse';
 import { nyDeltakerScenario } from './nyDeltaker';
 import { nyligRegistrertScenario } from './nyligRegistrert';
 import { registrertDeltakerScenario } from './registrertDeltaker';

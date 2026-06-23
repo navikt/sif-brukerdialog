@@ -21,6 +21,7 @@ interface Props {
     deltaker: Deltaker;
     deltakelse: Deltakelse;
     deltakelseChanged?: boolean;
+
     onDeltakelseChanged: (deltakelse: Deltakelse) => void;
     onClose: () => void;
 }

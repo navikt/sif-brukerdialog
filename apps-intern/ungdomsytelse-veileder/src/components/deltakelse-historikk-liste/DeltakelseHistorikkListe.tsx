@@ -25,6 +25,8 @@ const getEndringstypeTekst = (type: Endringstype): string => {
             return 'Endret startdato';
         case Endringstype.DELTAKELSE_FJERNET:
             return 'Deltakelse slettet';
+        case Endringstype.SLUTTDATO_SLETTET:
+            return 'Sluttdato slettet';
         case Endringstype.UKJENT:
             return 'Ukjent endringstype';
     }
@@ -70,7 +72,9 @@ const DeltakelseHistorikkListe = ({ historikkInnslag = [] }: Props) => {
                 <Table.Body>
                     {synligeHistorikkInnslag.map(({ tidspunkt, aktør, endring, endringstype }, index) => {
                         return (
-                            <Table.Row key={tidspunkt.getTime()} ref={index === focusIndex ? ref : undefined}>
+                            <Table.Row
+                                key={`${tidspunkt.getTime()}-${index}`}
+                                ref={index === focusIndex ? ref : undefined}>
                                 <Table.DataCell width="200" valign="top">
                                     {dateFormatter.compactWithTime(tidspunkt)}
                                 </Table.DataCell>

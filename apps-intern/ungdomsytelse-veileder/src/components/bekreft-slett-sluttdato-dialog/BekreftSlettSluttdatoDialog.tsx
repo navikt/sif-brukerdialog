@@ -7,7 +7,7 @@ interface Props {
     open: boolean;
 }
 
-const BekreftSlettAktivDeltakerDialog = ({ deltakerNavn, onBekreft, onAvbryt, open }: Props) => (
+const BekreftSlettSluttdatoDialog = ({ deltakerNavn, onBekreft, onAvbryt, open }: Props) => (
     <Dialog
         open={open}
         onOpenChange={(nextOpen) => {
@@ -15,15 +15,14 @@ const BekreftSlettAktivDeltakerDialog = ({ deltakerNavn, onBekreft, onAvbryt, op
                 onAvbryt();
             }
         }}>
-        <Dialog.Popup id="bekreft-slett-aktiv-deltaker-dialog" role="alertdialog" closeOnOutsideClick={false}>
+        <Dialog.Popup id="bekreft-slett-sluttdato-dialog" role="alertdialog" closeOnOutsideClick={false}>
             <Dialog.Header withClosebutton={false}>
-                <Dialog.Title>Bekreft sletting</Dialog.Title>
+                <Dialog.Title>Bekreft sletting av sluttdato</Dialog.Title>
             </Dialog.Header>
             <Dialog.Body>
                 <VStack gap="space-24">
                     <BodyLong size="large">
-                        Er du helt sikker på at du ønsker å registrere {deltakerNavn} som slettet deltaker i
-                        ungdomsprogrammet? Dette kan ikke angres.
+                        Er du helt sikker på at du ønsker å slette sluttdatoen for {deltakerNavn}?
                     </BodyLong>
                 </VStack>
             </Dialog.Body>
@@ -32,11 +31,11 @@ const BekreftSlettAktivDeltakerDialog = ({ deltakerNavn, onBekreft, onAvbryt, op
                     Nei, avbryt
                 </Button>
                 <Button variant="danger" onClick={onBekreft}>
-                    Ja, registrer sletting
+                    Ja, slett
                 </Button>
             </Dialog.Footer>
         </Dialog.Popup>
     </Dialog>
 );
 
-export default BekreftSlettAktivDeltakerDialog;
+export default BekreftSlettSluttdatoDialog;

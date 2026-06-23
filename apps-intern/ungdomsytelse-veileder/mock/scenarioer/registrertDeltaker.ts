@@ -1,4 +1,10 @@
-import { DeltakelseDto, DeltakelseHistorikkDto, DeltakerPersonalia, Endringstype, Revisjonstype } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import {
+    DeltakelseDto,
+    DeltakelseHistorikkDto,
+    DeltakerPersonalia,
+    Endringstype,
+    Revisjonstype,
+} from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import { beregnPeriodeMaksDato, relativeMockISODate, relativeMockTimestamp } from '../mockDateUtils';
 import { MockScenario } from './types';
 
@@ -96,7 +102,7 @@ export const registrertDeltakerScenario: MockScenario = {
         kanMeldesUt: false,
         kanEndreSluttdato: false,
         kanForlengePeriode: false,
-        kanSlettes: false,
+        kanSletteDeltakelse: false,
     },
     deltakerPersonalia,
     deltakelse,

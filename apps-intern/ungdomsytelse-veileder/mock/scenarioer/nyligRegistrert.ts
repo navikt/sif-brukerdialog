@@ -1,4 +1,10 @@
-import { DeltakelseDto, DeltakelseHistorikkDto, DeltakerPersonalia, Endringstype, Revisjonstype } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import {
+    DeltakelseDto,
+    DeltakelseHistorikkDto,
+    DeltakerPersonalia,
+    Endringstype,
+    Revisjonstype,
+} from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import dayjs from 'dayjs';
 import { demoMockDate } from '../mockConstants';
 import { beregnPeriodeMaksDato, relativeMockTimestamp } from '../mockDateUtils';
@@ -16,7 +22,11 @@ const getFirstMondayOfPreviousMonth = (): Date => {
     const firstOfPrevMonth = new Date(demoMockDate.getFullYear(), demoMockDate.getMonth() - 1, 1);
     const dayOfWeek = firstOfPrevMonth.getDay();
     const daysToAdd = dayOfWeek === 0 ? 1 : (8 - dayOfWeek) % 7;
-    return new Date(firstOfPrevMonth.getFullYear(), firstOfPrevMonth.getMonth(), firstOfPrevMonth.getDate() + daysToAdd);
+    return new Date(
+        firstOfPrevMonth.getFullYear(),
+        firstOfPrevMonth.getMonth(),
+        firstOfPrevMonth.getDate() + daysToAdd,
+    );
 };
 
 const firstMonday = getFirstMondayOfPreviousMonth();
@@ -78,7 +88,7 @@ export const nyligRegistrertScenario: MockScenario = {
         kanMeldesUt: true,
         kanEndreSluttdato: false,
         kanForlengePeriode: false,
-        kanSlettes: false,
+        kanSletteDeltakelse: false,
     },
     deltakerPersonalia,
     deltakelse,
