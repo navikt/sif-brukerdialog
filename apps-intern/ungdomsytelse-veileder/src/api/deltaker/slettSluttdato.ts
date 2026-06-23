@@ -2,9 +2,9 @@ import { handleApiError } from '@navikt/ung-common';
 import { Veileder } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 
 /**
- * Sletter en deltaker
+ * Sletter sluttdato på en deltakelse
  *
- * @param deltakerId
+ * @param deltakelseId
  */
 
 export const slettSluttdato = async (deltakelseId: string) => {

@@ -1,13 +1,6 @@
 const nb = {
-    'slettAktivDeltaker.validation.årsak.noValue': 'Du må velge årsak for sletting',
-    'slettAktivDeltaker.validation.bekreftFødselsnummer.stringHasNoValue':
-        'Du må skrive inn de 5 siste sifrene i fødselsnummeret',
-    'slettAktivDeltaker.validation.bekreftFødselsnummer.stringIsTooShort':
-        'Du må skrive inn de 5 siste sifrene i fødselsnummeret',
-    'slettAktivDeltaker.validation.bekreftFødselsnummer.stringDoesNotMatch':
-        'Verdien i feltet stemmer ikke overens med de 5 siste sifrene i fødselsnummeret',
-    'slettAktivDeltaker.validation.bekreftSletting.notChecked': 'Du må bekrefte at deltakeren skal slettes',
+    'slettSluttdato.validation.bekreftSletting.notChecked': 'Du må bekrefte at sluttdatoen skal slettes',
 };
-export const slettAktivDeltakerMessages = {
+export const slettSluttdatoMessages = {
     nb,
 };

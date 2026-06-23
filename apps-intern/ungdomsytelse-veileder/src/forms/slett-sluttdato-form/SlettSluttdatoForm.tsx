@@ -1,9 +1,7 @@
-import { Alert, BodyLong, Box, Button, Heading, HStack, VStack } from '@navikt/ds-react';
+import { BodyLong, Box, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { Deltaker } from '../../types/Deltaker';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
-import BorderBox from '../../atoms/BorderBox';
-import Fødselsnummer from '../../atoms/Fødselsnummer';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Deltakelse } from '../../types/Deltakelse';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
@@ -11,7 +9,8 @@ import { getCheckedValidator } from '@navikt/sif-validation';
 import { useIntl } from 'react-intl';
 import { useState } from 'react';
 import { useSlettSluttdato } from '../../hooks/useSlettSluttdato';
-import BekreftSlettSluttdatoDialog from '../../components/bekreft-slett-sluttdato-dialog/BekreftSlettSluttdatoDialog';
+import ConfirmDialog from '../../components/confirm-dialog/ConfirmDialog';
+import BorderBox from '../../atoms/BorderBox';
 
 interface Props {
     deltaker: Deltaker;
@@ -52,34 +51,18 @@ const SlettSluttdatoForm = ({ deltaker, deltakelse, onCancel, onSluttdatoSlettet
                         <Form
                             onValidSubmit={() => null}
                             includeButtons={false}
-                            formErrorHandler={getIntlFormErrorHandler(intl, 'slettAktivDeltaker.validation')}>
+                            formErrorHandler={getIntlFormErrorHandler(intl, 'slettSluttdato.validation')}>
                             <VStack gap="space-16">
-                                <Alert variant="info">
-                                    <Heading level="2" size="small" spacing>
-                                        Slette sluttdato
-                                    </Heading>
-                                    <VStack gap="space-16">
-                                        <BodyLong>info</BodyLong>
-                                    </VStack>
-                                </Alert>
-                                <BorderBox className="p-6 items-center w-full">
-                                    <VStack gap="space-16">
-                                        <Heading level="2" size="small">
+                                <VStack gap="space-16">
+                                    <BorderBox className="p-6 items-center w-full">
+                                        <Heading level="2" size="small" spacing>
                                             Deltakelse
                                         </Heading>
                                         <Box marginBlock="space-0 space-16">
                                             <dl className="ungDefinitionList">
                                                 <dt>Navn:</dt>
                                                 <dd>{formatName(deltaker.navn)}</dd>
-                                                <dt>Fødselsdato:</dt>
-                                                <dd>{dateFormatter.compact(deltaker.fødselsdato)}</dd>
-                                                <dt>Fødselsnummer:</dt>
-                                                <dd>
-                                                    <Fødselsnummer fnr={deltaker.deltakerIdent} copyEnabled={false} />
-                                                </dd>
-                                                <dt>Startdato:</dt>
-                                                <dd>{dateFormatter.compact(deltakelse.fraOgMed)}</dd>
-                                                <dt>Sluttdato:</dt>
+                                                <dt>Registrert sluttdato:</dt>
                                                 <dd>
                                                     {deltakelse.tilOgMed
                                                         ? dateFormatter.compact(deltakelse.tilOgMed)
@@ -87,39 +70,45 @@ const SlettSluttdatoForm = ({ deltaker, deltakelse, onCancel, onSluttdatoSlettet
                                                 </dd>
                                             </dl>
                                         </Box>
-
-                                        <ConfirmationCheckbox
-                                            name={FieldNames.bekreftSletting}
-                                            label={
-                                                <>
-                                                    Jeg bekrefter at sluttdato for {formatName(deltaker.navn)} skal
-                                                    slettes.
-                                                </>
-                                            }
-                                            validate={getCheckedValidator()}></ConfirmationCheckbox>
-
-                                        <HStack gap="space-16">
-                                            <Button type="submit" variant="primary" loading={isPending}>
-                                                Registrer sletting
-                                            </Button>
-                                            <Button type="button" variant="secondary" onClick={onCancel}>
-                                                Avbryt
-                                            </Button>
-                                        </HStack>
-                                        {error ? <ApiErrorAlert error={error} /> : null}
-                                    </VStack>
-                                </BorderBox>
+                                    </BorderBox>
+                                    <ConfirmationCheckbox
+                                        name={FieldNames.bekreftSletting}
+                                        label={
+                                            <>
+                                                Jeg bekrefter at sluttdato for {formatName(deltaker.navn)} skal slettes.
+                                            </>
+                                        }
+                                        validate={getCheckedValidator()}
+                                    />
+                                    <HStack gap="space-16">
+                                        <Button type="submit" variant="primary" loading={isPending}>
+                                            Slett sluttdato
+                                        </Button>
+                                        <Button type="button" variant="secondary" onClick={onCancel}>
+                                            Avbryt
+                                        </Button>
+                                    </HStack>
+                                    {error ? <ApiErrorAlert error={error} /> : null}
+                                </VStack>
                             </VStack>
                         </Form>
                     );
                 }}
             />
             {bekreftSlett && (
-                <BekreftSlettSluttdatoDialog
-                    deltakerNavn={formatName(deltaker.navn)}
-                    onAvbryt={() => setBekreftSlett(false)}
-                    onBekreft={doSlettSluttdato}
+                <ConfirmDialog
                     open={true}
+                    title="Bekreft sletting av sluttdato"
+                    content={
+                        <BodyLong>
+                            Er du helt sikker på at du ønsker å slette sluttdato for {formatName(deltaker.navn)}? Dette
+                            kan ikke angres.
+                        </BodyLong>
+                    }
+                    confirmButtonText="Ja, slett sluttdato"
+                    cancelButtonText="Nei, avbryt"
+                    onCancel={() => setBekreftSlett(false)}
+                    onConfirm={doSlettSluttdato}
                 />
             )}
         </>

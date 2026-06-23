@@ -23,9 +23,8 @@ const SlettSluttdatoModal = ({ deltaker, deltakelse, onCancel }: Props) => {
     const handleOnClose = () => {
         if (sluttdatoSlettet) {
             queryClient.resetQueries();
-        } else {
-            onCancel();
         }
+        onCancel();
     };
 
     return (

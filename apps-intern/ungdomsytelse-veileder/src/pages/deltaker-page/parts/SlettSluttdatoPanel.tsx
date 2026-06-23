@@ -19,7 +19,7 @@ const SlettSluttdatoPanel = ({ deltaker, deltakelse }: Props) => {
                     <Heading level="3" size="xsmall" spacing>
                         Slett sluttdato
                     </Heading>
-                    <BodyLong spacing>Hvis sluttdatoen er satt ved en feil kan denne nullstilles.</BodyLong>
+                    <BodyLong spacing>Hvis sluttdatoen er satt ved en feil kan denne slettes.</BodyLong>
                     <div>
                         <Button variant="secondary" size="small" onClick={() => setVisDialog(true)}>
                             Åpne skjema
