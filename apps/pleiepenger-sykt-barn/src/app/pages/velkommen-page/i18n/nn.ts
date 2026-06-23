@@ -35,6 +35,8 @@ export const velkommenPageMessages_nn: Record<keyof typeof velkommenPageMessages
     'page.velkommen.omSøknaden.endringer.tekst.1.b': 'endringsmelding',
     'page.velkommen.omSøknaden.endringer.tekst.1.c':
         ' for å melde frå om du skal jobbe meir eller mindre, om du skal ha ferie, eller endre på allereie registrert ferie.',
+    'page.velkommen.omSøknaden.endringer.tekst.1.d':
+        'Skal du endre på tidene der barnet er i eit fast og regelmessig omsorgstilbod, kan du òg bruke endringsmeldinga.',
     'page.velkommen.omSøknaden.endringer.tekst.2.a':
         'Viss du skal gjere andre endringar sender du ei melding til oss via',
     'page.velkommen.omSøknaden.endringer.tekst.2.b': 'Skriv til oss',

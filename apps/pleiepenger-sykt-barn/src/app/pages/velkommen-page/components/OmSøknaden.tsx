@@ -40,6 +40,9 @@ const OmSøknaden = () => {
                             <AppText id="page.velkommen.omSøknaden.endringer.tekst.1.c" />
                         </p>
                         <p>
+                            <AppText id="page.velkommen.omSøknaden.endringer.tekst.1.d" />
+                        </p>
+                        <p>
                             <AppText id="page.velkommen.omSøknaden.endringer.tekst.2.a" />{' '}
                             <Link href={getLenker('nb').skrivTilOss} target="_blank" rel="noopener noreferrer">
                                 <AppText id="page.velkommen.omSøknaden.endringer.tekst.2.b" />
