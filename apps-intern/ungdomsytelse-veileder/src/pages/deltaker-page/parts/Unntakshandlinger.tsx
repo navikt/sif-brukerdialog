@@ -20,7 +20,11 @@ export const Unntakshandlinger = ({ deltakelse, deltaker }: Props) => {
     }
 
     const handlinger = getDeltakelseHandlinger(deltakelse);
+    const harUnntakshandlinger = Features.slettAktivDeltakelse || handlinger.kanSletteSluttdato;
 
+    if (!harUnntakshandlinger) {
+        return null;
+    }
     return (
         <VStack gap="space-8">
             <Switch checked={ekspandert} onChange={(e) => setEkspandert(e.target.checked)} size="small">
