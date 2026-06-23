@@ -36,7 +36,7 @@ export interface Config {
      */
     headers?:
         | RequestInit['headers']
-        | Record<string, string | number | boolean | Array<string | number | boolean> | undefined | unknown>;
+        | Record<string, string | number | boolean | (string | number | boolean)[] | undefined | unknown>;
     /**
      * The request method.
      *
@@ -72,6 +72,12 @@ export interface Config {
      */
     responseValidator?: (data: unknown) => Promise<unknown>;
 }
+
+/**
+ * Arbitrary metadata passed through the `meta` request option.
+ */
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export interface ClientMeta {}
 
 type IsExactlyNeverOrNeverUndefined<T> = [T] extends [never]
     ? true

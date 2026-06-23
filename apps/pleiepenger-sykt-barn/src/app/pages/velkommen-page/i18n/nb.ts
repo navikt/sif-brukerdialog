@@ -32,6 +32,8 @@ export const velkommenPageMessages_nb = {
     'page.velkommen.omSøknaden.endringer.tekst.1.b': 'endringsmelding',
     'page.velkommen.omSøknaden.endringer.tekst.1.c':
         ' for å melde fra om du skal jobbe mer eller mindre, om du skal ha ferie, eller endre på allerede registrert ferie.',
+    'page.velkommen.omSøknaden.endringer.tekst.1.d':
+        'Skal du endre på tidene der barnet er i et fast og regelmessig omsorgstilbud, kan du også bruke endringsmeldingen.',
     'page.velkommen.omSøknaden.endringer.tekst.2.a':
         'Hvis du skal gjøre andre endringer sender du en melding til oss via',
     'page.velkommen.omSøknaden.endringer.tekst.2.b': 'Skriv til oss',
