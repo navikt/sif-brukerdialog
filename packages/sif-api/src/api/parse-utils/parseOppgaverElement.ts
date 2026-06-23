@@ -39,7 +39,8 @@ import {
 
 dayjs.extend(utc);
 
-const getSisteDatoEnKanSvare = (svarfrist: Date): Date => dayjs(svarfrist).startOf('day').subtract(1, 'day').toDate();
+const getSisteDatoEnKanSvare = (svarfrist: Date): Date =>
+    dayjs.utc(svarfrist).startOf('day').subtract(1, 'day').toDate();
 
 const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
     switch (status) {
