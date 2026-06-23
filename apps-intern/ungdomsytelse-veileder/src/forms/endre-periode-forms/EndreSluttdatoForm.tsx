@@ -61,6 +61,9 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
 
     const handleOnSubmit = async (values: FormValues) => {
         const { sluttdato } = values;
+        if (!sluttdato) {
+            return;
+        }
         mutate(
             {
                 dato: sluttdato,
