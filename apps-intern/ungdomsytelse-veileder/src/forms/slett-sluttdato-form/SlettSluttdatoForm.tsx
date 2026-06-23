@@ -1,4 +1,4 @@
-import { BodyLong, Box, Button, Heading, HStack, VStack } from '@navikt/ds-react';
+import { BodyLong, Box, Button, HStack, VStack } from '@navikt/ds-react';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { Deltaker } from '../../types/Deltaker';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
@@ -55,12 +55,9 @@ const SlettSluttdatoForm = ({ deltaker, deltakelse, onCancel, onSluttdatoSlettet
                             <VStack gap="space-16">
                                 <VStack gap="space-16">
                                     <BorderBox className="p-6 items-center w-full">
-                                        <Heading level="2" size="small" spacing>
-                                            Deltakelse
-                                        </Heading>
                                         <Box marginBlock="space-0 space-16">
                                             <dl className="ungDefinitionList">
-                                                <dt>Navn:</dt>
+                                                <dt>Deltaker:</dt>
                                                 <dd>{formatName(deltaker.navn)}</dd>
                                                 <dt>Registrert sluttdato:</dt>
                                                 <dd>
