@@ -10,7 +10,7 @@ export const useSlettSluttdato = (deltakerId: string, deltakelseId: string) => {
     const { log } = useAppEventLogger();
 
     return useMutation<void, ApiError, { deltakelseId: string }>({
-        mutationFn: () => slettSluttdato(deltakelseId),
+        mutationFn: ({ deltakelseId: id }) => slettSluttdato(id),
         onSuccess: async () => {
             await log(AppHendelse.sluttdatoSlettet);
             queryClient.invalidateQueries({ queryKey: queryKeys.deltakelserForDeltaker(deltakerId) });

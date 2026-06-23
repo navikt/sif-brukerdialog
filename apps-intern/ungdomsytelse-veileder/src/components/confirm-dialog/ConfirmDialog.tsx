@@ -1,4 +1,4 @@
-import { BodyLong, Button, Dialog, VStack } from '@navikt/ds-react';
+import { Button, Dialog, VStack } from '@navikt/ds-react';
 
 interface Props {
     title: string;
@@ -18,14 +18,12 @@ const ConfirmDialog = ({ title, content, confirmButtonText, cancelButtonText, on
                 onCancel();
             }
         }}>
-        <Dialog.Popup id="bekreft-slett-aktiv-deltaker-dialog" role="alertdialog" closeOnOutsideClick={false}>
+        <Dialog.Popup role="alertdialog" closeOnOutsideClick={false}>
             <Dialog.Header withClosebutton={false}>
                 <Dialog.Title>{title}</Dialog.Title>
             </Dialog.Header>
             <Dialog.Body>
-                <VStack gap="space-24">
-                    <BodyLong size="large">{content}</BodyLong>
-                </VStack>
+                <VStack gap="space-24">{content}</VStack>
             </Dialog.Body>
             <Dialog.Footer>
                 <Button variant="secondary" onClick={onCancel} data-color="neutral">

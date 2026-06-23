@@ -1,5 +1,4 @@
 import { Alert, Box, Button, Heading, Modal } from '@navikt/ds-react';
-import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Deltaker } from '../../types/Deltaker';
 import { Deltakelse } from '../../types/Deltakelse';
@@ -18,17 +17,8 @@ const SlettSluttdatoModal = ({ deltaker, deltakelse, onCancel }: Props) => {
         setSluttdatoSlettet(true);
     };
 
-    const queryClient = useQueryClient();
-
-    const handleOnClose = () => {
-        if (sluttdatoSlettet) {
-            queryClient.resetQueries();
-        }
-        onCancel();
-    };
-
     return (
-        <Modal open={true} onClose={handleOnClose} aria-labelledby="slett-modal-heading" width="medium">
+        <Modal open={true} onClose={onCancel} aria-labelledby="slett-modal-heading" width="medium">
             <Modal.Header closeButton={true}>
                 <Heading level="1" size="large" id="slett-modal-heading">
                     Slett sluttdato
@@ -50,7 +40,7 @@ const SlettSluttdatoModal = ({ deltaker, deltakelse, onCancel }: Props) => {
             </Modal.Body>
             {sluttdatoSlettet ? (
                 <Modal.Footer>
-                    <Button variant="primary" onClick={handleOnClose}>
+                    <Button variant="primary" onClick={onCancel}>
                         Ok, lukk dialog
                     </Button>
                 </Modal.Footer>
