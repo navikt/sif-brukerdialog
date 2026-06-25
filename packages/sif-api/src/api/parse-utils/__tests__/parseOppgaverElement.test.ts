@@ -13,13 +13,6 @@ const baseOppgave = {
     frist: '2026-05-15T07:00:00.000Z',
 };
 
-const oppgaveMedFrist = (frist: string) => ({
-    ...baseOppgave,
-    frist,
-    oppgavetype: OppgaveType.BEKREFT_OPPHOR_VED_MAKSDATO,
-    oppgavetypeData: { type: 'OPPHOR_VED_MAKSDATO', maxDato: '2026-06-30', sluttdato: '2026-06-30' },
-});
-
 describe('getSisteDatoEnKanSvare – tidssonerobusthet', () => {
     it('beregner sisteDatoEnKanSvare som lokal kalenderdag før fristen', () => {
         /**
@@ -28,14 +21,24 @@ describe('getSisteDatoEnKanSvare – tidssonerobusthet', () => {
          * Med UTC-lesing: Apr 11 UTC → subtract 1 → Apr 10 ✅
          */
         const [result] = parseOppgaverElement(OppgaveYtelsetype.UNGDOMSYTELSE, [
-            oppgaveMedFrist('2026-05-15T07:00:00.000Z'),
+            {
+                ...baseOppgave,
+                frist: '2026-05-15T07:00:00.000Z',
+                oppgavetype: OppgaveType.BEKREFT_OPPHOR_VED_MAKSDATO,
+                oppgavetypeData: { type: 'OPPHOR_VED_MAKSDATO', maxDato: '2026-06-30', sluttdato: '2026-06-30' },
+            },
         ]);
         expect(dateToISODate((result as OpphorVedMaksdatoOppgave).sisteDatoEnKanSvare)).toBe('2026-05-14');
     });
 
     it('beregner sisteDatoEnKanSvare korrekt for frist midt på dagen UTC', () => {
         const [result] = parseOppgaverElement(OppgaveYtelsetype.UNGDOMSYTELSE, [
-            oppgaveMedFrist('2026-05-15T12:00:00.000Z'),
+            {
+                ...baseOppgave,
+                frist: '2026-05-15T12:00:00.000Z',
+                oppgavetype: OppgaveType.BEKREFT_OPPHOR_VED_MAKSDATO,
+                oppgavetypeData: { type: 'OPPHOR_VED_MAKSDATO', maxDato: '2026-06-30', sluttdato: '2026-06-30' },
+            },
         ]);
         expect(dateToISODate((result as OpphorVedMaksdatoOppgave).sisteDatoEnKanSvare)).toBe('2026-05-14');
     });
