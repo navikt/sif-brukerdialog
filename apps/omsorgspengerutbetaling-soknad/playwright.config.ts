@@ -19,17 +19,10 @@ export default defineConfig({
             use: { ...devices['Desktop Chrome'] },
         },
         {
-            name: 'chromium-san-francisco',
+            name: 'chromium-los-angeles',
             use: {
                 ...devices['Desktop Chrome'],
                 timezoneId: 'America/Los_Angeles',
-            },
-        },
-        {
-            name: 'chromium-sydney',
-            use: {
-                ...devices['Desktop Chrome'],
-                timezoneId: 'Australia/Sydney',
             },
         },
     ],
