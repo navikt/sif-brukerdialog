@@ -6,5 +6,5 @@ export const søkerMock: Søker = {
     fødselsnummer: '12345678901',
     mellomnavn: '',
     aktørId: '123',
-    fødselsdato: new Date('1990-01-01'),
+    fødselsdato: '1990-01-01',
 };
