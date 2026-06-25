@@ -30,11 +30,6 @@ export default defineConfig({
                 timezoneId: 'America/Los_Angeles',
             },
         },
-        /**
-         * Kjører alle tester i Sydney-tidssone (UTC+10/+11) for å avdekke datofeil
-         * der datoer som er korrekte i Norge skyves til neste dag.
-         * Eksempel: new Date('2023-01-01T23:00:00Z') i UTC+11 = 2. jan.
-         */
     ],
     webServer: {
         command: 'pnpm pw:build && pnpm pw:start',
