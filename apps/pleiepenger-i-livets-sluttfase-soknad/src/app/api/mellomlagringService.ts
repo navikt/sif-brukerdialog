@@ -19,6 +19,7 @@ const createHashString = (info: MellomlagringHashInfo) => {
 };
 
 const isMellomlagringValid = (søknadState: MellomlagringData, info: MellomlagringHashInfo): boolean => {
+    console.log(createHashString(info));
     return (
         søknadState.versjon === MELLOMLAGRING_VERSJON &&
         søknadState.søknadsdata?.velkommen?.harForståttRettigheterOgPlikter === true &&
@@ -39,6 +40,7 @@ export const mellomlagringService = {
         søknadSendt,
         tempFormData,
     }: SøknadContextState) => {
+        console.log('mellomlagringService.update', createHashString({ søker }));
         return service.update({
             søknadHashString: createHashString({ søker }),
             søknadsdata,
