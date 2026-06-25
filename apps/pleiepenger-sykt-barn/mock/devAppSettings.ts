@@ -23,6 +23,6 @@ export const getDevAppSettings = (): AppEnv => ({
     K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
     K9_BRUKERDIALOG_PROSESSERING_API_URL: '#',
 
-    MOCK_DATE: '2023-01-01',
+    MOCK_DATE: '2023-01-02',
     USE_MOCK_DATE: 'true',
 });

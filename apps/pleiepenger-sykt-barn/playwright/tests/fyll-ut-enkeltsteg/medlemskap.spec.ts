@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test';
 
 import { StepID } from '../../../src/app/types/StepID';
 import { mellomlagringMock } from '../../mock-data/mellomlagring';
+import { navigerTilMåned } from '../../utils/datovelgerUtils';
 import { routeUtils } from '../../utils/routeUtils';
 import { setNow } from '../../utils/setNow';
 import { testAccessibility } from '../../utils/testAccessibility';
@@ -35,15 +36,15 @@ test.describe('Medlemskap', () => {
             .filter({ hasText: /^Fra og med$/ })
             .getByRole('button', { name: 'Åpne datovelger' })
             .click();
-        await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
-        await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
+
+        await navigerTilMåned(page, '9'); // oktober
         await page.getByLabel('fredag 7').click();
         await page
             .locator('div')
             .filter({ hasText: /^Til og med$/ })
             .getByRole('button', { name: 'Åpne datovelger' })
             .click();
-        await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
+        await navigerTilMåned(page, '10'); // november
         await page.getByLabel('mandag 14').click();
         await page.getByLabel('Velg land').selectOption('BHR');
         await page.getByRole('button', { name: 'Ok' }).click();
@@ -53,14 +54,14 @@ test.describe('Medlemskap', () => {
             .filter({ hasText: /^Fra og med$/ })
             .getByRole('button', { name: 'Åpne datovelger' })
             .click();
-        await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
+        await navigerTilMåned(page, '10'); // november
         await page.getByLabel('tirsdag 15').click();
         await page
             .locator('div')
             .filter({ hasText: /^Til og med$/ })
             .getByRole('button', { name: 'Åpne datovelger' })
             .click();
-        await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
+        await navigerTilMåned(page, '10'); // november
         await page.getByRole('button', { name: 'fredag 18' }).click();
         await page.getByLabel('Velg land').selectOption('ABW');
         await page.getByRole('button', { name: 'Ok' }).click();

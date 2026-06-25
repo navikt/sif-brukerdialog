@@ -25,13 +25,6 @@ export default defineConfig({
                 timezoneId: 'America/Los_Angeles',
             },
         },
-        {
-            name: 'chromium-sydney',
-            use: {
-                ...devices['Desktop Chrome'],
-                timezoneId: 'Australia/Sydney',
-            },
-        },
     ],
     webServer: {
         command: 'pnpm pw:build && pnpm pw:start',
