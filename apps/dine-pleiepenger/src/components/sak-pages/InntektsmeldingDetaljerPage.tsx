@@ -13,13 +13,16 @@ import LinkButton from '../link-button/LinkButton';
 import DefaultPageLayout from '../page-layout/default-page-layout/DefaultPageLayout';
 import LoadingPage from '../page-layout/loading-page/LoadingPage';
 import PageHeader from '../page-layout/page-header/PageHeader';
+import { Inntektsmelding } from '../../types';
 
 const InntektsmeldingDetaljerPage = () => {
     const router = useRouter();
     const { saksnr, journalpostId } = router.query;
     const { pleietrengendeMedSak, isLoading, error } = usePleietrengendeMedSakFromRoute();
 
-    const inntektsmelding = pleietrengendeMedSak?.inntektsmeldinger?.find((im) => im.journalpostId === journalpostId);
+    const inntektsmelding = pleietrengendeMedSak?.inntektsmeldinger?.find(
+        (im) => im.journalpostId === journalpostId,
+    ) as Inntektsmelding;
 
     useBreadcrumbs({
         breadcrumbs: [
@@ -38,7 +41,9 @@ const InntektsmeldingDetaljerPage = () => {
         : 'Inntektsmelding';
 
     const pageByline = inntektsmelding ? (
-        <BodyShort size="medium">Sendt inn {dateFormatter.compactWithTime(inntektsmelding.mottattDato)}</BodyShort>
+        <BodyShort size="medium">
+            Sendt inn {dateFormatter.compactWithTime(inntektsmelding.innsendingstidspunkt)}
+        </BodyShort>
     ) : undefined;
 
     const content = (() => {

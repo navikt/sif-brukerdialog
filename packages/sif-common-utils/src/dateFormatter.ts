@@ -44,7 +44,9 @@ export const dateFormatter = {
      * @returns 01.01.2020 kl. 08.29
      * NB: Kun for UTC-timestamps fra backend — konverterer til Europe/Oslo
      */
-    compactWithTime: (date: Date, locale?: string) => oslo(date, locale).format(compactFormatWithTime),
+    compactWithTime: (date: Date, locale?: string) => {
+        return oslo(date, locale).format(compactFormatWithTime);
+    },
 
     /**
      * @returns 1. jan. 2021
