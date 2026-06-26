@@ -5252,9 +5252,9 @@ importers:
       '@navikt/ds-react':
         specifier: 8.13.0
         version: 8.13.0(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      '@navikt/sif-common-utils':
+      '@sif/utils':
         specifier: workspace:*
-        version: link:../sif-common-utils
+        version: link:../sif-utils
       dayjs:
         specifier: '>=1.11.19'
         version: 1.11.21

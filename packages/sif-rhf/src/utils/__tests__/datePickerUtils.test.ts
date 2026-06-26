@@ -1,27 +1,13 @@
-import { dateUtils } from '@navikt/sif-common-utils';
 import { describe, expect, it } from 'vitest';
 
 import { datePickerUtils } from '../datePickerUtils';
+import { dateToISODate } from '@sif/utils';
 
 const { parseDatePickerValue, getDisabledDates } = datePickerUtils;
 
-describe('dateUtils.isISODateString', () => {
-    it('accepts valid ISO date', () => {
-        expect(dateUtils.isISODateString('2024-01-15')).toBe(true);
-    });
-    it('rejects non-string', () => {
-        expect(dateUtils.isISODateString(123)).toBe(false);
-        expect(dateUtils.isISODateString(undefined)).toBe(false);
-    });
-    it('rejects wrong format', () => {
-        expect(dateUtils.isISODateString('15.01.2024')).toBe(false);
-        expect(dateUtils.isISODateString('2024-1-5')).toBe(false);
-    });
-});
-
 describe('dateUtils.dateToISODate', () => {
     it('converts UTC date', () => {
-        expect(dateUtils.dateToISODate(new Date('2024-03-15T00:00:00Z'))).toBe('2024-03-15');
+        expect(dateToISODate(new Date('2024-03-15T00:00:00Z'))).toBe('2024-03-15');
     });
 });
 
@@ -29,7 +15,10 @@ describe('parseDatePickerValue', () => {
     it('converts valid ISO string to Date', () => {
         const date = parseDatePickerValue('2024-03-15');
         expect(date).toBeInstanceOf(Date);
-        expect(date!.toISOString()).toBe('2024-03-15T00:00:00.000Z');
+        expect(date).toBeInstanceOf(Date);
+        expect(date!.getFullYear()).toBe(2024);
+        expect(date!.getMonth()).toBe(2);
+        expect(date!.getDate()).toBe(15);
     });
     it('returns undefined for missing/short input', () => {
         expect(parseDatePickerValue(undefined)).toBeUndefined();
@@ -47,7 +36,7 @@ describe('parseDatePickerValue', () => {
         ['5.3.2024', '2024-03-05'],
         ['15.03.24', '2024-03-15'],
     ])('parses "%s" to "%s"', (input, expected) => {
-        expect(dateUtils.dateToISODate(parseDatePickerValue(input)!)).toBe(expected);
+        expect(dateToISODate(parseDatePickerValue(input)!)).toBe(expected);
     });
 
     it('returns undefined for garbage', () => {

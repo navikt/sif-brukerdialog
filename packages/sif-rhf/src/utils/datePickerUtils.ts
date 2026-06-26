@@ -1,9 +1,9 @@
-import { dateUtils } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import type { Matcher } from 'react-day-picker';
 
 import { DatepickerLimitations } from '../components/SifDatepicker';
+import { isISODateString, ISODate, ISODateToDate } from '@sif/utils';
 
 dayjs.extend(customParseFormat);
 
@@ -25,8 +25,8 @@ const parseDatePickerValue = (dateString: string | undefined): Date | undefined 
         return undefined;
     }
 
-    if (dateUtils.isISODateString(dateString) && dayjs(dateString, ISO_FORMAT, true).isValid()) {
-        return dateUtils.ISODateToDate(dateString);
+    if (isISODateString(dateString) && dayjs(dateString, ISO_FORMAT, true).isValid()) {
+        return ISODateToDate(dateString);
     }
 
     const parsedDate = dayjs(dateString, ALLOWED_INPUT_FORMATS, true);
@@ -34,7 +34,7 @@ const parseDatePickerValue = (dateString: string | undefined): Date | undefined 
         return undefined;
     }
 
-    return dateUtils.ISODateToDate(parsedDate.format(ISO_FORMAT));
+    return ISODateToDate(parsedDate.format(ISO_FORMAT) as ISODate);
 };
 
 const getDisabledDates = ({

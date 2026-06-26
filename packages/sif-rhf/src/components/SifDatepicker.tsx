@@ -1,5 +1,4 @@
 import { DatePicker, DatePickerProps, useDatepicker } from '@navikt/ds-react';
-import { dateUtils } from '@navikt/sif-common-utils';
 import { FocusEvent, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { DayOfWeek } from 'react-day-picker';
 import { Controller, FieldValues, Path, useFormContext } from 'react-hook-form';
@@ -13,6 +12,7 @@ export interface DatepickerLimitations {
 }
 
 import { datePickerUtils } from '../utils/datePickerUtils';
+import { dateToISODate } from '@sif/utils';
 
 const { parseDatePickerValue, getDisabledDates } = datePickerUtils;
 
@@ -71,7 +71,7 @@ function DatepickerController<T extends FieldValues>({
 
     const updateValueFromDate = useCallback(
         (date: Date | undefined, fallbackValue = '') => {
-            handleChange(date ? dateUtils.dateToISODate(date) : fallbackValue);
+            handleChange(date ? dateToISODate(date) : fallbackValue);
         },
         [handleChange],
     );
