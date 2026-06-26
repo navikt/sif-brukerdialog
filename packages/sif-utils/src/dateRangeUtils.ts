@@ -4,12 +4,12 @@ import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import { uniq } from 'lodash';
 
-import { DateRange, getFirstOfTwoDates, ISODate, ISODateRange, ISODateRangeMap, MaybeDateRange } from '.';
+import { DateRange, ISODate, ISODateRange, ISODateRangeMap, MaybeDateRange } from '.';
 import {
     dateToISODate,
     getFirstWeekdayInMonth,
     getFirstWeekdayOnOrAfterDate,
-    getLastWeekDayInMonth,
+    getLastWeekdayInMonth,
     getLastWeekdayOnOrBeforeDate,
     isDateWeekDay,
     isISODateString,
@@ -202,7 +202,7 @@ export const getMonthsInDates = (dates: ISODate[]): ISODate[] => {
  */
 export const getMonthDateRange = (date: ISODate, onlyWeekDays = false): DateRange => ({
     from: onlyWeekDays ? getFirstWeekdayInMonth(date) : dateToISODate(dayjs(date).startOf('month')),
-    to: onlyWeekDays ? getLastWeekDayInMonth(date) : dateToISODate(dayjs(date).endOf('month')),
+    to: onlyWeekDays ? getLastWeekdayInMonth(date) : dateToISODate(dayjs(date).endOf('month')),
 });
 
 /**
@@ -292,7 +292,7 @@ export const getWeeksInDateRange = (dateRange: DateRange): DateRange[] => {
     let current = dayjs(dateRange.from);
     do {
         const weekFrom = dateToISODate(current);
-        const weekTo = getFirstOfTwoDates(dateToISODate(current.endOf('isoWeek')), dateRange.to);
+        const weekTo = minISODate([dateToISODate(current.endOf('isoWeek')), dateRange.to])!;
         weeks.push({ from: weekFrom, to: weekTo });
         current = current.add(1, 'week').startOf('isoWeek');
     } while (current.isBefore(dateRange.to, 'day'));

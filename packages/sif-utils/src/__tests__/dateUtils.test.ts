@@ -8,16 +8,19 @@ import {
     getFirstWeekdayOnOrAfterDate,
     getISOWeekdayFromISODate,
     getLastOfTwoDates,
-    getLastWeekDayInMonth,
+    getLastWeekdayInMonth,
     getLastWeekdayOnOrBeforeDate,
     getWeekFromDate,
     getWeeksInMonth,
+    getYearFromISODate,
     getYearMonthKey,
     ISODate,
     isDateInDates,
     isDateWeekDay,
     isISODateString,
     ISODateToDate,
+    maxISODate,
+    minISODate,
 } from '..';
 import { sortDateArray } from '../dateUtils';
 
@@ -59,8 +62,8 @@ describe('dateUtils', () => {
     });
     describe('getISOWeekdayFromISODate', () => {
         it('returns monday as day 1, sunday as day 7', () => {
-            expect(getISOWeekdayFromISODate('2021-02-1' as ISODate)).toEqual(1);
-            expect(getISOWeekdayFromISODate('2021-02-7' as ISODate)).toEqual(7);
+            expect(getISOWeekdayFromISODate('2021-02-01' as ISODate)).toEqual(1);
+            expect(getISOWeekdayFromISODate('2021-02-07' as ISODate)).toEqual(7);
         });
     });
     describe('getDatesInMonth', () => {
@@ -97,18 +100,18 @@ describe('dateUtils', () => {
             expect(getFirstWeekdayInMonth('2020-03-01' as ISODate)).toEqual('2020-03-02' as ISODate);
         });
     });
-    describe('getLastWeekDayInMonth', () => {
+    describe('getLastWeekdayInMonth', () => {
         it('returns correct weekday if first day of month is a monday - 31. august 2020', () => {
-            expect(getLastWeekDayInMonth('2020-08-01' as ISODate)).toEqual('2020-08-31' as ISODate);
+            expect(getLastWeekdayInMonth('2020-08-01' as ISODate)).toEqual('2020-08-31' as ISODate);
         });
         it('returns correct weekday if last day of month is a friday - 31. january 2020', () => {
-            expect(getLastWeekDayInMonth('2020-01-01' as ISODate)).toEqual('2020-01-31' as ISODate);
+            expect(getLastWeekdayInMonth('2020-01-01' as ISODate)).toEqual('2020-01-31' as ISODate);
         });
         it('returns correct weekday if last day of month is a saturday - 1. february 2020', () => {
-            expect(getLastWeekDayInMonth('2020-02-01' as ISODate)).toEqual('2020-02-28' as ISODate);
+            expect(getLastWeekdayInMonth('2020-02-01' as ISODate)).toEqual('2020-02-28' as ISODate);
         });
         it('returns correct weekday if last day of month is a sunday - 31. may 2020', () => {
-            expect(getLastWeekDayInMonth('2020-05-01' as ISODate)).toEqual('2020-05-29' as ISODate);
+            expect(getLastWeekdayInMonth('2020-05-01' as ISODate)).toEqual('2020-05-29' as ISODate);
         });
     });
     describe('dateIsWeekDay', () => {
@@ -147,12 +150,11 @@ describe('dateUtils', () => {
         const d1 = '2021-01-05' as ISODate;
         const d2 = '2021-01-06' as ISODate;
 
-        it('returns date1 if date1 is before date2', () => {
-            expect(getFirstOfTwoDates(d1, d2)).toEqual('2021-01-05' as ISODate);
+        it('returns the earlier date when date1 is first', () => {
+            expect(getFirstOfTwoDates(d1, d2)).toEqual(d1);
         });
-
-        it('returns date2 if date1 is after date2', () => {
-            expect(getFirstOfTwoDates(d2, d1)).toEqual('2021-01-05' as ISODate);
+        it('returns the earlier date when date2 is first', () => {
+            expect(getFirstOfTwoDates(d2, d1)).toEqual(d1);
         });
     });
 
@@ -160,12 +162,11 @@ describe('dateUtils', () => {
         const d1 = '2021-01-05' as ISODate;
         const d2 = '2021-01-06' as ISODate;
 
-        it('returns date2 if date1 is before date2', () => {
-            expect(getLastOfTwoDates(d1, d2)).toEqual('2021-01-06' as ISODate);
+        it('returns the later date when date1 is first', () => {
+            expect(getLastOfTwoDates(d1, d2)).toEqual(d2);
         });
-
-        it('returns date1 if date1 is after date2', () => {
-            expect(getLastOfTwoDates(d2, d1)).toEqual('2021-01-06' as ISODate);
+        it('returns the later date when date2 is first', () => {
+            expect(getLastOfTwoDates(d2, d1)).toEqual(d2);
         });
     });
 
@@ -262,6 +263,31 @@ describe('dateUtils', () => {
         });
     });
 
+    describe('getYearFromISODate', () => {
+        it('returns correct year', () => {
+            expect(getYearFromISODate('2021-06-15' as ISODate)).toBe(2021);
+            expect(getYearFromISODate('0001-01-01' as ISODate)).toBe(1);
+        });
+    });
+
+    describe('maxISODate', () => {
+        it('returns the latest date', () => {
+            expect(maxISODate(['2021-01-01', '2021-06-15', '2020-12-31'] as ISODate[])).toBe('2021-06-15');
+        });
+        it('returns undefined for empty array', () => {
+            expect(maxISODate([])).toBeUndefined();
+        });
+    });
+
+    describe('minISODate', () => {
+        it('returns the earliest date', () => {
+            expect(minISODate(['2021-01-01', '2021-06-15', '2020-12-31'] as ISODate[])).toBe('2020-12-31');
+        });
+        it('returns undefined for empty array', () => {
+            expect(minISODate([])).toBeUndefined();
+        });
+    });
+
     describe('sortDateArray', () => {
         const d1 = '2021-01-01' as ISODate;
         const d2 = '2021-01-02' as ISODate;
@@ -278,6 +304,11 @@ describe('dateUtils', () => {
             expect(result[0]).toEqual(d1);
             expect(result[1]).toEqual(d2);
             expect(result[2]).toEqual(d3);
+        });
+        it('does not mutate the original array', () => {
+            const original = [d3, d1, d2] as ISODate[];
+            sortDateArray(original);
+            expect(original[0]).toEqual(d3);
         });
     });
 });

@@ -8,14 +8,14 @@ dayjs.extend(isoWeek);
 
 const ISODateFormat = 'YYYY-MM-DD';
 
-export const getDateToday = (): ISODate => dayjs().format(ISODateFormat) as ISODate;
-export const getDate1YearAgo = (): ISODate => dayjs().subtract(1, 'year').format(ISODateFormat) as ISODate;
-export const getDate2YearsAgo = (): ISODate => dayjs().subtract(2, 'year').format(ISODateFormat) as ISODate;
-export const getDate3YearsAgo = (): ISODate => dayjs().subtract(3, 'year').format(ISODateFormat) as ISODate;
-export const getDate4YearsAgo = (): ISODate => dayjs().subtract(4, 'year').format(ISODateFormat) as ISODate;
-export const getDate4WeeksAgo = (): ISODate => dayjs().subtract(4, 'week').format(ISODateFormat) as ISODate;
-export const getDate1YearFromNow = (): ISODate => dayjs().add(1, 'year').format(ISODateFormat) as ISODate;
-export const getDate99YearsAgoFromNow = (): ISODate => dayjs().subtract(99, 'year').format(ISODateFormat) as ISODate;
+export const getDateToday = (): ISODate => dateToISODate(dayjs());
+export const getDate1YearAgo = (): ISODate => dateToISODate(dayjs().subtract(1, 'year'));
+export const getDate2YearsAgo = (): ISODate => dateToISODate(dayjs().subtract(2, 'year'));
+export const getDate3YearsAgo = (): ISODate => dateToISODate(dayjs().subtract(3, 'year'));
+export const getDate4YearsAgo = (): ISODate => dateToISODate(dayjs().subtract(4, 'year'));
+export const getDate4WeeksAgo = (): ISODate => dateToISODate(dayjs().subtract(4, 'week'));
+export const getDate1YearFromNow = (): ISODate => dateToISODate(dayjs().add(1, 'year'));
+export const getDate99YearsAgo = (): ISODate => dateToISODate(dayjs().subtract(99, 'year'));
 
 export const dateToISODate = (date: dayjs.ConfigType): ISODate => dayjs(date).format(ISODateFormat) as ISODate;
 
@@ -23,9 +23,7 @@ export const isISODateString = (value: unknown): value is ISODate => {
     return typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value);
 };
 
-export const getYearFromISODate = (isoDate: ISODate): number => {
-    return parseInt(isoDate.split('-')[0], 10);
-};
+export const getYearFromISODate = (isoDate: ISODate): number => Number(isoDate.substring(0, 4));
 /**
  * Konverterer en ISODate-streng til et lokalt Date-objekt med midnatt lokal tid.
  * Brukes kun ved Aksel-komponent-grensen (DatePicker etc.).
@@ -46,8 +44,14 @@ export const ISODateToDate = (isoDate: ISODate): Date => {
     return date;
 };
 
+/** Intern hjelpefunksjon: konverterer JS Date til ISODate-streng */
+const dateToISO = (date: Date): ISODate => {
+    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}` as ISODate;
+};
+
 export const getISOWeekdayFromISODate = (isoDate: ISODate): number => {
-    return dayjs(isoDate).isoWeekday();
+    const day = ISODateToDate(isoDate).getDay(); // 0=Sun, 1=Mon...6=Sat
+    return ((day + 6) % 7) + 1; // Mon=1...Sun=7
 };
 
 export const getDatesInMonth = (month: ISODate, onlyWeekDays = false): ISODate[] => {
@@ -55,76 +59,68 @@ export const getDatesInMonth = (month: ISODate, onlyWeekDays = false): ISODate[]
 };
 
 export const getFirstWeekdayInMonth = (month: ISODate): ISODate => {
-    const firstDay = dayjs(month).startOf('month');
-    if (firstDay.isoWeekday() > 5) {
-        return firstDay.add(8 - firstDay.isoWeekday(), 'days').format(ISODateFormat) as ISODate;
+    const firstDay = `${month.substring(0, 7)}-01` as ISODate;
+    const wd = getISOWeekdayFromISODate(firstDay);
+    if (wd > 5) {
+        const d = ISODateToDate(firstDay);
+        d.setDate(d.getDate() + (8 - wd));
+        return dateToISO(d);
     }
-    return firstDay.format(ISODateFormat) as ISODate;
+    return firstDay;
 };
 
 export const getWeekFromDate = (date: ISODate, withinSameMonth = false): DateRange => {
-    const from = dateToISODate(dayjs(date).startOf('isoWeek'));
-    const to = dateToISODate(dayjs(date).endOf('isoWeek'));
+    const d = dayjs(date);
+    const from = dateToISODate(d.startOf('isoWeek'));
+    const to = dateToISODate(d.endOf('isoWeek'));
 
-    if (withinSameMonth === false || (dayjs(date).isSame(from, 'month') && dayjs(date).isSame(to, 'month'))) {
+    if (!withinSameMonth || (d.isSame(from, 'month') && d.isSame(to, 'month'))) {
         return { from, to };
     }
     return {
-        from: getLastOfTwoDates(from, dateToISODate(dayjs(date).startOf('month'))),
-        to: getFirstOfTwoDates(to, dateToISODate(dayjs(date).endOf('month'))),
+        from: maxISODate([from, dateToISODate(d.startOf('month'))])!,
+        to: minISODate([to, dateToISODate(d.endOf('month'))])!,
     };
 };
 
-export const getLastWeekDayInMonth = (month: ISODate): ISODate => {
-    return getLastWeekdayOnOrBeforeDate(dateToISODate(dayjs(month).endOf('month')));
+export const getLastWeekdayInMonth = (month: ISODate): ISODate => {
+    const [year, mon] = month.split('-').map(Number);
+    return getLastWeekdayOnOrBeforeDate(dateToISO(new Date(year, mon, 0)));
 };
 
 export const getLastWeekdayOnOrBeforeDate = (date: ISODate): ISODate => {
-    const isoWeekDay = dayjs(date).isoWeekday();
-    return isoWeekDay <= 5 ? date : (dateToISODate(dayjs(date).startOf('isoWeek').add(4, 'days')) as ISODate);
+    const wd = getISOWeekdayFromISODate(date);
+    if (wd <= 5) return date;
+    const d = ISODateToDate(date);
+    d.setDate(d.getDate() - (wd - 5));
+    return dateToISO(d);
 };
 
 export const getFirstWeekdayOnOrAfterDate = (date: ISODate): ISODate => {
-    const isoWeekDay = dayjs(date).isoWeekday();
-    return isoWeekDay <= 5 ? date : (dateToISODate(dayjs(date).endOf('isoWeek').add(1, 'days')) as ISODate);
+    const wd = getISOWeekdayFromISODate(date);
+    if (wd <= 5) return date;
+    const d = ISODateToDate(date);
+    d.setDate(d.getDate() + (8 - wd));
+    return dateToISO(d);
 };
 
 export const getWeeksInMonth = (month: ISODate, includeWholeWeeks = false): DateRange[] => {
     const range = getMonthDateRange(month);
     return getWeeksInDateRange({
-        from:
-            includeWholeWeeks === false
-                ? range.from
-                : getFirstOfTwoDates(range.from, dateToISODate(dayjs(range.from).startOf('isoWeek'))),
-        to:
-            includeWholeWeeks === false
-                ? range.to
-                : getLastOfTwoDates(range.to, dateToISODate(dayjs(range.to).endOf('isoWeek'))),
+        from: !includeWholeWeeks
+            ? range.from
+            : minISODate([range.from, dateToISODate(dayjs(range.from).startOf('isoWeek'))])!,
+        to: !includeWholeWeeks ? range.to : maxISODate([range.to, dateToISODate(dayjs(range.to).endOf('isoWeek'))])!,
     });
 };
 
-export const isDateWeekDay = (date: ISODate): boolean => {
-    return dayjs(date).isoWeekday() <= 5;
-};
+export const isDateWeekDay = (date: ISODate): boolean => getISOWeekdayFromISODate(date) <= 5;
 
-export const isDateInDates = (date: ISODate, dates?: ISODate[]): boolean => {
-    if (!dates) {
-        return false;
-    }
-    return dates.includes(date);
-};
+export const isDateInDates = (date: ISODate, dates?: ISODate[]): boolean => dates?.includes(date) ?? false;
 
-export const getYearMonthKey = (date: ISODate): string => dayjs(date).format('YYYY-MM');
+export const getYearMonthKey = (date: ISODate): string => date.substring(0, 7);
 
-export const getFirstOfTwoDates = (date1: ISODate, date2: ISODate): ISODate => {
-    return date1 > date2 ? date2 : date1;
-};
-
-export const getLastOfTwoDates = (date1: ISODate, date2: ISODate): ISODate => {
-    return date1 < date2 ? date2 : date1;
-};
-
-export const sortDateArray = (dates: ISODate[]): ISODate[] => dates.sort(sortDates);
+export const sortDateArray = (dates: ISODate[]): ISODate[] => [...dates].sort(sortDates);
 
 export const sortDates = (d1: ISODate, d2: ISODate): number => d1.localeCompare(d2);
 
@@ -142,18 +138,6 @@ export const minISODate = (dates: ISODate[]): ISODate | undefined => {
     return dates.reduce((min, d) => (d < min ? d : min));
 };
 
-export const dateUtils = {
-    getDateToday,
-    dateToISODate,
-    getDatesInMonth,
-    getFirstOfTwoDates,
-    getFirstWeekdayInMonth,
-    getLastOfTwoDates,
-    getISOWeekdayFromISODate,
-    getLastWeekDayInMonth,
-    getYearMonthKey,
-    isISODateString,
-    isDateInDates,
-    isDateWeekDay,
-    ISODateToDate,
-};
+export const getFirstOfTwoDates = (date1: ISODate, date2: ISODate): ISODate => (date1 < date2 ? date1 : date2);
+
+export const getLastOfTwoDates = (date1: ISODate, date2: ISODate): ISODate => (date1 > date2 ? date1 : date2);
