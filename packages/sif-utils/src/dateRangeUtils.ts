@@ -1,6 +1,4 @@
 import dayjs from 'dayjs';
-import isBetween from 'dayjs/plugin/isBetween';
-import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import { uniq } from 'lodash';
 
@@ -9,6 +7,7 @@ import {
     dateToISODate,
     getFirstWeekdayInMonth,
     getFirstWeekdayOnOrAfterDate,
+    getISOWeekdayFromISODate,
     getLastWeekdayInMonth,
     getLastWeekdayOnOrBeforeDate,
     isDateWeekDay,
@@ -19,8 +18,6 @@ import {
 } from './dateUtils';
 
 dayjs.extend(isSameOrBefore);
-dayjs.extend(isSameOrAfter);
-dayjs.extend(isBetween);
 
 /**
  * Typecheck for DateRange object
@@ -33,10 +30,7 @@ export const isDateRange = (dateRange: any): dateRange is DateRange => {
  * Sorts an array of date ranges by the from-date
  */
 export const sortDateRange = (d1: Pick<DateRange, 'from'>, d2: Pick<DateRange, 'from'>): number => {
-    if (dayjs(d1.from).isSameOrBefore(d2.from, 'day')) {
-        return -1;
-    }
-    return 1;
+    return d1.from <= d2.from ? -1 : 1;
 };
 
 /**
@@ -52,7 +46,7 @@ export const sortMaybeDateRange = (d1: MaybeDateRange, d2: MaybeDateRange): numb
     if (d2.from === undefined) {
         return 1;
     }
-    if (dayjs(d1.from).isSameOrBefore(d2.from, 'day')) {
+    if (d1.from <= d2.from) {
         return -1;
     }
     return 1;
@@ -62,10 +56,7 @@ export const sortMaybeDateRange = (d1: MaybeDateRange, d2: MaybeDateRange): numb
  * Sorts an array of date ranges by the to-date
  */
 export const sortDateRangeByToDate = (d1: DateRange, d2: DateRange): number => {
-    if (dayjs(d1.to).isSameOrBefore(d2.to, 'day')) {
-        return -1;
-    }
-    return 1;
+    return d1.to <= d2.to ? -1 : 1;
 };
 
 /**
@@ -77,9 +68,9 @@ export const dateRangesCollide = (dateRanges: DateRange[], fromDateCanBeSameAsPr
         const hasOverlap = dateRanges.find((d, idx) => {
             if (idx < sortedDates.length - 1) {
                 if (fromDateCanBeSameAsPreviousToDate) {
-                    return dayjs(d.to).isAfter(sortedDates[idx + 1].from, 'day');
+                    return d.to > sortedDates[idx + 1].from;
                 } else {
-                    return dayjs(d.to).isSameOrAfter(sortedDates[idx + 1].from, 'day');
+                    return d.to >= sortedDates[idx + 1].from;
                 }
             }
             return false;
@@ -101,8 +92,8 @@ export const dateRangesExceedsRange = (ranges: DateRange[], allowedRange: DateRa
     const to = sortedRanges[sortedRanges.length - 1].to;
 
     if (
-        !dayjs(from).isBetween(allowedRange.from, allowedRange.to, 'day', '[]') ||
-        !dayjs(to).isBetween(allowedRange.from, allowedRange.to, 'day', '[]')
+        !(from >= allowedRange.from && from <= allowedRange.to) ||
+        !(to >= allowedRange.from && to <= allowedRange.to)
     ) {
         return true;
     }
@@ -129,10 +120,10 @@ export const isDateInMaybeDateRange = (date: ISODate, dateRange: MaybeDateRange)
         return isDateInDateRange(date, dateRange);
     }
     if (dateRange.from) {
-        return dayjs(date).isSameOrAfter(dateRange.from);
+        return date >= dateRange.from;
     }
     if (dateRange.to) {
-        return dayjs(date).isSameOrBefore(dateRange.to);
+        return date <= dateRange.to;
     }
     return false;
 };
@@ -140,9 +131,8 @@ export const isDateInMaybeDateRange = (date: ISODate, dateRange: MaybeDateRange)
 /**
  * Check if a date is in a date range, including date range from-date and date range to-date
  */
-export const isDateInDateRange = (date: ISODate, dateRange: DateRange): boolean => {
-    return dayjs(date).isBetween(dateRange.from, dateRange.to, 'day', '[]');
-};
+export const isDateInDateRange = (date: ISODate, dateRange: DateRange): boolean =>
+    date >= dateRange.from && date <= dateRange.to;
 
 /**
  * Check if a date is in one of the dateranges, including date range from-date and date range to-date
@@ -154,16 +144,13 @@ export const isDateInDateRanges = (date: ISODate, dateRanges: DateRange[]): bool
 /**
  * Check if a date is inside a date range, excluding date range from-date and date range to-date
  */
-export const isDateInsideDateRange = (date: ISODate, dateRange: DateRange): boolean => {
-    return dayjs(date).isBetween(dateRange.from, dateRange.to, 'day', '()');
-};
+export const isDateInsideDateRange = (date: ISODate, dateRange: DateRange): boolean =>
+    date > dateRange.from && date < dateRange.to;
 
 /**
  * Check if a dateRange is before or equal to given date
  */
-export const isDateRangeSameOrBeforeDate = (dateRange: DateRange, date: ISODate): boolean => {
-    return dayjs(dateRange.to).isSameOrBefore(date, 'day');
-};
+export const isDateRangeSameOrBeforeDate = (dateRange: DateRange, date: ISODate): boolean => dateRange.to <= date;
 
 /**
  * Returns array of DateRange representing the months in @dateRange.
@@ -174,8 +161,7 @@ export const getMonthsInDateRange = (dateRange: DateRange, returnFullMonths = fa
     do {
         const from: ISODate = returnFullMonths ? dateToISODate(current.startOf('month')) : dateToISODate(current);
         const endOfMonth = dateToISODate(dayjs(from).endOf('month'));
-        const to: ISODate =
-            dayjs(endOfMonth).isAfter(dateRange.to, 'day') && returnFullMonths === false ? dateRange.to : endOfMonth;
+        const to: ISODate = endOfMonth > dateRange.to && !returnFullMonths ? dateRange.to : endOfMonth;
 
         months.push({ from, to });
         current = current.add(1, 'month').startOf('month');
@@ -209,7 +195,7 @@ export const getMonthDateRange = (date: ISODate, onlyWeekDays = false): DateRang
  * Utvider DateRange til å gå til og med søndag, dersom dateRange slutter på fredag, lørdag eller søndag
  */
 export const includeWeekendIfDateRangeEndsOnFridayOrLater = (dateRange: DateRange): DateRange => {
-    if (dayjs(dateRange.to).isoWeekday() >= 5) {
+    if (getISOWeekdayFromISODate(dateRange.to) >= 5) {
         return {
             ...dateRange,
             to: dateToISODate(dayjs(dateRange.to).endOf('isoWeek')),
@@ -226,10 +212,14 @@ export const dateRangeIsAdjacentToDateRange = (
     dateRange2: DateRange,
     ignoreWeekends = false,
 ): boolean => {
-    if (dayjs(dateRange1.to).isSameOrAfter(dateRange2.from, 'day')) {
+    if (dateRange1.to >= dateRange2.from) {
         return false;
     }
-    if (ignoreWeekends && dayjs(dateRange1.to).isoWeekday() >= 5 && dayjs(dateRange2.from).isoWeekday() === 1) {
+    if (
+        ignoreWeekends &&
+        getISOWeekdayFromISODate(dateRange1.to) >= 5 &&
+        getISOWeekdayFromISODate(dateRange2.from) === 1
+    ) {
         const diff = dayjs(dateRange1.to).diff(dayjs(dateRange2.from), 'days');
         return diff === -1 || diff === -2 || diff === -3;
     }
@@ -310,7 +300,7 @@ export const getDatesInDateRange = (dateRange: DateRange, onlyWeekDays = false):
     let current = dayjs(dateRange.from);
     do {
         const date = dateToISODate(current);
-        if (onlyWeekDays === false || isDateWeekDay(date)) {
+        if (!onlyWeekDays || isDateWeekDay(date)) {
             dates.push(date);
         }
         current = current.add(1, 'day');
@@ -322,7 +312,7 @@ export const getDatesInDateRange = (dateRange: DateRange, onlyWeekDays = false):
  * Returns array with all years defined in the dateRanges from value
  */
 export const getYearsInDateRanges = (dateRanges: DateRange[]): number[] =>
-    uniq(dateRanges.map((d) => parseInt(d.from.split('-')[0], 10)));
+    uniq(dateRanges.map((d) => Number(d.from.substring(0, 4))));
 
 /**
  * Returns number of days within @dateRange
@@ -448,7 +438,7 @@ export const getDatesInMonthOutsideDateRange = (month: ISODate, dateRange: DateR
     const monthDateRange: DateRange = getMonthDateRange(month);
     const dates: ISODate[] = [];
 
-    if (dayjs(dateRange.from).isAfter(monthDateRange.from, 'day')) {
+    if (dateRange.from > monthDateRange.from) {
         dates.push(
             ...getDatesInDateRange({
                 from: monthDateRange.from,
@@ -456,7 +446,7 @@ export const getDatesInMonthOutsideDateRange = (month: ISODate, dateRange: DateR
             }),
         );
     }
-    if (dayjs(dateRange.to).isBefore(monthDateRange.to, 'day')) {
+    if (dateRange.to < monthDateRange.to) {
         dates.push(
             ...getDatesInDateRange({
                 from: dateToISODate(dayjs(dateRange.to).add(1, 'day')),
@@ -479,7 +469,7 @@ export const getDatesInWeekOutsideDateRange = (
     const weekDateRange: DateRange = getWeekDateRange(week, onlyWeekDays);
     const dates: ISODate[] = [];
 
-    if (dayjs(dateRange.from).isAfter(weekDateRange.from, 'day')) {
+    if (dateRange.from > weekDateRange.from) {
         dates.push(
             ...getDatesInDateRange({
                 from: weekDateRange.from,
@@ -487,7 +477,7 @@ export const getDatesInWeekOutsideDateRange = (
             }),
         );
     }
-    if (dayjs(dateRange.to).isBefore(weekDateRange.to, 'day')) {
+    if (dateRange.to < weekDateRange.to) {
         dates.push(
             ...getDatesInDateRange({
                 from: dateToISODate(dayjs(dateRange.to).add(1, 'day')),
@@ -545,7 +535,7 @@ export const getDateRangesFromISODateRangeMap = (map: ISODateRangeMap<any>): Dat
  * If the dateRange to-date is after maxDate, it sets the to-date to the maxDate.
  */
 export const setMaxToDateForDateRange = (dateRange: DateRange, maxToDate: ISODate): DateRange => {
-    if (dayjs(dateRange.to).isAfter(maxToDate, 'day')) {
+    if (dateRange.to > maxToDate) {
         return {
             from: dateRange.from,
             to: maxToDate,
@@ -560,8 +550,8 @@ export const setMaxToDateForDateRange = (dateRange: DateRange, maxToDate: ISODat
 export const limitDateRangeToDateRange = <Type extends DateRange>(dateRange: Type, limitDateRange: DateRange): Type => {
     return {
         ...dateRange,
-        from: dayjs(dateRange.from).isBefore(limitDateRange.from, 'day') ? limitDateRange.from : dateRange.from,
-        to: dayjs(dateRange.to).isAfter(limitDateRange.to, 'day') ? limitDateRange.to : dateRange.to,
+        from: dateRange.from < limitDateRange.from ? limitDateRange.from : dateRange.from,
+        to: dateRange.to > limitDateRange.to ? limitDateRange.to : dateRange.to,
     };
 };
 
@@ -616,7 +606,7 @@ export const dateRangeIncludesWeekdays = (dateRange: DateRange): boolean => {
 export const trimDateRangeToWeekdays = (range: DateRange): DateRange | undefined => {
     const from = getFirstWeekdayOnOrAfterDate(range.from);
     const to = getLastWeekdayOnOrBeforeDate(range.to);
-    if (dayjs(from).isAfter(to, 'day')) {
+    if (from > to) {
         return undefined;
     }
     return { from, to };

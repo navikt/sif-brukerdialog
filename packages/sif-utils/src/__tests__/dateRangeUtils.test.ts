@@ -378,16 +378,14 @@ describe('dateRangeUtils', () => {
             { from: '2020-01-01' as ISODate, to: '2020-02-01' as ISODate },
         ];
         it('throws error if dateRanges are empty', () => {
-            try {
-                getDateRangeFromDateRanges([]);
-            } catch (e) {
-                expect(e).toEqual('getDateRangeFromDateRanges: Cannot get date range from empty array');
-            }
+            expect(() => getDateRangeFromDateRanges([])).toThrow(
+                'getDateRangeFromDateRanges: Cannot get date range from empty array',
+            );
         });
         it('gets the spanning daterange for multiple dateranges', () => {
             const result = getDateRangeFromDateRanges(dateRanges);
-            expect(dateToISODate(result.from)).toEqual('2010-01-01' as ISODate);
-            expect(dateToISODate(result.to)).toEqual('2020-02-01' as ISODate);
+            expect(result.from).toEqual('2010-01-01' as ISODate);
+            expect(result.to).toEqual('2020-02-01' as ISODate);
         });
     });
 
