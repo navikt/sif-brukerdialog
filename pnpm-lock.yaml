@@ -3127,9 +3127,6 @@ importers:
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../../packages/sif-common-ui
-      '@navikt/sif-common-utils':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-utils
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
@@ -3151,6 +3148,9 @@ importers:
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../../packages/sif-soknad-ui
+      '@sif/utils':
+        specifier: workspace:*
+        version: link:../../packages/sif-utils
       '@tanstack/react-query':
         specifier: 5.101.0
         version: 5.101.0(react@19.2.7)
