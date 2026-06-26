@@ -4140,15 +4140,15 @@ importers:
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../sif-common-env
-      '@navikt/sif-common-utils':
-        specifier: workspace:*
-        version: link:../sif-common-utils
       '@navikt/ung-brukerdialog-api':
         specifier: workspace:*
         version: link:../ung-brukerdialog-api
       '@navikt/ung-deltakelse-opplyser-api-deltaker':
         specifier: workspace:*
         version: link:../ung-deltakelse-opplyser-api-deltaker
+      '@sif/utils':
+        specifier: workspace:*
+        version: link:../sif-utils
       '@tanstack/react-query':
         specifier: 5.101.0
         version: 5.101.0(react@19.2.7)

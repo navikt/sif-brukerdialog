@@ -1,4 +1,4 @@
-import { DateRange, OpenDateRange } from '@navikt/sif-common-utils';
+import { DateRange, ISODate, OpenDateRange } from '@sif/utils';
 import {
     BrukerdialogOppgaveDto,
     OppgaveStatus,
@@ -21,10 +21,8 @@ export enum ParsedOppgavetype {
     SØK_YTELSE = 'SØK_YTELSE',
 }
 
-export type RapportertInntektRespons = Omit<RapportertInntektDto, 'fraOgMed' | 'tilOgMed'> & {
+export type RapportertInntektRespons = RapportertInntektDto & {
     type: 'RAPPORTERT_INNTEKT';
-    fraOgMed: Date;
-    tilOgMed: Date;
 };
 
 export type SvarPåVarselRespons = SvarPåVarselDto & {
@@ -32,16 +30,15 @@ export type SvarPåVarselRespons = SvarPåVarselDto & {
 };
 export interface ParsedOppgaveBase extends Omit<
     BrukerdialogOppgaveDto,
-    'opprettetDato' | 'løstDato' | 'åpnetDato' | 'lukketDato' | 'oppgavetypeData' | 'frist' | 'respons'
+    'oppgavetypeData' | 'respons' | 'frist' | 'løstDato' | 'opprettetDato'
 > {
     oppgaveReferanse: string;
     parsedOppgavetype: ParsedOppgavetype;
-    opprettetDato: Date;
     status: OppgaveStatus;
+    frist: Date;
     løstDato?: Date;
-    sisteDatoEnKanSvare: Date /** Siste dag for innlevering */;
-    åpnetDato?: Date;
-    lukketDato?: Date;
+    opprettetDato: Date;
+    sisteDatoEnKanSvare: Date;
 }
 
 export interface ParsedRapportertInntektOppgave extends ParsedOppgaveBase {
@@ -51,8 +48,8 @@ export interface ParsedRapportertInntektOppgave extends ParsedOppgaveBase {
 export interface AvvikRegisterinntektOppgave extends ParsedOppgaveBase {
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT;
     oppgavetypeData: {
-        fraOgMed: Date;
-        tilOgMed: Date;
+        fraOgMed: ISODate;
+        tilOgMed: ISODate;
         registerinntekt: RegisterinntektDto;
         gjelderDelerAvMåned: boolean;
     };
@@ -62,8 +59,8 @@ export interface AvvikRegisterinntektOppgave extends ParsedOppgaveBase {
 export interface EndretStartdatoOppgave extends ParsedOppgaveBase {
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO;
     oppgavetypeData: {
-        forrigeStartdato: Date;
-        nyStartdato: Date;
+        forrigeStartdato: ISODate;
+        nyStartdato: ISODate;
     };
     respons?: SvarPåVarselRespons;
 }
@@ -79,8 +76,8 @@ export interface BostedVilkårOppgave extends ParsedOppgaveBase {
 export interface EndretSluttdatoOppgave extends ParsedOppgaveBase {
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO;
     oppgavetypeData: {
-        forrigeSluttdato: Date;
-        nySluttdato: Date;
+        forrigeSluttdato: ISODate;
+        nySluttdato: ISODate;
     };
     respons?: SvarPåVarselRespons;
 }
@@ -88,7 +85,7 @@ export interface EndretSluttdatoOppgave extends ParsedOppgaveBase {
 export interface MeldtUtOppgave extends ParsedOppgaveBase {
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_MELDT_UT;
     oppgavetypeData: {
-        sluttdato: Date;
+        sluttdato: ISODate;
     };
     respons?: SvarPåVarselRespons;
 }
@@ -110,8 +107,8 @@ export interface FjernetPeriodeOppgave extends ParsedOppgaveBase {
 export interface OpphorVedMaksdatoOppgave extends ParsedOppgaveBase {
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO;
     oppgavetypeData: {
-        maksdato: Date;
-        sluttdato: Date;
+        maksdato: ISODate;
+        sluttdato: ISODate;
     };
     respons?: SvarPåVarselRespons;
 }
@@ -132,8 +129,8 @@ export interface RapporterInntektOppgave extends ParsedRapportertInntektOppgave 
     oppgaveYtelsetype: OppgaveYtelsetype;
     parsedOppgavetype: ParsedOppgavetype.RAPPORTER_INNTEKT;
     oppgavetypeData: {
-        fraOgMed: Date;
-        tilOgMed: Date;
+        fraOgMed: ISODate;
+        tilOgMed: ISODate;
         gjelderDelerAvMåned: boolean;
     };
 }
@@ -141,18 +138,18 @@ export interface RapporterInntektOppgave extends ParsedRapportertInntektOppgave 
 export interface SøkYtelseOppgave extends ParsedOppgaveBase {
     parsedOppgavetype: ParsedOppgavetype.SØK_YTELSE;
     oppgavetypeData: {
-        fomDato: Date;
+        fomDato: ISODate;
     };
 }
 
 export type Oppgave =
-    | SøkYtelseOppgave
+    | AvvikRegisterinntektOppgave
     | BostedVilkårOppgave
-    | EndretStartdatoOppgave
     | EndretSluttdatoOppgave
-    | MeldtUtOppgave
+    | EndretStartdatoOppgave
     | EndretStartOgSluttdatoOppgave
     | FjernetPeriodeOppgave
-    | AvvikRegisterinntektOppgave
+    | MeldtUtOppgave
     | OpphorVedMaksdatoOppgave
-    | RapporterInntektOppgave;
+    | RapporterInntektOppgave
+    | SøkYtelseOppgave;

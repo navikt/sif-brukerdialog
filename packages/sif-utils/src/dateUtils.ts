@@ -8,6 +8,8 @@ dayjs.extend(isoWeek);
 
 const ISODateFormat = 'YYYY-MM-DD';
 
+export const TidenesEnde: ISODate = '2099-01-01' as ISODate;
+
 export const getDateToday = (): ISODate => dateToISODate(dayjs());
 export const getDate1YearAgo = (): ISODate => dateToISODate(dayjs().subtract(1, 'year'));
 export const getDate2YearsAgo = (): ISODate => dateToISODate(dayjs().subtract(2, 'year'));

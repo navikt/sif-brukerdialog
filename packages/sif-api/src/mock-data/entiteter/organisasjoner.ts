@@ -1,24 +1,28 @@
 import { OrganisasjonDto } from '@navikt/k9-brukerdialog-prosessering-api';
+import { ISODate } from '@sif/utils';
 
-type OrganisasjonEntitet = OrganisasjonDto;
+type OrganisasjonEntitet = Omit<OrganisasjonDto, 'ansattFom' | 'ansattTom'> & {
+    ansattFom: ISODate;
+    ansattTom?: ISODate;
+};
 
 export const norskBedriftAS: OrganisasjonEntitet = {
     organisasjonsnummer: '947064649',
     navn: 'Norsk bedrift AS',
-    ansattFom: '2003-01-16',
+    ansattFom: '2003-01-16' as ISODate,
     ansattTom: undefined,
 };
 
 export const arbeidsgivansenAS: OrganisasjonEntitet = {
     organisasjonsnummer: '123456789',
     navn: 'Arbeidsgivansen AS',
-    ansattFom: '2020-01-01',
+    ansattFom: '2020-01-01' as ISODate,
     ansattTom: undefined,
 };
 
 export const vingeFlyfly: OrganisasjonEntitet = {
     organisasjonsnummer: '947064640',
     navn: 'Vinge flyfly',
-    ansattFom: '2008-10-01',
+    ansattFom: '2008-10-01' as ISODate,
     ansattTom: undefined,
 };

@@ -1,4 +1,4 @@
-import { ISODateToDate } from '@navikt/sif-common-utils';
+import { isISODateString } from '@sif/utils';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import { z } from 'zod';
@@ -23,11 +23,12 @@ export const zNullableDateTime = z
     .nullish()
     .transform((val) => (val ? parseUTCDate(val) : undefined));
 
-/** Schema for ISO date-streng (f.eks. "2024-01-15") → Date */
-export const zISODate = z.string().transform((val) => ISODateToDate(val));
-
 /** Schema for nullable/optional ISO date-streng, transformerer null/undefined → undefined */
-export const zNullableISODate = z
-    .string()
-    .nullish()
-    .transform((val) => (val ? ISODateToDate(val) : undefined));
+
+export const zISODate = z.string().transform((val, ctx) => {
+    if (!isISODateString(val)) {
+        ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'Ugyldig ISO-dato (YYYY-MM-DD)' });
+        return z.NEVER;
+    }
+    return val;
+});

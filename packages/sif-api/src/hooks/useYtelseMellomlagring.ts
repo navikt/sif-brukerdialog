@@ -1,4 +1,4 @@
-import { jsonSort } from '@navikt/sif-common-utils';
+import { jsonSort } from '@sif/utils';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import objectHash from 'object-hash';
 
