@@ -1,6 +1,6 @@
 import { erDeltakelseAvsluttet, erDeltakelseStartet } from '@innsyn/utils/deltakelseUtils';
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
-import { sortDates } from '@navikt/sif-common-utils';
+import { sortDateTimes } from '@sif/utils';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { AppText } from '@shared/i18n';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
@@ -29,11 +29,11 @@ const DeltakelseContent = ({ deltakelsePeriode, oppgaver }: Props) => {
 
     const uløsteOppgaver = oppgaver
         .filter((oppgave) => oppgave.status === OppgaveStatus.ULØST)
-        .sort((o1, o2) => sortDates(o2.opprettetDato, o1.opprettetDato));
+        .sort((o1, o2) => sortDateTimes(o2.opprettetDato, o1.opprettetDato));
 
     const tidligereOppgaver = oppgaver
         .filter((oppgave) => oppgave.status !== OppgaveStatus.ULØST)
-        .sort((o1, o2) => sortDates(o2.løstDato || o2.opprettetDato, o1.løstDato || o1.opprettetDato));
+        .sort((o1, o2) => sortDateTimes(o2.løstDato || o2.opprettetDato, o1.løstDato || o1.opprettetDato));
 
     const medMelding = visInfoOmDeltakelseAvsluttet || visInfoOmInntektsrapportering;
     return (

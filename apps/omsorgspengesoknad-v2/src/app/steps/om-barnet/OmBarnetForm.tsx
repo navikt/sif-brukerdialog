@@ -8,7 +8,7 @@ import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
 import { Heading, ReadMore } from '@navikt/ds-react';
 import { isDevMode } from '@navikt/sif-common-env';
 import { QuestionRelatedMessage } from '@navikt/sif-common-ui';
-import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
+import { dateFormatter, getDateToday } from '@sif/utils';
 import {
     getDateValidator,
     getFødselsnummerValidator,

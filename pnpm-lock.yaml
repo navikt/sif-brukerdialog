@@ -344,9 +344,6 @@ importers:
       '@navikt/sif-common-sentry':
         specifier: workspace:*
         version: link:../../packages/sif-common-sentry
-      '@navikt/sif-common-utils':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-utils
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
@@ -368,6 +365,9 @@ importers:
       '@sif/ung-innsyn':
         specifier: workspace:*
         version: link:../../packages/ung-innsyn
+      '@sif/utils':
+        specifier: workspace:*
+        version: link:../../packages/sif-utils
       '@tanstack/react-query':
         specifier: 5.101.0
         version: 5.101.0(react@19.2.7)
@@ -528,9 +528,6 @@ importers:
       '@navikt/sif-common-sentry':
         specifier: workspace:*
         version: link:../../packages/sif-common-sentry
-      '@navikt/sif-common-utils':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-utils
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
@@ -555,6 +552,9 @@ importers:
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../../packages/sif-soknad-ui
+      '@sif/utils':
+        specifier: workspace:*
+        version: link:../../packages/sif-utils
       '@tanstack/react-query':
         specifier: 5.101.0
         version: 5.101.0(react@19.2.7)
@@ -2283,9 +2283,6 @@ importers:
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../../packages/sif-common-ui
-      '@navikt/sif-common-utils':
-        specifier: workspace:^
-        version: link:../../packages/sif-common-utils
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
@@ -2310,6 +2307,9 @@ importers:
       '@sif/surveys':
         specifier: workspace:*
         version: link:../../packages/sif-surveys
+      '@sif/utils':
+        specifier: workspace:^
+        version: link:../../packages/sif-utils
       '@tanstack/react-query':
         specifier: 5.101.0
         version: 5.101.0(react@19.2.7)
@@ -3583,9 +3583,6 @@ importers:
       '@navikt/sif-common-analytics':
         specifier: workspace:*
         version: link:../../packages/sif-common-analytics
-      '@navikt/sif-common-api':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-api
       '@navikt/sif-common-core-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-core-ds
@@ -3613,9 +3610,6 @@ importers:
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../../packages/sif-common-ui
-      '@navikt/sif-common-utils':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-utils
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
@@ -3640,6 +3634,9 @@ importers:
       '@sif/ung-innsyn':
         specifier: workspace:*
         version: link:../../packages/ung-innsyn
+      '@sif/utils':
+        specifier: workspace:*
+        version: link:../../packages/sif-utils
       '@tanstack/react-query':
         specifier: 5.101.0
         version: 5.101.0(react@19.2.7)
@@ -5532,15 +5529,15 @@ importers:
       '@navikt/ds-react':
         specifier: 8.13.0
         version: 8.13.0(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      '@navikt/sif-common-api':
-        specifier: workspace:*
-        version: link:../sif-common-api
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../sif-common-env
       '@navikt/sif-common-hooks':
         specifier: workspace:*
         version: link:../sif-common-hooks
+      '@sif/api':
+        specifier: workspace:*
+        version: link:../sif-api
       '@sif/utils':
         specifier: workspace:*
         version: link:../sif-utils

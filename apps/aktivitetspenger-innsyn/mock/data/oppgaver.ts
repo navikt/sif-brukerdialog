@@ -1,4 +1,3 @@
-import { dateToISODate } from '@navikt/sif-common-utils';
 import {
     BrukerdialogOppgaveDto,
     OppgaveStatus,
@@ -6,6 +5,7 @@ import {
     OppgaveYtelsetype,
     PeriodeEndringType,
 } from '@navikt/ung-brukerdialog-api';
+import { dateToISODate } from '@sif/utils';
 import dayjs from 'dayjs';
 
 import { getMockToday } from '../utils/mockDate';

@@ -3,7 +3,7 @@ import { SøknadStepId } from '@app/types/SoknadStepId';
 import { SøknadStepForm } from '@sif/soknad-app';
 import { BostedUtlandSøknadsdata } from '@app/types/Soknadsdata';
 import { Heading, VStack } from '@navikt/ds-react';
-import { getDateToday } from '@navikt/sif-common-utils';
+import { getDateToday } from '@sif/utils';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { SøknadStep, useMellomlagring, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';

@@ -27,9 +27,9 @@
     "dependencies": {
         "@navikt/aksel-icons": "8.13.0",
         "@navikt/ds-react": "8.13.0",
-        "@navikt/sif-common-api": "workspace:*",
         "@navikt/sif-common-env": "workspace:*",
         "@navikt/sif-common-hooks": "workspace:*",
+        "@sif/api": "workspace:*",
         "@sif/utils": "workspace:*",
         "react-intl": "10.1.13",
         "react-responsive": "10.0.1"

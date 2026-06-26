@@ -1,6 +1,6 @@
 import { FormSummary } from '@navikt/ds-react';
 import { ForutgåendeBosteder } from '@navikt/k9-brukerdialog-prosessering-api';
-import { dateRangeFormatter, ISODateToDate } from '@navikt/sif-common-utils';
+import { dateRangeFormatter, ISODateToDate } from '@sif/utils';
 import { JaNeiSvar } from '@sif/soknad-ui';
 import { useStepNavigation } from '@sif/soknad-app';
 

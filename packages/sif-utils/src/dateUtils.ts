@@ -125,6 +125,7 @@ export const getYearMonthKey = (date: ISODate): string => date.substring(0, 7);
 export const sortDateArray = (dates: ISODate[]): ISODate[] => [...dates].sort(sortDates);
 
 export const sortDates = (d1: ISODate, d2: ISODate): number => d1.localeCompare(d2);
+export const sortDateTimes = (d1: Date, d2: Date): number => d1.getTime() - d2.getTime();
 
 export const maxISODate = (dates: ISODate[]): ISODate | undefined => {
     if (dates.length === 0) {

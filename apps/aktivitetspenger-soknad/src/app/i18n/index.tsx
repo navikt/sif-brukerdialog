@@ -1,4 +1,4 @@
-import { typedIntlHelper } from '@navikt/sif-common-utils';
+import { typedIntlHelper } from '@sif/utils';
 import { sifSoknadFormsMessages } from '@sif/soknad-forms';
 import { sifSoknadUiMessages } from '@sif/soknad-ui/i18n';
 import { FormattedMessage, useIntl } from 'react-intl';

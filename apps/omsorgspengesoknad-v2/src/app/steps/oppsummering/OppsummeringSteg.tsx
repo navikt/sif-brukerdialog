@@ -5,7 +5,7 @@ import { AppForm } from '@app/setup/soknad/AppForm';
 import { SøknadStep } from '@app/setup/soknad/SoknadStep';
 import { ErrorSummary, FormSummary, InlineMessage, LocalAlert } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
-import { dateFormatter, formatName, ISODateToDate } from '@navikt/sif-common-utils';
+import { dateFormatter, formatName, ISODateToDate } from '@sif/utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { getInvalidParametersFromApiError } from '@sif/api';
 import { Søker } from '@sif/api/k9-prosessering';
