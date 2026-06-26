@@ -1,6 +1,5 @@
 import { Bleed, BodyLong, Box, Heading, List, ReadMore, VStack } from '@navikt/ds-react';
-import { DateRange } from '@navikt/sif-common-formik-ds';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter, DateRange, ISODate } from '@sif/utils';
 import { ReactNode } from 'react';
 
 import { ExternalLink } from '../../../../components/external-link/ExternalLink';
@@ -10,7 +9,7 @@ import { ungInnsynLenker } from '../../../../utils/lenker';
 interface Props {
     navn: string;
     periode: DateRange;
-    svarfrist: Date;
+    svarfrist: ISODate;
     gjelderDelerAvMåned?: boolean;
 }
 

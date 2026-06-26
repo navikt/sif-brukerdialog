@@ -1,5 +1,5 @@
 import { BodyLong, Box, List, VStack } from '@navikt/ds-react';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter, dateToISODate, ISODate } from '@sif/utils';
 import { AvvikRegisterinntektOppgave } from '@sif/api/ung-brukerdialog';
 import dayjs from 'dayjs';
 import { ReactNode } from 'react';
@@ -12,13 +12,13 @@ interface Props {
     oppgave: AvvikRegisterinntektOppgave;
 }
 
-export const getUtbetalingsmånedForAvvikRegisterinntektOppgave = (oppgaveFraOgMed: Date): Date => {
-    return dayjs(oppgaveFraOgMed).add(1, 'month').toDate();
+export const getUtbetalingsmånedForAvvikRegisterinntektOppgave = (oppgaveFraOgMed: ISODate): ISODate => {
+    return dateToISODate(dayjs(oppgaveFraOgMed).add(1, 'month').toDate());
 };
 
 export const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
     const intl = useUngUiIntl();
-    const formatertFrist = <span className="text-nowrap">{dateFormatter.full(oppgave.sisteDatoEnKanSvare)}</span>;
+    const formatertFrist = <span className="text-nowrap">{dateFormatter.full(oppgave.frist)}</span>;
 
     const rapporteringsmåned = dateFormatter.month(oppgave.oppgavetypeData.fraOgMed);
     const rapporteringsmånedOgÅr = dateFormatter.monthFullYear(oppgave.oppgavetypeData.fraOgMed);

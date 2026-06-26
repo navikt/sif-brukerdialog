@@ -35,10 +35,9 @@ export interface ParsedOppgaveBase extends Omit<
     oppgaveReferanse: string;
     parsedOppgavetype: ParsedOppgavetype;
     status: OppgaveStatus;
-    frist: Date;
     løstDato?: Date;
     opprettetDato: Date;
-    sisteDatoEnKanSvare: Date;
+    frist: ISODate;
 }
 
 export interface ParsedRapportertInntektOppgave extends ParsedOppgaveBase {

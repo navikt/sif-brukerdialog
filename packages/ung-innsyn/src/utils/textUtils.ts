@@ -1,12 +1,12 @@
-import { dateFormatter } from '@navikt/sif-common-utils';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { BekreftelseOppgave, Oppgave, ParsedOppgaveBase, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
+import { dateFormatter, dateTimeFormatter } from '@sif/utils';
 
 import { UngUiIntlShape } from '../i18n';
 import { UttalelseSvaralternativer } from '../types';
 
 const renderDatoOgKlokkeslett = (dato?: Date) => {
-    return dato ? dateFormatter.compactWithTime(dato) : '';
+    return dato ? dateTimeFormatter.compactWithTime(dato) : '';
 };
 
 export const getOppgaveTittel = (oppgave: Oppgave | BekreftelseOppgave, { text }: UngUiIntlShape): string => {
@@ -68,7 +68,7 @@ export const getOppgaveStatusText = (oppgave: ParsedOppgaveBase): string => {
         case OppgaveStatus.LØST:
             return `Sendt inn ${renderDatoOgKlokkeslett(oppgave.løstDato)}`;
         case OppgaveStatus.ULØST:
-            return `Frist: senest ${dateFormatter.full(oppgave.sisteDatoEnKanSvare)}`;
+            return `Frist: senest ${dateFormatter.full(oppgave.frist)}`;
         case OppgaveStatus.AVBRUTT:
             return 'Oppgave er avbrutt';
         case OppgaveStatus.UTLØPT:

@@ -19,10 +19,7 @@ export const EndretSluttdatoOppgavePanel = ({ navn, oppgave, initialVisKvitterin
     return (
         <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
             <Oppgavebekreftelse.Ubesvart>
-                <EndretSluttdatoOppgavetekst
-                    endretDato={oppgave.oppgavetypeData.nySluttdato}
-                    svarfrist={oppgave.sisteDatoEnKanSvare}
-                />
+                <EndretSluttdatoOppgavetekst endretDato={oppgave.oppgavetypeData.nySluttdato} frist={oppgave.frist} />
             </Oppgavebekreftelse.Ubesvart>
             <Oppgavebekreftelse.Besvart>
                 <EndretSluttdatoOppsummering

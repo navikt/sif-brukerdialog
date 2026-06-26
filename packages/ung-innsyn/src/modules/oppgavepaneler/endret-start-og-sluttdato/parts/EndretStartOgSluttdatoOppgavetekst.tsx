@@ -1,12 +1,11 @@
 import { BodyLong } from '@navikt/ds-react';
-import { DateRange } from '@navikt/sif-common-formik-ds';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter, DateRange, ISODate } from '@sif/utils';
 import { ReactNode } from 'react';
 
 import { UngUiText } from '../../../../i18n';
 
 interface Props {
-    frist: Date;
+    frist: ISODate;
     nyPeriode: DateRange;
 }
 export const EndretStartOgSluttdatoOppgavetekst = ({ frist, nyPeriode }: Props) => {

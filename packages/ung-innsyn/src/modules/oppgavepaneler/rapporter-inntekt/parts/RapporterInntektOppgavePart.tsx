@@ -1,7 +1,6 @@
 import { Alert, Heading, VStack } from '@navikt/ds-react';
-import { DateRange } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter, DateRange } from '@sif/utils';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { useEffect, useRef, useState } from 'react';
 

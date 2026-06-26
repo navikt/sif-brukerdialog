@@ -8,6 +8,7 @@ import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { OpphorVedMaksdatoOppgavePanel } from './OpphorVedMaksdatoOppgavePanel';
+import { dateToISODate, ISODate } from '@sif/utils';
 
 const meta: Meta = {
     title: 'Oppgaver/Ungdomsprogramytelsen/Opphør ved maksdato',
@@ -23,12 +24,12 @@ const oppgave: OpphorVedMaksdatoOppgave = {
     oppgavetype: OppgaveType.BEKREFT_OPPHOR_VED_MAKSDATO,
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO,
     oppgavetypeData: {
-        maksdato: dayjs('2025-05-01').toDate(),
-        sluttdato: dayjs('2025-05-01').toDate(),
+        maksdato: '2025-05-01' as ISODate,
+        sluttdato: '2025-05-01' as ISODate,
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
-    sisteDatoEnKanSvare: dayjs().add(14, 'days').toDate(),
+    frist: dateToISODate(dayjs().add(14, 'days')),
     ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
 };
 

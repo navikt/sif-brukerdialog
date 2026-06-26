@@ -5909,18 +5909,12 @@ importers:
       '@navikt/sif-common-core-ds':
         specifier: workspace:*
         version: link:../sif-common-core-ds
-      '@navikt/sif-common-formik-ds':
-        specifier: workspace:*
-        version: link:../sif-common-formik-ds
       '@navikt/sif-common-hooks':
         specifier: workspace:*
         version: link:../sif-common-hooks
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../sif-common-ui
-      '@navikt/sif-common-utils':
-        specifier: workspace:*
-        version: link:../sif-common-utils
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../sif-validation
@@ -5936,6 +5930,9 @@ importers:
       '@sif/rhf':
         specifier: workspace:*
         version: link:../sif-rhf
+      '@sif/utils':
+        specifier: workspace:*
+        version: link:../sif-utils
       '@tanstack/react-query':
         specifier: 5.101.0
         version: 5.101.0(react@19.2.7)

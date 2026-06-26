@@ -36,8 +36,8 @@ import {
     SvarPåVarselRespons,
 } from '../../types/Oppgave';
 
-const getSisteDatoEnKanSvare = (svarfrist: ISODate): Date =>
-    dayjs(svarfrist).startOf('day').subtract(1, 'day').toDate();
+const getSisteDatoEnKanSvare = (svarfrist: ISODate): ISODate =>
+    dateToISODate(dayjs(svarfrist).startOf('day').subtract(1, 'day').toDate());
 
 const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
     switch (status) {
@@ -96,16 +96,15 @@ const parseRapportertInntektRespons = (respons?: any): RapportertInntektRespons 
 const getOppgaveBaseProps = (oppgave: BrukerdialogOppgaveDto): Omit<ParsedOppgaveBase, 'parsedOppgavetype'> => {
     const løstDato = oppgave.løstDato ? dayjs.utc(oppgave.løstDato).toDate() : undefined;
     const opprettetDato = dayjs.utc(oppgave.opprettetDato).toDate();
-    const frist: Date = new Date(oppgave.frist || TidenesEnde);
+    const frist: ISODate = dateToISODate(oppgave.frist || TidenesEnde);
     return {
         oppgavetype: oppgave.oppgavetype,
         oppgaveReferanse: oppgave.oppgaveReferanse,
         status: getOppgaveStatusEnum(oppgave.status),
         opprettetDato,
-        frist,
         løstDato,
         ytelsetype: oppgave.ytelsetype,
-        sisteDatoEnKanSvare: getSisteDatoEnKanSvare(dateToISODate(frist)),
+        frist: getSisteDatoEnKanSvare(dateToISODate(frist)),
     };
 };
 
