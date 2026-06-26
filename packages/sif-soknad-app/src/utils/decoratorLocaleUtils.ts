@@ -1,4 +1,4 @@
-import { Locale } from '@navikt/sif-common-utils';
+import { Locale } from '@sif/utils';
 import cookies from 'js-cookie';
 
 const LocaleSessionKey = 'selectedLocale';

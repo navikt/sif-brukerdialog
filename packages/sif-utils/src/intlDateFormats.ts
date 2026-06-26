@@ -4,7 +4,7 @@ export type IntlDateFormat = keyof typeof intlDateFormats;
 
 /**
  *
- * @param date: Date
+ * @param date: ISODate
  * @returns 01.01.2020
  */
 const compact: FormatDateOptions = {
@@ -14,7 +14,7 @@ const compact: FormatDateOptions = {
 };
 /**
  *
- * @param date: Date
+ * @param date: ISODate
  * @returns 1. jan. 2021
  */
 const dateShortMonthYear: FormatDateOptions = {
@@ -24,7 +24,7 @@ const dateShortMonthYear: FormatDateOptions = {
 };
 /**
  *
- * @param date: Date
+ * @param date: ISODate
  * @returns 1. januar 2021
  */
 const full: FormatDateOptions = {
@@ -35,7 +35,7 @@ const full: FormatDateOptions = {
 
 /**
  *
- * @param date: Date
+ * @param date: ISODate
  * @returns fredag
  */
 const weekday: FormatDateOptions = {
@@ -44,7 +44,7 @@ const weekday: FormatDateOptions = {
 
 /**
  *
- * @param date: Date
+ * @param date: ISODate
  * @returns fredag 01.01.2021
  */
 const weekdayCompactDate: FormatDateOptions = {
@@ -56,7 +56,7 @@ const weekdayCompactDate: FormatDateOptions = {
 
 /**
  *
- * @param date: Date
+ * @param date: ISODate
  * @returns fredag 1. jan. 2021
  */
 const weekdayDateShortMonthYear: FormatDateOptions = {
@@ -68,7 +68,7 @@ const weekdayDateShortMonthYear: FormatDateOptions = {
 
 /**
  *
- * @param date: Date
+ * @param date: ISODate
  * @returnsfredag 1. januar 2021
  */
 const weekdayDateMonthYear: FormatDateOptions = {
@@ -80,7 +80,7 @@ const weekdayDateMonthYear: FormatDateOptions = {
 
 /**
  *
- * @param date: Date
+ * @param date: ISODate
  * @returns fredag 1. jan.
  */
 const weekdayDateMonth: FormatDateOptions = {
@@ -91,7 +91,7 @@ const weekdayDateMonth: FormatDateOptions = {
 
 /**
  *
- * @param date: Date
+ * @param date: ISODate
  * @returns fredag 1. januar
  */
 const weekdayDateShortMonth: FormatDateOptions = {

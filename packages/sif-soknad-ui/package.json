@@ -30,7 +30,7 @@
         "@navikt/sif-common-api": "workspace:*",
         "@navikt/sif-common-env": "workspace:*",
         "@navikt/sif-common-hooks": "workspace:*",
-        "@navikt/sif-common-utils": "workspace:*",
+        "@sif/utils": "workspace:*",
         "react-intl": "10.1.13",
         "react-responsive": "10.0.1"
     },

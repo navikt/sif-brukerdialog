@@ -5316,12 +5316,12 @@ importers:
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../sif-common-ui
-      '@navikt/sif-common-utils':
-        specifier: workspace:*
-        version: link:../sif-common-utils
       '@sentry/react':
         specifier: 10.58.0
         version: 10.58.0(react@19.2.7)
+      '@sif/utils':
+        specifier: workspace:*
+        version: link:../sif-utils
       react-hook-form:
         specifier: 7.79.0
         version: 7.79.0(react@19.2.7)
@@ -5377,9 +5377,6 @@ importers:
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../sif-common-ui
-      '@navikt/sif-common-utils':
-        specifier: workspace:*
-        version: link:../sif-common-utils
       '@sentry/react':
         specifier: 10.58.0
         version: 10.58.0(react@19.2.7)
@@ -5392,6 +5389,9 @@ importers:
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../sif-soknad-ui
+      '@sif/utils':
+        specifier: workspace:*
+        version: link:../sif-utils
       '@tanstack/react-query':
         specifier: 5.101.0
         version: 5.101.0(react@19.2.7)
@@ -5541,9 +5541,9 @@ importers:
       '@navikt/sif-common-hooks':
         specifier: workspace:*
         version: link:../sif-common-hooks
-      '@navikt/sif-common-utils':
+      '@sif/utils':
         specifier: workspace:*
-        version: link:../sif-common-utils
+        version: link:../sif-utils
       react-intl:
         specifier: 10.1.13
         version: 10.1.13(@types/react@19.2.17)(react@19.2.7)
