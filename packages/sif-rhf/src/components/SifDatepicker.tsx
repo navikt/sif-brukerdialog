@@ -1,7 +1,9 @@
 import { DatePicker, DatePickerProps, useDatepicker } from '@navikt/ds-react';
+import { dateToISODate, ISODate, ISODateToDate } from '@sif/utils';
 import { FocusEvent, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { DayOfWeek } from 'react-day-picker';
 import { Controller, FieldValues, Path, useFormContext } from 'react-hook-form';
+import { datePickerUtils } from '../utils/datePickerUtils';
 
 export interface DatepickerLimitations {
     minDate?: ISODate;
@@ -10,9 +12,6 @@ export interface DatepickerLimitations {
     disableWeekends?: boolean;
     disabledDaysOfWeek?: DayOfWeek;
 }
-
-import { datePickerUtils } from '../utils/datePickerUtils';
-import { dateToISODate, ISODate, ISODateToDate } from '@sif/utils';
 
 const { parseDatePickerValue, getDisabledDates } = datePickerUtils;
 
