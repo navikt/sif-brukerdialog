@@ -4,15 +4,15 @@ import { DayOfWeek } from 'react-day-picker';
 import { Controller, FieldValues, Path, useFormContext } from 'react-hook-form';
 
 export interface DatepickerLimitations {
-    minDate?: Date;
-    maxDate?: Date;
-    disabledDateRanges?: Array<{ from: Date; to: Date }>;
+    minDate?: ISODate;
+    maxDate?: ISODate;
+    disabledDateRanges?: Array<{ from: ISODate; to: ISODate }>;
     disableWeekends?: boolean;
     disabledDaysOfWeek?: DayOfWeek;
 }
 
 import { datePickerUtils } from '../utils/datePickerUtils';
-import { dateToISODate } from '@sif/utils';
+import { dateToISODate, ISODate, ISODateToDate } from '@sif/utils';
 
 const { parseDatePickerValue, getDisabledDates } = datePickerUtils;
 
@@ -79,8 +79,8 @@ function DatepickerController<T extends FieldValues>({
     const { inputProps, datepickerProps, selectedDay, setSelected } = useDatepicker({
         ...restProps,
         disabled: disabledDates,
-        fromDate: minDate,
-        toDate: maxDate,
+        fromDate: minDate ? ISODateToDate(minDate) : undefined,
+        toDate: maxDate ? ISODateToDate(maxDate) : undefined,
         onDateChange: (date) => {
             if (!inputHasFocus) {
                 updateValueFromDate(date);

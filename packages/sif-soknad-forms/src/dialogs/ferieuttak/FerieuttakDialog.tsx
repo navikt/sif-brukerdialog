@@ -3,12 +3,13 @@ import { Button, Dialog } from '@navikt/ds-react';
 import { SifSoknadFormsText } from '../../i18n';
 import { FerieuttakDialogForm, FerieuttakDialogFormConfig } from './FerieuttakDialogForm';
 import { Ferieuttak } from './types';
+import { ISODate } from '@sif/utils';
 
 interface Props extends FerieuttakDialogFormConfig {
     ferieuttak?: Ferieuttak;
     alleFerieuttak?: Ferieuttak[];
-    minDate: Date;
-    maxDate: Date;
+    minDate: ISODate;
+    maxDate: ISODate;
     isOpen?: boolean;
     onCancel: () => void;
     onValidSubmit: (ferieuttak: Ferieuttak) => void;

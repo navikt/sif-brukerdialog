@@ -14,9 +14,7 @@ enum YesOrNo {
     'UNANSWERED' = 'unanswered',
 }
 
-const getYesOrNoValidator = (): ValidationFunction<YesOrNoValidationResult> => (value: any) => {
+export const getYesOrNoValidator = (): ValidationFunction<YesOrNoValidationResult> => (value: any) => {
     const isAnswered = value === YesOrNo.YES || value === YesOrNo.NO;
     return isAnswered ? undefined : ValidateYesOrNoError.yesOrNoIsUnanswered;
 };
-
-export default getYesOrNoValidator;

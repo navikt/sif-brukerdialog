@@ -37,7 +37,7 @@ import {
 } from '../../types/Oppgave';
 
 const getSisteDatoEnKanSvare = (svarfrist: ISODate): ISODate =>
-    dateToISODate(dayjs(svarfrist).startOf('day').subtract(1, 'day').toDate());
+    dateToISODate(dayjs(svarfrist).startOf('day').subtract(1, 'day'));
 
 const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
     switch (status) {
@@ -104,7 +104,7 @@ const getOppgaveBaseProps = (oppgave: BrukerdialogOppgaveDto): Omit<ParsedOppgav
         opprettetDato,
         løstDato,
         ytelsetype: oppgave.ytelsetype,
-        frist: getSisteDatoEnKanSvare(dateToISODate(frist)),
+        frist: getSisteDatoEnKanSvare(frist),
     };
 };
 

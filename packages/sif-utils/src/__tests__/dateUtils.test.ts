@@ -265,8 +265,8 @@ describe('dateUtils', () => {
 
     describe('getYearFromISODate', () => {
         it('returns correct year', () => {
-            expect(getYearFromISODate('2021-06-15' as ISODate)).toBe(2021);
-            expect(getYearFromISODate('0001-01-01' as ISODate)).toBe(1);
+            expect(getYearFromISODate('2021-06-15' as ISODate)).toBe('2021');
+            expect(getYearFromISODate('0001-01-01' as ISODate)).toBe('0001');
         });
     });
 

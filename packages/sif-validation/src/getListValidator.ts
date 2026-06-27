@@ -16,7 +16,7 @@ interface Options {
     maxItems?: number;
 }
 
-const getListValidator =
+export const getListValidator =
     (options: Options): ValidationFunction<ListValidationResult> =>
     (value: any) => {
         const { required = false, minItems = undefined, maxItems = undefined } = options;
@@ -37,5 +37,3 @@ const getListValidator =
         }
         return undefined;
     };
-
-export default getListValidator;

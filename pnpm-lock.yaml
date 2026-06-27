@@ -5444,9 +5444,6 @@ importers:
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../sif-common-ui
-      '@navikt/sif-common-utils':
-        specifier: workspace:*
-        version: link:../sif-common-utils
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../sif-validation
@@ -5462,6 +5459,9 @@ importers:
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../sif-soknad-ui
+      '@sif/utils':
+        specifier: workspace:*
+        version: link:../sif-utils
       react-hook-form:
         specifier: 7.79.0
         version: 7.79.0(react@19.2.7)

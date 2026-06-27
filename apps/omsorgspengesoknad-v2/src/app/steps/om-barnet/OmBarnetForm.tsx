@@ -10,8 +10,8 @@ import { isDevMode } from '@navikt/sif-common-env';
 import { QuestionRelatedMessage } from '@navikt/sif-common-ui';
 import { dateFormatter, getDateToday } from '@sif/utils';
 import {
-    getDateValidator,
     getFødselsnummerValidator,
+    getISODateValidator,
     getRequiredFieldValidator,
     getStringValidator,
     getYesOrNoValidator,
@@ -151,7 +151,7 @@ export const OmBarnetForm = () => {
                                     minDate={minDatoForBarnetsFødselsdato}
                                     maxDate={getDateToday()}
                                     validate={validateField(OmBarnetFormFields.barnetsFødselsdato, (value) => {
-                                        const dateValidationerror = getDateValidator({
+                                        const dateValidationerror = getISODateValidator({
                                             required: true,
                                             min: minDatoForBarnetsFødselsdato,
                                             max: getDateToday(),

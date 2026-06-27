@@ -5,7 +5,7 @@ import { AppForm } from '@app/setup/soknad/AppForm';
 import { SøknadStep } from '@app/setup/soknad/SoknadStep';
 import { ErrorSummary, FormSummary, InlineMessage, LocalAlert } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
-import { dateFormatter, formatName, ISODateToDate } from '@sif/utils';
+import { dateFormatter, formatName, ISODate } from '@sif/utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { getInvalidParametersFromApiError } from '@sif/api';
 import { Søker } from '@sif/api/k9-prosessering';
@@ -185,9 +185,7 @@ const OmBarnetOppsummering = ({ dto }: { dto: DtoUtenBekreftelse }) => {
                                 <FormSummary.Label>
                                     <AppText id="oppsummeringSteg.barnet.fødselsdato" />
                                 </FormSummary.Label>
-                                <FormSummary.Value>
-                                    {dateFormatter.full(ISODateToDate(barn.fødselsdato))}
-                                </FormSummary.Value>
+                                <FormSummary.Value>{dateFormatter.full(barn.fødselsdato as ISODate)}</FormSummary.Value>
                             </FormSummary.Answer>
                         ) : null}
                     </>
@@ -214,9 +212,7 @@ const OmBarnetOppsummering = ({ dto }: { dto: DtoUtenBekreftelse }) => {
                                 <FormSummary.Label>
                                     <AppText id="oppsummeringSteg.barnet.fødselsdato" />
                                 </FormSummary.Label>
-                                <FormSummary.Value>
-                                    {dateFormatter.full(ISODateToDate(barn.fødselsdato))}
-                                </FormSummary.Value>
+                                <FormSummary.Value>{dateFormatter.full(barn.fødselsdato as ISODate)}</FormSummary.Value>
                             </FormSummary.Answer>
                         ) : null}
                         {relasjonTilBarnet ? (

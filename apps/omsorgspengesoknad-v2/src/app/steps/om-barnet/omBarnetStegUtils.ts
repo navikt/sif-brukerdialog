@@ -1,6 +1,7 @@
 import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
 import { RegistrertBarn } from '@sif/api/k9-prosessering';
 import { YesOrNo } from '@sif/rhf';
+import { dateToISODate, ISODate } from '@sif/utils';
 import dayjs from 'dayjs';
 
 import { ANNET_BARN, OmBarnetFormValues } from './types';
@@ -79,17 +80,17 @@ export const toOmBarnetSøknadsdata = (
     };
 };
 
-export const getMinDatoForBarnetsFødselsdato = (): Date => {
+export const getMinDatoForBarnetsFødselsdato = (): ISODate => {
     // April 1 dette år
     const today = dayjs();
     const frist = dayjs(today).set('month', 3).set('date', 1);
 
     return today.isBefore(frist)
-        ? today.subtract(19, 'year').startOf('year').toDate()
-        : today.subtract(18, 'year').startOf('year').toDate();
+        ? dateToISODate(today.subtract(19, 'year').startOf('year'))
+        : dateToISODate(today.subtract(18, 'year').startOf('year'));
 };
 
-export const isBarnOver18år = (fødselsdato: Date | string): boolean => {
+export const isBarnOver18år = (fødselsdato: ISODate): boolean => {
     const dato18år = dayjs(fødselsdato).add(18, 'year');
 
     // Siden det kan gis ekstra dager opp til 3 måneder tilbake i tid fra søknadsdato brukes det 1. april året etter det kalenderåret barnet fylte 18 år som frist.

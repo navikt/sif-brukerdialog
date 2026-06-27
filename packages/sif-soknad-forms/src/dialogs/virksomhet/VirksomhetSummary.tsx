@@ -1,5 +1,5 @@
 import { VStack } from '@navikt/ds-react';
-import { getCountryName, prettifyDate } from '@navikt/sif-common-utils';
+import { getCountryName, prettifyDate } from '@sif/utils';
 import { YesOrNo } from '@sif/rhf';
 
 import { useSifSoknadFormsIntl } from '../../i18n';

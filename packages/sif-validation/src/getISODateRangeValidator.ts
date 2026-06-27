@@ -2,19 +2,14 @@ import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 
-import { getDateValidator, DateValidationOptions, DateValidationResult } from './getDateValidator';
+import { DateValidationResult } from './getDateValidator';
 import { ValidationFunction } from './types';
 import { validationUtils } from './validationUtils';
+import { ValidateDateRangeError } from './getDateRangeValidator';
+import { getISODateValidator, ISODateValidationOptions } from './getISODateValidator';
 
 dayjs.extend(isSameOrAfter);
 dayjs.extend(isSameOrBefore);
-
-export enum ValidateDateRangeError {
-    toDateIsBeforeFromDate = 'toDateIsBeforeFromDate',
-    fromDateIsAfterToDate = 'fromDateIsAfterToDate',
-}
-
-export const ValidateDateRangeErrorKeys = Object.keys(ValidateDateRangeError);
 
 type DateRangeValidationResult =
     | DateValidationResult
@@ -22,15 +17,19 @@ type DateRangeValidationResult =
     | ValidateDateRangeError.toDateIsBeforeFromDate
     | undefined;
 
-interface Options extends DateValidationOptions {
-    fromDate?: Date;
-    toDate?: Date;
+type ISODate = string & {
+    readonly __brand: 'ISODate';
+};
+
+interface Options extends ISODateValidationOptions {
+    fromDate?: ISODate;
+    toDate?: ISODate;
 }
 
 const getFromDateValidator =
     (options: Options): ValidationFunction<DateRangeValidationResult> =>
     (value: any) => {
-        const dateError = getDateValidator(options)(value);
+        const dateError = getISODateValidator(options)(value);
         if (dateError) {
             return dateError;
         }
@@ -49,7 +48,7 @@ const getFromDateValidator =
 const getToDateValidator =
     (options: Options): ValidationFunction<DateRangeValidationResult> =>
     (value: any) => {
-        const dateError = getDateValidator(options)(value);
+        const dateError = getISODateValidator(options)(value);
         if (dateError) {
             return dateError;
         }
@@ -64,7 +63,7 @@ const getToDateValidator =
         return undefined;
     };
 
-export const getDateRangeValidator = (options: Options) => ({
+export const getISODateRangeValidator = (options: Options) => ({
     validateFromDate: getFromDateValidator(options),
     validateToDate: getToDateValidator(options),
 });

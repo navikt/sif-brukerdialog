@@ -1,3 +1,5 @@
+import { ISODate } from '@sif/utils';
+
 export enum BarnType {
     fosterbarn = 'FOSTERBARN',
     annet = 'ANNET',
@@ -6,7 +8,7 @@ export enum BarnType {
 export interface AnnetBarn {
     id?: string;
     fnr: string;
-    fødselsdato: Date;
+    fødselsdato: ISODate;
     navn: string;
     type?: BarnType;
 }

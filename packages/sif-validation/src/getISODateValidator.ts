@@ -5,41 +5,25 @@ import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 
 import { ValidationFunction } from './types';
 import { validationUtils } from './validationUtils';
+import { DateValidationResult, ValidateDateError } from './getDateValidator';
 
 dayjs.extend(isSameOrAfter);
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isoWeek);
 
-export enum ValidateDateError {
-    dateHasNoValue = 'dateHasNoValue',
-    dateHasInvalidFormat = 'dateHasInvalidFormat',
-    dateIsBeforeMin = 'dateIsBeforeMin',
-    dateIsAfterMax = 'dateIsAfterMax',
-    dateIsNotWeekday = 'dateIsNotWeekday',
-    dateNotChanged = 'dateNotChanged',
-}
-
-export const ValidateDateErrorKeys = Object.keys(ValidateDateError);
-
-export type DateValidationResult =
-    | ValidateDateError.dateHasNoValue
-    | ValidateDateError.dateHasInvalidFormat
-    | ValidateDateError.dateIsBeforeMin
-    | ValidateDateError.dateIsAfterMax
-    | ValidateDateError.dateIsNotWeekday
-    | ValidateDateError.dateNotChanged
-    | undefined;
-
-export interface DateValidationOptions {
+type ISODate = string & {
+    readonly __brand: 'ISODate';
+};
+export interface ISODateValidationOptions {
     required?: boolean;
-    min?: Date;
-    max?: Date;
-    originalDate?: Date;
+    min?: ISODate;
+    max?: ISODate;
+    originalDate?: ISODate;
     onlyWeekdays?: boolean;
 }
 
-export const getDateValidator =
-    (options: DateValidationOptions = {}): ValidationFunction<DateValidationResult> =>
+export const getISODateValidator =
+    (options: ISODateValidationOptions = {}): ValidationFunction<DateValidationResult> =>
     (value: any) => {
         const { required, min, max, onlyWeekdays } = options;
         const date = validationUtils.getDateFromDateString(value);

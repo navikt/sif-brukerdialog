@@ -1,6 +1,6 @@
 import { FormLayout } from '@navikt/sif-common-ui';
 import {
-    getDateValidator,
+    getISODateValidator,
     getFødselsnummerValidator,
     getRequiredFieldValidator,
     getStringValidator,
@@ -11,6 +11,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useSifSoknadFormsIntl } from '../../i18n';
 import { annetBarnToFormValues, formValuesToAnnetBarn } from './annetBarnUtils';
 import { AnnetBarn, AnnetBarnFormValues, BarnType } from './index';
+import { ISODate } from '@sif/utils';
 
 export interface AnnetBarnDialogFormConfig {
     disallowedFødselsnumre?: string[];
@@ -21,8 +22,8 @@ export interface AnnetBarnDialogFormConfig {
 interface AnnetBarnDialogFormProps extends AnnetBarnDialogFormConfig {
     formId: string;
     annetBarn?: Partial<AnnetBarn>;
-    minDate: Date;
-    maxDate: Date;
+    minDate: ISODate;
+    maxDate: ISODate;
     onValidSubmit: (values: AnnetBarn) => void;
 }
 
@@ -101,7 +102,11 @@ export const AnnetBarnDialogForm = ({
                             dropdownCaption
                             validate={validateField(
                                 AnnetBarnFormFields.fødselsdato,
-                                getDateValidator({ required: true, min: minDate, max: maxDate }),
+                                getISODateValidator({
+                                    required: true,
+                                    min: minDate,
+                                    max: maxDate,
+                                }),
                                 (errorCode) => {
                                     if (errorCode === 'dateIsBeforeMin') {
                                         return { dato: sifIntl.date(minDate, 'compact') };

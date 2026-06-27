@@ -1,8 +1,10 @@
+/* eslint-disable vitest/no-conditional-expect */
 import { BarnSammeAdresse } from '@app/types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '@app/types/SøkersRelasjonTilBarnet';
 import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
 import { RegistrertBarn } from '@sif/api/k9-prosessering';
 import { YesOrNo } from '@sif/rhf';
+import { getYearFromISODate, ISODate } from '@sif/utils';
 import { afterAll, describe, expect, it, test, vi } from 'vitest';
 
 import {
@@ -18,7 +20,7 @@ const registrertBarn: RegistrertBarn = {
     fornavn: 'Ola',
     etternavn: 'Nordmann',
     mellomnavn: undefined,
-    fødselsdato: new Date('2018-01-01'),
+    fødselsdato: '2018-01-01' as ISODate,
 };
 
 describe('toOmBarnetFormValues', () => {
@@ -195,28 +197,28 @@ describe('toOmBarnetSøknadsdata', () => {
 describe('isBarnOver18år', () => {
     it('returnerer false når barnet er 18 år men fristen 1. april året etter ikke er passert', () => {
         vi.useFakeTimers().setSystemTime(new Date('2023-03-31'));
-        const fødselsdato = new Date('2004-09-15');
+        const fødselsdato = '2004-09-15' as ISODate;
 
         expect(isBarnOver18år(fødselsdato)).toBe(false);
     });
 
     it('returnerer true når datoen er 1. april eller senere året etter barnet fylte 18 år', () => {
         vi.useFakeTimers().setSystemTime(new Date('2023-04-01'));
-        const fødselsdato = new Date('2004-09-15');
+        const fødselsdato = '2004-09-15' as ISODate;
 
         expect(isBarnOver18år(fødselsdato)).toBe(true);
     });
 
     it('returnerer false når barnet ikke har fylt 18 år ennå', () => {
         vi.useFakeTimers().setSystemTime(new Date('2023-04-15'));
-        const fødselsdato = new Date('2020-01-15');
+        const fødselsdato = '2020-01-15' as ISODate;
 
         expect(isBarnOver18år(fødselsdato)).toBe(false);
     });
 
     it('returnerer false når barnet fylte 18 i år og dagens dato er før 1. april neste år', () => {
         vi.useFakeTimers().setSystemTime(new Date('2024-02-15'));
-        const fødselsdato = new Date('2005-01-01');
+        const fødselsdato = '2005-01-01' as ISODate;
 
         expect(isBarnOver18år(fødselsdato)).toBe(false);
     });
@@ -231,8 +233,7 @@ describe('getMinDatoForBarnetsFødselsdato', () => {
 
     test('returnerer start av året for 19 år siden når dagens dato er før 1. april', () => {
         vi.useFakeTimers().setSystemTime(new Date('2023-03-31'));
-
-        expect(getMinDatoForBarnetsFødselsdato().getFullYear()).toBe(2004);
+        expect(getYearFromISODate(getMinDatoForBarnetsFødselsdato())).toBe(2004);
     });
 
     afterAll(() => vi.useRealTimers());

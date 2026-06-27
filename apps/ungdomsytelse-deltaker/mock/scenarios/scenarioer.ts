@@ -1,5 +1,6 @@
 import { BrukerdialogOppgaveDto } from '@navikt/ung-brukerdialog-api';
 import { DeltakelseDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { ISODate } from '@sif/utils';
 import dayjs from 'dayjs';
 
 import { dateToISODate } from '../utils/dateUtils';
@@ -15,7 +16,7 @@ export interface Scenario {
     data: ScenarioData;
 }
 
-const addWorkDaysToDate = (date: Date, workDays: number): Date => {
+const addWorkDaysToDate = (date: ISODate, workDays: number): ISODate => {
     // Legger til antall ukedager til datoen og hopper over helgedager
     let addedDays = 0;
     let currentDate = dayjs(date);
@@ -28,7 +29,7 @@ const addWorkDaysToDate = (date: Date, workDays: number): Date => {
         }
     }
 
-    return currentDate.toDate();
+    return dateToISODate(currentDate) as ISODate;
 };
 
 const getMockDatoer = () => {
@@ -36,9 +37,9 @@ const getMockDatoer = () => {
     const søkDeltakelseFrist = deltakelseFraOgMed.add(3, 'months');
 
     return {
-        deltakelseFraOgMed: deltakelseFraOgMed.toDate(),
-        søkDeltakelseFrist: søkDeltakelseFrist.toDate(),
-        periodeMaksDato: addWorkDaysToDate(deltakelseFraOgMed.toDate(), 260),
+        deltakelseFraOgMed: dateToISODate(deltakelseFraOgMed) as ISODate,
+        søkDeltakelseFrist: dateToISODate(søkDeltakelseFrist) as ISODate,
+        periodeMaksDato: addWorkDaysToDate(dateToISODate(deltakelseFraOgMed) as ISODate, 260),
     };
 };
 
@@ -72,7 +73,7 @@ const createSøktDeltakelse = (oppgaver: BrukerdialogOppgaveDto[] = []): Scenari
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
             fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
             tilOgMed: undefined,
-            søktTidspunkt: dayjs(getMockDatoer().deltakelseFraOgMed).add(17, 'days').toDate().toISOString(),
+            søktTidspunkt: dayjs(getMockDatoer().deltakelseFraOgMed).add(17, 'days').toISOString(),
             deltaker: {
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
                 deltakerIdent: '234',
@@ -94,8 +95,8 @@ const createAvsluttetDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): Scenario
         {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
             fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
-            tilOgMed: dateToISODate(dayjs(getMockDatoer().deltakelseFraOgMed).add(2, 'day').toDate()),
-            søktTidspunkt: dayjs(getMockDatoer().deltakelseFraOgMed).add(1, 'days').toDate().toISOString(),
+            tilOgMed: dateToISODate(dayjs(getMockDatoer().deltakelseFraOgMed).add(2, 'day')),
+            søktTidspunkt: dayjs(getMockDatoer().deltakelseFraOgMed).add(1, 'days').toISOString(),
             deltaker: {
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
                 deltakerIdent: '234',
@@ -117,8 +118,8 @@ const createOpphørtDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioD
         {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
             fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
-            tilOgMed: dateToISODate(dayjs(getMockDatoer().deltakelseFraOgMed).add(6, 'months').toDate()),
-            søktTidspunkt: dayjs(getMockDatoer().deltakelseFraOgMed).add(17, 'days').toDate().toISOString(),
+            tilOgMed: dateToISODate(dayjs(getMockDatoer().deltakelseFraOgMed).add(6, 'months')),
+            søktTidspunkt: dayjs(getMockDatoer().deltakelseFraOgMed).add(17, 'days').toISOString(),
             deltaker: {
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
                 deltakerIdent: '234',
@@ -136,8 +137,8 @@ const createOpphørtDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioD
 });
 
 const createIkkeStartetDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioData => {
-    const fraOgMed = dateToISODate(dayjs().add(1, 'month').startOf('week').toDate());
-    const søktTidspunkt = dayjs(fraOgMed).add(1, 'days').toDate().toISOString();
+    const fraOgMed = dateToISODate(dayjs().add(1, 'month').startOf('week'));
+    const søktTidspunkt = dayjs(fraOgMed).add(1, 'days').toISOString();
     return {
         ...deltakerBaseScenarioData,
         deltakelser: [

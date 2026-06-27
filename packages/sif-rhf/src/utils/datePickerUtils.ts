@@ -37,6 +37,22 @@ const parseDatePickerValue = (dateString: string | undefined): Date | undefined 
     return ISODateToDate(parsedDate.format(ISO_FORMAT) as ISODate);
 };
 
+const parseDatePickerValueToISODate = (dateString: string | undefined): ISODate | undefined => {
+    if (!dateString) {
+        return undefined;
+    }
+
+    if (isISODateString(dateString) && dayjs(dateString, ISO_FORMAT, true).isValid()) {
+        return dateString as ISODate;
+    }
+
+    const parsedDate = dayjs(dateString, ALLOWED_INPUT_FORMATS, true);
+    if (!parsedDate.isValid()) {
+        return undefined;
+    }
+    return parsedDate.format(ISO_FORMAT) as ISODate;
+};
+
 const getDisabledDates = ({
     minDate,
     maxDate,
@@ -45,10 +61,12 @@ const getDisabledDates = ({
     disabledDaysOfWeek,
 }: DatepickerLimitations): Matcher[] => {
     const matchers: Matcher[] = [];
-    if (minDate) matchers.push({ before: minDate });
-    if (maxDate) matchers.push({ after: maxDate });
+    if (minDate) matchers.push({ before: ISODateToDate(minDate) });
+    if (maxDate) matchers.push({ after: ISODateToDate(maxDate) });
     if (disabledDateRanges) {
-        disabledDateRanges.forEach(({ from, to }) => matchers.push({ from, to }));
+        disabledDateRanges.forEach(({ from, to }) =>
+            matchers.push({ from: ISODateToDate(from), to: ISODateToDate(to) }),
+        );
     }
     const disabledDays: number[] = disableWeekends ? [0, 6] : [];
     if (disabledDaysOfWeek !== undefined) {
@@ -65,5 +83,6 @@ const getDisabledDates = ({
 
 export const datePickerUtils = {
     parseDatePickerValue,
+    parseDatePickerValueToISODate,
     getDisabledDates,
 };

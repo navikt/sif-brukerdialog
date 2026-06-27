@@ -19,13 +19,14 @@ export const getDate4WeeksAgo = (): ISODate => dateToISODate(dayjs().subtract(4,
 export const getDate1YearFromNow = (): ISODate => dateToISODate(dayjs().add(1, 'year'));
 export const getDate99YearsAgo = (): ISODate => dateToISODate(dayjs().subtract(99, 'year'));
 
-export const dateToISODate = (date: dayjs.ConfigType): ISODate => dayjs(date).format(ISODateFormat) as ISODate;
+export const dateToISODate = (date: Exclude<dayjs.ConfigType, null | undefined>): ISODate =>
+    dayjs(date).format(ISODateFormat) as ISODate;
 
 export const isISODateString = (value: unknown): value is ISODate => {
     return typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value);
 };
 
-export const getYearFromISODate = (isoDate: ISODate): number => Number(isoDate.substring(0, 4));
+export const getYearFromISODate = (isoDate: ISODate): string => isoDate.substring(0, 4);
 /**
  * Konverterer en ISODate-streng til et lokalt Date-objekt med midnatt lokal tid.
  * Brukes kun ved Aksel-komponent-grensen (DatePicker etc.).

@@ -6,12 +6,13 @@ import { SifSoknadFormsText } from '../../i18n';
 import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { EnkeltdatoerListAndDialog } from './EnkeltdatoerListAndDialog';
 import type { Enkeltdato } from './index';
+import { dateToISODate } from '@sif/utils';
 
 const today = dayjs();
 
 const exampleEnkeltdatoer: Enkeltdato[] = [
-    { id: '1', dato: today.subtract(10, 'day').toDate() },
-    { id: '2', dato: today.subtract(3, 'day').toDate() },
+    { id: '1', dato: dateToISODate(today.subtract(10, 'day')) },
+    { id: '2', dato: dateToISODate(today.subtract(3, 'day')) },
 ];
 
 type StoryProps = {
@@ -24,8 +25,8 @@ function EnkeltdatoerListAndDialogStory({ enkeltdatoer }: StoryProps) {
     return (
         <EnkeltdatoerListAndDialog
             enkeltdatoer={items}
-            minDate={today.subtract(1, 'year').toDate()}
-            maxDate={today.toDate()}
+            minDate={dateToISODate(today.subtract(1, 'year'))}
+            maxDate={dateToISODate(today)}
             addButtonLabel={<SifSoknadFormsText id="@sifSoknadForms.enkeltdato.dialog.leggTilKnapp" />}
             onChange={setItems}
         />

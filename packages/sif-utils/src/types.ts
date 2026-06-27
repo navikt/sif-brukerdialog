@@ -1,4 +1,4 @@
-declare const ISODateBrand: unique symbol;
+// declare const ISODateBrand: unique symbol;
 declare const ISODurationBrand: unique symbol;
 
 /** YYYY-MM-DD/YYYY-MM-DD */
@@ -10,8 +10,11 @@ export type ISODuration = string & {
 };
 
 /** YYYY-MM-DD */
+// export type ISODate = string & {
+//     readonly [ISODateBrand]: 'ISODate';
+// };
 export type ISODate = string & {
-    readonly [ISODateBrand]: 'ISODate';
+    readonly __brand: 'ISODate';
 };
 
 export type ISODateRangeMap<T> = Record<ISODateRange, T>;

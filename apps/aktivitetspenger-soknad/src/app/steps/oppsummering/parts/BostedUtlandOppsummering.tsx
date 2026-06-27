@@ -1,6 +1,6 @@
 import { FormSummary } from '@navikt/ds-react';
 import { ForutgåendeBosteder } from '@navikt/k9-brukerdialog-prosessering-api';
-import { dateRangeFormatter, ISODateToDate } from '@sif/utils';
+import { dateRangeFormatter, ISODate } from '@sif/utils';
 import { JaNeiSvar } from '@sif/soknad-ui';
 import { useStepNavigation } from '@sif/soknad-app';
 
@@ -34,8 +34,8 @@ export const BostedUtlandOppsummering = ({
                             {utenlandsoppholdSiste5År.map((bosted, index) => (
                                 <div key={index}>
                                     {dateRangeFormatter.compact({
-                                        from: ISODateToDate(bosted.fraOgMed),
-                                        to: ISODateToDate(bosted.tilOgMed),
+                                        from: bosted.fraOgMed as ISODate,
+                                        to: bosted.tilOgMed as ISODate,
                                     })}
                                     : {bosted.landnavn}
                                 </div>

@@ -2,7 +2,7 @@ import { useAppIntl } from '@app/i18n';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { SøknadStepForm } from '@sif/soknad-app';
 import { StartdatoSøknadsdata } from '@app/types/Soknadsdata';
-import { getDateValidator } from '@navikt/sif-validation';
+import { getISODateValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { SøknadStep, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { FormLayout } from '@sif/soknad-ui';
@@ -11,14 +11,13 @@ import dayjs from 'dayjs';
 
 import { toStartdatoFormValues, toStartdatoSøknadsdata } from './startdatoStegUtils';
 import { StartdatoFormFields, StartdatoFormValues } from './types';
+import { dateToISODate } from '@sif/utils';
 
 const { Datepicker } = createSifFormComponents<StartdatoFormValues>();
 
 const stepId = SøknadStepId.STARTDATO;
-// Utvider periode for startdato pga testing. Startdato skal tas
-// bort senere i utviklingen av denne søknaden.
-const minDate = dayjs().subtract(4, 'year').startOf('day').toDate();
-const maxDate = dayjs().add(4, 'years').endOf('day').toDate();
+const minDate = dateToISODate(dayjs().subtract(4, 'year').startOf('day'));
+const maxDate = dateToISODate(dayjs().add(4, 'years').endOf('day'));
 export const StartdatoForm = () => {
     const { text } = useAppIntl();
     const { validateField } = useSifValidate('startdatoForm');
@@ -43,7 +42,7 @@ export const StartdatoForm = () => {
                             maxDate={maxDate}
                             validate={validateField(
                                 StartdatoFormFields.startdato,
-                                getDateValidator({ required: true, min: minDate, max: maxDate }),
+                                getISODateValidator({ required: true, min: minDate, max: maxDate }),
                             )}
                         />
                     </FormLayout.Questions>

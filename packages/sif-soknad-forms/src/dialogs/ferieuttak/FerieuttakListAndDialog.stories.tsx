@@ -6,19 +6,20 @@ import { SifSoknadFormsText } from '../../i18n';
 import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { FerieuttakListAndDialog } from './FerieuttakListAndDialog';
 import type { Ferieuttak } from './index';
+import { dateToISODate } from '@sif/utils';
 
 const today = dayjs();
 
 const exampleFerieuttak: Ferieuttak[] = [
     {
         id: '1',
-        from: today.subtract(3, 'month').toDate(),
-        to: today.subtract(3, 'month').add(6, 'day').toDate(),
+        from: dateToISODate(today.subtract(3, 'month')),
+        to: dateToISODate(today.subtract(3, 'month').add(6, 'day')),
     },
     {
         id: '2',
-        from: today.add(2, 'month').toDate(),
-        to: today.add(2, 'month').add(13, 'day').toDate(),
+        from: dateToISODate(today.add(2, 'month')),
+        to: dateToISODate(today.add(2, 'month').add(13, 'day')),
     },
 ];
 
@@ -32,8 +33,8 @@ function FerieuttakListAndDialogStory({ ferieuttak }: StoryProps) {
     return (
         <FerieuttakListAndDialog
             ferieuttak={items}
-            minDate={today.subtract(1, 'year').toDate()}
-            maxDate={today.add(1, 'year').toDate()}
+            minDate={dateToISODate(today.subtract(1, 'year'))}
+            maxDate={dateToISODate(today.add(1, 'year'))}
             addButtonLabel={<SifSoknadFormsText id="@sifSoknadForms.ferieuttak.dialog.leggTilKnapp" />}
             onChange={setItems}
         />

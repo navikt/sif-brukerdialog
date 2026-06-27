@@ -3,11 +3,12 @@ import { Button, Dialog } from '@navikt/ds-react';
 import { SifSoknadFormsText } from '../../i18n';
 import { OpptjeningUtlandDialogForm } from './OpptjeningUtlandDialogForm';
 import { OpptjeningUtland } from './types';
+import { ISODate } from '@sif/utils';
 
 interface Props {
     opptjening?: OpptjeningUtland;
-    minDate: Date;
-    maxDate: Date;
+    minDate: ISODate;
+    maxDate: ISODate;
     isOpen?: boolean;
     onCancel: () => void;
     onValidSubmit: (opptjening: OpptjeningUtland) => void;

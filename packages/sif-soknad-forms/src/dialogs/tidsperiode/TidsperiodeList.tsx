@@ -1,6 +1,6 @@
 import { BodyShort } from '@navikt/ds-react';
 import { ActionLink, ItemListDarkside } from '@navikt/sif-common-ui';
-import { dateRangeFormatter } from '@navikt/sif-common-utils';
+import { dateRangeFormatter } from '@sif/utils';
 import { ReactNode } from 'react';
 
 import { DateTidsperiode } from './types';

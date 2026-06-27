@@ -1,5 +1,5 @@
 import { ActionLink, ItemListDarkside, useUiIntl } from '@navikt/sif-common-ui';
-import { dateRangeFormatter, getCountryName } from '@navikt/sif-common-utils';
+import { dateRangeFormatter, getCountryName } from '@sif/utils';
 import { ReactNode } from 'react';
 
 import { Utenlandsopphold } from './types';

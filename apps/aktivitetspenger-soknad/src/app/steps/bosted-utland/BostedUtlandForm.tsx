@@ -3,7 +3,7 @@ import { SøknadStepId } from '@app/types/SoknadStepId';
 import { SøknadStepForm } from '@sif/soknad-app';
 import { BostedUtlandSøknadsdata } from '@app/types/Soknadsdata';
 import { Heading, VStack } from '@navikt/ds-react';
-import { getDateToday } from '@sif/utils';
+import { dateToISODate, getDateToday } from '@sif/utils';
 import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { SøknadStep, useMellomlagring, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
@@ -14,22 +14,14 @@ import { useForm } from 'react-hook-form';
 
 import { toBostedUtlandStegFormValues, toBostedUtlandStegSøknadsdata } from './bostedUtlandStegUtils';
 import { BostedUtlandFormFields, BostedUtlandFormValues } from './types';
+import dayjs from 'dayjs';
 
 const { YesOrNoQuestion } = createSifFormComponents<BostedUtlandFormValues>();
 
 const stepId = SøknadStepId.BOSTED_UTLAND;
 
 const getMinDate = () => {
-    const minDate = getDateToday();
-    minDate.setFullYear(minDate.getFullYear() - 5);
-    minDate.setHours(0, 0, 0, 0);
-    return minDate;
-};
-
-const getMaxDate = () => {
-    const maxDate = getDateToday();
-    maxDate.setHours(23, 59, 59, 999);
-    return maxDate;
+    return dateToISODate(dayjs(getDateToday()).subtract(5, 'year'));
 };
 
 export const BostedUtlandForm = () => {
@@ -48,7 +40,7 @@ export const BostedUtlandForm = () => {
     const onSubmit = (data: BostedUtlandFormValues) => commit(toBostedUtlandStegSøknadsdata(data));
 
     const minDate = useMemo(() => getMinDate(), []);
-    const maxDate = useMemo(() => getMaxDate(), []);
+    const maxDate = useMemo(() => getDateToday(), []);
     const { trigger } = methods;
     const harBoddIUtlandetSiste5år = methods.watch(BostedUtlandFormFields.harBoddIUtlandetSiste5år);
     const bosteder = methods.watch(BostedUtlandFormFields.bosteder);

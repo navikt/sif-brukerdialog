@@ -3,12 +3,13 @@ import { Button, Dialog } from '@navikt/ds-react';
 import { SifSoknadFormsText } from '../../i18n';
 import { TidsperiodeDialogForm } from './TidsperiodeDialogForm';
 import { DateTidsperiode } from './types';
+import { ISODate } from '@sif/utils';
 
 interface Props {
     tidsperiode?: DateTidsperiode;
     alleTidsperioder?: DateTidsperiode[];
-    minDate?: Date;
-    maxDate?: Date;
+    minDate?: ISODate;
+    maxDate?: ISODate;
     isOpen?: boolean;
     onCancel: () => void;
     onValidSubmit: (tidsperiode: DateTidsperiode) => void;

@@ -1,4 +1,4 @@
-import getTimeValidator, { ValidateTimeError } from '../getTimeValidator';
+import { getTimeValidator, ValidateTimeError } from '../getTimeValidator';
 
 const zeroTime = {
     hours: '0',

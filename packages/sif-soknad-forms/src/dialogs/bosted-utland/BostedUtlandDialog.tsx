@@ -3,10 +3,11 @@ import { Button, Dialog } from '@navikt/ds-react';
 import { SifSoknadFormsText } from '../../i18n';
 import { BostedUtland } from '.';
 import { BostedUtlandDialogForm } from './BostedUtlandDialogForm';
+import { ISODate } from '@sif/utils';
 
 interface Props {
-    minDate?: Date;
-    maxDate?: Date;
+    minDate?: ISODate;
+    maxDate?: ISODate;
     bosted?: BostedUtland;
     alleBosteder?: BostedUtland[];
     isOpen?: boolean;

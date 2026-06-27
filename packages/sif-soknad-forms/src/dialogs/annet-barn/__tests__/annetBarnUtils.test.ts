@@ -1,12 +1,12 @@
-import { dateUtils } from '@navikt/sif-common-utils';
 import { describe, expect, it } from 'vitest';
 
 import { annetBarnToFormValues, formValuesToAnnetBarn, isAnnetBarn } from '../annetBarnUtils';
 import { AnnetBarn, AnnetBarnFormValues } from '../index';
+import { ISODate } from '@sif/utils';
 
 const id = '123';
 const fnr = '234';
-const fødselsdato = new Date('2000-10-10');
+const fødselsdato: ISODate = '2000-10-10' as ISODate;
 const navn = 'Annet barns navn';
 
 const annetBarn: AnnetBarn = {
@@ -18,7 +18,7 @@ const annetBarn: AnnetBarn = {
 
 const formValues: AnnetBarnFormValues = {
     fnr,
-    fødselsdato: dateUtils.dateToISODate(fødselsdato),
+    fødselsdato,
     navn,
 };
 
