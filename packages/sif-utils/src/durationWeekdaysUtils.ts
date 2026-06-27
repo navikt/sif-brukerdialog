@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 
-import { Duration, DurationWeekdays, getDatesInDateRange, NumberDuration, summarizeDurations } from '.';
+import { Duration, DurationWeekdays, NumberDuration } from './types';
 import { dateToISODate } from './dateUtils';
 import {
     decimalDurationToDuration,
@@ -12,8 +12,10 @@ import {
     getNumberDurationOrUndefined,
     getPercentageOfDuration,
     isValidDuration,
+    summarizeDurations,
 } from './durationUtils';
 import { DateDurationMap, DateRange, ISODurationWeekdays, Weekday } from './types';
+import { getDatesInDateRange } from './dateRangeUtils';
 
 dayjs.extend(isoWeek);
 

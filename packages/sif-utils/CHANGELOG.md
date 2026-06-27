@@ -1,4 +1,4 @@
-# @sif-utils
+# @sif/utils
 
 ## 0.0.1
 

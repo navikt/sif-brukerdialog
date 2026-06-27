@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import { uniq } from 'lodash';
 
-import { DateRange, ISODate, ISODateRange, ISODateRangeMap, MaybeDateRange } from '.';
+import { DateRange, ISODate, ISODateRange, ISODateRangeMap, MaybeDateRange } from './types';
 import {
     dateToISODate,
     getFirstWeekdayInMonth,

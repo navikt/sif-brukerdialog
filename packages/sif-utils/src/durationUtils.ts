@@ -6,12 +6,12 @@ import {
     DateRange,
     Duration,
     InputDateDurationMap,
-    isDateInDateRange,
     ISODate,
     ISODuration,
     NumberDuration,
-} from '.';
+} from './types';
 import { sortDateArray } from './dateUtils';
+import { isDateInDateRange } from './dateRangeUtils';
 
 export const getPositiveNumberValue = (value: any): number | 'invalidNumberValue' | undefined => {
     if (typeof value === 'number' && value >= 0) {
