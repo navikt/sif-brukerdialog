@@ -1,16 +1,7 @@
 import { ISODate, Weekday } from '../types';
-import { getWeekdayDOW, getWeekdayFromDate, isDateInWeekdays } from '../weekdayUtils';
+import { getWeekdayFromDate, isDateInWeekdays } from '../weekdayUtils';
 
 describe('weekdayUtils', () => {
-    describe('getWeekdayDOW', () => {
-        it('returns correkt DOW', () => {
-            expect(getWeekdayDOW(Weekday.monday)).toEqual(1);
-            expect(getWeekdayDOW(Weekday.tuesday)).toEqual(2);
-            expect(getWeekdayDOW(Weekday.wednesday)).toEqual(3);
-            expect(getWeekdayDOW(Weekday.thursday)).toEqual(4);
-            expect(getWeekdayDOW(Weekday.friday)).toEqual(5);
-        });
-    });
     describe('getWeekdayFromDate', () => {
         it('returns correct weekday for monday to friday', () => {
             expect(getWeekdayFromDate('2022-01-03' as ISODate)).toEqual(Weekday.monday);

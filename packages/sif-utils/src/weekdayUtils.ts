@@ -5,21 +5,6 @@ import { ISODate, Weekday } from './types';
 
 dayjs.extend(isoWeek);
 
-export const getWeekdayDOW = (weekday: Weekday): number => {
-    switch (weekday) {
-        case Weekday.monday:
-            return 1;
-        case Weekday.tuesday:
-            return 2;
-        case Weekday.wednesday:
-            return 3;
-        case Weekday.thursday:
-            return 4;
-        case Weekday.friday:
-            return 5;
-    }
-};
-
 export const getWeekdayFromDate = (date: ISODate): Weekday | undefined => {
     const dow = dayjs(date).isoWeekday();
     switch (dow) {
