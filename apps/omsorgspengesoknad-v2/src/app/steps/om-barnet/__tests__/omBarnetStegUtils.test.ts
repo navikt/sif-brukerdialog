@@ -4,7 +4,7 @@ import { SøkersRelasjonTilBarnet } from '@app/types/SøkersRelasjonTilBarnet';
 import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
 import { RegistrertBarn } from '@sif/api/k9-prosessering';
 import { YesOrNo } from '@sif/rhf';
-import { getYearFromISODate, ISODate } from '@sif/utils';
+import { getYearFromISODate, isISODate, ISODate } from '@sif/utils';
 import { afterAll, describe, expect, it, test, vi } from 'vitest';
 
 import {
@@ -227,13 +227,13 @@ describe('isBarnOver18år', () => {
 });
 
 describe('getMinDatoForBarnetsFødselsdato', () => {
-    test('returnerer en Date-instans', () => {
-        expect(getMinDatoForBarnetsFødselsdato()).toBeInstanceOf(Date);
+    test('returnerer en ISODate', () => {
+        expect(isISODate(getMinDatoForBarnetsFødselsdato())).toBeTruthy();
     });
 
     test('returnerer start av året for 19 år siden når dagens dato er før 1. april', () => {
         vi.useFakeTimers().setSystemTime(new Date('2023-03-31'));
-        expect(getYearFromISODate(getMinDatoForBarnetsFødselsdato())).toBe(2004);
+        expect(getYearFromISODate(getMinDatoForBarnetsFødselsdato())).toBe('2004');
     });
 
     afterAll(() => vi.useRealTimers());

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { datePickerUtils } from '../datePickerUtils';
-import { dateToISODate, ISODate } from '@sif/utils';
+import { dateToISODate, ISODate, ISODateToDate } from '@sif/utils';
 
 const { parseDatePickerValue, getDisabledDates } = datePickerUtils;
 
@@ -53,7 +53,7 @@ describe('getDisabledDates', () => {
         const min = '2024-01-01' as ISODate;
         const max = '2024-12-31' as ISODate;
         const result = getDisabledDates({ minDate: min, maxDate: max });
-        expect(result).toEqual([{ before: min }, { after: max }]);
+        expect(result).toEqual([{ before: ISODateToDate(min) }, { after: ISODateToDate(max) }]);
     });
 
     it('adds weekend matcher', () => {
@@ -69,6 +69,6 @@ describe('getDisabledDates', () => {
     it('adds date range matchers', () => {
         const range = { from: '2024-06-01' as ISODate, to: '2024-06-15' as ISODate };
         const result = getDisabledDates({ disabledDateRanges: [range] });
-        expect(result).toEqual([range]);
+        expect(result).toEqual([{ from: ISODateToDate(range.from), to: ISODateToDate(range.to) }]);
     });
 });
