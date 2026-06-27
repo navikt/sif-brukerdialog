@@ -9,7 +9,7 @@ export const isStringOrNull = (value: any): value is StringOrNull => {
     return isString(value) || value === null;
 };
 
-export const isStringOrUndefined = (value: any): value is StringOrNull => {
+export const isStringOrUndefined = (value: any): value is string | undefined => {
     return isString(value) || value === undefined;
 };
 
