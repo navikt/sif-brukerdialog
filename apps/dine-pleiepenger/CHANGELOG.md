@@ -1,5 +1,11 @@
 # @navikt/dine-pleiepenger
 
+## 2.2.16
+
+### Patch Changes
+
+- @navikt/sif-common-core-ds@10.3.57
+
 ## 2.2.15
 
 ### Patch Changes

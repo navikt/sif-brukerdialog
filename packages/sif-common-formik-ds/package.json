@@ -1,6 +1,6 @@
 {
     "name": "@navikt/sif-common-formik-ds",
-    "version": "2.5.46",
+    "version": "2.5.47",
     "homepage": "https://navikt.github.io/sif-common-formik-ds",
     "bugs": {
         "url": "https://github.com/navikt/sif-common-formik-ds/issues"

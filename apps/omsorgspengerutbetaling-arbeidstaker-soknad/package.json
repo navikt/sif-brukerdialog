@@ -1,6 +1,6 @@
 {
     "name": "@navikt/omsorgspengerutbetaling-arbeidstaker-soknad",
-    "version": "1.16.73",
+    "version": "1.16.74",
     "private": true,
     "description": "Søknad om utbetaling av omsorgsdager for arbeidstakere",
     "homepage": "https://github.com/navikt/sif-brukerdialog#readme",

@@ -1,5 +1,11 @@
 # @sif/sif-innsyn-api
 
+## 0.3.20
+
+### Patch Changes
+
+- @navikt/sif-common-api@0.4.96
+
 ## 0.3.19
 
 ### Patch Changes
