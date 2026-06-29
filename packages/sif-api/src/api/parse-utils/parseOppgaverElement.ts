@@ -36,8 +36,7 @@ import {
     SvarPåVarselRespons,
 } from '../../types/Oppgave';
 
-const getSisteDatoEnKanSvare = (svarfrist: ISODate): ISODate =>
-    dateToISODate(dayjs(svarfrist).startOf('day').subtract(1, 'day'));
+const getSisteDatoEnKanSvare = (svarfrist: ISODate): ISODate => dateToISODate(dayjs(svarfrist).subtract(1, 'day'));
 
 const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
     switch (status) {

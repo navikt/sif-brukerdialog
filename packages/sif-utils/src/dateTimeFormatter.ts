@@ -13,13 +13,13 @@ dayjs.locale('nb');
 const compactFormatWithTime = 'DD.MM.YYYY kl. HH.mm';
 const OSLO = 'Europe/Oslo';
 
-/** For UTC-timestamps fra backend — konverterer til norsk tid */
+/** Konverterer Date til norsk tid */
 const oslo = (date: Date, locale?: string) => dayjs(date).tz(OSLO).locale(getValidLocale(locale));
 
 export const dateTimeFormatter = {
     /**
      * @returns 01.01.2020 kl. 08.29
-     * NB: Kun for UTC-timestamps fra backend — konverterer til Europe/Oslo
+     * NB - tiden vises som Europe/Oslo
      */
     compactWithTime: (date: Date, locale?: string) => oslo(date, locale).format(compactFormatWithTime),
 };

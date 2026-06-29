@@ -16,8 +16,8 @@ import { dateToISODate } from '@sif/utils';
 const { Datepicker } = createSifFormComponents<StartdatoFormValues>();
 
 const stepId = SøknadStepId.STARTDATO;
-const minDate = dateToISODate(dayjs().subtract(4, 'year').startOf('day'));
-const maxDate = dateToISODate(dayjs().add(4, 'years').endOf('day'));
+const minDate = dateToISODate(dayjs().subtract(4, 'year'));
+const maxDate = dateToISODate(dayjs().add(4, 'years'));
 export const StartdatoForm = () => {
     const { text } = useAppIntl();
     const { validateField } = useSifValidate('startdatoForm');

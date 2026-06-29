@@ -13,7 +13,7 @@ interface Props {
 }
 
 export const getUtbetalingsmånedForAvvikRegisterinntektOppgave = (oppgaveFraOgMed: ISODate): ISODate => {
-    return dateToISODate(dayjs(oppgaveFraOgMed).add(1, 'month').toDate());
+    return dateToISODate(dayjs(oppgaveFraOgMed).add(1, 'month'));
 };
 
 export const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {

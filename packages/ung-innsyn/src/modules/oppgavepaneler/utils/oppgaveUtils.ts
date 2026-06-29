@@ -8,7 +8,7 @@ export const getSisteVirkedagIMåned = (dato: ISODate): ISODate => {
         // 0 = søndag, 6 = lørdag
         d = d.subtract(1, 'day');
     }
-    return dateToISODate(d.startOf('day'));
+    return dateToISODate(d);
 };
 
 /** Returner true hvis siste dag det skal rapporteres før er tidligere enn siste virkedag i måneden */

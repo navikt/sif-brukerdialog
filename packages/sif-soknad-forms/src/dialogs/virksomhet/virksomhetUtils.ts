@@ -8,7 +8,7 @@ export const erFiskerNæringstype = (næringstype?: Næringstype): boolean =>
     næringstype ? næringstype === Næringstype.FISKE : false;
 
 export const erVirksomhetRegnetSomNyoppstartet = (oppstartsdato: ISODate): boolean =>
-    dayjs(oppstartsdato).startOf('day').isAfter(getDate4YearsAgo());
+    dayjs(oppstartsdato).isAfter(getDate4YearsAgo());
 
 export type VirksomhetFormValues = {
     næringstype: Næringstype;
