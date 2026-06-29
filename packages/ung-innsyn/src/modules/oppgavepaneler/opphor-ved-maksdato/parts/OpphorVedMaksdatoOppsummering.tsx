@@ -1,10 +1,10 @@
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter, ISODate } from '@sif/utils';
 import { ReactNode } from 'react';
 
 import { UngUiText } from '../../../../i18n';
 
 interface OpphorVedMaksdatoOppsummeringProps {
-    sisteDag: Date;
+    sisteDag: ISODate;
 }
 
 export const OpphorVedMaksdatoOppsummering = ({ sisteDag }: OpphorVedMaksdatoOppsummeringProps) => {

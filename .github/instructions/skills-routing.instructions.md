@@ -73,6 +73,13 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
     - Skyra-oppsett: `skyra`, `skyra-survey`, `SkyraHandler`, `useSkyraReloader`, `SkyraTestPage`, `SkyraSlug`, `slug`.
     - Feilsøking: `survey vises ikke`, `reload fungerer ikke`, `globalThis.skyra`, `skyra test`.
     - UxSignals: `UxSignalsPanel`, `UxSignalsLoaderProvider`, `useUxSignalsLoader`, `uxsignals`, `panelId`.
+- `sif-date-handling`:
+    - Day.js-bruk: `dayjs`, `dayjs.utc`, `.tz`, `dayjs.tz`, `timezone`, `utc`, `Europe/Oslo`.
+    - Dato-typer: `ISODate`, `ISODateTime`, `YYYY-MM-DD`, `Z`, offset, `+02:00`, `new Date`.
+    - Dato-operasjoner: `format`, `parse`, `add`, `subtract`, `startOf`, `endOf`.
+    - Formatteringshjelpere: `dateFormatter`, `dateRangeFormatter`, `dateTimeFormat`, `formatDate`, `formatDateTime`, `formatDateRange`.
+    - Tidssone: `tidssone`, `sommertid`, `vintertid`, `UTC`, `norsk tid`.
+    - Kontekst: dato/tid fra backend, API, DTO eller respons, dato fra API-svar.
 
 ## Prioritering ved overlapp
 
@@ -91,3 +98,4 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
 - Hvis oppgaven handler om å porte en `*ListAndDialog`-dialog fra `sif-common-forms-ds` til `sif-soknad-forms`, prioriter `sif-dialog-migration` over `sif-formik-to-rhf`.
 - Hvis oppgaven handler om Skyra (`skyra-survey`, slug/reload/testside), prioriter `sif-surveys`.
 - Hvis oppgaven handler om å endre eller utvide selve rammeverk-pakken (`packages/sif-soknad-app`), prioriter `sif-soknad-app` over `sif-soknad-setup`/`sif-soknad-add-step`.
+- Hvis oppgaven handler om dato/tid, parsing, formattering, tidssone eller Day.js, prioriter `sif-date-handling`.

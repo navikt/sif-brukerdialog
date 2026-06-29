@@ -1,6 +1,6 @@
 {
     "name": "@navikt/sif-ettersending",
-    "version": "3.49.72",
+    "version": "3.49.73",
     "private": true,
     "description": "Selvbetjeningsløsning for ettersending av dokumenter i sykdom i familien",
     "repository": "https://github.com/navikt/sif-ettersending",

@@ -1,5 +1,5 @@
 import { GuidePanel, VStack } from '@navikt/ds-react';
-import { DateRange } from '@navikt/sif-common-utils';
+import { DateRange } from '@sif/utils';
 
 import { RapporterInntektForm } from '../../../forms/rapporter-inntekt-form/RapporterInntektForm';
 import { RapporterInntektKvitteringData, RapporterInntektOppgaveProps } from '../RapporterInntektOppgavePanel';
@@ -18,7 +18,7 @@ export const RapporterInntektUbesvart = ({ oppgave, navn, periode, måned, setKv
                 <RapporterInntektOppgavetekst
                     navn={navn}
                     periode={periode}
-                    svarfrist={oppgave.sisteDatoEnKanSvare}
+                    svarfrist={oppgave.frist}
                     gjelderDelerAvMåned={oppgave.oppgavetypeData.gjelderDelerAvMåned}
                 />
             </GuidePanel>

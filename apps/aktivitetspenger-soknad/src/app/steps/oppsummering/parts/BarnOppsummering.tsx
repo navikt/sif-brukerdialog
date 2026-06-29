@@ -1,6 +1,6 @@
 import { BodyShort, FormSummary, List } from '@navikt/ds-react';
 import { RegistrertBarn } from '@sif/api/k9-prosessering';
-import { formatName } from '@navikt/sif-common-utils';
+import { formatName } from '@sif/utils';
 import { JaNeiSvar } from '@sif/soknad-ui';
 import { useStepNavigation } from '@sif/soknad-app';
 

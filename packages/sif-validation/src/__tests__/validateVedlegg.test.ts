@@ -1,4 +1,4 @@
-import getVedleggValidator, { ValidateVedleggError } from '../getVedleggValidator';
+import { getVedleggValidator, ValidateVedleggError } from '../getVedleggValidator';
 
 const MB = 1024 * 1024;
 

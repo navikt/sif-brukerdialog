@@ -1,6 +1,6 @@
 import { FormLayout } from '@navikt/sif-common-ui';
-import { dateUtils } from '@navikt/sif-common-utils';
-import { getDateRangeValidator } from '@navikt/sif-validation';
+import { dateToISODate, ISODate } from '@sif/utils';
+import { getISODateRangeValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, datePickerUtils, useSifValidate } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
@@ -15,8 +15,8 @@ interface Props extends FerieuttakDialogFormConfig {
     formId: string;
     ferieuttak?: Ferieuttak;
     alleFerieuttak?: Ferieuttak[];
-    minDate: Date;
-    maxDate: Date;
+    minDate: ISODate;
+    maxDate: ISODate;
     disableWeekends?: boolean;
     onValidSubmit: (ferieuttak: Ferieuttak) => void;
 }
@@ -34,13 +34,13 @@ type FerieuttakFormValues = {
 const { DateRangePicker } = createSifFormComponents<FerieuttakFormValues>();
 
 const ferieuttakToFormValues = (ferieuttak: Ferieuttak): FerieuttakFormValues => ({
-    fom: dateUtils.dateToISODate(ferieuttak.from),
-    tom: dateUtils.dateToISODate(ferieuttak.to),
+    fom: dateToISODate(ferieuttak.from),
+    tom: dateToISODate(ferieuttak.to),
 });
 
 const formValuesToFerieuttak = (values: FerieuttakFormValues, id?: string): Ferieuttak => {
-    const from = datePickerUtils.parseDatePickerValue(values.fom);
-    const to = datePickerUtils.parseDatePickerValue(values.tom);
+    const from = datePickerUtils.parseDatePickerValueToISODate(values.fom);
+    const to = datePickerUtils.parseDatePickerValueToISODate(values.tom);
     if (!from || !to) {
         throw new Error('Invalid date values');
     }
@@ -100,12 +100,12 @@ export const FerieuttakDialogForm = ({
                                 validate: validateField(
                                     FerieuttakFormFields.fom,
                                     (value) =>
-                                        getDateRangeValidator({
+                                        getISODateRangeValidator({
                                             required: true,
                                             min: minDate,
                                             max: maxDate,
                                             onlyWeekdays: disableWeekends,
-                                            toDate: datePickerUtils.parseDatePickerValue(
+                                            toDate: datePickerUtils.parseDatePickerValueToISODate(
                                                 methods.getValues(FerieuttakFormFields.tom),
                                             ),
                                         }).validateFromDate(value),
@@ -127,12 +127,12 @@ export const FerieuttakDialogForm = ({
                                 validate: validateField(
                                     FerieuttakFormFields.tom,
                                     (value) =>
-                                        getDateRangeValidator({
+                                        getISODateRangeValidator({
                                             required: true,
                                             min: minDate,
                                             max: maxDate,
                                             onlyWeekdays: disableWeekends,
-                                            fromDate: datePickerUtils.parseDatePickerValue(
+                                            fromDate: datePickerUtils.parseDatePickerValueToISODate(
                                                 methods.getValues(FerieuttakFormFields.fom),
                                             ),
                                         }).validateToDate(value),

@@ -1,3 +1,5 @@
+import { ISODate } from '@sif/utils';
+
 export enum OpptjeningAktivitet {
     ARBEIDSTAKER = 'ARBEIDSTAKER',
     FRILANSER = 'FRILANSER',
@@ -5,8 +7,8 @@ export enum OpptjeningAktivitet {
 
 export interface OpptjeningUtland {
     id: string;
-    fom: Date;
-    tom: Date;
+    fom: ISODate;
+    tom: ISODate;
     landkode: string;
     opptjeningType: OpptjeningAktivitet;
     navn: string;

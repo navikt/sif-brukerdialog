@@ -42,7 +42,7 @@ const containsNonLatinCodepoints = (s: string): boolean => {
 /** Regex that allows letters, numbers, punctuation, spaces, newlines, $ and = (unicode aware) */
 const validTextRegex = /^[\p{L}\p{N}\p{P}\p{Zs}\n\r$=]+$/u;
 
-const getStringValidator =
+export const getStringValidator =
     (options: Options = {}): ValidationFunction<StringValidationResult> =>
     (value: any) => {
         const { required, minLength, maxLength, formatRegExp } = options;
@@ -81,5 +81,3 @@ const getStringValidator =
         }
         return undefined;
     };
-
-export default getStringValidator;

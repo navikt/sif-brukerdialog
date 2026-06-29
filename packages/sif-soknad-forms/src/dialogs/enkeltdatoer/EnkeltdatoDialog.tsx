@@ -3,11 +3,12 @@ import { Button, Dialog } from '@navikt/ds-react';
 import { SifSoknadFormsText } from '../../i18n';
 import { EnkeltdatoDialogForm, EnkeltdatoDialogFormConfig } from './EnkeltdatoDialogForm';
 import { Enkeltdato } from './types';
+import { ISODate } from '@sif/utils';
 
 interface Props extends EnkeltdatoDialogFormConfig {
     enkeltdato?: Enkeltdato;
-    minDate: Date;
-    maxDate: Date;
+    minDate: ISODate;
+    maxDate: ISODate;
     alleEnkeltdatoer?: Enkeltdato[];
     isOpen?: boolean;
     onCancel: () => void;

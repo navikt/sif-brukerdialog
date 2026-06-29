@@ -5,11 +5,12 @@ import { FraværDagDialogFormConfig } from './FraværDagDialogForm';
 import { FraværDagFormDialog } from './FraværDialog';
 import { FraværDagerList } from './FraværList';
 import { FraværDag } from './types';
+import { ISODate } from '@sif/utils';
 
 interface Props extends FraværDagDialogFormConfig {
     fraværDager?: FraværDag[];
-    minDate: Date;
-    maxDate: Date;
+    minDate: ISODate;
+    maxDate: ISODate;
     addButtonLabel: ReactNode;
     addButtonId?: string;
     onChange: (fraværDager: FraværDag[]) => void;

@@ -1,4 +1,4 @@
-import getCheckedValidator, { ValidateCheckedError } from '../getCheckedValidator';
+import { getCheckedValidator, ValidateCheckedError } from '../getCheckedValidator';
 
 describe(`validateChecked`, () => {
     it(`returns undefined when value is ${true}`, () => {

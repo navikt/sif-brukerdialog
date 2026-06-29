@@ -1,4 +1,4 @@
-import getDateValidator, { ValidateDateError } from '../getDateValidator';
+import { getDateValidator, ValidateDateError } from '../getDateValidator';
 import { validationUtils } from '../validationUtils';
 
 describe(`validateDate`, () => {

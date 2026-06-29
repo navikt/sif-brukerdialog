@@ -19,10 +19,7 @@ export const OpphorVedMaksdatoOppgavePanel = ({ navn, oppgave, initialVisKvitter
     return (
         <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
             <Oppgavebekreftelse.Ubesvart>
-                <OpphorVedMaksdatoOppgavetekst
-                    sisteDag={oppgave.oppgavetypeData.maksdato}
-                    svarfrist={oppgave.sisteDatoEnKanSvare}
-                />
+                <OpphorVedMaksdatoOppgavetekst sisteDag={oppgave.oppgavetypeData.maksdato} svarfrist={oppgave.frist} />
             </Oppgavebekreftelse.Ubesvart>
             <Oppgavebekreftelse.Besvart>
                 <OpphorVedMaksdatoOppsummering sisteDag={oppgave.oppgavetypeData.maksdato} />

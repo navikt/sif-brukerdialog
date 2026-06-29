@@ -1,4 +1,4 @@
-import { dateToISODate } from '@navikt/sif-common-utils';
+import { dateToISODate } from '@sif/utils';
 import { Søker } from '@sif/api/k9-prosessering';
 
 import { SøknadStepId } from '../setup/config/SoknadStepId';

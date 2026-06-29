@@ -1,4 +1,4 @@
-import getListValidator, { ValidateListError } from '../getListValidator';
+import { getListValidator, ValidateListError } from '../getListValidator';
 
 describe(`validateList`, () => {
     it('returns undefined when list is defined and has items', () => {

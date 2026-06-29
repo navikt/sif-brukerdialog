@@ -8,6 +8,7 @@ import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { FjernetPeriodeOppgavePanel } from './FjernetPeriodeOppgavePanel';
+import { dateToISODate } from '@sif/utils';
 
 const meta: Meta = {
     title: 'Oppgaver/Ungdomsprogramytelsen/Fjernet periode',
@@ -24,7 +25,7 @@ const oppgave: FjernetPeriodeOppgave = {
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_FJERNET_PERIODE,
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
-    sisteDatoEnKanSvare: dayjs().add(14, 'days').toDate(),
+    frist: dateToISODate(dayjs().add(14, 'days')),
     ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 };
 

@@ -1,4 +1,4 @@
-import { ISODate } from '@navikt/sif-common-utils';
+import { ISODate } from '@sif/utils';
 import { YesOrNo } from '@sif/rhf';
 
 export enum Næringstype {
@@ -12,8 +12,8 @@ export interface Virksomhet {
     id: string;
     næringstype: Næringstype;
     fiskerErPåBladB?: YesOrNo;
-    fom: Date;
-    tom?: Date;
+    fom: ISODate;
+    tom?: ISODate;
     erPågående?: boolean;
     næringsinntekt?: number;
     navnPåVirksomheten: string;
@@ -21,9 +21,9 @@ export interface Virksomhet {
     registrertINorge: YesOrNo;
     registrertILand?: string;
     harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene?: YesOrNo;
-    blittYrkesaktivDato?: Date;
+    blittYrkesaktivDato?: ISODate;
     hattVarigEndringAvNæringsinntektSiste4Kalenderår?: YesOrNo;
-    varigEndringINæringsinntekt_dato?: Date;
+    varigEndringINæringsinntekt_dato?: ISODate;
     varigEndringINæringsinntekt_inntektEtterEndring?: number;
     varigEndringINæringsinntekt_forklaring?: string;
     harRegnskapsfører: YesOrNo;

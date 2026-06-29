@@ -1,10 +1,10 @@
 import { BodyLong } from '@navikt/ds-react';
-import { dateFormatter, DateRange, dateRangeFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter, DateRange, dateRangeFormatter, ISODate } from '@sif/utils';
 
 import { UngUiText, useUngUiIntl } from '../../../../i18n';
 
 interface Props {
-    frist: Date;
+    frist: ISODate;
     periode: DateRange;
     erBosattITrondheim: boolean;
 }

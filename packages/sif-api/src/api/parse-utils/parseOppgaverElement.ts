@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-import { DateRange, isISODate, ISODateToDate, OpenDateRange } from '@navikt/sif-common-utils';
+import { DateRange, dateToISODate, isISODate, ISODate, OpenDateRange, TidenesEnde } from '@sif/utils';
 import {
     BekreftBostedOppgavetypeDataDto,
     BekreftOpphorVedMaksdatoOppgavetypeDataDto,
@@ -36,7 +36,7 @@ import {
     SvarPåVarselRespons,
 } from '../../types/Oppgave';
 
-const getSisteDatoEnKanSvare = (svarfrist: Date): Date => dayjs(svarfrist).startOf('day').subtract(1, 'day').toDate();
+const getSisteDatoEnKanSvare = (svarfrist: ISODate): ISODate => dateToISODate(dayjs(svarfrist).subtract(1, 'day'));
 
 const getOppgaveStatusEnum = (status: string): OppgaveStatus => {
     switch (status) {
@@ -84,8 +84,8 @@ const parseRapportertInntektRespons = (respons?: any): RapportertInntektRespons 
         const parsedRespons: RapportertInntektRespons = {
             type: 'RAPPORTERT_INNTEKT',
             arbeidstakerOgFrilansInntekt: respons.arbeidstakerOgFrilansInntekt,
-            fraOgMed: ISODateToDate(respons.fraOgMed),
-            tilOgMed: ISODateToDate(respons.tilOgMed),
+            fraOgMed: respons.fraOgMed,
+            tilOgMed: respons.tilOgMed,
         };
         return parsedRespons;
     }
@@ -95,30 +95,30 @@ const parseRapportertInntektRespons = (respons?: any): RapportertInntektRespons 
 const getOppgaveBaseProps = (oppgave: BrukerdialogOppgaveDto): Omit<ParsedOppgaveBase, 'parsedOppgavetype'> => {
     const løstDato = oppgave.løstDato ? dayjs.utc(oppgave.løstDato).toDate() : undefined;
     const opprettetDato = dayjs.utc(oppgave.opprettetDato).toDate();
-    const svarfrist = oppgave.frist ? dayjs.utc(oppgave.frist).toDate() : ISODateToDate('2099-01-01');
+    const frist: ISODate = dateToISODate(oppgave.frist || TidenesEnde);
     return {
         oppgavetype: oppgave.oppgavetype,
         oppgaveReferanse: oppgave.oppgaveReferanse,
         status: getOppgaveStatusEnum(oppgave.status),
         opprettetDato,
-        sisteDatoEnKanSvare: getSisteDatoEnKanSvare(svarfrist),
         løstDato,
         ytelsetype: oppgave.ytelsetype,
+        frist: getSisteDatoEnKanSvare(frist),
     };
 };
 
 const getEndretSluttdatoOppgave = (
     oppgave: BrukerdialogOppgaveDto,
-    nySluttdato: string,
-    forrigeSluttdato: string | undefined,
+    nySluttdato: ISODate,
+    forrigeSluttdato: ISODate | undefined,
 ): EndretSluttdatoOppgave | MeldtUtOppgave => {
     if (forrigeSluttdato) {
         return {
             ...getOppgaveBaseProps(oppgave),
             parsedOppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO,
             oppgavetypeData: {
-                forrigeSluttdato: ISODateToDate(forrigeSluttdato),
-                nySluttdato: ISODateToDate(nySluttdato),
+                forrigeSluttdato: forrigeSluttdato,
+                nySluttdato: nySluttdato,
             },
             respons: parseSvarPåVarselRespons(oppgave.respons),
         };
@@ -127,7 +127,7 @@ const getEndretSluttdatoOppgave = (
         ...getOppgaveBaseProps(oppgave),
         parsedOppgavetype: ParsedOppgavetype.BEKREFT_MELDT_UT,
         oppgavetypeData: {
-            sluttdato: ISODateToDate(nySluttdato),
+            sluttdato: nySluttdato,
         },
         respons: parseSvarPåVarselRespons(oppgave.respons),
     };
@@ -135,14 +135,14 @@ const getEndretSluttdatoOppgave = (
 
 const getEndretStartdatoOppgave = (
     oppgave: BrukerdialogOppgaveDto,
-    nyStartdato: string,
-    forrigeStartdato: string,
+    nyStartdato: ISODate,
+    forrigeStartdato: ISODate,
 ): EndretStartdatoOppgave => ({
     ...getOppgaveBaseProps(oppgave),
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO,
     oppgavetypeData: {
-        forrigeStartdato: ISODateToDate(forrigeStartdato),
-        nyStartdato: ISODateToDate(nyStartdato),
+        forrigeStartdato,
+        nyStartdato,
     },
     respons: parseSvarPåVarselRespons(oppgave.respons),
 });
@@ -159,7 +159,7 @@ const getOppgaveFraEndretPeriodeOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
         forrigePeriode &&
         forrigePeriode.fomDato !== undefined
     ) {
-        return getEndretStartdatoOppgave(oppgave, nyPeriode.fomDato, forrigePeriode.fomDato);
+        return getEndretStartdatoOppgave(oppgave, nyPeriode.fomDato as ISODate, forrigePeriode.fomDato as ISODate);
     }
     /** Endret sluttdato */
     if (
@@ -167,7 +167,11 @@ const getOppgaveFraEndretPeriodeOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
         endringer.includes(PeriodeEndringType.ENDRET_SLUTTDATO) &&
         nyPeriode?.tomDato !== undefined
     ) {
-        return getEndretSluttdatoOppgave(oppgave, nyPeriode.tomDato, forrigePeriode?.tomDato);
+        return getEndretSluttdatoOppgave(
+            oppgave,
+            nyPeriode.tomDato as ISODate,
+            forrigePeriode?.tomDato as ISODate | undefined,
+        );
     }
     /** Fjernet periode */
     if (endringer.length === 1 && endringer.includes(PeriodeEndringType.FJERNET_PERIODE)) {
@@ -194,12 +198,12 @@ const getOppgaveFraEndretPeriodeOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
             parsedOppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO,
             oppgavetypeData: {
                 forrigePeriode: mapPeriodeDtoToOpenDateRange({
-                    fomDato: forrigePeriode.fomDato,
-                    tomDato: forrigePeriode.tomDato,
+                    fomDato: forrigePeriode.fomDato as ISODate,
+                    tomDato: forrigePeriode.tomDato as ISODate,
                 }),
                 nyPeriode: mapPeriodeDtoToDateRange({
-                    fomDato: nyPeriode.fomDato,
-                    tomDato: nyPeriode.tomDato,
+                    fomDato: nyPeriode.fomDato as ISODate,
+                    tomDato: nyPeriode.tomDato as ISODate,
                 }),
             },
             respons: parseSvarPåVarselRespons(oppgave.respons),
@@ -224,8 +228,8 @@ export const parseOppgaverElement = (
                     parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED,
                     oppgavetypeData: {
                         periode: {
-                            from: ISODateToDate(bostedData.fom),
-                            to: ISODateToDate(bostedData.tom),
+                            from: bostedData.fom as ISODate,
+                            to: bostedData.tom as ISODate,
                         },
                         erBosattITrondheim: bostedData.erBosattITrondheim,
                     },
@@ -236,11 +240,15 @@ export const parseOppgaverElement = (
 
             case OppgaveType.BEKREFT_ENDRET_STARTDATO:
                 const { forrigeStartdato, nyStartdato } = oppgave.oppgavetypeData as EndretStartdatoDataDto;
-                parsedOppgaver.push(getEndretStartdatoOppgave(oppgave, nyStartdato, forrigeStartdato));
+                parsedOppgaver.push(
+                    getEndretStartdatoOppgave(oppgave, nyStartdato as ISODate, forrigeStartdato as ISODate),
+                );
                 return;
             case OppgaveType.BEKREFT_ENDRET_SLUTTDATO:
                 const { nySluttdato, forrigeSluttdato } = oppgave.oppgavetypeData as EndretSluttdatoDataDto;
-                parsedOppgaver.push(getEndretSluttdatoOppgave(oppgave, nySluttdato, forrigeSluttdato));
+                parsedOppgaver.push(
+                    getEndretSluttdatoOppgave(oppgave, nySluttdato as ISODate, forrigeSluttdato as ISODate),
+                );
                 return;
             case OppgaveType.BEKREFT_ENDRET_PERIODE:
                 parsedOppgaver.push(getOppgaveFraEndretPeriodeOppgave(oppgave));
@@ -253,8 +261,8 @@ export const parseOppgaverElement = (
                     parsedOppgavetype: ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
                     oppgavetypeData: {
                         ...avvikRegisterinntektData,
-                        fraOgMed: ISODateToDate(avvikRegisterinntektData.fraOgMed),
-                        tilOgMed: ISODateToDate(avvikRegisterinntektData.tilOgMed),
+                        fraOgMed: avvikRegisterinntektData.fraOgMed as ISODate,
+                        tilOgMed: avvikRegisterinntektData.tilOgMed as ISODate,
                         gjelderDelerAvMåned: avvikRegisterinntektData.gjelderDelerAvMåned,
                     },
                     respons: parseSvarPåVarselRespons(oppgave.respons),
@@ -269,8 +277,8 @@ export const parseOppgaverElement = (
                     oppgaveYtelsetype,
                     parsedOppgavetype: ParsedOppgavetype.RAPPORTER_INNTEKT,
                     oppgavetypeData: {
-                        fraOgMed: ISODateToDate(rapporterInntektData.fraOgMed),
-                        tilOgMed: ISODateToDate(rapporterInntektData.tilOgMed),
+                        fraOgMed: rapporterInntektData.fraOgMed as ISODate,
+                        tilOgMed: rapporterInntektData.tilOgMed as ISODate,
                         gjelderDelerAvMåned: rapporterInntektData.gjelderDelerAvMåned,
                     },
                     respons: parseRapportertInntektRespons(oppgave.respons),
@@ -284,7 +292,7 @@ export const parseOppgaverElement = (
                     ...getOppgaveBaseProps(oppgave),
                     parsedOppgavetype: ParsedOppgavetype.SØK_YTELSE,
                     oppgavetypeData: {
-                        fomDato: ISODateToDate(fomDato),
+                        fomDato: fomDato as ISODate,
                     },
                 };
                 parsedOppgaver.push(sendSøknadOppgave);
@@ -295,8 +303,8 @@ export const parseOppgaverElement = (
                     ...getOppgaveBaseProps(oppgave),
                     parsedOppgavetype: ParsedOppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO,
                     oppgavetypeData: {
-                        sluttdato: ISODateToDate(sluttdato),
-                        maksdato: ISODateToDate(maxDato),
+                        sluttdato: sluttdato as ISODate,
+                        maksdato: maxDato as ISODate,
                     },
                     respons: parseSvarPåVarselRespons(oppgave.respons),
                 };
@@ -317,8 +325,8 @@ export const mapPeriodeDtoToOpenDateRange = (periode: { fomDato: string; tomDato
         throw new Error(`Ugyldig datoformat for tom i periode: ${periode.tomDato}`);
     }
     return {
-        from: ISODateToDate(periode.fomDato),
-        to: periode.tomDato ? ISODateToDate(periode.tomDato) : undefined,
+        from: periode.fomDato as ISODate,
+        to: periode.tomDato ? (periode.tomDato as ISODate) : undefined,
     };
 };
 
@@ -333,7 +341,7 @@ export const mapPeriodeDtoToDateRange = (periode: { fomDato: string; tomDato?: s
         throw new Error(`Ugyldig datoformat for tom i periode: ${periode.tomDato}`);
     }
     return {
-        from: ISODateToDate(periode.fomDato),
-        to: ISODateToDate(periode.tomDato),
+        from: periode.fomDato as ISODate,
+        to: periode.tomDato as ISODate,
     };
 };

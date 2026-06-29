@@ -3,6 +3,7 @@ import { OppgaveStatus, OppgaveType, OppgaveYtelsetype } from '@navikt/ung-bruke
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 import { ParsedOppgavetype, SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
 import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
+import { dateToISODate } from '@sif/utils';
 import { HarKontonummerEnum } from '@søknad/steg/oppsummering/oppsummeringUtils';
 import dayjs from 'dayjs';
 
@@ -10,8 +11,8 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
     const mockDeltakelse: DeltakelsePeriode = {
         id: 'test-id',
         programPeriode: {
-            from: dayjs().subtract(10, 'days').toDate(),
-            to: dayjs().add(30, 'days').toDate(),
+            from: dateToISODate(dayjs().subtract(10, 'days')),
+            to: dateToISODate(dayjs().add(30, 'days')),
         },
         søktTidspunkt: dayjs().toDate(),
         deltaker: {
@@ -33,9 +34,9 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
         status: OppgaveStatus.ULØST,
         opprettetDato: dayjs().subtract(1, 'day').toDate(),
         oppgaveReferanse: 'test-ref',
-        sisteDatoEnKanSvare: dayjs().add(7, 'days').toDate(),
+        frist: dateToISODate(dayjs().add(7, 'days')),
         oppgavetypeData: {
-            fomDato: dayjs().subtract(10, 'days').toDate(),
+            fomDato: dateToISODate(dayjs().subtract(10, 'days')),
         },
         ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     };

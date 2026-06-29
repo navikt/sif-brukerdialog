@@ -1,5 +1,22 @@
 # @navikt/ungdomsytelse-deltaker
 
+## 1.5.59
+
+### Patch Changes
+
+- Updated dependencies
+- Updated dependencies
+    - @navikt/sif-validation@1.0.22
+    - @sif/soknad-ui@0.1.0
+    - @sif/ung-innsyn@0.1.0
+    - @sif/utils@0.1.0
+    - @sif/api@0.1.0
+    - @navikt/sif-common-core-ds@10.3.57
+    - @navikt/sif-common-formik-ds@2.5.47
+    - @navikt/sif-common-forms-ds@21.0.59
+    - @navikt/sif-common-soknad-ds@26.1.43
+    - @navikt/sif-common-ui@0.11.58
+
 ## 1.5.58
 
 ### Patch Changes

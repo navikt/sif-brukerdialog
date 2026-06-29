@@ -3,12 +3,13 @@ import { Button, Dialog } from '@navikt/ds-react';
 import { SifSoknadFormsText } from '../../i18n';
 import { AnnetBarnDialogForm, AnnetBarnDialogFormConfig } from './AnnetBarnDialogForm';
 import { AnnetBarn } from './index';
+import { ISODate } from '@sif/utils';
 
 interface Props extends AnnetBarnDialogFormConfig {
     annetBarn?: Partial<AnnetBarn>;
     isOpen?: boolean;
-    minDate: Date;
-    maxDate: Date;
+    minDate: ISODate;
+    maxDate: ISODate;
     onCancel: () => void;
     onValidSubmit: (values: AnnetBarn) => void;
 }

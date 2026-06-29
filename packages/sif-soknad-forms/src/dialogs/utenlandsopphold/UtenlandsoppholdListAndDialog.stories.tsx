@@ -6,6 +6,7 @@ import { SifSoknadFormsText } from '../../i18n';
 import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { type Utenlandsopphold, UtenlandsoppholdÅrsak, type UtenlandsoppholdVariant } from './index';
 import { UtenlandsoppholdListAndDialog } from './UtenlandsoppholdListAndDialog';
+import { dateToISODate } from '@sif/utils';
 
 const today = dayjs();
 
@@ -13,15 +14,15 @@ const exampleOppholdEnkel: Utenlandsopphold[] = [
     {
         id: '1',
         type: 'enkel',
-        fom: today.subtract(5, 'month').toDate(),
-        tom: today.subtract(4, 'month').toDate(),
+        fom: dateToISODate(today.subtract(5, 'month')),
+        tom: dateToISODate(today.subtract(4, 'month')),
         landkode: 'SWE',
     },
     {
         id: '2',
         type: 'enkel',
-        fom: today.subtract(2, 'month').toDate(),
-        tom: today.subtract(1, 'month').toDate(),
+        fom: dateToISODate(today.subtract(2, 'month')),
+        tom: dateToISODate(today.subtract(1, 'month')),
         landkode: 'DNK',
     },
 ];
@@ -31,8 +32,8 @@ const exampleOppholdUtvidet: Utenlandsopphold[] = [
         id: '1',
         type: 'innenfor_eøs',
         erUtenforEØS: false,
-        fom: today.subtract(5, 'month').toDate(),
-        tom: today.subtract(4, 'month').toDate(),
+        fom: dateToISODate(today.subtract(5, 'month')),
+        tom: dateToISODate(today.subtract(4, 'month')),
         landkode: 'SWE',
         erSammenMedBarnet: true,
     },
@@ -40,16 +41,16 @@ const exampleOppholdUtvidet: Utenlandsopphold[] = [
         id: '2',
         type: 'utenfor_eøs',
         erUtenforEØS: true,
-        fom: today.subtract(2, 'month').toDate(),
-        tom: today.subtract(1, 'month').toDate(),
+        fom: dateToISODate(today.subtract(2, 'month')),
+        tom: dateToISODate(today.subtract(1, 'month')),
         landkode: 'USA',
         erSammenMedBarnet: true,
         erBarnetInnlagt: true,
         barnInnlagtPerioder: [
             {
                 id: '2-1',
-                fom: today.subtract(2, 'month').add(4, 'day').toDate(),
-                tom: today.subtract(2, 'month').add(9, 'day').toDate(),
+                fom: dateToISODate(today.subtract(2, 'month').add(4, 'day')),
+                tom: dateToISODate(today.subtract(2, 'month').add(9, 'day')),
             },
         ],
         årsak: UtenlandsoppholdÅrsak.INNLAGT_DEKKET_NORGE,
@@ -67,8 +68,8 @@ function UtenlandsoppholdListAndDialogStory({ opphold, variant }: StoryProps) {
     return (
         <UtenlandsoppholdListAndDialog
             opphold={items}
-            minDate={today.subtract(1, 'year').toDate()}
-            maxDate={today.add(1, 'year').toDate()}
+            minDate={dateToISODate(today.subtract(1, 'year'))}
+            maxDate={dateToISODate(today.add(1, 'year'))}
             variant={variant}
             addButtonLabel={<SifSoknadFormsText id="@sifSoknadForms.utenlandsopphold.dialog.leggTilKnapp" />}
             onChange={setItems}

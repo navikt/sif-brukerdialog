@@ -5,11 +5,12 @@ import { Utenlandsopphold } from './types';
 import { UtenlandsoppholdFormDialog } from './UtenlandsoppholdDialog';
 import { UtenlandsoppholdDialogFormConfig } from './UtenlandsoppholdDialogForm';
 import { UtenlandsoppholdList } from './UtenlandsoppholdList';
+import { ISODate } from '@sif/utils';
 
 interface Props extends UtenlandsoppholdDialogFormConfig {
     opphold?: Utenlandsopphold[];
-    minDate: Date;
-    maxDate: Date;
+    minDate: ISODate;
+    maxDate: ISODate;
     addButtonLabel: ReactNode;
     addButtonId?: string;
     onChange: (opphold: Utenlandsopphold[]) => void;

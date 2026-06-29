@@ -15,10 +15,7 @@ export const MeldtUtOppgavePanel = ({ navn, oppgave, initialVisKvittering }: Pro
     return (
         <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
             <Oppgavebekreftelse.Ubesvart>
-                <MeldUtOppgavetekst
-                    sluttdato={oppgave.oppgavetypeData.sluttdato}
-                    svarfrist={oppgave.sisteDatoEnKanSvare}
-                />
+                <MeldUtOppgavetekst sluttdato={oppgave.oppgavetypeData.sluttdato} svarfrist={oppgave.frist} />
             </Oppgavebekreftelse.Ubesvart>
 
             <Oppgavebekreftelse.Besvart>
