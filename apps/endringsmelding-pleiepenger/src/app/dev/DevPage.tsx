@@ -6,7 +6,7 @@ const DevPage = () => {
     return (
         <Page title="Teknisk">
             <Heading level="1" size="large" spacing={true}>
-                Teknisk
+                Teknisk v0.1
             </Heading>
             <Heading level="2" size="medium" spacing={true}>
                 Mellomlagring
