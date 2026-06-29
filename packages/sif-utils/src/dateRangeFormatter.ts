@@ -19,9 +19,8 @@ type Options = {
 export const getDateRangeText = (
     { from, to }: DateRange,
     locale: string,
-    options: Options = { compact: true, includeDayName: false },
+    { compact = true, includeDayName = false }: Options = {},
 ): string => {
-    const { includeDayName, compact } = options;
     const fromString = getDateText(from, locale, compact, includeDayName);
     const toString = getDateText(to, locale, compact, includeDayName);
 

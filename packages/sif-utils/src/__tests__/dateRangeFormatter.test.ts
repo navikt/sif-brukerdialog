@@ -9,12 +9,12 @@ describe('dateRangeFormatter', () => {
             expect(result).toEqual('01.01.2022 - 02.01.2022');
         });
 
-        it('returns correct string; compact: true', () => {
+        it('returns correct string; compact: false', () => {
             const result = dateRangeFormatter.getDateRangeText(dateRange, 'nb', { compact: false });
             expect(result).toEqual('1. januar 2022 - 2. januar 2022');
         });
 
-        it('returns correct string; compact: true, includeDayNames: true', () => {
+        it('returns correct string; compact: false, includeDayNames: true', () => {
             const result = dateRangeFormatter.getDateRangeText(dateRange, 'nb', {
                 compact: false,
                 includeDayName: true,
@@ -33,12 +33,12 @@ describe('dateRangeFormatter', () => {
             expect(result).toEqual('01.01.2022');
         });
 
-        it('returns correct string; compact: true', () => {
+        it('returns correct string; compact: false', () => {
             const result = dateRangeFormatter.getDateRangeText(dateRangeLocal, 'nb', { compact: false });
             expect(result).toEqual('1. januar 2022');
         });
 
-        it('returns correct string; compact: true, includeDayNames: true', () => {
+        it('returns correct string; compact: false, includeDayNames: true', () => {
             const result = dateRangeFormatter.getDateRangeText(dateRangeLocal, 'nb', {
                 compact: false,
                 includeDayName: true,
