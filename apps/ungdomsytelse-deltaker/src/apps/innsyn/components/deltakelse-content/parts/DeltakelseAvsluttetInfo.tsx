@@ -1,11 +1,11 @@
 import InnsynInfoBox from '@innsyn/components/innsyn-info-box/InnsynInfoBox';
 import { BodyLong } from '@navikt/ds-react';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter, ISODate } from '@sif/utils';
 import { AppText } from '@shared/i18n';
 
 interface Props {
-    fraOgMed: Date;
-    tilOgMed: Date;
+    fraOgMed: ISODate;
+    tilOgMed: ISODate;
 }
 const DeltakelseAvsluttetInfo = ({ fraOgMed, tilOgMed }: Props) => {
     return (

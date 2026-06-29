@@ -57,7 +57,7 @@ const valueIsValidNumber = (value: string | undefined): boolean => {
     return false;
 };
 
-const getTimeValidator =
+export const getTimeValidator =
     (options: Options = {}): ValidationFunction<TimeValidationResult> =>
     (value: Partial<InputTime>): ValidateTimeError | undefined => {
         const { required, max, min } = options;
@@ -109,5 +109,3 @@ const getTimeValidator =
 
         return undefined;
     };
-
-export default getTimeValidator;

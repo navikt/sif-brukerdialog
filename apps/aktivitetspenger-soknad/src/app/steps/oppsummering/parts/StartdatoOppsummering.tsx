@@ -1,12 +1,12 @@
 import { FormSummary } from '@navikt/ds-react';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter, ISODate } from '@sif/utils';
 import { useStepNavigation } from '@sif/soknad-app';
 
 import { AppText } from '../../../i18n';
 import { SøknadStepId } from '../../../types/SoknadStepId';
 
 interface Props {
-    startdato: Date;
+    startdato: ISODate;
 }
 
 export const StartdatoOppsummering = ({ startdato }: Props) => {

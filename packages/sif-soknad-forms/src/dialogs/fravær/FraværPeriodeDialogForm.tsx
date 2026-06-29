@@ -1,11 +1,10 @@
 import { FormLayout } from '@navikt/sif-common-ui';
-import { DateRange, dateUtils } from '@navikt/sif-common-utils';
-import { getDateRangeValidator } from '@navikt/sif-validation';
+import { DateRange, dateRangesCollide, dateToISODate, ISODate, isDateWeekDay } from '@sif/utils';
+import { getISODateRangeValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, datePickerUtils, useSifValidate } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
-import { dateErHelg, isDateRangeMatchingPeriode, rangeCollideWithRanges } from './fraværUtils';
 import { FraværPeriode } from './types';
 
 export interface FraværPeriodeDialogFormConfig {
@@ -17,8 +16,8 @@ export interface FraværPeriodeDialogFormConfig {
 interface Props extends FraværPeriodeDialogFormConfig {
     formId: string;
     fraværPeriode?: FraværPeriode;
-    minDate: Date;
-    maxDate: Date;
+    minDate: ISODate;
+    maxDate: ISODate;
     onValidSubmit: (fraværPeriode: FraværPeriode) => void;
 }
 
@@ -35,13 +34,13 @@ type FraværPeriodeFormValues = {
 const { DateRangePicker } = createSifFormComponents<FraværPeriodeFormValues>();
 
 const fraværPeriodeToFormValues = (fraværPeriode: FraværPeriode): FraværPeriodeFormValues => ({
-    fraOgMed: dateUtils.dateToISODate(fraværPeriode.fraOgMed),
-    tilOgMed: dateUtils.dateToISODate(fraværPeriode.tilOgMed),
+    fraOgMed: dateToISODate(fraværPeriode.fraOgMed),
+    tilOgMed: dateToISODate(fraværPeriode.tilOgMed),
 });
 
 const formValuesToFraværPeriode = (values: FraværPeriodeFormValues, id?: string): FraværPeriode => {
-    const fraOgMed = datePickerUtils.parseDatePickerValue(values.fraOgMed);
-    const tilOgMed = datePickerUtils.parseDatePickerValue(values.tilOgMed);
+    const fraOgMed = datePickerUtils.parseDatePickerValueToISODate(values.fraOgMed);
+    const tilOgMed = datePickerUtils.parseDatePickerValueToISODate(values.tilOgMed);
     if (!fraOgMed || !tilOgMed) {
         throw new Error('Invalid date values');
     }
@@ -59,7 +58,7 @@ const getPeriodeDisabledRanges = (
     if (!dateRangesToDisable) return [];
     if (!fraværPeriode) return dateRangesToDisable;
     return dateRangesToDisable.filter(
-        (range) => !isDateRangeMatchingPeriode(range, fraværPeriode.fraOgMed, fraværPeriode.tilOgMed),
+        (range) => range.from !== fraværPeriode.fraOgMed || range.to !== fraværPeriode.tilOgMed,
     );
 };
 
@@ -86,36 +85,40 @@ export const FraværPeriodeDialogForm = ({
     };
 
     const validateFromDate = (value: string): string | undefined => {
-        const date = datePickerUtils.parseDatePickerValue(value);
-        if (helgedagerIkkeTillat && date && dateErHelg(date)) {
+        const date = datePickerUtils.parseDatePickerValueToISODate(value);
+        if (helgedagerIkkeTillat && date && !isDateWeekDay(date)) {
             return 'er_helg';
         }
-        const toDate = datePickerUtils.parseDatePickerValue(methods.getValues(FraværPeriodeFormFields.tilOgMed));
-        if (begrensTilSammeÅr && date && toDate && date.getFullYear() !== toDate.getFullYear()) {
+        const toDate = datePickerUtils.parseDatePickerValueToISODate(
+            methods.getValues(FraværPeriodeFormFields.tilOgMed),
+        );
+        if (begrensTilSammeÅr && date && toDate && date.substring(0, 4) !== toDate.substring(0, 4)) {
             return 'fra_og_til_er_ulike_år';
         }
-        return getDateRangeValidator({
+        return getISODateRangeValidator({
             required: true,
             min: minDate,
             max: maxDate,
-            toDate,
+            toDate: toDate ? toDate : undefined,
         }).validateFromDate(value);
     };
 
     const validateToDate = (value: string): string | undefined => {
-        const date = datePickerUtils.parseDatePickerValue(value);
-        if (helgedagerIkkeTillat && date && dateErHelg(date)) {
+        const date = datePickerUtils.parseDatePickerValueToISODate(value);
+        if (helgedagerIkkeTillat && date && !isDateWeekDay(date)) {
             return 'er_helg';
         }
-        const fromDate = datePickerUtils.parseDatePickerValue(methods.getValues(FraværPeriodeFormFields.fraOgMed));
-        if (begrensTilSammeÅr && date && fromDate && date.getFullYear() !== fromDate.getFullYear()) {
+        const fromDate = datePickerUtils.parseDatePickerValueToISODate(
+            methods.getValues(FraværPeriodeFormFields.fraOgMed),
+        );
+        if (begrensTilSammeÅr && date && fromDate && date.substring(0, 4) !== fromDate.substring(0, 4)) {
             return 'fra_og_til_er_ulike_år';
         }
-        return getDateRangeValidator({
+        return getISODateRangeValidator({
             required: true,
             min: minDate,
             max: maxDate,
-            fromDate,
+            fromDate: fromDate ? fromDate : undefined,
         }).validateToDate(value);
     };
 
@@ -123,10 +126,14 @@ export const FraværPeriodeDialogForm = ({
         fromDate,
         toDate,
     }: {
-        fromDate: Date | undefined;
-        toDate: Date | undefined;
+        fromDate: ISODate | undefined;
+        toDate: ISODate | undefined;
     }): string | undefined => {
-        if (fromDate && toDate && rangeCollideWithRanges({ from: fromDate, to: toDate }, disabledDateRanges)) {
+        if (
+            fromDate &&
+            toDate &&
+            disabledDateRanges.some((r) => dateRangesCollide([{ from: fromDate, to: toDate }, r]))
+        ) {
             return 'dager_overlapper_med_andre_dager';
         }
         return undefined;

@@ -29,7 +29,7 @@ interface Options {
     allowHnr?: boolean;
 }
 
-const getFødselsnummerValidator =
+export const getFødselsnummerValidator =
     (options: Options = {}): ValidationFunction<FødselsnummerValidationResult> =>
     (value: any) => {
         const { required, disallowedValues, allowHnr } = options;
@@ -62,5 +62,3 @@ const getFødselsnummerValidator =
         }
         return undefined;
     };
-
-export default getFødselsnummerValidator;

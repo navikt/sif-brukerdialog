@@ -1,6 +1,6 @@
 {
     "name": "@navikt/ungdomsytelse-veileder",
-    "version": "0.9.69",
+    "version": "0.9.70",
     "private": true,
     "description": "Midlertidig app for veileder på ungdomsytelsen",
     "license": "MIT",

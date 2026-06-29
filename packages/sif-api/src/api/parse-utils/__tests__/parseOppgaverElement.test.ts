@@ -1,4 +1,3 @@
-import { dateToISODate } from '@navikt/sif-common-utils';
 import { OppgaveStatus, OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { describe, expect, it } from 'vitest';
 
@@ -13,13 +12,8 @@ const baseOppgave = {
     frist: '2026-05-15T07:00:00.000Z',
 };
 
-describe('getSisteDatoEnKanSvare – tidssonerobusthet', () => {
-    it('beregner sisteDatoEnKanSvare som lokal kalenderdag før fristen', () => {
-        /**
-         * Frist er 07:00 UTC = 00:00 PDT (SF, UTC-7).
-         * Med lokal dayjs ville SF gi Apr 10 → subtract 1 → Apr 9 ❌
-         * Med UTC-lesing: Apr 11 UTC → subtract 1 → Apr 10 ✅
-         */
+describe('parseOppgaverElement - BEKREFT_OPPHOR_VED_MAKSDATO', () => {
+    it('setter frist til dagen før oppgavens frist', () => {
         const [result] = parseOppgaverElement(OppgaveYtelsetype.UNGDOMSYTELSE, [
             {
                 ...baseOppgave,
@@ -28,24 +22,10 @@ describe('getSisteDatoEnKanSvare – tidssonerobusthet', () => {
                 oppgavetypeData: { type: 'OPPHOR_VED_MAKSDATO', maxDato: '2026-06-30', sluttdato: '2026-06-30' },
             },
         ]);
-        expect(dateToISODate((result as OpphorVedMaksdatoOppgave).sisteDatoEnKanSvare)).toBe('2026-05-14');
+        expect((result as OpphorVedMaksdatoOppgave).frist).toBe('2026-05-14');
     });
 
-    it('beregner sisteDatoEnKanSvare korrekt for frist midt på dagen UTC', () => {
-        const [result] = parseOppgaverElement(OppgaveYtelsetype.UNGDOMSYTELSE, [
-            {
-                ...baseOppgave,
-                frist: '2026-05-15T12:00:00.000Z',
-                oppgavetype: OppgaveType.BEKREFT_OPPHOR_VED_MAKSDATO,
-                oppgavetypeData: { type: 'OPPHOR_VED_MAKSDATO', maxDato: '2026-06-30', sluttdato: '2026-06-30' },
-            },
-        ]);
-        expect(dateToISODate((result as OpphorVedMaksdatoOppgave).sisteDatoEnKanSvare)).toBe('2026-05-14');
-    });
-});
-
-describe('parseOppgaverElement – BEKREFT_OPPHOR_VED_MAKSDATO', () => {
-    it('mapper maxDato til oppgavetypeData.maksdato som Date', () => {
+    it('mapper maxDato til oppgavetypeData.maksdato som ISODate', () => {
         const [result] = parseOppgaverElement(OppgaveYtelsetype.UNGDOMSYTELSE, [
             {
                 ...baseOppgave,
@@ -60,10 +40,10 @@ describe('parseOppgaverElement – BEKREFT_OPPHOR_VED_MAKSDATO', () => {
 
         const oppgave = result as OpphorVedMaksdatoOppgave;
         expect(oppgave.parsedOppgavetype).toBe(ParsedOppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO);
-        expect(dateToISODate(oppgave.oppgavetypeData.maksdato)).toBe('2026-06-30');
+        expect(oppgave.oppgavetypeData.maksdato).toEqual('2026-06-30');
     });
 
-    it('bevarer sluttdato som Date', () => {
+    it('bevarer sluttdato som ISODate', () => {
         const [result] = parseOppgaverElement(OppgaveYtelsetype.UNGDOMSYTELSE, [
             {
                 ...baseOppgave,
@@ -77,7 +57,7 @@ describe('parseOppgaverElement – BEKREFT_OPPHOR_VED_MAKSDATO', () => {
         ]);
 
         const oppgave = result as OpphorVedMaksdatoOppgave;
-        expect(dateToISODate(oppgave.oppgavetypeData.sluttdato)).toBe('2026-06-25');
+        expect(oppgave.oppgavetypeData.sluttdato).toEqual('2026-06-25');
     });
 
     it('parser VARSEL_SVAR-respons korrekt', () => {

@@ -1,6 +1,6 @@
 import { FormLayout } from '@navikt/sif-common-ui';
-import { dateUtils, getCountryName } from '@navikt/sif-common-utils';
-import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
+import { dateToISODate, getCountryName, ISODate } from '@sif/utils';
+import { getISODateValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, datePickerUtils, useSifValidate } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
@@ -9,8 +9,8 @@ import { BostedUtland } from '.';
 
 interface BostedUtlandFormProps {
     formId: string;
-    minDate?: Date;
-    maxDate?: Date;
+    minDate?: ISODate;
+    maxDate?: ISODate;
     bosted?: BostedUtland;
     alleBosteder?: BostedUtland[];
     onValidSubmit: (values: BostedUtland) => void;
@@ -31,8 +31,8 @@ type BostedUtlandFormValues = {
 const { DateRangePicker, CountrySelect } = createSifFormComponents<BostedUtlandFormValues>();
 
 const formValuesToBostedUtland = (values: BostedUtlandFormValues, locale: string, bostedId?: string): BostedUtland => {
-    const from = datePickerUtils.parseDatePickerValue(values.fom);
-    const to = datePickerUtils.parseDatePickerValue(values.tom);
+    const from = datePickerUtils.parseDatePickerValueToISODate(values.fom);
+    const to = datePickerUtils.parseDatePickerValueToISODate(values.tom);
     if (!from || !to) {
         throw new Error('Invalid date values');
     }
@@ -46,8 +46,8 @@ const formValuesToBostedUtland = (values: BostedUtlandFormValues, locale: string
 
 const bostedUtlandToFormValues = (bosted: BostedUtland): BostedUtlandFormValues => {
     return {
-        fom: dateUtils.dateToISODate(bosted.periode.from),
-        tom: dateUtils.dateToISODate(bosted.periode.to),
+        fom: dateToISODate(bosted.periode.from),
+        tom: dateToISODate(bosted.periode.to),
         landkode: bosted.landkode,
     };
 };
@@ -100,7 +100,7 @@ export const BostedUtlandDialogForm = ({
                                 disabledDateRanges: utilgjengeligePerioder,
                                 validate: validateField(
                                     BostedUtlandFormFields.fom,
-                                    getDateValidator({ required: true, min: minDate, max: maxDate }),
+                                    getISODateValidator({ required: true, min: minDate, max: maxDate }),
                                     (errorCode) => {
                                         if (errorCode === 'dateIsBeforeMin' && minDate)
                                             return { dato: sifIntl.date(minDate, 'compact') };
@@ -117,7 +117,7 @@ export const BostedUtlandDialogForm = ({
                                 disabledDateRanges: utilgjengeligePerioder,
                                 validate: validateField(
                                     BostedUtlandFormFields.tom,
-                                    getDateValidator({ required: true, min: minDate, max: maxDate }),
+                                    getISODateValidator({ required: true, min: minDate, max: maxDate }),
                                     (errorCode) => {
                                         if (errorCode === 'dateIsBeforeMin' && minDate)
                                             return { dato: sifIntl.date(minDate, 'compact') };

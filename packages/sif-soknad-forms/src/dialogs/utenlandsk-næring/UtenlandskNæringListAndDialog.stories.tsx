@@ -4,8 +4,9 @@ import { useState } from 'react';
 
 import { SifSoknadFormsText } from '../../i18n';
 import { StoryFrame } from '../../storybook/components/StoryFrame';
-import { type UtenlandskNæring,UtenlandskNæringstype } from './index';
+import { type UtenlandskNæring, UtenlandskNæringstype } from './index';
 import { UtenlandskNæringListAndDialog } from './UtenlandskNæringListAndDialog';
+import { dateToISODate } from '@sif/utils';
 
 const today = dayjs();
 
@@ -15,8 +16,8 @@ const exampleNæringer: UtenlandskNæring[] = [
         næringstype: UtenlandskNæringstype.FISKE,
         navnPåVirksomheten: 'Fiskebåten AS',
         land: 'SWE',
-        fraOgMed: today.subtract(2, 'year').toDate(),
-        tilOgMed: today.subtract(1, 'year').toDate(),
+        fraOgMed: dateToISODate(today.subtract(2, 'year')),
+        tilOgMed: dateToISODate(today.subtract(1, 'year')),
     },
 ];
 

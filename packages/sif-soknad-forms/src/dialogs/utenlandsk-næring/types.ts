@@ -1,3 +1,5 @@
+import { ISODate } from '@sif/utils';
+
 export enum UtenlandskNæringstype {
     'FISKE' = 'FISKE',
     'JORDBRUK_SKOGBRUK' = 'JORDBRUK_SKOGBRUK',
@@ -11,7 +13,7 @@ export interface UtenlandskNæring {
     navnPåVirksomheten: string;
     identifikasjonsnummer?: string;
     land: string;
-    fraOgMed: Date;
-    tilOgMed?: Date;
+    fraOgMed: ISODate;
+    tilOgMed?: ISODate;
     erPågående?: boolean;
 }

@@ -1,6 +1,6 @@
 {
     "name": "@navikt/pleiepenger-i-livets-sluttfase-soknad",
-    "version": "2.22.72",
+    "version": "2.22.73",
     "private": true,
     "description": "Søknad om pleiepenger ved pleie i hjemmet av nærstående i livets sluttfase",
     "repository": "https://github.com/navikt/sif-brukerdialog",

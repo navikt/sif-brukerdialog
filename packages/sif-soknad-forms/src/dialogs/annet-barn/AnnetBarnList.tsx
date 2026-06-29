@@ -1,6 +1,6 @@
 import { BodyShort, VStack } from '@navikt/ds-react';
 import { ActionLink, ItemListDarkside, useUiIntl } from '@navikt/sif-common-ui';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter } from '@sif/utils';
 import { ReactNode } from 'react';
 
 import { SifSoknadFormsText, useSifSoknadFormsIntl } from '../../i18n';

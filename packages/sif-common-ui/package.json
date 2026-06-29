@@ -1,6 +1,6 @@
 {
     "name": "@navikt/sif-common-ui",
-    "version": "0.11.57",
+    "version": "0.11.58",
     "private": true,
     "type": "module",
     "main": "src/index.ts",

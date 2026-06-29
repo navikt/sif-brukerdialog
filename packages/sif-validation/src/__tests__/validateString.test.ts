@@ -1,4 +1,4 @@
-import getStringValidator, { ValidateStringError } from '../getStringValidator';
+import { getStringValidator, ValidateStringError } from '../getStringValidator';
 
 describe(`validateString`, () => {
     it(`returns undefined when no options set`, () => {

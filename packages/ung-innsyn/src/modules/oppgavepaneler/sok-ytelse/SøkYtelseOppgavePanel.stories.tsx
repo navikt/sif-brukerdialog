@@ -9,6 +9,7 @@ import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { SøkYtelseOppgavePanel } from './SokYtelseOppgavePanel';
+import { dateToISODate, ISODate } from '@sif/utils';
 const meta: Meta = {
     title: 'Oppgaver/Ungdomsprogramytelsen/Søk ytelsen',
     parameters: {},
@@ -25,11 +26,11 @@ const oppgave: SøkYtelseOppgave = {
     oppgavetype: OppgaveType.SØK_YTELSE,
     parsedOppgavetype: ParsedOppgavetype.SØK_YTELSE,
     oppgavetypeData: {
-        fomDato: new Date('2025-05-01'),
+        fomDato: '2025-05-01' as ISODate,
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs.utc('2025-05-31T03:58:01.779214Z').toDate(),
-    sisteDatoEnKanSvare: dayjs.utc('2025-06-14T03:58:01.779214Z').toDate(),
+    frist: dateToISODate(dayjs.utc('2025-06-14T03:58:01.779214Z')),
     ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 };
 

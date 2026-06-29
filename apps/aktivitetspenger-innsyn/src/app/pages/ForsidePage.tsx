@@ -1,14 +1,15 @@
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
-import { sortDates } from '@navikt/sif-common-utils';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { InnsynForsideHeader, OppgaverList } from '@sif/ung-innsyn/components';
 import { UngInnsynPage } from '@sif/ung-innsyn/pages';
 
 import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
 import { AppText } from '../i18n';
+import { sortDateTimes } from '@sif/utils';
+import { Oppgave } from '@sif/api/ung-brukerdialog';
 
 interface Props {
-    oppgaver: any[];
+    oppgaver: Oppgave[];
 }
 
 export const ForsidePage = ({ oppgaver }: Props) => {
@@ -16,11 +17,11 @@ export const ForsidePage = ({ oppgaver }: Props) => {
 
     const uløsteOppgaver = oppgaver
         .filter((oppgave) => oppgave.status === OppgaveStatus.ULØST)
-        .sort((o1, o2) => sortDates(o2.opprettetDato, o1.opprettetDato));
+        .sort((o1, o2) => sortDateTimes(o2.opprettetDato, o1.opprettetDato));
 
     const tidligereOppgaver = oppgaver
         .filter((oppgave) => oppgave.status !== OppgaveStatus.ULØST)
-        .sort((o1, o2) => sortDates(o2.løstDato || o2.opprettetDato, o1.løstDato || o1.opprettetDato));
+        .sort((o1, o2) => sortDateTimes(o2.løstDato || o2.opprettetDato, o1.løstDato || o1.opprettetDato));
 
     return (
         <UngInnsynPage documentTitle="Dine aktivitetspenger">

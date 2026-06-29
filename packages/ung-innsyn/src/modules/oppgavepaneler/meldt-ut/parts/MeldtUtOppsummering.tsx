@@ -1,10 +1,10 @@
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter, ISODate } from '@sif/utils';
 import { ReactNode } from 'react';
 
 import { UngUiText } from '../../../../i18n';
 
 interface EndretSluttdatoOppsummeringProps {
-    sluttdato: Date;
+    sluttdato: ISODate;
 }
 
 export const MeldtUtOppsummering = ({ sluttdato }: EndretSluttdatoOppsummeringProps) => {

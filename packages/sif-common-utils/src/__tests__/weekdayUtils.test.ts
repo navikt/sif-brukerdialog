@@ -27,13 +27,13 @@ describe('weekdayUtils', () => {
     });
 
     describe('isDateInWeekdays', () => {
-        const weedays: Weekday[] = [Weekday.monday, Weekday.wednesday];
-        it('returns true if date is in weedays', () => {
-            expect(isDateInWeekdays(ISODateToDate('2022-01-03'), weedays)).toBeTruthy();
-            expect(isDateInWeekdays(ISODateToDate('2022-01-05'), weedays)).toBeTruthy();
+        const weekdays: Weekday[] = [Weekday.monday, Weekday.wednesday];
+        it('returns true if date is in weekdays', () => {
+            expect(isDateInWeekdays(ISODateToDate('2022-01-03'), weekdays)).toBeTruthy();
+            expect(isDateInWeekdays(ISODateToDate('2022-01-05'), weekdays)).toBeTruthy();
         });
-        it('returns false if date is NOT in weedays', () => {
-            expect(isDateInWeekdays(ISODateToDate('2022-01-04'), weedays)).toBeFalsy();
+        it('returns false if date is NOT in weekdays', () => {
+            expect(isDateInWeekdays(ISODateToDate('2022-01-04'), weekdays)).toBeFalsy();
         });
         it('returns false if weekdays is empty', () => {
             expect(isDateInWeekdays(ISODateToDate('2022-01-04'), [])).toBeFalsy();

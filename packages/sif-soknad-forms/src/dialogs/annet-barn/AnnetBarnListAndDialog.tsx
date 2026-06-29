@@ -5,13 +5,14 @@ import { AnnetBarnDialog } from './AnnetBarnDialog';
 import { AnnetBarnDialogFormConfig } from './AnnetBarnDialogForm';
 import { AnnetBarnList } from './AnnetBarnList';
 import { AnnetBarn } from './index';
+import { ISODate } from '@sif/utils';
 
 interface Props extends AnnetBarnDialogFormConfig {
     annetBarn?: AnnetBarn[];
     addButtonLabel: ReactNode;
     addButtonId?: string;
-    minDate: Date;
-    maxDate: Date;
+    minDate: ISODate;
+    maxDate: ISODate;
     onChange: (andreBarn: AnnetBarn[]) => void;
 }
 

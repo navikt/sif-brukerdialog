@@ -6,6 +6,7 @@ import { SifSoknadFormsText } from '../../i18n';
 import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { AnnetBarnListAndDialog } from './AnnetBarnListAndDialog';
 import { AnnetBarn, BarnType } from './index';
+import { dateToISODate } from '@sif/utils';
 
 type StoryProps = {
     annetBarn?: AnnetBarn[];
@@ -19,14 +20,14 @@ const exampleBarn: AnnetBarn[] = [
         id: '1',
         navn: 'Pia Hansen',
         fnr: '02489135879',
-        fødselsdato: today.subtract(6, 'year').toDate(),
+        fødselsdato: dateToISODate(today.subtract(6, 'year')),
         type: BarnType.fosterbarn,
     },
     {
         id: '2',
         navn: 'Ola Hansen',
         fnr: '26492089450',
-        fødselsdato: today.subtract(9, 'year').toDate(),
+        fødselsdato: dateToISODate(today.subtract(9, 'year')),
         type: BarnType.annet,
     },
 ];
@@ -37,8 +38,8 @@ function AnnetBarnListAndDialogStory({ annetBarn }: StoryProps) {
     return (
         <AnnetBarnListAndDialog
             annetBarn={items}
-            minDate={today.subtract(18, 'year').toDate()}
-            maxDate={today.toDate()}
+            minDate={dateToISODate(today.subtract(18, 'year'))}
+            maxDate={dateToISODate(today.subtract(0, 'year'))}
             disallowedFødselsnumre={disallowedFødselsnumre}
             aldersgrenseText="(må være under 18 år)"
             showBarnTypeOptions

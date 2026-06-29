@@ -1,7 +1,7 @@
 import { KontonummerInfo, ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { dateToISODate } from '@navikt/sif-common-utils';
 import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
+import { dateToISODate, ISODate } from '@sif/utils';
 
 import { SøknadSvar, Spørsmål } from '../../types';
 
@@ -56,7 +56,7 @@ export const buildSøknadFromSvar = ({
     oppgaveReferanse: string;
     svar: SøknadSvar;
     søkerNorskIdent: string;
-    startdato: Date;
+    startdato: ISODate;
     kontonummerInfo: UtvidetKontonummerInfo;
 }): SøknadApiData | undefined => {
     if (svar[Spørsmål.FORSTÅR_PLIKTER] !== true || !isYesOrNoAnswered(svar[Spørsmål.BARN])) {

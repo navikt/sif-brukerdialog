@@ -18,7 +18,7 @@ interface Options {
     otherFiles?: any[];
 }
 
-const getVedleggValidator =
+export const getVedleggValidator =
     (options: Options = {}): ValidationFunction<VedleggValidationResult> =>
     (value: any) => {
         const { required = false, otherFiles = [] } = options;
@@ -39,5 +39,3 @@ const getVedleggValidator =
         }
         return undefined;
     };
-
-export default getVedleggValidator;

@@ -1,4 +1,4 @@
-import getRequiredFieldValidator, { ValidateRequiredFieldError } from '../getRequiredFieldValidator';
+import { getRequiredFieldValidator, ValidateRequiredFieldError } from '../getRequiredFieldValidator';
 
 describe(`validateRequiredValue`, () => {
     it(`returns undefined when the field has  value`, () => {

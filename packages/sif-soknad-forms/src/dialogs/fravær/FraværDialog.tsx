@@ -3,12 +3,13 @@ import { Button, Dialog } from '@navikt/ds-react';
 import { SifSoknadFormsText } from '../../i18n';
 import { FraværDagDialogForm, FraværDagDialogFormConfig } from './FraværDagDialogForm';
 import { FraværPeriodeDialogForm, FraværPeriodeDialogFormConfig } from './FraværPeriodeDialogForm';
-import { FraværDag,FraværPeriode } from './types';
+import { FraværDag, FraværPeriode } from './types';
+import { ISODate } from '@sif/utils';
 
 interface FraværPeriodeDialogProps extends FraværPeriodeDialogFormConfig {
     fraværPeriode?: FraværPeriode;
-    minDate: Date;
-    maxDate: Date;
+    minDate: ISODate;
+    maxDate: ISODate;
     isOpen?: boolean;
     onCancel: () => void;
     onValidSubmit: (fraværPeriode: FraværPeriode) => void;
@@ -16,8 +17,8 @@ interface FraværPeriodeDialogProps extends FraværPeriodeDialogFormConfig {
 
 interface FraværDagDialogProps extends FraværDagDialogFormConfig {
     fraværDag?: FraværDag;
-    minDate: Date;
-    maxDate: Date;
+    minDate: ISODate;
+    maxDate: ISODate;
     isOpen?: boolean;
     onCancel: () => void;
     onValidSubmit: (fraværDag: FraværDag) => void;

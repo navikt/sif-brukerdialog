@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { BostedUtlandList } from './BostedUtlandList';
 import type { BostedUtland } from './index';
+import { ISODate } from '@sif/utils';
 
 type StoryProps = {
     bosteder: BostedUtland[];
@@ -16,8 +17,8 @@ const exampleBosteder: BostedUtland[] = [
         landkode: 'SWE',
         landnavn: 'Sverige',
         periode: {
-            from: new Date('2024-01-01'),
-            to: new Date('2024-03-31'),
+            from: '2024-01-01' as ISODate,
+            to: '2024-03-31' as ISODate,
         },
     },
     {
@@ -25,8 +26,8 @@ const exampleBosteder: BostedUtland[] = [
         landkode: 'DNK',
         landnavn: 'Danmark',
         periode: {
-            from: new Date('2024-05-01'),
-            to: new Date('2024-06-15'),
+            from: '2024-05-01' as ISODate,
+            to: '2024-06-15' as ISODate,
         },
     },
 ];

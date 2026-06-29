@@ -28,7 +28,7 @@ interface Options {
     allowDecimals?: boolean;
 }
 
-const getNumberValidator =
+export const getNumberValidator =
     (options: Options = {}): ValidationFunction<NumberValidationResult> =>
     (value: any) => {
         const { required, min, max, allowDecimals = true } = options;
@@ -72,5 +72,3 @@ const getNumberValidator =
         }
         return undefined;
     };
-
-export default getNumberValidator;

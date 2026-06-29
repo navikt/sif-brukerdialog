@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 
-import getDateValidator, { DateValidationOptions, DateValidationResult } from './getDateValidator';
+import { getDateValidator, DateValidationOptions, DateValidationResult } from './getDateValidator';
 import { ValidationFunction } from './types';
 import { validationUtils } from './validationUtils';
 
@@ -64,9 +64,7 @@ const getToDateValidator =
         return undefined;
     };
 
-const getDateRangeValidator = (options: Options) => ({
+export const getDateRangeValidator = (options: Options) => ({
     validateFromDate: getFromDateValidator(options),
     validateToDate: getToDateValidator(options),
 });
-
-export default getDateRangeValidator;

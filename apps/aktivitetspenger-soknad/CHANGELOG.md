@@ -1,5 +1,19 @@
 # @navikt/aktivitetspenger-soknad
 
+## 0.0.11
+
+### Patch Changes
+
+- Updated dependencies
+- Updated dependencies
+    - @navikt/sif-validation@1.0.22
+    - @sif/soknad-forms@0.1.0
+    - @sif/soknad-app@0.1.0
+    - @sif/soknad-ui@0.1.0
+    - @sif/utils@0.1.0
+    - @sif/api@0.1.0
+    - @sif/rhf@0.1.0
+
 ## 0.0.10
 
 ### Patch Changes

@@ -1,4 +1,4 @@
-import getDateRangeValidator, { ValidateDateRangeError } from '../getDateRangeValidator';
+import { getDateRangeValidator, ValidateDateRangeError } from '../getDateRangeValidator';
 import { ValidateDateError } from '../getDateValidator';
 
 describe('dateRangeValidation', () => {

@@ -1,4 +1,4 @@
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter } from '@sif/utils';
 import { AvvikRegisterinntektOppgave } from '@sif/api/ung-brukerdialog';
 
 import { UngUiText } from '../../../i18n';

@@ -1,6 +1,6 @@
 {
     "name": "@sif/soknad-app",
-    "version": "0.0.2",
+    "version": "0.1.0",
     "private": true,
     "repository": {
         "type": "git",
@@ -24,11 +24,11 @@
         "@navikt/sif-common-faro": "workspace:*",
         "@navikt/sif-common-sentry": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
-        "@navikt/sif-common-utils": "workspace:*",
         "@sentry/react": "10.58.0",
         "@sif/api": "workspace:*",
         "@sif/rhf": "workspace:*",
         "@sif/soknad-ui": "workspace:*",
+        "@sif/utils": "workspace:*",
         "@tanstack/react-query": "5.101.0",
         "js-cookie": "3.0.8",
         "react-hook-form": "7.79.0",

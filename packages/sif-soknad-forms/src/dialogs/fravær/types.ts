@@ -1,12 +1,14 @@
+import { ISODate } from '@sif/utils';
+
 export interface FraværPeriode {
     id: string;
-    fraOgMed: Date;
-    tilOgMed: Date;
+    fraOgMed: ISODate;
+    tilOgMed: ISODate;
 }
 
 export interface FraværDag {
     id: string;
-    dato: Date;
+    dato: ISODate;
     timerArbeidsdag: string;
     timerFravær: string;
 }

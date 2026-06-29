@@ -46,7 +46,7 @@ const isValidOrgNumber = (value: any): boolean => {
     return false;
 };
 
-const getOrgNumberValidator =
+export const getOrgNumberValidator =
     (options: Options = {}): ValidationFunction<OrgNumberValidationResult> =>
     (value: any) => {
         const { required } = options;
@@ -59,5 +59,3 @@ const getOrgNumberValidator =
         }
         return undefined;
     };
-
-export default getOrgNumberValidator;

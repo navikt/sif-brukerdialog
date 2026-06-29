@@ -8,6 +8,7 @@ import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { RapporterInntektOppgavePanel } from './RapporterInntektOppgavePanel';
+import { dateToISODate, ISODate } from '@sif/utils';
 const meta: Meta = {
     title: 'Oppgaver/Ungdomsprogramytelsen/Rapporter inntekt',
     parameters: {},
@@ -23,27 +24,27 @@ const oppgave: RapporterInntektOppgave = {
     oppgavetype: OppgaveType.RAPPORTER_INNTEKT,
     parsedOppgavetype: ParsedOppgavetype.RAPPORTER_INNTEKT,
     oppgavetypeData: {
-        fraOgMed: dayjs('2025-05-01').toDate(),
-        tilOgMed: dayjs('2025-05-31').toDate(),
+        fraOgMed: '2025-05-01' as ISODate,
+        tilOgMed: '2025-05-31' as ISODate,
         gjelderDelerAvMåned: false,
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs('2025-06-01').toDate(),
-    sisteDatoEnKanSvare: dayjs('2025-06-06').startOf('day').toDate(),
+    frist: dateToISODate(dayjs('2025-06-06').startOf('day')),
     ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 };
 
 const besvartOppgave: RapporterInntektOppgave = {
     ...oppgave,
     oppgavetypeData: {
-        fraOgMed: dayjs('2025-05-01').toDate(),
-        tilOgMed: dayjs('2025-05-31').toDate(),
+        fraOgMed: '2025-05-01' as ISODate,
+        tilOgMed: '2025-05-31' as ISODate,
         gjelderDelerAvMåned: false,
     },
     respons: {
         type: 'RAPPORTERT_INNTEKT',
-        fraOgMed: dayjs('2025-05-01').toDate(),
-        tilOgMed: dayjs('2025-05-31').toDate(),
+        fraOgMed: '2025-05-01' as ISODate,
+        tilOgMed: '2025-05-31' as ISODate,
         arbeidstakerOgFrilansInntekt: 10000,
     },
     status: OppgaveStatus.LØST,
@@ -56,17 +57,15 @@ const utløptUbesvartOppgave: RapporterInntektOppgave = {
     oppgavetype: OppgaveType.RAPPORTER_INNTEKT,
     parsedOppgavetype: ParsedOppgavetype.RAPPORTER_INNTEKT,
     oppgavetypeData: {
-        fraOgMed: dayjs('2025-09-01').toDate(),
-        tilOgMed: dayjs('2025-09-30').toDate(),
+        fraOgMed: '2025-09-01' as ISODate,
+        tilOgMed: '2025-09-30' as ISODate,
         gjelderDelerAvMåned: false,
     },
     respons: undefined,
     status: OppgaveStatus.UTLØPT,
     opprettetDato: dayjs('2025-10-01T05:00:29.527840Z').toDate(),
     løstDato: dayjs('2025-10-08T05:00:54.739162Z').toDate(),
-    åpnetDato: dayjs('2025-10-23T06:34:31.260740Z').toDate(),
-    lukketDato: undefined,
-    sisteDatoEnKanSvare: dayjs('2025-10-08T00:00:00Z').toDate(),
+    frist: dateToISODate(dayjs('2025-10-08T00:00:00Z')),
     ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 };
 

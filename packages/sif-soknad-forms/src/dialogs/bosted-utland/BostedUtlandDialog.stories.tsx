@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { BostedUtlandFormDialog } from './BostedUtlandDialog';
 import type { BostedUtland } from './index';
+import { dateToISODate } from '@sif/utils';
 
 type StoryProps = {
     bosted?: BostedUtland;
@@ -19,8 +20,8 @@ const alleBosteder: BostedUtland[] = [
         landkode: 'SWE',
         landnavn: 'Sverige',
         periode: {
-            from: today.subtract(8, 'month').toDate(),
-            to: today.subtract(6, 'month').subtract(10, 'day').toDate(),
+            from: dateToISODate(today.subtract(8, 'month')),
+            to: dateToISODate(today.subtract(6, 'month').subtract(10, 'day')),
         },
     },
     {
@@ -28,8 +29,8 @@ const alleBosteder: BostedUtland[] = [
         landkode: 'DNK',
         landnavn: 'Danmark',
         periode: {
-            from: today.subtract(4, 'month').toDate(),
-            to: today.subtract(2, 'month').subtract(10, 'day').toDate(),
+            from: dateToISODate(today.subtract(4, 'month')),
+            to: dateToISODate(today.subtract(2, 'month').subtract(10, 'day')),
         },
     },
 ];
@@ -46,8 +47,8 @@ function BostedUtlandDialogStory(props: StoryProps) {
             )}
             <BostedUtlandFormDialog
                 isOpen={open}
-                minDate={today.subtract(1, 'year').toDate()}
-                maxDate={today.add(1, 'year').toDate()}
+                minDate={dateToISODate(today.subtract(1, 'year'))}
+                maxDate={dateToISODate(today.add(1, 'year'))}
                 bosted={props.bosted}
                 alleBosteder={props.alleBosteder}
                 onCancel={() => setOpen(false)}

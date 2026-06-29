@@ -1,4 +1,3 @@
-import { dateUtils } from '@navikt/sif-common-utils';
 import { YesOrNo } from '@sif/rhf';
 import { describe, expect, it } from 'vitest';
 
@@ -10,9 +9,10 @@ import {
     VirksomhetFormValues,
     virksomhetToFormValues,
 } from '../virksomhetUtils';
+import { dateToISODate, ISODate } from '@sif/utils';
 
-const nyoppstartetFom = new Date();
-const gammelFom = new Date('2015-01-01');
+const nyoppstartetFom = dateToISODate(new Date());
+const gammelFom = '2015-01-01' as ISODate;
 
 const baseVirksomhet: Virksomhet = {
     id: 'abc',
@@ -31,7 +31,7 @@ const baseFormValues: VirksomhetFormValues = {
     registrertINorge: YesOrNo.YES,
     registrertILand: '',
     organisasjonsnummer: '123456789',
-    fom: dateUtils.dateToISODate(gammelFom),
+    fom: gammelFom,
     tom: '',
     erPågående: false,
     næringsinntekt: '',
@@ -69,7 +69,7 @@ describe('virksomhetToFormValues', () => {
     it('mapper virksomhet til formverdier', () => {
         const result = virksomhetToFormValues(baseVirksomhet);
         expect(result.navnPåVirksomheten).toBe('Test AS');
-        expect(result.fom).toBe(dateUtils.dateToISODate(gammelFom));
+        expect(result.fom).toBe(gammelFom);
         expect(result.tom).toBe('');
         expect(result.registrertINorge).toBe(YesOrNo.YES);
     });
@@ -101,11 +101,11 @@ describe('formValuesToVirksomhet', () => {
     });
 
     it('inkluderer tom når ikke pågående', () => {
-        const tomDate = new Date(2020, 5, 1);
+        const tomDate = '2020-06-01' as ISODate;
         const result = formValuesToVirksomhet({
             ...baseFormValues,
             erPågående: false,
-            tom: dateUtils.dateToISODate(tomDate),
+            tom: tomDate,
         });
         expect(result.tom).toEqual(tomDate);
     });

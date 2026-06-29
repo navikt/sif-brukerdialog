@@ -1,6 +1,6 @@
 {
     "name": "@navikt/ungdomsytelse-deltaker",
-    "version": "1.5.58",
+    "version": "1.5.59",
     "private": true,
     "type": "module",
     "scripts": {
@@ -40,7 +40,6 @@
         "@navikt/nav-dekoratoren-moduler": "4.2.2",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-analytics": "workspace:*",
-        "@navikt/sif-common-api": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-env": "workspace:*",
         "@navikt/sif-common-faro": "workspace:*",
@@ -50,7 +49,6 @@
         "@navikt/sif-common-sentry": "workspace:*",
         "@navikt/sif-common-soknad-ds": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
-        "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@navikt/ung-brukerdialog-api": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
@@ -59,6 +57,7 @@
         "@sif/soknad-ui": "workspace:*",
         "@sif/surveys": "workspace:*",
         "@sif/ung-innsyn": "workspace:*",
+        "@sif/utils": "workspace:*",
         "@tanstack/react-query": "5.101.0",
         "axios": "1.18.0",
         "clsx": "2.1.1",

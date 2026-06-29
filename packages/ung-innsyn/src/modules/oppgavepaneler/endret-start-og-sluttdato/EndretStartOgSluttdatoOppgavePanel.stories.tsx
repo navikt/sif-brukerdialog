@@ -8,6 +8,7 @@ import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { EndretStartOgSluttdatoOppgavePanel } from './EndretStartOgSluttdatoOppgavePanel';
+import { dateToISODate, ISODate } from '@sif/utils';
 
 const meta: Meta = {
     title: 'Oppgaver/Ungdomsprogramytelsen/Endret startdato og sluttdato',
@@ -23,15 +24,15 @@ const oppgave: EndretStartOgSluttdatoOppgave = {
     oppgavetype: OppgaveType.BEKREFT_ENDRET_PERIODE,
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO,
     oppgavetypeData: {
-        forrigePeriode: { from: dayjs('2025-05-04').toDate() },
+        forrigePeriode: { from: '2025-05-04' as ISODate },
         nyPeriode: {
-            from: dayjs('2025-05-01').toDate(),
-            to: dayjs('2025-08-01').toDate(),
+            from: '2025-05-01' as ISODate,
+            to: '2025-08-01' as ISODate,
         },
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
-    sisteDatoEnKanSvare: dayjs().add(14, 'days').toDate(),
+    frist: dateToISODate(dayjs().add(14, 'days')),
     ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 };
 

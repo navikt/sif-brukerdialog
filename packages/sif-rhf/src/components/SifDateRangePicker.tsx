@@ -5,18 +5,8 @@ import { FieldValues, Path, useFormContext } from 'react-hook-form';
 import { datePickerUtils } from '../utils';
 import { DatepickerLimitations, SifDatepicker } from './SifDatepicker';
 import { SifInputGroup } from './SifInputGroup';
-
-export const minDate = (a?: Date, b?: Date): Date | undefined => {
-    if (!a) return b;
-    if (!b) return a;
-    return a < b ? a : b;
-};
-
-export const maxDate = (a?: Date, b?: Date): Date | undefined => {
-    if (!a) return b;
-    if (!b) return a;
-    return a > b ? a : b;
-};
+import { ISODate } from '@sif/utils';
+import { getDateRangeMaxDate, getDateRangeMinDate } from '../utils/dateRangePickerUtils';
 
 type DatepickerFieldProps<T extends FieldValues> = DatepickerLimitations & {
     name: Path<T>;
@@ -34,7 +24,13 @@ type Props<T extends FieldValues> = {
     description?: ReactNode;
     fromInputProps: DatepickerFieldProps<T>;
     toInputProps: DatepickerFieldProps<T>;
-    validate?: ({ fromDate, toDate }: { fromDate: Date | undefined; toDate: Date | undefined }) => string | undefined;
+    validate?: ({
+        fromDate,
+        toDate,
+    }: {
+        fromDate: ISODate | undefined;
+        toDate: ISODate | undefined;
+    }) => string | undefined;
 };
 
 export function SifDateRangePicker<T extends FieldValues>({
@@ -53,16 +49,18 @@ export function SifDateRangePicker<T extends FieldValues>({
     const fromValue = watch(fromInputProps.name);
     const toValue = watch(toInputProps.name);
 
-    const fromDate = fromValue ? datePickerUtils.parseDatePickerValue(fromValue as string) : undefined;
-    const toDate = toValue ? datePickerUtils.parseDatePickerValue(toValue as string) : undefined;
+    const fromDate = fromValue ? datePickerUtils.parseDatePickerValueToISODate(fromValue as string) : undefined;
+    const toDate = toValue ? datePickerUtils.parseDatePickerValueToISODate(toValue as string) : undefined;
 
-    const resolvedFromMaxDate = minDate(toDate, fromInputProps.maxDate);
-    const resolvedToMinDate = maxDate(fromDate, toInputProps.minDate);
+    const resolvedFromMaxDate: ISODate | undefined = getDateRangeMaxDate(fromInputProps.maxDate, toDate);
+    const resolvedToMinDate: ISODate | undefined = getDateRangeMinDate(toInputProps.minDate, fromDate);
 
     useEffect(() => {
         if (!validateRef.current) return;
-        const currentFromDate = fromValue ? datePickerUtils.parseDatePickerValue(fromValue as string) : undefined;
-        const currentToDate = toValue ? datePickerUtils.parseDatePickerValue(toValue as string) : undefined;
+        const currentFromDate = fromValue
+            ? datePickerUtils.parseDatePickerValueToISODate(fromValue as string)
+            : undefined;
+        const currentToDate = toValue ? datePickerUtils.parseDatePickerValueToISODate(toValue as string) : undefined;
         const message = validateRef.current({ fromDate: currentFromDate, toDate: currentToDate });
         if (message) {
             setError(name as any, { type: 'manual', message });

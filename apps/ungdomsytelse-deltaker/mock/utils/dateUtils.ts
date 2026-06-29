@@ -3,4 +3,4 @@
 import dayjs from 'dayjs';
 
 const ISODateFormat = 'YYYY-MM-DD';
-export const dateToISODate = (date: Date): string => dayjs(date).format(ISODateFormat);
+export const dateToISODate = (date: dayjs.ConfigType): string => dayjs(date).format(ISODateFormat);
