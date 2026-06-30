@@ -4,6 +4,7 @@ vi.mock('../../types/Features', () => ({
     Features: {
         forlengePeriode: false,
         slettAktivDeltakelse: false,
+        slettSluttdato: false,
         tillatTidligInnmelding: false,
     },
 }));
@@ -22,12 +23,14 @@ import {
     getGyldigStartdatoRange,
     kanEndreStartdato,
     kanSetteEllerEndreSluttdato,
+    kanSletteSluttdato,
     deltakelseKanSlettes,
     periodeKanForlenges,
     deltakelseSluttdatoErIDagEllerFremover,
     addUkedagerToDate,
 } from '../deltakelseUtils';
 import { Deltakelse } from '../../types/Deltakelse';
+import { Features } from '../../types/Features';
 
 const lagDeltakelse = (overrides: Partial<Deltakelse> = {}): Deltakelse => ({
     id: 'test-id',
@@ -101,6 +104,46 @@ describe('deltakelseUtils', () => {
         it('false når søktTidspunkt er satt', () => {
             const deltakelse = lagDeltakelse({ søktTidspunkt: new Date() });
             expect(deltakelseKanSlettes(deltakelse)).toBe(false);
+        });
+    });
+
+    describe('kanSletteSluttdato', () => {
+        it('false når feature slettSluttdato er av', () => {
+            const deltakelse = lagDeltakelse({ søktTidspunkt: new Date(), tilOgMed: ISODateToDate('2026-10-01') });
+            expect(kanSletteSluttdato(deltakelse, TODAY)).toBe(false);
+        });
+
+        describe('feature slettSluttdato på', () => {
+            beforeEach(() => {
+                Features.slettSluttdato = true;
+            });
+            afterEach(() => {
+                Features.slettSluttdato = false;
+            });
+
+            it('true når sluttdato er satt og periode ikke er utløpt', () => {
+                const deltakelse = lagDeltakelse({ søktTidspunkt: new Date(), tilOgMed: ISODateToDate('2026-10-01') });
+                expect(kanSletteSluttdato(deltakelse, TODAY)).toBe(true);
+            });
+
+            it('false når sluttdato ikke er satt', () => {
+                const deltakelse = lagDeltakelse({ søktTidspunkt: new Date() });
+                expect(kanSletteSluttdato(deltakelse, TODAY)).toBe(false);
+            });
+
+            it('false når søktTidspunkt ikke er satt', () => {
+                const deltakelse = lagDeltakelse({ tilOgMed: ISODateToDate('2026-10-01') });
+                expect(kanSletteSluttdato(deltakelse, TODAY)).toBe(false);
+            });
+
+            it('false når periode er utløpt', () => {
+                const deltakelse = lagDeltakelse({
+                    søktTidspunkt: new Date(),
+                    tilOgMed: ISODateToDate('2026-10-01'),
+                    periodeMaksDato: ISODateToDate('2026-01-01'),
+                });
+                expect(kanSletteSluttdato(deltakelse, TODAY)).toBe(false);
+            });
         });
     });
 
@@ -190,27 +233,27 @@ describe('deltakelseUtils', () => {
         it('A1: Ny deltaker, startdato endrbar', () => {
             const deltakelse = lagDeltakelse({ fraOgMed: ISODateToDate('2026-03-01') });
             const h = getDeltakelseHandlinger(deltakelse, TODAY);
-            expect(h.kanEndreStartdato).toBe(true);
-            expect(h.kanMeldesUt).toBe(false);
-            expect(h.kanEndreSluttdato).toBe(false);
-            expect(h.kanForlengePeriode).toBe(false);
-            expect(h.kanSlettes).toBe(true);
+            expect(h.kanEndreStartdato.resultat).toBe(true);
+            expect(h.kanMeldesUt.resultat).toBe(false);
+            expect(h.kanEndreSluttdato.resultat).toBe(false);
+            expect(h.kanForlengePeriode.resultat).toBe(false);
+            expect(h.kanSletteDeltakelse.resultat).toBe(true);
         });
 
         it('A2: Ny deltaker, startdato låst (utvidet periode)', () => {
             const deltakelse = lagDeltakelse({ fraOgMed: ISODateToDate('2026-03-01'), harForlengetPeriode: true });
             const h = getDeltakelseHandlinger(deltakelse, TODAY);
-            expect(h.kanEndreStartdato).toBe(false);
-            expect(h.kanSlettes).toBe(true);
+            expect(h.kanEndreStartdato.resultat).toBe(false);
+            expect(h.kanSletteDeltakelse.resultat).toBe(true);
         });
 
         it('B1: Aktiv deltaker, startdato endrbar', () => {
             const deltakelse = lagDeltakelse({ fraOgMed: ISODateToDate('2026-03-01'), søktTidspunkt: new Date() });
             const h = getDeltakelseHandlinger(deltakelse, TODAY);
-            expect(h.kanEndreStartdato).toBe(true);
-            expect(h.kanMeldesUt).toBe(true);
-            expect(h.kanForlengePeriode).toBe(false);
-            expect(h.kanSlettes).toBe(false);
+            expect(h.kanEndreStartdato.resultat).toBe(true);
+            expect(h.kanMeldesUt.resultat).toBe(true);
+            expect(h.kanForlengePeriode.resultat).toBe(false);
+            expect(h.kanSletteDeltakelse.resultat).toBe(false);
         });
 
         it('B4: Aktiv deltaker, utvidet periode', () => {
@@ -220,9 +263,9 @@ describe('deltakelseUtils', () => {
                 harForlengetPeriode: true,
             });
             const h = getDeltakelseHandlinger(deltakelse, TODAY);
-            expect(h.kanEndreStartdato).toBe(false);
-            expect(h.kanMeldesUt).toBe(true);
-            expect(h.kanForlengePeriode).toBe(false);
+            expect(h.kanEndreStartdato.resultat).toBe(false);
+            expect(h.kanMeldesUt.resultat).toBe(true);
+            expect(h.kanForlengePeriode.resultat).toBe(false);
         });
 
         it('B6: Aktiv deltaker, periode utløpt', () => {
@@ -232,9 +275,9 @@ describe('deltakelseUtils', () => {
                 periodeMaksDato: ISODateToDate('2026-01-01'),
             });
             const h = getDeltakelseHandlinger(deltakelse, TODAY);
-            expect(h.kanEndreStartdato).toBe(false);
-            expect(h.kanMeldesUt).toBe(false);
-            expect(h.kanForlengePeriode).toBe(false);
+            expect(h.kanEndreStartdato.resultat).toBe(false);
+            expect(h.kanMeldesUt.resultat).toBe(false);
+            expect(h.kanForlengePeriode.resultat).toBe(false);
         });
 
         it('C1: Utmeldt, startdato endrbar', () => {
@@ -244,10 +287,10 @@ describe('deltakelseUtils', () => {
                 tilOgMed: ISODateToDate('2026-10-01'),
             });
             const h = getDeltakelseHandlinger(deltakelse, TODAY);
-            expect(h.kanEndreStartdato).toBe(true);
-            expect(h.kanEndreSluttdato).toBe(true);
-            expect(h.kanMeldesUt).toBe(false);
-            expect(h.kanForlengePeriode).toBe(false);
+            expect(h.kanEndreStartdato.resultat).toBe(true);
+            expect(h.kanEndreSluttdato.resultat).toBe(true);
+            expect(h.kanMeldesUt.resultat).toBe(false);
+            expect(h.kanForlengePeriode.resultat).toBe(false);
         });
 
         it('D1: Slettet overstyrer alt', () => {
@@ -257,11 +300,12 @@ describe('deltakelseUtils', () => {
                 erSlettet: true,
             });
             const h = getDeltakelseHandlinger(deltakelse, TODAY);
-            expect(h.kanEndreStartdato).toBe(false);
-            expect(h.kanMeldesUt).toBe(false);
-            expect(h.kanEndreSluttdato).toBe(false);
-            expect(h.kanForlengePeriode).toBe(false);
-            expect(h.kanSlettes).toBe(false);
+            expect(h.kanEndreStartdato.resultat).toBe(false);
+            expect(h.kanMeldesUt.resultat).toBe(false);
+            expect(h.kanEndreSluttdato.resultat).toBe(false);
+            expect(h.kanSletteSluttdato.resultat).toBe(false);
+            expect(h.kanForlengePeriode.resultat).toBe(false);
+            expect(h.kanSletteDeltakelse.resultat).toBe(false);
         });
     });
 

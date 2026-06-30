@@ -10,7 +10,7 @@ import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from
 import { getCheckedValidator, getRequiredFieldValidator, getStringValidator } from '@navikt/sif-validation';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useState } from 'react';
-import BekreftSlettAktivDeltakerDialog from '../../components/bekreft-slett-aktiv-deltaker-dialog/BekreftSlettAktivDeltakerDialog';
+import ConfirmDialog from '../../components/confirm-dialog/ConfirmDialog';
 import { SlettDeltakerÅrsak, SlettDeltakerÅrsakList } from '../../types/SlettDeltakerÅrsaker';
 import { useSlettAktivDeltaker } from '../../hooks/useSlettAktivDeltaker';
 
@@ -140,38 +140,45 @@ const SlettAktivDeltakerForm = ({ deltaker, deltakelse, onCancel, onDeltakelseSl
                                                 return stringError;
                                             }}
                                         />
-
-                                        <ConfirmationCheckbox
-                                            name={FieldNames.bekreftSletting}
-                                            label={
-                                                <>
-                                                    Jeg bekrefter at {formatName(deltaker.navn)} skal registreres som
-                                                    slettet deltaker i ungdomsprogrammet.
-                                                </>
-                                            }
-                                            validate={getCheckedValidator()}></ConfirmationCheckbox>
-
-                                        <HStack gap="space-16">
-                                            <Button type="submit" variant="primary" loading={isPending}>
-                                                Registrer sletting
-                                            </Button>
-                                            <Button type="button" variant="secondary" onClick={onCancel}>
-                                                Avbryt
-                                            </Button>
-                                        </HStack>
-                                        {error ? <ApiErrorAlert error={error} /> : null}
                                     </VStack>
                                 </BorderBox>
+                                <ConfirmationCheckbox
+                                    name={FieldNames.bekreftSletting}
+                                    label={
+                                        <>
+                                            Jeg bekrefter at {formatName(deltaker.navn)} skal registreres som slettet
+                                            deltaker i ungdomsprogrammet.
+                                        </>
+                                    }
+                                    validate={getCheckedValidator()}></ConfirmationCheckbox>
+
+                                <HStack gap="space-16">
+                                    <Button type="submit" variant="primary" loading={isPending}>
+                                        Registrer sletting
+                                    </Button>
+                                    <Button type="button" variant="secondary" onClick={onCancel}>
+                                        Avbryt
+                                    </Button>
+                                </HStack>
+                                {error ? <ApiErrorAlert error={error} /> : null}
                             </VStack>
                         </Form>
                     );
                 }}
             />
             {bekreftSlettInfo && (
-                <BekreftSlettAktivDeltakerDialog
-                    deltakerNavn={formatName(deltaker.navn)}
-                    onAvbryt={() => setBekreftSlettInfo(undefined)}
-                    onBekreft={() => doSlettDeltaker(bekreftSlettInfo.årsak)}
+                <ConfirmDialog
+                    title="Bekreft sletting av deltakelse"
+                    content={
+                        <BodyLong>
+                            Er du helt sikker på at du ønsker å registrere {formatName(deltaker.navn)} som slettet
+                            deltaker i ungdomsprogrammet? Dette kan ikke angres.
+                        </BodyLong>
+                    }
+                    confirmButtonText="Ja, slett deltakelse"
+                    cancelButtonText="Nei, avbryt"
+                    onConfirm={() => doSlettDeltaker(bekreftSlettInfo.årsak)}
+                    onCancel={() => setBekreftSlettInfo(undefined)}
                     open={true}
                 />
             )}

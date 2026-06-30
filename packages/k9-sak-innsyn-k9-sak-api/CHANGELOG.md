@@ -1,5 +1,11 @@
 # @navikt/k9-sak-innsyn-k9-sak-api
 
+## 0.2.15
+
+### Patch Changes
+
+- Codegen:prod
+
 ## 0.2.14
 
 ### Patch Changes

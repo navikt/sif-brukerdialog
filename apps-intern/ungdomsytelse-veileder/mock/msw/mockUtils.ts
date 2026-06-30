@@ -59,6 +59,14 @@ const getEndretSluttdatoHistorikk = (opprinneligDato: string | undefined, nyDato
     tidspunkt: dayjs().toISOString(),
 });
 
+const getSlettetSluttdatoHistorikk = (): DeltakelseHistorikkDto => ({
+    endringstype: Endringstype.SLUTTDATO_SLETTET,
+    revisjonstype: Revisjonstype.ENDRET,
+    endring: `Sluttdato er slettet`,
+    aktør: 'Z990501 (veileder)',
+    tidspunkt: dayjs().toISOString(),
+});
+
 /** Data */
 
 const initialDb: TempDB = {
@@ -252,13 +260,33 @@ const endreSluttdato = (deltakelseId: string, dato: string) => {
     return dbDeltakelse.deltakelse;
 };
 
+const slettSluttdato = (deltakelseId: string) => {
+    const deltakelse = db.deltakelser.find((d) => d.deltakelse.id === deltakelseId);
+    if (!deltakelse) {
+        throw new Error('Fant ikke deltakelse med id');
+    }
+    const dbDeltakelse: DbDeltakelse = {
+        ...deltakelse,
+        deltakelse: {
+            ...deltakelse.deltakelse,
+            tilOgMed: undefined,
+        },
+        historikk: [...deltakelse.historikk, getSlettetSluttdatoHistorikk()],
+    };
+    db.deltakelser = db.deltakelser.map((d) => (d.deltakelse.id === deltakelseId ? dbDeltakelse : d));
+    save(db);
+    return dbDeltakelse.deltakelse;
+};
+
 export const mockUtils = {
     endreSluttdato,
     endreStartdato,
+    slettSluttdato,
     findDeltaker,
     getDeltakelser,
     getDeltakelseHistorikk,
     getDeltakerByDeltakerId,
+    getSlettetSluttdatoHistorikk,
     meldInnDeltaker,
     forlengPeriode,
     fjernDeltaker,

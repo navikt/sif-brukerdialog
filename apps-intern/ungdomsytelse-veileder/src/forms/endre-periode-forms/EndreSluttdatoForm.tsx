@@ -141,8 +141,12 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                                                 maxDate={sluttdatoMinMax.to}
                                                 defaultMonth={deltakelse.tilOgMed}
                                                 disableWeekends={true}
-                                                validate={getPeriodeDatoValidator(sluttdatoMinMax, deltakelse.tilOgMed)}
+                                                validate={getPeriodeDatoValidator({
+                                                    periode: sluttdatoMinMax,
+                                                    registrertDato: deltakelse.tilOgMed,
+                                                })}
                                             />
+
                                             {erEndringAvSluttdato === false && (
                                                 <FormikRadioGroup
                                                     name={FieldNames.årsak}

@@ -62,7 +62,7 @@ const DeltakelsePeriodeInfo = ({ deltakelse, deltaker }: Props) => {
                         <dd>
                             <StartdatoPanel
                                 dato={deltakelse.fraOgMed}
-                                kanEndreStartdato={handlinger.kanEndreStartdato}
+                                kanEndreStartdato={handlinger.kanEndreStartdato.resultat}
                                 onClickEndreButton={() => {
                                     setEndretDeltakelse(undefined);
                                     setFormVariant(EndrePeriodeVariant.startdato);

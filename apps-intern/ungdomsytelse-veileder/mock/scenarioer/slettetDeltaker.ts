@@ -1,4 +1,10 @@
-import { DeltakelseDto, DeltakelseHistorikkDto, DeltakerPersonalia, Endringstype, Revisjonstype } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import {
+    DeltakelseDto,
+    DeltakelseHistorikkDto,
+    DeltakerPersonalia,
+    Endringstype,
+    Revisjonstype,
+} from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import { beregnPeriodeMaksDato, relativeMockTimestamp } from '../mockDateUtils';
 import { MockScenario } from './types';
 
@@ -61,11 +67,12 @@ export const slettetDeltakerScenario: MockScenario = {
     beskrivelse: 'Slettet deltaker',
     gruppe: 'grunnscenarioer',
     forventedeHandlinger: {
-        kanEndreStartdato: false,
-        kanMeldesUt: false,
-        kanEndreSluttdato: false,
-        kanForlengePeriode: false,
-        kanSlettes: false,
+        kanEndreStartdato: { resultat: false, årsak: '' },
+        kanMeldesUt: { resultat: false, årsak: '' },
+        kanEndreSluttdato: { resultat: false, årsak: '' },
+        kanSletteSluttdato: { resultat: false, årsak: '' },
+        kanForlengePeriode: { resultat: false, årsak: '' },
+        kanSletteDeltakelse: { resultat: false, årsak: '' },
     },
     deltakerPersonalia,
     deltakelse,

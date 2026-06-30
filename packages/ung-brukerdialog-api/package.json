@@ -1,6 +1,6 @@
 {
     "name": "@navikt/ung-brukerdialog-api",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "private": true,
     "repository": {
         "type": "git",
@@ -21,7 +21,7 @@
         "lint:tsc": "tsc --noEmit"
     },
     "devDependencies": {
-        "@hey-api/openapi-ts": "0.99.0",
+        "@hey-api/openapi-ts": "0.98.2",
         "@navikt/sif-common-env": "workspace:*",
         "@sif/eslint-config": "workspace:*",
         "axios": "1.18.1",

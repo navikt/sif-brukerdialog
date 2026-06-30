@@ -18,6 +18,7 @@ export enum AppHendelse {
     nyDeltakerFunnet = 'ny-deltaker-funnet',
     deltakerRegistrert = 'deltaker-registrert',
     deltakerSlettet = 'deltaker-slettet',
+    sluttdatoSlettet = 'sluttdato-slettet',
     startdatoEndret = 'startdato-endret',
     sluttdatoSattFørsteGang = 'sluttdato-satt-første-gang',
     aktivDeltakerSlettet = 'aktiv-deltaker-slettet',
