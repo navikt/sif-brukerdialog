@@ -81,5 +81,5 @@ jobs:
                   CLUSTER: dev-gcp
                   RESOURCE: nais-config/nais.yml
                   VARS: apps/${{ inputs.app-name }}/nais/dev-gcp.json
-                  VAR: GITHUB_REF_NAME=${{ github.ref_name }} # brukes i applikasjonerna
+                  VAR: GITHUB_REF_NAME=${{ github.ref_name }},BUILD_TIME=${{ env.BUILD_TIME }}
                   IMAGE: ${{ steps.docker-push.outputs.image }}
