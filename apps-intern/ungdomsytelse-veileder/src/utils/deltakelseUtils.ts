@@ -86,30 +86,100 @@ export const periodeKanForlenges = (deltakelse: Deltakelse, today: Date = getDat
     return erInnenforSisteMånederFørPeriodeslutt(deltakelse, today);
 };
 
+export type HandlingsResultat = { resultat: boolean; årsak: string };
+
+const ok = (): HandlingsResultat => ({ resultat: true, årsak: '' });
+const nei = (årsak: string): HandlingsResultat => ({ resultat: false, årsak });
+
+const kanEndreStartdatoResultat = (deltakelse: Deltakelse, today: Date): HandlingsResultat => {
+    if (deltakelse.harForlengetPeriode) {
+        return nei('Perioden er allerede forlenget');
+    }
+    if (erInnenforSisteMånederFørPeriodeslutt(deltakelse, today)) {
+        return nei('Innenfor siste måneder før periodeslutt');
+    }
+    const endringsperiode = getEndringsperiode(today);
+    if (!dateRangeUtils.isDateInDateRange(deltakelse.fraOgMed, endringsperiode)) {
+        return nei('Startdato er utenfor tillatt endringsperiode');
+    }
+    return ok();
+};
+
+const kanSetteEllerEndreSluttdatoResultat = (deltakelse: Deltakelse, today: Date): HandlingsResultat => {
+    if (deltakelse.søktTidspunkt === undefined) {
+        return nei('Deltakelsen har ikke søkt tidspunkt');
+    }
+    if (periodeErUtløpt(deltakelse, today)) {
+        return nei('Perioden er utløpt');
+    }
+    return ok();
+};
+
+const kanMeldesUtResultat = (deltakelse: Deltakelse, today: Date): HandlingsResultat => {
+    const base = kanSetteEllerEndreSluttdatoResultat(deltakelse, today);
+    if (!base.resultat) return base;
+    if (deltakelse.tilOgMed !== undefined) {
+        return nei('Sluttdato er allerede satt');
+    }
+    return ok();
+};
+
+const kanEndreSluttdatoResultat = (deltakelse: Deltakelse, today: Date): HandlingsResultat => {
+    const base = kanSetteEllerEndreSluttdatoResultat(deltakelse, today);
+    if (!base.resultat) return base;
+    if (deltakelse.tilOgMed === undefined) {
+        return nei('Sluttdato er ikke satt');
+    }
+    return ok();
+};
+
+const periodeKanForlengesResultat = (deltakelse: Deltakelse, today: Date): HandlingsResultat => {
+    if (!deltakelse.søktTidspunkt) return nei('Deltakelsen har ikke søkt tidspunkt');
+    if (deltakelse.harForlengetPeriode) return nei('Perioden er allerede forlenget');
+    if (deltakelse.tilOgMed !== undefined) return nei('Sluttdato er satt');
+    if (periodeErUtløpt(deltakelse, today)) {
+        if (!erInnenforSiste6UkerEtterPeriodeslutt(deltakelse, today)) {
+            return nei('Perioden er utløpt og utenfor 6-ukersvinduet for forlengelse');
+        }
+        return ok();
+    }
+    if (!erInnenforSisteMånederFørPeriodeslutt(deltakelse, today)) {
+        return nei('Ikke innenfor siste måneder før periodeslutt');
+    }
+    return ok();
+};
+
+const deltakelseKanSlettesResultat = (deltakelse: Deltakelse): HandlingsResultat => {
+    if (deltakelse.søktTidspunkt !== undefined) {
+        return nei('Deltakelsen har søkt tidspunkt');
+    }
+    return ok();
+};
+
 export interface DeltakelseHandlinger {
-    kanEndreStartdato: boolean;
-    kanMeldesUt: boolean;
-    kanEndreSluttdato: boolean;
-    kanForlengePeriode: boolean;
-    kanSlettes: boolean;
+    kanEndreStartdato: HandlingsResultat;
+    kanMeldesUt: HandlingsResultat;
+    kanEndreSluttdato: HandlingsResultat;
+    kanForlengePeriode: HandlingsResultat;
+    kanSlettes: HandlingsResultat;
 }
 
 export const getDeltakelseHandlinger = (deltakelse: Deltakelse, today: Date = getDateToday()): DeltakelseHandlinger => {
     if (deltakelse.erSlettet) {
         return {
-            kanEndreStartdato: false,
-            kanMeldesUt: false,
-            kanEndreSluttdato: false,
-            kanForlengePeriode: false,
-            kanSlettes: false,
+            kanEndreStartdato: nei('Deltakelsen er slettet'),
+            kanMeldesUt: nei('Deltakelsen er slettet'),
+            kanEndreSluttdato: nei('Deltakelsen er slettet'),
+            kanForlengePeriode: nei('Deltakelsen er slettet'),
+            kanSlettes: nei('Deltakelsen er slettet'),
         };
     }
     return {
-        kanEndreStartdato: kanEndreStartdato(deltakelse, today),
-        kanMeldesUt: kanMeldesUt(deltakelse, today),
-        kanEndreSluttdato: kanEndreSluttdato(deltakelse, today),
-        kanForlengePeriode: periodeKanForlenges(deltakelse, today),
-        kanSlettes: deltakelseKanSlettes(deltakelse),
+        kanEndreStartdato: kanEndreStartdatoResultat(deltakelse, today),
+        kanMeldesUt: kanMeldesUtResultat(deltakelse, today),
+        kanEndreSluttdato: kanEndreSluttdatoResultat(deltakelse, today),
+        kanForlengePeriode: periodeKanForlengesResultat(deltakelse, today),
+        kanSlettes: deltakelseKanSlettesResultat(deltakelse),
     };
 };
 
