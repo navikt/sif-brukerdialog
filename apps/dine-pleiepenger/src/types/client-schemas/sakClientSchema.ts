@@ -39,6 +39,6 @@ export const behandlingClientSchema = innsyn.zBehandlingDto
 /** Sak */
 export const sakClientSchema = innsyn.zSakDto.extend({
     utledetStatus: utledetStatusClientSchema,
-    saksbehandlingsFrist: zOptionalDateFromDateTimeString,
+    saksbehandlingsFrist: zOptionalDateFromISODateString,
     behandlinger: z.array(behandlingClientSchema),
 });
