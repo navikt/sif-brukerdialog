@@ -39,6 +39,7 @@ interface Props {
     Decorator: DecoratorComponentsReact;
     language: string;
     githubRefName?: string;
+    buildTime?: string;
     dataset?: string;
 }
 
@@ -65,12 +66,13 @@ class MyDocument extends Document<Props> {
             Decorator,
             language,
             githubRefName: serverEnv.GITHUB_REF_NAME,
+            buildTime: serverEnv.BUILD_TIME,
             dataset: serverEnv.NEXT_PUBLIC_APPSTATUS_DATASET,
         };
     }
 
     render(): ReactElement {
-        const { Decorator, language, githubRefName, dataset } = this.props;
+        const { Decorator, language, githubRefName, buildTime, dataset } = this.props;
 
         return (
             <Html lang={language || 'no'}>
@@ -93,7 +95,7 @@ class MyDocument extends Document<Props> {
                     <Decorator.Footer />
                     <Decorator.Scripts />
                     <NextScript />
-                    <DevBranchInfo githubRefName={githubRefName} dataset={dataset} />
+                    <DevBranchInfo githubRefName={githubRefName} buildTime={buildTime} dataset={dataset} />
                 </body>
             </Html>
         );
