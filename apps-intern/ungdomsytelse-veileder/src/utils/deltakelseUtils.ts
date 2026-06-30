@@ -35,57 +35,6 @@ const erInnenforSiste6UkerEtterPeriodeslutt = (deltakelse: Deltakelse, today: Da
     );
 };
 
-export const kanEndreStartdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
-    if (deltakelse.harForlengetPeriode) {
-        return false;
-    }
-    if (erInnenforSisteMånederFørPeriodeslutt(deltakelse, today)) {
-        return false;
-    }
-    const endringsperiode = getEndringsperiode(today);
-    return dateRangeUtils.isDateInDateRange(deltakelse.fraOgMed, endringsperiode);
-};
-
-export const kanSetteEllerEndreSluttdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
-    if (deltakelse.søktTidspunkt === undefined) {
-        return false;
-    }
-    return !periodeErUtløpt(deltakelse, today);
-};
-
-export const kanMeldesUt = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
-    return kanSetteEllerEndreSluttdato(deltakelse, today) && deltakelse.tilOgMed === undefined;
-};
-
-export const kanEndreSluttdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
-    return kanSetteEllerEndreSluttdato(deltakelse, today) && deltakelse.tilOgMed !== undefined;
-};
-
-export const deltakelsePeriodeErUtløpt = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
-    return periodeErUtløpt(deltakelse, today);
-};
-
-export const deltakelseSluttdatoErIDagEllerFremover = (
-    deltakelse: Deltakelse,
-    today: Date = getDateToday(),
-): boolean => {
-    return deltakelse.tilOgMed ? dayjs(deltakelse.tilOgMed).isSameOrAfter(today, 'day') : false;
-};
-
-export const deltakelseKanSlettes = (deltakelse: Deltakelse): boolean => {
-    return deltakelse.søktTidspunkt === undefined;
-};
-
-export const periodeKanForlenges = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean => {
-    if (!deltakelse.søktTidspunkt) return false;
-    if (deltakelse.harForlengetPeriode) return false;
-    if (deltakelse.tilOgMed !== undefined) return false;
-    if (periodeErUtløpt(deltakelse, today)) {
-        return erInnenforSiste6UkerEtterPeriodeslutt(deltakelse, today);
-    }
-    return erInnenforSisteMånederFørPeriodeslutt(deltakelse, today);
-};
-
 export type HandlingsResultat = { resultat: boolean; årsak: string };
 
 const ok = (): HandlingsResultat => ({ resultat: true, årsak: '' });
@@ -155,6 +104,34 @@ const deltakelseKanSlettesResultat = (deltakelse: Deltakelse): HandlingsResultat
     }
     return ok();
 };
+
+export const kanEndreStartdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean =>
+    kanEndreStartdatoResultat(deltakelse, today).resultat;
+
+export const kanSetteEllerEndreSluttdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean =>
+    kanSetteEllerEndreSluttdatoResultat(deltakelse, today).resultat;
+
+export const kanMeldesUt = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean =>
+    kanMeldesUtResultat(deltakelse, today).resultat;
+
+export const kanEndreSluttdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean =>
+    kanEndreSluttdatoResultat(deltakelse, today).resultat;
+
+export const deltakelsePeriodeErUtløpt = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean =>
+    periodeErUtløpt(deltakelse, today);
+
+export const deltakelseSluttdatoErIDagEllerFremover = (
+    deltakelse: Deltakelse,
+    today: Date = getDateToday(),
+): boolean => {
+    return deltakelse.tilOgMed ? dayjs(deltakelse.tilOgMed).isSameOrAfter(today, 'day') : false;
+};
+
+export const deltakelseKanSlettes = (deltakelse: Deltakelse): boolean =>
+    deltakelseKanSlettesResultat(deltakelse).resultat;
+
+export const periodeKanForlenges = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean =>
+    periodeKanForlengesResultat(deltakelse, today).resultat;
 
 export interface DeltakelseHandlinger {
     kanEndreStartdato: HandlingsResultat;
