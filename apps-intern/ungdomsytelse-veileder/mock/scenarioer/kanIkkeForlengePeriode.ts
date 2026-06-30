@@ -71,10 +71,11 @@ export const kanIkkeForlengePeriodeScenario: MockScenario = {
     beskrivelse: 'Kan ikke forlenge (akkurat utenfor 6-ukersvinduet)',
     gruppe: 'handlinger',
     forventedeHandlinger: {
-        kanSlettes: { resultat: false, årsak: '' },
+        kanSletteDeltakelse: { resultat: false, årsak: '' },
         kanEndreStartdato: { resultat: false, årsak: '' },
         kanMeldesUt: { resultat: false, årsak: '' },
         kanEndreSluttdato: { resultat: false, årsak: '' },
+        kanSletteSluttdato: { resultat: false, årsak: '' },
         kanForlengePeriode: { resultat: false, årsak: '' },
     },
     deltakerPersonalia,

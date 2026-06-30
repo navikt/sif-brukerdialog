@@ -10,7 +10,7 @@ import { MockScenario } from './types';
 
 /**
  * Scenario: Deltaker registrert men ikke søkt ennå (søktTidspunkt=undefined).
- * Forventede handlinger: kanSlettes=true, kanEndreStartdato=true.
+ * Forventede handlinger: kanSletteDeltakelse=true, kanEndreStartdato=true.
  */
 
 const DELTAKER_ID = 'a9d51b57-ccae-4e42-90ce-a22f8a745050';
@@ -55,15 +55,16 @@ const historikk: DeltakelseHistorikkDto[] = [
     },
 ];
 
-export const kanSlettesScenario: MockScenario = {
+export const kanSletteDeltakelseScenario: MockScenario = {
     fnr: '04449925276',
-    beskrivelse: 'Kan slettes (registrert, ikke søkt)',
+    beskrivelse: 'Kan slette deltakelse (registrert, ikke søkt)',
     gruppe: 'handlinger',
     forventedeHandlinger: {
-        kanSlettes: { resultat: true, årsak: '' },
+        kanSletteDeltakelse: { resultat: true, årsak: '' },
         kanEndreStartdato: { resultat: true, årsak: '' },
         kanMeldesUt: { resultat: false, årsak: '' },
         kanEndreSluttdato: { resultat: false, årsak: '' },
+        kanSletteSluttdato: { resultat: false, årsak: '' },
         kanForlengePeriode: { resultat: false, årsak: '' },
     },
     deltakerPersonalia,

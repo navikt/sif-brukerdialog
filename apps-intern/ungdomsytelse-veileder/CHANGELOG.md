@@ -1,5 +1,14 @@
 # @navikt/ungdomsytelse-veileder
 
+## 0.9.71
+
+### Patch Changes
+
+- Codegen:prod
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.13
+    - @navikt/ung-common@0.0.103
+
 ## 0.9.70
 
 ### Patch Changes

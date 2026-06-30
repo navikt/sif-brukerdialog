@@ -1,15 +1,15 @@
 import { BodyLong, Box, Button, Heading, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 import { Deltaker } from '../../../types/Deltaker';
-import SlettAktivDeltakerModal from '../../../components/slett-aktiv-deltaker-modal/SlettAktivDeltakerModal';
 import { Deltakelse } from '../../../types/Deltakelse';
+import SlettSluttdatoModal from '../../../components/slett-sluttdato-modal/SlettSluttdatoModal';
 
 interface Props {
     deltaker: Deltaker;
     deltakelse: Deltakelse;
 }
 
-const SlettAktivDeltakerInfo = ({ deltaker, deltakelse }: Props) => {
+const SlettSluttdatoPanel = ({ deltaker, deltakelse }: Props) => {
     const [visDialog, setVisDialog] = useState(false);
 
     return (
@@ -17,12 +17,9 @@ const SlettAktivDeltakerInfo = ({ deltaker, deltakelse }: Props) => {
             <Box background="warning-moderate" padding="space-24" borderRadius="16">
                 <VStack gap="space-0">
                     <Heading level="3" size="xsmall" spacing>
-                        Registrer slettet deltakelse i ungdomsprogrammet
+                        Slett sluttdato
                     </Heading>
-                    <BodyLong spacing>
-                        Hvis en deltaker ikke starter opp i programmet likevel, kan du registrere slettet deltakelse
-                        her.
-                    </BodyLong>
+                    <BodyLong spacing>Hvis sluttdatoen er satt ved en feil kan denne slettes.</BodyLong>
                     <div>
                         <Button variant="secondary" size="small" onClick={() => setVisDialog(true)}>
                             Åpne skjema
@@ -32,14 +29,10 @@ const SlettAktivDeltakerInfo = ({ deltaker, deltakelse }: Props) => {
             </Box>
 
             {visDialog && (
-                <SlettAktivDeltakerModal
-                    deltaker={deltaker}
-                    deltakelse={deltakelse}
-                    onCancel={() => setVisDialog(false)}
-                />
+                <SlettSluttdatoModal deltaker={deltaker} deltakelse={deltakelse} onCancel={() => setVisDialog(false)} />
             )}
         </>
     );
 };
 
-export default SlettAktivDeltakerInfo;
+export default SlettSluttdatoPanel;

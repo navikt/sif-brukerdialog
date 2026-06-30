@@ -65,4 +65,9 @@ export {
     type Navn,
     type ProblemDetail,
     Revisjonstype,
+    type SlettSluttdatoData,
+    type SlettSluttdatoError,
+    type SlettSluttdatoErrors,
+    type SlettSluttdatoResponse,
+    type SlettSluttdatoResponses,
 } from './types.gen';

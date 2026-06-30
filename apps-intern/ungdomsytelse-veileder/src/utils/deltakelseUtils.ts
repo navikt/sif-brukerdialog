@@ -82,6 +82,13 @@ const kanEndreSluttdatoResultat = (deltakelse: Deltakelse, today: Date): Handlin
     return ok();
 };
 
+const kanSletteSluttdatoResultat = (deltakelse: Deltakelse, today: Date): HandlingsResultat => {
+    if (!Features.slettSluttdato) {
+        return nei('Funksjonalitet ikke aktivert');
+    }
+    return kanEndreSluttdatoResultat(deltakelse, today);
+};
+
 const periodeKanForlengesResultat = (deltakelse: Deltakelse, today: Date): HandlingsResultat => {
     if (!deltakelse.søktTidspunkt) return nei('Deltakelsen har ikke søkt tidspunkt');
     if (deltakelse.harForlengetPeriode) return nei('Perioden er allerede forlenget');
@@ -130,6 +137,9 @@ export const deltakelseSluttdatoErIDagEllerFremover = (
 export const deltakelseKanSlettes = (deltakelse: Deltakelse): boolean =>
     deltakelseKanSlettesResultat(deltakelse).resultat;
 
+export const kanSletteSluttdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean =>
+    kanSletteSluttdatoResultat(deltakelse, today).resultat;
+
 export const periodeKanForlenges = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean =>
     periodeKanForlengesResultat(deltakelse, today).resultat;
 
@@ -137,8 +147,9 @@ export interface DeltakelseHandlinger {
     kanEndreStartdato: HandlingsResultat;
     kanMeldesUt: HandlingsResultat;
     kanEndreSluttdato: HandlingsResultat;
+    kanSletteSluttdato: HandlingsResultat;
     kanForlengePeriode: HandlingsResultat;
-    kanSlettes: HandlingsResultat;
+    kanSletteDeltakelse: HandlingsResultat;
 }
 
 export const getDeltakelseHandlinger = (deltakelse: Deltakelse, today: Date = getDateToday()): DeltakelseHandlinger => {
@@ -147,16 +158,18 @@ export const getDeltakelseHandlinger = (deltakelse: Deltakelse, today: Date = ge
             kanEndreStartdato: nei('Deltakelsen er slettet'),
             kanMeldesUt: nei('Deltakelsen er slettet'),
             kanEndreSluttdato: nei('Deltakelsen er slettet'),
+            kanSletteSluttdato: nei('Deltakelsen er slettet'),
             kanForlengePeriode: nei('Deltakelsen er slettet'),
-            kanSlettes: nei('Deltakelsen er slettet'),
+            kanSletteDeltakelse: nei('Deltakelsen er slettet'),
         };
     }
     return {
         kanEndreStartdato: kanEndreStartdatoResultat(deltakelse, today),
         kanMeldesUt: kanMeldesUtResultat(deltakelse, today),
         kanEndreSluttdato: kanEndreSluttdatoResultat(deltakelse, today),
+        kanSletteSluttdato: kanSletteSluttdatoResultat(deltakelse, today),
         kanForlengePeriode: periodeKanForlengesResultat(deltakelse, today),
-        kanSlettes: deltakelseKanSlettesResultat(deltakelse),
+        kanSletteDeltakelse: deltakelseKanSlettesResultat(deltakelse),
     };
 };
 

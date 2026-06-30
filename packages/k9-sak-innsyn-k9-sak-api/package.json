@@ -1,6 +1,6 @@
 {
     "name": "@navikt/k9-sak-innsyn-k9-sak-api",
-    "version": "0.2.14",
+    "version": "0.2.15",
     "private": true,
     "repository": {
         "type": "git",
@@ -20,7 +20,7 @@
         "openapi-ts": "openapi-ts"
     },
     "devDependencies": {
-        "@hey-api/openapi-ts": "0.99.0",
+        "@hey-api/openapi-ts": "0.98.2",
         "@sif/eslint-config": "workspace:*",
         "axios": "1.18.1",
         "config": "workspace:*",

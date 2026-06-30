@@ -69,10 +69,11 @@ export const kanForlengePeriodeScenario: MockScenario = {
     beskrivelse: 'Kan forlenge periode (nær periodeSlutt)',
     gruppe: 'handlinger',
     forventedeHandlinger: {
-        kanSlettes: { resultat: false, årsak: '' },
+        kanSletteDeltakelse: { resultat: false, årsak: '' },
         kanEndreStartdato: { resultat: false, årsak: '' },
         kanMeldesUt: { resultat: true, årsak: '' },
         kanEndreSluttdato: { resultat: false, årsak: '' },
+        kanSletteSluttdato: { resultat: false, årsak: '' },
         kanForlengePeriode: { resultat: true, årsak: '' },
     },
     deltakerPersonalia,
