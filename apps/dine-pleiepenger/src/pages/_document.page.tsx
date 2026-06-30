@@ -66,7 +66,7 @@ class MyDocument extends Document<Props> {
             Decorator,
             language,
             githubRefName: serverEnv.GITHUB_REF_NAME,
-            buildTime: serverEnv.BUILD_TIME,
+            buildTime: serverEnv.NEXT_PUBLIC_BUILD_TIME,
             dataset: serverEnv.NEXT_PUBLIC_APPSTATUS_DATASET,
         };
     }
