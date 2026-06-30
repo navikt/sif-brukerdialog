@@ -16,7 +16,7 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "react-intl": "10.1.13"
+        "react-intl": "10.1.14"
     },
     "devDependencies": {
         "@navikt/sif-common-env": "workspace:*",
