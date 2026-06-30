@@ -1,7 +1,7 @@
 {
     "saksnummer": "100242W",
-    "utledetStatus": { "status": "UNDER_BEHANDLING", "aksjonspunkter": [], "saksbehandlingsFrist": "2026-09-21" },
-    "saksbehandlingsFrist": "2026-09-21",
+    "utledetStatus": { "status": "UNDER_BEHANDLING", "aksjonspunkter": [], "saksbehandlingsFrist": null },
+    "saksbehandlingsFrist": null,
     "fagsakYtelseType": { "kode": "PSB", "kodeverk": "FAGSAK_YTELSE" },
     "ytelseType": "PSB",
     "behandlinger": [
