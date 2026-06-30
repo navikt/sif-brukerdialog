@@ -41,13 +41,13 @@
         "lodash": "4.18.1",
         "react-day-picker": "9.14.0",
         "react-fast-compare": "3.2.2",
-        "react-intl": "10.1.13",
-        "uuid": "14.0.0"
+        "react-intl": "10.1.14",
+        "uuid": "14.0.1"
     },
     "devDependencies": {
-        "@navikt/aksel-icons": "8.13.0",
-        "@navikt/ds-css": "8.13.0",
-        "@navikt/ds-react": "8.13.0",
+        "@navikt/aksel-icons": "8.14.0",
+        "@navikt/ds-css": "8.14.0",
+        "@navikt/ds-react": "8.14.0",
         "@navikt/fnrvalidator": "2.2.1",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-a11y": "10.4.6",
@@ -58,7 +58,7 @@
         "@types/node": "25.9.3",
         "@types/react": "19.2.17",
         "@types/react-dom": "19.2.3",
-        "@vitejs/plugin-react": "6.0.2",
+        "@vitejs/plugin-react": "6.0.3",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
         "dayjs": "1.11.21",
@@ -70,7 +70,7 @@
         "sass": "1.101.0",
         "storybook": "10.4.6",
         "typescript": "6.0.3",
-        "vite": "8.0.16",
+        "vite": "8.1.0",
         "vite-plugin-checker": "0.14.4",
         "vitest": "4.1.9"
     }
