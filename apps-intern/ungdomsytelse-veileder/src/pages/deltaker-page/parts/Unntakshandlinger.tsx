@@ -20,7 +20,7 @@ export const Unntakshandlinger = ({ deltakelse, deltaker }: Props) => {
     }
 
     const handlinger = getDeltakelseHandlinger(deltakelse);
-    const harUnntakshandlinger = Features.slettAktivDeltakelse || handlinger.kanSletteSluttdato;
+    const harUnntakshandlinger = Features.slettAktivDeltakelse || handlinger.kanSletteSluttdato.resultat;
 
     if (!harUnntakshandlinger) {
         return null;
@@ -35,7 +35,7 @@ export const Unntakshandlinger = ({ deltakelse, deltaker }: Props) => {
                     {Features.slettAktivDeltakelse && !deltakelse.erSlettet && (
                         <SlettAktivDeltakerInfo deltaker={deltaker} deltakelse={deltakelse} />
                     )}
-                    {handlinger.kanSletteSluttdato && (
+                    {handlinger.kanSletteSluttdato.resultat && (
                         <SlettSluttdatoPanel deltaker={deltaker} deltakelse={deltakelse} />
                     )}
                 </HGrid>
