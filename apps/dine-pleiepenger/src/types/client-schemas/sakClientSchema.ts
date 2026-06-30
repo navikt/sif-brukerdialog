@@ -4,7 +4,11 @@ import z from 'zod';
 import { BehandlingStatus } from '../';
 import { dokumentClientSchema } from './dokumentClientSchema';
 import { innsendelseISakClientSchema } from './innsendelseISakClientSchema';
-import { zDateFromISODateString, zOptionalDateFromDateTimeString } from './zDateFromString';
+import {
+    zDateFromISODateString,
+    zOptionalDateFromDateTimeString,
+    zOptionalDateFromISODateString,
+} from './zDateFromString';
 
 /** Aksjonspunkt */
 export const aksjonspunktClientSchema = innsyn.zAksjonspunktDto.extend({
@@ -16,7 +20,7 @@ export const aksjonspunktClientSchema = innsyn.zAksjonspunktDto.extend({
 export const utledetStatusClientSchema = innsyn.zUtledetStatus.extend({
     status: z.enum(BehandlingStatus),
     aksjonspunkter: z.array(aksjonspunktClientSchema),
-    saksbehandlingsFrist: zOptionalDateFromDateTimeString,
+    saksbehandlingsFrist: zOptionalDateFromISODateString,
 });
 
 /** Behandling */
