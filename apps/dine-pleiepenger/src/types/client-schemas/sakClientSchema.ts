@@ -16,7 +16,7 @@ export const aksjonspunktClientSchema = innsyn.zAksjonspunktDto.extend({
 export const utledetStatusClientSchema = innsyn.zUtledetStatus.extend({
     status: z.enum(BehandlingStatus),
     aksjonspunkter: z.array(aksjonspunktClientSchema),
-    saksbehandlingsFrist: zOptionalDateFromDateTimeString,
+    saksbehandlingsFrist: zDateFromISODateString,
 });
 
 /** Behandling */
