@@ -1,5 +1,12 @@
 # @sif/soknad-app
 
+## 0.1.1
+
+### Patch Changes
+
+- @sif/api@0.1.1
+- @sif/soknad-ui@0.1.1
+
 ## 0.1.0
 
 ### Minor Changes

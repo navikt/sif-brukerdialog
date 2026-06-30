@@ -1,5 +1,11 @@
 # @navikt/ung-deltakelse-opplyser-api-veileder
 
+## 0.3.13
+
+### Patch Changes
+
+- Codegen:prod
+
 ## 0.3.12
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
     "name": "@navikt/k9-sak-innsyn-api",
-    "version": "0.2.19",
+    "version": "0.2.20",
     "private": true,
     "repository": {
         "type": "git",

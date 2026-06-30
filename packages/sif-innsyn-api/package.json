@@ -1,6 +1,6 @@
 {
     "name": "@sif/sif-innsyn-api",
-    "version": "0.3.20",
+    "version": "0.3.21",
     "private": true,
     "repository": {
         "type": "git",

@@ -1,5 +1,18 @@
 # @navikt/ungdomsytelse-deltaker
 
+## 1.5.60
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.21
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.18
+    - @navikt/ung-brukerdialog-api@0.0.8
+    - @navikt/k9-sak-innsyn-api@0.2.20
+    - @sif/ung-innsyn@0.1.1
+    - @sif/api@0.1.1
+    - @sif/soknad-ui@0.1.1
+
 ## 1.5.59
 
 ### Patch Changes
