@@ -34,7 +34,7 @@
         "lint:tsc": "tsc --noEmit"
     },
     "devDependencies": {
-        "@hey-api/openapi-ts": "0.99.0",
+        "@hey-api/openapi-ts": "0.98.2",
         "@sif/eslint-config": "workspace:*",
         "axios": "1.18.1",
         "config": "workspace:*",

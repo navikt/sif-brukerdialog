@@ -66,7 +66,14 @@ export type LøsOppgaveRequest = {
     oppgaveRespons?: OppgaveResponsDto;
 };
 
-export type OppgaveResponsDto = (SvarPåVarselDto | RapportertInntektDto) & {
+export type OppgaveResponsDto = (
+    | ({
+          type: 'VARSEL_SVAR';
+      } & SvarPåVarselDto)
+    | ({
+          type: 'RAPPORTERT_INNTEKT';
+      } & RapportertInntektDto)
+) & {
     type: string;
 };
 
@@ -136,14 +143,30 @@ export enum OppgaveYtelsetype {
 }
 
 export type OppgavetypeDataDto = (
-    | BekreftBostedOppgavetypeDataDto
-    | EndretPeriodeDataDto
-    | EndretSluttdatoDataDto
-    | EndretStartdatoDataDto
-    | InntektsrapporteringOppgavetypeDataDto
-    | KontrollerRegisterinntektOppgavetypeDataDto
-    | BekreftOpphorVedMaksdatoOppgavetypeDataDto
-    | SøkYtelseOppgavetypeDataDto
+    | ({
+          type: 'BOSTED';
+      } & BekreftBostedOppgavetypeDataDto)
+    | ({
+          type: 'ENDRET_PERIODE';
+      } & EndretPeriodeDataDto)
+    | ({
+          type: 'ENDRET_SLUTTDATO';
+      } & EndretSluttdatoDataDto)
+    | ({
+          type: 'ENDRET_STARTDATO';
+      } & EndretStartdatoDataDto)
+    | ({
+          type: 'INNTEKTSRAPPORTERING';
+      } & InntektsrapporteringOppgavetypeDataDto)
+    | ({
+          type: 'KONTROLLER_REGISTERINNTEKT';
+      } & KontrollerRegisterinntektOppgavetypeDataDto)
+    | ({
+          type: 'OPPHOR_VED_MAKSDATO';
+      } & BekreftOpphorVedMaksdatoOppgavetypeDataDto)
+    | ({
+          type: 'SØK_YTELSE';
+      } & SøkYtelseOppgavetypeDataDto)
 ) & {
     type: string;
 };
