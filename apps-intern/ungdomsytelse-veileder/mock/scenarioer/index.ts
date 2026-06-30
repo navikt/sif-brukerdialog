@@ -1,7 +1,7 @@
 import { kanEndreSluttdatoScenario } from './kanEndreSluttdato';
 import { kanForlengePeriodeScenario } from './kanForlengePeriode';
 import { kanIkkeForlengePeriodeScenario } from './kanIkkeForlengePeriode';
-import { kanSlettesScenario } from './kanSletteDeltakelse';
+import { kanSletteDeltakelseScenario } from './kanSletteDeltakelse';
 import { nyDeltakerScenario } from './nyDeltaker';
 import { nyligRegistrertScenario } from './nyligRegistrert';
 import { registrertDeltakerScenario } from './registrertDeltaker';
@@ -19,7 +19,7 @@ export const alleScenarioer: MockScenario[] = [
     personFinnesIkkeScenario,
 
     // Handlinger (DeltakelseHandlinger)
-    kanSlettesScenario,
+    kanSletteDeltakelseScenario,
     kanEndreSluttdatoScenario,
     kanForlengePeriodeScenario,
     kanIkkeForlengePeriodeScenario,

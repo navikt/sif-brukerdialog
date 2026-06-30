@@ -55,9 +55,9 @@ const historikk: DeltakelseHistorikkDto[] = [
     },
 ];
 
-export const kanSlettesScenario: MockScenario = {
+export const kanSletteDeltakelseScenario: MockScenario = {
     fnr: '04449925276',
-    beskrivelse: 'Kan slettes (registrert, ikke søkt)',
+    beskrivelse: 'Kan slette deltakelse (registrert, ikke søkt)',
     gruppe: 'handlinger',
     forventedeHandlinger: {
         kanSletteDeltakelse: { resultat: true, årsak: '' },
