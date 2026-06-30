@@ -10,9 +10,9 @@ interface DevBranchInfoProps {
 const DevBranchInfo = ({ githubRefName, buildTime, dataset }: DevBranchInfoProps) => {
     const tagRef = useRef<HTMLDivElement>(null);
 
-    if (!githubRefName || githubRefName === 'undefined' || githubRefName === 'main' || dataset !== 'staging') {
-        return null;
-    }
+    // if (!githubRefName || githubRefName === 'undefined' || githubRefName === 'main' || dataset !== 'staging') {
+    //     return null;
+    // }
 
     const deleteTag = () => {
         if (tagRef.current) {
