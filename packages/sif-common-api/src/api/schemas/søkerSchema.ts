@@ -10,5 +10,5 @@ export const søkerResponseSchema = z.object({
         .nullable()
         .transform((v) => (v === null ? undefined : v))
         .optional(),
-    fødselsdato: z.string(),
+    fødselsdato: z.iso.date(),
 });
