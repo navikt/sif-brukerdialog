@@ -3,10 +3,11 @@ import { useRef } from 'react';
 
 interface DevBranchInfoProps {
     githubRefName?: string;
+    buildTime?: string;
     dataset?: string;
 }
 
-const DevBranchInfo = ({ githubRefName, dataset }: DevBranchInfoProps) => {
+const DevBranchInfo = ({ githubRefName, buildTime, dataset }: DevBranchInfoProps) => {
     const tagRef = useRef<HTMLDivElement>(null);
 
     if (!githubRefName || githubRefName === 'undefined' || githubRefName === 'main' || dataset !== 'staging') {
@@ -38,7 +39,7 @@ const DevBranchInfo = ({ githubRefName, dataset }: DevBranchInfoProps) => {
                 boxShadow: '0 0 6px rgba(0,0,0,0.3)',
                 background: 'rgba(255,255,255, 0.6)',
             }}>
-            GitHub-branch: {githubRefName}
+            GitHub-branch: {githubRefName} | Build time: {buildTime}
         </Tag>
     );
 };
