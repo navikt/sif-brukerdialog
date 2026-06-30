@@ -15,7 +15,7 @@ const SluttdatoPanel = ({ deltakelse, handlinger, onClickEndreSluttdato, onClick
     if (deltakelse.tilOgMed) {
         return (
             <PeriodeInfoPanel title={dateFormatter.dayCompactDate(deltakelse.tilOgMed)}>
-                {handlinger.kanEndreSluttdato && (
+                {handlinger.kanEndreSluttdato.resultat && (
                     <Box paddingBlock="space-8 space-0">
                         <Button variant="secondary" size="small" onClick={onClickEndreSluttdato}>
                             Endre sluttdato
@@ -26,7 +26,7 @@ const SluttdatoPanel = ({ deltakelse, handlinger, onClickEndreSluttdato, onClick
         );
     }
 
-    if (handlinger.kanMeldesUt) {
+    if (handlinger.kanMeldesUt.resultat) {
         return (
             <PeriodeInfoPanel>
                 <BodyLong>
