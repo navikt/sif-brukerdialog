@@ -1,6 +1,6 @@
 import { FormLayout } from '@navikt/sif-common-ui';
-import { DateRange, dateUtils } from '@navikt/sif-common-utils';
-import { getDateRangeValidator } from '@navikt/sif-validation';
+import { DateRange, dateToISODate, ISODate } from '@sif/utils';
+import { getISODateRangeValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, datePickerUtils, useSifValidate } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
@@ -15,8 +15,8 @@ export interface EnkeltdatoDialogFormConfig {
 interface Props extends EnkeltdatoDialogFormConfig {
     formId: string;
     enkeltdato?: Enkeltdato;
-    minDate: Date;
-    maxDate: Date;
+    minDate: ISODate;
+    maxDate: ISODate;
     alleEnkeltdatoer?: Enkeltdato[];
     onValidSubmit: (enkeltdato: Enkeltdato) => void;
 }
@@ -32,11 +32,11 @@ type EnkeltdatoFormValues = {
 const { Datepicker } = createSifFormComponents<EnkeltdatoFormValues>();
 
 const enkeltdatoToFormValues = (enkeltdato: Enkeltdato): EnkeltdatoFormValues => ({
-    dato: dateUtils.dateToISODate(enkeltdato.dato),
+    dato: dateToISODate(enkeltdato.dato),
 });
 
 const formValuesToEnkeltdato = (values: EnkeltdatoFormValues, id?: string): Enkeltdato => {
-    const dato = datePickerUtils.parseDatePickerValue(values.dato);
+    const dato = datePickerUtils.parseDatePickerValueToISODate(values.dato);
     if (!dato) {
         throw new Error('Invalid dato value');
     }
@@ -92,7 +92,7 @@ export const EnkeltdatoDialogForm = ({
                             validate={validateField(
                                 EnkeltdatoFormFields.dato,
                                 (value) =>
-                                    getDateRangeValidator({
+                                    getISODateRangeValidator({
                                         required: true,
                                         min: minDate,
                                         max: maxDate,

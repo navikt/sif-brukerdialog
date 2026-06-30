@@ -16,6 +16,7 @@ import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { AvvikRegisterinntektOppgavePanel } from './AvvikRegisterinntektOppgavePanel';
+import { dateToISODate, ISODate } from '@sif/utils';
 
 const meta: Meta = {
     title: 'Oppgaver/Ungdomsprogramytelsen/Avvik registerinntekt inntekt',
@@ -56,14 +57,14 @@ const oppgave: AvvikRegisterinntektOppgave = {
     oppgavetype: OppgaveType.BEKREFT_AVVIK_REGISTERINNTEKT,
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
     oppgavetypeData: {
-        fraOgMed: dayjs('2025-05-01').toDate(),
-        tilOgMed: dayjs('2025-05-31').toDate(),
+        fraOgMed: '2025-05-01' as ISODate,
+        tilOgMed: '2025-05-31' as ISODate,
         registerinntekt: registerInntektEnArbeidsgiver,
         gjelderDelerAvMåned: false,
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
-    sisteDatoEnKanSvare: dayjs().add(14, 'days').toDate(),
+    frist: dateToISODate(dayjs().add(14, 'days').toDate()),
     ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 };
 

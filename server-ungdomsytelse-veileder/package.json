@@ -16,17 +16,17 @@
         "http-proxy-middleware": "4.1.1",
         "jsdom": "28.1.0",
         "react": "19.2.7",
-        "uuid": "14.0.0",
+        "uuid": "14.0.1",
         "zod": "4.4.3"
     },
     "devDependencies": {
         "@types/express": "5.0.6",
         "@types/morgan": "1.9.10",
         "@types/node": "25.9.3",
-        "axios": "1.18.0",
+        "axios": "1.18.1",
         "esbuild": "0.28.1",
         "morgan": "1.11.0",
-        "prettier": "3.8.4",
+        "prettier": "3.8.5",
         "typescript": "6.0.3",
         "winston": "3.19.0"
     }

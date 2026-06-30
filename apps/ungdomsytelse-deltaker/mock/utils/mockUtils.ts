@@ -1,14 +1,9 @@
 import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
 import { BrukerdialogOppgaveDto, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { RapporterInntektOppgave } from '@sif/api/ung-brukerdialog';
-import dayjs from 'dayjs';
 
 import { store } from '../state/store';
 import { getMockToday } from './mockDate';
-
-const ISODateFormat = 'YYYY-MM-DD';
-
-const dateToISODate = (date: Date): string => dayjs(date).format(ISODateFormat);
 
 function updateOppgave(ref: string, oppgaveUpdaterFunc: (oppgave: any) => any) {
     const state = store.get();
@@ -52,13 +47,13 @@ export const mockUtils = {
                 oppgavetypeData: {
                     ...oppgave.oppgavetypeData,
                     type: 'INNTEKTSRAPPORTERING',
-                    fraOgMed: dateToISODate(oppgave.oppgavetypeData.fraOgMed),
-                    tilOgMed: dateToISODate(oppgave.oppgavetypeData.tilOgMed),
+                    fraOgMed: oppgave.oppgavetypeData.fraOgMed,
+                    tilOgMed: oppgave.oppgavetypeData.tilOgMed,
                 },
                 respons: {
                     type: 'RAPPORTERT_INNTEKT',
-                    fraOgMed: dateToISODate(oppgave.oppgavetypeData.fraOgMed),
-                    tilOgMed: dateToISODate(oppgave.oppgavetypeData.tilOgMed),
+                    fraOgMed: oppgave.oppgavetypeData.fraOgMed,
+                    tilOgMed: oppgave.oppgavetypeData.tilOgMed,
                     arbeidstakerOgFrilansInntekt: data.oppgittInntekt.arbeidstakerOgFrilansInntekt || 0,
                 },
                 løstDato: getMockToday().toISOString(),

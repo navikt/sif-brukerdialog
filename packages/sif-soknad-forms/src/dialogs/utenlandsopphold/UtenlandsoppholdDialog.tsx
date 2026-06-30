@@ -3,12 +3,13 @@ import { Button, Dialog } from '@navikt/ds-react';
 import { SifSoknadFormsText } from '../../i18n';
 import { Utenlandsopphold } from './types';
 import { UtenlandsoppholdDialogForm, UtenlandsoppholdDialogFormConfig } from './UtenlandsoppholdDialogForm';
+import { ISODate } from '@sif/utils';
 
 interface Props extends UtenlandsoppholdDialogFormConfig {
     opphold?: Utenlandsopphold;
     alleOpphold?: Utenlandsopphold[];
-    minDate: Date;
-    maxDate: Date;
+    minDate: ISODate;
+    maxDate: ISODate;
     isOpen?: boolean;
     onCancel: () => void;
     onValidSubmit: (opphold: Utenlandsopphold) => void;

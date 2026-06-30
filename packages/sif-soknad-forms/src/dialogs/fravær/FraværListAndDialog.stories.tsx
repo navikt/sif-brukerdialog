@@ -7,19 +7,20 @@ import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { FraværDagerListAndDialog } from './FraværDagerListAndDialog';
 import { FraværPeriodeListAndDialog } from './FraværPeriodeListAndDialog';
 import type { FraværDag, FraværPeriode } from './index';
+import { dateToISODate } from '@sif/utils';
 
 const today = dayjs();
 
 const examplePerioder: FraværPeriode[] = [
     {
         id: '1',
-        fraOgMed: today.subtract(3, 'month').toDate(),
-        tilOgMed: today.subtract(3, 'month').add(4, 'day').toDate(),
+        fraOgMed: dateToISODate(today.subtract(3, 'month')),
+        tilOgMed: dateToISODate(today.subtract(3, 'month').add(4, 'day')),
     },
 ];
 
 const exampleDager: FraværDag[] = [
-    { id: '1', dato: today.subtract(2, 'month').toDate(), timerArbeidsdag: '7.5', timerFravær: '3' },
+    { id: '1', dato: dateToISODate(today.subtract(2, 'month')), timerArbeidsdag: '7.5', timerFravær: '3' },
 ];
 
 type StoryProps = {
@@ -37,8 +38,8 @@ function FraværListAndDialogStory({ fraværPerioder, fraværDager }: StoryProps
                 <h3>Perioder med fravær</h3>
                 <FraværPeriodeListAndDialog
                     fraværPerioder={perioder}
-                    minDate={today.subtract(1, 'year').toDate()}
-                    maxDate={today.toDate()}
+                    minDate={dateToISODate(today.subtract(1, 'year'))}
+                    maxDate={dateToISODate(today)}
                     helgedagerIkkeTillat={true}
                     addButtonLabel={<SifSoknadFormsText id="@sifSoknadForms.fraværPeriode.dialog.leggTilKnapp" />}
                     onChange={setPerioder}
@@ -48,8 +49,8 @@ function FraværListAndDialogStory({ fraværPerioder, fraværDager }: StoryProps
                 <h3>Dager med delvis fravær</h3>
                 <FraværDagerListAndDialog
                     fraværDager={dager}
-                    minDate={today.subtract(1, 'year').toDate()}
-                    maxDate={today.toDate()}
+                    minDate={dateToISODate(today.subtract(1, 'year'))}
+                    maxDate={dateToISODate(today)}
                     helgedagerIkkeTillatt={true}
                     addButtonLabel={<SifSoknadFormsText id="@sifSoknadForms.fraværDag.dialog.leggTilKnapp" />}
                     onChange={setDager}

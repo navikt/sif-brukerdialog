@@ -4,7 +4,7 @@ import { SøknadStepForm } from '@sif/soknad-app';
 import { useAppContext } from '@app/context/AppContext';
 import { Søknadsdata } from '@app/types/Soknadsdata';
 import { InfoCard } from '@navikt/ds-react';
-import { ISODateToDate } from '@navikt/sif-common-utils';
+import { ISODate } from '@sif/utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { SøknadStep, useSøknadAppContext, useSøknadSendt } from '@sif/soknad-app';
@@ -84,7 +84,7 @@ export const OppsummeringSteg = () => {
                 )}
                 {dto && (
                     <FormLayout.Summary>
-                        <StartdatoOppsummering startdato={ISODateToDate(dto.startdato)} />
+                        <StartdatoOppsummering startdato={dto.startdato as ISODate} />
                         <KontonummerOppsummering kontonummerInfo={dto.kontonummerInfo} kontoOppslagInfo={kontoInfo} />
                         <BostedOppsummering erBosattITrondheim={dto.erBosattITrondheim} />
                         <BostedUtlandOppsummering forutgåendeBosteder={dto.forutgåendeBosteder} />

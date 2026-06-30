@@ -8,6 +8,7 @@ import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { BostedVilkårOppgavePanel } from './BostedVilkarOppgavePanel';
+import { dateToISODate } from '@sif/utils';
 
 const meta: Meta = {
     title: 'Oppgaver/Aktivitetspenger/Bosted vilkår',
@@ -24,13 +25,13 @@ const oppgave: BostedVilkårOppgave = {
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED,
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
-    sisteDatoEnKanSvare: dayjs().add(14, 'days').toDate(),
+    frist: dateToISODate(dayjs().add(14, 'days')),
     ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
     oppgavetypeData: {
         erBosattITrondheim: false,
         periode: {
-            from: dayjs().subtract(1, 'month').toDate(),
-            to: dayjs().add(1, 'month').toDate(),
+            from: dateToISODate(dayjs().subtract(1, 'month')),
+            to: dateToISODate(dayjs().add(1, 'month')),
         },
     },
 };

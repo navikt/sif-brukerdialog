@@ -1,10 +1,10 @@
 import { BodyLong } from '@navikt/ds-react';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter, ISODate } from '@sif/utils';
 
 import { UngUiText } from '../../../../i18n';
 
 interface Props {
-    svarfrist: Date;
+    svarfrist: ISODate;
 }
 
 export const FjernetPeriodeOppgavetekst = ({ svarfrist }: Props) => {

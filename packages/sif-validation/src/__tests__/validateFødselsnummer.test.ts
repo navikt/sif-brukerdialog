@@ -1,4 +1,4 @@
-import getFødselsnummerValidator, { ValidateFødselsnummerError } from '../getFødselsnummerValidator';
+import { getFødselsnummerValidator, ValidateFødselsnummerError } from '../getFødselsnummerValidator';
 
 describe(`validateFødselsnummer`, () => {
     const generatedFnr = '01017100552';

@@ -1,5 +1,17 @@
 # @sif/rhf
 
+## 0.1.0
+
+### Minor Changes
+
+- Gå over til å bruke ISODate i stedet for Date der hvor det er mulig.
+
+### Patch Changes
+
+- Updated dependencies
+    - @sif/utils@0.1.0
+    - @navikt/sif-common-ui@0.11.58
+
 ## 0.0.5
 
 ### Patch Changes

@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.0
+
+### Minor Changes
+
+- Gå over til å bruke ISODate i stedet for Date der hvor det er mulig.
+
+### Patch Changes
+
+- Updated dependencies
+    - @sif/utils@0.1.0
+
 ## 0.0.6
 
 ### Patch Changes

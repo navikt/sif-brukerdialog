@@ -1,5 +1,5 @@
-import { dateToISODate, formatName } from '@navikt/sif-common-utils';
 import { RegistrertBarn, Søker } from '@sif/api/k9-prosessering';
+import { dateToISODate, formatName } from '@sif/utils';
 
 import { SøknadStepId } from '../setup/config/soknadStepConfig';
 import { SøknadApiData } from '../types/SoknadApiData';

@@ -1,18 +1,17 @@
 import { DatePicker, DatePickerProps, useDatepicker } from '@navikt/ds-react';
-import { dateUtils } from '@navikt/sif-common-utils';
+import { dateToISODate, ISODate, ISODateToDate } from '@sif/utils';
 import { FocusEvent, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { DayOfWeek } from 'react-day-picker';
 import { Controller, FieldValues, Path, useFormContext } from 'react-hook-form';
+import { datePickerUtils } from '../utils/datePickerUtils';
 
 export interface DatepickerLimitations {
-    minDate?: Date;
-    maxDate?: Date;
-    disabledDateRanges?: Array<{ from: Date; to: Date }>;
+    minDate?: ISODate;
+    maxDate?: ISODate;
+    disabledDateRanges?: Array<{ from: ISODate; to: ISODate }>;
     disableWeekends?: boolean;
     disabledDaysOfWeek?: DayOfWeek;
 }
-
-import { datePickerUtils } from '../utils/datePickerUtils';
 
 const { parseDatePickerValue, getDisabledDates } = datePickerUtils;
 
@@ -71,7 +70,7 @@ function DatepickerController<T extends FieldValues>({
 
     const updateValueFromDate = useCallback(
         (date: Date | undefined, fallbackValue = '') => {
-            handleChange(date ? dateUtils.dateToISODate(date) : fallbackValue);
+            handleChange(date ? dateToISODate(date) : fallbackValue);
         },
         [handleChange],
     );
@@ -79,8 +78,8 @@ function DatepickerController<T extends FieldValues>({
     const { inputProps, datepickerProps, selectedDay, setSelected } = useDatepicker({
         ...restProps,
         disabled: disabledDates,
-        fromDate: minDate,
-        toDate: maxDate,
+        fromDate: minDate ? ISODateToDate(minDate) : undefined,
+        toDate: maxDate ? ISODateToDate(maxDate) : undefined,
         onDateChange: (date) => {
             if (!inputHasFocus) {
                 updateValueFromDate(date);

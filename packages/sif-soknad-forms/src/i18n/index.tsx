@@ -1,4 +1,4 @@
-import { typedIntlHelper } from '@navikt/sif-common-utils';
+import { typedIntlHelper } from '@sif/utils';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { annetBarnMessages_nb } from '../dialogs/annet-barn/i18n/nb';

@@ -1,10 +1,10 @@
 import { InformationSquareIcon } from '@navikt/aksel-icons';
 import { Box, Heading, HeadingProps, HelpText, HStack, InfoCard, VStack } from '@navikt/ds-react';
-import { RegistrertBarn } from '@navikt/sif-common-api';
-import { dateFormatter, formatName } from '@navikt/sif-common-utils';
+import { dateFormatter, dateToISODate, formatName } from '@sif/utils';
 
 import { SifSoknadUiText, useSifSoknadUiIntl } from '../../i18n';
 import ItemListDarkside from '../item-list-darkside/ItemListDarkside';
+import { RegistrertBarn } from '@sif/api/k9-prosessering';
 
 interface Props {
     listetittel: string;
@@ -34,7 +34,7 @@ export const RegistrerteBarnListe = ({
                         <Box>
                             <SifSoknadUiText
                                 id="@sifSoknadUi.registrertBarnListe.barn.født"
-                                values={{ dato: dateFormatter.compact(barn.fødselsdato) }}
+                                values={{ dato: dateFormatter.compact(dateToISODate(barn.fødselsdato)) }}
                             />
                         </Box>
                         <Box>{formatName(barn.fornavn, barn.etternavn, barn.mellomnavn)}</Box>

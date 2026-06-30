@@ -4,6 +4,7 @@ import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withRouter } from '../../../../../storybook/decorators/withRouter';
 import { withSøknadContext } from '../../../../../storybook/decorators/withSøknadContext';
 import BarnSteg from './BarnSteg';
+import { ISODate } from '@sif/utils';
 
 const meta: Meta = {
     title: 'Søknad/Steg/Barn',
@@ -36,8 +37,18 @@ export const ToBarn: Story = {
         (Story) =>
             withSøknadContext(Story, {
                 barn: [
-                    { aktørId: '123', fornavn: 'SVAL', etternavn: 'FOTBALLBINGE', fødselsdato: new Date('2010-01-01') },
-                    { aktørId: '456', fornavn: 'UNDERFUNDIG', etternavn: 'SKRUE', fødselsdato: new Date('2023-10-23') },
+                    {
+                        aktørId: '123',
+                        fornavn: 'SVAL',
+                        etternavn: 'FOTBALLBINGE',
+                        fødselsdato: '2010-01-01' as ISODate,
+                    },
+                    {
+                        aktørId: '456',
+                        fornavn: 'UNDERFUNDIG',
+                        etternavn: 'SKRUE',
+                        fødselsdato: '2023-10-23' as ISODate,
+                    },
                 ],
             }),
     ],

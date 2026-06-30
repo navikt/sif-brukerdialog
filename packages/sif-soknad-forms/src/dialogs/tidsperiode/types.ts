@@ -1,5 +1,7 @@
+import { ISODate } from '@sif/utils';
+
 export interface DateTidsperiode {
     id: string;
-    fom: Date;
-    tom: Date;
+    fom: ISODate;
+    tom: ISODate;
 }

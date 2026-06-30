@@ -5,11 +5,12 @@ import { FerieuttakFormDialog } from './FerieuttakDialog';
 import { FerieuttakDialogFormConfig } from './FerieuttakDialogForm';
 import { FerieuttakList } from './FerieuttakList';
 import { Ferieuttak } from './types';
+import { ISODate } from '@sif/utils';
 
 interface Props extends FerieuttakDialogFormConfig {
     ferieuttak?: Ferieuttak[];
-    minDate: Date;
-    maxDate: Date;
+    minDate: ISODate;
+    maxDate: ISODate;
     addButtonLabel: ReactNode;
     addButtonId?: string;
     onChange: (ferieuttak: Ferieuttak[]) => void;

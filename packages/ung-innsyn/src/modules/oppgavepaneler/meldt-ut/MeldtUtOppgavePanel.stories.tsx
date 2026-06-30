@@ -8,6 +8,7 @@ import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { MeldtUtOppgavePanel } from './MeldtUtOppgavePanel';
+import { dateToISODate, ISODate } from '@sif/utils';
 const meta: Meta = {
     title: 'Oppgaver/Ungdomsprogramytelsen/Meldt ut',
     parameters: {},
@@ -22,11 +23,11 @@ const oppgave: MeldtUtOppgave = {
     oppgavetype: OppgaveType.BEKREFT_ENDRET_SLUTTDATO,
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_MELDT_UT,
     oppgavetypeData: {
-        sluttdato: dayjs('2025-05-01').toDate(),
+        sluttdato: '2025-05-01' as ISODate,
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
-    sisteDatoEnKanSvare: dayjs().add(14, 'days').toDate(),
+    frist: dateToISODate(dayjs().add(14, 'days').toDate()),
     ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 };
 

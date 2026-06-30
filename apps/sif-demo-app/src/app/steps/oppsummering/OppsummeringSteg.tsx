@@ -4,7 +4,7 @@ import { useSøknadMellomlagring, useSøknadRhfForm, useSøknadsflyt, useSøknad
 import { AppForm } from '@app/setup/soknad/AppForm';
 import { SøknadStep } from '@app/setup/soknad/SoknadStep';
 import { FormSummary, InlineMessage, LocalAlert } from '@navikt/ds-react';
-import { dateFormatter, formatName } from '@navikt/sif-common-utils';
+import { dateFormatter, formatName } from '@sif/utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { useSøknadFormValues } from '@sif/soknad/consistency';

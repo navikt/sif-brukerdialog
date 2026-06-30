@@ -1,4 +1,4 @@
-import { getDateToday } from '@navikt/sif-common-utils';
+import { getDateToday } from '@sif/utils';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 import { Oppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';

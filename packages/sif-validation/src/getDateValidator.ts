@@ -38,7 +38,7 @@ export interface DateValidationOptions {
     onlyWeekdays?: boolean;
 }
 
-const getDateValidator =
+export const getDateValidator =
     (options: DateValidationOptions = {}): ValidationFunction<DateValidationResult> =>
     (value: any) => {
         const { required, min, max, onlyWeekdays } = options;
@@ -66,5 +66,3 @@ const getDateValidator =
         }
         return undefined;
     };
-
-export default getDateValidator;

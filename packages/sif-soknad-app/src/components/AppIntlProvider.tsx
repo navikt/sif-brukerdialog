@@ -1,4 +1,4 @@
-import { Locale } from '@navikt/sif-common-utils';
+import { Locale } from '@sif/utils';
 import { ReactNode, useState } from 'react';
 import { IntlProvider, MessageFormatElement } from 'react-intl';
 

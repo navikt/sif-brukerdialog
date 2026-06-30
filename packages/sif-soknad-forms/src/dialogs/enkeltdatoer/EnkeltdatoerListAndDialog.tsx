@@ -5,11 +5,12 @@ import { EnkeltdatoFormDialog } from './EnkeltdatoDialog';
 import { EnkeltdatoDialogFormConfig } from './EnkeltdatoDialogForm';
 import { EnkeltdatoList } from './EnkeltdatoList';
 import { Enkeltdato } from './types';
+import { ISODate } from '@sif/utils';
 
 interface Props extends EnkeltdatoDialogFormConfig {
     enkeltdatoer?: Enkeltdato[];
-    minDate: Date;
-    maxDate: Date;
+    minDate: ISODate;
+    maxDate: ISODate;
     addButtonLabel: ReactNode;
     addButtonId?: string;
     onChange: (enkeltdatoer: Enkeltdato[]) => void;

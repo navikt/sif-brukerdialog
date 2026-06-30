@@ -6,11 +6,11 @@ import {
 } from '@navikt/k9-brukerdialog-prosessering-api';
 import { z } from 'zod';
 
-import { zNullableDateTime } from '../schemas/zDateSchemas';
+import { zISODate } from '../schemas/zDateSchemas';
 
 const zAnsattPeriode = z.object({
-    ansattFom: zNullableDateTime.optional(),
-    ansattTom: zNullableDateTime.optional(),
+    ansattFom: zISODate.optional(),
+    ansattTom: zISODate.optional(),
 });
 
 // Schema som konverterer string-dato til Date

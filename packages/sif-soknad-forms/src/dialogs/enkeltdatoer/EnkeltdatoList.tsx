@@ -1,5 +1,5 @@
 import { ActionLink, ItemListDarkside } from '@navikt/sif-common-ui';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter, ISODate } from '@sif/utils';
 import { ReactNode } from 'react';
 
 import { Enkeltdato } from './types';
@@ -10,7 +10,7 @@ interface Props {
     onDelete?: (enkeltdato: Enkeltdato) => void;
 }
 
-const getTitle = (dato: Date): string => {
+const getTitle = (dato: ISODate): string => {
     return dateFormatter.compact(dato);
 };
 

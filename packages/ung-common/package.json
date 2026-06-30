@@ -21,17 +21,17 @@
         "@navikt/ung-deltakelse-opplyser-api-veileder": "workspace:*"
     },
     "devDependencies": {
-        "@navikt/ds-react": "8.13.0",
+        "@navikt/ds-react": "8.14.0",
         "@navikt/sif-common-utils": "workspace:*",
         "@sif/eslint-config": "workspace:*",
-        "axios": "1.18.0",
+        "axios": "1.18.1",
         "config": "workspace:*",
         "dayjs": "1.11.21",
         "postcss": "8.5.15",
         "react": "19.2.7",
         "react-dom": "19.2.7",
         "typescript": "6.0.3",
-        "uuid": "14.0.0",
+        "uuid": "14.0.1",
         "vitest": "4.1.9",
         "zod": "4.4.3"
     },

@@ -6,14 +6,15 @@ import { SifSoknadFormsText } from '../../i18n';
 import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { OpptjeningAktivitet, type OpptjeningUtland } from './index';
 import { OpptjeningUtlandListAndDialog } from './OpptjeningUtlandListAndDialog';
+import { dateToISODate } from '@sif/utils';
 
 const today = dayjs();
 
 const exampleOpptjeninger: OpptjeningUtland[] = [
     {
         id: '1',
-        fom: today.subtract(2, 'year').toDate(),
-        tom: today.subtract(1, 'year').subtract(1, 'day').toDate(),
+        fom: dateToISODate(today.subtract(2, 'year')),
+        tom: dateToISODate(today.subtract(1, 'year').subtract(1, 'day')),
         landkode: 'SWE',
         opptjeningType: OpptjeningAktivitet.ARBEIDSTAKER,
         navn: 'IKEA AB',
@@ -30,8 +31,8 @@ function OpptjeningUtlandListAndDialogStory({ opptjeninger }: StoryProps) {
     return (
         <OpptjeningUtlandListAndDialog
             opptjeninger={items}
-            minDate={today.subtract(3, 'year').toDate()}
-            maxDate={today.toDate()}
+            minDate={dateToISODate(today.subtract(3, 'year'))}
+            maxDate={dateToISODate(today)}
             addButtonLabel={<SifSoknadFormsText id="@sifSoknadForms.opptjeningUtland.dialog.leggTilKnapp" />}
             onChange={setItems}
         />

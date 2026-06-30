@@ -1,9 +1,9 @@
 import { Alert, Heading } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { getDate3YearsAgo, getDate4YearsAgo, getDateToday } from '@navikt/sif-common-utils';
+import { getDate3YearsAgo, getDate4YearsAgo, getDateToday } from '@sif/utils';
 import {
-    getDateRangeValidator,
-    getDateValidator,
+    getISODateRangeValidator,
+    getISODateValidator,
     getNumberValidator,
     getOrgNumberValidator,
     getRequiredFieldValidator,
@@ -68,7 +68,7 @@ export const VirksomhetDialogForm = ({
     const harBlittYrkesaktiv = watch('harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene') as YesOrNo | undefined;
     const hattVarigEndring = watch('hattVarigEndringAvNæringsinntektSiste4Kalenderår') as YesOrNo | undefined;
     const fomString = watch('fom');
-    const fomDate = datePickerUtils.parseDatePickerValue(fomString);
+    const fomDate = datePickerUtils.parseDatePickerValueToISODate(fomString);
 
     const maxDate = getDateToday();
     const registrertSomNorsk = registrertINorge === YesOrNo.YES;
@@ -198,10 +198,10 @@ export const VirksomhetDialogForm = ({
                                         validate: validateField(
                                             'fom',
                                             (value) =>
-                                                getDateRangeValidator({
+                                                getISODateRangeValidator({
                                                     required: true,
                                                     max: maxDate,
-                                                    toDate: datePickerUtils.parseDatePickerValue(
+                                                    toDate: datePickerUtils.parseDatePickerValueToISODate(
                                                         methods.getValues('tom'),
                                                     ),
                                                 }).validateFromDate(value),
@@ -225,10 +225,10 @@ export const VirksomhetDialogForm = ({
                                             : validateField(
                                                   'tom',
                                                   (value) =>
-                                                      getDateRangeValidator({
+                                                      getISODateRangeValidator({
                                                           required: true,
                                                           max: maxDate,
-                                                          fromDate: datePickerUtils.parseDatePickerValue(
+                                                          fromDate: datePickerUtils.parseDatePickerValueToISODate(
                                                               methods.getValues('fom'),
                                                           ),
                                                       }).validateToDate(value),
@@ -323,7 +323,7 @@ export const VirksomhetDialogForm = ({
                                                 maxDate={maxDate}
                                                 validate={validateField(
                                                     'blittYrkesaktivDato',
-                                                    getDateValidator({
+                                                    getISODateValidator({
                                                         required: true,
                                                         max: maxDate,
                                                         min: getDate3YearsAgo(),
@@ -365,7 +365,7 @@ export const VirksomhetDialogForm = ({
                                                         maxDate={maxDate}
                                                         validate={validateField(
                                                             'varigEndringINæringsinntekt_dato',
-                                                            getDateValidator({
+                                                            getISODateValidator({
                                                                 required: true,
                                                                 min: getDate4YearsAgo(),
                                                                 max: maxDate,

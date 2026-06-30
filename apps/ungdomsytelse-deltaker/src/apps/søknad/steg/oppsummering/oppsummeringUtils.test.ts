@@ -1,6 +1,7 @@
 import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
+import { ISODate } from '@sif/utils';
 import { describe, expect, it } from 'vitest';
 
 import { SøknadSvar, Spørsmål } from '../../types';
@@ -11,7 +12,7 @@ const oppgaveReferanse = '12345';
 
 describe('buildSøknadFromSvar', () => {
     const søkerNorskIdent = '12345678910';
-    const startdato = new Date('2023-01-01');
+    const startdato = '2023-01-01' as ISODate;
 
     const kontonummerInfo: UtvidetKontonummerInfo = {
         harKontonummer: HarKontonummerEnum.JA,

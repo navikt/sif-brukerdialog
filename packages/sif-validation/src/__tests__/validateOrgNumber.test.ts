@@ -1,4 +1,4 @@
-import getOrgNumberValidator, { ValidateOrgNumberError } from '../getOrgNumberValidator';
+import { getOrgNumberValidator, ValidateOrgNumberError } from '../getOrgNumberValidator';
 
 describe(`validateOrgNumber`, () => {
     it('returns undefined when the org number is valid', () => {

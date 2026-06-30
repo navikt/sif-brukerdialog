@@ -4,6 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { withRHFForm } from '../../storybook/decorators/withRHFForm';
 import { VelgRegistrertBarnPanel } from './VelgRegistrertBarnPanel';
+import { ISODate } from '@sif/utils';
 
 type FormValues = {
     barn: string;
@@ -22,14 +23,14 @@ const registrerteBarn: RegistrertBarn[] = [
         fornavn: 'Ada',
         etternavn: 'Nordmann',
         mellomnavn: 'Marie',
-        fødselsdato: new Date('2018-04-12'),
+        fødselsdato: '2018-04-12' as ISODate,
     },
     {
         aktørId: '456',
         fornavn: 'Oskar',
         etternavn: 'Nordmann',
         mellomnavn: undefined,
-        fødselsdato: new Date('2020-09-03'),
+        fødselsdato: '2020-09-03' as ISODate,
     },
 ];
 

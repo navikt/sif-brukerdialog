@@ -4,11 +4,12 @@ import { ModalFormAndList } from '../../components';
 import { TidsperiodeFormDialog } from './TidsperiodeDialog';
 import { TidsperiodeList } from './TidsperiodeList';
 import { DateTidsperiode } from './types';
+import { ISODate } from '@sif/utils';
 
 interface Props {
     tidsperioder?: DateTidsperiode[];
-    minDate?: Date;
-    maxDate?: Date;
+    minDate?: ISODate;
+    maxDate?: ISODate;
     addButtonLabel: ReactNode;
     addButtonId?: string;
     onChange: (tidsperioder: DateTidsperiode[]) => void;

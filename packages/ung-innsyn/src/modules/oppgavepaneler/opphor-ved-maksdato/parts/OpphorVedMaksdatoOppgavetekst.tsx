@@ -1,12 +1,12 @@
 import { BodyLong } from '@navikt/ds-react';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter, ISODate } from '@sif/utils';
 import { ReactNode } from 'react';
 
 import { UngUiText } from '../../../../i18n';
 
 interface Props {
-    sisteDag: Date;
-    svarfrist: Date;
+    sisteDag: ISODate;
+    svarfrist: ISODate;
 }
 
 export const OpphorVedMaksdatoOppgavetekst = ({ sisteDag, svarfrist }: Props) => {
