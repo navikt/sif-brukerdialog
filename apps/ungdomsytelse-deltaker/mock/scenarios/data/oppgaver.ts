@@ -12,8 +12,9 @@ import { getMockToday } from '../../utils/mockDate';
 
 const getDatoer = () => {
     const mockToday = getMockToday();
-    // Bruk UTC-delene fra mockToday for å unngå at startOf('month') gir feil måned
-    // i tidssoner vest for UTC (f.eks. America/Los_Angeles).
+    // Bruker UTC-feltene fra mockToday for å sikre riktig måned uavhengig av lokal tidssone.
+    // new Date(år, måned, dag) oppretter lokal midnatt, slik at format('YYYY-MM-DD') alltid
+    // gir korrekt dato selv i tidssoner vest for UTC (f.eks. America/Los_Angeles).
     const startOfUtcMonth = new Date(mockToday.getUTCFullYear(), mockToday.getUTCMonth(), 1);
     return {
         deltakelseFraOgMed: dayjs(startOfUtcMonth).subtract(46, 'days').startOf('week'),
@@ -21,6 +22,10 @@ const getDatoer = () => {
     };
 };
 
+// Backend returnerer alltid tidsstempler i norsk tid (CEST/CET). Mock-data speiler dette
+// ved å hardkode +02:00 og klokkeslett 12:00, slik at parseOppgaverElement gir riktig
+// ISODate uavhengig av hvilken tidssone testene kjører i.
+// 12:00 CEST = 10:00 UTC — aldri en datogrense i noen tidssone.
 const createDateTimeString = (date: dayjs.Dayjs): string => `${date.format('YYYY-MM-DD')}T12:00:00.000+02:00`;
 
 const getSøkYtelseOppgaveDto = (): BrukerdialogOppgaveDto => {
@@ -44,9 +49,7 @@ const getSøkYtelseOppgaveDtoLøst = (): BrukerdialogOppgaveDto => {
     return {
         ...oppgave,
         status: OppgaveStatus.LØST,
-        løstDato: createDateTimeString(
-            dayjs(oppgave.opprettetDato).add(12, 'days'),
-        ),
+        løstDato: createDateTimeString(dayjs(oppgave.opprettetDato).add(12, 'days')),
     };
 };
 
