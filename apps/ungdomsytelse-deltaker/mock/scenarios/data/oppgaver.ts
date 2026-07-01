@@ -21,6 +21,8 @@ const getDatoer = () => {
     };
 };
 
+const createDateTimeString = (date: dayjs.Dayjs): string => date.format('YYYY-MM-DDTHH:mm:ss.SSSZ');
+
 const getSøkYtelseOppgaveDto = (): BrukerdialogOppgaveDto => {
     const søkYtelseDay = dayjs(getMockToday()).subtract(2, 'months');
     return {
@@ -28,12 +30,12 @@ const getSøkYtelseOppgaveDto = (): BrukerdialogOppgaveDto => {
         oppgavetype: OppgaveType.SØK_YTELSE,
         ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
         status: OppgaveStatus.ULØST,
-        frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
+        frist: createDateTimeString(getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours')),
         oppgavetypeData: {
             type: 'SØK_YTELSE',
             fomDato: dateToISODate(søkYtelseDay),
         },
-        opprettetDato: søkYtelseDay.toISOString(),
+        opprettetDato: createDateTimeString(søkYtelseDay),
     };
 };
 
@@ -42,7 +44,9 @@ const getSøkYtelseOppgaveDtoLøst = (): BrukerdialogOppgaveDto => {
     return {
         ...oppgave,
         status: OppgaveStatus.LØST,
-        løstDato: dayjs(oppgave.opprettetDato).add(12, 'days').endOf('day').subtract(2.3, 'hours').toISOString(),
+        løstDato: createDateTimeString(
+            dayjs(oppgave.opprettetDato).add(12, 'days').endOf('day').subtract(2.3, 'hours'),
+        ),
     };
 };
 
@@ -60,8 +64,8 @@ const getEndretStartdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
         harUttalelse: false,
     },
     status: OppgaveStatus.ULØST,
-    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
-    frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
+    opprettetDato: createDateTimeString(getDatoer().oppgaveMåned.add(3, 'hours')),
+    frist: createDateTimeString(getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours')),
 });
 
 const getEndretStartdatoOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
@@ -78,9 +82,9 @@ const getEndretStartdatoOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
         harUttalelse: false,
     },
     status: OppgaveStatus.LØST,
-    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
-    frist: getDatoer().oppgaveMåned.add(7, 'days').add(7, 'hours').toISOString(),
-    løstDato: getDatoer().oppgaveMåned.add(3, 'days').startOf('day').add(12, 'hours').toISOString(),
+    opprettetDato: createDateTimeString(getDatoer().oppgaveMåned.add(3, 'hours')),
+    frist: createDateTimeString(getDatoer().oppgaveMåned.add(7, 'days').add(7, 'hours')),
+    løstDato: createDateTimeString(getDatoer().oppgaveMåned.add(3, 'days').startOf('day').add(12, 'hours')),
 });
 
 const getMeldtUtOppgaveDto = (): BrukerdialogOppgaveDto => ({
@@ -92,8 +96,8 @@ const getMeldtUtOppgaveDto = (): BrukerdialogOppgaveDto => ({
         nySluttdato: '2026-01-29',
     },
     status: OppgaveStatus.ULØST,
-    opprettetDato: '2025-09-22T05:39:32.420085Z',
-    frist: '2025-09-23T07:39:32.310154Z',
+    opprettetDato: '2025-09-22T07:39:32.420+02:00',
+    frist: '2025-09-23T09:39:32.310+02:00',
 });
 
 const getMeldtUtOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
@@ -110,9 +114,9 @@ const getMeldtUtOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
         harUttalelse: false,
     },
     status: OppgaveStatus.LØST,
-    opprettetDato: '2025-09-22T05:39:32.420085Z',
-    løstDato: '2025-09-22T05:40:05.767753Z',
-    frist: '2025-09-23T07:39:32.310154Z',
+    opprettetDato: '2025-09-22T07:39:32.420+02:00',
+    løstDato: '2025-09-22T07:40:05.767+02:00',
+    frist: '2025-09-23T09:39:32.310+02:00',
 });
 
 const getEndretSluttdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
@@ -125,8 +129,8 @@ const getEndretSluttdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
         forrigeSluttdato: '2026-01-25',
     },
     status: OppgaveStatus.ULØST,
-    opprettetDato: '2025-09-22T05:39:32.420085Z',
-    frist: '2025-09-23T07:39:32.310154Z',
+    opprettetDato: '2025-09-22T07:39:32.420+02:00',
+    frist: '2025-09-23T09:39:32.310+02:00',
 });
 
 const getEndretSluttdatoOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
@@ -144,9 +148,9 @@ const getEndretSluttdatoOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
         uttalelseFraBruker: 'teste',
     },
     status: OppgaveStatus.LØST,
-    opprettetDato: '2025-09-22T05:39:32.420085Z',
-    løstDato: '2025-09-22T05:40:05.767753Z',
-    frist: '2025-09-23T07:39:32.310154Z',
+    opprettetDato: '2025-09-22T07:39:32.420+02:00',
+    løstDato: '2025-09-22T07:40:05.767+02:00',
+    frist: '2025-09-23T09:39:32.310+02:00',
 });
 
 const getRapporterInntektOppgaveDto = (): BrukerdialogOppgaveDto => ({
@@ -154,8 +158,8 @@ const getRapporterInntektOppgaveDto = (): BrukerdialogOppgaveDto => ({
     oppgavetype: OppgaveType.RAPPORTER_INNTEKT,
     ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     status: OppgaveStatus.ULØST,
-    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
-    frist: getDatoer().oppgaveMåned.add(7, 'days').add(7, 'hours').toISOString(),
+    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
+    frist: getDatoer().oppgaveMåned.add(7, 'days').add(7, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
     oppgavetypeData: {
         type: 'INNTEKTSRAPPORTERING',
         fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month')),
@@ -169,9 +173,9 @@ const getRapporterInntektOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
     oppgavetype: OppgaveType.RAPPORTER_INNTEKT,
     ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     status: OppgaveStatus.LØST,
-    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
-    frist: getDatoer().oppgaveMåned.add(7, 'days').add(7, 'hours').toISOString(),
-    løstDato: getDatoer().oppgaveMåned.add(4, 'days').add(12, 'hours').toISOString(),
+    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
+    frist: getDatoer().oppgaveMåned.add(7, 'days').add(7, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
+    løstDato: getDatoer().oppgaveMåned.add(4, 'days').add(12, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
     oppgavetypeData: {
         type: 'INNTEKTSRAPPORTERING',
         fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month')),
@@ -191,8 +195,8 @@ const getRapporterInntektDelerAvMånedOppgaveDto = (): BrukerdialogOppgaveDto =>
     oppgavetype: OppgaveType.RAPPORTER_INNTEKT,
     ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     status: OppgaveStatus.ULØST,
-    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
-    frist: getDatoer().oppgaveMåned.add(7, 'days').add(7, 'hours').toISOString(),
+    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
+    frist: getDatoer().oppgaveMåned.add(7, 'days').add(7, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
     oppgavetypeData: {
         type: 'INNTEKTSRAPPORTERING',
         fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month')),
@@ -206,9 +210,9 @@ const getRapporterInntektDelerAvMånedOppgaveDtoLøst = (): BrukerdialogOppgaveD
     oppgavetype: OppgaveType.RAPPORTER_INNTEKT,
     ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
     status: OppgaveStatus.LØST,
-    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
-    frist: getDatoer().oppgaveMåned.add(7, 'days').add(7, 'hours').toISOString(),
-    løstDato: getDatoer().oppgaveMåned.add(4, 'days').add(12, 'hours').toISOString(),
+    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
+    frist: getDatoer().oppgaveMåned.add(7, 'days').add(7, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
+    løstDato: getDatoer().oppgaveMåned.add(4, 'days').add(12, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
     oppgavetypeData: {
         type: 'INNTEKTSRAPPORTERING',
         fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month')),
@@ -246,8 +250,8 @@ const getBekreftAvvikOppgaveDto = (): BrukerdialogOppgaveDto => ({
         },
         gjelderDelerAvMåned: false,
     },
-    frist: getDatoer().oppgaveMåned.add(28, 'days').add(7, 'hours').toISOString(),
-    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
+    frist: getDatoer().oppgaveMåned.add(28, 'days').add(7, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
+    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
     status: OppgaveStatus.ULØST,
 });
 
@@ -275,8 +279,8 @@ const getBekreftAvvikOppgaveDelerAvMånedDto = (): BrukerdialogOppgaveDto => ({
         },
         gjelderDelerAvMåned: true,
     },
-    frist: getDatoer().oppgaveMåned.add(28, 'days').add(7, 'hours').toISOString(),
-    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
+    frist: getDatoer().oppgaveMåned.add(28, 'days').add(7, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
+    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
     status: OppgaveStatus.ULØST,
 });
 
@@ -307,7 +311,7 @@ const getBekreftAvvikOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
         harUttalelse: false,
     },
     status: OppgaveStatus.LØST,
-    løstDato: getDatoer().oppgaveMåned.add(28, 'days').add(54, 'hours').toISOString(),
+    løstDato: getDatoer().oppgaveMåned.add(28, 'days').add(54, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
 });
 
 const getFjernetPeriodeOppgaveDto = (): BrukerdialogOppgaveDto => ({
@@ -323,8 +327,8 @@ const getFjernetPeriodeOppgaveDto = (): BrukerdialogOppgaveDto => ({
         },
     },
     status: OppgaveStatus.ULØST,
-    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
-    frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
+    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
+    frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
 });
 
 const getFjernetPeriodeOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
@@ -340,9 +344,9 @@ const getFjernetPeriodeOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
         },
     },
     status: OppgaveStatus.LØST,
-    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
-    frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
-    løstDato: getDatoer().oppgaveMåned.add(28, 'days').add(54, 'hours').toISOString(),
+    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
+    frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
+    løstDato: getDatoer().oppgaveMåned.add(28, 'days').add(54, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
 });
 
 const getBekreftOpphørVedMaksdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
@@ -355,8 +359,8 @@ const getBekreftOpphørVedMaksdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
         sluttdato: dateToISODate(getDatoer().oppgaveMåned.add(30, 'days')),
     },
     status: OppgaveStatus.ULØST,
-    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
-    frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
+    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
+    frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
 });
 
 const getBekreftOpphørVedMaksdatoOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
@@ -367,7 +371,7 @@ const getBekreftOpphørVedMaksdatoOppgaveDtoLøst = (): BrukerdialogOppgaveDto =
         harUttalelse: false,
     },
     status: OppgaveStatus.LØST,
-    løstDato: getDatoer().oppgaveMåned.add(5, 'days').add(10, 'hours').toISOString(),
+    løstDato: getDatoer().oppgaveMåned.add(5, 'days').add(10, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
 });
 
 const getEndretStartOgSluttdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
@@ -386,8 +390,8 @@ const getEndretStartOgSluttdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
         },
     },
     status: OppgaveStatus.ULØST,
-    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
-    frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
+    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
+    frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
 });
 
 export const getMockOppgaver = () => ({
