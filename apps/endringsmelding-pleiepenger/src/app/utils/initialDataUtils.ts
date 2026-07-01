@@ -29,7 +29,7 @@ export const getArbeidsgivereFromArbeidsgiverOrganisasjoner = (
         };
 
         if (aaArbeidsgivereMap.has(a.organisasjonsnummer)) {
-            aaArbeidsgivereMap.get(a.organisasjonsnummer)!.ansettelsesperioder!.push(ansettelsesperiode);
+            aaArbeidsgivereMap.get(a.organisasjonsnummer)!.ansettelsesperioder.push(ansettelsesperiode);
         } else {
             aaArbeidsgivereMap.set(a.organisasjonsnummer, {
                 key: getArbeidsgiverKey(a.organisasjonsnummer),

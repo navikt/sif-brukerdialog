@@ -112,7 +112,7 @@ export const getArbeidsaktivitetForUkjentArbeidsforhold = (
 ): Arbeidsaktivitet => {
     const faktiskArbeidstid = getFaktiskArbeidstidPerUkeForUkjentArbeidsforhold(arbeidsforhold, arbeiderIPerioden);
     if (arbeidsgiver.ansettelsesperioder.length !== 1) {
-        throw 'Ukjent arbeidsforhold kan kun ha en ansettelsesperiode';
+        throw new Error('Ukjent arbeidsforhold kan kun ha en ansettelsesperiode');
     }
     const ansettelsesperiode = ensureDateRange(arbeidsgiver.ansettelsesperioder[0], endringsperiode);
 

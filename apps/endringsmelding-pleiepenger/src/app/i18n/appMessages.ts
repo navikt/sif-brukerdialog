@@ -124,7 +124,7 @@ const nb = {
     'ingenTilgangPage.utenforEndringsperiode.2':
         'Hvis du mener at dette ikke stemmer, er det fint at du sender en melding til oss {SkrivTilOssLink}.',
     'ingenTilgangPage.slutterOgStarterInneforSammeUke':
-        'Vi ser at du har to ansettelsesforhold hos samme arbeidsgiver som slutter og starter samme uke. Da kan du desverre ikke bruke denne løsningen for å melde fra om endringer.',
+        'Vi ser at du har to ansettelsesforhold hos samme arbeidsgiver som slutter og starter samme uke. Da kan du dessverre ikke bruke denne løsningen for å melde fra om endringer.',
 
     'kvitteringPage.pageTitle': 'Endringsmelding er mottatt',
     'kvitteringPage.title': 'Melding om endring er lagt til saken din',
