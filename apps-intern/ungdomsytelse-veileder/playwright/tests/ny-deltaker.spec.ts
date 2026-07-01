@@ -1,6 +1,8 @@
 import { expect, test } from '@playwright/test';
+import { setNow } from '../utils/setNow';
 
 test.beforeEach(async ({ page }) => {
+    await setNow(page);
     await page.goto(`./`);
 });
 

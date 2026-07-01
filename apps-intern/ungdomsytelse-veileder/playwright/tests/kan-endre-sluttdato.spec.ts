@@ -1,10 +1,12 @@
 import { expect, test } from '@playwright/test';
+import { setNow } from '../utils/setNow';
 import { åpneDeltakelseHandlingerPanel, gåTilDeltakerSide } from '../utils/deltakelseHandlingerUtils';
 
 // kanEndreSluttdato-scenariet: UTMELDT AKTIV — søkt, fremtidig sluttdato
 const DELTAKER_ID = 'f9cdfa5f-f255-4b7a-9a96-4077be9aa8dd';
 
 test.beforeEach(async ({ page }) => {
+    await setNow(page);
     await gåTilDeltakerSide(page, DELTAKER_ID, 'UTMELDT AKTIV');
 });
 

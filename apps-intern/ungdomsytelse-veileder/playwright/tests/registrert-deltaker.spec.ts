@@ -1,10 +1,12 @@
 import { expect, test } from '@playwright/test';
+import { setNow } from '../utils/setNow';
 import { gåTilDeltakerSide } from '../utils/deltakelseHandlingerUtils';
 
 // nyligRegistrert-scenariet: AKTIV NYBEGYNNER
 const DELTAKER_ID = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
 
 test.beforeEach(async ({ page }) => {
+    await setNow(page);
     await gåTilDeltakerSide(page, DELTAKER_ID, 'AKTIV NYBEGYNNER');
 });
 
