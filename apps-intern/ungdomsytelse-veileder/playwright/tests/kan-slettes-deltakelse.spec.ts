@@ -1,12 +1,10 @@
 import { expect, test } from '@playwright/test';
-import { setNow } from '../utils/setNow';
 import { åpneDeltakelseHandlingerPanel, gåTilDeltakerSide } from '../utils/deltakelseHandlingerUtils';
 
 // kanSletteDeltakelse-scenariet: NYOPPRETTET INNMELDING — registrert, ikke søkt
 const DELTAKER_ID = 'a9d51b57-ccae-4e42-90ce-a22f8a745050';
 
 test.beforeEach(async ({ page }) => {
-    await setNow(page);
     await gåTilDeltakerSide(page, DELTAKER_ID, 'NYOPPRETTET INNMELDING');
 });
 
