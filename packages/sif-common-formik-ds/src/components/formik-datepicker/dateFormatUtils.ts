@@ -38,9 +38,6 @@ const stringToUTCDate = (dateString: string | undefined, f: string): Date | unde
     return undefined;
 };
 
-const dateToInputDateString = (date?: Date): InputDateString | INVALID_DATE_TYPE =>
-    date ? dayjs.utc(date).format(INPUT_DATE_STRING_FORMAT) : INVALID_DATE_VALUE;
-
 export const dateToISODateString = (date: Date): ISODateString | INVALID_DATE_TYPE => {
     if (isNaN(date.getTime())) {
         return INVALID_DATE_VALUE;
@@ -65,8 +62,7 @@ export const InputDateStringToUTCDate = (inputDateString?: InputDateString): Dat
 
 export const ISODateStringToInputDateString = (isoDateString: ISODateString): InputDateString | INVALID_DATE_TYPE => {
     const date = stringToUTCDate(isoDateString, ISO_DATE_STRING_FORMAT);
-    const stringValue = date ? dateToInputDateString(date) : INVALID_DATE_VALUE;
-    return stringValue === INVALID_DATE_VALUE ? INVALID_DATE_VALUE : stringValue;
+    return date ? dayjs.utc(date).format(INPUT_DATE_STRING_FORMAT) : INVALID_DATE_VALUE;
 };
 
 const twoDigitYearFormats = ['DDMMYY', 'D.M.YY', 'DD.MM.YY'];

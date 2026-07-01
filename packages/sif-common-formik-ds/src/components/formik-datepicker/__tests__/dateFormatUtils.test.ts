@@ -4,6 +4,7 @@ import {
     dateToISODateString,
     InputDateStringToISODateString,
     INVALID_DATE_VALUE,
+    ISODateStringToInputDateString,
     ISODateStringToLocalDate,
 } from '../dateFormatUtils';
 
@@ -61,5 +62,22 @@ describe('InputDateStringToISODateString', () => {
 
     it('returnerer Invalid date for ugyldig input', () => {
         expect(InputDateStringToISODateString('ikke-en-dato')).toBe(INVALID_DATE_VALUE);
+    });
+});
+
+describe('ISODateStringToInputDateString', () => {
+    it('konverterer ISO til norsk datoformat', () => {
+        expect(ISODateStringToInputDateString('2023-06-15')).toBe('15.06.2023');
+    });
+
+    it('returnerer Invalid date for ugyldig ISO-streng', () => {
+        expect(ISODateStringToInputDateString('ikke-en-dato')).toBe(INVALID_DATE_VALUE);
+    });
+
+    it('er stabil som round-trip med InputDateStringToISODateString', () => {
+        const isoStrings = ['2024-01-01', '2024-06-15', '2024-12-31'];
+        for (const iso of isoStrings) {
+            expect(InputDateStringToISODateString(ISODateStringToInputDateString(iso) as string)).toBe(iso);
+        }
     });
 });
