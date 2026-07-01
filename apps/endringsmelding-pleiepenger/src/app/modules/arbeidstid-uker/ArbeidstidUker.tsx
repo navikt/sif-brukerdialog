@@ -36,7 +36,6 @@ const ArbeidstidUker = ({
     arbeidstidKolonneTittel,
     triggerResetValgCounter,
     visEndringSomOpprinnelig,
-
     onEndreUker,
 }: Props) => {
     const { text, intl } = useAppIntl();
