@@ -4,11 +4,9 @@ import { StepID } from '../../../src/app/types/StepID';
 import { mellomlagringMock } from '../../mock-data/mellomlagring';
 import { navigerTilMåned } from '../../utils/datovelgerUtils';
 import { routeUtils } from '../../utils/routeUtils';
-import { setNow } from '../../utils/setNow';
 import { testAccessibility } from '../../utils/testAccessibility';
 
 test.beforeEach(async ({ page }) => {
-    await setNow(page);
     await routeUtils.setupMockRoutes(page, {
         mellomlagring: mellomlagringMock,
         lastStep: StepID.OMSORGSTILBUD,
