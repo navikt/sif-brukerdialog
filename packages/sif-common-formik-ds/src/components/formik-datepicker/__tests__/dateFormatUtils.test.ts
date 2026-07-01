@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import {
     dateToISODateString,
     InputDateStringToISODateString,
+    InputDateStringToUTCDate,
     INVALID_DATE_VALUE,
     ISODateStringToInputDateString,
     ISODateStringToLocalDate,
@@ -56,12 +57,43 @@ describe('InputDateStringToISODateString', () => {
         expect(InputDateStringToISODateString('15.06.2023')).toBe('2023-06-15');
     });
 
-    it('håndterer tosiffer år: 24 → 2024', () => {
-        expect(InputDateStringToISODateString('15.06.24')).toBe('2024-06-15');
+    it.each([
+        ['15062023', '2023-06-15'],
+        ['15/06/2023', '2023-06-15'],
+        ['15-06-2023', '2023-06-15'],
+        ['15.6.2023', '2023-06-15'],
+    ])('aksepterer alternativt inputformat: %s → %s', (input, expected) => {
+        expect(InputDateStringToISODateString(input)).toBe(expected);
+    });
+
+    it('håndterer tosiffer år → 2000-tallet (1910 → 2010)', () => {
+        expect(InputDateStringToISODateString('15.06.10')).toBe('2010-06-15');
+    });
+
+    it('håndterer tosiffer år → 1900-tallet (1980 → 1980)', () => {
+        expect(InputDateStringToISODateString('15.06.80')).toBe('1980-06-15');
     });
 
     it('returnerer Invalid date for ugyldig input', () => {
         expect(InputDateStringToISODateString('ikke-en-dato')).toBe(INVALID_DATE_VALUE);
+    });
+});
+
+describe('InputDateStringToUTCDate', () => {
+    it('returnerer UTC Date med riktig dato', () => {
+        const date = InputDateStringToUTCDate('15.06.2023')!;
+        expect(date).toBeDefined();
+        expect(date.getUTCFullYear()).toBe(2023);
+        expect(date.getUTCMonth()).toBe(5);
+        expect(date.getUTCDate()).toBe(15);
+    });
+
+    it('returnerer undefined for undefined input', () => {
+        expect(InputDateStringToUTCDate(undefined)).toBeUndefined();
+    });
+
+    it('returnerer undefined for ugyldig datostreng', () => {
+        expect(InputDateStringToUTCDate('ikke-en-dato')).toBeUndefined();
     });
 });
 
