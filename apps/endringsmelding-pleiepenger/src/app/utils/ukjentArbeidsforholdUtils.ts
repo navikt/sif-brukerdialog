@@ -23,7 +23,6 @@ import {
 } from '@navikt/sif-common-utils';
 
 import { ArbeidsaktivitetFormValuesMap } from '../søknad/steps/arbeidstid/ArbeidstidForm';
-// import { getArbeidsukeFromEnkeltdagerIUken } from './arbeidsukeUtils';
 import { beregnSnittTimerPerDag } from './beregnUtils';
 import { getArbeidsukeFromEnkeltdagerIUken } from './getSakFromK9Sak';
 
