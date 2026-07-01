@@ -1,6 +1,6 @@
 {
     "name": "@sif/sif-innsyn-api",
-    "version": "0.3.18",
+    "version": "0.3.21",
     "private": true,
     "repository": {
         "type": "git",
@@ -25,14 +25,15 @@
         "@navikt/sif-common-env": "workspace:*"
     },
     "devDependencies": {
-        "@hey-api/openapi-ts": "0.98.1",
+        "@hey-api/openapi-ts": "0.98.2",
         "@sif/eslint-config": "workspace:*",
-        "axios": "1.16.1",
+        "axios": "1.18.1",
         "config": "workspace:*",
+        "eslint": "10.6.0",
         "postcss": "8.5.15",
-        "prettier": "3.8.3",
+        "prettier": "3.8.5",
         "typescript": "6.0.3",
-        "vitest": "4.1.8",
+        "vitest": "4.1.9",
         "zod": "4.4.3"
     },
     "peerDependencies": {

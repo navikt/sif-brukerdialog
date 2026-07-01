@@ -11,11 +11,9 @@ export const ValidateRequiredFieldErrorKeys = Object.keys(ValidateRequiredFieldE
 
 type RequiredFieldValidationResult = ValidateRequiredFieldError.noValue | undefined;
 
-const getRequiredFieldValidator = (): ValidationFunction<RequiredFieldValidationResult> => (value: any) => {
+export const getRequiredFieldValidator = (): ValidationFunction<RequiredFieldValidationResult> => (value: any) => {
     if (hasValue(value) === false) {
         return ValidateRequiredFieldError.noValue;
     }
     return undefined;
 };
-
-export default getRequiredFieldValidator;

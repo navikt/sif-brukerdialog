@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { VStack } from '@navikt/ds-react';
 import { http, HttpResponse } from 'msw';
-import { registrertDeltakerMock } from '../../../../mock/data/registrertDeltakerMock';
+import { registrertDeltakerScenario } from '../../../../mock/scenarioer/registrertDeltaker';
 import { mockUtils } from '../../../../mock/msw/mockUtils';
 import { withDarkBg } from '../../../../storybook/decorators/withDarkBg';
 import { withIntl } from '../../../../storybook/decorators/withIntl';
@@ -24,7 +24,7 @@ export const Varianter: Story = {
     name: 'Deltakelse historikk',
     render: () => (
         <VStack gap="space-16">
-            <DeltakelseHistorikk deltakelseId={registrertDeltakerMock.deltakelse.id!} />
+            <DeltakelseHistorikk deltakelseId={registrertDeltakerScenario.deltakelse!.id!} />
         </VStack>
     ),
     parameters: {

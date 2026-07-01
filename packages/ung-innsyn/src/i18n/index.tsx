@@ -1,4 +1,4 @@
-import { typedIntlHelper } from '@navikt/sif-common-utils';
+import { typedIntlHelper } from '@sif/utils';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { ungUi_messages_nb } from './nb';

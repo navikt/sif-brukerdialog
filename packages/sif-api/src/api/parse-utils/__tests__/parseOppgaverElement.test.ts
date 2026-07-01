@@ -28,7 +28,7 @@ describe('parseOppgaverElement – BEKREFT_OPPHOR_VED_MAKSDATO', () => {
 
         const oppgave = result as OpphorVedMaksdatoOppgave;
         expect(oppgave.parsedOppgavetype).toBe(ParsedOppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO);
-        expect(oppgave.oppgavetypeData.maksdato).toEqual(new Date('2026-06-30'));
+        expect(oppgave.oppgavetypeData.maksdato).toEqual('2026-06-30');
     });
 
     it('bevarer sluttdato som Date', () => {
@@ -45,7 +45,7 @@ describe('parseOppgaverElement – BEKREFT_OPPHOR_VED_MAKSDATO', () => {
         ]);
 
         const oppgave = result as OpphorVedMaksdatoOppgave;
-        expect(oppgave.oppgavetypeData.sluttdato).toEqual(new Date('2026-06-25'));
+        expect(oppgave.oppgavetypeData.sluttdato).toEqual('2026-06-25');
     });
 
     it('parser VARSEL_SVAR-respons korrekt', () => {

@@ -1,5 +1,41 @@
 # @navikt/omsorgspengesoknad-v2
 
+## 0.0.12
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.18
+    - @navikt/k9-sak-innsyn-api@0.2.20
+    - @sif/api@0.1.1
+    - @sif/soknad-forms@0.1.1
+    - @sif/soknad-ui@0.1.1
+
+## 0.0.11
+
+### Patch Changes
+
+- Updated dependencies
+- Updated dependencies
+    - @navikt/sif-validation@1.0.22
+    - @sif/soknad-forms@0.1.0
+    - @sif/soknad-ui@0.1.0
+    - @sif/soknad@0.1.0
+    - @sif/utils@0.1.0
+    - @sif/api@0.1.0
+    - @sif/rhf@0.1.0
+    - @navikt/sif-common-ui@0.11.58
+
+## 0.0.10
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.17
+    - @navikt/k9-sak-innsyn-api@0.2.19
+    - @sif/api@0.0.6
+    - @sif/soknad-forms@0.0.7
+
 ## 0.0.9
 
 ### Patch Changes

@@ -2,7 +2,7 @@
 
 import * as z from 'zod';
 
-import type { Client, Options as Options2, TDataShape } from './client';
+import type { Client, ClientMeta, Options as Options2, RequestResult, TDataShape } from './client';
 import { client } from './client.gen';
 import type {
     HentAlleMineDeltakelserData,
@@ -46,7 +46,7 @@ export type Options<
      * You can pass arbitrary values through the `meta` object. This can be
      * used to access values that aren't defined as part of the SDK function.
      */
-    meta?: Record<string, unknown>;
+    meta?: keyof ClientMeta extends never ? Record<string, unknown> : ClientMeta;
 };
 
 export class Deltakelse {
@@ -57,7 +57,7 @@ export class Deltakelse {
      */
     public static hentAlleMineDeltakelser<ThrowOnError extends boolean = true>(
         options?: Options<HentAlleMineDeltakelserData, ThrowOnError>,
-    ) {
+    ): RequestResult<HentAlleMineDeltakelserResponses, HentAlleMineDeltakelserErrors, ThrowOnError> {
         return (options?.client ?? client).get<
             HentAlleMineDeltakelserResponses,
             HentAlleMineDeltakelserErrors,
@@ -74,9 +74,21 @@ export class Deltakelse {
             responseType: 'json',
             responseValidator: async (data) => await zHentAlleMineDeltakelserResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'entraObo',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/deltakelse/register/hent/alle',
             ...options,
@@ -88,7 +100,7 @@ export class Deltakelse {
      */
     public static hentAlleMineDeltakelserV2<ThrowOnError extends boolean = true>(
         options?: Options<HentAlleMineDeltakelserV2Data, ThrowOnError>,
-    ) {
+    ): RequestResult<HentAlleMineDeltakelserV2Responses, HentAlleMineDeltakelserV2Errors, ThrowOnError> {
         return (options?.client ?? client).get<
             HentAlleMineDeltakelserV2Responses,
             HentAlleMineDeltakelserV2Errors,
@@ -105,9 +117,21 @@ export class Deltakelse {
             responseType: 'json',
             responseValidator: async (data) => await zHentAlleMineDeltakelserV2Response.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'entraObo',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/deltakelse/register/hent/alle/v2',
             ...options,
@@ -121,7 +145,7 @@ export class Deltakelse {
      */
     public static markerDeltakelseSomSøkt<ThrowOnError extends boolean = true>(
         options: Options<MarkerDeltakelseSomSøktData, ThrowOnError>,
-    ) {
+    ): RequestResult<MarkerDeltakelseSomSøktResponses, MarkerDeltakelseSomSøktErrors, ThrowOnError> {
         return (options.client ?? client).put<
             MarkerDeltakelseSomSøktResponses,
             MarkerDeltakelseSomSøktErrors,
@@ -138,9 +162,21 @@ export class Deltakelse {
             responseType: 'json',
             responseValidator: async (data) => await zMarkerDeltakelseSomSøktResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'entraObo',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/deltakelse/register/{id}/marker-har-sokt',
             ...options,
@@ -152,7 +188,7 @@ export class Deltakelse {
      */
     public static markerDeltakelseSomSøktV2<ThrowOnError extends boolean = true>(
         options: Options<MarkerDeltakelseSomSøktV2Data, ThrowOnError>,
-    ) {
+    ): RequestResult<MarkerDeltakelseSomSøktV2Responses, MarkerDeltakelseSomSøktV2Errors, ThrowOnError> {
         return (options.client ?? client).put<
             MarkerDeltakelseSomSøktV2Responses,
             MarkerDeltakelseSomSøktV2Errors,
@@ -169,9 +205,21 @@ export class Deltakelse {
             responseType: 'json',
             responseValidator: async (data) => await zMarkerDeltakelseSomSøktV2Response.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'entraObo',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/deltakelse/register/{id}/marker-har-sokt/v2',
             ...options,
@@ -185,7 +233,7 @@ export class Deltaker {
      */
     public static hentKontonummer<ThrowOnError extends boolean = true>(
         options?: Options<HentKontonummerData, ThrowOnError>,
-    ) {
+    ): RequestResult<HentKontonummerResponses, HentKontonummerErrors, ThrowOnError> {
         return (options?.client ?? client).get<HentKontonummerResponses, HentKontonummerErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -198,9 +246,21 @@ export class Deltaker {
             responseType: 'json',
             responseValidator: async (data) => await zHentKontonummerResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'entraObo',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/deltaker/hent-kontonummer',
             ...options,

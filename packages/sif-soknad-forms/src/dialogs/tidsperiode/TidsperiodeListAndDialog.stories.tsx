@@ -6,14 +6,15 @@ import { SifSoknadFormsText } from '../../i18n';
 import { StoryFrame } from '../../storybook/components/StoryFrame';
 import type { DateTidsperiode } from './index';
 import { TidsperiodeListAndDialog } from './TidsperiodeListAndDialog';
+import { dateToISODate } from '@sif/utils';
 
 const today = dayjs();
 
 const exampleTidsperioder: DateTidsperiode[] = [
     {
         id: '1',
-        fom: today.subtract(6, 'month').toDate(),
-        tom: today.subtract(4, 'month').toDate(),
+        fom: dateToISODate(today.subtract(6, 'month')),
+        tom: dateToISODate(today.subtract(4, 'month')),
     },
 ];
 
@@ -27,8 +28,8 @@ function TidsperiodeListAndDialogStory({ tidsperioder }: StoryProps) {
     return (
         <TidsperiodeListAndDialog
             tidsperioder={items}
-            minDate={today.subtract(1, 'year').toDate()}
-            maxDate={today.add(1, 'year').toDate()}
+            minDate={dateToISODate(today.subtract(1, 'year'))}
+            maxDate={dateToISODate(today.add(1, 'year'))}
             addButtonLabel={<SifSoknadFormsText id="@sifSoknadForms.tidsperiode.dialog.leggTilKnapp" />}
             onChange={setItems}
         />

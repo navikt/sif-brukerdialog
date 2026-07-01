@@ -1,5 +1,11 @@
 # @navikt/sif-validation
 
+## 1.0.22
+
+### Patch Changes
+
+- Utvide med validator for ISODate
+
 ## 1.0.21
 
 ### Patch Changes

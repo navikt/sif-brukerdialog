@@ -26,7 +26,7 @@ const OppgaveOgTilbakemelding = ({
     beskjedFraNav,
     spørsmål,
     svaralternativer,
-    respons: bekreftelse,
+    respons,
 }: OppgaveOgTilbakemeldingProps) => {
     return (
         <section aria-labelledby="summaryHeading">
@@ -52,20 +52,20 @@ const OppgaveOgTilbakemelding = ({
                     <FormSummary.Answer>
                         <FormSummary.Label>{spørsmål}</FormSummary.Label>
                         <FormSummary.Value>
-                            {bekreftelse.type === 'VARSEL_SVAR' && bekreftelse.harUttalelse
+                            {respons.type === 'VARSEL_SVAR' && respons.harUttalelse
                                 ? svaralternativer.harUttalelseLabel
                                 : svaralternativer.harIkkeUttalelseLabel}
                         </FormSummary.Value>
                     </FormSummary.Answer>
                 </FormSummary.Answers>
-                {bekreftelse.type === 'VARSEL_SVAR' && bekreftelse.harUttalelse && bekreftelse.uttalelseFraBruker && (
+                {respons.type === 'VARSEL_SVAR' && respons.harUttalelse && respons.uttalelseFraBruker && (
                     <FormSummary.Answers>
                         <FormSummary.Answer>
                             <FormSummary.Label>
                                 <UngUiText id="@ungInnsyn.oppgaveOgTilbakemelding.tilbakemeldingLabel" />
                             </FormSummary.Label>
                             <FormSummary.Value>
-                                <TextareaSvar text={bekreftelse.uttalelseFraBruker} />
+                                <TextareaSvar text={respons.uttalelseFraBruker} />
                             </FormSummary.Value>
                         </FormSummary.Answer>
                     </FormSummary.Answers>

@@ -1,4 +1,4 @@
-import getNumberValidator, { ValidateNumberError } from '../getNumberValidator';
+import { getNumberValidator, ValidateNumberError } from '../getNumberValidator';
 
 describe(`validateNumber`, () => {
     it(`returns undefined when not required and value is empty`, () => {

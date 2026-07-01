@@ -2,7 +2,7 @@
 
 import * as z from 'zod';
 
-import type { Client, Options as Options2, TDataShape } from './client';
+import type { Client, ClientMeta, Options as Options2, RequestResult, TDataShape } from './client';
 import { client } from './client.gen';
 import type {
     DeltakelseHistorikkData,
@@ -35,6 +35,9 @@ import type {
     MeldUtDeltakerData,
     MeldUtDeltakerErrors,
     MeldUtDeltakerResponses,
+    SlettSluttdatoData,
+    SlettSluttdatoErrors,
+    SlettSluttdatoResponses,
 } from './types.gen';
 import {
     zDeltakelseHistorikkPath,
@@ -60,6 +63,8 @@ import {
     zMeldUtDeltakerBody,
     zMeldUtDeltakerPath,
     zMeldUtDeltakerResponse,
+    zSlettSluttdatoPath,
+    zSlettSluttdatoResponse,
 } from './zod.gen';
 
 export type Options<
@@ -77,7 +82,7 @@ export type Options<
      * You can pass arbitrary values through the `meta` object. This can be
      * used to access values that aren't defined as part of the SDK function.
      */
-    meta?: Record<string, unknown>;
+    meta?: keyof ClientMeta extends never ? Record<string, unknown> : ClientMeta;
 };
 
 export class Oppslag {
@@ -86,7 +91,7 @@ export class Oppslag {
      */
     public static hentDeltakerInfoGittDeltaker<ThrowOnError extends boolean = true>(
         options: Options<HentDeltakerInfoGittDeltakerData, ThrowOnError>,
-    ) {
+    ): RequestResult<HentDeltakerInfoGittDeltakerResponses, HentDeltakerInfoGittDeltakerErrors, ThrowOnError> {
         return (options.client ?? client).post<
             HentDeltakerInfoGittDeltakerResponses,
             HentDeltakerInfoGittDeltakerErrors,
@@ -103,9 +108,21 @@ export class Oppslag {
             responseType: 'json',
             responseValidator: async (data) => await zHentDeltakerInfoGittDeltakerResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'entraObo',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/oppslag/deltaker',
             ...options,
@@ -121,7 +138,7 @@ export class Oppslag {
      */
     public static hentDeltakerInfoGittDeltakerId<ThrowOnError extends boolean = true>(
         options: Options<HentDeltakerInfoGittDeltakerIdData, ThrowOnError>,
-    ) {
+    ): RequestResult<HentDeltakerInfoGittDeltakerIdResponses, HentDeltakerInfoGittDeltakerIdErrors, ThrowOnError> {
         return (options.client ?? client).get<
             HentDeltakerInfoGittDeltakerIdResponses,
             HentDeltakerInfoGittDeltakerIdErrors,
@@ -138,9 +155,21 @@ export class Oppslag {
             responseType: 'json',
             responseValidator: async (data) => await zHentDeltakerInfoGittDeltakerIdResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'entraObo',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/oppslag/deltaker/{id}',
             ...options,
@@ -154,7 +183,7 @@ export class Veileder {
      */
     public static meldUtDeltaker<ThrowOnError extends boolean = true>(
         options: Options<MeldUtDeltakerData, ThrowOnError>,
-    ) {
+    ): RequestResult<MeldUtDeltakerResponses, MeldUtDeltakerErrors, ThrowOnError> {
         return (options.client ?? client).put<MeldUtDeltakerResponses, MeldUtDeltakerErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -167,9 +196,21 @@ export class Veileder {
             responseType: 'json',
             responseValidator: async (data) => await zMeldUtDeltakerResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'entraObo',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/veileder/register/deltakelse/{deltakelseId}/avslutt',
             ...options,
@@ -185,7 +226,7 @@ export class Veileder {
      */
     public static endreSluttdato<ThrowOnError extends boolean = true>(
         options: Options<EndreSluttdatoData, ThrowOnError>,
-    ) {
+    ): RequestResult<EndreSluttdatoResponses, EndreSluttdatoErrors, ThrowOnError> {
         return (options.client ?? client).put<EndreSluttdatoResponses, EndreSluttdatoErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -198,9 +239,21 @@ export class Veileder {
             responseType: 'json',
             responseValidator: async (data) => await zEndreSluttdatoResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'entraObo',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/veileder/register/deltakelse/{deltakelseId}/endre/sluttdato',
             ...options,
@@ -216,7 +269,7 @@ export class Veileder {
      */
     public static endreStartdato<ThrowOnError extends boolean = true>(
         options: Options<EndreStartdatoData, ThrowOnError>,
-    ) {
+    ): RequestResult<EndreStartdatoResponses, EndreStartdatoErrors, ThrowOnError> {
         return (options.client ?? client).put<EndreStartdatoResponses, EndreStartdatoErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -229,9 +282,21 @@ export class Veileder {
             responseType: 'json',
             responseValidator: async (data) => await zEndreStartdatoResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'entraObo',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/veileder/register/deltakelse/{deltakelseId}/endre/startdato',
             ...options,
@@ -247,7 +312,7 @@ export class Veileder {
      */
     public static forlengPeriode<ThrowOnError extends boolean = true>(
         options: Options<ForlengPeriodeData, ThrowOnError>,
-    ) {
+    ): RequestResult<ForlengPeriodeResponses, ForlengPeriodeErrors, ThrowOnError> {
         return (options.client ?? client).put<ForlengPeriodeResponses, ForlengPeriodeErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -260,9 +325,21 @@ export class Veileder {
             responseType: 'json',
             responseValidator: async (data) => await zForlengPeriodeResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'entraObo',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/veileder/register/deltakelse/{deltakelseId}/forleng-periode',
             ...options,
@@ -271,7 +348,7 @@ export class Veileder {
 
     public static deltakelseHistorikk<ThrowOnError extends boolean = true>(
         options: Options<DeltakelseHistorikkData, ThrowOnError>,
-    ) {
+    ): RequestResult<DeltakelseHistorikkResponses, DeltakelseHistorikkErrors, ThrowOnError> {
         return (options.client ?? client).get<DeltakelseHistorikkResponses, DeltakelseHistorikkErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -284,11 +361,61 @@ export class Veileder {
             responseType: 'json',
             responseValidator: async (data) => await zDeltakelseHistorikkResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'entraObo',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/veileder/register/deltakelse/{deltakelseId}/historikk',
+            ...options,
+        });
+    }
+
+    /**
+     * Sletter sluttdato på en deltakelse i ungdomsprogrammet
+     */
+    public static slettSluttdato<ThrowOnError extends boolean = true>(
+        options: Options<SlettSluttdatoData, ThrowOnError>,
+    ): RequestResult<SlettSluttdatoResponses, SlettSluttdatoErrors, ThrowOnError> {
+        return (options.client ?? client).delete<SlettSluttdatoResponses, SlettSluttdatoErrors, ThrowOnError>({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: zSlettSluttdatoPath,
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
+            responseValidator: async (data) => await zSlettSluttdatoResponse.parseAsync(data),
+            security: [
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'entraObo',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            url: '/veileder/register/deltakelse/{deltakelseId}/slett/sluttdato',
             ...options,
         });
     }
@@ -298,7 +425,7 @@ export class Veileder {
      */
     public static meldInnDeltaker<ThrowOnError extends boolean = true>(
         options: Options<MeldInnDeltakerData, ThrowOnError>,
-    ) {
+    ): RequestResult<MeldInnDeltakerResponses, MeldInnDeltakerErrors, ThrowOnError> {
         return (options.client ?? client).post<MeldInnDeltakerResponses, MeldInnDeltakerErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -311,9 +438,21 @@ export class Veileder {
             responseType: 'json',
             responseValidator: async (data) => await zMeldInnDeltakerResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'entraObo',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/veileder/register/deltaker/innmelding',
             ...options,
@@ -329,7 +468,11 @@ export class Veileder {
      */
     public static hentAlleDeltakelserGittDeltakerId<ThrowOnError extends boolean = true>(
         options: Options<HentAlleDeltakelserGittDeltakerIdData, ThrowOnError>,
-    ) {
+    ): RequestResult<
+        HentAlleDeltakelserGittDeltakerIdResponses,
+        HentAlleDeltakelserGittDeltakerIdErrors,
+        ThrowOnError
+    > {
         return (options.client ?? client).get<
             HentAlleDeltakelserGittDeltakerIdResponses,
             HentAlleDeltakelserGittDeltakerIdErrors,
@@ -346,9 +489,21 @@ export class Veileder {
             responseType: 'json',
             responseValidator: async (data) => await zHentAlleDeltakelserGittDeltakerIdResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'entraObo',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/veileder/register/deltaker/{deltakerId}/deltakelser',
             ...options,
@@ -360,7 +515,7 @@ export class Veileder {
      */
     public static fjernFraProgram<ThrowOnError extends boolean = true>(
         options: Options<FjernFraProgramData, ThrowOnError>,
-    ) {
+    ): RequestResult<FjernFraProgramResponses, FjernFraProgramErrors, ThrowOnError> {
         return (options.client ?? client).delete<FjernFraProgramResponses, FjernFraProgramErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -372,9 +527,21 @@ export class Veileder {
                     .parseAsync(data),
             responseValidator: async (data) => await zFjernFraProgramResponse.parseAsync(data),
             security: [
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
-                { scheme: 'bearer', type: 'http' },
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'entraObo',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
             ],
             url: '/veileder/register/deltaker/{deltakerId}/fjern',
             ...options,

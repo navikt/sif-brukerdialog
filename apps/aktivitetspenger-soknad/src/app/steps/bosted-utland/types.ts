@@ -1,5 +1,4 @@
 import { YesOrNo } from '@sif/rhf';
-import { StepFormValues } from '@sif/soknad/types';
 import { BostedUtland } from '@sif/soknad-forms';
 
 export enum BostedUtlandFormFields {
@@ -7,7 +6,7 @@ export enum BostedUtlandFormFields {
     bosteder = 'bosteder',
 }
 
-export interface BostedUtlandFormValues extends StepFormValues {
+export interface BostedUtlandFormValues {
     [BostedUtlandFormFields.harBoddIUtlandetSiste5år]?: YesOrNo;
     [BostedUtlandFormFields.bosteder]?: BostedUtland[];
 }

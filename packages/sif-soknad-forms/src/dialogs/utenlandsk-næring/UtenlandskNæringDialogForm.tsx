@@ -1,6 +1,6 @@
 import { FormLayout } from '@navikt/sif-common-ui';
-import { dateUtils, getDateToday } from '@navikt/sif-common-utils';
-import { getDateRangeValidator, getRequiredFieldValidator, getStringValidator } from '@navikt/sif-validation';
+import { dateToISODate, getDateToday } from '@sif/utils';
+import { getISODateRangeValidator, getRequiredFieldValidator, getStringValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, datePickerUtils, useSifValidate } from '@sif/rhf';
 import { useEffect } from 'react';
 import { FormProvider, useForm, useWatch } from 'react-hook-form';
@@ -41,13 +41,13 @@ const næringToFormValues = (næring: UtenlandskNæring): FormValues => ({
     navnPåVirksomheten: næring.navnPåVirksomheten,
     land: næring.land,
     identifikasjonsnummer: næring.identifikasjonsnummer ?? '',
-    fraOgMed: dateUtils.dateToISODate(næring.fraOgMed),
-    tilOgMed: næring.tilOgMed ? dateUtils.dateToISODate(næring.tilOgMed) : '',
+    fraOgMed: dateToISODate(næring.fraOgMed),
+    tilOgMed: næring.tilOgMed ? dateToISODate(næring.tilOgMed) : '',
     erPågående: næring.erPågående ?? false,
 });
 
 const formValuesToNæring = (values: FormValues, id?: string): UtenlandskNæring => {
-    const fraOgMed = datePickerUtils.parseDatePickerValue(values.fraOgMed);
+    const fraOgMed = datePickerUtils.parseDatePickerValueToISODate(values.fraOgMed);
     if (!fraOgMed || !values.land || !values.næringstype || !values.navnPåVirksomheten) {
         throw new Error('Invalid UtenlandskNæring form values');
     }
@@ -58,7 +58,7 @@ const formValuesToNæring = (values: FormValues, id?: string): UtenlandskNæring
         land: values.land,
         identifikasjonsnummer: values.identifikasjonsnummer || undefined,
         fraOgMed,
-        tilOgMed: values.erPågående ? undefined : datePickerUtils.parseDatePickerValue(values.tilOgMed),
+        tilOgMed: values.erPågående ? undefined : datePickerUtils.parseDatePickerValueToISODate(values.tilOgMed),
         erPågående: values.erPågående || undefined,
     };
 };
@@ -167,10 +167,10 @@ export const UtenlandskNæringDialogForm = ({ formId, næring, onValidSubmit }: 
                                 validate: validateField(
                                     FormFields.fraOgMed,
                                     (value) =>
-                                        getDateRangeValidator({
+                                        getISODateRangeValidator({
                                             required: true,
                                             max: maxDate,
-                                            toDate: datePickerUtils.parseDatePickerValue(
+                                            toDate: datePickerUtils.parseDatePickerValueToISODate(
                                                 methods.getValues(FormFields.tilOgMed),
                                             ),
                                         }).validateFromDate(value),
@@ -190,10 +190,10 @@ export const UtenlandskNæringDialogForm = ({ formId, næring, onValidSubmit }: 
                                     : validateField(
                                           FormFields.tilOgMed,
                                           (value) =>
-                                              getDateRangeValidator({
+                                              getISODateRangeValidator({
                                                   required: true,
                                                   max: maxDate,
-                                                  fromDate: datePickerUtils.parseDatePickerValue(
+                                                  fromDate: datePickerUtils.parseDatePickerValueToISODate(
                                                       methods.getValues(FormFields.fraOgMed),
                                                   ),
                                               }).validateToDate(value),

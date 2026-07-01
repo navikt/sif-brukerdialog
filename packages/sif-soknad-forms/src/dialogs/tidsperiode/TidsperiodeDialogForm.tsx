@@ -1,6 +1,6 @@
 import { FormLayout } from '@navikt/sif-common-ui';
-import { DateRange, dateUtils } from '@navikt/sif-common-utils';
-import { getDateRangeValidator } from '@navikt/sif-validation';
+import { DateRange, ISODate } from '@sif/utils';
+import { getISODateRangeValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, datePickerUtils, useSifValidate } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
@@ -11,8 +11,8 @@ interface Props {
     formId: string;
     tidsperiode?: DateTidsperiode;
     alleTidsperioder?: DateTidsperiode[];
-    minDate?: Date;
-    maxDate?: Date;
+    minDate?: ISODate;
+    maxDate?: ISODate;
     onValidSubmit: (tidsperiode: DateTidsperiode) => void;
 }
 
@@ -29,13 +29,13 @@ type TidsperiodeFormValues = {
 const { DateRangePicker } = createSifFormComponents<TidsperiodeFormValues>();
 
 const tidsperiodeToFormValues = (tidsperiode: DateTidsperiode): TidsperiodeFormValues => ({
-    fom: dateUtils.dateToISODate(tidsperiode.fom),
-    tom: dateUtils.dateToISODate(tidsperiode.tom),
+    fom: tidsperiode.fom,
+    tom: tidsperiode.tom,
 });
 
 const formValuesToDateTidsperiode = (values: TidsperiodeFormValues, id?: string): DateTidsperiode => {
-    const fom = datePickerUtils.parseDatePickerValue(values.fom);
-    const tom = datePickerUtils.parseDatePickerValue(values.tom);
+    const fom = datePickerUtils.parseDatePickerValueToISODate(values.fom);
+    const tom = datePickerUtils.parseDatePickerValueToISODate(values.tom);
     if (!fom || !tom) {
         throw new Error('Invalid date values');
     }
@@ -100,11 +100,11 @@ export const TidsperiodeDialogForm = ({
                                 validate: validateField(
                                     TidsperiodeFormFields.fom,
                                     (value) =>
-                                        getDateRangeValidator({
+                                        getISODateRangeValidator({
                                             required: true,
                                             min: minDate,
                                             max: maxDate,
-                                            toDate: datePickerUtils.parseDatePickerValue(
+                                            toDate: datePickerUtils.parseDatePickerValueToISODate(
                                                 methods.getValues(TidsperiodeFormFields.tom),
                                             ),
                                         }).validateFromDate(value),
@@ -125,11 +125,11 @@ export const TidsperiodeDialogForm = ({
                                 validate: validateField(
                                     TidsperiodeFormFields.tom,
                                     (value) =>
-                                        getDateRangeValidator({
+                                        getISODateRangeValidator({
                                             required: true,
                                             min: minDate,
                                             max: maxDate,
-                                            fromDate: datePickerUtils.parseDatePickerValue(
+                                            fromDate: datePickerUtils.parseDatePickerValueToISODate(
                                                 methods.getValues(TidsperiodeFormFields.fom),
                                             ),
                                         }).validateToDate(value),

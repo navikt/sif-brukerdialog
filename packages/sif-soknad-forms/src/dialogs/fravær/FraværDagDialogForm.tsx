@@ -1,11 +1,11 @@
 import { FormLayout } from '@navikt/sif-common-ui';
-import { DateRange, dateUtils } from '@navikt/sif-common-utils';
-import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
+import { DateRange, dateToISODate, ISODate, isDateInDateRanges, isDateWeekDay } from '@sif/utils';
+import { getISODateValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, datePickerUtils, useSifValidate } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
-import { dateCollideWithRanges, dateErHelg, isDateRangeMatchingPeriode, toMaybeNumber } from './fraværUtils';
+import { toMaybeNumber } from './fraværUtils';
 import { FraværDag } from './types';
 
 export interface FraværDagDialogFormConfig {
@@ -17,8 +17,8 @@ export interface FraværDagDialogFormConfig {
 interface Props extends FraværDagDialogFormConfig {
     formId: string;
     fraværDag?: FraværDag;
-    minDate: Date;
-    maxDate: Date;
+    minDate: ISODate;
+    maxDate: ISODate;
     onValidSubmit: (fraværDag: FraværDag) => void;
 }
 
@@ -37,13 +37,13 @@ type FraværDagFormValues = {
 const { Datepicker, Select } = createSifFormComponents<FraværDagFormValues>();
 
 const fraværDagToFormValues = (fraværDag: FraværDag): FraværDagFormValues => ({
-    dato: dateUtils.dateToISODate(fraværDag.dato),
+    dato: dateToISODate(fraværDag.dato),
     timerArbeidsdag: fraværDag.timerArbeidsdag,
     timerFravær: fraværDag.timerFravær,
 });
 
 const formValuesToFraværDag = (values: FraværDagFormValues, id?: string): FraværDag => {
-    const dato = datePickerUtils.parseDatePickerValue(values.dato);
+    const dato = datePickerUtils.parseDatePickerValueToISODate(values.dato);
     if (!dato) {
         throw new Error('Invalid dato value');
     }
@@ -68,7 +68,7 @@ const getDisabledRangesForDag = (
     dateRangesToDisable: DateRange[] | undefined,
 ): DateRange[] | undefined => {
     if (!dateRangesToDisable || !fraværDag) return dateRangesToDisable;
-    return dateRangesToDisable.filter((range) => !isDateRangeMatchingPeriode(range, fraværDag.dato, fraværDag.dato));
+    return dateRangesToDisable.filter((range) => range.from !== fraværDag.dato || range.to !== fraværDag.dato);
 };
 
 export const FraværDagDialogForm = ({
@@ -117,14 +117,18 @@ export const FraværDagDialogForm = ({
                             validate={validateField(
                                 FraværDagFormFields.dato,
                                 (value) => {
-                                    const date = datePickerUtils.parseDatePickerValue(value);
-                                    if (helgedagerIkkeTillatt && date && dateErHelg(date)) {
+                                    const date = datePickerUtils.parseDatePickerValueToISODate(value);
+                                    if (helgedagerIkkeTillatt && date && !isDateWeekDay(date)) {
                                         return 'er_helg';
                                     }
-                                    if (date && dateCollideWithRanges(date, disabledDateRanges)) {
+                                    if (date && isDateInDateRanges(date, disabledDateRanges ?? [])) {
                                         return 'dato_kolliderer_med_annet_fravær';
                                     }
-                                    return getDateValidator({ required: true, min: minDate, max: maxDate })(value);
+                                    return getISODateValidator({
+                                        required: true,
+                                        min: minDate,
+                                        max: maxDate,
+                                    })(value);
                                 },
                                 (errorCode) => {
                                     if (errorCode === 'dateIsBeforeMin')

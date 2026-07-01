@@ -1,5 +1,17 @@
 # @navikt/k9-brukerdialog-prosessering-api
 
+## 0.3.18
+
+### Patch Changes
+
+- Codegen:prod
+
+## 0.3.17
+
+### Patch Changes
+
+- Codegen:prod
+
 ## 0.3.16
 
 ### Patch Changes

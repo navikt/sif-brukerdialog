@@ -1,4 +1,3 @@
-import { dateToISODate } from '@navikt/sif-common-utils';
 import {
     BrukerdialogOppgaveDto,
     OppgaveStatus,
@@ -6,6 +5,7 @@ import {
     OppgaveYtelsetype,
     PeriodeEndringType,
 } from '@navikt/ung-brukerdialog-api';
+import { dateToISODate } from '@sif/utils';
 import dayjs from 'dayjs';
 
 import { getMockToday } from '../utils/mockDate';
@@ -27,7 +27,7 @@ const getSøkYtelseOppgaveDto = (): BrukerdialogOppgaveDto => {
         frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
         oppgavetypeData: {
             type: 'SØK_YTELSE',
-            fomDato: dateToISODate(søkYtelseDay.toDate()),
+            fomDato: dateToISODate(søkYtelseDay),
         },
         opprettetDato: søkYtelseDay.toISOString(),
         ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
@@ -48,8 +48,8 @@ const getEndretStartdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
     oppgavetype: OppgaveType.BEKREFT_ENDRET_STARTDATO,
     oppgavetypeData: {
         type: 'ENDRET_STARTDATO',
-        nyStartdato: dateToISODate(dayjs(getDatoer().deltakelseFraOgMed).add(1, 'week').startOf('week').toDate()),
-        forrigeStartdato: dateToISODate(getDatoer().deltakelseFraOgMed.toDate()),
+        nyStartdato: dateToISODate(dayjs(getDatoer().deltakelseFraOgMed).add(1, 'week').startOf('week')),
+        forrigeStartdato: dateToISODate(getDatoer().deltakelseFraOgMed),
     },
     respons: {
         type: 'VARSEL_SVAR',
@@ -66,8 +66,8 @@ const getEndretStartdatoOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
     oppgavetype: OppgaveType.BEKREFT_ENDRET_STARTDATO,
     oppgavetypeData: {
         type: 'ENDRET_STARTDATO',
-        nyStartdato: dateToISODate(dayjs(getDatoer().deltakelseFraOgMed).add(1, 'week').startOf('week').toDate()),
-        forrigeStartdato: dateToISODate(getDatoer().deltakelseFraOgMed.toDate()),
+        nyStartdato: dateToISODate(dayjs(getDatoer().deltakelseFraOgMed).add(1, 'week').startOf('week')),
+        forrigeStartdato: dateToISODate(getDatoer().deltakelseFraOgMed),
     },
     respons: {
         type: 'VARSEL_SVAR',
@@ -154,8 +154,8 @@ const getRapporterInntektOppgaveDto = (): BrukerdialogOppgaveDto => ({
     frist: getDatoer().oppgaveMåned.add(7, 'days').add(7, 'hours').toISOString(),
     oppgavetypeData: {
         type: 'INNTEKTSRAPPORTERING',
-        fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month').toDate()),
-        tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').toDate()),
+        fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month')),
+        tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month')),
         gjelderDelerAvMåned: false,
     },
     ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
@@ -170,14 +170,14 @@ const getRapporterInntektOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
     løstDato: getDatoer().oppgaveMåned.add(4, 'days').add(12, 'hours').toISOString(),
     oppgavetypeData: {
         type: 'INNTEKTSRAPPORTERING',
-        fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month').toDate()),
-        tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').toDate()),
+        fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month')),
+        tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month')),
         gjelderDelerAvMåned: false,
     },
     respons: {
         type: 'RAPPORTERT_INNTEKT',
-        fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month').toDate()),
-        tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').toDate()),
+        fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month')),
+        tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month')),
         arbeidstakerOgFrilansInntekt: 23000,
     } as any,
     ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
@@ -191,8 +191,8 @@ const getRapporterInntektDelerAvMånedOppgaveDto = (): BrukerdialogOppgaveDto =>
     frist: getDatoer().oppgaveMåned.add(7, 'days').add(7, 'hours').toISOString(),
     oppgavetypeData: {
         type: 'INNTEKTSRAPPORTERING',
-        fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month').toDate()),
-        tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').subtract(4, 'days').toDate()),
+        fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month')),
+        tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').subtract(4, 'days')),
         gjelderDelerAvMåned: true,
     },
     ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
@@ -207,14 +207,14 @@ const getRapporterInntektDelerAvMånedOppgaveDtoLøst = (): BrukerdialogOppgaveD
     løstDato: getDatoer().oppgaveMåned.add(4, 'days').add(12, 'hours').toISOString(),
     oppgavetypeData: {
         type: 'INNTEKTSRAPPORTERING',
-        fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month').toDate()),
-        tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').subtract(4, 'days').toDate()),
+        fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month')),
+        tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').subtract(4, 'days')),
         gjelderDelerAvMåned: true,
     },
     respons: {
         type: 'RAPPORTERT_INNTEKT',
-        fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month').toDate()),
-        tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').toDate()),
+        fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month')),
+        tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month')),
         arbeidstakerOgFrilansInntekt: 23000,
     },
     ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
@@ -225,8 +225,8 @@ const getBekreftAvvikOppgaveDto = (): BrukerdialogOppgaveDto => ({
     oppgavetype: OppgaveType.BEKREFT_AVVIK_REGISTERINNTEKT,
     oppgavetypeData: {
         type: 'KONTROLLER_REGISTERINNTEKT',
-        fraOgMed: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
-        tilOgMed: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month').toDate()),
+        fraOgMed: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
+        tilOgMed: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month')),
         registerinntekt: {
             arbeidOgFrilansInntekter: [
                 {
@@ -253,8 +253,8 @@ const getBekreftAvvikOppgaveDelerAvMånedDto = (): BrukerdialogOppgaveDto => ({
     oppgavetype: OppgaveType.BEKREFT_AVVIK_REGISTERINNTEKT,
     oppgavetypeData: {
         type: 'KONTROLLER_REGISTERINNTEKT',
-        fraOgMed: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
-        tilOgMed: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').add(15, 'days').startOf('week').toDate()),
+        fraOgMed: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
+        tilOgMed: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').add(15, 'days').startOf('week')),
 
         registerinntekt: {
             arbeidOgFrilansInntekter: [
@@ -281,8 +281,8 @@ const getBekreftAvvikOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
     ...getBekreftAvvikOppgaveDto(),
     oppgavetypeData: {
         type: 'KONTROLLER_REGISTERINNTEKT',
-        fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month').toDate()),
-        tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month').toDate()),
+        fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month')),
+        tilOgMed: dateToISODate(getDatoer().oppgaveMåned.endOf('month')),
         registerinntekt: {
             arbeidOgFrilansInntekter: [
                 {
@@ -314,8 +314,8 @@ const getFjernetPeriodeOppgaveDto = (): BrukerdialogOppgaveDto => ({
         type: 'ENDRET_PERIODE',
         endringer: [PeriodeEndringType.FJERNET_PERIODE],
         forrigePeriode: {
-            fomDato: dateToISODate(getDatoer().oppgaveMåned.startOf('month').toDate()),
-            tomDato: dateToISODate(getDatoer().oppgaveMåned.endOf('month').toDate()),
+            fomDato: dateToISODate(getDatoer().oppgaveMåned.startOf('month')),
+            tomDato: dateToISODate(getDatoer().oppgaveMåned.endOf('month')),
         },
     },
     status: OppgaveStatus.ULØST,
@@ -331,8 +331,8 @@ const getFjernetPeriodeOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
         type: 'ENDRET_PERIODE',
         endringer: [PeriodeEndringType.FJERNET_PERIODE],
         forrigePeriode: {
-            fomDato: dateToISODate(getDatoer().oppgaveMåned.startOf('month').toDate()),
-            tomDato: dateToISODate(getDatoer().oppgaveMåned.endOf('month').toDate()),
+            fomDato: dateToISODate(getDatoer().oppgaveMåned.startOf('month')),
+            tomDato: dateToISODate(getDatoer().oppgaveMåned.endOf('month')),
         },
     },
     status: OppgaveStatus.LØST,
@@ -349,11 +349,11 @@ const getEndretStartOgSluttdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
         type: 'ENDRET_PERIODE',
         endringer: [PeriodeEndringType.ENDRET_SLUTTDATO, PeriodeEndringType.ENDRET_STARTDATO],
         forrigePeriode: {
-            fomDato: dateToISODate(getDatoer().oppgaveMåned.startOf('month').toDate()),
+            fomDato: dateToISODate(getDatoer().oppgaveMåned.startOf('month')),
         },
         nyPeriode: {
-            fomDato: dateToISODate(getDatoer().oppgaveMåned.add(1, 'month').startOf('month').toDate()),
-            tomDato: dateToISODate(getDatoer().oppgaveMåned.add(1, 'month').endOf('month').toDate()),
+            fomDato: dateToISODate(getDatoer().oppgaveMåned.add(1, 'month').startOf('month')),
+            tomDato: dateToISODate(getDatoer().oppgaveMåned.add(1, 'month').endOf('month')),
         },
     },
     status: OppgaveStatus.ULØST,
@@ -367,8 +367,8 @@ const getBekreftBostedOppgaveDto = (): BrukerdialogOppgaveDto => ({
     oppgavetype: OppgaveType.BEKREFT_BOSTED,
     oppgavetypeData: {
         type: 'BOSTED',
-        fom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
-        tom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month').toDate()),
+        fom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
+        tom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month')),
         erBosattITrondheim: false,
     },
     status: OppgaveStatus.ULØST,
@@ -382,8 +382,8 @@ const getBekreftBostedOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
     oppgavetype: OppgaveType.BEKREFT_BOSTED,
     oppgavetypeData: {
         type: 'BOSTED',
-        fom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month').toDate()),
-        tom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month').toDate()),
+        fom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
+        tom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month')),
         erBosattITrondheim: false,
     },
     respons: {

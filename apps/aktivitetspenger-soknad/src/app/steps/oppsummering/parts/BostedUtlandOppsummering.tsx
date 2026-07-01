@@ -1,10 +1,10 @@
 import { FormSummary } from '@navikt/ds-react';
-import { dateRangeFormatter, ISODateToDate } from '@navikt/sif-common-utils';
-import { JaNeiSvar } from '@sif/soknad-ui';
-
-import { SøknadStepId } from '../../../setup/config/SoknadStepId';
-import { useSøknadsflyt } from '../../../setup/hooks';
 import { ForutgåendeBosteder } from '@navikt/k9-brukerdialog-prosessering-api';
+import { dateRangeFormatter, ISODate } from '@sif/utils';
+import { JaNeiSvar } from '@sif/soknad-ui';
+import { useStepNavigation } from '@sif/soknad-app';
+
+import { SøknadStepId } from '../../../types/SoknadStepId';
 
 interface Props {
     forutgåendeBosteder: ForutgåendeBosteder;
@@ -13,7 +13,7 @@ interface Props {
 export const BostedUtlandOppsummering = ({
     forutgåendeBosteder: { harBoddIUtlandetSiste5År, utenlandsoppholdSiste5År },
 }: Props) => {
-    const { navigateToStep } = useSøknadsflyt();
+    const { navigateToStep } = useStepNavigation();
     return (
         <FormSummary>
             <FormSummary.Header>
@@ -34,8 +34,8 @@ export const BostedUtlandOppsummering = ({
                             {utenlandsoppholdSiste5År.map((bosted, index) => (
                                 <div key={index}>
                                     {dateRangeFormatter.compact({
-                                        from: ISODateToDate(bosted.fraOgMed),
-                                        to: ISODateToDate(bosted.tilOgMed),
+                                        from: bosted.fraOgMed as ISODate,
+                                        to: bosted.tilOgMed as ISODate,
                                     })}
                                     : {bosted.landnavn}
                                 </div>

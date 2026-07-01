@@ -15,7 +15,7 @@ export const FjernetPeriodeOppgavePanel = ({ navn, oppgave, initialVisKvittering
     return (
         <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
             <Oppgavebekreftelse.Ubesvart>
-                <FjernetPeriodeOppgavetekst svarfrist={oppgave.sisteDatoEnKanSvare} />
+                <FjernetPeriodeOppgavetekst svarfrist={oppgave.frist} />
             </Oppgavebekreftelse.Ubesvart>
 
             <Oppgavebekreftelse.Besvart>

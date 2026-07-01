@@ -1,7 +1,7 @@
 import { Button } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { countryIsMemberOfEøsOrEfta, DateRange, dateUtils, getCountryName } from '@navikt/sif-common-utils';
-import { getDateRangeValidator, getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { countryIsMemberOfEøsOrEfta, DateRange, getCountryName, ISODate } from '@sif/utils';
+import { getISODateRangeValidator, getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, datePickerUtils, SifInputGroup, useSifValidate, YesOrNo } from '@sif/rhf';
 import { useEffect, useState } from 'react';
 import { FormProvider, useFieldArray, useForm, useWatch } from 'react-hook-form';
@@ -28,8 +28,8 @@ interface Props extends UtenlandsoppholdDialogFormConfig {
     opphold?: Utenlandsopphold;
     alleOpphold?: Utenlandsopphold[];
     variant: UtenlandsoppholdVariant;
-    minDate: Date;
-    maxDate: Date;
+    minDate: ISODate;
+    maxDate: ISODate;
     disabledDateRanges?: DateRange[];
     onValidSubmit: (opphold: Utenlandsopphold) => void;
 }
@@ -62,8 +62,8 @@ const oppholdToFormValues = (
     variant: UtenlandsoppholdVariant,
 ): UtenlandsoppholdFormValues => {
     const base: UtenlandsoppholdFormValues = {
-        fom: dateUtils.dateToISODate(opphold.fom),
-        tom: dateUtils.dateToISODate(opphold.tom),
+        fom: opphold.fom,
+        tom: opphold.tom,
         landkode: opphold.landkode,
         erSammenMedBarnet: YesOrNo.UNANSWERED,
         erBarnetInnlagt: YesOrNo.UNANSWERED,
@@ -105,8 +105,8 @@ const formValuesToUtenlandsopphold = (
     id?: string,
 ): Utenlandsopphold => {
     const oppholdId = id || crypto.randomUUID();
-    const fom = datePickerUtils.parseDatePickerValue(values.fom);
-    const tom = datePickerUtils.parseDatePickerValue(values.tom);
+    const fom = datePickerUtils.parseDatePickerValueToISODate(values.fom);
+    const tom = datePickerUtils.parseDatePickerValueToISODate(values.tom);
     if (!fom || !tom || !values.landkode) {
         throw new Error('Invalid utenlandsopphold values');
     }
@@ -263,8 +263,8 @@ export const UtenlandsoppholdDialogForm = ({
         }
     };
 
-    const fromDate = datePickerUtils.parseDatePickerValue(fom);
-    const toDate = datePickerUtils.parseDatePickerValue(tom);
+    const fromDate = datePickerUtils.parseDatePickerValueToISODate(fom);
+    const toDate = datePickerUtils.parseDatePickerValueToISODate(tom);
 
     return (
         <FormProvider {...methods}>
@@ -290,11 +290,11 @@ export const UtenlandsoppholdDialogForm = ({
                                 validate: validateField(
                                     UtenlandsoppholdFormFields.fom,
                                     (value) =>
-                                        getDateRangeValidator({
+                                        getISODateRangeValidator({
                                             required: true,
                                             min: minDate,
                                             max: maxDate,
-                                            toDate: datePickerUtils.parseDatePickerValue(
+                                            toDate: datePickerUtils.parseDatePickerValueToISODate(
                                                 getValues(UtenlandsoppholdFormFields.tom),
                                             ),
                                         }).validateFromDate(value),
@@ -315,11 +315,11 @@ export const UtenlandsoppholdDialogForm = ({
                                 validate: validateField(
                                     UtenlandsoppholdFormFields.tom,
                                     (value) =>
-                                        getDateRangeValidator({
+                                        getISODateRangeValidator({
                                             required: true,
                                             min: minDate,
                                             max: maxDate,
-                                            fromDate: datePickerUtils.parseDatePickerValue(
+                                            fromDate: datePickerUtils.parseDatePickerValueToISODate(
                                                 getValues(UtenlandsoppholdFormFields.fom),
                                             ),
                                         }).validateToDate(value),

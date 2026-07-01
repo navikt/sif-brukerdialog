@@ -1,9 +1,10 @@
-import { typedIntlHelper } from '@navikt/sif-common-utils';
+import { typedIntlHelper } from '@sif/utils';
 import { sifSoknadFormsMessages } from '@sif/soknad-forms';
 import { sifSoknadUiMessages } from '@sif/soknad-ui/i18n';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { appMessages_nb } from './nb/appMessages';
+import { IntlMessageObjectFormat } from '@sif/soknad-app';
+import { appMessages_nb } from './nb';
 
 const libMessages = {
     nb: {
@@ -39,7 +40,7 @@ export const AppText = (props: AppTextProps) => {
     return <FormattedMessage {...props} />;
 };
 
-export const applicationIntlMessages = {
+export const applicationIntlMessages: IntlMessageObjectFormat = {
     nb,
     nn,
 };

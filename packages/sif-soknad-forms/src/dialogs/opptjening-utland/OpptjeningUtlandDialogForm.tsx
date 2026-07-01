@@ -1,17 +1,17 @@
 import { FormLayout } from '@navikt/sif-common-ui';
-import { dateUtils } from '@navikt/sif-common-utils';
-import { getDateRangeValidator, getRequiredFieldValidator, getStringValidator } from '@navikt/sif-validation';
+import { getISODateRangeValidator, getRequiredFieldValidator, getStringValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, datePickerUtils, useSifValidate } from '@sif/rhf';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
 import { OpptjeningAktivitet, OpptjeningUtland } from './types';
+import { ISODate } from '@sif/utils';
 
 interface Props {
     formId: string;
     opptjening?: OpptjeningUtland;
-    minDate: Date;
-    maxDate: Date;
+    minDate: ISODate;
+    maxDate: ISODate;
     onValidSubmit: (opptjening: OpptjeningUtland) => void;
 }
 
@@ -34,16 +34,12 @@ type OpptjeningUtlandFormValues = {
 const { DateRangePicker, CountrySelect, RadioGroup, TextField } = createSifFormComponents<OpptjeningUtlandFormValues>();
 
 const opptjeningToFormValues = (opptjening: OpptjeningUtland): OpptjeningUtlandFormValues => ({
-    fom: dateUtils.dateToISODate(opptjening.fom),
-    tom: dateUtils.dateToISODate(opptjening.tom),
-    landkode: opptjening.landkode,
-    opptjeningType: opptjening.opptjeningType,
-    navn: opptjening.navn,
+    ...opptjening,
 });
 
 const formValuesToOpptjeningUtland = (values: OpptjeningUtlandFormValues, id?: string): OpptjeningUtland => {
-    const fom = datePickerUtils.parseDatePickerValue(values.fom);
-    const tom = datePickerUtils.parseDatePickerValue(values.tom);
+    const fom = datePickerUtils.parseDatePickerValueToISODate(values.fom);
+    const tom = datePickerUtils.parseDatePickerValueToISODate(values.tom);
     if (!fom || !tom || !values.landkode || !values.opptjeningType || !values.navn) {
         throw new Error('Invalid opptjening utland values');
     }
@@ -98,11 +94,11 @@ export const OpptjeningUtlandDialogForm = ({ formId, opptjening, minDate, maxDat
                                 validate: validateField(
                                     OpptjeningUtlandFormFields.fom,
                                     (value) =>
-                                        getDateRangeValidator({
+                                        getISODateRangeValidator({
                                             required: true,
                                             min: minDate,
                                             max: maxDate,
-                                            toDate: datePickerUtils.parseDatePickerValue(
+                                            toDate: datePickerUtils.parseDatePickerValueToISODate(
                                                 methods.getValues(OpptjeningUtlandFormFields.tom),
                                             ),
                                         }).validateFromDate(value),
@@ -122,11 +118,11 @@ export const OpptjeningUtlandDialogForm = ({ formId, opptjening, minDate, maxDat
                                 validate: validateField(
                                     OpptjeningUtlandFormFields.tom,
                                     (value) =>
-                                        getDateRangeValidator({
+                                        getISODateRangeValidator({
                                             required: true,
                                             min: minDate,
                                             max: maxDate,
-                                            fromDate: datePickerUtils.parseDatePickerValue(
+                                            fromDate: datePickerUtils.parseDatePickerValueToISODate(
                                                 methods.getValues(OpptjeningUtlandFormFields.fom),
                                             ),
                                         }).validateToDate(value),

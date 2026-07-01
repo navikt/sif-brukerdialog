@@ -1,6 +1,6 @@
 {
     "name": "@sif/rhf",
-    "version": "0.0.3",
+    "version": "0.1.0",
     "private": true,
     "repository": {
         "type": "git",
@@ -23,22 +23,22 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@navikt/ds-react": "8.11.1",
-        "@navikt/sif-common-utils": "workspace:*",
-        "react-hook-form": "7.77.0",
-        "react-intl": "10.1.13"
+        "@navikt/ds-react": "8.14.0",
+        "@sif/utils": "workspace:*",
+        "react-hook-form": "7.80.0",
+        "react-intl": "10.1.14"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
         "@testing-library/dom": "10.4.1",
         "@testing-library/react": "16.3.2",
-        "@types/node": "25.9.1",
-        "@types/react": "19.2.16",
+        "@types/node": "25.9.3",
+        "@types/react": "19.2.17",
         "@types/react-dom": "19.2.3",
         "react": "19.2.7",
         "react-dom": "19.2.7",
         "typescript": "6.0.3",
-        "vitest": "4.1.8"
+        "vitest": "4.1.9"
     },
     "peerDependencies": {
         "dayjs": ">=1.11.19",

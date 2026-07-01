@@ -1,0 +1,53 @@
+{
+    "name": "@sif/soknad-app",
+    "version": "0.1.1",
+    "private": true,
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/navikt/sif-brukerdialog.git"
+    },
+    "type": "module",
+    "exports": {
+        ".": "./src/index.ts"
+    },
+    "main": "src/index.ts",
+    "types": "src/index.ts",
+    "scripts": {
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
+        "test": "vitest run"
+    },
+    "dependencies": {
+        "@navikt/ds-react": "8.14.0",
+        "@navikt/nav-dekoratoren-moduler": "4.2.2",
+        "@navikt/sif-common-faro": "workspace:*",
+        "@navikt/sif-common-sentry": "workspace:*",
+        "@navikt/sif-common-ui": "workspace:*",
+        "@sentry/react": "10.62.0",
+        "@sif/api": "workspace:*",
+        "@sif/rhf": "workspace:*",
+        "@sif/soknad-ui": "workspace:*",
+        "@sif/utils": "workspace:*",
+        "@tanstack/react-query": "5.101.1",
+        "js-cookie": "3.0.8",
+        "react-hook-form": "7.80.0",
+        "react-intl": "10.1.14",
+        "react-router-dom": "7.18.0",
+        "zustand": "5.0.14"
+    },
+    "devDependencies": {
+        "@sif/eslint-config": "workspace:*",
+        "@testing-library/react": "16.3.2",
+        "@types/react": "19.2.17",
+        "@types/react-dom": "19.2.3",
+        "react": "19.2.7",
+        "react-dom": "19.2.7",
+        "typescript": "6.0.3",
+        "vitest": "4.1.9"
+    },
+    "peerDependencies": {
+        "react": ">=19",
+        "react-dom": ">=19"
+    }
+}

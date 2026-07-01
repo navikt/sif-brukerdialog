@@ -1,0 +1,80 @@
+import {
+    DeltakelseDto,
+    DeltakelseHistorikkDto,
+    DeltakerPersonalia,
+    Endringstype,
+    Revisjonstype,
+} from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { beregnPeriodeMaksDato, relativeMockTimestamp } from '../mockDateUtils';
+import { MockScenario } from './types';
+
+/**
+ * Scenario: Slettet deltaker.
+ * Forventede handlinger: alle false (erSlettet overstyrer alt).
+ */
+
+const DELTAKER_ID = '49395468-fca7-42eb-8ea2-6854d81189e2';
+const DELTAKELSE_ID = '5e8d1e4c-801c-4d13-8987-abfae3eaaa01';
+const FRA_OG_MED = '2025-03-10';
+
+const deltakerPersonalia: DeltakerPersonalia = {
+    id: DELTAKER_ID,
+    deltakerIdent: '65430071240',
+    navn: {
+        fornavn: 'AVSLUTTET',
+        etternavn: 'DELTAKER',
+    },
+    fødselsdato: '1998-12-31',
+    førsteMuligeInnmeldingsdato: '2013-05-10',
+    sisteMuligeInnmeldingsdato: '2025-04-10',
+    diskresjonskoder: [],
+};
+
+const deltakelse: DeltakelseDto = {
+    id: DELTAKELSE_ID,
+    deltaker: { id: DELTAKER_ID, deltakerIdent: '65430071240' },
+    fraOgMed: FRA_OG_MED,
+    tilOgMed: undefined,
+    erSlettet: true,
+    harOpphørsvedtak: true,
+    harForlengetPeriode: false,
+    forlengetPeriodeMaksDato: beregnPeriodeMaksDato(FRA_OG_MED),
+    periodeMaksDato: beregnPeriodeMaksDato(FRA_OG_MED),
+    harUtvidetKvote: false,
+    kvoteMaksDato: beregnPeriodeMaksDato(FRA_OG_MED),
+    søktTidspunkt: relativeMockTimestamp(-8, 'months'),
+};
+
+const historikk: DeltakelseHistorikkDto[] = [
+    {
+        revisjonstype: Revisjonstype.OPPRETTET,
+        endringstype: Endringstype.DELTAKER_MELDT_INN,
+        endring: 'Deltaker er meldt inn i programmet.',
+        aktør: 'Z990501 (veileder)',
+        tidspunkt: relativeMockTimestamp(-8, 'months'),
+    },
+    {
+        revisjonstype: Revisjonstype.ENDRET,
+        endringstype: Endringstype.DELTAKER_HAR_SØKT_YTELSE,
+        endring: 'Deltaker har sendt inn søknad.',
+        aktør: 'Z990501 (deltaker)',
+        tidspunkt: relativeMockTimestamp(-7, 'months'),
+    },
+];
+
+export const slettetDeltakerScenario: MockScenario = {
+    fnr: '65430071240',
+    beskrivelse: 'Slettet deltaker',
+    gruppe: 'grunnscenarioer',
+    forventedeHandlinger: {
+        kanEndreStartdato: { resultat: false, årsak: '' },
+        kanMeldesUt: { resultat: false, årsak: '' },
+        kanEndreSluttdato: { resultat: false, årsak: '' },
+        kanSletteSluttdato: { resultat: false, årsak: '' },
+        kanForlengePeriode: { resultat: false, årsak: '' },
+        kanSletteDeltakelse: { resultat: false, årsak: '' },
+    },
+    deltakerPersonalia,
+    deltakelse,
+    historikk,
+};

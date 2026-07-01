@@ -1,5 +1,5 @@
 import { Alert, FormSummary, Heading, Link, VStack } from '@navikt/ds-react';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter } from '@sif/utils';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
 

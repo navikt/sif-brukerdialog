@@ -8,6 +8,7 @@ export type AppEventPayloads = {
     [AppHendelse.sluttdatoSattFørsteGang]: { årsak: Utmeldingsårsak };
     [AppHendelse.aktivDeltakerSlettet]: { årsak: SlettDeltakerÅrsak };
     [AppHendelse.sluttdatoEndret]: void;
+    [AppHendelse.sluttdatoSlettet]: void;
     [AppHendelse.deltakerSlettet]: void;
     [AppHendelse.deltakerRegistrert]: void;
     [AppHendelse.søkerOppDeltaker]: void;

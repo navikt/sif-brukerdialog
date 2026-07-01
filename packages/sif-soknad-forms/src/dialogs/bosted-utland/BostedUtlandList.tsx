@@ -1,7 +1,7 @@
 import { BodyShort, VStack } from '@navikt/ds-react';
 import { ActionLink, ItemListDarkside, useUiIntl } from '@navikt/sif-common-ui';
-import { dateRangeFormatter, getCountryName } from '@navikt/sif-common-utils';
-import { Locale } from '@sif/soknad/utils';
+import { dateRangeFormatter, getCountryName, Locale } from '@sif/utils';
+
 import { ReactNode } from 'react';
 
 import { BostedUtland } from '.';

@@ -2,6 +2,7 @@ import { YesOrNo } from '@sif/rhf';
 import dayjs from 'dayjs';
 
 import { Næringstype, Virksomhet } from './index';
+import { dateToISODate } from '@sif/utils';
 
 const today = dayjs();
 
@@ -11,7 +12,7 @@ export const exampleVirksomhet: Virksomhet = {
     navnPåVirksomheten: 'Krokete Paradis',
     registrertINorge: YesOrNo.YES,
     organisasjonsnummer: '991012133',
-    fom: today.subtract(5, 'year').toDate(),
+    fom: dateToISODate(today.subtract(5, 'year')),
     erPågående: true,
     hattVarigEndringAvNæringsinntektSiste4Kalenderår: YesOrNo.NO,
     harRegnskapsfører: YesOrNo.NO,
@@ -24,7 +25,7 @@ export const pågåendeVirksomhet: Virksomhet = {
     navnPåVirksomheten: 'Havbris Fiske',
     registrertINorge: YesOrNo.YES,
     organisasjonsnummer: '991012133',
-    fom: today.subtract(6, 'year').toDate(),
+    fom: dateToISODate(today.subtract(6, 'year')),
     erPågående: true,
     hattVarigEndringAvNæringsinntektSiste4Kalenderår: YesOrNo.NO,
     harRegnskapsfører: YesOrNo.YES,
@@ -38,7 +39,7 @@ export const nyoppstartetVirksomhet: Virksomhet = {
     navnPåVirksomheten: 'Nordlys Design',
     registrertINorge: YesOrNo.NO,
     registrertILand: 'SE',
-    fom: today.subtract(10, 'month').toDate(),
+    fom: dateToISODate(today.subtract(10, 'month')),
     erPågående: true,
     næringsinntekt: 420000,
     harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene: YesOrNo.NO,
@@ -51,10 +52,10 @@ export const virksomhetMedVarigEndring: Virksomhet = {
     navnPåVirksomheten: 'Fjellgård Drift',
     registrertINorge: YesOrNo.YES,
     organisasjonsnummer: '991012133',
-    fom: today.subtract(8, 'year').toDate(),
-    tom: today.subtract(2, 'month').toDate(),
+    fom: dateToISODate(today.subtract(8, 'year')),
+    tom: dateToISODate(today.subtract(2, 'month')),
     hattVarigEndringAvNæringsinntektSiste4Kalenderår: YesOrNo.YES,
-    varigEndringINæringsinntekt_dato: today.subtract(14, 'month').toDate(),
+    varigEndringINæringsinntekt_dato: dateToISODate(today.subtract(14, 'month')),
     varigEndringINæringsinntekt_inntektEtterEndring: 360000,
     varigEndringINæringsinntekt_forklaring: 'Mindre drift etter omlegging av virksomheten.',
     harRegnskapsfører: YesOrNo.NO,

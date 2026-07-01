@@ -42,6 +42,7 @@ export const zEndringstype = z.enum([
     'DELTAKER_MELDT_UT',
     'ENDRET_STARTDATO',
     'ENDRET_SLUTTDATO',
+    'SLUTTDATO_SLETTET',
     'DELTAKER_HAR_SØKT_YTELSE',
     'DELTAKELSE_FJERNET',
     'FORLENGET_PERIODE',
@@ -153,6 +154,15 @@ export const zDeltakelseHistorikkPath = z.object({
  * OK
  */
 export const zDeltakelseHistorikkResponse = z.array(zDeltakelseHistorikkDto);
+
+export const zSlettSluttdatoPath = z.object({
+    deltakelseId: z.uuid(),
+});
+
+/**
+ * OK
+ */
+export const zSlettSluttdatoResponse = zDeltakelseDto;
 
 export const zMeldInnDeltakerBody = zDeltakelseInnmeldingDto;
 

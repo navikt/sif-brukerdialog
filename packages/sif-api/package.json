@@ -1,6 +1,6 @@
 {
     "name": "@sif/api",
-    "version": "0.0.5",
+    "version": "0.1.1",
     "private": true,
     "description": "Api, types and TanStack Query hooks for SIF applications",
     "type": "module",
@@ -23,22 +23,22 @@
         "lint:tsc": "tsc --noEmit"
     },
     "dependencies": {
-        "@navikt/ds-react": "8.11.1",
+        "@navikt/ds-react": "8.14.0",
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
         "@navikt/k9-sak-innsyn-api": "workspace:*",
         "@navikt/sif-common-env": "workspace:*",
-        "@navikt/sif-common-utils": "workspace:*",
         "@navikt/ung-brukerdialog-api": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
-        "@tanstack/react-query": "5.101.0",
-        "axios": "1.16.1",
+        "@sif/utils": "workspace:*",
+        "@tanstack/react-query": "5.101.1",
+        "axios": "1.18.1",
         "dayjs": "1.11.21",
         "object-hash": "3.0.0",
-        "uuid": "14.0.0"
+        "uuid": "14.0.1"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/react": "19.2.16",
+        "@types/react": "19.2.17",
         "react": "19.2.7",
         "typescript": "6.0.3",
         "zod": "4.4.3"

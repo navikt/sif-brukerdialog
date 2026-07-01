@@ -107,7 +107,10 @@ const EndreStartdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                                         maxDate={startdatoMinMax.to}
                                         defaultMonth={deltakelse.fraOgMed}
                                         disableWeekends={true}
-                                        validate={getPeriodeDatoValidator(startdatoMinMax, deltakelse.fraOgMed)}
+                                        validate={getPeriodeDatoValidator({
+                                            periode: startdatoMinMax,
+                                            registrertDato: deltakelse.fraOgMed,
+                                        })}
                                     />
                                     <Bleed marginBlock="space-16 space-0">
                                         <ConfirmationCheckbox

@@ -1,5 +1,4 @@
 import { uiMessages } from '@navikt/sif-common-ui';
-import { typedIntlHelper } from '@sif/soknad/utils';
 import { sifSoknadFormsMessages } from '@sif/soknad-forms';
 import { sifSoknadUiMessages } from '@sif/soknad-ui/i18n';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -10,6 +9,7 @@ import { appMessages_nb } from './nb/appMessages';
 import { stepMessages_nb } from './nb/stepMessages';
 import { appMessages_nn } from './nn/appMessages';
 import { stepMessages_nn } from './nn/stepMessages';
+import { typedIntlHelper } from '@sif/utils';
 
 const libMessages = {
     nb: {

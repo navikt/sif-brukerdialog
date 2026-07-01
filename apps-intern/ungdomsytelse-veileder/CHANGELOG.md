@@ -1,4 +1,32 @@
-# @navikt/sif-demo-app
+# @navikt/ungdomsytelse-veileder
+
+## 0.9.71
+
+### Patch Changes
+
+- Codegen:prod
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.13
+    - @navikt/ung-common@0.0.103
+
+## 0.9.70
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-validation@1.0.22
+    - @navikt/sif-common-api@0.4.96
+    - @navikt/sif-common-core-ds@10.3.57
+    - @navikt/sif-common-formik-ds@2.5.47
+    - @navikt/sif-common-ui@0.11.58
+
+## 0.9.69
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.12
+    - @navikt/ung-common@0.0.102
 
 ## 0.9.68
 

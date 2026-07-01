@@ -2,7 +2,7 @@
 
 import * as z from 'zod';
 
-import type { Client, Options as Options2, TDataShape } from './client';
+import type { Client, ClientMeta, Options as Options2, RequestResult, TDataShape } from './client';
 import { client } from './client.gen';
 import type {
     HentAlleOppgaverData,
@@ -37,7 +37,7 @@ export type Options<
      * You can pass arbitrary values through the `meta` object. This can be
      * used to access values that aren't defined as part of the SDK function.
      */
-    meta?: Record<string, unknown>;
+    meta?: keyof ClientMeta extends never ? Record<string, unknown> : ClientMeta;
 };
 
 export class BrukerdialogOppgave {
@@ -46,7 +46,7 @@ export class BrukerdialogOppgave {
      */
     public static hentAlleOppgaver<ThrowOnError extends boolean = true>(
         options?: Options<HentAlleOppgaverData, ThrowOnError>,
-    ) {
+    ): RequestResult<HentAlleOppgaverResponses, unknown, ThrowOnError> {
         return (options?.client ?? client).get<HentAlleOppgaverResponses, unknown, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -66,7 +66,9 @@ export class BrukerdialogOppgave {
     /**
      * Henter en spesifikk oppgave basert på oppgaveReferanse
      */
-    public static hentOppgave<ThrowOnError extends boolean = true>(options: Options<HentOppgaveData, ThrowOnError>) {
+    public static hentOppgave<ThrowOnError extends boolean = true>(
+        options: Options<HentOppgaveData, ThrowOnError>,
+    ): RequestResult<HentOppgaveResponses, unknown, ThrowOnError> {
         return (options.client ?? client).get<HentOppgaveResponses, unknown, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -86,7 +88,9 @@ export class BrukerdialogOppgave {
     /**
      * Løser en spesifikk oppgave basert på oppgaveReferanse
      */
-    public static løsOppgave<ThrowOnError extends boolean = true>(options: Options<LøsOppgaveData, ThrowOnError>) {
+    public static løsOppgave<ThrowOnError extends boolean = true>(
+        options: Options<LøsOppgaveData, ThrowOnError>,
+    ): RequestResult<LøsOppgaveResponses, unknown, ThrowOnError> {
         return (options.client ?? client).post<LøsOppgaveResponses, unknown, ThrowOnError>({
             requestValidator: async (data) =>
                 await z

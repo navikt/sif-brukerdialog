@@ -2,7 +2,7 @@
 
 import * as z from 'zod';
 
-import type { Client, Options as Options2, TDataShape } from './client';
+import type { Client, ClientMeta, Options as Options2, RequestResult, TDataShape } from './client';
 import { client } from './client.gen';
 import type {
     AktiverMikrofrontendData,
@@ -69,13 +69,13 @@ export type Options<
      * You can pass arbitrary values through the `meta` object. This can be
      * used to access values that aren't defined as part of the SDK function.
      */
-    meta?: Record<string, unknown>;
+    meta?: keyof ClientMeta extends never ? Record<string, unknown> : ClientMeta;
 };
 
 export class DokumentController {
     public static hentDokumentOversikt<ThrowOnError extends boolean = true>(
         options: Options<HentDokumentOversiktData, ThrowOnError>,
-    ) {
+    ): RequestResult<HentDokumentOversiktResponses, HentDokumentOversiktErrors, ThrowOnError> {
         return (options.client ?? client).get<HentDokumentOversiktResponses, HentDokumentOversiktErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -93,7 +93,9 @@ export class DokumentController {
         });
     }
 
-    public static hentDokument<ThrowOnError extends boolean = true>(options: Options<HentDokumentData, ThrowOnError>) {
+    public static hentDokument<ThrowOnError extends boolean = true>(
+        options: Options<HentDokumentData, ThrowOnError>,
+    ): RequestResult<HentDokumentResponses, HentDokumentErrors, ThrowOnError> {
         return (options.client ?? client).get<HentDokumentResponses, HentDokumentErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -115,7 +117,7 @@ export class DokumentController {
 export class MikrofrontendForvaltningController {
     public static aktiverMikrofrontend<ThrowOnError extends boolean = true>(
         options: Options<AktiverMikrofrontendData, ThrowOnError>,
-    ) {
+    ): RequestResult<AktiverMikrofrontendResponses, AktiverMikrofrontendErrors, ThrowOnError> {
         return (options.client ?? client).post<AktiverMikrofrontendResponses, AktiverMikrofrontendErrors, ThrowOnError>(
             {
                 requestValidator: async (data) =>
@@ -141,7 +143,7 @@ export class MikrofrontendForvaltningController {
 
     public static hentMikrofrontender<ThrowOnError extends boolean = true>(
         options: Options<HentMikrofrontenderData, ThrowOnError>,
-    ) {
+    ): RequestResult<HentMikrofrontenderResponses, HentMikrofrontenderErrors, ThrowOnError> {
         return (options.client ?? client).post<HentMikrofrontenderResponses, HentMikrofrontenderErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -167,7 +169,7 @@ export class MikrofrontendForvaltningController {
 export class AktØrBytteController {
     public static oppdaterAktoerId<ThrowOnError extends boolean = true>(
         options: Options<OppdaterAktoerIdData, ThrowOnError>,
-    ) {
+    ): RequestResult<OppdaterAktoerIdResponses, OppdaterAktoerIdErrors, ThrowOnError> {
         return (options.client ?? client).post<OppdaterAktoerIdResponses, OppdaterAktoerIdErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -193,7 +195,7 @@ export class AktØrBytteController {
 export class K9SakInnsynSØknadController {
     public static hentSøknader1<ThrowOnError extends boolean = true>(
         options?: Options<HentSøknader1Data, ThrowOnError>,
-    ) {
+    ): RequestResult<HentSøknader1Responses, HentSøknader1Errors, ThrowOnError> {
         return (options?.client ?? client).get<HentSøknader1Responses, HentSøknader1Errors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -213,7 +215,9 @@ export class K9SakInnsynSØknadController {
 }
 
 export class SØknadController {
-    public static hentSøknader<ThrowOnError extends boolean = true>(options?: Options<HentSøknaderData, ThrowOnError>) {
+    public static hentSøknader<ThrowOnError extends boolean = true>(
+        options?: Options<HentSøknaderData, ThrowOnError>,
+    ): RequestResult<HentSøknaderResponses, HentSøknaderErrors, ThrowOnError> {
         return (options?.client ?? client).get<HentSøknaderResponses, HentSøknaderErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -231,7 +235,9 @@ export class SØknadController {
         });
     }
 
-    public static hentSøknad<ThrowOnError extends boolean = true>(options: Options<HentSøknadData, ThrowOnError>) {
+    public static hentSøknad<ThrowOnError extends boolean = true>(
+        options: Options<HentSøknadData, ThrowOnError>,
+    ): RequestResult<HentSøknadResponses, HentSøknadErrors, ThrowOnError> {
         return (options.client ?? client).get<HentSøknadResponses, HentSøknadErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -251,7 +257,7 @@ export class SØknadController {
 
     public static lastNedArbeidsgivermelding<ThrowOnError extends boolean = true>(
         options: Options<LastNedArbeidsgivermeldingData, ThrowOnError>,
-    ) {
+    ): RequestResult<LastNedArbeidsgivermeldingResponses, LastNedArbeidsgivermeldingErrors, ThrowOnError> {
         return (options.client ?? client).get<
             LastNedArbeidsgivermeldingResponses,
             LastNedArbeidsgivermeldingErrors,

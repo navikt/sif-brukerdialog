@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { registrertDeltakerMock } from '../../../mock/data/registrertDeltakerMock';
+import { registrertDeltakerScenario } from '../../../mock/scenarioer/registrertDeltaker';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withQueryClientProvider } from '../../../storybook/decorators/withQueryClientProvider';
 import { withRouter } from '../../../storybook/decorators/withRouter';
@@ -20,6 +20,6 @@ type Story = StoryObj<typeof SlettNyDeltakerModal>;
 export const Default: Story = {
     name: 'Slett ny deltaker',
     args: {
-        deltaker: registrertDeltakerSchema.parse(registrertDeltakerMock.deltakerPersonalia),
+        deltaker: registrertDeltakerSchema.parse(registrertDeltakerScenario.deltakerPersonalia),
     },
 };

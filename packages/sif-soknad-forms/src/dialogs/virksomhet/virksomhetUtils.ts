@@ -1,5 +1,5 @@
-import { dateUtils, getDate4YearsAgo } from '@navikt/sif-common-utils';
-import { YesOrNo } from '@sif/rhf';
+import { dateToISODate, getDate4YearsAgo, ISODate } from '@sif/utils';
+import { datePickerUtils, YesOrNo } from '@sif/rhf';
 import dayjs from 'dayjs';
 
 import { Næringstype, Virksomhet } from './types';
@@ -7,8 +7,8 @@ import { Næringstype, Virksomhet } from './types';
 export const erFiskerNæringstype = (næringstype?: Næringstype): boolean =>
     næringstype ? næringstype === Næringstype.FISKE : false;
 
-export const erVirksomhetRegnetSomNyoppstartet = (oppstartsdato: Date): boolean =>
-    dayjs(oppstartsdato).startOf('day').isAfter(getDate4YearsAgo());
+export const erVirksomhetRegnetSomNyoppstartet = (oppstartsdato: ISODate): boolean =>
+    dayjs(oppstartsdato).isAfter(getDate4YearsAgo());
 
 export type VirksomhetFormValues = {
     næringstype: Næringstype;
@@ -39,17 +39,17 @@ export const virksomhetToFormValues = (v: Virksomhet): VirksomhetFormValues => (
     registrertINorge: v.registrertINorge,
     registrertILand: v.registrertILand ?? '',
     organisasjonsnummer: v.organisasjonsnummer ?? '',
-    fom: dateUtils.dateToISODate(v.fom),
-    tom: v.tom ? dateUtils.dateToISODate(v.tom) : '',
+    fom: dateToISODate(v.fom),
+    tom: v.tom ? dateToISODate(v.tom) : '',
     erPågående: v.erPågående ?? false,
     næringsinntekt: v.næringsinntekt !== undefined ? String(v.næringsinntekt) : '',
     harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene:
         v.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene ?? YesOrNo.UNANSWERED,
-    blittYrkesaktivDato: v.blittYrkesaktivDato ? dateUtils.dateToISODate(v.blittYrkesaktivDato) : '',
+    blittYrkesaktivDato: v.blittYrkesaktivDato ? dateToISODate(v.blittYrkesaktivDato) : '',
     hattVarigEndringAvNæringsinntektSiste4Kalenderår:
         v.hattVarigEndringAvNæringsinntektSiste4Kalenderår ?? YesOrNo.UNANSWERED,
     varigEndringINæringsinntekt_dato: v.varigEndringINæringsinntekt_dato
-        ? dateUtils.dateToISODate(v.varigEndringINæringsinntekt_dato)
+        ? dateToISODate(v.varigEndringINæringsinntekt_dato)
         : '',
     varigEndringINæringsinntekt_inntektEtterEndring:
         v.varigEndringINæringsinntekt_inntektEtterEndring !== undefined
@@ -67,7 +67,7 @@ const getNumberFromString = (value: string): number | undefined => {
 };
 
 export const formValuesToVirksomhet = (values: VirksomhetFormValues, id?: string): Virksomhet => {
-    const fom = values.fom ? dateUtils.ISODateToDate(values.fom) : undefined;
+    const fom = values.fom ? datePickerUtils.parseDatePickerValueToISODate(values.fom) : undefined;
     const næringstype = values.næringstype;
     const registrertINorge = values.registrertINorge;
     const harRegnskapsfører = registrertINorge === YesOrNo.YES ? values.harRegnskapsfører : YesOrNo.UNANSWERED;
@@ -91,7 +91,11 @@ export const formValuesToVirksomhet = (values: VirksomhetFormValues, id?: string
         registrertILand: registrertINorge === YesOrNo.NO ? values.registrertILand || undefined : undefined,
         organisasjonsnummer: registrertINorge === YesOrNo.YES ? values.organisasjonsnummer || undefined : undefined,
         fom,
-        tom: erPågående ? undefined : values.tom ? dateUtils.ISODateToDate(values.tom) : undefined,
+        tom: erPågående
+            ? undefined
+            : values.tom
+              ? datePickerUtils.parseDatePickerValueToISODate(values.tom)
+              : undefined,
         erPågående: erPågående || undefined,
         næringsinntekt: erNyoppstartet ? getNumberFromString(values.næringsinntekt) : undefined,
         harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene: erNyoppstartet
@@ -101,7 +105,7 @@ export const formValuesToVirksomhet = (values: VirksomhetFormValues, id?: string
             erNyoppstartet &&
             values.harBlittYrkesaktivILøpetAvDeTreSisteFerdigliknedeÅrene === YesOrNo.YES &&
             values.blittYrkesaktivDato
-                ? dateUtils.ISODateToDate(values.blittYrkesaktivDato)
+                ? datePickerUtils.parseDatePickerValueToISODate(values.blittYrkesaktivDato)
                 : undefined,
         hattVarigEndringAvNæringsinntektSiste4Kalenderår: !erNyoppstartet
             ? values.hattVarigEndringAvNæringsinntektSiste4Kalenderår
@@ -110,7 +114,7 @@ export const formValuesToVirksomhet = (values: VirksomhetFormValues, id?: string
             !erNyoppstartet &&
             values.hattVarigEndringAvNæringsinntektSiste4Kalenderår === YesOrNo.YES &&
             values.varigEndringINæringsinntekt_dato
-                ? dateUtils.ISODateToDate(values.varigEndringINæringsinntekt_dato)
+                ? datePickerUtils.parseDatePickerValueToISODate(values.varigEndringINæringsinntekt_dato)
                 : undefined,
         varigEndringINæringsinntekt_inntektEtterEndring:
             !erNyoppstartet && values.hattVarigEndringAvNæringsinntektSiste4Kalenderår === YesOrNo.YES

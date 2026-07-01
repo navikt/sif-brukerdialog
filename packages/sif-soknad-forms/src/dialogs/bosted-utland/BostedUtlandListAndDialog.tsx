@@ -4,10 +4,11 @@ import { ModalFormAndList } from '../../components';
 import { BostedUtland } from '.';
 import { BostedUtlandFormDialog } from './BostedUtlandDialog';
 import { BostedUtlandList } from './BostedUtlandList';
+import { ISODate } from '@sif/utils';
 
 interface Props {
-    minDate?: Date;
-    maxDate?: Date;
+    minDate?: ISODate;
+    maxDate?: ISODate;
     bosteder?: BostedUtland[];
     addButtonLabel: ReactNode;
     addButtonId?: string;

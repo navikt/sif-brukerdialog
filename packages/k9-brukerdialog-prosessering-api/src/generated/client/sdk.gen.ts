@@ -2,7 +2,14 @@
 
 import * as z from 'zod';
 
-import { type Client, formDataBodySerializer, type Options as Options2, type TDataShape } from './client';
+import {
+    type Client,
+    type ClientMeta,
+    formDataBodySerializer,
+    type Options as Options2,
+    type RequestResult,
+    type TDataShape,
+} from './client';
 import { client } from './client.gen';
 import type {
     CreateMellomlagringData,
@@ -159,13 +166,13 @@ export type Options<
      * You can pass arbitrary values through the `meta` object. This can be
      * used to access values that aren't defined as part of the SDK function.
      */
-    meta?: Record<string, unknown>;
+    meta?: keyof ClientMeta extends never ? Record<string, unknown> : ClientMeta;
 };
 
 export class AktivitetspengerController {
     public static inntektrapportering1<ThrowOnError extends boolean = true>(
         options: Options<Inntektrapportering1Data, ThrowOnError>,
-    ) {
+    ): RequestResult<Inntektrapportering1Responses, Inntektrapportering1Errors, ThrowOnError> {
         return (options.client ?? client).post<Inntektrapportering1Responses, Inntektrapportering1Errors, ThrowOnError>(
             {
                 requestValidator: async (data) =>
@@ -190,7 +197,7 @@ export class AktivitetspengerController {
 
     public static oppgavebekreftelse1<ThrowOnError extends boolean = true>(
         options: Options<Oppgavebekreftelse1Data, ThrowOnError>,
-    ) {
+    ): RequestResult<Oppgavebekreftelse1Responses, Oppgavebekreftelse1Errors, ThrowOnError> {
         return (options.client ?? client).post<Oppgavebekreftelse1Responses, Oppgavebekreftelse1Errors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -213,7 +220,7 @@ export class AktivitetspengerController {
 
     public static innsendingAktivitetspengersøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingAktivitetspengersøknadData, ThrowOnError>,
-    ) {
+    ): RequestResult<InnsendingAktivitetspengersøknadResponses, InnsendingAktivitetspengersøknadErrors, ThrowOnError> {
         return (options.client ?? client).post<
             InnsendingAktivitetspengersøknadResponses,
             InnsendingAktivitetspengersøknadErrors,
@@ -242,7 +249,7 @@ export class AktivitetspengerController {
 export class EttersendingController {
     public static innsendingEttersendelse<ThrowOnError extends boolean = true>(
         options: Options<InnsendingEttersendelseData, ThrowOnError>,
-    ) {
+    ): RequestResult<InnsendingEttersendelseResponses, InnsendingEttersendelseErrors, ThrowOnError> {
         return (options.client ?? client).post<
             InnsendingEttersendelseResponses,
             InnsendingEttersendelseErrors,
@@ -271,7 +278,7 @@ export class EttersendingController {
 export class MellomlagringController {
     public static deleteMellomlagring<ThrowOnError extends boolean = true>(
         options: Options<DeleteMellomlagringData, ThrowOnError>,
-    ) {
+    ): RequestResult<DeleteMellomlagringResponses, DeleteMellomlagringErrors, ThrowOnError> {
         return (options.client ?? client).delete<DeleteMellomlagringResponses, DeleteMellomlagringErrors, ThrowOnError>(
             {
                 requestValidator: async (data) =>
@@ -291,7 +298,7 @@ export class MellomlagringController {
 
     public static getMellomlagring<ThrowOnError extends boolean = true>(
         options: Options<GetMellomlagringData, ThrowOnError>,
-    ) {
+    ): RequestResult<GetMellomlagringResponses, GetMellomlagringErrors, ThrowOnError> {
         return (options.client ?? client).get<GetMellomlagringResponses, GetMellomlagringErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -311,7 +318,7 @@ export class MellomlagringController {
 
     public static createMellomlagring<ThrowOnError extends boolean = true>(
         options: Options<CreateMellomlagringData, ThrowOnError>,
-    ) {
+    ): RequestResult<CreateMellomlagringResponses, CreateMellomlagringErrors, ThrowOnError> {
         return (options.client ?? client).post<CreateMellomlagringResponses, CreateMellomlagringErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -333,7 +340,7 @@ export class MellomlagringController {
 
     public static updateMellomlagring<ThrowOnError extends boolean = true>(
         options: Options<UpdateMellomlagringData, ThrowOnError>,
-    ) {
+    ): RequestResult<UpdateMellomlagringResponses, UpdateMellomlagringErrors, ThrowOnError> {
         return (options.client ?? client).put<UpdateMellomlagringResponses, UpdateMellomlagringErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -357,7 +364,11 @@ export class MellomlagringController {
 export class OmsorgsdagerAleneomsorgController {
     public static innsendingOmsorgsdagerAleneOmOmsorgenSøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingOmsorgsdagerAleneOmOmsorgenSøknadData, ThrowOnError>,
-    ) {
+    ): RequestResult<
+        InnsendingOmsorgsdagerAleneOmOmsorgenSøknadResponses,
+        InnsendingOmsorgsdagerAleneOmOmsorgenSøknadErrors,
+        ThrowOnError
+    > {
         return (options.client ?? client).post<
             InnsendingOmsorgsdagerAleneOmOmsorgenSøknadResponses,
             InnsendingOmsorgsdagerAleneOmOmsorgenSøknadErrors,
@@ -386,7 +397,11 @@ export class OmsorgsdagerAleneomsorgController {
 export class OmsorgspengerMidlertidigAleneController {
     public static innsendingOmsorgspengerMidlertidigAleneSøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingOmsorgspengerMidlertidigAleneSøknadData, ThrowOnError>,
-    ) {
+    ): RequestResult<
+        InnsendingOmsorgspengerMidlertidigAleneSøknadResponses,
+        InnsendingOmsorgspengerMidlertidigAleneSøknadErrors,
+        ThrowOnError
+    > {
         return (options.client ?? client).post<
             InnsendingOmsorgspengerMidlertidigAleneSøknadResponses,
             InnsendingOmsorgspengerMidlertidigAleneSøknadErrors,
@@ -415,7 +430,11 @@ export class OmsorgspengerMidlertidigAleneController {
 export class OmsorgspengerUtbetalingArbeidstakerController {
     public static innsendingOmsorgspengerutbetalingArbeidstakerSøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingOmsorgspengerutbetalingArbeidstakerSøknadData, ThrowOnError>,
-    ) {
+    ): RequestResult<
+        InnsendingOmsorgspengerutbetalingArbeidstakerSøknadResponses,
+        InnsendingOmsorgspengerutbetalingArbeidstakerSøknadErrors,
+        ThrowOnError
+    > {
         return (options.client ?? client).post<
             InnsendingOmsorgspengerutbetalingArbeidstakerSøknadResponses,
             InnsendingOmsorgspengerutbetalingArbeidstakerSøknadErrors,
@@ -444,7 +463,11 @@ export class OmsorgspengerUtbetalingArbeidstakerController {
 export class OmsorgspengerUtbetalingSnfController {
     public static innsendingOmsorgspengerutbetalingSnfSøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingOmsorgspengerutbetalingSnfSøknadData, ThrowOnError>,
-    ) {
+    ): RequestResult<
+        InnsendingOmsorgspengerutbetalingSnfSøknadResponses,
+        InnsendingOmsorgspengerutbetalingSnfSøknadErrors,
+        ThrowOnError
+    > {
         return (options.client ?? client).post<
             InnsendingOmsorgspengerutbetalingSnfSøknadResponses,
             InnsendingOmsorgspengerutbetalingSnfSøknadErrors,
@@ -473,7 +496,11 @@ export class OmsorgspengerUtbetalingSnfController {
 export class OmsorgspengerUtvidetRettController {
     public static innsendingOmsorgspengerKroniskSyktBarnSøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingOmsorgspengerKroniskSyktBarnSøknadData, ThrowOnError>,
-    ) {
+    ): RequestResult<
+        InnsendingOmsorgspengerKroniskSyktBarnSøknadResponses,
+        InnsendingOmsorgspengerKroniskSyktBarnSøknadErrors,
+        ThrowOnError
+    > {
         return (options.client ?? client).post<
             InnsendingOmsorgspengerKroniskSyktBarnSøknadResponses,
             InnsendingOmsorgspengerKroniskSyktBarnSøknadErrors,
@@ -502,7 +529,7 @@ export class OmsorgspengerUtvidetRettController {
 export class OpplÆringspengerSØknadController {
     public static innsendingOpplæringspengerSøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingOpplæringspengerSøknadData, ThrowOnError>,
-    ) {
+    ): RequestResult<InnsendingOpplæringspengerSøknadResponses, InnsendingOpplæringspengerSøknadErrors, ThrowOnError> {
         return (options.client ?? client).post<
             InnsendingOpplæringspengerSøknadResponses,
             InnsendingOpplæringspengerSøknadErrors,
@@ -531,7 +558,7 @@ export class OpplÆringspengerSØknadController {
 export class ArbeidsgivereController {
     public static hentArbeidsgivere<ThrowOnError extends boolean = true>(
         options: Options<HentArbeidsgivereData, ThrowOnError>,
-    ) {
+    ): RequestResult<HentArbeidsgivereResponses, HentArbeidsgivereErrors, ThrowOnError> {
         return (options.client ?? client).get<HentArbeidsgivereResponses, HentArbeidsgivereErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -550,7 +577,9 @@ export class ArbeidsgivereController {
 }
 
 export class BarnController {
-    public static hentBarn<ThrowOnError extends boolean = true>(options?: Options<HentBarnData, ThrowOnError>) {
+    public static hentBarn<ThrowOnError extends boolean = true>(
+        options?: Options<HentBarnData, ThrowOnError>,
+    ): RequestResult<HentBarnResponses, HentBarnErrors, ThrowOnError> {
         return (options?.client ?? client).get<HentBarnResponses, HentBarnErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -569,7 +598,9 @@ export class BarnController {
 }
 
 export class SØkerController {
-    public static hentSøker<ThrowOnError extends boolean = true>(options?: Options<HentSøkerData, ThrowOnError>) {
+    public static hentSøker<ThrowOnError extends boolean = true>(
+        options?: Options<HentSøkerData, ThrowOnError>,
+    ): RequestResult<HentSøkerResponses, HentSøkerErrors, ThrowOnError> {
         return (options?.client ?? client).get<HentSøkerResponses, HentSøkerErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -588,7 +619,9 @@ export class SØkerController {
 }
 
 export class PdfController {
-    public static lagPdf<ThrowOnError extends boolean = true>(options: Options<LagPdfData, ThrowOnError>) {
+    public static lagPdf<ThrowOnError extends boolean = true>(
+        options: Options<LagPdfData, ThrowOnError>,
+    ): RequestResult<LagPdfResponses, LagPdfErrors, ThrowOnError> {
         return (options.client ?? client).post<LagPdfResponses, LagPdfErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -614,7 +647,11 @@ export class PdfController {
 export class PleiepengerLivetsSluttfaseController {
     public static innsendingPleiepengerILivetsSluttfaseSøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingPleiepengerILivetsSluttfaseSøknadData, ThrowOnError>,
-    ) {
+    ): RequestResult<
+        InnsendingPleiepengerILivetsSluttfaseSøknadResponses,
+        InnsendingPleiepengerILivetsSluttfaseSøknadErrors,
+        ThrowOnError
+    > {
         return (options.client ?? client).post<
             InnsendingPleiepengerILivetsSluttfaseSøknadResponses,
             InnsendingPleiepengerILivetsSluttfaseSøknadErrors,
@@ -643,7 +680,7 @@ export class PleiepengerLivetsSluttfaseController {
 export class EndringsmeldingController {
     public static innsendingEndringsmelding<ThrowOnError extends boolean = true>(
         options: Options<InnsendingEndringsmeldingData, ThrowOnError>,
-    ) {
+    ): RequestResult<InnsendingEndringsmeldingResponses, InnsendingEndringsmeldingErrors, ThrowOnError> {
         return (options.client ?? client).post<
             InnsendingEndringsmeldingResponses,
             InnsendingEndringsmeldingErrors,
@@ -672,7 +709,11 @@ export class EndringsmeldingController {
 export class PleiepengerSyktBarnController {
     public static innsendingPleiepengerSyktBarnSøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingPleiepengerSyktBarnSøknadData, ThrowOnError>,
-    ) {
+    ): RequestResult<
+        InnsendingPleiepengerSyktBarnSøknadResponses,
+        InnsendingPleiepengerSyktBarnSøknadErrors,
+        ThrowOnError
+    > {
         return (options.client ?? client).post<
             InnsendingPleiepengerSyktBarnSøknadResponses,
             InnsendingPleiepengerSyktBarnSøknadErrors,
@@ -701,7 +742,7 @@ export class PleiepengerSyktBarnController {
 export class UngdomsytelseController {
     public static inntektrapportering<ThrowOnError extends boolean = true>(
         options: Options<InntektrapporteringData, ThrowOnError>,
-    ) {
+    ): RequestResult<InntektrapporteringResponses, InntektrapporteringErrors, ThrowOnError> {
         return (options.client ?? client).post<InntektrapporteringResponses, InntektrapporteringErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -724,7 +765,7 @@ export class UngdomsytelseController {
 
     public static oppgavebekreftelse<ThrowOnError extends boolean = true>(
         options: Options<OppgavebekreftelseData, ThrowOnError>,
-    ) {
+    ): RequestResult<OppgavebekreftelseResponses, OppgavebekreftelseErrors, ThrowOnError> {
         return (options.client ?? client).post<OppgavebekreftelseResponses, OppgavebekreftelseErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -747,7 +788,7 @@ export class UngdomsytelseController {
 
     public static innsendingUngdomsytelsesøknad<ThrowOnError extends boolean = true>(
         options: Options<InnsendingUngdomsytelsesøknadData, ThrowOnError>,
-    ) {
+    ): RequestResult<InnsendingUngdomsytelsesøknadResponses, InnsendingUngdomsytelsesøknadErrors, ThrowOnError> {
         return (options.client ?? client).post<
             InnsendingUngdomsytelsesøknadResponses,
             InnsendingUngdomsytelsesøknadErrors,
@@ -776,7 +817,7 @@ export class UngdomsytelseController {
 export class FeltValideringController {
     public static validerFriteksfelt<ThrowOnError extends boolean = true>(
         options: Options<ValiderFriteksfeltData, ThrowOnError>,
-    ) {
+    ): RequestResult<ValiderFriteksfeltResponses, ValiderFriteksfeltErrors, ThrowOnError> {
         return (options.client ?? client).post<ValiderFriteksfeltResponses, ValiderFriteksfeltErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -798,7 +839,9 @@ export class FeltValideringController {
 }
 
 export class VedleggController {
-    public static lagreVedlegg<ThrowOnError extends boolean = true>(options?: Options<LagreVedleggData, ThrowOnError>) {
+    public static lagreVedlegg<ThrowOnError extends boolean = true>(
+        options?: Options<LagreVedleggData, ThrowOnError>,
+    ): RequestResult<LagreVedleggResponses, LagreVedleggErrors, ThrowOnError> {
         return (options?.client ?? client).post<LagreVedleggResponses, LagreVedleggErrors, ThrowOnError>({
             ...formDataBodySerializer,
             requestValidator: async (data) =>
@@ -819,7 +862,9 @@ export class VedleggController {
         });
     }
 
-    public static slettVedlegg<ThrowOnError extends boolean = true>(options: Options<SlettVedleggData, ThrowOnError>) {
+    public static slettVedlegg<ThrowOnError extends boolean = true>(
+        options: Options<SlettVedleggData, ThrowOnError>,
+    ): RequestResult<SlettVedleggResponses, SlettVedleggErrors, ThrowOnError> {
         return (options.client ?? client).delete<SlettVedleggResponses, SlettVedleggErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
@@ -836,7 +881,9 @@ export class VedleggController {
         });
     }
 
-    public static hentVedlegg<ThrowOnError extends boolean = true>(options: Options<HentVedleggData, ThrowOnError>) {
+    public static hentVedlegg<ThrowOnError extends boolean = true>(
+        options: Options<HentVedleggData, ThrowOnError>,
+    ): RequestResult<HentVedleggResponses, HentVedleggErrors, ThrowOnError> {
         return (options.client ?? client).get<HentVedleggResponses, HentVedleggErrors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z

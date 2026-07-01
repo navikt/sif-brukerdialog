@@ -1,5 +1,5 @@
 import { BodyLong, Box, GuidePanel, Heading, ReadMore, VStack } from '@navikt/ds-react';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter, ISODate } from '@sif/utils';
 import ExternalLink from '@shared/components/external-link/ExternalLink';
 import { AppText, useAppIntl } from '@shared/i18n';
 import getLenker from '@shared/utils/lenker';
@@ -8,7 +8,7 @@ import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysnin
 
 interface Props {
     fornavn: string;
-    startdato: Date;
+    startdato: ISODate;
 }
 
 const VelkommenMelding = ({ fornavn, startdato }: Props) => {

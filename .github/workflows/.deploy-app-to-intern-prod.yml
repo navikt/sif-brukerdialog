@@ -23,7 +23,7 @@ jobs:
             image: ${{ steps.docker-push.outputs.image }}
         steps:
             - name: Checkout code
-              uses: actions/checkout@v6.0.2
+              uses: actions/checkout@v7.0.0
               with:
                   persist-credentials: false
 

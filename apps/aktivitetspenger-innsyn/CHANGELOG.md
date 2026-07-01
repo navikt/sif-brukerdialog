@@ -1,5 +1,42 @@
 # @navikt/aktivitetspenger-innsyn
 
+## 0.0.12
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.18
+    - @navikt/ung-brukerdialog-api@0.0.8
+    - @navikt/k9-sak-innsyn-api@0.2.20
+    - @sif/ung-innsyn@0.1.1
+    - @sif/api@0.1.1
+    - @sif/soknad-ui@0.1.1
+
+## 0.0.11
+
+### Patch Changes
+
+- Updated dependencies
+- Updated dependencies
+    - @navikt/sif-validation@1.0.22
+    - @sif/soknad-ui@0.1.0
+    - @sif/ung-innsyn@0.1.0
+    - @sif/utils@0.1.0
+    - @sif/api@0.1.0
+    - @sif/rhf@0.1.0
+    - @navikt/sif-common-core-ds@10.3.57
+
+## 0.0.10
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.17
+    - @navikt/k9-sak-innsyn-api@0.2.19
+    - @navikt/ung-brukerdialog-api@0.0.7
+    - @sif/api@0.0.6
+    - @sif/ung-innsyn@0.0.8
+
 ## 0.0.9
 
 ### Patch Changes

@@ -19,7 +19,7 @@ jobs:
     steps:
       # Sjekk ut koden
       - name: Checkout repository
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7.0.0
 
       # Sett opp pnpm
       - name: Setup pnpm

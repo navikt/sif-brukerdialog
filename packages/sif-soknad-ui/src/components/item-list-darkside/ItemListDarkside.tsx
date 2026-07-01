@@ -1,6 +1,6 @@
 import './itemListDarkside.css';
 
-import { guid } from '@navikt/sif-common-utils';
+import { guid } from '@sif/utils';
 import React from 'react';
 
 import { useSifSoknadUiIntl } from '../../i18n';

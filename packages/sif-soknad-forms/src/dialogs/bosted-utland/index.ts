@@ -1,4 +1,4 @@
-import { DateRange } from '@navikt/sif-common-utils';
+import { DateRange } from '@sif/utils';
 
 export type BostedUtland = {
     id: string;

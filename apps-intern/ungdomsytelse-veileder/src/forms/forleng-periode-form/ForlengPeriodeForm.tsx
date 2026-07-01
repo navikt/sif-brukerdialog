@@ -73,7 +73,7 @@ const ForlengPeriodeForm = ({ deltaker, deltakelse, onCancel, onDeltakelseChange
                                 <VStack gap="space-32" className="rounded-xs">
                                     <FormikYesOrNoQuestion
                                         name={FieldNames.vedtaksbrevErSendt}
-                                        legend="Er vedtaksbrev om at deltaker har fått forlenget periode på inntil 8 uker sendt fra Gosys?"
+                                        legend="Er vedtaksbrev om at deltaker har fått forlenget perioden i programmet med inntil 8 uker sendt fra Gosys?"
                                         validate={getYesOrNoValidator()}
                                     />
                                     {vedtaksbrevErSendt === YesOrNo.YES && (
@@ -90,8 +90,9 @@ const ForlengPeriodeForm = ({ deltaker, deltakelse, onCancel, onDeltakelseChange
                                     {vedtaksbrevErSendt === YesOrNo.NO && (
                                         <QuestionBleedTop>
                                             <Alert variant="warning">
-                                                Deltaker må ha et vedtak om at perioden er forlenget med inntil 8 uker
-                                                før forelengelsen kan registreres på ytelsen.
+                                                Deltaker må ha et vedtak om at perioden i programmet er forlenget med
+                                                inntil 8 nye uker, før forlengelsen kan registreres slik at perioden på
+                                                ungdomsprogramytelsen også blir forlenget.
                                             </Alert>
                                         </QuestionBleedTop>
                                     )}

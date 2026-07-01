@@ -1,7 +1,7 @@
 import DeltakelseContent from '@innsyn/components/deltakelse-content/DeltakelseContent';
 import { useInnsynBreadcrumbs } from '@innsyn/hooks/useInnsynBreadcrumbs';
 import { VStack } from '@navikt/ds-react';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter } from '@sif/utils';
 import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
 import { useAppIntl } from '@shared/i18n';
 import { InnsynForsideHeader } from '@sif/ung-innsyn/components';

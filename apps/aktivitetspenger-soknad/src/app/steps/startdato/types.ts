@@ -1,9 +1,7 @@
-import { StepFormValues } from '@sif/soknad/types';
-
 export enum StartdatoFormFields {
     startdato = 'startdato',
 }
 
-export interface StartdatoFormValues extends StepFormValues {
+export interface StartdatoFormValues {
     [StartdatoFormFields.startdato]?: string;
 }

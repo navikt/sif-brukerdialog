@@ -6,6 +6,7 @@ import { SifSoknadFormsText } from '../../i18n';
 import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { BostedUtlandListAndDialog } from './BostedUtlandListAndDialog';
 import type { BostedUtland } from './index';
+import { dateToISODate } from '@sif/utils';
 
 type StoryProps = {
     bosteder?: BostedUtland[];
@@ -19,8 +20,8 @@ const exampleBosteder: BostedUtland[] = [
         landkode: 'SWE',
         landnavn: 'Sverige',
         periode: {
-            from: today.subtract(8, 'month').toDate(),
-            to: today.subtract(6, 'month').subtract(10, 'day').toDate(),
+            from: dateToISODate(today.subtract(8, 'month')),
+            to: dateToISODate(today.subtract(6, 'month').subtract(10, 'day')),
         },
     },
     {
@@ -28,8 +29,8 @@ const exampleBosteder: BostedUtland[] = [
         landkode: 'DNK',
         landnavn: 'Danmark',
         periode: {
-            from: today.subtract(4, 'month').toDate(),
-            to: today.subtract(2, 'month').subtract(10, 'day').toDate(),
+            from: dateToISODate(today.subtract(4, 'month')),
+            to: dateToISODate(today.subtract(2, 'month').subtract(10, 'day')),
         },
     },
 ];
@@ -39,8 +40,8 @@ function BostedUtlandListAndDialogStory({ bosteder }: StoryProps) {
 
     return (
         <BostedUtlandListAndDialog
-            minDate={today.subtract(1, 'year').toDate()}
-            maxDate={today.add(1, 'year').toDate()}
+            minDate={dateToISODate(today.subtract(1, 'year'))}
+            maxDate={dateToISODate(today.add(1, 'year'))}
             bosteder={items}
             addButtonLabel={<SifSoknadFormsText id="@sifSoknadForms.bostedUtland.dialog.leggTilKnapp" />}
             onChange={setItems}

@@ -1,4 +1,4 @@
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { dateFormatter } from '@sif/utils';
 import { EndretStartdatoOppgave } from '@sif/api/ung-brukerdialog';
 import { ReactNode } from 'react';
 
@@ -20,10 +20,7 @@ export const EndretStartdatoOppgavePanel = ({ navn, oppgave, initialVisKvitterin
     return (
         <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
             <Oppgavebekreftelse.Ubesvart>
-                <EndretStartdatoOppgavetekst
-                    frist={oppgave.sisteDatoEnKanSvare}
-                    startdato={oppgave.oppgavetypeData.nyStartdato}
-                />
+                <EndretStartdatoOppgavetekst frist={oppgave.frist} startdato={oppgave.oppgavetypeData.nyStartdato} />
             </Oppgavebekreftelse.Ubesvart>
 
             <Oppgavebekreftelse.Besvart>
