@@ -2,13 +2,8 @@ import { SøknadRoutes } from '@app/søknad/config/SøknadRoutes';
 import { expect, test } from '@playwright/test';
 
 import { routeUtils } from '../../utils/routeUtils';
-import { setNow } from '../../utils/setNow';
 
 const rootUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/melding/velkommen';
-
-test.beforeEach(async ({ page }) => {
-    await setNow(page);
-});
 
 test('ukjent arbeidsforhold med kun ferie valgt', async ({ page }) => {
     await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN, 'arbeidsgiver-ikke-i-sak');

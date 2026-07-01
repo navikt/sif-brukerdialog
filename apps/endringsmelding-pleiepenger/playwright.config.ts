@@ -19,7 +19,7 @@ export default defineConfig({
             use: { ...devices['Desktop Chrome'] },
         },
         /**
-         * Kjører alle tester i San Francisco-tidssone (UTC-8) for å avdekke datofeil
+         * Kjører alle tester i Pacific Time (America/Los_Angeles, UTC-8/UTC-7) for å avdekke datofeil
          * der ISO-datoer uten Z tolkes som lokal tid og gir feil dag ved visning.
          * Eksempel: new Date('2023-01-01') i UTC+1 = 1. jan, men i UTC-8 = 31. des.
          */

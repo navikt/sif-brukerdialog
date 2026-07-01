@@ -3,7 +3,7 @@ import { AppEnv } from '../env.schema';
 export const getPlaywrightAppSettings = (): AppEnv & any => ({
     VELG_SCENARIO: 'on',
     SIF_PUBLIC_ENDRE_OMSORGSTILBUD: 'on',
-    NOW: '2023-01-05',
+    NOW: '2023-01-05T12:00:00Z',
     APP_VERSION: 'dev',
     ENV: 'dev',
     GITHUB_REF_NAME: 'some_branch_name',
