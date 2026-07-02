@@ -12,6 +12,9 @@ import { Søknadstype } from '../types/Søknadstype';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { StepID } from './soknadStepsConfig';
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+
+dayjs.extend(utc);
 
 interface StateHashInfo {
     søker: Søker;
