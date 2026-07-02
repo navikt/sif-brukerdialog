@@ -1,5 +1,6 @@
 import { getMellomlagringService as getMellomlagringService, MellomlagringYtelse, Søker } from '@navikt/sif-common-api';
 import { jsonSort } from '@navikt/sif-common-utils';
+import dayjs from 'dayjs';
 import hash from 'object-hash';
 
 import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
@@ -14,6 +15,17 @@ interface SøknadStateHashInfo {
     søker: Søker;
 }
 
+const isHashValid = (søknadState: MellomlagringData, info: SøknadStateHashInfo): boolean => {
+    if (søknadState.søknadHashString === createHashString(info)) {
+        return true;
+    }
+
+    const legacyDateString = dayjs.utc(info.søker.fødselsdato, 'YYYY-MM-DD').toDate();
+    // Migrasjonsshim: gammel mellomlagring brukte Date-objekt for fødselsdato
+    const legacyHash = hash(JSON.stringify(jsonSort({ søker: { ...info.søker, fødselsdato: legacyDateString } })));
+    return søknadState.søknadHashString === legacyHash;
+};
+
 const createHashString = (info: SøknadStateHashInfo) => {
     return hash(JSON.stringify(jsonSort(info)));
 };
@@ -22,7 +34,7 @@ const isMellomlagringValid = (søknadState: MellomlagringData, info: SøknadStat
     return (
         søknadState.versjon === MELLOMLAGRING_VERSJON &&
         søknadState.søknadsdata?.velkommen?.harForståttRettigheterOgPlikter === true &&
-        søknadState.søknadHashString === createHashString(info) &&
+        isHashValid(søknadState, info) &&
         isValidSøknadRoute(søknadState.søknadRoute)
     );
 };
