@@ -137,15 +137,14 @@ Opprett 5 filer under `src/app/steps/<mappename>/`:
 
 ```ts
 import { YesOrNo } from '@sif/rhf';
-import { StepFormValues } from '@sif/soknad/types';
 
 export enum <Prefix>FormFields {
     <felt> = '<felt>',
 }
 
-export interface <Prefix>FormValues extends StepFormValues {
+export type <Prefix>FormValues = {
     [<Prefix>FormFields.<felt>]?: YesOrNo;
-}
+};
 ```
 
 > For andre felttyper enn YesOrNo, bruk `string`, `boolean`, osv. etter behov.
