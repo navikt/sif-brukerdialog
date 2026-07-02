@@ -11,6 +11,7 @@ import { SoknadFormData } from '../types/SoknadFormData';
 import { Søknadstype } from '../types/Søknadstype';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { StepID } from './soknadStepsConfig';
+import dayjs from 'dayjs';
 
 interface StateHashInfo {
     søker: Søker;
@@ -21,8 +22,10 @@ const createHashString = (info: StateHashInfo) => {
     return hash(JSON.stringify(jsonSort(info)));
 };
 
-interface SoknadTemporaryStorage
-    extends Omit<PersistenceInterface<SoknadTempStorageData>, 'update' | 'create' | 'purge' | 'rehydrate'> {
+interface SoknadTemporaryStorage extends Omit<
+    PersistenceInterface<SoknadTempStorageData>,
+    'update' | 'create' | 'purge' | 'rehydrate'
+> {
     update: (
         soknadId: string,
         formData: Partial<SoknadFormData>,
@@ -58,6 +61,19 @@ const persistSetup = (søknadstype: Søknadstype) =>
         requestConfig: { ...axiosJsonConfig },
     });
 
+const isStateHashValid = (søknadState: SoknadTempStorageData, info: StateHashInfo): boolean => {
+    if (søknadState.metadata.userHash === createHashString(info)) {
+        return true;
+    }
+
+    const legacyDateString = dayjs.utc(info.søker.fødselsdato, 'YYYY-MM-DD').toDate();
+    // Migrasjonsshim: gammel mellomlagring brukte Date-objekt for fødselsdato
+    const legacyHash = hash(
+        JSON.stringify(jsonSort({ ...info, søker: { ...info.søker, fødselsdato: legacyDateString } })),
+    );
+    return søknadState.metadata.userHash === legacyHash;
+};
+
 export const isStorageDataValid = (
     data: SoknadTempStorageData,
     userHashInfo: StateHashInfo,
@@ -68,7 +84,7 @@ export const isStorageDataValid = (
         data.formData !== undefined &&
         data.metadata.soknadId !== undefined &&
         JSON.stringify(data.formData) !== JSON.stringify({}) &&
-        createHashString(userHashInfo) === data.metadata.userHash
+        isStateHashValid(data, userHashInfo)
     ) {
         return data;
     }
