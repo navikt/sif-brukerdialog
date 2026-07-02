@@ -51,10 +51,7 @@ export const App = () => {
         <SøknadAppProvider
             applicationKey={SifDemoApp.key}
             appVersion={env.APP_VERSION}
-            faroConfig={{
-                isActive: env.SIF_PUBLIC_USE_FARO === 'true',
-                telemetryCollectorURL: env.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL,
-            }}
+            faroConfig={{ isActive: false }}
             analyticsConfig={{ isActive: false }}
             sentryConfig={{
                 dsn: 'https://20da9cbb958c4f5695d79c260eac6728@sentry.gc.nav.no/30',
