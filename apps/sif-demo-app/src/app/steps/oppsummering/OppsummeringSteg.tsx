@@ -1,15 +1,17 @@
 import { AppText, useAppIntl } from '@app/i18n';
-import { SøknadStepId } from '@app/setup/config/soknadStepConfig';
-import { useSøknadMellomlagring, useSøknadRhfForm, useSøknadsflyt, useSøknadState } from '@app/setup/hooks';
-import { AppForm } from '@app/setup/soknad/AppForm';
-import { SøknadStep } from '@app/setup/soknad/SoknadStep';
-import { FormSummary, InlineMessage, LocalAlert } from '@navikt/ds-react';
+import { SøknadStepId } from '@app/types/SoknadStepId';
+import { Søknadsdata } from '@app/types/Soknadsdata';
+import { useAppContext } from '@app/context/AppContext';
+import { SøknadStepForm } from '@sif/soknad-app';
+import { FormSummary, InlineMessage } from '@navikt/ds-react';
 import { dateFormatter, formatName } from '@sif/utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
-import { useSøknadFormValues } from '@sif/soknad/consistency';
+import { SøknadStep, useSøknadAppContext, useSøknadSendt } from '@sif/soknad-app';
+import { FormLayout } from '@sif/soknad-ui';
 import { PersistedVedlegg } from '@sif/soknad-forms';
 import { VedleggSummaryList } from '@sif/soknad-ui/components';
+import { useForm } from 'react-hook-form';
 
 import { useSendSøknad } from '../../hooks/useSendSoknad';
 import { getSøknadApiDataFromSøknad } from '../../utils/soknadsdataToSoknadApiData';
@@ -28,38 +30,33 @@ export const OppsummeringSteg = () => {
     const stepId = SøknadStepId.OPPSUMMERING;
     const { text } = useAppIntl();
     const { validateField } = useSifValidate('oppsummeringForm');
-    const methods = useSøknadRhfForm<FormValues>(stepId, {});
 
-    const { setSøknadSendt } = useSøknadsflyt();
-    const { clearSøknadFormValues } = useSøknadFormValues();
-    const { slettMellomlagring } = useSøknadMellomlagring();
-    const state = useSøknadState();
+    const { søker, barn: registrerteBarn } = useAppContext();
+    const { store } = useSøknadAppContext();
+    const søknadsdata = store((s) => s.søknadsdata) as Søknadsdata;
+
+    const { onSøknadSendt } = useSøknadSendt();
+    const methods = useForm<FormValues>({ defaultValues: {} });
     const { isPending, mutateAsync } = useSendSøknad();
 
     const dto = getSøknadApiDataFromSøknad({
-        søker: state.søker,
-        registrerteBarn: state.barn,
-        søknadsdata: state.søknadsdata,
+        søker,
+        registrerteBarn,
+        søknadsdata,
         språk: 'nb',
     });
 
-    const onSubmit = async (values: FormValues) => {
-        if (!dto) {
-            return;
-        }
+    const harBekreftetOpplysninger = methods.watch(FormFields.bekrefterOpplysninger);
 
-        await mutateAsync({
-            ...dto,
-            harBekreftetOpplysninger: values.bekrefterOpplysninger,
-        });
-        await slettMellomlagring();
-        clearSøknadFormValues();
-        setSøknadSendt();
+    const onSubmit = async () => {
+        if (!dto) return;
+        await mutateAsync({ ...dto, harBekreftetOpplysninger });
+        await onSøknadSendt();
     };
 
     return (
-        <SøknadStep stepId={SøknadStepId.OPPSUMMERING}>
-            <AppForm
+        <SøknadStep stepId={stepId}>
+            <SøknadStepForm
                 stepId={stepId}
                 methods={methods}
                 onSubmit={onSubmit}
@@ -68,40 +65,44 @@ export const OppsummeringSteg = () => {
                 submitDisabled={!dto}
                 submitLabel={text('oppsummeringSteg.submitLabel')}>
                 {!dto && (
-                    <LocalAlert status="error">
-                        <LocalAlert.Header>
-                            <LocalAlert.Title>
+                    <FormSummary>
+                        <FormSummary.Header>
+                            <FormSummary.Heading level="2">
                                 <AppText id="oppsummeringSteg.feil.tittel" />
-                            </LocalAlert.Title>
-                        </LocalAlert.Header>
-                        <LocalAlert.Content>
-                            <AppText id="oppsummeringSteg.feil.innhold" />
-                        </LocalAlert.Content>
-                    </LocalAlert>
+                            </FormSummary.Heading>
+                        </FormSummary.Header>
+                        <FormSummary.Answers>
+                            <FormSummary.Answer>
+                                <FormSummary.Value>
+                                    <AppText id="oppsummeringSteg.feil.innhold" />
+                                </FormSummary.Value>
+                            </FormSummary.Answer>
+                        </FormSummary.Answers>
+                    </FormSummary>
                 )}
-
                 {dto && (
-                    <>
+                    <FormLayout.Summary>
                         <OmSøkerOppsummering />
                         <OmBarnetOppsummering />
                         <BostedOppsummering />
-                        <VedleggOppsummering vedlegg={state.søknadsdata[SøknadStepId.VEDLEGG]?.vedlegg ?? []} />
-                    </>
+                        <VedleggOppsummering vedlegg={søknadsdata[SøknadStepId.VEDLEGG]?.vedlegg ?? []} />
+                    </FormLayout.Summary>
                 )}
-
-                <Checkbox
-                    name={FormFields.bekrefterOpplysninger}
-                    validate={validateField(FormFields.bekrefterOpplysninger, getCheckedValidator())}>
-                    <AppText id="oppsummeringSteg.bekrefterOpplysninger.label" />
-                </Checkbox>
-            </AppForm>
+                <FormLayout.Questions>
+                    <Checkbox
+                        name={FormFields.bekrefterOpplysninger}
+                        validate={validateField(FormFields.bekrefterOpplysninger, getCheckedValidator())}>
+                        <AppText id="oppsummeringSteg.bekrefterOpplysninger.label" />
+                    </Checkbox>
+                </FormLayout.Questions>
+            </SøknadStepForm>
         </SøknadStep>
     );
 };
 
 const OmSøkerOppsummering = () => {
     const { text } = useAppIntl();
-    const { søker } = useSøknadState();
+    const { søker } = useAppContext();
 
     return (
         <FormSummary>
@@ -128,13 +129,13 @@ const OmSøkerOppsummering = () => {
 
 const OmBarnetOppsummering = () => {
     const { text } = useAppIntl();
-    const state = useSøknadState();
-    const valgtBarn = state.søknadsdata[SøknadStepId.BARN];
-    const barn = state.barn.find((item) => item.aktørId === valgtBarn?.barnetSøknadenGjelder);
+    const { barn: registrerteBarn } = useAppContext();
+    const { store } = useSøknadAppContext();
+    const søknadsdata = store((s) => s.søknadsdata) as Søknadsdata;
+    const valgtBarn = søknadsdata[SøknadStepId.BARN];
+    const barn = registrerteBarn.find((item) => item.aktørId === valgtBarn?.barnetSøknadenGjelder);
 
-    if (!barn) {
-        return null;
-    }
+    if (!barn) return null;
 
     return (
         <FormSummary>
@@ -161,11 +162,10 @@ const OmBarnetOppsummering = () => {
 
 const BostedOppsummering = () => {
     const { text } = useAppIntl();
-    const bosted = useSøknadState().søknadsdata[SøknadStepId.BOSTED];
+    const { store } = useSøknadAppContext();
+    const bosted = (store((s) => s.søknadsdata) as Søknadsdata)[SøknadStepId.BOSTED];
 
-    if (!bosted) {
-        return null;
-    }
+    if (!bosted) return null;
 
     return (
         <FormSummary>

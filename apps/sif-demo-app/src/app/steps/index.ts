@@ -1,4 +1,4 @@
-export * from './barn/BarnSteg';
-export * from './bosted/BostedSteg';
-export * from './oppsummering/OppsummeringSteg';
-export * from './vedlegg/VedleggSteg';
+export { BarnForm } from './barn/BarnForm';
+export { BostedForm } from './bosted/BostedForm';
+export { OppsummeringSteg } from './oppsummering/OppsummeringSteg';
+export { VedleggForm } from './vedlegg/VedleggForm';

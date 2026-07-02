@@ -3142,6 +3142,9 @@ importers:
       '@sif/soknad':
         specifier: workspace:*
         version: link:../../packages/sif-soknad
+      '@sif/soknad-app':
+        specifier: workspace:*
+        version: link:../../packages/sif-soknad-app
       '@sif/soknad-forms':
         specifier: workspace:*
         version: link:../../packages/sif-soknad-forms

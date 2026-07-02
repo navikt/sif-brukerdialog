@@ -1,7 +1,7 @@
 import { RegistrertBarn, Søker } from '@sif/api/k9-prosessering';
 import { dateToISODate, formatName } from '@sif/utils';
 
-import { SøknadStepId } from '../setup/config/soknadStepConfig';
+import { SøknadStepId } from '../types/SoknadStepId';
 import { SøknadApiData } from '../types/SoknadApiData';
 import { Søknadsdata } from '../types/Soknadsdata';
 
@@ -36,7 +36,7 @@ export const getSøknadApiDataFromSøknad = ({
             fødselsdato: dateToISODate(registrertBarn.fødselsdato),
         },
         erBosattITrondheim: bosted.erBosattITrondheim,
-        vedlegg: vedlegg?.vedlegg.map((file) => file.id) ?? [],
+        vedlegg: vedlegg?.vedlegg.map((file) => file.backendUrl) ?? [],
         harForståttRettigheterOgPlikter,
     };
 };
