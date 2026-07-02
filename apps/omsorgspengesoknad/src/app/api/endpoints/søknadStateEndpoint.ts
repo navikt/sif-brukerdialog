@@ -3,6 +3,7 @@ import persistence, { PersistenceInterface } from '@navikt/sif-common-core-ds/sr
 import { jsonSort } from '@navikt/sif-common-utils';
 import { AxiosResponse } from 'axios';
 import hash from 'object-hash';
+
 import { MELLOMLAGRING_VERSJON } from '../../constants/MELLOMLAGRING_VERSJON';
 import { SøknadContextState } from '../../types/SøknadContextState';
 import { isValidSøknadRoute } from '../../utils/søknadRoutesUtils';
@@ -16,8 +17,10 @@ interface SøknadStateHashInfo {
     søker: Søker;
 }
 
-interface SøknadStatePersistenceEndpoint
-    extends Omit<PersistenceInterface<SøknadStatePersistence>, 'update' | 'rehydrate'> {
+interface SøknadStatePersistenceEndpoint extends Omit<
+    PersistenceInterface<SøknadStatePersistence>,
+    'update' | 'rehydrate'
+> {
     update: (state: SøknadContextState) => Promise<AxiosResponse>;
     fetch: () => Promise<SøknadStatePersistence>;
 }
