@@ -61,7 +61,6 @@
         "clsx": "2.1.1",
         "constate": "4.0.0",
         "csp-header": "6.3.1",
-        "date-fns": "4.4.0",
         "dayjs": "1.11.21",
         "formik": "2.4.9",
         "html-react-parser": "6.1.3",

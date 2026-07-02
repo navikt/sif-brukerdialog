@@ -1,11 +1,9 @@
 import { expect, test } from '@playwright/test';
 
-import { setNow } from '../../utils/setNow';
 import { setupMockRoutes } from '../../utils/setupMockRoutes';
 import { testAccessibility } from '../../utils/testAccessibility';
 
 test('Søker har ikke tilgang', async ({ page }) => {
-    await setNow(page);
     await setupMockRoutes(page);
     await page.route('**/oppslag/soker', async (route) => {
         await route.fulfill({ status: 451 });

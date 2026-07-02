@@ -1,12 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 import { routeUtils } from '../../utils/routeUtils';
-import { setNow } from '../../utils/setNow';
 import { testAccessibility } from '../../utils/testAccessibility';
-
-test.beforeEach(async ({ page }) => {
-    await setNow(page);
-});
 
 test('Fyll ut enkel søknad', async ({ page }) => {
     await routeUtils.setupMockRoutes(page);

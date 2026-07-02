@@ -4,7 +4,6 @@ import { SøknadFormValues } from '../../../src/app/types/søknad-form-values/S�
 import { StepID } from '../../../src/app/types/StepID';
 import { mellomlagringMock } from '../../mock-data/mellomlagring';
 import { routeUtils } from '../../utils/routeUtils';
-import { setNow } from '../../utils/setNow';
 
 const formValues: SøknadFormValues = {
     ...(mellomlagringMock.formValues as any),
@@ -13,7 +12,6 @@ const formValues: SøknadFormValues = {
 };
 
 test.beforeEach(async ({ page }) => {
-    await setNow(page);
     await routeUtils.setupMockRoutes(page, {
         mellomlagring: { ...mellomlagringMock, formValues },
         lastStep: StepID.ARBEIDSSITUASJON,

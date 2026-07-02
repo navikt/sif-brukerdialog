@@ -1,11 +1,9 @@
 import { expect, test } from '@playwright/test';
 
 import { routeUtils } from '../../utils/routeUtils';
-import { setNow } from '../../utils/setNow';
 import { testAccessibility } from '../../utils/testAccessibility';
 
 test.beforeEach(async ({ page }) => {
-    await setNow(page);
     await routeUtils.setupMockRoutes(page);
     await page.goto('http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger/soknad/velkommen');
     await expect(page.getByRole('heading', { name: 'Hei, Test' })).toBeVisible();
@@ -32,6 +30,7 @@ test.describe('Barn steg', () => {
         await page.getByRole('button', { name: 'Åpne datovelger' }).click();
         await page.getByRole('button', { name: 'Gå til forrige måned' }).click();
         await page.getByLabel('torsdag 1', { exact: true }).click();
+        await expect(page.getByRole('textbox', { name: 'Barnets fødselsdato' })).toHaveValue('01.12.2022');
         await page.getByText('Fosterforelder').click();
         await page.getByRole('radiogroup', { name: 'Hvilken relasjon har du til' }).getByLabel('Annet').check();
         await page.getByTestId('opplysninger-om-barnet-relasjonAnnetBeskrivelse').click();

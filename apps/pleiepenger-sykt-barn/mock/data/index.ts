@@ -29,7 +29,7 @@ const frilansoppdrag = {
 };
 
 const arbeidsgiver = {
-    organisasjoner: [{ navn: 'WHOA.BOA', organisasjonsnummer: '947064649' }],
+    organisasjoner: [{ navn: 'WHOA.BOA', organisasjonsnummer: '947064649', ansattFom: '2005-08-05', ansattTom: null }],
     frilansoppdrag: [frilansoppdrag],
     privatarbeidsgiver: [],
 };

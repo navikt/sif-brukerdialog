@@ -5,6 +5,9 @@ import dayjs from 'dayjs';
 import { DeltakelseHistorikkInnslag } from '../types';
 import { Deltakelse } from '../types/Deltakelse';
 import { Features } from '../types/Features';
+import utc from 'dayjs/plugin/utc';
+
+dayjs.extend(utc);
 
 /** Antall måneder før og etter i dag som startdato kan endres innenfor */
 export const TILLATT_ENDRINGSPERIODE_MÅNEDER = 10;

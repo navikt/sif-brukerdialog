@@ -38,7 +38,9 @@ const InntektsmeldingDetaljerPage = () => {
         : 'Inntektsmelding';
 
     const pageByline = inntektsmelding ? (
-        <BodyShort size="medium">Sendt inn {dateFormatter.compactWithTime(inntektsmelding.mottattDato)}</BodyShort>
+        <BodyShort size="medium">
+            Sendt inn {dateFormatter.compactWithTime(inntektsmelding.innsendingstidspunkt)}
+        </BodyShort>
     ) : undefined;
 
     const content = (() => {

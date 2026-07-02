@@ -5,6 +5,7 @@ import React from 'react';
 import useAvbrytEllerFortsettSenere from '../hooks/useAvbrytSøknad';
 import { useAppIntl } from '../i18n';
 import { StepId } from './config/StepId';
+import { VStack } from '@navikt/ds-react';
 
 interface Props {
     stepId: StepId;
@@ -26,8 +27,10 @@ const SøknadStep = ({ stepId, stepConfig, children }: Props) => {
             steps={soknadStepUtils.getProgressStepsFromConfig(stepConfig, index, intl)}
             onCancel={avbrytSøknad}
             onContinueLater={fortsettSøknadSenere}>
-            <InvalidStepSøknadsdataInfo stepId={stepId} stepConfig={stepConfig} />
-            {children}
+            <VStack gap="space-24">
+                <InvalidStepSøknadsdataInfo stepId={stepId} stepConfig={stepConfig} />
+                <div>{children}</div>
+            </VStack>
         </Step>
     );
 };
