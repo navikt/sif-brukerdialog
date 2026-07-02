@@ -1,8 +1,7 @@
 import { ArbeidIPeriodeType } from '../../src/app/types/ArbeidIPeriodeType';
 import { ArbeidsgiverType } from '../../src/app/types/Arbeidsgiver';
-import { Søknadsdata } from '../../src/app/types/søknadsdata/Søknadsdata';
 
-const søknadsdata: Søknadsdata = {
+const søknadsdata = {
     id: 'c53edb47-7ada-4b58-947b-f21f866eb3a9',
     velkommen: {
         harForståttRettigheterOgPlikter: true,
@@ -13,27 +12,21 @@ const søknadsdata: Søknadsdata = {
             aktørId: '2811762539343',
             fornavn: 'ALFABETISK',
             etternavn: 'FAGGOTT',
-            fødselsdato: new Date(new Date('2019-06-08T00:00:00.000Z')),
+            fødselsdato: '2019-06-08',
         },
     },
     kurs: {
         søknadsperiode: {
-            from: new Date('2024-12-02T00:00:00.000Z'),
-            to: new Date('2024-12-06T00:00:00.000Z'),
+            from: '2024-12-02',
+            to: '2024-12-06',
         },
-        søknadsdatoer: [
-            new Date('2024-12-02T00:00:00.000Z'),
-            new Date('2024-12-03T00:00:00.000Z'),
-            new Date('2024-12-04T00:00:00.000Z'),
-            new Date('2024-12-05T00:00:00.000Z'),
-            new Date('2024-12-06T00:00:00.000Z'),
-        ],
+        søknadsdatoer: ['2024-12-02', '2024-12-03', '2024-12-04', '2024-12-05', '2024-12-06'],
         reisedager: {
             reiserUtenforKursdager: true,
             reisedager: [
                 {
                     id: 'a3a41532-7db3-409a-9903-3d5b62fdb0ba',
-                    dato: new Date('2024-12-03T00:00:00.000Z'),
+                    dato: '2024-12-03',
                 },
             ],
             reisedagerBeskrivelse: 'Kombinerer med ferie',
@@ -44,8 +37,8 @@ const søknadsdata: Søknadsdata = {
             {
                 id: '0',
                 periode: {
-                    from: new Date('2024-12-02T00:00:00.000Z'),
-                    to: new Date('2024-12-06T00:00:00.000Z'),
+                    from: '2024-12-02',
+                    to: '2024-12-06',
                 },
             },
         ],
@@ -56,8 +49,8 @@ const søknadsdata: Søknadsdata = {
             ferieuttak: [
                 {
                     id: '8cf1a74c-2e6a-42dc-8f92-221e25c210e7',
-                    from: new Date('2024-12-04T00:00:00.000Z'),
-                    to: new Date('2024-12-05T00:00:00.000Z'),
+                    from: '2024-12-04',
+                    to: '2024-12-05',
                 },
             ],
         },
@@ -68,8 +61,8 @@ const søknadsdata: Søknadsdata = {
                 {
                     type: 'enkel',
                     landkode: 'ABW',
-                    fom: new Date('2024-12-06T00:00:00.000Z'),
-                    tom: new Date('2024-12-06T00:00:00.000Z'),
+                    fom: '2024-12-06',
+                    tom: '2024-12-06',
                 },
             ],
         },
@@ -172,8 +165,8 @@ const søknadsdata: Søknadsdata = {
             {
                 type: 'enkel',
                 id: 'a2f1576f-138e-424f-ab6f-fb50171a4290',
-                fom: new Date('2024-10-01T00:00:00.000Z'),
-                tom: new Date('2024-11-01T00:00:00.000Z'),
+                fom: '2024-10-01',
+                tom: '2024-11-01',
                 landkode: 'BHS',
             },
         ],
@@ -186,7 +179,7 @@ const søknadsdata: Søknadsdata = {
 };
 
 export const mellomlagringMock = {
-    søknadHashString: '2cc7804fe085530d3864aa8e71c92f08a39d2716',
+    søknadHashString: 'a090074975a5b49ef3d7543e1555d2996748b4c0',
     søknadsdata,
     søknadRoute: '/soknad/arbeidssituasjon',
     registrerteBarn: [],

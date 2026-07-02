@@ -1,11 +1,9 @@
 import { test } from '@playwright/test';
 
-import { setNow } from '../utils/setNow';
 import { setupMockRoutes } from '../utils/setupMockRoutes';
 import { utfyllingUtils } from '../utils/utfyllingUtils';
 
 test.beforeEach(async ({ page }) => {
-    await setNow(page);
     await setupMockRoutes(page);
 });
 

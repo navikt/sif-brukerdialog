@@ -22,7 +22,7 @@ export const getImUtils = (innteksmelding: Inntektsmelding) => {
 };
 
 export const sorterInntektsmeldingerPåInnsendingstidspunkt = (a: Inntektsmelding, b: Inntektsmelding): number => {
-    return new Date(b.innsendingstidspunkt).getTime() - new Date(a.innsendingstidspunkt).getTime();
+    return b.innsendingstidspunkt.getTime() - a.innsendingstidspunkt.getTime();
 };
 
 interface GetRefusjonEndringListeParams {

@@ -11,7 +11,7 @@ export const søknadContextMock: SøknadContextState = {
     versjon: '2.0.0',
     søker: {
         aktørId: '2320509955297',
-        fødselsdato: new Date('1995-06-02'),
+        fødselsdato: '1995-06-02',
         fødselsnummer: '02869599258',
         fornavn: 'PRESENTABEL',
         mellomnavn: undefined,
