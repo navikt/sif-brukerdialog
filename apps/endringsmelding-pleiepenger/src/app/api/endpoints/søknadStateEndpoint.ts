@@ -5,11 +5,14 @@ import persistence, { PersistenceInterface } from '@navikt/sif-common-core-ds/sr
 import { jsonSort } from '@navikt/sif-common-utils';
 import { AxiosResponse } from 'axios';
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 import hash from 'object-hash';
 
 import { MELLOMLAGRING_VERSJON } from '../../constants/MELLOMLAGRING_VERSJON';
 import { getSøknadStepRoute, SøknadRoutes } from '../../søknad/config/SøknadRoutes';
 import { ApiEndpointPsb, axiosConfigPsb } from '../api';
+
+dayjs.extend(utc);
 
 export type SøknadStatePersistence = {
     versjon: string;

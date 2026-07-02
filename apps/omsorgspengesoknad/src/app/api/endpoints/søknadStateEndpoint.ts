@@ -3,12 +3,15 @@ import persistence, { PersistenceInterface } from '@navikt/sif-common-core-ds/sr
 import { jsonSort } from '@navikt/sif-common-utils';
 import { AxiosResponse } from 'axios';
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 import hash from 'object-hash';
 
 import { MELLOMLAGRING_VERSJON } from '../../constants/MELLOMLAGRING_VERSJON';
 import { SøknadContextState } from '../../types/SøknadContextState';
 import { isValidSøknadRoute } from '../../utils/søknadRoutesUtils';
 import { ApiEndpoint, axiosConfig } from '../api';
+
+dayjs.extend(utc);
 
 export type SøknadStatePersistence = Omit<SøknadContextState, 'søker'> & {
     søknadHashString: string;
