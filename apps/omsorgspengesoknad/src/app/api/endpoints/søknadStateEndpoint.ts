@@ -2,6 +2,7 @@ import { Søker } from '@navikt/sif-common-api';
 import persistence, { PersistenceInterface } from '@navikt/sif-common-core-ds/src/utils/persistence/persistence';
 import { jsonSort } from '@navikt/sif-common-utils';
 import { AxiosResponse } from 'axios';
+import dayjs from 'dayjs';
 import hash from 'object-hash';
 
 import { MELLOMLAGRING_VERSJON } from '../../constants/MELLOMLAGRING_VERSJON';
@@ -36,6 +37,17 @@ const createHashString = (info: SøknadStateHashInfo) => {
     return hash(JSON.stringify(jsonSort(info)));
 };
 
+const isHashValid = (søknadState: SøknadStatePersistence, info: SøknadStateHashInfo): boolean => {
+    if (søknadState.søknadHashString === createHashString(info)) {
+        return true;
+    }
+
+    const legacyDateString = dayjs.utc(info.søker.fødselsdato, 'YYYY-MM-DD').toDate();
+    // Migrasjonsshim: gammel mellomlagring brukte Date-objekt for fødselsdato
+    const legacyHash = hash(JSON.stringify(jsonSort({ søker: { ...info.søker, fødselsdato: legacyDateString } })));
+    return søknadState.søknadHashString === legacyHash;
+};
+
 export const isPersistedSøknadStateValid = (
     søknadState: SøknadStatePersistence,
     info: SøknadStateHashInfo,
@@ -43,7 +55,7 @@ export const isPersistedSøknadStateValid = (
     return (
         søknadState.versjon === MELLOMLAGRING_VERSJON &&
         søknadState.søknadsdata?.velkommen?.harForståttRettigheterOgPlikter === true &&
-        søknadState.søknadHashString === createHashString(info) &&
+        isHashValid(søknadState, info) &&
         isValidSøknadRoute(søknadState.søknadRoute)
     );
 };
