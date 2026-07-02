@@ -90,41 +90,58 @@ Hjelperne gjør følgende:
 
 ```tsx
 import { useLenker } from '@app/lenker';
+import { SøknadStepId } from '@app/types/SoknadStepId';
+import { <Prefix>Søknadsdata } from '@app/types/Soknadsdata';
+import { UploadedFile } from '@sif/rhf';
+import { SøknadStep, SøknadStepForm, useMellomlagring, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
+import { VedleggPanel } from '@sif/soknad-forms';
+import { useForm } from 'react-hook-form';
 
-const defaultValues = useStepDefaultValues<<Prefix>FormValues, <Prefix>Søknadsdata>({
-    stepId,
-    toFormValues: to<Prefix>FormValues,
-});
+import { to<Prefix>FormValues, to<Prefix>Søknadsdata } from './<prefix>StegUtils';
+import { <Prefix>FormFields, <Prefix>FormValues } from './types';
 
-const { lagreSøknadSteg } = useSøknadMellomlagring();
-const methods = useSøknadRhfForm<<Prefix>FormValues>(stepId, defaultValues);
-const vedlegg: UploadedFile[] = methods.watch(<Prefix>FormFields.vedlegg) ?? [];
-const hasPendingUploads = vedlegg.some((file) => file.pending);
-const lenker = useLenker();
+const stepId = SøknadStepId.<STEP_ID>;
 
-<AppForm submitDisabled={hasPendingUploads} ...>
-    <SifGuidePanel>...</SifGuidePanel>
-    <VedleggPanel<<Prefix>FormValues>
-        name={<Prefix>FormFields.vedlegg}
-        initialFiles={defaultValues[<Prefix>FormFields.vedlegg]}
-        onVedleggEndret={() => lagreSøknadSteg(stepId, methods.getValues())}
-        label={text('<prefix>Steg.vedlegg.label')}
-        uploadLaterURL={lenker.omsorgspengerEttersending}
-        showPictureScanningGuide={true}
-    />
-</AppForm>
+export const <Prefix>Form = () => {
+    const { text } = useAppIntl();
+    const lenker = useLenker();
+
+    const { lagretData, commit, draftFormValues } = useStepData<<Prefix>Søknadsdata, <Prefix>FormValues>(stepId);
+    const initialVedlegg = (draftFormValues ?? to<Prefix>FormValues(lagretData))[<Prefix>FormFields.vedlegg];
+    const methods = useForm<<Prefix>FormValues>({ defaultValues: draftFormValues ?? to<Prefix>FormValues(lagretData) });
+    useSaveSøknadFormValues(stepId, methods.getValues);
+
+    const { lagre } = useMellomlagring();
+    const vedlegg: UploadedFile[] = methods.watch(<Prefix>FormFields.vedlegg) ?? [];
+    const hasPendingUploads = vedlegg.some((file) => file.pending);
+
+    const onSubmit = (data: <Prefix>FormValues) => commit(to<Prefix>Søknadsdata(data));
+
+    return (
+        <SøknadStep stepId={stepId}>
+            <SøknadStepForm
+                stepId={stepId}
+                methods={methods}
+                onSubmit={onSubmit}
+                isPending={false}
+                submitDisabled={hasPendingUploads}>
+                <VedleggPanel<<Prefix>FormValues>
+                    name={<Prefix>FormFields.vedlegg}
+                    initialFiles={initialVedlegg}
+                    onVedleggEndret={() => lagre()}
+                    label={text('<prefix>Steg.vedlegg.label')}
+                    uploadLaterURL={lenker.omsorgspengerEttersending}
+                    showPictureScanningGuide={true}
+                />
+            </SøknadStepForm>
+        </SøknadStep>
+    );
+};
 ```
 
-Eksterne lenker som `uploadLaterURL` skal hentes fra den delte lenkekilden i monorepoet. I appen bør de normalt brukes via en lokal adapter som `useLenker()` eller `getLenke()`. Hvis steget trenger en ny ekstern lenke, legg den til i `@sif/soknad-ui/lenker` i stedet for å definere den i appen.
-
-Foretrekk selvforklarende, domenespesifikke nøkkelnavn i den delte lenkekilden, for eksempel `omsorgspengerEttersending` og `navMinSide`, fremfor generiske navn uten prefix.
-
-Bruk `initialFiles={defaultValues[...]}`. Ikke send `watch(...)` inn i `initialFiles`.
-
-Vedleggssteg skal alltid mellomlagre når vedleggslisten er ferdig oppdatert etter opplasting eller sletting.
-
-- Bruk `onVedleggEndret` fra `VedleggPanel`. Panelet håndterer init-guard og pending-filter internt — callbacken fyrer bare når vedleggslisten faktisk har endret seg og ingen filer er pending.
-- Kall `lagreSøknadSteg(stepId, methods.getValues())`, ikke `lagreSøknad()`, siden vedleggsendringen ellers ikke nødvendigvis finnes i `søknadsdata` i store ennå.
+- Bruk `lagre()` fra `useMellomlagring()` i `onVedleggEndret` — lagrer alle live formverdier inkl. vedlegg.
+- `initialFiles` skal være den initielle listen, ikke `watch(...)`-verdien.
+- `uploadLaterURL` hentes fra delt lenkekilde via `useLenker()`.
 
 ## 5. Wire opp mapping
 

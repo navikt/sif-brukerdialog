@@ -32,13 +32,12 @@ description: Legg til et nytt steg i en søknadsapp som bruker @sif/soknad og @s
 
 **Agenten skal ikke utforske kodebasen bredt.** Les kun filene som er nødvendige for å plassere steget riktig i den aktuelle appen:
 
-1. `src/app/setup/config/SoknadStepId.ts` — eksisterende steg-IDer
-2. `src/app/setup/config/soknadStepConfig.ts` — stepConfig og stepOrder
-3. `src/app/i18n/nb/appMessages.ts` — eksisterende i18n-importer og nøkler
+1. `src/app/types/SoknadStepId.ts` — eksisterende steg-IDer
+2. `src/app/setup/soknadStepConfig.ts` — stepConfig og stepOrder
+3. `src/app/i18n/nb.ts` — eksisterende i18n-nøkler og aggregering
 4. `src/app/types/Soknadsdata.ts` — eksisterende søknadsdatatype
 5. `src/app/utils/formValuesToSoknadsdata.ts` — mapping fra form values til søknadsdata
-6. `src/app/setup/hooks/useStepTitles.ts` — dersom appen bruker egen step-title mapping
-7. `src/app/steps/index.ts` og `src/app/Soknad.tsx` — dersom appen eksporterer steg samlet og ruter dem her
+6. `src/app/steps/index.ts` og `src/app/Soknad.tsx` — eksporterer steg og ruter dem her
 
 Ikke les andre steg-mapper eller gjør generell utforsking utover dette med mindre appen faktisk avviker fra standardoppsettet.
 
@@ -202,13 +201,12 @@ export const <prefix>StegMessages_nn: Record<keyof typeof <prefix>StegMessages_n
 
 ```tsx
 import { useAppIntl } from '@app/i18n';
-import { SøknadStepId } from '@app/setup/config/SoknadStepId';
-import { useSøknadRhfForm, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
-import { AppForm } from '@app/setup/soknad/AppForm';
+import { SøknadStepId } from '@app/types/SoknadStepId';
 import { <Prefix>Søknadsdata } from '@app/types/Soknadsdata';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
-import { FormLayout } from '@sif/soknad-ui/components';
+import { SøknadStep, SøknadStepForm, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
+import { useForm } from 'react-hook-form';
 
 import { to<Prefix>FormValues, to<Prefix>Søknadsdata } from './<prefix>StegUtils';
 import { <Prefix>FormFields, <Prefix>FormValues } from './types';
@@ -221,58 +219,37 @@ export const <Prefix>Form = () => {
     const { validateField } = useSifValidate('<prefix>Form');
     const { text } = useAppIntl();
 
-    const defaultValues = useStepDefaultValues<<Prefix>FormValues, <Prefix>Søknadsdata>({
-        stepId,
-        toFormValues: to<Prefix>FormValues,
-    });
+    const { lagretData, commit, draftFormValues } = useStepData<<Prefix>Søknadsdata, <Prefix>FormValues>(stepId);
+    const methods = useForm<<Prefix>FormValues>({ defaultValues: draftFormValues ?? to<Prefix>FormValues(lagretData) });
+    useSaveSøknadFormValues(stepId, methods.getValues);
 
-    const { onSubmit, isPending, submitError } = useStepSubmit<<Prefix>FormValues, <Prefix>Søknadsdata>({
-        stepId,
-        toSøknadsdata: to<Prefix>Søknadsdata,
-    });
-
-    const methods = useSøknadRhfForm(stepId, defaultValues);
+    const onSubmit = (data: <Prefix>FormValues) => commit(to<Prefix>Søknadsdata(data));
 
     return (
-        <AppForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending} submitError={submitError}>
-            <FormLayout.Content>
-                <FormLayout.Questions>
-                    <YesOrNoQuestion
-                        name={<Prefix>FormFields.<felt>}
-                        legend={text('<prefix>Steg.spørsmål.<felt>')}
-                        validate={validateField(<Prefix>FormFields.<felt>, getYesOrNoValidator())}
-                    />
-                </FormLayout.Questions>
-            </FormLayout.Content>
-        </AppForm>
+        <SøknadStep stepId={stepId}>
+            <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
+                <YesOrNoQuestion
+                    name={<Prefix>FormFields.<felt>}
+                    legend={text('<prefix>Steg.spørsmål.<felt>')}
+                    validate={validateField(<Prefix>FormFields.<felt>, getYesOrNoValidator())}
+                />
+            </SøknadStepForm>
+        </SøknadStep>
     );
 };
 ```
 
-#### `<Prefix>Steg.tsx`
-
-```tsx
-import { SøknadStepId } from '@app/setup/config/SoknadStepId';
-import { SøknadStep } from '@app/setup/soknad/SoknadStep';
-
-import { <Prefix>Form } from './<Prefix>Form';
-
-export const <Prefix>Steg = () => (
-    <SøknadStep stepId={SøknadStepId.<STEP_ID>}>
-        <<Prefix>Form />
-    </SøknadStep>
-);
-```
+Ingen separat `<Prefix>Steg.tsx` — `SøknadStep` er nå wrapperkomponenten direkte i `<Prefix>Form.tsx`.
 
 ### Steg 3 — Oppdater eksisterende filer
 
 Disse endringene er mekaniske og følger samme mønster for hvert steg:
 
-#### 1. `src/app/setup/config/SoknadStepId.ts`
+#### 1. `src/app/types/SoknadStepId.ts`
 
 Legg til ny enum-verdi. Plasser den i riktig rekkefølge (f.eks. først = førstesteg).
 
-#### 2. `src/app/setup/config/soknadStepConfig.ts`
+#### 2. `src/app/setup/soknadStepConfig.ts`
 
 Legg til i `søknadStepConfig`:
 
@@ -324,35 +301,27 @@ case SøknadStepId.<STEP_ID>:
     return to<Prefix>Søknadsdata(formValues as <Prefix>FormValues);
 ```
 
-#### 5. `src/app/setup/hooks/useStepTitles.ts`
-
-Legg til ny tittel i Record:
-
-```ts
-[SøknadStepId.<STEP_ID>]: text('step.<camelCase>.title'),
-```
-
-#### 6. `src/app/i18n/nb/appMessages.ts`
+#### 5. `src/app/i18n/nb.ts`
 
 - Importer `<prefix>StegMessages_nb` fra stegets `i18n/nb.ts`
 - Spread i `appMessages_nb`
 - Legg til `'step.<camelCase>.title': '<Stegtittel>'`
 
-#### 7. `src/app/steps/index.ts`
+#### 6. `src/app/steps/index.ts`
 
 Legg til eksport:
 
 ```ts
-export { <Prefix>Steg } from './<mappename>/<Prefix>Steg';
+export { <Prefix>Form } from './<mappename>/<Prefix>Form';
 ```
 
-#### 8. `src/app/Soknad.tsx`
+#### 7. `src/app/Soknad.tsx`
 
-- Importer `<Prefix>Steg` fra `'./steps'`
+- Importer `<Prefix>Form` fra `'./steps'`
 - Legg til Route inne i `/soknad`-gruppen:
 
 ```tsx
-<Route path={søknadStepConfig[SøknadStepId.<STEP_ID>].route} element={<<Prefix>Steg />} />
+<Route path={søknadStepConfig[SøknadStepId.<STEP_ID>].route} element={<<Prefix>Form />} />
 ```
 
 ### Steg 4 — Verifiser
@@ -361,13 +330,12 @@ Kjør `npx tsc --noEmit` i app-mappen. Ingen feil = ferdig.
 
 ## Sjekkliste
 
-- [ ] 5 nye filer opprettet (`types.ts`, `*StegUtils.ts`, `i18n/nb.ts`, `*Form.tsx`, `*Steg.tsx`)
+- [ ] 4 nye filer opprettet (`types.ts`, `*StegUtils.ts`, `i18n/nb.ts`, `*Form.tsx`)
 - [ ] `SoknadStepId.ts` — ny enum-verdi
 - [ ] `soknadStepConfig.ts` — config + stepOrder
 - [ ] `Soknadsdata.ts` — type + interface-felt
 - [ ] `formValuesToSoknadsdata.ts` — import + case
-- [ ] `useStepTitles.ts` — ny tittel
-- [ ] `appMessages.ts` — import + spread + steg-tittel
+- [ ] `nb.ts` — import + spread + steg-tittel
 - [ ] `steps/index.ts` — eksport
 - [ ] `Soknad.tsx` — import + Route
 - [ ] `tsc --noEmit` passerer
