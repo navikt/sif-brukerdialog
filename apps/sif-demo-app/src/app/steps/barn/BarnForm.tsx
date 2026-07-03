@@ -27,7 +27,7 @@ export const BarnForm = () => {
         if (!søknadsdata || !registrerteBarn.some((barn) => barn.aktørId === søknadsdata.barnetSøknadenGjelder)) {
             throw new Error('Barn: mangler valgt registrert barn etter validering');
         }
-        commit(søknadsdata);
+        return commit(søknadsdata);
     };
 
     return (
