@@ -1,5 +1,4 @@
 export enum SifAppKeys {
-    SifDemoApp = 'sif-demo-app',
     AktivitetspengerApp = 'aktivitetspenger',
     PleiepengerSyktBarn = 'pleiepengesoknad',
     EndringsmeldingPsb = 'endringsmelding-pleiepenger',
@@ -263,19 +262,6 @@ export const AktivitetspengerApp: AppInfo = {
     lenker: {
         q: 'https://aktivitetspenger.intern.dev.nav.no',
         prod: 'https://www.nav.no/aktivitetspenger/ytelse',
-    },
-};
-
-export const SifDemoApp: AppInfo = {
-    key: SifAppKeys.SifDemoApp,
-    navn: 'Sif demo-app',
-    tittel: {
-        nb: 'Demo-søknad',
-        nn: 'Demo-søknad',
-    },
-    lenker: {
-        q: 'https://sif-demo-app.intern.dev.nav.no',
-        prod: '',
     },
 };
 

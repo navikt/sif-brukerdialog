@@ -1,7 +1,6 @@
 import '@navikt/ds-css';
 import './app.css';
 
-import { SifDemoApp } from '@navikt/sif-app-register';
 import { SøknadAppProvider } from '@sif/soknad-app';
 import { ErrorPage, LoadingPage } from '@sif/soknad-ui';
 import { BrowserRouter } from 'react-router-dom';
@@ -48,7 +47,7 @@ export const App = () => {
 
     return (
         <SøknadAppProvider
-            applicationKey={SifDemoApp.key}
+            applicationKey={'sif-demo-app'}
             appVersion={env.APP_VERSION}
             faroConfig={{ isActive: false }}
             analyticsConfig={{ isActive: false }}
