@@ -10,9 +10,12 @@
     "exports": {
         ".": "./src/index.ts",
         "./components": "./src/components/index.ts",
+        "./hooks": "./src/hooks/index.ts",
         "./lenker": "./src/lenker/index.ts",
         "./i18n": "./src/i18n/index.tsx",
-        "./pages": "./src/pages/index.ts"
+        "./pages": "./src/pages/index.ts",
+        "./styles/sif-ds-theme.css": "./src/styles/sif-ds-theme.css",
+        "./utils": "./src/utils/index.ts"
     },
     "main": "src/index.ts",
     "types": "src/index.ts",
@@ -30,7 +33,9 @@
         "@navikt/sif-common-env": "workspace:*",
         "@navikt/sif-common-hooks": "workspace:*",
         "@sif/api": "workspace:*",
+        "js-cookie": "3.0.8",
         "@sif/utils": "workspace:*",
+        "@navikt/nav-dekoratoren-moduler": "4.2.1",
         "react-intl": "10.1.14",
         "react-responsive": "10.0.1"
     },

@@ -5,3 +5,4 @@ export { defaultAppStatus, default as useAppStatus } from './hooks/useAppStatus'
 export { type SanityConfig, Status } from './types/index';
 export { fetchStatus } from './utils/fetchStatus';
 export { sanityConfigIsValid } from './utils/index';
+export { AppStatusWrapper } from './components/app-status-wrapper/AppStatusWrapper';
