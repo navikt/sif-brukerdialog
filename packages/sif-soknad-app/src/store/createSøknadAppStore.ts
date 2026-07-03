@@ -7,11 +7,11 @@ export interface SøknadStoreState {
     /** Committet søknadsdata per steg — oppdateres kun ved submit. Domeneverdier, ikke rå skjemaverdier. */
     søknadsdata: Record<string, unknown>;
     /**
-     * Midlertidige RHF-skjemaverdier per steg — lagres til/leses fra mellomlagring-blob.
+     * Persisterte RHF-skjemaverdier per steg — lagres til/leses fra mellomlagring-blob.
      * Brukes som `defaultValues` etter reload slik at brukeren ikke mister utfylte verdier.
      * Nøkkel: stepId. Ryddes for et steg ved commit eller reset.
      */
-    draftFormValues: Record<string, Record<string, unknown>>;
+    persistedFormValues: Record<string, Record<string, unknown>>;
     /**
      * Gjenopptakingspunkt — steget brukeren skal landes på ved reload.
      * Settes til neste steg etter siste commit, IKKE nødvendigvis det steget brukeren ser på nå
@@ -36,10 +36,10 @@ export interface SøknadStoreActions {
         stepId: string,
         data: unknown,
     ) => { newResumeStepId: string | undefined; newRoute: string | undefined };
-    /** Rydder draft-verdier for ett steg (etter commit eller ved reset). */
-    clearDraftFormValues: (stepId: string) => void;
-    /** Oppdaterer hele draftFormValues-mappet i storen (etter manuell lagre()). */
-    setDraftFormValues: (values: Record<string, Record<string, unknown>>) => void;
+    /** Rydder persisterte verdier for ett steg (etter commit eller ved reset). */
+    clearPersistedFormValues: (stepId: string) => void;
+    /** Oppdaterer hele persistedFormValues-mappet i storen (etter manuell lagre()). */
+    setPersistedFormValues: (values: Record<string, Record<string, unknown>>) => void;
     setSøknadSendt: () => void;
     reset: () => void;
 }
@@ -70,7 +70,7 @@ export const createSøknadAppStore = (options: StoreOptions): UseBoundStore<Stor
 
     const storeCreator: StateCreator<SøknadStore> = (set, get) => ({
         søknadsdata: {},
-        draftFormValues: {},
+        persistedFormValues: {},
         resumeStepId: undefined,
         includedSteps: [],
         søknadSendt: false,
@@ -80,7 +80,7 @@ export const createSøknadAppStore = (options: StoreOptions): UseBoundStore<Stor
             if (!mellomlagring) {
                 set({
                     søknadsdata: {},
-                    draftFormValues: {},
+                    persistedFormValues: {},
                     resumeStepId: undefined,
                     includedSteps: computeIncludedSteps(stepOrder, config, {}),
                     søknadSendt: false,
@@ -89,10 +89,10 @@ export const createSøknadAppStore = (options: StoreOptions): UseBoundStore<Stor
                 return;
             }
 
-            const { søknadsdata, resumeStepId, draftFormValues } = mellomlagring;
+            const { søknadsdata, resumeStepId, persistedFormValues } = mellomlagring;
             set({
                 søknadsdata,
-                draftFormValues: draftFormValues ?? {},
+                persistedFormValues: persistedFormValues ?? {},
                 resumeStepId,
                 includedSteps: computeIncludedSteps(stepOrder, config, søknadsdata),
                 søknadSendt: false,
@@ -133,26 +133,26 @@ export const createSøknadAppStore = (options: StoreOptions): UseBoundStore<Stor
             return { newResumeStepId, newRoute };
         },
 
-        clearDraftFormValues: (stepId) =>
+        clearPersistedFormValues: (stepId) =>
             set((state) => {
-                const newDraft = { ...state.draftFormValues };
-                delete newDraft[stepId];
-                return { draftFormValues: newDraft };
+                const updated = { ...state.persistedFormValues };
+                delete updated[stepId];
+                return { persistedFormValues: updated };
             }),
 
-        setDraftFormValues: (values) => set({ draftFormValues: values }),
+        setPersistedFormValues: (values) => set({ persistedFormValues: values }),
 
         setSøknadSendt: () =>
             set({
                 søknadSendt: true,
                 resumeStepId: undefined,
-                draftFormValues: {},
+                persistedFormValues: {},
             }),
 
         reset: () =>
             set({
                 søknadsdata: {},
-                draftFormValues: {},
+                persistedFormValues: {},
                 resumeStepId: undefined,
                 includedSteps: computeIncludedSteps(stepOrder, config, {}),
                 søknadSendt: false,

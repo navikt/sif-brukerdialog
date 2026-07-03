@@ -12,7 +12,7 @@ Signalord: `oppsummering`, `OppsummeringSteg`, `sett opp oppsummering`, `ny opps
 
 ## Leveranse
 
-- Utfylt `OppsummeringSteg.tsx` med alle domeneseksjoner via `FormSummary`
+- Utfylt `OppsummeringSteg.tsx` med alle domeneseksjoner via `FormLayout.Summary`
 - Tekster som samsvarer med v1-versjonen av samme søknad
 - Fungerende bekreftelsescheckbox og innsending
 - i18n-nøkler i `nb.ts` som dekker alle labels
@@ -69,7 +69,7 @@ Mapper `Søknadsdata` + `Søker` + `språk` til `SøknadApiData` (minus `harBekr
 ```ts
 import { Søker } from '@sif/api/k9-prosessering';
 
-import { SøknadStepId } from '../setup/config/SoknadStepId';
+import { SøknadStepId } from '../types/SoknadStepId';
 import { SøknadApiData } from '../types/SoknadApiData';
 import { Søknadsdata } from '../types/Soknadsdata';
 
@@ -177,25 +177,42 @@ DTO-feltene inneholder backend-URLer (strenger). Lenkelista trenger `name`, `url
 
 ### Feil-tilstand
 
-Hvis DTO ikke kan bygges (`dto === undefined`), vis `LocalAlert status="error"` og disable submit:
+Hvis DTO ikke kan bygges (`dto === undefined`), vis `InfoCard variant="warning"` og disable submit:
 
 ```tsx
 submitDisabled={!dto}
 ```
 
 ```tsx
-{
-    !dto && <LocalAlert status="error">...</LocalAlert>;
-}
-{
-    dto && (
-        <>
-            <OmSøkerOppsummering søker={state.søker} />
-            {/* domeneseksjoner */}
-        </>
-    );
-}
+{!dto && (
+    <InfoCard data-color="warning">
+        <InfoCard.Header>
+            <InfoCard.Title><AppText id="oppsummeringSteg.feil.tittel" /></InfoCard.Title>
+        </InfoCard.Header>
+        <InfoCard.Content><AppText id="oppsummeringSteg.feil.innhold" /></InfoCard.Content>
+    </InfoCard>
+)}
+{dto && (
+    <FormLayout.Summary>
+        {/* domeneseksjoner */}
+    </FormLayout.Summary>
+)}
 ```
+
+`FormLayout.Summary` importeres fra `@sif/soknad-ui`.
+
+### Hente søknadsdata og kontekst
+
+I nåværende v2-mønster hentes state fra `useSøknadAppContext` (ikke `useSøknadState`):
+
+```tsx
+import { useSøknadAppContext, useSøknadSendt } from '@sif/soknad-app';
+const { store } = useSøknadAppContext();
+const søknadsdata = store((s) => s.søknadsdata) as Søknadsdata;
+const { onSøknadSendt } = useSøknadSendt();
+```
+
+App-spesifikk data (søker, barn, kontoInfo) hentes via `useAppContext()` fra `@app/context/AppContext`.
 
 ### i18n-nøkler
 

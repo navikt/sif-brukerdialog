@@ -1,4 +1,4 @@
-import { ComponentType, ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 /**
  * Mellomlagring-blob som rammeverket lagrer og henter som opak struktur.
@@ -8,8 +8,8 @@ export interface MellomlagringBlob {
     /** Gjenopptakingspunkt — steget brukeren skal landes på ved reload. */
     resumeStepId: string;
     søknadsdata: Record<string, unknown>;
-    /** Midlertidige skjemaverdier (ikke submittet) — brukes som defaultValues etter reload */
-    draftFormValues?: Record<string, Record<string, unknown>>;
+    /** Persisterte skjemaverdier (ikke submittet) — brukes som defaultValues etter reload */
+    persistedFormValues?: Record<string, Record<string, unknown>>;
 }
 
 /**
@@ -33,18 +33,12 @@ export interface IncludedStep {
     completed: boolean;
 }
 
-/**
- * Props til dialog-komponenter som kan overrides av appen.
- */
-export interface DialogProps {
-    onConfirm: () => void;
-    onCancel: () => void;
-}
 
 /**
  * Props til SøknadRouter — hoved-inngangskomponenten for søknadsrammeverket.
  */
 export interface SøknadRouterProps {
+
     /** Steg-konfigurasjon: route, isCompleted, isIncluded per steg-ID */
     config: Record<string, StepDefinition>;
     /** Rekkefølge av steg-ID-er */
@@ -61,11 +55,6 @@ export interface SøknadRouterProps {
     validateMellomlagring?: (blob: MellomlagringBlob) => MellomlagringBlob | null;
     /** URL det navigeres til ved "fortsett senere". Default: NAV Min side */
     resumeLaterUrl?: string;
-    /** Override dialog-komponenter */
-    dialogs?: {
-        avbryt?: ComponentType<DialogProps>;
-        fortsettSenere?: ComponentType<DialogProps>;
-    };
     /** Element som vises mens en routeren initialiseres; typisk LoadingPage komponent. */
     loadingElement?: ReactNode;
     /** Element som vises etter vellykket innsending (kvitteringside) */

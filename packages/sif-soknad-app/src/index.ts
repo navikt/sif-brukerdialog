@@ -29,12 +29,13 @@ export { useStartSøknad } from './hooks/useStartSøknad';
 export { useStepData } from './hooks/useStepData';
 export { useStepNavigation } from './hooks/useStepNavigation';
 
-// Intern kontekst — eksportert for avansert bruk (f.eks. oppsummering, direkte store-aksess)
+export { useSøknadsdata } from './hooks/useSøknadsdata';
+
+// Intern kontekst — eksportert for avansert bruk (f.eks. direkte store-aksess)
 export { useSøknadAppContext } from './context/SøknadAppContext';
 
 // Typer
 export type {
-    DialogProps,
     IncludedStep,
     MellomlagringBlob,
     SøknadFrameworkIntlKeys,

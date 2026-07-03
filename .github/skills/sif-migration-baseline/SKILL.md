@@ -1,8 +1,12 @@
 ---
 name: sif-migration-baseline
 type: diagnostikk
-description: Lettvekts runbook for migrering av en dialog-app til ny v2 setup med sif-soknad og sif-rhf.
+description: "⚠️ DEPRECATED — beskriver migrering til interim v2 (sif-soknad + sif-rhf). Nåværende v2-mønster bruker @sif/soknad-app. Se aktivitetspenger-soknad som referanse."
+deprecated: true
 ---
+
+> **⚠️ DEPRECATED**  
+> Denne skillen beskriver migrering til en interim v2-arkitektur som er forlatt. Nåværende v2-mønster bruker `@sif/soknad-app` med `SøknadRouter`, `SøknadAppProvider`, `useStepData` og `SøknadStepForm`. Se `apps/aktivitetspenger-soknad` som referanseimplementasjon og bruk `sif-soknad-setup` for ny oppsett-veiledning.
 
 # sif-migration-baseline
 

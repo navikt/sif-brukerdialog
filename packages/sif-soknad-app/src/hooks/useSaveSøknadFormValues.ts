@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 
-import { StepFormValues, useSøknadFormValues } from '../consistency/SøknadFormValuesContext';
+import { StepFormValues, useSøknadStepFormContext } from '../consistency/SøknadStepFormContext';
 
 /**
- * Lagrer skjemaverdier til SøknadFormValuesContext ved unmount.
+ * Lagrer skjemaverdier til SøknadStepFormContext ved unmount.
  * Fanger opp endringer når bruker navigerer bort fra steget uten å submitte
  * (f.eks. via browser back/forward).
  *
@@ -18,7 +18,7 @@ import { StepFormValues, useSøknadFormValues } from '../consistency/SøknadForm
  */
 export const useSaveSøknadFormValues = (stepId: string, getValues: () => unknown) => {
     const { setFormValuesForStep, shouldSaveOnUnmountForStep, registerGetValuesForStep, unregisterGetValuesForStep } =
-        useSøknadFormValues();
+        useSøknadStepFormContext();
     const getValuesRef = useRef(getValues);
 
     useEffect(() => {

@@ -1,8 +1,7 @@
 import { RegistrertBarn } from '@sif/api/k9-prosessering';
-import { BaseSøknadsdata } from '@sif/soknad/types';
 import { PersistedVedlegg } from '@sif/soknad-forms';
 
-import { SøknadStepId } from '../setup/config/SoknadStepId';
+import { SøknadStepId } from './SoknadStepId';
 import { BarnSammeAdresse } from './BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from './SøkersRelasjonTilBarnet';
 
@@ -37,8 +36,10 @@ export interface DeltBostedSøknadsdata {
     samværsavtale: PersistedVedlegg[];
 }
 
-export interface Søknadsdata extends BaseSøknadsdata {
+export type Søknadsdata = {
+    harForståttRettigheterOgPlikter?: boolean;
     [SøknadStepId.OM_BARNET]?: OmBarnetSøknadsdata;
     [SøknadStepId.LEGEERKLÆRING]?: LegeerklæringSøknadsdata;
     [SøknadStepId.DELT_BOSTED]?: DeltBostedSøknadsdata;
-}
+    [SøknadStepId.OPPSUMMERING]?: never;
+};

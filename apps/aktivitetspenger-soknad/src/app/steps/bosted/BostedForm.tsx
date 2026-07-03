@@ -7,6 +7,7 @@ import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { SøknadStep, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { SifInfoCard } from '@sif/soknad-ui';
+import { FormLayout } from '@sif/soknad-ui/components';
 import { useForm } from 'react-hook-form';
 
 import { toBostedFormValues, toBostedSøknadsdata } from './bostedStegUtils';
@@ -31,19 +32,23 @@ export const BostedForm = () => {
     return (
         <SøknadStep stepId={stepId}>
             <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
-                <YesOrNoQuestion
-                    name={BostedFormFields.erBosattITrondheim}
-                    legend={text('bostedSteg.spørsmål.erBosattITrondheim')}
-                    validate={validateField(BostedFormFields.erBosattITrondheim, getYesOrNoValidator())}
-                />
-                {erBosattITrondheim === YesOrNo.NO && (
-                    <SifInfoCard variant="warning">
-                        <Heading level="3" size="small" spacing>
-                            Når du ikke bor i Trondheim
-                        </Heading>
-                        <BodyLong spacing>Info</BodyLong>
-                    </SifInfoCard>
-                )}
+                <FormLayout.Content>
+                    <FormLayout.Questions>
+                        <YesOrNoQuestion
+                            name={BostedFormFields.erBosattITrondheim}
+                            legend={text('bostedSteg.spørsmål.erBosattITrondheim')}
+                            validate={validateField(BostedFormFields.erBosattITrondheim, getYesOrNoValidator())}
+                        />
+                        {erBosattITrondheim === YesOrNo.NO && (
+                            <SifInfoCard variant="warning">
+                                <Heading level="3" size="small" spacing>
+                                    Når du ikke bor i Trondheim
+                                </Heading>
+                                <BodyLong spacing>Info</BodyLong>
+                            </SifInfoCard>
+                        )}
+                    </FormLayout.Questions>
+                </FormLayout.Content>
             </SøknadStepForm>
         </SøknadStep>
     );

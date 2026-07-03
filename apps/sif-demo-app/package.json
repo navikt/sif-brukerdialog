@@ -35,6 +35,7 @@
         "@sif/api": "workspace:*",
         "@sif/rhf": "workspace:*",
         "@sif/soknad": "workspace:*",
+        "@sif/soknad-app": "workspace:*",
         "@sif/soknad-forms": "workspace:*",
         "@sif/soknad-ui": "workspace:*",
         "@sif/utils": "workspace:*",

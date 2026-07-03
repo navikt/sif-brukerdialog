@@ -7,12 +7,11 @@ import {
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { SøknadFormValuesProvider } from '../consistency/SøknadFormValuesContext';
+import { SøknadStepFormProvider } from '../consistency/SøknadStepFormContext';
 import { SøknadAppContext, SøknadAppContextValue } from '../context/SøknadAppContext';
 import { createSøknadAppStore } from '../store/createSøknadAppStore';
 import { MellomlagringBlob, SøknadRouterProps } from '../types';
 import { buildStepPath } from '../utils/routeUtils';
-
 const isMellomlagringBlob = (value: unknown): value is MellomlagringBlob => {
     if (typeof value !== 'object' || value === null) return false;
     const v = value as Record<string, unknown>;
@@ -37,7 +36,25 @@ const DEFAULT_RESUME_LATER_URL = 'https://www.nav.no/minside';
  * Dersom gyldig mellomlagring finnes, navigeres bruker automatisk til
  * gjenopptakingspunktet. Uten mellomlagring vises children (velkommensiden).
  *
- * Etter vellykket innsending vises `kvitteringElement` og URL settes til '/kvittering'.
+ * Etter vellykket innsending vises `kvitteringElement` basert på Zustand-state
+ * (ikke rute-basert — kvitteringen er ikke tilgjengelig via direkte URL).
+ *
+ * ---
+ * ## Navigasjonsansvar i rammeverket
+ *
+ * Navigasjon er fordelt etter hvem som eier beslutningen:
+ *
+ * | Beslutning                        | Eier                          |
+ * |-----------------------------------|-------------------------------|
+ * | Resume fra mellomlagring ved mount| SøknadRouter (useEffect nedenfor) |
+ * | Start søknad → første steg        | useStartSøknad                |
+ * | Neste steg etter submit           | useStepData.commit            |
+ * | Forrige steg / hopp til steg      | useStepNavigation             |
+ * | Klikk i progress-stepper         | SøknadStep.onStepSelect       |
+ * | Avbryt → forsiden                 | SøknadStep.onAbort            |
+ * | Fortsett senere                   | SøknadStep.onResumeLater      |
+ * | Kvittering etter innsending       | useSøknadSendt                |
+ * | URL-guard / redirect              | StepRouteGuard (passive)      |
  *
  * Appen er ansvarlig for <Routes>-oppsett. Bruk <SøknadStepGuard> for å
  * beskytte steg-rutene.
@@ -81,14 +98,8 @@ export const SøknadRouter = ({
     const isInitialized = store((s) => s.isInitialized);
     const navigate = useNavigate();
 
-    // Naviger til kvitteringssti når søknad er sendt
-    useEffect(() => {
-        if (søknadSendt) {
-            navigate('/kvittering', { replace: true });
-        }
-    }, [søknadSendt, navigate]);
-
-    // Hent og initialiser fra mellomlagring ved mount
+    // Navigasjon: etter mellomlagring-henting ved mount — send bruker til gjenopptakingspunktet.
+    // Alle andre navigasjonsbeslutninger er dokumentert i JSDoc-tabellen over.
     useEffect(() => {
         let cancelled = false;
 
@@ -170,7 +181,7 @@ export const SøknadRouter = ({
     );
 
     return (
-        <SøknadFormValuesProvider>
+        <SøknadStepFormProvider>
             <SøknadAppContext.Provider value={contextValue}>
                 {søknadSendt && kvitteringElement
                     ? kvitteringElement
@@ -178,6 +189,6 @@ export const SøknadRouter = ({
                       ? children
                       : loadingElement || null}
             </SøknadAppContext.Provider>
-        </SøknadFormValuesProvider>
+        </SøknadStepFormProvider>
     );
 };

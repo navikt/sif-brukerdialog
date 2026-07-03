@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { SøknadFormValues } from '../../consistency/SøknadFormValuesContext';
+import { StepFormValuesMap } from '../../consistency/SøknadStepFormContext';
 import { checkConsistencyForSteps } from '../checkConsistencyForSteps';
 
 const stepOrder = ['steg1', 'steg2', 'steg3', 'steg4'];
@@ -11,7 +11,7 @@ const runCheck = ({
     søknadsdataByStep,
 }: {
     currentStepId: string;
-    formValues: SøknadFormValues;
+    formValues: StepFormValuesMap;
     søknadsdataByStep: Record<string, Record<string, unknown>>;
 }) =>
     checkConsistencyForSteps({

@@ -1,10 +1,10 @@
 import { AppText, useAppIntl } from '@app/i18n';
-import { SøknadStepId } from '@app/setup/config/SoknadStepId';
-import { useSøknadRhfForm, useSøknadState, useStepDefaultValues, useStepSubmit } from '@app/setup/hooks';
-import { AppForm } from '@app/setup/soknad/AppForm';
+import { useAppContext } from '@app/context/AppContext';
+import { SøknadStepId } from '@app/types/SoknadStepId';
+import { SøknadStepForm } from '@sif/soknad-app';
+import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
 import { BarnSammeAdresse } from '@app/types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '@app/types/SøkersRelasjonTilBarnet';
-import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
 import { Heading, ReadMore } from '@navikt/ds-react';
 import { isDevMode } from '@navikt/sif-common-env';
 import { QuestionRelatedMessage } from '@navikt/sif-common-ui';
@@ -16,12 +16,13 @@ import {
     getStringValidator,
     getYesOrNoValidator,
 } from '@navikt/sif-validation';
-import { RegistrertBarn } from '@sif/api/k9-prosessering';
 import { useInnvilgedeVedtakForRegistrerteBarn } from '@sif/api/k9-sak-innsyn-api';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { VelgRegistrertBarnPanel } from '@sif/soknad-forms';
 import { AriaLiveRegion, FormContentLoader, FormLayout, SifInfoCard } from '@sif/soknad-ui/components';
+import { useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 
 import {
     getMinDatoForBarnetsFødselsdato,
@@ -39,30 +40,21 @@ const stepId = SøknadStepId.OM_BARNET;
 export const OmBarnetForm = () => {
     const { validateField } = useSifValidate('omBarnetForm');
     const { text } = useAppIntl();
-    const { barn, søker } = useSøknadState();
+    const { barn: registrerteBarn, søker } = useAppContext();
 
-    const registrerteBarn: RegistrertBarn[] = barn ?? [];
-
-    const defaultValues = useStepDefaultValues<OmBarnetFormValues, OmBarnetSøknadsdata>({
-        stepId,
-        toFormValues: toOmBarnetFormValues,
+    const { lagretData, draftFormValues, commit } = useStepData<OmBarnetSøknadsdata, OmBarnetFormValues>(stepId);
+    const methods = useForm<OmBarnetFormValues>({
+        defaultValues: draftFormValues ?? toOmBarnetFormValues(lagretData),
     });
+    useSaveSøknadFormValues(stepId, methods.getValues);
 
-    const { onSubmit, isPending, submitError } = useStepSubmit<OmBarnetFormValues, OmBarnetSøknadsdata>({
-        stepId,
-        toSøknadsdata: (values) => {
-            const result = toOmBarnetSøknadsdata(values, registrerteBarn);
-            if (!result) throw new Error('OmBarnet: mangler nødvendig data etter validering');
-            return result;
-        },
-    });
-
-    const methods = useSøknadRhfForm(stepId, defaultValues);
     const { watch } = methods;
 
     const harRegistrerteBarn = registrerteBarn.length > 0;
 
-    const { vedtak, isLoading: vedtakIsLoading } = useInnvilgedeVedtakForRegistrerteBarn(registrerteBarn);
+    const { vedtak, isLoading: vedtakIsLoading } = useInnvilgedeVedtakForRegistrerteBarn(
+        registrerteBarn,
+    );
 
     const barnetSøknadenGjelder = watch(OmBarnetFormFields.barnetSøknadenGjelder);
     const søknadenGjelderAnnetBarn = barnetSøknadenGjelder === ANNET_BARN;
@@ -102,17 +94,22 @@ export const OmBarnetForm = () => {
 
     const minDatoForBarnetsFødselsdato = getMinDatoForBarnetsFødselsdato();
 
+    const onSubmit = (data: OmBarnetFormValues) => {
+        const result = toOmBarnetSøknadsdata(data, registrerteBarn);
+        if (!result) throw new Error('OmBarnet: mangler nødvendig data etter validering');
+        commit(result);
+    };
+
     if (vedtakIsLoading) {
         return <FormContentLoader />;
     }
 
     return (
-        <AppForm
+        <SøknadStepForm
             stepId={stepId}
             methods={methods}
             onSubmit={onSubmit}
-            isPending={isPending}
-            submitError={submitError}
+            isPending={false}
             submitDisabled={harInnvilgetVedtakForValgtBarn}>
             <FormLayout.Content>
                 <FormLayout.Questions>
@@ -303,6 +300,6 @@ export const OmBarnetForm = () => {
                     )}
                 </FormLayout.Questions>
             </FormLayout.Content>
-        </AppForm>
+        </SøknadStepForm>
     );
 };

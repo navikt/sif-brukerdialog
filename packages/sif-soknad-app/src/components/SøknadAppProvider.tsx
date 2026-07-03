@@ -1,7 +1,7 @@
 import { initSentry, SentryConfig } from '@navikt/sif-common-sentry';
 import { FaroProvider, FaroProviderConfig } from '@navikt/sif-common-faro';
 import { DevBranchInfo } from '@sif/soknad-ui';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useRef } from 'react';
 
 import { AnalyticsProvider, AnalyticsProviderConfig } from '../analytics/analytics';
 import { AppErrorBoundary } from './AppErrorBoundary';
@@ -17,8 +17,6 @@ interface SøknadAppProviderProps {
     intlConfig?: AppIntlConfig;
 }
 
-let sentryInitialized = false;
-
 export const SøknadAppProvider = ({
     applicationKey,
     appVersion,
@@ -28,9 +26,12 @@ export const SøknadAppProvider = ({
     intlConfig,
     children,
 }: PropsWithChildren<SøknadAppProviderProps>) => {
-    if (sentryConfig && !sentryInitialized) {
+    // useRef sikrer at Sentry kun initialiseres én gang per provider-instans,
+    // uten å lekke state mellom tester eller hot-reload.
+    const sentryInitializedRef = useRef(false);
+    if (sentryConfig && !sentryInitializedRef.current) {
         initSentry(sentryConfig);
-        sentryInitialized = true;
+        sentryInitializedRef.current = true;
     }
     return (
         <FaroProvider

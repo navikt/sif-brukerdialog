@@ -1,85 +1,38 @@
-import { søknadStepConfig } from '@app/setup/config/soknadStepConfig';
-import { SøknadStepId } from '@app/setup/config/SoknadStepId';
-import { SøknadContextProvider } from '@app/setup/context/soknadContext';
-import { useSøknadStore, useStepTitles } from '@app/setup/hooks';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { søknadStepConfig, søknadStepOrder } from '@app/setup/soknadStepConfig';
+import { SøknadStepId } from '@app/types/SoknadStepId';
+import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '@app/setup/constants';
+import { useFormValuesToSøknadsdata } from '@app/hooks/useFormValuesToSøknadsdata';
 import { SkyraHandler, SkyraTestPage, SkyraSlug } from '@sif/surveys';
-import { RegistrertBarn, Søker } from '@sif/api/k9-prosessering';
-import { StepRouteGuard } from '@sif/soknad/navigation';
-import { useEffect } from 'react';
-import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { SøknadRouter, SøknadStepGuard } from '@sif/soknad-app';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
-import { KvitteringPage, VelkommenPage } from './pages';
+import { useAppIntl } from './i18n';
+import { KvitteringPage } from './pages/kvittering/KvitteringPage';
+import { VelkommenPage } from './pages/velkommen/VelkommenPage';
 import { DeltBostedSteg, LegeerklæringSteg, OmBarnetSteg, OppsummeringSteg } from './steps';
-import { SøknadMellomlagring } from './types/Mellomlagring';
 
-interface Props {
-    søker: Søker;
-    barn: RegistrertBarn[];
-    mellomlagring?: SøknadMellomlagring;
-}
-
-export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
-    const stepTitles = useStepTitles();
-    const init = useSøknadStore((s) => s.init);
-    const søknadSendt = useSøknadStore((s) => s.søknadSendt);
-    const søknadState = useSøknadStore((s) => s.søknadState);
-    const currentStepId = useSøknadStore((s) => s.currentStepId);
-    const includedSteps = useSøknadStore((s) => s.includedSteps);
-
+export const Søknad = () => {
+    const { text } = useAppIntl();
+    const formValuesToSøknadsdata = useFormValuesToSøknadsdata();
     const location = useLocation();
-    const navigate = useNavigate();
-
-    useEffectOnce(() => {
-        init({ søker, barn }, mellomlagring?.søknadsdata, mellomlagring?.currentStepId);
-    });
-
-    useEffect(() => {
-        if (søknadSendt && location.pathname !== '/kvittering') {
-            navigate('/kvittering', { replace: true });
-        } else if (!søknadSendt && location.pathname === '/kvittering') {
-            navigate('/', { replace: true });
-        }
-    }, [søknadSendt, location.pathname, navigate]);
-
-    const currentStepRoute = currentStepId ? søknadStepConfig[currentStepId]?.route : undefined;
-    useEffect(() => {
-        if (currentStepRoute && location.pathname === '/') {
-            navigate(`/soknad/${currentStepRoute}`, { replace: true });
-        }
-    }, [currentStepRoute, location.pathname, navigate]);
 
     if (location.pathname.includes('skyra/test')) {
         return <SkyraTestPage slugs={[SkyraSlug.ekstra_omsorgsdager_kronisk_syk]} />;
     }
 
-    if (søknadSendt && location.pathname !== '/kvittering') {
-        return <KvitteringPage />;
-    }
-
-    if (!søknadSendt && location.pathname === '/kvittering') {
-        return (
-            <SøknadContextProvider stepTitles={stepTitles}>
-                <VelkommenPage />
-            </SøknadContextProvider>
-        );
-    }
-
     return (
-        <SøknadContextProvider initialFormValues={mellomlagring?.skjemadata} stepTitles={stepTitles}>
+        <SøknadRouter
+            config={søknadStepConfig}
+            stepOrder={søknadStepOrder}
+            ytelse={APP_YTELSE}
+            versjon={MELLOMLAGRING_VERSJON}
+            applicationTitle={text('application.title')}
+            formValuesToSøknadsdata={formValuesToSøknadsdata}
+            kvitteringElement={<KvitteringPage />}>
             <SkyraHandler />
             <Routes>
                 <Route path="/" element={<VelkommenPage />} />
-                <Route path="/kvittering" element={<KvitteringPage />} />
-                <Route
-                    path="/soknad"
-                    element={
-                        <StepRouteGuard
-                            steps={includedSteps}
-                            currentStepId={currentStepId}
-                            isInitialized={!!søknadState}
-                        />
-                    }>
+                <Route path="/soknad" element={<SøknadStepGuard basePath="/soknad" />}>
                     <Route path={søknadStepConfig[SøknadStepId.OM_BARNET].route} element={<OmBarnetSteg />} />
                     <Route path={søknadStepConfig[SøknadStepId.LEGEERKLÆRING].route} element={<LegeerklæringSteg />} />
                     <Route path={søknadStepConfig[SøknadStepId.DELT_BOSTED].route} element={<DeltBostedSteg />} />
@@ -88,6 +41,6 @@ export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
                 </Route>
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
-        </SøknadContextProvider>
+        </SøknadRouter>
     );
 };
