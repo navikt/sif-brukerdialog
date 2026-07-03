@@ -3,6 +3,7 @@ import { OppgaveStatus, OppgaveType, OppgaveYtelsetype } from '@navikt/ung-bruke
 import { ParsedOppgavetype, SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 
 import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
@@ -14,6 +15,8 @@ const meta: Meta = {
     parameters: {},
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
+dayjs.extend(utc);
+
 export default meta;
 
 type Story = StoryObj;

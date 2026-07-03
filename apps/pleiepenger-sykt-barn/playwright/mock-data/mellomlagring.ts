@@ -1,6 +1,6 @@
 export const mellomlagringMock = {
     formValues: {
-        periodeFra: '2023-01-02',
+        periodeFra: '2023-01-03',
         periodeTil: '2023-01-15',
         barnetsNavn: '',
         barnetsFødselsnummer: '',
@@ -48,7 +48,7 @@ export const mellomlagringMock = {
     metadata: {
         lastStepID: 'medlemskap',
         version: '14.4.0',
-        updatedTimestemp: '2023-01-01T00:00:00.000Z',
+        updatedTimestemp: '2023-01-03T00:00:00.000Z',
         featureToggles: {
             spørOmSluttetISøknadsperiode: false,
         },

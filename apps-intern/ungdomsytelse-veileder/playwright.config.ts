@@ -24,6 +24,13 @@ export default defineConfig({
             name: 'chromium',
             use: { ...devices['Desktop Chrome'] },
         },
+        {
+            name: 'chromium-los-angeles',
+            use: {
+                ...devices['Desktop Chrome'],
+                timezoneId: 'America/Los_Angeles',
+            },
+        },
     ],
 
     webServer: {

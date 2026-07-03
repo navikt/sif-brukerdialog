@@ -12,8 +12,20 @@ const baseOppgave = {
     frist: '2026-05-15T07:00:00.000Z',
 };
 
-describe('parseOppgaverElement – BEKREFT_OPPHOR_VED_MAKSDATO', () => {
-    it('mapper maxDato til oppgavetypeData.maksdato som Date', () => {
+describe('parseOppgaverElement - BEKREFT_OPPHOR_VED_MAKSDATO', () => {
+    it('setter frist til dagen før oppgavens frist', () => {
+        const [result] = parseOppgaverElement(OppgaveYtelsetype.UNGDOMSYTELSE, [
+            {
+                ...baseOppgave,
+                frist: '2026-05-15T07:00:00.000Z',
+                oppgavetype: OppgaveType.BEKREFT_OPPHOR_VED_MAKSDATO,
+                oppgavetypeData: { type: 'OPPHOR_VED_MAKSDATO', maxDato: '2026-06-30', sluttdato: '2026-06-30' },
+            },
+        ]);
+        expect((result as OpphorVedMaksdatoOppgave).frist).toBe('2026-05-14');
+    });
+
+    it('mapper maxDato til oppgavetypeData.maksdato som ISODate', () => {
         const [result] = parseOppgaverElement(OppgaveYtelsetype.UNGDOMSYTELSE, [
             {
                 ...baseOppgave,
@@ -31,7 +43,7 @@ describe('parseOppgaverElement – BEKREFT_OPPHOR_VED_MAKSDATO', () => {
         expect(oppgave.oppgavetypeData.maksdato).toEqual('2026-06-30');
     });
 
-    it('bevarer sluttdato som Date', () => {
+    it('bevarer sluttdato som ISODate', () => {
         const [result] = parseOppgaverElement(OppgaveYtelsetype.UNGDOMSYTELSE, [
             {
                 ...baseOppgave,

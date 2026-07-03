@@ -15,8 +15,8 @@ import {
     OppgaveYtelsetype,
     PeriodeEndringType,
     RapportertInntektDto,
-    SøkYtelseOppgavetypeDataDto,
     SvarPåVarselDto,
+    SøkYtelseOppgavetypeDataDto,
 } from '@navikt/ung-brukerdialog-api';
 import dayjs from 'dayjs';
 

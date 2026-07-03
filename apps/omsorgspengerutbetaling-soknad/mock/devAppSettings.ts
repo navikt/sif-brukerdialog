@@ -21,6 +21,6 @@ export const getDevAppSettings = () => ({
     SIF_PUBLIC_USE_ANALYTICS: 'false',
     SIF_PUBLIC_ANALYTICS_API_KEY: '123',
 
-    MOCK_DATE: '2024-08-01',
+    MOCK_DATE: '2024-08-01T12:00:00Z',
     USE_MOCK_DATE: 'true',
 });
