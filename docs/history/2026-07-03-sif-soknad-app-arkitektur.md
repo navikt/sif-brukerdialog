@@ -9,7 +9,7 @@
 
 | Funn | Status |
 |------|--------|
-| 1. [Kompleksitet] Tre draft-lag | ✅ Dokumentert i `SøknadFormValuesContext`, `useMellomlagring`, `useStepData` |
+| 1. [Kompleksitet] Tre draft-lag | ✅ Dokumentert i `SøknadStepFormContext`, `useMellomlagring`, `useStepData` |
 | 2. [Lekkasje] Hardkoblet til `@sif/api` | ⏭️ Ikke prioritert — monorepo-intern pakke |
 | 3. [Uklarhet] Navigasjonsansvar spredt | ✅ Navigasjonstabell i `SøknadRouter` JSDoc. `søknadSendt`-navigasjon til `useSøknadSendt`. Inline-kommentarer. |
 | 4. [Lekkasje] Intern store eksponert | ✅ Ny `useSøknadsdata<T>()`-hook erstatter direkte store-aksess |
