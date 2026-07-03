@@ -243,7 +243,6 @@ const onSubmit = async () => {
     try {
         await mutateAsync({ ...dto, harBekreftetOpplysninger });
         await slettMellomlagring();
-        clearSøknadFormValues();
         setSøknadSendt();
     } catch {
         return; // Feilen håndteres via sendSøknadError-state
