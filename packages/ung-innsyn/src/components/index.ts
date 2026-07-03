@@ -1,6 +1,7 @@
 export { ForsideLenkeButton } from './forside-lenke-button/ForsideLenkeButton';
 export { InnsynDefaultErrorMessage } from './innsyn-default-error-message/InnsynDefaultErrorMessage';
 export { InnsynForsideHeader } from './innsyn-forside-header/InnsynForsideHeader';
+export { InnsynPageBoundary } from './innsyn-page-boundary/InnsynPageBoundary';
 export { InntektTable } from './inntekt-table/InntektTable';
 export { OppgaveLinkCard } from './oppgave-link-card/OppgaveLinkCard';
 export { OppgaveStatusIkon } from './oppgave-status-ikon/OppgaveStatusIkon';
