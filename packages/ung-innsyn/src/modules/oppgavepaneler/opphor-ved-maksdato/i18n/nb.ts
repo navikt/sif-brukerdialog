@@ -21,5 +21,5 @@ export const opphorVedMaksdatoMessages_nb = {
     '@ungInnsyn.opphorVedMaksdato.oppgavetekst.5':
         'Hvis vi ikke hører fra deg innen svarfristen har gått ut, bruker vi {formatertDato} som siste dag med ytelsen når vi behandler saken din.',
     '@ungInnsyn.opphorVedMaksdato.oppsummering.sisteDag':
-        'Din siste dag med ungdomsprogramytelsen er <strong>{sisteDag}</strong>. Det er fordi du har brukt opp dagene du kan motta ungdoms\u00ADprogram\u00ADytelsen.',
+        'Din siste dag med ungdoms\u00ADprogram\u00ADytelsen er <strong>{sisteDag}</strong>. Det er fordi du har brukt opp dagene du kan motta ungdoms\u00ADprogram\u00ADytelsen.',
 };
