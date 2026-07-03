@@ -37,11 +37,10 @@ const SøknadDataWrapper = () => {
     }
 };
 
+const env = getAppEnv();
+initApiClients();
+
 export const App = () => {
-    const env = getAppEnv();
-
-    initApiClients();
-
     if (globalThis.location.pathname === '/') {
         globalThis.location.pathname = env.PUBLIC_PATH;
         return null;
