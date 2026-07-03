@@ -12,7 +12,7 @@ export const opphorVedMaksdatoMessages_nb = {
         'Du vil om kort tid motta et oppdatert vedtak.',
 
     '@ungInnsyn.opphorVedMaksdato.oppgavetekst.1':
-        'Din siste dag med ungdomsprogramytelsen er <strong>{formatertDato}</strong>.',
+        'Din siste dag med ungdomsprogramytelsen er <strong>{formatertDato}</strong>. Det er fordi du har brukt opp dagene du kan motta ungdoms\u00ADprogram\u00ADytelsen.',
     '@ungInnsyn.opphorVedMaksdato.oppgavetekst.2':
         'Du får denne meldingen slik at du kan komme med en tilbakemelding på datoen.',
     '@ungInnsyn.opphorVedMaksdato.oppgavetekst.3':
@@ -21,5 +21,5 @@ export const opphorVedMaksdatoMessages_nb = {
     '@ungInnsyn.opphorVedMaksdato.oppgavetekst.5':
         'Hvis vi ikke hører fra deg innen svarfristen har gått ut, bruker vi {formatertDato} som siste dag med ytelsen når vi behandler saken din.',
     '@ungInnsyn.opphorVedMaksdato.oppsummering.sisteDag':
-        'Din siste dag med ungdomsprogramytelsen er <strong>{sisteDag}</strong>.',
+        'Din siste dag med ungdomsprogramytelsen er <strong>{sisteDag}</strong>. Det er fordi du har brukt opp dagene du kan motta ungdoms\u00ADprogram\u00ADytelsen.',
 };
