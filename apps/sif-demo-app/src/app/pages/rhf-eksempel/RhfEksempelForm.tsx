@@ -9,6 +9,7 @@ import {
     getTimeValidator,
 } from '@navikt/sif-validation';
 import { createSifFormComponents, SifForm, useSifValidate } from '@sif/rhf';
+import { dateToISODate } from '@sif/utils';
 import { useForm } from 'react-hook-form';
 
 enum Field {
@@ -129,7 +130,7 @@ export const RhfEksempelForm = () => {
                     <Datepicker
                         name={Field.fødselsdato}
                         label="Fødselsdato"
-                        maxDate={new Date()}
+                        maxDate={dateToISODate(new Date())}
                         validate={validateField(
                             Field.fødselsdato,
                             getDateValidator({ required: true, max: new Date() }),

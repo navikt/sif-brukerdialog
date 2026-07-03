@@ -1,43 +1,69 @@
+import '@navikt/ds-css';
 import './app.css';
 
 import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
-import { EnvKey } from '@navikt/sif-common-env';
-import { FaroProvider } from '@navikt/sif-common-faro';
-import { DevBranchInfo } from '@sif/soknad-ui';
-import { IntlProvider } from 'react-intl';
+import { SøknadAppProvider } from '@sif/soknad-app';
+import { ErrorPage, LoadingPage } from '@sif/soknad-ui';
 import { BrowserRouter } from 'react-router-dom';
 
 import { initApiClients } from './app/api/initApiClients';
-import { applicationIntlMessages } from './app/i18n';
+import { AppContextProvider } from './app/context/AppContext';
+import { applicationIntlMessages, useAppIntl } from './app/i18n';
 import { getAppEnv } from './app/setup/env/appEnv';
-import { AppErrorBoundary } from './app/setup/wrappers/AppErrorBoundary';
-import { SifQueryClientProvider } from './app/setup/wrappers/SifQueryClientProvider';
+import { Søknad } from './app/Soknad';
 import { ScenarioHeader } from './demo/ScenarioHeader';
-import { InitialDataLoader } from './InitialDataLoader';
+import { useInitialData } from './useInitialData';
 
+const SøknadDataWrapper = () => {
+    const result = useInitialData();
+    const { text } = useAppIntl();
+    switch (result.status) {
+        case 'loading':
+            return <LoadingPage applicationTitle={text('application.title')} />;
+        case 'error':
+            if (import.meta.env.MODE === 'development') {
+                // eslint-disable-next-line no-console
+                console.error(
+                    result.errors.map((e) => (e as Error).message).join(', ') || 'Ukjent feil ved innlasting',
+                );
+            }
+            return <ErrorPage applicationTitle={text('application.title')} />;
+        case 'success':
+            return (
+                <AppContextProvider value={{ søker: result.data.søker, barn: result.data.barn }}>
+                    <Søknad />
+                </AppContextProvider>
+            );
+    }
+};
+
+const env = getAppEnv();
 initApiClients();
 
-const appEnv = getAppEnv();
-const basePath = appEnv[EnvKey.PUBLIC_PATH];
-
-if (globalThis.location.pathname === '/') {
-    globalThis.location.pathname = basePath;
-}
-
 export const App = () => {
+    if (globalThis.location.pathname === '/') {
+        globalThis.location.pathname = env.PUBLIC_PATH;
+        return null;
+    }
+
     return (
-        <FaroProvider applicationKey={OmsorgsdagerKroniskApp.key} appVersion={appEnv.APP_VERSION} isActive={false}>
-            <AppErrorBoundary>
-                <SifQueryClientProvider>
-                    <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
-                        <BrowserRouter basename={basePath}>
-                            {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
-                            <InitialDataLoader />
-                            <DevBranchInfo />
-                        </BrowserRouter>
-                    </IntlProvider>
-                </SifQueryClientProvider>
-            </AppErrorBoundary>
-        </FaroProvider>
+        <SøknadAppProvider
+            applicationKey={OmsorgsdagerKroniskApp.key}
+            appVersion={env.APP_VERSION}
+            faroConfig={{
+                isActive: env.SIF_PUBLIC_USE_FARO === 'true',
+                telemetryCollectorURL: env.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL,
+            }}
+            analyticsConfig={{ isActive: env.SIF_PUBLIC_USE_ANALYTICS === 'true' }}
+            sentryConfig={{
+                dsn: 'https://20da9cbb958c4f5695d79c260eac6728@sentry.gc.nav.no/30',
+                application: 'omsorgspengesoknad-v2',
+            }}
+            intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
+            <BrowserRouter basename={env.PUBLIC_PATH}>
+                {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
+                <SøknadDataWrapper />
+            </BrowserRouter>
+        </SøknadAppProvider>
     );
 };

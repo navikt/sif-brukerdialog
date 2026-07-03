@@ -7,7 +7,7 @@ import { InfoCard } from '@navikt/ds-react';
 import { ISODate } from '@sif/utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
-import { SøknadStep, useSøknadAppContext, useSøknadSendt } from '@sif/soknad-app';
+import { SøknadStep, useSøknadSendt, useSøknadsdata } from '@sif/soknad-app';
 import { FormLayout } from '@sif/soknad-ui';
 import { useForm } from 'react-hook-form';
 
@@ -35,8 +35,7 @@ export const OppsummeringSteg = () => {
     const { validateField } = useSifValidate('oppsummeringForm');
 
     const { søker, kontoInfo, registrerteBarn } = useAppContext();
-    const { store } = useSøknadAppContext();
-    const søknadsdata = store((s) => s.søknadsdata) as Søknadsdata;
+    const søknadsdata = useSøknadsdata<Søknadsdata>();
 
     const { onSøknadSendt } = useSøknadSendt();
 

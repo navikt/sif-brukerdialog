@@ -37,11 +37,6 @@ Bruk denne indeksen for rask routing til riktig skill.
     - Triggerord: `formik til rhf`, `konverter skjema`, `bytt ut formik`, `migrer form`, `sif-common-formik-ds`, `FormikWrapper`, `getTypedFormComponents`.
     - Fil: `.github/skills/sif-formik-to-rhf/SKILL.md`
 
-- `sif-migration-baseline`
-    - Når: migrering av app til ny v2 setup.
-    - Triggerord: `migrering`, `baseline`, `bootstrap`, `sif-demo-app`.
-    - Fil: `.github/skills/sif-migration-baseline/SKILL.md`
-
 - `sif-initial-data-loader`
     - Når: sette opp eller endre initial data-henting (useInitialData + InitialDataLoader) i en søknadsapp.
     - Triggerord: `useInitialData`, `InitialDataLoader`, `InitialData`, `loading/error/success`, `required queries`, `optional queries`, `mellomlagringsvalidering`, `legg til hook`, `ny datakilde`, `blokkerer loading`, `fallback-verdi`.

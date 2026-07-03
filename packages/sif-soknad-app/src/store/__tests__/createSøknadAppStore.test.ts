@@ -48,16 +48,16 @@ describe('createSøknadAppStore — init', () => {
         expect(state.includedSteps.map((s) => s.stepId)).toEqual(['start', 'arbeid', 'oppsummering']);
     });
 
-    it('gjenoppretter draftFormValues fra blob', () => {
+    it('gjenoppretter persistedFormValues fra blob', () => {
         const store = createStore();
         store.getState().init({
             versjon: 1,
             resumeStepId: 'start',
             søknadsdata: {},
-            draftFormValues: { start: { harBarn: true } },
+            persistedFormValues: { start: { harBarn: true } },
         });
 
-        expect(store.getState().draftFormValues).toEqual({ start: { harBarn: true } });
+        expect(store.getState().persistedFormValues).toEqual({ start: { harBarn: true } });
     });
 });
 
@@ -130,53 +130,53 @@ describe('createSøknadAppStore — commitState', () => {
     });
 });
 
-describe('createSøknadAppStore — clearDraftFormValues', () => {
-    it('fjerner draft-verdier for angitt steg', () => {
+describe('createSøknadAppStore — clearPersistedFormValues', () => {
+    it('fjerner persisterte verdier for angitt steg', () => {
         const store = createStore();
         store.getState().init({
             versjon: 1,
             resumeStepId: 'start',
             søknadsdata: {},
-            draftFormValues: { start: { harBarn: true }, barn: { navn: 'Kari' } },
+            persistedFormValues: { start: { harBarn: true }, barn: { navn: 'Kari' } },
         });
 
-        store.getState().clearDraftFormValues('start');
+        store.getState().clearPersistedFormValues('start');
 
-        expect(store.getState().draftFormValues['start']).toBeUndefined();
-        expect(store.getState().draftFormValues['barn']).toEqual({ navn: 'Kari' });
+        expect(store.getState().persistedFormValues['start']).toBeUndefined();
+        expect(store.getState().persistedFormValues['barn']).toEqual({ navn: 'Kari' });
     });
 });
 
-describe('createSøknadAppStore — setDraftFormValues', () => {
-    it('erstatter hele draftFormValues-mappet', () => {
+describe('createSøknadAppStore — setPersistedFormValues', () => {
+    it('erstatter hele persistedFormValues-mappet', () => {
         const store = createStore();
         store.getState().init({
             versjon: 1,
             resumeStepId: 'start',
             søknadsdata: {},
-            draftFormValues: { start: { harBarn: true } },
+            persistedFormValues: { start: { harBarn: true } },
         });
 
-        store.getState().setDraftFormValues({ barn: { navn: 'Kari' }, arbeid: { timerPerUke: 37 } });
+        store.getState().setPersistedFormValues({ barn: { navn: 'Kari' }, arbeid: { timerPerUke: 37 } });
 
-        expect(store.getState().draftFormValues).toEqual({
+        expect(store.getState().persistedFormValues).toEqual({
             barn: { navn: 'Kari' },
             arbeid: { timerPerUke: 37 },
         });
     });
 
-    it('setter draftFormValues til tomt objekt når tom map sendes inn', () => {
+    it('setter persistedFormValues til tomt objekt når tom map sendes inn', () => {
         const store = createStore();
         store.getState().init({
             versjon: 1,
             resumeStepId: 'start',
             søknadsdata: {},
-            draftFormValues: { start: { harBarn: true } },
+            persistedFormValues: { start: { harBarn: true } },
         });
 
-        store.getState().setDraftFormValues({});
+        store.getState().setPersistedFormValues({});
 
-        expect(store.getState().draftFormValues).toEqual({});
+        expect(store.getState().persistedFormValues).toEqual({});
     });
 });
 
@@ -194,7 +194,7 @@ describe('createSøknadAppStore — setSøknadSendt og reset', () => {
         const state = store.getState();
         expect(state.søknadSendt).toBe(true);
         expect(state.resumeStepId).toBeUndefined();
-        expect(state.draftFormValues).toEqual({});
+        expect(state.persistedFormValues).toEqual({});
     });
 
     it('reset tømmer alt og setter isInitialized til true', () => {

@@ -43,6 +43,7 @@ export function useStartSøknad() {
             await logSkjemaStartet();
 
             if (firstRoute) {
+                // Navigasjon: bruker starter søknad fra velkommensiden — gå til første steg.
                 navigate(buildStepPath(basePath, firstRoute));
             }
         },

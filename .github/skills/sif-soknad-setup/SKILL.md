@@ -1,219 +1,454 @@
 ---
 name: sif-soknad-setup
 type: action
-description: Veiledning for oppsett av src/app/setup og routing shell (Soknad.tsx, VelkommenPage, KvitteringPage) i nye apper som bruker @sif/soknad og @sif/rhf.
+description: Veiledning for oppsett av en ny søknadsapp med @sif/soknad-app — SøknadRouter, SøknadAppProvider, AppContext og routing shell.
 ---
 
 # sif-soknad-setup
 
 ## Bruk når
 
-- Du oppretter en ny søknadsapp som skal bruke `@sif/soknad`.
+- Du oppretter en ny søknadsapp som skal bruke `@sif/soknad-app`.
 - Du kobler en eksisterende app til rammeverket og trenger setup-laget.
-- Du skal opprette routing-skallet (`Soknad.tsx`, `VelkommenPage`, `KvitteringPage`).
+- Du skal opprette routing-skallet (`Soknad.tsx`, `Velkommen`, `Kvittering`).
+
+## Referanseapp
+
+`apps/aktivitetspenger-soknad` er den eneste fullstendig migrerte referanseappen. Les den alltid som fasit — den vinner over denne skillen ved motstrid.
 
 ## Leveranse
 
-- `src/app/setup/` — providers, context, config, hooks
-- `src/app/Soknad.tsx` — routing shell med steg-navigering
-- `src/app/pages/` — `VelkommenPage`, `KvitteringPage`
-- `src/app/steps/index.ts` — steg-registrering
-- `src/app/types/` og `src/app/utils/` — datalag
-- `src/app/i18n/` — i18n-oppsett
+- `src/App.tsx` — `SøknadAppProvider` + `useInitialData` + `AppContextProvider`
+- `src/useInitialData.ts` — bootstrap-queries
+- `src/app/Soknad.tsx` — `SøknadRouter` + `SøknadStepGuard` + `Routes`
+- `src/app/context/AppContext.tsx` — app-spesifikk datakontekst
+- `src/app/setup/soknadStepConfig.ts` — `StepDefinition`-konfig + steg-rekkefølge
+- `src/app/setup/constants.ts` — `APP_YTELSE`, `MELLOMLAGRING_VERSJON`
+- `src/app/setup/appEnv.ts` — env-henting
+- `src/app/types/SoknadStepId.ts` — steg-enum
+- `src/app/types/Soknadsdata.ts` — per-steg domentyper
+- `src/app/hooks/useFormValuesToSøknadsdata.ts` — hook som returnerer konverteringsfunksjonen
+- `src/app/i18n/index.tsx` + `src/app/i18n/nb.ts` — i18n-aggregering
+- `src/app/content/velkommen/Velkommen.tsx` — `SøknadVelkommenPage`
+- `src/app/content/kvittering/Kvittering.tsx` — `SøknadKvitteringPage`
+- `src/app/steps/index.ts` — barrel-eksport
 
 ## Omfang
 
-- **Innenfor:** `src/app/setup/`, `src/app/types/`, `src/app/utils/formValuesToSoknadsdata.ts`, `src/app/i18n/`, `src/app/Soknad.tsx`, `src/app/pages/`, `src/app/steps/index.ts`, `src/demo/ScenarioHeader.tsx`, Sentry.
-- **Utenfor:** steginnhold → `sif-soknad-add-step`, API-kall → `sif-api`, initial data → `sif-initial-data-loader`.
-- **Referanseapper:** `apps/sif-demo-app` og `apps/aktivitetspenger-soknad`.
-
-## Raskeste vei
-
-Kopier fra referanseappen og tilpass:
-
-```bash
-SRC=apps/sif-demo-app/src/app
-DST=apps/<ny-app>/src/app
-cp -r $SRC/setup $DST/setup
-cp -r $SRC/types $DST/types
-cp -r $SRC/utils $DST/utils
-cp -r $SRC/i18n  $DST/i18n
-cp -r $SRC/../demo $DST/../demo 2>/dev/null || true
-```
-
-Kjør `check:types` etter kopiering — typefeilene peker til det som gjenstår.
+- **Innenfor:** alt ovenfor
+- **Utenfor:** steginnhold → `sif-soknad-add-step`, API-henting → `sif-api`, initial data-logikk → `sif-initial-data-loader`
 
 ## Mappestruktur
 
 ```
-src/app/
+src/
+  App.tsx
+  main.tsx
+  useInitialData.ts
+  env.schema.ts
   demo/ScenarioHeader.tsx
-  setup/
-    constants.ts
-    context/soknadContext.ts
-    env/appEnv.ts
-    hooks/ (index.ts, useAvbrytSoknad, useSoknadMellomlagring, useSoknadRhfForm,
-            useSoknadState, useSoknadStore, useStepDefaultValues, useStepSubmit, useStepTitles)
-    config/soknadStepConfig.ts
-    soknad/ (AppForm.tsx, SoknadFormButtons.tsx, SoknadStep.tsx)
-    wrappers/ (AppErrorBoundary.tsx, SifQueryClientProvider.tsx)
-  i18n/ (index.tsx, nb/appMessages.ts)
-  types/ (Mellomlagring.ts, Soknadsdata.ts)
-  utils/formValuesToSoknadsdata.ts
-  Soknad.tsx
-  pages/ (index.ts, velkommen/VelkommenPage.tsx, kvittering/KvitteringPage.tsx)
-  steps/index.ts
-  sentry/instrument.ts
+  app/
+    Soknad.tsx
+    api/
+      initApiClients.ts
+      sendSoknad.ts
+    context/AppContext.tsx
+    hooks/useSendSoknad.ts
+    i18n/
+      index.tsx
+      nb.ts
+    lenker.ts
+    setup/
+      appEnv.ts
+      constants.ts
+      soknadStepConfig.ts
+    types/
+      SoknadApiData.ts
+      SoknadStepId.ts
+      Soknadsdata.ts
+    utils/
+      formValuesToSøknadsdata.ts
+      soknadsdataToSoknadDTO.ts
+    content/
+      velkommen/
+        Velkommen.tsx
+        i18n/nb.ts, nn.ts
+      kvittering/Kvittering.tsx
+    steps/
+      index.ts
+      <steg>/
+        <Prefix>Form.tsx
+        <prefix>StegUtils.ts
+        types.ts
+        i18n/nb.ts, nn.ts
 ```
 
 ## Arbeidsrekkefølge
 
-1. **Steg-konfigurasjon** — `soknadStepConfig.ts`: definer `SøknadStepId`, `SøknadState`, routes, `isCompleted`, stepOrder. → [mal](templates/soknadStepConfig.ts.template)
-2. **Søknadsdata-type** — `Soknadsdata.ts`: extend `BaseSøknadsdata`, legg til optional type per steg. → [mal](templates/Soknadsdata.ts.template)
-3. **Mellomlagring-type** — `Mellomlagring.ts`. → [mal](templates/Mellomlagring.ts.template)
-4. **Constants** — `constants.ts`: sett `APP_YTELSE` og `MELLOMLAGRING_VERSJON`. → [mal](templates/constants.ts.template)
-5. **Boilerplate-hooks** — kopier direkte fra referanseappen (se tabell under).
-6. **SoknadContext** — `soknadContext.ts`: tilpass `basePath` og `formValuesToSøknadsdata`-referanse. → [mal](templates/soknadContext.ts.template)
-7. **formValuesToSoknadsdata** — placeholder med `return undefined` per steg. → [mal](templates/formValuesToSoknadsdata.ts.template)
-8. **SoknadStep** — tilpass `text('application.title')` og `fortsettSenere`-URL via delt lenkekilde.
-9. **i18n og stegtitler** — `appMessages.ts` med `application.title` + `step.<id>.title`. Opprett `useStepTitles`. → [mal](templates/useStepTitles.ts.template)
-10. **Soknad.tsx** — routing-skall med init, kvittering-redirect og StepRouteGuard. → [mal](templates/Soknad.tsx.template)
-11. **VelkommenPage** — startside med `handleStart`. → [mal](templates/VelkommenPage.tsx.template)
-12. **KvitteringPage** — kvitteringsside. → [mal](templates/KvitteringPage.tsx.template)
-13. **Barrel-filer** — `pages/index.ts`, `steps/index.ts`.
-14. **ScenarioHeader** — scenariovelger for lokal/demo. → [mal](templates/ScenarioHeader.tsx.template)
-15. **Sentry** — `instrument.ts` + `SifQueryClientProvider`. → [mal](templates/SentryInstrument.ts.template), [mal](templates/SifQueryClientProvider.tsx.template)
+### 1. `src/app/types/SoknadStepId.ts`
+
+```ts
+export enum SøknadStepId {
+    MITT_STEG = 'mitt-steg',
+    OPPSUMMERING = 'oppsummering',
+}
+```
+
+### 2. `src/app/setup/soknadStepConfig.ts`
+
+```ts
+import { StepDefinition } from '@sif/soknad-app';
+import { SøknadStepId } from '@app/types/SoknadStepId';
+
+export const søknadStepConfig: Record<SøknadStepId, StepDefinition> = {
+    [SøknadStepId.MITT_STEG]: {
+        route: 'mitt-steg',
+        isCompleted: (s) => s[SøknadStepId.MITT_STEG] !== undefined,
+    },
+    [SøknadStepId.OPPSUMMERING]: {
+        route: 'oppsummering',
+    },
+};
+
+export const søknadStepOrder: SøknadStepId[] = [SøknadStepId.MITT_STEG, SøknadStepId.OPPSUMMERING];
+```
+
+Legg merke til: stegtitler settes **ikke** her. De hentes automatisk fra i18n via `step.<stepId>.title`.
+
+### 3. `src/app/setup/constants.ts`
+
+```ts
+import { MellomlagringYtelse } from '@sif/api/k9-prosessering';
+
+export const APP_YTELSE = MellomlagringYtelse.AKTIVITETSPENGER; // ← tilpass
+export const MELLOMLAGRING_VERSJON = 1;
+```
+
+### 4. `src/app/types/Soknadsdata.ts`
+
+```ts
+import { SøknadStepId } from './SoknadStepId';
+
+export type MittStegSøknadsdata = {
+    // per-steg felter
+};
+
+export type Søknadsdata = {
+    harForståttRettigheterOgPlikter?: boolean;
+    [SøknadStepId.MITT_STEG]?: MittStegSøknadsdata;
+    [SøknadStepId.OPPSUMMERING]?: never;
+};
+```
+
+Ingen `BaseSøknadsdata`-extend — det er en interim-v2-type.
+
+### 5. `src/app/hooks/useFormValuesToSøknadsdata.ts`
+
+Hook som returnerer `formValuesToSøknadsdata`-funksjonen. Bruk hook fremfor statisk utility fordi konverteringen ofte trenger app-kontekst (f.eks. `barn`, `søker`) for å rekonstruere søknadsdata korrekt.
+
+```ts
+import { useCallback } from 'react';
+import { useAppContext } from '../context/AppContext';
+import { SøknadStepId } from '../types/SoknadStepId';
+import { toMittStegSøknadsdata } from '../steps/mitt-steg/mittStegUtils';
+import { MittStegFormValues } from '../steps/mitt-steg/types';
+
+export const useFormValuesToSøknadsdata = () => {
+    const { barn } = useAppContext(); // hent det du trenger fra kontekst
+
+    return useCallback(
+        (stepId: string, formValues: Record<string, unknown>): Record<string, unknown> | undefined => {
+            switch (stepId) {
+                case SøknadStepId.MITT_STEG:
+                    return toMittStegSøknadsdata(
+                        formValues as unknown as MittStegFormValues,
+                        barn, // kontekst-data i closure
+                    ) as Record<string, unknown> | undefined;
+                default:
+                    return undefined;
+            }
+        },
+        [barn],
+    );
+};
+```
+
+**Viktig:** `undefined` fra `default`-casen betyr "kan ikke konverteres for dette steget — hopp over konsistenssjekk". Bruk det kun som bevisst escape hatch, ikke som placeholder. Alle steg som kan konverteres uten ekstern data bør implementeres.
+
+**Steg som trenger dynamisk lastet data** (f.eks. arbeidsgivere hentet basert på brukerens valg i et tidligere steg): commit den hentede dataen som del av søknadsdata i det aktuelle steget. Da er dataen tilgjengelig i `formValues` ved konvertering, uten behov for ekstra API-kall.
+
+### 6. `src/app/context/AppContext.tsx`
+
+```tsx
+import { createContext, useContext } from 'react';
+import { Søker } from '@sif/api/k9-prosessering';
+
+export interface AppContextData {
+    søker: Søker;
+    // legg til ytelse-spesifikke felt her
+}
+
+const AppContext = createContext<AppContextData | null>(null);
+export const AppContextProvider = AppContext.Provider;
+
+export const useAppContext = (): AppContextData => {
+    const ctx = useContext(AppContext);
+    if (!ctx) throw new Error('useAppContext brukt utenfor AppContextProvider');
+    return ctx;
+};
+```
+
+### 7. `src/app/i18n/nb.ts`
+
+```ts
+import { oppsummeringStegMessages_nb } from '../steps/oppsummering/i18n/nb';
+// importer fra alle steg
+
+export const appMessages_nb = {
+    ...oppsummeringStegMessages_nb,
+    'application.title': 'Søknad om [ytelse]',
+    'kvittering.documentTitle': 'Søknad mottatt',
+    'kvittering.title': 'Vi har mottatt søknaden din',
+    'step.mitt-steg.title': 'Mitt steg',
+    'step.oppsummering.title': 'Oppsummering',
+};
+```
+
+Stegtitler registreres som `step.<stepId>.title` og hentes automatisk av `SøknadStep` fra i18n. Ingen separat `useStepTitles`-hook.
+
+### 8. `src/app/i18n/index.tsx`
+
+```tsx
+import { typedIntlHelper } from '@sif/utils';
+import { sifSoknadFormsMessages } from '@sif/soknad-forms';
+import { sifSoknadUiMessages } from '@sif/soknad-ui/i18n';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { IntlMessageObjectFormat } from '@sif/soknad-app';
+import { appMessages_nb } from './nb';
+
+const libMessages = {
+    nb: { ...sifSoknadUiMessages.nb, ...sifSoknadFormsMessages.nb },
+};
+
+const nb = { ...libMessages.nb, ...appMessages_nb };
+export type AppMessageKeys = keyof typeof nb;
+const nn: Record<AppMessageKeys, string> = { ...nb };
+
+export const useAppIntl = () => typedIntlHelper<AppMessageKeys>(useIntl());
+export type AppIntlShape = ReturnType<typeof useAppIntl>;
+
+interface AppTextProps {
+    id: AppMessageKeys;
+    values?: any;
+}
+export const AppText = (props: AppTextProps) => <FormattedMessage {...props} />;
+
+export const applicationIntlMessages: IntlMessageObjectFormat = { nb, nn };
+```
+
+### 9. `src/app/Soknad.tsx`
+
+```tsx
+import { søknadStepConfig, søknadStepOrder } from '@app/setup/soknadStepConfig';
+import { SøknadStepId } from '@app/types/SoknadStepId';
+import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '@app/setup/constants';
+import { useFormValuesToSøknadsdata } from '@app/hooks/useFormValuesToSøknadsdata';
+import { SøknadRouter, SøknadStepGuard } from '@sif/soknad-app';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { useAppIntl } from './i18n';
+import { Kvittering } from './content/kvittering/Kvittering';
+import { Velkommen } from './content/velkommen/Velkommen';
+import { OppsummeringSteg } from './steps';
+
+export const Søknad = () => {
+    const { text } = useAppIntl();
+    const formValuesToSøknadsdata = useFormValuesToSøknadsdata();
+
+    return (
+        <SøknadRouter
+            config={søknadStepConfig}
+            stepOrder={søknadStepOrder}
+            ytelse={APP_YTELSE}
+            versjon={MELLOMLAGRING_VERSJON}
+            applicationTitle={text('application.title')}
+            formValuesToSøknadsdata={formValuesToSøknadsdata}
+            kvitteringElement={<Kvittering />}>
+            <Routes>
+                <Route path="/" element={<Velkommen />} />
+                <Route path="/soknad" element={<SøknadStepGuard basePath="/soknad" />}>
+                    <Route path={søknadStepConfig[SøknadStepId.OPPSUMMERING].route} element={<OppsummeringSteg />} />
+                    <Route path="*" element={<Navigate to="/" replace />} />
+                </Route>
+                <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+        </SøknadRouter>
+    );
+};
+```
+
+### 10. `src/app/content/velkommen/Velkommen.tsx`
+
+```tsx
+import { useAppContext } from '@app/context/AppContext';
+import { useAppIntl } from '@app/i18n';
+import { SøknadVelkommenPage } from '@sif/soknad-app';
+
+export const Velkommen = () => {
+    const { text } = useAppIntl();
+    const { søker } = useAppContext();
+
+    return (
+        <SøknadVelkommenPage
+            title={text('application.title')}
+            guide={{ navn: søker.fornavn || '', content: <p>...</p> }}>
+            {/* valgfritt ekstra innhold */}
+        </SøknadVelkommenPage>
+    );
+};
+```
+
+`SøknadVelkommenPage` håndterer `startSøknad` internt via `useStartSøknad`. Ingen manuell `handleStart`.
+
+### 11. `src/app/content/kvittering/Kvittering.tsx`
+
+```tsx
+import { useAppIntl } from '@app/i18n';
+import { SøknadKvitteringPage } from '@sif/soknad-ui';
+
+export const Kvittering = () => {
+    const { text } = useAppIntl();
+    return (
+        <SøknadKvitteringPage
+            documentTitle={text('kvittering.documentTitle')}
+            applicationTitle={text('application.title')}
+            tittel={text('kvittering.title')}
+            appRootUrl={import.meta.env.BASE_URL}
+        />
+    );
+};
+```
+
+### 12. `src/App.tsx`
+
+```tsx
+import '@navikt/ds-css';
+import { SomAppKey } from '@navikt/sif-app-register';
+import { SøknadAppProvider } from '@sif/soknad-app';
+import { ErrorPage, LoadingPage } from '@sif/soknad-ui';
+import { BrowserRouter } from 'react-router-dom';
+
+import { initApiClients } from './app/api/initApiClients';
+import { AppContextProvider } from './app/context/AppContext';
+import { applicationIntlMessages, useAppIntl } from './app/i18n';
+import { getAppEnv } from './app/setup/appEnv';
+import { Søknad } from './app/Soknad';
+import { ScenarioHeader } from './demo/ScenarioHeader';
+import { useInitialData } from './useInitialData';
+
+const SøknadDataWrapper = () => {
+    const result = useInitialData();
+    const { text } = useAppIntl();
+    switch (result.status) {
+        case 'loading':
+            return <LoadingPage applicationTitle={text('application.title')} />;
+        case 'error':
+            return <ErrorPage applicationTitle={text('application.title')} />;
+        case 'success':
+            return (
+                <AppContextProvider value={{ søker: result.data.søker }}>
+                    <Søknad />
+                </AppContextProvider>
+            );
+    }
+};
+
+const env = getAppEnv();
+initApiClients(env);
+
+export const App = () => {
+    if (globalThis.location.pathname === '/') {
+        globalThis.location.pathname = env.PUBLIC_PATH;
+        return null;
+    }
+
+    return (
+        <SøknadAppProvider
+            applicationKey={SomAppKey.key}
+            appVersion={env.APP_VERSION}
+            faroConfig={{
+                isActive: env.SIF_PUBLIC_USE_FARO === 'true',
+                telemetryCollectorURL: env.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL,
+            }}
+            analyticsConfig={{ isActive: env.SIF_PUBLIC_USE_ANALYTICS === 'true' }}
+            sentryConfig={{ dsn: '...', application: 'min-app' }}
+            intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
+            <BrowserRouter basename={env.PUBLIC_PATH}>
+                {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
+                <SøknadDataWrapper />
+            </BrowserRouter>
+        </SøknadAppProvider>
+    );
+};
+```
+
+### 13. `src/useInitialData.ts`
+
+Se `sif-initial-data-loader` for fullt mønster. Mellomlagring håndteres av `SøknadRouter` — ikke i `useInitialData`.
 
 ## Tilpasningspunkter per app
 
-| Fil                                | Hva som tilpasses                                               |
-| ---------------------------------- | --------------------------------------------------------------- |
-| `constants.ts`                     | `APP_YTELSE`, `MELLOMLAGRING_VERSJON`                           |
-| `soknadStepConfig.ts`              | `SøknadStepId`, `SøknadState`, routes, `isCompleted`, stepOrder |
-| `context/soknadContext.ts`         | `basePath`, referanse til `formValuesToSøknadsdata`             |
-| `types/Soknadsdata.ts`             | Per-steg søknadsdata-typer                                      |
-| `types/Mellomlagring.ts`           | `MellomlagringMetaData` (fjern `barn` om ikke relevant)         |
-| `utils/formValuesToSoknadsdata.ts` | Case per steg — fyll ut etter hvert                             |
-| `soknad/SoknadStep.tsx`            | `text('application.title')`, `window.location.href` via delt lenkekilde |
-| `i18n/nb/appMessages.ts`           | `application.title`, `step.<id>.title` per steg                 |
-| `hooks/useStepTitles.ts`           | `Record<SøknadStepId, string>` via `useAppIntl()`               |
-| `Soknad.tsx`                       | `Props`, `init()`-argumenter, Route-elementer                   |
-| `sentry/instrument.ts`             | `application`-tag                                               |
+| Fil                                   | Hva som tilpasses                                                         |
+| ------------------------------------- | ------------------------------------------------------------------------- |
+| `types/SoknadStepId.ts`               | Enum-verdier og steg-IDer                                                 |
+| `setup/soknadStepConfig.ts`           | routes, isCompleted, stepOrder                                            |
+| `setup/constants.ts`                  | `APP_YTELSE`, `MELLOMLAGRING_VERSJON`                                     |
+| `setup/appEnv.ts`                     | Ytelse-spesifikke env-variabler                                           |
+| `types/Soknadsdata.ts`                | Per-steg søknadsdatatyper                                                 |
+| `context/AppContext.tsx`              | App-spesifikke dataprop (søker, barn, kontonummer osv.)                   |
+| `hooks/useFormValuesToSøknadsdata.ts` | Hook med switch per steg, kontekst i closure                              |
+| `i18n/nb.ts`                          | Aggreger steg-meldinger + `application.title`, `step.<id>.title` per steg |
+| `content/velkommen/Velkommen.tsx`     | `guide.content` — app-spesifikt innhold                                   |
+| `App.tsx`                             | `applicationKey`, `sentryConfig.dsn`, `AppContextProvider` props          |
 
-## Boilerplate-filer (kopier uendret)
+## Viktige regler
 
-| Fil                               | Evt. tilpasning                            |
-| --------------------------------- | ------------------------------------------ |
-| `hooks/useSoknadStore.ts`         | Ingen                                      |
-| `hooks/useSoknadRhfForm.ts`       | Ingen                                      |
-| `hooks/useSoknadMellomlagring.ts` | Ingen                                      |
-| `hooks/useSoknadState.ts`         | Ingen                                      |
-| `hooks/useStepDefaultValues.ts`   | Ingen                                      |
-| `hooks/useStepSubmit.ts`          | Ingen                                      |
-| `hooks/useAvbrytSoknad.ts`        | `navigate('/')` — destinasjon etter avbryt |
-| `hooks/index.ts`                  | Ingen                                      |
-| `soknad/SoknadFormButtons.tsx`    | Ingen                                      |
-| `soknad/AppForm.tsx`              | Ingen                                      |
-| `wrappers/AppErrorBoundary.tsx`   | Ingen — bruker FaroErrorBoundary, ikke SentryErrorBoundary. Sentry dekkes av `reactErrorHandler` i `main.tsx`. |
+### Stegtitler kommer fra i18n
 
-## Viktige regler og fallgruver
+`SøknadStep` henter stegtittel via `step.${stepId}.title` fra IntlProvider. Ingen `useStepTitles`-hook — legg bare til `'step.<id>.title': 'Min tittel'` i `nb.ts`.
 
-### Sirkulær avhengighet via FormValues
+### Ingen boilerplate-hooks i app
 
-`formValuesToSøknadsdata` importerer `*FormValues`-typer fra steg. Definer alltid `FormFields` og `FormValues` i `steps/<steg>/types.ts` — aldri i komponentfilen.
+`useSoknadStore`, `useSoknadRhfForm`, `useStepSubmit`, `useStepDefaultValues`, `AppForm`, `SoknadStep` (app-lokal) — alt dette tilhørte interim v2 og skal ikke opprettes i nye apper. Bruk `useStepData`, `useSaveSøknadFormValues`, `SøknadStepForm`, `SøknadStep` fra `@sif/soknad-app` direkte.
 
-```
-steps/barn/types.ts       ← FormFields + FormValues
-steps/barn/BarnForm.tsx   ← importerer fra ./types
-```
+### `FormValues` i `types.ts`
 
-Ellers: `soknadContext → formValuesToSøknadsdata → BarnForm.tsx → AppForm → soknadContext`.
+Definer alltid `FormFields` og `FormValues` i `steps/<steg>/types.ts`, ikke i komponentfilen. Unngår sirkulær avhengighet via `formValuesToSøknadsdata`.
 
-### mellomlagring?.skjemadata vs. mellomlagring?.søknadsdata
+### `AppContext` vs `SøknadRouter`
 
-- `SøknadContextProvider` tar `initialFormValues` = `mellomlagring?.skjemadata` (RHF-data)
-- `init()` tar `mellomlagring?.søknadsdata` (domeneobjekter)
+- Data som hentes ved oppstart (søker, barn, kontonummer): legges i `AppContext`
+- Mellomlagring og søknadsdata: håndteres av `SøknadRouter` / Zustand-store
 
-Ikke forveksle disse.
+### Mellomlagring
 
-### stepTitles
+`SøknadRouter` henter og håndterer mellomlagring automatisk. Ingen `Mellomlagring.ts`-type trengs i appen.
 
-Sendes som prop til `<SøknadContextProvider>`, ikke som del av config. Bruk `useStepTitles()`-hook.
+### `SøknadVelkommenPage`
 
-### Mellomlagring-hooks
-
-- `lagreSøknad()` — hele state allerede oppdatert (f.eks. «fortsett senere»)
-- `lagreSøknadSteg(stepId, values)` — ferske RHF-verdier før submit (f.eks. vedlegg)
-
-### Domenetype-strategi
-
-Tre datalag: `FormValues → toSøknadsdata() → Søknadsdata → toApiData() → ApiData`. Interne typer kan avvike fra API-kontrakten — det er tilsiktet.
-
-For domenespesifikke typer:
-
-- **Utled fra API-type** når typen finnes i `k9-brukerdialog-prosessering-api` → `types.gen.ts`
-- **Lokal enum** når typen ikke finnes i generert kode
-- **Inline union** for typer som bare brukes ett sted
-
-### Lenker
-
-Eksterne lenker skal i utgangspunktet ligge i én delt lenkekilde for hele monorepoet.
-
-Navngivingsprinsipp for delte lenker:
-
-- Bruk flat struktur ut mot appene. Unngå grupper som `lenker.nav.*` eller `lenker.external.*`.
-- Start nøkkelen med domene/kilde når lenken er generell, for eksempel `navMinSide`, `navPersonvernerklaering`, `skatteetatenSkattekort`.
-- Start nøkkelen med ytelse/fagdomene når lenken hører til en konkret ytelse, for eksempel `omsorgspengerEttersending`, `pleiepengerInnsyn`.
-- Bruk samme suffikser for samme type mål på tvers av domener, for eksempel `Info`, `Soknad`, `Ettersending`, `Brevskjema`, `Innsyn`.
-- Velg navn som beskriver brukerens mål, ikke teknisk plassering eller historikk.
-- Unngå forkortelser og tvetydige navn når et mer eksplisitt navn er praktisk mulig.
-
-- La `@sif/soknad-ui/lenker` eie selve lenkene.
-- Appen kan ha en tynn lokal adapter, f.eks. `src/app/lenker.ts`, som eksponerer `useLenker()`, `getLenke()` og eventuelt `getLenker()`.
-- Bruk normalt `useLenker()` i React-komponenter og `getLenke()` i ren kode uten hooks.
-- Hvis en ekstern lenke mangler, legg den til i den delte lenkefila i stedet for å hardkode den i appen.
-- Bruk selvforklarende nøkkelnavn i den delte lenkefila, typisk med domene/prefix som `navMinSide`, `navPersonvernerklaering` eller `omsorgspengerEttersending`.
-- Bare interne app-ruter og intern navigasjon skal ligge i appen.
-- Ikke bruk inline URL-er for eksterne brukerlenker.
-- Ikke importere lenkeabstraksjoner fra `sif-common-soknad-ds`.
-
-### Sentry
-
-- DSN hardkodes (ikke hemmelighet, likt for alle SIF-apper)
-- `sendDefaultPii: true` skal **aldri** brukes
-- `tracesSampleRate: 0.2` (ikke `1.0`)
-
-### ScenarioHeader
-
-- Bruk `ScenarioSelectorHeader` fra `@sif/soknad-ui`
-- Returner `null` i prod via `import.meta.env.PROD`
-- Bruk samme `ScenarioType` som Playwright-tester
-- Definer `scenarioGroups` på modul-nivå, ikke inne i komponenten
-- Mont i `App.tsx` inne i `BrowserRouter` bak build-time define `__SCENARIO_HEADER__`:
-  ```tsx
-  {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
-  ```
-- Deklarer typen i `vite-env.d.ts`: `declare const __SCENARIO_HEADER__: boolean;`
-- Sett `__SCENARIO_HEADER__: false` i `vite.config.ts` og `__SCENARIO_HEADER__: true` i `vite.dev.config.ts`
-
-### StartPage children
-
-`StartPage` krever `children` (påkrevd prop). Send `<span />` om ingenting annet passer.
+Kaller `useStartSøknad` internt. Ingen manuell navigering eller `lagreSøknad()` i appen.
 
 ## Sjekkliste
 
-- [ ] `soknadStepConfig.ts` med riktige steg-IDer, routes og isCompleted
-- [ ] `Soknadsdata.ts` med per-steg typer
-- [ ] `Mellomlagring.ts` med riktig metadata
-- [ ] `constants.ts` med riktig `APP_YTELSE`
-- [ ] `soknadContext.ts` med riktig `basePath`
-- [ ] `formValuesToSoknadsdata.ts` med placeholder-cases
-- [ ] `SoknadStep.tsx` med riktig tittel og URL fra delt lenkekilde
-- [ ] `appMessages.ts` med `application.title` og steg-titler
-- [ ] `useStepTitles.ts` opprettet og eksportert i `hooks/index.ts`
-- [ ] `Soknad.tsx` med riktig Props og routes
-- [ ] `VelkommenPage.tsx` og `KvitteringPage.tsx` opprettet
-- [ ] `pages/index.ts` og `steps/index.ts` opprettet
-- [ ] `ScenarioHeader.tsx` opprettet og montert i `App.tsx`
-- [ ] `sentry/instrument.ts` og `SifQueryClientProvider.tsx` opprettet
+- [ ] `types/SoknadStepId.ts` med steg-enum
+- [ ] `setup/soknadStepConfig.ts` med routes og isCompleted
+- [ ] `setup/constants.ts` med riktig `APP_YTELSE`
+- [ ] `types/Soknadsdata.ts` med per-steg typer (ikke BaseSøknadsdata)
+- [ ] `hooks/useFormValuesToSøknadsdata.ts` med switch per steg
+- [ ] `context/AppContext.tsx` med app-spesifikke felt
+- [ ] `i18n/nb.ts` med `application.title` og `step.<id>.title` per steg
+- [ ] `i18n/index.tsx` med `applicationIntlMessages`
+- [ ] `content/velkommen/Velkommen.tsx` med `SøknadVelkommenPage`
+- [ ] `content/kvittering/Kvittering.tsx` med `SøknadKvitteringPage`
+- [ ] `app/Soknad.tsx` med `SøknadRouter` og `SøknadStepGuard`
+- [ ] `App.tsx` med `SøknadAppProvider` og `SøknadDataWrapper`
 - [ ] `pnpm check:types` passerer

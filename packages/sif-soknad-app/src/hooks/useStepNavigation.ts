@@ -34,6 +34,7 @@ export function useStepNavigation() {
             if (previousStepId) {
                 const route = config[previousStepId]?.route;
                 if (route) {
+                    // Navigasjon: bruker trykker forrige-knapp — gå ett steg tilbake.
                     navigate(buildStepPath(basePath, route));
                 }
             }
@@ -45,6 +46,7 @@ export function useStepNavigation() {
         (stepId: string): void => {
             const route = config[stepId]?.route;
             if (route) {
+                // Navigasjon: hopp direkte til steg — brukes fra oppsummering (rediger).
                 navigate(buildStepPath(basePath, route));
             }
         },

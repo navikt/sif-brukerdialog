@@ -1,7 +1,7 @@
 import { dateToISODate } from '@sif/utils';
 import { Søker } from '@sif/api/k9-prosessering';
 
-import { SøknadStepId } from '../setup/config/SoknadStepId';
+import { SøknadStepId } from '../types/SoknadStepId';
 import { BarnSammeAdresse } from '../types/BarnSammeAdresse';
 import { SøknadApiData } from '../types/SoknadApiData';
 import { Søknadsdata } from '../types/Soknadsdata';

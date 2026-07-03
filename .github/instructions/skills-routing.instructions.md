@@ -44,8 +44,6 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
 - `sif-formik-to-rhf`:
     - Migrer skjema: `formik til rhf`, `konverter skjema`, `bytt ut formik`, `migrer form`, `erstatt formik`, `sif-common-formik-ds`.
     - Formik-konsepter: `FormikWrapper`, `getTypedFormComponents`, `getIntlFormErrorHandler`, `renderForm`.
-- `sif-migration-baseline`:
-    - Migrering/bootstrapping av app til v2-oppsett.
 - `sif-initial-data-loader`:
     - Initial data-flyt: `useInitialData`, `InitialDataLoader`, `InitialData`, loading/error/success, required queries, optional queries, mellomlagringsvalidering.
     - Ny datakilde i initial-data: `legg til hook`, `ny datakilde`, `blokkerer loading`, `fallback-verdi`.
