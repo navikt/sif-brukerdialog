@@ -7,6 +7,7 @@ import { useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useAppIntl } from '../../../i18n';
+import getLenker from '../../../utils/lenker';
 /** Url params */
 type OppgavePageParams = {
     oppgaveReferanse: string;
@@ -37,6 +38,7 @@ const OppgavePage = () => {
             navn={fornavn}
             oppgave={oppgave}
             applikasjonTittel={text('innsyn.sidetittel')}
+            dokumentarkivUrl={getLenker().dokumentarkiv}
             onCancel={() => navigate('/')}
             onSuccess={() => {
                 queryClient.invalidateQueries({ queryKey: sifApiQueryKeys.oppgaver });

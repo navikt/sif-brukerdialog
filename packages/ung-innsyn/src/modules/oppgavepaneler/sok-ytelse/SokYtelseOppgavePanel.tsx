@@ -4,8 +4,9 @@ import { SøkYtelseOppgavetekst } from './part/SokYtelseOppgavetekst';
 
 interface Props {
     oppgave: SøkYtelseOppgave;
+    dokumentarkivUrl: string;
 }
 
-export const SøkYtelseOppgavePanel = ({ oppgave }: Props) => {
-    return <SøkYtelseOppgavetekst oppgave={oppgave} />;
+export const SøkYtelseOppgavePanel = ({ oppgave, dokumentarkivUrl }: Props) => {
+    return <SøkYtelseOppgavetekst oppgave={oppgave} dokumentarkivUrl={dokumentarkivUrl} />;
 };
