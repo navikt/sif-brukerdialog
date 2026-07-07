@@ -66,6 +66,7 @@ const VelkommenPage = () => {
                                         />
                                     )}
                                 </BodyLong>
+
                                 <CheckboxGroup
                                     data-color="accent"
                                     name={VelkommenFormFields.hvaSkalEndres}
@@ -97,7 +98,6 @@ const VelkommenPage = () => {
                                             : []),
                                     ]}
                                 />
-
                                 <OmSøknaden />
                             </VStack>
                         </FormLayout.Guide>
