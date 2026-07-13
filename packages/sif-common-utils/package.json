@@ -28,10 +28,10 @@
         "config": "workspace:*",
         "globals": "17.7.0",
         "intl": "1.2.5",
-        "postcss": "8.5.15",
+        "postcss": "8.5.16",
         "react": "19.2.7",
         "react-dom": "19.2.7",
-        "react-intl": "10.1.14",
+        "react-intl": "10.1.15",
         "typescript": "6.0.3",
         "vitest": "4.1.10"
     }

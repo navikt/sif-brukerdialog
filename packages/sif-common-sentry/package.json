@@ -29,7 +29,7 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@sentry/browser": "10.62.0"
+        "@sentry/browser": "10.65.0"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
@@ -38,7 +38,7 @@
         "config": "workspace:*",
         "copyfiles": "2.4.1",
         "gh-pages": "6.3.0",
-        "postcss": "8.5.15",
+        "postcss": "8.5.16",
         "react": "19.2.7",
         "react-dom": "19.2.7",
         "rimraf": "6.1.3",
