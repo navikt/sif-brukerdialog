@@ -17,15 +17,15 @@
     },
     "dependencies": {
         "@navikt/sif-common-utils": "workspace:*",
-        "react-intl": "10.1.14"
+        "react-intl": "10.1.15"
     },
     "devDependencies": {
         "@navikt/sif-common-env": "workspace:*",
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
-        "postcss": "8.5.15",
+        "postcss": "8.5.16",
         "typescript": "6.0.3",
-        "vitest": "4.1.9"
+        "vitest": "4.1.10"
     },
     "peerDependencies": {
         "@navikt/fnrvalidator": "2",

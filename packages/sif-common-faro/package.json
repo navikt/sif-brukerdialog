@@ -10,7 +10,7 @@
         "lint:tsc": "tsc --noEmit --skipLibCheck"
     },
     "dependencies": {
-        "@grafana/faro-web-sdk": "2.8.0",
+        "@grafana/faro-web-sdk": "2.8.2",
         "constate": "4.0.0",
         "react": "19.2.7"
     },
