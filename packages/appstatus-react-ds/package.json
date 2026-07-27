@@ -15,7 +15,7 @@
     "dependencies": {
         "@navikt/sif-common-hooks": "workspace:*",
         "@portabletext/react": "6.2.0",
-        "@sanity/client": "7.23.0"
+        "@sanity/client": "7.24.0"
     },
     "devDependencies": {
         "@navikt/aksel-icons": "8.15.0",
@@ -27,11 +27,11 @@
         "@types/react-dom": "19.2.3",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
-        "postcss": "8.5.16",
+        "postcss": "8.5.22",
         "prop-types": "15.8.1",
-        "react": "19.2.7",
-        "react-dom": "19.2.7",
+        "react": "19.2.8",
+        "react-dom": "19.2.8",
         "rimraf": "6.1.3",
-        "sass": "1.101.0"
+        "sass": "1.101.7"
     }
 }
