@@ -438,7 +438,7 @@ export type OmsorgspengerutbetalingSnfSøknad = {
     språk: string;
     spørsmål: SpørsmålOgSvar[];
     søkerNorskIdent?: string;
-    utbetalingsperioder: unknown[];
+    utbetalingsperioder: Utbetalingsperiode[];
     vedlegg: string[];
 };
 
@@ -601,9 +601,7 @@ export type PleiepengerSyktBarnSøknad = {
     dataBruktTilUtledningAnnetData?: string;
     ferieuttakIPerioden?: FerieuttakIPerioden;
     fosterhjemgodtgjørelse?:
-        | FosterhjemsgodtgjørelseFrikjøpt
-        | FosterhjemsgodtgjørelseIkkeFrikjøpt
-        | FosterhjemsgodtgjørelseMottarIkke;
+        FosterhjemsgodtgjørelseFrikjøpt | FosterhjemsgodtgjørelseIkkeFrikjøpt | FosterhjemsgodtgjørelseMottarIkke;
     fraOgMed: string;
     frilans: Frilans;
     fødselsattestVedleggUrls?: string[];
@@ -734,12 +732,8 @@ export type Ungdomsytelsesøknad = {
 };
 
 export type Utbetalingsperiode = {
-    aktivitetFravær?: Array<'ARBEIDSTAKER' | 'FRILANSER' | 'SELVSTENDIG_VIRKSOMHET'>;
-    antallTimerBorte?: string;
-    antallTimerPlanlagt?: string;
-    fraOgMed?: string;
-    tilOgMed?: string;
-    årsak?: 'STENGT_SKOLE_ELLER_BARNEHAGE' | 'SMITTEVERNHENSYN' | 'ORDINÆRT_FRAVÆR';
+    fraOgMed: string;
+    tilOgMed: string;
 };
 
 export type UtenlandskArbeidsforhold = {
@@ -788,9 +782,7 @@ export type UttakPeriodeInfo = {
 };
 
 export type VarigEndring = {
-    dato?: string;
-    forklaring?: string;
-    inntektEtterEndring?: number;
+    dato: string;
 };
 
 export type VerdilisteElement = {
@@ -813,7 +805,7 @@ export type Virksomhet = {
     registrertIUtlandet?: Land;
     regnskapsfører?: null;
     tilOgMed?: string;
-    varigEndring?: null;
+    varigEndring?: VarigEndring;
     yrkesaktivSisteTreFerdigliknedeÅrene?: null;
 };
 
@@ -867,7 +859,7 @@ export type OmsorgspengerutbetalingSnfSøknadWritable = {
     språk: string;
     spørsmål: SpørsmålOgSvar[];
     søkerNorskIdent?: string;
-    utbetalingsperioder: Utbetalingsperiode[];
+    utbetalingsperioder: UtbetalingsperiodeWritable[];
     vedlegg: string[];
 };
 
@@ -966,9 +958,7 @@ export type PleiepengerSyktBarnSøknadWritable = {
     dataBruktTilUtledningAnnetData?: string;
     ferieuttakIPerioden?: FerieuttakIPerioden;
     fosterhjemgodtgjørelse?:
-        | FosterhjemsgodtgjørelseFrikjøpt
-        | FosterhjemsgodtgjørelseIkkeFrikjøpt
-        | FosterhjemsgodtgjørelseMottarIkke;
+        FosterhjemsgodtgjørelseFrikjøpt | FosterhjemsgodtgjørelseIkkeFrikjøpt | FosterhjemsgodtgjørelseMottarIkke;
     fraOgMed: string;
     frilans: Frilans;
     fødselsattestVedleggUrls?: string[];
@@ -1002,6 +992,21 @@ export type SelvstendigNæringsdrivendeOlpWritable = {
     virksomhet: VirksomhetWritable;
 };
 
+export type UtbetalingsperiodeWritable = {
+    aktivitetFravær?: Array<'ARBEIDSTAKER' | 'FRILANSER' | 'SELVSTENDIG_VIRKSOMHET'>;
+    antallTimerBorte?: string;
+    antallTimerPlanlagt?: string;
+    fraOgMed: string;
+    tilOgMed: string;
+    årsak?: 'STENGT_SKOLE_ELLER_BARNEHAGE' | 'SMITTEVERNHENSYN' | 'ORDINÆRT_FRAVÆR';
+};
+
+export type VarigEndringWritable = {
+    dato: string;
+    forklaring?: string;
+    inntektEtterEndring?: number;
+};
+
 export type VirksomhetWritable = {
     erNyoppstartet: boolean;
     fiskerErPåBladB?: boolean;
@@ -1015,7 +1020,7 @@ export type VirksomhetWritable = {
     registrertIUtlandet?: Land;
     regnskapsfører?: Regnskapsfører;
     tilOgMed?: string;
-    varigEndring?: VarigEndring;
+    varigEndring?: VarigEndringWritable;
     yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
 };
 

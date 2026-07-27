@@ -362,7 +362,8 @@ export const zAktivitetspenger = zYtelse.and(
         erBosattITrondheim: z.boolean().optional(),
         forutgåendeBosteder: zBosteder,
         inntekter: zOppgittInntekt.optional(),
-        søknadsperiode: z.string(),
+        søknadsperiode: z.string().optional(),
+        søknadsperiodeFom: z.iso.date().optional(),
         type: z.literal('Aktivitetspenger'),
     }),
 );

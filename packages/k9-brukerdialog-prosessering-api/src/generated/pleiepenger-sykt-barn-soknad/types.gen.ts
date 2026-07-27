@@ -219,9 +219,7 @@ export type PleiepengerSyktBarnSøknad = {
     dataBruktTilUtledningAnnetData?: string;
     ferieuttakIPerioden?: FerieuttakIPerioden;
     fosterhjemgodtgjørelse?:
-        | FosterhjemsgodtgjørelseFrikjøpt
-        | FosterhjemsgodtgjørelseIkkeFrikjøpt
-        | FosterhjemsgodtgjørelseMottarIkke;
+        FosterhjemsgodtgjørelseFrikjøpt | FosterhjemsgodtgjørelseIkkeFrikjøpt | FosterhjemsgodtgjørelseMottarIkke;
     fraOgMed: string;
     frilans: Frilans;
     fødselsattestVedleggUrls?: string[];
@@ -317,9 +315,7 @@ export type UtenlandsoppholdIPerioden = {
 };
 
 export type VarigEndring = {
-    dato?: string;
-    forklaring?: string;
-    inntektEtterEndring?: number;
+    dato: string;
 };
 
 export type Virksomhet = {
@@ -335,7 +331,7 @@ export type Virksomhet = {
     registrertIUtlandet?: Land;
     regnskapsfører?: null;
     tilOgMed?: string;
-    varigEndring?: null;
+    varigEndring?: VarigEndring;
     yrkesaktivSisteTreFerdigliknedeÅrene?: null;
 };
 
@@ -353,9 +349,7 @@ export type PleiepengerSyktBarnSøknadWritable = {
     dataBruktTilUtledningAnnetData?: string;
     ferieuttakIPerioden?: FerieuttakIPerioden;
     fosterhjemgodtgjørelse?:
-        | FosterhjemsgodtgjørelseFrikjøpt
-        | FosterhjemsgodtgjørelseIkkeFrikjøpt
-        | FosterhjemsgodtgjørelseMottarIkke;
+        FosterhjemsgodtgjørelseFrikjøpt | FosterhjemsgodtgjørelseIkkeFrikjøpt | FosterhjemsgodtgjørelseMottarIkke;
     fraOgMed: string;
     frilans: Frilans;
     fødselsattestVedleggUrls?: string[];
@@ -384,6 +378,12 @@ export type SelvstendigNæringsdrivendeWritable = {
     virksomhet?: VirksomhetWritable;
 };
 
+export type VarigEndringWritable = {
+    dato: string;
+    forklaring?: string;
+    inntektEtterEndring?: number;
+};
+
 export type VirksomhetWritable = {
     erNyoppstartet: boolean;
     fiskerErPåBladB?: boolean;
@@ -397,7 +397,7 @@ export type VirksomhetWritable = {
     registrertIUtlandet?: Land;
     regnskapsfører?: Regnskapsfører;
     tilOgMed?: string;
-    varigEndring?: VarigEndring;
+    varigEndring?: VarigEndringWritable;
     yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
 };
 

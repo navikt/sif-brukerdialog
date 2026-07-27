@@ -2,12 +2,10 @@
 
 import * as z from 'zod';
 
+export const zArbeidsgiver = z.record(z.string(), z.unknown());
+
 export const zBarn = z.object({
-    aktørId: z.string().nullish(),
-    fødselsdato: z.iso.date().optional(),
-    identitetsnummer: z.string().nullish(),
-    navn: z.string().optional(),
-    type: z.enum(['FRA_OPPSLAG', 'FOSTERBARN', 'ANNET']).optional(),
+    fødselsdato: z.iso.date(),
 });
 
 export const zBarnOppslag = z.object({
@@ -28,15 +26,12 @@ export const zBekreftelser = z.object({
 });
 
 export const zBosted = z.object({
-    erEØSLand: z.boolean().optional(),
-    fraOgMed: z.iso.date().optional(),
-    landkode: z.string().optional(),
-    landnavn: z.string().optional(),
-    tilOgMed: z.iso.date().optional(),
+    fraOgMed: z.iso.date(),
+    tilOgMed: z.iso.date(),
 });
 
 export const zDineBarn = z.object({
-    barn: z.array(z.unknown()),
+    barn: z.array(zBarn),
     harDeltBosted: z.boolean(),
 });
 
@@ -52,8 +47,8 @@ export const zFrilansoppdragDto = z.object({
 export const zJsonNode = z.unknown();
 
 export const zOmsorgspengerutbetalingArbeidstakerSøknad = z.object({
-    bosteder: z.array(z.unknown()),
-    opphold: z.array(z.unknown()),
+    bosteder: z.array(zBosted),
+    opphold: z.array(zBosted),
     språk: z.string(),
     søkerNorskIdent: z.string().nullish(),
     vedlegg: z.array(z.string()),
@@ -101,21 +96,47 @@ export const zSøker = z.object({
 });
 
 export const zUtbetalingsperiode = z.object({
+    fraOgMed: z.iso.date(),
+    tilOgMed: z.iso.date(),
+});
+
+export const zBarnWritable = z.object({
+    aktørId: z.string().nullish(),
+    fødselsdato: z.iso.date(),
+    identitetsnummer: z.string().nullish(),
+    navn: z.string().optional(),
+    type: z.enum(['FRA_OPPSLAG', 'FOSTERBARN', 'ANNET']).optional(),
+});
+
+export const zBostedWritable = z.object({
+    erEØSLand: z.boolean().optional(),
+    fraOgMed: z.iso.date(),
+    landkode: z.string().optional(),
+    landnavn: z.string().optional(),
+    tilOgMed: z.iso.date(),
+});
+
+export const zDineBarnWritable = z.object({
+    barn: z.array(zBarnWritable),
+    harDeltBosted: z.boolean(),
+});
+
+export const zUtbetalingsperiodeWritable = z.object({
     aktivitetFravær: z.array(z.enum(['ARBEIDSTAKER', 'FRILANSER', 'SELVSTENDIG_VIRKSOMHET'])).optional(),
     antallTimerBorte: z.string().nullish(),
     antallTimerPlanlagt: z.string().nullish(),
-    fraOgMed: z.iso.date().optional(),
-    tilOgMed: z.iso.date().optional(),
+    fraOgMed: z.iso.date(),
+    tilOgMed: z.iso.date(),
     årsak: z.enum(['STENGT_SKOLE_ELLER_BARNEHAGE', 'SMITTEVERNHENSYN', 'ORDINÆRT_FRAVÆR']).optional(),
 });
 
-export const zArbeidsgiver = z.object({
+export const zArbeidsgiverWritable = z.object({
     arbeidsgiverHarUtbetaltLønn: z.boolean().optional(),
     harHattFraværHosArbeidsgiver: z.boolean().optional(),
     konfliktForklaring: z.string().nullish(),
     navn: z.string().optional(),
     organisasjonsnummer: z.string().optional(),
-    perioder: z.array(zUtbetalingsperiode).optional(),
+    perioder: z.array(zUtbetalingsperiodeWritable).optional(),
     utbetalingsårsak: z
         .enum(['ARBEIDSGIVER_KONKURS', 'NYOPPSTARTET_HOS_ARBEIDSGIVER', 'KONFLIKT_MED_ARBEIDSGIVER'])
         .optional(),
@@ -132,20 +153,15 @@ export const zArbeidsgiver = z.object({
         .optional(),
 });
 
-export const zDineBarnWritable = z.object({
-    barn: z.array(zBarn),
-    harDeltBosted: z.boolean(),
-});
-
 export const zOmsorgspengerutbetalingArbeidstakerSøknadWritable = z.object({
-    arbeidsgivere: z.array(zArbeidsgiver).optional(),
+    arbeidsgivere: z.array(zArbeidsgiverWritable).optional(),
     bekreftelser: zBekreftelser.optional(),
-    bosteder: z.array(zBosted),
+    bosteder: z.array(zBostedWritable),
     dataBruktTilUtledningAnnetData: z.string().nullish(),
     dineBarn: zDineBarnWritable.optional(),
     hjemmePgaSmittevernhensyn: z.boolean().optional(),
     hjemmePgaStengtBhgSkole: z.boolean().nullish(),
-    opphold: z.array(zBosted),
+    opphold: z.array(zBostedWritable),
     språk: z.string(),
     søkerNorskIdent: z.string().nullish(),
     vedlegg: z.array(z.string()),
