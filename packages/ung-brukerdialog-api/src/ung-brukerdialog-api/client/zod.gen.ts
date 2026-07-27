@@ -88,7 +88,18 @@ export const zSvarPåVarselDto = z.object({
 });
 
 export const zOppgaveResponsDto = z.intersection(
-    z.union([zSvarPåVarselDto, zRapportertInntektDto]),
+    z.union([
+        z
+            .object({
+                type: z.literal('VARSEL_SVAR'),
+            })
+            .and(zSvarPåVarselDto),
+        z
+            .object({
+                type: z.literal('RAPPORTERT_INNTEKT'),
+            })
+            .and(zRapportertInntektDto),
+    ]),
     z.object({
         type: z.string(),
     }),
@@ -147,14 +158,46 @@ export const zKontrollerRegisterinntektOppgavetypeDataDto = z.object({
 
 export const zOppgavetypeDataDto = z.intersection(
     z.union([
-        zBekreftBostedOppgavetypeDataDto,
-        zEndretPeriodeDataDto,
-        zEndretSluttdatoDataDto,
-        zEndretStartdatoDataDto,
-        zInntektsrapporteringOppgavetypeDataDto,
-        zKontrollerRegisterinntektOppgavetypeDataDto,
-        zBekreftOpphorVedMaksdatoOppgavetypeDataDto,
-        zSøkYtelseOppgavetypeDataDto,
+        z
+            .object({
+                type: z.literal('BOSTED'),
+            })
+            .and(zBekreftBostedOppgavetypeDataDto),
+        z
+            .object({
+                type: z.literal('ENDRET_PERIODE'),
+            })
+            .and(zEndretPeriodeDataDto),
+        z
+            .object({
+                type: z.literal('ENDRET_SLUTTDATO'),
+            })
+            .and(zEndretSluttdatoDataDto),
+        z
+            .object({
+                type: z.literal('ENDRET_STARTDATO'),
+            })
+            .and(zEndretStartdatoDataDto),
+        z
+            .object({
+                type: z.literal('INNTEKTSRAPPORTERING'),
+            })
+            .and(zInntektsrapporteringOppgavetypeDataDto),
+        z
+            .object({
+                type: z.literal('KONTROLLER_REGISTERINNTEKT'),
+            })
+            .and(zKontrollerRegisterinntektOppgavetypeDataDto),
+        z
+            .object({
+                type: z.literal('OPPHOR_VED_MAKSDATO'),
+            })
+            .and(zBekreftOpphorVedMaksdatoOppgavetypeDataDto),
+        z
+            .object({
+                type: z.literal('SØK_YTELSE'),
+            })
+            .and(zSøkYtelseOppgavetypeDataDto),
     ]),
     z.object({
         type: z.string(),
