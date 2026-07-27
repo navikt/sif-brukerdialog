@@ -65,7 +65,7 @@ export const zBarn = z.object({
 });
 
 export const zBarnOppslagDto = z.object({
-    adressebeskyttelse$k9_sak_innsyn_api: z.array(zAdressebeskyttelse),
+    adressebeskyttelse$no_nav_k9_sak_innsyn_api: z.array(zAdressebeskyttelse),
     aktørId: z.string(),
     etternavn: z.string(),
     fornavn: z.string(),
@@ -571,7 +571,8 @@ export const zAktivitetspenger = zYtelse.and(
         erBosattITrondheim: z.boolean().optional(),
         forutgåendeBosteder: zBosteder,
         inntekter: zOppgittInntekt.optional(),
-        søknadsperiode: z.string(),
+        søknadsperiode: z.string().optional(),
+        søknadsperiodeFom: z.iso.date().optional(),
         type: z.literal('Aktivitetspenger'),
     }),
 );

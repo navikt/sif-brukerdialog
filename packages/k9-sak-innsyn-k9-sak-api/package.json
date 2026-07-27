@@ -24,9 +24,9 @@
         "@sif/eslint-config": "workspace:*",
         "axios": "1.18.1",
         "config": "workspace:*",
-        "eslint": "10.6.0",
-        "postcss": "8.5.16",
-        "prettier": "3.9.5",
+        "eslint": "10.7.0",
+        "postcss": "8.5.22",
+        "prettier": "3.9.6",
         "typescript": "6.0.3",
         "vitest": "4.1.10",
         "zod": "4.4.3"

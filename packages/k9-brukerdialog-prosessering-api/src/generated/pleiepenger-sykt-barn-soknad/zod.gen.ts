@@ -291,13 +291,7 @@ export const zUtenlandsoppholdIPerioden = z.object({
 });
 
 export const zVarigEndring = z.object({
-    dato: z.iso.date().optional(),
-    forklaring: z.string().optional(),
-    inntektEtterEndring: z
-        .int()
-        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
-        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
-        .optional(),
+    dato: z.iso.date(),
 });
 
 export const zVirksomhet = z.object({
@@ -317,7 +311,7 @@ export const zVirksomhet = z.object({
     registrertIUtlandet: zLand.nullish(),
     regnskapsfører: z.null().optional(),
     tilOgMed: z.iso.date().nullish(),
-    varigEndring: z.null().optional(),
+    varigEndring: zVarigEndring.nullish(),
     yrkesaktivSisteTreFerdigliknedeÅrene: z.null().optional(),
 });
 
@@ -371,6 +365,16 @@ export const zYrkesaktivSisteTreFerdigliknedeArene = z.object({
     oppstartsdato: z.iso.date().optional(),
 });
 
+export const zVarigEndringWritable = z.object({
+    dato: z.iso.date(),
+    forklaring: z.string().optional(),
+    inntektEtterEndring: z
+        .int()
+        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
+        .optional(),
+});
+
 export const zVirksomhetWritable = z.object({
     erNyoppstartet: z.boolean(),
     fiskerErPåBladB: z.boolean().nullish(),
@@ -388,7 +392,7 @@ export const zVirksomhetWritable = z.object({
     registrertIUtlandet: zLand.nullish(),
     regnskapsfører: zRegnskapsfører.nullish(),
     tilOgMed: z.iso.date().nullish(),
-    varigEndring: zVarigEndring.nullish(),
+    varigEndring: zVarigEndringWritable.nullish(),
     yrkesaktivSisteTreFerdigliknedeÅrene: zYrkesaktivSisteTreFerdigliknedeArene.nullish(),
 });
 
