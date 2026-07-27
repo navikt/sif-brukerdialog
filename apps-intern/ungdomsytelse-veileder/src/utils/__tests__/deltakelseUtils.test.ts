@@ -28,6 +28,7 @@ import {
     periodeKanForlenges,
     deltakelseSluttdatoErIDagEllerFremover,
     addUkedagerToDate,
+    PeriodeKanForlengesÅrsak,
 } from '../deltakelseUtils';
 import { Deltakelse } from '../../types/Deltakelse';
 import { Features } from '../../types/Features';
@@ -306,6 +307,46 @@ describe('deltakelseUtils', () => {
             expect(h.kanSletteSluttdato.tillatt).toBe(false);
             expect(h.kanForlengePeriode.tillatt).toBe(false);
             expect(h.kanSletteDeltakelse.tillatt).toBe(false);
+        });
+
+        describe('kanForlengePeriode.årsakskode', () => {
+            it('JA når periode kan forlenges (innenfor siste 2 mnd før periodeslutt)', () => {
+                const deltakelse = lagDeltakelse({
+                    søktTidspunkt: new Date(),
+                    periodeMaksDato: ISODateToDate('2026-06-01'),
+                });
+                const h = getDeltakelseHandlinger(deltakelse, TODAY);
+                expect(h.kanForlengePeriode.tillatt).toBe(true);
+                expect(h.kanForlengePeriode.årsakskode).toBe(PeriodeKanForlengesÅrsak.JA);
+            });
+
+            it('SLUTTDATO_ER_SATT når tilOgMed er satt', () => {
+                const deltakelse = lagDeltakelse({
+                    søktTidspunkt: new Date(),
+                    periodeMaksDato: ISODateToDate('2026-06-01'),
+                    tilOgMed: ISODateToDate('2026-05-20'),
+                });
+                const h = getDeltakelseHandlinger(deltakelse, TODAY);
+                expect(h.kanForlengePeriode.tillatt).toBe(false);
+                expect(h.kanForlengePeriode.årsakskode).toBe(PeriodeKanForlengesÅrsak.SLUTTDATO_ER_SATT);
+            });
+
+            it('UTENFOR_FORLENGELSESVINDUET når periode er utløpt og utenfor 6-ukersvindu', () => {
+                const deltakelse = lagDeltakelse({
+                    søktTidspunkt: new Date(),
+                    periodeMaksDato: ISODateToDate('2026-01-01'), // utløpt og > 6 uker tilbake
+                });
+                const h = getDeltakelseHandlinger(deltakelse, TODAY);
+                expect(h.kanForlengePeriode.tillatt).toBe(false);
+                expect(h.kanForlengePeriode.årsakskode).toBe(PeriodeKanForlengesÅrsak.UTENFOR_FORLENGELSESVINDUET);
+            });
+
+            it('DELTAKELSE_ER_SLETTET når deltakelse er slettet', () => {
+                const deltakelse = lagDeltakelse({ erSlettet: true });
+                const h = getDeltakelseHandlinger(deltakelse, TODAY);
+                expect(h.kanForlengePeriode.tillatt).toBe(false);
+                expect(h.kanForlengePeriode.årsakskode).toBe(PeriodeKanForlengesÅrsak.DELTAKELSE_ER_SLETTET);
+            });
         });
     });
 
