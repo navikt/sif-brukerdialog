@@ -48,8 +48,8 @@ const TildeltPeriodePanel = ({ deltaker, deltakelse, onDeltakelseChanged }: Dato
                         handlinger.kanForlengePeriode.årsakskode === PeriodeKanForlengesÅrsak.SLUTTDATO_ER_SATT && (
                             <ReadMore header="Forlenget periode">
                                 <BodyLong>
-                                    Perioden kan ikke forlenges fordi sluttdato er registrert. Slett sluttdatoen først
-                                    under &quot;Vis unntakshendelser&quot;, og prøv deretter igjen.
+                                    Perioden kan ikke forlenges fordi en sluttdato er registrert. Du kan slette
+                                    sluttdatoen under &quot;Vis unntakshendelser&quot; ovenfor.
                                 </BodyLong>
                             </ReadMore>
                         )}
