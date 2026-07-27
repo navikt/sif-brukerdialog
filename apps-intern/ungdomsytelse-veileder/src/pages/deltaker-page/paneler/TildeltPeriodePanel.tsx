@@ -35,17 +35,17 @@ const TildeltPeriodePanel = ({ deltaker, deltakelse, onDeltakelseChanged }: Dato
                             Maksdato: <strong>{dateFormatter.dayCompactDate(periodeMaksDato)}</strong>.
                         </BodyLong>
                     )}
-                    {handlinger.kanForlengePeriode.resultat && (
+                    {handlinger.kanForlengePeriode.tillatt && (
                         <Box paddingBlock="space-8 space-0">
                             <Button variant="secondary" size="small" onClick={() => setVisDialog(true)}>
                                 Registrer forlenget periode
                             </Button>
                         </Box>
                     )}
-                    {!handlinger.kanForlengePeriode.resultat &&
-                        erInnenforSisteMånederFørPeriodeslutt(deltakelse, getDateToday()) &&
-                        handlinger.kanSletteSluttdato.resultat &&
-                        handlinger.kanForlengePeriode.årsakskode === PeriodeKanForlengesÅrsak.SLUTTDATO_ER_SATT && (
+                    {!handlinger.kanForlengePeriode.tillatt &&
+                        handlinger.kanForlengePeriode.årsakskode === PeriodeKanForlengesÅrsak.SLUTTDATO_ER_SATT &&
+                        handlinger.kanSletteSluttdato.tillatt &&
+                        erInnenforSisteMånederFørPeriodeslutt(deltakelse, getDateToday()) && (
                             <ReadMore header="Forlenget periode">
                                 <BodyLong>
                                     Perioden kan ikke forlenges fordi en sluttdato er registrert. Du kan slette

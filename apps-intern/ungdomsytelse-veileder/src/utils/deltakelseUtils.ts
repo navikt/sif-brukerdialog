@@ -38,7 +38,7 @@ const erInnenforSiste6UkerEtterPeriodeslutt = (deltakelse: Deltakelse, today: Da
     );
 };
 
-export type HandlingsResultat = { resultat: boolean; årsak: string };
+export type HandlingsResultat = { tillatt: boolean; årsak: string };
 
 export enum PeriodeKanForlengesÅrsak {
     JA = 'JA',
@@ -52,15 +52,15 @@ export enum PeriodeKanForlengesÅrsak {
 
 export type PeriodeKanForlengesResultat = HandlingsResultat & { årsakskode: PeriodeKanForlengesÅrsak };
 
-const ok = (): HandlingsResultat => ({ resultat: true, årsak: '' });
-const nei = (årsak: string): HandlingsResultat => ({ resultat: false, årsak });
+const ok = (): HandlingsResultat => ({ tillatt: true, årsak: '' });
+const nei = (årsak: string): HandlingsResultat => ({ tillatt: false, årsak });
 const okForlengePeriode = (årsakskode: PeriodeKanForlengesÅrsak): PeriodeKanForlengesResultat => ({
-    resultat: true,
+    tillatt: true,
     årsak: '',
     årsakskode,
 });
 const neiForlengePeriode = (årsak: string, årsakskode: PeriodeKanForlengesÅrsak): PeriodeKanForlengesResultat => ({
-    resultat: false,
+    tillatt: false,
     årsak,
     årsakskode,
 });
@@ -91,7 +91,7 @@ const kanSetteEllerEndreSluttdatoResultat = (deltakelse: Deltakelse, today: Date
 
 const kanMeldesUtResultat = (deltakelse: Deltakelse, today: Date): HandlingsResultat => {
     const base = kanSetteEllerEndreSluttdatoResultat(deltakelse, today);
-    if (!base.resultat) return base;
+    if (!base.tillatt) return base;
     if (deltakelse.tilOgMed !== undefined) {
         return nei('Sluttdato er allerede satt');
     }
@@ -100,7 +100,7 @@ const kanMeldesUtResultat = (deltakelse: Deltakelse, today: Date): HandlingsResu
 
 const kanEndreSluttdatoResultat = (deltakelse: Deltakelse, today: Date): HandlingsResultat => {
     const base = kanSetteEllerEndreSluttdatoResultat(deltakelse, today);
-    if (!base.resultat) return base;
+    if (!base.tillatt) return base;
     if (deltakelse.tilOgMed === undefined) {
         return nei('Sluttdato er ikke satt');
     }
@@ -153,16 +153,16 @@ const deltakelseKanSlettesResultat = (deltakelse: Deltakelse): HandlingsResultat
 };
 
 export const kanEndreStartdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean =>
-    kanEndreStartdatoResultat(deltakelse, today).resultat;
+    kanEndreStartdatoResultat(deltakelse, today).tillatt;
 
 export const kanSetteEllerEndreSluttdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean =>
-    kanSetteEllerEndreSluttdatoResultat(deltakelse, today).resultat;
+    kanSetteEllerEndreSluttdatoResultat(deltakelse, today).tillatt;
 
 export const kanMeldesUt = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean =>
-    kanMeldesUtResultat(deltakelse, today).resultat;
+    kanMeldesUtResultat(deltakelse, today).tillatt;
 
 export const kanEndreSluttdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean =>
-    kanEndreSluttdatoResultat(deltakelse, today).resultat;
+    kanEndreSluttdatoResultat(deltakelse, today).tillatt;
 
 export const deltakelsePeriodeErUtløpt = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean =>
     periodeErUtløpt(deltakelse, today);
@@ -175,13 +175,13 @@ export const deltakelseSluttdatoErIDagEllerFremover = (
 };
 
 export const deltakelseKanSlettes = (deltakelse: Deltakelse): boolean =>
-    deltakelseKanSlettesResultat(deltakelse).resultat;
+    deltakelseKanSlettesResultat(deltakelse).tillatt;
 
 export const kanSletteSluttdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean =>
-    kanSletteSluttdatoResultat(deltakelse, today).resultat;
+    kanSletteSluttdatoResultat(deltakelse, today).tillatt;
 
 export const periodeKanForlenges = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean =>
-    periodeKanForlengesResultat(deltakelse, today).resultat;
+    periodeKanForlengesResultat(deltakelse, today).tillatt;
 
 export interface DeltakelseHandlinger {
     kanEndreStartdato: HandlingsResultat;
