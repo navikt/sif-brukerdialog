@@ -5,6 +5,7 @@ import {
     Endringstype,
     Revisjonstype,
 } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { PeriodeKanForlengesÅrsak } from '../../src/utils/deltakelseUtils';
 import { beregnPeriodeMaksDato, relativeMockISODate, relativeMockTimestamp } from '../mockDateUtils';
 import { MockScenario } from './types';
 
@@ -15,7 +16,7 @@ import { MockScenario } from './types';
 
 const DELTAKER_ID = 'f9cdfa5f-f255-4b7a-9a96-4077be9aa8dd';
 const DELTAKELSE_ID = '78dc26e0-ff67-4b63-b93c-5f46a030ab1e';
-const FRA_OG_MED = relativeMockISODate(-8, 'months');
+const FRA_OG_MED = relativeMockISODate(-11, 'months');
 
 const deltakerPersonalia: DeltakerPersonalia = {
     id: DELTAKER_ID,
@@ -79,7 +80,7 @@ export const kanEndreSluttdatoScenario: MockScenario = {
         kanMeldesUt: { resultat: false, årsak: '' },
         kanEndreSluttdato: { resultat: true, årsak: '' },
         kanSletteSluttdato: { resultat: true, årsak: '' },
-        kanForlengePeriode: { resultat: false, årsak: '' },
+        kanForlengePeriode: { resultat: false, årsak: '', årsakskode: PeriodeKanForlengesÅrsak.SLUTTDATO_ER_SATT },
     },
     deltakerPersonalia,
     skjultPåGithubPages: true,

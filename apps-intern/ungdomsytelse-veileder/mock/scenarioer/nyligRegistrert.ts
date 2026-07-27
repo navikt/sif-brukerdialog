@@ -6,6 +6,7 @@ import {
     Revisjonstype,
 } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import dayjs from 'dayjs';
+import { PeriodeKanForlengesÅrsak } from '../../src/utils/deltakelseUtils';
 import { demoMockDate } from '../mockConstants';
 import { beregnPeriodeMaksDato, relativeMockTimestamp } from '../mockDateUtils';
 import { MockScenario } from './types';
@@ -88,7 +89,11 @@ export const nyligRegistrertScenario: MockScenario = {
         kanMeldesUt: { resultat: true, årsak: '' },
         kanEndreSluttdato: { resultat: false, årsak: '' },
         kanSletteSluttdato: { resultat: false, årsak: '' },
-        kanForlengePeriode: { resultat: false, årsak: '' },
+        kanForlengePeriode: {
+            resultat: false,
+            årsak: '',
+            årsakskode: PeriodeKanForlengesÅrsak.IKKE_INNENFOR_SISTE_MÅNEDER_FØR_PERIODESLUTT,
+        },
         kanSletteDeltakelse: { resultat: false, årsak: '' },
     },
     deltakerPersonalia,

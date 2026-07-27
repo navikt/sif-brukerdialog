@@ -1,10 +1,14 @@
-import { Bleed, BodyLong, BodyShort, Box, Button, VStack } from '@navikt/ds-react';
+import { Bleed, BodyLong, BodyShort, Box, Button, ReadMore, VStack } from '@navikt/ds-react';
 import { Deltakelse } from '../../../types/Deltakelse';
 import { Deltaker } from '../../../types/Deltaker';
 import { useState } from 'react';
 import ForlengPeriodeModal from '../../../components/forleng-periode-modal/ForlengPeriodeModal';
-import { dateFormatter } from '@navikt/sif-common-utils';
-import { getDeltakelseHandlinger } from '../../../utils/deltakelseUtils';
+import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
+import {
+    erInnenforSisteMånederFørPeriodeslutt,
+    getDeltakelseHandlinger,
+    PeriodeKanForlengesÅrsak,
+} from '../../../utils/deltakelseUtils';
 
 interface DatoBoksProps {
     deltaker: Deltaker;
@@ -38,6 +42,17 @@ const TildeltPeriodePanel = ({ deltaker, deltakelse, onDeltakelseChanged }: Dato
                             </Button>
                         </Box>
                     )}
+                    {!handlinger.kanForlengePeriode.resultat &&
+                        erInnenforSisteMånederFørPeriodeslutt(deltakelse, getDateToday()) &&
+                        handlinger.kanSletteSluttdato.resultat &&
+                        handlinger.kanForlengePeriode.årsakskode === PeriodeKanForlengesÅrsak.SLUTTDATO_ER_SATT && (
+                            <ReadMore header="Forlenget periode">
+                                <BodyLong>
+                                    Perioden kan ikke forlenges fordi sluttdato er registrert. Slett sluttdatoen først
+                                    under &quot;Vis unntakshendelser&quot;, og prøv deretter igjen.
+                                </BodyLong>
+                            </ReadMore>
+                        )}
                 </VStack>
             </Bleed>
 
