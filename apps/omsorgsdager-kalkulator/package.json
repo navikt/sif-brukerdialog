@@ -39,7 +39,7 @@
         "@playwright/test": "1.62.0",
         "@tailwindcss/postcss": "4.3.3",
         "@tailwindcss/vite": "4.3.3",
-        "@types/node": "25.9.3",
+        "@types/node": "26.1.1",
         "@types/react": "19.2.17",
         "@types/react-dom": "19.2.3",
         "config": "workspace:*",

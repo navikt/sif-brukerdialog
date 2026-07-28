@@ -33,7 +33,7 @@
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "25.9.3",
+        "@types/node": "26.1.1",
         "axios": "1.18.1",
         "config": "workspace:*",
         "copyfiles": "2.4.1",

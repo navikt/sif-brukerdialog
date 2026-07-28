@@ -74,7 +74,7 @@
         "@tailwindcss/postcss": "4.3.3",
         "@tailwindcss/vite": "4.3.3",
         "@testing-library/dom": "10.4.1",
-        "@types/node": "25.9.3",
+        "@types/node": "26.1.1",
         "@types/object-hash": "3.0.6",
         "@types/react": "19.2.17",
         "@types/react-dom": "19.2.3",
