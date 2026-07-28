@@ -90,7 +90,7 @@
         "eslint": "10.8.0",
         "eslint-plugin-prettier": "5.5.6",
         "eslint-plugin-react": "7.37.5",
-        "eslint-plugin-simple-import-sort": "13.0.0",
+        "eslint-plugin-simple-import-sort": "14.0.0",
         "eslint-plugin-storybook": "10.5.4",
         "express": "5.2.1",
         "helmet": "8.3.0",

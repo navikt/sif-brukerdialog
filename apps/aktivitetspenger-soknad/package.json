@@ -56,7 +56,7 @@
         "@playwright/test": "1.62.0",
         "@sentry/vite-plugin": "5.4.0",
         "@sif/eslint-config": "workspace:*",
-        "@sonar/scan": "4.3.8",
+        "@sonar/scan": "5.0.0",
         "@storybook/addon-a11y": "10.5.4",
         "@storybook/react-vite": "10.5.4",
         "@tailwindcss/vite": "4.3.3",
