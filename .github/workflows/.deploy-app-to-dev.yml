@@ -26,14 +26,14 @@ jobs:
             id-token: write # required: nais/docker-build-push
         steps:
             - name: Checkout code
-              uses: actions/checkout@v7.0.0
+              uses: actions/checkout@v7.0.1
               with:
                   persist-credentials: false
 
             - name: Setup pnpm
               uses: pnpm/action-setup@v6
             - name: Setup Node.js environment
-              uses: actions/setup-node@v6.4.0
+              uses: actions/setup-node@v7.0.0
               with:
                   node-version: 24
                   cache: "pnpm"
