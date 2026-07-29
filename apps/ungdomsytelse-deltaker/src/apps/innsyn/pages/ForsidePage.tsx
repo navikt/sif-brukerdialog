@@ -17,7 +17,7 @@ const ForsidePage = () => {
     useInnsynBreadcrumbs();
 
     return (
-        <UngInnsynPage documentTitle="Dine aktivitetspenger" footer={<ForsidePageFooter />}>
+        <UngInnsynPage documentTitle={text('forsidePage.dokumentTittel')} footer={<ForsidePageFooter />}>
             <VStack gap="space-40">
                 <InnsynForsideHeader
                     title={text('innsynAppHeader.ytelseNavn')}

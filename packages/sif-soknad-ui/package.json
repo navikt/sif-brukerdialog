@@ -35,7 +35,7 @@
         "@sif/api": "workspace:*",
         "js-cookie": "3.0.8",
         "@sif/utils": "workspace:*",
-        "@navikt/nav-dekoratoren-moduler": "4.2.1",
+        "@navikt/nav-dekoratoren-moduler": "4.2.2",
         "react-intl": "10.1.18",
         "react-responsive": "10.0.1"
     },

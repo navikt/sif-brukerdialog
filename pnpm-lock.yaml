@@ -5505,8 +5505,8 @@ importers:
         specifier: 8.15.0
         version: 8.15.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@navikt/nav-dekoratoren-moduler':
-        specifier: 4.2.1
-        version: 4.2.1(html-react-parser@6.1.5(@types/react@19.2.17)(react@19.2.8))(react@19.2.8)
+        specifier: 4.2.2
+        version: 4.2.2(html-react-parser@6.1.5(@types/react@19.2.17)(react@19.2.8))(react@19.2.8)
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../sif-common-env
@@ -8183,25 +8183,12 @@ packages:
   '@navikt/fnrvalidator@2.2.1':
     resolution: {integrity: sha512-R6x3MBFC0E/B7oTs+P2jAP+ym7+d6cwSpDsLeMja9IwPpJq3HV/OClFBVWm9fJZPmXfumKRMGy6gqsQPj90ftg==, tarball: https://npm.pkg.github.com/download/@navikt/fnrvalidator/2.2.1/37ed0feb23a7525139ad5512684ff6b0977112c6}
 
-  '@navikt/nav-dekoratoren-moduler@4.2.1':
-    resolution: {integrity: sha512-7APU6VFygRbt0uvNbc1Qrh8MZ0v6LwTXaybLwgTUxByr9ErtaUnsxvIK/ojvQi9GtXsqPWdrv/qgLwLvR/8OSQ==, tarball: https://npm.pkg.github.com/download/@navikt/nav-dekoratoren-moduler/4.2.1/085010a71cf51cc25abd0572ba569720e866afe2}
-    engines: {node: 24.x}
-    peerDependencies:
-      html-react-parser: '>=5.x'
-      react: '>=17.x'
-    peerDependenciesMeta:
-      react:
-        optional: true
-
   '@navikt/nav-dekoratoren-moduler@4.2.2':
     resolution: {integrity: sha512-1V/fOlgTNzTWRzIgtJwymamj6NgppZdcRTiy9OXO57PwEA6lCoWX9qXh82Zgxl0pOYQQ7QOUH9DOfKov18h3wQ==, tarball: https://npm.pkg.github.com/download/@navikt/nav-dekoratoren-moduler/4.2.2/9982b2b38e397df0e9b0cd886beb3d16d0b97a61}
     engines: {node: 24.x}
     peerDependencies:
       html-react-parser: '>=5.x'
       react: '>=17.x'
-    peerDependenciesMeta:
-      react:
-        optional: true
 
   '@navikt/next-logger@5.0.0':
     resolution: {integrity: sha512-VQ2VM/k5uDYnb7BYG3ITJZgMZq8B3TECOnhdvNOQeltJyy8+KQzGqLsrYajKPWuUiPuLjYFk0HbU2W22onB9mQ==, tarball: https://npm.pkg.github.com/download/@navikt/next-logger/5.0.0/510dccac519d1227515e4c8a8268570d90305b3e}
@@ -20001,22 +19988,12 @@ snapshots:
 
   '@navikt/fnrvalidator@2.2.1': {}
 
-  '@navikt/nav-dekoratoren-moduler@4.2.1(html-react-parser@6.1.5(@types/react@19.2.17)(react@19.2.8))(react@19.2.8)':
-    dependencies:
-      '@navikt/analytics-types': 0.0.9
-      csp-header: 6.3.1
-      html-react-parser: 6.1.5(@types/react@19.2.17)(react@19.2.8)
-      js-cookie: 3.0.7
-    optionalDependencies:
-      react: 19.2.8
-
   '@navikt/nav-dekoratoren-moduler@4.2.2(html-react-parser@6.1.5(@types/react@19.2.17)(react@19.2.8))(react@19.2.8)':
     dependencies:
       '@navikt/analytics-types': 0.0.9
       csp-header: 6.3.1
       html-react-parser: 6.1.5(@types/react@19.2.17)(react@19.2.8)
       js-cookie: 3.0.7
-    optionalDependencies:
       react: 19.2.8
 
   '@navikt/next-logger@5.0.0(next@16.2.11(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@playwright/test@1.62.0)(@types/node@26.1.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sass@1.102.0))(pino@10.3.1)':
