@@ -81,7 +81,7 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
 
     const sluttdatoMinMax = {
         from: deltakelse.fraOgMed,
-        to: dayjs(deltakelse.fraOgMed).add(15, 'months').toDate(),
+        to: deltakelse.periodeMaksDato || dayjs(deltakelse.fraOgMed).add(15, 'months').toDate(),
     };
 
     return (
