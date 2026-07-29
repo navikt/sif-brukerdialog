@@ -28,7 +28,7 @@ const OppgavePage = () => {
     const oppgave = oppgaver.find((o) => o.oppgaveReferanse === oppgaveReferanse);
 
     useEffect(() => {
-        queryClient.refetchQueries({ queryKey: sifApiQueryKeys.oppgaver }).then(() => {
+        queryClient.refetchQueries({ queryKey: sifApiQueryKeys.oppgaver }).finally(() => {
             setIsRefetching(false);
         });
     }, []);
