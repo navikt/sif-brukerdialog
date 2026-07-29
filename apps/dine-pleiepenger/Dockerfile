@@ -3,7 +3,11 @@ FROM node:26-alpine
 RUN apk add --no-cache tini \
     && addgroup --system --gid 1069 nodejs \
     && adduser --system --uid 1069 nextjs \
-    && rm -rf /usr/local/lib/node_modules/npm /usr/local/bin/npm /usr/local/bin/npx /usr/local/bin/corepack
+    && rm -rf /usr/local/lib/node_modules/npm \
+        /usr/local/lib/node_modules/corepack \
+        /usr/local/bin/npm \
+        /usr/local/bin/npx \
+        /usr/local/bin/corepack
 
 WORKDIR /app
 
