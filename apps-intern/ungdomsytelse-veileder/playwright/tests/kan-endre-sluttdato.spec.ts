@@ -23,10 +23,10 @@ test('kanEndreSluttdato: viser riktige handlinger', async ({ page }) => {
 test('kanEndreSluttdato: kan endre sluttdato', async ({ page }) => {
     await page.getByRole('button', { name: 'Endre sluttdato' }).click();
     await page.getByRole('button', { name: 'Åpne datovelger' }).click();
-    await page.getByRole('button', { name: 'mandag 15' }).click();
+    await page.getByRole('button', { name: 'torsdag 9' }).click();
     await page.getByRole('checkbox', { name: 'Jeg bekrefter' }).check();
     await page.getByTestId('typedFormikForm-submitButton').click();
     await page.getByRole('button', { name: 'Ok, lukk' }).click();
     await expect(page.getByText('Sluttdato:', { exact: true })).toBeVisible();
-    await expect(page.getByText('Mandag 15.')).toBeVisible();
+    await expect(page.getByText('Torsdag 09.')).toBeVisible();
 });
