@@ -59,10 +59,10 @@ export const OppgavePanel: Story = {
 
 export const UbesvartOppgave: Story = {
     name: 'Ubesvart oppgave',
-    render: () => <SøkYtelseOppgavePanel oppgave={oppgave} />,
+    render: () => <SøkYtelseOppgavePanel oppgave={oppgave} dokumentarkivUrl="#" />,
 };
 
 export const BesvartOppgave: Story = {
     name: 'Besvart oppgave',
-    render: () => <SøkYtelseOppgavePanel oppgave={besvartOppgave} />,
+    render: () => <SøkYtelseOppgavePanel oppgave={besvartOppgave} dokumentarkivUrl="#" />,
 };

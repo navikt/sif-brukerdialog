@@ -5,9 +5,9 @@ import { UxSignalsLoaderProvider } from '@sif/surveys';
 import { InnsynForsideHeader } from '@sif/ung-innsyn/components';
 import { useEffect } from 'react';
 
-import ForsidePageLayout from '../../src/apps/innsyn/pages/layout/ForsidePageLayout';
 import ForsidePageFooter from '../../src/apps/innsyn/pages/parts/ForsidePageFooter';
 import StoryIntlProvider from '../components/StoryIntlProvider';
+import { UngInnsynPage } from '@sif/ung-innsyn';
 
 export const useWithInnsynApp = (
     Story: any,
@@ -25,14 +25,14 @@ export const useWithInnsynApp = (
         <Theme hasBackground={false}>
             <UxSignalsLoaderProvider>
                 <StoryIntlProvider>
-                    <ForsidePageLayout
+                    <UngInnsynPage
                         documentTitle="Forside"
                         footer={options?.frontpageFooter ? <ForsidePageFooter /> : null}>
                         <VStack gap="space-32">
                             {options.withHeader && <InnsynForsideHeader title="Din ungdomsprogramytelse" />}
                             <Story />
                         </VStack>
-                    </ForsidePageLayout>
+                    </UngInnsynPage>
                 </StoryIntlProvider>
             </UxSignalsLoaderProvider>
         </Theme>

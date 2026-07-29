@@ -1,11 +1,12 @@
 import { sifApiQueryKeys } from '@sif/api';
-import { UngOppgaveIkkeFunnetPage, UngOppgavePage as UngOppgavePage } from '@sif/ung-innsyn/pages';
+import { UngOppgaveIkkeFunnetPage, UngOppgavePage } from '@sif/ung-innsyn/pages';
 import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
 import { useInnsynContext } from '../hooks/useInnsynContext';
 import { useAppIntl } from '../i18n';
+import getLenker from '../lenker';
 
 /** Url params */
 type OppgavePageParams = {
@@ -30,6 +31,7 @@ const OppgavePage = () => {
             navn={fornavn}
             oppgave={oppgave}
             applikasjonTittel={text('application.title')}
+            dokumentarkivUrl={getLenker().dokumentarkivAktivitetspenger}
             onCancel={() => navigate('/')}
             onSuccess={() => {
                 queryClient.invalidateQueries({ queryKey: sifApiQueryKeys.oppgaver });

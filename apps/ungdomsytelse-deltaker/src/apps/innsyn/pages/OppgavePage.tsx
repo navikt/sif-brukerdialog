@@ -3,10 +3,12 @@ import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
 import { sifApiQueryKeys } from '@sif/api';
 import { UngOppgaveIkkeFunnetPage, UngOppgavePage } from '@sif/ung-innsyn/pages';
 import { useQueryClient } from '@tanstack/react-query';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useAppIntl } from '../../../i18n';
+import UngLoadingPage from '../../../pages/UngLoadingPage';
+import getLenker from '../../../utils/lenker';
 /** Url params */
 type OppgavePageParams = {
     oppgaveReferanse: string;
@@ -18,6 +20,7 @@ const OppgavePage = () => {
     const navigate = useNavigate();
     const queryClient = useQueryClient();
     const refetchTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+    const [isRefetching, setIsRefetching] = useState(true);
     const {
         oppgaver,
         søker: { fornavn },
@@ -25,18 +28,23 @@ const OppgavePage = () => {
     const oppgave = oppgaver.find((o) => o.oppgaveReferanse === oppgaveReferanse);
 
     useEffect(() => {
-        return () => {
-            clearTimeout(refetchTimeoutRef.current);
-        };
+        queryClient.refetchQueries({ queryKey: sifApiQueryKeys.oppgaver }).finally(() => {
+            setIsRefetching(false);
+        });
     }, []);
 
     useInnsynBreadcrumbs([{ title: 'Oppgave', url: `/oppgave`, handleInApp: true }]);
+
+    if (isRefetching) {
+        return <UngLoadingPage />;
+    }
 
     return oppgave ? (
         <UngOppgavePage
             navn={fornavn}
             oppgave={oppgave}
             applikasjonTittel={text('innsyn.sidetittel')}
+            dokumentarkivUrl={getLenker().dokumentarkiv}
             onCancel={() => navigate('/')}
             onSuccess={() => {
                 queryClient.invalidateQueries({ queryKey: sifApiQueryKeys.oppgaver });

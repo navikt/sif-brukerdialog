@@ -10,7 +10,6 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { getCheckedValidator, getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
-import dayjs from 'dayjs';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import { usePeriodeForDeltakelse } from '../../hooks/usePeriodeForDeltakelse';
 import { Deltakelse } from '../../types/Deltakelse';
@@ -81,7 +80,7 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
 
     const sluttdatoMinMax = {
         from: deltakelse.fraOgMed,
-        to: dayjs(deltakelse.fraOgMed).add(15, 'months').toDate(),
+        to: deltakelse.periodeMaksDato,
     };
 
     return (

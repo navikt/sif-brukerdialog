@@ -7,7 +7,7 @@ import { useAppIntl } from '@shared/i18n';
 import { InnsynForsideHeader } from '@sif/ung-innsyn/components';
 
 import UXRapportertInntekt from '../ux-signals/UXRapportertInntekt';
-import ForsidePageLayout from './layout/ForsidePageLayout';
+import { UngInnsynPage } from '@sif/ung-innsyn';
 import ForsidePageFooter from './parts/ForsidePageFooter';
 
 const ForsidePage = () => {
@@ -17,8 +17,8 @@ const ForsidePage = () => {
     useInnsynBreadcrumbs();
 
     return (
-        <ForsidePageLayout documentTitle={text('forsidePage.dokumentTittel')} footer={<ForsidePageFooter />}>
-            <VStack gap="space-32">
+        <UngInnsynPage documentTitle={text('forsidePage.dokumentTittel')} footer={<ForsidePageFooter />}>
+            <VStack gap="space-40">
                 <InnsynForsideHeader
                     title={text('innsynAppHeader.ytelseNavn')}
                     subtitle={
@@ -32,7 +32,7 @@ const ForsidePage = () => {
                 <UXRapportertInntekt />
                 <DeltakelseContent deltakelsePeriode={deltakelsePeriode} oppgaver={oppgaver} />
             </VStack>
-        </ForsidePageLayout>
+        </UngInnsynPage>
     );
 };
 

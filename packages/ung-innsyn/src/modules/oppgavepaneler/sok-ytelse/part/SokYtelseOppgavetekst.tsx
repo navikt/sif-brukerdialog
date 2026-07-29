@@ -9,9 +9,10 @@ import { getOppgaveStatusText } from '../../../../utils/textUtils';
 
 interface Props {
     oppgave: SøkYtelseOppgave;
+    dokumentarkivUrl: string;
 }
 
-export const SøkYtelseOppgavetekst = ({ oppgave }: Props) => {
+export const SøkYtelseOppgavetekst = ({ oppgave, dokumentarkivUrl }: Props) => {
     if (oppgave.status !== OppgaveStatus.LØST) {
         return (
             <VStack gap="space-24">
@@ -62,9 +63,7 @@ export const SøkYtelseOppgavetekst = ({ oppgave }: Props) => {
                                     id={`@ungInnsyn.søkYtelseOppgave.${oppgave.ytelsetype}.oppsummering.dineSvar.tekst`}
                                     values={{
                                         link: (chunks: React.ReactNode) => (
-                                            <Link href="#" target="_blank" rel="noreferrer">
-                                                {chunks}
-                                            </Link>
+                                            <Link href={dokumentarkivUrl}>{chunks}</Link>
                                         ),
                                     }}
                                 />
