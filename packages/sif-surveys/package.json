@@ -10,15 +10,15 @@
         "lint:tsc": "tsc --noEmit"
     },
     "dependencies": {
-        "@navikt/ds-react": "8.14.0",
+        "@navikt/ds-react": "8.15.0",
         "@navikt/sif-common-hooks": "workspace:*",
-        "react": "19.2.7",
-        "react-router-dom": "7.18.0",
+        "react": "19.2.8",
+        "react-router-dom": "7.18.1",
         "typescript": "6.0.3"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "25.9.3",
+        "@types/node": "26.1.1",
         "@types/react": "19.2.17"
     }
 }

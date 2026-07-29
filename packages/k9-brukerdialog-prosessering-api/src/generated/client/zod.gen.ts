@@ -573,12 +573,8 @@ export const zUngdomsytelsesøknad = z.object({
 });
 
 export const zUtbetalingsperiode = z.object({
-    aktivitetFravær: z.array(z.enum(['ARBEIDSTAKER', 'FRILANSER', 'SELVSTENDIG_VIRKSOMHET'])).optional(),
-    antallTimerBorte: z.string().nullish(),
-    antallTimerPlanlagt: z.string().nullish(),
-    fraOgMed: z.iso.date().optional(),
-    tilOgMed: z.iso.date().optional(),
-    årsak: z.enum(['STENGT_SKOLE_ELLER_BARNEHAGE', 'SMITTEVERNHENSYN', 'ORDINÆRT_FRAVÆR']).optional(),
+    fraOgMed: z.iso.date(),
+    tilOgMed: z.iso.date(),
 });
 
 export const zUtenlandskArbeidsforhold = z.object({
@@ -628,13 +624,7 @@ export const zUttak = z.object({
 });
 
 export const zVarigEndring = z.object({
-    dato: z.iso.date().optional(),
-    forklaring: z.string().optional(),
-    inntektEtterEndring: z
-        .int()
-        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
-        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
-        .optional(),
+    dato: z.iso.date(),
 });
 
 export const zVerdilisteElement = z.object({
@@ -668,7 +658,7 @@ export const zVirksomhet = z.object({
     registrertIUtlandet: zLand.nullish(),
     regnskapsfører: z.null().optional(),
     tilOgMed: z.iso.date().nullish(),
-    varigEndring: z.null().optional(),
+    varigEndring: zVarigEndring.nullish(),
     yrkesaktivSisteTreFerdigliknedeÅrene: z.null().optional(),
 });
 
@@ -687,7 +677,7 @@ export const zOmsorgspengerutbetalingSnfSøknad = z.object({
     språk: z.string(),
     spørsmål: z.array(zSpørsmålOgSvar),
     søkerNorskIdent: z.string().nullish(),
-    utbetalingsperioder: z.array(z.unknown()),
+    utbetalingsperioder: z.array(zUtbetalingsperiode),
     vedlegg: z.array(z.string()),
 });
 
@@ -854,6 +844,25 @@ export const zOmsorgspengerutbetalingArbeidstakerSøknadWritable = z.object({
     vedlegg: z.array(z.string()),
 });
 
+export const zUtbetalingsperiodeWritable = z.object({
+    aktivitetFravær: z.array(z.enum(['ARBEIDSTAKER', 'FRILANSER', 'SELVSTENDIG_VIRKSOMHET'])).optional(),
+    antallTimerBorte: z.string().nullish(),
+    antallTimerPlanlagt: z.string().nullish(),
+    fraOgMed: z.iso.date(),
+    tilOgMed: z.iso.date(),
+    årsak: z.enum(['STENGT_SKOLE_ELLER_BARNEHAGE', 'SMITTEVERNHENSYN', 'ORDINÆRT_FRAVÆR']).optional(),
+});
+
+export const zVarigEndringWritable = z.object({
+    dato: z.iso.date(),
+    forklaring: z.string().optional(),
+    inntektEtterEndring: z
+        .int()
+        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
+        .optional(),
+});
+
 export const zVirksomhetWritable = z.object({
     erNyoppstartet: z.boolean(),
     fiskerErPåBladB: z.boolean().nullish(),
@@ -871,7 +880,7 @@ export const zVirksomhetWritable = z.object({
     registrertIUtlandet: zLand.nullish(),
     regnskapsfører: zRegnskapsfører.nullish(),
     tilOgMed: z.iso.date().nullish(),
-    varigEndring: zVarigEndring.nullish(),
+    varigEndring: zVarigEndringWritable.nullish(),
     yrkesaktivSisteTreFerdigliknedeÅrene: zYrkesaktivSisteTreFerdigliknedeArene.nullish(),
 });
 
@@ -890,7 +899,7 @@ export const zOmsorgspengerutbetalingSnfSøknadWritable = z.object({
     språk: z.string(),
     spørsmål: z.array(zSpørsmålOgSvar),
     søkerNorskIdent: z.string().nullish(),
-    utbetalingsperioder: z.array(zUtbetalingsperiode),
+    utbetalingsperioder: z.array(zUtbetalingsperiodeWritable),
     vedlegg: z.array(z.string()),
 });
 

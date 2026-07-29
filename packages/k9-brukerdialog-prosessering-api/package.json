@@ -38,11 +38,11 @@
         "@sif/eslint-config": "workspace:*",
         "axios": "1.18.1",
         "config": "workspace:*",
-        "eslint": "10.6.0",
-        "postcss": "8.5.15",
-        "prettier": "3.8.5",
+        "eslint": "10.8.0",
+        "postcss": "8.5.23",
+        "prettier": "3.9.6",
         "typescript": "6.0.3",
-        "vitest": "4.1.9",
+        "vitest": "4.1.10",
         "zod": "4.4.3"
     },
     "peerDependencies": {

@@ -5,7 +5,9 @@ export type ClientOptions = {
 };
 
 export type ArbeidIPeriode = {
-    [key: string]: unknown;
+    enkeltdager: Enkeltdag[];
+    enkeltdagerFravær: Enkeltdag[];
+    jobberIPerioden: 'SOM_VANLIG' | 'REDUSERT' | 'HELT_FRAVÆR';
 };
 
 export type ArbeidsforholdOlp = {
@@ -236,9 +238,7 @@ export type UtenlandsoppholdIPerioden = {
 };
 
 export type VarigEndring = {
-    dato?: string;
-    forklaring?: string;
-    inntektEtterEndring?: number;
+    dato: string;
 };
 
 export type Virksomhet = {
@@ -254,7 +254,7 @@ export type Virksomhet = {
     registrertIUtlandet?: Land;
     regnskapsfører?: null;
     tilOgMed?: string;
-    varigEndring?: null;
+    varigEndring?: VarigEndring;
     yrkesaktivSisteTreFerdigliknedeÅrene?: null;
 };
 
@@ -262,30 +262,11 @@ export type YrkesaktivSisteTreFerdigliknedeArene = {
     oppstartsdato?: string;
 };
 
-export type ArbeidIPeriodeWritable = {
-    enkeltdager?: Enkeltdag[];
-    enkeltdagerFravær?: Enkeltdag[];
-    jobberIPerioden?: 'SOM_VANLIG' | 'REDUSERT' | 'HELT_FRAVÆR';
-};
-
-export type ArbeidsforholdOlpWritable = {
-    arbeidIPeriode: ArbeidIPeriodeWritable;
-    jobberNormaltTimer: number;
-};
-
 export type ArbeidsgiverOlpWritable = {
-    arbeidsforhold?: ArbeidsforholdOlpWritable;
+    arbeidsforhold?: ArbeidsforholdOlp;
     erAnsatt?: boolean;
     navn?: string;
     organisasjonsnummer?: string;
-};
-
-export type FrilansOlpWritable = {
-    arbeidsforhold?: ArbeidsforholdOlpWritable;
-    harHattInntektSomFrilanser: boolean;
-    jobberFortsattSomFrilans: boolean;
-    sluttdato?: string;
-    startdato: string;
 };
 
 export type OpplæringspengerSøknadWritable = {
@@ -296,7 +277,7 @@ export type OpplæringspengerSøknadWritable = {
     ettersendingAvVedlegg?: EttersendingAvVedlegg;
     ferieuttakIPerioden?: FerieuttakIPerioden;
     fraOgMed: string;
-    frilans?: FrilansOlpWritable;
+    frilans?: FrilansOlp;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
     harVærtEllerErVernepliktig?: boolean;
@@ -315,8 +296,14 @@ export type OpplæringspengerSøknadWritable = {
 };
 
 export type SelvstendigNæringsdrivendeOlpWritable = {
-    arbeidsforhold: ArbeidsforholdOlpWritable;
+    arbeidsforhold: ArbeidsforholdOlp;
     virksomhet: VirksomhetWritable;
+};
+
+export type VarigEndringWritable = {
+    dato: string;
+    forklaring?: string;
+    inntektEtterEndring?: number;
 };
 
 export type VirksomhetWritable = {
@@ -332,7 +319,7 @@ export type VirksomhetWritable = {
     registrertIUtlandet?: Land;
     regnskapsfører?: Regnskapsfører;
     tilOgMed?: string;
-    varigEndring?: VarigEndring;
+    varigEndring?: VarigEndringWritable;
     yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
 };
 

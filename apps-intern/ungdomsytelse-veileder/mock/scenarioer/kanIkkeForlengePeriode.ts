@@ -5,6 +5,7 @@ import {
     Endringstype,
     Revisjonstype,
 } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { PeriodeKanForlengesÅrsak } from '../../src/utils/deltakelseUtils';
 import { beregnPeriodeMaksDato, relativeMockISODate, relativeMockTimestamp } from '../mockDateUtils';
 import { MockScenario } from './types';
 
@@ -71,12 +72,16 @@ export const kanIkkeForlengePeriodeScenario: MockScenario = {
     beskrivelse: 'Kan ikke forlenge (akkurat utenfor 6-ukersvinduet)',
     gruppe: 'handlinger',
     forventedeHandlinger: {
-        kanSletteDeltakelse: { resultat: false, årsak: '' },
-        kanEndreStartdato: { resultat: false, årsak: '' },
-        kanMeldesUt: { resultat: false, årsak: '' },
-        kanEndreSluttdato: { resultat: false, årsak: '' },
-        kanSletteSluttdato: { resultat: false, årsak: '' },
-        kanForlengePeriode: { resultat: false, årsak: '' },
+        kanSletteDeltakelse: { tillatt: false, årsak: '' },
+        kanEndreStartdato: { tillatt: false, årsak: '' },
+        kanMeldesUt: { tillatt: false, årsak: '' },
+        kanEndreSluttdato: { tillatt: false, årsak: '' },
+        kanSletteSluttdato: { tillatt: false, årsak: '' },
+        kanForlengePeriode: {
+            tillatt: false,
+            årsak: '',
+            årsakskode: PeriodeKanForlengesÅrsak.UTENFOR_FORLENGELSESVINDUET,
+        },
     },
     deltakerPersonalia,
     skjultPåGithubPages: true,

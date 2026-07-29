@@ -24,7 +24,7 @@ const periodeErUtløpt = (deltakelse: Deltakelse, today: Date): boolean => {
     return dayjs(deltakelse.periodeMaksDato).isBefore(today, 'day');
 };
 
-const erInnenforSisteMånederFørPeriodeslutt = (deltakelse: Deltakelse, today: Date): boolean => {
+export const erInnenforSisteMånederFørPeriodeslutt = (deltakelse: Deltakelse, today: Date): boolean => {
     return dayjs(today).isSameOrAfter(
         dayjs(deltakelse.periodeMaksDato).subtract(MÅNEDER_FØR_PERIODESLUTT_ÅPEN_FOR_FORLENGELSE, 'months'),
         'day',
@@ -38,10 +38,32 @@ const erInnenforSiste6UkerEtterPeriodeslutt = (deltakelse: Deltakelse, today: Da
     );
 };
 
-export type HandlingsResultat = { resultat: boolean; årsak: string };
+export type HandlingsResultat = { tillatt: boolean; årsak: string };
 
-const ok = (): HandlingsResultat => ({ resultat: true, årsak: '' });
-const nei = (årsak: string): HandlingsResultat => ({ resultat: false, årsak });
+export enum PeriodeKanForlengesÅrsak {
+    JA = 'JA',
+    DELTAKELSE_ER_SLETTET = 'DELTAKELSE_ER_SLETTET',
+    HAR_IKKE_SØKT_TIDSPUNKT = 'HAR_IKKE_SØKT_TIDSPUNKT',
+    PERIODEN_ER_ALLEREDE_FORLENGET = 'PERIODEN_ER_ALLEREDE_FORLENGET',
+    SLUTTDATO_ER_SATT = 'SLUTTDATO_ER_SATT',
+    UTENFOR_FORLENGELSESVINDUET = 'UTENFOR_FORLENGELSESVINDUET',
+    IKKE_INNENFOR_SISTE_MÅNEDER_FØR_PERIODESLUTT = 'IKKE_INNENFOR_SISTE_MÅNEDER_FØR_PERIODESLUTT',
+}
+
+export type PeriodeKanForlengesResultat = HandlingsResultat & { årsakskode: PeriodeKanForlengesÅrsak };
+
+const ok = (): HandlingsResultat => ({ tillatt: true, årsak: '' });
+const nei = (årsak: string): HandlingsResultat => ({ tillatt: false, årsak });
+const okForlengePeriode = (årsakskode: PeriodeKanForlengesÅrsak): PeriodeKanForlengesResultat => ({
+    tillatt: true,
+    årsak: '',
+    årsakskode,
+});
+const neiForlengePeriode = (årsak: string, årsakskode: PeriodeKanForlengesÅrsak): PeriodeKanForlengesResultat => ({
+    tillatt: false,
+    årsak,
+    årsakskode,
+});
 
 const kanEndreStartdatoResultat = (deltakelse: Deltakelse, today: Date): HandlingsResultat => {
     if (deltakelse.harForlengetPeriode) {
@@ -69,7 +91,7 @@ const kanSetteEllerEndreSluttdatoResultat = (deltakelse: Deltakelse, today: Date
 
 const kanMeldesUtResultat = (deltakelse: Deltakelse, today: Date): HandlingsResultat => {
     const base = kanSetteEllerEndreSluttdatoResultat(deltakelse, today);
-    if (!base.resultat) return base;
+    if (!base.tillatt) return base;
     if (deltakelse.tilOgMed !== undefined) {
         return nei('Sluttdato er allerede satt');
     }
@@ -78,7 +100,7 @@ const kanMeldesUtResultat = (deltakelse: Deltakelse, today: Date): HandlingsResu
 
 const kanEndreSluttdatoResultat = (deltakelse: Deltakelse, today: Date): HandlingsResultat => {
     const base = kanSetteEllerEndreSluttdatoResultat(deltakelse, today);
-    if (!base.resultat) return base;
+    if (!base.tillatt) return base;
     if (deltakelse.tilOgMed === undefined) {
         return nei('Sluttdato er ikke satt');
     }
@@ -92,20 +114,35 @@ const kanSletteSluttdatoResultat = (deltakelse: Deltakelse, today: Date): Handli
     return kanEndreSluttdatoResultat(deltakelse, today);
 };
 
-const periodeKanForlengesResultat = (deltakelse: Deltakelse, today: Date): HandlingsResultat => {
-    if (!deltakelse.søktTidspunkt) return nei('Deltakelsen har ikke søkt tidspunkt');
-    if (deltakelse.harForlengetPeriode) return nei('Perioden er allerede forlenget');
-    if (deltakelse.tilOgMed !== undefined) return nei('Sluttdato er satt');
+const periodeKanForlengesResultat = (deltakelse: Deltakelse, today: Date): PeriodeKanForlengesResultat => {
+    if (!deltakelse.søktTidspunkt)
+        return neiForlengePeriode(
+            'Deltakelsen har ikke søkt tidspunkt',
+            PeriodeKanForlengesÅrsak.HAR_IKKE_SØKT_TIDSPUNKT,
+        );
+    if (deltakelse.harForlengetPeriode)
+        return neiForlengePeriode(
+            'Perioden er allerede forlenget',
+            PeriodeKanForlengesÅrsak.PERIODEN_ER_ALLEREDE_FORLENGET,
+        );
+    if (deltakelse.tilOgMed !== undefined)
+        return neiForlengePeriode('Sluttdato er satt', PeriodeKanForlengesÅrsak.SLUTTDATO_ER_SATT);
     if (periodeErUtløpt(deltakelse, today)) {
         if (!erInnenforSiste6UkerEtterPeriodeslutt(deltakelse, today)) {
-            return nei('Perioden er utløpt og utenfor 6-ukersvinduet for forlengelse');
+            return neiForlengePeriode(
+                'Perioden er utløpt og utenfor 6-ukersvinduet for forlengelse',
+                PeriodeKanForlengesÅrsak.UTENFOR_FORLENGELSESVINDUET,
+            );
         }
-        return ok();
+        return okForlengePeriode(PeriodeKanForlengesÅrsak.JA);
     }
     if (!erInnenforSisteMånederFørPeriodeslutt(deltakelse, today)) {
-        return nei('Ikke innenfor siste måneder før periodeslutt');
+        return neiForlengePeriode(
+            'Ikke innenfor siste måneder før periodeslutt',
+            PeriodeKanForlengesÅrsak.IKKE_INNENFOR_SISTE_MÅNEDER_FØR_PERIODESLUTT,
+        );
     }
-    return ok();
+    return okForlengePeriode(PeriodeKanForlengesÅrsak.JA);
 };
 
 const deltakelseKanSlettesResultat = (deltakelse: Deltakelse): HandlingsResultat => {
@@ -116,16 +153,16 @@ const deltakelseKanSlettesResultat = (deltakelse: Deltakelse): HandlingsResultat
 };
 
 export const kanEndreStartdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean =>
-    kanEndreStartdatoResultat(deltakelse, today).resultat;
+    kanEndreStartdatoResultat(deltakelse, today).tillatt;
 
 export const kanSetteEllerEndreSluttdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean =>
-    kanSetteEllerEndreSluttdatoResultat(deltakelse, today).resultat;
+    kanSetteEllerEndreSluttdatoResultat(deltakelse, today).tillatt;
 
 export const kanMeldesUt = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean =>
-    kanMeldesUtResultat(deltakelse, today).resultat;
+    kanMeldesUtResultat(deltakelse, today).tillatt;
 
 export const kanEndreSluttdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean =>
-    kanEndreSluttdatoResultat(deltakelse, today).resultat;
+    kanEndreSluttdatoResultat(deltakelse, today).tillatt;
 
 export const deltakelsePeriodeErUtløpt = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean =>
     periodeErUtløpt(deltakelse, today);
@@ -138,20 +175,20 @@ export const deltakelseSluttdatoErIDagEllerFremover = (
 };
 
 export const deltakelseKanSlettes = (deltakelse: Deltakelse): boolean =>
-    deltakelseKanSlettesResultat(deltakelse).resultat;
+    deltakelseKanSlettesResultat(deltakelse).tillatt;
 
 export const kanSletteSluttdato = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean =>
-    kanSletteSluttdatoResultat(deltakelse, today).resultat;
+    kanSletteSluttdatoResultat(deltakelse, today).tillatt;
 
 export const periodeKanForlenges = (deltakelse: Deltakelse, today: Date = getDateToday()): boolean =>
-    periodeKanForlengesResultat(deltakelse, today).resultat;
+    periodeKanForlengesResultat(deltakelse, today).tillatt;
 
 export interface DeltakelseHandlinger {
     kanEndreStartdato: HandlingsResultat;
     kanMeldesUt: HandlingsResultat;
     kanEndreSluttdato: HandlingsResultat;
     kanSletteSluttdato: HandlingsResultat;
-    kanForlengePeriode: HandlingsResultat;
+    kanForlengePeriode: PeriodeKanForlengesResultat;
     kanSletteDeltakelse: HandlingsResultat;
 }
 
@@ -162,7 +199,10 @@ export const getDeltakelseHandlinger = (deltakelse: Deltakelse, today: Date = ge
             kanMeldesUt: nei('Deltakelsen er slettet'),
             kanEndreSluttdato: nei('Deltakelsen er slettet'),
             kanSletteSluttdato: nei('Deltakelsen er slettet'),
-            kanForlengePeriode: nei('Deltakelsen er slettet'),
+            kanForlengePeriode: neiForlengePeriode(
+                'Deltakelsen er slettet',
+                PeriodeKanForlengesÅrsak.DELTAKELSE_ER_SLETTET,
+            ),
             kanSletteDeltakelse: nei('Deltakelsen er slettet'),
         };
     }

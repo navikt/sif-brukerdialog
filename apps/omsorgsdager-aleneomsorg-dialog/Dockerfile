@@ -79,7 +79,13 @@ WORKDIR /app
 ENV SERVER="server"
 
 # Installer kun tini - trenger ikke npm/pnpm i produksjon
-RUN apk add --no-cache tini && rm -rf /var/cache/apk/*
+RUN apk add --no-cache tini \
+    && rm -rf /var/cache/apk/* \
+        /usr/local/lib/node_modules/npm \
+        /usr/local/lib/node_modules/corepack \
+        /usr/local/bin/npm \
+        /usr/local/bin/npx \
+        /usr/local/bin/corepack
 
 # Kopier bygget server
 COPY --from=server-build /app/${SERVER}/dist ./

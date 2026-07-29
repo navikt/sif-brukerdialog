@@ -36,17 +36,13 @@ export type Bekreftelser = {
 };
 
 export type Bosted = {
-    erEØSLand?: boolean;
-    fraOgMed?: string;
-    landkode?: string;
-    landnavn?: string;
-    tilOgMed?: string;
+    fraOgMed: string;
+    tilOgMed: string;
 };
 
 export type Frilans = {
-    jobberFortsattSomFrilans?: boolean;
     sluttdato?: string;
-    startdato?: string;
+    startdato: string;
 };
 
 export type FrilansoppdragDto = {
@@ -68,19 +64,19 @@ export type Land = {
 export type OmsorgspengerutbetalingSnfSøknad = {
     barn: unknown[];
     bekreftelser: Bekreftelser;
-    bosteder: unknown[];
+    bosteder: Bosted[];
     dataBruktTilUtledningAnnetData?: string;
     erArbeidstakerOgså: boolean;
-    frilans?: null;
+    frilans?: Frilans;
     harAleneomsorg?: boolean;
     harDekketTiFørsteDagerSelv?: boolean;
     harSyktBarn?: boolean;
-    opphold: unknown[];
+    opphold: Bosted[];
     selvstendigNæringsdrivende?: Virksomhet;
     språk: string;
     spørsmål: SpørsmålOgSvar[];
     søkerNorskIdent?: string;
-    utbetalingsperioder: unknown[];
+    utbetalingsperioder: Utbetalingsperiode[];
     vedlegg: string[];
 };
 
@@ -128,18 +124,12 @@ export type Søker = {
 };
 
 export type Utbetalingsperiode = {
-    aktivitetFravær?: Array<'ARBEIDSTAKER' | 'FRILANSER' | 'SELVSTENDIG_VIRKSOMHET'>;
-    antallTimerBorte?: string;
-    antallTimerPlanlagt?: string;
-    fraOgMed?: string;
-    tilOgMed?: string;
-    årsak?: 'STENGT_SKOLE_ELLER_BARNEHAGE' | 'SMITTEVERNHENSYN' | 'ORDINÆRT_FRAVÆR';
+    fraOgMed: string;
+    tilOgMed: string;
 };
 
 export type VarigEndring = {
-    dato?: string;
-    forklaring?: string;
-    inntektEtterEndring?: number;
+    dato: string;
 };
 
 export type Virksomhet = {
@@ -155,7 +145,7 @@ export type Virksomhet = {
     registrertIUtlandet?: Land;
     regnskapsfører?: null;
     tilOgMed?: string;
-    varigEndring?: null;
+    varigEndring?: VarigEndring;
     yrkesaktivSisteTreFerdigliknedeÅrene?: null;
 };
 
@@ -163,23 +153,52 @@ export type YrkesaktivSisteTreFerdigliknedeArene = {
     oppstartsdato?: string;
 };
 
+export type BostedWritable = {
+    erEØSLand?: boolean;
+    fraOgMed: string;
+    landkode?: string;
+    landnavn?: string;
+    tilOgMed: string;
+};
+
+export type FrilansWritable = {
+    jobberFortsattSomFrilans?: boolean;
+    sluttdato?: string;
+    startdato: string;
+};
+
 export type OmsorgspengerutbetalingSnfSøknadWritable = {
     barn: Barn[];
     bekreftelser: Bekreftelser;
-    bosteder: Bosted[];
+    bosteder: BostedWritable[];
     dataBruktTilUtledningAnnetData?: string;
     erArbeidstakerOgså: boolean;
-    frilans?: Frilans;
+    frilans?: FrilansWritable;
     harAleneomsorg?: boolean;
     harDekketTiFørsteDagerSelv?: boolean;
     harSyktBarn?: boolean;
-    opphold: Bosted[];
+    opphold: BostedWritable[];
     selvstendigNæringsdrivende?: VirksomhetWritable;
     språk: string;
     spørsmål: SpørsmålOgSvar[];
     søkerNorskIdent?: string;
-    utbetalingsperioder: Utbetalingsperiode[];
+    utbetalingsperioder: UtbetalingsperiodeWritable[];
     vedlegg: string[];
+};
+
+export type UtbetalingsperiodeWritable = {
+    aktivitetFravær?: Array<'ARBEIDSTAKER' | 'FRILANSER' | 'SELVSTENDIG_VIRKSOMHET'>;
+    antallTimerBorte?: string;
+    antallTimerPlanlagt?: string;
+    fraOgMed: string;
+    tilOgMed: string;
+    årsak?: 'STENGT_SKOLE_ELLER_BARNEHAGE' | 'SMITTEVERNHENSYN' | 'ORDINÆRT_FRAVÆR';
+};
+
+export type VarigEndringWritable = {
+    dato: string;
+    forklaring?: string;
+    inntektEtterEndring?: number;
 };
 
 export type VirksomhetWritable = {
@@ -195,7 +214,7 @@ export type VirksomhetWritable = {
     registrertIUtlandet?: Land;
     regnskapsfører?: Regnskapsfører;
     tilOgMed?: string;
-    varigEndring?: VarigEndring;
+    varigEndring?: VarigEndringWritable;
     yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
 };
 
