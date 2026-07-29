@@ -31,9 +31,6 @@ const OppgavePage = () => {
         queryClient.refetchQueries({ queryKey: sifApiQueryKeys.oppgaver }).then(() => {
             setIsRefetching(false);
         });
-        return () => {
-            clearTimeout(refetchTimeoutRef.current);
-        };
     }, []);
 
     useInnsynBreadcrumbs([{ title: 'Oppgave', url: `/oppgave`, handleInApp: true }]);
