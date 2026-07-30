@@ -7,7 +7,6 @@ import { BarnSammeAdresse } from '@app/types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '@app/types/SøkersRelasjonTilBarnet';
 import { Heading, ReadMore } from '@navikt/ds-react';
 import { isDevMode } from '@navikt/sif-common-env';
-import { QuestionRelatedMessage } from '@navikt/sif-common-ui';
 import { dateFormatter, getDateToday } from '@sif/utils';
 import {
     getFødselsnummerValidator,
@@ -52,9 +51,7 @@ export const OmBarnetForm = () => {
 
     const harRegistrerteBarn = registrerteBarn.length > 0;
 
-    const { vedtak, isLoading: vedtakIsLoading } = useInnvilgedeVedtakForRegistrerteBarn(
-        registrerteBarn,
-    );
+    const { vedtak, isLoading: vedtakIsLoading } = useInnvilgedeVedtakForRegistrerteBarn(registrerteBarn);
 
     const barnetSøknadenGjelder = watch(OmBarnetFormFields.barnetSøknadenGjelder);
     const søknadenGjelderAnnetBarn = barnetSøknadenGjelder === ANNET_BARN;
@@ -237,11 +234,11 @@ export const OmBarnetForm = () => {
                                 }
                             />
                             <AriaLiveRegion visible={visIkkeSammeAdresseAlert}>
-                                <QuestionRelatedMessage>
+                                <FormLayout.QuestionRelatedMessage>
                                     <SifInfoCard>
                                         <AppText id="omBarnetSteg.alert.ikkeSammeAdresse" />
                                     </SifInfoCard>
-                                </QuestionRelatedMessage>
+                                </FormLayout.QuestionRelatedMessage>
                             </AriaLiveRegion>
 
                             <YesOrNoQuestion
@@ -253,11 +250,11 @@ export const OmBarnetForm = () => {
                                 )}
                             />
                             <AriaLiveRegion visible={kroniskEllerFunksjonshemming === YesOrNo.NO}>
-                                <QuestionRelatedMessage>
+                                <FormLayout.QuestionRelatedMessage>
                                     <SifInfoCard>
                                         <AppText id="omBarnetSteg.alert.ikkeKronisk" />
                                     </SifInfoCard>
-                                </QuestionRelatedMessage>
+                                </FormLayout.QuestionRelatedMessage>
                             </AriaLiveRegion>
 
                             {visHøyereRisikoSpørsmål && (
@@ -271,11 +268,11 @@ export const OmBarnetForm = () => {
                                         )}
                                     />
                                     <AriaLiveRegion visible={høyereRisikoForFravær === YesOrNo.NO}>
-                                        <QuestionRelatedMessage>
+                                        <FormLayout.QuestionRelatedMessage>
                                             <SifInfoCard>
                                                 <AppText id="omBarnetSteg.alert.ikkeHøyereRisiko" />
                                             </SifInfoCard>
-                                        </QuestionRelatedMessage>
+                                        </FormLayout.QuestionRelatedMessage>
                                     </AriaLiveRegion>
                                 </>
                             )}
