@@ -17,8 +17,7 @@ export const handlers = [
     http.get(`**/oppslag/soker`, async () => HttpResponse.json(store.get().søker)),
 
     http.get(`**/oppslag/barn`, () => {
-        return HttpResponse.error();
-        // return HttpResponse.json(store.get().barn || { barn: [] });
+        return HttpResponse.json(store.get().barn || { barn: [] });
     }),
 
     http.post(`**/vedlegg`, async ({ request }) => {
