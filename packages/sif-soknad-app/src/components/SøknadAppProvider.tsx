@@ -1,12 +1,20 @@
-import { initSentry, SentryConfig } from '@navikt/sif-common-sentry';
+import { AppStatusWrapper, SanityConfig } from '@navikt/appstatus-react-ds';
 import { FaroProvider, FaroProviderConfig } from '@navikt/sif-common-faro';
-import { DevBranchInfo } from '@sif/soknad-ui';
+import { initSentry, SentryConfig } from '@navikt/sif-common-sentry';
+import { ApplicationUnavailableContent, DevBranchInfo } from '@sif/soknad-ui';
+import { UxSignalsLoaderProvider } from '@sif/surveys';
 import { PropsWithChildren, useRef } from 'react';
 
 import { AnalyticsProvider, AnalyticsProviderConfig } from '../analytics/analytics';
+import { AppIntlConfig, AppIntlProvider } from './AppIntlProvider';
 import { AppErrorBoundary } from './AppErrorBoundary';
 import { SifQueryClientProvider } from './SifQueryClientProvider';
-import { AppIntlConfig, AppIntlProvider } from './AppIntlProvider';
+
+export type { SanityConfig };
+
+export interface AppStatusConfig {
+    sanityConfig: SanityConfig;
+}
 
 interface SøknadAppProviderProps {
     applicationKey: string;
@@ -15,7 +23,26 @@ interface SøknadAppProviderProps {
     analyticsConfig?: AnalyticsProviderConfig;
     sentryConfig?: SentryConfig;
     intlConfig?: AppIntlConfig;
+    appStatusConfig?: AppStatusConfig;
 }
+
+const AppStatusChildren = ({
+    applicationKey,
+    appStatusConfig,
+    children,
+}: PropsWithChildren<{ applicationKey: string; appStatusConfig?: AppStatusConfig }>) => {
+    if (!appStatusConfig) {
+        return <>{children}</>;
+    }
+    return (
+        <AppStatusWrapper
+            applicationKey={applicationKey}
+            sanityConfig={appStatusConfig.sanityConfig}
+            contentRenderer={() => children}
+            unavailableContentRenderer={() => <ApplicationUnavailableContent />}
+        />
+    );
+};
 
 export const SøknadAppProvider = ({
     applicationKey,
@@ -24,6 +51,7 @@ export const SøknadAppProvider = ({
     faroConfig,
     sentryConfig,
     intlConfig,
+    appStatusConfig,
     children,
 }: PropsWithChildren<SøknadAppProviderProps>) => {
     // useRef sikrer at Sentry kun initialiseres én gang per provider-instans,
@@ -42,7 +70,13 @@ export const SøknadAppProvider = ({
             <AppErrorBoundary>
                 <SifQueryClientProvider>
                     <AnalyticsProvider applicationKey={applicationKey} isActive={analyticsConfig?.isActive}>
-                        <AppIntlProvider config={intlConfig}>{children}</AppIntlProvider>
+                        <UxSignalsLoaderProvider>
+                            <AppIntlProvider config={intlConfig}>
+                                <AppStatusChildren applicationKey={applicationKey} appStatusConfig={appStatusConfig}>
+                                    {children}
+                                </AppStatusChildren>
+                            </AppIntlProvider>
+                        </UxSignalsLoaderProvider>
                     </AnalyticsProvider>
                 </SifQueryClientProvider>
             </AppErrorBoundary>

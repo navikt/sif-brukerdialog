@@ -11,6 +11,7 @@ export { AppErrorBoundary } from './components/AppErrorBoundary';
 export type { AppIntlConfig, IntlMessageObjectFormat } from './components/AppIntlProvider';
 export { AppIntlProvider } from './components/AppIntlProvider';
 export { SifQueryClientProvider } from './components/SifQueryClientProvider';
+export type { AppStatusConfig, SanityConfig } from './components/SøknadAppProvider';
 export { SøknadAppProvider } from './components/SøknadAppProvider';
 export { SøknadRouter } from './components/SøknadRouter';
 export { SøknadStep } from './components/SøknadStep';

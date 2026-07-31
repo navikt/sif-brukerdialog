@@ -3,7 +3,7 @@ import './app.css';
 
 import { AktivitetspengerApp } from '@navikt/sif-app-register';
 import { SøknadAppProvider } from '@sif/soknad-app';
-import { ErrorPage, LoadingPage } from '@sif/soknad-ui';
+import { InitialDataErrorPage, LoadingPage } from '@sif/soknad-ui';
 import { BrowserRouter } from 'react-router-dom';
 
 import { initApiClients } from './app/api/initApiClients';
@@ -27,7 +27,7 @@ const SøknadDataWrapper = () => {
                     result.errors.map((e) => (e as Error).message).join(', ') || 'Ukjent feil ved innlasting',
                 );
             }
-            return <ErrorPage applicationTitle={text('application.title')} />;
+            return <InitialDataErrorPage applicationTitle={text('application.title')} />;
         case 'success':
             return (
                 <AppContextProvider

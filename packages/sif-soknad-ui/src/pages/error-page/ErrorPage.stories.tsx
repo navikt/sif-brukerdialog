@@ -17,5 +17,6 @@ export const Default: Story = {
     name: 'ErrorPage',
     args: {
         applicationTitle: 'Tittel på søknad',
+        children: <>Feilmelding</>,
     },
 };

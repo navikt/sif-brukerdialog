@@ -1,5 +1,8 @@
 export { ApplicationPage } from './application-page/ApplicationPage';
+export { ApplicationUnavailableContent } from './error-page/content/ApplicationUnavailableContent';
+export { InitialDataErrorContent } from './error-page/content/InitialDataErrorContent';
 export { ErrorPage } from './error-page/ErrorPage';
+export { InitialDataErrorPage } from './error-page/InitialDataErrorPage';
 export { FallbackErrorPage } from './fallback-error-page/FallbackErrorPage';
 export { LoadingPage } from './loading-page/LoadingPage';
 export { SøknadKvitteringPage } from './soknad-kvittering-page/SoknadKvitteringPage';

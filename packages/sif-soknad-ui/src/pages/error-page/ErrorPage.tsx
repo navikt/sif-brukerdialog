@@ -1,26 +1,22 @@
-import { LocalAlert } from '@navikt/ds-react';
+import { type ReactNode } from 'react';
+
 import { ApplicationPage } from '@sif/soknad-ui/pages';
 
-import { SifSoknadUiText, useSifSoknadUiIntl } from '../../i18n';
+import { useSifSoknadUiIntl } from '../../i18n';
 
 interface Props {
     applicationTitle: string;
+    children: ReactNode;
 }
 
-export const ErrorPage = ({ applicationTitle }: Props) => {
+export const ErrorPage = ({ applicationTitle, children }: Props) => {
     const { text } = useSifSoknadUiIntl();
 
     return (
         <ApplicationPage
             documentTitle={text('@sifSoknadUi.errorPage.documentTitle')}
             applicationTitle={applicationTitle}>
-            <LocalAlert status="error">
-                <LocalAlert.Header>
-                    <LocalAlert.Title>
-                        <SifSoknadUiText id="@sifSoknadUi.errorPage.alertTitle" />
-                    </LocalAlert.Title>
-                </LocalAlert.Header>
-            </LocalAlert>
+            {children}
         </ApplicationPage>
     );
 };
