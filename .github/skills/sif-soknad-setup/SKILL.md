@@ -334,7 +334,7 @@ export const Kvittering = () => {
 import '@navikt/ds-css';
 import { SomAppKey } from '@navikt/sif-app-register';
 import { SøknadAppProvider } from '@sif/soknad-app';
-import { ErrorPage, LoadingPage } from '@sif/soknad-ui';
+import { InitialDataErrorPage, LoadingPage } from '@sif/soknad-ui';
 import { BrowserRouter } from 'react-router-dom';
 
 import { initApiClients } from './app/api/initApiClients';
@@ -352,7 +352,7 @@ const SøknadDataWrapper = () => {
         case 'loading':
             return <LoadingPage applicationTitle={text('application.title')} />;
         case 'error':
-            return <ErrorPage applicationTitle={text('application.title')} />;
+            return <InitialDataErrorPage applicationTitle={text('application.title')} />;
         case 'success':
             return (
                 <AppContextProvider value={{ søker: result.data.søker }}>

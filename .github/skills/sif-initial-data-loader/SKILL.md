@@ -42,7 +42,7 @@ src/
 
 `SøknadDataWrapper` i `App.tsx` kaller `useInitialData()` og switcher på status:
 - `loading` → `<LoadingPage />`
-- `error` → `<ErrorPage />`
+- `error` → `<InitialDataErrorPage />`
 - `success` → `<AppContextProvider value={data}><Søknad /></AppContextProvider>`
 
 `Søknad` mottar ikke lenger props — data leveres via `AppContext`.
