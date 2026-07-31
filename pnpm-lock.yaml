@@ -5361,6 +5361,9 @@ importers:
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../sif-soknad-ui
+      '@sif/surveys':
+        specifier: workspace:*
+        version: link:../sif-surveys
       '@sif/utils':
         specifier: workspace:*
         version: link:../sif-utils

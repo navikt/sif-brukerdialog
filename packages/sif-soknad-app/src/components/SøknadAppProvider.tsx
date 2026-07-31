@@ -2,6 +2,7 @@ import { AppStatusWrapper, SanityConfig } from '@navikt/appstatus-react-ds';
 import { FaroProvider, FaroProviderConfig } from '@navikt/sif-common-faro';
 import { initSentry, SentryConfig } from '@navikt/sif-common-sentry';
 import { ApplicationUnavailableContent, DevBranchInfo } from '@sif/soknad-ui';
+import { UxSignalsLoaderProvider } from '@sif/surveys';
 import { PropsWithChildren, useRef } from 'react';
 
 import { AnalyticsProvider, AnalyticsProviderConfig } from '../analytics/analytics';
@@ -69,11 +70,13 @@ export const SøknadAppProvider = ({
             <AppErrorBoundary>
                 <SifQueryClientProvider>
                     <AnalyticsProvider applicationKey={applicationKey} isActive={analyticsConfig?.isActive}>
-                        <AppIntlProvider config={intlConfig}>
-                            <AppStatusChildren applicationKey={applicationKey} appStatusConfig={appStatusConfig}>
-                                {children}
-                            </AppStatusChildren>
-                        </AppIntlProvider>
+                        <UxSignalsLoaderProvider>
+                            <AppIntlProvider config={intlConfig}>
+                                <AppStatusChildren applicationKey={applicationKey} appStatusConfig={appStatusConfig}>
+                                    {children}
+                                </AppStatusChildren>
+                            </AppIntlProvider>
+                        </UxSignalsLoaderProvider>
                     </AnalyticsProvider>
                 </SifQueryClientProvider>
             </AppErrorBoundary>
