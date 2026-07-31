@@ -6,7 +6,7 @@ import { Oppgave, SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
 import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 import React, { createContext, useMemo, useState } from 'react';
 
-import { ApplikasjonHendelse, CustomAnalyticsEvents, useAnalyticsInstance } from '@sif/soknad-app';
+import { ApplikasjonHendelse, useAnalyticsInstance } from '@sif/soknad-app';
 
 import { useSøknadNavigation } from '../hooks/utils/useSøknadNavigation';
 import { SøknadContextType, SøknadSvar, Spørsmål, Steg } from '../types';
@@ -38,7 +38,7 @@ export const SøknadProvider = ({
 }: SøknadProviderProps) => {
     const [svar, setSvar] = useState<SøknadSvar>(initialSvar || initialData);
     const { gotoSteg, gotoVelkommenPage } = useSøknadNavigation();
-    const { logHendelse, logSkjemaStartet, logSkjemaFullført, logCustom } = useAnalyticsInstance();
+    const { logHendelse, logSkjemaStartet, logSkjemaFullført } = useAnalyticsInstance();
 
     const [søknadSendt, setSøknadSendt] = useState(false);
     const [søknadStartet, setSøknadStartet] = useState(initialData.harForståttRettigheterOgPlikter || false);
@@ -65,8 +65,7 @@ export const SøknadProvider = ({
 
     const doSetSøknadSendt = () => {
         setSøknadSendt(true);
-        logSkjemaFullført();
-        logCustom(CustomAnalyticsEvents.applikasjonInfo,
+        logSkjemaFullført(
             logUtils.getSøknadInnsendingMeta(
                 deltakelsePeriode,
                 søknadOppgave,
