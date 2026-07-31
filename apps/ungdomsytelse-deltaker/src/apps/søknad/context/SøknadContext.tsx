@@ -1,14 +1,13 @@
 import { logUtils } from '@innsyn/utils/logUtils';
-import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
-import { DeltakerSkjemaId } from '@shared/types/DeltakerSkjemaId';
 import { RegistrertBarn, Søker } from '@sif/api/k9-prosessering';
 import { Oppgave, SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
 import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 import React, { createContext, useMemo, useState } from 'react';
 
-import { ApplikasjonHendelse, useAnalyticsInstance } from '../../../analytics/analytics';
+import { ApplikasjonHendelse, CustomAnalyticsEvents, useAnalyticsInstance } from '@sif/soknad-app';
+
 import { useSøknadNavigation } from '../hooks/utils/useSøknadNavigation';
 import { SøknadContextType, SøknadSvar, Spørsmål, Steg } from '../types';
 
@@ -39,7 +38,7 @@ export const SøknadProvider = ({
 }: SøknadProviderProps) => {
     const [svar, setSvar] = useState<SøknadSvar>(initialSvar || initialData);
     const { gotoSteg, gotoVelkommenPage } = useSøknadNavigation();
-    const { logHendelse, logSkjemaStartet, logSkjemaFullført } = useAnalyticsInstance();
+    const { logHendelse, logSkjemaStartet, logSkjemaFullført, logCustom } = useAnalyticsInstance();
 
     const [søknadSendt, setSøknadSendt] = useState(false);
     const [søknadStartet, setSøknadStartet] = useState(initialData.harForståttRettigheterOgPlikter || false);
@@ -60,14 +59,14 @@ export const SøknadProvider = ({
             harForståttRettigheterOgPlikter,
         });
         setSøknadStartet(true);
-        logSkjemaStartet(UngdomsytelseDeltakerApp.key);
+        logSkjemaStartet();
         gotoSteg(Steg.KONTONUMMER);
     };
 
     const doSetSøknadSendt = () => {
         setSøknadSendt(true);
-        logSkjemaFullført(
-            DeltakerSkjemaId.SØKNAD,
+        logSkjemaFullført();
+        logCustom(CustomAnalyticsEvents.applikasjonInfo,
             logUtils.getSøknadInnsendingMeta(
                 deltakelsePeriode,
                 søknadOppgave,

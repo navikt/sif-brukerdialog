@@ -5,7 +5,9 @@ import { kontonummerFallback, useKontonummer } from '@sif/api/ung-deltaker';
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { ApiErrorKey, useAnalyticsInstance } from '../../analytics/analytics';
+import { useAnalyticsInstance } from '@sif/soknad-app';
+
+import { ApiErrorKey } from '../../analytics/analyticsEvents';
 import { useDeltakerContext } from '../../hooks/useDeltakerContext';
 import { useAppIntl } from '../../i18n';
 import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';

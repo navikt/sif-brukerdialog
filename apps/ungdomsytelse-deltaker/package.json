@@ -54,6 +54,7 @@
         "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
         "@sentry/react": "10.68.0",
         "@sif/api": "workspace:*",
+        "@sif/soknad-app": "workspace:*",
         "@sif/soknad-ui": "workspace:*",
         "@sif/surveys": "workspace:*",
         "@sif/ung-innsyn": "workspace:*",
