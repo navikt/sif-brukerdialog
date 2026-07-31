@@ -46,6 +46,7 @@ export default defineConfig(({ mode }) => {
             __INJECT_DECORATOR_CLIENT_SIDE__: false,
             __USE_FIXED_MOCKED_DATE__: false,
             __SCENARIO_HEADER__: false,
+        },
         server: {
             port: 8080,
         },

@@ -37,6 +37,7 @@ export default defineConfig({
         __INJECT_DECORATOR_CLIENT_SIDE__: false,
         __USE_FIXED_MOCKED_DATE__: true,
         __SCENARIO_HEADER__: false,
+    },
     server: {
         port: 8080,
         proxy: {
