@@ -5331,6 +5331,9 @@ importers:
 
   packages/sif-soknad-app:
     dependencies:
+      '@navikt/appstatus-react-ds':
+        specifier: workspace:*
+        version: link:../appstatus-react-ds
       '@navikt/ds-react':
         specifier: 8.15.0
         version: 8.15.0(@types/react@19.2.17)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)

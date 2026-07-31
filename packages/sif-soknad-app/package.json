@@ -19,6 +19,7 @@
         "test": "vitest run"
     },
     "dependencies": {
+        "@navikt/appstatus-react-ds": "workspace:*",
         "@navikt/ds-react": "8.15.0",
         "@navikt/nav-dekoratoren-moduler": "4.2.2",
         "@navikt/sif-common-faro": "workspace:*",
