@@ -33,7 +33,7 @@ export default defineConfig({
     },
     define: {
         __IS_GITHUB_PAGES__: true,
-        __IS_VEILEDER_DEMO__: true,
+        __IS_DEMO_MODE__: true,
         __INJECT_DECORATOR_CLIENT_SIDE__: false,
         __USE_FIXED_MOCKED_DATE__: false,
         __SCENARIO_HEADER__: true,

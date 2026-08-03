@@ -42,7 +42,7 @@ export default defineConfig(({ mode }) => {
         },
         define: {
             __IS_GITHUB_PAGES__: false,
-            __IS_VEILEDER_DEMO__: false,
+            __IS_DEMO_MODE__: false,
             __INJECT_DECORATOR_CLIENT_SIDE__: false,
             __USE_FIXED_MOCKED_DATE__: false,
             __SCENARIO_HEADER__: false,

@@ -34,7 +34,7 @@ if (__USE_FIXED_MOCKED_DATE__) {
 }
 
 export const App = () => {
-    if (!(__IS_GITHUB_PAGES__ || __IS_VEILEDER_DEMO__) && globalThis.location.pathname === '/') {
+    if (!(__IS_GITHUB_PAGES__ || __IS_DEMO_MODE__) && globalThis.location.pathname === '/') {
         globalThis.location.pathname = env.PUBLIC_PATH;
         return null;
     }
@@ -59,7 +59,7 @@ export const App = () => {
                     dataset: env.SIF_PUBLIC_APPSTATUS_DATASET,
                 },
             }}>
-            {__IS_GITHUB_PAGES__ || __IS_VEILEDER_DEMO__ ? (
+            {__IS_GITHUB_PAGES__ || __IS_DEMO_MODE__ ? (
                 <HashRouter>
                     <div className="demoMode">
                         <VStack gap="space-40">
