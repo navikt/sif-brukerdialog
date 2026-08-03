@@ -6,7 +6,7 @@ import { Navigate, Route, Routes, useParams } from 'react-router-dom';
 
 import { CustomAnalyticsEvents, useAnalyticsInstance } from '@sif/soknad-app';
 
-import { ApiErrorKey, ApplikasjonHendelse } from '../../analytics/analyticsEvents';
+import { ApiErrorKey, UngdomsytelseApplikasjonHendelse } from '../../analytics/analyticsEvents';
 import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
 import InnsynApp from '../../apps/innsyn/InnsynApp';
 import { SkyraSlug, SkyraTestPage } from '@sif/surveys';
@@ -72,12 +72,16 @@ const DeltakerInfoLoader = () => {
     }
 
     if (deltakelsePerioder.data.length === 0) {
-        logCustom(CustomAnalyticsEvents.applikasjonHendelse, { hendelse: ApplikasjonHendelse.erIkkeDeltaker });
+        logCustom(CustomAnalyticsEvents.applikasjonHendelse, {
+            hendelse: UngdomsytelseApplikasjonHendelse.erIkkeDeltaker,
+        });
         return <IngenDeltakelsePage />;
     }
 
     if (deltakelsePerioder.data.length > 1) {
-        logCustom(CustomAnalyticsEvents.applikasjonHendelse, { hendelse: ApplikasjonHendelse.harFlereDeltakelser });
+        logCustom(CustomAnalyticsEvents.applikasjonHendelse, {
+            hendelse: UngdomsytelseApplikasjonHendelse.harFlereDeltakelser,
+        });
         logFaroError(
             'DeltakerInfoLoader.FlereDeltakelser',
             JSON.stringify({
