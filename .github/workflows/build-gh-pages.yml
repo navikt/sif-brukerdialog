@@ -23,7 +23,7 @@ jobs:
 
       # Sett opp pnpm
       - name: Setup pnpm
-        uses: pnpm/action-setup@v6
+        uses: pnpm/action-setup@v6.0.9
       # Sett opp Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v7.0.0
