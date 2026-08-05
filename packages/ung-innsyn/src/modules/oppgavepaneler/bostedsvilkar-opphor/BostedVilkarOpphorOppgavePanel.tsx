@@ -26,7 +26,7 @@ export const BostedVilkårOpphørOppgavePanel = ({ navn, oppgave, initialVisKvit
             </Oppgavebekreftelse.Besvart>
 
             <Oppgavebekreftelse.Kvittering>
-                <UngUiText id="@ungInnsyn.oppgavetype.BEKREFT_BOSTED.kvitteringTekst" />
+                <UngUiText id="@ungInnsyn.oppgavetype.BEKREFT_BOSTED_OPPHØR.kvitteringTekst" />
             </Oppgavebekreftelse.Kvittering>
         </Oppgavebekreftelse>
     );

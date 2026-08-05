@@ -232,11 +232,13 @@ const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
             ...getOppgaveBaseProps(oppgave),
             parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED,
             oppgavetypeData: {
-                ...oppgavetypeData,
                 periode: {
                     from: oppgavetypeData.fom as ISODate,
                     to: oppgavetypeData.tom as ISODate,
                 },
+                erBosattITrondheim: oppgavetypeData.erBosattITrondheim,
+                ikkeOppfyltÅrsak: oppgavetypeData.ikkeOppfyltÅrsak,
+                ikkeOppfyltÅrsakFritekstbeskrivelse: oppgavetypeData.ikkeOppfyltÅrsakFritekstbeskrivelse,
             },
             respons: parseSvarPåVarselRespons(oppgave.respons),
         };
@@ -247,8 +249,10 @@ const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
             ...getOppgaveBaseProps(oppgave),
             parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED_OPPHØR,
             oppgavetypeData: {
-                ...oppgavetypeData,
                 fom: oppgavetypeData.fom as ISODate,
+                erBosattITrondheim: oppgavetypeData.erBosattITrondheim,
+                ikkeOppfyltÅrsak: oppgavetypeData.ikkeOppfyltÅrsak,
+                ikkeOppfyltÅrsakFritekstbeskrivelse: oppgavetypeData.ikkeOppfyltÅrsakFritekstbeskrivelse,
             },
             respons: parseSvarPåVarselRespons(oppgave.respons),
         };
@@ -266,24 +270,6 @@ export const parseOppgaverElement = (
             case OppgaveType.BEKREFT_BOSTED:
                 parsedOppgaver.push(getOppgaveFraBekreftBostedOppgave(oppgave));
                 return;
-
-            // const oppgavetypeData = oppgave.oppgavetypeData as BekreftBostedOppgavetypeDataDto;
-            // const bostedVilkårOppgave: BostedVilkårOppgave = {
-            //     ...getOppgaveBaseProps(oppgave),
-            //     parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED,
-            //     oppgavetypeData: {
-            //         periode: {
-            //             from: oppgavetypeData.fom as ISODate,
-            //             to: oppgavetypeData.tom as ISODate,
-            //         },
-            //         erBosattITrondheim: oppgavetypeData.erBosattITrondheim,
-            //         ikkeOppfyltÅrsak: oppgavetypeData.ikkeOppfyltÅrsak,
-            //         ikkeOppfyltÅrsakFritekstbeskrivelse: oppgavetypeData.ikkeOppfyltÅrsakFritekstbeskrivelse,
-            //     },
-            //     respons: parseSvarPåVarselRespons(oppgave.respons),
-            // };
-            // parsedOppgaver.push(bostedVilkårOppgave);
-            // return;
 
             case OppgaveType.BEKREFT_ENDRET_STARTDATO:
                 const { forrigeStartdato, nyStartdato } = oppgave.oppgavetypeData as EndretStartdatoDataDto;

@@ -14,7 +14,7 @@ export const BostedVilkarOpphorOppgavePanelOppgavetekst = ({
     // ikkeOppfyltÅrsak,
     // ikkeOppfyltÅrsakFritekstbeskrivelse,
 }: Props) => {
-    const { locale } = useUngUiIntl();
+    const { locale, text } = useUngUiIntl();
     const formatertFrist = <span className="text-nowrap">{dateFormatter.full(frist)}</span>;
     return (
         <>
@@ -26,7 +26,7 @@ export const BostedVilkarOpphorOppgavePanelOppgavetekst = ({
                     id="@ungInnsyn.bostedVilkårOpphørOppgave.tekst.1b"
                     values={{
                         fom: dateFormatter.dayDateShortMonthYear(fom, locale),
-                        erBosattITrondheim: erBosattITrondheim ? 'Ja' : 'Nei',
+                        erBosattITrondheim: erBosattITrondheim ? text('@ungInnsyn.Ja') : text('@ungInnsyn.Nei'),
                     }}
                 />
             </BodyLong>

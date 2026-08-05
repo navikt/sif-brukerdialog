@@ -21,5 +21,5 @@ export const bostedVilkårOpphørMessages_nb = {
     '@ungInnsyn.bostedVilkårOpphørOppgave.tekst.5': 'Fristen for å svare er senest {formatertFrist}.',
     '@ungInnsyn.bostedVilkårOpphørOppgave.tekst.6': 'Hvis vi ikke hører fra deg innen svarfristen har gått ut, vil ...',
     '@ungInnsyn.bostedVilkårOpphørOppgave.oppsummering':
-        'Du har fått en oppgave om å bekrefte bosted for aktivitetspenger.',
+        'Du har fått en oppgave om å bekrefte bostedopphør for aktivitetspenger.',
 };
