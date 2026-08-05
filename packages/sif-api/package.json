@@ -34,7 +34,7 @@
         "axios": "1.19.0",
         "dayjs": "1.11.21",
         "object-hash": "3.0.0",
-        "uuid": ">=11.1.1"
+        "uuid": "14.0.1"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
