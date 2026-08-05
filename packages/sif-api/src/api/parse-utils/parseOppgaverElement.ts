@@ -1,8 +1,6 @@
 /* eslint-disable no-case-declarations */
 import { DateRange, dateToISODate, isISODate, ISODate, OpenDateRange, TidenesEnde } from '@sif/utils';
 import {
-    BekreftBostedOppgavetypeDataDto,
-    BekreftBostedOpphørOppgavetypeDataDto,
     BekreftOpphorVedMaksdatoOppgavetypeDataDto,
     BrukerdialogOppgaveDto,
     EndretPeriodeDataDto,
@@ -14,6 +12,7 @@ import {
     OppgaveStatus,
     OppgaveType,
     OppgaveYtelsetype,
+    OppgavetypeDataDto,
     PeriodeEndringType,
     RapportertInntektDto,
     SvarPåVarselDto,
@@ -216,18 +215,14 @@ const getOppgaveFraEndretPeriodeOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
     throw new Error(`Kan ikke lage oppgave fra endret periode oppgave med endringer: ${endringer.join(', ')}`);
 };
 
-const isBekreftBostedOppgavetypeDataDto = (
-    data: BekreftBostedOppgavetypeDataDto | BekreftBostedOpphørOppgavetypeDataDto,
-): data is BekreftBostedOppgavetypeDataDto => {
-    return 'tom' in data;
-};
+type BostedOppgavetypeData = Extract<OppgavetypeDataDto, { type: 'BOSTED' }>;
+type BostedOpphørOppgavetypeData = Extract<OppgavetypeDataDto, { type: 'BOSTED_OPPHØR' }>;
 
 const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Oppgave => {
-    const oppgavetypeData = oppgave.oppgavetypeData as
-        BekreftBostedOppgavetypeDataDto | BekreftBostedOpphørOppgavetypeDataDto;
+    const oppgavetypeData = oppgave.oppgavetypeData as BostedOppgavetypeData | BostedOpphørOppgavetypeData;
 
     /** Avslag i en periode */
-    if (isBekreftBostedOppgavetypeDataDto(oppgavetypeData)) {
+    if (oppgavetypeData.type === 'BOSTED') {
         const bostedVilkårOppgave: BostedVilkårOppgave = {
             ...getOppgaveBaseProps(oppgave),
             parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED,
