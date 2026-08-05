@@ -4,6 +4,7 @@ export { BrukerdialogOppgave, type Options } from './sdk.gen';
 export {
     type ArbeidOgFrilansRegisterInntektDto,
     type BekreftBostedOppgavetypeDataDto,
+    type BekreftBostedOpphørOppgavetypeDataDto,
     type BekreftOpphorVedMaksdatoOppgavetypeDataDto,
     BostedsvilkårIkkeOppfyltÅrsak,
     type BrukerdialogOppgaveDto,

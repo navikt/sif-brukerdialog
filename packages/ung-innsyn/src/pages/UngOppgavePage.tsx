@@ -3,6 +3,7 @@ import { Oppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import { useUngUiIntl } from '../i18n';
 import { AvvikRegisterinntektOppgavePanel } from '../modules/oppgavepaneler/avvik-registerinntekt/AvvikRegisterinntektOppgavePanel';
 import { BostedVilkårOppgavePanel } from '../modules/oppgavepaneler/bostedsvilkar/BostedVilkarOppgavePanel';
+import { BostedVilkårOpphørOppgavePanel } from '../modules/oppgavepaneler/bostedsvilkar-opphor/BostedVilkarOpphorOppgavePanel';
 import { EndretSluttdatoOppgavePanel } from '../modules/oppgavepaneler/endret-sluttdato/EndretSluttdatoOppgavePanel';
 import { EndretStartOgSluttdatoOppgavePanel } from '../modules/oppgavepaneler/endret-start-og-sluttdato/EndretStartOgSluttdatoOppgavePanel';
 import { EndretStartdatoOppgavePanel } from '../modules/oppgavepaneler/endret-startdato/EndretStartdatoOppgavePanel';
@@ -21,6 +22,8 @@ const getOppgavePageComponent = (navn: string, oppgave: Oppgave, dokumentarkivUr
             return <AvvikRegisterinntektOppgavePanel oppgave={oppgave} navn={navn} />;
         case ParsedOppgavetype.BEKREFT_BOSTED:
             return <BostedVilkårOppgavePanel navn={navn} oppgave={oppgave} />;
+        case ParsedOppgavetype.BEKREFT_BOSTED_OPPHØR:
+            return <BostedVilkårOpphørOppgavePanel navn={navn} oppgave={oppgave} />;
         case ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO:
             return <EndretStartdatoOppgavePanel navn={navn} oppgave={oppgave} />;
         case ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO:

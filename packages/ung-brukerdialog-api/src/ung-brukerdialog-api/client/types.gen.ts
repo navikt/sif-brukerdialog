@@ -13,9 +13,16 @@ export type ArbeidOgFrilansRegisterInntektDto = {
 export type BekreftBostedOppgavetypeDataDto = {
     erBosattITrondheim: boolean;
     fom: string;
-    ikkeOppfyltÅrsak?: BostedsvilkårIkkeOppfyltÅrsak;
+    ikkeOppfyltÅrsak: BostedsvilkårIkkeOppfyltÅrsak;
     ikkeOppfyltÅrsakFritekstbeskrivelse?: string;
     tom: string;
+};
+
+export type BekreftBostedOpphørOppgavetypeDataDto = {
+    erBosattITrondheim: boolean;
+    fom: string;
+    ikkeOppfyltÅrsak: BostedsvilkårIkkeOppfyltÅrsak;
+    ikkeOppfyltÅrsakFritekstbeskrivelse?: string;
 };
 
 export type BekreftOpphorVedMaksdatoOppgavetypeDataDto = {
@@ -171,6 +178,9 @@ export type OppgavetypeDataDto = (
     | ({
           type: 'BOSTED';
       } & BekreftBostedOppgavetypeDataDto)
+    | ({
+          type: 'BOSTED_OPPHØR';
+      } & BekreftBostedOpphørOppgavetypeDataDto)
     | ({
           type: 'ENDRET_PERIODE';
       } & EndretPeriodeDataDto)

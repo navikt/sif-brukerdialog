@@ -27,9 +27,16 @@ export const zBostedsvilkårIkkeOppfyltÅrsak = z.enum([
 export const zBekreftBostedOppgavetypeDataDto = z.object({
     erBosattITrondheim: z.boolean(),
     fom: z.iso.date(),
-    ikkeOppfyltÅrsak: zBostedsvilkårIkkeOppfyltÅrsak.optional(),
+    ikkeOppfyltÅrsak: zBostedsvilkårIkkeOppfyltÅrsak,
     ikkeOppfyltÅrsakFritekstbeskrivelse: z.string().optional(),
     tom: z.iso.date(),
+});
+
+export const zBekreftBostedOpphørOppgavetypeDataDto = z.object({
+    erBosattITrondheim: z.boolean(),
+    fom: z.iso.date(),
+    ikkeOppfyltÅrsak: zBostedsvilkårIkkeOppfyltÅrsak,
+    ikkeOppfyltÅrsakFritekstbeskrivelse: z.string().optional(),
 });
 
 export const zEndretSluttdatoDataDto = z.object({
@@ -173,6 +180,11 @@ export const zOppgavetypeDataDto = z.intersection(
                 type: z.literal('BOSTED'),
             })
             .and(zBekreftBostedOppgavetypeDataDto),
+        z
+            .object({
+                type: z.literal('BOSTED_OPPHØR'),
+            })
+            .and(zBekreftBostedOpphørOppgavetypeDataDto),
         z
             .object({
                 type: z.literal('ENDRET_PERIODE'),

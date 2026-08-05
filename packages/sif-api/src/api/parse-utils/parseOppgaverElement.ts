@@ -2,6 +2,7 @@
 import { DateRange, dateToISODate, isISODate, ISODate, OpenDateRange, TidenesEnde } from '@sif/utils';
 import {
     BekreftBostedOppgavetypeDataDto,
+    BekreftBostedOpphørOppgavetypeDataDto,
     BekreftOpphorVedMaksdatoOppgavetypeDataDto,
     BrukerdialogOppgaveDto,
     EndretPeriodeDataDto,
@@ -23,6 +24,7 @@ import dayjs from 'dayjs';
 import {
     AvvikRegisterinntektOppgave,
     BostedVilkårOppgave,
+    BostedVilkårOpphørOppgave,
     EndretSluttdatoOppgave,
     EndretStartdatoOppgave,
     EndretStartOgSluttdatoOppgave,
@@ -214,6 +216,46 @@ const getOppgaveFraEndretPeriodeOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
     throw new Error(`Kan ikke lage oppgave fra endret periode oppgave med endringer: ${endringer.join(', ')}`);
 };
 
+const isBekreftBostedOppgavetypeDataDto = (
+    data: BekreftBostedOppgavetypeDataDto | BekreftBostedOpphørOppgavetypeDataDto,
+): data is BekreftBostedOppgavetypeDataDto => {
+    return 'tom' in data;
+};
+
+const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Oppgave => {
+    const oppgavetypeData = oppgave.oppgavetypeData as
+        BekreftBostedOppgavetypeDataDto | BekreftBostedOpphørOppgavetypeDataDto;
+
+    /** Avslag i en periode */
+    if (isBekreftBostedOppgavetypeDataDto(oppgavetypeData)) {
+        const bostedVilkårOppgave: BostedVilkårOppgave = {
+            ...getOppgaveBaseProps(oppgave),
+            parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED,
+            oppgavetypeData: {
+                ...oppgavetypeData,
+                periode: {
+                    from: oppgavetypeData.fom as ISODate,
+                    to: oppgavetypeData.tom as ISODate,
+                },
+            },
+            respons: parseSvarPåVarselRespons(oppgave.respons),
+        };
+        return bostedVilkårOppgave;
+        /** Opphør fra en date */
+    } else {
+        const bostedVilkårOpphørOppgave: BostedVilkårOpphørOppgave = {
+            ...getOppgaveBaseProps(oppgave),
+            parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED_OPPHØR,
+            oppgavetypeData: {
+                ...oppgavetypeData,
+                fom: oppgavetypeData.fom as ISODate,
+            },
+            respons: parseSvarPåVarselRespons(oppgave.respons),
+        };
+        return bostedVilkårOpphørOppgave;
+    }
+};
+
 export const parseOppgaverElement = (
     oppgaveYtelsetype: OppgaveYtelsetype,
     oppgaver: BrukerdialogOppgaveDto[],
@@ -222,21 +264,26 @@ export const parseOppgaverElement = (
     oppgaver.forEach((oppgave) => {
         switch (oppgave.oppgavetype) {
             case OppgaveType.BEKREFT_BOSTED:
-                const bostedData = oppgave.oppgavetypeData as BekreftBostedOppgavetypeDataDto;
-                const bostedVilkårOppgave: BostedVilkårOppgave = {
-                    ...getOppgaveBaseProps(oppgave),
-                    parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED,
-                    oppgavetypeData: {
-                        periode: {
-                            from: bostedData.fom as ISODate,
-                            to: bostedData.tom as ISODate,
-                        },
-                        erBosattITrondheim: bostedData.erBosattITrondheim,
-                    },
-                    respons: parseSvarPåVarselRespons(oppgave.respons),
-                };
-                parsedOppgaver.push(bostedVilkårOppgave);
+                parsedOppgaver.push(getOppgaveFraBekreftBostedOppgave(oppgave));
                 return;
+
+            // const oppgavetypeData = oppgave.oppgavetypeData as BekreftBostedOppgavetypeDataDto;
+            // const bostedVilkårOppgave: BostedVilkårOppgave = {
+            //     ...getOppgaveBaseProps(oppgave),
+            //     parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED,
+            //     oppgavetypeData: {
+            //         periode: {
+            //             from: oppgavetypeData.fom as ISODate,
+            //             to: oppgavetypeData.tom as ISODate,
+            //         },
+            //         erBosattITrondheim: oppgavetypeData.erBosattITrondheim,
+            //         ikkeOppfyltÅrsak: oppgavetypeData.ikkeOppfyltÅrsak,
+            //         ikkeOppfyltÅrsakFritekstbeskrivelse: oppgavetypeData.ikkeOppfyltÅrsakFritekstbeskrivelse,
+            //     },
+            //     respons: parseSvarPåVarselRespons(oppgave.respons),
+            // };
+            // parsedOppgaver.push(bostedVilkårOppgave);
+            // return;
 
             case OppgaveType.BEKREFT_ENDRET_STARTDATO:
                 const { forrigeStartdato, nyStartdato } = oppgave.oppgavetypeData as EndretStartdatoDataDto;
