@@ -31,16 +31,15 @@
         "react": "19.2.8",
         "react-dom": "19.2.8",
         "typescript": "6.0.3",
-        "uuid": "14.0.1",
+        "uuid": "^14.0.1",
         "vitest": "4.1.10",
         "zod": "4.4.3"
     },
     "peerDependencies": {
         "@navikt/ds-react": "*",
-        "axios": "1.16.1",
         "dayjs": "*",
         "react": "*",
         "react-dom": "*",
-        "uuid": "14.0.1"
+        "uuid": "^14.0.1"
     }
 }

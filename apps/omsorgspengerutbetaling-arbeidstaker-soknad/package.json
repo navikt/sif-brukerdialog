@@ -81,7 +81,7 @@
         "react-intl": "10.1.19",
         "react-router-dom": "7.18.2",
         "ulid": "3.0.2",
-        "uuid": "14.0.1",
+        "uuid": "^14.0.1",
         "zod": "4.4.3"
     },
     "devDependencies": {

@@ -34,6 +34,6 @@
     },
     "peerDependencies": {
         "dayjs": "*",
-        "uuid": "14.0.1"
+        "uuid": "^14.0.1"
     }
 }
