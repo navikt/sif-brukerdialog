@@ -37,6 +37,7 @@ const nextConfig = {
             '../../node_modules/async-function/**/*',
             '../../node_modules/async-generator-function/**/*',
             '../../node_modules/generator-function/**/*',
+            '../../node_modules/.pnpm/@apm-js-collab+code-transformer@*/node_modules/meriyah/**/*',
         ],
     },
 
