@@ -36,10 +36,10 @@
     "devDependencies": {
         "@hey-api/openapi-ts": "0.98.2",
         "@sif/eslint-config": "workspace:*",
-        "axios": "1.18.1",
+        "axios": "1.19.0",
         "config": "workspace:*",
         "eslint": "10.8.0",
-        "postcss": "8.5.23",
+        "postcss": "8.5.25",
         "prettier": "3.9.6",
         "typescript": "6.0.3",
         "vitest": "4.1.10",
@@ -47,6 +47,6 @@
     },
     "peerDependencies": {
         "dayjs": "*",
-        "uuid": "*"
+        "uuid": ">=11.1.1"
     }
 }

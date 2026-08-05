@@ -19,13 +19,13 @@
         "eslint-plugin-react-hooks": "7.1.1",
         "eslint-plugin-simple-import-sort": "14.0.0",
         "eslint-plugin-storybook": "10.5.4",
-        "globals": "17.7.0",
+        "globals": "17.8.0",
         "typescript": "6.0.3",
         "typescript-eslint": "8.65.0"
     },
     "devDependencies": {
-        "postcss": "8.5.23",
+        "postcss": "8.5.25",
         "prettier": "3.9.6",
-        "storybook": "10.5.4"
+        "storybook": "10.5.5"
     }
 }
