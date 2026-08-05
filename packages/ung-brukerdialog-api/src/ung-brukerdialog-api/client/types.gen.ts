@@ -13,6 +13,8 @@ export type ArbeidOgFrilansRegisterInntektDto = {
 export type BekreftBostedOppgavetypeDataDto = {
     erBosattITrondheim: boolean;
     fom: string;
+    ikkeOppfyltÅrsak?: BostedsvilkårIkkeOppfyltÅrsak;
+    ikkeOppfyltÅrsakFritekstbeskrivelse?: string;
     tom: string;
 };
 
@@ -20,6 +22,29 @@ export type BekreftOpphorVedMaksdatoOppgavetypeDataDto = {
     maxDato: string;
     sluttdato: string;
 };
+
+export enum BostedsvilkårIkkeOppfyltÅrsak {
+    /**
+     * IKKE_BOSATTADRESSE_I_TRONDHEIM
+     */
+    IKKE_BOSATTADRESSE_I_TRONDHEIM = 'IKKE_BOSATTADRESSE_I_TRONDHEIM',
+    /**
+     * IKKE_BOSTEDSADRESSE_OG_IKKE_FOLKEREGISTRERT_I_TRONDHEIM
+     */
+    IKKE_BOSTEDSADRESSE_OG_IKKE_FOLKEREGISTRERT_I_TRONDHEIM = 'IKKE_BOSTEDSADRESSE_OG_IKKE_FOLKEREGISTRERT_I_TRONDHEIM',
+    /**
+     * STUDIE_ELLER_ARBEIDSSTED_UTENFOR_TRONDHEIM
+     */
+    STUDIE_ELLER_ARBEIDSSTED_UTENFOR_TRONDHEIM = 'STUDIE_ELLER_ARBEIDSSTED_UTENFOR_TRONDHEIM',
+    /**
+     * ANNET
+     */
+    ANNET = 'ANNET',
+    /**
+     * UDEFINERT
+     */
+    UDEFINERT = 'UDEFINERT',
+}
 
 export type BrukerdialogOppgaveDto = {
     frist?: string;

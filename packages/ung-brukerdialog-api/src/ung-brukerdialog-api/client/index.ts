@@ -5,6 +5,7 @@ export {
     type ArbeidOgFrilansRegisterInntektDto,
     type BekreftBostedOppgavetypeDataDto,
     type BekreftOpphorVedMaksdatoOppgavetypeDataDto,
+    BostedsvilkårIkkeOppfyltÅrsak,
     type BrukerdialogOppgaveDto,
     type ClientOptions,
     type EndretPeriodeDataDto,

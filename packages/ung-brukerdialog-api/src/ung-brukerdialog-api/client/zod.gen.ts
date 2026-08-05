@@ -11,15 +11,25 @@ export const zArbeidOgFrilansRegisterInntektDto = z.object({
         .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
 });
 
-export const zBekreftBostedOppgavetypeDataDto = z.object({
-    erBosattITrondheim: z.boolean(),
-    fom: z.iso.date(),
-    tom: z.iso.date(),
-});
-
 export const zBekreftOpphorVedMaksdatoOppgavetypeDataDto = z.object({
     maxDato: z.iso.date(),
     sluttdato: z.iso.date(),
+});
+
+export const zBostedsvilkårIkkeOppfyltÅrsak = z.enum([
+    'IKKE_BOSATTADRESSE_I_TRONDHEIM',
+    'IKKE_BOSTEDSADRESSE_OG_IKKE_FOLKEREGISTRERT_I_TRONDHEIM',
+    'STUDIE_ELLER_ARBEIDSSTED_UTENFOR_TRONDHEIM',
+    'ANNET',
+    'UDEFINERT',
+]);
+
+export const zBekreftBostedOppgavetypeDataDto = z.object({
+    erBosattITrondheim: z.boolean(),
+    fom: z.iso.date(),
+    ikkeOppfyltÅrsak: zBostedsvilkårIkkeOppfyltÅrsak.optional(),
+    ikkeOppfyltÅrsakFritekstbeskrivelse: z.string().optional(),
+    tom: z.iso.date(),
 });
 
 export const zEndretSluttdatoDataDto = z.object({
