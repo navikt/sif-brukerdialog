@@ -43,14 +43,14 @@
         "@changesets/cli": "2.31.1",
         "glob": "13.0.6",
         "tailwindcss": "4.3.3",
-        "turbo": "2.10.6"
+        "turbo": "2.10.8"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "gh-pages": "6.3.0",
         "husky": "9.1.7",
-        "lint-staged": "17.2.0",
+        "lint-staged": "17.3.0",
         "prettier": "3.9.6",
         "sort-package-json": "4.0.0",
         "typescript": "6.0.3",
@@ -74,7 +74,7 @@
             "smol-toml": ">=1.6.1",
             "undici@^6": "^6.27.0",
             "undici@^7": "^7.28.0",
-            "uuid": ">=11.1.1"
+            "uuid": "^14.0.1"
         }
     }
 }

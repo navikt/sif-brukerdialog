@@ -26,17 +26,17 @@
         "useTabs": false
     },
     "dependencies": {
-        "@sanity/vision": "6.6.0",
+        "@sanity/vision": "6.8.0",
         "react": "19.2.8",
         "react-dom": "19.2.8",
-        "sanity": "6.6.0"
+        "sanity": "6.8.0"
     },
     "devDependencies": {
         "@sanity/eslint-config-studio": "6.0.0",
-        "@types/react": "19.2.17",
+        "@types/react": "19.2.18",
         "dayjs": "1.11.21",
         "eslint": "10.8.0",
-        "postcss": "8.5.23",
+        "postcss": "8.5.25",
         "prettier": "3.9.6",
         "react-is": "19.2.8",
         "styled-components": "6.4.4",

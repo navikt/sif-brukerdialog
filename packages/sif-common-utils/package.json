@@ -18,20 +18,20 @@
         "i18n-iso-countries": "7.14.0",
         "iso8601-duration": "2.1.4",
         "lodash": "4.18.1",
-        "uuid": "14.0.1"
+        "uuid": "^14.0.1"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "26.1.1",
-        "@types/react": "19.2.17",
-        "@types/react-dom": "19.2.3",
+        "@types/node": "26.1.2",
+        "@types/react": "19.2.18",
+        "@types/react-dom": "19.2.4",
         "config": "workspace:*",
-        "globals": "17.7.0",
+        "globals": "17.8.0",
         "intl": "1.2.5",
-        "postcss": "8.5.23",
+        "postcss": "8.5.25",
         "react": "19.2.8",
         "react-dom": "19.2.8",
-        "react-intl": "10.1.18",
+        "react-intl": "10.1.19",
         "typescript": "6.0.3",
         "vitest": "4.1.10"
     }
