@@ -37,6 +37,7 @@
         "zod": "4.4.3"
     },
     "peerDependencies": {
+        "axios": "1.19.0",
         "dayjs": "*",
         "uuid": "^14.0.1"
     }

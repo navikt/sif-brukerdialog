@@ -37,6 +37,7 @@
     },
     "peerDependencies": {
         "@navikt/ds-react": "*",
+        "axios": "1.19.0",
         "dayjs": "*",
         "react": "*",
         "react-dom": "*",
