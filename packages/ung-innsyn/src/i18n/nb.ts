@@ -1,11 +1,12 @@
-import { opphorVedMaksdatoMessages_nb } from '../modules/oppgavepaneler/opphor-ved-maksdato/i18n/nb';
 import { avvikRegisterinntektMessages_nb } from '../modules/oppgavepaneler/avvik-registerinntekt/i18n/nb';
 import { bostedVilkårMessages_nb } from '../modules/oppgavepaneler/bostedsvilkar/i18n/nb';
+import { bostedVilkårOpphørMessages_nb } from '../modules/oppgavepaneler/bostedsvilkar-opphor/i18n/nb';
 import { endretSluttdatoMessages_nb } from '../modules/oppgavepaneler/endret-sluttdato/i18n/nb';
 import { endretStartOgSluttdatoMessages_nb } from '../modules/oppgavepaneler/endret-start-og-sluttdato/i18n/nb';
 import { endretStartdatoMessages_nb } from '../modules/oppgavepaneler/endret-startdato/i18n/nb';
 import { fjernetPeriodeMessages_nb } from '../modules/oppgavepaneler/fjernet-periode/i18n/nb';
 import { meldtUtMessages_nb } from '../modules/oppgavepaneler/meldt-ut/i18n/nb';
+import { opphorVedMaksdatoMessages_nb } from '../modules/oppgavepaneler/opphor-ved-maksdato/i18n/nb';
 import { rapporterInntektMessages_nb } from '../modules/oppgavepaneler/rapporter-inntekt/i18n/nb';
 import { søkYtelseOppgaveMessages_nb } from '../modules/oppgavepaneler/sok-ytelse/i18n/nb';
 
@@ -19,6 +20,7 @@ export const ungUi_messages_nb = {
     ...rapporterInntektMessages_nb,
     ...søkYtelseOppgaveMessages_nb,
     ...bostedVilkårMessages_nb,
+    ...bostedVilkårOpphørMessages_nb,
     ...opphorVedMaksdatoMessages_nb,
 
     '@ungInnsyn.Ja': 'Ja',

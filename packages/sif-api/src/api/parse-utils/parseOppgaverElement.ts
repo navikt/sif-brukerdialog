@@ -1,7 +1,6 @@
 /* eslint-disable no-case-declarations */
 import { DateRange, dateToISODate, isISODate, ISODate, OpenDateRange, TidenesEnde } from '@sif/utils';
 import {
-    BekreftBostedOppgavetypeDataDto,
     BekreftOpphorVedMaksdatoOppgavetypeDataDto,
     BrukerdialogOppgaveDto,
     EndretPeriodeDataDto,
@@ -13,6 +12,7 @@ import {
     OppgaveStatus,
     OppgaveType,
     OppgaveYtelsetype,
+    OppgavetypeDataDto,
     PeriodeEndringType,
     RapportertInntektDto,
     SvarPåVarselDto,
@@ -23,6 +23,7 @@ import dayjs from 'dayjs';
 import {
     AvvikRegisterinntektOppgave,
     BostedVilkårOppgave,
+    BostedVilkårOpphørOppgave,
     EndretSluttdatoOppgave,
     EndretStartdatoOppgave,
     EndretStartOgSluttdatoOppgave,
@@ -214,6 +215,46 @@ const getOppgaveFraEndretPeriodeOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
     throw new Error(`Kan ikke lage oppgave fra endret periode oppgave med endringer: ${endringer.join(', ')}`);
 };
 
+type BostedOppgavetypeData = Extract<OppgavetypeDataDto, { type: 'BOSTED' }>;
+type BostedOpphørOppgavetypeData = Extract<OppgavetypeDataDto, { type: 'BOSTED_OPPHØR' }>;
+
+const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Oppgave => {
+    const oppgavetypeData = oppgave.oppgavetypeData as BostedOppgavetypeData | BostedOpphørOppgavetypeData;
+
+    /** Avslag i en periode */
+    if (oppgavetypeData.type === 'BOSTED') {
+        const bostedVilkårOppgave: BostedVilkårOppgave = {
+            ...getOppgaveBaseProps(oppgave),
+            parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED,
+            oppgavetypeData: {
+                periode: {
+                    from: oppgavetypeData.fom as ISODate,
+                    to: oppgavetypeData.tom as ISODate,
+                },
+                erBosattITrondheim: oppgavetypeData.erBosattITrondheim,
+                ikkeOppfyltÅrsak: oppgavetypeData.ikkeOppfyltÅrsak,
+                ikkeOppfyltÅrsakFritekstbeskrivelse: oppgavetypeData.ikkeOppfyltÅrsakFritekstbeskrivelse,
+            },
+            respons: parseSvarPåVarselRespons(oppgave.respons),
+        };
+        return bostedVilkårOppgave;
+        /** Opphør fra en date */
+    } else {
+        const bostedVilkårOpphørOppgave: BostedVilkårOpphørOppgave = {
+            ...getOppgaveBaseProps(oppgave),
+            parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED_OPPHØR,
+            oppgavetypeData: {
+                fom: oppgavetypeData.fom as ISODate,
+                erBosattITrondheim: oppgavetypeData.erBosattITrondheim,
+                ikkeOppfyltÅrsak: oppgavetypeData.ikkeOppfyltÅrsak,
+                ikkeOppfyltÅrsakFritekstbeskrivelse: oppgavetypeData.ikkeOppfyltÅrsakFritekstbeskrivelse,
+            },
+            respons: parseSvarPåVarselRespons(oppgave.respons),
+        };
+        return bostedVilkårOpphørOppgave;
+    }
+};
+
 export const parseOppgaverElement = (
     oppgaveYtelsetype: OppgaveYtelsetype,
     oppgaver: BrukerdialogOppgaveDto[],
@@ -222,20 +263,7 @@ export const parseOppgaverElement = (
     oppgaver.forEach((oppgave) => {
         switch (oppgave.oppgavetype) {
             case OppgaveType.BEKREFT_BOSTED:
-                const bostedData = oppgave.oppgavetypeData as BekreftBostedOppgavetypeDataDto;
-                const bostedVilkårOppgave: BostedVilkårOppgave = {
-                    ...getOppgaveBaseProps(oppgave),
-                    parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED,
-                    oppgavetypeData: {
-                        periode: {
-                            from: bostedData.fom as ISODate,
-                            to: bostedData.tom as ISODate,
-                        },
-                        erBosattITrondheim: bostedData.erBosattITrondheim,
-                    },
-                    respons: parseSvarPåVarselRespons(oppgave.respons),
-                };
-                parsedOppgaver.push(bostedVilkårOppgave);
+                parsedOppgaver.push(getOppgaveFraBekreftBostedOppgave(oppgave));
                 return;
 
             case OppgaveType.BEKREFT_ENDRET_STARTDATO:
