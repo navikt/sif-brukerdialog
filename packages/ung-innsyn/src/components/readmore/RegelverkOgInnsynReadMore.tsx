@@ -1,7 +1,7 @@
 import { BodyLong, Link, List, ReadMore, VStack } from '@navikt/ds-react';
 
 import { UngUiText, useUngUiIntl } from '../../i18n';
-import { Lovlenke } from '../../modules/oppgavepaneler/utils/lovverk';
+import { Lovlenke } from '../../config/oppgaveLovverk';
 import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 
 interface Props {
