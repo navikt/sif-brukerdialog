@@ -5890,6 +5890,9 @@ importers:
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../sif-common-ui
+      '@navikt/sif-validation':
+        specifier: workspace:*
+        version: link:../sif-validation
       '@navikt/ung-brukerdialog-api':
         specifier: workspace:*
         version: link:../ung-brukerdialog-api
