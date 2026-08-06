@@ -66,7 +66,7 @@ const oppgave: AvvikRegisterinntektOppgave = {
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
     frist: dateToISODate(dayjs().add(14, 'days').toDate()),
-    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
 };
 
 const getOppgaveMedInntekt = (

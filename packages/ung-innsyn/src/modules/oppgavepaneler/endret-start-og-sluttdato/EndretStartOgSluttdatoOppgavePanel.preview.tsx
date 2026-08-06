@@ -19,7 +19,7 @@ export const mockEndretStartOgSluttdatoOppgave: EndretStartOgSluttdatoOppgave = 
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
     frist: dateToISODate(dayjs().add(14, 'days')),
-    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
 };
 
 const besvartOppgave: EndretStartOgSluttdatoOppgave = {
