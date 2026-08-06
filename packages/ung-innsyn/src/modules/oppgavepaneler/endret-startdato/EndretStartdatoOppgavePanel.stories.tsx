@@ -1,6 +1,6 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { OppgaveStatus, OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
-import { EndretStartdatoOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { EndretStartdatoOppgave } from '@sif/api/ung-brukerdialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 
@@ -8,7 +8,7 @@ import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { EndretStartdatoOppgavePanel } from './EndretStartdatoOppgavePanel';
-import { dateToISODate, ISODate } from '@sif/utils';
+import { mockEndretStartdatoOppgave, renderEndretStartdatoAlleStater } from './EndretStartdatoOppgavePanel.preview';
 
 const meta: Meta = {
     title: 'Oppgaver/Ungdomsprogramytelsen/Endret startdato',
@@ -19,29 +19,20 @@ export default meta;
 
 type Story = StoryObj;
 
-const oppgave: EndretStartdatoOppgave = {
-    oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: OppgaveType.BEKREFT_ENDRET_STARTDATO,
-    parsedOppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO,
-    oppgavetypeData: {
-        nyStartdato: '2025-05-01' as ISODate,
-        forrigeStartdato: '2025-05-05' as ISODate,
-    },
-    status: OppgaveStatus.ULØST,
-    opprettetDato: dayjs().subtract(1, 'days').toDate(),
-    frist: dateToISODate(dayjs().add(14, 'days')),
-    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
-};
+const oppgave = mockEndretStartdatoOppgave;
 
 const besvartOppgave: EndretStartdatoOppgave = {
     ...oppgave,
-    respons: {
-        type: 'VARSEL_SVAR',
-        harUttalelse: false,
-    },
+    respons: { type: 'VARSEL_SVAR', harUttalelse: false },
     status: OppgaveStatus.LØST,
     løstDato: dayjs().toDate(),
 };
+
+export const AlleStater: Story = {
+    name: 'Alle tilstander',
+    render: renderEndretStartdatoAlleStater,
+};
+
 export const OppgavePanel: Story = {
     name: 'Oppgavevisning på forside',
     render: () => (
