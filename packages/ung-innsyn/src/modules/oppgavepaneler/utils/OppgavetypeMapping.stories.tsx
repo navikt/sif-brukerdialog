@@ -1,4 +1,4 @@
-import { BodyShort, Box, Heading, Label, Link, List, Table, Tabs, Tag, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, Heading, Link, List, Table, Tabs, Tag, VStack } from '@navikt/ds-react';
 import { OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
@@ -324,25 +324,6 @@ export const Oversikt: Story = {
                 <BodyShort>
                     Oversikt over sammenhengen mellom backend-oppgavetyper (<KodeTag>OppgaveType</KodeTag>), parsede
                     oppgavetyper (<KodeTag>ParsedOppgavetype</KodeTag>) og lovhenvisninger som vises til bruker.
-                </BodyShort>
-            </VStack>
-
-            <VStack gap="space-4">
-                <Label>Flyt</Label>
-                <BodyShort>
-                    <KodeTag>OppgaveType (backend)</KodeTag> → <KodeTag>parseOppgaver()</KodeTag> →{' '}
-                    <KodeTag>ParsedOppgavetype</KodeTag> → Oppgavepanel
-                </BodyShort>
-            </VStack>
-
-            <VStack gap="space-4">
-                <Heading level="2" size="medium">
-                    Mapping: OppgaveType → ParsedOppgavetype
-                </Heading>
-                <BodyShort size="small">
-                    <KodeTag>BEKREFT_ENDRET_PERIODE</KodeTag> og <KodeTag>BEKREFT_ENDRET_SLUTTDATO</KodeTag> splitter
-                    til ulike <KodeTag>ParsedOppgavetype</KodeTag> basert på innholdet i{' '}
-                    <KodeTag>oppgavetypeData</KodeTag>.
                 </BodyShort>
             </VStack>
 
