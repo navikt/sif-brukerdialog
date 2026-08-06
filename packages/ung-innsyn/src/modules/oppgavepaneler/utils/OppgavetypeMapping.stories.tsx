@@ -314,7 +314,7 @@ const TabInnhold = ({ filter }: { filter: YtelseFilter }) => {
 // ─── Story ────────────────────────────────────────────────────────────────────
 
 export const Oversikt: Story = {
-    name: 'Oppgavetyper og lovverk',
+    name: 'Oversikt alle oppgavetyper',
     render: () => (
         <VStack gap="space-24">
             <VStack gap="space-8">
