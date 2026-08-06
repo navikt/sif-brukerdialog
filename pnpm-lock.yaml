@@ -334,9 +334,6 @@ importers:
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/sif-app-register
-      '@navikt/sif-common-core-ds':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-core-ds
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../../packages/sif-common-env
@@ -5890,9 +5887,6 @@ importers:
       '@navikt/k9-brukerdialog-prosessering-api':
         specifier: workspace:*
         version: link:../k9-brukerdialog-prosessering-api
-      '@navikt/sif-common-core-ds':
-        specifier: workspace:*
-        version: link:../sif-common-core-ds
       '@navikt/sif-common-hooks':
         specifier: workspace:*
         version: link:../sif-common-hooks
