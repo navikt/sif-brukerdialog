@@ -1,7 +1,7 @@
 import { getLocaleFromSessionStorage } from '@navikt/sif-common-core-ds/src/utils/localeUtils';
 import { getSifLenker } from '@sif/soknad-ui/lenker';
 
-import { getAppEnv } from './appEnv';
+import { getAppEnv } from '../app/setup/appEnv';
 
 interface Lenker {
     omUngdomsprogramytelsen: string;

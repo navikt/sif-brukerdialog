@@ -3615,6 +3615,9 @@ importers:
       '@sif/api':
         specifier: workspace:*
         version: link:../../packages/sif-api
+      '@sif/soknad-app':
+        specifier: workspace:*
+        version: link:../../packages/sif-soknad-app
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../../packages/sif-soknad-ui

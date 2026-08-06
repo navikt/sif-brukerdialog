@@ -1,29 +1,22 @@
 import '@navikt/ds-css';
 import './app.css';
 
-import { SanityConfig } from '@navikt/appstatus-react-ds';
-import { BodyShort } from '@navikt/ds-react';
+import { VStack } from '@navikt/ds-react';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
-import { UxSignalsLoaderProvider } from '@sif/surveys';
-import AppStatusWrapper from '@navikt/sif-common-core-ds/src/components/app-status-wrapper/AppStatusWrapper';
-import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import { EnvKey } from '@navikt/sif-common-env';
-import { FaroProvider } from '@navikt/sif-common-faro';
-import { ErrorPage } from '@navikt/sif-common-soknad-ds';
-import DevBranchInfo from '@navikt/sif-common-soknad-ds/src/components/dev-branch-info/DevBranchInfo';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { SøknadAppProvider } from '@sif/soknad-app';
 import MockDate from 'mockdate';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 
 import { getMockToday } from '../mock/utils/mockDate';
-import { AnalyticsProvider } from './analytics/analytics';
 import DeltakerInfoLoader from './components/deltaker-info-loader/DeltakerInfoLoader';
-import AppErrorFallback from './components/error-boundary/AppErrorFallback';
-import ErrorBoundary from './components/error-boundary/ErrorBoundary';
-import { AppIntlMessageProvider } from './i18n/AppIntlMessageProvider';
-import { getAppEnv } from './utils/appEnv';
+import { DemoInformasjon } from './demo/DemoInformasjon';
+import { DemoScenarioHeader } from './demo/DemoScenarioHeader';
+import { applicationIntlMessages } from './i18n';
+import { getAppEnv } from './app/setup/appEnv';
 import { initApiClients } from './utils/initApiClients';
 
+const env = getAppEnv();
 initApiClients();
 
 if (__INJECT_DECORATOR_CLIENT_SIDE__) {
@@ -40,67 +33,52 @@ if (__USE_FIXED_MOCKED_DATE__) {
     MockDate.set(getMockToday());
 }
 
-const queryClient = new QueryClient();
-
-if (globalThis.location.pathname === '/') {
-    globalThis.location.pathname = '/ungdomsprogrammet/ytelsen/';
-}
-
-if (globalThis.location.pathname === '/ungdomsytelse-deltaker') {
-    globalThis.location.pathname = '/ungdomsprogrammet/ytelsen/';
-}
-
-function App() {
-    const env = getAppEnv();
-    const analyticsIsActive = env[EnvKey.SIF_PUBLIC_USE_ANALYTICS] === 'true';
-
-    const sanityConfig: SanityConfig = {
-        projectId: env.SIF_PUBLIC_APPSTATUS_PROJECT_ID,
-        dataset: env.SIF_PUBLIC_APPSTATUS_DATASET,
-    };
+export const App = () => {
+    if (!(__IS_GITHUB_PAGES__ || __IS_DEMO_MODE__) && globalThis.location.pathname === '/') {
+        globalThis.location.pathname = env.PUBLIC_PATH;
+        return null;
+    }
 
     return (
-        <ErrorBoundary fallback={<AppErrorFallback />}>
-            <AppIntlMessageProvider>
-                <UxSignalsLoaderProvider>
-                    <AppStatusWrapper
-                        applicationKey={UngdomsytelseDeltakerApp.key}
-                        sanityConfig={sanityConfig}
-                        contentRenderer={() => (
-                            <FaroProvider
-                                appVersion={env.APP_VERSION}
-                                applicationKey={UngdomsytelseDeltakerApp.key}
-                                telemetryCollectorURL={env.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL}
-                                isActive={env.SIF_PUBLIC_USE_FARO === 'true'}>
-                                <AnalyticsProvider
-                                    applicationKey={UngdomsytelseDeltakerApp.key}
-                                    isActive={analyticsIsActive}>
-                                    <QueryClientProvider client={queryClient}>
-                                        <DeltakerInfoLoader />
-                                    </QueryClientProvider>
-                                </AnalyticsProvider>
-                            </FaroProvider>
-                        )}
-                        unavailableContentRenderer={() => (
-                            <ErrorPage
-                                bannerTitle="Ungdomsprogramytelsen"
-                                pageTitle="Vi utfører vedlikehold"
-                                contentRenderer={() => (
-                                    <SifGuidePanel mood="happy" title="Vi utfører vedlikehold" poster={true}>
-                                        <BodyShort className="pt-4" size="large">
-                                            Sidene for ungdomsprogramytelsen er midlertidig utilgjengelige. Vi regner
-                                            med å være ferdige snart, så prøv gjerne igjen om en liten stund.
-                                        </BodyShort>
-                                    </SifGuidePanel>
-                                )}
-                            />
-                        )}
-                    />
-                    <DevBranchInfo />
-                </UxSignalsLoaderProvider>
-            </AppIntlMessageProvider>
-        </ErrorBoundary>
+        <SøknadAppProvider
+            applicationKey={UngdomsytelseDeltakerApp.key}
+            appVersion={env.APP_VERSION}
+            faroConfig={{
+                isActive: env.SIF_PUBLIC_USE_FARO === 'true',
+                telemetryCollectorURL: env.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL,
+            }}
+            analyticsConfig={{ isActive: env.SIF_PUBLIC_USE_ANALYTICS === 'true' }}
+            sentryConfig={{
+                dsn: 'https://01c0cdacd803d88882c2eab4c345c610@sentry.gc.nav.no/179',
+                application: 'ungdomsytelse-deltaker',
+            }}
+            intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}
+            appStatusConfig={{
+                sanityConfig: {
+                    projectId: env.SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+                    dataset: env.SIF_PUBLIC_APPSTATUS_DATASET,
+                },
+            }}>
+            {__IS_GITHUB_PAGES__ || __IS_DEMO_MODE__ ? (
+                <HashRouter>
+                    <div className="demoMode">
+                        <VStack gap="space-40">
+                            <DemoScenarioHeader />
+                            <aside>
+                                <DemoInformasjon />
+                            </aside>
+                        </VStack>
+                        <DeltakerInfoLoader />
+                    </div>
+                </HashRouter>
+            ) : (
+                <BrowserRouter basename={env.PUBLIC_PATH}>
+                    {__SCENARIO_HEADER__ ? <DemoScenarioHeader /> : null}
+                    <DeltakerInfoLoader />
+                </BrowserRouter>
+            )}
+        </SøknadAppProvider>
     );
-}
+};
 
 export default App;

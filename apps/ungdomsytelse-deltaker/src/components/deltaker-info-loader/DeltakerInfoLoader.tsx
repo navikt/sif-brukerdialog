@@ -4,9 +4,10 @@ import { useSøker } from '@sif/api/k9-prosessering';
 import { ParsedOppgavetype, useOppgaver } from '@sif/api/ung-brukerdialog';
 import { Navigate, Route, Routes, useParams } from 'react-router-dom';
 
-import { ApiErrorKey, ApplikasjonHendelse, useAnalyticsInstance } from '../../analytics/analytics';
+import { CustomAnalyticsEvents, useAnalyticsInstance } from '@sif/soknad-app';
+
+import { ApiErrorKey, UngdomsytelseApplikasjonHendelse } from '../../analytics/analyticsEvents';
 import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
-import AppRouter from '../../AppRouter';
 import InnsynApp from '../../apps/innsyn/InnsynApp';
 import { SkyraSlug, SkyraTestPage } from '@sif/surveys';
 import SøknadApp from '../../apps/søknad/SøknadApp';
@@ -35,7 +36,7 @@ const DeltakerInfoLoader = () => {
     const søker = useSøker();
     const deltakelsePerioder = useDeltakelsePerioder();
     const oppgaver = useOppgaver(OppgaveYtelsetype.UNGDOMSYTELSE);
-    const { logApiError, logHendelse } = useAnalyticsInstance();
+    const { logApiError, logCustom } = useAnalyticsInstance();
 
     // Sjekk om URL inneholder skyra/test - dette er en midlertidig testside for å teste skyra-integrasjon
     if (globalThis.location.pathname.includes('skyra/test')) {
@@ -71,12 +72,16 @@ const DeltakerInfoLoader = () => {
     }
 
     if (deltakelsePerioder.data.length === 0) {
-        logHendelse(ApplikasjonHendelse.erIkkeDeltaker);
+        logCustom(CustomAnalyticsEvents.applikasjonHendelse, {
+            hendelse: UngdomsytelseApplikasjonHendelse.erIkkeDeltaker,
+        });
         return <IngenDeltakelsePage />;
     }
 
     if (deltakelsePerioder.data.length > 1) {
-        logHendelse(ApplikasjonHendelse.harFlereDeltakelser);
+        logCustom(CustomAnalyticsEvents.applikasjonHendelse, {
+            hendelse: UngdomsytelseApplikasjonHendelse.harFlereDeltakelser,
+        });
         logFaroError(
             'DeltakerInfoLoader.FlereDeltakelser',
             JSON.stringify({
@@ -111,15 +116,13 @@ const DeltakerInfoLoader = () => {
             refetchDeltakelser={async () => {
                 await Promise.all([deltakelsePerioder.refetch(), oppgaver.refetch()]);
             }}>
-            <AppRouter>
-                <Routes>
-                    <Route path={`${AppRoutes.soknad}/*`} element={<SøknadApp />} />
-                    <Route path={`${AppRoutes.innsyn}/*`} element={<InnsynApp />} />
-                    <Route path="/oppgave/:oppgaveId" element={<OppgaveRedirect />} />
-                    {/* Fallback for andre routes */}
-                    <Route path="*" element={<Navigate to={aktivPathBasertPåDeltaker} />} />
-                </Routes>
-            </AppRouter>
+            <Routes>
+                <Route path={`${AppRoutes.soknad}/*`} element={<SøknadApp />} />
+                <Route path={`${AppRoutes.innsyn}/*`} element={<InnsynApp />} />
+                <Route path="/oppgave/:oppgaveId" element={<OppgaveRedirect />} />
+                {/* Fallback for andre routes */}
+                <Route path="*" element={<Navigate to={aktivPathBasertPåDeltaker} />} />
+            </Routes>
         </DeltakerContextProvider>
     );
 };
