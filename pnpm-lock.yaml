@@ -5920,6 +5920,9 @@ importers:
       '@tanstack/react-query':
         specifier: 5.101.4
         version: 5.101.4(react@19.2.8)
+      dompurify:
+        specifier: 3.4.12
+        version: 3.4.12
       react-hook-form:
         specifier: 7.84.0
         version: 7.84.0(react@19.2.8)

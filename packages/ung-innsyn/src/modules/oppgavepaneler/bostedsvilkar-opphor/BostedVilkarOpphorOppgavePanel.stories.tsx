@@ -33,8 +33,9 @@ const oppgave: BostedVilkårOpphørOppgave = {
     frist: dateToISODate(dayjs().add(14, 'days')),
     ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
     oppgavetypeData: {
-        ikkeOppfyltÅrsak: BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
-        ikkeOppfyltÅrsakFritekstbeskrivelse: undefined,
+        ikkeOppfyltÅrsak: BostedsvilkårIkkeOppfyltÅrsak.ANNET,
+        ikkeOppfyltÅrsakFritekstbeskrivelse:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n\nSed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         erBosattITrondheim: false,
         fom: dateToISODate(dayjs().subtract(1, 'month')),
     },
