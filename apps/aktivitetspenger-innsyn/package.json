@@ -35,7 +35,6 @@
         "@navikt/sif-common-faro": "workspace:*",
         "@navikt/sif-common-hooks": "workspace:*",
         "@navikt/sif-common-sentry": "workspace:*",
-        "@navikt/sif-validation": "workspace:*",
         "@navikt/ung-brukerdialog-api": "workspace:*",
         "@sentry/react": "10.69.0",
         "@sif/api": "workspace:*",
