@@ -1,6 +1,8 @@
 import { GuidePanel, VStack } from '@navikt/ds-react';
 import { DateRange } from '@sif/utils';
 
+import { RegelverkOgInnsynReadMore } from '../../../../components/readmore/RegelverkOgInnsynReadMore';
+import { getLovLenker } from '../../../../config/oppgaveLovverk';
 import { RapporterInntektForm } from '../../../forms/rapporter-inntekt-form/RapporterInntektForm';
 import { RapporterInntektKvitteringData, RapporterInntektOppgaveProps } from '../RapporterInntektOppgavePanel';
 import { RapporterInntektOppgavetekst } from './RapporterInntektOppgavetekst';
@@ -15,12 +17,15 @@ export const RapporterInntektUbesvart = ({ oppgave, navn, periode, måned, setKv
     return (
         <VStack gap="space-40">
             <GuidePanel>
-                <RapporterInntektOppgavetekst
-                    navn={navn}
-                    periode={periode}
-                    svarfrist={oppgave.frist}
-                    gjelderDelerAvMåned={oppgave.oppgavetypeData.gjelderDelerAvMåned}
-                />
+                <VStack gap="space-16">
+                    <RapporterInntektOppgavetekst
+                        navn={navn}
+                        periode={periode}
+                        svarfrist={oppgave.frist}
+                        gjelderDelerAvMåned={oppgave.oppgavetypeData.gjelderDelerAvMåned}
+                    />
+                    <RegelverkOgInnsynReadMore ytelsetype={oppgave.ytelsetype} lenker={getLovLenker(oppgave)} />
+                </VStack>
             </GuidePanel>
             <RapporterInntektForm
                 oppgaveYtelsetype={oppgave.oppgaveYtelsetype}

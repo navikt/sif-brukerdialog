@@ -4,6 +4,8 @@ import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
 
 import { ForsideLenkeButton, OppgaveStatusTag } from '../../../../components';
+import { RegelverkOgInnsynReadMore } from '../../../../components/readmore/RegelverkOgInnsynReadMore';
+import { getLovLenker } from '../../../../config/oppgaveLovverk';
 import { UngUiText } from '../../../../i18n';
 import { getOppgaveStatusText } from '../../../../utils/textUtils';
 
@@ -22,6 +24,7 @@ export const SøkYtelseOppgavetekst = ({ oppgave, dokumentarkivUrl }: Props) => 
                 <Alert variant="info">
                     <UngUiText id={`@ungInnsyn.søkYtelseOppgave.${oppgave.ytelsetype}.uløst.info`} />
                 </Alert>
+                <RegelverkOgInnsynReadMore ytelsetype={oppgave.ytelsetype} lenker={getLovLenker(oppgave)} />
                 <div>
                     <ForsideLenkeButton />
                 </div>

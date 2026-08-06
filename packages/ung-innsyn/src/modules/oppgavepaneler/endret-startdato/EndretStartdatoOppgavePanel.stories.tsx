@@ -8,7 +8,7 @@ import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { EndretStartdatoOppgavePanel } from './EndretStartdatoOppgavePanel';
-import { mockEndretStartdatoOppgave, renderEndretStartdatoAlleStater } from './EndretStartdatoOppgavePanel.preview';
+import { mockEndretStartdatoOppgave } from './EndretStartdatoOppgavePanel.preview';
 
 const meta: Meta = {
     title: 'Oppgaver/Ungdomsprogramytelsen/Endret startdato',
@@ -26,11 +26,6 @@ const besvartOppgave: EndretStartdatoOppgave = {
     respons: { type: 'VARSEL_SVAR', harUttalelse: false },
     status: OppgaveStatus.LØST,
     løstDato: dayjs().toDate(),
-};
-
-export const AlleStater: Story = {
-    name: 'Alle tilstander',
-    render: renderEndretStartdatoAlleStater,
 };
 
 export const OppgavePanel: Story = {

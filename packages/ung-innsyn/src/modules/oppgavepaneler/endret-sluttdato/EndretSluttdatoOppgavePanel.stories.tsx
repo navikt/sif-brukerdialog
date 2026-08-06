@@ -19,6 +19,7 @@ export default meta;
 
 type Story = StoryObj;
 
+
 const oppgave: EndretSluttdatoOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
     oppgavetype: OppgaveType.BEKREFT_ENDRET_SLUTTDATO,

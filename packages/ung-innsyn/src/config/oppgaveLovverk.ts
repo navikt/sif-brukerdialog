@@ -55,7 +55,7 @@ export const OPPGAVE_LOVVERK = {
     BEKREFT_AVVIK_REGISTERINNTEKT:{ UNGDOMSYTELSE: [upy_11], AKTIVITETSPENGER: [ap] },
     RAPPORTER_INNTEKT:            { UNGDOMSYTELSE: [upy_11], AKTIVITETSPENGER: [ap] },
     SØK_YTELSE:                   { UNGDOMSYTELSE: [upy_8_3_6_9_10] },
-    BEKREFT_BOSTED:               {},
+    BEKREFT_BOSTED:               { AKTIVITETSPENGER: [ap] },
 } satisfies Record<OppgaveType, Partial<Record<OppgaveYtelsetype, Lovlenke[]>>>;
 
 export const getLovLenker = (oppgave: { oppgavetype: OppgaveType; ytelsetype: OppgaveYtelsetype }): Lovlenke[] =>

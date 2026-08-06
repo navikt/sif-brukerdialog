@@ -38,7 +38,11 @@ export const renderEndretStartdatoAlleStater = () => (
             <EndretStartdatoOppgavePanel oppgave={mockEndretStartdatoOppgave} navn="SNODIG VAFFEL" />
         </StoryBox>
         <StoryBox title="Kvittering">
-            <EndretStartdatoOppgavePanel oppgave={mockEndretStartdatoOppgave} navn="SNODIG VAFFEL" initialVisKvittering={true} />
+            <EndretStartdatoOppgavePanel
+                oppgave={mockEndretStartdatoOppgave}
+                navn="SNODIG VAFFEL"
+                initialVisKvittering={true}
+            />
         </StoryBox>
         <StoryBox title="Besvart oppgave">
             <EndretStartdatoOppgavePanel oppgave={besvartOppgave} navn="SNODIG VAFFEL" />

@@ -10,23 +10,22 @@ import {
 } from '@navikt/ung-brukerdialog-api';
 import { AvvikRegisterinntektOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { dateToISODate, ISODate } from '@sif/utils';
 import dayjs from 'dayjs';
 
 import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { AvvikRegisterinntektOppgavePanel } from './AvvikRegisterinntektOppgavePanel';
-import { dateToISODate, ISODate } from '@sif/utils';
 
 const meta: Meta = {
-    title: 'Oppgaver/Ungdomsprogramytelsen/Avvik registerinntekt inntekt',
+    title: 'Oppgaver/Aktivitetspenger/Avvik registerinntekt',
     parameters: {},
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
 export default meta;
 
 type Story = StoryObj;
-
 
 const inntektArbeidsgiver1: ArbeidOgFrilansRegisterInntektDto = {
     inntekt: 1500,
@@ -40,10 +39,7 @@ const inntektArbeidsgiver2: ArbeidOgFrilansRegisterInntektDto = {
     arbeidsgiverNavn: 'SMIDIG MALER',
 };
 
-const inntektYtelse1: YtelseRegisterInntektDto = {
-    inntekt: 3400,
-    ytelsetype: YtelseType.SYKEPENGER,
-};
+const inntektYtelse1: YtelseRegisterInntektDto = { inntekt: 3400, ytelsetype: YtelseType.SYKEPENGER };
 
 const registerInntektEnArbeidsgiver: RegisterinntektDto = {
     arbeidOgFrilansInntekter: [inntektArbeidsgiver1],
@@ -75,8 +71,6 @@ const getOppgaveMedInntekt = (
 ): AvvikRegisterinntektOppgave => {
     const totalInntektArbeidOgFrilans = arbeidOgFrilansInntekter.reduce((sum, curr) => sum + curr.inntekt, 0);
     const totalInntektYtelse = ytelseInntekter.reduce((sum, curr) => sum + curr.inntekt, 0);
-    const totalInntekt = totalInntektArbeidOgFrilans + totalInntektYtelse;
-
     return {
         ...oppgave,
         oppgavetypeData: {
@@ -86,17 +80,15 @@ const getOppgaveMedInntekt = (
                 ytelseInntekter,
                 totalInntektArbeidOgFrilans,
                 totalInntektYtelse,
-                totalInntekt,
+                totalInntekt: totalInntektArbeidOgFrilans + totalInntektYtelse,
             },
         },
     };
 };
+
 const besvartOppgave: AvvikRegisterinntektOppgave = {
     ...oppgave,
-    respons: {
-        type: 'VARSEL_SVAR',
-        harUttalelse: false,
-    },
+    respons: { type: 'VARSEL_SVAR', harUttalelse: false },
     status: OppgaveStatus.LØST,
     løstDato: dayjs().toDate(),
 };
@@ -106,15 +98,11 @@ export const OppgavePanel: Story = {
     render: () => (
         <VStack gap="space-40">
             <VStack gap="space-16">
-                <Heading level="2" size="medium">
-                    Uløst oppgave
-                </Heading>
+                <Heading level="2" size="medium">Uløst oppgave</Heading>
                 <OppgaverList oppgaver={[oppgave]} />
             </VStack>
             <VStack gap="space-16">
-                <Heading level="2" size="medium">
-                    Løste oppgaver
-                </Heading>
+                <Heading level="2" size="medium">Løste oppgaver</Heading>
                 <OppgaverList
                     visBeskrivelse={false}
                     oppgaveStatusTagVariant="text"
@@ -131,38 +119,24 @@ export const OppgavePanel: Story = {
 
 export const UbesvartOppgaveEnArbeidsgiver: Story = {
     name: 'Èn arbeidsgiver',
-    render: () => (
-        <AvvikRegisterinntektOppgavePanel oppgave={getOppgaveMedInntekt([inntektArbeidsgiver1])} navn="SNODIG VAFFEL" />
-    ),
+    render: () => <AvvikRegisterinntektOppgavePanel oppgave={getOppgaveMedInntekt([inntektArbeidsgiver1])} navn="SNODIG VAFFEL" />,
 };
+
 export const UbesvartOppgaveToArbeidsgivere: Story = {
     name: 'To arbeidsgivere',
-    render: () => (
-        <AvvikRegisterinntektOppgavePanel
-            oppgave={getOppgaveMedInntekt([inntektArbeidsgiver1, inntektArbeidsgiver2])}
-            navn="SNODIG VAFFEL"
-        />
-    ),
+    render: () => <AvvikRegisterinntektOppgavePanel oppgave={getOppgaveMedInntekt([inntektArbeidsgiver1, inntektArbeidsgiver2])} navn="SNODIG VAFFEL" />,
 };
 
 export const UbesvartOppgaveNavYtelse: Story = {
     name: 'Kun Nav-ytelse',
-    render: () => (
-        <AvvikRegisterinntektOppgavePanel
-            oppgave={getOppgaveMedInntekt(undefined, [inntektYtelse1])}
-            navn="SNODIG VAFFEL"
-        />
-    ),
+    render: () => <AvvikRegisterinntektOppgavePanel oppgave={getOppgaveMedInntekt(undefined, [inntektYtelse1])} navn="SNODIG VAFFEL" />,
 };
+
 export const UbesvartOppgaveKombinasjon: Story = {
     name: 'Arbeidsgiver og Nav ytelse',
-    render: () => (
-        <AvvikRegisterinntektOppgavePanel
-            oppgave={getOppgaveMedInntekt([inntektArbeidsgiver1], [inntektYtelse1])}
-            navn="SNODIG VAFFEL"
-        />
-    ),
+    render: () => <AvvikRegisterinntektOppgavePanel oppgave={getOppgaveMedInntekt([inntektArbeidsgiver1], [inntektYtelse1])} navn="SNODIG VAFFEL" />,
 };
+
 export const IngenInntekt: Story = {
     name: 'Ingen inntekt',
     render: () => <AvvikRegisterinntektOppgavePanel oppgave={getOppgaveMedInntekt([], [])} navn="SNODIG VAFFEL" />,
@@ -170,9 +144,7 @@ export const IngenInntekt: Story = {
 
 export const OppgaveKvittering: Story = {
     name: 'Kvittering',
-    render: () => (
-        <AvvikRegisterinntektOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" initialVisKvittering={true} />
-    ),
+    render: () => <AvvikRegisterinntektOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" initialVisKvittering={true} />,
 };
 
 export const BesvartOppgave: Story = {
@@ -189,8 +161,7 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
                 respons: {
                     type: 'VARSEL_SVAR',
                     harUttalelse: true,
-                    uttalelseFraBruker:
-                        'Lore, ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                    uttalelseFraBruker: 'Lore, ipsum dolor sit amet, consectetur adipiscing elit.',
                 },
             }}
             navn="SNODIG VAFFEL"
@@ -200,20 +171,10 @@ export const BesvartOppgaveMedTilbakemelding: Story = {
 
 export const AvbruttOppgave: Story = {
     name: 'Avbrutt oppgave',
-    render: () => (
-        <AvvikRegisterinntektOppgavePanel
-            oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.AVBRUTT }}
-            navn="SNODIG VAFFEL"
-        />
-    ),
+    render: () => <AvvikRegisterinntektOppgavePanel oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.AVBRUTT }} navn="SNODIG VAFFEL" />,
 };
 
 export const UtløptOppgave: Story = {
     name: 'Utløpt oppgave',
-    render: () => (
-        <AvvikRegisterinntektOppgavePanel
-            oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.UTLØPT }}
-            navn="SNODIG VAFFEL"
-        />
-    ),
+    render: () => <AvvikRegisterinntektOppgavePanel oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.UTLØPT }} navn="SNODIG VAFFEL" />,
 };
