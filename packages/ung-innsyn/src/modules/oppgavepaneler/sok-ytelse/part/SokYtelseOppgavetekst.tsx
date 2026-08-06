@@ -5,7 +5,7 @@ import { SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
 
 import { ForsideLenkeButton, OppgaveStatusTag } from '../../../../components';
 import { RegelverkOgInnsynReadMore } from '../../../../components/readmore/RegelverkOgInnsynReadMore';
-import { getLovLenker } from '../../../../config/oppgaveLovverk';
+import { getLovLenker } from '../../oppgaveLovverk';
 import { UngUiText } from '../../../../i18n';
 import { getOppgaveStatusText } from '../../../../utils/textUtils';
 

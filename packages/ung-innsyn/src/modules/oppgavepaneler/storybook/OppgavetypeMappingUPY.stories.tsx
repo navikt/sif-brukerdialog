@@ -3,7 +3,7 @@ import { OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Lovlenke, OPPGAVE_LOVVERK } from '../../../config/oppgaveLovverk';
+import { Lovlenke, OPPGAVE_LOVVERK } from '../oppgaveLovverk';
 import { PanelPreviewWrapper } from '../../../storybook/storyUtils';
 import { renderAvvikRegisterinntektAlleStater } from '../avvik-registerinntekt/AvvikRegisterinntektOppgavePanel.preview';
 import { renderEndretStartOgSluttdatoAlleStater } from '../endret-start-og-sluttdato/EndretStartOgSluttdatoOppgavePanel.preview';
@@ -40,7 +40,12 @@ const rader: Rad[] = [
     },
     {
         parsedType: ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO,
-        kilder: [{ backendType: OppgaveType.BEKREFT_ENDRET_PERIODE, betingelse: 'endringer = [ENDRET_STARTDATO, ENDRET_SLUTTDATO]' }],
+        kilder: [
+            {
+                backendType: OppgaveType.BEKREFT_ENDRET_PERIODE,
+                betingelse: 'endringer = [ENDRET_STARTDATO, ENDRET_SLUTTDATO]',
+            },
+        ],
         preview: <PanelPreviewWrapper>{renderEndretStartOgSluttdatoAlleStater()}</PanelPreviewWrapper>,
     },
     {
@@ -55,7 +60,10 @@ const rader: Rad[] = [
         parsedType: ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO,
         kilder: [
             { backendType: OppgaveType.BEKREFT_ENDRET_SLUTTDATO, betingelse: 'forrigeSluttdato er satt' },
-            { backendType: OppgaveType.BEKREFT_ENDRET_PERIODE, betingelse: 'endringer = [ENDRET_SLUTTDATO] + forrige finnes' },
+            {
+                backendType: OppgaveType.BEKREFT_ENDRET_PERIODE,
+                betingelse: 'endringer = [ENDRET_SLUTTDATO] + forrige finnes',
+            },
         ],
         preview: <PanelPreviewWrapper>{renderEndretSluttdatoAlleStater()}</PanelPreviewWrapper>,
     },
@@ -68,7 +76,10 @@ const rader: Rad[] = [
         parsedType: ParsedOppgavetype.BEKREFT_MELDT_UT,
         kilder: [
             { backendType: OppgaveType.BEKREFT_ENDRET_SLUTTDATO, betingelse: 'forrigeSluttdato mangler' },
-            { backendType: OppgaveType.BEKREFT_ENDRET_PERIODE, betingelse: 'endringer = [ENDRET_SLUTTDATO], ingen forrige' },
+            {
+                backendType: OppgaveType.BEKREFT_ENDRET_PERIODE,
+                betingelse: 'endringer = [ENDRET_SLUTTDATO], ingen forrige',
+            },
         ],
         preview: <PanelPreviewWrapper>{renderMeldtUtAlleStater()}</PanelPreviewWrapper>,
     },
@@ -92,7 +103,14 @@ const rader: Rad[] = [
 // ─── Komponenter ─────────────────────────────────────────────────────────────
 
 const KodeTag = ({ children }: { children: React.ReactNode }) => (
-    <code style={{ fontSize: '0.8em', background: 'var(--a-surface-subtle)', padding: '1px 5px', borderRadius: '4px', whiteSpace: 'nowrap' }}>
+    <code
+        style={{
+            fontSize: '0.8em',
+            background: 'var(--a-surface-subtle)',
+            padding: '1px 5px',
+            borderRadius: '4px',
+            whiteSpace: 'nowrap',
+        }}>
         {children}
     </code>
 );
@@ -101,7 +119,9 @@ const LenkeEllerTodo = ({ lenke }: { lenke: Lovlenke }) =>
     lenke.url.includes('#todo') ? (
         <span style={{ color: 'var(--a-text-warning)', fontStyle: 'italic' }}>{lenke.tekst} — TODO: lenke mangler</span>
     ) : (
-        <Link href={lenke.url} rel="noopener noreferrer" target="_blank">{lenke.tekst}</Link>
+        <Link href={lenke.url} rel="noopener noreferrer" target="_blank">
+            {lenke.tekst}
+        </Link>
     );
 
 // ─── Story ────────────────────────────────────────────────────────────────────
@@ -111,10 +131,13 @@ export const Oversikt: Story = {
     render: () => (
         <VStack gap="space-24">
             <VStack gap="space-8">
-                <Heading level="1" size="large">Oppgavetyper — Ungdomsytelse</Heading>
+                <Heading level="1" size="large">
+                    Oppgavetyper — Ungdomsytelse
+                </Heading>
                 <BodyShort>
                     Oversikt over sammenhengen mellom backend-oppgavetyper (<KodeTag>OppgaveType</KodeTag>), parsede
-                    oppgavetyper (<KodeTag>ParsedOppgavetype</KodeTag>) og lovhenvisninger. Ekspander en rad for å se panelvisning og lovhenvisninger.
+                    oppgavetyper (<KodeTag>ParsedOppgavetype</KodeTag>) og lovhenvisninger. Ekspander en rad for å se
+                    panelvisning og lovhenvisninger.
                 </BodyShort>
             </VStack>
             <Box background="neutral-softA" borderRadius="16" padding="space-16">
@@ -128,7 +151,9 @@ export const Oversikt: Story = {
                     </Table.Header>
                     <Table.Body>
                         {rader.map((rad) => {
-                            const lenker = rad.kilder.flatMap((k) => OPPGAVE_LOVVERK[k.backendType]?.[UNGDOMSYTELSE] ?? []);
+                            const lenker = rad.kilder.flatMap(
+                                (k) => OPPGAVE_LOVVERK[k.backendType]?.[UNGDOMSYTELSE] ?? [],
+                            );
                             const unikeLenker = lenker.filter((l, i) => lenker.findIndex((x) => x.url === l.url) === i);
                             return (
                                 <Table.ExpandableRow
@@ -139,7 +164,9 @@ export const Oversikt: Story = {
                                                 <VStack gap="space-24">
                                                     {unikeLenker.length > 0 && (
                                                         <VStack gap="space-4">
-                                                            <Heading level="4" size="xsmall">Lovhenvisninger</Heading>
+                                                            <Heading level="4" size="xsmall">
+                                                                Lovhenvisninger
+                                                            </Heading>
                                                             <List size="small">
                                                                 {unikeLenker.map((lenke) => (
                                                                     <List.Item key={lenke.url}>
@@ -154,13 +181,20 @@ export const Oversikt: Story = {
                                             </Box>
                                         </Bleed>
                                     }>
-                                    <Table.DataCell width="25%"><KodeTag>{rad.parsedType}</KodeTag></Table.DataCell>
+                                    <Table.DataCell width="25%">
+                                        <KodeTag>{rad.parsedType}</KodeTag>
+                                    </Table.DataCell>
                                     <Table.DataCell>
                                         <VStack gap="space-2">
                                             {rad.kilder.map((k, i) => (
                                                 <BodyShort key={i} size="small">
                                                     <KodeTag>{k.backendType}</KodeTag>
-                                                    {k.betingelse && <span style={{ color: 'var(--a-text-subtle)' }}> — {k.betingelse}</span>}
+                                                    {k.betingelse && (
+                                                        <span style={{ color: 'var(--a-text-subtle)' }}>
+                                                            {' '}
+                                                            — {k.betingelse}
+                                                        </span>
+                                                    )}
                                                 </BodyShort>
                                             ))}
                                         </VStack>

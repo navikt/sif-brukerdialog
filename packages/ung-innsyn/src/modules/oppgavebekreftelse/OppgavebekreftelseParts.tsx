@@ -13,7 +13,7 @@ import { getSvaralternativer, getTilbakemeldingFritekstLabel, getTilbakemeldingS
 import { UtalelseForm } from '../forms/uttalelse-form/UtalelseForm';
 import { useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
 import { RegelverkOgInnsynReadMore } from '../../components/readmore/RegelverkOgInnsynReadMore';
-import { getLovLenker } from '../../config/oppgaveLovverk';
+import { getLovLenker } from '../oppgavepaneler/oppgaveLovverk';
 
 interface OppgaveOgTilbakemeldingProps {
     beskjedFraNav: React.ReactNode;
@@ -96,10 +96,7 @@ const Ubesvart = ({ children }: UbesvartProps) => {
                         </Heading>
                         <Box maxWidth="90%">{children}</Box>
                         <Box marginBlock="space-0 space-16">
-                            <RegelverkOgInnsynReadMore
-                                ytelsetype={oppgave.ytelsetype}
-                                lenker={getLovLenker(oppgave)}
-                            />
+                            <RegelverkOgInnsynReadMore ytelsetype={oppgave.ytelsetype} lenker={getLovLenker(oppgave)} />
                         </Box>
                     </VStack>
                 </GuidePanel>
