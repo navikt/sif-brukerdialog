@@ -3,7 +3,9 @@ import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { LENKEKATALOG, Lovlenke, OPPGAVE_LOVVERK_PARSED } from '../oppgaveLovverk';
+import { RegelverkOgInnsynReadMore } from '../../../components/readmore/RegelverkOgInnsynReadMore';
+import { PanelPreviewWrapper } from '../../../storybook/storyUtils';
+import { getLovLenkerForParsedType, LENKEKATALOG, Lovlenke, OPPGAVE_LOVVERK_PARSED } from '../oppgaveLovverk';
 
 const meta: Meta = {
     title: 'Oppgaver/1. Oversikt/Lovlenker',
@@ -74,7 +76,7 @@ export const Oversikt: Story = {
                     </Heading>
                     <BodyShort>
                         Oversikt over alle lovhenvisninger i <KodeTag>LENKEKATALOG</KodeTag> og hvilke oppgavetyper de
-                        er tilknyttet. Fasit: <code>src/modules/oppgavepaneler/backend.readme.md</code>
+                        er tilknyttet.
                     </BodyShort>
                 </VStack>
                 <Box background="neutral-softA" borderRadius="16" padding="space-16">
@@ -132,6 +134,66 @@ export const Oversikt: Story = {
                         ))}
                     </List>
                 </Box>
+
+                <VStack gap="space-8">
+                    <Heading level="2" size="small">
+                        ReadMore-forhåndsvisning
+                    </Heading>
+                    <BodyShort size="small">Hvordan lovlenker vises i oppgavepanelet per ytelse.</BodyShort>
+                </VStack>
+
+                {([OppgaveYtelsetype.UNGDOMSYTELSE, OppgaveYtelsetype.AKTIVITETSPENGER] as const).map((ytelsetype) => {
+                    const rader = (
+                        Object.entries(OPPGAVE_LOVVERK_PARSED) as [
+                            ParsedOppgavetype,
+                            Partial<Record<OppgaveYtelsetype, Lovlenke[]>>,
+                        ][]
+                    ).filter(([, ytelsemap]) => ytelsetype in ytelsemap);
+
+                    return (
+                        <VStack key={ytelsetype} gap="space-8">
+                            <Heading level="3" size="xsmall">
+                                <KodeTag>{ytelsetype}</KodeTag>
+                            </Heading>
+                            <Box background="neutral-softA" borderRadius="16" padding="space-16">
+                                <Table zebraStripes>
+                                    <Table.Header>
+                                        <Table.Row>
+                                            <Table.HeaderCell>ParsedOppgavetype</Table.HeaderCell>
+                                            <Table.HeaderCell>ReadMore</Table.HeaderCell>
+                                        </Table.Row>
+                                    </Table.Header>
+                                    <Table.Body>
+                                        {rader.map(([parsedOppgavetype]) => (
+                                            <Table.Row key={parsedOppgavetype}>
+                                                <Table.DataCell>
+                                                    <KodeTag>{parsedOppgavetype}</KodeTag>
+                                                </Table.DataCell>
+                                                <Table.DataCell>
+                                                    {getLovLenkerForParsedType({ parsedOppgavetype, ytelsetype }).length > 0 ? (
+                                                        <PanelPreviewWrapper>
+                                                            <RegelverkOgInnsynReadMore
+                                                                lenker={getLovLenkerForParsedType({
+                                                                    parsedOppgavetype,
+                                                                    ytelsetype,
+                                                                })}
+                                                                ytelsetype={ytelsetype}
+                                                            />
+                                                        </PanelPreviewWrapper>
+                                                    ) : (
+                                                        <BodyShort size="small" style={{ color: 'var(--a-text-subtle)', fontStyle: 'italic' }}>
+                                                            Ingen lovreferanse ennå
+                                                        </BodyShort>
+                                                    )}
+                                                </Table.DataCell>
+                                            </Table.Row>
+                                        ))}
+                                    </Table.Body>
+                                </Table>
+                            </Box>
+                        </VStack>
+                    );
+                })}
             </VStack>
         );
     },
