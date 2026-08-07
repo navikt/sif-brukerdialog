@@ -116,7 +116,7 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                             {erEndringAvSluttdato === true && handlinger.kanSletteSluttdato.tillatt && (
                                 <ReadMore header="Mer om sluttdato og maksdato">
                                     <BodyLong>
-                                        Hvis sluttdatoen er satt ved en feil, og maksdato skal være gjeldene, kan du
+                                        Hvis sluttdatoen er satt ved en feil, og maksdato skal være gjeldende, kan du
                                         slette sluttdatoen under &quot;Vis unntakshendelser&quot;. Da vil
                                         ungdomsprogramytelsen igjen opphøre på maksdato.
                                     </BodyLong>

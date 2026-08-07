@@ -239,7 +239,7 @@ describe('deltakelseUtils', () => {
     });
 
     describe('getDeltakelseHandlinger', () => {
-        it('A1: Ny deltaker, startdato endrbar', () => {
+        it('A1: Ny deltaker, startdato endrebar', () => {
             const deltakelse = lagDeltakelse({ fraOgMed: ISODateToDate('2026-03-01') });
             const h = getDeltakelseHandlinger(deltakelse, TODAY);
             expect(h.kanEndreStartdato.tillatt).toBe(true);
@@ -256,7 +256,7 @@ describe('deltakelseUtils', () => {
             expect(h.kanSletteDeltakelse.tillatt).toBe(true);
         });
 
-        it('B1: Aktiv deltaker, startdato endrbar', () => {
+        it('B1: Aktiv deltaker, startdato endrebar', () => {
             const deltakelse = lagDeltakelse({ fraOgMed: ISODateToDate('2026-03-01'), søktTidspunkt: new Date() });
             const h = getDeltakelseHandlinger(deltakelse, TODAY);
             expect(h.kanEndreStartdato.tillatt).toBe(true);
@@ -289,7 +289,7 @@ describe('deltakelseUtils', () => {
             expect(h.kanForlengePeriode.tillatt).toBe(false);
         });
 
-        it('C1: Utmeldt, startdato endrebar', () => {
+        it('C1: Utmeldt, startdato ikke endrebar', () => {
             const deltakelse = lagDeltakelse({
                 fraOgMed: ISODateToDate('2026-03-01'),
                 søktTidspunkt: new Date(),
