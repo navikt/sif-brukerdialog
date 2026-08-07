@@ -334,9 +334,6 @@ importers:
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/sif-app-register
-      '@navikt/sif-common-core-ds':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-core-ds
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../../packages/sif-common-env
@@ -349,9 +346,6 @@ importers:
       '@navikt/sif-common-sentry':
         specifier: workspace:*
         version: link:../../packages/sif-common-sentry
-      '@navikt/sif-validation':
-        specifier: workspace:*
-        version: link:../../packages/sif-validation
       '@navikt/ung-brukerdialog-api':
         specifier: workspace:*
         version: link:../../packages/ung-brukerdialog-api
@@ -5890,9 +5884,6 @@ importers:
       '@navikt/k9-brukerdialog-prosessering-api':
         specifier: workspace:*
         version: link:../k9-brukerdialog-prosessering-api
-      '@navikt/sif-common-core-ds':
-        specifier: workspace:*
-        version: link:../sif-common-core-ds
       '@navikt/sif-common-hooks':
         specifier: workspace:*
         version: link:../sif-common-hooks
@@ -5914,12 +5905,18 @@ importers:
       '@sif/rhf':
         specifier: workspace:*
         version: link:../sif-rhf
+      '@sif/soknad-ui':
+        specifier: workspace:*
+        version: link:../sif-soknad-ui
       '@sif/utils':
         specifier: workspace:*
         version: link:../sif-utils
       '@tanstack/react-query':
         specifier: 5.101.4
         version: 5.101.4(react@19.2.8)
+      dompurify:
+        specifier: 3.4.12
+        version: 3.4.12
       react-hook-form:
         specifier: 7.84.0
         version: 7.84.0(react@19.2.8)

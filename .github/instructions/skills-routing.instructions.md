@@ -78,6 +78,11 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
     - Formatteringshjelpere: `dateFormatter`, `dateRangeFormatter`, `dateTimeFormat`, `formatDate`, `formatDateTime`, `formatDateRange`.
     - Tidssone: `tidssone`, `sommertid`, `vintertid`, `UTC`, `norsk tid`.
     - Kontekst: dato/tid fra backend, API, DTO eller respons, dato fra API-svar.
+- `ung-innsyn-oppgaver`:
+    - Ny oppgavetype: `ny oppgavetype`, `OppgaveType`, `ParsedOppgavetype`, `parseOppgaver`, `legg til oppgave`.
+    - Lovhenvisninger: `oppgaveLovverk`, `getLovLenker`, `OPPGAVE_LOVVERK`, `LENKEKATALOG`, `RegelverkOgInnsynReadMore`, `lovverk for oppgave`.
+    - Storybook/preview: `oppgavepanel story`, `.preview.tsx`, `OppgavetypeMappingUPY`, `OppgavetypeMappingAKT`, `panelpreview`, `renderXxxAlleStater`.
+    - Panelkomponenter: `OppgavePanel`, `Oppgavebekreftelse`, `oppgavepaneler`, `ung-innsyn oppgave`.
 
 ## Prioritering ved overlapp
 
@@ -97,3 +102,4 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
 - Hvis oppgaven handler om Skyra (`skyra-survey`, slug/reload/testside), prioriter `sif-surveys`.
 - Hvis oppgaven handler om å endre eller utvide selve rammeverk-pakken (`packages/sif-soknad-app`), prioriter `sif-soknad-app` over `sif-soknad-setup`/`sif-soknad-add-step`.
 - Hvis oppgaven handler om dato/tid, parsing, formattering, tidssone eller Day.js, prioriter `sif-date-handling`.
+- Hvis oppgaven handler om oppgavetyper i ung-innsyn (ny oppgavetype, lovhenvisninger, panelkomponent, preview eller Storybook-oversikt for oppgaver), prioriter `ung-innsyn-oppgaver`.

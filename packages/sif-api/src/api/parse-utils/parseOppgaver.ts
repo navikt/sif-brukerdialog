@@ -255,10 +255,7 @@ const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
     }
 };
 
-export const parseOppgaverElement = (
-    oppgaveYtelsetype: OppgaveYtelsetype,
-    oppgaver: BrukerdialogOppgaveDto[],
-): Oppgave[] => {
+export const parseOppgaver = (oppgaveYtelsetype: OppgaveYtelsetype, oppgaver: BrukerdialogOppgaveDto[]): Oppgave[] => {
     const parsedOppgaver: Oppgave[] = [];
     oppgaver.forEach((oppgave) => {
         switch (oppgave.oppgavetype) {

@@ -8,14 +8,14 @@ import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { RapporterInntektOppgavePanel } from './RapporterInntektOppgavePanel';
 import {
     lagRapporterInntektOppgaveMedScenario,
-    mockRapporterInntektBesvartUPY,
-    mockRapporterInntektUPY,
+    mockRapporterInntektAKT,
+    mockRapporterInntektBesvartAKT,
     RAPPORTER_INNTEKT_SCENARIO_OPTIONS,
     RapporterInntektScenario,
 } from './RapporterInntektOppgavePanel.mockData';
 
 const meta: Meta = {
-    title: 'Oppgaver/Ungdomsprogramytelsen/Rapporter inntekt',
+    title: 'Oppgaver/Aktivitetspenger/Rapporter inntekt',
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
 export default meta;
@@ -38,7 +38,7 @@ export const Forsidevisning: Story = {
                 <Heading level="2" size="medium">
                     Uløst oppgave
                 </Heading>
-                <OppgaverList oppgaver={[mockRapporterInntektUPY]} />
+                <OppgaverList oppgaver={[mockRapporterInntektAKT]} />
             </VStack>
             <VStack gap="space-16">
                 <Heading level="2" size="medium">
@@ -48,9 +48,9 @@ export const Forsidevisning: Story = {
                     visBeskrivelse={false}
                     oppgaveStatusTagVariant="text"
                     oppgaver={[
-                        { ...mockRapporterInntektUPY, status: OppgaveStatus.AVBRUTT },
-                        { ...mockRapporterInntektUPY, status: OppgaveStatus.UTLØPT },
-                        { ...mockRapporterInntektUPY, status: OppgaveStatus.LØST },
+                        { ...mockRapporterInntektAKT, status: OppgaveStatus.AVBRUTT },
+                        { ...mockRapporterInntektAKT, status: OppgaveStatus.UTLØPT },
+                        { ...mockRapporterInntektAKT, status: OppgaveStatus.LØST },
                     ]}
                 />
             </VStack>
@@ -65,7 +65,7 @@ export const Ubesvart: Story = {
     parameters: { controls: { include: ['scenario'] } },
     render: ({ scenario }) => (
         <RapporterInntektOppgavePanel
-            oppgave={lagRapporterInntektOppgaveMedScenario(mockRapporterInntektUPY, scenario)}
+            oppgave={lagRapporterInntektOppgaveMedScenario(mockRapporterInntektAKT, scenario)}
             navn="SNODIG VAFFEL"
         />
     ),
@@ -84,7 +84,7 @@ export const Kvittering: Story = {
     parameters: { controls: { include: ['scenario', 'kvitteringVariant'] } },
     render: ({ scenario, kvitteringVariant }) => (
         <RapporterInntektOppgavePanel
-            oppgave={lagRapporterInntektOppgaveMedScenario(mockRapporterInntektUPY, scenario)}
+            oppgave={lagRapporterInntektOppgaveMedScenario(mockRapporterInntektAKT, scenario)}
             navn="SNODIG VAFFEL"
             initialKvitteringData={{ harHattInntektOver0: kvitteringVariant === 'Har hatt inntekt' }}
         />
@@ -98,7 +98,7 @@ export const Besvart: Story = {
     parameters: { controls: { include: ['scenario'] } },
     render: ({ scenario }) => (
         <RapporterInntektOppgavePanel
-            oppgave={lagRapporterInntektOppgaveMedScenario(mockRapporterInntektBesvartUPY, scenario)}
+            oppgave={lagRapporterInntektOppgaveMedScenario(mockRapporterInntektBesvartAKT, scenario)}
             navn="SNODIG VAFFEL"
         />
     ),
@@ -109,7 +109,7 @@ export const Utløpt: Story = {
     parameters: { controls: { disable: true } },
     render: () => (
         <RapporterInntektOppgavePanel
-            oppgave={{ ...mockRapporterInntektUPY, status: OppgaveStatus.UTLØPT, løstDato: new Date() }}
+            oppgave={{ ...mockRapporterInntektAKT, status: OppgaveStatus.UTLØPT, løstDato: new Date() }}
             navn="SNODIG VAFFEL"
         />
     ),
@@ -120,7 +120,7 @@ export const Avbrutt: Story = {
     parameters: { controls: { disable: true } },
     render: () => (
         <RapporterInntektOppgavePanel
-            oppgave={{ ...mockRapporterInntektUPY, status: OppgaveStatus.AVBRUTT, løstDato: new Date() }}
+            oppgave={{ ...mockRapporterInntektAKT, status: OppgaveStatus.AVBRUTT, løstDato: new Date() }}
             navn="SNODIG VAFFEL"
         />
     ),

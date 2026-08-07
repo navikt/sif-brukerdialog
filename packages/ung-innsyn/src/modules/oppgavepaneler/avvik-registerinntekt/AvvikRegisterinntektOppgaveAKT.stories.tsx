@@ -10,12 +10,12 @@ import {
     AVVIK_SCENARIO_OPTIONS,
     AvvikScenario,
     lagOppgaveMedScenario,
-    mockAvvikRegisterinntektBesvartUPY,
-    mockAvvikRegisterinntektUPY,
+    mockAvvikRegisterinntektAKT,
+    mockAvvikRegisterinntektBesvartAKT,
 } from './AvvikRegisterinntektOppgavePanel.mockData';
 
 const meta: Meta = {
-    title: 'Oppgaver/Ungdomsprogramytelsen/Avvik registerinntekt',
+    title: 'Oppgaver/Aktivitetspenger/Avvik registerinntekt',
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
 export default meta;
@@ -37,7 +37,7 @@ export const Forsidevisning: Story = {
                 <Heading level="2" size="medium">
                     Uløst oppgave
                 </Heading>
-                <OppgaverList oppgaver={[mockAvvikRegisterinntektUPY]} />
+                <OppgaverList oppgaver={[mockAvvikRegisterinntektAKT]} />
             </VStack>
             <VStack gap="space-16">
                 <Heading level="2" size="medium">
@@ -47,9 +47,9 @@ export const Forsidevisning: Story = {
                     visBeskrivelse={false}
                     oppgaveStatusTagVariant="text"
                     oppgaver={[
-                        { ...mockAvvikRegisterinntektUPY, status: OppgaveStatus.AVBRUTT },
-                        { ...mockAvvikRegisterinntektUPY, status: OppgaveStatus.UTLØPT },
-                        { ...mockAvvikRegisterinntektUPY, status: OppgaveStatus.LØST },
+                        { ...mockAvvikRegisterinntektAKT, status: OppgaveStatus.AVBRUTT },
+                        { ...mockAvvikRegisterinntektAKT, status: OppgaveStatus.UTLØPT },
+                        { ...mockAvvikRegisterinntektAKT, status: OppgaveStatus.LØST },
                     ]}
                 />
             </VStack>
@@ -64,7 +64,7 @@ export const Ubesvart: Story = {
     parameters: { controls: { include: ['scenario'] } },
     render: ({ scenario }) => (
         <AvvikRegisterinntektOppgavePanel
-            oppgave={lagOppgaveMedScenario(mockAvvikRegisterinntektUPY, scenario)}
+            oppgave={lagOppgaveMedScenario(mockAvvikRegisterinntektAKT, scenario)}
             navn="SNODIG VAFFEL"
         />
     ),
@@ -77,7 +77,7 @@ export const Kvittering: Story = {
     parameters: { controls: { include: ['scenario'] } },
     render: ({ scenario }) => (
         <AvvikRegisterinntektOppgavePanel
-            oppgave={lagOppgaveMedScenario(mockAvvikRegisterinntektUPY, scenario)}
+            oppgave={lagOppgaveMedScenario(mockAvvikRegisterinntektAKT, scenario)}
             navn="SNODIG VAFFEL"
             initialVisKvittering={true}
         />
@@ -95,7 +95,7 @@ export const Besvart: Story = {
     render: ({ scenario, variant }) => (
         <AvvikRegisterinntektOppgavePanel
             oppgave={{
-                ...lagOppgaveMedScenario(mockAvvikRegisterinntektBesvartUPY, scenario),
+                ...lagOppgaveMedScenario(mockAvvikRegisterinntektBesvartAKT, scenario),
                 respons:
                     variant === 'Med tilbakemelding'
                         ? {
@@ -115,7 +115,7 @@ export const Utløpt: Story = {
     parameters: { controls: { disable: true } },
     render: () => (
         <AvvikRegisterinntektOppgavePanel
-            oppgave={{ ...mockAvvikRegisterinntektUPY, status: OppgaveStatus.UTLØPT, løstDato: new Date() }}
+            oppgave={{ ...mockAvvikRegisterinntektAKT, status: OppgaveStatus.UTLØPT, løstDato: new Date() }}
             navn="SNODIG VAFFEL"
         />
     ),
@@ -126,7 +126,7 @@ export const Avbrutt: Story = {
     parameters: { controls: { disable: true } },
     render: () => (
         <AvvikRegisterinntektOppgavePanel
-            oppgave={{ ...mockAvvikRegisterinntektUPY, status: OppgaveStatus.AVBRUTT, løstDato: new Date() }}
+            oppgave={{ ...mockAvvikRegisterinntektAKT, status: OppgaveStatus.AVBRUTT, løstDato: new Date() }}
             navn="SNODIG VAFFEL"
         />
     ),
