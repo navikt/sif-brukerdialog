@@ -45,6 +45,11 @@ export const mockAvvikRegisterinntektOppgave: AvvikRegisterinntektOppgave = {
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
     frist: dateToISODate(dayjs().add(14, 'days')),
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
+};
+
+export const mockAvvikRegisterinntektOppgaveAKT: AvvikRegisterinntektOppgave = {
+    ...mockAvvikRegisterinntektOppgave,
     ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 };
 
@@ -56,12 +61,13 @@ const besvartOppgave: AvvikRegisterinntektOppgave = {
 };
 
 const medInntekt = (
+    base: AvvikRegisterinntektOppgave,
     arbeid: ArbeidOgFrilansRegisterInntektDto[] = [],
     ytelse: YtelseRegisterInntektDto[] = [],
 ): AvvikRegisterinntektOppgave => ({
-    ...mockAvvikRegisterinntektOppgave,
+    ...base,
     oppgavetypeData: {
-        ...mockAvvikRegisterinntektOppgave.oppgavetypeData,
+        ...base.oppgavetypeData,
         registerinntekt: {
             arbeidOgFrilansInntekter: arbeid,
             ytelseInntekter: ytelse,
@@ -72,25 +78,31 @@ const medInntekt = (
     },
 });
 
-export const renderAvvikRegisterinntektAlleStater = () => (
-    <VStack gap="space-24">
-        <StoryBox title="Forside — uløst">
-            <OppgaverList oppgaver={[mockAvvikRegisterinntektOppgave]} />
-        </StoryBox>
-        <StoryBox title="Ubesvart — én arbeidsgiver">
-            <AvvikRegisterinntektOppgavePanel oppgave={medInntekt([inntektArbeidsgiver1])} navn="SNODIG VAFFEL" />
-        </StoryBox>
-        <StoryBox title="Ubesvart — arbeidsgiver og Nav-ytelse">
-            <AvvikRegisterinntektOppgavePanel oppgave={medInntekt([inntektArbeidsgiver1], [inntektYtelse1])} navn="SNODIG VAFFEL" />
-        </StoryBox>
-        <StoryBox title="Kvittering">
-            <AvvikRegisterinntektOppgavePanel oppgave={mockAvvikRegisterinntektOppgave} navn="SNODIG VAFFEL" initialVisKvittering={true} />
-        </StoryBox>
-        <StoryBox title="Besvart oppgave">
-            <AvvikRegisterinntektOppgavePanel oppgave={besvartOppgave} navn="SNODIG VAFFEL" />
-        </StoryBox>
-        <StoryBox title="Forside — løst oppgave">
-            <OppgaverList visBeskrivelse={false} oppgaveStatusTagVariant="text" oppgaver={[{ ...mockAvvikRegisterinntektOppgave, status: OppgaveStatus.LØST }]} />
-        </StoryBox>
-    </VStack>
-);
+const renderAlleStater = (oppgave: AvvikRegisterinntektOppgave) => {
+    const besvart = { ...besvartOppgave, ytelsetype: oppgave.ytelsetype };
+    return (
+        <VStack gap="space-24">
+            <StoryBox title="Forside — uløst">
+                <OppgaverList oppgaver={[oppgave]} />
+            </StoryBox>
+            <StoryBox title="Ubesvart — én arbeidsgiver">
+                <AvvikRegisterinntektOppgavePanel oppgave={medInntekt(oppgave, [inntektArbeidsgiver1])} navn="SNODIG VAFFEL" />
+            </StoryBox>
+            <StoryBox title="Ubesvart — arbeidsgiver og Nav-ytelse">
+                <AvvikRegisterinntektOppgavePanel oppgave={medInntekt(oppgave, [inntektArbeidsgiver1], [inntektYtelse1])} navn="SNODIG VAFFEL" />
+            </StoryBox>
+            <StoryBox title="Kvittering">
+                <AvvikRegisterinntektOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" initialVisKvittering={true} />
+            </StoryBox>
+            <StoryBox title="Besvart oppgave">
+                <AvvikRegisterinntektOppgavePanel oppgave={besvart} navn="SNODIG VAFFEL" />
+            </StoryBox>
+            <StoryBox title="Forside — løst oppgave">
+                <OppgaverList visBeskrivelse={false} oppgaveStatusTagVariant="text" oppgaver={[{ ...oppgave, status: OppgaveStatus.LØST }]} />
+            </StoryBox>
+        </VStack>
+    );
+};
+
+export const renderAvvikRegisterinntektAlleStater = () => renderAlleStater(mockAvvikRegisterinntektOppgave);
+export const renderAvvikRegisterinntektAKTAlleStater = () => renderAlleStater(mockAvvikRegisterinntektOppgaveAKT);

@@ -17,37 +17,47 @@ export const mockRapporterInntektOppgave: RapporterInntektOppgave = {
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs('2025-06-01').toDate(),
     frist: dateToISODate(dayjs('2025-06-06').startOf('day')),
+    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
+};
+
+export const mockRapporterInntektOppgaveAKT: RapporterInntektOppgave = {
+    ...mockRapporterInntektOppgave,
+    oppgaveYtelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
     ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 };
 
-const besvartOppgave: RapporterInntektOppgave = {
-    ...mockRapporterInntektOppgave,
-    respons: {
-        type: 'RAPPORTERT_INNTEKT',
-        fraOgMed: '2025-05-01' as ISODate,
-        tilOgMed: '2025-05-31' as ISODate,
-        arbeidstakerOgFrilansInntekt: 10000,
-    },
-    status: OppgaveStatus.LØST,
-    løstDato: dayjs().subtract(1, 'days').toDate(),
+const renderAlleStater = (oppgave: RapporterInntektOppgave) => {
+    const besvart: RapporterInntektOppgave = {
+        ...oppgave,
+        respons: {
+            type: 'RAPPORTERT_INNTEKT',
+            fraOgMed: '2025-05-01' as ISODate,
+            tilOgMed: '2025-05-31' as ISODate,
+            arbeidstakerOgFrilansInntekt: 10000,
+        },
+        status: OppgaveStatus.LØST,
+        løstDato: dayjs().subtract(1, 'days').toDate(),
+    };
+    return (
+        <VStack gap="space-24">
+            <StoryBox title="Forside — uløst">
+                <OppgaverList oppgaver={[oppgave]} />
+            </StoryBox>
+            <StoryBox title="Ubesvart oppgave">
+                <RapporterInntektOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" />
+            </StoryBox>
+            <StoryBox title="Kvittering — har inntekt">
+                <RapporterInntektOppgavePanel oppgave={besvart} navn="SNODIG VAFFEL" initialKvitteringData={{ harHattInntektOver0: true }} />
+            </StoryBox>
+            <StoryBox title="Besvart oppgave">
+                <RapporterInntektOppgavePanel oppgave={besvart} navn="SNODIG VAFFEL" />
+            </StoryBox>
+            <StoryBox title="Forside — løst oppgave">
+                <OppgaverList visBeskrivelse={false} oppgaveStatusTagVariant="text" oppgaver={[{ ...oppgave, status: OppgaveStatus.LØST }]} />
+            </StoryBox>
+        </VStack>
+    );
 };
 
-export const renderRapporterInntektAlleStater = () => (
-    <VStack gap="space-24">
-        <StoryBox title="Forside — uløst">
-            <OppgaverList oppgaver={[mockRapporterInntektOppgave]} />
-        </StoryBox>
-        <StoryBox title="Ubesvart oppgave">
-            <RapporterInntektOppgavePanel oppgave={mockRapporterInntektOppgave} navn="SNODIG VAFFEL" />
-        </StoryBox>
-        <StoryBox title="Kvittering — har inntekt">
-            <RapporterInntektOppgavePanel oppgave={besvartOppgave} navn="SNODIG VAFFEL" initialKvitteringData={{ harHattInntektOver0: true }} />
-        </StoryBox>
-        <StoryBox title="Besvart oppgave">
-            <RapporterInntektOppgavePanel oppgave={besvartOppgave} navn="SNODIG VAFFEL" />
-        </StoryBox>
-        <StoryBox title="Forside — løst oppgave">
-            <OppgaverList visBeskrivelse={false} oppgaveStatusTagVariant="text" oppgaver={[{ ...mockRapporterInntektOppgave, status: OppgaveStatus.LØST }]} />
-        </StoryBox>
-    </VStack>
-);
+export const renderRapporterInntektAlleStater = () => renderAlleStater(mockRapporterInntektOppgave);
+export const renderRapporterInntektAKTAlleStater = () => renderAlleStater(mockRapporterInntektOppgaveAKT);

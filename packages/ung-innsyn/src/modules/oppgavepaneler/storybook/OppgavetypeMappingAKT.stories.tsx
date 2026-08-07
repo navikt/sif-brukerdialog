@@ -5,10 +5,10 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Lovlenke, OPPGAVE_LOVVERK } from '../oppgaveLovverk';
 import { PanelPreviewWrapper } from '../../../storybook/storyUtils';
-import { renderAvvikRegisterinntektAlleStater } from '../avvik-registerinntekt/AvvikRegisterinntektOppgavePanel.preview';
+import { renderAvvikRegisterinntektAKTAlleStater } from '../avvik-registerinntekt/AvvikRegisterinntektOppgavePanel.preview';
 import { renderBostedVilkårAlleStater } from '../bostedsvilkar/BostedVilkarOppgavePanel.preview';
 import { renderBostedVilkårOpphørAlleStater } from '../bostedsvilkar-opphor/BostedVilkarOpphørOppgavePanel.preview';
-import { renderRapporterInntektAlleStater } from '../rapporter-inntekt/RapporterInntektOppgavePanel.preview';
+import { renderRapporterInntektAKTAlleStater } from '../rapporter-inntekt/RapporterInntektOppgavePanel.preview';
 
 const meta: Meta = {
     title: 'Oppgaver/1. Oversikt/Aktivitetspenger',
@@ -31,7 +31,7 @@ const rader: Rad[] = [
     {
         parsedType: ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
         kilder: [{ backendType: OppgaveType.BEKREFT_AVVIK_REGISTERINNTEKT }],
-        preview: <PanelPreviewWrapper>{renderAvvikRegisterinntektAlleStater()}</PanelPreviewWrapper>,
+        preview: <PanelPreviewWrapper>{renderAvvikRegisterinntektAKTAlleStater()}</PanelPreviewWrapper>,
     },
     {
         parsedType: ParsedOppgavetype.BEKREFT_BOSTED,
@@ -46,7 +46,7 @@ const rader: Rad[] = [
     {
         parsedType: ParsedOppgavetype.RAPPORTER_INNTEKT,
         kilder: [{ backendType: OppgaveType.RAPPORTER_INNTEKT }],
-        preview: <PanelPreviewWrapper>{renderRapporterInntektAlleStater()}</PanelPreviewWrapper>,
+        preview: <PanelPreviewWrapper>{renderRapporterInntektAKTAlleStater()}</PanelPreviewWrapper>,
     },
 ];
 
