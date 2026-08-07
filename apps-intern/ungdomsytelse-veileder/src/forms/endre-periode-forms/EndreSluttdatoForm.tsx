@@ -8,7 +8,7 @@ import {
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
-import { dateToISODate } from '@navikt/sif-common-utils';
+import { dateFormatter, dateToISODate } from '@navikt/sif-common-utils';
 import { getCheckedValidator, getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import { usePeriodeForDeltakelse } from '../../hooks/usePeriodeForDeltakelse';
@@ -19,6 +19,8 @@ import { Utmeldingsårsak, UtmeldingsårsakerList } from '../../types/Utmeldings
 import { AppHendelse } from '../../utils/analytics';
 import { useAppEventLogger } from '../../utils/analyticsHelper';
 import { getPeriodeDatoValidator } from '../../utils/getPeriodeDatoValidator';
+import dayjs from 'dayjs';
+import { getDeltakelseHandlinger } from '../../utils/deltakelseUtils';
 
 enum FieldNames {
     sluttdato = 'sluttdato',
@@ -51,6 +53,7 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
     const { log } = useAppEventLogger();
 
     const erEndringAvSluttdato = deltakelse.tilOgMed !== undefined;
+    const handlinger = getDeltakelseHandlinger(deltakelse);
 
     const { mutate, isPending, error } = usePeriodeForDeltakelse({
         variant: erEndringAvSluttdato ? EndrePeriodeVariant.endreSluttdato : EndrePeriodeVariant.meldUtDeltaker,
@@ -80,9 +83,10 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
 
     const sluttdatoMinMax = {
         from: deltakelse.fraOgMed,
-        to: deltakelse.periodeMaksDato,
+        to: dayjs(deltakelse.periodeMaksDato).subtract(1, 'day').toDate(), // Skal ikke kunne sette sluttdato til å være lik eller etter maksdato
     };
 
+    const maksdatoTekst = dateFormatter.dayCompactDate(deltakelse.periodeMaksDato);
     return (
         <FormikWrapper
             initialValues={{
@@ -93,18 +97,32 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                 const { erVedtaksbrevSendt } = values;
                 return (
                     <VStack gap="space-24">
-                        {erEndringAvSluttdato === false && (
-                            <ReadMore header="Vis mer om å registrere sluttdato for utmeldt deltaker">
-                                <BodyLong spacing>
-                                    Når du setter en sluttdato blir denne brukt til å opphøre ungdomsprogramytelsen.
-                                    Deretter kan ikke deltakeren gis en ny periode.
-                                </BodyLong>
-                                <BodyLong>
-                                    Du skal ikke registrere sluttdato når det har gått 260 dager (ett år), dette skjer
-                                    automatisk.
-                                </BodyLong>
-                            </ReadMore>
-                        )}
+                        <VStack gap="space-16">
+                            <BodyLong>
+                                Maksdato for deltakerperioden er <strong>{maksdatoTekst}</strong>.
+                            </BodyLong>
+                            <BodyLong>
+                                Du skal ikke registrere sluttdato hvis deltakelsen avsluttes på maksdatoen - dette går
+                                automatisk.
+                            </BodyLong>
+                            {erEndringAvSluttdato === false && (
+                                <ReadMore header="Mer om sluttdato og maksdato">
+                                    <BodyLong>
+                                        Når du setter en sluttdato før maksdato blir denne brukt til å opphøre
+                                        ungdomsprogramytelsen. Deretter kan ikke deltakeren gis en ny periode.
+                                    </BodyLong>
+                                </ReadMore>
+                            )}
+                            {erEndringAvSluttdato === true && handlinger.kanSletteSluttdato.tillatt && (
+                                <ReadMore header="Mer om sluttdato og maksdato">
+                                    <BodyLong>
+                                        Hvis sluttdatoen er satt ved en feil, og maksdato skal være gjeldene, kan du
+                                        slette sluttdatoen under &quot;Vis unntakshendelser&quot;. Da vil
+                                        ungdomsprogramytelsen igjen opphøre på maksdato.
+                                    </BodyLong>
+                                </ReadMore>
+                            )}
+                        </VStack>
                         <Form
                             formErrorHandler={getIntlFormErrorHandler(intl, 'endrePeriodeForm')}
                             submitPending={isPending}

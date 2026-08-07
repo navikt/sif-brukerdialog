@@ -30,7 +30,7 @@ const SluttdatoPanel = ({ deltakelse, handlinger, onClickEndreSluttdato, onClick
         return (
             <PeriodeInfoPanel>
                 <BodyLong>
-                    Når deltaker er meldt ut av ungdomsprogrammet før alle dagene i programmet er brukt opp, må
+                    Hvis deltaker er meldt ut av ungdomsprogrammet før alle dagene i programmet er brukt opp, må
                     sluttdatoen registreres her.
                 </BodyLong>
                 <Box paddingBlock="space-8 space-0">
