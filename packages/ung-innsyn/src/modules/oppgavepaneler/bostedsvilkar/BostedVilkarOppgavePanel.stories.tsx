@@ -6,7 +6,14 @@ import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { BostedVilkårOppgavePanel } from './BostedVilkarOppgavePanel';
-import { mockBostedVilkårAKT, mockBostedVilkårBesvartAKT } from './BostedVilkarOppgavePanel.mockData';
+import {
+    BOSTED_ÅRSAK_SCENARIO_OPTIONS,
+    BostedÅrsakScenario,
+    lagOppgaveMedÅrsak,
+    mockBostedVilkårAKT,
+    mockBostedVilkårBesvartAKT,
+} from './BostedVilkarOppgavePanel.mockData';
+import { BostedsvilkårIkkeOppfyltÅrsak } from '@navikt/ung-brukerdialog-api';
 
 const meta: Meta = {
     title: 'Oppgaver/Aktivitetspenger/Bekreft bosted',
@@ -14,7 +21,13 @@ const meta: Meta = {
 };
 export default meta;
 
-type Story = StoryObj<{ variant?: string }>;
+type Args = { årsak: BostedÅrsakScenario; variant?: string };
+type Story = StoryObj<Args>;
+
+const årsakArgType = {
+    control: 'radio' as const,
+    options: BOSTED_ÅRSAK_SCENARIO_OPTIONS,
+};
 
 export const Forsidevisning: Story = {
     name: 'Forsidevisning',
@@ -47,32 +60,40 @@ export const Forsidevisning: Story = {
 
 export const Ubesvart: Story = {
     name: 'Ubesvart',
-    parameters: { controls: { disable: true } },
-    render: () => <BostedVilkårOppgavePanel oppgave={mockBostedVilkårAKT} navn="SNODIG VAFFEL" />,
+    argTypes: { årsak: årsakArgType },
+    args: { årsak: BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM },
+    parameters: { controls: { include: ['årsak'] } },
+    render: ({ årsak }) => (
+        <BostedVilkårOppgavePanel oppgave={lagOppgaveMedÅrsak(mockBostedVilkårAKT, årsak)} navn="SNODIG VAFFEL" />
+    ),
 };
 
 export const Kvittering: Story = {
     name: 'Kvittering',
-    parameters: { controls: { disable: true } },
-    render: () => (
-        <BostedVilkårOppgavePanel oppgave={mockBostedVilkårAKT} navn="SNODIG VAFFEL" initialVisKvittering={true} />
+    argTypes: { årsak: årsakArgType },
+    args: { årsak: BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM },
+    parameters: { controls: { include: ['årsak'] } },
+    render: ({ årsak }) => (
+        <BostedVilkårOppgavePanel
+            oppgave={lagOppgaveMedÅrsak(mockBostedVilkårAKT, årsak)}
+            navn="SNODIG VAFFEL"
+            initialVisKvittering={true}
+        />
     ),
 };
 
 export const Besvart: Story = {
     name: 'Besvart',
     argTypes: {
-        variant: {
-            control: 'radio',
-            options: ['Uten tilbakemelding', 'Med tilbakemelding'],
-        },
+        årsak: årsakArgType,
+        variant: { control: 'radio', options: ['Uten tilbakemelding', 'Med tilbakemelding'] },
     },
-    args: { variant: 'Uten tilbakemelding' },
-    parameters: { controls: { include: ['variant'] } },
-    render: ({ variant }) => (
+    args: { årsak: BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM, variant: 'Uten tilbakemelding' },
+    parameters: { controls: { include: ['årsak', 'variant'] } },
+    render: ({ årsak, variant }) => (
         <BostedVilkårOppgavePanel
             oppgave={{
-                ...mockBostedVilkårBesvartAKT,
+                ...lagOppgaveMedÅrsak(mockBostedVilkårBesvartAKT, årsak),
                 respons:
                     variant === 'Med tilbakemelding'
                         ? {

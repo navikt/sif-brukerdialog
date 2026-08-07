@@ -8,6 +8,34 @@ import { BostedVilkårOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdial
 import { dateToISODate } from '@sif/utils';
 import dayjs from 'dayjs';
 
+// ─── Årsak-scenariovarianter ─────────────────────────────────────────────────
+
+export type BostedÅrsakScenario = BostedsvilkårIkkeOppfyltÅrsak;
+
+export const BOSTED_ÅRSAK_SCENARIO_OPTIONS: BostedÅrsakScenario[] = [
+    BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
+    BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSTEDSADRESSE_OG_IKKE_FOLKEREGISTRERT_I_TRONDHEIM,
+    BostedsvilkårIkkeOppfyltÅrsak.STUDIE_ELLER_ARBEIDSSTED_UTENFOR_TRONDHEIM,
+    BostedsvilkårIkkeOppfyltÅrsak.ANNET,
+];
+
+export const lagOppgaveMedÅrsak = (
+    base: BostedVilkårOppgave,
+    årsak: BostedÅrsakScenario,
+): BostedVilkårOppgave => ({
+    ...base,
+    oppgavetypeData: {
+        ...base.oppgavetypeData,
+        ikkeOppfyltÅrsak: årsak,
+        ikkeOppfyltÅrsakFritekstbeskrivelse:
+            årsak === BostedsvilkårIkkeOppfyltÅrsak.ANNET
+                ? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+                : undefined,
+    },
+});
+
+// ─── Mocks ───────────────────────────────────────────────────────────────────
+
 export const mockBostedVilkårAKT: BostedVilkårOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
     oppgavetype: OppgaveType.BEKREFT_BOSTED,
