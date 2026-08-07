@@ -1,8 +1,9 @@
-import { Alert, Box, FormSummary, GuidePanel, Heading, VStack } from '@navikt/ds-react';
+import { Alert, Box, FormSummary, Heading, VStack } from '@navikt/ds-react';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { TextareaSvar } from '@navikt/sif-common-ui';
 import { OppgaveResponsDto, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { useEffect, useRef } from 'react';
+import { SifGuidePanel } from '@sif/soknad-ui';
 
 import { ForsideLenkeButton, OppgaveStatusInfo } from '../../components';
 
@@ -89,7 +90,7 @@ const Ubesvart = ({ children }: UbesvartProps) => {
     return (
         <VStack gap="space-32">
             <section aria-label={intl.text('@ungInnsyn.oppgavebekreftelse.oppgavetekst.ariaLabel')}>
-                <GuidePanel>
+                <SifGuidePanel>
                     <VStack gap="space-16">
                         <Heading level="2" size="medium">
                             <UngUiText id="@ungInnsyn.oppgavebekreftelse.ubesvart.tittel" values={{ navn }} />
@@ -99,7 +100,7 @@ const Ubesvart = ({ children }: UbesvartProps) => {
                             <RegelverkOgInnsynReadMore ytelsetype={oppgave.ytelsetype} lenker={getLovLenker(oppgave)} />
                         </Box>
                     </VStack>
-                </GuidePanel>
+                </SifGuidePanel>
             </section>
             <section aria-label={intl.text('@ungInnsyn.oppgavebekreftelse.uttalelseform.ariaLabel')}>
                 <UtalelseForm

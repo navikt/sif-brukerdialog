@@ -39,6 +39,7 @@
         "@sif/api": "workspace:*",
         "@sif/rhf": "workspace:*",
         "@sif/utils": "workspace:*",
+        "@sif/soknad-ui": "workspace:*",
         "@tanstack/react-query": "5.101.4",
         "react-hook-form": "7.84.0",
         "react-intl": "10.1.19",
