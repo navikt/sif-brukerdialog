@@ -1,115 +1,55 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import {
-    ArbeidOgFrilansRegisterInntektDto,
-    OppgaveStatus,
-    OppgaveType,
-    OppgaveYtelsetype,
-    RegisterinntektDto,
-    YtelseRegisterInntektDto,
-    YtelseType,
-} from '@navikt/ung-brukerdialog-api';
-import { AvvikRegisterinntektOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { dateToISODate, ISODate } from '@sif/utils';
-import dayjs from 'dayjs';
 
 import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { AvvikRegisterinntektOppgavePanel } from './AvvikRegisterinntektOppgavePanel';
+import {
+    AVVIK_SCENARIO_OPTIONS,
+    AvvikScenario,
+    lagOppgaveMedScenario,
+    mockAvvikRegisterinntektAKT,
+    mockAvvikRegisterinntektBesvartAKT,
+} from './AvvikRegisterinntektOppgavePanel.mockData';
 
 const meta: Meta = {
     title: 'Oppgaver/Aktivitetspenger/Avvik registerinntekt',
-    parameters: {},
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
 export default meta;
 
-type Story = StoryObj;
+type Args = { scenario: AvvikScenario; variant?: string };
+type Story = StoryObj<Args>;
 
-const inntektArbeidsgiver1: ArbeidOgFrilansRegisterInntektDto = {
-    inntekt: 1500,
-    arbeidsgiverIdentifikator: '947064649',
-    arbeidsgiverNavn: 'SJOKKERENDE ELEKTRIKER',
+const scenarioArgType = {
+    control: 'radio' as const,
+    options: AVVIK_SCENARIO_OPTIONS,
 };
 
-const inntektArbeidsgiver2: ArbeidOgFrilansRegisterInntektDto = {
-    inntekt: 500,
-    arbeidsgiverIdentifikator: '247064649',
-    arbeidsgiverNavn: 'SMIDIG MALER',
-};
-
-const inntektYtelse1: YtelseRegisterInntektDto = { inntekt: 3400, ytelsetype: YtelseType.SYKEPENGER };
-
-const registerInntektEnArbeidsgiver: RegisterinntektDto = {
-    arbeidOgFrilansInntekter: [inntektArbeidsgiver1],
-    ytelseInntekter: [],
-    totalInntektArbeidOgFrilans: inntektArbeidsgiver1.inntekt,
-    totalInntektYtelse: 0,
-    totalInntekt: inntektArbeidsgiver1.inntekt,
-};
-
-const oppgave: AvvikRegisterinntektOppgave = {
-    oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: OppgaveType.BEKREFT_AVVIK_REGISTERINNTEKT,
-    parsedOppgavetype: ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
-    oppgavetypeData: {
-        fraOgMed: '2025-05-01' as ISODate,
-        tilOgMed: '2025-05-31' as ISODate,
-        registerinntekt: registerInntektEnArbeidsgiver,
-        gjelderDelerAvMåned: false,
-    },
-    status: OppgaveStatus.ULØST,
-    opprettetDato: dayjs().subtract(1, 'days').toDate(),
-    frist: dateToISODate(dayjs().add(14, 'days').toDate()),
-    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
-};
-
-const getOppgaveMedInntekt = (
-    arbeidOgFrilansInntekter: ArbeidOgFrilansRegisterInntektDto[] = [],
-    ytelseInntekter: YtelseRegisterInntektDto[] = [],
-): AvvikRegisterinntektOppgave => {
-    const totalInntektArbeidOgFrilans = arbeidOgFrilansInntekter.reduce((sum, curr) => sum + curr.inntekt, 0);
-    const totalInntektYtelse = ytelseInntekter.reduce((sum, curr) => sum + curr.inntekt, 0);
-    return {
-        ...oppgave,
-        oppgavetypeData: {
-            ...(oppgave.oppgavetypeData as any),
-            registerinntekt: {
-                arbeidOgFrilansInntekter,
-                ytelseInntekter,
-                totalInntektArbeidOgFrilans,
-                totalInntektYtelse,
-                totalInntekt: totalInntektArbeidOgFrilans + totalInntektYtelse,
-            },
-        },
-    };
-};
-
-const besvartOppgave: AvvikRegisterinntektOppgave = {
-    ...oppgave,
-    respons: { type: 'VARSEL_SVAR', harUttalelse: false },
-    status: OppgaveStatus.LØST,
-    løstDato: dayjs().toDate(),
-};
-
-export const OppgavePanel: Story = {
-    name: 'Oppgavevisning på forside',
+export const Forsidevisning: Story = {
+    name: 'Forsidevisning',
+    parameters: { controls: { disable: true } },
     render: () => (
         <VStack gap="space-40">
             <VStack gap="space-16">
-                <Heading level="2" size="medium">Uløst oppgave</Heading>
-                <OppgaverList oppgaver={[oppgave]} />
+                <Heading level="2" size="medium">
+                    Uløst oppgave
+                </Heading>
+                <OppgaverList oppgaver={[mockAvvikRegisterinntektAKT]} />
             </VStack>
             <VStack gap="space-16">
-                <Heading level="2" size="medium">Løste oppgaver</Heading>
+                <Heading level="2" size="medium">
+                    Løste oppgaver
+                </Heading>
                 <OppgaverList
                     visBeskrivelse={false}
                     oppgaveStatusTagVariant="text"
                     oppgaver={[
-                        { ...oppgave, status: OppgaveStatus.AVBRUTT },
-                        { ...oppgave, status: OppgaveStatus.UTLØPT },
-                        { ...oppgave, status: OppgaveStatus.LØST },
+                        { ...mockAvvikRegisterinntektAKT, status: OppgaveStatus.AVBRUTT },
+                        { ...mockAvvikRegisterinntektAKT, status: OppgaveStatus.UTLØPT },
+                        { ...mockAvvikRegisterinntektAKT, status: OppgaveStatus.LØST },
                     ]}
                 />
             </VStack>
@@ -117,64 +57,77 @@ export const OppgavePanel: Story = {
     ),
 };
 
-export const UbesvartOppgaveEnArbeidsgiver: Story = {
-    name: 'Èn arbeidsgiver',
-    render: () => <AvvikRegisterinntektOppgavePanel oppgave={getOppgaveMedInntekt([inntektArbeidsgiver1])} navn="SNODIG VAFFEL" />,
+export const Ubesvart: Story = {
+    name: 'Ubesvart',
+    argTypes: { scenario: scenarioArgType },
+    args: { scenario: 'Én arbeidsgiver' },
+    parameters: { controls: { include: ['scenario'] } },
+    render: ({ scenario }) => (
+        <AvvikRegisterinntektOppgavePanel
+            oppgave={lagOppgaveMedScenario(mockAvvikRegisterinntektAKT, scenario)}
+            navn="SNODIG VAFFEL"
+        />
+    ),
 };
 
-export const UbesvartOppgaveToArbeidsgivere: Story = {
-    name: 'To arbeidsgivere',
-    render: () => <AvvikRegisterinntektOppgavePanel oppgave={getOppgaveMedInntekt([inntektArbeidsgiver1, inntektArbeidsgiver2])} navn="SNODIG VAFFEL" />,
-};
-
-export const UbesvartOppgaveNavYtelse: Story = {
-    name: 'Kun Nav-ytelse',
-    render: () => <AvvikRegisterinntektOppgavePanel oppgave={getOppgaveMedInntekt(undefined, [inntektYtelse1])} navn="SNODIG VAFFEL" />,
-};
-
-export const UbesvartOppgaveKombinasjon: Story = {
-    name: 'Arbeidsgiver og Nav ytelse',
-    render: () => <AvvikRegisterinntektOppgavePanel oppgave={getOppgaveMedInntekt([inntektArbeidsgiver1], [inntektYtelse1])} navn="SNODIG VAFFEL" />,
-};
-
-export const IngenInntekt: Story = {
-    name: 'Ingen inntekt',
-    render: () => <AvvikRegisterinntektOppgavePanel oppgave={getOppgaveMedInntekt([], [])} navn="SNODIG VAFFEL" />,
-};
-
-export const OppgaveKvittering: Story = {
+export const Kvittering: Story = {
     name: 'Kvittering',
-    render: () => <AvvikRegisterinntektOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" initialVisKvittering={true} />,
+    argTypes: { scenario: scenarioArgType },
+    args: { scenario: 'Én arbeidsgiver' },
+    parameters: { controls: { include: ['scenario'] } },
+    render: ({ scenario }) => (
+        <AvvikRegisterinntektOppgavePanel
+            oppgave={lagOppgaveMedScenario(mockAvvikRegisterinntektAKT, scenario)}
+            navn="SNODIG VAFFEL"
+            initialVisKvittering={true}
+        />
+    ),
 };
 
-export const BesvartOppgave: Story = {
-    name: 'Besvart oppgave',
-    render: () => <AvvikRegisterinntektOppgavePanel oppgave={besvartOppgave} navn="SNODIG VAFFEL" />,
-};
-
-export const BesvartOppgaveMedTilbakemelding: Story = {
-    name: 'Besvart oppgave med tilbakemelding',
-    render: () => (
+export const Besvart: Story = {
+    name: 'Besvart',
+    argTypes: {
+        scenario: scenarioArgType,
+        variant: { control: 'radio', options: ['Uten tilbakemelding', 'Med tilbakemelding'] },
+    },
+    args: { scenario: 'Én arbeidsgiver', variant: 'Uten tilbakemelding' },
+    parameters: { controls: { include: ['scenario', 'variant'] } },
+    render: ({ scenario, variant }) => (
         <AvvikRegisterinntektOppgavePanel
             oppgave={{
-                ...besvartOppgave,
-                respons: {
-                    type: 'VARSEL_SVAR',
-                    harUttalelse: true,
-                    uttalelseFraBruker: 'Lore, ipsum dolor sit amet, consectetur adipiscing elit.',
-                },
+                ...lagOppgaveMedScenario(mockAvvikRegisterinntektBesvartAKT, scenario),
+                respons:
+                    variant === 'Med tilbakemelding'
+                        ? {
+                              type: 'VARSEL_SVAR',
+                              harUttalelse: true,
+                              uttalelseFraBruker: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                          }
+                        : { type: 'VARSEL_SVAR', harUttalelse: false },
             }}
             navn="SNODIG VAFFEL"
         />
     ),
 };
 
-export const AvbruttOppgave: Story = {
-    name: 'Avbrutt oppgave',
-    render: () => <AvvikRegisterinntektOppgavePanel oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.AVBRUTT }} navn="SNODIG VAFFEL" />,
+export const Utløpt: Story = {
+    name: 'Utløpt',
+    parameters: { controls: { disable: true } },
+    render: () => (
+        <AvvikRegisterinntektOppgavePanel
+            oppgave={{ ...mockAvvikRegisterinntektAKT, status: OppgaveStatus.UTLØPT, løstDato: new Date() }}
+            navn="SNODIG VAFFEL"
+        />
+    ),
 };
 
-export const UtløptOppgave: Story = {
-    name: 'Utløpt oppgave',
-    render: () => <AvvikRegisterinntektOppgavePanel oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.UTLØPT }} navn="SNODIG VAFFEL" />,
+export const Avbrutt: Story = {
+    name: 'Avbrutt',
+    parameters: { controls: { disable: true } },
+    render: () => (
+        <AvvikRegisterinntektOppgavePanel
+            oppgave={{ ...mockAvvikRegisterinntektAKT, status: OppgaveStatus.AVBRUTT, løstDato: new Date() }}
+            navn="SNODIG VAFFEL"
+        />
+    ),
 };

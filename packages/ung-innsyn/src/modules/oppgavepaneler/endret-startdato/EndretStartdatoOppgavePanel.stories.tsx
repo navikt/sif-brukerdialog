@@ -1,42 +1,31 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
-import { EndretStartdatoOppgave } from '@sif/api/ung-brukerdialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import dayjs from 'dayjs';
 
 import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { EndretStartdatoOppgavePanel } from './EndretStartdatoOppgavePanel';
-import { mockEndretStartdatoOppgave } from './EndretStartdatoOppgavePanel.preview';
+import { mockEndretStartdatoBesvartUPY, mockEndretStartdatoUPY } from './EndretStartdatoOppgavePanel.mockData';
 
 const meta: Meta = {
     title: 'Oppgaver/Ungdomsprogramytelsen/Endret startdato',
-    parameters: {},
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
 export default meta;
 
-type Story = StoryObj;
+type Story = StoryObj<{ variant?: string }>;
 
-const oppgave = mockEndretStartdatoOppgave;
-
-const besvartOppgave: EndretStartdatoOppgave = {
-    ...oppgave,
-    respons: { type: 'VARSEL_SVAR', harUttalelse: false },
-    status: OppgaveStatus.LØST,
-    løstDato: dayjs().toDate(),
-};
-
-export const OppgavePanel: Story = {
-    name: 'Oppgavevisning på forside',
+export const Forsidevisning: Story = {
+    name: 'Forsidevisning',
+    parameters: { controls: { disable: true } },
     render: () => (
         <VStack gap="space-40">
             <VStack gap="space-16">
                 <Heading level="2" size="medium">
                     Uløst oppgave
                 </Heading>
-                <OppgaverList oppgaver={[oppgave]} />
+                <OppgaverList oppgaver={[mockEndretStartdatoUPY]} />
             </VStack>
             <VStack gap="space-16">
                 <Heading level="2" size="medium">
@@ -46,9 +35,9 @@ export const OppgavePanel: Story = {
                     visBeskrivelse={false}
                     oppgaveStatusTagVariant="text"
                     oppgaver={[
-                        { ...oppgave, status: OppgaveStatus.AVBRUTT },
-                        { ...oppgave, status: OppgaveStatus.UTLØPT },
-                        { ...oppgave, status: OppgaveStatus.LØST },
+                        { ...mockEndretStartdatoUPY, status: OppgaveStatus.AVBRUTT },
+                        { ...mockEndretStartdatoUPY, status: OppgaveStatus.UTLØPT },
+                        { ...mockEndretStartdatoUPY, status: OppgaveStatus.LØST },
                     ]}
                 />
             </VStack>
@@ -56,54 +45,70 @@ export const OppgavePanel: Story = {
     ),
 };
 
-export const UbesvartOppgave: Story = {
-    name: 'Ubesvart oppgave',
-    render: () => <EndretStartdatoOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" />,
+export const Ubesvart: Story = {
+    name: 'Ubesvart',
+    parameters: { controls: { disable: true } },
+    render: () => <EndretStartdatoOppgavePanel oppgave={mockEndretStartdatoUPY} navn="SNODIG VAFFEL" />,
 };
 
 export const Kvittering: Story = {
     name: 'Kvittering',
-    render: () => <EndretStartdatoOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" initialVisKvittering={true} />,
-};
-
-export const BesvartOppgave: Story = {
-    name: 'Besvart oppgave',
-    render: () => <EndretStartdatoOppgavePanel oppgave={besvartOppgave} navn="SNODIG VAFFEL" />,
-};
-
-export const BesvartOppgaveMedTilbakemelding: Story = {
-    name: 'Besvart oppgave med tilbakemelding',
+    parameters: { controls: { disable: true } },
     render: () => (
         <EndretStartdatoOppgavePanel
+            oppgave={mockEndretStartdatoUPY}
+            navn="SNODIG VAFFEL"
+            initialVisKvittering={true}
+        />
+    ),
+};
+
+export const Besvart: Story = {
+    name: 'Besvart',
+    argTypes: {
+        variant: {
+            control: 'radio',
+            options: ['Uten tilbakemelding', 'Med tilbakemelding'],
+        },
+    },
+    args: { variant: 'Uten tilbakemelding' },
+    parameters: { controls: { include: ['variant'] } },
+    render: ({ variant }) => (
+        <EndretStartdatoOppgavePanel
             oppgave={{
-                ...besvartOppgave,
-                respons: {
-                    type: 'VARSEL_SVAR',
-                    harUttalelse: true,
-                    uttalelseFraBruker:
-                        'Lore, ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                },
+                ...mockEndretStartdatoBesvartUPY,
+                respons:
+                    variant === 'Med tilbakemelding'
+                        ? {
+                              type: 'VARSEL_SVAR',
+                              harUttalelse: true,
+                              uttalelseFraBruker:
+                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.',
+                          }
+                        : { type: 'VARSEL_SVAR', harUttalelse: false },
             }}
             navn="SNODIG VAFFEL"
         />
     ),
 };
 
-export const AvbruttOppgave: Story = {
-    name: 'Avbrutt oppgave',
+export const Utløpt: Story = {
+    name: 'Utløpt',
+    parameters: { controls: { disable: true } },
     render: () => (
         <EndretStartdatoOppgavePanel
-            oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.AVBRUTT }}
+            oppgave={{ ...mockEndretStartdatoUPY, status: OppgaveStatus.UTLØPT, løstDato: new Date() }}
             navn="SNODIG VAFFEL"
         />
     ),
 };
 
-export const UtløptOppgave: Story = {
-    name: 'Utløpt oppgave',
+export const Avbrutt: Story = {
+    name: 'Avbrutt',
+    parameters: { controls: { disable: true } },
     render: () => (
         <EndretStartdatoOppgavePanel
-            oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.UTLØPT }}
+            oppgave={{ ...mockEndretStartdatoUPY, status: OppgaveStatus.AVBRUTT, løstDato: new Date() }}
             navn="SNODIG VAFFEL"
         />
     ),

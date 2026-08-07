@@ -1,19 +1,41 @@
 import { Bleed, BodyShort, Box, Heading, Link, List, Table, VStack } from '@navikt/ds-react';
-import { OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
+import { OppgaveStatus, OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
+import { OppgaverList } from '../../../components';
+import { PanelPreviewWrapper, renderOppgaveStandardStater, StoryBox } from '../../../storybook/storyUtils';
 import { Lovlenke, OPPGAVE_LOVVERK } from '../oppgaveLovverk';
-import { PanelPreviewWrapper } from '../../../storybook/storyUtils';
-import { renderAvvikRegisterinntektAlleStater } from '../avvik-registerinntekt/AvvikRegisterinntektOppgavePanel.preview';
-import { renderEndretStartOgSluttdatoAlleStater } from '../endret-start-og-sluttdato/EndretStartOgSluttdatoOppgavePanel.preview';
-import { renderEndretStartdatoAlleStater } from '../endret-startdato/EndretStartdatoOppgavePanel.preview';
-import { renderEndretSluttdatoAlleStater } from '../endret-sluttdato/EndretSluttdatoOppgavePanel.preview';
-import { renderFjernetPeriodeAlleStater } from '../fjernet-periode/FjernetPeriodeOppgavePanel.preview';
-import { renderMeldtUtAlleStater } from '../meldt-ut/MeldtUtOppgavePanel.preview';
-import { renderOpphorVedMaksdatoAlleStater } from '../opphor-ved-maksdato/OpphorVedMaksdatoOppgavePanel.preview';
-import { renderRapporterInntektAlleStater } from '../rapporter-inntekt/RapporterInntektOppgavePanel.preview';
-import { renderSøkYtelseAlleStater } from '../sok-ytelse/SøkYtelseOppgavePanel.preview';
+import { AvvikRegisterinntektOppgavePanel } from '../avvik-registerinntekt/AvvikRegisterinntektOppgavePanel';
+import {
+    inntektArbeidsgiver1,
+    lagOppgaveMedInntekt,
+    mockAvvikRegisterinntektBesvartUPY,
+    mockAvvikRegisterinntektUPY,
+} from '../avvik-registerinntekt/AvvikRegisterinntektOppgavePanel.mockData';
+import { EndretSluttdatoOppgavePanel } from '../endret-sluttdato/EndretSluttdatoOppgavePanel';
+import { mockEndretSluttdatoBesvartUPY, mockEndretSluttdatoUPY } from '../endret-sluttdato/EndretSluttdatoOppgavePanel.mockData';
+import { EndretStartOgSluttdatoOppgavePanel } from '../endret-start-og-sluttdato/EndretStartOgSluttdatoOppgavePanel';
+import {
+    mockEndretStartOgSluttdatoBesvartUPY,
+    mockEndretStartOgSluttdatoUPY,
+} from '../endret-start-og-sluttdato/EndretStartOgSluttdatoOppgavePanel.mockData';
+import { mockEndretStartdatoBesvartUPY, mockEndretStartdatoUPY } from '../endret-startdato/EndretStartdatoOppgavePanel.mockData';
+import { EndretStartdatoOppgavePanel } from '../endret-startdato/EndretStartdatoOppgavePanel';
+import { FjernetPeriodeOppgavePanel } from '../fjernet-periode/FjernetPeriodeOppgavePanel';
+import { mockFjernetPeriodeBesvartUPY, mockFjernetPeriodeUPY } from '../fjernet-periode/FjernetPeriodeOppgavePanel.mockData';
+import { MeldtUtOppgavePanel } from '../meldt-ut/MeldtUtOppgavePanel';
+import { mockMeldtUtBesvartUPY, mockMeldtUtUPY } from '../meldt-ut/MeldtUtOppgavePanel.mockData';
+import { OpphorVedMaksdatoOppgavePanel } from '../opphor-ved-maksdato/OpphorVedMaksdatoOppgavePanel';
+import { mockOpphorVedMaksdatoBesvartUPY, mockOpphorVedMaksdatoUPY } from '../opphor-ved-maksdato/OpphorVedMaksdatoOppgavePanel.mockData';
+import { RapporterInntektOppgavePanel } from '../rapporter-inntekt/RapporterInntektOppgavePanel';
+import {
+    lagRapporterInntektOppgaveMedScenario,
+    mockRapporterInntektBesvartUPY,
+    mockRapporterInntektUPY,
+} from '../rapporter-inntekt/RapporterInntektOppgavePanel.mockData';
+import { SøkYtelseOppgavePanel } from '../sok-ytelse/SokYtelseOppgavePanel';
+import { mockSøkYtelseBesvartUPY, mockSøkYtelseUPY } from '../sok-ytelse/SøkYtelseOppgavePanel.mockData';
 
 const meta: Meta = {
     title: 'Oppgaver/1. Oversikt/Ungdomsytelse',
@@ -21,8 +43,6 @@ const meta: Meta = {
 };
 export default meta;
 type Story = StoryObj;
-
-// ─── Data ────────────────────────────────────────────────────────────────────
 
 const { UNGDOMSYTELSE } = OppgaveYtelsetype;
 
@@ -36,7 +56,21 @@ const rader: Rad[] = [
     {
         parsedType: ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
         kilder: [{ backendType: OppgaveType.BEKREFT_AVVIK_REGISTERINNTEKT }],
-        preview: <PanelPreviewWrapper>{renderAvvikRegisterinntektAlleStater()}</PanelPreviewWrapper>,
+        preview: (
+            <PanelPreviewWrapper>
+                {renderOppgaveStandardStater(
+                    mockAvvikRegisterinntektUPY,
+                    mockAvvikRegisterinntektBesvartUPY,
+                    (oppgave, opts) => (
+                        <AvvikRegisterinntektOppgavePanel
+                            oppgave={lagOppgaveMedInntekt(oppgave, [inntektArbeidsgiver1])}
+                            navn="SNODIG VAFFEL"
+                            {...opts}
+                        />
+                    ),
+                )}
+            </PanelPreviewWrapper>
+        ),
     },
     {
         parsedType: ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO,
@@ -46,7 +80,17 @@ const rader: Rad[] = [
                 betingelse: 'endringer = [ENDRET_STARTDATO, ENDRET_SLUTTDATO]',
             },
         ],
-        preview: <PanelPreviewWrapper>{renderEndretStartOgSluttdatoAlleStater()}</PanelPreviewWrapper>,
+        preview: (
+            <PanelPreviewWrapper>
+                {renderOppgaveStandardStater(
+                    mockEndretStartOgSluttdatoUPY,
+                    mockEndretStartOgSluttdatoBesvartUPY,
+                    (oppgave, opts) => (
+                        <EndretStartOgSluttdatoOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />
+                    ),
+                )}
+            </PanelPreviewWrapper>
+        ),
     },
     {
         parsedType: ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO,
@@ -54,7 +98,15 @@ const rader: Rad[] = [
             { backendType: OppgaveType.BEKREFT_ENDRET_STARTDATO },
             { backendType: OppgaveType.BEKREFT_ENDRET_PERIODE, betingelse: 'endringer = [ENDRET_STARTDATO]' },
         ],
-        preview: <PanelPreviewWrapper>{renderEndretStartdatoAlleStater()}</PanelPreviewWrapper>,
+        preview: (
+            <PanelPreviewWrapper>
+                {renderOppgaveStandardStater(
+                    mockEndretStartdatoUPY,
+                    mockEndretStartdatoBesvartUPY,
+                    (oppgave, opts) => <EndretStartdatoOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />,
+                )}
+            </PanelPreviewWrapper>
+        ),
     },
     {
         parsedType: ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO,
@@ -65,12 +117,28 @@ const rader: Rad[] = [
                 betingelse: 'endringer = [ENDRET_SLUTTDATO] + forrige finnes',
             },
         ],
-        preview: <PanelPreviewWrapper>{renderEndretSluttdatoAlleStater()}</PanelPreviewWrapper>,
+        preview: (
+            <PanelPreviewWrapper>
+                {renderOppgaveStandardStater(
+                    mockEndretSluttdatoUPY,
+                    mockEndretSluttdatoBesvartUPY,
+                    (oppgave, opts) => <EndretSluttdatoOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />,
+                )}
+            </PanelPreviewWrapper>
+        ),
     },
     {
         parsedType: ParsedOppgavetype.BEKREFT_FJERNET_PERIODE,
         kilder: [{ backendType: OppgaveType.BEKREFT_ENDRET_PERIODE, betingelse: 'endringer = [FJERNET_PERIODE]' }],
-        preview: <PanelPreviewWrapper>{renderFjernetPeriodeAlleStater()}</PanelPreviewWrapper>,
+        preview: (
+            <PanelPreviewWrapper>
+                {renderOppgaveStandardStater(
+                    mockFjernetPeriodeUPY,
+                    mockFjernetPeriodeBesvartUPY,
+                    (oppgave, opts) => <FjernetPeriodeOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />,
+                )}
+            </PanelPreviewWrapper>
+        ),
     },
     {
         parsedType: ParsedOppgavetype.BEKREFT_MELDT_UT,
@@ -81,26 +149,80 @@ const rader: Rad[] = [
                 betingelse: 'endringer = [ENDRET_SLUTTDATO], ingen forrige',
             },
         ],
-        preview: <PanelPreviewWrapper>{renderMeldtUtAlleStater()}</PanelPreviewWrapper>,
+        preview: (
+            <PanelPreviewWrapper>
+                {renderOppgaveStandardStater(
+                    mockMeldtUtUPY,
+                    mockMeldtUtBesvartUPY,
+                    (oppgave, opts) => <MeldtUtOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />,
+                )}
+            </PanelPreviewWrapper>
+        ),
     },
     {
         parsedType: ParsedOppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO,
         kilder: [{ backendType: OppgaveType.BEKREFT_OPPHOR_VED_MAKSDATO }],
-        preview: <PanelPreviewWrapper>{renderOpphorVedMaksdatoAlleStater()}</PanelPreviewWrapper>,
+        preview: (
+            <PanelPreviewWrapper>
+                {renderOppgaveStandardStater(
+                    mockOpphorVedMaksdatoUPY,
+                    mockOpphorVedMaksdatoBesvartUPY,
+                    (oppgave, opts) => (
+                        <OpphorVedMaksdatoOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />
+                    ),
+                )}
+            </PanelPreviewWrapper>
+        ),
     },
     {
         parsedType: ParsedOppgavetype.RAPPORTER_INNTEKT,
         kilder: [{ backendType: OppgaveType.RAPPORTER_INNTEKT }],
-        preview: <PanelPreviewWrapper>{renderRapporterInntektAlleStater()}</PanelPreviewWrapper>,
+        preview: (
+            <PanelPreviewWrapper>
+                {renderOppgaveStandardStater(
+                    mockRapporterInntektUPY,
+                    mockRapporterInntektBesvartUPY,
+                    (oppgave, opts) => (
+                        <RapporterInntektOppgavePanel
+                            oppgave={lagRapporterInntektOppgaveMedScenario(oppgave, 'Hel måned')}
+                            navn="SNODIG VAFFEL"
+                            initialKvitteringData={opts?.initialVisKvittering ? { harHattInntektOver0: true } : undefined}
+                        />
+                    ),
+                )}
+            </PanelPreviewWrapper>
+        ),
     },
     {
         parsedType: ParsedOppgavetype.SØK_YTELSE,
         kilder: [{ backendType: OppgaveType.SØK_YTELSE }],
-        preview: <PanelPreviewWrapper>{renderSøkYtelseAlleStater()}</PanelPreviewWrapper>,
+        preview: (
+            <PanelPreviewWrapper>
+                <VStack gap="space-24">
+                    <StoryBox title="Forside — uløst">
+                        <OppgaverList oppgaver={[mockSøkYtelseUPY]} />
+                    </StoryBox>
+                    <StoryBox title="Ubesvart oppgave">
+                        <SøkYtelseOppgavePanel oppgave={mockSøkYtelseUPY} dokumentarkivUrl="https://example.com/docs" />
+                    </StoryBox>
+                    <StoryBox title="Besvart oppgave">
+                        <SøkYtelseOppgavePanel
+                            oppgave={mockSøkYtelseBesvartUPY}
+                            dokumentarkivUrl="https://example.com/docs"
+                        />
+                    </StoryBox>
+                    <StoryBox title="Forside — løst oppgave">
+                        <OppgaverList
+                            visBeskrivelse={false}
+                            oppgaveStatusTagVariant="text"
+                            oppgaver={[{ ...mockSøkYtelseUPY, status: OppgaveStatus.LØST }]}
+                        />
+                    </StoryBox>
+                </VStack>
+            </PanelPreviewWrapper>
+        ),
     },
 ];
-
-// ─── Komponenter ─────────────────────────────────────────────────────────────
 
 const KodeTag = ({ children }: { children: React.ReactNode }) => (
     <code
@@ -123,8 +245,6 @@ const LenkeEllerTodo = ({ lenke }: { lenke: Lovlenke }) =>
             {lenke.tekst}
         </Link>
     );
-
-// ─── Story ────────────────────────────────────────────────────────────────────
 
 export const Oversikt: Story = {
     name: 'Ungdomsytelse',
@@ -151,9 +271,7 @@ export const Oversikt: Story = {
                     </Table.Header>
                     <Table.Body>
                         {rader.map((rad) => {
-                            const lenker = rad.kilder.flatMap(
-                                (k) => OPPGAVE_LOVVERK[k.backendType]?.[UNGDOMSYTELSE] ?? [],
-                            );
+                            const lenker = rad.kilder.flatMap((k) => OPPGAVE_LOVVERK[k.backendType]?.[UNGDOMSYTELSE] ?? []);
                             const unikeLenker = lenker.filter((l, i) => lenker.findIndex((x) => x.url === l.url) === i);
                             return (
                                 <Table.ExpandableRow

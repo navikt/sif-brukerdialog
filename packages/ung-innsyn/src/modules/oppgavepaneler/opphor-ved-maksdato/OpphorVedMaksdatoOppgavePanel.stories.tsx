@@ -1,58 +1,31 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { OppgaveStatus, OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
-import { OpphorVedMaksdatoOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import dayjs from 'dayjs';
 
 import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { OpphorVedMaksdatoOppgavePanel } from './OpphorVedMaksdatoOppgavePanel';
-import { dateToISODate, ISODate } from '@sif/utils';
+import { mockOpphorVedMaksdatoBesvartUPY, mockOpphorVedMaksdatoUPY } from './OpphorVedMaksdatoOppgavePanel.mockData';
 
 const meta: Meta = {
     title: 'Oppgaver/Ungdomsprogramytelsen/Opphør ved maksdato',
-    parameters: {},
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
 export default meta;
 
-type Story = StoryObj;
+type Story = StoryObj<{ variant?: string }>;
 
-
-const oppgave: OpphorVedMaksdatoOppgave = {
-    oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: OppgaveType.BEKREFT_OPPHOR_VED_MAKSDATO,
-    parsedOppgavetype: ParsedOppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO,
-    oppgavetypeData: {
-        maksdato: '2025-05-01' as ISODate,
-        sluttdato: '2025-05-01' as ISODate,
-    },
-    status: OppgaveStatus.ULØST,
-    opprettetDato: dayjs().subtract(1, 'days').toDate(),
-    frist: dateToISODate(dayjs().add(14, 'days')),
-    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
-};
-
-const besvartOppgave: OpphorVedMaksdatoOppgave = {
-    ...oppgave,
-    respons: {
-        type: 'VARSEL_SVAR',
-        harUttalelse: false,
-    },
-    status: OppgaveStatus.LØST,
-    løstDato: dayjs().toDate(),
-};
-
-export const OppgavePanel: Story = {
-    name: 'Oppgavevisning på forside',
+export const Forsidevisning: Story = {
+    name: 'Forsidevisning',
+    parameters: { controls: { disable: true } },
     render: () => (
         <VStack gap="space-40">
             <VStack gap="space-16">
                 <Heading level="2" size="medium">
                     Uløst oppgave
                 </Heading>
-                <OppgaverList oppgaver={[oppgave]} />
+                <OppgaverList oppgaver={[mockOpphorVedMaksdatoUPY]} />
             </VStack>
             <VStack gap="space-16">
                 <Heading level="2" size="medium">
@@ -62,9 +35,9 @@ export const OppgavePanel: Story = {
                     visBeskrivelse={false}
                     oppgaveStatusTagVariant="text"
                     oppgaver={[
-                        { ...oppgave, status: OppgaveStatus.AVBRUTT },
-                        { ...oppgave, status: OppgaveStatus.UTLØPT },
-                        { ...oppgave, status: OppgaveStatus.LØST },
+                        { ...mockOpphorVedMaksdatoUPY, status: OppgaveStatus.AVBRUTT },
+                        { ...mockOpphorVedMaksdatoUPY, status: OppgaveStatus.UTLØPT },
+                        { ...mockOpphorVedMaksdatoUPY, status: OppgaveStatus.LØST },
                     ]}
                 />
             </VStack>
@@ -72,54 +45,70 @@ export const OppgavePanel: Story = {
     ),
 };
 
-export const UbesvartOppgave: Story = {
-    name: 'Ubesvart oppgave',
-    render: () => <OpphorVedMaksdatoOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" />,
+export const Ubesvart: Story = {
+    name: 'Ubesvart',
+    parameters: { controls: { disable: true } },
+    render: () => <OpphorVedMaksdatoOppgavePanel oppgave={mockOpphorVedMaksdatoUPY} navn="SNODIG VAFFEL" />,
 };
 
-export const OppgaveKvittering: Story = {
+export const Kvittering: Story = {
     name: 'Kvittering',
-    render: () => <OpphorVedMaksdatoOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" initialVisKvittering={true} />,
-};
-
-export const BesvartOppgave: Story = {
-    name: 'Besvart oppgave',
-    render: () => <OpphorVedMaksdatoOppgavePanel oppgave={besvartOppgave} navn="SNODIG VAFFEL" />,
-};
-
-export const BesvartOppgaveMedTilbakemelding: Story = {
-    name: 'Besvart oppgave med tilbakemelding',
+    parameters: { controls: { disable: true } },
     render: () => (
         <OpphorVedMaksdatoOppgavePanel
+            oppgave={mockOpphorVedMaksdatoUPY}
+            navn="SNODIG VAFFEL"
+            initialVisKvittering={true}
+        />
+    ),
+};
+
+export const Besvart: Story = {
+    name: 'Besvart',
+    argTypes: {
+        variant: {
+            control: 'radio',
+            options: ['Uten tilbakemelding', 'Med tilbakemelding'],
+        },
+    },
+    args: { variant: 'Uten tilbakemelding' },
+    parameters: { controls: { include: ['variant'] } },
+    render: ({ variant }) => (
+        <OpphorVedMaksdatoOppgavePanel
             oppgave={{
-                ...besvartOppgave,
-                respons: {
-                    type: 'VARSEL_SVAR',
-                    harUttalelse: true,
-                    uttalelseFraBruker:
-                        'Lore, ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                },
+                ...mockOpphorVedMaksdatoBesvartUPY,
+                respons:
+                    variant === 'Med tilbakemelding'
+                        ? {
+                              type: 'VARSEL_SVAR',
+                              harUttalelse: true,
+                              uttalelseFraBruker:
+                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.',
+                          }
+                        : { type: 'VARSEL_SVAR', harUttalelse: false },
             }}
             navn="SNODIG VAFFEL"
         />
     ),
 };
 
-export const AvbruttOppgave: Story = {
-    name: 'Avbrutt oppgave',
+export const Utløpt: Story = {
+    name: 'Utløpt',
+    parameters: { controls: { disable: true } },
     render: () => (
         <OpphorVedMaksdatoOppgavePanel
-            oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.AVBRUTT }}
+            oppgave={{ ...mockOpphorVedMaksdatoUPY, status: OppgaveStatus.UTLØPT, løstDato: new Date() }}
             navn="SNODIG VAFFEL"
         />
     ),
 };
 
-export const UtløptOppgave: Story = {
-    name: 'Utløpt oppgave',
+export const Avbrutt: Story = {
+    name: 'Avbrutt',
+    parameters: { controls: { disable: true } },
     render: () => (
         <OpphorVedMaksdatoOppgavePanel
-            oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.UTLØPT }}
+            oppgave={{ ...mockOpphorVedMaksdatoUPY, status: OppgaveStatus.AVBRUTT, løstDato: new Date() }}
             navn="SNODIG VAFFEL"
         />
     ),

@@ -1,65 +1,31 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import {
-    BostedsvilkårIkkeOppfyltÅrsak,
-    OppgaveStatus,
-    OppgaveType,
-    OppgaveYtelsetype,
-} from '@navikt/ung-brukerdialog-api';
-import { BostedVilkårOpphørOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import dayjs from 'dayjs';
 
 import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { BostedVilkårOpphørOppgavePanel } from './BostedVilkarOpphorOppgavePanel';
-import { dateToISODate } from '@sif/utils';
+import { mockBostedVilkårOpphørAKT, mockBostedVilkårOpphørBesvartAKT } from './BostedVilkarOpphorOppgavePanel.mockData';
 
 const meta: Meta = {
-    title: 'Oppgaver/Aktivitetspenger/Bosted vilkår opphør',
-    parameters: {},
+    title: 'Oppgaver/Aktivitetspenger/Bekreft bosted opphør',
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
 export default meta;
 
-type Story = StoryObj;
+type Story = StoryObj<{ variant?: string }>;
 
-
-const oppgave: BostedVilkårOpphørOppgave = {
-    oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: OppgaveType.BEKREFT_BOSTED,
-    parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED_OPPHØR,
-    status: OppgaveStatus.ULØST,
-    opprettetDato: dayjs().subtract(1, 'days').toDate(),
-    frist: dateToISODate(dayjs().add(14, 'days')),
-    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
-    oppgavetypeData: {
-        ikkeOppfyltÅrsak: BostedsvilkårIkkeOppfyltÅrsak.ANNET,
-        ikkeOppfyltÅrsakFritekstbeskrivelse:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n\nSed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        erBosattITrondheim: false,
-        fom: dateToISODate(dayjs().subtract(1, 'month')),
-    },
-};
-
-const besvartOppgave: BostedVilkårOpphørOppgave = {
-    ...oppgave,
-    respons: {
-        type: 'VARSEL_SVAR',
-        harUttalelse: false,
-    },
-    status: OppgaveStatus.LØST,
-    løstDato: dayjs().toDate(),
-};
-export const OppgavePanel: Story = {
-    name: 'Oppgavevisning på forside',
+export const Forsidevisning: Story = {
+    name: 'Forsidevisning',
+    parameters: { controls: { disable: true } },
     render: () => (
         <VStack gap="space-40">
             <VStack gap="space-16">
                 <Heading level="2" size="medium">
                     Uløst oppgave
                 </Heading>
-                <OppgaverList oppgaver={[oppgave]} />
+                <OppgaverList oppgaver={[mockBostedVilkårOpphørAKT]} />
             </VStack>
             <VStack gap="space-16">
                 <Heading level="2" size="medium">
@@ -69,9 +35,9 @@ export const OppgavePanel: Story = {
                     visBeskrivelse={false}
                     oppgaveStatusTagVariant="text"
                     oppgaver={[
-                        { ...oppgave, status: OppgaveStatus.AVBRUTT },
-                        { ...oppgave, status: OppgaveStatus.UTLØPT },
-                        { ...oppgave, status: OppgaveStatus.LØST },
+                        { ...mockBostedVilkårOpphørAKT, status: OppgaveStatus.AVBRUTT },
+                        { ...mockBostedVilkårOpphørAKT, status: OppgaveStatus.UTLØPT },
+                        { ...mockBostedVilkårOpphørAKT, status: OppgaveStatus.LØST },
                     ]}
                 />
             </VStack>
@@ -79,54 +45,70 @@ export const OppgavePanel: Story = {
     ),
 };
 
-export const UbesvartOppgave: Story = {
-    name: 'Ubesvart oppgave',
-    render: () => <BostedVilkårOpphørOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" />,
+export const Ubesvart: Story = {
+    name: 'Ubesvart',
+    parameters: { controls: { disable: true } },
+    render: () => <BostedVilkårOpphørOppgavePanel oppgave={mockBostedVilkårOpphørAKT} navn="SNODIG VAFFEL" />,
 };
 
 export const Kvittering: Story = {
     name: 'Kvittering',
-    render: () => <BostedVilkårOpphørOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" initialVisKvittering={true} />,
-};
-
-export const BesvartOppgave: Story = {
-    name: 'Besvart oppgave',
-    render: () => <BostedVilkårOpphørOppgavePanel oppgave={besvartOppgave} navn="SNODIG VAFFEL" />,
-};
-
-export const BesvartOppgaveMedTilbakemelding: Story = {
-    name: 'Besvart oppgave med tilbakemelding',
+    parameters: { controls: { disable: true } },
     render: () => (
         <BostedVilkårOpphørOppgavePanel
+            oppgave={mockBostedVilkårOpphørAKT}
+            navn="SNODIG VAFFEL"
+            initialVisKvittering={true}
+        />
+    ),
+};
+
+export const Besvart: Story = {
+    name: 'Besvart',
+    argTypes: {
+        variant: {
+            control: 'radio',
+            options: ['Uten tilbakemelding', 'Med tilbakemelding'],
+        },
+    },
+    args: { variant: 'Uten tilbakemelding' },
+    parameters: { controls: { include: ['variant'] } },
+    render: ({ variant }) => (
+        <BostedVilkårOpphørOppgavePanel
             oppgave={{
-                ...besvartOppgave,
-                respons: {
-                    type: 'VARSEL_SVAR',
-                    harUttalelse: true,
-                    uttalelseFraBruker:
-                        'Lore, ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                },
+                ...mockBostedVilkårOpphørBesvartAKT,
+                respons:
+                    variant === 'Med tilbakemelding'
+                        ? {
+                              type: 'VARSEL_SVAR',
+                              harUttalelse: true,
+                              uttalelseFraBruker:
+                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                          }
+                        : { type: 'VARSEL_SVAR', harUttalelse: false },
             }}
             navn="SNODIG VAFFEL"
         />
     ),
 };
 
-export const AvbruttOppgave: Story = {
-    name: 'Avbrutt oppgave',
+export const Utløpt: Story = {
+    name: 'Utløpt',
+    parameters: { controls: { disable: true } },
     render: () => (
         <BostedVilkårOpphørOppgavePanel
-            oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.AVBRUTT }}
+            oppgave={{ ...mockBostedVilkårOpphørAKT, status: OppgaveStatus.UTLØPT, løstDato: new Date() }}
             navn="SNODIG VAFFEL"
         />
     ),
 };
 
-export const UtløptOppgave: Story = {
-    name: 'Utløpt oppgave',
+export const Avbrutt: Story = {
+    name: 'Avbrutt',
+    parameters: { controls: { disable: true } },
     render: () => (
         <BostedVilkårOpphørOppgavePanel
-            oppgave={{ ...besvartOppgave, respons: undefined, status: OppgaveStatus.UTLØPT }}
+            oppgave={{ ...mockBostedVilkårOpphørAKT, status: OppgaveStatus.AVBRUTT, løstDato: new Date() }}
             navn="SNODIG VAFFEL"
         />
     ),

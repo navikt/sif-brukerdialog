@@ -3,12 +3,28 @@ import { OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
+import { PanelPreviewWrapper, renderOppgaveStandardStater } from '../../../storybook/storyUtils';
 import { Lovlenke, OPPGAVE_LOVVERK } from '../oppgaveLovverk';
-import { PanelPreviewWrapper } from '../../../storybook/storyUtils';
-import { renderAvvikRegisterinntektAKTAlleStater } from '../avvik-registerinntekt/AvvikRegisterinntektOppgavePanel.preview';
-import { renderBostedVilkårAlleStater } from '../bostedsvilkar/BostedVilkarOppgavePanel.preview';
-import { renderBostedVilkårOpphørAlleStater } from '../bostedsvilkar-opphor/BostedVilkarOpphørOppgavePanel.preview';
-import { renderRapporterInntektAKTAlleStater } from '../rapporter-inntekt/RapporterInntektOppgavePanel.preview';
+import { AvvikRegisterinntektOppgavePanel } from '../avvik-registerinntekt/AvvikRegisterinntektOppgavePanel';
+import {
+    inntektArbeidsgiver1,
+    lagOppgaveMedInntekt,
+    mockAvvikRegisterinntektAKT,
+    mockAvvikRegisterinntektBesvartAKT,
+} from '../avvik-registerinntekt/AvvikRegisterinntektOppgavePanel.mockData';
+import { BostedVilkårOpphørOppgavePanel } from '../bostedsvilkar-opphor/BostedVilkarOpphorOppgavePanel';
+import {
+    mockBostedVilkårOpphørAKT,
+    mockBostedVilkårOpphørBesvartAKT,
+} from '../bostedsvilkar-opphor/BostedVilkarOpphorOppgavePanel.mockData';
+import { BostedVilkårOppgavePanel } from '../bostedsvilkar/BostedVilkarOppgavePanel';
+import { mockBostedVilkårAKT, mockBostedVilkårBesvartAKT } from '../bostedsvilkar/BostedVilkarOppgavePanel.mockData';
+import { RapporterInntektOppgavePanel } from '../rapporter-inntekt/RapporterInntektOppgavePanel';
+import {
+    lagRapporterInntektOppgaveMedScenario,
+    mockRapporterInntektAKT,
+    mockRapporterInntektBesvartAKT,
+} from '../rapporter-inntekt/RapporterInntektOppgavePanel.mockData';
 
 const meta: Meta = {
     title: 'Oppgaver/1. Oversikt/Aktivitetspenger',
@@ -16,8 +32,6 @@ const meta: Meta = {
 };
 export default meta;
 type Story = StoryObj;
-
-// ─── Data ────────────────────────────────────────────────────────────────────
 
 const { AKTIVITETSPENGER } = OppgaveYtelsetype;
 
@@ -31,26 +45,70 @@ const rader: Rad[] = [
     {
         parsedType: ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
         kilder: [{ backendType: OppgaveType.BEKREFT_AVVIK_REGISTERINNTEKT }],
-        preview: <PanelPreviewWrapper>{renderAvvikRegisterinntektAKTAlleStater()}</PanelPreviewWrapper>,
+        preview: (
+            <PanelPreviewWrapper>
+                {renderOppgaveStandardStater(
+                    mockAvvikRegisterinntektAKT,
+                    mockAvvikRegisterinntektBesvartAKT,
+                    (oppgave, opts) => (
+                        <AvvikRegisterinntektOppgavePanel
+                            oppgave={lagOppgaveMedInntekt(oppgave, [inntektArbeidsgiver1])}
+                            navn="SNODIG VAFFEL"
+                            {...opts}
+                        />
+                    ),
+                )}
+            </PanelPreviewWrapper>
+        ),
     },
     {
         parsedType: ParsedOppgavetype.BEKREFT_BOSTED,
         kilder: [{ backendType: OppgaveType.BEKREFT_BOSTED, betingelse: 'oppgavetypeData.type = BOSTED' }],
-        preview: <PanelPreviewWrapper>{renderBostedVilkårAlleStater()}</PanelPreviewWrapper>,
+        preview: (
+            <PanelPreviewWrapper>
+                {renderOppgaveStandardStater(
+                    mockBostedVilkårAKT,
+                    mockBostedVilkårBesvartAKT,
+                    (oppgave, opts) => <BostedVilkårOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />,
+                )}
+            </PanelPreviewWrapper>
+        ),
     },
     {
         parsedType: ParsedOppgavetype.BEKREFT_BOSTED_OPPHØR,
         kilder: [{ backendType: OppgaveType.BEKREFT_BOSTED, betingelse: 'oppgavetypeData.type = BOSTED_OPPHØR' }],
-        preview: <PanelPreviewWrapper>{renderBostedVilkårOpphørAlleStater()}</PanelPreviewWrapper>,
+        preview: (
+            <PanelPreviewWrapper>
+                {renderOppgaveStandardStater(
+                    mockBostedVilkårOpphørAKT,
+                    mockBostedVilkårOpphørBesvartAKT,
+                    (oppgave, opts) => (
+                        <BostedVilkårOpphørOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />
+                    ),
+                )}
+            </PanelPreviewWrapper>
+        ),
     },
     {
         parsedType: ParsedOppgavetype.RAPPORTER_INNTEKT,
         kilder: [{ backendType: OppgaveType.RAPPORTER_INNTEKT }],
-        preview: <PanelPreviewWrapper>{renderRapporterInntektAKTAlleStater()}</PanelPreviewWrapper>,
+        preview: (
+            <PanelPreviewWrapper>
+                {renderOppgaveStandardStater(
+                    mockRapporterInntektAKT,
+                    mockRapporterInntektBesvartAKT,
+                    (oppgave, opts) => (
+                        <RapporterInntektOppgavePanel
+                            oppgave={lagRapporterInntektOppgaveMedScenario(oppgave, 'Hel måned')}
+                            navn="SNODIG VAFFEL"
+                            initialKvitteringData={opts?.initialVisKvittering ? { harHattInntektOver0: true } : undefined}
+                        />
+                    ),
+                )}
+            </PanelPreviewWrapper>
+        ),
     },
 ];
-
-// ─── Komponenter ─────────────────────────────────────────────────────────────
 
 const KodeTag = ({ children }: { children: React.ReactNode }) => (
     <code
@@ -73,8 +131,6 @@ const LenkeEllerTodo = ({ lenke }: { lenke: Lovlenke }) =>
             {lenke.tekst}
         </Link>
     );
-
-// ─── Story ────────────────────────────────────────────────────────────────────
 
 export const Oversikt: Story = {
     name: 'Aktivitetspenger',
@@ -101,9 +157,7 @@ export const Oversikt: Story = {
                     </Table.Header>
                     <Table.Body>
                         {rader.map((rad) => {
-                            const lenker = rad.kilder.flatMap(
-                                (k) => OPPGAVE_LOVVERK[k.backendType]?.[AKTIVITETSPENGER] ?? [],
-                            );
+                            const lenker = rad.kilder.flatMap((k) => OPPGAVE_LOVVERK[k.backendType]?.[AKTIVITETSPENGER] ?? []);
                             const unikeLenker = lenker.filter((l, i) => lenker.findIndex((x) => x.url === l.url) === i);
                             return (
                                 <Table.ExpandableRow

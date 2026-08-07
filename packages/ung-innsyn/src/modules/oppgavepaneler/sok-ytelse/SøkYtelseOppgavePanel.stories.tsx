@@ -1,69 +1,76 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { OppgaveStatus, OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
-import { ParsedOppgavetype, SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
 
 import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { SøkYtelseOppgavePanel } from './SokYtelseOppgavePanel';
-import { dateToISODate, ISODate } from '@sif/utils';
+import { mockSøkYtelseBesvartUPY, mockSøkYtelseUPY } from './SøkYtelseOppgavePanel.mockData';
+
 const meta: Meta = {
     title: 'Oppgaver/Ungdomsprogramytelsen/Søk ytelsen',
-    parameters: {},
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
-dayjs.extend(utc);
-
 export default meta;
 
 type Story = StoryObj;
 
-
-const oppgave: SøkYtelseOppgave = {
-    oppgaveReferanse: 'e632b20a-b0c9-4953-97ec-851ebd1a0e91',
-    oppgavetype: OppgaveType.SØK_YTELSE,
-    parsedOppgavetype: ParsedOppgavetype.SØK_YTELSE,
-    oppgavetypeData: {
-        fomDato: '2025-05-01' as ISODate,
-    },
-    status: OppgaveStatus.ULØST,
-    opprettetDato: dayjs.utc('2025-05-31T03:58:01.779214Z').toDate(),
-    frist: dateToISODate(dayjs.utc('2025-06-14T03:58:01.779214Z')),
-    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
-};
-
-const besvartOppgave: SøkYtelseOppgave = {
-    ...oppgave,
-    status: OppgaveStatus.LØST,
-    løstDato: dayjs().toDate(),
-};
-export const OppgavePanel: Story = {
-    name: 'Oppgavevisning på forside',
+export const Forsidevisning: Story = {
+    name: 'Forsidevisning',
+    parameters: { controls: { disable: true } },
     render: () => (
         <VStack gap="space-40">
             <VStack gap="space-16">
-                <Heading level="2" size="medium">
-                    Løste oppgaver
-                </Heading>
+                <Heading level="2" size="medium">Uløst oppgave</Heading>
+                <OppgaverList oppgaver={[mockSøkYtelseUPY]} />
+            </VStack>
+            <VStack gap="space-16">
+                <Heading level="2" size="medium">Løste oppgaver</Heading>
                 <OppgaverList
                     visBeskrivelse={false}
                     oppgaveStatusTagVariant="text"
-                    oppgaver={[{ ...oppgave, status: OppgaveStatus.LØST }]}
+                    oppgaver={[
+                        { ...mockSøkYtelseUPY, status: OppgaveStatus.AVBRUTT },
+                        { ...mockSøkYtelseUPY, status: OppgaveStatus.UTLØPT },
+                        { ...mockSøkYtelseUPY, status: OppgaveStatus.LØST },
+                    ]}
                 />
             </VStack>
         </VStack>
     ),
 };
 
-export const UbesvartOppgave: Story = {
-    name: 'Ubesvart oppgave',
-    render: () => <SøkYtelseOppgavePanel oppgave={oppgave} dokumentarkivUrl="#" />,
+export const Ubesvart: Story = {
+    name: 'Ubesvart',
+    parameters: { controls: { disable: true } },
+    render: () => <SøkYtelseOppgavePanel oppgave={mockSøkYtelseUPY} dokumentarkivUrl="https://example.com/docs" />,
 };
 
-export const BesvartOppgave: Story = {
-    name: 'Besvart oppgave',
-    render: () => <SøkYtelseOppgavePanel oppgave={besvartOppgave} dokumentarkivUrl="#" />,
+export const Besvart: Story = {
+    name: 'Besvart',
+    parameters: { controls: { disable: true } },
+    render: () => <SøkYtelseOppgavePanel oppgave={mockSøkYtelseBesvartUPY} dokumentarkivUrl="https://example.com/docs" />,
+};
+
+export const Utløpt: Story = {
+    name: 'Utløpt',
+    parameters: { controls: { disable: true } },
+    render: () => (
+        <SøkYtelseOppgavePanel
+            oppgave={{ ...mockSøkYtelseUPY, status: OppgaveStatus.UTLØPT, løstDato: new Date() }}
+            dokumentarkivUrl="https://example.com/docs"
+        />
+    ),
+};
+
+export const Avbrutt: Story = {
+    name: 'Avbrutt',
+    parameters: { controls: { disable: true } },
+    render: () => (
+        <SøkYtelseOppgavePanel
+            oppgave={{ ...mockSøkYtelseUPY, status: OppgaveStatus.AVBRUTT, løstDato: new Date() }}
+            dokumentarkivUrl="https://example.com/docs"
+        />
+    ),
 };
