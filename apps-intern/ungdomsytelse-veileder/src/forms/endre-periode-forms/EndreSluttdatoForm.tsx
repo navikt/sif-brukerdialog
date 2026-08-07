@@ -82,7 +82,7 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
     };
 
     const sluttdatoMinMax = {
-        from: deltakelse.fraOgMed,
+        from: dayjs(deltakelse.fraOgMed).add(1, 'day').toDate(), // Skal ikke kunne sette sluttdato til å være lik eller før startdato
         to: dayjs(deltakelse.periodeMaksDato).subtract(1, 'day').toDate(), // Skal ikke kunne sette sluttdato til å være lik eller etter maksdato
     };
 
