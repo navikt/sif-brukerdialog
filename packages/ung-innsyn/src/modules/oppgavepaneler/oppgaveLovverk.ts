@@ -1,4 +1,5 @@
 import { OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
+import { ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 
 export type Lovlenke = {
     url: string;
@@ -60,3 +61,29 @@ export const OPPGAVE_LOVVERK = {
 
 export const getLovLenker = (oppgave: { oppgavetype: OppgaveType; ytelsetype: OppgaveYtelsetype }): Lovlenke[] =>
     OPPGAVE_LOVVERK[oppgave.oppgavetype]?.[oppgave.ytelsetype] ?? [];
+
+/**
+ * Lovhenvisninger per ParsedOppgavetype og ytelse.
+ * Fasit: packages/ung-innsyn/src/modules/oppgavepaneler/backend.readme.md
+ *
+ * BEKREFT_ENDRET_PERIODE parses til fem ParsedOppgavetyper — alle deler samme lovhenvisning.
+ * BEKREFT_BOSTED parses til BEKREFT_BOSTED og BEKREFT_BOSTED_OPPHØR — begge mangler lovreferanse per nå.
+ */
+export const OPPGAVE_LOVVERK_PARSED = {
+    BEKREFT_ENDRET_STARTDATO:          { UNGDOMSYTELSE: [upy_8_3_6] },
+    BEKREFT_ENDRET_SLUTTDATO:          { UNGDOMSYTELSE: [upy_8_3_6] },
+    BEKREFT_MELDT_UT:                  { UNGDOMSYTELSE: [upy_8_3_6] },
+    BEKREFT_FJERNET_PERIODE:           { UNGDOMSYTELSE: [upy_8_3_6] },
+    BEKREFT_ENDRET_START_OG_SLUTTDATO: { UNGDOMSYTELSE: [upy_8_3_6] },
+    BEKREFT_OPPHOR_VED_MAKSDATO:       { UNGDOMSYTELSE: [upy_8_3] },
+    BEKREFT_AVVIK_REGISTERINNTEKT:     { UNGDOMSYTELSE: [upy_11], AKTIVITETSPENGER: [ap] },
+    RAPPORTER_INNTEKT:                 { UNGDOMSYTELSE: [upy_11], AKTIVITETSPENGER: [ap] },
+    SØK_YTELSE:                        { UNGDOMSYTELSE: [upy_8_3_6_9_10] },
+    BEKREFT_BOSTED:                    {},
+    BEKREFT_BOSTED_OPPHØR:             {},
+} satisfies Record<ParsedOppgavetype, Partial<Record<OppgaveYtelsetype, Lovlenke[]>>>;
+
+export const getLovLenkerForParsedType = (oppgave: {
+    parsedOppgavetype: ParsedOppgavetype;
+    ytelsetype: OppgaveYtelsetype;
+}): Lovlenke[] => OPPGAVE_LOVVERK_PARSED[oppgave.parsedOppgavetype]?.[oppgave.ytelsetype] ?? [];

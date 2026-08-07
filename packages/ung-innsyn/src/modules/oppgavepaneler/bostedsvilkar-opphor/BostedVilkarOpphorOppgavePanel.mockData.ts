@@ -8,11 +8,7 @@ import { BostedVilkårOpphørOppgave, ParsedOppgavetype } from '@sif/api/ung-bru
 import { dateToISODate } from '@sif/utils';
 import dayjs from 'dayjs';
 
-// ─── Årsak-scenariovarianter ─────────────────────────────────────────────────
-
-export type BostedOpphørÅrsakScenario = BostedsvilkårIkkeOppfyltÅrsak;
-
-export const BOSTED_OPPHØR_ÅRSAK_SCENARIO_OPTIONS: BostedOpphørÅrsakScenario[] = [
+export const BOSTED_OPPHØR_ÅRSAK_SCENARIO_OPTIONS: BostedsvilkårIkkeOppfyltÅrsak[] = [
     BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
     BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSTEDSADRESSE_OG_IKKE_FOLKEREGISTRERT_I_TRONDHEIM,
     BostedsvilkårIkkeOppfyltÅrsak.STUDIE_ELLER_ARBEIDSSTED_UTENFOR_TRONDHEIM,
@@ -21,7 +17,7 @@ export const BOSTED_OPPHØR_ÅRSAK_SCENARIO_OPTIONS: BostedOpphørÅrsakScenario
 
 export const lagOpphørOppgaveMedÅrsak = (
     base: BostedVilkårOpphørOppgave,
-    årsak: BostedOpphørÅrsakScenario,
+    årsak: BostedsvilkårIkkeOppfyltÅrsak,
 ): BostedVilkårOpphørOppgave => ({
     ...base,
     oppgavetypeData: {

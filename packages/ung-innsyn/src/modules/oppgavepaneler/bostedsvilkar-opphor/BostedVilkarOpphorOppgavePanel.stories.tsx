@@ -1,5 +1,5 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { BostedsvilkårIkkeOppfyltÅrsak, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { OppgaverList } from '../../../components';
@@ -8,12 +8,10 @@ import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { BostedVilkårOpphørOppgavePanel } from './BostedVilkarOpphorOppgavePanel';
 import {
     BOSTED_OPPHØR_ÅRSAK_SCENARIO_OPTIONS,
-    BostedOpphørÅrsakScenario,
     lagOpphørOppgaveMedÅrsak,
     mockBostedVilkårOpphørAKT,
     mockBostedVilkårOpphørBesvartAKT,
 } from './BostedVilkarOpphorOppgavePanel.mockData';
-import { BostedsvilkårIkkeOppfyltÅrsak } from '@navikt/ung-brukerdialog-api';
 
 const meta: Meta = {
     title: 'Oppgaver/Aktivitetspenger/Bekreft bosted opphør',
@@ -21,7 +19,7 @@ const meta: Meta = {
 };
 export default meta;
 
-type Args = { årsak: BostedOpphørÅrsakScenario; variant?: string };
+type Args = { årsak: BostedsvilkårIkkeOppfyltÅrsak; variant?: string };
 type Story = StoryObj<Args>;
 
 const årsakArgType = {
