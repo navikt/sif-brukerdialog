@@ -106,3 +106,8 @@ Bruk denne indeksen for rask routing til riktig skill.
     - Når: gjennomgang og feilretting av visuelt design på nettsider.
     - Triggerord: `designgjennomgang`, `design review`, `visuell inspeksjon`, `layout-feil`, `CSS-feil`.
     - Fil: `.github/skills/web-design-reviewer/SKILL.md`
+
+- `ung-innsyn-oppgaver`
+    - Når: legge til eller endre oppgavetyper, lovhenvisninger, panelkomponenter, `.preview.tsx`-filer eller Storybook-oversikter i `ung-innsyn`.
+    - Triggerord: `OppgaveType`, `ParsedOppgavetype`, `parseOppgaver`, `oppgaveLovverk`, `getLovLenker`, `OppgavePanel`, `preview.tsx`, `OppgavetypeMappingUPY`, `OppgavetypeMappingAKT`, `RegelverkOgInnsynReadMore`.
+    - Fil: `.github/skills/ung-innsyn-oppgaver/SKILL.md`
