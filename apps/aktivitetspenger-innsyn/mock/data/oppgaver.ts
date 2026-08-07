@@ -1,4 +1,5 @@
 import {
+    BostedsvilkårIkkeOppfyltÅrsak,
     BrukerdialogOppgaveDto,
     OppgaveStatus,
     OppgaveType,
@@ -367,6 +368,7 @@ const getBekreftBostedOppgaveDto = (): BrukerdialogOppgaveDto => ({
     oppgavetype: OppgaveType.BEKREFT_BOSTED,
     oppgavetypeData: {
         type: 'BOSTED',
+        ikkeOppfyltÅrsak: BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
         fom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
         tom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month')),
         erBosattITrondheim: false,
@@ -382,6 +384,7 @@ const getBekreftBostedOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
     oppgavetype: OppgaveType.BEKREFT_BOSTED,
     oppgavetypeData: {
         type: 'BOSTED',
+        ikkeOppfyltÅrsak: BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
         fom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
         tom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month')),
         erBosattITrondheim: false,
