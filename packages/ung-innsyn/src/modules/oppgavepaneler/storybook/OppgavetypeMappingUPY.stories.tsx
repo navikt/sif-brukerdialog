@@ -15,20 +15,32 @@ import {
     mockAvvikRegisterinntektUPY,
 } from '../avvik-registerinntekt/AvvikRegisterinntektOppgavePanel.mockData';
 import { EndretSluttdatoOppgavePanel } from '../endret-sluttdato/EndretSluttdatoOppgavePanel';
-import { mockEndretSluttdatoBesvartUPY, mockEndretSluttdatoUPY } from '../endret-sluttdato/EndretSluttdatoOppgavePanel.mockData';
+import {
+    mockEndretSluttdatoBesvartUPY,
+    mockEndretSluttdatoUPY,
+} from '../endret-sluttdato/EndretSluttdatoOppgavePanel.mockData';
 import { EndretStartOgSluttdatoOppgavePanel } from '../endret-start-og-sluttdato/EndretStartOgSluttdatoOppgavePanel';
 import {
     mockEndretStartOgSluttdatoBesvartUPY,
     mockEndretStartOgSluttdatoUPY,
 } from '../endret-start-og-sluttdato/EndretStartOgSluttdatoOppgavePanel.mockData';
-import { mockEndretStartdatoBesvartUPY, mockEndretStartdatoUPY } from '../endret-startdato/EndretStartdatoOppgavePanel.mockData';
+import {
+    mockEndretStartdatoBesvartUPY,
+    mockEndretStartdatoUPY,
+} from '../endret-startdato/EndretStartdatoOppgavePanel.mockData';
 import { EndretStartdatoOppgavePanel } from '../endret-startdato/EndretStartdatoOppgavePanel';
 import { FjernetPeriodeOppgavePanel } from '../fjernet-periode/FjernetPeriodeOppgavePanel';
-import { mockFjernetPeriodeBesvartUPY, mockFjernetPeriodeUPY } from '../fjernet-periode/FjernetPeriodeOppgavePanel.mockData';
+import {
+    mockFjernetPeriodeBesvartUPY,
+    mockFjernetPeriodeUPY,
+} from '../fjernet-periode/FjernetPeriodeOppgavePanel.mockData';
 import { MeldtUtOppgavePanel } from '../meldt-ut/MeldtUtOppgavePanel';
 import { mockMeldtUtBesvartUPY, mockMeldtUtUPY } from '../meldt-ut/MeldtUtOppgavePanel.mockData';
 import { OpphorVedMaksdatoOppgavePanel } from '../opphor-ved-maksdato/OpphorVedMaksdatoOppgavePanel';
-import { mockOpphorVedMaksdatoBesvartUPY, mockOpphorVedMaksdatoUPY } from '../opphor-ved-maksdato/OpphorVedMaksdatoOppgavePanel.mockData';
+import {
+    mockOpphorVedMaksdatoBesvartUPY,
+    mockOpphorVedMaksdatoUPY,
+} from '../opphor-ved-maksdato/OpphorVedMaksdatoOppgavePanel.mockData';
 import { RapporterInntektOppgavePanel } from '../rapporter-inntekt/RapporterInntektOppgavePanel';
 import {
     lagRapporterInntektOppgaveMedScenario,
@@ -37,10 +49,11 @@ import {
 } from '../rapporter-inntekt/RapporterInntektOppgavePanel.mockData';
 import { SøkYtelseOppgavePanel } from '../sok-ytelse/SokYtelseOppgavePanel';
 import { mockSøkYtelseBesvartUPY, mockSøkYtelseUPY } from '../sok-ytelse/SøkYtelseOppgavePanel.mockData';
+import { IntlDecorator } from '../../../storybook/IntlDecorator';
 
 const meta: Meta = {
     title: 'Oppgaver/1. Oversikt/Ungdomsytelse',
-    decorators: [],
+    decorators: [IntlDecorator],
 };
 export default meta;
 type Story = StoryObj;
@@ -101,11 +114,9 @@ const rader: Rad[] = [
         ],
         preview: (
             <PanelPreviewWrapper>
-                {renderOppgaveStandardStater(
-                    mockEndretStartdatoUPY,
-                    mockEndretStartdatoBesvartUPY,
-                    (oppgave, opts) => <EndretStartdatoOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />,
-                )}
+                {renderOppgaveStandardStater(mockEndretStartdatoUPY, mockEndretStartdatoBesvartUPY, (oppgave, opts) => (
+                    <EndretStartdatoOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />
+                ))}
             </PanelPreviewWrapper>
         ),
     },
@@ -120,11 +131,9 @@ const rader: Rad[] = [
         ],
         preview: (
             <PanelPreviewWrapper>
-                {renderOppgaveStandardStater(
-                    mockEndretSluttdatoUPY,
-                    mockEndretSluttdatoBesvartUPY,
-                    (oppgave, opts) => <EndretSluttdatoOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />,
-                )}
+                {renderOppgaveStandardStater(mockEndretSluttdatoUPY, mockEndretSluttdatoBesvartUPY, (oppgave, opts) => (
+                    <EndretSluttdatoOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />
+                ))}
             </PanelPreviewWrapper>
         ),
     },
@@ -133,11 +142,9 @@ const rader: Rad[] = [
         kilder: [{ backendType: OppgaveType.BEKREFT_ENDRET_PERIODE, betingelse: 'endringer = [FJERNET_PERIODE]' }],
         preview: (
             <PanelPreviewWrapper>
-                {renderOppgaveStandardStater(
-                    mockFjernetPeriodeUPY,
-                    mockFjernetPeriodeBesvartUPY,
-                    (oppgave, opts) => <FjernetPeriodeOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />,
-                )}
+                {renderOppgaveStandardStater(mockFjernetPeriodeUPY, mockFjernetPeriodeBesvartUPY, (oppgave, opts) => (
+                    <FjernetPeriodeOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />
+                ))}
             </PanelPreviewWrapper>
         ),
     },
@@ -152,11 +159,9 @@ const rader: Rad[] = [
         ],
         preview: (
             <PanelPreviewWrapper>
-                {renderOppgaveStandardStater(
-                    mockMeldtUtUPY,
-                    mockMeldtUtBesvartUPY,
-                    (oppgave, opts) => <MeldtUtOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />,
-                )}
+                {renderOppgaveStandardStater(mockMeldtUtUPY, mockMeldtUtBesvartUPY, (oppgave, opts) => (
+                    <MeldtUtOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />
+                ))}
             </PanelPreviewWrapper>
         ),
     },
@@ -187,7 +192,9 @@ const rader: Rad[] = [
                         <RapporterInntektOppgavePanel
                             oppgave={lagRapporterInntektOppgaveMedScenario(oppgave, 'Hel måned')}
                             navn="SNODIG VAFFEL"
-                            initialKvitteringData={opts?.initialVisKvittering ? { harHattInntektOver0: true } : undefined}
+                            initialKvitteringData={
+                                opts?.initialVisKvittering ? { harHattInntektOver0: true } : undefined
+                            }
                         />
                     ),
                 )}
@@ -276,7 +283,9 @@ export const Oversikt: Story = {
                     </Table.Header>
                     <Table.Body>
                         {rader.map((rad) => {
-                            const lenker = rad.kilder.flatMap((k) => OPPGAVE_LOVVERK[k.backendType]?.[UNGDOMSYTELSE] ?? []);
+                            const lenker = rad.kilder.flatMap(
+                                (k) => OPPGAVE_LOVVERK[k.backendType]?.[UNGDOMSYTELSE] ?? [],
+                            );
                             const unikeLenker = lenker.filter((l, i) => lenker.findIndex((x) => x.url === l.url) === i);
                             return (
                                 <Table.ExpandableRow

@@ -26,10 +26,11 @@ import {
     mockRapporterInntektAKT,
     mockRapporterInntektBesvartAKT,
 } from '../rapporter-inntekt/RapporterInntektOppgavePanel.mockData';
+import { IntlDecorator } from '../../../storybook/IntlDecorator';
 
 const meta: Meta = {
     title: 'Oppgaver/1. Oversikt/Aktivitetspenger',
-    decorators: [],
+    decorators: [IntlDecorator],
 };
 export default meta;
 type Story = StoryObj;
@@ -67,11 +68,9 @@ const rader: Rad[] = [
         kilder: [{ backendType: OppgaveType.BEKREFT_BOSTED, betingelse: 'oppgavetypeData.type = BOSTED' }],
         preview: (
             <PanelPreviewWrapper>
-                {renderOppgaveStandardStater(
-                    mockBostedVilkårAKT,
-                    mockBostedVilkårBesvartAKT,
-                    (oppgave, opts) => <BostedVilkårOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />,
-                )}
+                {renderOppgaveStandardStater(mockBostedVilkårAKT, mockBostedVilkårBesvartAKT, (oppgave, opts) => (
+                    <BostedVilkårOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />
+                ))}
             </PanelPreviewWrapper>
         ),
     },
@@ -102,7 +101,9 @@ const rader: Rad[] = [
                         <RapporterInntektOppgavePanel
                             oppgave={lagRapporterInntektOppgaveMedScenario(oppgave, 'Hel måned')}
                             navn="SNODIG VAFFEL"
-                            initialKvitteringData={opts?.initialVisKvittering ? { harHattInntektOver0: true } : undefined}
+                            initialKvitteringData={
+                                opts?.initialVisKvittering ? { harHattInntektOver0: true } : undefined
+                            }
                         />
                     ),
                 )}
@@ -162,7 +163,9 @@ export const Oversikt: Story = {
                     </Table.Header>
                     <Table.Body>
                         {rader.map((rad) => {
-                            const lenker = rad.kilder.flatMap((k) => OPPGAVE_LOVVERK[k.backendType]?.[AKTIVITETSPENGER] ?? []);
+                            const lenker = rad.kilder.flatMap(
+                                (k) => OPPGAVE_LOVVERK[k.backendType]?.[AKTIVITETSPENGER] ?? [],
+                            );
                             const unikeLenker = lenker.filter((l, i) => lenker.findIndex((x) => x.url === l.url) === i);
                             return (
                                 <Table.ExpandableRow
