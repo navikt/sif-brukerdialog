@@ -27,7 +27,7 @@
         "axios": "1.19.0",
         "config": "workspace:*",
         "dayjs": "1.11.21",
-        "postcss": "8.5.25",
+        "postcss": ">=8.5.18",
         "react": "19.2.8",
         "react-dom": "19.2.8",
         "typescript": "6.0.3",
