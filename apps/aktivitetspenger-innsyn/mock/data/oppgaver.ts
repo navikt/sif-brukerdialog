@@ -371,7 +371,6 @@ const getBekreftBostedOppgaveDto = (): BrukerdialogOppgaveDto => ({
         ikkeOppfyltÅrsak: BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
         fom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
         tom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month')),
-        ikkeOppfyltÅrsak: BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
         erBosattITrondheim: false,
     },
     status: OppgaveStatus.ULØST,
@@ -388,7 +387,6 @@ const getBekreftBostedOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
         ikkeOppfyltÅrsak: BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
         fom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
         tom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month')),
-        ikkeOppfyltÅrsak: BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
         erBosattITrondheim: false,
     },
     respons: {
