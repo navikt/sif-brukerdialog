@@ -27,7 +27,7 @@ export const RegelverkOgInnsynReadMore = ({ lenker, ytelsetype }: Props) => {
                     {lenker.map((lenke) => (
                         <List.Item key={lenke.url}>
                             <Link href={lenke.url} target="_blank" rel="noopener noreferrer">
-                                {lenke.tekst}
+                                {text(lenke.tekstKey)}
                             </Link>
                         </List.Item>
                     ))}

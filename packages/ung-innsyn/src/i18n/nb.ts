@@ -62,6 +62,11 @@ export const ungUi_messages_nb = {
     '@ungInnsyn.oppgavebekreftelse.oppgavetekst.ariaLabel': 'Oppgaveinformasjon',
     '@ungInnsyn.oppgavebekreftelse.uttalelseform.ariaLabel': 'Svarskjema',
 
+    '@ungInnsyn.lovlenke.arbeidsmarkedsloven_13_fjerde_ledd': '§ 13 fjerde ledd i arbeidsmarkedsloven (lovdata.no)',
+    '@ungInnsyn.lovlenke.forskriftUpy_11':
+        '§ 11 i Forskrift om forsøk med ungdomsprogram og ungdomsprogramytelse (gjelder fra 1. august 2025) (lovdata.no)',
+    '@ungInnsyn.lovlenke.forskriftAktivitetspenger': 'Forskrift om aktivitetspenger (lovdata.no)',
+
     /** OppgaveMessages */
     '@ungInnsyn.oppgavestatus.LØST': 'Løst',
     '@ungInnsyn.oppgavestatus.ULØST': 'Uløst',

@@ -3,6 +3,7 @@ import { OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
+import { useUngUiIntl } from '../../../i18n';
 import { PanelPreviewWrapper, renderOppgaveStandardStater } from '../../../storybook/storyUtils';
 import { Lovlenke, OPPGAVE_LOVVERK } from '../oppgaveLovverk';
 import { AvvikRegisterinntektOppgavePanel } from '../avvik-registerinntekt/AvvikRegisterinntektOppgavePanel';
@@ -123,14 +124,18 @@ const KodeTag = ({ children }: { children: React.ReactNode }) => (
     </code>
 );
 
-const LenkeEllerTodo = ({ lenke }: { lenke: Lovlenke }) =>
-    lenke.url.includes('#todo') ? (
-        <span style={{ color: 'var(--a-text-warning)', fontStyle: 'italic' }}>{lenke.tekst} — TODO: lenke mangler</span>
+const LenkeEllerTodo = ({ lenke }: { lenke: Lovlenke }) => {
+    const { text } = useUngUiIntl();
+    const lenketekst = text(lenke.tekstKey);
+
+    return lenke.url.includes('#todo') ? (
+        <span style={{ color: 'var(--a-text-warning)', fontStyle: 'italic' }}>{lenketekst} — TODO: lenke mangler</span>
     ) : (
         <Link href={lenke.url} rel="noopener noreferrer" target="_blank">
-            {lenke.tekst}
+            {lenketekst}
         </Link>
     );
+};
 
 export const Oversikt: Story = {
     name: 'Aktivitetspenger',

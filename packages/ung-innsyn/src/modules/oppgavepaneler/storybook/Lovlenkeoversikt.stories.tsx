@@ -4,6 +4,7 @@ import { ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { RegelverkOgInnsynReadMore } from '../../../components/readmore/RegelverkOgInnsynReadMore';
+import { useUngUiIntl } from '../../../i18n';
 import { PanelPreviewWrapper } from '../../../storybook/storyUtils';
 import { getLovLenkerForParsedType, LENKEKATALOG, Lovlenke, OPPGAVE_LOVVERK_PARSED } from '../oppgaveLovverk';
 
@@ -27,14 +28,40 @@ const KodeTag = ({ children }: { children: React.ReactNode }) => (
     </code>
 );
 
-const LenkeEllerTodo = ({ lenke }: { lenke: Lovlenke }) =>
-    lenke.url.includes('#todo') ? (
-        <span style={{ color: 'var(--a-text-warning)', fontStyle: 'italic' }}>{lenke.tekst} — TODO: lenke mangler</span>
+const LenkeEllerTodo = ({ lenke }: { lenke: Lovlenke }) => {
+    const { text } = useUngUiIntl();
+    const lenketekst = text(lenke.tekstKey);
+
+    return lenke.url.includes('#todo') ? (
+        <span style={{ color: 'var(--a-text-warning)', fontStyle: 'italic' }}>{lenketekst} — TODO: lenke mangler</span>
     ) : (
         <Link href={lenke.url} rel="noopener noreferrer" target="_blank">
-            {lenke.tekst}
+            {lenketekst}
         </Link>
     );
+};
+
+const UrlKatalog = () => {
+    const { text } = useUngUiIntl();
+    const teksterPerUrl = Object.values(LENKEKATALOG).reduce<Record<string, string[]>>((acc, lenke) => {
+        (acc[lenke.url] ??= []).push(text(lenke.tekstKey));
+        return acc;
+    }, {});
+
+    return (
+        <List>
+            {Object.entries(teksterPerUrl).map(([url, tekster]) => (
+                <List.Item key={url} title={url}>
+                    <List>
+                        {tekster.map((tekst) => (
+                            <List.Item key={tekst}>{tekst}</List.Item>
+                        ))}
+                    </List>
+                </List.Item>
+            ))}
+        </List>
+    );
+};
 
 type LovlenkeRad = {
     lenke: Lovlenke;
@@ -91,7 +118,7 @@ export const Oversikt: Story = {
                         <Table.Body>
                             {rader.map(({ lenke, bruk }) =>
                                 bruk.map((b, i) => (
-                                    <Table.Row key={`${lenke.tekst}-${b.parsedOppgavetype}-${b.ytelsetype}`}>
+                                    <Table.Row key={`${lenke.tekstKey}-${b.parsedOppgavetype}-${b.ytelsetype}`}>
                                         {i === 0 && (
                                             <Table.DataCell rowSpan={bruk.length}>
                                                 <LenkeEllerTodo lenke={lenke} />
@@ -117,22 +144,7 @@ export const Oversikt: Story = {
                     <BodyShort size="small">Flere oppgavetyper kan dele samme URL.</BodyShort>
                 </VStack>
                 <Box background="neutral-softA" borderRadius="16" padding="space-16">
-                    <List>
-                        {Object.entries(
-                            Object.values(LENKEKATALOG).reduce<Record<string, string[]>>((acc, lenke) => {
-                                (acc[lenke.url] ??= []).push(lenke.tekst);
-                                return acc;
-                            }, {}),
-                        ).map(([url, tekster]) => (
-                            <List.Item key={url} title={url}>
-                                <List>
-                                    {tekster.map((tekst) => (
-                                        <List.Item key={tekst}>{tekst}</List.Item>
-                                    ))}
-                                </List>
-                            </List.Item>
-                        ))}
-                    </List>
+                    <UrlKatalog />
                 </Box>
 
                 <VStack gap="space-8">
