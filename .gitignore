@@ -32,6 +32,9 @@ out
 dist-e2e
 dist-playwright
 
+# cplt config
+.cplt.toml
+
 # next.js
 /.next/
 /out/
