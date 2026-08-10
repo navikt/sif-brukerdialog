@@ -45,7 +45,7 @@
         "config": "workspace:*",
         "eslint": "10.8.0",
         "playwright-core": "1.62.1",
-        "postcss": ">=8.5.18",
+        "postcss": "8.5.26",
         "tailwindcss": "4.3.3",
         "typescript": "6.0.3",
         "vite": "8.2.1",
