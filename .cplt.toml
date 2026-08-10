@@ -61,9 +61,9 @@
 [propose]
 # ⚠️  grants access to Docker socket — effectively root on the host
 # Suggested by: apps-intern/ungdomsytelse-veileder, apps/aktivitetspenger-innsyn, apps/aktivitetspenger-soknad, apps/dine-pleiepenger, apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn, apps/endringsmelding-pleiepenger, apps/omsorgsdager-aleneomsorg-dialog, apps/omsorgsdager-kalkulator, apps/omsorgspengerutbetaling-arbeidstaker-soknad, apps/omsorgspengerutbetaling-soknad, apps/omsorgspengesoknad, apps/omsorgspengesoknad-v2, apps/opplaringspenger-soknad, apps/pleiepenger-i-livets-sluttfase-soknad, apps/pleiepenger-sykt-barn, apps/sif-demo-app, apps/sif-ettersending, apps/ungdomsytelse-deltaker
-allow_docker = true
+allow_docker = false
 # Suggested by: (root), apps-intern/ungdomsytelse-veileder, apps/aktivitetspenger-innsyn, apps/aktivitetspenger-soknad, apps/dine-pleiepenger, apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn, apps/endringsmelding-pleiepenger, apps/omsorgsdager-aleneomsorg-dialog, apps/omsorgsdager-kalkulator, apps/omsorgspengerutbetaling-arbeidstaker-soknad, apps/omsorgspengerutbetaling-soknad, apps/omsorgspengesoknad, apps/omsorgspengesoknad-v2, apps/opplaringspenger-soknad, apps/pleiepenger-i-livets-sluttfase-soknad, apps/pleiepenger-sykt-barn, apps/sif-demo-app, apps/sif-ettersending, apps/ungdomsytelse-deltaker, packages/sif-common-core-ds, packages/sif-common-formik-ds, packages/sif-common-forms-ds, packages/sif-common-soknad-ds, packages/sif-soknad-forms, packages/sif-soknad-ui, packages/ung-innsyn
-allow_localhost_any = true
+allow_localhost_any = false
 
 [propose.allow]
 localhost = [3000, 5173, 6006, 8080, 8088]
