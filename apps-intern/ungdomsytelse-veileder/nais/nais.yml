@@ -47,13 +47,13 @@ spec:
         cpuThresholdPercentage: 90
     frontend:
         generatedConfig:
-            mountPath: /app/public/nais.js
+            mountPath: /apps-intern/{{app}}/dist/assets/nais.js
     vault:
         enabled: false
     observability:
       autoInstrumentation:
         enabled: {{observabilityEnabled}}
-        runtime: frontend
+        runtime: nodejs
     env:
   {{#each env}}
      - name: {{@key}}
