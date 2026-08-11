@@ -46,6 +46,7 @@ import OmsorgstilbudSummary from './omsorgstilbud-summary/OmsorgstilbudSummary';
 import PeriodeSummary from './periode-summary/PeriodeSummary';
 import SøkerSummary from './søker-summary/SøkerSummary';
 import { useSkyraReloader } from '@sif/surveys';
+import { appLogger } from '@navikt/sif-common-soknad-ds';
 
 interface Props {
     values: SøknadFormValues;
@@ -98,7 +99,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                 if (isInvalidParameterErrorResponse(error.response?.data)) {
                     setInvalidParameters(error.response.data.violations);
                 }
-                console.error(error as any, 'sendSøknad-invalidParameters');
+                appLogger.logApiError(error as any, 'sendSøknad-invalidParameters');
             } else if (isUnauthorized(error)) {
                 logUserLoggedOut('Ved innsending av søknad');
                 relocateToLoginPage();
@@ -106,7 +107,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                 setSendingInProgress(false);
                 setSendSoknadFailed(true);
                 await logSoknadFailed(PleiepengerSyktBarnApp.navn);
-                console.error(error, 'sendSøknad');
+                appLogger.logApiError(error as any, 'sendSøknad');
             }
         }
     };

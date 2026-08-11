@@ -26,3 +26,4 @@ export { GlobalSoknadApplicationRoutes } from './setup/SoknadApplicationCommonRo
 export type { SendSoknadStatusInterface, SoknadContextInterface } from './setup/SoknadContext';
 export { ensureBaseNameForReactRouter } from './utils/ensureBaseNameForReactRouter';
 export { getInvalidParametersFromAxiosError } from './utils/innsendingErrorUtils';
+export { appLogger } from './utils/appLogger';

@@ -1,5 +1,5 @@
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
-
+import { appLogger } from '@navikt/sif-common-soknad-ds';
 
 export const getValidSpråk = (locale?: any): Locale => {
     const loc = typeof locale === 'string' ? locale : 'nb';
@@ -12,7 +12,7 @@ export const getValidSpråk = (locale?: any): Locale => {
                 return 'nb';
         }
     } catch {
-        console.info('Fallback on getValidSpråk', loc);
+        appLogger.logInfo('Fallback on getValidSpråk', loc);
         return 'nb';
     }
 };

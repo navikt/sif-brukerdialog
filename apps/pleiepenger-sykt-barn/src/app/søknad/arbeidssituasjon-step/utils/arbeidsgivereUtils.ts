@@ -1,3 +1,4 @@
+import { appLogger } from '@navikt/sif-common-soknad-ds';
 import { FormikErrors } from 'formik';
 
 import { Arbeidsgiver, ArbeidsgiverType } from '../../../types';
@@ -36,10 +37,7 @@ export const syncAnsattArbeidsforhold = (
     arbeidsgivere.forEach((arbeidsgiver) => {
         const forhold = arbeidsforhold.find((f) => f.arbeidsgiver.id === arbeidsgiver.id);
         if (!arbeidsgiver.navn) {
-            console.error(
-                'Get arbeidsgiver: Manglende navn på organisasjon',
-                `${JSON.stringify(arbeidsgiver)}`,
-            );
+            appLogger.logError('Get arbeidsgiver: Manglende navn på organisasjon');
         }
         syncedArbeidsforhold.push({
             arbeidsgiver,

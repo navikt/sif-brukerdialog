@@ -2,6 +2,7 @@ import { RegistrertBarn } from '@navikt/sif-common-api';
 import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { getMedlemskapApiDataFromSøknadsdata } from '@navikt/sif-common-forms-ds/src';
+import { appLogger } from '@navikt/sif-common-soknad-ds';
 import { dateToISODate } from '@navikt/sif-common-utils';
 
 import { ÅrsakManglerIdentitetsnummer } from '../../types';
@@ -90,11 +91,11 @@ export const getApiDataFromSøknadsdata = (
 
             return apiData;
         } catch (e) {
-            console.error('getApiDataFromSøknadsdata failed', e as any);
+            appLogger.logException(e, { context: 'getApiDataFromSøknadsdata failed' });
             throw e;
         }
     } else {
-        console.error('getApiDataFromSøknadsdata failed - empty periode', JSON.stringify(søknadsperiode));
+        appLogger.logError('getApiDataFromSøknadsdata failed - empty periode');
         return undefined;
     }
 };

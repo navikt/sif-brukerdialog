@@ -4700,6 +4700,9 @@ importers:
 
   packages/sif-common-soknad-ds:
     dependencies:
+      '@nais/apm':
+        specifier: 0.6.0
+        version: 0.6.0(@grafana/faro-react@2.9.0(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@navikt/appstatus-react-ds':
         specifier: workspace:*
         version: link:../appstatus-react-ds

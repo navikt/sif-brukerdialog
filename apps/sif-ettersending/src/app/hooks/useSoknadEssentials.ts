@@ -9,6 +9,7 @@ import { RequestStatus } from '../types/RequestStatus';
 import { Søknadstype } from '../types/Søknadstype';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { navigateToLoginPage } from '../utils/navigationUtils';
+import { appLogger } from '@navikt/sif-common-soknad-ds';
 
 export type SoknadEssentials = { søker: Søker; barn?: RegistrertBarn[]; mellomlagring?: SoknadTempStorageData };
 
@@ -31,10 +32,7 @@ type SøknadInitialLoading = {
 };
 
 export type SøknadInitialDataState =
-    | SøknadInitialSuccess
-    | SøknadInitialFailed
-    | SøknadInitialLoading
-    | SøknadInitialIkkeTilgang;
+    SøknadInitialSuccess | SøknadInitialFailed | SøknadInitialLoading | SøknadInitialIkkeTilgang;
 
 const isUnknownAxiosError = (error: any) => {
     try {
@@ -84,7 +82,7 @@ function useSoknadEssentials(søknadstype: Søknadstype): SøknadInitialDataStat
                 });
             } else {
                 if (!isUnknownAxiosError(error)) {
-                    console.error('fetchInitialData', JSON.stringify({ error }));
+                    appLogger.logException(error, { context: 'fetchInitialData' });
                 }
                 setInitialData({
                     status: RequestStatus.error,

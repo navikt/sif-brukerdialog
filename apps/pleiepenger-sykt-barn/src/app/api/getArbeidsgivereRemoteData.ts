@@ -1,4 +1,5 @@
 import apiUtils from '@navikt/sif-common-core-ds/src/utils/apiUtils';
+import { appLogger } from '@navikt/sif-common-soknad-ds';
 import { DateRange, dateToISODate, ISODate, ISODateToDate } from '@navikt/sif-common-utils';
 
 import { Arbeidsgiver, ArbeidsgiverType } from '../types/Arbeidsgiver';
@@ -77,7 +78,7 @@ export async function getArbeidsgivereRemoteData(periode: DateRange): Promise<Ar
             relocateToLoginPage();
             return [];
         } else {
-            console.error(error, 'getArbeidsgivereRemoteData');
+            appLogger.logApiError(error, 'getArbeidsgivereRemoteData');
         }
         return Promise.reject(error);
     }

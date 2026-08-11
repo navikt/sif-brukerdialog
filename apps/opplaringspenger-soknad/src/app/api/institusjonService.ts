@@ -25,7 +25,7 @@ export const fetchInstitusjoner = async (): Promise<Institusjon[]> => {
     try {
         return institusjonerSchema.parse(response.data);
     } catch (e) {
-        console.error('ZOD parse error', e);
+        appLogger.logException(e, { context: 'ZOD parse error' });
         throw e;
     }
 };
