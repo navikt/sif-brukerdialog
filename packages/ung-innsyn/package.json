@@ -41,7 +41,8 @@
         "@tanstack/react-query": "5.101.4",
         "react-hook-form": "7.84.0",
         "react-intl": "10.1.20",
-        "react-router-dom": "7.18.2"
+        "react-router-dom": "7.18.2",
+        "@nais/apm": "0.6.0"
     },
     "devDependencies": {
         "@navikt/fnrvalidator": "2.2.1",
