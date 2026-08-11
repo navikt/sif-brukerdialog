@@ -123,6 +123,9 @@ importers:
       '@navikt/ung-deltakelse-opplyser-api-veileder':
         specifier: workspace:*
         version: link:../../packages/ung-deltakelse-opplyser-api-veileder
+      '@sif/apm':
+        specifier: workspace:*
+        version: link:../../packages/sif-apm
       '@tanstack/react-query':
         specifier: 5.101.4
         version: 5.101.4(react@19.2.8)
@@ -352,6 +355,9 @@ importers:
       '@sif/api':
         specifier: workspace:*
         version: link:../../packages/sif-api
+      '@sif/apm':
+        specifier: workspace:*
+        version: link:../../packages/sif-apm
       '@sif/rhf':
         specifier: workspace:*
         version: link:../../packages/sif-rhf
@@ -684,6 +690,9 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/sif-common-utils
+      '@sif/apm':
+        specifier: workspace:*
+        version: link:../../packages/sif-apm
       '@types/lodash.sortby':
         specifier: 4.7.9
         version: 4.7.9
@@ -1064,6 +1073,9 @@ importers:
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
+      '@sif/apm':
+        specifier: workspace:*
+        version: link:../../packages/sif-apm
       '@sif/surveys':
         specifier: workspace:*
         version: link:../../packages/sif-surveys
@@ -3528,6 +3540,9 @@ importers:
       '@sif/api':
         specifier: workspace:*
         version: link:../../packages/sif-api
+      '@sif/apm':
+        specifier: workspace:*
+        version: link:../../packages/sif-apm
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../../packages/sif-soknad-ui
@@ -4703,6 +4718,9 @@ importers:
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../sif-common-ui
+      '@sif/apm':
+        specifier: workspace:*
+        version: link:../sif-apm
       classnames:
         specifier: 2.5.1
         version: 2.5.1
@@ -5204,6 +5222,9 @@ importers:
       '@sif/api':
         specifier: workspace:*
         version: link:../sif-api
+      '@sif/apm':
+        specifier: workspace:*
+        version: link:../sif-apm
       '@sif/rhf':
         specifier: workspace:*
         version: link:../sif-rhf
@@ -8023,6 +8044,17 @@ packages:
       react-dom: '>=17.0.0'
       react-router: '>=6.0.0'
       react-router-dom: '>=6.0.0'
+    peerDependenciesMeta:
+      '@grafana/faro-react':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+      react-router:
+        optional: true
+      react-router-dom:
+        optional: true
 
   '@napi-rs/lzma-linux-x64-gnu@1.5.1':
     resolution: {integrity: sha512-oTXEIha4SsuXdTA4Iyskj0kpdx2yVXdhd75c2v3xGrHFfVMsbhTPZU/nMPL4sWKo4pBHm3aucLaqGlF696dTyQ==}
@@ -18793,6 +18825,7 @@ snapshots:
       react-router-dom: 7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   '@grafana/faro-web-sdk@2.9.0':
     dependencies:
@@ -18831,6 +18864,7 @@ snapshots:
       '@opentelemetry/semantic-conventions': 1.43.0
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   '@grafana/rrdom@2.0.0-grafana.2':
     dependencies:
@@ -19688,12 +19722,13 @@ snapshots:
 
   '@nais/apm@0.6.0(@grafana/faro-react@2.9.0(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)':
     dependencies:
-      '@grafana/faro-react': 2.9.0(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@grafana/faro-web-sdk': 2.9.0
       '@grafana/faro-web-tracing': 2.8.2
       '@grafana/rrweb': 2.0.0-grafana.2
       '@grafana/rrweb-snapshot': 2.0.0-grafana.2
       fflate: 0.8.3
+    optionalDependencies:
+      '@grafana/faro-react': 2.9.0(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
       react-router: 7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
