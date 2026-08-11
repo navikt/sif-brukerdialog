@@ -28,6 +28,8 @@ class ErrorBoundary extends React.Component<Props, State> {
         if (error && error.message !== 'window.hasFocus is not a function') {
             this.setState({ ...this.state, hasError: true, error });
             captureException(error, { context: errorInfo });
+            // console.error beholdes for synlighet i devtools under lokal utvikling —
+            // captureException sender ikke til konsollen automatisk.
             console.error('ErrorBoundary caught an error:', error.message, errorInfo);
         }
     }
