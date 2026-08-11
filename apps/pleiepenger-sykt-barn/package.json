@@ -23,6 +23,7 @@
         "test": "vitest run"
     },
     "dependencies": {
+    "@sif/apm": "workspace:*",
         "@navikt/aksel-icons": "8.16.1",
         "@navikt/appstatus-react-ds": "workspace:*",
         "@navikt/ds-css": "8.16.1",

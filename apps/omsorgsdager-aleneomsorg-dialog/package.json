@@ -29,6 +29,7 @@
         "pw:start": "vite preview --base / --config vite.playwright.config.ts"
     },
     "dependencies": {
+    "@sif/apm": "workspace:*",
         "@navikt/aksel-icons": "8.16.1",
         "@navikt/ds-css": "8.16.1",
         "@navikt/ds-react": "8.16.1",

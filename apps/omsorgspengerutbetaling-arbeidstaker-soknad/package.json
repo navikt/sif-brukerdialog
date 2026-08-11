@@ -62,6 +62,7 @@
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
+        "@sif/apm": "workspace:*",
         "@sif/surveys": "workspace:*",
         "@tanstack/react-query": "5.101.4",
         "@testing-library/react": "16.3.2",
