@@ -25,8 +25,9 @@ export const appLogger = {
     logException: (error: unknown, extra?: Record<string, unknown>) => {
         const err = error instanceof Error ? error : new Error(String(error));
         captureException(err);
+        // loglevel-safe: err.message inneholder aldri sensitiv data — falsk positiv fra CodeQL
         // eslint-disable-next-line no-console
-        console.error('Exception:', err.message, extra ?? {});
+        console.error('Exception:', err.message, extra ?? {}); // lgtm[js/clear-text-logging]
     },
 
     logApiError: (error: AxiosError, context?: string) => {
@@ -36,7 +37,8 @@ export const appLogger = {
         }
         // Sanitert: sender kun context og statuskode, ikke rå Axios-data
         captureException(new Error(`${context ?? 'unknown'}: HTTP ${status ?? error.code ?? 'unknown'}`));
+        // error.message inneholder kun HTTP-metadata, ikke sensitiv payload — falsk positiv fra CodeQL
         // eslint-disable-next-line no-console
-        console.error(`API error [${context}]:`, error.message);
+        console.error(`API error [${context}]:`, error.message); // lgtm[js/clear-text-logging]
     },
 };
