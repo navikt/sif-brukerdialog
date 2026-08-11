@@ -3,7 +3,6 @@ import './app.css';
 
 import { Theme } from '@navikt/ds-react';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
-import { AktivitetspengerApp } from '@navikt/sif-app-register';
 import { EnvKey } from '@navikt/sif-common-env';
 import { DevBranchInfo } from '@sif/soknad-ui';
 import MockDate from 'mockdate';
@@ -53,15 +52,15 @@ export const App = () => {
 
     return (
         <Theme hasBackground={false}>
-                <AppErrorBoundary>
-                    <SifQueryClientProvider>
-                        <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
-                            <AppRouter>
-                                <InitialDataLoader />
-                            </AppRouter>
-                        </IntlProvider>
-                    </SifQueryClientProvider>
-                </AppErrorBoundary>
+            <AppErrorBoundary>
+                <SifQueryClientProvider>
+                    <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
+                        <AppRouter>
+                            <InitialDataLoader />
+                        </AppRouter>
+                    </IntlProvider>
+                </SifQueryClientProvider>
+            </AppErrorBoundary>
             <DevBranchInfo />
         </Theme>
     );

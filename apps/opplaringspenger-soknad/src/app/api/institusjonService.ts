@@ -1,5 +1,6 @@
 import { parseMaybeDateStringToDate } from '@navikt/sif-common-api';
 import { k9SakApiClient } from '@navikt/sif-common-api/src/api/k9SakApiClient';
+import { appLogger } from '@navikt/sif-common-soknad-ds';
 import { z } from 'zod';
 
 export const institusjonSchema = z.object({
