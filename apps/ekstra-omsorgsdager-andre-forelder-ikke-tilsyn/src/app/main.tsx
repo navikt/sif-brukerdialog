@@ -1,12 +1,13 @@
 import { initFromConfigUrl } from '@nais/apm';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
+import { getMaybeEnv } from '@navikt/sif-common-env';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import { enableMocking } from '../../mock/msw/enableMocking';
 import App from './App';
 
-void initFromConfigUrl('/nais.json', { app: 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn', namespace: 'dusseldorf' });
+void initFromConfigUrl('/nais.json', { app: 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn', namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
 
 if (import.meta.env.INJECT_DECORATOR) {
     injectDecoratorClientSide({
