@@ -24,7 +24,6 @@ const {
     SIF_PUBLIC_APPSTATUS_PROJECT_ID,
     SIF_PUBLIC_USE_ANALYTICS,
     SIF_PUBLIC_ANALYTICS_API_KEY,
-    APP_VERSION,
 } = appEnv;
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
@@ -34,7 +33,6 @@ const App = () => (
     <Theme>
         <QueryClientProvider client={queryClient}>
             <SoknadApplication
-                appVersion={APP_VERSION}
                 appKey={PleiepengerLivetsSluttApp.key}
                 appName={PleiepengerLivetsSluttApp.navn}
                 appTitle={PleiepengerLivetsSluttApp.tittel.nb}

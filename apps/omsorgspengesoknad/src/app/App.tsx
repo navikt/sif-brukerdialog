@@ -19,7 +19,6 @@ const {
     SIF_PUBLIC_APPSTATUS_PROJECT_ID,
     SIF_PUBLIC_USE_ANALYTICS,
     SIF_PUBLIC_ANALYTICS_API_KEY,
-    APP_VERSION,
 } = appEnv;
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
@@ -27,7 +26,6 @@ ensureBaseNameForReactRouter(PUBLIC_PATH);
 const App = () => {
     return (
         <SoknadApplication
-            appVersion={APP_VERSION}
             appKey={OmsorgsdagerKroniskApp.key}
             appName={OmsorgsdagerKroniskApp.navn}
             appTitle={OmsorgsdagerKroniskApp.tittel.nb}

@@ -21,7 +21,6 @@ const {
     PUBLIC_PATH,
     SIF_PUBLIC_APPSTATUS_PROJECT_ID,
     SIF_PUBLIC_APPSTATUS_DATASET,
-    APP_VERSION,
     SIF_PUBLIC_USE_ANALYTICS,
     SIF_PUBLIC_ANALYTICS_API_KEY,
 } = appEnv;
@@ -32,7 +31,6 @@ const App = () => {
     return (
         <Theme>
             <SoknadApplication
-                appVersion={APP_VERSION}
                 appKey={EttersendelseApp.key}
                 appName={EttersendelseApp.navn}
                 appTitle={EttersendelseApp.tittel.nb}

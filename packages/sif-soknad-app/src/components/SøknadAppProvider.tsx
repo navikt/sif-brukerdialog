@@ -16,7 +16,6 @@ export interface AppStatusConfig {
 
 interface SøknadAppProviderProps {
     applicationKey: string;
-    appVersion: string;
     analyticsConfig?: AnalyticsProviderConfig;
     intlConfig?: AppIntlConfig;
     appStatusConfig?: AppStatusConfig;
@@ -42,7 +41,6 @@ const AppStatusChildren = ({
 
 export const SøknadAppProvider = ({
     applicationKey,
-    appVersion,
     analyticsConfig,
     intlConfig,
     appStatusConfig,

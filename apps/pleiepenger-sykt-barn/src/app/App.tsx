@@ -24,7 +24,6 @@ const {
     PUBLIC_PATH,
     SIF_PUBLIC_APPSTATUS_DATASET,
     SIF_PUBLIC_APPSTATUS_PROJECT_ID,
-    APP_VERSION,
     SIF_PUBLIC_USE_ANALYTICS,
     SIF_PUBLIC_ANALYTICS_API_KEY,
 } = appEnv;
@@ -54,7 +53,6 @@ const App = () => {
         <Theme>
             <QueryClientProvider client={queryClient}>
                 <SoknadApplication
-                    appVersion={APP_VERSION}
                     appKey={PleiepengerSyktBarnApp.key}
                     appName={PleiepengerSyktBarnApp.navn}
                     appTitle={PleiepengerSyktBarnApp.tittel.nb}

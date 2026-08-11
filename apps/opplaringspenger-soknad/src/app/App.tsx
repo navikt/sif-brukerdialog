@@ -26,7 +26,6 @@ const {
     PUBLIC_PATH,
     SIF_PUBLIC_APPSTATUS_DATASET,
     SIF_PUBLIC_APPSTATUS_PROJECT_ID,
-    APP_VERSION,
     SIF_PUBLIC_USE_ANALYTICS,
     SIF_PUBLIC_ANALYTICS_API_KEY,
 } = appEnv;
@@ -48,7 +47,6 @@ const App = () => {
                 <UxSignalsLoaderProvider>
                     <div className={__IS_GITHUB_PAGES__ ? 'demoMode' : undefined}>
                         <SoknadApplication
-                            appVersion={APP_VERSION}
                             appKey={OpplæringspengerApp.key}
                             appName={OpplæringspengerApp.navn}
                             appTitle={OpplæringspengerApp.tittel.nb}

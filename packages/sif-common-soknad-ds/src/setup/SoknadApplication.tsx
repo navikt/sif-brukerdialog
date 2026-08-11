@@ -28,7 +28,6 @@ import useDecoratorLanguageSelector from '../hooks/useDecoratorLanguageSelector'
 import ErrorPage from '../pages/error-page/ErrorPage';
 
 interface Props {
-    appVersion: string;
     /** Key used in analytics */
     appKey: string;
     /** App name - not visual to user */
@@ -70,7 +69,6 @@ const SoknadApplication = ({
     useLanguageSelector,
     children,
     appTitle,
-    appVersion,
     onResetSoknad,
     useHashRouter,
 }: Props) => {
