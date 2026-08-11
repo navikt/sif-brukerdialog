@@ -1,6 +1,6 @@
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { appLogger } from '@navikt/sif-common-soknad-ds';
+import { appLogger } from '@sif/apm';
 import dayjs from 'dayjs';
 
 import { Arbeidsforhold, Utbetalingsårsak } from '../../../types/ArbeidsforholdTypes';

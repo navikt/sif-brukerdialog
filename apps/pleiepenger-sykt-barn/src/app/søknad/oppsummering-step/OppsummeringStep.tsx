@@ -46,7 +46,7 @@ import OmsorgstilbudSummary from './omsorgstilbud-summary/OmsorgstilbudSummary';
 import PeriodeSummary from './periode-summary/PeriodeSummary';
 import SøkerSummary from './søker-summary/SøkerSummary';
 import { useSkyraReloader } from '@sif/surveys';
-import { appLogger } from '@navikt/sif-common-soknad-ds';
+import { appLogger } from '@sif/apm';
 
 interface Props {
     values: SøknadFormValues;

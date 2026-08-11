@@ -1,4 +1,4 @@
-import { captureMessage } from '@nais/apm';
+import { captureMessage } from '@sif/apm';
 import { KontonummerInfo, ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';

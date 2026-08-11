@@ -1,5 +1,6 @@
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { appLogger, ErrorPage, SoknadErrorMessages } from '@navikt/sif-common-soknad-ds';
+import { ErrorPage, SoknadErrorMessages } from '@navikt/sif-common-soknad-ds';
+import { appLogger } from '@sif/apm';
 
 interface Props {
     pathName: string;

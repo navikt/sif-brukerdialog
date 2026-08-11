@@ -1,4 +1,4 @@
-import { captureException } from '@nais/apm';
+import { captureException } from '@sif/apm';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { isDevMode } from '@navikt/sif-common-env';

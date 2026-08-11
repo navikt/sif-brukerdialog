@@ -4,7 +4,7 @@ import { SøknadContextState } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
-import { appLogger } from '@navikt/sif-common-soknad-ds/src/utils/appLogger';
+import { appLogger } from '@sif/apm';
 
 export const initialSøknadsdata: Søknadsdata = {
     id: undefined,

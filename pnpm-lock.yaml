@@ -4078,6 +4078,28 @@ importers:
         specifier: 4.4.3
         version: 4.4.3
 
+  packages/sif-apm:
+    dependencies:
+      '@nais/apm':
+        specifier: 0.6.0
+        version: 0.6.0(@grafana/faro-react@2.9.0(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
+      axios:
+        specifier: 1.19.0
+        version: 1.19.0
+    devDependencies:
+      '@sif/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config-sif
+      '@types/node':
+        specifier: 26.1.2
+        version: 26.1.2
+      config:
+        specifier: workspace:*
+        version: link:../config
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+
   packages/sif-app-register:
     devDependencies:
       '@sif/eslint-config':

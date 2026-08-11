@@ -1,5 +1,5 @@
 import apiUtils from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { appLogger } from '@navikt/sif-common-soknad-ds';
+import { appLogger } from '@sif/apm';
 import { DateRange, dateToISODate, ISODate, ISODateToDate } from '@navikt/sif-common-utils';
 
 import { Arbeidsgiver, ArbeidsgiverType } from '../types/Arbeidsgiver';

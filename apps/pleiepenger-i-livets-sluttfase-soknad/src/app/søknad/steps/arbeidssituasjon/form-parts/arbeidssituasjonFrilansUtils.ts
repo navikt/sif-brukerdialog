@@ -1,5 +1,5 @@
 import { datepickerUtils, DateRange, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { appLogger } from '@navikt/sif-common-soknad-ds/src/utils/appLogger';
+import { appLogger } from '@sif/apm';
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 

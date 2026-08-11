@@ -1,4 +1,4 @@
-import { captureMessage } from '@nais/apm';
+import { captureMessage } from '@sif/apm';
 
 const ERROR_PREFIX = 'UNG_ERROR';
 

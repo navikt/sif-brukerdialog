@@ -1,4 +1,4 @@
-import { captureException } from '@nais/apm';
+import { captureException } from '@sif/apm';
 import { Page } from '@navikt/ds-react';
 import { createChildLogger } from '@navikt/next-logger';
 import { Component, ErrorInfo, PropsWithChildren, ReactNode } from 'react';

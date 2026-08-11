@@ -9,7 +9,7 @@ import { RequestStatus } from '../types/RequestStatus';
 import { Søknadstype } from '../types/Søknadstype';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { navigateToLoginPage } from '../utils/navigationUtils';
-import { appLogger } from '@navikt/sif-common-soknad-ds';
+import { appLogger } from '@sif/apm';
 
 export type SoknadEssentials = { søker: Søker; barn?: RegistrertBarn[]; mellomlagring?: SoknadTempStorageData };
 

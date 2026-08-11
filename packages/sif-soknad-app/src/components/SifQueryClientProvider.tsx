@@ -1,5 +1,5 @@
 import { isApiAxiosError, isApiError } from '@sif/api';
-import { captureException } from '@nais/apm';
+import { captureException } from '@sif/apm';
 import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { PropsWithChildren, useRef } from 'react';
 

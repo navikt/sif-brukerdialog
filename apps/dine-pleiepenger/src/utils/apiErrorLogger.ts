@@ -1,4 +1,4 @@
-import { captureException, captureMessage } from '@nais/apm';
+import { captureException, captureMessage } from '@sif/apm';
 import axios from 'axios';
 
 export const logApiError = (error: unknown, context: string, options?: { ignore401?: boolean }) => {

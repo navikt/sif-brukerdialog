@@ -1,4 +1,4 @@
-import { appLogger } from '@navikt/sif-common-soknad-ds';
+import { appLogger } from '@sif/apm';
 import { FormikErrors } from 'formik';
 
 import { Arbeidsgiver, ArbeidsgiverType } from '../../../types';

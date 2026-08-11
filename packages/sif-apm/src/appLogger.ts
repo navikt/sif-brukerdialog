@@ -2,7 +2,7 @@ import { captureException, captureMessage } from '@nais/apm';
 import { AxiosError } from 'axios';
 
 /**
- * Felles logger for v1 søknadapper — erstattet appSentryLogger.
+ * Felles logger for sif-apper — erstatter appSentryLogger.
  *
  * Saniteringsregler:
  * - 401, status 0 og ERR_NETWORK ignoreres i logApiError

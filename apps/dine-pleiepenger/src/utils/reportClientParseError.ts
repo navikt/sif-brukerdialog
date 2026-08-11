@@ -1,4 +1,4 @@
-import { captureException } from '@nais/apm';
+import { captureException } from '@sif/apm';
 import { ZodError } from 'zod';
 
 export const reportClientParseError = (error: ZodError, context: string): void => {

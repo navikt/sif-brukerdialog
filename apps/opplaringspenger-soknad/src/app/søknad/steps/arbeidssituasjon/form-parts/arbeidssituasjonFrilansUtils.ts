@@ -6,7 +6,7 @@ import minMax from 'dayjs/plugin/minMax';
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
 import { ArbeidFrilansSøknadsdata } from '../../../../types/søknadsdata/ArbeidFrilansSøknadsdata';
 import { FrilansFormData } from './ArbeidssituasjonFrilans';
-import { appLogger } from '@navikt/sif-common-soknad-ds/src/utils/appLogger';
+import { appLogger } from '@sif/apm';
 
 dayjs.extend(minMax);
 

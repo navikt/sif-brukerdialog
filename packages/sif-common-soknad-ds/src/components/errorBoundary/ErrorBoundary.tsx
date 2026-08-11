@@ -1,4 +1,4 @@
-import { captureException } from '@nais/apm';
+import { captureException } from '@sif/apm';
 import { Box, Button, Heading } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';

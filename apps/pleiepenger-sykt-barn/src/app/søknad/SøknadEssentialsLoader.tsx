@@ -15,7 +15,7 @@ import { initialValues, SøknadFormField, SøknadFormValues } from '../types/sø
 import { MellomlagringMetadata, SøknadTempStorageData } from '../types/SøknadTempStorageData';
 import { getFeatureToggles } from '../utils/featureToggleUtils';
 import { relocateToLoginPage } from '../utils/navigationUtils';
-import { appLogger } from '@navikt/sif-common-soknad-ds';
+import { appLogger } from '@sif/apm';
 
 interface Props {
     onUgyldigMellomlagring: () => void;

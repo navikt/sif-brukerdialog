@@ -37,6 +37,7 @@
         ]
     },
     "dependencies": {
+        "@nais/apm": "0.6.0",
         "@navikt/aksel-icons": "8.16.1",
         "@navikt/ds-css": "8.16.1",
         "@navikt/ds-react": "8.16.1",
@@ -54,6 +55,7 @@
         "@navikt/sif-validation": "workspace:*",
         "@navikt/ung-common": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-veileder": "workspace:*",
+        "@sif/apm": "workspace:*",
         "@tanstack/react-query": "5.101.4",
         "axios": "1.19.0",
         "clsx": "2.1.1",
@@ -70,8 +72,7 @@
         "react-router-dom": "7.18.2",
         "remark-gfm": "4.0.1",
         "uuid": "^14.0.1",
-        "zod": "4.4.3",
-        "@nais/apm": "0.6.0"
+        "zod": "4.4.3"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.12.1",

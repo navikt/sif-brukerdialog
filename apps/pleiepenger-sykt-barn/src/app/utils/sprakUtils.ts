@@ -1,5 +1,5 @@
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
-import { appLogger } from '@navikt/sif-common-soknad-ds';
+import { appLogger } from '@sif/apm';
 
 export const getValidSpråk = (locale?: any): Locale => {
     const loc = typeof locale === 'string' ? locale : 'nb';

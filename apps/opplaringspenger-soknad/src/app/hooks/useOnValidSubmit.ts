@@ -1,4 +1,4 @@
-import { appLogger } from '@navikt/sif-common-soknad-ds/src/utils/appLogger';
+import { appLogger } from '@sif/apm';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 

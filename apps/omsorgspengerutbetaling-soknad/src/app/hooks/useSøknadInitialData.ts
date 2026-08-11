@@ -1,7 +1,7 @@
 import { fetchBarn, fetchSøker, isUnauthorized, RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { isForbidden } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { appLogger } from '@navikt/sif-common-soknad-ds';
+import { appLogger } from '@sif/apm';
 import { useState } from 'react';
 
 import { MellomlagringData, mellomlagringService } from '../api/mellomlagringService';

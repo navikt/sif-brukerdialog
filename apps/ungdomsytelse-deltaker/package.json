@@ -29,6 +29,7 @@
         "test": "vitest run"
     },
     "dependencies": {
+        "@nais/apm": "0.6.0",
         "@navikt/aksel-icons": "8.16.1",
         "@navikt/appstatus-react-ds": "workspace:*",
         "@navikt/ds-css": "8.16.1",
@@ -50,6 +51,7 @@
         "@navikt/ung-brukerdialog-api": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
         "@sif/api": "workspace:*",
+        "@sif/apm": "workspace:*",
         "@sif/soknad-ui": "workspace:*",
         "@sif/surveys": "workspace:*",
         "@sif/ung-innsyn": "workspace:*",
@@ -71,8 +73,7 @@
         "react-router-dom": "7.18.2",
         "uuid": "^14.0.1",
         "zod": "4.4.3",
-        "zustand": "5.0.14",
-        "@nais/apm": "0.6.0"
+        "zustand": "5.0.14"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.12.1",

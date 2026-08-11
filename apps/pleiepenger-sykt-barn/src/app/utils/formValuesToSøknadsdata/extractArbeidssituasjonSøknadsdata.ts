@@ -1,4 +1,4 @@
-import { appLogger } from '@navikt/sif-common-soknad-ds/src/utils/appLogger';
+import { appLogger } from '@sif/apm';
 import { DateRange } from '@navikt/sif-common-utils';
 
 import { SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
