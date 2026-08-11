@@ -1,3 +1,4 @@
+export { ErrorBoundary } from './sentry-error-boundary/ErrorBoundary';
 export { ForsideLenkeButton } from './forside-lenke-button/ForsideLenkeButton';
 export { InnsynDefaultErrorMessage } from './innsyn-default-error-message/InnsynDefaultErrorMessage';
 export { InnsynForsideHeader } from './innsyn-forside-header/InnsynForsideHeader';
@@ -8,4 +9,3 @@ export { OppgaveStatusIkon } from './oppgave-status-ikon/OppgaveStatusIkon';
 export { OppgaveStatusInfo } from './oppgave-status-info/OppgaveStatusInfo';
 export { OppgaveStatusTag, type OppgaveStatusTagVariant } from './oppgave-status-tag/OppgaveStatusTag';
 export { OppgaverList } from './oppgaver-list/OppgaverList';
-export { ErrorBoundary } from './sentry-error-boundary/ErrorBoundary';

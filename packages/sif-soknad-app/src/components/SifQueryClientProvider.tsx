@@ -1,4 +1,5 @@
 import { isApiAxiosError, isApiError } from '@sif/api';
+import { captureException } from '@nais/apm';
 import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { PropsWithChildren, useRef } from 'react';
 
@@ -13,6 +14,7 @@ const createQueryClient = () =>
                     ? { type: error.type, context: error.context, message: error.message, queryKey: query.queryKey }
                     : { message: error instanceof Error ? error.message : String(error), queryKey: query.queryKey };
 
+                captureException(error instanceof Error ? error : new Error(String(error)));
                 console.error('QueryClient error:', extras);
             },
         }),

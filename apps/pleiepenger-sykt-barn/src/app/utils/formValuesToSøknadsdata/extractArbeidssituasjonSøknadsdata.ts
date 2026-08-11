@@ -1,3 +1,4 @@
+import { appLogger } from '@navikt/sif-common-soknad-ds/src/utils/appLogger';
 import { DateRange } from '@navikt/sif-common-utils';
 
 import { SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
@@ -29,8 +30,7 @@ export const extractArbeidssituasjonSøknadsdata = (
 
         return data;
     } catch (e) {
-        // eslint-disable-next-line no-console
-        console.error(e);
+        appLogger.logException(e);
         return undefined;
     }
 };

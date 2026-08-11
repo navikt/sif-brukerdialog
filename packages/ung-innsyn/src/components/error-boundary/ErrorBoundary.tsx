@@ -9,7 +9,5 @@ interface ErrorBoundaryProps {
 }
 
 export const ErrorBoundary = ({ fallback, children }: ErrorBoundaryProps) => {
-    return (
-        <ApmErrorBoundary fallback={fallback ?? <InnsynDefaultErrorMessage />}>{children}</ApmErrorBoundary>
-    );
+    return <ApmErrorBoundary fallback={fallback ?? <InnsynDefaultErrorMessage />}>{children}</ApmErrorBoundary>;
 };

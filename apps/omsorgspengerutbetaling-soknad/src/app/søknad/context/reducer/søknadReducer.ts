@@ -4,6 +4,7 @@ import { SøknadContextState } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
+import { appLogger } from '@navikt/sif-common-soknad-ds/src/utils/appLogger';
 
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
     switch (action.type) {
@@ -147,8 +148,8 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     isReloadingApp: true,
                 };
             default:
-                // eslint-disable-next-line no-console
-                console.error(`Missing handler for ${action.type}`);
+                
+                appLogger.logError(`Missing handler for ${action.type}`);
         }
     }
     return state;
