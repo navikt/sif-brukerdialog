@@ -69,9 +69,9 @@ importers:
 
   apps-intern/ungdomsytelse-veileder:
     dependencies:
-      '@grafana/faro-react':
-        specifier: 2.9.0
-        version: 2.9.0(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
+      '@nais/apm':
+        specifier: 0.6.0
+        version: 0.6.0(@grafana/faro-react@2.9.0(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@navikt/aksel-icons':
         specifier: 8.16.1
         version: 8.16.1
@@ -102,9 +102,6 @@ importers:
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../../packages/sif-common-env
-      '@navikt/sif-common-faro':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-faro
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
@@ -307,6 +304,9 @@ importers:
 
   apps/aktivitetspenger-innsyn:
     dependencies:
+      '@nais/apm':
+        specifier: 0.6.0
+        version: 0.6.0(@grafana/faro-react@2.9.0(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@navikt/aksel-icons':
         specifier: 8.16.1
         version: 8.16.1
@@ -340,9 +340,6 @@ importers:
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../../packages/sif-common-env
-      '@navikt/sif-common-faro':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-faro
       '@navikt/sif-common-hooks':
         specifier: workspace:*
         version: link:../../packages/sif-common-hooks
@@ -488,6 +485,9 @@ importers:
 
   apps/aktivitetspenger-soknad:
     dependencies:
+      '@nais/apm':
+        specifier: 0.6.0
+        version: 0.6.0(@grafana/faro-react@2.9.0(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@navikt/aksel-icons':
         specifier: 8.16.1
         version: 8.16.1
@@ -515,9 +515,6 @@ importers:
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../../packages/sif-common-env
-      '@navikt/sif-common-faro':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-faro
       '@navikt/sif-common-hooks':
         specifier: workspace:*
         version: link:../../packages/sif-common-hooks
@@ -651,9 +648,6 @@ importers:
 
   apps/dine-pleiepenger:
     dependencies:
-      '@grafana/faro-web-sdk':
-        specifier: 2.9.0
-        version: 2.9.0
       '@nais/apm':
         specifier: 0.6.0
         version: 0.6.0(@grafana/faro-react@2.9.0(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
@@ -832,6 +826,9 @@ importers:
 
   apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn:
     dependencies:
+      '@nais/apm':
+        specifier: 0.6.0
+        version: 0.6.0(@grafana/faro-react@2.9.0(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@navikt/aksel-icons':
         specifier: 8.16.1
         version: 8.16.1
@@ -865,9 +862,6 @@ importers:
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../../packages/sif-common-env
-      '@navikt/sif-common-faro':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-faro
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
@@ -1019,6 +1013,9 @@ importers:
 
   apps/endringsmelding-pleiepenger:
     dependencies:
+      '@nais/apm':
+        specifier: 0.6.0
+        version: 0.6.0(@grafana/faro-react@2.9.0(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@navikt/aksel-icons':
         specifier: 8.16.1
         version: 8.16.1
@@ -1046,9 +1043,6 @@ importers:
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../../packages/sif-common-env
-      '@navikt/sif-common-faro':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-faro
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
@@ -1248,6 +1242,9 @@ importers:
 
   apps/omsorgsdager-aleneomsorg-dialog:
     dependencies:
+      '@nais/apm':
+        specifier: 0.6.0
+        version: 0.6.0(@grafana/faro-react@2.9.0(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@navikt/aksel-icons':
         specifier: 8.16.1
         version: 8.16.1
@@ -1281,9 +1278,6 @@ importers:
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../../packages/sif-common-env
-      '@navikt/sif-common-faro':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-faro
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
@@ -1556,6 +1550,9 @@ importers:
 
   apps/omsorgspengerutbetaling-arbeidstaker-soknad:
     dependencies:
+      '@nais/apm':
+        specifier: 0.6.0
+        version: 0.6.0(@grafana/faro-react@2.9.0(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@navikt/aksel-icons':
         specifier: 8.16.1
         version: 8.16.1
@@ -1589,9 +1586,6 @@ importers:
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../../packages/sif-common-env
-      '@navikt/sif-common-faro':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-faro
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
@@ -1767,6 +1761,9 @@ importers:
 
   apps/omsorgspengerutbetaling-soknad:
     dependencies:
+      '@nais/apm':
+        specifier: 0.6.0
+        version: 0.6.0(@grafana/faro-react@2.9.0(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@navikt/aksel-icons':
         specifier: 8.16.1
         version: 8.16.1
@@ -1800,9 +1797,6 @@ importers:
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../../packages/sif-common-env
-      '@navikt/sif-common-faro':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-faro
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
@@ -1972,6 +1966,9 @@ importers:
 
   apps/omsorgspengesoknad:
     dependencies:
+      '@nais/apm':
+        specifier: 0.6.0
+        version: 0.6.0(@grafana/faro-react@2.9.0(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@navikt/aksel-icons':
         specifier: 8.16.1
         version: 8.16.1
@@ -2005,9 +2002,6 @@ importers:
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../../packages/sif-common-env
-      '@navikt/sif-common-faro':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-faro
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
@@ -2228,9 +2222,6 @@ importers:
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../../packages/sif-common-env
-      '@navikt/sif-common-faro':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-faro
       '@navikt/sif-common-hooks':
         specifier: workspace:*
         version: link:../../packages/sif-common-hooks
@@ -2370,6 +2361,9 @@ importers:
 
   apps/opplaringspenger-soknad:
     dependencies:
+      '@nais/apm':
+        specifier: 0.6.0
+        version: 0.6.0(@grafana/faro-react@2.9.0(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@navikt/aksel-icons':
         specifier: 8.16.1
         version: 8.16.1
@@ -2403,9 +2397,6 @@ importers:
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../../packages/sif-common-env
-      '@navikt/sif-common-faro':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-faro
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
@@ -2590,6 +2581,9 @@ importers:
 
   apps/pleiepenger-i-livets-sluttfase-soknad:
     dependencies:
+      '@nais/apm':
+        specifier: 0.6.0
+        version: 0.6.0(@grafana/faro-react@2.9.0(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@navikt/aksel-icons':
         specifier: 8.16.1
         version: 8.16.1
@@ -2623,9 +2617,6 @@ importers:
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../../packages/sif-common-env
-      '@navikt/sif-common-faro':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-faro
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
@@ -2795,6 +2786,9 @@ importers:
 
   apps/pleiepenger-sykt-barn:
     dependencies:
+      '@nais/apm':
+        specifier: 0.6.0
+        version: 0.6.0(@grafana/faro-react@2.9.0(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@navikt/aksel-icons':
         specifier: 8.16.1
         version: 8.16.1
@@ -2831,9 +2825,6 @@ importers:
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../../packages/sif-common-env
-      '@navikt/sif-common-faro':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-faro
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
@@ -3024,6 +3015,9 @@ importers:
 
   apps/sif-demo-app:
     dependencies:
+      '@nais/apm':
+        specifier: 0.6.0
+        version: 0.6.0(@grafana/faro-react@2.9.0(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@navikt/aksel-icons':
         specifier: 8.16.1
         version: 8.16.1
@@ -3051,9 +3045,6 @@ importers:
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../../packages/sif-common-env
-      '@navikt/sif-common-faro':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-faro
       '@navikt/sif-common-hooks':
         specifier: workspace:*
         version: link:../../packages/sif-common-hooks
@@ -3196,6 +3187,9 @@ importers:
       '@devexperts/remote-data-ts':
         specifier: 2.1.1
         version: 2.1.1(fp-ts@2.16.11)(io-ts-types@0.5.19(fp-ts@2.16.11)(io-ts@2.2.22(fp-ts@2.16.11))(monocle-ts@2.3.13(fp-ts@2.16.11))(newtype-ts@0.3.5(fp-ts@2.16.11)(monocle-ts@2.3.13(fp-ts@2.16.11))))(io-ts@2.2.22(fp-ts@2.16.11))
+      '@nais/apm':
+        specifier: 0.6.0
+        version: 0.6.0(@grafana/faro-react@2.9.0(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@navikt/aksel-icons':
         specifier: 8.16.1
         version: 8.16.1
@@ -3229,9 +3223,6 @@ importers:
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../../packages/sif-common-env
-      '@navikt/sif-common-faro':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-faro
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
@@ -3471,9 +3462,9 @@ importers:
 
   apps/ungdomsytelse-deltaker:
     dependencies:
-      '@grafana/faro-react':
-        specifier: 2.9.0
-        version: 2.9.0(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
+      '@nais/apm':
+        specifier: 0.6.0
+        version: 0.6.0(@grafana/faro-react@2.9.0(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@navikt/aksel-icons':
         specifier: 8.16.1
         version: 8.16.1
@@ -3510,9 +3501,6 @@ importers:
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../../packages/sif-common-env
-      '@navikt/sif-common-faro':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-faro
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
@@ -4223,9 +4211,6 @@ importers:
 
   packages/sif-common-core-ds:
     dependencies:
-      '@grafana/faro-web-sdk':
-        specifier: 2.9.0
-        version: 2.9.0
       '@navikt/appstatus-react-ds':
         specifier: workspace:*
         version: link:../appstatus-react-ds
@@ -4384,31 +4369,6 @@ importers:
         specifier: 4.4.3
         version: 4.4.3
     devDependencies:
-      typescript:
-        specifier: 6.0.3
-        version: 6.0.3
-
-  packages/sif-common-faro:
-    dependencies:
-      '@grafana/faro-web-sdk':
-        specifier: 2.9.0
-        version: 2.9.0
-      constate:
-        specifier: 4.0.0
-        version: 4.0.0(react@19.2.8)
-      react:
-        specifier: 19.2.8
-        version: 19.2.8
-    devDependencies:
-      '@navikt/sif-common-env':
-        specifier: workspace:*
-        version: link:../sif-common-env
-      '@sif/eslint-config':
-        specifier: workspace:*
-        version: link:../eslint-config-sif
-      '@types/react':
-        specifier: 19.2.18
-        version: 19.2.18
       typescript:
         specifier: 6.0.3
         version: 6.0.3
@@ -4758,9 +4718,6 @@ importers:
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../sif-common-env
-      '@navikt/sif-common-faro':
-        specifier: workspace:*
-        version: link:../sif-common-faro
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../sif-common-ui
@@ -5244,6 +5201,9 @@ importers:
 
   packages/sif-soknad-app:
     dependencies:
+      '@nais/apm':
+        specifier: 0.6.0
+        version: 0.6.0(@grafana/faro-react@2.9.0(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react-router-dom@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-router@7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)
       '@navikt/appstatus-react-ds':
         specifier: workspace:*
         version: link:../appstatus-react-ds
@@ -5253,9 +5213,6 @@ importers:
       '@navikt/nav-dekoratoren-moduler':
         specifier: 4.3.0
         version: 4.3.0(html-react-parser@6.1.5(@types/react@19.2.18)(react@19.2.8))(react@19.2.8)
-      '@navikt/sif-common-faro':
-        specifier: workspace:*
-        version: link:../sif-common-faro
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../sif-common-ui
