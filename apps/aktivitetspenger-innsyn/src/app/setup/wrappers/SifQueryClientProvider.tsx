@@ -13,7 +13,8 @@ const queryClient = new QueryClient({
                 ? { type: error.type, context: error.context, message: error.message, queryKey: query.queryKey }
                 : { message: error instanceof Error ? error.message : String(error), queryKey: query.queryKey };
 
-            captureException(error instanceof Error ? error : new Error(String(error)));
+            const captureTarget = isApiError(error) ? error.originalError : error;
+            captureException(captureTarget instanceof Error ? captureTarget : new Error(String(captureTarget)));
             console.error('QueryClient error:', extras);
         },
     }),
