@@ -1,4 +1,4 @@
-import { logFaroError } from '@shared/utils/faroUtils';
+import { appLogger } from '@shared/utils/appLogger';
 import { ApiError, ApiErrorType, isApiAxiosError } from '@sif/api';
 
 export const logApiErrorFaro = (hookName: string, error: ApiError): void => {
@@ -33,5 +33,5 @@ export const logApiErrorFaro = (hookName: string, error: ApiError): void => {
         });
     }
 
-    logFaroError(`API error in ${hookName}`, JSON.stringify(logData, null, 2));
+    appLogger.logError(`API error in ${hookName}`, logData);
 };
