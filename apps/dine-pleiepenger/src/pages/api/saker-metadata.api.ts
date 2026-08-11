@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { fetchSakerMetadata } from '../../server/fetchers/fetchSakerMetadata';
 import { getLogger } from '../../utils/getLogger';
-import { logApiErrorToSentry } from '../../utils/sentryApiErrorLogger';
+import { logApiError } from '../../utils/apiErrorLogger';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
@@ -12,7 +12,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         return res.send(data);
     } catch (err) {
         getLogger(req).error('Hent saker feilet');
-        logApiErrorToSentry(err, 'saker-metadata');
+        logApiError(err, 'saker-metadata');
         return res.status(500).json({ error: 'Kunne ikke hente saker' });
     }
 }

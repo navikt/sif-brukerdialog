@@ -3,12 +3,23 @@
     "team": "dusseldorf",
     "cluster": "prod-gcp",
     "observabilityEnabled": "true",
-    "externalHosts": ["www.nav.no", "telemetry.nav.no"],
-    "accessPolicyOutApps": [
-        { "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" },
-        { "application": "sif-innsyn-api", "namespace": "dusseldorf" }
+    "externalHosts": [
+        "www.nav.no",
+        "telemetry.nav.no"
     ],
-    "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger"],
+    "accessPolicyOutApps": [
+        {
+            "application": "k9-brukerdialog-prosessering",
+            "namespace": "dusseldorf"
+        },
+        {
+            "application": "sif-innsyn-api",
+            "namespace": "dusseldorf"
+        }
+    ],
+    "ingresses": [
+        "https://www.nav.no/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger"
+    ],
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
     "namespace": "dusseldorf",
@@ -19,7 +30,6 @@
         "APP_VERSION": "prod",
         "NODE_ENV": "production",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
-
         "SIF_PUBLIC_ANALYTICS_API_KEY": "10798841ebeba333b8ece6c046322d76",
         "SIF_PUBLIC_USE_ANALYTICS": "true",
         "SIF_PUBLIC_APPSTATUS_DATASET": "production",
@@ -29,15 +39,13 @@
         "SIF_PUBLIC_LOGIN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/melding",
         "SIF_PUBLIC_INNSYN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/innsyn",
         "SIF_PUBLIC_MINSIDE_URL": "https://www.nav.no/minside",
-
         "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/api/k9-brukerdialog",
         "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "prod-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
-
         "SIF_INNSYN_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/api/sif-innsyn",
         "SIF_INNSYN_API_URL": "http://sif-innsyn-api",
         "SIF_INNSYN_API_SCOPE": "prod-gcp:dusseldorf:sif-innsyn-api",
-
         "SIF_PUBLIC_ENDRE_OMSORGSTILBUD": "on"
-    }
+    },
+    "faro": true
 }

@@ -8,8 +8,6 @@ export const getPlaywrightAppSettings = (): AppEnv => ({
 
     SIF_PUBLIC_ANALYTICS_API_KEY: 'default',
     SIF_PUBLIC_USE_ANALYTICS: 'true',
-    SIF_PUBLIC_USE_FARO: 'false',
-    SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL: '#',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
     SIF_PUBLIC_DEKORATOR_URL: 'https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',

@@ -8,7 +8,6 @@ import { initialSøknadsdata } from '../søknad/context/reducer/søknadReducer';
 import { RequestStatus } from '../types/RequestStatus';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { SøknadRoutes } from '../types/SøknadRoutes';
-import appSentryLogger from '../utils/appSentryLogger';
 import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
@@ -91,7 +90,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
                     status: RequestStatus.noAccess,
                 });
             } else {
-                appSentryLogger.logError('fetchInitialData', error);
+                console.error('fetchInitialData', error);
                 setInitialData({
                     status: RequestStatus.error,
                     error,

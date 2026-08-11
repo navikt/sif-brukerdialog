@@ -18,7 +18,8 @@ import EmptyPage from '../components/page-layout/empty-page/EmptyPage';
 import LoadingPage from '../components/page-layout/loading-page/LoadingPage';
 import { maxPageWidth } from '../constants';
 import { InnsynsdataContextProvider } from '../context/InnsynsdataContextProvider';
-import { getFaro, initInstrumentation, pinoLevelToFaroLevel } from '../faro/faro';
+import { captureMessage } from '@nais/apm';
+import { initNaisAPMClient } from '@nais/apm/react';
 import { useVerifyCurrentUser } from '../hooks/useVerifyCurrentUser';
 import { messages } from '../i18n';
 import { SøkerDto } from '../server/dto-schemas/søkerDtoSchema';
@@ -26,9 +27,8 @@ import { Innsynsdata } from '../types';
 import { innsynsdataClientSchema } from '../types/client-schemas/innsynsdataClientSchema';
 import { søkerClientSchema } from '../types/client-schemas/søkerClientSchema';
 import { browserEnv } from '../utils/env';
-import { Feature } from '../utils/features';
 import { reportClientParseError } from '../utils/reportClientParseError';
-import { logApiErrorToSentry } from '../utils/sentryApiErrorLogger';
+import { logApiError } from '../utils/apiErrorLogger';
 import { swrBaseConfig } from '../utils/swrBaseConfig';
 import UnavailablePage from './unavailable.page';
 
@@ -56,16 +56,11 @@ const søkerIdFetcher = async (): Promise<string> => {
     });
 };
 
-if (Feature.FARO) {
-    initInstrumentation();
-    configureLogger({
-        basePath: process.env.NEXT_PUBLIC_BASE_PATH,
-        onLog: (log) =>
-            getFaro().api.pushLog(log.messages, {
-                level: pinoLevelToFaroLevel(log.level.label),
-            }),
-    });
-}
+initNaisAPMClient({ app: 'dine-pleiepenger', namespace: 'dusseldorf' });
+configureLogger({
+    basePath: process.env.NEXT_PUBLIC_BASE_PATH,
+    onLog: (log) => captureMessage(log.messages.join(' ')),
+});
 
 function MyApp({ Component, pageProps }: AppProps): ReactElement {
     const { data, error, isLoading } = useSWR<Innsynsdata, AxiosError>(
@@ -88,7 +83,7 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
     }
 
     if (error || !data) {
-        logApiErrorToSentry(error, 'fetchInnsynsdata-failed', { ignore401: true });
+        logApiError(error, 'fetchInnsynsdata-failed', { ignore401: true });
         return (
             <EmptyPage>
                 <HentInnsynsdataFeilet error={error} />

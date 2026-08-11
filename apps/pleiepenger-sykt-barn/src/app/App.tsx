@@ -18,7 +18,6 @@ import RouteConfig from './config/routeConfig';
 import { appEnv } from './env/appEnv';
 import { applicationIntlMessages } from './i18n';
 import Søknad from './søknad/Søknad';
-import appSentryLogger from './utils/appSentryLogger';
 import { relocateToSoknad } from './utils/navigationUtils';
 
 const {
@@ -38,7 +37,6 @@ if (envNow && getMaybeEnv('USE_MOCK_DATE') === 'true') {
     MockDate.set(new Date(envNow));
 }
 
-appSentryLogger.init();
 const queryClient = new QueryClient();
 
 const App = () => {

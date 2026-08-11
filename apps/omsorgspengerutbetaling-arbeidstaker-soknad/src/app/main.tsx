@@ -1,9 +1,12 @@
+import { initFromConfigUrl } from '@nais/apm';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import { enableMocking } from '../../mock/msw/enableMocking';
 import App from './App';
+
+void initFromConfigUrl('/nais.json', { app: 'omsorgspengerutbetaling-arbeidstaker-soknad', namespace: 'dusseldorf' });
 
 if (import.meta.env.INJECT_DECORATOR) {
     injectDecoratorClientSide({

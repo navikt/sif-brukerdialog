@@ -2,6 +2,7 @@
 import 'next-logger';
 
 import { DecoratorComponentsReact, fetchDecoratorReact } from '@navikt/nav-dekoratoren-moduler/ssr';
+import { NaisMetaTags } from '@nais/apm/react';
 import Document, { DocumentContext, DocumentInitialProps, Head, Html, Main, NextScript } from 'next/document';
 import { ReactElement } from 'react';
 
@@ -77,6 +78,7 @@ class MyDocument extends Document<Props> {
                 <Head>
                     {/* <style>@layer base, dekorator-utilities, dekorator-base, components, utilities;</style> */}
                     <style>@layer base, dekorator-base, dekorator-utilities, theme, components, utilities;</style>
+                    <NaisMetaTags />
 
                     <Decorator.HeadAssets />
                     <link

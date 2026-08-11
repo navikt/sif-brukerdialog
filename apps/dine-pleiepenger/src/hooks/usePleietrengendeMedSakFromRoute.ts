@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/nextjs';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo } from 'react';
@@ -10,7 +9,7 @@ import { sakClientSchema } from '../types/client-schemas/sakClientSchema';
 import { browserEnv } from '../utils/env';
 import { safeParseArray } from '../utils/safeParseArray';
 import { sortBehandlingerNyesteFørst } from '../utils/sakUtils';
-import { logApiErrorToSentry } from '../utils/sentryApiErrorLogger';
+import { logApiError } from '../utils/apiErrorLogger';
 import { swrBaseConfig } from '../utils/swrBaseConfig';
 import { useInnsynsdataContext } from './useInnsynsdataContext';
 
@@ -24,12 +23,9 @@ const sakFetcher = async (url: string): Promise<SakMedInntektsmeldinger> => {
 
     if (errors.length > 0) {
         const totalItems = Array.isArray(rawInntektsmeldinger) ? rawInntektsmeldinger.length : 0;
-        Sentry.captureMessage(`Feil ved parsing av inntektsmeldinger: ${errors.length} av ${totalItems} feilet`, {
-            level: 'warning',
-            extra: {
-                totalErrors: errors.length,
-                errors: errors.slice(-2).map(({ index, error }) => ({ index, issues: JSON.stringify(error.issues) })),
-            },
+        console.warn(`Feil ved parsing av inntektsmeldinger: ${errors.length} av ${totalItems} feilet`, {
+            totalErrors: errors.length,
+            errors: errors.slice(-2).map(({ index, error }) => ({ index, issues: JSON.stringify(error.issues) })),
         });
     }
 
@@ -88,10 +84,9 @@ export const usePleietrengendeMedSakFromRoute = (): {
         }
     }, [pleietrengendeMedSak, saksnr, cachedSak, setSaksdata]);
 
-    // Logg feil til Sentry
     useEffect(() => {
         if (error) {
-            logApiErrorToSentry(error, 'usePleietrengendeMedSakFromRoute');
+            logApiError(error, 'usePleietrengendeMedSakFromRoute');
         }
     }, [error]);
 

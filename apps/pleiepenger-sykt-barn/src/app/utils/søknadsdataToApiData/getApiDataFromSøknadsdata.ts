@@ -11,7 +11,6 @@ import {
     SøknadApiDataVersjon,
 } from '../../types/søknad-api-data/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
-import appSentryLogger from '../appSentryLogger';
 import { getValidSpråk } from '../sprakUtils';
 import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';
 import { getBarnApiDataFromSøknadsdata } from './getBarnApiDataFromSøknadsdata';
@@ -91,11 +90,11 @@ export const getApiDataFromSøknadsdata = (
 
             return apiData;
         } catch (e) {
-            appSentryLogger.logError('getApiDataFromSøknadsdata failed', e as any);
+            console.error('getApiDataFromSøknadsdata failed', e as any);
             throw e;
         }
     } else {
-        appSentryLogger.logError('getApiDataFromSøknadsdata failed - empty periode', JSON.stringify(søknadsperiode));
+        console.error('getApiDataFromSøknadsdata failed - empty periode', JSON.stringify(søknadsperiode));
         return undefined;
     }
 };

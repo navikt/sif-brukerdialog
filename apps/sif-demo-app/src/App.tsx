@@ -49,12 +49,7 @@ export const App = () => {
         <SøknadAppProvider
             applicationKey={'sif-demo-app'}
             appVersion={env.APP_VERSION}
-            faroConfig={{ isActive: false }}
             analyticsConfig={{ isActive: false }}
-            sentryConfig={{
-                dsn: 'https://20da9cbb958c4f5695d79c260eac6728@sentry.gc.nav.no/30',
-                application: 'sif-demo-app',
-            }}
             intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
             <BrowserRouter basename={env.PUBLIC_PATH}>
                 {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}

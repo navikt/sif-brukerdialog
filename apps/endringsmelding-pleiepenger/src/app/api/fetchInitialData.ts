@@ -8,7 +8,7 @@ import {
     SøknadInitialIkkeTilgang,
     UgyldigK9SakFormat,
 } from '@app/types';
-import { appSentryLogger } from '@app/utils';
+import { appLogger } from '@app/utils';
 import { fetchSøker, Søker } from '@navikt/sif-common-api';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { getMaybeEnv } from '@navikt/sif-common-env';
@@ -38,7 +38,7 @@ export const fetchInitialData = async (
     const [søker, k9sakerResult] = await Promise.all([fetchSøker(), sakerEndpoint.fetch()]);
 
     if (k9sakerResult.k9Saker.length === 0 && k9sakerResult.eldreSaker.length === 0) {
-        appSentryLogger.logInfo('fetchInitialData.ingenSaker');
+        appLogger.logInfo('fetchInitialData.ingenSaker');
     }
 
     const handleInitialDataError = (error: any) => {
@@ -164,7 +164,7 @@ const kontrollerTilgang = async (k9saker: K9Sak[], tillattEndringsperiode: DateR
     }
     if (getMaybeEnv('SIF_PUBLIC_DEBUG') === 'true') {
         if (k9saker.length === 1) {
-            appSentryLogger.logInfo(
+            appLogger.logInfo(
                 'IkkeTilgangSakInfo',
                 JSON.stringify({
                     årsak: resultat.årsak,
@@ -172,7 +172,7 @@ const kontrollerTilgang = async (k9saker: K9Sak[], tillattEndringsperiode: DateR
                 }),
             );
         } else {
-            appSentryLogger.logInfo(
+            appLogger.logInfo(
                 'IkkeTilgangSakInfo',
                 JSON.stringify({
                     årsak: resultat.årsak,

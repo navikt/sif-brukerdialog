@@ -50,7 +50,7 @@ spec:
     {{#if faro}}
     frontend:
         generatedConfig:
-            mountPath: /apps/{{app}}/dist/assets/nais.js
+            mountPath: /app/public/nais.js
     {{/if}}
     vault:
         enabled: false
@@ -61,7 +61,7 @@ spec:
           - id: elastic
       autoInstrumentation:
         enabled: {{observabilityEnabled}}
-        runtime: nodejs
+        runtime: frontend
     env:
   {{#each env}}
      - name: {{@key}}

@@ -9,7 +9,7 @@ Referanseapp: [`apps/aktivitetspenger-soknad`](../../apps/aktivitetspenger-sokna
 ## Komponenttre
 
 ```
-<SøknadAppProvider>           Faro, Sentry, QueryClient, Analytics, ErrorBoundary
+<SøknadAppProvider>           Faro, QueryClient, Analytics, ErrorBoundary
   <SøknadRouter>              Zustand-store, mellomlagring-init, kontekst for alle hooks
     <SøknadStepFormProvider> In-session skjemaverdier per steg (konsistenssjekk + live getters)
       <SøknadAppContext>       Store + config eksponert til alle hooks

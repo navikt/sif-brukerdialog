@@ -9,14 +9,8 @@ export const publicEnvSchema = z.object({
     NEXT_PUBLIC_API_URL_INNSYN: z.union([z.string(), z.undefined()]),
     NEXT_PUBLIC_API_URL_BRUKERDIALOG: z.union([z.string(), z.undefined()]),
 
-    /** Faro telemetry */
-    NEXT_PUBLIC_TELEMETRY_URL: z.string(),
-
     /** Analytics */
     NEXT_PUBLIC_ANALYTICS_KEY: z.string(),
-
-    /** Sentry */
-    NEXT_PUBLIC_SCRUB_SENTRY: z.union([z.literal('on'), z.literal('off'), z.undefined()]),
 
     /** Appstatus */
     NEXT_PUBLIC_APPSTATUS_PROJECT_ID: z.string(),
@@ -45,7 +39,6 @@ export const publicEnvSchema = z.object({
 
     /** Features */
     NEXT_PUBLIC_FEATURE_APPSTATUS: z.union([z.literal('on'), z.literal('off'), z.undefined()]),
-    NEXT_PUBLIC_FEATURE_FARO: z.union([z.literal('on'), z.literal('off'), z.undefined()]),
     NEXT_PUBLIC_FEATURE_INNTEKTSMELDING: z.union([z.literal('on'), z.literal('off'), z.undefined()]),
 });
 
@@ -74,12 +67,10 @@ export const serverEnvSchema = z.object({
  * They MUST be provided during the build step.
  */
 export const browserEnv = publicEnvSchema.parse({
-    NEXT_PUBLIC_TELEMETRY_URL: process.env.NEXT_PUBLIC_TELEMETRY_URL,
     NEXT_PUBLIC_BASE_PATH: process.env.NEXT_PUBLIC_BASE_PATH,
     NEXT_PUBLIC_LOGIN_URL: process.env.NEXT_PUBLIC_LOGIN_URL,
     NEXT_PUBLIC_RUNTIME_ENVIRONMENT: process.env.NEXT_PUBLIC_RUNTIME_ENVIRONMENT,
     NEXT_PUBLIC_ANALYTICS_KEY: process.env.NEXT_PUBLIC_ANALYTICS_KEY,
-    NEXT_PUBLIC_SCRUB_SENTRY: process.env.NEXT_PUBLIC_SCRUB_SENTRY,
     NEXT_PUBLIC_APPSTATUS_PROJECT_ID: process.env.NEXT_PUBLIC_APPSTATUS_PROJECT_ID,
     NEXT_PUBLIC_APPSTATUS_DATASET: process.env.NEXT_PUBLIC_APPSTATUS_DATASET,
     NEXT_PUBLIC_API_URL_BRUKERDIALOG: process.env.NEXT_PUBLIC_API_URL_BRUKERDIALOG,
@@ -102,7 +93,6 @@ export const browserEnv = publicEnvSchema.parse({
     NEXT_PUBLIC_ARBEIDSGIVER_PLEIEPENGER_URL: process.env.NEXT_PUBLIC_ARBEIDSGIVER_PLEIEPENGER_URL,
     NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL: process.env.NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL,
     NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL: process.env.NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL,
-    NEXT_PUBLIC_FEATURE_FARO: process.env.NEXT_PUBLIC_FEATURE_FARO,
     NEXT_PUBLIC_FEATURE_APPSTATUS: process.env.NEXT_PUBLIC_FEATURE_APPSTATUS,
     NEXT_PUBLIC_FEATURE_INNTEKTSMELDING: process.env.NEXT_PUBLIC_FEATURE_INNTEKTSMELDING,
 } satisfies Record<keyof PublicEnv, string | undefined>);

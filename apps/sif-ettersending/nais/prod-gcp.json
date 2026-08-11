@@ -4,9 +4,18 @@
     "team": "dusseldorf",
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
-    "externalHosts": ["www.nav.no"],
-    "accessPolicyOutApps": [{ "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" }],
-    "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/ettersending"],
+    "externalHosts": [
+        "www.nav.no"
+    ],
+    "accessPolicyOutApps": [
+        {
+            "application": "k9-brukerdialog-prosessering",
+            "namespace": "dusseldorf"
+        }
+    ],
+    "ingresses": [
+        "https://www.nav.no/familie/sykdom-i-familien/soknad/ettersending"
+    ],
     "cluster": "prod-gcp",
     "minReplicas": 2,
     "maxReplicas": 2,
@@ -17,7 +26,6 @@
         "NPM_CONFIG_CACHE": "/tmp",
         "NODE_ENV": "production",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/ettersending",
-
         "SIF_PUBLIC_ANALYTICS_API_KEY": "10798841ebeba333b8ece6c046322d76",
         "SIF_PUBLIC_USE_ANALYTICS": "true",
         "SIF_PUBLIC_APPSTATUS_DATASET": "production",
@@ -31,9 +39,9 @@
         "SIF_PUBLIC_FEATURE_NYNORSK": "on",
         "SIF_PUBLIC_FEATURE_OPPLARINGSPENGER_VELG_BARN": "on",
         "SIF_PUBLIC_FEATURE_OPPLARINGSPENGER_VELG_DOKUMENTTYPE": "on",
-
         "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "prod-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/ettersending/api/k9-brukerdialog"
-    }
+    },
+    "faro": true
 }

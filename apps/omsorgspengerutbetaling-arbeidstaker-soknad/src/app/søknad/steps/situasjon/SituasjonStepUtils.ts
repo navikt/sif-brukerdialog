@@ -5,7 +5,6 @@ import dayjs from 'dayjs';
 import { Arbeidsforhold, Utbetalingsårsak } from '../../../types/ArbeidsforholdTypes';
 import { Arbeidsgiver } from '../../../types/Arbeidsgiver';
 import { ArbeidforholdSøknadsdata, SituasjonSøknadsdata, Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
-import appSentryLogger from '../../../utils/appSentryLogger';
 import { SituasjonFormValues } from './SituasjonStep';
 
 export const getNMonthsAgo = (numberOfMonths: number) => {
@@ -54,7 +53,7 @@ const getForholdSøknadsdata = (forhold: Arbeidsforhold): ArbeidforholdSøknadsd
 
                 case Utbetalingsårsak.nyoppstartetHosArbeidsgiver:
                     if (!årsakNyoppstartet) {
-                        appSentryLogger.logError(
+                        console.error(
                             'getForholdSøknadsdata: Utbetalingsårsak.nyoppstartetHosArbeidsgiver, årsakNyoppstartet === undefined ',
                         );
                         return undefined;
@@ -71,7 +70,7 @@ const getForholdSøknadsdata = (forhold: Arbeidsforhold): ArbeidforholdSøknadsd
 
                 case Utbetalingsårsak.konfliktMedArbeidsgiver:
                     if (!konfliktForklaring) {
-                        appSentryLogger.logError(
+                        console.error(
                             'getForholdSøknadsdata: Utbetalingsårsak.konfliktMedArbeidsgiver, konfliktForklaring === undefined ',
                         );
                         return undefined;
@@ -97,7 +96,7 @@ export const getSituasjonSøknadsdataFromFormValues = (
     const { arbeidsforhold } = values;
 
     if (!arbeidsforhold || arbeidsforhold.length === 0) {
-        appSentryLogger.logError(
+        console.error(
             'getSituasjonSøknadsdataFromFormValues: !arbeidsforhold || arbeidsforhold.length === 0',
         );
         return undefined;

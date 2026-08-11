@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { fetchSaksbehandlingstid } from '../../server/fetchers/fetchSaksbehandlingstid';
 import { getLogger } from '../../utils/getLogger';
-import { logApiErrorToSentry } from '../../utils/sentryApiErrorLogger';
+import { logApiError } from '../../utils/apiErrorLogger';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
@@ -12,7 +12,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         return res.send(data);
     } catch (err) {
         getLogger(req).error('Hent saksbehandlingstid feilet');
-        logApiErrorToSentry(err, 'saksbehandlingstid');
+        logApiError(err, 'saksbehandlingstid');
         return res.status(500).json({ error: 'Kunne ikke hente saksbehandlingstid' });
     }
 }

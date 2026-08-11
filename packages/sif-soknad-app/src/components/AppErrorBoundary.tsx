@@ -1,4 +1,4 @@
-import { useFaroInstance } from '@navikt/sif-common-faro';
+import { captureException } from '@nais/apm';
 import { AppErrorFallback } from '@sif/soknad-ui';
 import React from 'react';
 
@@ -35,9 +35,8 @@ class FaroErrorBoundary extends React.Component<FaroErrorBoundaryProps, State> {
 }
 
 export const AppErrorBoundary = ({ children }: { children: React.ReactNode }) => {
-    const { logError } = useFaroInstance();
     return (
-        <FaroErrorBoundary onError={logError} fallback={<AppErrorFallback />}>
+        <FaroErrorBoundary onError={(e) => captureException(e)} fallback={<AppErrorFallback />}>
             {children}
         </FaroErrorBoundary>
     );

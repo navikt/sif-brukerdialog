@@ -19,7 +19,7 @@ export enum SifAppKeys {
 interface AppInfo {
     /** Ikke synlig beskrivende navn - brukes i analytics */
     navn: string;
-    /** Applikasjonsnøkkel som brukes i analytics og sentry */
+    /** Applikasjonsnøkkel som brukes i analytics */
     key: string;
     /** Tittel brukt i applikasjon, og dersom en skal lenke til applikasjon */
     tittel: {

@@ -1,5 +1,3 @@
-import getSentryLoggerForApp from '@navikt/sif-common-sentry';
-
 import { k9BrukerdialogApiClient } from '../apiClient';
 import { søkerResponseSchema } from '../schemas/søkerSchema';
 import { Søker } from '../types';
@@ -9,7 +7,7 @@ export const fetchSøker = async (): Promise<Søker> => {
     try {
         return søkerResponseSchema.parse(response.data);
     } catch (e) {
-        getSentryLoggerForApp('sif-common-api', []).logError('ZOD parse error', e instanceof Error ? e.message : String(e));
+        console.error('ZOD parse error', e instanceof Error ? e.message : String(e));
         throw e;
     }
 };

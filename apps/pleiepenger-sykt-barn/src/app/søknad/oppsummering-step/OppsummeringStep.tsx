@@ -26,7 +26,6 @@ import { Søkerdata } from '../../types/Søkerdata';
 import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { StepID } from '../../types/StepID';
-import appSentryLogger from '../../utils/appSentryLogger';
 import { harArbeidIPerioden, harFraværFraJobb } from '../../utils/arbeidUtils';
 import { getDataBruktTilUtledning } from '../../utils/getDataBruktTilUtledning';
 import { relocateToLoginPage } from '../../utils/navigationUtils';
@@ -99,7 +98,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                 if (isInvalidParameterErrorResponse(error.response?.data)) {
                     setInvalidParameters(error.response.data.violations);
                 }
-                appSentryLogger.logApiError(error as any, 'sendSøknad-invalidParameters');
+                console.error(error as any, 'sendSøknad-invalidParameters');
             } else if (isUnauthorized(error)) {
                 logUserLoggedOut('Ved innsending av søknad');
                 relocateToLoginPage();
@@ -107,7 +106,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                 setSendingInProgress(false);
                 setSendSoknadFailed(true);
                 await logSoknadFailed(PleiepengerSyktBarnApp.navn);
-                appSentryLogger.logApiError(error, 'sendSøknad');
+                console.error(error, 'sendSøknad');
             }
         }
     };

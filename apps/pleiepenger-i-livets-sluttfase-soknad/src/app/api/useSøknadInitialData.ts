@@ -7,7 +7,6 @@ import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
 import { RequestStatus } from '../types/RequestStatus';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { SøknadRoutes } from '../types/SøknadRoutes';
-import appSentryLogger from '../utils/appSentryLogger';
 import { MellomlagringData, mellomlagringService } from './mellomlagringService';
 
 export type SøknadInitialData = SøknadContextState;
@@ -78,7 +77,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
             } else if (isForbidden(error)) {
                 setInitialData({ status: RequestStatus.noAccess });
             } else {
-                appSentryLogger.logError('fetchInitialData', error);
+                console.error('fetchInitialData', error);
                 setInitialData({
                     status: RequestStatus.error,
                     error,

@@ -28,9 +28,6 @@ updates:
           - "react"
           - "react-dom"
           - "@types/react"
-      sentry:
-        patterns:
-          - "@sentry*"
       typescript-eslint:
         patterns:
           - "@typescript-eslint*"

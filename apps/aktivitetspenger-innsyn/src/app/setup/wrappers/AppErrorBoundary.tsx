@@ -1,12 +1,32 @@
-import { useFaroInstance } from '@navikt/sif-common-faro';
-import { SentryErrorBoundary } from '@sif/ung-innsyn/components';
+import { InnsynDefaultErrorMessage } from '@sif/ung-innsyn/components';
 import React from 'react';
 
 interface Props {
     children: React.ReactNode;
 }
 
-export const AppErrorBoundary = ({ children }: Props) => {
-    const { logError } = useFaroInstance();
-    return <SentryErrorBoundary onError={logError}>{children}</SentryErrorBoundary>;
-};
+interface State {
+    hasError: boolean;
+}
+
+export class AppErrorBoundary extends React.Component<Props, State> {
+    constructor(props: Props) {
+        super(props);
+        this.state = { hasError: false };
+    }
+
+    static getDerivedStateFromError(): State {
+        return { hasError: true };
+    }
+
+    componentDidCatch(error: Error, info: React.ErrorInfo): void {
+        console.error('AppErrorBoundary caught an error:', error, info);
+    }
+
+    render() {
+        if (this.state.hasError) {
+            return <InnsynDefaultErrorMessage />;
+        }
+        return this.props.children;
+    }
+}

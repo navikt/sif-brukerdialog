@@ -16,7 +16,6 @@ import {
     getNynorskLocale,
     setLocaleInSessionStorage,
 } from '@navikt/sif-common-core-ds/src/utils/localeUtils';
-import { FaroProvider } from '@navikt/sif-common-faro';
 import dayjs from 'dayjs';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
@@ -30,7 +29,7 @@ import ErrorPage from '../pages/error-page/ErrorPage';
 
 interface Props {
     appVersion: string;
-    /** Key used in analytics and sentry logs */
+    /** Key used in analytics */
     appKey: string;
     /** App name - not visual to user */
     appName: string;
@@ -46,9 +45,6 @@ interface Props {
     useAnalytics: boolean;
     /** Analytics project api key */
     analyticsApiKey: string;
-    /** Faro logging */
-    useFaro?: boolean;
-    naisFrontendTelemetryCollectorUrl?: string;
     /** Config for connecting to the appStatus sanity project */
     appStatus: {
         sanityConfig: SanityConfig;
@@ -75,8 +71,6 @@ const SoknadApplication = ({
     children,
     appTitle,
     appVersion,
-    naisFrontendTelemetryCollectorUrl,
-    useFaro,
     onResetSoknad,
     useHashRouter,
 }: Props) => {
@@ -92,11 +86,6 @@ const SoknadApplication = ({
 
     return (
         <SifAppWrapper>
-            <FaroProvider
-                applicationKey={appKey}
-                telemetryCollectorURL={naisFrontendTelemetryCollectorUrl}
-                appVersion={appVersion}
-                isActive={useFaro}>
                 <ErrorBoundary appKey={appKey} onResetSoknad={onResetSoknad} appTitle={appTitle}>
                     <AnalyticsProvider apiKey={analyticsApiKey} applicationKey={appKey} isActive={useAnalytics}>
                         <IntlProvider
@@ -123,7 +112,6 @@ const SoknadApplication = ({
                         </IntlProvider>
                     </AnalyticsProvider>
                 </ErrorBoundary>
-            </FaroProvider>
         </SifAppWrapper>
     );
 };

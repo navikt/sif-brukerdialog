@@ -8,7 +8,6 @@ import getSoknadTempStorage from '../api/getSoknadTempStorage';
 import { RequestStatus } from '../types/RequestStatus';
 import { Søknadstype } from '../types/Søknadstype';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
-import appSentryLogger from '../utils/appSentryLogger';
 import { navigateToLoginPage } from '../utils/navigationUtils';
 
 export type SoknadEssentials = { søker: Søker; barn?: RegistrertBarn[]; mellomlagring?: SoknadTempStorageData };
@@ -85,7 +84,7 @@ function useSoknadEssentials(søknadstype: Søknadstype): SøknadInitialDataStat
                 });
             } else {
                 if (!isUnknownAxiosError(error)) {
-                    appSentryLogger.logError('fetchInitialData', JSON.stringify({ error }));
+                    console.error('fetchInitialData', JSON.stringify({ error }));
                 }
                 setInitialData({
                     status: RequestStatus.error,

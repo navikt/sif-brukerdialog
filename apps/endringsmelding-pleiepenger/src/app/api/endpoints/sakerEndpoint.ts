@@ -1,6 +1,6 @@
 import { isK9FormatError, K9Format, K9FormatArbeidstid, K9Sak, UgyldigK9SakFormat } from '@app/types';
 import {
-    appSentryLogger,
+    appLogger,
     getEndringsdato,
     getTillattEndringsperiode,
     isK9SakErInnenforGyldigEndringsperiode,
@@ -55,7 +55,7 @@ const sakerEndpoint = {
                         eldreSaker.push(parsedSak);
                     }
                     if (getMaybeEnv('SIF_PUBLIC_DEBUG') === 'true') {
-                        appSentryLogger.logInfo('debug.k9format.gyldig', JSON.stringify(maskK9FormatSak(sak)));
+                        appLogger.logInfo('debug.k9format.gyldig', JSON.stringify(maskK9FormatSak(sak)));
                     }
                 } catch (error) {
                     if (isK9FormatError(error)) {
@@ -64,12 +64,12 @@ const sakerEndpoint = {
                             erUgyldigK9SakFormat: true,
                             detaljer: Array.isArray(ugyldigeFelt) ? { ugyldigeFelt } : undefined,
                         });
-                        appSentryLogger.logException(error.error, {
+                        appLogger.logException(error.error, {
                             sakIndex: index,
                             cause: error.error instanceof Error ? error.error.cause : undefined,
                         });
                     } else {
-                        appSentryLogger.logException(error, {
+                        appLogger.logException(error, {
                             context: 'sakerEndpoint.parseK9Format',
                             sakIndex: index,
                         });
@@ -80,9 +80,9 @@ const sakerEndpoint = {
             return { k9Saker, eldreSaker };
         } catch (error) {
             if (isAxiosError(error)) {
-                appSentryLogger.logApiError(error, 'sakerEndpoint.fetch');
+                appLogger.logApiError(error, 'sakerEndpoint.fetch');
             } else if (!isK9FormatError(error)) {
-                appSentryLogger.logException(error, { context: 'sakerEndpoint.fetch failed - unexpected' });
+                appLogger.logException(error, { context: 'sakerEndpoint.fetch failed - unexpected' });
             }
             return Promise.reject(error);
         }

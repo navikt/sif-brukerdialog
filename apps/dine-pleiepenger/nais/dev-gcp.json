@@ -3,12 +3,27 @@
     "cluster": "dev-gcp",
     "namespace": "dusseldorf",
     "team": "dusseldorf",
-    "ingresses": ["https://dine-pleiepenger.intern.dev.nav.no"],
-    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no", "ryujtq87.api.sanity.io", "sentry.gc.nav.no"],
+    "ingresses": [
+        "https://dine-pleiepenger.intern.dev.nav.no"
+    ],
+    "externalHosts": [
+        "www.nav.no",
+        "dekoratoren.ekstern.dev.nav.no",
+        "ryujtq87.api.sanity.io"
+    ],
     "accessPolicyOutApps": [
-        { "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" },
-        { "application": "k9-sak-innsyn-api", "namespace": "dusseldorf" },
-        { "application": "sif-innsyn-api", "namespace": "dusseldorf" }
+        {
+            "application": "k9-brukerdialog-prosessering",
+            "namespace": "dusseldorf"
+        },
+        {
+            "application": "k9-sak-innsyn-api",
+            "namespace": "dusseldorf"
+        },
+        {
+            "application": "sif-innsyn-api",
+            "namespace": "dusseldorf"
+        }
     ],
     "livenessPath": "/innsyn/api/health/isAlive",
     "readinessPath": "/innsyn/api/health/isReady",
@@ -29,7 +44,6 @@
         "NEXT_PUBLIC_LOGIN_URL": "https://dine-pleiepenger.intern.dev.nav.no/oauth2/login?redirect=https://dine-pleiepenger.intern.dev.nav.no/innsyn",
         "NEXT_PUBLIC_RUNTIME_ENVIRONMENT": "dev",
         "NEXT_PUBLIC_ANALYTICS_KEY": "default",
-        "NEXT_PUBLIC_SCRUB_SENTRY": "off",
         "NEXT_PUBLIC_API_URL_K9_SAK_INNSYN": "http://k9-sak-innsyn-api",
         "NEXT_PUBLIC_API_URL_INNSYN": "http://sif-innsyn-api",
         "NEXT_PUBLIC_API_URL_BRUKERDIALOG": "http://k9-brukerdialog-prosessering",
@@ -39,11 +53,9 @@
         "NEXT_PUBLIC_APPSTATUS_DATASET": "staging",
         "NEXT_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
         "NPM_CONFIG_CACHE": "/tmp",
-
         "NEXT_PUBLIC_SKJEMA_PLEIEPENGER_URL": "https://pleiepengesoknad.intern.dev.nav.no/soknad",
         "NEXT_PUBLIC_SKJEMA_ENDRINGSMELDING_URL": "https://endringsmelding-pleiepenger.intern.dev.nav.no/familie/sykdom-i-familien/soknad/ettersending/pleiepenger",
         "NEXT_PUBLIC_SKJEMA_ETTERSENDELSE_URL": "https://k9-ettersending-soknad.intern.dev.nav.no/",
-
         "NEXT_PUBLIC_DINE_UTBETALINGER_URL": "https://tjenester.nav.no/utbetalingsoversikt/",
         "NEXT_PUBLIC_ENRINGER_DU_MA_GI_BESKJED_OM_INFO_URL": "https://dev.nav.no/pleiepenger-barn#melde",
         "NEXT_PUBLIC_KLAGE_INFO_URL": "https://www.nav.no/person/kontakt-oss/nb/tilbakemeldinger",
@@ -58,10 +70,8 @@
         "NEXT_PUBLIC_ARBEIDSGIVER_PLEIEPENGER_URL": "https://www.ansatt.dev.nav.no/arbeidsgiver/pleiepenger-barn",
         "NEXT_PUBLIC_MINSIDE_DOKUMENTOVERSIKT_URL": "https://www.ansatt.dev.nav.no/dokumentarkiv/tema/OMS",
         "NEXT_PUBLIC_UTBETALINGSOVERSIKT_URL": "https://tjenester.nav.no/utbetalingsoversikt",
-
         "NEXT_PUBLIC_FEATURE_APPSTATUS": "on",
-        "NEXT_PUBLIC_FEATURE_FARO": "on",
-        "NEXT_PUBLIC_FEATURE_INNTEKTSMELDING": "on",
-        "NEXT_PUBLIC_TELEMETRY_URL": "https://telemetry.ekstern.dev.nav.no/collect"
-    }
+        "NEXT_PUBLIC_FEATURE_INNTEKTSMELDING": "on"
+    },
+    "faro": true
 }

@@ -55,11 +55,9 @@
         "@navikt/sif-common-api": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-env": "workspace:*",
-        "@navikt/sif-common-faro": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-forms-ds": "workspace:*",
         "@navikt/sif-common-hooks": "workspace:*",
-        "@navikt/sif-common-sentry": "workspace:*",
         "@navikt/sif-common-soknad-ds": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
@@ -79,7 +77,8 @@
         "react-intl": "10.1.20",
         "react-router-dom": "7.18.2",
         "uuid": "^14.0.1",
-        "zod": "4.4.3"
+        "zod": "4.4.3",
+        "@nais/apm": "0.6.0"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.12.1",

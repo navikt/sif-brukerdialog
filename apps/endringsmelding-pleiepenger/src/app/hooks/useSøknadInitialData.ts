@@ -9,7 +9,7 @@ import {
     TimerEllerProsent,
     UgyldigBarnFormatDetails,
 } from '@app/types';
-import { appSentryLogger } from '@app/utils';
+import { appLogger } from '@app/utils';
 import { Søker } from '@navikt/sif-common-api';
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
@@ -73,7 +73,7 @@ const prepInitialData = (
             const sak = getSakFromK9Sak(k9saker[0], arbeidsgivere, tillattEndringsperiode);
 
             if (getMaybeEnv('SIF_PUBLIC_DEBUG') === 'true') {
-                appSentryLogger.logInfo(
+                appLogger.logInfo(
                     'debug.maskedSakInfo',
                     JSON.stringify(
                         getSakOgArbeidsgivereDebugInfo(k9saker[0], sak, arbeidsgivere, tillattEndringsperiode),
@@ -130,7 +130,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
                     setInitialData(error);
                 } else {
                     const e = error instanceof Error ? error : new Error(String(error));
-                    appSentryLogger.logException(e, { context: 'fetchInitialData.error.else' });
+                    appLogger.logException(e, { context: 'fetchInitialData.error.else' });
                     setInitialData({
                         status: RequestStatus.error,
                         error,

@@ -5,7 +5,6 @@ import { Theme } from '@navikt/ds-react';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { AktivitetspengerApp } from '@navikt/sif-app-register';
 import { EnvKey } from '@navikt/sif-common-env';
-import { FaroProvider } from '@navikt/sif-common-faro';
 import { DevBranchInfo } from '@sif/soknad-ui';
 import MockDate from 'mockdate';
 import { useEffect } from 'react';
@@ -54,10 +53,6 @@ export const App = () => {
 
     return (
         <Theme hasBackground={false}>
-            <FaroProvider
-                applicationKey={AktivitetspengerApp.key}
-                appVersion={appEnv.APP_VERSION}
-                isActive={appEnv.SIF_PUBLIC_USE_FARO === 'true'}>
                 <AppErrorBoundary>
                     <SifQueryClientProvider>
                         <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
@@ -67,7 +62,6 @@ export const App = () => {
                         </IntlProvider>
                     </SifQueryClientProvider>
                 </AppErrorBoundary>
-            </FaroProvider>
             <DevBranchInfo />
         </Theme>
     );

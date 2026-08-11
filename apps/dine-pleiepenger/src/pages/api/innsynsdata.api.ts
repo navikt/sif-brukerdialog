@@ -6,7 +6,7 @@ import { InnsynsdataDto } from '../../server/dto-schemas/innsynsdataDtoSchema';
 import { fetchSakerMetadata } from '../../server/fetchers/fetchSakerMetadata';
 import { fetchSøker } from '../../server/fetchers/fetchSøker';
 import { getLogger } from '../../utils/getLogger';
-import { logApiErrorToSentry } from '../../utils/sentryApiErrorLogger';
+import { logApiError } from '../../utils/apiErrorLogger';
 import { fetchAppStatus } from './appStatus.api';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -29,7 +29,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         };
         return res.json(innsynsdata);
     } catch (err) {
-        logApiErrorToSentry(err, 'innsynsdata');
+        logApiError(err, 'innsynsdata');
         if (
             isAxiosError(err) &&
             (err.response?.status === HttpStatusCode.Forbidden ||

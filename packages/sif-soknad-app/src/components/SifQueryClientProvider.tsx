@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/react';
 import { isApiAxiosError, isApiError } from '@sif/api';
 import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { PropsWithChildren, useRef } from 'react';
@@ -14,10 +13,7 @@ const createQueryClient = () =>
                     ? { type: error.type, context: error.context, message: error.message, queryKey: query.queryKey }
                     : { message: error instanceof Error ? error.message : String(error), queryKey: query.queryKey };
 
-                Sentry.withScope((scope) => {
-                    scope.setExtras(extras);
-                    Sentry.captureException(isApiError(error) ? error.originalError : error);
-                });
+                console.error('QueryClient error:', extras);
             },
         }),
     });

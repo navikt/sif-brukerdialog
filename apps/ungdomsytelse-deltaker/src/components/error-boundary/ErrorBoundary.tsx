@@ -1,11 +1,10 @@
-import * as Sentry from '@sentry/react';
 import React from 'react';
 
 import { logFaroError } from '../../utils/faroUtils';
 
 interface ErrorBoundaryProps {
-    fallback?: React.ReactNode; // Tilpasset fallback-UI
-    onError?: (error: Error, errorInfo: React.ErrorInfo) => void; // Callback for logging
+    fallback?: React.ReactNode;
+    onError?: (error: Error, errorInfo: React.ErrorInfo) => void;
     children: React.ReactNode;
 }
 
@@ -26,11 +25,10 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
     componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
         this.setState({ hasError: true, error });
 
-        // Kall på ekstern logger hvis definert
         if (this.props.onError) {
             this.props.onError(error, errorInfo);
         } else {
-            Sentry.captureEvent({ level: 'error', message: error.message, extra: { ...errorInfo } });
+            console.error('ErrorBoundary caught an error:', error, errorInfo);
         }
     }
 
