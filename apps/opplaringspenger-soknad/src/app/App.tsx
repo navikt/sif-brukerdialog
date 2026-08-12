@@ -27,7 +27,6 @@ const {
     SIF_PUBLIC_APPSTATUS_DATASET,
     SIF_PUBLIC_APPSTATUS_PROJECT_ID,
     SIF_PUBLIC_USE_ANALYTICS,
-    SIF_PUBLIC_ANALYTICS_API_KEY,
 } = appEnv;
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
@@ -65,7 +64,7 @@ const App = () => {
                                 relocateToWelcomePage();
                             }}
                             useAnalytics={SIF_PUBLIC_USE_ANALYTICS ? SIF_PUBLIC_USE_ANALYTICS === 'true' : isProd()}
-                            analyticsApiKey={SIF_PUBLIC_ANALYTICS_API_KEY}>
+}>
                             <SoknadApplicationCommonRoutes
                                 contentRoutes={[
                                     <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,

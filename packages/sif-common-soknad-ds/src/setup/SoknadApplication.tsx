@@ -42,8 +42,6 @@ interface Props {
     useLanguageSelector?: boolean;
     /** If analytics logging is active or not*/
     useAnalytics: boolean;
-    /** Analytics project api key */
-    analyticsApiKey: string;
     /** Config for connecting to the appStatus sanity project */
     appStatus: {
         sanityConfig: SanityConfig;
@@ -65,7 +63,6 @@ const SoknadApplication = ({
     publicPath,
     appKey,
     useAnalytics,
-    analyticsApiKey,
     useLanguageSelector,
     children,
     appTitle,
@@ -85,7 +82,7 @@ const SoknadApplication = ({
     return (
         <SifAppWrapper>
                 <ErrorBoundary appKey={appKey} onResetSoknad={onResetSoknad} appTitle={appTitle}>
-                    <AnalyticsProvider apiKey={analyticsApiKey} applicationKey={appKey} isActive={useAnalytics}>
+                    <AnalyticsProvider applicationKey={appKey} isActive={useAnalytics}>
                         <IntlProvider
                             locale={locale === 'nb' ? getBokmålLocale() : getNynorskLocale()}
                             messages={localeMessages}>

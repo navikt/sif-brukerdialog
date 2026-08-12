@@ -65,7 +65,6 @@ export const getCommonEnv = (): CommonEnv => {
         [EnvKey.SIF_PUBLIC_LOGIN_URL]: getRequiredEnv(EnvKey.SIF_PUBLIC_LOGIN_URL),
         [EnvKey.SIF_PUBLIC_MINSIDE_URL]: getRequiredEnv(EnvKey.SIF_PUBLIC_MINSIDE_URL),
         [EnvKey.SIF_PUBLIC_USE_ANALYTICS]: getMaybeEnv(EnvKey.SIF_PUBLIC_USE_ANALYTICS),
-        [EnvKey.SIF_PUBLIC_ANALYTICS_API_KEY]: getRequiredEnv(EnvKey.SIF_PUBLIC_ANALYTICS_API_KEY),
         [EnvKey.SIF_PUBLIC_APPSTATUS_PROJECT_ID]: getRequiredEnv(EnvKey.SIF_PUBLIC_APPSTATUS_PROJECT_ID),
         [EnvKey.SIF_PUBLIC_APPSTATUS_DATASET]: getRequiredEnv(EnvKey.SIF_PUBLIC_APPSTATUS_DATASET),
         [EnvKey.SIF_PUBLIC_FEATURE_NYNORSK]: getMaybeEnv(EnvKey.SIF_PUBLIC_FEATURE_NYNORSK) === 'on' ? 'on' : 'off',

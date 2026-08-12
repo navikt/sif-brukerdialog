@@ -6,7 +6,6 @@ export const getDevAppSettings = (): AppEnv => ({
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/pleiepenger',
     GITHUB_REF_NAME: 'dev',
 
-    SIF_PUBLIC_ANALYTICS_API_KEY: '234',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
     SIF_PUBLIC_DEKORATOR_URL: 'https://www.nav.no/dekoratoren/?simple=true&chatbot=false',

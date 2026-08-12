@@ -19,7 +19,6 @@ export const getDevAppSettings = () => ({
     SIF_PUBLIC_MINSIDE_URL: 'https://www.intern.dev.nav.no/minside',
     SIF_PUBLIC_SKIP_ORGNUM_VALIDATION: 'true',
     SIF_PUBLIC_USE_ANALYTICS: 'false',
-    SIF_PUBLIC_ANALYTICS_API_KEY: 'default',
 
     MOCK_DATE: '2024-08-01T12:00:00Z',
     USE_MOCK_DATE: 'true',

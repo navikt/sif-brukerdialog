@@ -21,7 +21,6 @@ const {
     SIF_PUBLIC_APPSTATUS_DATASET,
     SIF_PUBLIC_APPSTATUS_PROJECT_ID,
     SIF_PUBLIC_USE_ANALYTICS,
-    SIF_PUBLIC_ANALYTICS_API_KEY,
 } = appEnv;
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
@@ -41,7 +40,7 @@ const App = () => (
                 },
             }}
             useAnalytics={SIF_PUBLIC_USE_ANALYTICS ? SIF_PUBLIC_USE_ANALYTICS === 'true' : isProd()}
-            analyticsApiKey={SIF_PUBLIC_ANALYTICS_API_KEY}
+}
             publicPath={PUBLIC_PATH}>
             <SoknadApplicationCommonRoutes
                 contentRoutes={[

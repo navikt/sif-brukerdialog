@@ -3,12 +3,8 @@
     "cluster": "prod-gcp",
     "namespace": "dusseldorf",
     "team": "dusseldorf",
-    "ingresses": [
-        "https://www.nav.no/familie/sykdom-i-familien/soknad/pleiepenger"
-    ],
-    "externalHosts": [
-        "www.nav.no"
-    ],
+    "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/pleiepenger"],
+    "externalHosts": ["www.nav.no"],
     "accessPolicyOutApps": [
         {
             "application": "k9-brukerdialog-prosessering",
@@ -26,7 +22,7 @@
         "NODE_ENV": "production",
         "NPM_CONFIG_CACHE": "/tmp",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger",
-        "SIF_PUBLIC_ANALYTICS_API_KEY": "10798841ebeba333b8ece6c046322d76",
+        "SIF_PUBLIC_ANALYTICS_API_KEY": "default",
         "SIF_PUBLIC_USE_ANALYTICS": "true",
         "SIF_PUBLIC_APPSTATUS_DATASET": "production",
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
