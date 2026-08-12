@@ -2,15 +2,10 @@
     "app": "aktivitetspenger-innsyn",
     "namespace": "dusseldorf",
     "team": "dusseldorf",
-    "ingresses": [
-        "https://www.nav.no/aktivitetspenger/innsyn"
-    ],
+    "ingresses": ["https://www.nav.no/aktivitetspenger/innsyn"],
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
-    "externalHosts": [
-        "www.nav.no",
-        "telemetry.nav.no"
-    ],
+    "externalHosts": ["www.nav.no", "telemetry.nav.no"],
     "accessPolicyOutApps": [
         {
             "application": "k9-brukerdialog-prosessering",
@@ -32,7 +27,7 @@
         "NODE_ENV": "production",
         "PUBLIC_PATH": "/aktivitetspenger/innsyn",
         "NPM_CONFIG_CACHE": "/tmp",
-        "SIF_PUBLIC_ANALYTICS_API_KEY": "default",
+
         "SIF_PUBLIC_USE_ANALYTICS": "true",
         "SIF_PUBLIC_APPSTATUS_DATASET": "production",
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",

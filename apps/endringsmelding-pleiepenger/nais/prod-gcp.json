@@ -3,10 +3,7 @@
     "team": "dusseldorf",
     "cluster": "prod-gcp",
     "observabilityEnabled": "true",
-    "externalHosts": [
-        "www.nav.no",
-        "telemetry.nav.no"
-    ],
+    "externalHosts": ["www.nav.no", "telemetry.nav.no"],
     "accessPolicyOutApps": [
         {
             "application": "k9-brukerdialog-prosessering",
@@ -17,9 +14,7 @@
             "namespace": "dusseldorf"
         }
     ],
-    "ingresses": [
-        "https://www.nav.no/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger"
-    ],
+    "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger"],
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
     "namespace": "dusseldorf",
@@ -30,7 +25,7 @@
         "APP_VERSION": "prod",
         "NODE_ENV": "production",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
-        "SIF_PUBLIC_ANALYTICS_API_KEY": "10798841ebeba333b8ece6c046322d76",
+
         "SIF_PUBLIC_USE_ANALYTICS": "true",
         "SIF_PUBLIC_APPSTATUS_DATASET": "production",
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",

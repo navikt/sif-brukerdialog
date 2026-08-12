@@ -3,12 +3,8 @@
     "cluster": "prod-gcp",
     "namespace": "dusseldorf",
     "team": "dusseldorf",
-    "ingresses": [
-        "https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker"
-    ],
-    "externalHosts": [
-        "www.nav.no"
-    ],
+    "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker"],
+    "externalHosts": ["www.nav.no"],
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
     "accessPolicyOutApps": [
@@ -30,7 +26,7 @@
         "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/api",
         "SIF_PUBLIC_FEATURE_NYNORSK": "on",
-        "SIF_PUBLIC_ANALYTICS_API_KEY": "10798841ebeba333b8ece6c046322d76",
+
         "SIF_PUBLIC_USE_ANALYTICS": "true",
         "SIF_PUBLIC_APPSTATUS_DATASET": "production",
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",

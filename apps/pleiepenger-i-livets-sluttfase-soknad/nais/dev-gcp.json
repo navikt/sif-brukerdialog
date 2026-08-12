@@ -3,13 +3,8 @@
     "cluster": "dev-gcp",
     "namespace": "dusseldorf",
     "team": "dusseldorf",
-    "ingresses": [
-        "https://pleiepenger-i-livets-sluttfase.intern.dev.nav.no"
-    ],
-    "externalHosts": [
-        "www.nav.no",
-        "dekoratoren.ekstern.dev.nav.no"
-    ],
+    "ingresses": ["https://pleiepenger-i-livets-sluttfase.intern.dev.nav.no"],
+    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
     "accessPolicyOutApps": [
         {
             "application": "k9-brukerdialog-prosessering",
@@ -40,7 +35,7 @@
         "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/api/k9-brukerdialog",
         "SIF_PUBLIC_FEATURE_SOKE_TIDLIGERE": "on",
-        "SIF_PUBLIC_ANALYTICS_API_KEY": "default",
+
         "SIF_PUBLIC_USE_ANALYTICS": "true",
         "SIF_PUBLIC_APPSTATUS_DATASET": "production",
         "SIF_PUBLIC_FEATURE_NYNORSK": "on",

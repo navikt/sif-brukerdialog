@@ -4,19 +4,14 @@
     "team": "dusseldorf",
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
-    "externalHosts": [
-        "www.nav.no",
-        "dekoratoren.ekstern.dev.nav.no"
-    ],
+    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
     "accessPolicyOutApps": [
         {
             "application": "k9-brukerdialog-prosessering",
             "namespace": "dusseldorf"
         }
     ],
-    "ingresses": [
-        "https://omsorgspengerutbetaling-soknad.intern.dev.nav.no"
-    ],
+    "ingresses": ["https://omsorgspengerutbetaling-soknad.intern.dev.nav.no"],
     "cluster": "dev-gcp",
     "minReplicas": 1,
     "maxReplicas": 1,
@@ -40,7 +35,7 @@
         "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling/api",
         "SIF_PUBLIC_FEATURE_NYNORSK": "on",
-        "SIF_PUBLIC_ANALYTICS_API_KEY": "default",
+
         "SIF_PUBLIC_USE_ANALYTICS": "true",
         "SIF_PUBLIC_APPSTATUS_DATASET": "production",
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",

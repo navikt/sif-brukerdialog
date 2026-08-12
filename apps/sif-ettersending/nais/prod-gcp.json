@@ -22,7 +22,7 @@
         "NPM_CONFIG_CACHE": "/tmp",
         "NODE_ENV": "production",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/ettersending",
-        "SIF_PUBLIC_ANALYTICS_API_KEY": "default",
+
         "SIF_PUBLIC_USE_ANALYTICS": "true",
         "SIF_PUBLIC_APPSTATUS_DATASET": "production",
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",

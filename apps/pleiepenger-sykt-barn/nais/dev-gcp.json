@@ -3,13 +3,8 @@
     "cluster": "dev-gcp",
     "namespace": "dusseldorf",
     "team": "dusseldorf",
-    "ingresses": [
-        "https://pleiepengesoknad.intern.dev.nav.no"
-    ],
-    "externalHosts": [
-        "www.nav.no",
-        "dekoratoren.ekstern.dev.nav.no"
-    ],
+    "ingresses": ["https://pleiepengesoknad.intern.dev.nav.no"],
+    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
     "accessPolicyOutApps": [
         {
             "application": "k9-brukerdialog-prosessering",
@@ -36,7 +31,7 @@
         "NODE_ENV": "development",
         "NPM_CONFIG_CACHE": "/tmp",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger",
-        "SIF_PUBLIC_ANALYTICS_API_KEY": "default",
+
         "SIF_PUBLIC_USE_ANALYTICS": "true",
         "SIF_PUBLIC_APPSTATUS_DATASET": "production",
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",

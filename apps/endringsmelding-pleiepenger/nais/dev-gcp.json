@@ -3,11 +3,7 @@
     "team": "dusseldorf",
     "cluster": "dev-gcp",
     "observabilityEnabled": "true",
-    "externalHosts": [
-        "www.nav.no",
-        "dekoratoren.ekstern.dev.nav.no",
-        "telemetry.nav.no"
-    ],
+    "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no", "telemetry.nav.no"],
     "accessPolicyOutApps": [
         {
             "application": "k9-brukerdialog-prosessering",
@@ -18,9 +14,7 @@
             "namespace": "dusseldorf"
         }
     ],
-    "ingresses": [
-        "https://endringsmelding-pleiepenger.intern.dev.nav.no"
-    ],
+    "ingresses": ["https://endringsmelding-pleiepenger.intern.dev.nav.no"],
     "readinessPath": "/internal/health/isReady",
     "livenessPath": "/internal/health/isAlive",
     "namespace": "dusseldorf",
@@ -40,7 +34,7 @@
         "APP_VERSION": "dev",
         "NODE_ENV": "development",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger",
-        "SIF_PUBLIC_ANALYTICS_API_KEY": "default",
+
         "SIF_PUBLIC_USE_ANALYTICS": "true",
         "SIF_PUBLIC_APPSTATUS_DATASET": "production",
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
