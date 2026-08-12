@@ -18,11 +18,7 @@ import { appEnv } from './utils/appEnv';
 
 dayjs.extend(isoWeek);
 
-const {
-    PUBLIC_PATH,
-    SIF_PUBLIC_APPSTATUS_DATASET,
-    SIF_PUBLIC_APPSTATUS_PROJECT_ID,
-} = appEnv;
+const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID } = appEnv;
 
 const isE2E = getMaybeEnv('E2E_TEST') === 'true';
 
@@ -36,7 +32,6 @@ const App = () => (
             appTitle={EndringsmeldingPsbApp.tittel.nb}
             intlMessages={applicationIntlMessages}
             useAnalytics={!isE2E}
-}
             appStatus={{
                 sanityConfig: {
                     projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,

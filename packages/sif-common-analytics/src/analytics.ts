@@ -4,51 +4,50 @@ import constate from 'constate';
 const MAX_AWAIT_TIME = 500;
 
 export enum SIFCommonPageKey {
-    'velkommen' = 'velkommen',
-    'kvittering' = 'kvittering',
-    'feilside' = 'feilside',
-    'intro' = 'intro',
-    'ikkeTilgang' = 'ikkeTilgang',
-    'ikkeTilgjengelig' = 'ikkeTilgjengelig',
+    velkommen = 'velkommen',
+    kvittering = 'kvittering',
+    feilside = 'feilside',
+    intro = 'intro',
+    ikkeTilgang = 'ikkeTilgang',
+    ikkeTilgjengelig = 'ikkeTilgjengelig',
 }
 
 export enum AnalyticsEvents {
-    'applikasjonStartet' = 'applikasjon-startet',
-    'søknadStartet' = 'skjema startet',
-    'søknadSendt' = 'skjema fullført',
-    'søknadFeilet' = 'skjemainnsending feilet',
-    'applikasjonInfo' = 'applikasjon-info',
-    'applikasjonHendelse' = 'applikasjon-hendelse',
-    'apiError' = 'api-error',
+    applikasjonStartet = 'applikasjon-startet',
+    søknadStartet = 'skjema startet',
+    søknadSendt = 'skjema fullført',
+    søknadFeilet = 'skjemainnsending feilet',
+    applikasjonInfo = 'applikasjon-info',
+    applikasjonHendelse = 'applikasjon-hendelse',
+    apiError = 'api-error',
 }
 
 export enum SIFCommonGeneralEvents {
-    'vedleggSlettet' = 'vedleggSlettet',
-    'vedleggLastetOpp' = 'vedleggLastetOpp',
+    vedleggSlettet = 'vedleggSlettet',
+    vedleggLastetOpp = 'vedleggLastetOpp',
 }
 
 export enum ApplikasjonHendelse {
-    'brukerSendesTilLoggInn' = 'brukerSendesTilLoggInn',
-    'vedleggOpplastingFeilet' = 'vedleggOpplastingFeilet',
-    'starterMedMellomlagring' = 'starterMedMellomlagring',
-    'ugyldigMellomlagring' = 'ugyldigMellomlagring',
-    'avbryt' = 'avbryt',
-    'fortsettSenere' = 'fortsettSenere',
-    'innloggetBrukerErEndret' = 'innloggetBrukerErEndret',
+    brukerSendesTilLoggInn = 'brukerSendesTilLoggInn',
+    vedleggOpplastingFeilet = 'vedleggOpplastingFeilet',
+    starterMedMellomlagring = 'starterMedMellomlagring',
+    ugyldigMellomlagring = 'ugyldigMellomlagring',
+    avbryt = 'avbryt',
+    fortsettSenere = 'fortsettSenere',
+    innloggetBrukerErEndret = 'innloggetBrukerErEndret',
 }
 
 export enum ApiError {
-    'oppstartsinfo' = 'oppstartsinfo',
-    'søkerinfo' = 'søkerinfo',
-    'arbeidsgiver' = 'arbeidsgiver',
-    'barn' = 'barn',
-    'vedlegg' = 'vedlegg',
-    'mellomlagring' = 'mellomlagring',
+    oppstartsinfo = 'oppstartsinfo',
+    søkerinfo = 'søkerinfo',
+    arbeidsgiver = 'arbeidsgiver',
+    barn = 'barn',
+    vedlegg = 'vedlegg',
+    mellomlagring = 'mellomlagring',
 }
 
 interface Props {
     applicationKey: string;
-    apiKey: string;
     isActive?: boolean;
     children: React.ReactNode;
     maxAwaitTime?: number;
@@ -59,14 +58,14 @@ type EventProperties = {
 };
 
 export const [AnalyticsProvider, useAnalyticsInstance] = constate((props: Props) => {
-    const { applicationKey, isActive = true, maxAwaitTime = MAX_AWAIT_TIME, apiKey } = props;
+    const { applicationKey, isActive = true, maxAwaitTime = MAX_AWAIT_TIME } = props;
 
     async function logEvent(eventName: SIFCommonGeneralEvents | string, eventProperties?: EventProperties) {
         const logger = getAnalyticsInstance('dekoratoren');
         if (isActive && logger) {
             const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve(null), maxAwaitTime));
             const logPromise = new Promise((resolve) => {
-                const eventProps = { ...eventProperties, app: applicationKey, applikasjon: applicationKey, apiKey };
+                const eventProps = { ...eventProperties, app: applicationKey, applikasjon: applicationKey };
                 logger
                     .custom(eventName, eventProps)
                     .then(resolve)

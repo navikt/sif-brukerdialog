@@ -49,8 +49,7 @@ const App = () => (
                 },
             }}
             publicPath={PUBLIC_PATH}
-            useAnalytics={SIF_PUBLIC_USE_ANALYTICS ? SIF_PUBLIC_USE_ANALYTICS === 'true' : isProd()}
-}>
+            useAnalytics={SIF_PUBLIC_USE_ANALYTICS ? SIF_PUBLIC_USE_ANALYTICS === 'true' : isProd()}>
             <SoknadApplicationCommonRoutes
                 contentRoutes={[
                     <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,

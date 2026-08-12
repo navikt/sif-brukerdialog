@@ -18,12 +18,7 @@ import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
 import { appEnv } from './utils/appEnv';
 
-const {
-    PUBLIC_PATH,
-    SIF_PUBLIC_APPSTATUS_DATASET,
-    SIF_PUBLIC_APPSTATUS_PROJECT_ID,
-    SIF_PUBLIC_USE_ANALYTICS,
-} = appEnv;
+const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID, SIF_PUBLIC_USE_ANALYTICS } = appEnv;
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
 
@@ -37,7 +32,6 @@ const App = () => (
             publicPath={PUBLIC_PATH}
             useLanguageSelector={appEnv.SIF_PUBLIC_FEATURE_NYNORSK === 'on'}
             useAnalytics={SIF_PUBLIC_USE_ANALYTICS ? SIF_PUBLIC_USE_ANALYTICS === 'true' : isProd()}
-}
             appStatus={{
                 sanityConfig: {
                     projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,

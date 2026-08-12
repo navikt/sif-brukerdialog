@@ -9,9 +9,6 @@ export const publicEnvSchema = z.object({
     NEXT_PUBLIC_API_URL_INNSYN: z.union([z.string(), z.undefined()]),
     NEXT_PUBLIC_API_URL_BRUKERDIALOG: z.union([z.string(), z.undefined()]),
 
-    /** Analytics */
-    NEXT_PUBLIC_ANALYTICS_KEY: z.string(),
-
     /** Appstatus */
     NEXT_PUBLIC_APPSTATUS_PROJECT_ID: z.string(),
     NEXT_PUBLIC_APPSTATUS_DATASET: z.string(),
@@ -70,7 +67,6 @@ export const browserEnv = publicEnvSchema.parse({
     NEXT_PUBLIC_BASE_PATH: process.env.NEXT_PUBLIC_BASE_PATH,
     NEXT_PUBLIC_LOGIN_URL: process.env.NEXT_PUBLIC_LOGIN_URL,
     NEXT_PUBLIC_RUNTIME_ENVIRONMENT: process.env.NEXT_PUBLIC_RUNTIME_ENVIRONMENT,
-    NEXT_PUBLIC_ANALYTICS_KEY: process.env.NEXT_PUBLIC_ANALYTICS_KEY,
     NEXT_PUBLIC_APPSTATUS_PROJECT_ID: process.env.NEXT_PUBLIC_APPSTATUS_PROJECT_ID,
     NEXT_PUBLIC_APPSTATUS_DATASET: process.env.NEXT_PUBLIC_APPSTATUS_DATASET,
     NEXT_PUBLIC_API_URL_BRUKERDIALOG: process.env.NEXT_PUBLIC_API_URL_BRUKERDIALOG,

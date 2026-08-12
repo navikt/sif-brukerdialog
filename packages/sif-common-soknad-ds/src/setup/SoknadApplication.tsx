@@ -81,32 +81,32 @@ const SoknadApplication = ({
 
     return (
         <SifAppWrapper>
-                <ErrorBoundary appKey={appKey} onResetSoknad={onResetSoknad} appTitle={appTitle}>
-                    <AnalyticsProvider applicationKey={appKey} isActive={useAnalytics}>
-                        <IntlProvider
-                            locale={locale === 'nb' ? getBokmålLocale() : getNynorskLocale()}
-                            messages={localeMessages}>
-                            <Router basename={useHashRouter ? undefined : publicPath}>
-                                {/* Staging-datasettet er slettet på grunn av økonomi */}
-                                {appStatus.sanityConfig.dataset === 'staging' ? (
-                                    children
-                                ) : (
-                                    <AppStatusWrapper
-                                        applicationKey={appKey}
-                                        sanityConfig={appStatus.sanityConfig}
-                                        contentRenderer={() => <>{children}</>}
-                                        unavailableContentRenderer={() => (
-                                            <ErrorPage
-                                                contentRenderer={() => <SoknadErrorMessages.ApplicationUnavailable />}
-                                            />
-                                        )}
-                                    />
-                                )}
-                                <DevBranchInfo />
-                            </Router>
-                        </IntlProvider>
-                    </AnalyticsProvider>
-                </ErrorBoundary>
+            <ErrorBoundary appKey={appKey} onResetSoknad={onResetSoknad} appTitle={appTitle}>
+                <AnalyticsProvider applicationKey={appKey} isActive={useAnalytics}>
+                    <IntlProvider
+                        locale={locale === 'nb' ? getBokmålLocale() : getNynorskLocale()}
+                        messages={localeMessages}>
+                        <Router basename={useHashRouter ? undefined : publicPath}>
+                            {/* Staging-datasettet er slettet på grunn av økonomi */}
+                            {appStatus.sanityConfig.dataset === 'staging' ? (
+                                children
+                            ) : (
+                                <AppStatusWrapper
+                                    applicationKey={appKey}
+                                    sanityConfig={appStatus.sanityConfig}
+                                    contentRenderer={() => <>{children}</>}
+                                    unavailableContentRenderer={() => (
+                                        <ErrorPage
+                                            contentRenderer={() => <SoknadErrorMessages.ApplicationUnavailable />}
+                                        />
+                                    )}
+                                />
+                            )}
+                            <DevBranchInfo />
+                        </Router>
+                    </IntlProvider>
+                </AnalyticsProvider>
+            </ErrorBoundary>
         </SifAppWrapper>
     );
 };
