@@ -1,36 +1,18 @@
 import { appLogger } from '@shared/utils/appLogger';
-import { ApiError, ApiErrorType, isApiAxiosError } from '@sif/api';
+import { ApiError, isApiAxiosError } from '@sif/api';
 
 export const logApiErrorFaro = (hookName: string, error: ApiError): void => {
-    const logData = {
+    // Allowlist: kun type, statuskode og correlation-id — ingen URL, context eller response-body
+    const logData: Record<string, unknown> = {
         hookName,
-        context: error.context,
-        message: error.message,
         type: error.type,
-        timestamp: new Date().toISOString(),
-        url: globalThis.location.href,
     };
 
-    // Legg til metadata fra AxiosError uten sensitive data
     if (isApiAxiosError(error)) {
         const axiosError = error.originalError;
-        Object.assign(logData, {
-            httpStatus: axiosError.response?.status,
-            httpStatusText: axiosError.response?.statusText,
-            apiUrl: axiosError.config?.url,
-            requestTimeout: axiosError.config?.timeout,
-            // Legg til headers som ikke er sensitive
-            responseHeaders: axiosError.response?.headers
-                ? {
-                      'x-correlation-id': axiosError.response.headers['x-correlation-id'],
-                  }
-                : undefined,
-            errorCode: axiosError.code,
-        });
-    } else if (error.type === ApiErrorType.ZodValidationError) {
-        Object.assign(logData, {
-            originalError: error.originalError,
-        });
+        logData.httpStatus = axiosError.response?.status;
+        logData.errorCode = axiosError.code;
+        logData.correlationId = axiosError.response?.headers?.['x-correlation-id'];
     }
 
     appLogger.logError(`API error in ${hookName}`, logData);

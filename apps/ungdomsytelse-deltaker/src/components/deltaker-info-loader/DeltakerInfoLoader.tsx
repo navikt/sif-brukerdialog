@@ -75,9 +75,9 @@ const DeltakerInfoLoader = () => {
     if (deltakelsePerioder.data.length > 1) {
         logHendelse(ApplikasjonHendelse.harFlereDeltakelser);
         appLogger.logError('DeltakerInfoLoader.FlereDeltakelser', {
-                søker: søker.error,
-                deltakelsePerioder: deltakelsePerioder.error,
-                oppgaver: oppgaver.error,
+                søkerHarFeil: søker.error !== undefined,
+                deltakelsePerioderHarFeil: deltakelsePerioder.error !== undefined,
+                oppgaverHarFeil: oppgaver.error !== undefined,
             });
         return <FlereDeltakelserPage />;
     }
