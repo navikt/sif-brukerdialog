@@ -1,8 +1,7 @@
 import 'react-loading-skeleton/dist/skeleton.css';
 import '../style/global.css';
 
-import { Status, StatusMessage } from '@navikt/appstatus-react-ds';
-import { Box, Theme } from '@navikt/ds-react';
+import { Theme } from '@navikt/ds-react';
 import { configureLogger } from '@navikt/next-logger';
 import { InnsynPsbApp } from '@navikt/sif-app-register';
 import { AnalyticsProvider } from '@navikt/sif-common-analytics';
@@ -14,9 +13,9 @@ import useSWR from 'swr';
 
 import ErrorBoundary from '../components/error-boundary/ErrorBoundary';
 import HentInnsynsdataFeilet from '../components/hent-innsynsdata-feilet/HentInnsynsdataFeilet';
+import SanityStatusBanner from '../components/sanity-status-banner/SanityStatusBanner';
 import EmptyPage from '../components/page-layout/empty-page/EmptyPage';
 import LoadingPage from '../components/page-layout/loading-page/LoadingPage';
-import { maxPageWidth } from '../constants';
 import { InnsynsdataContextProvider } from '../context/InnsynsdataContextProvider';
 import { getFaro, initInstrumentation, pinoLevelToFaroLevel } from '../faro/faro';
 import { useVerifyCurrentUser } from '../hooks/useVerifyCurrentUser';
@@ -30,9 +29,6 @@ import { Feature } from '../utils/features';
 import { reportClientParseError } from '../utils/reportClientParseError';
 import { logApiErrorToSentry } from '../utils/sentryApiErrorLogger';
 import { swrBaseConfig } from '../utils/swrBaseConfig';
-import UnavailablePage from './unavailable.page';
-
-export const ANALYTICS_APPLICATION_KEY = 'sif-innsyn';
 
 const innsynsdataFetcher = async (url: string): Promise<Innsynsdata> =>
     axios.get(url).then((res) => {
@@ -103,22 +99,15 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
                     applicationKey={InnsynPsbApp.key}
                     apiKey={browserEnv.NEXT_PUBLIC_ANALYTICS_KEY}
                     isActive={browserEnv.NEXT_PUBLIC_RUNTIME_ENVIRONMENT === 'production'}>
-                    {data.appStatus?.status === Status.unavailable ? (
-                        <UnavailablePage />
-                    ) : (
+                    <SanityStatusBanner>
                         <main>
-                            {data.appStatus?.message && (
-                                <Box maxWidth={maxPageWidth} marginInline="auto" marginBlock="space-48">
-                                    <StatusMessage message={data.appStatus.message} />
-                                </Box>
-                            )}
                             <IntlProvider locale="nb" messages={messages.nb}>
                                 <InnsynsdataContextProvider innsynsdata={data}>
                                     <Component {...pageProps} />
                                 </InnsynsdataContextProvider>
                             </IntlProvider>
                         </main>
-                    )}
+                    </SanityStatusBanner>
                 </AnalyticsProvider>
             </ErrorBoundary>
         </Theme>

@@ -7,7 +7,6 @@ import { fetchSakerMetadata } from '../../server/fetchers/fetchSakerMetadata';
 import { fetchSøker } from '../../server/fetchers/fetchSøker';
 import { getLogger } from '../../utils/getLogger';
 import { logApiErrorToSentry } from '../../utils/sentryApiErrorLogger';
-import { fetchAppStatus } from './appStatus.api';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const logger = getLogger(req).withContext({ operation: 'innsynsdata' });
@@ -17,12 +16,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         const søker = await fetchSøker(req, unparsed);
         const sakerMetadata = await fetchSakerMetadata(req, unparsed);
-        const appStatus = await fetchAppStatus();
 
         logger.info('Innsynsdata hentet', { antallSaker: sakerMetadata.length });
 
         const innsynsdata: InnsynsdataDto = {
-            appStatus,
             søker,
             sakerMetadata,
             harSak: sakerMetadata.length > 0,
