@@ -43,6 +43,9 @@ spec:
       {{#each ingresses as |url|}}
        - {{url}}
           {{/each}}
+    {{#if eksternIngress}}
+    - {{eksternIngress}}
+    {{/if}}
     replicas:
         min: {{ minReplicas }}
         max: {{ maxReplicas }}
