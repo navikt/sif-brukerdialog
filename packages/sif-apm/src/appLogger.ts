@@ -24,7 +24,7 @@ export const appLogger = {
 
     logException: (error: unknown, extra?: Record<string, unknown>) => {
         const err = error instanceof Error ? error : new Error(String(error));
-        captureException(err);
+        captureException(err, extra ? { context: extra } : undefined);
         // loglevel-safe: err.message inneholder aldri sensitiv data — falsk positiv fra CodeQL
         // eslint-disable-next-line no-console
         console.error('Exception:', err.message, extra ?? {}); // lgtm[js/clear-text-logging]
