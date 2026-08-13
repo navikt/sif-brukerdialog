@@ -11,8 +11,8 @@
     ],
     "ingresses": [
         "https://omsorgspengesoknad.intern.dev.nav.no",
-        "https://www.intern.dev.nav.no/familie/sykdom-i-familien/soknad/omsorgspengesoknad",
-        "https://www.ekstern.dev.nav.no/familie/sykdom-i-familien/soknad/omsorgspengesoknad"
+        "https://www.intern.dev.nav.no/familie/sykdom-i-familien/soknad/omsorgspenger",
+        "https://www.ekstern.dev.nav.no/familie/sykdom-i-familien/soknad/omsorgspenger"
     ],
     "cluster": "dev-gcp",
     "minReplicas": 1,
