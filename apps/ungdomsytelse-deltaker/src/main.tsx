@@ -6,7 +6,7 @@ import { createRoot } from 'react-dom/client';
 import { enableMocking } from '../mock/enableMocking';
 import App from './App';
 
-void init({ app: 'ungdomsytelse-deltaker', namespace: 'k9saksbehandling', version: getMaybeEnv('APP_VERSION') });
+void init({ app: 'ungdomsytelse-deltaker', namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
 
 enableMocking().then(() => {
     createRoot(document.getElementById('root')!).render(

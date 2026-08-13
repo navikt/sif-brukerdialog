@@ -4,7 +4,6 @@ import { withAuthenticatedApi } from '../../../../auth/withAuthentication';
 import { fetchInntektsmeldinger } from '../../../../server/fetchers/fetchInntektsmeldinger';
 import { isValidSaksnummer } from '../../../../server/utils/validatePathSegment';
 import { getLogger } from '../../../../utils/getLogger';
-import { logApiError } from '../../../../utils/apiErrorLogger';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
@@ -21,7 +20,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         return res.send(data);
     } catch (err) {
         getLogger(req).error('Hent inntektsmeldinger feilet');
-        logApiError(err, 'inntektsmeldinger');
         return res.status(500).json({ error: `Kunne ikke hente inntektsmeldinger` });
     }
 }

@@ -5,7 +5,6 @@ import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { fetchSøknader } from '../../server/fetchers/fetchSøknader';
 import { InnsendtSøknad } from '../../types';
 import { getLogger } from '../../utils/getLogger';
-import { logApiError } from '../../utils/apiErrorLogger';
 
 const opprettetSisteTreDager = (søknad: InnsendtSøknad): boolean => {
     return dayjs(søknad.opprettet).isAfter(dayjs().subtract(3, 'days'));
@@ -27,7 +26,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         }
     } catch (err) {
         getLogger(req).error('Hent søknader feilet');
-        logApiError(err, 'soknader');
         return res.status(500).json({ error: 'Kunne ikke hente søknader' });
     }
 }
