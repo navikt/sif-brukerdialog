@@ -16,7 +16,7 @@ import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
 import IngenDeltakelsePage from '../../pages/IngenDeltakelsePage';
 import UngLoadingPage from '../../pages/UngLoadingPage';
 import { AppRoutes } from '../../utils/AppRoutes';
-import { appLogger } from '../../utils/appLogger';
+import { appLogger } from '@sif/apm';
 
 const getErrorInfoToLog = (error: ApiError | null) => {
     if (!error || error === null) {
