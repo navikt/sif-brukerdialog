@@ -41,8 +41,8 @@ spec:
             {{/each}}
     ingresses:
       {{#each ingresses as |url|}}
-       - {{url}}
-          {{/each}}
+      - {{url}}
+      {{/each}}
     replicas:
         min: {{ minReplicas }}
         max: {{ maxReplicas }}
