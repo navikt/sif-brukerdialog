@@ -5,6 +5,7 @@
     "team": "dusseldorf",
     "ingresses": [
         "https://pleiepengesoknad.intern.dev.nav.no",
+        "https://www.intern.dev.nav.no/familie/sykdom-i-familien/soknad/pleiepenger",
         "https://www.ekstern.dev.nav.no/familie/sykdom-i-familien/soknad/pleiepenger"
     ],
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
