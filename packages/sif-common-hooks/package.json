@@ -11,7 +11,7 @@
     },
     "dependencies": {
         "react": "19.2.8",
-        "typescript": "6.0.3"
+        "typescript": "7.0.2"
     },
     "devDependencies": {
         "@navikt/sif-common-env": "workspace:*",

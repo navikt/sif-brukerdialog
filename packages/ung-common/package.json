@@ -30,7 +30,7 @@
         "postcss": "8.5.26",
         "react": "19.2.8",
         "react-dom": "19.2.8",
-        "typescript": "6.0.3",
+        "typescript": "7.0.2",
         "uuid": "^14.0.1",
         "vitest": "4.1.10",
         "zod": "4.4.3"

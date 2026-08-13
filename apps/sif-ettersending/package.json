@@ -81,7 +81,7 @@
         "postcss": "8.5.26",
         "react-dom": "19.2.8",
         "tailwindcss": "4.3.3",
-        "typescript": "6.0.3",
+        "typescript": "7.0.2",
         "uuid": "^14.0.1",
         "vite": "8.2.1",
         "vite-plugin-checker": "0.14.5",

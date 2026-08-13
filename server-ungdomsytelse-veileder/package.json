@@ -27,7 +27,7 @@
         "esbuild": "0.28.1",
         "morgan": "1.11.0",
         "prettier": "3.9.6",
-        "typescript": "6.0.3",
+        "typescript": "7.0.2",
         "winston": "3.19.0"
     }
 }

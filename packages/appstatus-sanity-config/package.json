@@ -40,6 +40,6 @@
         "prettier": "3.9.6",
         "react-is": "19.2.8",
         "styled-components": "6.5.0",
-        "typescript": "6.0.3"
+        "typescript": "7.0.2"
     }
 }

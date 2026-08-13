@@ -73,7 +73,7 @@
         "playwright-core": "1.62.1",
         "storybook": "10.5.7",
         "tailwindcss": "4.3.3",
-        "typescript": "6.0.3",
+        "typescript": "7.0.2",
         "vite": "8.2.1",
         "vite-plugin-checker": "0.14.5",
         "vitest": "4.1.10"

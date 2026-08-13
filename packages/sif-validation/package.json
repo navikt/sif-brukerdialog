@@ -24,7 +24,7 @@
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "postcss": "8.5.26",
-        "typescript": "6.0.3",
+        "typescript": "7.0.2",
         "vitest": "4.1.10"
     },
     "peerDependencies": {
