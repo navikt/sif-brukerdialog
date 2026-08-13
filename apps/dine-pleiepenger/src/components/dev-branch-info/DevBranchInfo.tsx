@@ -9,12 +9,7 @@ interface DevBranchInfoProps {
 const DevBranchInfo = ({ githubRefName, runtimeEnvironment }: DevBranchInfoProps) => {
     const tagRef = useRef<HTMLDivElement>(null);
 
-    if (
-        !githubRefName ||
-        githubRefName === 'undefined' ||
-        githubRefName === 'main' ||
-        runtimeEnvironment === 'production'
-    ) {
+    if (!githubRefName || githubRefName === 'undefined' || githubRefName === 'main' || runtimeEnvironment !== 'dev') {
         return null;
     }
 

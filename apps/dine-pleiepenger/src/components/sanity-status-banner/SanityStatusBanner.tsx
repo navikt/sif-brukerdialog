@@ -6,15 +6,14 @@ import { maxPageWidth } from '../../constants';
 import UnavailablePage from '../../pages/unavailable.page';
 import { browserEnv } from '../../utils/env';
 import { Feature } from '../../utils/features';
-
-const APPLICATION_KEY = 'sif-innsyn';
+import { InnsynPsbApp } from '@navikt/sif-app-register';
 
 interface Props {
     children: ReactNode;
 }
 
 const SanityStatusBannerInner = ({ children }: Props) => {
-    const { status, message } = useAppStatus(APPLICATION_KEY, {
+    const { status, message } = useAppStatus(InnsynPsbApp.key, {
         projectId: browserEnv.NEXT_PUBLIC_APPSTATUS_PROJECT_ID,
         dataset: browserEnv.NEXT_PUBLIC_APPSTATUS_DATASET,
     });
