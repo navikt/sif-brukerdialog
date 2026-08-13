@@ -3,13 +3,18 @@ import { useRef } from 'react';
 
 interface DevBranchInfoProps {
     githubRefName?: string;
-    dataset?: string;
+    runtimeEnvironment?: string;
 }
 
-const DevBranchInfo = ({ githubRefName, dataset }: DevBranchInfoProps) => {
+const DevBranchInfo = ({ githubRefName, runtimeEnvironment }: DevBranchInfoProps) => {
     const tagRef = useRef<HTMLDivElement>(null);
 
-    if (!githubRefName || githubRefName === 'undefined' || githubRefName === 'main' || dataset !== 'staging') {
+    if (
+        !githubRefName ||
+        githubRefName === 'undefined' ||
+        githubRefName === 'main' ||
+        runtimeEnvironment === 'production'
+    ) {
         return null;
     }
 
