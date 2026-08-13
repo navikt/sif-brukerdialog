@@ -30,7 +30,7 @@
         "http-status-codes": "2.3.0",
         "i18n-iso-countries": "7.14.0",
         "js-cookie": "3.0.8",
-        "react-day-picker": "9.14.0",
+        "react-day-picker": "10.0.1",
         "tailwindcss": "4.3.3"
     },
     "devDependencies": {

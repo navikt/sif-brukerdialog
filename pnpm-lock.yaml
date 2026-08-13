@@ -389,8 +389,8 @@ importers:
         specifier: 19.2.8
         version: 19.2.8
       react-day-picker:
-        specifier: 9.14.0
-        version: 9.14.0(react@19.2.8)
+        specifier: 10.0.1
+        version: 10.0.1(@types/react@19.2.18)(react@19.2.8)
       react-dom:
         specifier: 19.2.8
         version: 19.2.8(react@19.2.8)
@@ -573,8 +573,8 @@ importers:
         specifier: 19.2.8
         version: 19.2.8
       react-day-picker:
-        specifier: 9.14.0
-        version: 9.14.0(react@19.2.8)
+        specifier: 10.0.1
+        version: 10.0.1(@types/react@19.2.18)(react@19.2.8)
       react-dom:
         specifier: 19.2.8
         version: 19.2.8(react@19.2.8)
@@ -1137,8 +1137,8 @@ importers:
         specifier: 19.2.8
         version: 19.2.8
       react-day-picker:
-        specifier: 9.14.0
-        version: 9.14.0(react@19.2.8)
+        specifier: 10.0.1
+        version: 10.0.1(@types/react@19.2.18)(react@19.2.8)
       react-dom:
         specifier: 19.2.8
         version: 19.2.8(react@19.2.8)
@@ -1366,8 +1366,8 @@ importers:
         specifier: 19.2.8
         version: 19.2.8
       react-day-picker:
-        specifier: 9.14.0
-        version: 9.14.0(react@19.2.8)
+        specifier: 10.0.1
+        version: 10.0.1(@types/react@19.2.18)(react@19.2.8)
       react-dom:
         specifier: 19.2.8
         version: 19.2.8(react@19.2.8)
@@ -1526,8 +1526,8 @@ importers:
         specifier: 19.2.8
         version: 19.2.8
       react-day-picker:
-        specifier: 9.14.0
-        version: 9.14.0(react@19.2.8)
+        specifier: 10.0.1
+        version: 10.0.1(@types/react@19.2.18)(react@19.2.8)
       react-dom:
         specifier: 19.2.8
         version: 19.2.8(react@19.2.8)
@@ -2319,8 +2319,8 @@ importers:
         specifier: 19.2.8
         version: 19.2.8
       react-day-picker:
-        specifier: 9.14.0
-        version: 9.14.0(react@19.2.8)
+        specifier: 10.0.1
+        version: 10.0.1(@types/react@19.2.18)(react@19.2.8)
       react-dom:
         specifier: 19.2.8
         version: 19.2.8(react@19.2.8)
@@ -2952,8 +2952,8 @@ importers:
         specifier: 19.2.8
         version: 19.2.8
       react-day-picker:
-        specifier: 9.14.0
-        version: 9.14.0(react@19.2.8)
+        specifier: 10.0.1
+        version: 10.0.1(@types/react@19.2.18)(react@19.2.8)
       react-router-dom:
         specifier: 7.18.2
         version: 7.18.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -3157,8 +3157,8 @@ importers:
         specifier: 19.2.8
         version: 19.2.8
       react-day-picker:
-        specifier: 9.14.0
-        version: 9.14.0(react@19.2.8)
+        specifier: 10.0.1
+        version: 10.0.1(@types/react@19.2.18)(react@19.2.8)
       react-dom:
         specifier: 19.2.8
         version: 19.2.8(react@19.2.8)
@@ -3350,8 +3350,8 @@ importers:
         specifier: 19.2.8
         version: 19.2.8
       react-day-picker:
-        specifier: 9.14.0
-        version: 9.14.0(react@19.2.8)
+        specifier: 10.0.1
+        version: 10.0.1(@types/react@19.2.18)(react@19.2.8)
       react-intl:
         specifier: 10.1.20
         version: 10.1.20(@types/react@19.2.18)(react@19.2.8)
@@ -3483,8 +3483,8 @@ importers:
         specifier: 2.5.1
         version: 2.5.1
       react-day-picker:
-        specifier: 9.14.0
-        version: 9.14.0(react@19.2.8)
+        specifier: 10.0.1
+        version: 10.0.1(@types/react@19.2.18)(react@19.2.8)
     devDependencies:
       '@sif/eslint-config':
         specifier: workspace:*
@@ -4250,8 +4250,8 @@ importers:
         specifier: 1.11.21
         version: 1.11.21
       react-day-picker:
-        specifier: 9.14.0
-        version: 9.14.0(react@19.2.8)
+        specifier: 10.0.1
+        version: 10.0.1(@types/react@19.2.18)(react@19.2.8)
       uuid:
         specifier: ^14.0.1
         version: 14.0.1
@@ -4344,8 +4344,8 @@ importers:
         specifier: 3.0.8
         version: 3.0.8
       react-day-picker:
-        specifier: 9.14.0
-        version: 9.14.0(react@19.2.8)
+        specifier: 10.0.1
+        version: 10.0.1(@types/react@19.2.18)(react@19.2.8)
       tailwindcss:
         specifier: 4.3.3
         version: 4.3.3
@@ -4515,8 +4515,8 @@ importers:
         specifier: 4.18.1
         version: 4.18.1
       react-day-picker:
-        specifier: 9.14.0
-        version: 9.14.0(react@19.2.8)
+        specifier: 10.0.1
+        version: 10.0.1(@types/react@19.2.18)(react@19.2.8)
       react-fast-compare:
         specifier: 3.2.2
         version: 3.2.2
@@ -4727,8 +4727,8 @@ importers:
         specifier: 19.2.8
         version: 19.2.8
       react-day-picker:
-        specifier: 9.14.0
-        version: 9.14.0(react@19.2.8)
+        specifier: 10.0.1
+        version: 10.0.1(@types/react@19.2.18)(react@19.2.8)
       react-dom:
         specifier: 19.2.8
         version: 19.2.8(react@19.2.8)
@@ -4867,8 +4867,8 @@ importers:
         specifier: 8.5.26
         version: 8.5.26
       react-day-picker:
-        specifier: 9.14.0
-        version: 9.14.0(react@19.2.8)
+        specifier: 10.0.1
+        version: 10.0.1(@types/react@19.2.18)(react@19.2.8)
     devDependencies:
       '@devexperts/remote-data-ts':
         specifier: 2.1.1
@@ -5048,8 +5048,8 @@ importers:
         specifier: 3.4.13
         version: 3.4.13
       react-day-picker:
-        specifier: 9.14.0
-        version: 9.14.0(react@19.2.8)
+        specifier: 10.0.1
+        version: 10.0.1(@types/react@19.2.18)(react@19.2.8)
       sass-embedded:
         specifier: 1.100.0
         version: 1.100.0
@@ -5478,8 +5478,8 @@ importers:
         specifier: 19.2.8
         version: 19.2.8
       react-day-picker:
-        specifier: 9.14.0
-        version: 9.14.0(react@19.2.8)
+        specifier: 10.0.1
+        version: 10.0.1(@types/react@19.2.18)(react@19.2.8)
       react-dom:
         specifier: 19.2.8
         version: 19.2.8(react@19.2.8)
@@ -5970,8 +5970,8 @@ importers:
         specifier: 19.2.8
         version: 19.2.8
       react-day-picker:
-        specifier: 9.14.0
-        version: 9.14.0(react@19.2.8)
+        specifier: 10.0.1
+        version: 10.0.1(@types/react@19.2.18)(react@19.2.8)
       react-dom:
         specifier: 19.2.8
         version: 19.2.8(react@19.2.8)
@@ -8188,9 +8188,6 @@ packages:
       '@types/react': ^17.0.30 || ^18 || ^19
       react: ^17 || ^18 || ^19
       react-dom: ^17 || ^18 || ^19
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
 
   '@navikt/ds-tailwind@8.16.1':
     resolution: {integrity: sha512-yoiqJ8ZzJTjXPnBjlJmCSL/0m2KOT7BW5JUACE9tvs+2aZxVjre7SBdIPRgphaJqT7JWql8TI+EKxX1kQoNKCQ==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tailwind/8.16.1/6fab9ceadb1c13b313023ac10dbb63804b76d2ee}
@@ -8207,9 +8204,6 @@ packages:
     peerDependencies:
       html-react-parser: '>=5.x'
       react: '>=17.x'
-    peerDependenciesMeta:
-      react:
-        optional: true
 
   '@navikt/next-logger@5.0.0':
     resolution: {integrity: sha512-VQ2VM/k5uDYnb7BYG3ITJZgMZq8B3TECOnhdvNOQeltJyy8+KQzGqLsrYajKPWuUiPuLjYFk0HbU2W22onB9mQ==, tarball: https://npm.pkg.github.com/download/@navikt/next-logger/5.0.0/510dccac519d1227515e4c8a8268570d90305b3e}
@@ -20040,12 +20034,11 @@ snapshots:
       '@floating-ui/react-dom': 2.1.9(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@navikt/aksel-icons': 8.16.1
       '@navikt/ds-tokens': 8.16.1
+      '@types/react': 19.2.18
       date-fns: 4.4.0
       react: 19.2.8
       react-day-picker: 10.0.1(@types/react@19.2.18)(react@19.2.8)
       react-dom: 19.2.8(react@19.2.8)
-    optionalDependencies:
-      '@types/react': 19.2.18
 
   '@navikt/ds-tailwind@8.16.1': {}
 
@@ -20059,7 +20052,6 @@ snapshots:
       csp-header: 6.3.1
       html-react-parser: 6.1.5(@types/react@19.2.18)(react@19.2.8)
       js-cookie: 3.0.8
-    optionalDependencies:
       react: 19.2.8
 
   '@navikt/next-logger@5.0.0(next@16.3.0(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@playwright/test@1.62.1)(@types/node@26.1.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sass@1.102.0))(pino@10.3.1)':
