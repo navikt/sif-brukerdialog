@@ -22,7 +22,6 @@ Kan settes som query-parametre ved direkte SSR-kall, eller som `params`-objekt i
 | `logoutUrl`             | `string`                                              | `undefined`    | Deleger all utlogging til angitt URL (teamet håndterer cookie-sletting)   |
 | `logoutWarning`         | `boolean`                                             | `true`         | Vis advarsel etter 55 min (WCAG-krav – deaktiver kun med eget alternativ) |
 | `redirectOnUserChange`  | `boolean`                                             | `false`        | Redirect til nav.no hvis annen bruker logger inn i annet vindu            |
-| `origin`                | `string`                                              | `undefined`    | Appidentifikator på automatiske `besøk`-hendelser                         |
 | `pageType`              | `string`                                              | `undefined`    | Sidetype for Analytics-logging                                            |
 | `analyticsQueryParams`  | `string[]`                                            | `[]`           | Hviteliste av query-params som inkluderes i Analytics (ingen sensitive!)  |
 | `analyticsRedactFilter` | `string[]`                                            | `['uuid']`     | Opt-out av automatisk redaction (UUID fjernes som standard)               |
@@ -32,9 +31,6 @@ Kan settes som query-parametre ved direkte SSR-kall, eller som `params`-objekt i
 ```
 # Sett kontekst
 https://www.nav.no/dekoratoren/?context=arbeidsgiver
-
-# Identifiser appen i besøk-hendelser
-https://www.nav.no/dekoratoren/?origin=min-app
 
 # Språkvelger
 https://www.nav.no/dekoratoren/?availableLanguages=[{"locale":"nb","url":"https://www.nav.no/nb"},{"locale":"en","url":"https://www.nav.no/en"}]
@@ -75,7 +71,6 @@ type DecoratorParams = Partial<{
     logoutUrl: string;
     logoutWarning: boolean;
     redirectOnUserChange: boolean;
-    origin: string;
     pageType: string;
     analyticsQueryParams: string[];
     analyticsRedactFilter: string[];
