@@ -98,7 +98,7 @@
         "eslint-plugin-simple-import-sort": "14.0.0",
         "eslint-plugin-storybook": "10.5.7",
         "express": "5.2.1",
-        "jsdom": "28.1.0",
+        "jsdom": "30.0.1",
         "mockdate": "3.0.5",
         "msw": "2.15.0",
         "msw-storybook-addon": "3.0.0",

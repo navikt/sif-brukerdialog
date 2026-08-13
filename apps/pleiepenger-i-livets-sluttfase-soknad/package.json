@@ -62,7 +62,7 @@
         "dayjs": "1.11.21",
         "formik": "2.4.9",
         "html-react-parser": "6.1.5",
-        "jsdom": "28.1.0",
+        "jsdom": "30.0.1",
         "lodash": "4.18.1",
         "object-hash": "3.0.0",
         "react": "19.2.8",
