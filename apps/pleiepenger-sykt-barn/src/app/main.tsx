@@ -7,7 +7,7 @@ import { createRoot } from 'react-dom/client';
 import { enableMocking } from '../../mock/msw/enableMocking';
 import App from './App';
 
-void init({ app: 'pleiepengesoknad', namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION'), debug: true });
+void init({ app: 'pleiepengesoknad', namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
 
 if (import.meta.env.INJECT_DECORATOR) {
     injectDecoratorClientSide({
