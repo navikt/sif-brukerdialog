@@ -2,12 +2,22 @@
 
 import * as z from 'zod';
 
+export const zAvslutningsårsak = z.enum([
+    'ARBEID',
+    'UTDANNING',
+    'MANGLENDE_DELTAKELSE',
+    'DELTAKER_ØNSKER_IKKE_Å_DELTA',
+    'FLYTTET',
+    'ANNET',
+]);
+
 export const zDeltakelseInnmeldingDto = z.object({
     deltakerIdent: z.string(),
     startdato: z.iso.date(),
 });
 
 export const zDeltakelseUtmeldingDto = z.object({
+    avslutningsårsak: zAvslutningsårsak.nullish(),
     utmeldingsdato: z.iso.date(),
 });
 
@@ -17,6 +27,7 @@ export const zDeltakerDto = z.object({
 });
 
 export const zDeltakelseDto = z.object({
+    avslutningsårsak: zAvslutningsårsak.nullish(),
     deltaker: zDeltakerDto,
     erSlettet: z.boolean(),
     forlengetPeriodeMaksDato: z.iso.date(),

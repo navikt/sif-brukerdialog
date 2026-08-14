@@ -4,7 +4,17 @@ export type ClientOptions = {
     baseURL: string & {};
 };
 
+export enum Avslutningsårsak {
+    ARBEID = 'ARBEID',
+    UTDANNING = 'UTDANNING',
+    MANGLENDE_DELTAKELSE = 'MANGLENDE_DELTAKELSE',
+    DELTAKER_ØNSKER_IKKE_Å_DELTA = 'DELTAKER_ØNSKER_IKKE_Å_DELTA',
+    FLYTTET = 'FLYTTET',
+    ANNET = 'ANNET',
+}
+
 export type DeltakelseDto = {
+    avslutningsårsak?: Avslutningsårsak;
     deltaker: DeltakerDto;
     erSlettet: boolean;
     /**
@@ -48,6 +58,7 @@ export type DeltakelseInnmeldingDto = {
 };
 
 export type DeltakelseUtmeldingDto = {
+    avslutningsårsak?: Avslutningsårsak;
     utmeldingsdato: string;
 };
 
