@@ -1,4 +1,5 @@
 import {
+    Avslutningsårsak,
     DeltakelseDto,
     DeltakelseHistorikkDto,
     DeltakerPersonalia,
@@ -36,6 +37,7 @@ const deltakelse: DeltakelseDto = {
     deltaker: { id: DELTAKER_ID, deltakerIdent: '24529831982' },
     fraOgMed: FRA_OG_MED,
     tilOgMed: relativeMockISODate(6, 'months'),
+    avslutningsårsak: Avslutningsårsak.ARBEID,
     erSlettet: false,
     harOpphørsvedtak: false,
     søktTidspunkt: relativeMockTimestamp(-8, 'months'),
