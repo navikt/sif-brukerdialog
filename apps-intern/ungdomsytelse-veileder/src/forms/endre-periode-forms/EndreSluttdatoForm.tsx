@@ -180,7 +180,7 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                                                     legend="Hvorfor meldes deltaker ut?"
                                                     radios={AvslutningsårsakerList.map((årsak) => ({
                                                         value: årsak,
-                                                        label: <FormattedMessage id={`utmeldingsårsak.${årsak}`} />,
+                                                        label: <FormattedMessage id={`avslutningsårsak.${årsak}`} />,
                                                     }))}
                                                     validate={getRequiredFieldValidator()}
                                                 />
