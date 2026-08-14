@@ -88,6 +88,7 @@ export enum Diskresjonskode {
 
 export type EndrePeriodeDatoDto = {
     dato: string;
+    avslutningsårsak?: Avslutningsårsak;
 };
 
 export enum Endringstype {

@@ -34,6 +34,7 @@ export const usePeriodeForDeltakelse = ({
                 case EndrePeriodeVariant.meldUtDeltaker:
                     return meldUtDeltaker(deltakelseId, {
                         utmeldingsdato: data.dato,
+                        avslutningsårsak: data.avslutningsårsak,
                     });
             }
         },

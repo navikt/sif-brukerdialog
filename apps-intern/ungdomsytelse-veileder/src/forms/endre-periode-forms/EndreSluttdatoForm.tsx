@@ -15,12 +15,12 @@ import { usePeriodeForDeltakelse } from '../../hooks/usePeriodeForDeltakelse';
 import { Deltakelse } from '../../types/Deltakelse';
 import { Deltaker } from '../../types/Deltaker';
 import { EndrePeriodeVariant } from '../../types/EndrePeriodeVariant';
-import { Utmeldingsårsak, UtmeldingsårsakerList } from '../../types/Utmeldingsårsaker';
 import { AppHendelse } from '../../utils/analytics';
 import { useAppEventLogger } from '../../utils/analyticsHelper';
 import { getPeriodeDatoValidator } from '../../utils/getPeriodeDatoValidator';
 import dayjs from 'dayjs';
 import { getDeltakelseHandlinger } from '../../utils/deltakelseUtils';
+import { Avslutningsårsak } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 
 enum FieldNames {
     sluttdato = 'sluttdato',
@@ -30,7 +30,7 @@ enum FieldNames {
 }
 type FormValues = {
     [FieldNames.sluttdato]: string;
-    [FieldNames.årsak]: Utmeldingsårsak;
+    [FieldNames.årsak]: Avslutningsårsak;
     [FieldNames.erVedtaksbrevSendt]: YesOrNo;
     [FieldNames.bekrefterEndring]: boolean;
 };
@@ -40,6 +40,15 @@ const { FormikWrapper, Form, DatePicker, ConfirmationCheckbox } = getTypedFormCo
     FormValues,
     ValidationError
 >();
+
+export const AvslutningsårsakerList = [
+    Avslutningsårsak.ARBEID,
+    Avslutningsårsak.UTDANNING,
+    Avslutningsårsak.MANGLENDE_DELTAKELSE,
+    Avslutningsårsak.DELTAKER_ØNSKER_IKKE_Å_DELTA,
+    Avslutningsårsak.FLYTTET,
+    Avslutningsårsak.ANNET,
+];
 
 interface Props {
     deltaker: Deltaker;
@@ -62,13 +71,14 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
     });
 
     const handleOnSubmit = async (values: FormValues) => {
-        const { sluttdato } = values;
+        const { sluttdato, årsak } = values;
         if (!sluttdato) {
             return;
         }
         mutate(
             {
                 dato: sluttdato,
+                avslutningsårsak: årsak,
             },
             {
                 onSuccess: onDeltakelseChanged,
@@ -168,7 +178,7 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                                                 <FormikRadioGroup
                                                     name={FieldNames.årsak}
                                                     legend="Hvorfor meldes deltaker ut?"
-                                                    radios={UtmeldingsårsakerList.map((årsak) => ({
+                                                    radios={AvslutningsårsakerList.map((årsak) => ({
                                                         value: årsak,
                                                         label: <FormattedMessage id={`utmeldingsårsak.${årsak}`} />,
                                                     }))}

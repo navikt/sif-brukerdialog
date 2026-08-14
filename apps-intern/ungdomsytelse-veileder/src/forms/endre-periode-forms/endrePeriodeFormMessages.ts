@@ -18,12 +18,12 @@ const nb = {
     'endrePeriodeForm.deltakerErInformert.noValue': 'Du må svare på om deltaker er informert.',
     'endrePeriodeForm.bekrefterEndring.notChecked': 'Du må krysse av for at du bekrefter endringen.',
 
-    'utmeldingsårsak.arbeid': 'Arbeid',
-    'utmeldingsårsak.utdanning': 'Utdanning',
-    'utmeldingsårsak.manglende-deltakelse': 'Manglende deltakelse',
-    'utmeldingsårsak.deltaker-ønsker-ikke-delta': 'Deltakeren ønsker ikke å delta',
-    'utmeldingsårsak.flyttet': 'Flyttet',
-    'utmeldingsårsak.annet': 'Annet',
+    'utmeldingsårsak.ARBEID': 'Arbeid',
+    'utmeldingsårsak.UTDANNING': 'Utdanning',
+    'utmeldingsårsak.MANGLENDE_DELTAKELSE': 'Manglende deltakelse',
+    'utmeldingsårsak.DELTAKER_ØNSKER_IKKE_Å_DELTA': 'Deltakeren ønsker ikke å delta',
+    'utmeldingsårsak.FLYTTET': 'Flyttet',
+    'utmeldingsårsak.ANNET': 'Annet',
 
     'slettDeltakerÅrsak.deltakerStartetIkke': 'Deltaker startet ikke i programmet likevel',
     'slettDeltakerÅrsak.feilDeltakerMeldtInn': 'Veileder har meldt inn feil deltaker',
