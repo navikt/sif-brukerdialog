@@ -10,7 +10,7 @@
     "dependencies": {
         "@eslint/eslintrc": "3.3.6",
         "@eslint/js": "10.0.1",
-        "@vitest/eslint-plugin": "1.6.24",
+        "@vitest/eslint-plugin": "1.6.26",
         "eslint": "10.8.0",
         "eslint-config-prettier": "10.1.8",
         "eslint-plugin-jsx-a11y": "6.10.2",
@@ -18,14 +18,14 @@
         "eslint-plugin-react": "7.37.5",
         "eslint-plugin-react-hooks": "7.1.1",
         "eslint-plugin-simple-import-sort": "14.0.0",
-        "eslint-plugin-storybook": "10.5.4",
-        "globals": "17.8.0",
+        "eslint-plugin-storybook": "10.5.7",
+        "globals": "17.9.0",
         "typescript": "6.0.3",
-        "typescript-eslint": "8.65.0"
+        "typescript-eslint": "8.66.0"
     },
     "devDependencies": {
-        "postcss": "8.5.25",
+        "postcss": "8.5.26",
         "prettier": "3.9.6",
-        "storybook": "10.5.5"
+        "storybook": "10.5.7"
     }
 }
