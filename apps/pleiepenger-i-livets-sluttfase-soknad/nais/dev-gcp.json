@@ -3,7 +3,11 @@
     "cluster": "dev-gcp",
     "namespace": "dusseldorf",
     "team": "dusseldorf",
-    "ingresses": ["https://pleiepenger-i-livets-sluttfase.intern.dev.nav.no"],
+    "ingresses": [
+        "https://pleiepenger-i-livets-sluttfase.intern.dev.nav.no",
+        "https://www.intern.dev.nav.no/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase",
+        "https://www.ekstern.dev.nav.no/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase"
+    ],
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
     "accessPolicyOutApps": [
         {

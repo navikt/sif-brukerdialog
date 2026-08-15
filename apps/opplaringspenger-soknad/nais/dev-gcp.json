@@ -15,7 +15,11 @@
             "namespace": "dusseldorf"
         }
     ],
-    "ingresses": ["https://opplaringspenger-soknad.intern.dev.nav.no"],
+    "ingresses": [
+        "https://opplaringspenger-soknad.intern.dev.nav.no",
+        "https://www.intern.dev.nav.no/familie/sykdom-i-familien/soknad/opplaringspenger",
+        "https://www.ekstern.dev.nav.no/familie/sykdom-i-familien/soknad/opplaringspenger"
+    ],
     "cluster": "dev-gcp",
     "minReplicas": 1,
     "maxReplicas": 1,
