@@ -26,20 +26,20 @@
         "useTabs": false
     },
     "dependencies": {
-        "@sanity/vision": "6.9.1",
+        "@sanity/vision": "6.9.2",
         "react": "19.2.8",
         "react-dom": "19.2.8",
-        "sanity": "6.9.1"
+        "sanity": "6.9.2"
     },
     "devDependencies": {
         "@sanity/eslint-config-studio": "6.0.0",
         "@types/react": "19.2.18",
         "dayjs": "1.11.21",
-        "eslint": "10.8.0",
-        "postcss": ">=8.5.18",
+        "eslint": "10.8.1",
+        "postcss": "8.5.26",
         "prettier": "3.9.6",
         "react-is": "19.2.8",
-        "styled-components": "6.5.0",
+        "styled-components": "6.5.2",
         "typescript": "6.0.3"
     }
 }
