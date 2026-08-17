@@ -1,5 +1,5 @@
 import StartPåNyttDialog from '@app/components/start-på-nytt-dialog/StartPåNyttDialog';
-import { appLogger } from '@app/utils';
+import { appLogger } from '@sif/apm';
 import { BodyShort, Button, VStack } from '@navikt/ds-react';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { fetchSøkerId } from '@navikt/sif-common-api';

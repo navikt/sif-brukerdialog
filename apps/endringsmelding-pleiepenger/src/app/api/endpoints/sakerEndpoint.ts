@@ -1,6 +1,5 @@
 import { isK9FormatError, K9Format, K9FormatArbeidstid, K9Sak, UgyldigK9SakFormat } from '@app/types';
 import {
-    appLogger,
     getEndringsdato,
     getTillattEndringsperiode,
     isK9SakErInnenforGyldigEndringsperiode,
@@ -8,6 +7,7 @@ import {
     parseK9Format,
 } from '@app/utils';
 import { getMaybeEnv } from '@navikt/sif-common-env';
+import { appLogger } from '@sif/apm';
 import { isAxiosError } from 'axios';
 
 import { verifyK9Format } from '../../utils/verifyk9Format';

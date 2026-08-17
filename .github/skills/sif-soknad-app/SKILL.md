@@ -44,7 +44,7 @@ Referanseimplementasjon: `apps/aktivitetspenger-soknad`
 ## Arkitektur
 
 ```
-<SøknadAppProvider>              ← Faro, AppErrorBoundary, QueryClient, Analytics, Sentry-init
+<SøknadAppProvider>              ← Faro, AppErrorBoundary, QueryClient, Analytics
   <SøknadRouter>                 ← Zustand-store, mellomlagring-init, context-provider
     <SøknadStepFormProvider>   ← in-session skjemaverdier per steg (konsistenssjekk + live getters)
       <SøknadAppContext.Provider>← store + config eksponert til alle hooks
@@ -158,7 +158,6 @@ Ytterste wrapper-komponent — brukes av apper som ikke setter opp providers sel
 <SøknadAppProvider
     applicationKey="min-app"
     appVersion={import.meta.env.VITE_APP_VERSION}
-    sentryConfig={{ dsn: '...', application: 'min-app' }}
     telemetryCollectorURL={import.meta.env.VITE_TELEMETRY_URL}>
     <App />
 </SøknadAppProvider>
@@ -171,7 +170,6 @@ Setter opp:
 - `SifQueryClientProvider` — React Query-klient
 - `AnalyticsProvider` — analytics-instans
 - `DevBranchInfo` — vises kun i dev/PR-bygg
-- Sentry-init — kjøres én gang (modul-global flaggvariabel)
 
 ---
 
@@ -282,8 +280,7 @@ export const useFormValuesToSøknadsdata = () => {
             switch (stepId) {
                 case SøknadStepId.OM_BARNET:
                     return toOmBarnetSøknadsdata(formValues as unknown as OmBarnetFormValues, barn) as
-                        | Record<string, unknown>
-                        | undefined;
+                        Record<string, unknown> | undefined;
                 // ...
                 default:
                     return undefined;

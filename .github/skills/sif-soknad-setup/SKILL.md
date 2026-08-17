@@ -380,7 +380,6 @@ export const App = () => {
                 telemetryCollectorURL: env.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL,
             }}
             analyticsConfig={{ isActive: env.SIF_PUBLIC_USE_ANALYTICS === 'true' }}
-            sentryConfig={{ dsn: '...', application: 'min-app' }}
             intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
             <BrowserRouter basename={env.PUBLIC_PATH}>
                 {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
@@ -408,7 +407,7 @@ Se `sif-initial-data-loader` for fullt mønster. Mellomlagring håndteres av `S�
 | `hooks/useFormValuesToSøknadsdata.ts` | Hook med switch per steg, kontekst i closure                              |
 | `i18n/nb.ts`                          | Aggreger steg-meldinger + `application.title`, `step.<id>.title` per steg |
 | `content/velkommen/Velkommen.tsx`     | `guide.content` — app-spesifikt innhold                                   |
-| `App.tsx`                             | `applicationKey`, `sentryConfig.dsn`, `AppContextProvider` props          |
+| `App.tsx`                             | `applicationKey`, `AppContextProvider` props                              |
 
 ## Viktige regler
 

@@ -1,5 +1,4 @@
 export * from './apiDataUtils';
-export { appLogger } from '@sif/apm';
 export * from './arbeidsukeUtils';
 export * from './beregnUtils';
 export * from './endringsperiode';

@@ -1,5 +1,5 @@
 import { RequestStatus } from '@app/types';
-import { appLogger } from '@app/utils';
+import { appLogger } from '@sif/apm';
 import { Alert } from '@navikt/ds-react';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { getMaybeEnv } from '@navikt/sif-common-env';

@@ -9,7 +9,7 @@ import {
     TimerEllerProsent,
     UgyldigBarnFormatDetails,
 } from '@app/types';
-import { appLogger } from '@app/utils';
+import { appLogger } from '@sif/apm';
 import { Søker } from '@navikt/sif-common-api';
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import { useEffectOnce } from '@navikt/sif-common-hooks';

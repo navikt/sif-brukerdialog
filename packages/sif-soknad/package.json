@@ -35,11 +35,11 @@
         "@navikt/sif-common-hooks": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
         "@sif/utils": "workspace:*",
-        "react-hook-form": "7.84.0",
+        "react-hook-form": "7.85.0",
         "react-intl": "10.1.20",
         "react-router-dom": "7.18.2",
-        "zustand": "5.0.14",
-        "@nais/apm": "0.6.0"
+        "@nais/apm": "0.6.0",
+        "zustand": "5.0.15"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",

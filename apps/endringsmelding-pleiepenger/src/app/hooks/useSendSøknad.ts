@@ -1,6 +1,6 @@
 import { useSøknadContext } from '@app/hooks';
 import { SøknadApiData } from '@app/types';
-import { appLogger } from '@app/utils';
+import { appLogger } from '@sif/apm';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { AxiosError, isAxiosError } from 'axios';
