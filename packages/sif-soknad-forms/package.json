@@ -32,15 +32,15 @@
         "@sif/soknad": "workspace:*",
         "@sif/soknad-ui": "workspace:*",
         "@sif/utils": "workspace:*",
-        "react-hook-form": "7.84.0"
+        "react-hook-form": "7.85.0"
     },
     "devDependencies": {
         "@navikt/ds-css": "8.16.1",
         "@sif/eslint-config": "workspace:*",
-        "@storybook/addon-a11y": "10.5.7",
-        "@storybook/addon-docs": "10.5.7",
-        "@storybook/react-vite": "10.5.7",
-        "@types/node": "26.1.2",
+        "@storybook/addon-a11y": "10.5.8",
+        "@storybook/addon-docs": "10.5.8",
+        "@storybook/react-vite": "10.5.8",
+        "@types/node": "26.2.0",
         "@types/react": "19.2.18",
         "@types/react-dom": "19.2.4",
         "@vitejs/plugin-react": "6.0.5",
@@ -49,7 +49,7 @@
         "react-day-picker": "9.14.0",
         "react-dom": "19.2.8",
         "react-intl": "10.1.20",
-        "storybook": "10.5.7",
+        "storybook": "10.5.8",
         "typescript": "6.0.3",
         "vite": "8.2.1",
         "vitest": "4.1.10"
