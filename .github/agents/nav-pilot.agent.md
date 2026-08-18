@@ -1,5 +1,6 @@
 ---
 name: nav-pilot
+model: Claude Sonnet 4.6
 description: Planlegg, arkitekturer og bygg Nav-applikasjoner med innebygd kjennskap til Nais, auth, Kafka, sikkerhet og Nav-mønstre
 tools:
   - execute
