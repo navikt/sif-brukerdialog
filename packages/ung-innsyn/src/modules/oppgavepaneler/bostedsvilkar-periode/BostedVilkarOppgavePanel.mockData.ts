@@ -4,7 +4,7 @@ import {
     OppgaveType,
     OppgaveYtelsetype,
 } from '@navikt/ung-brukerdialog-api';
-import { BostedVilkårOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
+import { BostedVilkårPeriodeOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import { dateToISODate } from '@sif/utils';
 import dayjs from 'dayjs';
 
@@ -16,9 +16,9 @@ export const BOSTED_ÅRSAK_SCENARIO_OPTIONS: BostedsvilkårIkkeOppfyltÅrsak[] =
 ];
 
 export const lagOppgaveMedÅrsak = (
-    base: BostedVilkårOppgave,
+    base: BostedVilkårPeriodeOppgave,
     årsak: BostedsvilkårIkkeOppfyltÅrsak,
-): BostedVilkårOppgave => ({
+): BostedVilkårPeriodeOppgave => ({
     ...base,
     oppgavetypeData: {
         ...base.oppgavetypeData,
@@ -32,7 +32,7 @@ export const lagOppgaveMedÅrsak = (
 
 // ─── Mocks ───────────────────────────────────────────────────────────────────
 
-export const mockBostedVilkårAKT: BostedVilkårOppgave = {
+export const mockBostedVilkårAKT: BostedVilkårPeriodeOppgave = {
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
     oppgavetype: OppgaveType.BEKREFT_BOSTED,
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED,
@@ -51,7 +51,7 @@ export const mockBostedVilkårAKT: BostedVilkårOppgave = {
     },
 };
 
-export const mockBostedVilkårBesvartAKT: BostedVilkårOppgave = {
+export const mockBostedVilkårBesvartAKT: BostedVilkårPeriodeOppgave = {
     ...mockBostedVilkårAKT,
     respons: { type: 'VARSEL_SVAR', harUttalelse: false },
     status: OppgaveStatus.LØST,

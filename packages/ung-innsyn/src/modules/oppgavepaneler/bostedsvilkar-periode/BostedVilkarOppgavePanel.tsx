@@ -1,4 +1,4 @@
-import { BostedVilkårOppgave } from '@sif/api/ung-brukerdialog';
+import { BostedVilkårPeriodeOppgave } from '@sif/api/ung-brukerdialog';
 import { ReactNode } from 'react';
 
 import { UngUiText } from '../../../i18n';
@@ -7,7 +7,7 @@ import { BostedVilkarOppgavePanelOppgavetekst } from './parts/BostedVilkarOppgav
 
 interface Props {
     navn: string;
-    oppgave: BostedVilkårOppgave;
+    oppgave: BostedVilkårPeriodeOppgave;
     initialVisKvittering?: boolean;
 }
 
@@ -20,7 +20,7 @@ export const BostedVilkårOppgavePanel = ({ navn, oppgave, initialVisKvittering 
 
             <Oppgavebekreftelse.Besvart>
                 <UngUiText
-                    id="@ungInnsyn.bostedVilkårOppgave.oppsummering"
+                    id="@ungInnsyn.bostedVilkårPeriodeOppgave.oppsummering"
                     values={{ strong: (content: ReactNode) => <strong>{content}</strong> }}
                 />
             </Oppgavebekreftelse.Besvart>

@@ -95,7 +95,9 @@ const Ubesvart = ({ children }: UbesvartProps) => {
                         <Heading level="2" size="medium">
                             <UngUiText id="@ungInnsyn.oppgavebekreftelse.ubesvart.tittel" values={{ navn }} />
                         </Heading>
+
                         <Box maxWidth="90%">{children}</Box>
+
                         <Box marginBlock="space-0 space-16">
                             <RegelverkOgInnsynReadMore ytelsetype={oppgave.ytelsetype} lenker={getLovLenker(oppgave)} />
                         </Box>

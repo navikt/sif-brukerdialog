@@ -7,7 +7,7 @@ import {
 import { describe, expect, it } from 'vitest';
 
 import {
-    BostedVilkårOppgave,
+    BostedVilkårPeriodeOppgave,
     BostedVilkårOpphørOppgave,
     OpphorVedMaksdatoOppgave,
     ParsedOppgavetype,
@@ -125,7 +125,7 @@ const baseBostedData = {
 const baseBostedOppgavetypeData = { type: 'BOSTED' as const, ...baseBostedData, tom: '2026-03-31' };
 const baseBostedOpphørOppgavetypeData = { type: 'BOSTED_OPPHØR' as const, ...baseBostedData };
 
-describe('parseOppgaver - BEKREFT_BOSTED (BostedVilkårOppgave)', () => {
+describe('parseOppgaver - BEKREFT_BOSTED (BostedVilkårPeriodeOppgave)', () => {
     it('setter parsedOppgavetype til BEKREFT_BOSTED når data har tom', () => {
         const [result] = parseOppgaver(OppgaveYtelsetype.UNGDOMSYTELSE, [
             {
@@ -135,7 +135,7 @@ describe('parseOppgaver - BEKREFT_BOSTED (BostedVilkårOppgave)', () => {
             },
         ]);
 
-        expect((result as BostedVilkårOppgave).parsedOppgavetype).toBe(ParsedOppgavetype.BEKREFT_BOSTED);
+        expect((result as BostedVilkårPeriodeOppgave).parsedOppgavetype).toBe(ParsedOppgavetype.BEKREFT_BOSTED);
     });
 
     it('mapper fom og tom til periode.from og periode.to', () => {
@@ -147,7 +147,7 @@ describe('parseOppgaver - BEKREFT_BOSTED (BostedVilkårOppgave)', () => {
             },
         ]);
 
-        const oppgave = result as BostedVilkårOppgave;
+        const oppgave = result as BostedVilkårPeriodeOppgave;
         expect(oppgave.oppgavetypeData.periode.from).toBe('2026-01-01');
         expect(oppgave.oppgavetypeData.periode.to).toBe('2026-03-31');
     });
@@ -161,7 +161,7 @@ describe('parseOppgaver - BEKREFT_BOSTED (BostedVilkårOppgave)', () => {
             },
         ]);
 
-        const oppgave = result as BostedVilkårOppgave;
+        const oppgave = result as BostedVilkårPeriodeOppgave;
         expect(oppgave.oppgavetypeData.erBosattITrondheim).toBe(false);
         expect(oppgave.oppgavetypeData.ikkeOppfyltÅrsak).toBe(
             BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
@@ -178,7 +178,7 @@ describe('parseOppgaver - BEKREFT_BOSTED (BostedVilkårOppgave)', () => {
             },
         ]);
 
-        expect((result as BostedVilkårOppgave).frist).toBe('2026-05-14');
+        expect((result as BostedVilkårPeriodeOppgave).frist).toBe('2026-05-14');
     });
 
     it('parser VARSEL_SVAR-respons korrekt', () => {
@@ -193,7 +193,7 @@ describe('parseOppgaver - BEKREFT_BOSTED (BostedVilkårOppgave)', () => {
             },
         ]);
 
-        const oppgave = result as BostedVilkårOppgave;
+        const oppgave = result as BostedVilkårPeriodeOppgave;
         expect(oppgave.respons).toEqual({ type: 'VARSEL_SVAR', harUttalelse: true, uttalelseFraBruker: 'Ok' });
     });
 
@@ -206,7 +206,7 @@ describe('parseOppgaver - BEKREFT_BOSTED (BostedVilkårOppgave)', () => {
             },
         ]);
 
-        expect((result as BostedVilkårOppgave).respons).toBeUndefined();
+        expect((result as BostedVilkårPeriodeOppgave).respons).toBeUndefined();
     });
 });
 

@@ -18,8 +18,11 @@ import {
     mockBostedVilkårOpphørAKT,
     mockBostedVilkårOpphørBesvartAKT,
 } from '../bostedsvilkar-opphor/BostedVilkarOpphorOppgavePanel.mockData';
-import { BostedVilkårOppgavePanel } from '../bostedsvilkar/BostedVilkarOppgavePanel';
-import { mockBostedVilkårAKT, mockBostedVilkårBesvartAKT } from '../bostedsvilkar/BostedVilkarOppgavePanel.mockData';
+import { BostedVilkårOppgavePanel } from '../bostedsvilkar-periode/BostedVilkarOppgavePanel';
+import {
+    mockBostedVilkårAKT,
+    mockBostedVilkårBesvartAKT,
+} from '../bostedsvilkar-periode/BostedVilkarOppgavePanel.mockData';
 import { RapporterInntektOppgavePanel } from '../rapporter-inntekt/RapporterInntektOppgavePanel';
 import {
     lagRapporterInntektOppgaveMedScenario,

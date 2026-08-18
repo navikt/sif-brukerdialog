@@ -4,6 +4,7 @@ import { ReactNode } from 'react';
 import { UngUiText } from '../../../i18n';
 import { Oppgavebekreftelse } from '../../oppgavebekreftelse/Oppgavebekreftelse';
 import { BostedVilkarOpphorOppgavePanelOppgavetekst } from './parts/BostedVilkarOpphorOppgavePanelOppgavetekst';
+import { dateFormatter } from '@sif/utils';
 
 interface Props {
     navn: string;
@@ -12,6 +13,7 @@ interface Props {
 }
 
 export const BostedVilkårOpphørOppgavePanel = ({ navn, oppgave, initialVisKvittering }: Props) => {
+    const formatertFom = dateFormatter.full(oppgave.oppgavetypeData.fom);
     return (
         <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
             <Oppgavebekreftelse.Ubesvart>
@@ -21,7 +23,10 @@ export const BostedVilkårOpphørOppgavePanel = ({ navn, oppgave, initialVisKvit
             <Oppgavebekreftelse.Besvart>
                 <UngUiText
                     id="@ungInnsyn.bostedVilkårOpphørOppgave.oppsummering"
-                    values={{ strong: (content: ReactNode) => <strong>{content}</strong> }}
+                    values={{
+                        strong: (content: ReactNode) => <strong>{content}</strong>,
+                        fom: formatertFom,
+                    }}
                 />
             </Oppgavebekreftelse.Besvart>
 
