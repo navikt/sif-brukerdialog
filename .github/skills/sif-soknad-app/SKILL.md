@@ -44,7 +44,7 @@ Referanseimplementasjon: `apps/aktivitetspenger-soknad`
 ## Arkitektur
 
 ```
-<SøknadAppProvider>              ← Faro, AppErrorBoundary, QueryClient, Analytics
+<SøknadAppProvider>              ← ApmErrorBoundary, QueryClient, Analytics
   <SøknadRouter>                 ← Zustand-store, mellomlagring-init, context-provider
     <SøknadStepFormProvider>   ← in-session skjemaverdier per steg (konsistenssjekk + live getters)
       <SøknadAppContext.Provider>← store + config eksponert til alle hooks
@@ -155,21 +155,27 @@ Merk: `SøknadStepForm` kaller også `useCheckConsistency` internt for å deakti
 Ytterste wrapper-komponent — brukes av apper som ikke setter opp providers selv.
 
 ```tsx
+// main.tsx — APM initialiseres før rendering
+void init({ app: 'min-app', namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
+
+// App.tsx
 <SøknadAppProvider
     applicationKey="min-app"
-    appVersion={import.meta.env.VITE_APP_VERSION}
-    telemetryCollectorURL={import.meta.env.VITE_TELEMETRY_URL}>
+    analyticsConfig={{ isActive: env.SIF_PUBLIC_USE_ANALYTICS === 'true' }}
+    intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}
+    appStatusConfig={{ sanityConfig: { projectId: '...', dataset: '...' } }}>
     <App />
-</SøknadAppProvider>
+</SøknadAppProvider>;
 ```
 
 Setter opp:
 
-- `FaroProvider` — Grafana Faro observability
-- `AppErrorBoundary` — global error boundary
+- `AppErrorBoundary` — global error boundary (bruker `ApmErrorBoundary` fra `@nais/apm/react` internt)
 - `SifQueryClientProvider` — React Query-klient
 - `AnalyticsProvider` — analytics-instans
 - `DevBranchInfo` — vises kun i dev/PR-bygg
+
+APM (`@nais/apm`) initialiseres **ikke** av `SøknadAppProvider`. Kall `init()` fra `@nais/apm` i `main.tsx` før `createRoot`, slik at feil som oppstår under oppstart også fanges. Props `appVersion`, `faroConfig`, `telemetryCollectorURL` og `sentryConfig` finnes ikke lenger.
 
 ---
 
@@ -227,7 +233,7 @@ interface MellomlagringBlob {
     versjon: number;
     resumeStepId: string; // gjenopptakingspunkt
     søknadsdata: Record<string, unknown>;
-    draftFormValues?: Record<string, Record<string, unknown>>; // midlertidige verdier
+    persistedFormValues?: Record<string, Record<string, unknown>>; // persisterte skjemaverdier
 }
 ```
 

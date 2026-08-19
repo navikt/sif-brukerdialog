@@ -10,10 +10,11 @@ const createQueryClient = () =>
                 if (isApiAxiosError(error) && error.originalError.response?.status === 401) {
                     return;
                 }
-                // Allowlisted subset — type/context identify the operation; queryKey serialized to avoid raw user data
+                // Allowlisted subset — first queryKey element is always a static operation name, never user data
+                const operation = String(query.queryKey[0] ?? 'unknown');
                 const captureContext = isApiError(error)
-                    ? { type: error.type, context: error.context, queryKey: JSON.stringify(query.queryKey) }
-                    : { queryKey: JSON.stringify(query.queryKey) };
+                    ? { type: error.type, context: error.context, operation }
+                    : { operation };
 
                 const captureTarget = isApiError(error) ? error.originalError : error;
                 captureException(captureTarget instanceof Error ? captureTarget : new Error(String(captureTarget)), {
