@@ -10,13 +10,15 @@ const createQueryClient = () =>
                 if (isApiAxiosError(error) && error.originalError.response?.status === 401) {
                     return;
                 }
-                const extras = isApiError(error)
-                    ? { type: error.type, context: error.context, message: error.message, queryKey: query.queryKey }
-                    : { message: error instanceof Error ? error.message : String(error), queryKey: query.queryKey };
+                // Allowlisted subset — type/context identify the operation; queryKey serialized to avoid raw user data
+                const captureContext = isApiError(error)
+                    ? { type: error.type, context: error.context, queryKey: JSON.stringify(query.queryKey) }
+                    : { queryKey: JSON.stringify(query.queryKey) };
 
                 const captureTarget = isApiError(error) ? error.originalError : error;
-                captureException(captureTarget instanceof Error ? captureTarget : new Error(String(captureTarget)));
-                console.error('QueryClient error:', extras);
+                captureException(captureTarget instanceof Error ? captureTarget : new Error(String(captureTarget)), {
+                    context: captureContext,
+                });
             },
         }),
     });
