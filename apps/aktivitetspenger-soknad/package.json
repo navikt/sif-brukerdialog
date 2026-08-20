@@ -30,7 +30,9 @@
         "@navikt/sif-common-hooks": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
+        "@nais/apm": "0.6.0",
         "@sif/api": "workspace:*",
+        "@sif/apm": "workspace:*",
         "@sif/rhf": "workspace:*",
         "@sif/soknad-app": "workspace:*",
         "@sif/soknad-forms": "workspace:*",
@@ -46,8 +48,7 @@
         "react-intl": "10.1.20",
         "react-router-dom": "7.18.2",
         "uuid": "^14.0.1",
-        "zod": "4.4.3",
-        "@nais/apm": "0.6.0"
+        "zod": "4.4.3"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.13.0",

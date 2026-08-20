@@ -1,5 +1,5 @@
-import { captureException, captureMessage } from '@sif/apm';
-import { Alert, BodyShort, Button, Heading, HStack, VStack } from '@navikt/ds-react';
+import { appLogger } from '@sif/apm';
+import { Alert, BodyShort, Box, Button, Heading, HStack, Page, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 
 /**
@@ -11,18 +11,23 @@ const ApmTestPage = () => {
 
     const addLog = (msg: string) => setLog((prev) => [`${new Date().toISOString()} — ${msg}`, ...prev]);
 
-    const handleCaptureException = () => {
-        try {
-            throw new Error('Test: captureException via try/catch');
-        } catch (e) {
-            captureException(e, { context: { source: 'ApmTestPage', type: 'caught' } });
-            addLog('captureException sendt');
-        }
+    const handleLogInfo = () => {
+        appLogger.logInfo('Test: appLogger.logInfo', { source: 'ApmTestPage' });
+        addLog('logInfo sendt');
     };
 
-    const handleCaptureMessage = () => {
-        captureMessage('Test: captureMessage med severity error', 'error');
-        addLog('captureMessage(error) sendt');
+    const handleLogError = () => {
+        appLogger.logError('Test: appLogger.logError', { source: 'ApmTestPage' });
+        addLog('logError sendt');
+    };
+
+    const handleLogException = () => {
+        try {
+            throw new Error('Test: appLogger.logException via try/catch');
+        } catch (e) {
+            appLogger.logException(e, { source: 'ApmTestPage', type: 'caught' });
+            addLog('logException sendt');
+        }
     };
 
     const handleUncaughtException = () => {
@@ -37,60 +42,60 @@ const ApmTestPage = () => {
         Promise.reject(new Error('Test: unhandled promise rejection — auto-instrumentering'));
     };
 
-    const handleApiError = () => {
-        captureException(new Error('Test: simulert API-feil — HTTP 500'), {
-            context: { source: 'ApmTestPage', type: 'api-error', httpStatus: 500 },
-        });
-        addLog('Simulert API-feil (HTTP 500) sendt');
-    };
-
     return (
-        <VStack gap="8" style={{ maxWidth: '600px', margin: '2rem auto', padding: '0 1rem' }}>
-            <Alert variant="warning">
-                Denne siden sender reelle APM-hendelser til Grafana. Kun ment for testing av alerts i dev-miljø.
-            </Alert>
+        <Page>
+            <Page.Block as="main" width="text" gutters>
+                <VStack gap="space-8" paddingBlock="space-8">
+                    <Alert variant="warning">
+                        Denne siden sender reelle APM-hendelser til Grafana. Kun ment for testing av alerts i dev-miljø.
+                    </Alert>
 
-            <Heading size="large">APM Test</Heading>
+                    <Heading size="large">APM Test</Heading>
 
-            <VStack gap="4">
-                <Heading size="small">Fangede feil (captureException / captureMessage)</Heading>
-                <HStack gap="3" wrap>
-                    <Button variant="secondary" size="small" onClick={handleCaptureException}>
-                        captureException
-                    </Button>
-                    <Button variant="secondary" size="small" onClick={handleCaptureMessage}>
-                        captureMessage (error)
-                    </Button>
-                    <Button variant="secondary" size="small" onClick={handleApiError}>
-                        Simulert API 500
-                    </Button>
-                </HStack>
-            </VStack>
+                    <VStack gap="space-4">
+                        <Heading size="small">appLogger (@sif/apm)</Heading>
+                        <HStack gap="space-4" wrap>
+                            <Button variant="secondary" size="small" onClick={handleLogInfo}>
+                                logInfo
+                            </Button>
+                            <Button variant="secondary" size="small" onClick={handleLogError}>
+                                logError
+                            </Button>
+                            <Button variant="secondary" size="small" onClick={handleLogException}>
+                                logException
+                            </Button>
+                        </HStack>
+                    </VStack>
 
-            <VStack gap="4">
-                <Heading size="small">Auto-instrumentering (ukfangede feil)</Heading>
-                <HStack gap="3" wrap>
-                    <Button variant="danger" size="small" onClick={handleUncaughtException}>
-                        Ukfanget exception (krasjer siden)
-                    </Button>
-                    <Button variant="secondary" size="small" onClick={handleUnhandledRejection}>
-                        Ukfanget promise rejection
-                    </Button>
-                </HStack>
-            </VStack>
+                    <VStack gap="space-4">
+                        <Heading size="small">Auto-instrumentering (ukfangede feil)</Heading>
+                        <HStack gap="space-4" wrap>
+                            <Button variant="danger" size="small" onClick={handleUncaughtException}>
+                                Ukfanget exception (krasjer siden)
+                            </Button>
+                            <Button variant="secondary" size="small" onClick={handleUnhandledRejection}>
+                                Ukfanget promise rejection
+                            </Button>
+                        </HStack>
+                    </VStack>
 
-            {log.length > 0 && (
-                <VStack gap="2">
-                    <Heading size="small">Logg</Heading>
-                    {log.map((entry, i) => (
-                        <BodyShort key={i} size="small" style={{ fontFamily: 'monospace' }}>
-                            {entry}
-                        </BodyShort>
-                    ))}
+                    {log.length > 0 && (
+                        <Box background="neutral-soft" padding="space-4" borderRadius="4">
+                            <VStack gap="space-2">
+                                <Heading size="small">Logg</Heading>
+                                {log.map((entry, i) => (
+                                    <BodyShort key={i} size="small" as="code">
+                                        {entry}
+                                    </BodyShort>
+                                ))}
+                            </VStack>
+                        </Box>
+                    )}
                 </VStack>
-            )}
-        </VStack>
+            </Page.Block>
+        </Page>
     );
 };
 
 export default ApmTestPage;
+
