@@ -2,7 +2,6 @@ import { BostedVilkårOpphørOppgave } from '@sif/api/ung-brukerdialog';
 
 import { UngUiText } from '../../../i18n';
 import { Oppgavebekreftelse } from '../../oppgavebekreftelse/Oppgavebekreftelse';
-import { dateFormatter } from '@sif/utils';
 import { VStack } from '@navikt/ds-react';
 import { BostedVilkarOpphorOppgavetekst } from './BostedVilkarOpphorOppgavetekst';
 import { OppgavebekreftelseTilbakemeldingInfo } from '../felles/OppgavebekreftelseTilbakemeldingInfo';
@@ -14,7 +13,6 @@ interface Props {
 }
 
 export const BostedVilkårOpphørOppgavePanel = ({ navn, oppgave, initialVisKvittering }: Props) => {
-    const formatertFom = dateFormatter.full(oppgave.oppgavetypeData.fom);
     return (
         <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
             <Oppgavebekreftelse.Ubesvart>
