@@ -31,14 +31,14 @@ const ApmTestPage = () => {
     };
 
     const handleUncaughtException = () => {
-        addLog('Kaster ukfanget exception (siden krasjer — reload nødvendig)');
+        addLog('Kaster uncaught exception (siden krasjer — reload nødvendig)');
         setTimeout(() => {
-            throw new Error('Test: ukfanget exception — auto-instrumentering');
+            throw new Error('Test: uncaught exception — auto-instrumentering');
         }, 100);
     };
 
     const handleUnhandledRejection = () => {
-        addLog('Kaster ukfanget promise rejection');
+        addLog('Kaster uncaught promise rejection');
         Promise.reject(new Error('Test: unhandled promise rejection — auto-instrumentering'));
     };
 
@@ -71,10 +71,10 @@ const ApmTestPage = () => {
                         <Heading size="small">Auto-instrumentering (ukfangede feil)</Heading>
                         <HStack gap="space-4" wrap>
                             <Button variant="danger" size="small" onClick={handleUncaughtException}>
-                                Ukfanget exception (krasjer siden)
+                                uncaught exception (krasjer siden)
                             </Button>
                             <Button variant="secondary" size="small" onClick={handleUnhandledRejection}>
-                                Ukfanget promise rejection
+                                uncaught promise rejection
                             </Button>
                         </HStack>
                     </VStack>
@@ -98,4 +98,3 @@ const ApmTestPage = () => {
 };
 
 export default ApmTestPage;
-
