@@ -1,10 +1,11 @@
 import { BostedVilkårOpphørOppgave } from '@sif/api/ung-brukerdialog';
-import { ReactNode } from 'react';
 
 import { UngUiText } from '../../../i18n';
 import { Oppgavebekreftelse } from '../../oppgavebekreftelse/Oppgavebekreftelse';
-import { BostedVilkarOpphorOppgavePanelOppgavetekst } from './parts/BostedVilkarOpphorOppgavePanelOppgavetekst';
 import { dateFormatter } from '@sif/utils';
+import { VStack } from '@navikt/ds-react';
+import { BostedVilkarOpphorOppgavetekst } from './BostedVilkarOpphorOppgavetekst';
+import { OppgavebekreftelseTilbakemeldingInfo } from '../felles/OppgavebekreftelseTilbakemeldingInfo';
 
 interface Props {
     navn: string;
@@ -17,17 +18,21 @@ export const BostedVilkårOpphørOppgavePanel = ({ navn, oppgave, initialVisKvit
     return (
         <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
             <Oppgavebekreftelse.Ubesvart>
-                <BostedVilkarOpphorOppgavePanelOppgavetekst frist={oppgave.frist} {...oppgave.oppgavetypeData} />
+                <VStack gap="space-20">
+                    <BostedVilkarOpphorOppgavetekst {...oppgave.oppgavetypeData} />
+                    <OppgavebekreftelseTilbakemeldingInfo frist={oppgave.frist} />
+                </VStack>
             </Oppgavebekreftelse.Ubesvart>
 
             <Oppgavebekreftelse.Besvart>
-                <UngUiText
+                <BostedVilkarOpphorOppgavetekst {...oppgave.oppgavetypeData} />
+                {/* <UngUiText
                     id="@ungInnsyn.bostedVilkårOpphørOppgave.oppsummering"
                     values={{
                         strong: (content: ReactNode) => <strong>{content}</strong>,
                         fom: formatertFom,
                     }}
-                />
+                /> */}
             </Oppgavebekreftelse.Besvart>
 
             <Oppgavebekreftelse.Kvittering>

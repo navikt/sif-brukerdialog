@@ -24,6 +24,4 @@ export const bostedVilkårOpphørMessages_nb = {
         'Vi har fått opplysninger om at du fra {fom} ikke lenger har studie- eller arbeidssted i Trondheim kommune. Det betyr at du fra denne datoen ikke lenger får aktivitetspenger.',
     '@ungInnsyn.bostedVilkårOpphørOppgave.ANNET':
         'Vi har fått opplysninger om at du fra {fom} ikke lenger bor i Trondheim kommune. Det betyr at du fra denne datoen ikke lenger får aktivitetspenger. ',
-    '@ungInnsyn.bostedVilkårOpphørOppgave.oppsummering':
-        'Vi har fått opplysninger om at du fra {fom} ikke lenger bor (har bostedsadresse) i Trondheim kommune',
 };
