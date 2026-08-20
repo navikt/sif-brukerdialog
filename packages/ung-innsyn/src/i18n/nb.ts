@@ -1,7 +1,7 @@
 import { oppgavebekreftelse_nb } from '../modules/oppgavebekreftelse/i18n/nb';
 import { avvikRegisterinntektMessages_nb } from '../modules/oppgavepaneler/avvik-registerinntekt/i18n/nb';
-import { bostedVilkårMessages_nb } from '../modules/oppgavepaneler/bostedsvilkar-periode/i18n/nb';
 import { bostedVilkårOpphørMessages_nb } from '../modules/oppgavepaneler/bostedsvilkar-opphor/i18n/nb';
+import { bostedVilkårMessages_nb } from '../modules/oppgavepaneler/bostedsvilkar-periode/i18n/nb';
 import { endretSluttdatoMessages_nb } from '../modules/oppgavepaneler/endret-sluttdato/i18n/nb';
 import { endretStartOgSluttdatoMessages_nb } from '../modules/oppgavepaneler/endret-start-og-sluttdato/i18n/nb';
 import { endretStartdatoMessages_nb } from '../modules/oppgavepaneler/endret-startdato/i18n/nb';
@@ -60,7 +60,7 @@ export const ungUi_messages_nb = {
     '@ungInnsyn.lovlenke.arbeidsmarkedsloven_13_fjerde_ledd': '§ 13 fjerde ledd i arbeidsmarkedsloven (lovdata.no)',
     '@ungInnsyn.lovlenke.forskriftUpy_11':
         '§ 11 i Forskrift om forsøk med ungdomsprogram og ungdomsprogramytelse (gjelder fra 1. august 2025) (lovdata.no)',
-    '@ungInnsyn.lovlenke.forskriftAktivitetspenger': 'Forskrift om aktivitetspenger (lovdata.no)',
+    '@ungInnsyn.lovlenke.forskriftAktivitetspenger': '[TODO] Forskrift om aktivitetspenger (lovdata.no)',
 
     /** OppgaveMessages */
     '@ungInnsyn.oppgavestatus.LØST': 'Løst',
