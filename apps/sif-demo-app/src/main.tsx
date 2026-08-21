@@ -1,4 +1,4 @@
-import { init } from '@nais/apm';
+import { initApm } from '@sif/apm';
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -6,7 +6,7 @@ import { createRoot } from 'react-dom/client';
 import { enableMocking } from '../mock/enableMocking';
 import { App } from './App';
 
-void init({ app: 'sif-demo-app', namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
+void initApm({ app: 'sif-demo-app', namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
 
 enableMocking().then(() => {
     createRoot(document.getElementById('root')!).render(

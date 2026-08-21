@@ -44,7 +44,7 @@ Referanseimplementasjon: `apps/aktivitetspenger-soknad`
 ## Arkitektur
 
 ```
-<SøknadAppProvider>              ← ApmErrorBoundary, QueryClient, Analytics
+<SøknadAppProvider>              ← AppErrorBoundary (appLogger), QueryClient, Analytics
   <SøknadRouter>                 ← Zustand-store, mellomlagring-init, context-provider
     <SøknadStepFormProvider>   ← in-session skjemaverdier per steg (konsistenssjekk + live getters)
       <SøknadAppContext.Provider>← store + config eksponert til alle hooks
@@ -170,7 +170,7 @@ void init({ app: 'min-app', namespace: 'dusseldorf', version: getMaybeEnv('APP_V
 
 Setter opp:
 
-- `AppErrorBoundary` — global error boundary (bruker `ApmErrorBoundary` fra `@nais/apm/react` internt)
+- `AppErrorBoundary` — global error boundary, fanger React render-feil og logger via `appLogger.logException` (tagger med `source: 'app-logger'` for Grafana-filtrering)
 - `SifQueryClientProvider` — React Query-klient
 - `AnalyticsProvider` — analytics-instans
 - `DevBranchInfo` — vises kun i dev/PR-bygg
