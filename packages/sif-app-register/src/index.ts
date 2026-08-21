@@ -1,5 +1,5 @@
 export enum SifAppKeys {
-    AktivitetspengerApp = 'aktivitetspenger',
+    AktivitetspengerSøknadApp = 'aktivitetspenger-soknad',
     AktivitetspengerInnsyn = 'aktivitetspenger-innsyn',
     PleiepengerSyktBarn = 'pleiepengesoknad',
     EndringsmeldingPsb = 'endringsmelding-pleiepenger',
@@ -253,8 +253,8 @@ export const UngdomsytelseVeilederApp: AppInfo = {
     },
 };
 
-export const AktivitetspengerApp: AppInfo = {
-    key: SifAppKeys.AktivitetspengerApp,
+export const AktivitetspengerSoknadApp: AppInfo = {
+    key: SifAppKeys.AktivitetspengerSøknadApp,
     navn: 'Aktivitetspenger',
     tittel: {
         nb: 'Aktivitetspenger',
