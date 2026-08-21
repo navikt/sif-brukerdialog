@@ -23,16 +23,16 @@ Generer dette for enhver ikke-triviell endring:
 
 ## Berørte komponenter
 
-| Komponent    | Type endring           | Risiko  |
-| ------------ | ---------------------- | ------- |
-| {tjeneste-a} | API-endring (breaking) | Høy     |
-| {tjeneste-b} | Ny konsument           | Lav     |
-| {database}   | Skjemaendring          | Middels |
+| Komponent | Type endring | Risiko |
+|-----------|-------------|--------|
+| {tjeneste-a} | API-endring (breaking) | Høy |
+| {tjeneste-b} | Ny konsument | Lav |
+| {database} | Skjemaendring | Middels |
 
 ## Berørte team
 
-| Team     | Hva påvirkes      | Handling                       |
-| -------- | ----------------- | ------------------------------ |
+| Team | Hva påvirkes | Handling |
+|------|-------------|---------|
 | {team-x} | Konsumerer API v1 | Må migrere til v2 innen {dato} |
 
 ## Utrullingsstrategi
@@ -54,6 +54,7 @@ Generer dette for enhver ikke-triviell endring:
 - [ ] Smoke test passerer i prod
 - [ ] Forretningsmetrikker er stabile ({metrikknavn})
 - [ ] Feilrate er under {terskel}
+- [ ] Ingen nye feil i Sentry/logg
 - [ ] Berørte team bekrefter at integrasjoner fungerer
 ```
 
@@ -72,26 +73,26 @@ Legg til eller oppdater runbook for endringer som påvirker drift:
 
 ## Helsesjekk
 
-| Sjekk           | URL/kommando             | Forventet resultat |
-| --------------- | ------------------------ | ------------------ |
-| Liveness        | GET /isalive             | 200 OK             |
-| Readiness       | GET /isready             | 200 OK             |
-| Business health | GET /metrics → {metrikk} | > 0 siste 5 min    |
+| Sjekk | URL/kommando | Forventet resultat |
+|-------|-------------|-------------------|
+| Liveness | GET /isalive | 200 OK |
+| Readiness | GET /isready | 200 OK |
+| Business health | GET /metrics → {metrikk} | > 0 siste 5 min |
 
 ## Vanlige feil og løsninger
 
-| Symptom            | Årsak                          | Løsning                                  |
-| ------------------ | ------------------------------ | ---------------------------------------- |
-| 401 mot downstream | Token utløpt / feil scope      | Sjekk at accessPolicy.outbound er riktig |
+| Symptom | Årsak | Løsning |
+|---------|-------|---------|
+| 401 mot downstream | Token utløpt / feil scope | Sjekk at accessPolicy.outbound er riktig |
 | Connection refused | Database nede / pool exhausted | `kubectl logs`, sjekk HikariCP-metrikker |
-| Kafka consumer lag | Treg prosessering              | Sjekk CPU-bruk, vurder flere replicas    |
+| Kafka consumer lag | Treg prosessering | Sjekk CPU-bruk, vurder flere replicas |
 
 ## Avhengigheter
 
-| Tjeneste      | Retning  | Konsekvens hvis nede                           |
-| ------------- | -------- | ---------------------------------------------- |
-| {pdl-api}     | Outbound | Kan ikke slå opp person — returnerer 503       |
-| {kafka-topic} | Inbound  | Meldinger akkumuleres, prosesseres ved restart |
+| Tjeneste | Retning | Konsekvens hvis nede |
+|----------|---------|---------------------|
+| {pdl-api} | Outbound | Kan ikke slå opp person — returnerer 503 |
+| {kafka-topic} | Inbound | Meldinger akkumuleres, prosesseres ved restart |
 
 ## Eskalering
 
@@ -105,7 +106,7 @@ Legg til eller oppdater runbook for endringer som påvirker drift:
 
 For API-endringer som påvirker konsumenter:
 
-````markdown
+```markdown
 # API-endring: {endpunkt}
 
 **Versjon:** v{n} → v{n+1}
@@ -115,34 +116,28 @@ For API-endringer som påvirker konsumenter:
 ## Endringer
 
 ### Nye felt
-
-| Felt   | Type   | Beskrivelse   |
-| ------ | ------ | ------------- |
+| Felt | Type | Beskrivelse |
+|------|------|------------|
 | {felt} | string | {beskrivelse} |
 
 ### Fjernede felt
-
-| Felt           | Erstatning  | Migrasjonsveiledning      |
-| -------------- | ----------- | ------------------------- |
+| Felt | Erstatning | Migrasjonsveiledning |
+|------|-----------|---------------------|
 | {gammelt_felt} | {nytt_felt} | Bruk {nytt_felt} i stedet |
 
 ### Endret oppførsel
-
-| Endpunkt           | Før                          | Etter                         |
-| ------------------ | ---------------------------- | ----------------------------- |
+| Endpunkt | Før | Etter |
+|----------|-----|-------|
 | GET /api/v2/vedtak | Returnerer `status: "AKTIV"` | Returnerer `status: "active"` |
 
 ## Eksempler
 
 ### Før (v1)
-
 ```json
 { "status": "AKTIV", "belop": 1000 }
 ```
-````
 
 ### Etter (v2)
-
 ```json
 { "status": "active", "beloep": 1000, "currency": "NOK" }
 ```
@@ -152,8 +147,7 @@ For API-endringer som påvirker konsumenter:
 1. Oppdater klient til å akseptere både v1 og v2
 2. Bytt til v2-endepunkt
 3. Fjern v1-kompatibilitet etter {dato}
-
-````
+```
 
 ## 4. Observerbarhet for endring
 
@@ -183,14 +177,13 @@ Definer dette for enhver endring som påvirker produksjonsadferd:
 | Ny path | {metric}_new_path_total | Verifiserer at ny path fungerer |
 | Avvik | {metric}_reconciliation_diff | Oppdager datadivergenser |
 | Toggle-fordeling | feature_toggle_evaluation{toggle="X"} | Verifiserer utrullingstakt |
-````
+```
 
 ## 5. Sjekkliste: Klar for produksjon
 
 Bruk denne sjekklisten for å verifisere at endringen er klar for utrulling:
 
 ### Alle endringer
-
 - [ ] Tester passerer (unit + integrasjon)
 - [ ] Kodegjennomgang er godkjent
 - [ ] Nais-manifest er oppdatert (accessPolicy, resurser, auth)
@@ -198,21 +191,18 @@ Bruk denne sjekklisten for å verifisere at endringen er klar for utrulling:
 - [ ] Rollback-plan er definert
 
 ### Endringer med ekstern påvirkning
-
 - [ ] Berørte team er informert
 - [ ] API-dokumentasjon er oppdatert
 - [ ] Bakoverkompatibilitet er verifisert
 - [ ] Migrasjonsveiledning er publisert
 
 ### Databaseendringer
-
 - [ ] Migrasjon er testet med realistisk datamengde
 - [ ] Migrasjon er bakoverkompatibel (gammel kode + nytt skjema)
 - [ ] Indekser er lagt til for nye spørringer
 - [ ] Rollback-migrasjon er forberedt (hvis nødvendig)
 
 ### Sikkerhet
-
 - [ ] PII logges ikke
 - [ ] Auth er riktig for alle endepunkter
 - [ ] Input-validering er på plass

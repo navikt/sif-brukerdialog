@@ -1,4 +1,3 @@
-export { ErrorBoundary } from './error-boundary/ErrorBoundary';
 export { ForsideLenkeButton } from './forside-lenke-button/ForsideLenkeButton';
 export { InnsynDefaultErrorMessage } from './innsyn-default-error-message/InnsynDefaultErrorMessage';
 export { InnsynForsideHeader } from './innsyn-forside-header/InnsynForsideHeader';

@@ -1,4 +1,4 @@
-import { captureException } from '@sif/apm';
+import { appLogger } from '@sif/apm';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { isDevMode } from '@navikt/sif-common-env';
@@ -15,7 +15,7 @@ export const GlobalQueryLogger = () => {
                     if (isDevMode()) {
                         console.error(state.error);
                     }
-                    captureException(state.error instanceof Error ? state.error : new Error(String(state.error)));
+                    appLogger.logException(state.error instanceof Error ? state.error : new Error(String(state.error)));
                 }
             }
         });
@@ -25,7 +25,7 @@ export const GlobalQueryLogger = () => {
                 const mutation = event.mutation;
                 const state = mutation.state;
                 if (state.status === 'error' && state.error) {
-                    captureException(state.error instanceof Error ? state.error : new Error(String(state.error)));
+                    appLogger.logException(state.error instanceof Error ? state.error : new Error(String(state.error)));
                 }
             }
         });

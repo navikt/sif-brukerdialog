@@ -1,4 +1,4 @@
-import { captureMessage } from '@sif/apm';
+import { appLogger } from '@sif/apm';
 import { KontonummerInfo, ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
@@ -67,7 +67,7 @@ export const buildSøknadFromSvar = ({
     const kontonummerApiInfo = getKontonummerApiInfo(kontonummerInfo, svar[Spørsmål.KONTONUMMER]);
 
     if (!kontonummerApiInfo) {
-        captureMessage('Kontonummer info is missing or invalid');
+        appLogger.logError('Kontonummer info is missing or invalid');
         // eslint-disable-next-line no-console
         console.error('Kontonummer info is missing or invalid');
         return undefined;

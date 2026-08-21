@@ -1,4 +1,4 @@
-import { captureException } from '@sif/apm';
+import { appLogger } from '@sif/apm';
 import { Box, Button, Heading } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
@@ -27,9 +27,9 @@ class ErrorBoundary extends React.Component<Props, State> {
     componentDidCatch(error: Error | null, errorInfo: any): void {
         if (error && error.message !== 'window.hasFocus is not a function') {
             this.setState({ ...this.state, hasError: true, error });
-            captureException(error, { context: errorInfo });
+            appLogger.logException(error, { componentStack: errorInfo?.componentStack });
             // console.error beholdes for synlighet i devtools under lokal utvikling —
-            // captureException sender ikke til konsollen automatisk.
+            // appLogger.logException sender ikke til konsollen automatisk.
             console.error('ErrorBoundary caught an error:', error.message, errorInfo);
         }
     }
