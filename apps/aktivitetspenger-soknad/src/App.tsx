@@ -1,7 +1,7 @@
 import '@navikt/ds-css';
 import './app.css';
 
-import { AktivitetspengerApp } from '@navikt/sif-app-register';
+import { AktivitetspengerSoknadApp } from '@navikt/sif-app-register';
 import { SøknadAppProvider } from '@sif/soknad-app';
 import { InitialDataErrorPage, LoadingPage } from '@sif/soknad-ui';
 import { BrowserRouter } from 'react-router-dom';
@@ -53,7 +53,7 @@ export const App = () => {
 
     return (
         <SøknadAppProvider
-            applicationKey={AktivitetspengerApp.key}
+            applicationKey={AktivitetspengerSoknadApp.key}
             analyticsConfig={{ isActive: env.SIF_PUBLIC_USE_ANALYTICS === 'true' }}
             intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
             <BrowserRouter basename={env.PUBLIC_PATH}>
