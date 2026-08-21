@@ -234,6 +234,11 @@ export type PleiepengerSyktBarnSøknad = {
     opptjeningIUtlandet: OpptjeningIUtlandet[];
     selvstendigNæringsdrivende: SelvstendigNæringsdrivende;
     språk: 'nb' | 'nn';
+    /**
+     * StønadGodtgjørelse er deprecated og vil bli fjernet i fremtidige versjoner av APIet
+     *
+     * @deprecated
+     */
     stønadGodtgjørelse?: null;
     søkerNorskIdent?: string;
     tilOgMed: string;
@@ -364,6 +369,11 @@ export type PleiepengerSyktBarnSøknadWritable = {
     opptjeningIUtlandet: OpptjeningIUtlandet[];
     selvstendigNæringsdrivende: SelvstendigNæringsdrivendeWritable;
     språk: 'nb' | 'nn';
+    /**
+     * StønadGodtgjørelse er deprecated og vil bli fjernet i fremtidige versjoner av APIet
+     *
+     * @deprecated
+     */
     stønadGodtgjørelse?: StønadGodtgjørelse;
     søkerNorskIdent?: string;
     tilOgMed: string;

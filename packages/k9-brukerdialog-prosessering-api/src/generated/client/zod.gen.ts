@@ -31,6 +31,8 @@ export const zAnnenForelder = z.object({
     situasjonBeskrivelse: z.string().nullish(),
 });
 
+export const zArbeidsgiverOlp = z.record(z.string(), z.unknown());
+
 export const zArbeidstidPeriodeInfo = z.object({
     faktiskArbeidTimerPerDag: z.string(),
     jobberNormaltTimerPerDag: z.string(),
@@ -400,10 +402,6 @@ export const zArbeidsgiver = z.object({
     navn: z.string().min(1),
     organisasjonsnummer: z.string().min(0).max(20),
     sluttetFørSøknadsperiode: z.boolean().nullish(),
-});
-
-export const zArbeidsgiverOlp = z.object({
-    arbeidsforhold: zArbeidsforholdOlp.nullish(),
 });
 
 export const zFrilans = z.object({

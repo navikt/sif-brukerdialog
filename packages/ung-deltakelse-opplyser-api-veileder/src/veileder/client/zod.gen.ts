@@ -4,10 +4,16 @@ import * as z from 'zod';
 
 export const zAvslutningsårsak = z.enum([
     'ARBEID',
+    'ARBEID_SELVFORSØRGET',
+    'ARBEID_MED_OPPFØLGING_FRA_NAV',
     'UTDANNING',
+    'VIDEREGÅENDE_OPPLÆRING',
+    'HØYERE_UTDANNING',
+    'ANNEN_OPPLÆRING',
     'MANGLENDE_DELTAKELSE',
     'DELTAKER_ØNSKER_IKKE_Å_DELTA',
     'FLYTTET',
+    'ANDRE_LIVSOPPHOLDSYTELSER',
     'ANNET',
 ]);
 
