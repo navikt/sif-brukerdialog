@@ -255,14 +255,14 @@ export const UngdomsytelseVeilederApp: AppInfo = {
 
 export const AktivitetspengerSoknadApp: AppInfo = {
     key: SifAppKeys.AktivitetspengerSøknadApp,
-    navn: 'Aktivitetspenger',
+    navn: 'Aktivitetspenger søknad',
     tittel: {
-        nb: 'Aktivitetspenger',
-        nn: 'Aktivitetspengar',
+        nb: 'Aktivitetspenger søknad',
+        nn: 'Aktivitetspengar søknad',
     },
     lenker: {
-        q: 'https://aktivitetspenger.intern.dev.nav.no',
-        prod: 'https://www.nav.no/aktivitetspenger/ytelse',
+        q: 'https://aktivitetspenger-soknad.intern.dev.nav.no',
+        prod: 'https://www.nav.no/aktivitetspenger/soknad',
     },
 };
 
