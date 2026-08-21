@@ -1,7 +1,7 @@
 import { Alert, Bleed, BodyLong, ReadMore, VStack } from '@navikt/ds-react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import {
-    FormikRadioGroup,
+    FormikSelect,
     FormikYesOrNoQuestion,
     getIntlFormErrorHandler,
     getTypedFormComponents,
@@ -42,11 +42,15 @@ const { FormikWrapper, Form, DatePicker, ConfirmationCheckbox } = getTypedFormCo
 >();
 
 export const AvslutningsårsakerList = [
-    Avslutningsårsak.ARBEID,
-    Avslutningsårsak.UTDANNING,
+    Avslutningsårsak.ARBEID_SELVFORSØRGET,
+    Avslutningsårsak.ARBEID_MED_OPPFØLGING_FRA_NAV,
+    Avslutningsårsak.VIDEREGÅENDE_OPPLÆRING,
+    Avslutningsårsak.HØYERE_UTDANNING,
+    Avslutningsårsak.ANNEN_OPPLÆRING,
     Avslutningsårsak.MANGLENDE_DELTAKELSE,
     Avslutningsårsak.DELTAKER_ØNSKER_IKKE_Å_DELTA,
     Avslutningsårsak.FLYTTET,
+    Avslutningsårsak.ANDRE_LIVSOPPHOLDSYTELSER,
     Avslutningsårsak.ANNET,
 ];
 
@@ -175,15 +179,17 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                                             />
 
                                             {erEndringAvSluttdato === false && (
-                                                <FormikRadioGroup
+                                                <FormikSelect
                                                     name={FieldNames.årsak}
-                                                    legend="Hvorfor meldes deltaker ut?"
-                                                    radios={AvslutningsårsakerList.map((årsak) => ({
-                                                        value: årsak,
-                                                        label: <FormattedMessage id={`avslutningsårsak.${årsak}`} />,
-                                                    }))}
-                                                    validate={getRequiredFieldValidator()}
-                                                />
+                                                    label="Hvorfor meldes deltaker ut?"
+                                                    validate={getRequiredFieldValidator()}>
+                                                    <option></option>
+                                                    {AvslutningsårsakerList.map((årsak) => (
+                                                        <option key={årsak} value={årsak}>
+                                                            <FormattedMessage id={`avslutningsårsak.${årsak}`} />
+                                                        </option>
+                                                    ))}
+                                                </FormikSelect>
                                             )}
                                             <Bleed marginBlock="space-16 space-0">
                                                 <ConfirmationCheckbox
