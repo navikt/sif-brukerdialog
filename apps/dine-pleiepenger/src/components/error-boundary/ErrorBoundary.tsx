@@ -1,4 +1,4 @@
-import { captureException } from '@sif/apm';
+import { appLogger } from '@sif/apm';
 import { Page } from '@navikt/ds-react';
 import { createChildLogger } from '@navikt/next-logger';
 import { Component, ErrorInfo, PropsWithChildren, ReactNode } from 'react';
@@ -43,7 +43,7 @@ class ErrorBoundary extends Component<PropsWithChildren, State> {
             return;
         }
 
-        captureException(error);
+        appLogger.logException(error, { componentStack: errorInfo?.componentStack });
         this.childLogger.error(
             new Error(
                 `Caught error in ErrorBoundary's componentDidCatch hasError: ${error != null}, hasErrorInfo:${

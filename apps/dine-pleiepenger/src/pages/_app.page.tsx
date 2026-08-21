@@ -17,7 +17,7 @@ import SanityStatusBanner from '../components/sanity-status-banner/SanityStatusB
 import EmptyPage from '../components/page-layout/empty-page/EmptyPage';
 import LoadingPage from '../components/page-layout/loading-page/LoadingPage';
 import { InnsynsdataContextProvider } from '../context/InnsynsdataContextProvider';
-import { captureMessage } from '@nais/apm';
+import { appLogger } from '@sif/apm';
 import { initNaisAPMClient } from '@nais/apm/react';
 import { useVerifyCurrentUser } from '../hooks/useVerifyCurrentUser';
 import { messages } from '../i18n';
@@ -55,7 +55,7 @@ const søkerIdFetcher = async (): Promise<string> => {
 initNaisAPMClient({ app: 'dine-pleiepenger', namespace: 'dusseldorf' });
 configureLogger({
     basePath: process.env.NEXT_PUBLIC_BASE_PATH,
-    onLog: (log) => captureMessage(log.messages.join(' ')),
+    onLog: (log) => appLogger.logError(log.messages.join(' ')),
 });
 
 function MyApp({ Component, pageProps }: AppProps): ReactElement {
