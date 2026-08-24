@@ -16,7 +16,7 @@
         "http-proxy-middleware": "4.2.0",
         "jsdom": "28.1.0",
         "react": "19.2.8",
-        "uuid": "^14.0.1",
+        "uuid": "^14.0.2",
         "zod": "4.4.3"
     },
     "devDependencies": {

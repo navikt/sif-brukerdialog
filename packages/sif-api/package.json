@@ -32,9 +32,9 @@
         "@sif/utils": "workspace:*",
         "@tanstack/react-query": "5.101.4",
         "axios": "1.19.0",
-        "dayjs": "1.11.21",
+        "dayjs": "1.11.23",
         "object-hash": "3.0.0",
-        "uuid": "^14.0.1"
+        "uuid": "^14.0.2"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
