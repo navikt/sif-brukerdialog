@@ -269,8 +269,8 @@ importers:
         specifier: 8.5.26
         version: 8.5.26
       postcss-import:
-        specifier: 16.2.0
-        version: 16.2.0(postcss@8.5.26)
+        specifier: 17.0.0
+        version: 17.0.0(postcss@8.5.26)
       postcss-styled-syntax:
         specifier: 0.7.2
         version: 0.7.2(postcss@8.5.26)
@@ -824,8 +824,8 @@ importers:
         specifier: 8.5.26
         version: 8.5.26
       postcss-import:
-        specifier: 16.2.0
-        version: 16.2.0(postcss@8.5.26)
+        specifier: 17.0.0
+        version: 17.0.0(postcss@8.5.26)
       react-intl:
         specifier: 10.1.20
         version: 10.1.20(@types/react@19.2.18)(react@19.2.8)
@@ -1252,8 +1252,8 @@ importers:
         specifier: 8.5.26
         version: 8.5.26
       postcss-import:
-        specifier: 16.2.0
-        version: 16.2.0(postcss@8.5.26)
+        specifier: 17.0.0
+        version: 17.0.0(postcss@8.5.26)
       react-responsive:
         specifier: 10.0.1
         version: 10.0.1(react@19.2.8)
@@ -1460,8 +1460,8 @@ importers:
         specifier: 8.5.26
         version: 8.5.26
       postcss-import:
-        specifier: 16.2.0
-        version: 16.2.0(postcss@8.5.26)
+        specifier: 17.0.0
+        version: 17.0.0(postcss@8.5.26)
       storybook:
         specifier: 10.5.8
         version: 10.5.8(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8)
@@ -2829,8 +2829,8 @@ importers:
         specifier: 8.5.26
         version: 8.5.26
       postcss-import:
-        specifier: 16.2.0
-        version: 16.2.0(postcss@8.5.26)
+        specifier: 17.0.0
+        version: 17.0.0(postcss@8.5.26)
       storybook:
         specifier: 10.5.8
         version: 10.5.8(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8)
@@ -3058,8 +3058,8 @@ importers:
         specifier: 8.5.26
         version: 8.5.26
       postcss-import:
-        specifier: 16.2.0
-        version: 16.2.0(postcss@8.5.26)
+        specifier: 17.0.0
+        version: 17.0.0(postcss@8.5.26)
       react-dom:
         specifier: 19.2.8
         version: 19.2.8(react@19.2.8)
@@ -3761,8 +3761,8 @@ importers:
         specifier: 8.5.26
         version: 8.5.26
       postcss-import:
-        specifier: 16.2.0
-        version: 16.2.0(postcss@8.5.26)
+        specifier: 17.0.0
+        version: 17.0.0(postcss@8.5.26)
       postcss-styled-syntax:
         specifier: 0.7.2
         version: 0.7.2(postcss@8.5.26)
@@ -6982,6 +6982,9 @@ packages:
   '@codemirror/commands@6.10.4':
     resolution: {integrity: sha512-Ryk9y9T0FFVF0cUGhAknveAyUOl/A1qReTFi+qPKtOh2Z9F4AUBz3XOrYD4ZEgZirdugVzHvd/2/Wcwy5OliTg==}
 
+  '@codemirror/commands@6.11.0':
+    resolution: {integrity: sha512-/K4Rl5BN0OtTiPWmJCdqODu38XnDMsDxKY5rgrPnCkutPTJf2wVbkoixLfealF5Kwse/s8P8M5jAiURiwSwnFA==}
+
   '@codemirror/lang-javascript@6.2.5':
     resolution: {integrity: sha512-zD4e5mS+50htS7F+TYjBPsiIFGanfVqg4HyUz6WNFikgOPf2BgKlx+TQedI1w6n/IqRBVBbBWmGFdLB/7uxO4A==}
 
@@ -7002,6 +7005,9 @@ packages:
 
   '@codemirror/view@6.43.8':
     resolution: {integrity: sha512-qtItTDssZ/5GFfi94hrILu9j/VUeFPDPkhovEfmWFj2ipTxnzPB8DdHgfbb8HYTzLTYhrndKmyQxXUz/PDLenw==}
+
+  '@codemirror/view@6.43.9':
+    resolution: {integrity: sha512-sTuUzTpPMFebRhg6dawChoKKgndIwfjmJgKVxBefPElcU2NwQ6AFroupk0SFqEerQyZOGRfDNnSN8Dw/lMAsXw==}
 
   '@colors/colors@1.6.0':
     resolution: {integrity: sha512-Ir+AOibqzrIsL6ajt3Rz3LskB7OiMVHqltZmspbW/TJuTVuyOMirVqAkjfY6JISiLHgyNqicAC8AyHHGzNd/dA==}
@@ -8205,9 +8211,6 @@ packages:
       '@types/react': ^17.0.30 || ^18 || ^19
       react: ^17 || ^18 || ^19
       react-dom: ^17 || ^18 || ^19
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
 
   '@navikt/ds-tailwind@8.16.1':
     resolution: {integrity: sha512-yoiqJ8ZzJTjXPnBjlJmCSL/0m2KOT7BW5JUACE9tvs+2aZxVjre7SBdIPRgphaJqT7JWql8TI+EKxX1kQoNKCQ==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tailwind/8.16.1/6fab9ceadb1c13b313023ac10dbb63804b76d2ee}
@@ -8224,9 +8227,6 @@ packages:
     peerDependencies:
       html-react-parser: '>=5.x'
       react: '>=17.x'
-    peerDependenciesMeta:
-      react:
-        optional: true
 
   '@navikt/next-logger@5.0.0':
     resolution: {integrity: sha512-VQ2VM/k5uDYnb7BYG3ITJZgMZq8B3TECOnhdvNOQeltJyy8+KQzGqLsrYajKPWuUiPuLjYFk0HbU2W22onB9mQ==, tarball: https://npm.pkg.github.com/download/@navikt/next-logger/5.0.0/510dccac519d1227515e4c8a8268570d90305b3e}
@@ -15276,9 +15276,9 @@ packages:
     resolution: {integrity: sha512-/+5VFTchJDoVj3bhoqi6UeymcD00DAwb1nJwamzPvHEszJ4FpF6SNNbUbOS8yI56qHzdV8eK0qEfOSiodkTdxg==}
     engines: {node: '>= 0.4'}
 
-  postcss-import@16.2.0:
-    resolution: {integrity: sha512-0mQUGlSp87Zl70K58RNwQAN1WS9plFE6KWGui9nyK6ninduMyjW/Khaoy/BpBoFTBh7ndAvAKrSKVbwy6vd/BA==}
-    engines: {node: '>=18.0.0'}
+  postcss-import@17.0.0:
+    resolution: {integrity: sha512-qzVMJhcq39KweT7Fp0HcjE5YxL5yI854Q3CtufxDuZKO9HLQUp2rptB9+U0MIj3pT1ZEVXoqnpeC1mSkfYuz4Q==}
+    engines: {node: '>=22.0.0'}
     peerDependencies:
       postcss: 8.5.26
 
@@ -18754,6 +18754,13 @@ snapshots:
       '@codemirror/view': 6.43.8
       '@lezer/common': 1.5.2
 
+  '@codemirror/commands@6.11.0':
+    dependencies:
+      '@codemirror/language': 6.12.4
+      '@codemirror/state': 6.7.1
+      '@codemirror/view': 6.43.9
+      '@lezer/common': 1.5.2
+
   '@codemirror/lang-javascript@6.2.5':
     dependencies:
       '@codemirror/autocomplete': 6.20.3
@@ -18793,10 +18800,17 @@ snapshots:
     dependencies:
       '@codemirror/language': 6.12.4
       '@codemirror/state': 6.7.1
-      '@codemirror/view': 6.43.8
+      '@codemirror/view': 6.43.9
       '@lezer/highlight': 1.2.3
 
   '@codemirror/view@6.43.8':
+    dependencies:
+      '@codemirror/state': 6.7.1
+      crelt: 1.0.7
+      style-mod: 4.1.3
+      w3c-keyname: 2.2.8
+
+  '@codemirror/view@6.43.9':
     dependencies:
       '@codemirror/state': 6.7.1
       crelt: 1.0.7
@@ -20037,12 +20051,11 @@ snapshots:
       '@floating-ui/react-dom': 2.1.9(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@navikt/aksel-icons': 8.16.1
       '@navikt/ds-tokens': 8.16.1
+      '@types/react': 19.2.18
       date-fns: 4.4.0
       react: 19.2.8
       react-day-picker: 10.0.1(@types/react@19.2.18)(react@19.2.8)
       react-dom: 19.2.8(react@19.2.8)
-    optionalDependencies:
-      '@types/react': 19.2.18
 
   '@navikt/ds-tailwind@8.16.1': {}
 
@@ -20056,7 +20069,6 @@ snapshots:
       csp-header: 6.3.1
       html-react-parser: 6.1.7(@types/react@19.2.18)(react@19.2.8)
       js-cookie: 3.0.8
-    optionalDependencies:
       react: 19.2.8
 
   '@navikt/next-logger@5.0.0(next@16.3.1(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@playwright/test@1.62.1)(@types/node@26.2.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sass@1.102.0))(pino@10.3.1)':
@@ -24001,12 +24013,12 @@ snapshots:
   codemirror@6.0.2:
     dependencies:
       '@codemirror/autocomplete': 6.20.3
-      '@codemirror/commands': 6.10.4
+      '@codemirror/commands': 6.11.0
       '@codemirror/language': 6.12.4
       '@codemirror/lint': 6.9.7
       '@codemirror/search': 6.7.1
       '@codemirror/state': 6.7.1
-      '@codemirror/view': 6.43.8
+      '@codemirror/view': 6.43.9
 
   collect-v8-coverage@1.0.3: {}
 
@@ -28331,7 +28343,7 @@ snapshots:
 
   possible-typed-array-names@1.1.0: {}
 
-  postcss-import@16.2.0(postcss@8.5.26):
+  postcss-import@17.0.0(postcss@8.5.26):
     dependencies:
       postcss: 8.5.26
       postcss-value-parser: 4.2.0
