@@ -48,6 +48,6 @@
     "peerDependencies": {
         "axios": "^1.19.0",
         "dayjs": "*",
-        "uuid": "^14.0.1"
+        "uuid": "^14.0.2"
     }
 }
