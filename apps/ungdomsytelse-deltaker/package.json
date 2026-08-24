@@ -80,7 +80,6 @@
         "@eslint/eslintrc": "3.3.6",
         "@eslint/js": "10.0.1",
         "@playwright/test": "1.62.1",
-        "@sentry/vite-plugin": "5.4.0",
         "@storybook/addon-docs": "10.5.10",
         "@storybook/react-vite": "10.5.10",
         "@tailwindcss/postcss": "4.3.3",

@@ -16,16 +16,16 @@ import { AxiosError } from 'axios';
 const APP_LOGGER_CONTEXT = { source: 'app-logger' } as const;
 
 export const appLogger = {
-    logInfo: (message: string, payload?: unknown) => {
+    logInfo: (message: string) => {
         captureMessage(message, 'info');
         // eslint-disable-next-line no-console
-        console.info(message, payload ?? '');
+        console.info(message);
     },
 
-    logError: (message: string, payload?: unknown) => {
+    logError: (message: string) => {
         captureMessage(message, 'error');
         // eslint-disable-next-line no-console
-        console.error(message, payload ?? '');
+        console.error(message);
     },
 
     logException: (error: unknown, extra?: Record<string, unknown>) => {
@@ -43,7 +43,11 @@ export const appLogger = {
         }
         // Sanitert: sender kun context og statuskode, ikke rå Axios-data
         captureException(new Error(`${context ?? 'unknown'}: HTTP ${status ?? error.code ?? 'unknown'}`), {
-            context: { ...APP_LOGGER_CONTEXT, api_context: context ?? 'unknown', http_status: String(status ?? error.code ?? 'unknown') },
+            context: {
+                ...APP_LOGGER_CONTEXT,
+                api_context: context ?? 'unknown',
+                http_status: String(status ?? error.code ?? 'unknown'),
+            },
         });
         // error.message inneholder kun HTTP-metadata, ikke sensitiv payload — falsk positiv fra CodeQL
         // eslint-disable-next-line no-console

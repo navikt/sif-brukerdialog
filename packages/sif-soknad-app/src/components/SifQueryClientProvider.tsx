@@ -1,5 +1,5 @@
 import { isApiAxiosError, isApiError } from '@sif/api';
-import { captureException } from '@sif/apm';
+import { appLogger } from '@sif/apm';
 import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { PropsWithChildren, useRef } from 'react';
 
@@ -16,10 +16,7 @@ const createQueryClient = () =>
                     ? { type: error.type, context: error.context, operation }
                     : { operation };
 
-                const captureTarget = isApiError(error) ? error.originalError : error;
-                captureException(captureTarget instanceof Error ? captureTarget : new Error(String(captureTarget)), {
-                    context: captureContext,
-                });
+                appLogger.logException(isApiError(error) ? error.originalError : error, captureContext);
             },
         }),
     });
