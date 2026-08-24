@@ -33,7 +33,7 @@ const Søknad = () => {
     }
 
     if (status === RequestStatus.forbidden) {
-        appLogger.logError('Søknad.requestStatus', RequestStatus.forbidden);
+        appLogger.logError(`Søknad.requestStatus: ${RequestStatus.forbidden}`);
         return (
             <ErrorPage
                 pageTitle="Ingen tilgang"

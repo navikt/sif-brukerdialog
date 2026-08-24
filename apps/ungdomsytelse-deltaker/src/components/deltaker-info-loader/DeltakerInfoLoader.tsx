@@ -59,11 +59,11 @@ const DeltakerInfoLoader = () => {
 
     if (!deltakelsePerioder.data || !søker.data || !oppgaver.data) {
         logApiError(ApiErrorKey.oppstartsinfo, { info: 'Ingen data lastet' });
-        appLogger.logError('DeltakerInfoLoader.ManglendeData', {
-                søkerHarData: søker.data !== undefined,
-                deltakelsePerioderHarData: deltakelsePerioder.data !== undefined,
-                oppgaverHarData: oppgaver.data !== undefined,
-            });
+        appLogger.logException(new Error('DeltakerInfoLoader.ManglendeData'), {
+            søkerHarData: søker.data !== undefined,
+            deltakelsePerioderHarData: deltakelsePerioder.data !== undefined,
+            oppgaverHarData: oppgaver.data !== undefined,
+        });
         return <HentDeltakerErrorPage error="Ingen data lastet" />;
     }
 
@@ -74,11 +74,11 @@ const DeltakerInfoLoader = () => {
 
     if (deltakelsePerioder.data.length > 1) {
         logHendelse(ApplikasjonHendelse.harFlereDeltakelser);
-        appLogger.logError('DeltakerInfoLoader.FlereDeltakelser', {
-                søkerHarFeil: søker.error !== undefined,
-                deltakelsePerioderHarFeil: deltakelsePerioder.error !== undefined,
-                oppgaverHarFeil: oppgaver.error !== undefined,
-            });
+        appLogger.logException(new Error('DeltakerInfoLoader.FlereDeltakelser'), {
+            søkerHarFeil: søker.error !== undefined,
+            deltakelsePerioderHarFeil: deltakelsePerioder.error !== undefined,
+            oppgaverHarFeil: oppgaver.error !== undefined,
+        });
         return <FlereDeltakelserPage />;
     }
 

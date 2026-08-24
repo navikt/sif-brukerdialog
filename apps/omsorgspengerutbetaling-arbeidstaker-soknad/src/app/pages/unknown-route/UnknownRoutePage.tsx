@@ -9,7 +9,7 @@ interface Props {
 
 const UnknownRoutePage = ({ pathName, onReset }: Props) => {
     useEffectOnce(() => {
-        appLogger.logError('UnknownRoute', pathName);
+        appLogger.logError(`UnknownRoute: ${pathName}`);
     });
     return (
         <ErrorPage

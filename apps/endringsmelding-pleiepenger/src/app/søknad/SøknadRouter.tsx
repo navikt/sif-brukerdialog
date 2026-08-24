@@ -143,7 +143,7 @@ const SøknadRouter = () => {
 };
 
 const UkjentPathMelding = ({ pathname, onReset }: { pathname: string; onReset: () => void }) => {
-    appLogger.logError('ukjentPath', pathname);
+    appLogger.logError(`ukjentPath: ${pathname}`);
     return (
         <FormLayout.Guide mood="uncertain">
             <VStack gap="space-24">

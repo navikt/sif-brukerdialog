@@ -12,7 +12,7 @@ export const getValidSpråk = (locale?: any): Locale => {
                 return 'nb';
         }
     } catch {
-        appLogger.logInfo('Fallback on getValidSpråk', loc);
+        appLogger.logInfo(`Fallback on getValidSpråk: ${loc}`);
         return 'nb';
     }
 };

@@ -12,12 +12,12 @@ const ApmTestPage = () => {
     const addLog = (msg: string) => setLog((prev) => [`${new Date().toISOString()} — ${msg}`, ...prev]);
 
     const handleLogInfo = () => {
-        appLogger.logInfo('Test: appLogger.logInfo', { source: 'ApmTestPage' });
+        appLogger.logInfo('Test: appLogger.logInfo');
         addLog('logInfo sendt');
     };
 
     const handleLogError = () => {
-        appLogger.logError('Test: appLogger.logError', { source: 'ApmTestPage' });
+        appLogger.logError('Test: appLogger.logError');
         addLog('logError sendt');
     };
 
