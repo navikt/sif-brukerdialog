@@ -268,9 +268,6 @@ importers:
       postcss:
         specifier: 8.5.26
         version: 8.5.26
-      postcss-import:
-        specifier: 16.2.0
-        version: 16.2.0(postcss@8.5.26)
       postcss-styled-syntax:
         specifier: 0.7.2
         version: 0.7.2(postcss@8.5.26)
@@ -823,9 +820,6 @@ importers:
       postcss:
         specifier: 8.5.26
         version: 8.5.26
-      postcss-import:
-        specifier: 16.2.0
-        version: 16.2.0(postcss@8.5.26)
       react-intl:
         specifier: 10.1.22
         version: 10.1.22(@types/react@19.2.18)(react@19.2.8)
@@ -1251,9 +1245,6 @@ importers:
       postcss:
         specifier: 8.5.26
         version: 8.5.26
-      postcss-import:
-        specifier: 16.2.0
-        version: 16.2.0(postcss@8.5.26)
       react-responsive:
         specifier: 10.0.1
         version: 10.0.1(react@19.2.8)
@@ -1459,9 +1450,6 @@ importers:
       postcss:
         specifier: 8.5.26
         version: 8.5.26
-      postcss-import:
-        specifier: 16.2.0
-        version: 16.2.0(postcss@8.5.26)
       storybook:
         specifier: 10.5.10
         version: 10.5.10(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8)
@@ -2828,9 +2816,6 @@ importers:
       postcss:
         specifier: 8.5.26
         version: 8.5.26
-      postcss-import:
-        specifier: 16.2.0
-        version: 16.2.0(postcss@8.5.26)
       storybook:
         specifier: 10.5.10
         version: 10.5.10(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8)
@@ -3057,9 +3042,6 @@ importers:
       postcss:
         specifier: 8.5.26
         version: 8.5.26
-      postcss-import:
-        specifier: 16.2.0
-        version: 16.2.0(postcss@8.5.26)
       react-dom:
         specifier: 19.2.8
         version: 19.2.8(react@19.2.8)
@@ -3760,9 +3742,6 @@ importers:
       postcss:
         specifier: 8.5.26
         version: 8.5.26
-      postcss-import:
-        specifier: 16.2.0
-        version: 16.2.0(postcss@8.5.26)
       postcss-styled-syntax:
         specifier: 0.7.2
         version: 0.7.2(postcss@8.5.26)
@@ -15243,10 +15222,6 @@ packages:
     resolution: {integrity: sha512-RvwwcruNjI1ncT5xRakeyS9Lf8lcItv34KD+aif+VH9kduAyfYBipGh12274xtenIPZ119/R9BdTBa8gAwSh0A==}
     engines: {node: '>=12'}
 
-  pify@2.3.0:
-    resolution: {integrity: sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==}
-    engines: {node: '>=0.10.0'}
-
   pify@4.0.1:
     resolution: {integrity: sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==}
     engines: {node: '>=6'}
@@ -15316,12 +15291,6 @@ packages:
   possible-typed-array-names@1.1.0:
     resolution: {integrity: sha512-/+5VFTchJDoVj3bhoqi6UeymcD00DAwb1nJwamzPvHEszJ4FpF6SNNbUbOS8yI56qHzdV8eK0qEfOSiodkTdxg==}
     engines: {node: '>= 0.4'}
-
-  postcss-import@16.2.0:
-    resolution: {integrity: sha512-0mQUGlSp87Zl70K58RNwQAN1WS9plFE6KWGui9nyK6ninduMyjW/Khaoy/BpBoFTBh7ndAvAKrSKVbwy6vd/BA==}
-    engines: {node: '>=18.0.0'}
-    peerDependencies:
-      postcss: 8.5.26
 
   postcss-loader@8.2.1:
     resolution: {integrity: sha512-k98jtRzthjj3f76MYTs9JTpRqV1RaaMhEU0Lpw9OTmQZQdppg4B30VZ74BojuBHt3F4KyubHJoXCMUeM8Bqeow==}
@@ -15738,9 +15707,6 @@ packages:
   react@19.2.8:
     resolution: {integrity: sha512-PWaYA1L/q9u2u7xYQi+Y3L3Yfnie7XyLeaJICV1MGD6LprsBxcAqGjYyr0eY3p+QdsA+x/Irkt4Qif8D63+Sbw==}
     engines: {node: '>=0.10.0'}
-
-  read-cache@1.0.0:
-    resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}
 
   readable-stream@1.0.34:
     resolution: {integrity: sha512-ok1qVCJuRkNmvebYikljxJA/UEsKwLl2nI1OmaqAu4/UE+h0wKCHok4XkL/gvi39OacXvw59RJUOFUkDib2rHg==}
@@ -28405,8 +28371,6 @@ snapshots:
 
   picomatch@4.0.5: {}
 
-  pify@2.3.0: {}
-
   pify@4.0.1: {}
 
   pino-abstract-transport@3.0.0:
@@ -28497,13 +28461,6 @@ snapshots:
       '@babel/runtime': 7.29.7
 
   possible-typed-array-names@1.1.0: {}
-
-  postcss-import@16.2.0(postcss@8.5.26):
-    dependencies:
-      postcss: 8.5.26
-      postcss-value-parser: 4.2.0
-      read-cache: 1.0.0
-      resolve: 1.22.12
 
   postcss-loader@8.2.1(postcss@8.5.26)(typescript@6.0.3)(webpack@5.109.2(esbuild@0.28.2)(postcss@8.5.26)):
     dependencies:
@@ -28928,10 +28885,6 @@ snapshots:
       refractor: 5.0.0
 
   react@19.2.8: {}
-
-  read-cache@1.0.0:
-    dependencies:
-      pify: 2.3.0
 
   readable-stream@1.0.34:
     dependencies:
