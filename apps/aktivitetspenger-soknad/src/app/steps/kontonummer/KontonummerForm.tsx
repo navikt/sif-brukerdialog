@@ -9,7 +9,7 @@ import { HarKontonummerEnum } from '@sif/api/ung-deltaker';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { SøknadStep, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { FormLayout } from '@sif/soknad-ui';
-import { AriaLiveRegion, ExternalLink, SifInfoCard } from '@sif/soknad-ui/components';
+import { AriaLiveRegion, ExternalLink, SifGuidePanel, SifInfoCard } from '@sif/soknad-ui/components';
 import { useForm } from 'react-hook-form';
 
 import getLenker from '../../lenker';
@@ -38,87 +38,71 @@ export const KontonummerForm = () => {
     return (
         <SøknadStep stepId={stepId}>
             <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
-                <FormLayout.Questions>
-                    {kontonummerInfo.harKontonummer === HarKontonummerEnum.JA && (
-                        <>
-                            <YesOrNoQuestion
-                                name={KontonummerFormFields.kontonummerErRiktig}
-                                legend={text('kontonummerSteg.spørsmål.kontonummerErRiktig', {
-                                    kontonummer: kontonummerInfo.formatertKontonummer,
-                                })}
-                                validate={validateField(
-                                    KontonummerFormFields.kontonummerErRiktig,
-                                    getYesOrNoValidator(),
-                                )}
-                            />
-                            <AriaLiveRegion visible={kontonummerErRiktig === YesOrNo.NO}>
-                                <FormLayout.QuestionRelatedMessage>
-                                    <SifInfoCard>
-                                        <BodyShort spacing>
-                                            <AppText
-                                                id="kontonummerSteg.kontonummer.stemmerIkke.info"
-                                                values={{
-                                                    Lenke: (children) => (
-                                                        <ExternalLink href={getLenker().navPersonopplysninger}>
-                                                            {children}
-                                                        </ExternalLink>
-                                                    ),
-                                                }}
-                                            />
-                                        </BodyShort>
-                                        <BodyShort>
-                                            <AppText id="kontonummerSteg.kontonummer.stemmerIkke.info.2" />
-                                        </BodyShort>
-                                    </SifInfoCard>
-                                </FormLayout.QuestionRelatedMessage>
-                            </AriaLiveRegion>
-                        </>
-                    )}
-                    {kontonummerInfo.harKontonummer === HarKontonummerEnum.NEI && (
-                        <SifInfoCard variant="warning">
-                            <Heading level="3" size="small" spacing>
-                                <AppText id="kontonummerSteg.harIkkeKontonummer.info.1" />
-                            </Heading>
-                            <BodyLong spacing>
-                                <AppText
-                                    id="kontonummerSteg.harIkkeKontonummer.info.2"
-                                    values={{
-                                        Lenke: (children) => (
-                                            <ExternalLink href={getLenker().navEndreKontonummer}>
-                                                {children}
-                                            </ExternalLink>
-                                        ),
-                                    }}
+                <FormLayout.Content>
+                    <SifGuidePanel>
+                        <AppText id="kontonummerSteg.veileder.tekst" />
+                    </SifGuidePanel>
+                    <FormLayout.Questions>
+                        {kontonummerInfo.harKontonummer === HarKontonummerEnum.JA && (
+                            <>
+                                <YesOrNoQuestion
+                                    name={KontonummerFormFields.kontonummerErRiktig}
+                                    legend={text('kontonummerSteg.spørsmål.kontonummerErRiktig', {
+                                        kontonummer: kontonummerInfo.formatertKontonummer,
+                                    })}
+                                    validate={validateField(
+                                        KontonummerFormFields.kontonummerErRiktig,
+                                        getYesOrNoValidator(),
+                                    )}
                                 />
-                            </BodyLong>
-                            <BodyLong>
-                                <AppText id="kontonummerSteg.harIkkeKontonummer.info.3" />
-                            </BodyLong>
-                        </SifInfoCard>
-                    )}
-                    {kontonummerInfo.harKontonummer === HarKontonummerEnum.UVISST && (
-                        <SifInfoCard variant="warning">
-                            <Heading level="3" size="small" spacing>
-                                <AppText id="kontonummerSteg.kontonummerInfoMangler.info.1" />
-                            </Heading>
-                            <BodyLong spacing>
-                                <AppText
-                                    id="kontonummerSteg.kontonummerInfoMangler.info.2"
-                                    values={{
-                                        Lenke: (children) => (
-                                            <ExternalLink href={getLenker().navEndreKontonummer}>
-                                                {children}
-                                            </ExternalLink>
-                                        ),
-                                    }}
-                                />
-                            </BodyLong>
-                            <BodyLong>
-                                <AppText id="kontonummerSteg.kontonummerInfoMangler.info.3" />
-                            </BodyLong>
-                        </SifInfoCard>
-                    )}
-                </FormLayout.Questions>
+                                <AriaLiveRegion visible={kontonummerErRiktig === YesOrNo.NO}>
+                                    <FormLayout.QuestionRelatedMessage>
+                                        <SifInfoCard>
+                                            <BodyShort spacing>
+                                                <AppText
+                                                    id="kontonummerSteg.kontonummer.stemmerIkke.info"
+                                                    values={{
+                                                        Lenke: (children) => (
+                                                            <ExternalLink href={getLenker().navPersonopplysninger}>
+                                                                {children}
+                                                            </ExternalLink>
+                                                        ),
+                                                    }}
+                                                />
+                                            </BodyShort>
+                                            <BodyShort>
+                                                <AppText id="kontonummerSteg.kontonummer.stemmerIkke.info.2" />
+                                            </BodyShort>
+                                        </SifInfoCard>
+                                    </FormLayout.QuestionRelatedMessage>
+                                </AriaLiveRegion>
+                            </>
+                        )}
+
+                        {kontonummerInfo.harKontonummer === HarKontonummerEnum.UVISST && (
+                            <SifInfoCard variant="warning">
+                                <Heading level="3" size="small" spacing>
+                                    <AppText id="kontonummerSteg.kontonummerInfoMangler.info.1" />
+                                </Heading>
+                                <BodyLong spacing>
+                                    <AppText
+                                        id="kontonummerSteg.kontonummerInfoMangler.info.2"
+                                        values={{
+                                            Lenke: (children) => (
+                                                <ExternalLink href={getLenker().navEndreKontonummer}>
+                                                    {children}
+                                                </ExternalLink>
+                                            ),
+                                        }}
+                                    />
+                                </BodyLong>
+                                <BodyLong>
+                                    <AppText id="kontonummerSteg.kontonummerInfoMangler.info.3" />
+                                </BodyLong>
+                            </SifInfoCard>
+                        )}
+                    </FormLayout.Questions>
+                </FormLayout.Content>
             </SøknadStepForm>
         </SøknadStep>
     );

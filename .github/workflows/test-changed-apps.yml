@@ -54,6 +54,12 @@ jobs:
         id: filter
         with:
           filters: |
+            aktivitetspenger-innsyn:
+              - 'apps/aktivitetspenger-innsyn/**'
+              - 'packages/**'
+              - 'nais-config/**'
+              - 'server/**'
+              - 'pnpm-lock.yaml'
             aktivitetspenger-soknad:
               - 'apps/aktivitetspenger-soknad/**'
               - 'packages/**'
@@ -144,6 +150,26 @@ jobs:
               - 'nais-config/**'
               - 'server-ungdomsytelse-veileder/**'
               - 'pnpm-lock.yaml'
+
+  test-aktivitetspenger-innsyn:
+    needs: detect-changes
+    if: ${{ contains(needs.detect-changes.outputs.apps, 'aktivitetspenger-innsyn') }}
+    uses: ./.github/workflows/.test-app.yml
+    secrets: inherit
+    with:
+      app-name: "aktivitetspenger-innsyn"
+      working-directory: "apps/aktivitetspenger-innsyn"
+      package-name: "@navikt/aktivitetspenger-innsyn"
+
+  test-aktivitetspenger-soknad:
+    needs: detect-changes
+    if: ${{ contains(needs.detect-changes.outputs.apps, 'aktivitetspenger-soknad') }}
+    uses: ./.github/workflows/.test-app.yml
+    secrets: inherit
+    with:
+      app-name: "aktivitetspenger-soknad"
+      working-directory: "apps/aktivitetspenger-soknad"
+      package-name: "@navikt/aktivitetspenger-soknad"
 
   test-dine-pleiepenger:
     needs: detect-changes
