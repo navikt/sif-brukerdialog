@@ -40,10 +40,10 @@
         ]
     },
     "dependencies": {
-        "@changesets/cli": "3.0.0",
+        "@changesets/cli": "3.0.1",
         "glob": "13.0.6",
         "tailwindcss": "4.3.3",
-        "turbo": "2.10.9"
+        "turbo": "2.10.11"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
@@ -54,7 +54,7 @@
         "prettier": "3.9.6",
         "sort-package-json": "4.0.0",
         "typescript": "6.0.3",
-        "vitest": "4.1.10"
+        "vitest": "4.1.11"
     },
     "packageManager": "pnpm@10.33.4",
     "pnpm": {
@@ -74,7 +74,7 @@
             "smol-toml": ">=1.6.1",
             "undici@^6": "^6.27.0",
             "undici@^7": "^7.28.0",
-            "uuid": "^14.0.1"
+            "uuid": "^14.0.2"
         }
     }
 }
