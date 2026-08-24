@@ -21,7 +21,7 @@
         "@navikt/nav-dekoratoren-moduler": "4.3.0",
         "classnames": "2.5.1",
         "csp-header": "6.3.1",
-        "dayjs": "1.11.21",
+        "dayjs": "1.11.23",
         "formik": "2.4.9",
         "html-react-parser": "6.1.7",
         "jsdom": "28.1.0",
@@ -31,8 +31,8 @@
         "react-day-picker": "9.14.0",
         "react-dom": "19.2.8",
         "react-fast-compare": "3.2.2",
-        "react-intl": "10.1.20",
-        "uuid": "^14.0.1"
+        "react-intl": "10.1.22",
+        "uuid": "^14.0.2"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.13.0",
@@ -48,7 +48,7 @@
         "postcss": "8.5.26",
         "tailwindcss": "4.3.3",
         "typescript": "6.0.3",
-        "vite": "8.2.1",
-        "vitest": "4.1.10"
+        "vite": "8.2.2",
+        "vitest": "4.1.11"
     }
 }

@@ -17,7 +17,7 @@
     },
     "dependencies": {
         "@navikt/sif-common-utils": "workspace:*",
-        "react-intl": "10.1.20"
+        "react-intl": "10.1.22"
     },
     "devDependencies": {
         "@navikt/sif-common-env": "workspace:*",
@@ -25,7 +25,7 @@
         "config": "workspace:*",
         "postcss": "8.5.26",
         "typescript": "6.0.3",
-        "vitest": "4.1.10"
+        "vitest": "4.1.11"
     },
     "peerDependencies": {
         "@navikt/fnrvalidator": "2",

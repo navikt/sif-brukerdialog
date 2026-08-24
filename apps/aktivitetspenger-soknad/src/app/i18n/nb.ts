@@ -18,7 +18,7 @@ export const appMessages_nb = {
     'kvittering.documentTitle': 'Søknad om aktivitetspenger mottatt',
     'kvittering.title': 'Vi har mottatt søknaden din om aktivitetspenger',
     'step.startdato.title': 'Startdato',
-    'step.kontonummer.title': 'Kontonummer',
+    'step.kontonummer.title': 'Kontonummer for utbetaling',
     'step.bosted.title': 'Bosted',
     'step.bostedUtland.title': 'Bosted i utlandet',
     'step.barn.title': 'Barn',
