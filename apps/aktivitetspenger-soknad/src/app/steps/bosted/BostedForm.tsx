@@ -31,10 +31,10 @@ export const BostedForm = () => {
     return (
         <SøknadStep stepId={stepId}>
             <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
-                <SifGuidePanel>
-                    <AppText id="bostedSteg.veileder.tekst" />
-                </SifGuidePanel>
                 <FormLayout.Content>
+                    <SifGuidePanel>
+                        <AppText id="bostedSteg.veileder.tekst" />
+                    </SifGuidePanel>
                     <FormLayout.Questions>
                         <YesOrNoQuestion
                             name={BostedFormFields.erBosattITrondheim}
