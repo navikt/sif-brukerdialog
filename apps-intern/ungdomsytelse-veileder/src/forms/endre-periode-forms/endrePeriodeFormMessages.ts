@@ -18,6 +18,9 @@ const nb = {
     'endrePeriodeForm.deltakerErInformert.noValue': 'Du må svare på om deltaker er informert.',
     'endrePeriodeForm.bekrefterEndring.notChecked': 'Du må krysse av for at du bekrefter endringen.',
 
+    'avslutningsårsak.ARBEID': 'Arbeid', // Deprecated
+    'avslutningsårsak.UTDANNING': 'Utdanning', // Deprecated
+
     'avslutningsårsak.ANDRE_LIVSOPPHOLDSYTELSER': 'Andre livsoppholdsytelser',
     'avslutningsårsak.ANNEN_OPPLÆRING': 'Annen opplæring',
     'avslutningsårsak.ANNET': 'Annet',

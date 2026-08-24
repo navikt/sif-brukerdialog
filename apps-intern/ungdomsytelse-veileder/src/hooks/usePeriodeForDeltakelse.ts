@@ -8,6 +8,10 @@ import { queryKeys } from '../queries/queryKeys';
 import { Deltakelse } from '../types/Deltakelse';
 import { EndrePeriodeVariant } from '../types/EndrePeriodeVariant';
 import { ISODate } from '@navikt/sif-common-utils';
+export type EndrePeriodeForDeltakelseData = {
+    dato: ISODate;
+    avslutningsårsak?: Avslutningsårsak;
+};
 
 /**
  * Mutasjon for å endre startdato eller sluttdato for en deltakelse, samt sluttårsak ved utmelding av deltaker.
@@ -15,11 +19,6 @@ import { ISODate } from '@navikt/sif-common-utils';
  * @param deltakerId Trengs for at invalidere queryen for deltakelser
  * @returns Oppdatert Deltakelse
  */
-
-export type EndrePeriodeForDeltakelseData = {
-    dato: ISODate;
-    avslutningsårsak?: Avslutningsårsak;
-};
 
 export const usePeriodeForDeltakelse = ({
     variant,
