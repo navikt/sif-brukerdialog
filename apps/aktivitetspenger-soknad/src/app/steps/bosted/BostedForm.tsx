@@ -1,13 +1,12 @@
-import { useAppIntl } from '@app/i18n';
+import { AppText, useAppIntl } from '@app/i18n';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { SøknadStepForm } from '@sif/soknad-app';
 import { BostedSøknadsdata } from '@app/types/Soknadsdata';
-import { BodyLong, Heading } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { SøknadStep, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { SifInfoCard } from '@sif/soknad-ui';
-import { FormLayout } from '@sif/soknad-ui/components';
+import { FormLayout, SifGuidePanel } from '@sif/soknad-ui/components';
 import { useForm } from 'react-hook-form';
 
 import { toBostedFormValues, toBostedSøknadsdata } from './bostedStegUtils';
@@ -32,6 +31,9 @@ export const BostedForm = () => {
     return (
         <SøknadStep stepId={stepId}>
             <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
+                <SifGuidePanel>
+                    <AppText id="bostedSteg.veileder.tekst" />
+                </SifGuidePanel>
                 <FormLayout.Content>
                     <FormLayout.Questions>
                         <YesOrNoQuestion
@@ -41,10 +43,7 @@ export const BostedForm = () => {
                         />
                         {erBosattITrondheim === YesOrNo.NO && (
                             <SifInfoCard variant="warning">
-                                <Heading level="3" size="small" spacing>
-                                    Når du ikke bor i Trondheim
-                                </Heading>
-                                <BodyLong spacing>Info</BodyLong>
+                                <AppText id="bostedForm.borIkkeITrondheim.info" />
                             </SifInfoCard>
                         )}
                     </FormLayout.Questions>
