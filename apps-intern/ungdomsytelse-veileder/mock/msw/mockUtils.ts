@@ -252,6 +252,7 @@ const endreSluttdato = (deltakelseId: string, dato: string) => {
         deltakelse: {
             ...deltakelse.deltakelse,
             tilOgMed: dato,
+            avslutningsårsak: deltakelse.deltakelse.avslutningsårsak,
         },
         historikk: [...deltakelse.historikk, getEndretSluttdatoHistorikk(deltakelse.deltakelse.tilOgMed!, dato)],
     };

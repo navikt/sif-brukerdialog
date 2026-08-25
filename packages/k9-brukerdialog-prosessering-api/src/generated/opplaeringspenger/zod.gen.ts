@@ -2,6 +2,8 @@
 
 import * as z from 'zod';
 
+export const zArbeidsgiverOlp = z.record(z.string(), z.unknown());
+
 export const zBarnDetaljer = z.object({
     aktørId: z.string().nullish(),
     fødselsattestVedleggUrls: z.array(z.string()).nullish(),
@@ -46,10 +48,6 @@ export const zArbeidIPeriode = z.object({
 export const zArbeidsforholdOlp = z.object({
     arbeidIPeriode: zArbeidIPeriode,
     jobberNormaltTimer: z.number(),
-});
-
-export const zArbeidsgiverOlp = z.object({
-    arbeidsforhold: zArbeidsforholdOlp.nullish(),
 });
 
 export const zEttersendingAvVedlegg = z.object({

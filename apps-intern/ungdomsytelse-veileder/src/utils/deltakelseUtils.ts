@@ -69,6 +69,9 @@ const kanEndreStartdatoResultat = (deltakelse: Deltakelse, today: Date): Handlin
     if (deltakelse.harForlengetPeriode) {
         return nei('Perioden er allerede forlenget');
     }
+    if (deltakelse.tilOgMed !== undefined) {
+        return nei('Sluttdato er satt');
+    }
     if (erInnenforSisteMånederFørPeriodeslutt(deltakelse, today)) {
         return nei('Innenfor siste måneder før periodeslutt');
     }

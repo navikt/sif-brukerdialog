@@ -86,7 +86,7 @@ export type Arbeidsgiver = {
 };
 
 export type ArbeidsgiverOlp = {
-    arbeidsforhold?: ArbeidsforholdOlp;
+    [key: string]: unknown;
 };
 
 export type ArbeidsgivereDto = {
@@ -178,9 +178,6 @@ export type DataBruktTilUtledning = {
     annetData?: string;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
-    /**
-     * @deprecated
-     */
     soknadDialogCommitSha?: string;
 };
 
@@ -616,6 +613,11 @@ export type PleiepengerSyktBarnSøknad = {
     opptjeningIUtlandet: OpptjeningIUtlandet[];
     selvstendigNæringsdrivende: SelvstendigNæringsdrivende;
     språk: 'nb' | 'nn';
+    /**
+     * StønadGodtgjørelse er deprecated og vil bli fjernet i fremtidige versjoner av APIet
+     *
+     * @deprecated
+     */
     stønadGodtgjørelse?: null;
     søkerNorskIdent?: string;
     tilOgMed: string;
@@ -973,6 +975,11 @@ export type PleiepengerSyktBarnSøknadWritable = {
     opptjeningIUtlandet: OpptjeningIUtlandet[];
     selvstendigNæringsdrivende: SelvstendigNæringsdrivendeWritable;
     språk: 'nb' | 'nn';
+    /**
+     * StønadGodtgjørelse er deprecated og vil bli fjernet i fremtidige versjoner av APIet
+     *
+     * @deprecated
+     */
     stønadGodtgjørelse?: StønadGodtgjørelse;
     søkerNorskIdent?: string;
     tilOgMed: string;
