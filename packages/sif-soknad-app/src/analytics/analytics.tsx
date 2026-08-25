@@ -22,7 +22,7 @@ interface AnalyticsContextValue {
     logEvent: (event: (typeof Events)[keyof typeof Events], properties?: Record<string, unknown>) => Promise<void>;
     logCustom: (event: string, properties?: Record<string, unknown>) => Promise<void>;
     logSkjemaStartet: () => Promise<void>;
-    logSkjemaFullført: () => Promise<void>;
+    logSkjemaFullført: (metadata?: Record<string, unknown>) => Promise<void>;
     logSkjemaFeilet: () => Promise<void>;
     logHendelse: (hendelse: ApplikasjonHendelse, details?: Record<string, unknown>) => Promise<void>;
     logApiError: (error: string, details?: Record<string, unknown>) => Promise<void>;
@@ -84,7 +84,8 @@ export const AnalyticsProvider = ({
             logEvent,
             logCustom,
             logSkjemaStartet: () => logEvent(Events.SKJEMA_STARTET, { skjemaId: applicationKey }),
-            logSkjemaFullført: () => logEvent(Events.SKJEMA_FULLFORT, { skjemaId: applicationKey }),
+            logSkjemaFullført: (metadata) =>
+                logEvent(Events.SKJEMA_FULLFORT, { ...metadata, skjemaId: applicationKey }),
             logSkjemaFeilet: () => logEvent(Events.SKJEMA_INNSENDING_FEILET, { skjemaId: applicationKey }),
             logHendelse: (hendelse, details) =>
                 logCustom(CustomAnalyticsEvents.applikasjonHendelse, { hendelse, details }),

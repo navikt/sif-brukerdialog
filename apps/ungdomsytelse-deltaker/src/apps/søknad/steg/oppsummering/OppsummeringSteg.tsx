@@ -2,7 +2,6 @@ import { Alert, Checkbox, CheckboxGroup, FormSummary, VStack } from '@navikt/ds-
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { dateFormatter } from '@sif/utils';
 import { AppText, useAppIntl } from '@shared/i18n';
-import { DeltakerSkjemaId } from '@shared/types/DeltakerSkjemaId';
 import { ApiErrorAlert } from '@sif/api';
 import SøknadSteg from '@søknad/components/søknad-steg/SøknadSteg';
 import SkjemaFooter from '@søknad/components/steg-skjema/SkjemaFooter';
@@ -12,7 +11,7 @@ import { useSøknadNavigation } from '@søknad/hooks/utils/useSøknadNavigation'
 import { Spørsmål, Steg } from '@søknad/types';
 import { useState } from 'react';
 
-import { useAnalyticsInstance } from '../../../../analytics/analytics';
+import { useAnalyticsInstance } from '@sif/soknad-app';
 import BarnInfo from '../barn/BarnInfo';
 import { buildSøknadFromSvar, HarKontonummerEnum } from './oppsummeringUtils';
 
@@ -50,7 +49,7 @@ const OppsummeringSteg = () => {
                 gotoKvittering();
             } catch {
                 // Håndteres gjennom error objektet i useSendSøknad
-                logSkjemaFeilet(DeltakerSkjemaId.SØKNAD);
+                logSkjemaFeilet();
             }
         }
     };

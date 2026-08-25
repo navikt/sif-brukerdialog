@@ -5,7 +5,9 @@ import { kontonummerFallback, useKontonummer } from '@sif/api/ung-deltaker';
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { ApiErrorKey, useAnalyticsInstance } from '../../analytics/analytics';
+import { useAnalyticsInstance } from '@sif/soknad-app';
+
+import { ApiErrorKey } from '../../analytics/analyticsEvents';
 import { useDeltakerContext } from '../../hooks/useDeltakerContext';
 import { useAppIntl } from '../../i18n';
 import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
@@ -47,7 +49,7 @@ const SøknadApp = () => {
     }
 
     return (
-        <Theme hasBackground={!__IS_VEILEDER_DEMO__}>
+        <Theme hasBackground={!__IS_DEMO_MODE__}>
             <SøknadProvider
                 søknadOppgave={søknadOppgave}
                 søker={søker}

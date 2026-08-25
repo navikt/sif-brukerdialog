@@ -3,7 +3,7 @@ import { EnvKey, getRequiredEnv } from '@navikt/sif-common-env';
 import { initUngBrukerdialogApiClient } from '@navikt/ung-brukerdialog-api';
 import { initUngDeltakelseOpplyserApiDeltakerClient } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 
-import { setRedirectingToLogin } from '../sentry/instrument';
+import { setRedirectingToLogin } from '@navikt/sif-common-sentry';
 
 export const initApiClients = () => {
     initUngDeltakelseOpplyserApiDeltakerClient({
