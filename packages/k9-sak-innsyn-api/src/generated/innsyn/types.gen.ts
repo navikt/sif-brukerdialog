@@ -30,7 +30,6 @@ export type Aktivitetspenger = Omit<Ytelse, 'type'> & {
     erBosattITrondheim?: boolean;
     forutgåendeBosteder: Bosteder;
     inntekter?: OppgittInntekt;
-    søknadsperiode?: string;
     søknadsperiodeFom?: string;
     type: 'Aktivitetspenger';
 };

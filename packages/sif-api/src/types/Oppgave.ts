@@ -66,7 +66,7 @@ export interface EndretStartdatoOppgave extends ParsedOppgaveBase {
     };
     respons?: SvarPåVarselRespons;
 }
-export interface BostedVilkårOppgave extends ParsedOppgaveBase {
+export interface BostedVilkårPeriodeOppgave extends ParsedOppgaveBase {
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED;
     oppgavetypeData: Omit<BekreftBostedOppgavetypeDataDto, 'fom' | 'tom'> & {
         periode: DateRange;
@@ -129,7 +129,7 @@ export type BekreftelseOppgave =
     | FjernetPeriodeOppgave
     | MeldtUtOppgave
     | OpphorVedMaksdatoOppgave
-    | BostedVilkårOppgave
+    | BostedVilkårPeriodeOppgave
     | BostedVilkårOpphørOppgave
     | (AvvikRegisterinntektOppgave & {
           respons?: SvarPåVarselRespons;
@@ -154,7 +154,7 @@ export interface SøkYtelseOppgave extends ParsedOppgaveBase {
 
 export type Oppgave =
     | AvvikRegisterinntektOppgave
-    | BostedVilkårOppgave
+    | BostedVilkårPeriodeOppgave
     | BostedVilkårOpphørOppgave
     | EndretSluttdatoOppgave
     | EndretStartdatoOppgave

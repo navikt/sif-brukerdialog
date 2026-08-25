@@ -1,7 +1,7 @@
 import { BodyLong, Link, List, ReadMore, VStack } from '@navikt/ds-react';
 
 import { UngUiText, useUngUiIntl } from '../../i18n';
-import { Lovlenke } from '../../modules/oppgavepaneler/utils/lovverk';
+import { Lovlenke } from '../../modules/oppgavepaneler/oppgaveLovverk';
 import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 
 interface Props {
@@ -27,7 +27,7 @@ export const RegelverkOgInnsynReadMore = ({ lenker, ytelsetype }: Props) => {
                     {lenker.map((lenke) => (
                         <List.Item key={lenke.url}>
                             <Link href={lenke.url} target="_blank" rel="noopener noreferrer">
-                                {lenke.tekst}
+                                {text(lenke.tekstKey)}
                             </Link>
                         </List.Item>
                     ))}

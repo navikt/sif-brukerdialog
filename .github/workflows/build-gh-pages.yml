@@ -82,15 +82,15 @@ jobs:
           mv apps/opplaringspenger-soknad/dist-demo/* deployment/opplaringspenger-soknad/
 
       # Bygg aktivitetspenger-innsyn demo-app med gh-pages:rebuild
-      - name: Build aktivitetspenger-innsyn
-        run: pnpm gh-pages:rebuild
-        working-directory: apps/aktivitetspenger-innsyn
+      # - name: Build aktivitetspenger-innsyn
+      #   run: pnpm gh-pages:rebuild
+      #   working-directory: apps/aktivitetspenger-innsyn
 
       # Flytt aktivitetspenger-innsyn-output til en subfolder
-      - name: Kopier aktivitetspenger-innsyn til gh-pages
-        run: |
-          mkdir -p deployment/aktivitetspenger-innsyn
-          mv apps/aktivitetspenger-innsyn/dist-demo/* deployment/aktivitetspenger-innsyn/
+      # - name: Kopier aktivitetspenger-innsyn til gh-pages
+      #   run: |
+      #     mkdir -p deployment/aktivitetspenger-innsyn
+      #     mv apps/aktivitetspenger-innsyn/dist-demo/* deployment/aktivitetspenger-innsyn/
 
       # Bygg ungdomsytelse-deltaker-storybook
       - name: Build ungdomsytelse-deltaker-storybook
@@ -116,7 +116,7 @@ jobs:
 
       # Last opp bygget som en artefakt
       - name: Upload artifact for GitHub Pages
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-pages-artifact@v3
         with:
           path: deployment
 
@@ -131,4 +131,4 @@ jobs:
       name: github-pages
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@v4

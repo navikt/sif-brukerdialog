@@ -1,6 +1,7 @@
+import { oppgavebekreftelse_nb } from '../modules/oppgavebekreftelse/i18n/nb';
 import { avvikRegisterinntektMessages_nb } from '../modules/oppgavepaneler/avvik-registerinntekt/i18n/nb';
-import { bostedVilkårMessages_nb } from '../modules/oppgavepaneler/bostedsvilkar/i18n/nb';
 import { bostedVilkårOpphørMessages_nb } from '../modules/oppgavepaneler/bostedsvilkar-opphor/i18n/nb';
+import { bostedVilkårMessages_nb } from '../modules/oppgavepaneler/bostedsvilkar-periode/i18n/nb';
 import { endretSluttdatoMessages_nb } from '../modules/oppgavepaneler/endret-sluttdato/i18n/nb';
 import { endretStartOgSluttdatoMessages_nb } from '../modules/oppgavepaneler/endret-start-og-sluttdato/i18n/nb';
 import { endretStartdatoMessages_nb } from '../modules/oppgavepaneler/endret-startdato/i18n/nb';
@@ -19,8 +20,9 @@ export const ungUi_messages_nb = {
     ...meldtUtMessages_nb,
     ...rapporterInntektMessages_nb,
     ...søkYtelseOppgaveMessages_nb,
-    ...bostedVilkårMessages_nb,
+    ...oppgavebekreftelse_nb,
     ...bostedVilkårOpphørMessages_nb,
+    ...bostedVilkårMessages_nb,
     ...opphorVedMaksdatoMessages_nb,
 
     '@ungInnsyn.Ja': 'Ja',
@@ -55,12 +57,9 @@ export const ungUi_messages_nb = {
     '@ungInnsyn.oppgaveOgTilbakemelding.beskjedFraNav': 'Beskjed fra Nav',
     '@ungInnsyn.oppgaveOgTilbakemelding.tilbakemeldingLabel': 'Tilbakemelding',
 
-    '@ungInnsyn.oppgavebekreftelse.ubesvart.tittel': 'Hei {navn}',
-    '@ungInnsyn.oppgavebekreftelse.kvittering.tittel': 'Svaret ditt er sendt inn',
-    '@ungInnsyn.oppgavebekreftelse.besvart.svarMangler': 'Informasjon om hva du svarte er ikke tilgjengelig enda.',
-
-    '@ungInnsyn.oppgavebekreftelse.oppgavetekst.ariaLabel': 'Oppgaveinformasjon',
-    '@ungInnsyn.oppgavebekreftelse.uttalelseform.ariaLabel': 'Svarskjema',
+    '@ungInnsyn.lovlenke.arbeidsmarkedsloven_13_fjerde_ledd': '§ 13 fjerde ledd i arbeidsmarkedsloven (lovdata.no)',
+    '@ungInnsyn.lovlenke.forskriftUpy_11':
+        '§ 11 i Forskrift om forsøk med ungdomsprogram og ungdomsprogramytelse (gjelder fra 1. august 2025) (lovdata.no)',
 
     /** OppgaveMessages */
     '@ungInnsyn.oppgavestatus.LØST': 'Løst',

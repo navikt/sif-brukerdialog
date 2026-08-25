@@ -1,13 +1,14 @@
-import { BostedVilkårOppgave } from '@sif/api/ung-brukerdialog';
-import { ReactNode } from 'react';
+import { BostedVilkårPeriodeOppgave } from '@sif/api/ung-brukerdialog';
 
 import { UngUiText } from '../../../i18n';
 import { Oppgavebekreftelse } from '../../oppgavebekreftelse/Oppgavebekreftelse';
-import { BostedVilkarOppgavePanelOppgavetekst } from './parts/BostedVilkarOppgavePanelOppgavetekst';
+import { BostedVilkarPeriodeOppgavetekst } from './BostedVilkarPeriodeOppgavetekst';
+import { OppgavebekreftelseTilbakemeldingInfo } from '../felles/OppgavebekreftelseTilbakemeldingInfo';
+import { VStack } from '@navikt/ds-react';
 
 interface Props {
     navn: string;
-    oppgave: BostedVilkårOppgave;
+    oppgave: BostedVilkårPeriodeOppgave;
     initialVisKvittering?: boolean;
 }
 
@@ -15,18 +16,14 @@ export const BostedVilkårOppgavePanel = ({ navn, oppgave, initialVisKvittering 
     return (
         <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
             <Oppgavebekreftelse.Ubesvart>
-                <BostedVilkarOppgavePanelOppgavetekst
-                    frist={oppgave.frist}
-                    erBosattITrondheim={oppgave.oppgavetypeData.erBosattITrondheim}
-                    periode={oppgave.oppgavetypeData.periode}
-                />
+                <VStack gap="space-20">
+                    <BostedVilkarPeriodeOppgavetekst {...oppgave.oppgavetypeData} />
+                    <OppgavebekreftelseTilbakemeldingInfo frist={oppgave.frist} />
+                </VStack>
             </Oppgavebekreftelse.Ubesvart>
 
             <Oppgavebekreftelse.Besvart>
-                <UngUiText
-                    id="@ungInnsyn.bostedVilkårOppgave.oppsummering"
-                    values={{ strong: (content: ReactNode) => <strong>{content}</strong> }}
-                />
+                <BostedVilkarPeriodeOppgavetekst {...oppgave.oppgavetypeData} />
             </Oppgavebekreftelse.Besvart>
 
             <Oppgavebekreftelse.Kvittering>

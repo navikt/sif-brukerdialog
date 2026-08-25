@@ -19,31 +19,6 @@ const getDatoer = () => {
     return datoer;
 };
 
-const getSøkYtelseOppgaveDto = (): BrukerdialogOppgaveDto => {
-    const søkYtelseDay = dayjs(getMockToday()).subtract(2, 'months');
-    return {
-        oppgaveReferanse: 'e632b20a-b0c9-4953-97ec-851ebd1a0e92',
-        oppgavetype: OppgaveType.SØK_YTELSE,
-        status: OppgaveStatus.ULØST,
-        frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
-        oppgavetypeData: {
-            type: 'SØK_YTELSE',
-            fomDato: dateToISODate(søkYtelseDay),
-        },
-        opprettetDato: søkYtelseDay.toISOString(),
-        ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
-    };
-};
-
-const getSøkYtelseOppgaveDtoLøst = (): BrukerdialogOppgaveDto => {
-    const oppgave = getSøkYtelseOppgaveDto();
-    return {
-        ...oppgave,
-        status: OppgaveStatus.LØST,
-        løstDato: dayjs(oppgave.opprettetDato).add(12, 'days').endOf('day').subtract(2.3, 'hours').toISOString(),
-    };
-};
-
 const getEndretStartdatoOppgaveDto = (): BrukerdialogOppgaveDto => ({
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
     oppgavetype: OppgaveType.BEKREFT_ENDRET_STARTDATO,
@@ -413,8 +388,6 @@ export const getMockOppgaver = () => ({
     bekreftAvvikOppgave: getBekreftAvvikOppgaveDto(),
     bekreftAvvikOppgaveDelerAvMÅned: getBekreftAvvikOppgaveDelerAvMånedDto(),
     bekreftAvvikOppgaveLøst: getBekreftAvvikOppgaveDtoLøst(),
-    søkYtelseOppgave: getSøkYtelseOppgaveDto(),
-    søkYtelseOppgaveLøst: getSøkYtelseOppgaveDtoLøst(),
     meldtUtOppgaveLøst: getMeldtUtOppgaveDtoLøst(),
     meldtUtOppgave: getMeldtUtOppgaveDto(),
     fjernetPeriode: getFjernetPeriodeOppgaveDto(),
