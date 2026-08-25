@@ -28,7 +28,7 @@
         "@types/react": "19.2.18",
         "copyfiles": "2.4.1",
         "dayjs": "1.11.23",
-        "eslint": "10.8.1",
+        "eslint": "10.9.0",
         "eslint-plugin-storybook": "10.5.10",
         "globals": "17.11.0",
         "intl": "1.2.5",
