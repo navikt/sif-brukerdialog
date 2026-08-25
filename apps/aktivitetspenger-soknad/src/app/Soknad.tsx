@@ -15,9 +15,8 @@ import { getAppEnv } from './setup/appEnv';
 
 const ApmTestPage = lazy(() => import('./content/apm-test/ApmTestPage'));
 
-const env = getAppEnv();
-
 export const Søknad = () => {
+    const env = getAppEnv();
     const { text } = useAppIntl();
 
     return (
