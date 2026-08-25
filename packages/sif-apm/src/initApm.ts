@@ -12,8 +12,9 @@ export const initApm = (options: InitOptions): void => {
         ...options,
         beforeSend: (item: any) => {
             if (item?.type === 'exception') {
-                const stacktrace = item.payload?.errors?.[0]?.stacktrace ?? '';
-                if (stacktrace.includes('personbruker/nav-dekoratoren')) {
+                const frames: any[] = item.payload?.stacktrace?.frames ?? [];
+                const filenames = frames.map((f) => f.filename ?? '').join(' ');
+                if (filenames.includes('personbruker/nav-dekoratoren')) {
                     return null;
                 }
             }
