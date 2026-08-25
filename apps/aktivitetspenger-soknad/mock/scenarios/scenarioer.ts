@@ -23,10 +23,18 @@ const ingenRegistrerteBarnScenarioData: ScenarioData = {
     mellomlagring: undefined,
 };
 
+const utenKontonummerScenarioData: ScenarioData = {
+    ...standardProfil,
+
+    kontonummer: { harKontonummer: false, kontonummer: null } as any,
+    mellomlagring: undefined,
+};
+
 const scenarioData: Record<ScenarioType, ScenarioData> = {
     [ScenarioType.default]: defaultScenarioData,
     [ScenarioType.medKontonummer]: medKontonummerScenarioData,
     [ScenarioType.ingenRegistrerteBarn]: ingenRegistrerteBarnScenarioData,
+    [ScenarioType.utenKontonummer]: utenKontonummerScenarioData,
 };
 
 export const getScenarioMockData = (scenario: ScenarioType): ScenarioData => {

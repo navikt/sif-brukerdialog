@@ -6,6 +6,7 @@ export enum ScenarioType {
     default = 'default',
     medKontonummer = 'medKontonummer',
     ingenRegistrerteBarn = 'ingenRegistrerteBarn',
+    utenKontonummer = 'utenKontonummer',
 }
 
 export interface ScenarioData {
