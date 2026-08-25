@@ -1,16 +1,15 @@
 import { initK9BrukerdialogProsesseringApiClients } from '@navikt/k9-brukerdialog-prosessering-api';
+import { EnvKey, getRequiredEnv } from '@navikt/sif-common-env';
 import { initUngDeltakelseOpplyserApiDeltakerClient } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 
-import { AppEnv } from '../../../env.schema';
-
-export const initApiClients = (env: AppEnv) => {
+export const initApiClients = () => {
     initUngDeltakelseOpplyserApiDeltakerClient({
-        frontendPath: env.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH,
-        loginURL: env.SIF_PUBLIC_LOGIN_URL,
+        frontendPath: getRequiredEnv(EnvKey.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH),
+        loginURL: getRequiredEnv(EnvKey.SIF_PUBLIC_LOGIN_URL),
     });
 
     initK9BrukerdialogProsesseringApiClients({
-        frontendPath: env.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH,
-        loginURL: env.SIF_PUBLIC_LOGIN_URL,
+        frontendPath: getRequiredEnv(EnvKey.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH),
+        loginURL: getRequiredEnv(EnvKey.SIF_PUBLIC_LOGIN_URL),
     });
 };

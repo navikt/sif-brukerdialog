@@ -19,8 +19,6 @@ export const appLogger = {
 
     logError: (message: string) => {
         captureMessage(message, 'error');
-        // eslint-disable-next-line no-console
-        console.error(message);
     },
 
     logException: (error: unknown, extra?: Record<string, unknown>) => {
