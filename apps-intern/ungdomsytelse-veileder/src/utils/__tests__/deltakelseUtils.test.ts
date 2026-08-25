@@ -62,6 +62,14 @@ describe('deltakelseUtils', () => {
             expect(kanEndreStartdato(deltakelse, TODAY)).toBe(false);
         });
 
+        it('false når sluttdato er satt', () => {
+            const deltakelse = lagDeltakelse({
+                fraOgMed: ISODateToDate('2026-03-01'),
+                tilOgMed: ISODateToDate('2026-05-01'),
+            });
+            expect(kanEndreStartdato(deltakelse, TODAY)).toBe(false);
+        });
+
         it('false når ≤2 mnd til periodeMaksDato', () => {
             const deltakelse = lagDeltakelse({
                 fraOgMed: ISODateToDate('2026-03-01'),
@@ -231,7 +239,7 @@ describe('deltakelseUtils', () => {
     });
 
     describe('getDeltakelseHandlinger', () => {
-        it('A1: Ny deltaker, startdato endrbar', () => {
+        it('A1: Ny deltaker, startdato endrebar', () => {
             const deltakelse = lagDeltakelse({ fraOgMed: ISODateToDate('2026-03-01') });
             const h = getDeltakelseHandlinger(deltakelse, TODAY);
             expect(h.kanEndreStartdato.tillatt).toBe(true);
@@ -248,7 +256,7 @@ describe('deltakelseUtils', () => {
             expect(h.kanSletteDeltakelse.tillatt).toBe(true);
         });
 
-        it('B1: Aktiv deltaker, startdato endrbar', () => {
+        it('B1: Aktiv deltaker, startdato endrebar', () => {
             const deltakelse = lagDeltakelse({ fraOgMed: ISODateToDate('2026-03-01'), søktTidspunkt: new Date() });
             const h = getDeltakelseHandlinger(deltakelse, TODAY);
             expect(h.kanEndreStartdato.tillatt).toBe(true);
@@ -281,14 +289,14 @@ describe('deltakelseUtils', () => {
             expect(h.kanForlengePeriode.tillatt).toBe(false);
         });
 
-        it('C1: Utmeldt, startdato endrbar', () => {
+        it('C1: Utmeldt, startdato ikke endrebar', () => {
             const deltakelse = lagDeltakelse({
                 fraOgMed: ISODateToDate('2026-03-01'),
                 søktTidspunkt: new Date(),
                 tilOgMed: ISODateToDate('2026-10-01'),
             });
             const h = getDeltakelseHandlinger(deltakelse, TODAY);
-            expect(h.kanEndreStartdato.tillatt).toBe(true);
+            expect(h.kanEndreStartdato.tillatt).toBe(false);
             expect(h.kanEndreSluttdato.tillatt).toBe(true);
             expect(h.kanMeldesUt.tillatt).toBe(false);
             expect(h.kanForlengePeriode.tillatt).toBe(false);

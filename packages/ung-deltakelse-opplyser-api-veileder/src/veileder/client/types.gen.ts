@@ -4,7 +4,23 @@ export type ClientOptions = {
     baseURL: string & {};
 };
 
+export enum Avslutningsårsak {
+    ARBEID = 'ARBEID',
+    ARBEID_SELVFORSØRGET = 'ARBEID_SELVFORSØRGET',
+    ARBEID_MED_OPPFØLGING_FRA_NAV = 'ARBEID_MED_OPPFØLGING_FRA_NAV',
+    UTDANNING = 'UTDANNING',
+    VIDEREGÅENDE_OPPLÆRING = 'VIDEREGÅENDE_OPPLÆRING',
+    HØYERE_UTDANNING = 'HØYERE_UTDANNING',
+    ANNEN_OPPLÆRING = 'ANNEN_OPPLÆRING',
+    MANGLENDE_DELTAKELSE = 'MANGLENDE_DELTAKELSE',
+    DELTAKER_ØNSKER_IKKE_Å_DELTA = 'DELTAKER_ØNSKER_IKKE_Å_DELTA',
+    FLYTTET = 'FLYTTET',
+    ANDRE_LIVSOPPHOLDSYTELSER = 'ANDRE_LIVSOPPHOLDSYTELSER',
+    ANNET = 'ANNET',
+}
+
 export type DeltakelseDto = {
+    avslutningsårsak?: Avslutningsårsak;
     deltaker: DeltakerDto;
     erSlettet: boolean;
     /**
@@ -48,6 +64,7 @@ export type DeltakelseInnmeldingDto = {
 };
 
 export type DeltakelseUtmeldingDto = {
+    avslutningsårsak?: Avslutningsårsak;
     utmeldingsdato: string;
 };
 

@@ -18,12 +18,19 @@ const nb = {
     'endrePeriodeForm.deltakerErInformert.noValue': 'Du må svare på om deltaker er informert.',
     'endrePeriodeForm.bekrefterEndring.notChecked': 'Du må krysse av for at du bekrefter endringen.',
 
-    'utmeldingsårsak.arbeid': 'Arbeid',
-    'utmeldingsårsak.utdanning': 'Utdanning',
-    'utmeldingsårsak.manglende-deltakelse': 'Manglende deltakelse',
-    'utmeldingsårsak.deltaker-ønsker-ikke-delta': 'Deltakeren ønsker ikke å delta',
-    'utmeldingsårsak.flyttet': 'Flyttet',
-    'utmeldingsårsak.annet': 'Annet',
+    'avslutningsårsak.ARBEID': 'Arbeid', // Deprecated
+    'avslutningsårsak.UTDANNING': 'Utdanning', // Deprecated
+
+    'avslutningsårsak.ANDRE_LIVSOPPHOLDSYTELSER': 'Andre livsoppholdsytelser',
+    'avslutningsårsak.ANNEN_OPPLÆRING': 'Annen opplæring',
+    'avslutningsårsak.ANNET': 'Annet',
+    'avslutningsårsak.ARBEID_MED_OPPFØLGING_FRA_NAV': 'Arbeid, med fortsatt oppfølging og bistand fra Nav',
+    'avslutningsårsak.ARBEID_SELVFORSØRGET': 'Arbeid, selvforsørget',
+    'avslutningsårsak.DELTAKER_ØNSKER_IKKE_Å_DELTA': 'Deltaker ønsker ikke å delta',
+    'avslutningsårsak.FLYTTET': 'Flyttet',
+    'avslutningsårsak.HØYERE_UTDANNING': 'Høyere utdanning',
+    'avslutningsårsak.MANGLENDE_DELTAKELSE': 'Manglende deltakelse',
+    'avslutningsårsak.VIDEREGÅENDE_OPPLÆRING': 'Videregående, inkludert fag- og yrkesopplæring',
 
     'slettDeltakerÅrsak.deltakerStartetIkke': 'Deltaker startet ikke i programmet likevel',
     'slettDeltakerÅrsak.feilDeltakerMeldtInn': 'Veileder har meldt inn feil deltaker',
