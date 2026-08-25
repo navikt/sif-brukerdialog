@@ -20,26 +20,22 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
     [ScenarioType.default]: {
         type: ScenarioType.default,
         name: 'Søknad sendt',
-        data: createScenarioData([getMockOppgaver().søkYtelseOppgaveLøst]),
+        data: createScenarioData([]),
     },
     [ScenarioType.rapporterInntekt]: {
         type: ScenarioType.rapporterInntekt,
         name: 'Oppgave for å melde fra om inntekt',
-        data: createScenarioData([getMockOppgaver().søkYtelseOppgaveLøst, getMockOppgaver().rapporterInntektOppgave]),
+        data: createScenarioData([getMockOppgaver().rapporterInntektOppgave]),
     },
     [ScenarioType.rapporterInntektDelerAvMåned]: {
         type: ScenarioType.rapporterInntektDelerAvMåned,
         name: 'Oppgave for å melde fra om inntekt (deler av måned)',
-        data: createScenarioData([
-            getMockOppgaver().søkYtelseOppgaveLøst,
-            getMockOppgaver().rapporterInntektDelerAvMånedOppgave,
-        ]),
+        data: createScenarioData([getMockOppgaver().rapporterInntektDelerAvMånedOppgave]),
     },
     [ScenarioType.avvikInntekt]: {
         type: ScenarioType.avvikInntekt,
         name: 'Oppgave for å sjekke inntekt (avvik)',
         data: createScenarioData([
-            getMockOppgaver().søkYtelseOppgaveLøst,
             getMockOppgaver().rapporterInntektOppgaveLøst,
             getMockOppgaver().bekreftAvvikOppgave,
         ]),
@@ -48,7 +44,6 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
         type: ScenarioType.avvikInntektDelerAvMåned,
         name: 'Oppgave for å sjekke inntekt (avvik - deler av måned)',
         data: createScenarioData([
-            getMockOppgaver().søkYtelseOppgaveLøst,
             getMockOppgaver().rapporterInntektOppgaveLøst,
             getMockOppgaver().bekreftAvvikOppgaveDelerAvMÅned,
         ]),
@@ -56,7 +51,7 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
     [ScenarioType.bekreftBosted]: {
         type: ScenarioType.bekreftBosted,
         name: 'Oppgave for å bekrefte bosted',
-        data: createScenarioData([getMockOppgaver().søkYtelseOppgaveLøst, getMockOppgaver().bekreftBostedOppgave]),
+        data: createScenarioData([getMockOppgaver().bekreftBostedOppgave]),
     },
 };
 

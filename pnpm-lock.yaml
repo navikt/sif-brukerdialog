@@ -334,9 +334,6 @@ importers:
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/sif-app-register
-      '@navikt/sif-common-core-ds':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-core-ds
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../../packages/sif-common-env
@@ -3943,8 +3940,8 @@ importers:
         version: 14.0.2
     devDependencies:
       '@hey-api/openapi-ts':
-        specifier: 0.99.0
-        version: 0.99.0(magicast@0.5.4)(typescript@6.0.3)
+        specifier: 0.98.2
+        version: 0.98.2(magicast@0.5.4)(typescript@6.0.3)
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config-sif
@@ -3983,8 +3980,8 @@ importers:
         version: 14.0.2
     devDependencies:
       '@hey-api/openapi-ts':
-        specifier: 0.99.0
-        version: 0.99.0(magicast@0.5.4)(typescript@6.0.3)
+        specifier: 0.98.2
+        version: 0.98.2(magicast@0.5.4)(typescript@6.0.3)
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config-sif
@@ -4023,8 +4020,8 @@ importers:
         version: 14.0.2
     devDependencies:
       '@hey-api/openapi-ts':
-        specifier: 0.99.0
-        version: 0.99.0(magicast@0.5.4)(typescript@6.0.3)
+        specifier: 0.98.2
+        version: 0.98.2(magicast@0.5.4)(typescript@6.0.3)
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config-sif
@@ -5080,8 +5077,8 @@ importers:
         version: 14.0.2
     devDependencies:
       '@hey-api/openapi-ts':
-        specifier: 0.99.0
-        version: 0.99.0(magicast@0.5.4)(typescript@6.0.3)
+        specifier: 0.98.2
+        version: 0.98.2(magicast@0.5.4)(typescript@6.0.3)
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config-sif
@@ -5596,8 +5593,8 @@ importers:
         version: 14.0.2
     devDependencies:
       '@hey-api/openapi-ts':
-        specifier: 0.99.0
-        version: 0.99.0(magicast@0.5.4)(typescript@6.0.3)
+        specifier: 0.98.2
+        version: 0.98.2(magicast@0.5.4)(typescript@6.0.3)
       '@navikt/sif-common-env':
         specifier: workspace:*
         version: link:../sif-common-env
@@ -5694,8 +5691,8 @@ importers:
         version: 14.0.2
     devDependencies:
       '@hey-api/openapi-ts':
-        specifier: 0.99.0
-        version: 0.99.0(magicast@0.5.4)(typescript@6.0.3)
+        specifier: 0.98.2
+        version: 0.98.2(magicast@0.5.4)(typescript@6.0.3)
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config-sif
@@ -5737,8 +5734,8 @@ importers:
         version: 14.0.2
     devDependencies:
       '@hey-api/openapi-ts':
-        specifier: 0.99.0
-        version: 0.99.0(magicast@0.5.4)(typescript@6.0.3)
+        specifier: 0.98.2
+        version: 0.98.2(magicast@0.5.4)(typescript@6.0.3)
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config-sif
@@ -5784,9 +5781,6 @@ importers:
       '@navikt/k9-brukerdialog-prosessering-api':
         specifier: workspace:*
         version: link:../k9-brukerdialog-prosessering-api
-      '@navikt/sif-common-core-ds':
-        specifier: workspace:*
-        version: link:../sif-common-core-ds
       '@navikt/sif-common-hooks':
         specifier: workspace:*
         version: link:../sif-common-hooks
@@ -5805,12 +5799,18 @@ importers:
       '@sif/rhf':
         specifier: workspace:*
         version: link:../sif-rhf
+      '@sif/soknad-ui':
+        specifier: workspace:*
+        version: link:../sif-soknad-ui
       '@sif/utils':
         specifier: workspace:*
         version: link:../sif-utils
       '@tanstack/react-query':
         specifier: 5.101.4
         version: 5.101.4(react@19.2.8)
+      dompurify:
+        specifier: 3.4.14
+        version: 3.4.14
       react-hook-form:
         specifier: 7.85.0
         version: 7.85.0(react@19.2.8)
@@ -7332,23 +7332,23 @@ packages:
   '@hapi/topo@5.1.0':
     resolution: {integrity: sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg==}
 
-  '@hey-api/codegen-core@0.9.1':
-    resolution: {integrity: sha512-s97jL1dgTMuiMHv2BZ1X4Tgd99Mf9GOvGdNqNcGwIMmnR+PgYNoraj4Zvp134MKsNCap/m7k0r0vKKnl56pj4w==}
+  '@hey-api/codegen-core@0.9.0':
+    resolution: {integrity: sha512-OK9/R8WuujwgvnrDIPnEiIf6WnfUOi3GaEr6kIngqoI5FUQwYbeDKHE/frTVUl2A76ZQPCrMknHtPx6Gqtwf8Q==}
     engines: {node: '>=22.18.0'}
 
-  '@hey-api/json-schema-ref-parser@1.4.4':
-    resolution: {integrity: sha512-otmd+zCxbYVBIp/mlMTnGkvlNYLkVKgs3VOIq0kSnenhB1+fRwLPQIeSwyWM6E51oXhUedkYjVsVpkVexeuJOA==}
+  '@hey-api/json-schema-ref-parser@1.4.3':
+    resolution: {integrity: sha512-UzGSDzh3QUhrnwl4atnHc2YqDO6KemYVEOwl1Ynowm/tcr0XlpdHOpyWr5UaWIJfiXTXdYRIC9k2Yxm19pcPzQ==}
     engines: {node: '>=22.18.0'}
 
-  '@hey-api/openapi-ts@0.99.0':
-    resolution: {integrity: sha512-SePU/5oEWWkvUBYmvzdYRctseoLuskyhs4ET0RvLIcmzc8yLQoA2R+KtBIQ8bPsoSUB0m4E5SmBnl6aGSA0szQ==}
+  '@hey-api/openapi-ts@0.98.2':
+    resolution: {integrity: sha512-2nVJXH8tpFPGTBOhxyjEd1Jw0hsRqJqeTQW3kltAjVdSU4YWxeu97x5sgNOmsbsfeg6Dqz7Wfzs26walBOuswA==}
     engines: {node: '>=22.18.0'}
     hasBin: true
     peerDependencies:
       typescript: '>=5.5.3 || >=6.0.0 || 6.0.1-rc'
 
-  '@hey-api/shared@0.5.0':
-    resolution: {integrity: sha512-JN/j4Ebh4cJGYIQ5cwWuqe7GeSUyQoz7oC51WqyhKOcrejK6DKZMDkshc5d1eKTRuRL+rjozuRcoUaZZn2DGPw==}
+  '@hey-api/shared@0.4.8':
+    resolution: {integrity: sha512-29Pg2FB0UW20pplYgcfiQn1hQYpbZ9D2gdDJc7nDK3xh3pvHOTGP0v3R2ueFpFnw9GN1SRhIdhiVuAYWMDimjA==}
     engines: {node: '>=22.18.0'}
 
   '@hey-api/spec-types@0.2.0':
@@ -13767,10 +13767,6 @@ packages:
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
-  js-yaml@3.15.0:
-    resolution: {integrity: sha512-ttBQIIQPDeLjpPOohtUdXuXUVoA2uIB6fEH9HyJ7234s5mBJ5wTx20njxplLZQgLaOfpmPQA7X2t5AX6tIPbog==}
-    hasBin: true
-
   js-yaml@3.15.1:
     resolution: {integrity: sha512-S99WuO3HlhO3XN41EtYUNl9zzXjoJx7QvmipxsJVxtCBT0YHEFy+iOJhjSvrmV12nYhWpZaM8lPHkJm0yUMbag==}
     hasBin: true
@@ -15978,6 +15974,11 @@ packages:
 
   semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
+    hasBin: true
+
+  semver@7.8.2:
+    resolution: {integrity: sha512-c8jsqUZm3omBOI66G90z1Dyw5z622G8oLG+omfsHBJf3CWQTlOcwOjvOG6wtiNfW6anKm/eA39LMwMtMez2TiQ==}
+    engines: {node: '>=10'}
     hasBin: true
 
   semver@7.8.4:
@@ -19016,7 +19017,7 @@ snapshots:
     dependencies:
       '@hapi/hoek': 9.3.0
 
-  '@hey-api/codegen-core@0.9.1(magicast@0.5.4)':
+  '@hey-api/codegen-core@0.9.0(magicast@0.5.4)':
     dependencies:
       '@hey-api/types': 0.1.4
       ansi-colors: 4.1.3
@@ -19025,17 +19026,17 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  '@hey-api/json-schema-ref-parser@1.4.4':
+  '@hey-api/json-schema-ref-parser@1.4.3':
     dependencies:
       '@jsdevtools/ono': 7.1.3
       '@types/json-schema': 7.0.15
       js-yaml: 4.3.1
 
-  '@hey-api/openapi-ts@0.99.0(magicast@0.5.4)(typescript@6.0.3)':
+  '@hey-api/openapi-ts@0.98.2(magicast@0.5.4)(typescript@6.0.3)':
     dependencies:
-      '@hey-api/codegen-core': 0.9.1(magicast@0.5.4)
-      '@hey-api/json-schema-ref-parser': 1.4.4
-      '@hey-api/shared': 0.5.0(magicast@0.5.4)
+      '@hey-api/codegen-core': 0.9.0(magicast@0.5.4)
+      '@hey-api/json-schema-ref-parser': 1.4.3
+      '@hey-api/shared': 0.4.8(magicast@0.5.4)
       '@hey-api/spec-types': 0.2.0
       '@hey-api/types': 0.1.4
       '@lukeed/ms': 2.0.2
@@ -19047,16 +19048,16 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  '@hey-api/shared@0.5.0(magicast@0.5.4)':
+  '@hey-api/shared@0.4.8(magicast@0.5.4)':
     dependencies:
-      '@hey-api/codegen-core': 0.9.1(magicast@0.5.4)
-      '@hey-api/json-schema-ref-parser': 1.4.4
+      '@hey-api/codegen-core': 0.9.0(magicast@0.5.4)
+      '@hey-api/json-schema-ref-parser': 1.4.3
       '@hey-api/spec-types': 0.2.0
       '@hey-api/types': 0.1.4
       ansi-colors: 4.1.3
       cross-spawn: 7.0.6
       open: 11.0.0
-      semver: 7.8.4
+      semver: 7.8.2
     transitivePeerDependencies:
       - magicast
 
@@ -19474,7 +19475,7 @@ snapshots:
       camelcase: 5.3.1
       find-up: 4.1.0
       get-package-type: 0.1.0
-      js-yaml: 3.15.0
+      js-yaml: 3.15.1
       resolve-from: 5.0.0
 
   '@istanbuljs/schema@0.1.6': {}
@@ -24050,7 +24051,7 @@ snapshots:
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.1
-      js-yaml: 4.3.0
+      js-yaml: 4.3.1
       parse-json: 5.2.0
     optionalDependencies:
       typescript: 6.0.3
@@ -26549,11 +26550,6 @@ snapshots:
   js-tokens@10.0.0: {}
 
   js-tokens@4.0.0: {}
-
-  js-yaml@3.15.0:
-    dependencies:
-      argparse: 1.0.10
-      esprima: 4.0.1
 
   js-yaml@3.15.1:
     dependencies:
@@ -29230,6 +29226,8 @@ snapshots:
   semver@5.7.2: {}
 
   semver@6.3.1: {}
+
+  semver@7.8.2: {}
 
   semver@7.8.4: {}
 

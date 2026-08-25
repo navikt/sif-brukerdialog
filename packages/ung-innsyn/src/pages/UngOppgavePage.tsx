@@ -2,7 +2,7 @@ import { Oppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 
 import { useUngUiIntl } from '../i18n';
 import { AvvikRegisterinntektOppgavePanel } from '../modules/oppgavepaneler/avvik-registerinntekt/AvvikRegisterinntektOppgavePanel';
-import { BostedVilkårOppgavePanel } from '../modules/oppgavepaneler/bostedsvilkar/BostedVilkarOppgavePanel';
+import { BostedVilkårOppgavePanel } from '../modules/oppgavepaneler/bostedsvilkar-periode/BostedVilkarOppgavePanel';
 import { BostedVilkårOpphørOppgavePanel } from '../modules/oppgavepaneler/bostedsvilkar-opphor/BostedVilkarOpphorOppgavePanel';
 import { EndretSluttdatoOppgavePanel } from '../modules/oppgavepaneler/endret-sluttdato/EndretSluttdatoOppgavePanel';
 import { EndretStartOgSluttdatoOppgavePanel } from '../modules/oppgavepaneler/endret-start-og-sluttdato/EndretStartOgSluttdatoOppgavePanel';

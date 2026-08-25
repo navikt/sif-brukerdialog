@@ -1,5 +1,6 @@
 import { Box } from '@navikt/ds-react';
-import PageBoundary from '@navikt/sif-common-core-ds/src/components/page-boundary/PageBoundary';
+import { InnsynPageBoundary } from '@sif/ung-innsyn/components';
+
 import { useDocumentTitle } from '@navikt/sif-common-hooks';
 import React, { useEffect } from 'react';
 
@@ -12,11 +13,11 @@ interface Props {
 }
 
 const PageContentWrapper = ({ children }: { children: React.ReactNode }) => (
-    <PageBoundary>
+    <InnsynPageBoundary>
         <Box paddingBlock="space-40" className="mx-auto">
             {children}
         </Box>
-    </PageBoundary>
+    </InnsynPageBoundary>
 );
 
 export const UngInnsynPage = ({ documentTitle, children, footer }: Props) => {

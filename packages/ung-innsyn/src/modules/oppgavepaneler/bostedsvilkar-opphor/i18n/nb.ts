@@ -1,25 +1,27 @@
+import { oppgavebekreftelse_nb as felles } from '../../../oppgavebekreftelse/i18n/nb';
 export const bostedVilkårOpphørMessages_nb = {
-    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED_OPPHØR.paneltittel': 'Bekrefte bostedopphør for aktivitetspenger',
-    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED_OPPHØR.oppgavetittel': 'Bekrefte bostedopphør for aktivitetspenger',
-    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED_OPPHØR.info': 'Det er registrert ny informasjon om hvor du bor.',
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED_OPPHØR.paneltittel':
+        felles['@ungInnsyn.oppgavebekreftelse.felles.paneltittel'],
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED_OPPHØR.oppgavetittel':
+        felles['@ungInnsyn.oppgavebekreftelse.felles.oppgavetittel'],
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED_OPPHØR.info': felles['@ungInnsyn.oppgavebekreftelse.felles.info'],
     '@ungInnsyn.oppgavetype.BEKREFT_BOSTED_OPPHØR.harTilbakemeldingSpørsmål':
-        'Har du en tilbakemelding på bostedsvilkåret?',
-    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED_OPPHØR.harIkkeUttalelseLabel': 'Nei',
-    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED_OPPHØR.harUttalelseLabel': 'Ja',
-    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED_OPPHØR.tilbakemeldingFritekstLabel': 'Tilbakemelding',
-    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED_OPPHØR.kvitteringTekst': 'Du vil om kort tid motta et oppdatert vedtak.',
+        felles['@ungInnsyn.oppgavebekreftelse.felles.harTilbakemeldingSpørsmål'],
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED_OPPHØR.harIkkeUttalelseLabel':
+        felles['@ungInnsyn.oppgavebekreftelse.felles.harIkkeUttalelseLabel'],
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED_OPPHØR.harUttalelseLabel':
+        felles['@ungInnsyn.oppgavebekreftelse.felles.harUttalelseLabel'],
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED_OPPHØR.tilbakemeldingFritekstLabel':
+        felles['@ungInnsyn.oppgavebekreftelse.felles.tilbakemeldingFritekstLabel'],
+    '@ungInnsyn.oppgavetype.BEKREFT_BOSTED_OPPHØR.kvitteringTekst':
+        felles['@ungInnsyn.oppgavebekreftelse.felles.kvitteringTekst'],
 
-    '@ungInnsyn.bostedVilkårOpphørOppgave.tekst.1':
-        'Du har fått en oppgave om å bekrefte bostedopphør for aktivitetspenger.',
-    '@ungInnsyn.bostedVilkårOpphørOppgave.tekst.1b': 'Fra og med: {fom}, Bor du i Trondheim: {erBosattITrondheim}',
-    '@ungInnsyn.bostedVilkårOpphørOppgave.tekst.2':
-        'Du får denne meldingen slik at du kan komme med en tilbakemelding på dette.',
-    '@ungInnsyn.bostedVilkårOpphørOppgave.tekst.3':
-        'Ingen tilbakemelding? Kryss av på "Nei" med en gang og send inn svaret ditt. Jo fortere du svarer, jo fortere får vi behandlet saken din.',
-    '@ungInnsyn.bostedVilkårOpphørOppgave.tekst.4':
-        'Har du en tilbakemelding? Ta kontakt med [veileder|saksbehandler|nks] din først. Når dere har snakket sammen, sender du inn svaret ditt her.',
-    '@ungInnsyn.bostedVilkårOpphørOppgave.tekst.5': 'Fristen for å svare er senest {formatertFrist}.',
-    '@ungInnsyn.bostedVilkårOpphørOppgave.tekst.6': 'Hvis vi ikke hører fra deg innen svarfristen har gått ut, vil ...',
-    '@ungInnsyn.bostedVilkårOpphørOppgave.oppsummering':
-        'Du har fått en oppgave om å bekrefte bostedopphør for aktivitetspenger.',
+    '@ungInnsyn.bostedVilkårOpphørOppgave.IKKE_BOSATTADRESSE_I_TRONDHEIM':
+        'Vi har fått opplysninger om at du fra {fom} ikke lenger bor (har bostedsadresse) i Trondheim kommune. Du må ha bostedsadresse i Trondheim kommune for å få aktivitetspenger.',
+    '@ungInnsyn.bostedVilkårOpphørOppgave.IKKE_BOSTEDSADRESSE_OG_IKKE_FOLKEREGISTRERT_I_TRONDHEIM':
+        'Vi har fått opplysninger om at du fra {fom} ikke lenger bor (har bostedsadresse) i Trondheim kommune, og at du heller ikke er folkeregistrert der. Du må ha bostedsadresse i Trondheim kommune for å få aktivitetspenger.',
+    '@ungInnsyn.bostedVilkårOpphørOppgave.STUDIE_ELLER_ARBEIDSSTED_UTENFOR_TRONDHEIM':
+        'Vi har fått opplysninger om at du fra {fom} ikke lenger har studie- eller arbeidssted i Trondheim kommune. Du må bo i Trondheim kommune for å få aktivitetspenger.',
+    '@ungInnsyn.bostedVilkårOpphørOppgave.ANNET':
+        'Vi har fått opplysninger om at du fra {fom} ikke lenger bor i Trondheim kommune. Du må bo i Trondheim kommune for å få aktivitetspenger.',
 };

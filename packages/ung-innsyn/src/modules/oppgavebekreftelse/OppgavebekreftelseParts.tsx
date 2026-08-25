@@ -1,8 +1,9 @@
-import { Alert, Box, FormSummary, GuidePanel, Heading, VStack } from '@navikt/ds-react';
+import { Alert, Box, FormSummary, Heading, VStack } from '@navikt/ds-react';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { TextareaSvar } from '@navikt/sif-common-ui';
 import { OppgaveResponsDto, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { useEffect, useRef } from 'react';
+import { SifGuidePanel } from '@sif/soknad-ui';
 
 import { ForsideLenkeButton, OppgaveStatusInfo } from '../../components';
 
@@ -13,7 +14,7 @@ import { getSvaralternativer, getTilbakemeldingFritekstLabel, getTilbakemeldingS
 import { UtalelseForm } from '../forms/uttalelse-form/UtalelseForm';
 import { useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
 import { RegelverkOgInnsynReadMore } from '../../components/readmore/RegelverkOgInnsynReadMore';
-import { getLovLenkerForOppgave } from '../oppgavepaneler/utils/lovverk';
+import { getLovLenker } from '../oppgavepaneler/oppgaveLovverk';
 
 interface OppgaveOgTilbakemeldingProps {
     beskjedFraNav: React.ReactNode;
@@ -89,20 +90,19 @@ const Ubesvart = ({ children }: UbesvartProps) => {
     return (
         <VStack gap="space-32">
             <section aria-label={intl.text('@ungInnsyn.oppgavebekreftelse.oppgavetekst.ariaLabel')}>
-                <GuidePanel>
+                <SifGuidePanel>
                     <VStack gap="space-16">
                         <Heading level="2" size="medium">
                             <UngUiText id="@ungInnsyn.oppgavebekreftelse.ubesvart.tittel" values={{ navn }} />
                         </Heading>
+
                         <Box maxWidth="90%">{children}</Box>
+
                         <Box marginBlock="space-0 space-16">
-                            <RegelverkOgInnsynReadMore
-                                ytelsetype={oppgave.ytelsetype}
-                                lenker={getLovLenkerForOppgave(oppgave.oppgavetype, oppgave.ytelsetype)}
-                            />
+                            <RegelverkOgInnsynReadMore ytelsetype={oppgave.ytelsetype} lenker={getLovLenker(oppgave)} />
                         </Box>
                     </VStack>
-                </GuidePanel>
+                </SifGuidePanel>
             </section>
             <section aria-label={intl.text('@ungInnsyn.oppgavebekreftelse.uttalelseform.ariaLabel')}>
                 <UtalelseForm

@@ -22,7 +22,7 @@ import dayjs from 'dayjs';
 
 import {
     AvvikRegisterinntektOppgave,
-    BostedVilkårOppgave,
+    BostedVilkårPeriodeOppgave,
     BostedVilkårOpphørOppgave,
     EndretSluttdatoOppgave,
     EndretStartdatoOppgave,
@@ -223,7 +223,7 @@ const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
 
     /** Avslag i en periode */
     if (oppgavetypeData.type === 'BOSTED') {
-        const bostedVilkårOppgave: BostedVilkårOppgave = {
+        const bostedVilkårPeriodeOppgave: BostedVilkårPeriodeOppgave = {
             ...getOppgaveBaseProps(oppgave),
             parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED,
             oppgavetypeData: {
@@ -237,7 +237,7 @@ const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
             },
             respons: parseSvarPåVarselRespons(oppgave.respons),
         };
-        return bostedVilkårOppgave;
+        return bostedVilkårPeriodeOppgave;
         /** Opphør fra en date */
     } else {
         const bostedVilkårOpphørOppgave: BostedVilkårOpphørOppgave = {
@@ -255,10 +255,7 @@ const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
     }
 };
 
-export const parseOppgaverElement = (
-    oppgaveYtelsetype: OppgaveYtelsetype,
-    oppgaver: BrukerdialogOppgaveDto[],
-): Oppgave[] => {
+export const parseOppgaver = (oppgaveYtelsetype: OppgaveYtelsetype, oppgaver: BrukerdialogOppgaveDto[]): Oppgave[] => {
     const parsedOppgaver: Oppgave[] = [];
     oppgaver.forEach((oppgave) => {
         switch (oppgave.oppgavetype) {
