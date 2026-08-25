@@ -8,7 +8,7 @@ export const fetchBarn = async (): Promise<RegistrertBarn[]> => {
         const barn = barnResponseSchema.parse(response.data).barn;
         return barn;
     } catch (e) {
-        console.error('ZOD parse error', e instanceof Error ? e.message : String(e));
+        console.error('ZOD parse error', e);
         throw e;
     }
 };

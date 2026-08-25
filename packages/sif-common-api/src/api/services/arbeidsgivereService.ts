@@ -18,13 +18,13 @@ export const fetchArbeidsgivere = async ({
             params: { fra_og_med: dateToISODate(from), til_og_med: dateToISODate(to), frilansoppdrag },
         });
     } catch (e) {
-        console.error('fetchArbeidsgivere network error', e instanceof Error ? e.message : String(e));
+        console.error('fetchArbeidsgivere network error', e);
         throw e;
     }
     try {
         return arbeidsgivereResponseSchema.parse(response.data);
     } catch (e) {
-        console.error('fetchArbeidsgivere ZOD parse error', e instanceof Error ? e.message : String(e));
+        console.error('fetchArbeidsgivere ZOD parse error', e);
         return {
             organisasjoner: [],
             privateArbeidsgivere: [],

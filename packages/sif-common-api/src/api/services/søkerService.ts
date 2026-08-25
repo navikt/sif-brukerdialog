@@ -7,7 +7,7 @@ export const fetchSøker = async (): Promise<Søker> => {
     try {
         return søkerResponseSchema.parse(response.data);
     } catch (e) {
-        console.error('ZOD parse error', e instanceof Error ? e.message : String(e));
+        console.error('ZOD parse error', e);
         throw e;
     }
 };
