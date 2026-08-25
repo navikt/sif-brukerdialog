@@ -5018,8 +5018,8 @@ importers:
         specifier: 2.5.1
         version: 2.5.1
       dompurify:
-        specifier: 3.4.14
-        version: 3.4.14
+        specifier: 3.4.13
+        version: 3.4.13
       react-day-picker:
         specifier: 9.14.0
         version: 9.14.0(react@19.2.8)
@@ -5894,8 +5894,8 @@ importers:
         specifier: 5.101.4
         version: 5.101.4(react@19.2.8)
       dompurify:
-        specifier: 3.4.12
-        version: 3.4.12
+        specifier: 3.4.13
+        version: 3.4.13
       react-hook-form:
         specifier: 7.86.0
         version: 7.86.0(react@19.2.8)
@@ -8191,9 +8191,6 @@ packages:
       '@types/react': ^17.0.30 || ^18 || ^19
       react: ^17 || ^18 || ^19
       react-dom: ^17 || ^18 || ^19
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
 
   '@navikt/ds-tailwind@8.16.1':
     resolution: {integrity: sha512-yoiqJ8ZzJTjXPnBjlJmCSL/0m2KOT7BW5JUACE9tvs+2aZxVjre7SBdIPRgphaJqT7JWql8TI+EKxX1kQoNKCQ==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tailwind/8.16.1/6fab9ceadb1c13b313023ac10dbb63804b76d2ee}
@@ -8210,9 +8207,6 @@ packages:
     peerDependencies:
       html-react-parser: '>=5.x'
       react: '>=17.x'
-    peerDependenciesMeta:
-      react:
-        optional: true
 
   '@navikt/next-logger@5.0.0':
     resolution: {integrity: sha512-VQ2VM/k5uDYnb7BYG3ITJZgMZq8B3TECOnhdvNOQeltJyy8+KQzGqLsrYajKPWuUiPuLjYFk0HbU2W22onB9mQ==, tarball: https://npm.pkg.github.com/download/@navikt/next-logger/5.0.0/510dccac519d1227515e4c8a8268570d90305b3e}
@@ -9525,8 +9519,8 @@ packages:
       react-dom: ^19.2
       styled-components: ^6.1
 
-  '@sanity/ui@5.0.0-alpha.4':
-    resolution: {integrity: sha512-+YGO6vlZUOBqQ+2+UTkbutxiRhnM4EE0JKVfnsNDcye3JYNGf4ZcapdSCW6QKMOwIbBnLSjan+2th14whRLgWg==}
+  '@sanity/ui@5.0.0-alpha.5':
+    resolution: {integrity: sha512-wNVAxvbs9td//7Yth1tq1WNz19YyFZrSZQKt9cp703Yvy9/O56uVIz2SBIeBET9EjWBv2FMmRrCAetZRMYrqDQ==}
     engines: {node: '>=20.19 <22 || >=22.12'}
     hasBin: true
     peerDependencies:
@@ -12118,11 +12112,8 @@ packages:
     resolution: {integrity: sha512-gYzvtM72ZtxQO0T048kd6HWSbbGCNOUwcnfQ01cqIJ4X2IYKFFHZ5mKvrQETcFXxsRObZulDaKmy//R7TPtsBg==}
     engines: {node: '>=20.19.0'}
 
-  dompurify@3.4.12:
-    resolution: {integrity: sha512-zQvGet8Z2sWbQhCmfFz/T5QWH2oBmjnqK3qvOjaqaNLrLEF912WamU+ohnTp0TCep/MFVHpdJuCZEdFOdTnEFg==}
-
-  dompurify@3.4.14:
-    resolution: {integrity: sha512-dVoH9z+MY+C9IilgGCk3YfFqjLi3fChm2OiKJMzh6axrJ5qwxqWaZamgmHrpv22CN/KdbZJuGEGgfQoL00LTdg==}
+  dompurify@3.4.13:
+    resolution: {integrity: sha512-2vmYIoqjze2d+kakP8S/nS5shfsl587kzwEjcGlTdiksUVgFHnFCsLYDVj/JNqJVOQZGSYBTmuycv0PodwmnMQ==}
 
   domutils@1.7.0:
     resolution: {integrity: sha512-Lgd2XcJ/NjEw+7tFvfKxOzCYKZsdct5lczQ2ZaQY8Djz7pfAD3Gbp8ySJWtreII/vDlMVmxwa6pHmdxIYgttDg==}
@@ -19984,12 +19975,11 @@ snapshots:
       '@floating-ui/react-dom': 2.1.9(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@navikt/aksel-icons': 8.16.1
       '@navikt/ds-tokens': 8.16.1
+      '@types/react': 19.2.18
       date-fns: 4.4.0
       react: 19.2.8
       react-day-picker: 10.0.1(@types/react@19.2.18)(react@19.2.8)
       react-dom: 19.2.8(react@19.2.8)
-    optionalDependencies:
-      '@types/react': 19.2.18
 
   '@navikt/ds-tailwind@8.16.1': {}
 
@@ -20003,7 +19993,6 @@ snapshots:
       csp-header: 6.3.1
       html-react-parser: 6.1.7(@types/react@19.2.18)(react@19.2.8)
       js-cookie: 3.0.8
-    optionalDependencies:
       react: 19.2.8
 
   '@navikt/next-logger@5.0.0(next@16.3.2(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@playwright/test@1.62.1)(@types/node@26.2.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sass@1.103.1))(pino@10.3.1)':
@@ -21413,7 +21402,7 @@ snapshots:
       styled-components: 6.5.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       use-effect-event: 2.0.3(react@19.2.8)
 
-  '@sanity/ui@5.0.0-alpha.4(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
+  '@sanity/ui@5.0.0-alpha.5(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
     dependencies:
       '@sanity-labs/design-tokens': 0.0.2-alpha.4
       '@sanity/icons': 3.8.0(react@19.2.8)
@@ -24469,11 +24458,7 @@ snapshots:
     dependencies:
       domelementtype: 3.0.0
 
-  dompurify@3.4.12:
-    optionalDependencies:
-      '@types/trusted-types': 2.0.7
-
-  dompurify@3.4.14:
+  dompurify@3.4.13:
     optionalDependencies:
       '@types/trusted-types': 2.0.7
 
@@ -26161,7 +26146,7 @@ snapshots:
 
   isomorphic-dompurify@2.36.0(@noble/hashes@2.3.0):
     dependencies:
-      dompurify: 3.4.14
+      dompurify: 3.4.13
       jsdom: 28.1.0(@noble/hashes@2.3.0)
     transitivePeerDependencies:
       - '@noble/hashes'
@@ -29126,7 +29111,7 @@ snapshots:
       speakingurl: 14.0.1
       styled-components: 6.5.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       swr: 2.5.1(react@19.2.8)
-      ui5: '@sanity/ui@5.0.0-alpha.4(react-dom@19.2.8(react@19.2.8))(react@19.2.8)'
+      ui5: '@sanity/ui@5.0.0-alpha.5(react-dom@19.2.8(react@19.2.8))(react@19.2.8)'
       urlpattern-polyfill: 10.1.0
       use-device-pixel-ratio: 1.1.2(react@19.2.8)
       use-effect-event: 2.0.3(react@19.2.8)
