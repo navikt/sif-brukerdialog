@@ -47,21 +47,19 @@ export const SøknadAppProvider = ({
     children,
 }: PropsWithChildren<SøknadAppProviderProps>) => {
     return (
-        <>
-            <AppErrorBoundary>
-                <SifQueryClientProvider>
-                    <AnalyticsProvider applicationKey={applicationKey} isActive={analyticsConfig?.isActive}>
-                        <UxSignalsLoaderProvider>
-                            <AppIntlProvider config={intlConfig}>
-                                <AppStatusChildren applicationKey={applicationKey} appStatusConfig={appStatusConfig}>
-                                    {children}
-                                </AppStatusChildren>
-                            </AppIntlProvider>
-                        </UxSignalsLoaderProvider>
-                    </AnalyticsProvider>
-                </SifQueryClientProvider>
-            </AppErrorBoundary>
+        <AppErrorBoundary>
+            <SifQueryClientProvider>
+                <AnalyticsProvider applicationKey={applicationKey} isActive={analyticsConfig?.isActive}>
+                    <UxSignalsLoaderProvider>
+                        <AppIntlProvider config={intlConfig}>
+                            <AppStatusChildren applicationKey={applicationKey} appStatusConfig={appStatusConfig}>
+                                {children}
+                            </AppStatusChildren>
+                        </AppIntlProvider>
+                    </UxSignalsLoaderProvider>
+                </AnalyticsProvider>
+            </SifQueryClientProvider>
             <DevBranchInfo />
-        </>
+        </AppErrorBoundary>
     );
 };

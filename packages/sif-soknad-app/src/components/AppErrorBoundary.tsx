@@ -1,5 +1,5 @@
 import { appLogger } from '@sif/apm';
-import { AppErrorFallback } from '@sif/soknad-ui';
+import { FallbackErrorPage } from '@sif/soknad-ui';
 import React, { ReactNode } from 'react';
 
 interface State {
@@ -22,7 +22,7 @@ export class AppErrorBoundary extends React.Component<{ children: ReactNode }, S
 
     render() {
         if (this.state.hasError) {
-            return <AppErrorFallback />;
+            return <FallbackErrorPage />;
         }
         return this.props.children;
     }
