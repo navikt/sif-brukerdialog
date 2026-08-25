@@ -9,7 +9,8 @@
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
-        "lint:tsc": "tsc --noEmit"
+        "lint:tsc": "tsc --noEmit",
+        "test": "vitest run"
     },
     "dependencies": {
         "@nais/apm": "0.6.0",
@@ -21,6 +22,7 @@
         "@sif/eslint-config": "workspace:*",
         "@types/node": "26.1.2",
         "config": "workspace:*",
-        "typescript": "6.0.3"
+        "typescript": "6.0.3",
+        "vitest": "4.1.11"
     }
 }
