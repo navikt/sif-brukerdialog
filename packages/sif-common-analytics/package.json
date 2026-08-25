@@ -1,6 +1,6 @@
 {
     "name": "@navikt/sif-common-analytics",
-    "version": "0.0.7",
+    "version": "0.1.0",
     "description": "Analytics log util used in SIF",
     "type": "module",
     "main": "src/index.ts",

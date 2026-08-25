@@ -1,5 +1,13 @@
 # @sif/sif-innsyn-api
 
+## 0.3.22
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-api@0.5.0
+    - @navikt/sif-common-env@0.2.0
+
 ## 0.3.21
 
 ### Patch Changes

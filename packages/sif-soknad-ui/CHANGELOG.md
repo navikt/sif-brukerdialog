@@ -1,5 +1,18 @@
 # @sif/soknad-ui
 
+## 0.2.0
+
+### Minor Changes
+
+- Erstatte all bruk av sentry med nais/apm
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-env@0.2.0
+    - @sif/api@0.1.2
+    - @navikt/sif-common-hooks@0.3.11
+
 ## 0.1.1
 
 ### Patch Changes

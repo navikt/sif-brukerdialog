@@ -1,5 +1,17 @@
 # @sif/rhf
 
+## 0.2.0
+
+### Minor Changes
+
+- Erstatte all bruk av sentry med nais/apm
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-ui@0.12.0
+    - @navikt/sif-common-hooks@0.3.11
+
 ## 0.1.0
 
 ### Minor Changes

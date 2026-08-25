@@ -1,5 +1,20 @@
 # @navikt/dine-pleiepenger
 
+## 2.3.0
+
+### Minor Changes
+
+- Erstatte all bruk av sentry med nais/apm
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-app-register@0.2.0
+    - @navikt/sif-common-analytics@0.1.0
+    - @navikt/sif-common-core-ds@10.4.0
+    - @sif/apm@0.2.0
+    - @navikt/sif-common-hooks@0.3.11
+
 ## 2.2.17
 
 ### Patch Changes

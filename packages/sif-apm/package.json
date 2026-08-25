@@ -1,6 +1,6 @@
 {
     "name": "@sif/apm",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "private": true,
     "description": "APM-logging for Sykdom i familien — wrapper rundt @nais/apm",
     "author": "navikt",

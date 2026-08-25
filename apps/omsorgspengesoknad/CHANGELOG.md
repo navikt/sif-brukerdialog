@@ -1,5 +1,27 @@
 # @navikt/omsorgspengesoknad
 
+## 1.42.0
+
+### Minor Changes
+
+- Erstatte all bruk av sentry med nais/apm
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-app-register@0.2.0
+    - @navikt/sif-common-analytics@0.1.0
+    - @navikt/sif-common-api@0.5.0
+    - @navikt/sif-common-core-ds@10.4.0
+    - @navikt/sif-common-env@0.2.0
+    - @navikt/sif-common-formik-ds@2.6.0
+    - @navikt/sif-common-soknad-ds@26.2.0
+    - @navikt/sif-common-ui@0.12.0
+    - @sif/apm@0.2.0
+    - @navikt/sif-common-forms-ds@21.0.60
+    - @navikt/sif-common-hooks@0.3.11
+    - @navikt/sif-validation@1.0.22
+
 ## 1.41.74
 
 ### Patch Changes

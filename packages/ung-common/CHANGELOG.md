@@ -1,5 +1,13 @@
 # @navikt/ung-common
 
+## 0.0.104
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-env@0.2.0
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.14
+
 ## 0.0.103
 
 ### Patch Changes
