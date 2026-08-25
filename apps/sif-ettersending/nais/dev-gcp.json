@@ -5,7 +5,12 @@
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
-    "accessPolicyOutApps": [{ "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" }],
+    "accessPolicyOutApps": [
+        {
+            "application": "k9-brukerdialog-prosessering",
+            "namespace": "dusseldorf"
+        }
+    ],
     "ingresses": ["https://k9-ettersending-soknad.intern.dev.nav.no"],
     "cluster": "dev-gcp",
     "minReplicas": 1,
@@ -27,10 +32,8 @@
         "NODE_ENV": "development",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/ettersending",
 
-        "SIF_PUBLIC_ANALYTICS_API_KEY": "default",
         "SIF_PUBLIC_USE_ANALYTICS": "true",
         "SIF_PUBLIC_APPSTATUS_DATASET": "production",
-
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
         "SIF_PUBLIC_DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&logoutUrl=https://k9-ettersending-soknad.intern.dev.nav.no/oauth2/logout&redirectToApp=true",
         "SIF_PUBLIC_ENDRINGSMELDING_PP": "https://endringsmelding-pleiepenger.intern.dev.nav.no",
@@ -41,9 +44,9 @@
         "SIF_PUBLIC_FEATURE_NYNORSK": "on",
         "SIF_PUBLIC_FEATURE_OPPLARINGSPENGER_VELG_BARN": "on",
         "SIF_PUBLIC_FEATURE_OPPLARINGSPENGER_VELG_DOKUMENTTYPE": "on",
-
         "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "dev-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/ettersending/api/k9-brukerdialog"
-    }
+    },
+    "faro": true
 }

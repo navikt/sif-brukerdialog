@@ -1,7 +1,6 @@
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { ErrorPage, SoknadErrorMessages } from '@navikt/sif-common-soknad-ds';
-
-import appSentryLogger from '../../utils/appSentryLogger';
+import { appLogger } from '@sif/apm';
 
 interface Props {
     pathName: string;
@@ -10,7 +9,7 @@ interface Props {
 
 const UnknownRoutePage = ({ pathName, onReset }: Props) => {
     useEffectOnce(() => {
-        appSentryLogger.logError('UnknownRoute', pathName);
+        appLogger.logError(`UnknownRoute: ${pathName}`);
     });
     return (
         <ErrorPage

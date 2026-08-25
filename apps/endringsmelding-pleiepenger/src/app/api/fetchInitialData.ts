@@ -8,14 +8,12 @@ import {
     SøknadInitialIkkeTilgang,
     UgyldigK9SakFormat,
 } from '@app/types';
-import { appSentryLogger } from '@app/utils';
 import { fetchSøker, Søker } from '@navikt/sif-common-api';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { getMaybeEnv } from '@navikt/sif-common-env';
 import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
+import { appLogger } from '@sif/apm';
 
 import { IngenTilgangMeta, isSøknadInitialDataErrorState } from '../hooks/useSøknadInitialData';
-import { maskK9Sak } from '../utils/getSakOgArbeidsgivereDebugInfo';
 import { getPeriodeForArbeidsgiverOppslag } from '../utils/initialDataUtils';
 import { getSamletDateRangeForK9Saker } from '../utils/k9SakUtils';
 import { tilgangskontroll } from '../utils/tilgangskontroll';
@@ -38,7 +36,7 @@ export const fetchInitialData = async (
     const [søker, k9sakerResult] = await Promise.all([fetchSøker(), sakerEndpoint.fetch()]);
 
     if (k9sakerResult.k9Saker.length === 0 && k9sakerResult.eldreSaker.length === 0) {
-        appSentryLogger.logInfo('fetchInitialData.ingenSaker');
+        appLogger.logInfo('fetchInitialData.ingenSaker');
     }
 
     const handleInitialDataError = (error: any) => {
@@ -161,24 +159,6 @@ const kontrollerTilgang = async (k9saker: K9Sak[], tillattEndringsperiode: DateR
     const resultat = tilgangskontroll(k9saker, tillattEndringsperiode);
     if (resultat.kanBrukeSøknad) {
         return Promise.resolve(true);
-    }
-    if (getMaybeEnv('SIF_PUBLIC_DEBUG') === 'true') {
-        if (k9saker.length === 1) {
-            appSentryLogger.logInfo(
-                'IkkeTilgangSakInfo',
-                JSON.stringify({
-                    årsak: resultat.årsak,
-                    sak: maskK9Sak(k9saker[0]),
-                }),
-            );
-        } else {
-            appSentryLogger.logInfo(
-                'IkkeTilgangSakInfo',
-                JSON.stringify({
-                    årsak: resultat.årsak,
-                }),
-            );
-        }
     }
 
     return Promise.reject(getKanIkkeBrukeSøknadRejection(resultat.årsak, resultat.ingenTilgangMeta));

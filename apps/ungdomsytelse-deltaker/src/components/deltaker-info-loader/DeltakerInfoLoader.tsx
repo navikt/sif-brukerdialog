@@ -16,7 +16,7 @@ import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
 import IngenDeltakelsePage from '../../pages/IngenDeltakelsePage';
 import UngLoadingPage from '../../pages/UngLoadingPage';
 import { AppRoutes } from '../../utils/AppRoutes';
-import { logFaroError } from '../../utils/faroUtils';
+import { appLogger } from '@sif/apm';
 
 const getErrorInfoToLog = (error: ApiError | null) => {
     if (!error || error === null) {
@@ -59,14 +59,11 @@ const DeltakerInfoLoader = () => {
 
     if (!deltakelsePerioder.data || !søker.data || !oppgaver.data) {
         logApiError(ApiErrorKey.oppstartsinfo, { info: 'Ingen data lastet' });
-        logFaroError(
-            'DeltakerInfoLoader.ManglendeData',
-            JSON.stringify({
-                søkerHarData: søker.data !== undefined,
-                deltakelsePerioderHarData: deltakelsePerioder.data !== undefined,
-                oppgaverHarData: oppgaver.data !== undefined,
-            }),
-        );
+        appLogger.logException(new Error('DeltakerInfoLoader.ManglendeData'), {
+            søkerHarData: søker.data !== undefined,
+            deltakelsePerioderHarData: deltakelsePerioder.data !== undefined,
+            oppgaverHarData: oppgaver.data !== undefined,
+        });
         return <HentDeltakerErrorPage error="Ingen data lastet" />;
     }
 
@@ -77,14 +74,11 @@ const DeltakerInfoLoader = () => {
 
     if (deltakelsePerioder.data.length > 1) {
         logHendelse(ApplikasjonHendelse.harFlereDeltakelser);
-        logFaroError(
-            'DeltakerInfoLoader.FlereDeltakelser',
-            JSON.stringify({
-                søker: søker.error,
-                deltakelsePerioder: deltakelsePerioder.error,
-                oppgaver: oppgaver.error,
-            }),
-        );
+        appLogger.logException(new Error('DeltakerInfoLoader.FlereDeltakelser'), {
+            søkerHarFeil: søker.error !== undefined,
+            deltakelsePerioderHarFeil: deltakelsePerioder.error !== undefined,
+            oppgaverHarFeil: oppgaver.error !== undefined,
+        });
         return <FlereDeltakelserPage />;
     }
 

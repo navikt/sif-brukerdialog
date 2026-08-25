@@ -1,5 +1,5 @@
-import * as Sentry from '@sentry/react';
 import { isApiAxiosError, isApiError } from '@sif/api';
+import { appLogger } from '@sif/apm';
 import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { PropsWithChildren, useRef } from 'react';
 
@@ -10,14 +10,13 @@ const createQueryClient = () =>
                 if (isApiAxiosError(error) && error.originalError.response?.status === 401) {
                     return;
                 }
-                const extras = isApiError(error)
-                    ? { type: error.type, context: error.context, message: error.message, queryKey: query.queryKey }
-                    : { message: error instanceof Error ? error.message : String(error), queryKey: query.queryKey };
+                // Allowlisted subset — first queryKey element is always a static operation name, never user data
+                const operation = String(query.queryKey[0] ?? 'unknown');
+                const captureContext = isApiError(error)
+                    ? { type: error.type, context: error.context, operation }
+                    : { operation };
 
-                Sentry.withScope((scope) => {
-                    scope.setExtras(extras);
-                    Sentry.captureException(isApiError(error) ? error.originalError : error);
-                });
+                appLogger.logException(isApiError(error) ? error.originalError : error, captureContext);
             },
         }),
     });

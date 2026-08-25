@@ -6,8 +6,14 @@
     "readinessPath": "/internal/health/isReady",
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
     "accessPolicyOutApps": [
-        { "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" },
-        { "application": "k9-sak-innsyn-api", "namespace": "dusseldorf" }
+        {
+            "application": "k9-brukerdialog-prosessering",
+            "namespace": "dusseldorf"
+        },
+        {
+            "application": "k9-sak-innsyn-api",
+            "namespace": "dusseldorf"
+        }
     ],
     "ingresses": [
         "https://opplaringspenger-soknad.intern.dev.nav.no",
@@ -32,16 +38,13 @@
         "NODE_ENV": "development",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/opplaringspenger",
         "NPM_CONFIG_CACHE": "/tmp",
-
         "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "dev-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/opplaringspenger/api/k9-brukerdialog",
-
         "K9_SAK_INNSYN_API_SCOPE": "dev-gcp:dusseldorf:k9-sak-innsyn-api",
         "K9_SAK_INNSYN_API_URL": "http://k9-sak-innsyn-api",
         "K9_SAK_INNSYN_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/opplaringspenger/api/k9-sak-innsyn",
 
-        "SIF_PUBLIC_ANALYTICS_API_KEY": "default",
         "SIF_PUBLIC_USE_ANALYTICS": "true",
         "SIF_PUBLIC_APPSTATUS_DATASET": "production",
         "SIF_PUBLIC_FEATURE_NYNORSK": "on",
@@ -49,5 +52,7 @@
         "SIF_PUBLIC_DEKORATOR_URL": "https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://opplaringspenger-soknad.intern.dev.nav.no/oauth2/logout&redirectToApp=true",
         "SIF_PUBLIC_LOGIN_URL": "https://opplaringspenger-soknad.intern.dev.nav.no/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/opplaringspenger/soknad",
         "SIF_PUBLIC_MINSIDE_URL": "https://www.intern.dev.nav.no/minside"
-    }
+    },
+    "observabilityEnabled": "true",
+    "faro": true
 }

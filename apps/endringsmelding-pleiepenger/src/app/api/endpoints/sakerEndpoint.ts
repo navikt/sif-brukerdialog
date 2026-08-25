@@ -1,13 +1,11 @@
-import { isK9FormatError, K9Format, K9FormatArbeidstid, K9Sak, UgyldigK9SakFormat } from '@app/types';
+import { isK9FormatError, K9Format, K9Sak, UgyldigK9SakFormat } from '@app/types';
 import {
-    appSentryLogger,
     getEndringsdato,
     getTillattEndringsperiode,
     isK9SakErInnenforGyldigEndringsperiode,
-    maskString,
     parseK9Format,
 } from '@app/utils';
-import { getMaybeEnv } from '@navikt/sif-common-env';
+import { appLogger } from '@sif/apm';
 import { isAxiosError } from 'axios';
 
 import { verifyK9Format } from '../../utils/verifyk9Format';
@@ -15,28 +13,6 @@ import api from '../api';
 import { ApiEndpointInnsyn } from '.';
 
 export type K9SakResult = K9Sak | UgyldigK9SakFormat;
-
-const maskK9FormatArbeidstid = (arbeidstid: K9FormatArbeidstid) => {
-    return {
-        arbeidstakerList: (arbeidstid.arbeidstakerList || []).map((arbtaker) => {
-            const key = maskString(arbtaker.organisasjonsnummer) || 'ingenOrg';
-            return { [key]: arbtaker.arbeidstidInfo };
-        }),
-        frilanserArbeidstidInfo: arbeidstid.frilanserArbeidstidInfo,
-        selvstendigNæringsdrivendeArbeidstidInfo: arbeidstid.selvstendigNæringsdrivendeArbeidstidInfo,
-    };
-};
-
-const maskK9FormatSak = (sak: K9Format) => {
-    const ytelse = sak?.søknad?.ytelse;
-    if (!ytelse) {
-        return { søknadsperiode: undefined, arbeidstid: undefined };
-    }
-    return {
-        søknadsperiode: ytelse.søknadsperiode,
-        arbeidstid: ytelse.arbeidstid ? maskK9FormatArbeidstid(ytelse.arbeidstid) : undefined,
-    };
-};
 
 const sakerEndpoint = {
     fetch: async (): Promise<{ k9Saker: K9SakResult[]; eldreSaker: K9SakResult[] }> => {
@@ -54,9 +30,6 @@ const sakerEndpoint = {
                     } else {
                         eldreSaker.push(parsedSak);
                     }
-                    if (getMaybeEnv('SIF_PUBLIC_DEBUG') === 'true') {
-                        appSentryLogger.logInfo('debug.k9format.gyldig', JSON.stringify(maskK9FormatSak(sak)));
-                    }
                 } catch (error) {
                     if (isK9FormatError(error)) {
                         const ugyldigeFelt = error.error.cause?.ugyldigeFelt;
@@ -64,12 +37,12 @@ const sakerEndpoint = {
                             erUgyldigK9SakFormat: true,
                             detaljer: Array.isArray(ugyldigeFelt) ? { ugyldigeFelt } : undefined,
                         });
-                        appSentryLogger.logException(error.error, {
+                        appLogger.logException(error.error, {
                             sakIndex: index,
                             cause: error.error instanceof Error ? error.error.cause : undefined,
                         });
                     } else {
-                        appSentryLogger.logException(error, {
+                        appLogger.logException(error, {
                             context: 'sakerEndpoint.parseK9Format',
                             sakIndex: index,
                         });
@@ -80,9 +53,9 @@ const sakerEndpoint = {
             return { k9Saker, eldreSaker };
         } catch (error) {
             if (isAxiosError(error)) {
-                appSentryLogger.logApiError(error, 'sakerEndpoint.fetch');
+                appLogger.logApiError(error, 'sakerEndpoint.fetch');
             } else if (!isK9FormatError(error)) {
-                appSentryLogger.logException(error, { context: 'sakerEndpoint.fetch failed - unexpected' });
+                appLogger.logException(error, { context: 'sakerEndpoint.fetch failed - unexpected' });
             }
             return Promise.reject(error);
         }

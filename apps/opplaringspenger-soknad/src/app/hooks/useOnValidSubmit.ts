@@ -1,3 +1,4 @@
+import { appLogger } from '@sif/apm';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -63,8 +64,7 @@ export const useOnValidSubmit = <T>(
             ];
             Promise.all([...actions.map(dispatchAction)]).then(() => setSubmitted(true));
         } catch (e) {
-            // eslint-disable-next-line no-console
-            console.error(e);
+            appLogger.logException(e);
             setIsSubmitting(false);
         }
     };

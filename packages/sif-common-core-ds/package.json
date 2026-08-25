@@ -1,6 +1,6 @@
 {
     "name": "@navikt/sif-common-core-ds",
-    "version": "10.3.57",
+    "version": "10.4.0",
     "private": true,
     "author": "navikt",
     "type": "module",
@@ -17,7 +17,6 @@
         "react-refresh": "0.11.0"
     },
     "dependencies": {
-        "@grafana/faro-web-sdk": "2.10.0",
         "@navikt/appstatus-react-ds": "workspace:*",
         "@navikt/fnrvalidator": "2.2.1",
         "@navikt/sif-common-api": "workspace:*",

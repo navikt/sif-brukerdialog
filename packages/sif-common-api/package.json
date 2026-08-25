@@ -1,6 +1,6 @@
 {
     "name": "@navikt/sif-common-api",
-    "version": "0.4.96",
+    "version": "0.5.0",
     "private": true,
     "type": "module",
     "main": "src/index.ts",
@@ -19,7 +19,6 @@
         "@navikt/fnrvalidator": "2.2.1",
         "@navikt/sif-common-env": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
-        "@navikt/sif-common-sentry": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "axios": "1.19.0",

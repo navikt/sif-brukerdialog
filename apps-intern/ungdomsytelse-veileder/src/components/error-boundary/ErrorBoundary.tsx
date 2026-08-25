@@ -1,61 +1,34 @@
-/* eslint-disable no-console */
-import React from 'react';
+import { appLogger } from '@sif/apm';
+import React, { ReactNode } from 'react';
 
 interface ErrorBoundaryProps {
-    fallback?: React.ReactNode; // Tilpasset fallback-UI
-    onError?: (error: Error, errorInfo: React.ErrorInfo) => void; // Callback for logging
-    children: React.ReactNode;
+    fallback?: ReactNode;
+    children: ReactNode;
 }
 
-interface ErrorBoundaryState {
+interface State {
     hasError: boolean;
-    error: Error | null;
 }
 
-class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+class ErrorBoundary extends React.Component<ErrorBoundaryProps, State> {
     constructor(props: ErrorBoundaryProps) {
         super(props);
-        this.state = {
-            hasError: false,
-            error: null,
-        };
+        this.state = { hasError: false };
     }
 
     componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
-        this.setState({ hasError: true, error });
-
-        // Kall på ekstern logger hvis definert
-        if (this.props.onError) {
-            this.props.onError(error, errorInfo);
-        } else {
-            console.error('Error caught by ErrorBoundary:', error, errorInfo);
-        }
+        appLogger.logException(error, { componentStack: errorInfo?.componentStack });
     }
 
-    resetError = () => {
-        this.setState({ hasError: false, error: null });
-    };
+    static getDerivedStateFromError(): State {
+        return { hasError: true };
+    }
 
     render() {
-        const { hasError, error } = this.state;
-        const { fallback, children } = this.props;
-
-        if (hasError) {
-            return (
-                fallback || (
-                    <div style={{ padding: '2rem', textAlign: 'center' }}>
-                        <h1>Oops! Noe gikk galt.</h1>
-                        <p>Vi beklager, men det oppstod en feil.</p>
-                        <button onClick={this.resetError} style={{ marginTop: '1rem' }}>
-                            Prøv igjen
-                        </button>
-                        {error && <pre style={{ marginTop: '1rem', color: 'red' }}>{error.message}</pre>}
-                    </div>
-                )
-            );
+        if (this.state.hasError) {
+            return this.props.fallback ?? null;
         }
-
-        return children;
+        return this.props.children;
     }
 }
 

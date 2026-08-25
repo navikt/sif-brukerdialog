@@ -1,6 +1,6 @@
 {
     "name": "@navikt/opplaringspenger-soknad",
-    "version": "1.4.50",
+    "version": "1.5.0",
     "private": true,
     "description": "Søknad om utbetaling av opplæringspenger",
     "repository": "https://github.com/navikt/sif-brukerdialog",
@@ -42,6 +42,7 @@
         ]
     },
     "dependencies": {
+        "@sif/apm": "workspace:*",
         "@navikt/aksel-icons": "8.16.1",
         "@navikt/ds-css": "8.16.1",
         "@navikt/ds-react": "8.16.1",
@@ -53,11 +54,9 @@
         "@navikt/sif-common-api": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-env": "workspace:*",
-        "@navikt/sif-common-faro": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-forms-ds": "workspace:*",
         "@navikt/sif-common-hooks": "workspace:*",
-        "@navikt/sif-common-sentry": "workspace:*",
         "@navikt/sif-common-soknad-ds": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
@@ -85,6 +84,7 @@
         "react-fast-compare": "3.2.2",
         "react-intl": "10.1.22",
         "react-router-dom": "7.18.2",
+        "@nais/apm": "0.6.0",
         "uuid": "^14.0.2",
         "zod": "4.4.3"
     },

@@ -1,6 +1,6 @@
 {
     "name": "@sif/ung-innsyn",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "private": true,
     "repository": {
         "type": "git",
@@ -40,9 +40,10 @@
         "@sif/soknad-ui": "workspace:*",
         "@sif/utils": "workspace:*",
         "@tanstack/react-query": "5.101.4",
-        "dompurify": "3.4.12",
+        "@nais/apm": "0.6.0",
         "react-hook-form": "7.86.0",
         "react-intl": "10.1.22",
+        "dompurify": "3.4.14",
         "react-router-dom": "7.18.2"
     },
     "devDependencies": {

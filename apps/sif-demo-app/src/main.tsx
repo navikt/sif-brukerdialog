@@ -1,18 +1,15 @@
-import './sentry/instrument';
-
-import { reactErrorHandler } from '@sentry/react';
+import { initApm } from '@sif/apm';
+import { getMaybeEnv } from '@navikt/sif-common-env';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import { enableMocking } from '../mock/enableMocking';
 import { App } from './App';
 
+void initApm({ app: 'sif-demo-app', namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
+
 enableMocking().then(() => {
-    createRoot(document.getElementById('root')!, {
-        onUncaughtError: reactErrorHandler(),
-        onCaughtError: reactErrorHandler(),
-        onRecoverableError: reactErrorHandler(),
-    }).render(
+    createRoot(document.getElementById('root')!).render(
         <StrictMode>
             <App />
         </StrictMode>,

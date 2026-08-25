@@ -9,11 +9,10 @@ import {
     TimerEllerProsent,
     UgyldigBarnFormatDetails,
 } from '@app/types';
-import { appSentryLogger } from '@app/utils';
 import { Søker } from '@navikt/sif-common-api';
-import { getMaybeEnv } from '@navikt/sif-common-env';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { DateRange } from '@navikt/sif-common-utils';
+import { appLogger } from '@sif/apm';
 import { useState } from 'react';
 
 import { SøknadStatePersistence } from '../api/endpoints/søknadStateEndpoint';
@@ -22,7 +21,6 @@ import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import { getEndringsdato, getTillattEndringsperiode } from '../utils/endringsperiode';
 import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
-import { getSakOgArbeidsgivereDebugInfo } from '../utils/getSakOgArbeidsgivereDebugInfo';
 
 export type SøknadInitialData = Omit<SøknadContextState, 'sak'> & { sak: Sak | undefined };
 
@@ -70,17 +68,7 @@ const prepInitialData = (
             return getSakFromK9Sak(persistedSak, arbeidsgivere, tillattEndringsperiode);
         }
         if (k9saker.length === 1) {
-            const sak = getSakFromK9Sak(k9saker[0], arbeidsgivere, tillattEndringsperiode);
-
-            if (getMaybeEnv('SIF_PUBLIC_DEBUG') === 'true') {
-                appSentryLogger.logInfo(
-                    'debug.maskedSakInfo',
-                    JSON.stringify(
-                        getSakOgArbeidsgivereDebugInfo(k9saker[0], sak, arbeidsgivere, tillattEndringsperiode),
-                    ),
-                );
-            }
-            return sak;
+            return getSakFromK9Sak(k9saker[0], arbeidsgivere, tillattEndringsperiode);
         }
         return undefined;
     };
@@ -130,7 +118,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
                     setInitialData(error);
                 } else {
                     const e = error instanceof Error ? error : new Error(String(error));
-                    appSentryLogger.logException(e, { context: 'fetchInitialData.error.else' });
+                    appLogger.logException(e, { context: 'fetchInitialData.error.else' });
                     setInitialData({
                         status: RequestStatus.error,
                         error,

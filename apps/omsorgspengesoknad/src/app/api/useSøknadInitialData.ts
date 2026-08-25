@@ -1,16 +1,17 @@
-import { useState } from 'react';
 import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
+import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { appLogger } from '@sif/apm';
+import { useState } from 'react';
+
 import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
 import { RequestStatus } from '../types/RequestStatus';
 import { SøknadContextState } from '../types/SøknadContextState';
 import { SøknadRoutes } from '../types/SøknadRoutes';
-import appSentryLogger from '../utils/appSentryLogger';
 import søknadStateEndpoint, {
     isPersistedSøknadStateValid,
     SøknadStatePersistence,
 } from './endpoints/søknadStateEndpoint';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
 
 export type SøknadInitialData = SøknadContextState;
 
@@ -89,7 +90,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
                     status: RequestStatus.noAccess,
                 });
             } else {
-                appSentryLogger.logError('fetchInitialData', error);
+                appLogger.logException(error, { context: 'fetchInitialData' });
                 setInitialData({
                     status: RequestStatus.error,
                     error,

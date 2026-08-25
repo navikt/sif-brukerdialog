@@ -1,6 +1,6 @@
 {
     "name": "@sif/soknad",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "private": true,
     "repository": {
         "type": "git",
@@ -34,11 +34,11 @@
         "@navikt/ds-react": "8.16.1",
         "@navikt/sif-common-hooks": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
-        "@sentry/react": "10.70.0",
         "@sif/utils": "workspace:*",
         "react-hook-form": "7.86.0",
         "react-intl": "10.1.22",
         "react-router-dom": "7.18.2",
+        "@nais/apm": "0.6.0",
         "zustand": "5.0.15"
     },
     "devDependencies": {

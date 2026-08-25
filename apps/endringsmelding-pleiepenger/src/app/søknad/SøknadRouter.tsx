@@ -1,5 +1,5 @@
 import StartPåNyttDialog from '@app/components/start-på-nytt-dialog/StartPåNyttDialog';
-import { appSentryLogger } from '@app/utils';
+import { appLogger } from '@sif/apm';
 import { BodyShort, Button, VStack } from '@navikt/ds-react';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { fetchSøkerId } from '@navikt/sif-common-api';
@@ -143,7 +143,7 @@ const SøknadRouter = () => {
 };
 
 const UkjentPathMelding = ({ pathname, onReset }: { pathname: string; onReset: () => void }) => {
-    appSentryLogger.logError('ukjentPath', pathname);
+    appLogger.logError(`ukjentPath: ${pathname}`);
     return (
         <FormLayout.Guide mood="uncertain">
             <VStack gap="space-24">

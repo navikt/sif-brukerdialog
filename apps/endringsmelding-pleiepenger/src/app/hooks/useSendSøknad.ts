@@ -1,6 +1,6 @@
 import { useSøknadContext } from '@app/hooks';
 import { SøknadApiData } from '@app/types';
-import { appSentryLogger } from '@app/utils';
+import { appLogger } from '@sif/apm';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { AxiosError, isAxiosError } from 'axios';
@@ -34,7 +34,7 @@ export const useSendSøknad = () => {
             .then(async () => onSøknadSendSuccess(getSøknadApiDataMetadata(apiData, søknadsdata, valgteEndringer, sak)))
             .catch((error) => {
                 if (isAxiosError(error)) {
-                    appSentryLogger.logApiError(error, 'Innsending feilet');
+                    appLogger.logApiError(error, 'Innsending feilet');
                 }
                 logSoknadFailed(EndringsmeldingPsbApp.navn);
                 setSendSøknadError(error);

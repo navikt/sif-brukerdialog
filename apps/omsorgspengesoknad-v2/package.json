@@ -1,6 +1,6 @@
 {
     "name": "@navikt/omsorgspengesoknad-v2",
-    "version": "0.0.12",
+    "version": "0.1.0",
     "private": true,
     "type": "module",
     "scripts": {
@@ -27,11 +27,8 @@
         "@navikt/k9-sak-innsyn-api": "workspace:*",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-env": "workspace:*",
-        "@navikt/sif-common-faro": "workspace:*",
         "@navikt/sif-common-hooks": "workspace:*",
-        "@navikt/sif-common-sentry": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
-        "@sentry/react": "10.70.0",
         "@sif/api": "workspace:*",
         "@sif/rhf": "workspace:*",
         "@sif/soknad": "workspace:*",
@@ -50,13 +47,14 @@
         "react-intl": "10.1.22",
         "react-loading-skeleton": "3.5.0",
         "react-router-dom": "7.18.2",
+        "@sif/apm": "workspace:*",
+        "@nais/apm": "0.6.0",
         "uuid": "^14.0.2",
         "zod": "4.4.3"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.13.0",
         "@playwright/test": "1.62.1",
-        "@sentry/vite-plugin": "5.4.0",
         "@sif/eslint-config": "workspace:*",
         "@sonar/scan": "5.0.0",
         "@storybook/addon-a11y": "10.5.10",

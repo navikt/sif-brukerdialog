@@ -8,4 +8,3 @@ export { OppgaveStatusIkon } from './oppgave-status-ikon/OppgaveStatusIkon';
 export { OppgaveStatusInfo } from './oppgave-status-info/OppgaveStatusInfo';
 export { OppgaveStatusTag, type OppgaveStatusTagVariant } from './oppgave-status-tag/OppgaveStatusTag';
 export { OppgaverList } from './oppgaver-list/OppgaverList';
-export { SentryErrorBoundary } from './sentry-error-boundary/SentryErrorBoundary';

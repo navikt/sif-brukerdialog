@@ -13,9 +13,9 @@ import getLenker from '../lenker';
 import { Søkerdata } from '../types/Søkerdata';
 import { initialValues, SøknadFormField, SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import { MellomlagringMetadata, SøknadTempStorageData } from '../types/SøknadTempStorageData';
-import appSentryLogger from '../utils/appSentryLogger';
 import { getFeatureToggles } from '../utils/featureToggleUtils';
 import { relocateToLoginPage } from '../utils/navigationUtils';
+import { appLogger } from '@sif/apm';
 
 interface Props {
     onUgyldigMellomlagring: () => void;
@@ -138,7 +138,7 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
         } else if (apiUtils.isForbidden(error)) {
             this.setState({ ...this.state, harIkkeTilgang: true });
         } else {
-            appSentryLogger.logApiError(error, 'fetchSøkerdata');
+            appLogger.logApiError(error, 'fetchSøkerdata');
             this.props.onError();
         }
         this.stopLoading();

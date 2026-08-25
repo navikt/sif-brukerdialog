@@ -1,6 +1,6 @@
 {
     "name": "@sif/soknad-app",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "private": true,
     "repository": {
         "type": "git",
@@ -19,14 +19,13 @@
         "test": "vitest run"
     },
     "dependencies": {
+        "@nais/apm": "0.6.0",
         "@navikt/appstatus-react-ds": "workspace:*",
         "@navikt/ds-react": "8.16.1",
         "@navikt/nav-dekoratoren-moduler": "4.3.0",
-        "@navikt/sif-common-faro": "workspace:*",
-        "@navikt/sif-common-sentry": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
-        "@sentry/react": "10.70.0",
         "@sif/api": "workspace:*",
+        "@sif/apm": "workspace:*",
         "@sif/rhf": "workspace:*",
         "@sif/soknad-ui": "workspace:*",
         "@sif/surveys": "workspace:*",

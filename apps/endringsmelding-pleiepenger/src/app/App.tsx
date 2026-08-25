@@ -18,13 +18,7 @@ import { appEnv } from './utils/appEnv';
 
 dayjs.extend(isoWeek);
 
-const {
-    PUBLIC_PATH,
-    SIF_PUBLIC_APPSTATUS_DATASET,
-    SIF_PUBLIC_APPSTATUS_PROJECT_ID,
-    APP_VERSION,
-    SIF_PUBLIC_ANALYTICS_API_KEY,
-} = appEnv;
+const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID } = appEnv;
 
 const isE2E = getMaybeEnv('E2E_TEST') === 'true';
 
@@ -33,13 +27,11 @@ ensureBaseNameForReactRouter(PUBLIC_PATH);
 const App = () => (
     <Theme>
         <SoknadApplication
-            appVersion={APP_VERSION}
             appKey={EndringsmeldingPsbApp.key}
             appName={EndringsmeldingPsbApp.navn}
             appTitle={EndringsmeldingPsbApp.tittel.nb}
             intlMessages={applicationIntlMessages}
             useAnalytics={!isE2E}
-            analyticsApiKey={SIF_PUBLIC_ANALYTICS_API_KEY}
             appStatus={{
                 sanityConfig: {
                     projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.2
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-env@0.2.0
+    - @navikt/ung-brukerdialog-api@0.0.8
+
 ## 0.1.1
 
 ### Patch Changes
