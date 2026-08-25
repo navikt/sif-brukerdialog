@@ -78,7 +78,28 @@ export const KontonummerForm = () => {
                                 </AriaLiveRegion>
                             </>
                         )}
-
+                        {kontonummerInfo.harKontonummer === HarKontonummerEnum.NEI && (
+                            <SifInfoCard variant="info">
+                                <Heading level="3" size="small" spacing>
+                                    <AppText id="kontonummerSteg.harIkkeKontonummer.tittel" />
+                                </Heading>
+                                <BodyLong spacing>
+                                    <AppText
+                                        id="kontonummerSteg.harIkkeKontonummer.info.1"
+                                        values={{
+                                            Lenke: (children) => (
+                                                <ExternalLink href={getLenker().navEndreKontonummer}>
+                                                    {children}
+                                                </ExternalLink>
+                                            ),
+                                        }}
+                                    />
+                                </BodyLong>
+                                <BodyLong spacing>
+                                    <AppText id="kontonummerSteg.harIkkeKontonummer.info.2" />
+                                </BodyLong>
+                            </SifInfoCard>
+                        )}
                         {kontonummerInfo.harKontonummer === HarKontonummerEnum.UVISST && (
                             <SifInfoCard variant="warning">
                                 <Heading level="3" size="small" spacing>

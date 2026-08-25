@@ -14,7 +14,11 @@ const scenarioGroups: Array<ScenarioSelectorHeaderGroup<ScenarioType>> = [
             },
             {
                 value: ScenarioType.medKontonummer,
-                label: 'Har kontonummer registrert',
+                label: 'Med kontonummer',
+            },
+            {
+                value: ScenarioType.utenKontonummer,
+                label: 'Uten kontonummer',
             },
             {
                 value: ScenarioType.ingenRegistrerteBarn,
