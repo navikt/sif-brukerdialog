@@ -170,7 +170,7 @@ void init({ app: 'min-app', namespace: 'dusseldorf', version: getMaybeEnv('APP_V
 
 Setter opp:
 
-- `AppErrorBoundary` — global error boundary, fanger React render-feil og logger via `appLogger.logException` (tagger med `source: 'app-logger'` for Grafana-filtrering)
+- `AppErrorBoundary` — global error boundary, fanger React render-feil og logger via `appLogger.logException`
 - `SifQueryClientProvider` — React Query-klient
 - `AnalyticsProvider` — analytics-instans
 - `DevBranchInfo` — vises kun i dev/PR-bygg
