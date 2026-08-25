@@ -24,14 +24,14 @@
         "@navikt/sif-validation": "workspace:*",
         "axios": "1.19.0",
         "classnames": "2.5.1",
-        "dayjs": "1.11.21",
+        "dayjs": "1.11.23",
         "react-day-picker": "9.14.0",
-        "uuid": "^14.0.1",
+        "uuid": "^14.0.2",
         "zod": "4.4.3"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@storybook/addon-a11y": "10.5.8",
+        "@storybook/addon-a11y": "10.5.10",
         "@storybook/addon-actions": "9.0.8",
         "@types/react": "19.2.18",
         "copyfiles": "2.4.1",
@@ -41,8 +41,8 @@
         "postcss": "8.5.26",
         "react": "19.2.8",
         "react-dom": "19.2.8",
-        "react-intl": "10.1.20",
-        "storybook": "10.5.8",
+        "react-intl": "10.1.22",
+        "storybook": "10.5.10",
         "typescript": "6.0.3"
     }
 }
