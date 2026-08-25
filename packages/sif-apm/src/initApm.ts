@@ -6,7 +6,7 @@ import { init, type InitOptions } from '@nais/apm';
  *
  * Bruk denne i stedet for `init()` direkte fra `@nais/apm`.
  */
-export const initApm = (options: InitOptions): void => {
+export const initApm = ({ beforeSend: callerBeforeSend, ...options }: InitOptions): void => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     init({
         ...options,
@@ -18,7 +18,7 @@ export const initApm = (options: InitOptions): void => {
                     return null;
                 }
             }
-            return item;
+            return callerBeforeSend ? callerBeforeSend(item) : item;
         },
     });
 };
