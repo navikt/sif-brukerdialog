@@ -20,11 +20,6 @@ export const LENKEKATALOG = {
         url: FORSKRIFT_UPY_URL,
         tekstKey: '@ungInnsyn.lovlenke.forskriftUpy_11',
     },
-    /** TODO: oppdater url og paragraf når forskrift for aktivitetspenger er publisert på lovdata */
-    forskriftAktivitetspenger: {
-        url: 'https://www.nav.no#todo',
-        tekstKey: '@ungInnsyn.lovlenke.forskriftAktivitetspenger',
-    },
 } satisfies Record<string, Lovlenke>;
 
 const ufyFelles = [LENKEKATALOG.arbeidsmarkedsloven_13_fjerde_ledd, LENKEKATALOG.forskriftUpy_11];
@@ -41,11 +36,10 @@ export const OPPGAVE_LOVVERK = {
     BEKREFT_OPPHOR_VED_MAKSDATO: { UNGDOMSYTELSE: ufyFelles },
     BEKREFT_AVVIK_REGISTERINNTEKT: {
         UNGDOMSYTELSE: ufyFelles,
-        AKTIVITETSPENGER: [LENKEKATALOG.forskriftAktivitetspenger],
     },
-    RAPPORTER_INNTEKT: { UNGDOMSYTELSE: ufyFelles, AKTIVITETSPENGER: [LENKEKATALOG.forskriftAktivitetspenger] },
+    RAPPORTER_INNTEKT: { UNGDOMSYTELSE: ufyFelles },
     SØK_YTELSE: { UNGDOMSYTELSE: ufyFelles },
-    BEKREFT_BOSTED: { AKTIVITETSPENGER: [LENKEKATALOG.forskriftAktivitetspenger] },
+    BEKREFT_BOSTED: {},
 } satisfies Record<OppgaveType, Partial<Record<OppgaveYtelsetype, Lovlenke[]>>>;
 
 export const getLovLenker = (oppgave: { oppgavetype: OppgaveType; ytelsetype: OppgaveYtelsetype }): Lovlenke[] =>
@@ -60,12 +54,11 @@ export const OPPGAVE_LOVVERK_PARSED = {
     BEKREFT_OPPHOR_VED_MAKSDATO: { UNGDOMSYTELSE: ufyFelles },
     BEKREFT_AVVIK_REGISTERINNTEKT: {
         UNGDOMSYTELSE: ufyFelles,
-        AKTIVITETSPENGER: [LENKEKATALOG.forskriftAktivitetspenger],
     },
-    RAPPORTER_INNTEKT: { UNGDOMSYTELSE: ufyFelles, AKTIVITETSPENGER: [LENKEKATALOG.forskriftAktivitetspenger] },
+    RAPPORTER_INNTEKT: { UNGDOMSYTELSE: ufyFelles },
     SØK_YTELSE: { UNGDOMSYTELSE: ufyFelles },
-    BEKREFT_BOSTED: { AKTIVITETSPENGER: [LENKEKATALOG.forskriftAktivitetspenger] },
-    BEKREFT_BOSTED_OPPHØR: { AKTIVITETSPENGER: [LENKEKATALOG.forskriftAktivitetspenger] },
+    BEKREFT_BOSTED: {},
+    BEKREFT_BOSTED_OPPHØR: {},
 } satisfies Record<ParsedOppgavetype, Partial<Record<OppgaveYtelsetype, Lovlenke[]>>>;
 
 export const getLovLenkerForParsedType = (oppgave: {
