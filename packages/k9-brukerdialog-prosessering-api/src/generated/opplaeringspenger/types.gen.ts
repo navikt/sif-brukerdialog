@@ -16,7 +16,7 @@ export type ArbeidsforholdOlp = {
 };
 
 export type ArbeidsgiverOlp = {
-    arbeidsforhold?: ArbeidsforholdOlp;
+    [key: string]: unknown;
 };
 
 export type ArbeidsgivereDto = {

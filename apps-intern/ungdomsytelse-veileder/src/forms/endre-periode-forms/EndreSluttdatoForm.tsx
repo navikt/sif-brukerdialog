@@ -1,24 +1,26 @@
 import { Alert, Bleed, BodyLong, ReadMore, VStack } from '@navikt/ds-react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import {
-    FormikRadioGroup,
+    FormikSelect,
     FormikYesOrNoQuestion,
     getIntlFormErrorHandler,
     getTypedFormComponents,
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
-import { dateToISODate } from '@navikt/sif-common-utils';
+import { dateFormatter, dateToISODate } from '@navikt/sif-common-utils';
 import { getCheckedValidator, getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import { usePeriodeForDeltakelse } from '../../hooks/usePeriodeForDeltakelse';
 import { Deltakelse } from '../../types/Deltakelse';
 import { Deltaker } from '../../types/Deltaker';
 import { EndrePeriodeVariant } from '../../types/EndrePeriodeVariant';
-import { Utmeldingsårsak, UtmeldingsårsakerList } from '../../types/Utmeldingsårsaker';
 import { AppHendelse } from '../../utils/analytics';
 import { useAppEventLogger } from '../../utils/analyticsHelper';
 import { getPeriodeDatoValidator } from '../../utils/getPeriodeDatoValidator';
+import dayjs from 'dayjs';
+import { getDeltakelseHandlinger } from '../../utils/deltakelseUtils';
+import { Avslutningsårsak } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 
 enum FieldNames {
     sluttdato = 'sluttdato',
@@ -28,7 +30,7 @@ enum FieldNames {
 }
 type FormValues = {
     [FieldNames.sluttdato]: string;
-    [FieldNames.årsak]: Utmeldingsårsak;
+    [FieldNames.årsak]: Avslutningsårsak;
     [FieldNames.erVedtaksbrevSendt]: YesOrNo;
     [FieldNames.bekrefterEndring]: boolean;
 };
@@ -38,6 +40,19 @@ const { FormikWrapper, Form, DatePicker, ConfirmationCheckbox } = getTypedFormCo
     FormValues,
     ValidationError
 >();
+
+export const AvslutningsårsakerList = [
+    Avslutningsårsak.ARBEID_SELVFORSØRGET,
+    Avslutningsårsak.ARBEID_MED_OPPFØLGING_FRA_NAV,
+    Avslutningsårsak.VIDEREGÅENDE_OPPLÆRING,
+    Avslutningsårsak.HØYERE_UTDANNING,
+    Avslutningsårsak.ANNEN_OPPLÆRING,
+    Avslutningsårsak.MANGLENDE_DELTAKELSE,
+    Avslutningsårsak.DELTAKER_ØNSKER_IKKE_Å_DELTA,
+    Avslutningsårsak.FLYTTET,
+    Avslutningsårsak.ANDRE_LIVSOPPHOLDSYTELSER,
+    Avslutningsårsak.ANNET,
+];
 
 interface Props {
     deltaker: Deltaker;
@@ -51,6 +66,7 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
     const { log } = useAppEventLogger();
 
     const erEndringAvSluttdato = deltakelse.tilOgMed !== undefined;
+    const handlinger = getDeltakelseHandlinger(deltakelse);
 
     const { mutate, isPending, error } = usePeriodeForDeltakelse({
         variant: erEndringAvSluttdato ? EndrePeriodeVariant.endreSluttdato : EndrePeriodeVariant.meldUtDeltaker,
@@ -59,13 +75,14 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
     });
 
     const handleOnSubmit = async (values: FormValues) => {
-        const { sluttdato } = values;
+        const { sluttdato, årsak } = values;
         if (!sluttdato) {
             return;
         }
         mutate(
             {
                 dato: sluttdato,
+                avslutningsårsak: årsak,
             },
             {
                 onSuccess: onDeltakelseChanged,
@@ -79,10 +96,11 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
     };
 
     const sluttdatoMinMax = {
-        from: deltakelse.fraOgMed,
-        to: deltakelse.periodeMaksDato,
+        from: dayjs(deltakelse.fraOgMed).add(1, 'day').toDate(), // Skal ikke kunne sette sluttdato til å være lik eller før startdato
+        to: dayjs(deltakelse.periodeMaksDato).subtract(1, 'day').toDate(), // Skal ikke kunne sette sluttdato til å være lik eller etter maksdato
     };
 
+    const maksdatoTekst = dateFormatter.dayCompactDate(deltakelse.periodeMaksDato);
     return (
         <FormikWrapper
             initialValues={{
@@ -93,18 +111,32 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                 const { erVedtaksbrevSendt } = values;
                 return (
                     <VStack gap="space-24">
-                        {erEndringAvSluttdato === false && (
-                            <ReadMore header="Vis mer om å registrere sluttdato for utmeldt deltaker">
-                                <BodyLong spacing>
-                                    Når du setter en sluttdato blir denne brukt til å opphøre ungdomsprogramytelsen.
-                                    Deretter kan ikke deltakeren gis en ny periode.
-                                </BodyLong>
-                                <BodyLong>
-                                    Du skal ikke registrere sluttdato når det har gått 260 dager (ett år), dette skjer
-                                    automatisk.
-                                </BodyLong>
-                            </ReadMore>
-                        )}
+                        <VStack gap="space-16">
+                            <BodyLong>
+                                Maksdato for deltakerperioden er <strong>{maksdatoTekst}</strong>.
+                            </BodyLong>
+                            <BodyLong>
+                                Du skal ikke registrere sluttdato hvis deltakelsen avsluttes på maksdatoen - dette går
+                                automatisk.
+                            </BodyLong>
+                            {erEndringAvSluttdato === false && (
+                                <ReadMore header="Mer om sluttdato og maksdato">
+                                    <BodyLong>
+                                        Når du setter en sluttdato før maksdato blir denne brukt til å opphøre
+                                        ungdomsprogramytelsen. Deretter kan ikke deltakeren gis en ny periode.
+                                    </BodyLong>
+                                </ReadMore>
+                            )}
+                            {erEndringAvSluttdato === true && handlinger.kanSletteSluttdato.tillatt && (
+                                <ReadMore header="Mer om sluttdato og maksdato">
+                                    <BodyLong>
+                                        Hvis sluttdatoen er satt ved en feil, og maksdato skal være gjeldende, kan du
+                                        slette sluttdatoen under &quot;Vis unntakshendelser&quot;. Da vil
+                                        ungdomsprogramytelsen igjen opphøre på maksdato.
+                                    </BodyLong>
+                                </ReadMore>
+                            )}
+                        </VStack>
                         <Form
                             formErrorHandler={getIntlFormErrorHandler(intl, 'endrePeriodeForm')}
                             submitPending={isPending}
@@ -147,15 +179,17 @@ const EndreSluttdatoForm = ({ deltakelse, deltaker, onCancel, onDeltakelseChange
                                             />
 
                                             {erEndringAvSluttdato === false && (
-                                                <FormikRadioGroup
+                                                <FormikSelect
                                                     name={FieldNames.årsak}
-                                                    legend="Hvorfor meldes deltaker ut?"
-                                                    radios={UtmeldingsårsakerList.map((årsak) => ({
-                                                        value: årsak,
-                                                        label: <FormattedMessage id={`utmeldingsårsak.${årsak}`} />,
-                                                    }))}
-                                                    validate={getRequiredFieldValidator()}
-                                                />
+                                                    label="Hvorfor meldes deltaker ut?"
+                                                    validate={getRequiredFieldValidator()}>
+                                                    <option></option>
+                                                    {AvslutningsårsakerList.map((årsak) => (
+                                                        <option key={årsak} value={årsak}>
+                                                            <FormattedMessage id={`avslutningsårsak.${årsak}`} />
+                                                        </option>
+                                                    ))}
+                                                </FormikSelect>
                                             )}
                                             <Bleed marginBlock="space-16 space-0">
                                                 <ConfirmationCheckbox

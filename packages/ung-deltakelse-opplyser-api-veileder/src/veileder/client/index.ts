@@ -2,6 +2,7 @@
 
 export { Oppslag, type Options, Veileder } from './sdk.gen';
 export {
+    Avslutningsårsak,
     type ClientOptions,
     type DeltakelseDto,
     type DeltakelseHistorikkData,

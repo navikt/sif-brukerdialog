@@ -1,5 +1,6 @@
 import { handleApiError } from '@navikt/ung-common';
 import {
+    Avslutningsårsak,
     DeltakelseUtmeldingDto,
     Veileder,
     zDeltakelseUtmeldingDto,
@@ -15,7 +16,15 @@ import { Deltakelse, deltakelseSchema } from '../../types/Deltakelse';
  */
 export const meldUtDeltaker = async (deltakelseId: string, dto: DeltakelseUtmeldingDto): Promise<Deltakelse> => {
     try {
-        const body = zDeltakelseUtmeldingDto.parse(dto);
+        const parsedBody = zDeltakelseUtmeldingDto.parse(dto);
+
+        const body: DeltakelseUtmeldingDto = {
+            utmeldingsdato: parsedBody.utmeldingsdato,
+            ...(parsedBody.avslutningsårsak != null && {
+                // typen krever enum
+                avslutningsårsak: Avslutningsårsak[parsedBody.avslutningsårsak],
+            }),
+        };
         const { data } = await Veileder.meldUtDeltaker({ path: { deltakelseId }, body });
         return deltakelseSchema.parse(data);
     } catch (e) {

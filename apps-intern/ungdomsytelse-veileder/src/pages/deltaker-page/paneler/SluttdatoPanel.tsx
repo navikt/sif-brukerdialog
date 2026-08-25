@@ -1,8 +1,9 @@
-import { Alert, BodyLong, Box, Button } from '@navikt/ds-react';
+import { Alert, BodyLong, BodyShort, Box, Button, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Deltakelse } from '../../../types/Deltakelse';
 import { DeltakelseHandlinger, deltakelsePeriodeErUtløpt } from '../../../utils/deltakelseUtils';
 import { PeriodeInfoPanel } from '../../../components/periode-info-panel/PeriodeInfoPanel';
+import { FormattedMessage } from 'react-intl';
 
 interface Props {
     deltakelse: Deltakelse;
@@ -15,13 +16,21 @@ const SluttdatoPanel = ({ deltakelse, handlinger, onClickEndreSluttdato, onClick
     if (deltakelse.tilOgMed) {
         return (
             <PeriodeInfoPanel title={dateFormatter.dayCompactDate(deltakelse.tilOgMed)}>
-                {handlinger.kanEndreSluttdato.tillatt && (
-                    <Box paddingBlock="space-8 space-0">
-                        <Button variant="secondary" size="small" onClick={onClickEndreSluttdato}>
-                            Endre sluttdato
-                        </Button>
-                    </Box>
-                )}
+                <VStack gap="space-8">
+                    {deltakelse.tilOgMed && deltakelse.avslutningsårsak && (
+                        <BodyShort size="small" as="p">
+                            Avslutningsårsak:{' '}
+                            <FormattedMessage id={`avslutningsårsak.${deltakelse.avslutningsårsak}`} />
+                        </BodyShort>
+                    )}
+                    {handlinger.kanEndreSluttdato.tillatt && (
+                        <Box paddingBlock="space-8 space-0">
+                            <Button variant="secondary" size="small" onClick={onClickEndreSluttdato}>
+                                Endre sluttdato
+                            </Button>
+                        </Box>
+                    )}
+                </VStack>
             </PeriodeInfoPanel>
         );
     }
@@ -30,7 +39,7 @@ const SluttdatoPanel = ({ deltakelse, handlinger, onClickEndreSluttdato, onClick
         return (
             <PeriodeInfoPanel>
                 <BodyLong>
-                    Når deltaker er meldt ut av ungdomsprogrammet før alle dagene i programmet er brukt opp, må
+                    Hvis deltaker er meldt ut av ungdomsprogrammet før alle dagene i programmet er brukt opp, må
                     sluttdatoen registreres her.
                 </BodyLong>
                 <Box paddingBlock="space-8 space-0">
