@@ -20,7 +20,7 @@ export const bostedVilkårMessages_nb = {
     '@ungInnsyn.bostedVilkårPeriodeOppgave.IKKE_BOSTEDSADRESSE_OG_IKKE_FOLKEREGISTRERT_I_TRONDHEIM':
         'Vi har fått opplysninger om at du i perioden {periode} ikke bor (har bostedsadresse) i Trondheim kommune, og at du heller ikke er folkeregistrert der. Du må ha bostedsadresse i Trondheim kommune for å få aktivitetspenger.',
     '@ungInnsyn.bostedVilkårPeriodeOppgave.STUDIE_ELLER_ARBEIDSSTED_UTENFOR_TRONDHEIM':
-        'Vi har fått opplysninger om at du i perioden {periode} ikke har studie- eller arbeidssted i Trondheim kommune. Du må ha studie- eller arbeidssted i Trondheim kommune for å få aktivitetspenger.',
+        'Vi har fått opplysninger om at du i perioden {periode} ikke har studie- eller arbeidssted i Trondheim kommune. Du må bo i Trondheim kommune for å få aktivitetspenger.',
     '@ungInnsyn.bostedVilkårPeriodeOppgave.ANNET':
         'Vi har fått opplysninger om at du i perioden {periode} ikke bor i Trondheim kommune. Du må bo i Trondheim kommune for å få aktivitetspenger.',
 };
