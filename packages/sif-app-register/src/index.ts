@@ -1,5 +1,6 @@
 export enum SifAppKeys {
-    AktivitetspengerApp = 'aktivitetspenger',
+    AktivitetspengerSøknadApp = 'aktivitetspenger-soknad',
+    AktivitetspengerInnsyn = 'aktivitetspenger-innsyn',
     PleiepengerSyktBarn = 'pleiepengesoknad',
     EndringsmeldingPsb = 'endringsmelding-pleiepenger',
     PleiepengerLivetsSlutt = 'pleiepenger-i-livets-sluttfase-soknad',
@@ -19,7 +20,7 @@ export enum SifAppKeys {
 interface AppInfo {
     /** Ikke synlig beskrivende navn - brukes i analytics */
     navn: string;
-    /** Applikasjonsnøkkel som brukes i analytics og sentry */
+    /** Applikasjonsnøkkel som brukes i analytics */
     key: string;
     /** Tittel brukt i applikasjon, og dersom en skal lenke til applikasjon */
     tittel: {
@@ -252,16 +253,29 @@ export const UngdomsytelseVeilederApp: AppInfo = {
     },
 };
 
-export const AktivitetspengerApp: AppInfo = {
-    key: SifAppKeys.AktivitetspengerApp,
-    navn: 'Aktivitetspenger',
+export const AktivitetspengerSoknadApp: AppInfo = {
+    key: SifAppKeys.AktivitetspengerSøknadApp,
+    navn: 'Aktivitetspenger søknad',
     tittel: {
-        nb: 'Aktivitetspenger',
-        nn: 'Aktivitetspengar',
+        nb: 'Aktivitetspenger søknad',
+        nn: 'Aktivitetspengar søknad',
     },
     lenker: {
-        q: 'https://aktivitetspenger.intern.dev.nav.no',
-        prod: 'https://www.nav.no/aktivitetspenger/ytelse',
+        q: 'https://aktivitetspenger-soknad.intern.dev.nav.no',
+        prod: 'https://www.nav.no/aktivitetspenger/soknad',
+    },
+};
+
+export const AktivitetspengerInnsynApp: AppInfo = {
+    key: SifAppKeys.AktivitetspengerInnsyn,
+    navn: 'Aktivitetspenger innsyn',
+    tittel: {
+        nb: 'Aktivitetspenger innsyn',
+        nn: 'Aktivitetspengar innsyn',
+    },
+    lenker: {
+        q: 'https://aktivitetspenger-innsyn.intern.dev.nav.no',
+        prod: 'https://www.nav.no/aktivitetspenger/innsyn',
     },
 };
 

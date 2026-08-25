@@ -1,6 +1,6 @@
 import { parseMaybeDateStringToDate } from '@navikt/sif-common-api';
 import { k9SakApiClient } from '@navikt/sif-common-api/src/api/k9SakApiClient';
-import getSentryLoggerForApp from '@navikt/sif-common-sentry';
+import { appLogger } from '@sif/apm';
 import { z } from 'zod';
 
 export const institusjonSchema = z.object({
@@ -26,7 +26,7 @@ export const fetchInstitusjoner = async (): Promise<Institusjon[]> => {
     try {
         return institusjonerSchema.parse(response.data);
     } catch (e) {
-        getSentryLoggerForApp('sif-common-api', []).logError('ZOD parse error', e);
+        appLogger.logException(e, { context: 'ZOD parse error' });
         throw e;
     }
 };

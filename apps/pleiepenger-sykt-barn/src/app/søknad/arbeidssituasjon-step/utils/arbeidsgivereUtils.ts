@@ -1,9 +1,9 @@
+import { appLogger } from '@sif/apm';
 import { FormikErrors } from 'formik';
 
 import { Arbeidsgiver, ArbeidsgiverType } from '../../../types';
 import { ArbeidsforholdFormValues } from '../../../types/søknad-form-values/ArbeidsforholdFormValues';
 import { SøknadFormField, SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
-import appSentryLogger from '../../../utils/appSentryLogger';
 
 interface FormikHelpers {
     values: SøknadFormValues;
@@ -37,10 +37,7 @@ export const syncAnsattArbeidsforhold = (
     arbeidsgivere.forEach((arbeidsgiver) => {
         const forhold = arbeidsforhold.find((f) => f.arbeidsgiver.id === arbeidsgiver.id);
         if (!arbeidsgiver.navn) {
-            appSentryLogger.logError(
-                'Get arbeidsgiver: Manglende navn på organisasjon',
-                `${JSON.stringify(arbeidsgiver)}`,
-            );
+            appLogger.logError('Get arbeidsgiver: Manglende navn på organisasjon');
         }
         syncedArbeidsforhold.push({
             arbeidsgiver,

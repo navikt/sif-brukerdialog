@@ -1,6 +1,5 @@
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
-
-import appSentryLogger from './appSentryLogger';
+import { appLogger } from '@sif/apm';
 
 export const getValidSpråk = (locale?: any): Locale => {
     const loc = typeof locale === 'string' ? locale : 'nb';
@@ -13,7 +12,7 @@ export const getValidSpråk = (locale?: any): Locale => {
                 return 'nb';
         }
     } catch {
-        appSentryLogger.logInfo('Fallback on getValidSpråk', loc);
+        appLogger.logInfo(`Fallback on getValidSpråk: ${loc}`);
         return 'nb';
     }
 };

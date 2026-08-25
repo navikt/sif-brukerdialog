@@ -1,4 +1,3 @@
-import getSentryLoggerForApp from '@navikt/sif-common-sentry';
 import { DateRange, dateToISODate } from '@navikt/sif-common-utils';
 
 import { k9BrukerdialogApiClient } from '../apiClient';
@@ -19,13 +18,13 @@ export const fetchArbeidsgivere = async ({
             params: { fra_og_med: dateToISODate(from), til_og_med: dateToISODate(to), frilansoppdrag },
         });
     } catch (e) {
-        getSentryLoggerForApp('sif-common-api', []).logError('fetchArbeidsgivere network error', e instanceof Error ? e.message : String(e));
+        console.error('fetchArbeidsgivere network error', e);
         throw e;
     }
     try {
         return arbeidsgivereResponseSchema.parse(response.data);
     } catch (e) {
-        getSentryLoggerForApp('sif-common-api', []).logError('fetchArbeidsgivere ZOD parse error', e instanceof Error ? e.message : String(e));
+        console.error('fetchArbeidsgivere ZOD parse error', e);
         return {
             organisasjoner: [],
             privateArbeidsgivere: [],

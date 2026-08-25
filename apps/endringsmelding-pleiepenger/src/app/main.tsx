@@ -1,13 +1,14 @@
-import '../sentry/instrument';
-
+import { initApm } from '@sif/apm';
+import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { getMaybeEnv } from '@navikt/sif-common-env';
-import { reactErrorHandler } from '@sentry/react';
 import MockDate from 'mockdate';
 import { createRoot } from 'react-dom/client';
 
 import { enableMocking } from '../../mock/msw/enableMocking';
 import App from './App';
+
+void initApm({ app: EndringsmeldingPsbApp.key, namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
 
 if (import.meta.env.INJECT_DECORATOR) {
     injectDecoratorClientSide({
@@ -25,9 +26,5 @@ enableMocking().then(() => {
         MockDate.set(new Date(envNow));
     }
 
-    createRoot(document.getElementById('root')!, {
-        onUncaughtError: reactErrorHandler(),
-        onCaughtError: reactErrorHandler(),
-        onRecoverableError: reactErrorHandler(),
-    }).render(<App />);
+    createRoot(document.getElementById('root')!).render(<App />);
 });

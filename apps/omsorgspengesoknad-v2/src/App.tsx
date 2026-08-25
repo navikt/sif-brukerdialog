@@ -37,10 +37,10 @@ const SøknadDataWrapper = () => {
     }
 };
 
-const env = getAppEnv();
 initApiClients();
 
 export const App = () => {
+    const env = getAppEnv();
     if (globalThis.location.pathname === '/') {
         globalThis.location.pathname = env.PUBLIC_PATH;
         return null;
@@ -49,16 +49,7 @@ export const App = () => {
     return (
         <SøknadAppProvider
             applicationKey={OmsorgsdagerKroniskApp.key}
-            appVersion={env.APP_VERSION}
-            faroConfig={{
-                isActive: env.SIF_PUBLIC_USE_FARO === 'true',
-                telemetryCollectorURL: env.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL,
-            }}
             analyticsConfig={{ isActive: env.SIF_PUBLIC_USE_ANALYTICS === 'true' }}
-            sentryConfig={{
-                dsn: 'https://20da9cbb958c4f5695d79c260eac6728@sentry.gc.nav.no/30',
-                application: 'omsorgspengesoknad-v2',
-            }}
             intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
             <BrowserRouter basename={env.PUBLIC_PATH}>
                 {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}

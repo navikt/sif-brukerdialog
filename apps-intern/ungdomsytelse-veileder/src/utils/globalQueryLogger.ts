@@ -1,16 +1,12 @@
+import { appLogger } from '@sif/apm';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
-import { useFaroInstance } from '@navikt/sif-common-faro';
 import { isDevMode } from '@navikt/sif-common-env';
 
 export const GlobalQueryLogger = () => {
     const queryClient = useQueryClient();
-    const { faro } = useFaroInstance();
 
     useEffect(() => {
-        if (!faro) {
-            return;
-        }
         const unsubscribeQuery = queryClient.getQueryCache().subscribe((event) => {
             if (event?.type === 'updated') {
                 const query = event.query;
@@ -19,7 +15,7 @@ export const GlobalQueryLogger = () => {
                     if (isDevMode()) {
                         console.error(state.error);
                     }
-                    faro.api.pushError(state.error, { type: 'ApiQueryError' });
+                    appLogger.logException(state.error instanceof Error ? state.error : new Error(String(state.error)));
                 }
             }
         });
@@ -29,7 +25,7 @@ export const GlobalQueryLogger = () => {
                 const mutation = event.mutation;
                 const state = mutation.state;
                 if (state.status === 'error' && state.error) {
-                    faro.api.pushError(state.error, { type: 'ApiMutateError' });
+                    appLogger.logException(state.error instanceof Error ? state.error : new Error(String(state.error)));
                 }
             }
         });
@@ -38,7 +34,7 @@ export const GlobalQueryLogger = () => {
             unsubscribeQuery();
             unsubscribeMutation();
         };
-    }, [queryClient, faro]);
+    }, [queryClient]);
 
     return null;
 };

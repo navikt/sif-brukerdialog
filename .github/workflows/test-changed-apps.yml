@@ -361,7 +361,6 @@ jobs:
             --filter=@navikt/sif-common-core-ds \
             --filter=@navikt/sif-common-formik-ds \
             --filter=@navikt/sif-common-forms-ds \
-            --filter=@navikt/sif-common-sentry \
             --filter=@navikt/sif-common-utils \
             --filter=@sif/rhf \
             --filter=@sif/soknad-forms \

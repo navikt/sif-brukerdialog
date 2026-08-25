@@ -1,23 +1,26 @@
 {
-    "name": "@navikt/sif-common-faro",
-    "version": "0.2.13",
+    "name": "@sif/apm",
+    "version": "0.1.0",
     "private": true,
+    "description": "APM-logging for Sykdom i familien — wrapper rundt @nais/apm",
+    "author": "navikt",
     "type": "module",
     "main": "src/index.ts",
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
         "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
-        "lint:tsc": "tsc --noEmit --skipLibCheck"
+        "lint:tsc": "tsc --noEmit"
     },
     "dependencies": {
-        "@grafana/faro-web-sdk": "2.10.0",
+        "@nais/apm": "0.6.0",
+        "axios": "1.19.0",
         "constate": "4.0.0",
         "react": "19.2.8"
     },
     "devDependencies": {
-        "@navikt/sif-common-env": "workspace:*",
         "@sif/eslint-config": "workspace:*",
-        "@types/react": "19.2.18",
+        "@types/node": "26.1.2",
+        "config": "workspace:*",
         "typescript": "6.0.3"
     }
 }

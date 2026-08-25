@@ -37,7 +37,7 @@
         ]
     },
     "dependencies": {
-        "@grafana/faro-react": "2.10.0",
+        "@nais/apm": "0.6.0",
         "@navikt/aksel-icons": "8.16.1",
         "@navikt/ds-css": "8.16.1",
         "@navikt/ds-react": "8.16.1",
@@ -48,7 +48,6 @@
         "@navikt/sif-common-api": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-env": "workspace:*",
-        "@navikt/sif-common-faro": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-hooks": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
@@ -56,6 +55,7 @@
         "@navikt/sif-validation": "workspace:*",
         "@navikt/ung-common": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-veileder": "workspace:*",
+        "@sif/apm": "workspace:*",
         "@tanstack/react-query": "5.101.4",
         "axios": "1.19.0",
         "clsx": "2.1.1",

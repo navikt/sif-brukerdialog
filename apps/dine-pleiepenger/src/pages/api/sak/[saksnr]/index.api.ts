@@ -8,7 +8,6 @@ import { serverApiUtils } from '../../../../server/utils/serverApiUtils';
 import { isValidSaksnummer } from '../../../../server/utils/validatePathSegment';
 import { Feature } from '../../../../utils/features';
 import { getLogger } from '../../../../utils/getLogger';
-import { logApiErrorToSentry } from '../../../../utils/sentryApiErrorLogger';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const baseLogger = getLogger(req);
@@ -62,7 +61,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         return res.json({ sak, inntektsmeldinger });
     } catch (err) {
         logger.error('Hent saksdetaljer feilet');
-        logApiErrorToSentry(err, 'hent-sak');
         return res.status(500).json({ error: 'Kunne ikke hente saksdetaljer' });
     } finally {
         totalTimer();

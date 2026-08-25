@@ -2,6 +2,7 @@ import { RegistrertBarn } from '@navikt/sif-common-api';
 import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { getMedlemskapApiDataFromSøknadsdata } from '@navikt/sif-common-forms-ds/src';
+import { appLogger } from '@sif/apm';
 import { dateToISODate } from '@navikt/sif-common-utils';
 
 import { ÅrsakManglerIdentitetsnummer } from '../../types';
@@ -11,7 +12,6 @@ import {
     SøknadApiDataVersjon,
 } from '../../types/søknad-api-data/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';
-import appSentryLogger from '../appSentryLogger';
 import { getValidSpråk } from '../sprakUtils';
 import { getArbeidsgivereApiDataFromSøknadsdata } from './getArbeidsgivereApiDataFromSøknadsdata';
 import { getBarnApiDataFromSøknadsdata } from './getBarnApiDataFromSøknadsdata';
@@ -91,11 +91,11 @@ export const getApiDataFromSøknadsdata = (
 
             return apiData;
         } catch (e) {
-            appSentryLogger.logError('getApiDataFromSøknadsdata failed', e as any);
+            appLogger.logException(e, { context: 'getApiDataFromSøknadsdata failed' });
             throw e;
         }
     } else {
-        appSentryLogger.logError('getApiDataFromSøknadsdata failed - empty periode', JSON.stringify(søknadsperiode));
+        appLogger.logError('getApiDataFromSøknadsdata failed - empty periode');
         return undefined;
     }
 };

@@ -374,13 +374,7 @@ export const App = () => {
     return (
         <SøknadAppProvider
             applicationKey={SomAppKey.key}
-            appVersion={env.APP_VERSION}
-            faroConfig={{
-                isActive: env.SIF_PUBLIC_USE_FARO === 'true',
-                telemetryCollectorURL: env.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL,
-            }}
             analyticsConfig={{ isActive: env.SIF_PUBLIC_USE_ANALYTICS === 'true' }}
-            sentryConfig={{ dsn: '...', application: 'min-app' }}
             intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
             <BrowserRouter basename={env.PUBLIC_PATH}>
                 {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
@@ -391,7 +385,31 @@ export const App = () => {
 };
 ```
 
-### 13. `src/useInitialData.ts`
+### 13. `src/main.tsx`
+
+APM initialiseres her — utenfor React-treet — slik at telemetri er aktiv fra første render.
+
+```tsx
+import { initApm } from '@sif/apm';
+import { getMaybeEnv } from '@navikt/sif-common-env';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+
+import { enableMocking } from '../mock/enableMocking';
+import { App } from './App';
+
+void initApm({ app: 'min-app', namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
+
+enableMocking().then(() => {
+    createRoot(document.getElementById('root')!).render(
+        <StrictMode>
+            <App />
+        </StrictMode>,
+    );
+});
+```
+
+### 14. `src/useInitialData.ts`
 
 Se `sif-initial-data-loader` for fullt mønster. Mellomlagring håndteres av `SøknadRouter` — ikke i `useInitialData`.
 
@@ -408,7 +426,7 @@ Se `sif-initial-data-loader` for fullt mønster. Mellomlagring håndteres av `S�
 | `hooks/useFormValuesToSøknadsdata.ts` | Hook med switch per steg, kontekst i closure                              |
 | `i18n/nb.ts`                          | Aggreger steg-meldinger + `application.title`, `step.<id>.title` per steg |
 | `content/velkommen/Velkommen.tsx`     | `guide.content` — app-spesifikt innhold                                   |
-| `App.tsx`                             | `applicationKey`, `sentryConfig.dsn`, `AppContextProvider` props          |
+| `App.tsx`                             | `applicationKey`, `AppContextProvider` props                              |
 
 ## Viktige regler
 

@@ -5,7 +5,12 @@
     "team": "dusseldorf",
     "ingresses": ["https://www.nav.no/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase"],
     "externalHosts": ["www.nav.no"],
-    "accessPolicyOutApps": [{ "application": "k9-brukerdialog-prosessering", "namespace": "dusseldorf" }],
+    "accessPolicyOutApps": [
+        {
+            "application": "k9-brukerdialog-prosessering",
+            "namespace": "dusseldorf"
+        }
+    ],
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
     "minReplicas": 2,
@@ -17,13 +22,11 @@
         "DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/oauth2/logout",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase",
         "NPM_CONFIG_CACHE": "/tmp",
-
         "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "prod-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/api/k9-brukerdialog",
-
         "SIF_PUBLIC_FEATURE_SOKE_TIDLIGERE": "off",
-        "SIF_PUBLIC_ANALYTICS_API_KEY": "10798841ebeba333b8ece6c046322d76",
+
         "SIF_PUBLIC_USE_ANALYTICS": "true",
         "SIF_PUBLIC_APPSTATUS_DATASET": "production",
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
@@ -31,5 +34,6 @@
         "SIF_PUBLIC_DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/oauth2/logout",
         "SIF_PUBLIC_LOGIN_URL": "https://www.nav.no/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/oauth2/login?redirect=/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/soknad",
         "SIF_PUBLIC_MINSIDE_URL": "https://www.nav.no/minside"
-    }
+    },
+    "faro": true
 }

@@ -18,14 +18,7 @@ import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
 import { appEnv } from './utils/appEnv';
 
-const {
-    PUBLIC_PATH,
-    SIF_PUBLIC_APPSTATUS_DATASET,
-    SIF_PUBLIC_APPSTATUS_PROJECT_ID,
-    SIF_PUBLIC_USE_ANALYTICS,
-    SIF_PUBLIC_ANALYTICS_API_KEY,
-    APP_VERSION,
-} = appEnv;
+const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID, SIF_PUBLIC_USE_ANALYTICS } = appEnv;
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
 const queryClient = new QueryClient();
@@ -34,7 +27,6 @@ const App = () => (
     <Theme>
         <QueryClientProvider client={queryClient}>
             <SoknadApplication
-                appVersion={APP_VERSION}
                 appKey={PleiepengerLivetsSluttApp.key}
                 appName={PleiepengerLivetsSluttApp.navn}
                 appTitle={PleiepengerLivetsSluttApp.tittel.nb}
@@ -47,8 +39,7 @@ const App = () => (
                     },
                 }}
                 publicPath={PUBLIC_PATH}
-                useAnalytics={SIF_PUBLIC_USE_ANALYTICS ? SIF_PUBLIC_USE_ANALYTICS === 'true' : isProd()}
-                analyticsApiKey={SIF_PUBLIC_ANALYTICS_API_KEY}>
+                useAnalytics={SIF_PUBLIC_USE_ANALYTICS ? SIF_PUBLIC_USE_ANALYTICS === 'true' : isProd()}>
                 <SoknadApplicationCommonRoutes
                     contentRoutes={[
                         <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,
