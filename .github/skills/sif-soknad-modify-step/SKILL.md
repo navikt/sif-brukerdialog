@@ -1,7 +1,7 @@
 ---
 name: sif-soknad-modify-step
 type: action
-description: Legg til nye spørsmål/felter i et eksisterende steg i en søknadsapp som bruker @sif/soknad og @sif/rhf.
+description: Legg til nye spørsmål/felter i et eksisterende steg i en søknadsapp som bruker @sif/soknad-app og @sif/rhf.
 ---
 
 # sif-soknad-modify-step
