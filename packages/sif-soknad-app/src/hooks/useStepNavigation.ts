@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { useSøknadStepFormContext } from '../consistency/SøknadStepFormContext';
 import { useSøknadAppContext } from '../context/SøknadAppContext';
 import { buildStepPath } from '../utils/routeUtils';
 import { getPreviousNextStep } from '../utils/stepUtils';
@@ -16,7 +17,8 @@ import { getPreviousNextStep } from '../utils/stepUtils';
  * ```
  */
 export function useStepNavigation() {
-    const { store, config, basePath } = useSøknadAppContext();
+    const { store, config, basePath, versjon, lagreMellomlagring } = useSøknadAppContext();
+    const { draftFormValues, getAllLiveFormValues } = useSøknadStepFormContext();
     const navigate = useNavigate();
     const includedSteps = store((s) => s.includedSteps);
 
@@ -34,12 +36,24 @@ export function useStepNavigation() {
             if (previousStepId) {
                 const route = config[previousStepId]?.route;
                 if (route) {
-                    // Navigasjon: bruker trykker forrige-knapp — gå ett steg tilbake.
+                    // Oppdater resumeStepId til steget vi navigerer til, slik at reload
+                    // lander brukeren på riktig steg.
+                    store.getState().setResumeStepId(previousStepId);
+
+                    // Lagre mellomlagring fire-and-forget med oppdatert resumeStepId.
+                    const { søknadsdata } = store.getState();
+                    const persistedFormValues: Record<string, Record<string, unknown>> = {
+                        ...draftFormValues,
+                        ...getAllLiveFormValues(),
+                    };
+                    store.getState().setPersistedFormValues(persistedFormValues);
+                    void lagreMellomlagring({ versjon, resumeStepId: previousStepId, søknadsdata, persistedFormValues });
+
                     navigate(buildStepPath(basePath, route));
                 }
             }
         },
-        [includedSteps, config, basePath, navigate],
+        [includedSteps, config, basePath, navigate, store, versjon, lagreMellomlagring, draftFormValues, getAllLiveFormValues],
     );
 
     const navigateToStep = useCallback(

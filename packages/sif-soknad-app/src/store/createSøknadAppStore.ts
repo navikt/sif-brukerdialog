@@ -40,6 +40,8 @@ export interface SøknadStoreActions {
     clearPersistedFormValues: (stepId: string) => void;
     /** Oppdaterer hele persistedFormValues-mappet i storen (etter manuell lagre()). */
     setPersistedFormValues: (values: Record<string, Record<string, unknown>>) => void;
+    /** Oppdaterer gjenopptakingspunktet direkte — brukes ved tilbake-navigering. */
+    setResumeStepId: (stepId: string) => void;
     setSøknadSendt: () => void;
     reset: () => void;
 }
@@ -141,6 +143,8 @@ export const createSøknadAppStore = (options: StoreOptions): UseBoundStore<Stor
             }),
 
         setPersistedFormValues: (values) => set({ persistedFormValues: values }),
+
+        setResumeStepId: (stepId) => set({ resumeStepId: stepId }),
 
         setSøknadSendt: () =>
             set({
