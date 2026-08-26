@@ -22,6 +22,8 @@ export const zDeltakelseInnmeldingDto = z.object({
     startdato: z.iso.date(),
 });
 
+export const zDeltakelseStatus = z.enum(['IKKE_STARTET', 'AKTIV', 'IKKE_AKTIV']);
+
 export const zDeltakelseUtmeldingDto = z.object({
     avslutningsårsak: zAvslutningsårsak.nullish(),
     utmeldingsdato: z.iso.date(),
@@ -44,6 +46,7 @@ export const zDeltakelseDto = z.object({
     id: z.uuid().nullish(),
     kvoteMaksDato: z.iso.date(),
     periodeMaksDato: z.iso.date(),
+    status: zDeltakelseStatus,
     søktTidspunkt: z.iso.datetime({ local: true }).nullish(),
     tilOgMed: z.iso.date().nullish(),
 });
