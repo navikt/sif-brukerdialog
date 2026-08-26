@@ -8,7 +8,7 @@ import logger from './log.js';
 import serverConfig from './serverConfig.js';
 
 export const setupAndServeHtml = async (app: Express) => {
-    // When deployed, the built frontend is copied into the public directory. If running BFF locally the index.html will not exist.
+    // public/index.html er en placeholder lokalt; i Docker-build erstattes den av bygget klient-dist.
     const spaFilePath = path.resolve('./public', 'index.html');
 
     const html = fs.readFileSync(spaFilePath, 'utf-8');
