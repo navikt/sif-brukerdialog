@@ -35,12 +35,15 @@
         "SIF_PUBLIC_FULL_DEKORATOR": "on",
         "SIF_PUBLIC_LOGIN_URL": "https://www.nav.no/aktivitetspenger/innsyn/oauth2/login?redirect=/aktivitetspenger/innsyn",
         "SIF_PUBLIC_MINSIDE_URL": "https://www.nav.no/minside",
-        "REQUIRED_PROXY_SERVICES": "K9_BRUKERDIALOG_PROSESSERING,UNG_DELTAKELSE_OPPLYSER",
+        "REQUIRED_PROXY_SERVICES": "K9_BRUKERDIALOG_PROSESSERING,UNG_DELTAKELSE_OPPLYSER,UNG_BRUKERDIALOG_API",
         "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/aktivitetspenger/innsyn/api/brukerdialog",
         "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "prod-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
         "UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH": "/aktivitetspenger/innsyn/api/ung-deltakelse-opplyser",
         "UNG_DELTAKELSE_OPPLYSER_API_SCOPE": "prod-gcp:k9saksbehandling:ung-deltakelse-opplyser",
-        "UNG_DELTAKELSE_OPPLYSER_API_URL": "http://ung-deltakelse-opplyser.k9saksbehandling"
+        "UNG_DELTAKELSE_OPPLYSER_API_URL": "http://ung-deltakelse-opplyser.k9saksbehandling",
+        "UNG_BRUKERDIALOG_API_FRONTEND_PATH": "/api/ung-brukerdialog-api",
+        "UNG_BRUKERDIALOG_API_API_SCOPE": "prod-gcp:k9saksbehandling:ung-brukerdialog-api",
+        "UNG_BRUKERDIALOG_API_API_URL": "http://ung-brukerdialog-api.k9saksbehandling"
     }
 }
