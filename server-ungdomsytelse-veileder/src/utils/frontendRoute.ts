@@ -1,3 +1,4 @@
+import { renderNaisMetaTags } from '@nais/apm';
 import { getToken, parseAzureUserToken } from '@navikt/oasis';
 import { Express } from 'express';
 import fs from 'fs';
@@ -7,10 +8,12 @@ import logger from './log.js';
 import serverConfig from './serverConfig.js';
 
 export const setupAndServeHtml = async (app: Express) => {
-    // When deployed, the built frontend is copied into the public directory. If running BFF locally the index.html will not exist.
+    // public/index.html er en placeholder lokalt; i Docker-build erstattes den av bygget klient-dist.
     const spaFilePath = path.resolve('./public', 'index.html');
 
     const html = fs.readFileSync(spaFilePath, 'utf-8');
+    const naisMetaTags = renderNaisMetaTags();
+    const htmlWithMetaTags = html.replaceAll('<!-- {{{NAIS_META_TAGS}}} -->', naisMetaTags);
 
     const envs = appEnvSchema.safeParse({
         ENV: `${serverConfig.app.env}`,
@@ -26,7 +29,7 @@ export const setupAndServeHtml = async (app: Express) => {
         process.exit(1); // Exit the server if validation fails
     }
 
-    const renderedHtml = html.replaceAll('{{{APP_SETTINGS}}}', JSON.stringify(envs.data));
+    const renderedHtml = htmlWithMetaTags.replaceAll('{{{APP_SETTINGS}}}', JSON.stringify(envs.data));
 
     app.get('/me', (request, response) => {
         const token = getToken(request);
