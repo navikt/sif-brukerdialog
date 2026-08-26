@@ -1,6 +1,7 @@
 import {
     DeltakelseDto,
     DeltakelseHistorikkDto,
+    DeltakelseStatus,
     DeltakerPersonalia,
     Endringstype,
     Revisjonstype,
@@ -39,6 +40,7 @@ const deltakelse: DeltakelseDto = {
     fraOgMed: FRA_OG_MED,
     tilOgMed: undefined,
     erSlettet: false,
+    status: DeltakelseStatus.AKTIV,
     harOpphørsvedtak: false,
     søktTidspunkt: relativeMockTimestamp(-11, 'months'),
     harForlengetPeriode: false,

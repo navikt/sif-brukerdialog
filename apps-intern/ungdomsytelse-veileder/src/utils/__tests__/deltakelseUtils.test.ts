@@ -33,12 +33,15 @@ import {
 import { Deltakelse } from '../../types/Deltakelse';
 import { Features } from '../../types/Features';
 
-const lagDeltakelse = (overrides: Partial<Deltakelse> = {}): Deltakelse => ({
+type DeltakelseOverrides = Partial<Omit<Deltakelse, 'status'>>;
+
+const lagDeltakelse = (overrides: DeltakelseOverrides = {}): Deltakelse => ({
     id: 'test-id',
     deltaker: { deltakerIdent: '12345678901', id: 'deltaker-id' },
     fraOgMed: ISODateToDate('2026-01-01'),
     tilOgMed: undefined,
     periodeMaksDato: ISODateToDate('2027-01-15'),
+    status: 'AKTIV',
     kvoteMaksDato: '2027-01-15',
     harForlengetPeriode: false,
     harUtvidetKvote: false,

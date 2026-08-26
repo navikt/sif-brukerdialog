@@ -1,6 +1,7 @@
 import {
     DeltakelseDto,
     DeltakelseHistorikkDto,
+    DeltakelseStatus,
     DeltakerPersonalia,
     Endringstype,
     Revisjonstype,
@@ -54,6 +55,7 @@ const deltakelse: DeltakelseDto = {
     fraOgMed,
     tilOgMed: undefined,
     erSlettet: false,
+    status: DeltakelseStatus.AKTIV,
     harOpphørsvedtak: false,
     søktTidspunkt,
     harForlengetPeriode: false,
