@@ -1,13 +1,13 @@
 ---
 name: sif-date-handling
 type: referanse
-scope: v2-apper som bruker @sif/api, @sif/soknad, sif-utils og tilhørende pakker
+scope: v2-apper som bruker @sif/api, @sif/soknad-app, sif-utils og tilhørende pakker
 description: Bruk denne skillen for å fange opp og rette feilaktig datoparsing fra backend i v2-apper — tidssoneproblemer, feil bruk av Date/dayjs og blandede ISODate/ISODateTime-verdier i frontend.
 ---
 
 # sif-date-handling
 
-> **Scope:** Gjelder v2-applikasjoner som bruker `@sif/api`, `@sif/soknad`, `sif-utils` og tilhørende pakker.
+> **Scope:** Gjelder v2-applikasjoner som bruker `@sif/api`, `@sif/soknad-app`, `sif-utils` og tilhørende pakker.
 
 ## Bruk når
 

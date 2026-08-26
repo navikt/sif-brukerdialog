@@ -53,7 +53,7 @@ Referanseimplementasjon: `apps/aktivitetspenger-soknad`
 
 - `SøknadRouter` er primært en kontekst-provider, men har to `useEffect` med navigering:
     - Ved mount: henter mellomlagring → kaller `init(blob)` → navigerer til `resumeStepId` hvis gyldig blob
-    - Ved `søknadSendt`: navigerer til `/kvittering`
+    - Etter initialisering: hvis browser-back sender brukeren til velkommensiden (`/`) mens `resumeStepId` finnes, navigeres brukeren tilbake til gjenopptakingspunktet med `replace`
 - `SøknadRouter` holder `children` tilbake til mellomlagring er hentet (`isInitialized`). Dersom gyldig mellomlagring finnes, navigeres bruker automatisk til `resumeStepId` uten at velkommensiden vises.
 - `SøknadStepGuard` styrer redirect basert på `resumeStepId` fra Zustand-storen
 - `SøknadStep` er wrapper for ett steg — henter tittel via `step.${stepId}.title`, bygger progress-stepper, kjører konsistenssjekk
@@ -90,6 +90,7 @@ Lokale parametere som betyr "steget som vises nå" heter fortsatt `currentStepId
 - `draftFormValues` — in-memory unmount-lagrede verdier per steg
 - `setFormValuesForStep` / `clearFormValuesForStep`
 - `markSkipNextUnmountSaveForStep` / `shouldSaveOnUnmountForStep`
+- `clearAllFormValues` — tømmer draft-verdier og hindrer aktive stegs unmount-handler i å skrive gamle verdier tilbake; brukes ved avbryt og ved ny start
 
 **Live getters (manuell mellomlagring):**
 
@@ -140,7 +141,7 @@ const { lagre } = useMellomlagring();
 await lagre();
 ```
 
-`lagre()` henter live verdier fra `getAllLiveFormValues()` — uavhengig av `resumeStepId`. Dette er viktig fordi `resumeStepId` kan peke på et annet steg enn det brukeren ser på.
+`lagre()` henter live verdier fra `getAllLiveFormValues()` — uavhengig av `resumeStepId`. Dette er viktig fordi `resumeStepId` kan peke på et annet steg enn det brukeren ser på. Den beholder også eksisterende `persistedFormValues` fra mellomlagring og lar nyere draft- og live-verdier overskrive per steg.
 
 ### `useCheckConsistency(currentStepId)`
 
@@ -250,7 +251,7 @@ interface MellomlagringBlob {
 5. `resumeStepId = includedSteps[fromIndex + 1]?.stepId` (alltid neste i sekvens)
 6. Returner `{ newResumeStepId, newRoute }` (ingen side-effekter i storen)
 
-`useStepData.commit()` håndterer side-effektene etter: rydder draft-verdier, lagrer mellomlagring, navigerer.
+`useStepData.commit()` håndterer side-effektene etter: rydder draft-verdier for det committede steget, beholder persisterte verdier for andre steg, lagrer mellomlagring og navigerer.
 
 ---
 
@@ -324,4 +325,7 @@ const formValuesToSøknadsdata = useFormValuesToSøknadsdata();
 | Navigerer til feil steg etter back+re-submit                         | `resumeStepId` peker på et steg lenger frem                                               | `commitState` bruker alltid `includedSteps[fromIndex + 1]` — løst             |
 | Velkommensiden blinker ved reload med mellomlagring                  | `children` ble rendret før init + navigate                                                | `SøknadRouter` holder `children` tilbake til `isInitialized = true` — løst    |
 | Bruker sendes til velkommensiden i stedet for riktig steg ved reload | `init(blob)` uten påfølgende `navigate`                                                   | `SøknadRouter` navigerer automatisk til `resumeStepId` etter init — løst      |
+| Browser-back viser velkommensiden selv om søknaden kan gjenopptas    | Routeren reagerer ikke på at URL-en går tilbake til `/`                                   | `SøknadRouter` redirecter fra `/` til `resumeStepId` etter initialisering     |
+| Verdier fra andre steg forsvinner ved manuell lagring                | Blob bygges kun fra aktive in-memory-verdier                                               | Merge `store.persistedFormValues` før draft- og live-verdier                  |
+| Gamle verdier kommer tilbake etter «slett søknad»                    | Et aktivt steg lagrer verdiene sine i unmount etter reset                                 | Bruk `clearAllFormValues` ved avbryt og før ny start                           |
 | Submit aktivt selv om `InconsistentFormValuesMessage` vises          | `submitDisabled`-prop videresendt uten konsistenssjekk                                    | Bruk `SøknadStepForm` — deaktiverer submit automatisk via `SøknadStepContext` |

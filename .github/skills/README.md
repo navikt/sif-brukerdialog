@@ -13,9 +13,14 @@ Bruk denne indeksen for rask routing til riktig skill.
     - Fil: `.github/skills/sif-intl/SKILL.md`
 
 - `sif-soknad-setup`
-    - Når: oppsett av `src/app/setup` og routing shell (`Soknad.tsx`, `VelkommenPage`, `KvitteringPage`) i app med `@sif/soknad` og `@sif/rhf`.
+    - Når: oppsett av `src/app/setup` og routing shell (`Soknad.tsx`, `VelkommenPage`, `KvitteringPage`) i app med `@sif/soknad-app` og `@sif/rhf`.
     - Triggerord: `soknadContext`, `stepConfig`, `useStepSubmit`, `useStepDefaultValues`, `VelkommenPage`, `KvitteringPage`, `Soknad.tsx`, `routing-skall`.
     - Fil: `.github/skills/sif-soknad-setup/SKILL.md`
+
+- `sif-soknad-app`
+    - Når: endre eller feilsøke selve søknadsrammeverket, inkludert steg-navigering, mellomlagring og gjenopptak.
+    - Triggerord: `@sif/soknad-app`, `SøknadRouter`, `SøknadStep`, `SøknadStepGuard`, `useStepData`, `useMellomlagring`, `resumeStepId`.
+    - Fil: `.github/skills/sif-soknad-app/SKILL.md`
 
 - `aksel-spacing`
     - Når: layout/spacing med Aksel Design System.
