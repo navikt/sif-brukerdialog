@@ -110,6 +110,30 @@ export const verifyProxyConfigIsSet = (service: Service) => {
     }
 };
 
+export const getRequiredServicesFromEnv = (): Service[] => {
+    const raw = process.env.REQUIRED_PROXY_SERVICES;
+    if (!raw || raw.trim() === '') {
+        return Object.values(Service).filter((service) => {
+            try {
+                verifyProxyConfigIsSet(service);
+                return true;
+            } catch {
+                return false;
+            }
+        });
+    }
+    const validServices = Object.values(Service);
+    const services = raw
+        .split(',')
+        .map((s) => s.trim())
+        .filter(Boolean);
+    const unknown = services.filter((s) => !validServices.includes(s as Service));
+    if (unknown.length > 0) {
+        throw `Unknown service(s) in REQUIRED_PROXY_SERVICES: ${unknown.join(', ')}`;
+    }
+    return [...new Set(services)] as Service[];
+};
+
 interface App {
     port: number;
     env: 'dev' | 'prod';

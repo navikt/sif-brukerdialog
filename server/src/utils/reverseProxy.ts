@@ -17,22 +17,17 @@ const getCommitShaFromEnv = () => {
     return parts.length === 2 ? parts[1] : undefined;
 };
 
-export function configureReverseProxyApi(app: Express) {
-    Object.keys(config.proxies)
-        .map((key) => ({ key, proxy: config.proxies[key as Service] }))
-        .forEach(({ key, proxy }) => {
-            try {
-                verifyProxyConfigIsSet(key as Service);
-                addProxyHandler(app, {
-                    ingoingUrl: proxy.frontendPath,
-                    outgoingUrl: proxy.apiUrl,
-                    scope: proxy.apiScope,
-                });
-                logger.info(`Reverse proxyHandler added for ${key}: ${proxy.frontendPath} -> ${proxy.apiUrl}`);
-            } catch (e) {
-                logger.error(`Missing info setting up reverse proxy for ${key}`, e);
-            }
+export function configureReverseProxyApi(app: Express, services: Service[]) {
+    services.forEach((key) => {
+        verifyProxyConfigIsSet(key);
+        const proxy = config.proxies[key];
+        addProxyHandler(app, {
+            ingoingUrl: proxy.frontendPath,
+            outgoingUrl: proxy.apiUrl,
+            scope: proxy.apiScope,
         });
+        logger.info(`Reverse proxyHandler added for ${key}: ${proxy.frontendPath} -> ${proxy.apiUrl}`);
+    });
 }
 
 export function addProxyHandler(server: Express, { ingoingUrl, outgoingUrl, scope }: ProxyOptions) {

@@ -21,6 +21,7 @@
         "APP_VERSION": "prod",
         "NPM_CONFIG_CACHE": "/tmp",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg",
+        "REQUIRED_PROXY_SERVICES": "K9_BRUKERDIALOG_PROSESSERING",
         "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "prod-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/api",

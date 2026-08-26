@@ -55,13 +55,14 @@ Følg denne rekkefølgen:
     - Sjekk `env.schema.ts` har riktig schema (`commonEnvSchema`/ev. flere)
     - Sjekk `nais/dev-gcp.json` og `nais/prod-gcp.json` for:
         - `PUBLIC_PATH`
-        - `*_FRONTEND_PATH`
-        - `*_API_SCOPE`
-        - `*_API_URL`
+        - `REQUIRED_PROXY_SERVICES` — kommaseparert liste over services appen trenger (f.eks. `K9_BRUKERDIALOG_PROSESSERING,SIF_INNSYN`)
+        - `*_FRONTEND_PATH`, `*_API_SCOPE`, `*_API_URL` for hver service i listen
+    - `REQUIRED_PROXY_SERVICES` må inneholde nøyaktig de service-navnene som har tilhørende `*_FRONTEND_PATH`-variabel satt. Mangler variabelen krasjer serveren ved oppstart med «Unknown service(s)…» eller «Missing …». Mangler `REQUIRED_PROXY_SERVICES` helt faller serveren tilbake til alle services som har komplett env-konfig.
 
 4. Verifiser server:
-    - `server/src/utils/serverConfig.ts` leser env som proxy-definisjoner
-    - `server/src/utils/reverseProxy.ts` registrerer `server.use(ingoingUrl, ...)`
+    - `server/src/utils/serverConfig.ts` definerer gyldige `Service`-verdier og leser env som proxy-definisjoner
+    - `server/src/utils/serverConfig.ts` eksporterer `getRequiredServicesFromEnv()` som leser `REQUIRED_PROXY_SERVICES`
+    - `server/src/utils/reverseProxy.ts` registrerer `server.use(ingoingUrl, ...)` kun for services i listen
     - bekreft at `ingoingUrl` matcher det frontend faktisk kaller
 
 5. Konkluder med konkret mismatch:
@@ -90,9 +91,10 @@ Alle punkter må være sanne:
 
 1. `PUBLIC_PATH` matcher appens base/basename
 2. Appens API-klient bruker samme `*_FRONTEND_PATH` som env
-3. Serverens `ingoingUrl` (reverse proxy) er identisk med frontend-kallets base path
-4. SDK-url (f.eks. `/oppslag/soker`) bygger korrekt full path sammen med base path
-5. Request til endpoint returnerer ikke HTML/catch-all
+3. `REQUIRED_PROXY_SERVICES` inneholder nøyaktig de services som har `*_FRONTEND_PATH`/`*_API_SCOPE`/`*_API_URL` satt — og kun gyldige `Service`-verdier fra serverens enum
+4. Serverens `ingoingUrl` (reverse proxy) er identisk med frontend-kallets base path
+5. SDK-url (f.eks. `/oppslag/soker`) bygger korrekt full path sammen med base path
+6. Request til endpoint returnerer ikke HTML/catch-all
 
 ## Vanlige feil
 
@@ -100,6 +102,8 @@ Alle punkter må være sanne:
 2. Hardkodet `frontendPath` i app som avviker fra `nais`-env
 3. Dev/prod har ulike path-konvensjoner uten env-basert init
 4. Test av feil URL (mangler prefikssegment)
+5. `REQUIRED_PROXY_SERVICES` inneholder typo eller service-navn som ikke finnes i serverens `Service`-enum → «Unknown service(s)…» ved oppstart
+6. `REQUIRED_PROXY_SERVICES` og `*_FRONTEND_PATH`-variabler er ute av sync (service deklarert men mangler env, eller env satt men mangler i listen)
 
 ## Forslag til responsformat ved verifisering
 
