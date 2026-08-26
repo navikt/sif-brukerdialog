@@ -3,7 +3,7 @@ import { createSifLenkeUtils, SifLenkeKey, SifLenker } from '@sif/soknad-ui/lenk
 import { getAppEnv } from './setup/appEnv';
 
 const getEnvironment = () => (getAppEnv().ENV === 'dev' ? 'dev' : 'prod');
-
+// const lenker = getSifLenker(getLocaleFromSessionStorage(), getEnvironment());
 export const { getLenker, getLenke, useLenker } = createSifLenkeUtils({
     getEnvironment,
 });

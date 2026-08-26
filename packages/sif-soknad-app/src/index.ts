@@ -19,6 +19,7 @@ export { SøknadStepForm } from './components/SøknadStepForm';
 export { SøknadStepGuard } from './components/SøknadStepGuard';
 export { SøknadVelkommenPage } from './components/SøknadVelkommenPage';
 export { InconsistentFormValuesMessage } from './consistency/InconsistentFormValuesMessage';
+export { SøknadStepFormProvider } from './consistency/SøknadStepFormContext';
 
 // Hooks
 export { useAvbryt } from './hooks/useAvbryt';
@@ -32,8 +33,10 @@ export { useStepNavigation } from './hooks/useStepNavigation';
 
 export { useSøknadsdata } from './hooks/useSøknadsdata';
 
-// Intern kontekst — eksportert for avansert bruk (f.eks. direkte store-aksess)
+// Intern kontekst — eksportert for avansert bruk (f.eks. storybook-dekoratører)
+export { SøknadAppContext } from './context/SøknadAppContext';
 export { useSøknadAppContext } from './context/SøknadAppContext';
+export { createSøknadAppStore } from './store/createSøknadAppStore';
 
 // Typer
 export type {

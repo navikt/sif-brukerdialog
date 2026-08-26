@@ -321,7 +321,8 @@ export const Kvittering = () => {
         <SøknadKvitteringPage
             documentTitle={text('kvittering.documentTitle')}
             applicationTitle={text('application.title')}
-            tittel={text('kvittering.title')}
+            infoTittel={text('kvittering.title')}
+            infoMelding={text('kvittering.message')}
             appRootUrl={import.meta.env.BASE_URL}
         />
     );
