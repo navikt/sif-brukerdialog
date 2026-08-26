@@ -1,6 +1,6 @@
 import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
-import { dateToISODate } from '@sif/utils';
 import { Søker } from '@sif/api/k9-prosessering';
+import { dateToISODate, ISODate } from '@sif/utils';
 
 import { SøknadApiData } from '../types/SoknadApiData';
 import { Søknadsdata } from '../types/Soknadsdata';
@@ -10,13 +10,15 @@ export const søknadsdataToSøknadDTO = ({
     søknadsdata,
     språk = 'nb',
     kontoInfo,
+    startdato,
 }: {
     søknadsdata: Søknadsdata;
     søker: Søker;
     språk?: 'nb' | 'nn';
     kontoInfo: KontonummerInfo;
+    startdato?: ISODate;
 }): Omit<SøknadApiData, 'harBekreftetOpplysninger'> | undefined => {
-    const { barn, harForståttRettigheterOgPlikter, bostedUtland, kontonummer, bosted, startdato } = søknadsdata;
+    const { barn, harForståttRettigheterOgPlikter, bostedUtland, kontonummer, bosted } = søknadsdata;
 
     if (!barn || !harForståttRettigheterOgPlikter || !bosted || !kontonummer || !bostedUtland || !startdato) {
         // eslint-disable-next-line no-console
@@ -42,7 +44,7 @@ export const søknadsdataToSøknadDTO = ({
             })),
         },
         erBosattITrondheim: bosted.erBosattITrondheim,
-        startdato: startdato.startdato,
+        startdato: startdato,
         harForståttRettigheterOgPlikter,
     };
 };

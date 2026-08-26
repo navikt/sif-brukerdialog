@@ -5,10 +5,6 @@ import { SøknadStepId } from './SoknadStepId';
 
 export type KontonummerSøknadsdata = Pick<KontonummerInfo, 'kontonummerErRiktig'>;
 
-export type StartdatoSøknadsdata = {
-    startdato: string;
-};
-
 export type BostedSøknadsdata = {
     erBosattITrondheim: boolean;
 };
@@ -28,7 +24,6 @@ export type BarnSøknadsdata = {
  */
 export interface Søknadsdata {
     harForståttRettigheterOgPlikter?: boolean;
-    [SøknadStepId.STARTDATO]?: StartdatoSøknadsdata;
     [SøknadStepId.KONTONUMMER]?: KontonummerSøknadsdata;
     [SøknadStepId.BOSTED]?: BostedSøknadsdata;
     [SøknadStepId.BOSTED_UTLAND]?: BostedUtlandSøknadsdata;
