@@ -23,13 +23,14 @@ export function useMellomlagring(): { lagre: () => Promise<void> } {
     const { draftFormValues, getAllLiveFormValues } = useSøknadStepFormContext();
 
     const lagre = useCallback(async (): Promise<void> => {
-        const { resumeStepId, søknadsdata } = store.getState();
+        const { resumeStepId, søknadsdata, persistedFormValues: existingPersistedFormValues } = store.getState();
 
         // Hent live verdier fra alle monterte steg (uavhengig av resumeStepId i storen)
         const allLiveValues = getAllLiveFormValues();
 
         // Bygg persistedFormValues: unmount-lagrede verdier + live verdier for monterte steg
         const persistedFormValues: Record<string, Record<string, unknown>> = {
+            ...existingPersistedFormValues,
             ...draftFormValues,
             ...allLiveValues,
         };
