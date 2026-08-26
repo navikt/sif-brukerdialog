@@ -18,7 +18,6 @@ import { BostedOppsummering } from './parts/BostedOppsummering';
 import { BostedUtlandOppsummering } from './parts/BostedUtlandOppsummering';
 import { KontonummerOppsummering } from './parts/KontonummerOppsummering';
 import { useState } from 'react';
-import { isDevMode } from '@navikt/sif-common-env';
 import { StartdatoSpørsmål } from './parts/StartdatoSpørsmål';
 
 enum FormFields {
@@ -73,7 +72,7 @@ export const OppsummeringSteg = () => {
                 isPending={isPending}
                 isFinalSubmit={true}
                 submitDisabled={!dto || !startdato}>
-                {isDevMode() && (
+                {
                     <StartdatoSpørsmål
                         onDateChange={(dato) => {
                             if (dato) {
@@ -81,7 +80,7 @@ export const OppsummeringSteg = () => {
                             }
                         }}
                     />
-                )}
+                }
                 {startdato && (
                     <>
                         {!dto && (

@@ -1,12 +1,12 @@
 import { Button } from '@navikt/ds-react';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, ReactNode } from 'react';
 import { ApplicationPage } from '../application-page/ApplicationPage';
 import { Kvittering } from '../../components';
 interface SøknadKvitteringPageProps {
     documentTitle: string;
     applicationTitle: string;
     infoTittel: string;
-    infoMelding?: React.ReactNode;
+    infoMelding?: ReactNode;
     /** URL til app-roten. Send inn import.meta.env.BASE_URL fra appen. */
     appRootUrl?: string;
     restartLabel?: string;

@@ -1,10 +1,11 @@
 import { CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
 import { Heading, InfoCard, VStack } from '@navikt/ds-react';
+import { ReactNode } from 'react';
 
 interface Props {
     infoTittel: string;
-    infoInnhold?: React.ReactNode;
-    children?: React.ReactNode;
+    infoInnhold?: ReactNode;
+    children?: ReactNode;
 }
 
 export const Kvittering = ({ infoTittel, infoInnhold, children }: Props) => {

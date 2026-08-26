@@ -1,9 +1,10 @@
 import { Bleed, Box, InfoCard, Tag } from '@navikt/ds-react';
 import { ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
+import { ReactNode } from 'react';
 
 interface Props {
     spacing?: boolean;
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 export const Todo = ({ children, spacing = true }: Props) => (
