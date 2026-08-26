@@ -48,6 +48,7 @@
         "react-intl": "10.1.22",
         "react-router-dom": "7.18.2",
         "uuid": "^14.0.2",
+        "@storybook/addon-vitest": "10.5.10",
         "zod": "4.4.3"
     },
     "devDependencies": {
