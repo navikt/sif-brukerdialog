@@ -9,13 +9,9 @@
     "type": "module",
     "exports": {
         ".": "./src/index.ts",
-        "./components": "./src/components/index.ts",
         "./consistency": "./src/consistency/index.ts",
-        "./navigation": "./src/navigation/index.ts",
         "./context": "./src/context/index.ts",
         "./hooks": "./src/hooks/index.ts",
-        "./i18n": "./src/i18n/index.tsx",
-        "./pages": "./src/pages/index.ts",
         "./store": "./src/store/index.ts",
         "./types": "./src/types/index.ts",
         "./utils": "./src/utils/index.ts"

@@ -1,4 +1,3 @@
-export * as components from './components';
 export * as consistency from './consistency';
 export * as context from './context';
 export * as hooks from './hooks';
