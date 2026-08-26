@@ -1,5 +1,5 @@
 import { UploadedFile } from '@sif/rhf';
-import { StepFormValues } from '@sif/soknad/types';
+import { StepFormValues } from '@sif/soknad-app';
 
 export enum DeltBostedFormFields {
     samværsavtale = 'samværsavtale',

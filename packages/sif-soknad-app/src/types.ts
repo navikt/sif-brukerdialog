@@ -1,6 +1,14 @@
 import { ReactNode } from 'react';
 
 /**
+ * Basetype for skjema-verdier i ett steg.
+ * Bruker {} i stedet for Record<string, unknown> så stegspesifikke interfaces
+ * ikke trenger en index-signatur.
+ */
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export type StepFormValues = {};
+
+/**
  * Mellomlagring-blob som rammeverket lagrer og henter som opak struktur.
  */
 export interface MellomlagringBlob {
