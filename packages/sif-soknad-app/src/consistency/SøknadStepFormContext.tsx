@@ -30,6 +30,8 @@ interface SøknadStepFormContextValue {
     markSkipNextUnmountSaveForStep: (stepId: string) => void;
     /** Returnerer true hvis steget skal lagre ved unmount — og konsumerer markeringen. */
     shouldSaveOnUnmountForStep: (stepId: string) => boolean;
+    /** Tømmer alle draft-verdier og live getters — brukes ved avbryt/reset. */
+    clearAllFormValues: () => void;
 
     // --- Lag 2: live getters for monterte steg ---
     registerGetValuesForStep: (stepId: string, getValues: () => StepFormValues) => void;
@@ -78,6 +80,14 @@ export const SøknadStepFormProvider = ({ children }: { children: ReactNode }) =
         liveGettersRef.current.delete(stepId);
     }, []);
 
+    const clearAllFormValues = useCallback(() => {
+        liveGettersRef.current.forEach((_getter, stepId) => {
+            skipNextUnmountSaveRef.current.add(stepId);
+        });
+        setValues({});
+        liveGettersRef.current.clear();
+    }, []);
+
     const getAllLiveFormValues = useCallback((): Record<string, StepFormValues> => {
         const result: Record<string, StepFormValues> = {};
         liveGettersRef.current.forEach((getter, stepId) => {
@@ -94,6 +104,7 @@ export const SøknadStepFormProvider = ({ children }: { children: ReactNode }) =
                 clearFormValuesForStep,
                 markSkipNextUnmountSaveForStep,
                 shouldSaveOnUnmountForStep,
+                clearAllFormValues,
                 registerGetValuesForStep,
                 unregisterGetValuesForStep,
                 getAllLiveFormValues,

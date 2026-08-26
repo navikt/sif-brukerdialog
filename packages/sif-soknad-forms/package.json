@@ -29,7 +29,6 @@
         "@navikt/sif-validation": "workspace:*",
         "@sif/api": "workspace:*",
         "@sif/rhf": "workspace:*",
-        "@sif/soknad": "workspace:*",
         "@sif/soknad-ui": "workspace:*",
         "@sif/utils": "workspace:*",
         "react-hook-form": "7.86.0"

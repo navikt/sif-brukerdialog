@@ -75,6 +75,7 @@ export function useStepData<TCommitted = unknown, TDraft = Record<string, unknow
                 versjon,
                 resumeStepId: storeState.resumeStepId ?? stepId,
                 søknadsdata: storeState.søknadsdata,
+                persistedFormValues: storeState.persistedFormValues,
             }).catch(() => {});
 
             // Navigasjon: etter vellykket steg-submit — gå til neste steg i flyten.

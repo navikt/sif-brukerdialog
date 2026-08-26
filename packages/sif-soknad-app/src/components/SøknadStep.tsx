@@ -5,9 +5,11 @@ import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 
 import { InconsistentFormValuesMessage } from '../consistency/InconsistentFormValuesMessage';
+import { useSøknadStepFormContext } from '../consistency/SøknadStepFormContext';
 import { useSøknadAppContext } from '../context/SøknadAppContext';
 import { useAnalyticsInstance, ApplikasjonHendelse } from '../analytics/analytics';
 import { useCheckConsistency } from '../hooks/useCheckConsistency';
+import { useMellomlagring } from '../hooks/useMellomlagring';
 import { SøknadStepProps } from '../types';
 import { buildStepPath } from '../utils/routeUtils';
 import { SøknadStepContext } from './SøknadStepContext';
@@ -33,15 +35,13 @@ export const SøknadStep = ({ stepId, children }: SøknadStepProps) => {
         basePath,
         applicationTitle,
         resumeLaterUrl,
-        versjon,
-        lagreMellomlagring,
         slettMellomlagring,
     } = useSøknadAppContext();
 
     const includedSteps = store((s) => s.includedSteps);
-    const søknadsdata = store((s) => s.søknadsdata);
-    const resumeStepId = store((s) => s.resumeStepId);
     const reset = store((s) => s.reset);
+    const { clearAllFormValues } = useSøknadStepFormContext();
+    const { lagre } = useMellomlagring();
 
     const steps: ProgressStep[] = includedSteps.map((s, index) => ({
         id: s.stepId,
@@ -70,15 +70,14 @@ export const SøknadStep = ({ stepId, children }: SøknadStepProps) => {
         await logHendelse(ApplikasjonHendelse.avbryt);
         await slettMellomlagring();
         reset();
+        clearAllFormValues();
         // Navigasjon: bruker avbryter søknaden — tilbake til forsiden.
         navigate('/');
     };
 
     const onResumeLater = async () => {
         await logHendelse(ApplikasjonHendelse.fortsettSenere);
-        if (resumeStepId) {
-            await lagreMellomlagring({ versjon, resumeStepId, søknadsdata });
-        }
+        await lagre();
         // Navigasjon: bruker vil fortsette senere — full page redirect til Min side.
         window.location.href = resumeLaterUrl;
     };

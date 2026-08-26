@@ -43,4 +43,5 @@ export type {
     SøknadRouterProps,
     SøknadStepProps,
     StepDefinition,
+    StepFormValues,
 } from './types';

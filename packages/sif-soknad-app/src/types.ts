@@ -1,6 +1,13 @@
 import { ReactNode } from 'react';
 
 /**
+ * Basetype for skjema-verdier i ett steg.
+ * Bruker object i stedet for Record<string, unknown> så stegspesifikke interfaces
+ * ikke trenger en index-signatur.
+ */
+export type StepFormValues = object;
+
+/**
  * Mellomlagring-blob som rammeverket lagrer og henter som opak struktur.
  */
 export interface MellomlagringBlob {
