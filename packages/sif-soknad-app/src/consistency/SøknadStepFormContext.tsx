@@ -81,8 +81,10 @@ export const SøknadStepFormProvider = ({ children }: { children: ReactNode }) =
     }, []);
 
     const clearAllFormValues = useCallback(() => {
+        liveGettersRef.current.forEach((_getter, stepId) => {
+            skipNextUnmountSaveRef.current.add(stepId);
+        });
         setValues({});
-        skipNextUnmountSaveRef.current.clear();
         liveGettersRef.current.clear();
     }, []);
 

@@ -41,19 +41,35 @@ export function useStepNavigation() {
                     store.getState().setResumeStepId(previousStepId);
 
                     // Lagre mellomlagring fire-and-forget med oppdatert resumeStepId.
-                    const { søknadsdata } = store.getState();
+                    const { søknadsdata, persistedFormValues: existingPersistedFormValues } = store.getState();
                     const persistedFormValues: Record<string, Record<string, unknown>> = {
+                        ...existingPersistedFormValues,
                         ...draftFormValues,
                         ...getAllLiveFormValues(),
                     };
                     store.getState().setPersistedFormValues(persistedFormValues);
-                    void lagreMellomlagring({ versjon, resumeStepId: previousStepId, søknadsdata, persistedFormValues });
+                    void lagreMellomlagring({
+                        versjon,
+                        resumeStepId: previousStepId,
+                        søknadsdata,
+                        persistedFormValues,
+                    }).catch(() => {});
 
                     navigate(buildStepPath(basePath, route));
                 }
             }
         },
-        [includedSteps, config, basePath, navigate, store, versjon, lagreMellomlagring, draftFormValues, getAllLiveFormValues],
+        [
+            includedSteps,
+            config,
+            basePath,
+            navigate,
+            store,
+            versjon,
+            lagreMellomlagring,
+            draftFormValues,
+            getAllLiveFormValues,
+        ],
     );
 
     const navigateToStep = useCallback(
