@@ -9,7 +9,7 @@ interface Props {
 export const Todo = ({ children, spacing = true }: Props) => (
     <Box marginBlock={spacing ? 'space-0 space-24' : 'space-0'}>
         <VStack gap="space-16">
-            <InfoCard data-color="info" size="small">
+            <InfoCard data-color="danger" size="small">
                 <InfoCard.Message icon={<ExclamationmarkTriangleFillIcon aria-hidden />}>{children}</InfoCard.Message>
             </InfoCard>
         </VStack>
