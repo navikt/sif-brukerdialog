@@ -15,6 +15,7 @@ import { useForm } from 'react-hook-form';
 import { toBostedUtlandStegFormValues, toBostedUtlandStegSøknadsdata } from './bostedUtlandStegUtils';
 import { BostedUtlandFormFields, BostedUtlandFormValues } from './types';
 import dayjs from 'dayjs';
+import { Todo } from '../../components/Todo';
 
 const { YesOrNoQuestion } = createSifFormComponents<BostedUtlandFormValues>();
 
@@ -69,28 +70,34 @@ export const BostedUtlandForm = () => {
     return (
         <SøknadStep stepId={stepId}>
             <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
-                <FormLayout.Questions>
-                    <YesOrNoQuestion
-                        name={BostedUtlandFormFields.harBoddIUtlandetSiste5år}
-                        legend={text('bostedUtlandSteg.spørsmål.harBoddIUtlandetSiste5år')}
-                        validate={validateField(BostedUtlandFormFields.harBoddIUtlandetSiste5år, getYesOrNoValidator())}
-                    />
-                    {harBoddIUtlandetSiste5år === YesOrNo.YES && (
-                        <VStack gap="space-16">
-                            <Heading size="xsmall" level="3">
-                                <AppText id="bostedUtlandSteg.bosteder.tittel" />
-                            </Heading>
-                            <BostedUtlandListAndDialog
-                                minDate={minDate}
-                                maxDate={maxDate}
-                                bosteder={bosteder}
-                                addButtonId={BostedUtlandFormFields.bosteder}
-                                addButtonLabel={<AppText id="bostedUtlandSteg.bosteder.leggTil" />}
-                                onChange={oppdaterBosteder}
-                            />
-                        </VStack>
-                    )}
-                </FormLayout.Questions>
+                <Todo spacing={false}>Tekster og spørsmål er ikke gjennomgått på dette steget</Todo>
+                <FormLayout.Content>
+                    <FormLayout.Questions>
+                        <YesOrNoQuestion
+                            name={BostedUtlandFormFields.harBoddIUtlandetSiste5år}
+                            legend={text('bostedUtlandSteg.spørsmål.harBoddIUtlandetSiste5år')}
+                            validate={validateField(
+                                BostedUtlandFormFields.harBoddIUtlandetSiste5år,
+                                getYesOrNoValidator(),
+                            )}
+                        />
+                        {harBoddIUtlandetSiste5år === YesOrNo.YES && (
+                            <VStack gap="space-16">
+                                <Heading size="xsmall" level="3">
+                                    <AppText id="bostedUtlandSteg.bosteder.tittel" />
+                                </Heading>
+                                <BostedUtlandListAndDialog
+                                    minDate={minDate}
+                                    maxDate={maxDate}
+                                    bosteder={bosteder}
+                                    addButtonId={BostedUtlandFormFields.bosteder}
+                                    addButtonLabel={<AppText id="bostedUtlandSteg.bosteder.leggTil" />}
+                                    onChange={oppdaterBosteder}
+                                />
+                            </VStack>
+                        )}
+                    </FormLayout.Questions>
+                </FormLayout.Content>
             </SøknadStepForm>
         </SøknadStep>
     );

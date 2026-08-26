@@ -9,7 +9,7 @@ import { lazy, Suspense } from 'react';
 import { useAppIntl } from './i18n';
 import { Kvittering } from './content/kvittering/Kvittering';
 import { Velkommen } from './content/velkommen/Velkommen';
-import { BarnForm, BostedForm, BostedUtlandForm, KontonummerForm, OppsummeringSteg, StartdatoForm } from './steps';
+import { BarnForm, BostedForm, BostedUtlandForm, KontonummerForm, OppsummeringSteg } from './steps';
 import { LoadingPage } from '@sif/soknad-ui';
 import { getAppEnv } from './setup/appEnv';
 
@@ -42,7 +42,6 @@ export const Søknad = () => {
                     />
                 )}
                 <Route path="/soknad" element={<SøknadStepGuard basePath="/soknad" />}>
-                    <Route path={søknadStepConfig[SøknadStepId.STARTDATO].route} element={<StartdatoForm />} />
                     <Route path={søknadStepConfig[SøknadStepId.KONTONUMMER].route} element={<KontonummerForm />} />
                     <Route path={søknadStepConfig[SøknadStepId.BOSTED].route} element={<BostedForm />} />
                     <Route path={søknadStepConfig[SøknadStepId.BOSTED_UTLAND].route} element={<BostedUtlandForm />} />
