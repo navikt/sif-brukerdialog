@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAnalyticsInstance } from '../analytics/analytics';
+import { useSøknadStepFormContext } from '../consistency/SøknadStepFormContext';
 import { useSøknadAppContext } from '../context/SøknadAppContext';
 import { buildStepPath } from '../utils/routeUtils';
 
@@ -18,6 +19,7 @@ import { buildStepPath } from '../utils/routeUtils';
  */
 export function useStartSøknad() {
     const { store, config, stepOrder, basePath, versjon, lagreMellomlagring } = useSøknadAppContext();
+    const { clearAllFormValues } = useSøknadStepFormContext();
     const navigate = useNavigate();
     const { logSkjemaStartet } = useAnalyticsInstance();
 
@@ -27,6 +29,9 @@ export function useStartSøknad() {
             if (!firstStepId) return;
 
             const firstRoute = config[firstStepId]?.route;
+
+            // Tøm evt. gjenværende draft-verdier fra forrige sesjon før ny start.
+            clearAllFormValues();
 
             store.getState().init({
                 versjon,
@@ -47,7 +52,7 @@ export function useStartSøknad() {
                 navigate(buildStepPath(basePath, firstRoute));
             }
         },
-        [store, stepOrder, config, basePath, versjon, lagreMellomlagring, navigate, logSkjemaStartet],
+        [store, stepOrder, config, basePath, versjon, lagreMellomlagring, clearAllFormValues, navigate, logSkjemaStartet],
     );
 
     return { startSøknad };

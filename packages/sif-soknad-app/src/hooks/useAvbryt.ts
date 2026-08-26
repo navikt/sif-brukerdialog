@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ApplikasjonHendelse, useAnalyticsInstance } from '../analytics/analytics';
+import { useSøknadStepFormContext } from '../consistency/SøknadStepFormContext';
 import { useSøknadAppContext } from '../context/SøknadAppContext';
 
 /**
@@ -10,6 +11,7 @@ import { useSøknadAppContext } from '../context/SøknadAppContext';
  */
 export function useAvbryt(): { avbryt: () => Promise<void> } {
     const { store, slettMellomlagring } = useSøknadAppContext();
+    const { clearAllFormValues } = useSøknadStepFormContext();
     const navigate = useNavigate();
     const { logHendelse } = useAnalyticsInstance();
 
@@ -17,8 +19,9 @@ export function useAvbryt(): { avbryt: () => Promise<void> } {
         await logHendelse(ApplikasjonHendelse.avbryt);
         await slettMellomlagring();
         store.getState().reset();
+        clearAllFormValues();
         navigate('/');
-    }, [store, slettMellomlagring, navigate, logHendelse]);
+    }, [store, slettMellomlagring, clearAllFormValues, navigate, logHendelse]);
 
     return { avbryt };
 }
