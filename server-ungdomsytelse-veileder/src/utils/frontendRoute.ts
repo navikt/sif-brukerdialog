@@ -13,7 +13,7 @@ export const setupAndServeHtml = async (app: Express) => {
 
     const html = fs.readFileSync(spaFilePath, 'utf-8');
     const naisMetaTags = renderNaisMetaTags();
-    const htmlWithMetaTags = html.replaceAll('{{{NAIS_META_TAGS}}}', naisMetaTags);
+    const htmlWithMetaTags = html.replaceAll('<!-- {{{NAIS_META_TAGS}}} -->', naisMetaTags);
 
     const envs = appEnvSchema.safeParse({
         ENV: `${serverConfig.app.env}`,
