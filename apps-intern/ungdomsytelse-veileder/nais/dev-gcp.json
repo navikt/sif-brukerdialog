@@ -2,9 +2,7 @@
     "app": "ungdomsytelse-veileder",
     "namespace": "dusseldorf",
     "team": "dusseldorf",
-    "ingresses": [
-        "https://ungdomsytelse-veileder.intern.dev.nav.no"
-    ],
+    "ingresses": ["https://ungdomsytelse-veileder.intern.dev.nav.no"],
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
     "externalHosts": [],
@@ -45,6 +43,7 @@
         "SIF_PUBLIC_FEATURE_SLETT_SLUTTDATO": "on",
         "SIF_PUBLIC_FEATURE_SLETT_AKTIV_DELTAKELSE": "on",
         "SIF_PUBLIC_TILLAT_TIDLIG_INNMELDING": "on",
+        "REQUIRED_PROXY_SERVICES": "UNG_DELTAKELSE_OPPLYSER",
         "UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH": "/api/ung-deltakelse-opplyser",
         "UNG_DELTAKELSE_OPPLYSER_API_SCOPE": "api://dev-gcp.k9saksbehandling.ung-deltakelse-opplyser/.default",
         "UNG_DELTAKELSE_OPPLYSER_API_URL": "http://ung-deltakelse-opplyser.k9saksbehandling",

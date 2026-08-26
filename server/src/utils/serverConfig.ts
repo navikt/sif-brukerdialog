@@ -110,6 +110,15 @@ export const verifyProxyConfigIsSet = (service: Service) => {
     }
 };
 
+export const getRequiredServicesFromEnv = (): Service[] => {
+    const raw = process.env.REQUIRED_PROXY_SERVICES;
+    if (!raw) return [];
+    return raw
+        .split(',')
+        .map((s) => s.trim() as Service)
+        .filter((s) => Object.values(Service).includes(s));
+};
+
 interface App {
     port: number;
     env: 'dev' | 'prod';
