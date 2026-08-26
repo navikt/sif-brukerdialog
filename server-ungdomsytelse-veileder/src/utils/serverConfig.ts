@@ -102,10 +102,13 @@ export const verifyProxyConfigIsSet = (service: Service) => {
 export const getRequiredServicesFromEnv = (): Service[] => {
     const raw = process.env.REQUIRED_PROXY_SERVICES;
     if (!raw) return [];
-    return raw
-        .split(',')
-        .map((s) => s.trim() as Service)
-        .filter((s) => Object.values(Service).includes(s));
+    const validServices = Object.values(Service);
+    const services = raw.split(',').map((s) => s.trim());
+    const unknown = services.filter((s) => !validServices.includes(s as Service));
+    if (unknown.length > 0) {
+        throw `Unknown service(s) in REQUIRED_PROXY_SERVICES: ${unknown.join(', ')}`;
+    }
+    return [...new Set(services)] as Service[];
 };
 
 interface App {
