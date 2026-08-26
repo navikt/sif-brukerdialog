@@ -5,7 +5,7 @@ import {
     slettYtelseMellomlagring,
 } from '@sif/api/k9-prosessering';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { SøknadStepFormProvider } from '../consistency/SøknadStepFormContext';
 import { SøknadAppContext, SøknadAppContextValue } from '../context/SøknadAppContext';
@@ -96,7 +96,9 @@ export const SøknadRouter = ({
     const store = storeRef.current;
     const søknadSendt = store((s) => s.søknadSendt);
     const isInitialized = store((s) => s.isInitialized);
+    const resumeStepId = store((s) => s.resumeStepId);
     const navigate = useNavigate();
+    const location = useLocation();
 
     // Navigasjon: etter mellomlagring-henting ved mount — send bruker til gjenopptakingspunktet.
     // Alle andre navigasjonsbeslutninger er dokumentert i JSDoc-tabellen over.
@@ -138,6 +140,17 @@ export const SøknadRouter = ({
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+        if (!isInitialized || !resumeStepId || location.pathname !== '/') {
+            return;
+        }
+
+        const route = config[resumeStepId]?.route;
+        if (route) {
+            navigate(buildStepPath(basePath, route), { replace: true });
+        }
+    }, [isInitialized, resumeStepId, location.pathname, config, basePath, navigate]);
 
     const lagreMellomlagring = useCallback(
         async (blobData: MellomlagringBlob): Promise<void> => {
