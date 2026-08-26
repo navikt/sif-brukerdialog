@@ -14,7 +14,7 @@ export const KvitteringPage = () => {
             documentTitle={text('page.kvittering.sidetittel')}
             applicationTitle={text('application.title')}>
             <VStack gap="space-24">
-                <Kvittering tittel={text('page.kvittering.tittel')}>
+                <Kvittering infoTittel={text('page.kvittering.tittel')}>
                     <InfoList heading={text('page.kvittering.info.tittel')}>
                         <li>
                             <AppText id="page.kvittering.list.item.1" />
