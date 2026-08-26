@@ -12,6 +12,7 @@ export {
     type DeltakelseHistorikkResponse,
     type DeltakelseHistorikkResponses,
     type DeltakelseInnmeldingDto,
+    DeltakelseStatus,
     type DeltakelseUtmeldingDto,
     type DeltakerDto,
     type DeltakerPersonalia,

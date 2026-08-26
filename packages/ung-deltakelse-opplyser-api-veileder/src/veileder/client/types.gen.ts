@@ -46,6 +46,7 @@ export type DeltakelseDto = {
      */
     kvoteMaksDato: string;
     periodeMaksDato: string;
+    status: DeltakelseStatus;
     søktTidspunkt?: string;
     tilOgMed?: string;
 };
@@ -62,6 +63,12 @@ export type DeltakelseInnmeldingDto = {
     deltakerIdent: string;
     startdato: string;
 };
+
+export enum DeltakelseStatus {
+    IKKE_STARTET = 'IKKE_STARTET',
+    AKTIV = 'AKTIV',
+    IKKE_AKTIV = 'IKKE_AKTIV',
+}
 
 export type DeltakelseUtmeldingDto = {
     avslutningsårsak?: Avslutningsårsak;
