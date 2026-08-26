@@ -365,7 +365,6 @@ jobs:
             --filter=@sif/rhf \
             --filter=@sif/soknad-forms \
             --filter=@sif/soknad-ui \
-            --filter=@sif/soknad \
             --filter=@navikt/sif-validation \
             --filter=@sif/ung-innsyn
 
