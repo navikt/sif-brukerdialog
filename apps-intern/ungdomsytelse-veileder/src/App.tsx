@@ -30,24 +30,24 @@ const App = () => {
         <ThemeProvider>
             {registerAnalytics(env.SIF_PUBLIC_UMAMI_NETTSIDE_ID)}
             <VeilederProvider>
-                    <ErrorBoundary fallback={<AppErrorFallback />}>
-                        <AnalyticsProvider applicationKey={UngdomsytelseVeilederApp.key} isActive={true}>
-                            <QueryClientProvider client={queryClient}>
-                                <GlobalQueryLogger />
-                                <IntlProvider locale="nb" messages={appMessages.nb}>
-                                    <AppRouter>
-                                        <DrawerProvider
-                                            initialContent={<DrawerArticles />}
-                                            initialOpen={false}
-                                            initialTitle="Hjelp og informasjon">
-                                            <AppHeader />
-                                            <AppRoutes />
-                                        </DrawerProvider>
-                                    </AppRouter>
-                                </IntlProvider>
-                            </QueryClientProvider>
-                        </AnalyticsProvider>
-                    </ErrorBoundary>
+                <ErrorBoundary fallback={<AppErrorFallback />}>
+                    <AnalyticsProvider applicationKey={UngdomsytelseVeilederApp.key} isActive={true}>
+                        <QueryClientProvider client={queryClient}>
+                            <GlobalQueryLogger />
+                            <IntlProvider locale="nb" messages={appMessages.nb}>
+                                <AppRouter>
+                                    <DrawerProvider
+                                        initialContent={<DrawerArticles />}
+                                        initialOpen={false}
+                                        initialTitle="Hjelp og informasjon">
+                                        <AppHeader />
+                                        <AppRoutes />
+                                    </DrawerProvider>
+                                </AppRouter>
+                            </IntlProvider>
+                        </QueryClientProvider>
+                    </AnalyticsProvider>
+                </ErrorBoundary>
             </VeilederProvider>
             <DevBranchInfo />
         </ThemeProvider>
