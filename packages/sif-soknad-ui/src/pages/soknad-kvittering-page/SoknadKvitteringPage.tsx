@@ -1,12 +1,12 @@
 import { Button } from '@navikt/ds-react';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, ReactNode } from 'react';
 import { ApplicationPage } from '../application-page/ApplicationPage';
 import { Kvittering } from '../../components';
-
 interface SøknadKvitteringPageProps {
     documentTitle: string;
     applicationTitle: string;
-    tittel: string;
+    infoTittel: string;
+    infoMelding?: ReactNode;
     /** URL til app-roten. Send inn import.meta.env.BASE_URL fra appen. */
     appRootUrl?: string;
     restartLabel?: string;
@@ -15,14 +15,15 @@ interface SøknadKvitteringPageProps {
 export const SøknadKvitteringPage = ({
     documentTitle,
     applicationTitle,
-    tittel,
+    infoTittel,
+    infoMelding,
     appRootUrl,
     restartLabel = 'Tilbake til forsiden',
     children,
 }: PropsWithChildren<SøknadKvitteringPageProps>) => {
     return (
         <ApplicationPage documentTitle={documentTitle} applicationTitle={applicationTitle}>
-            <Kvittering tittel={tittel}>
+            <Kvittering infoTittel={infoTittel} infoInnhold={infoMelding}>
                 {children}
                 {appRootUrl && (
                     <div>

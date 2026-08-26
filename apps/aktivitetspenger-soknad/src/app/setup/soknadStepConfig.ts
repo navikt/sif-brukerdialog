@@ -3,10 +3,6 @@ import { StepDefinition } from '@sif/soknad-app';
 import { SøknadStepId } from '../types/SoknadStepId';
 
 export const søknadStepConfig: Record<SøknadStepId, StepDefinition> = {
-    [SøknadStepId.STARTDATO]: {
-        route: 'startdato',
-        isCompleted: (s) => s[SøknadStepId.STARTDATO] !== undefined,
-    },
     [SøknadStepId.KONTONUMMER]: {
         route: 'kontonummer',
         isCompleted: (s) => s[SøknadStepId.KONTONUMMER] !== undefined,
@@ -29,7 +25,6 @@ export const søknadStepConfig: Record<SøknadStepId, StepDefinition> = {
 };
 
 export const søknadStepOrder: SøknadStepId[] = [
-    SøknadStepId.STARTDATO,
     SøknadStepId.KONTONUMMER,
     SøknadStepId.BOSTED,
     SøknadStepId.BOSTED_UTLAND,

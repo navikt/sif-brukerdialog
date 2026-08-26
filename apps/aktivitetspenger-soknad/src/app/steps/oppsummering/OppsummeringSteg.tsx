@@ -4,7 +4,7 @@ import { SøknadStepForm } from '@sif/soknad-app';
 import { useAppContext } from '@app/context/AppContext';
 import { Søknadsdata } from '@app/types/Soknadsdata';
 import { InfoCard } from '@navikt/ds-react';
-import { ISODate } from '@sif/utils';
+import { dateToISODate, ISODate } from '@sif/utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { SøknadStep, useSøknadSendt, useSøknadsdata } from '@sif/soknad-app';
@@ -17,7 +17,8 @@ import { BarnOppsummering } from './parts/BarnOppsummering';
 import { BostedOppsummering } from './parts/BostedOppsummering';
 import { BostedUtlandOppsummering } from './parts/BostedUtlandOppsummering';
 import { KontonummerOppsummering } from './parts/KontonummerOppsummering';
-import { StartdatoOppsummering } from './parts/StartdatoOppsummering';
+import { useState } from 'react';
+import { StartdatoSpørsmål } from './parts/StartdatoSpørsmål';
 
 enum FormFields {
     bekrefterOpplysninger = 'bekrefterOpplysninger',
@@ -33,6 +34,7 @@ export const OppsummeringSteg = () => {
     const stepId = SøknadStepId.OPPSUMMERING;
 
     const { validateField } = useSifValidate('oppsummeringForm');
+    const [startdato, setStartdato] = useState<ISODate | undefined>(undefined);
 
     const { søker, kontoInfo, registrerteBarn } = useAppContext();
     const søknadsdata = useSøknadsdata<Søknadsdata>();
@@ -48,6 +50,7 @@ export const OppsummeringSteg = () => {
         kontoInfo,
         søknadsdata,
         språk: 'nb',
+        startdato,
     });
 
     const harBekreftetOpplysninger = methods.watch(FormFields.bekrefterOpplysninger);
@@ -68,35 +71,51 @@ export const OppsummeringSteg = () => {
                 onSubmit={onSubmit}
                 isPending={isPending}
                 isFinalSubmit={true}
-                submitDisabled={!dto}>
-                {!dto && (
-                    <InfoCard data-color="warning">
-                        <InfoCard.Header>
-                            <InfoCard.Title>
-                                <AppText id="oppsummeringSteg.feil.tittel" />
-                            </InfoCard.Title>
-                        </InfoCard.Header>
-                        <InfoCard.Content>
-                            <AppText id="oppsummeringSteg.feil.innhold" />
-                        </InfoCard.Content>
-                    </InfoCard>
+                submitDisabled={!dto || !startdato}>
+                {
+                    <StartdatoSpørsmål
+                        onDateChange={(dato) => {
+                            if (dato) {
+                                setStartdato(dateToISODate(dato));
+                            }
+                        }}
+                    />
+                }
+                {startdato && (
+                    <>
+                        {!dto && (
+                            <InfoCard data-color="warning">
+                                <InfoCard.Header>
+                                    <InfoCard.Title>
+                                        <AppText id="oppsummeringSteg.feil.tittel" />
+                                    </InfoCard.Title>
+                                </InfoCard.Header>
+                                <InfoCard.Content>
+                                    <AppText id="oppsummeringSteg.feil.innhold" />
+                                </InfoCard.Content>
+                            </InfoCard>
+                        )}
+
+                        {dto && (
+                            <FormLayout.Summary>
+                                <KontonummerOppsummering
+                                    kontonummerInfo={dto.kontonummerInfo}
+                                    kontoOppslagInfo={kontoInfo}
+                                />
+                                <BostedOppsummering erBosattITrondheim={dto.erBosattITrondheim} />
+                                <BostedUtlandOppsummering forutgåendeBosteder={dto.forutgåendeBosteder} />
+                                <BarnOppsummering barn={registrerteBarn} barnErRiktig={dto.barnErRiktig} />
+                            </FormLayout.Summary>
+                        )}
+                        <FormLayout.Questions>
+                            <Checkbox
+                                name={FormFields.bekrefterOpplysninger}
+                                validate={validateField(FormFields.bekrefterOpplysninger, getCheckedValidator())}>
+                                <AppText id="oppsummeringSteg.bekrefterOpplysninger.label" />
+                            </Checkbox>
+                        </FormLayout.Questions>
+                    </>
                 )}
-                {dto && (
-                    <FormLayout.Summary>
-                        <StartdatoOppsummering startdato={dto.startdato as ISODate} />
-                        <KontonummerOppsummering kontonummerInfo={dto.kontonummerInfo} kontoOppslagInfo={kontoInfo} />
-                        <BostedOppsummering erBosattITrondheim={dto.erBosattITrondheim} />
-                        <BostedUtlandOppsummering forutgåendeBosteder={dto.forutgåendeBosteder} />
-                        <BarnOppsummering barn={registrerteBarn} barnErRiktig={dto.barnErRiktig} />
-                    </FormLayout.Summary>
-                )}
-                <FormLayout.Questions>
-                    <Checkbox
-                        name={FormFields.bekrefterOpplysninger}
-                        validate={validateField(FormFields.bekrefterOpplysninger, getCheckedValidator())}>
-                        <AppText id="oppsummeringSteg.bekrefterOpplysninger.label" />
-                    </Checkbox>
-                </FormLayout.Questions>
             </SøknadStepForm>
         </SøknadStep>
     );

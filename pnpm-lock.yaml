@@ -545,6 +545,9 @@ importers:
       '@sif/utils':
         specifier: workspace:*
         version: link:../../packages/sif-utils
+      '@storybook/addon-vitest':
+        specifier: 10.5.10
+        version: 10.5.10(@vitest/browser-playwright@4.1.11)(@vitest/browser@4.1.11)(@vitest/runner@4.1.11)(react@19.2.8)(storybook@10.5.10(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(vitest@4.1.11)
       '@tanstack/react-query':
         specifier: 5.101.4
         version: 5.101.4(react@19.2.8)
