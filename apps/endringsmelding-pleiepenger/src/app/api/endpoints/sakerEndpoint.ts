@@ -40,6 +40,7 @@ const sakerEndpoint = {
                         appLogger.logException(error.error, {
                             sakIndex: index,
                             cause: error.error instanceof Error ? error.error.cause : undefined,
+                            ugyldigeFelt: error.error.cause?.ugyldigeFelt,
                         });
                     } else {
                         appLogger.logException(error, {
