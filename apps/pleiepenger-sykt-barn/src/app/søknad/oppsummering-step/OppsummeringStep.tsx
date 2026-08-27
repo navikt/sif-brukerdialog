@@ -98,8 +98,16 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                 setSendSoknadFailed(true);
                 if (isInvalidParameterErrorResponse(error.response?.data)) {
                     setInvalidParameters(error.response.data.violations);
+                    const invalidParametersContext = error.response.data.violations
+                        .map(({ parameterName, parameterType }) => `${parameterName} (${parameterType})`)
+                        .join(', ');
+                    appLogger.logApiError(
+                        error,
+                        `sendSøknad-invalidParameters: ${error.response.data.title}: ${invalidParametersContext}`,
+                    );
+                } else {
+                    appLogger.logApiError(error, 'sendSøknad');
                 }
-                appLogger.logApiError(error as any, 'sendSøknad-invalidParameters');
             } else if (isUnauthorized(error)) {
                 logUserLoggedOut('Ved innsending av søknad');
                 relocateToLoginPage();
