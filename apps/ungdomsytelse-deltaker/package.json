@@ -4,7 +4,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "vite build --base=/ungdomsprogrammet/ytelsen",
+        "build": "vite build",
         "build-storybook": "storybook build",
         "check:types": "tsc --noemit",
         "clean": "rm -rf node_modules dist dist-demo",
@@ -14,7 +14,7 @@
         "demo:start": "vite preview --base /ungdomsprogrammet/ytelsen/ --config vite.demo.config.ts",
         "dev": "pnpm dev:vite",
         "dev:debug": "vite --debug",
-        "dev:vite": "vite --base=/ungdomsprogrammet/ytelsen --config vite.dev.config.ts",
+        "dev:vite": "vite --config vite.dev.config.ts",
         "gh-pages:clean": "rm -rf ../../docs/ungdomsytelse-deltaker",
         "gh-pages:copy": "cp -r ./dist-demo ../../docs/ungdomsytelse-deltaker",
         "gh-pages:rebuild": "pnpm demo:build && pnpm gh-pages:clean && pnpm gh-pages:copy",

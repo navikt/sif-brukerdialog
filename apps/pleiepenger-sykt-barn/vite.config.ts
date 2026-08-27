@@ -25,6 +25,7 @@ export default defineConfig(({ mode }) => ({
             '@sb': path.resolve(__dirname, './src/storybook'),
         },
     },
+    base: mode === 'production' ? 'https://cdn.nav.no/dusseldorf/pleiepenger-sykt-barn/dist/' : '/familie/sykdom-i-familien/soknad/pleiepenger/',
     build: {
         chunkSizeWarningLimit: 2000,
         sourcemap: true,

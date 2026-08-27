@@ -38,3 +38,4 @@ jobs:
         with:
             app-name: "${{ inputs.app-name }}"
             working-directory: "apps/${{ inputs.app-name }}"
+            use-cdn: true

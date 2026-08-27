@@ -17,7 +17,7 @@
     },
     "type": "module",
     "scripts": {
-        "build": "vite build --base=/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling",
+        "build": "vite build",
         "build-storybook": "storybook build",
         "clean": "rm -rf node_modules dist",
         "dev": "vite --config vite.dev.config.ts",

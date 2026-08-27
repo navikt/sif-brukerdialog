@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => {
                 '@app': resolve(__dirname, './src/app'),
             },
         },
-        base: '/aktivitetspenger/innsyn/',
+        base: mode === 'production' ? 'https://cdn.nav.no/dusseldorf/aktivitetspenger-innsyn/dist/' : '/aktivitetspenger/innsyn/',
         preview: {
             port: 8080,
         },

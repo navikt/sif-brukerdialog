@@ -4,11 +4,11 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "vite build --base=/familie/sykdom-i-familien/soknad/omsorgspenger",
+        "build": "vite build",
         "build-storybook": "storybook build",
         "check:types": "tsc --noemit",
         "clean": "rm -rf node_modules dist",
-        "dev": "vite --base=/familie/sykdom-i-familien/soknad/omsorgspenger --config vite.dev.config.ts",
+        "dev": "vite --config vite.dev.config.ts",
         "lint:eslint": "eslint src",
         "lint:fix": "eslint src --fix",
         "pw:dev": "vite --config vite.e2e.config.ts",

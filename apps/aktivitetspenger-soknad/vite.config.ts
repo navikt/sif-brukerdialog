@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => {
                 '@app': resolve(__dirname, './src/app'),
             },
         },
-        base: '/aktivitetspenger/soknad/',
+        base: mode === 'production' ? 'https://cdn.nav.no/dusseldorf/aktivitetspenger-soknad/dist/' : '/aktivitetspenger/soknad/',
         preview: {
             port: 8080,
         },

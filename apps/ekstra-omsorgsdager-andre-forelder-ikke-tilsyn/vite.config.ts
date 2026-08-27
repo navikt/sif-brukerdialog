@@ -17,6 +17,7 @@ export default defineConfig(({ mode }) => ({
         },
     ],
     resolve: {},
+    base: mode === 'production' ? 'https://cdn.nav.no/dusseldorf/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/dist/' : '/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/',
     build: {
         chunkSizeWarningLimit: 2000,
         sourcemap: true,

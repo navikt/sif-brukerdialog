@@ -17,6 +17,7 @@ jobs:
         with:
             app-name: "endringsmelding-pleiepenger"
             working-directory: "apps/endringsmelding-pleiepenger"
+            use-cdn: true
 
     deploy-omsorgspengesoknad:
         name: Deploy omsorgspengesoknad to dev
@@ -28,6 +29,7 @@ jobs:
         with:
             app-name: "omsorgspengesoknad"
             working-directory: "apps/omsorgspengesoknad"
+            use-cdn: true
 
     deploy-pleiepenger-sykt-barn:
         name: Deploy pleiepenger-sykt-barn to dev
@@ -39,6 +41,7 @@ jobs:
         with:
             app-name: "pleiepenger-sykt-barn"
             working-directory: "apps/pleiepenger-sykt-barn"
+            use-cdn: true
 
     deploy-ungdomsytelse-deltaker:
         name: Deploy ungdomsytelse-deltaker to dev
@@ -50,6 +53,7 @@ jobs:
         with:
             app-name: "ungdomsytelse-deltaker"
             working-directory: "apps/ungdomsytelse-deltaker"
+            use-cdn: true
 
     deploy-ungdomsytelse-veileder:
         name: Deploy ungdomsytelse-veileder to dev

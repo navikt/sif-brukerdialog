@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => {
                 '@app': resolve(__dirname, './src/app'),
             },
         },
-        base: '/sif-demo/',
+        base: mode === 'production' ? 'https://cdn.nav.no/dusseldorf/sif-demo-app/dist/' : '/sif-demo/',
         preview: {
             port: 8080,
         },

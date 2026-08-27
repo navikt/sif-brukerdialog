@@ -19,6 +19,7 @@ export default defineConfig(({ mode }) => ({
         },
     ],
     resolve: {},
+    base: mode === 'production' ? 'https://cdn.nav.no/dusseldorf/pleiepenger-i-livets-sluttfase-soknad/dist/' : '/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase/',
     build: {
         chunkSizeWarningLimit: 2000,
         sourcemap: true,
