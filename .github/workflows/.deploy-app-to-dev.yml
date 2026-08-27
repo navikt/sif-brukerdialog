@@ -57,7 +57,7 @@ jobs:
 
             - name: Upload assets to CDN
               if: ${{ inputs.use-cdn == true && hashFiles(format('apps/{0}/dist/**', inputs.app-name)) != '' }}
-              uses: nais/deploy/actions/cdn-upload/v2@master
+              uses: nais/deploy/actions/cdn-upload/v2@027a91857992525139798892f2804b0ca21f4af6 # master per 2026-08-27
               with:
                   team: dusseldorf
                   source: apps/${{ inputs.app-name }}/dist
