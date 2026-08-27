@@ -9,7 +9,7 @@ import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { SøknadStep, useMellomlagring, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { BostedUtlandListAndDialog } from '@sif/soknad-forms';
 import { FormLayout, SifGuidePanel } from '@sif/soknad-ui';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { toBostedUtlandStegFormValues, toBostedUtlandStegSøknadsdata } from './bostedUtlandStegUtils';
@@ -45,6 +45,7 @@ export const BostedUtlandForm = () => {
     const { trigger } = methods;
     const harBoddINorge = methods.watch(BostedUtlandFormFields.harBoddINorge);
     const bosteder = methods.watch(BostedUtlandFormFields.bosteder);
+    const isMounted = useRef(false);
 
     methods.register(BostedUtlandFormFields.bosteder, {
         validate: (value) => {
@@ -58,6 +59,10 @@ export const BostedUtlandForm = () => {
     });
 
     useEffect(() => {
+        if (!isMounted.current) {
+            isMounted.current = true;
+            return;
+        }
         trigger(BostedUtlandFormFields.bosteder);
     }, [harBoddINorge, trigger]);
 
