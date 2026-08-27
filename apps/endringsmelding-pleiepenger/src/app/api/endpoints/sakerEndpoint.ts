@@ -33,13 +33,15 @@ const sakerEndpoint = {
                 } catch (error) {
                     if (isK9FormatError(error)) {
                         const ugyldigeFelt = error.error.cause?.ugyldigeFelt;
+                        const detaljer = Array.isArray(ugyldigeFelt) ? { ugyldigeFelt } : undefined;
                         k9Saker.push({
                             erUgyldigK9SakFormat: true,
-                            detaljer: Array.isArray(ugyldigeFelt) ? { ugyldigeFelt } : undefined,
+                            detaljer,
                         });
-                        appLogger.logException(error.error, {
+                        appLogger.logHandledException(error.error, {
                             sakIndex: index,
                             cause: error.error instanceof Error ? error.error.cause : undefined,
+                            ...detaljer,
                         });
                     } else {
                         appLogger.logException(error, {

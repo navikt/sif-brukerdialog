@@ -21,6 +21,11 @@ export const appLogger = {
         captureMessage(message, 'error');
     },
 
+    logHandledException: (error: unknown, extra?: Record<string, unknown>) => {
+        const err = error instanceof Error ? error : new Error(String(error));
+        captureException(err, extra ? { context: extra } : undefined);
+    },
+
     logException: (error: unknown, extra?: Record<string, unknown>) => {
         const err = error instanceof Error ? error : new Error(String(error));
         captureException(err, extra ? { context: extra } : undefined);
