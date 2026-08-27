@@ -94,7 +94,7 @@ describe('verifyK9Format', () => {
             const ugyldigBarn = { ...gyldigBarn, fornavn: undefined };
             const err = forventK9FormatError({ ...gyldigSak, barn: ugyldigBarn });
             expect(err.error.message).toContain('verifyK9FormatBarn');
-            expect((err.error.cause as any).ugyldigeFelt).toContain('fornavn');
+            expect((err.error.cause as any).fornavn).toBeFalsy();
         });
 
         it('kaster når ytelsestype er ugyldig', () => {
