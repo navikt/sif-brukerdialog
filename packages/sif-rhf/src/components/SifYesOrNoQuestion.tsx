@@ -1,6 +1,7 @@
 import { FieldValues, Path } from 'react-hook-form';
 
 import { SifRadioGroup, SifRadioProp } from './SifRadioGroup';
+import { ReactNode } from 'react';
 
 export enum YesOrNo {
     YES = 'yes',
@@ -11,7 +12,7 @@ export enum YesOrNo {
 type Props<T extends FieldValues> = {
     name: Path<T>;
     legend: string;
-    description?: string;
+    description?: ReactNode;
     validate?: (value: string) => string | undefined;
     labels?: {
         yes?: string;
