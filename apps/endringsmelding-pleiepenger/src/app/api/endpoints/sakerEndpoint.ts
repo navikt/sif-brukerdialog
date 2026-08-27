@@ -39,6 +39,7 @@ const sakerEndpoint = {
                             detaljer,
                         });
                         appLogger.logHandledException(error.error, {
+                            context: 'sakerEndpoint.verifyK9Format',
                             sakIndex: index,
                             cause: error.error instanceof Error ? error.error.cause : undefined,
                             ...detaljer,
