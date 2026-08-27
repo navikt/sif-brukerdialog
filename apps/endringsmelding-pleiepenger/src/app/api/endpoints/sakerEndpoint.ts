@@ -42,7 +42,7 @@ const sakerEndpoint = {
                             context: 'sakerEndpoint.verifyK9Format',
                             sakIndex: index,
                             cause: error.error instanceof Error ? error.error.cause : undefined,
-                            ...detaljer,
+                            ...(detaljer ?? {}),
                         });
                     } else {
                         appLogger.logException(error, {
