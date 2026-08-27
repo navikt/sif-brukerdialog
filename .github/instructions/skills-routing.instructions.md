@@ -17,6 +17,10 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
 - `sif-gh-pages`:
     - Deploy til demo: `gh-pages`, `demo-deploy`, `legg til i gh-pages`, `gh-pages:rebuild`, `vite.demo.config`, `dist-demo`.
     - MSW på gh-pages: `msw klager`, `service worker feil`, `mockServiceWorker gh-pages`.
+- `sif-cdn`:
+    - CDN og assets: `cdn`, `cdn.nav.no`, `cdn-upload`, `bruk cdn`, `last opp til cdn`, `CDN-assets`, `NoSuchKey`.
+    - Vite og sourcemaps: `sourcemap`, `sourceMappingURL`, `deobfuskering`, `minifisert stack trace`, `Vite base`, `import.meta.env.BASE_URL`.
+    - Deploy og feil: `dist/dist`, `assets 404`, `JS 404`, `sourcemap 404`, `CDN URL`.
 - `sif-intl`:
     - Implementering: `i18n`, `intl`, `nb.ts`, `nn.ts`, `oversettelse`, `tekster`, `nynorsk`, `bokmål`, `legg til tekst`, `ny tekst`.
     - Hooks og komponenter: `AppText`, `useAppIntl`, `AppIntlShape`, `useSifSoknadUiIntl`, `SifSoknadUiText`, `typedIntlHelper`, `applicationIntlMessages`.
@@ -88,6 +92,7 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
 
 - Hvis oppgaven handler om i18n, tekster, nb/nn eller oversettelse, prioriter `sif-intl`.
 - Hvis oppgaven handler om datahenting + env/API-klient-oppsett, prioriter `sif-api`.
+- Hvis oppgaven handler om CDN-hosting av Vite-assets eller sourcemaps, prioriter `sif-cdn`.
 - Rene domeneord alene (f.eks. `barn`, `søker`) skal ikke trigge `sif-api` uten tydelig API-hentekontekst.
 - Hvis oppgaven handler om setup-arkitektur i app, prioriter `sif-soknad-setup`.
 - Bruk flere skills ved behov, men hold endringer scoped til aktuell workspace.

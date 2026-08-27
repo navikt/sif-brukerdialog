@@ -52,6 +52,11 @@ Bruk denne indeksen for rask routing til riktig skill.
     - Triggerord: `reverse proxy`, `proxy`, `returnerer html`, `catch-all`, `api path`, `frontendPath`, `PUBLIC_PATH`, `baseURL`.
     - Fil: `.github/skills/sif-server-proxy-api-config/SKILL.md`
 
+- `sif-cdn`
+    - Når: sette opp eller feilsøke CDN-hosting av Vite-assets og sourcemaps.
+    - Triggerord: `cdn`, `cdn.nav.no`, `cdn-upload`, `sourcemap`, `NoSuchKey`, `Vite base`, `import.meta.env.BASE_URL`.
+    - Fil: `.github/skills/sif-cdn/SKILL.md`
+
 - `sif-playwright`
     - Når: sette opp Playwright e2e-testing i en app-workspace, inkludert accessibility-testing med axe.
     - Triggerord: `playwright`, `e2e`, `end-to-end`, `playwright.config`, `test:e2e`, `smoke test`, `første e2e test`, `a11y`, `uu`, `universell utforming`, `axe`, `@axe-core/playwright`, `testAccessibility`.
