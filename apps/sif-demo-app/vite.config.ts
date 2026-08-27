@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => {
                 '@app': resolve(__dirname, './src/app'),
             },
         },
-        base: mode === '/sif-demo/',
+        base: '/sif-demo/',
         preview: {
             port: 8080,
         },
