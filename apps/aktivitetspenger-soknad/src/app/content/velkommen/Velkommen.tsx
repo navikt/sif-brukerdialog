@@ -1,8 +1,10 @@
 import { useAppContext } from '@app/context/AppContext';
-import { useAppIntl } from '@app/i18n';
+import { AppText, useAppIntl } from '@app/i18n';
 import { SøknadVelkommenPage } from '@sif/soknad-app';
 
 import OmSøknaden from './OmSoknaden';
+import { BodyLong, Link } from '@navikt/ds-react';
+import { getLenker } from '../../lenker';
 import { Todo } from '../../components/Todo';
 
 export const Velkommen = () => {
@@ -16,13 +18,25 @@ export const Velkommen = () => {
                 navn: søker.fornavn || '',
                 content: (
                     <>
-                        <Todo>Tekst er ikke skrevet</Todo>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique quo a laudantium debitis
-                        quas perferendis minus corporis facilis iusto, inventore maxime magnam facere beatae veritatis
-                        vel asperiores molestias, fugit consequatur?
+                        <BodyLong spacing>
+                            <AppText id="page.velkommen.guide.info.1" />
+                        </BodyLong>
+                        <BodyLong spacing>
+                            <AppText id="page.velkommen.guide.info.2" />
+                        </BodyLong>
+                        <BodyLong spacing>
+                            <AppText id="page.velkommen.guide.info.3" />
+                        </BodyLong>
+                        <BodyLong spacing>
+                            <AppText
+                                id="page.velkommen.guide.info.4"
+                                values={{ Lenke: (children) => <Link href={getLenker().navForside}>{children}</Link> }}
+                            />
+                        </BodyLong>
                     </>
                 ),
             }}>
+            <Todo>Tekster er ikke ferdig</Todo>
             <OmSøknaden />
         </SøknadVelkommenPage>
     );
