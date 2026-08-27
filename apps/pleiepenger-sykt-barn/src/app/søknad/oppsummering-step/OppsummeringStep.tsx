@@ -98,8 +98,8 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                 setSendSoknadFailed(true);
                 if (isInvalidParameterErrorResponse(error.response?.data)) {
                     setInvalidParameters(error.response.data.violations);
-                    appLogger.logApiError(error, 'sendSøknad-invalidParameters');
                     appLogger.logHandledException(new Error('sendSøknad-invalidParameters'), {
+                        httpStatus: error.response?.status,
                         title: error.response.data.title,
                         invalidParameters: error.response.data.violations.map(({ parameterName, parameterType }) => ({
                             parameterName,
