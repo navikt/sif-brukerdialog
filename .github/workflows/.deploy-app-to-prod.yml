@@ -63,7 +63,7 @@ jobs:
               with:
                   team: dusseldorf
                   source: apps/${{ inputs.app-name }}/dist
-                  destination: /${{ inputs.app-name }}/dist
+                  destination: /${{ inputs.app-name }}
                   project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
                   identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
 
