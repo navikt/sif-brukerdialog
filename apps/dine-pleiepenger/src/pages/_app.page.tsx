@@ -17,7 +17,7 @@ import SanityStatusBanner from '../components/sanity-status-banner/SanityStatusB
 import EmptyPage from '../components/page-layout/empty-page/EmptyPage';
 import LoadingPage from '../components/page-layout/loading-page/LoadingPage';
 import { InnsynsdataContextProvider } from '../context/InnsynsdataContextProvider';
-import { appLogger } from '@sif/apm';
+import { appLogger, isDekoratorenException } from '@sif/apm';
 import { initNaisAPMClient } from '@nais/apm/react';
 import { useVerifyCurrentUser } from '../hooks/useVerifyCurrentUser';
 import { messages } from '../i18n';
@@ -52,7 +52,11 @@ const søkerIdFetcher = async (): Promise<string> => {
     });
 };
 
-initNaisAPMClient({ app: 'dine-pleiepenger', namespace: 'dusseldorf' });
+initNaisAPMClient({
+    app: 'dine-pleiepenger',
+    namespace: 'dusseldorf',
+    beforeSend: (item) => (isDekoratorenException(item) ? null : item),
+});
 configureLogger({
     basePath: process.env.NEXT_PUBLIC_BASE_PATH,
     onLog: (log) => appLogger.logError(log.messages.join(' ')),
