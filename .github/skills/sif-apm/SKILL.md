@@ -25,13 +25,17 @@ Grafana henter browser-telemetri under `<namespace>/<app>`. Verdien av `app` i `
 
 ```ts
 // main.tsx
-void initApm({ app: MinApp.key, namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
+import { initApm } from '@sif/apm';
+import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
+import { getMaybeEnv } from '@navikt/sif-common-env';
+
+void initApm({ app: PleiepengerSyktBarnApp.key, namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
 ```
 
-`MinApp.key` (fra `@navikt/sif-app-register`) **må** matche `app`-feltet i `nais/prod-gcp.json`:
+`PleiepengerSyktBarnApp.key` (fra `@navikt/sif-app-register`) **må** matche `app`-feltet i `nais/prod-gcp.json`:
 
 ```json
-{ "app": "min-app-navn" }
+{ "app": "pleiepengesoknad" }
 ```
 
 Hvis disse ikke er identiske, finnes telemetrien ikke i Grafana.
@@ -62,18 +66,19 @@ Hvis disse ikke er identiske, finnes telemetrien ikke i Grafana.
 
 2. Legg til `"@navikt/sif-app-register": "workspace:*"` hvis appen ikke allerede har det.
 
-3. Opprett eller gjenbruk en `AppInfo` i `packages/sif-app-register/src/index.ts`. Nøkkelen **må** matche NAIS deployment-navn:
+3. Opprett en ny `AppInfo` i `packages/sif-app-register/src/index.ts`. Nøkkelen **må** matche NAIS deployment-navn:
 
     ```ts
     // packages/sif-app-register/src/index.ts
     export enum SifAppKeys {
         // ...
-        MinNyApp = 'min-ny-app', // ← identisk med "app" i nais/prod-gcp.json
+        MinSoknadApp = 'min-soknad', // ← identisk med "app" i nais/prod-gcp.json
     }
 
-    export const MinNyApp: AppInfo = {
-        key: SifAppKeys.MinNyApp,
-        // ...
+    export const MinSoknadApp: AppInfo = {
+        key: SifAppKeys.MinSoknadApp,
+        navn: 'Min søknad',
+        tittel: { nb: 'Søknad om ...', nn: 'Søknad om ...' },
     };
     ```
 
@@ -81,10 +86,10 @@ Hvis disse ikke er identiske, finnes telemetrien ikke i Grafana.
 
     ```ts
     import { initApm } from '@sif/apm';
-    import { MinNyApp } from '@navikt/sif-app-register';
+    import { MinSoknadApp } from '@navikt/sif-app-register';
     import { getMaybeEnv } from '@navikt/sif-common-env';
 
-    void initApm({ app: MinNyApp.key, namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
+    void initApm({ app: MinSoknadApp.key, namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
     ```
 
-5. Verifiser: `jq -r '.app' nais/prod-gcp.json` === `MinNyApp.key`.
+5. Verifiser: `jq -r '.app' nais/prod-gcp.json` skal være identisk med `MinSoknadApp.key`.

@@ -157,12 +157,13 @@ Ytterste wrapper-komponent — brukes av apper som ikke setter opp providers sel
 
 ```tsx
 // main.tsx — APM initialiseres før rendering
+import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 // app-verdien MÅ matche "app"-feltet i nais/prod-gcp.json — se sif-apm-skillen
-void initApm({ app: MinApp.key, namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
+void initApm({ app: PleiepengerSyktBarnApp.key, namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
 
 // App.tsx
 <SøknadAppProvider
-    applicationKey="min-app"
+    applicationKey={PleiepengerSyktBarnApp.key}
     analyticsConfig={{ isActive: env.SIF_PUBLIC_USE_ANALYTICS === 'true' }}
     intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}
     appStatusConfig={{ sanityConfig: { projectId: '...', dataset: '...' } }}>
