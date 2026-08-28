@@ -6,7 +6,7 @@ interface Props {
     visFortsettInfo?: boolean;
 }
 
-const HentArbeidsforholdFeiletInfo = ({ visFortsettInfo: visEkstraInfo }: Props) => (
+const HentArbeidsforholdFeiletInfo = ({ visFortsettInfo }: Props) => (
     <Alert variant="warning">
         <Heading level="3" size="small" spacing>
             <UiText id="hentArbeidsforholdFeiletInfo.tittel" />
@@ -14,7 +14,7 @@ const HentArbeidsforholdFeiletInfo = ({ visFortsettInfo: visEkstraInfo }: Props)
         <BodyLong>
             <UiText id="hentArbeidsforholdFeiletInfo.tekst.1" />
         </BodyLong>
-        {visEkstraInfo && (
+        {visFortsettInfo && (
             <>
                 <BodyLong>
                     <UiText id="hentArbeidsforholdFeiletInfo.tekst.2" />
