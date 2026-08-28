@@ -67,6 +67,10 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
     - Portering av dialoger: `porter dialog`, `migrer ListAndDialog`, `flytt til sif-soknad-forms`, `ModalFormAndList`, `ListAndDialog til v2`.
     - Spesifikke dialoger: `BostedUtlandListAndDialog`, `UtenlandsoppholdListAndDialog`, `TidsperiodeListAndDialog`, `FerieuttakListAndDialog`, `OpptjeningUtlandListAndDialog`, `EnkeltdatoListAndDialog`, `AnnetBarnListAndDialog`, `UtenlandskNæringListAndDialog`, `FraværListAndDialog`, `FosterbarnListAndDialog`.
     - Storybook i sif-soknad-forms: `withIntl`, `StoryFrame`, `withRHFForm`, `story i sif-soknad-forms`.
+- `sif-apm`:
+    - Telemetri og Faro: `initApm`, `@sif/apm`, `@nais/apm`, telemetri, Faro, Grafana.
+    - Feilsøking: `ingen telemetri`, `no browser telemetry data found`, `app-nøkkel`, `appKey`.
+    - Verifisering: `sif-app-register` nøkkel mot NAIS deployment-navn.
 - `sif-surveys`:
     - Skyra-oppsett: `skyra`, `skyra-survey`, `SkyraHandler`, `useSkyraReloader`, `SkyraTestPage`, `SkyraSlug`, `slug`.
     - Feilsøking: `survey vises ikke`, `reload fungerer ikke`, `globalThis.skyra`, `skyra test`.

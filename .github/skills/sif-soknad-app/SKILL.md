@@ -157,7 +157,8 @@ Ytterste wrapper-komponent — brukes av apper som ikke setter opp providers sel
 
 ```tsx
 // main.tsx — APM initialiseres før rendering
-void init({ app: 'min-app', namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
+// app-verdien MÅ matche "app"-feltet i nais/prod-gcp.json — se sif-apm-skillen
+void initApm({ app: MinApp.key, namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
 
 // App.tsx
 <SøknadAppProvider
@@ -326,6 +327,6 @@ const formValuesToSøknadsdata = useFormValuesToSøknadsdata();
 | Velkommensiden blinker ved reload med mellomlagring                  | `children` ble rendret før init + navigate                                                | `SøknadRouter` holder `children` tilbake til `isInitialized = true` — løst    |
 | Bruker sendes til velkommensiden i stedet for riktig steg ved reload | `init(blob)` uten påfølgende `navigate`                                                   | `SøknadRouter` navigerer automatisk til `resumeStepId` etter init — løst      |
 | Browser-back viser velkommensiden selv om søknaden kan gjenopptas    | Routeren reagerer ikke på at URL-en går tilbake til `/`                                   | `SøknadRouter` redirecter fra `/` til `resumeStepId` etter initialisering     |
-| Verdier fra andre steg forsvinner ved manuell lagring                | Blob bygges kun fra aktive in-memory-verdier                                               | Merge `store.persistedFormValues` før draft- og live-verdier                  |
-| Gamle verdier kommer tilbake etter «slett søknad»                    | Et aktivt steg lagrer verdiene sine i unmount etter reset                                 | Bruk `clearAllFormValues` ved avbryt og før ny start                           |
+| Verdier fra andre steg forsvinner ved manuell lagring                | Blob bygges kun fra aktive in-memory-verdier                                              | Merge `store.persistedFormValues` før draft- og live-verdier                  |
+| Gamle verdier kommer tilbake etter «slett søknad»                    | Et aktivt steg lagrer verdiene sine i unmount etter reset                                 | Bruk `clearAllFormValues` ved avbryt og før ny start                          |
 | Submit aktivt selv om `InconsistentFormValuesMessage` vises          | `submitDisabled`-prop videresendt uten konsistenssjekk                                    | Bruk `SøknadStepForm` — deaktiverer submit automatisk via `SøknadStepContext` |
