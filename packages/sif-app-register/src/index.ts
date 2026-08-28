@@ -7,7 +7,7 @@ export enum SifAppKeys {
     OmsorgsdagerKronisk = 'omsorgspengersoknad',
     OmsorgsdagerAleneomsorg = 'omsorgsdager-aleneomsorg-dialog',
     OmsorgsdagerAnnenForelderIkkeTilsyn = 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn',
-    OmsorgspengerutbetalingArbeidstaker = 'omsorgspengerutbetaling-arbeidstaker',
+    OmsorgspengerutbetalingArbeidstaker = 'omsorgspengerutbetaling-arbeidstaker-soknad',
     OmsorgspengerutbetalingSNFri = 'omsorgspengerutbetaling-soknad',
     Ettersendelse = 'ettersending',
     InnsynPsb = 'sif-innsyn',
