@@ -2,7 +2,10 @@
     "app": "aktivitetspenger-soknad",
     "namespace": "dusseldorf",
     "team": "dusseldorf",
-    "ingresses": ["https://aktivitetspenger-soknad.intern.dev.nav.no"],
+    "ingresses": [
+        "https://aktivitetspenger-soknad.intern.dev.nav.no",
+        "https://www.ekstern.dev.nav.no/aktivitetspenger/soknad"
+    ],
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
