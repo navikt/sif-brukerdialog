@@ -92,7 +92,7 @@ jobs:
       #     mkdir -p deployment/aktivitetspenger-innsyn
       #     mv apps/aktivitetspenger-innsyn/dist-demo/* deployment/aktivitetspenger-innsyn/
 
-      # Bygg ungdomsytelse-deltaker-storybook
+      # Bygg aktivitetspenger-soknad-storybook
       - name: Build aktivitetspenger-soknad-storybook
         run: pnpm build-storybook
         working-directory: apps/aktivitetspenger-soknad
