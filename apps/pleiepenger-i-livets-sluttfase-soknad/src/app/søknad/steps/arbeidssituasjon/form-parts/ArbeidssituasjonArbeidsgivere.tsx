@@ -1,5 +1,4 @@
 import { BodyLong, VStack } from '@navikt/ds-react';
-import { SifAppKeys } from '@navikt/sif-app-register';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { HentArbeidsforholdFeiletInfo } from '@navikt/sif-common-ui';
 
@@ -17,7 +16,7 @@ const ArbeidssituasjonArbeidsgivere = ({ ansatt_arbeidsforhold, error, søknadsp
     <VStack gap="space-32">
         <BodyLong as="div">
             {error ? (
-                <HentArbeidsforholdFeiletInfo app={SifAppKeys.PleiepengerLivetsSlutt} />
+                <HentArbeidsforholdFeiletInfo visFortsettInfo />
             ) : (
                 <>
                     {ansatt_arbeidsforhold.length > 0 && (
