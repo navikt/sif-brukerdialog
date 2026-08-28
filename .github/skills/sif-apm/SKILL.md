@@ -92,4 +92,4 @@ Hvis disse ikke er identiske, finnes telemetrien ikke i Grafana.
     void initApm({ app: MinSoknadApp.key, namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
     ```
 
-5. Verifiser: `jq -r '.app' nais/prod-gcp.json` skal være identisk med `MinSoknadApp.key`.
+5. Verifiser: `jq -r '.app' apps/<app-mappe>/nais/prod-gcp.json` skal være identisk med `MinSoknadApp.key`.
