@@ -14,7 +14,7 @@ export enum SifAppKeys {
     OmsorgspengerutbetalingArbeidstaker = 'omsorgspengerutbetaling-arbeidstaker-soknad',
     OmsorgspengerutbetalingSNFri = 'omsorgspengerutbetaling-soknad',
     Ettersendelse = 'sif-ettersending',
-    InnsynPsb = 'sif-innsyn',
+    InnsynPsb = 'dine-pleiepenger',
     OmsorgsdagerKalkulator = 'omsorgsdagerkalkulator',
     OpplæringspengerApp = 'opplaringspenger-soknad',
     UngdomsytelseDeltakerApp = 'ungdomsytelse-deltaker',
