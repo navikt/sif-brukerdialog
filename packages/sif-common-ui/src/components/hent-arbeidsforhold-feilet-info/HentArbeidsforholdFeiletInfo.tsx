@@ -1,13 +1,12 @@
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
-import { SifAppKeys } from '@navikt/sif-app-register';
 
 import { UiText } from '../../i18n/ui.messages';
 
 interface Props {
-    app?: SifAppKeys;
+    visFortsettInfo?: boolean;
 }
 
-const HentArbeidsforholdFeiletInfo = ({ app }: Props) => (
+const HentArbeidsforholdFeiletInfo = ({ visFortsettInfo: visEkstraInfo }: Props) => (
     <Alert variant="warning">
         <Heading level="3" size="small" spacing>
             <UiText id="hentArbeidsforholdFeiletInfo.tittel" />
@@ -15,21 +14,16 @@ const HentArbeidsforholdFeiletInfo = ({ app }: Props) => (
         <BodyLong>
             <UiText id="hentArbeidsforholdFeiletInfo.tekst.1" />
         </BodyLong>
-        {app &&
-            [
-                SifAppKeys.PleiepengerLivetsSlutt,
-                SifAppKeys.OpplæringspengerApp,
-                SifAppKeys.PleiepengerSyktBarn,
-            ].includes(app) && (
-                <>
-                    <BodyLong>
-                        <UiText id="hentArbeidsforholdFeiletInfo.tekst.2" />
-                    </BodyLong>
-                    <BodyLong>
-                        <UiText id="hentArbeidsforholdFeiletInfo.tekst.3" />
-                    </BodyLong>
-                </>
-            )}
+        {visEkstraInfo && (
+            <>
+                <BodyLong>
+                    <UiText id="hentArbeidsforholdFeiletInfo.tekst.2" />
+                </BodyLong>
+                <BodyLong>
+                    <UiText id="hentArbeidsforholdFeiletInfo.tekst.3" />
+                </BodyLong>
+            </>
+        )}
     </Alert>
 );
 

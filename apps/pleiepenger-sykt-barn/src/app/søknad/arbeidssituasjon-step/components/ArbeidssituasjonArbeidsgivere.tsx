@@ -1,5 +1,4 @@
 import { VStack } from '@navikt/ds-react';
-import { SifAppKeys } from '@navikt/sif-app-register';
 import { HentArbeidsforholdFeiletInfo } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
@@ -18,7 +17,7 @@ const ArbeidssituasjonArbeidsgivere = ({ søknadsperiode, hentArbeidsgivereFeile
         values: { ansatt_arbeidsforhold },
     } = useFormikContext<SøknadFormValues>();
     return hentArbeidsgivereFeilet ? (
-        <HentArbeidsforholdFeiletInfo app={SifAppKeys.PleiepengerSyktBarn} />
+        <HentArbeidsforholdFeiletInfo visFortsettInfo />
     ) : (
         <>
             <VStack gap="space-24">
