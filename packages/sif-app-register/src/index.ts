@@ -1,3 +1,7 @@
+/**
+ * Nøklene MÅ matche "app"-feltet i nais/prod-gcp.json for at telemetri (Faro/APM) skal vises i Grafana.
+ * Nøklene brukes også i analytics og AppStatus (Sanity). Ikke endre uten å oppdatere NAIS-konfigurasjonen.
+ */
 export enum SifAppKeys {
     AktivitetspengerSøknadApp = 'aktivitetspenger-soknad',
     AktivitetspengerInnsyn = 'aktivitetspenger-innsyn',
