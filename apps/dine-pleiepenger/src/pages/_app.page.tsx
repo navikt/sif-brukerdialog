@@ -53,7 +53,7 @@ const søkerIdFetcher = async (): Promise<string> => {
 };
 
 initNaisAPMClient({
-    app: 'dine-pleiepenger',
+    app: InnsynPsbApp.key,
     namespace: 'dusseldorf',
     beforeSend: (item) => (isDekoratorenException(item) ? null : item),
 });
