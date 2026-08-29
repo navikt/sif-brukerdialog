@@ -1,5 +1,5 @@
 import {
-    Arbeidsgiver,
+    ArbeidsgiverMedAnsettelseperioder,
     IngenTilgangÅrsak,
     K9Sak,
     RequestStatus,
@@ -52,7 +52,7 @@ const prepInitialData = (
         søker: Søker;
         k9saker: K9Sak[];
         antallSakerFørEndringsperiode: number;
-        arbeidsgivere: Arbeidsgiver[];
+        arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[];
         lagretSøknadState?: SøknadStatePersistence;
     },
     tillattEndringsperiode: DateRange,
