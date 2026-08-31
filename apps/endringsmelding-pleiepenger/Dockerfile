@@ -66,7 +66,7 @@ RUN --mount=type=secret,id=NPM_TOKEN \
     NPM_TOKEN=$(cat /run/secrets/NPM_TOKEN) \
     pnpm turbo run build --filter=${SCOPE} \
     -- --mode ${VITE_BUILD_MODE}
-RUN mv /app/apps/${APP}/dist /public
+RUN mkdir /public && mv /app/apps/${APP}/dist/index.html /public
 
 
 #########################################
