@@ -1,5 +1,5 @@
 import { useSøknadContext } from '@app/hooks';
-import { ArbeidstidApiData, SøknadApiData } from '@app/types';
+import { ArbeidsaktivitetArbeidstaker, ArbeidstidApiData, SøknadApiData } from '@app/types';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { InvalidParameterViolation } from '@navikt/sif-common-api';
@@ -17,22 +17,29 @@ import { getSøknadApiDataMetadata, SøknadApiDataMetadata } from '../utils/opps
 import { useMellomlagring } from './useMellomlagring';
 
 const erPeriodeParameterFeil = (violation: InvalidParameterViolation) => {
-    return JSON.stringify(violation).includes('ugyldigPeriode');
+    return violation.parameterName.startsWith('ytelse.arbeidstid.arbeidstakerList[0].perioder');
 };
 
-const logDebugInfoHvisPeriodefeil = (error: AxiosError, arbeidstid: ArbeidstidApiData) => {
-    if (arbeidstid.arbeidstakerList.length === 0) {
+const logDebugInfoHvisPeriodefeil = (
+    error: AxiosError,
+    arbeidstid: ArbeidstidApiData,
+    arbeidsaktivitetArbeidstaker: ArbeidsaktivitetArbeidstaker[],
+) => {
+    const periodefeil = getInvalidParametersFromAxiosError(error).filter(erPeriodeParameterFeil);
+    const arbeidstakerInnsending = arbeidstid.arbeidstakerList[0];
+    if (!arbeidstakerInnsending || periodefeil.length === 0) {
         return;
     }
-    const periodefeil = getInvalidParametersFromAxiosError(error).filter(erPeriodeParameterFeil);
-    if (periodefeil.length > 0) {
-        const periodeKeys = Object.keys(arbeidstid.arbeidstakerList[0].arbeidstidInfo.perioder);
-        appLogger.logHandledException('Innsending feilet - periodeparameterfeil', {
-            violations: periodefeil.map(({ parameterName, reason }) => ({ parameterName, reason })),
-            perioderInnsending: JSON.stringify(periodeKeys),
-            perioderSak: JSON.stringify(arbeidstid.arbeidstakerList[0].arbeidstidInfo.perioder),
-        });
-    }
+
+    const arbeidstakerSak = arbeidsaktivitetArbeidstaker.find(
+        ({ arbeidsgiver }) => arbeidsgiver.organisasjonsnummer === arbeidstakerInnsending.organisasjonsnummer,
+    );
+
+    appLogger.logHandledException('Innsending feilet - periodeparameterfeil', {
+        violations: periodefeil.map(({ parameterName, reason }) => ({ parameterName, reason })),
+        perioderInnsending: JSON.stringify(Object.keys(arbeidstakerInnsending.arbeidstidInfo.perioder)),
+        periodeKeysSak: JSON.stringify(Object.keys(arbeidstakerSak?.perioderMedArbeidstid ?? {})),
+    });
 };
 
 const logDebugInnsendingParameterViolations = (error: AxiosError) => {
@@ -66,7 +73,11 @@ export const useSendSøknad = () => {
                     appLogger.logApiError(error, 'Innsending feilet');
                     if (valgteEndringer.arbeidstid && apiData.ytelse.arbeidstid) {
                         logDebugInnsendingParameterViolations(error);
-                        logDebugInfoHvisPeriodefeil(error, apiData.ytelse.arbeidstid);
+                        logDebugInfoHvisPeriodefeil(
+                            error,
+                            apiData.ytelse.arbeidstid,
+                            sak.arbeidsaktiviteter.arbeidstakerAktiviteter,
+                        );
                     }
                 }
                 logSoknadFailed(EndringsmeldingPsbApp.navn);
