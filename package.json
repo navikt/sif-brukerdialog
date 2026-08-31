@@ -43,14 +43,14 @@
         "@changesets/cli": "3.0.1",
         "glob": "13.0.6",
         "tailwindcss": "4.3.3",
-        "turbo": "2.10.11"
+        "turbo": "2.10.12"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "gh-pages": "6.3.0",
         "husky": "9.1.7",
-        "lint-staged": "17.3.0",
+        "lint-staged": "17.4.1",
         "prettier": "3.9.6",
         "sort-package-json": "4.0.0",
         "typescript": "6.0.3",
