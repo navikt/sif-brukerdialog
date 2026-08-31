@@ -36,7 +36,7 @@
         "@sif/api": "workspace:*",
         "@sif/utils": "workspace:*",
         "js-cookie": "3.0.8",
-        "react-intl": "10.1.22",
+        "react-intl": "10.1.23",
         "react-responsive": "10.0.1"
     },
     "devDependencies": {
@@ -46,7 +46,7 @@
         "@storybook/addon-docs": "10.5.10",
         "@storybook/react-vite": "10.5.10",
         "@types/react": "19.2.18",
-        "@types/react-dom": "19.2.4",
+        "@types/react-dom": "19.2.5",
         "eslint-plugin-storybook": "10.5.10",
         "react": "19.2.8",
         "react-dom": "19.2.8",
