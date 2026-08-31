@@ -1,8 +1,10 @@
 import { useSøknadContext } from '@app/hooks';
-import { SøknadApiData } from '@app/types';
-import { appLogger } from '@sif/apm';
+import { ArbeidstidApiData, SøknadApiData } from '@app/types';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
+import { InvalidParameterViolation } from '@navikt/sif-common-api';
+import { getInvalidParametersFromAxiosError } from '@navikt/sif-common-soknad-ds';
+import { appLogger } from '@sif/apm';
 import { AxiosError, isAxiosError } from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -13,6 +15,33 @@ import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { getSøknadApiDataMetadata, SøknadApiDataMetadata } from '../utils/oppsummeringUtils';
 import { useMellomlagring } from './useMellomlagring';
+
+const erPeriodeParameterFeil = (violation: InvalidParameterViolation) => {
+    return JSON.stringify(violation).includes('ugyldigPeriode');
+};
+
+const logDebugInfoHvisPeriodefeil = (error: AxiosError, arbeidstid: ArbeidstidApiData) => {
+    if (arbeidstid.arbeidstakerList.length === 0) {
+        return;
+    }
+    const periodefeil = getInvalidParametersFromAxiosError(error).filter(erPeriodeParameterFeil);
+    if (periodefeil.length > 0) {
+        const periodeKeys = Object.keys(arbeidstid.arbeidstakerList[0].arbeidstidInfo.perioder);
+        appLogger.logHandledException('Innsending feilet - periodeparameterfeil', {
+            violations: periodefeil.map(({ parameterName, reason }) => ({ parameterName, reason })),
+            perioderInnsending: JSON.stringify(periodeKeys),
+            perioderSak: JSON.stringify(arbeidstid.arbeidstakerList[0].arbeidstidInfo.perioder),
+        });
+    }
+};
+
+const logDebugInnsendingParameterViolations = (error: AxiosError) => {
+    const violations = getInvalidParametersFromAxiosError(error);
+    const violationsFormatted = violations
+        .map(({ parameterName, reason }, index) => `Feil ${index + 1}: ${parameterName} - ${reason}`)
+        .join(', ');
+    appLogger.logHandledException(`Innsending feilet - parameterfeil: ${violationsFormatted}`);
+};
 
 export const useSendSøknad = () => {
     const {
@@ -35,6 +64,10 @@ export const useSendSøknad = () => {
             .catch((error) => {
                 if (isAxiosError(error)) {
                     appLogger.logApiError(error, 'Innsending feilet');
+                    if (valgteEndringer.arbeidstid && apiData.ytelse.arbeidstid) {
+                        logDebugInnsendingParameterViolations(error);
+                        logDebugInfoHvisPeriodefeil(error, apiData.ytelse.arbeidstid);
+                    }
                 }
                 logSoknadFailed(EndringsmeldingPsbApp.navn);
                 setSendSøknadError(error);
