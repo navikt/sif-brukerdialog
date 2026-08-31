@@ -1,0 +1,59 @@
+import { ArbeidsaktivitetArbeidstaker, ArbeidstidApiData } from '@app/types';
+import { InvalidParameterViolation } from '@navikt/sif-common-api';
+import { getInvalidParametersFromAxiosError } from '@navikt/sif-common-soknad-ds';
+import { isDateInDateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
+import { appLogger } from '@sif/apm';
+import { AxiosError } from 'axios';
+
+const erPeriodeParameterFeil = (violation: InvalidParameterViolation) => {
+    return violation.parameterName.startsWith('ytelse.arbeidstid.arbeidstakerList[0].perioder');
+};
+
+const erEndretPeriodeInnenforSakensPerioder = (
+    endretPeriode: string,
+    arbeidsaktivitetArbeidstaker?: ArbeidsaktivitetArbeidstaker,
+) => {
+    const periode = ISODateRangeToDateRange(endretPeriode);
+    return arbeidsaktivitetArbeidstaker?.perioderMedArbeidstid.some(
+        (sakPeriode) => isDateInDateRange(periode.from, sakPeriode) && isDateInDateRange(periode.to, sakPeriode),
+    );
+};
+
+export const logDebugInfoHvisPeriodefeil = (
+    error: AxiosError,
+    arbeidstid: ArbeidstidApiData,
+    arbeidsaktivitetArbeidstaker: ArbeidsaktivitetArbeidstaker[],
+) => {
+    const periodefeil = getInvalidParametersFromAxiosError(error).filter(erPeriodeParameterFeil);
+    const arbeidstakerInnsending = arbeidstid.arbeidstakerList[0];
+    if (!arbeidstakerInnsending || periodefeil.length === 0) {
+        return;
+    }
+
+    const arbeidstakerSak = arbeidsaktivitetArbeidstaker.find(
+        ({ arbeidsgiver }) => arbeidsgiver.organisasjonsnummer === arbeidstakerInnsending.organisasjonsnummer,
+    );
+    const endredePerioder = Object.keys(arbeidstakerInnsending.arbeidstidInfo.perioder);
+    const erEndredePerioderInnenforSakensPerioder = endredePerioder.every((periode) =>
+        erEndretPeriodeInnenforSakensPerioder(periode, arbeidstakerSak),
+    );
+
+    appLogger.logHandledException('Innsending feilet - periodeparameterfeil', {
+        violations: periodefeil.map(({ parameterName, reason }) => ({ parameterName, reason })),
+        erEndredePerioderInnenforSakensPerioder,
+        // Feltene under ligger her hvis vi skulle få behov for å logge mer info
+        // perioderInnsending: JSON.stringify(endredePerioder),
+        // periodeKeysSak: JSON.stringify(Object.keys(arbeidstakerSak?.perioderMedArbeidstid ?? {})),
+    });
+};
+
+export const logDebugInnsendingParameterViolations = (error: AxiosError) => {
+    const violations = getInvalidParametersFromAxiosError(error);
+    if (violations.length === 0) {
+        return;
+    }
+
+    appLogger.logHandledException('Innsending feilet - parameterfeil', {
+        violations: violations.map(({ parameterName, reason }) => ({ parameterName, reason })),
+    });
+};
