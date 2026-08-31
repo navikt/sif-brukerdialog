@@ -10,7 +10,7 @@ export type BostedSøknadsdata = {
 };
 
 export type BostedUtlandSøknadsdata = {
-    harBoddIUtlandetSiste5år: boolean;
+    harBoddINorge: boolean;
     bosteder: BostedUtland[] | undefined;
 };
 

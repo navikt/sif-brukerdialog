@@ -92,6 +92,17 @@ jobs:
       #     mkdir -p deployment/aktivitetspenger-innsyn
       #     mv apps/aktivitetspenger-innsyn/dist-demo/* deployment/aktivitetspenger-innsyn/
 
+      # Bygg aktivitetspenger-soknad-storybook
+      - name: Build aktivitetspenger-soknad-storybook
+        run: pnpm build-storybook
+        working-directory: apps/aktivitetspenger-soknad
+
+      # Flytt aktivitetspenger-soknad-storybook til gh-pages
+      - name: Kopier aktivitetspenger-soknad-storybook til gh-pages
+        run: |
+          mkdir -p deployment/aktivitetspenger-soknad-storybook
+          mv apps/aktivitetspenger-soknad/storybook-static/* deployment/aktivitetspenger-soknad-storybook/
+
       # Bygg ungdomsytelse-deltaker-storybook
       - name: Build ungdomsytelse-deltaker-storybook
         run: pnpm build-storybook

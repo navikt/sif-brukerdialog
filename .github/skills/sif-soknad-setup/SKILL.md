@@ -390,8 +390,11 @@ export const App = () => {
 
 APM initialiseres her — utenfor React-treet — slik at telemetri er aktiv fra første render.
 
+> **Kritisk:** `app`-verdien MÅ matche `"app"`-feltet i `nais/prod-gcp.json`. Se `sif-apm`-skillen for detaljer og kjente mismatches.
+
 ```tsx
 import { initApm } from '@sif/apm';
+import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -399,7 +402,7 @@ import { createRoot } from 'react-dom/client';
 import { enableMocking } from '../mock/enableMocking';
 import { App } from './App';
 
-void initApm({ app: 'min-app', namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
+void initApm({ app: PleiepengerSyktBarnApp.key, namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
 
 enableMocking().then(() => {
     createRoot(document.getElementById('root')!).render(
