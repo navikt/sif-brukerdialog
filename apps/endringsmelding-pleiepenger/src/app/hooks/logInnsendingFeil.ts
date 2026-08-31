@@ -49,8 +49,11 @@ export const logDebugInfoHvisPeriodefeil = (
 
 export const logDebugInnsendingParameterViolations = (error: AxiosError) => {
     const violations = getInvalidParametersFromAxiosError(error);
-    const violationsFormatted = violations
-        .map(({ parameterName, reason }, index) => `Feil ${index + 1}: ${parameterName} - ${reason}`)
-        .join(', ');
-    appLogger.logHandledException(`Innsending feilet - parameterfeil: ${violationsFormatted}`);
+    if (violations.length === 0) {
+        return;
+    }
+
+    appLogger.logHandledException('Innsending feilet - parameterfeil', {
+        violations: violations.map(({ parameterName, reason }) => ({ parameterName, reason })),
+    });
 };
