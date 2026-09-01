@@ -7,6 +7,7 @@ export type UgyldigArbeidstidPeriode = {
     ugyldigPeriode: ISODateRange[];
 };
 
+/** Validerer bare mellomlagrede endringer for arbeidsgivere i K9-saken. */
 export const alleArbeidstidEndringerErInnenforGyldigePerioder = (
     arbeidstid: ArbeidstidSøknadsdata | undefined,
     sak: Pick<Sak, 'arbeidsaktiviteter'>,
@@ -16,6 +17,9 @@ export const alleArbeidstidEndringerErInnenforGyldigePerioder = (
     }
 
     return Object.entries(arbeidstid.arbeidsaktivitet).flatMap(([arbeidsaktivitetKey, { endringer }]) => {
+        if (!arbeidsaktivitetKey.startsWith('a_')) {
+            return [];
+        }
         if (Object.keys(endringer).length === 0) {
             return [];
         }
