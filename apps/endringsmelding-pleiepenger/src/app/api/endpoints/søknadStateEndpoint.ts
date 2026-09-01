@@ -95,23 +95,33 @@ export const isPersistedSøknadStateValid = (
     tillattEndringsperiode: DateRange,
 ): boolean => {
     const k9sak = k9saker.find((sak) => sak.barn.aktørId === søknadState.barnAktørId);
-    const arbeidstidErGyldig =
-        k9sak !== undefined &&
-        harGyldigeArbeidstidsendringer(søknadState, k9sak, arbeidsgivere, tillattEndringsperiode);
 
     if (k9sak === undefined) {
         appLogger.logError('Persisted søknad state: k9sak ikke funnet for barnAktørId');
-    } else if (!arbeidstidErGyldig) {
-        appLogger.logError('Persisted søknad state: arbeidstidsendringer er ugyldige');
     }
 
-    return (
+    const harGyldigPersistedSøknadState =
         søknadState.versjon === MELLOMLAGRING_VERSJON &&
         isHashValid(søknadState, info) &&
         k9sak !== undefined &&
-        persistedSøknadRouteIsAvailable(søknadState) &&
-        arbeidstidErGyldig
+        persistedSøknadRouteIsAvailable(søknadState);
+
+    if (!harGyldigPersistedSøknadState) {
+        return false;
+    }
+
+    const arbeidstidErGyldig = harGyldigeArbeidstidsendringer(
+        søknadState,
+        k9sak,
+        arbeidsgivere,
+        tillattEndringsperiode,
     );
+
+    if (!arbeidstidErGyldig) {
+        appLogger.logError('Persisted søknad state: arbeidstidsendringer er ugyldige');
+    }
+
+    return arbeidstidErGyldig;
 };
 
 export const isPersistedSøknadStateEmpty = (søknadState: SøknadStatePersistence) => {
