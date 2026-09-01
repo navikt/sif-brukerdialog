@@ -20,6 +20,7 @@ import LovbestemtFerieOppsummering from './lovbestemt-ferie/LovbestemtFerieOppsu
 import NyttArbeidsforholdSummary from './nytt-arbeidsforhold/NyttArbeidsforholdSummary';
 import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';
 import TilsynsordningOppsummering from './tilsynsordning/TilsynsordningOppsummering';
+import { alleArbeidstidEndringerErInnenforGyldigePerioder } from '../../../utils/arbeidstidPeriodeValidering';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -87,6 +88,13 @@ const OppsummeringStep = () => {
 
     const harFeilPgaManglendeArbeidstidInfo = harUkjentArbeidsforholdMenHarIkkeBesvartArbeidstid(sak, apiData);
 
+    const ugyldigePerioderIArbeidstid =
+        valgteEndringer.arbeidstid || (arbeidstid && arbeidstidErEndret)
+            ? alleArbeidstidEndringerErInnenforGyldigePerioder(søknadsdata.arbeidstid, sak)
+            : [];
+
+    const harUgyldigArbeidstidPerioder = ugyldigePerioderIArbeidstid.length > 0;
+
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
             <FormLayout.Guide>
@@ -109,6 +117,7 @@ const OppsummeringStep = () => {
                         arbeidsgivere={[...arbeidsgivere, ...sak.arbeidsgivereIkkeISak]}
                         arbeidstidErEndret={arbeidstidErEndret}
                         harGyldigArbeidstid={harGyldigArbeidstid}
+                        ugyldigePerioderIArbeidstid={ugyldigePerioderIArbeidstid}
                     />
                 )}
                 {valgteEndringer.lovbestemtFerie && (
@@ -189,7 +198,11 @@ const OppsummeringStep = () => {
                                     <Form
                                         formErrorHandler={getIntlFormErrorHandler(intl, 'oppsummeringForm')}
                                         submitDisabled={
-                                            isSubmitting || hasInvalidSteps || harIngenEndringer || !harGyldigArbeidstid
+                                            harUgyldigArbeidstidPerioder ||
+                                            isSubmitting ||
+                                            hasInvalidSteps ||
+                                            harIngenEndringer ||
+                                            !harGyldigArbeidstid
                                         }
                                         includeValidationSummary={true}
                                         submitButtonLabel={text('oppsummeringStep.submit.label')}

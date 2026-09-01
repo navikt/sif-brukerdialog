@@ -10,6 +10,9 @@ import { AxiosError } from 'axios';
  * - Feilmeldinger wrappet i ny Error for å unngå sensitiv stack-trace fra tredjepart
  */
 
+const erLokalhost = () =>
+    typeof window !== 'undefined' && ['localhost', '127.0.0.1'].includes(window.location.hostname);
+
 export const appLogger = {
     logInfo: (message: string) => {
         captureMessage(message, 'info');
@@ -19,11 +22,19 @@ export const appLogger = {
 
     logError: (message: string) => {
         captureMessage(message, 'error');
+        if (erLokalhost()) {
+            // eslint-disable-next-line no-console
+            console.error(message);
+        }
     },
 
     logHandledException: (error: unknown, extra?: Record<string, unknown>) => {
         const err = error instanceof Error ? error : new Error(String(error));
         captureException(err, extra ? { context: extra } : undefined);
+        if (erLokalhost()) {
+            // eslint-disable-next-line no-console
+            console.error('Handled exception:', err, extra ?? {});
+        }
     },
 
     logException: (error: unknown, extra?: Record<string, unknown>) => {

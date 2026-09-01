@@ -76,7 +76,7 @@ export const fetchInitialData = async (
                 arbeidsgivere = result;
                 return kontrollerTilgang(k9saker, tillattEndringsperiode);
             })
-            .then(() => hentOgKontrollerLagretSøknadState(søker, k9saker))
+            .then(() => hentOgKontrollerLagretSøknadState(søker, k9saker, arbeidsgivere, tillattEndringsperiode))
             .then((lagretSøknadState) => {
                 return Promise.resolve({
                     søker,
@@ -167,6 +167,8 @@ const kontrollerTilgang = async (k9saker: K9Sak[], tillattEndringsperiode: DateR
 const hentOgKontrollerLagretSøknadState = async (
     søker: Søker,
     k9saker: K9Sak[],
+    arbeidsgivere: Arbeidsgiver[],
+    tillattEndringsperiode: DateRange,
 ): Promise<SøknadStatePersistence | undefined> => {
     const lagretSøknadState = await søknadStateEndpoint.fetch();
 
@@ -180,6 +182,8 @@ const hentOgKontrollerLagretSøknadState = async (
             barnAktørId: lagretSøknadState.barnAktørId,
         },
         k9saker,
+        arbeidsgivere,
+        tillattEndringsperiode,
     );
     if (!isValid) {
         await søknadStateEndpoint.purge();
