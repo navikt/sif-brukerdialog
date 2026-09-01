@@ -1,7 +1,7 @@
+import { ArbeidstidSøknadsdata, Sak, TimerEllerProsent } from '@app/types';
 import { vi } from 'vitest';
 
-import { alleArbeidstidEndringerErInnenforGyldigePerioder } from '../arbeidstidPeriodeValidering';
-import { ArbeidstidSøknadsdata, Sak, TimerEllerProsent } from '@app/types';
+import { getUgyldigeArbeidstidPerioder } from '../arbeidstidPeriodeValidering';
 
 vi.mock('@navikt/sif-common-env', () => ({
     getRequiredEnv: () => '',
@@ -50,25 +50,19 @@ const sak = {
 
 describe('alleArbeidstidEndringerErInnenforGyldigePerioder', () => {
     it('returnerer ingen feil når endringen finnes blant arbeidsgivers arbeidsuker', () => {
-        const resultat = alleArbeidstidEndringerErInnenforGyldigePerioder(
-            getArbeidstid(['2026-01-12/2026-01-16']),
-            sak,
-        );
+        const resultat = getUgyldigeArbeidstidPerioder(getArbeidstid(['2026-01-12/2026-01-16']), sak);
 
         expect(resultat).toEqual([]);
     });
 
     it('returnerer ugyldig periode når endringen ikke finnes blant arbeidsgivers arbeidsuker', () => {
-        const resultat = alleArbeidstidEndringerErInnenforGyldigePerioder(
-            getArbeidstid(['2026-01-02/2026-01-09']),
-            sak,
-        );
+        const resultat = getUgyldigeArbeidstidPerioder(getArbeidstid(['2026-01-02/2026-01-09']), sak);
 
         expect(resultat).toEqual([{ org: '123456789', ugyldigPeriode: ['2026-01-02/2026-01-09'] }]);
     });
 
     it('returnerer alle ugyldige perioder for arbeidsgiveren', () => {
-        const resultat = alleArbeidstidEndringerErInnenforGyldigePerioder(
+        const resultat = getUgyldigeArbeidstidPerioder(
             getArbeidstid(['2026-01-12/2026-01-16', '2026-02-02/2026-02-06']),
             sak,
         );
@@ -77,7 +71,7 @@ describe('alleArbeidstidEndringerErInnenforGyldigePerioder', () => {
     });
 
     it('returnerer alle endringer når arbeidsgiveren ikke lenger finnes i saken', () => {
-        const resultat = alleArbeidstidEndringerErInnenforGyldigePerioder(
+        const resultat = getUgyldigeArbeidstidPerioder(
             getArbeidstidForArbeidsgiver('a_987654321', ['2026-01-12/2026-01-16', '2026-01-19/2026-01-23']),
             sak,
         );

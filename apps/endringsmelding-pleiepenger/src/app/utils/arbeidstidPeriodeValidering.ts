@@ -8,7 +8,7 @@ export type UgyldigArbeidstidPeriode = {
 };
 
 /** Validerer bare mellomlagrede endringer for arbeidsgivere i K9-saken. */
-export const alleArbeidstidEndringerErInnenforGyldigePerioder = (
+export const getUgyldigeArbeidstidPerioder = (
     arbeidstid: ArbeidstidSøknadsdata | undefined,
     sak: Pick<Sak, 'arbeidsaktiviteter'>,
 ): UgyldigArbeidstidPeriode[] => {

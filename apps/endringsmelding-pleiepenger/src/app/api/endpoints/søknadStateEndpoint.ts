@@ -11,7 +11,7 @@ import hash from 'object-hash';
 
 import { MELLOMLAGRING_VERSJON } from '../../constants/MELLOMLAGRING_VERSJON';
 import { getSøknadStepRoute, SøknadRoutes } from '../../søknad/config/SøknadRoutes';
-import { alleArbeidstidEndringerErInnenforGyldigePerioder } from '../../utils/arbeidstidPeriodeValidering';
+import { getUgyldigeArbeidstidPerioder } from '../../utils/arbeidstidPeriodeValidering';
 import { getSakFromK9Sak } from '../../utils/getSakFromK9Sak';
 import { ApiEndpointPsb, axiosConfigPsb } from '../api';
 
@@ -84,7 +84,7 @@ const harGyldigeArbeidstidsendringer = (
 
     const sak = getSakFromK9Sak(k9sak, arbeidsgivere, tillattEndringsperiode);
 
-    return alleArbeidstidEndringerErInnenforGyldigePerioder(arbeidstid, sak).length === 0;
+    return getUgyldigeArbeidstidPerioder(arbeidstid, sak).length === 0;
 };
 
 export const isPersistedSøknadStateValid = (

@@ -6,7 +6,7 @@ import { appLogger } from '@sif/apm';
 import { AxiosError } from 'axios';
 
 const erPeriodeParameterFeil = (violation: InvalidParameterViolation) => {
-    return violation.parameterName.startsWith('ytelse.arbeidstid.arbeidstakerList[0].perioder');
+    return /^ytelse\.arbeidstid\.arbeidstakerList\[\d+\]\.perioder/.test(violation.parameterName);
 };
 
 const erEndretPeriodeInnenforSakensPerioder = (

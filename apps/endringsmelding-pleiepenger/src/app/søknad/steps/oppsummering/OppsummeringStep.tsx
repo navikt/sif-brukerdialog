@@ -20,7 +20,7 @@ import LovbestemtFerieOppsummering from './lovbestemt-ferie/LovbestemtFerieOppsu
 import NyttArbeidsforholdSummary from './nytt-arbeidsforhold/NyttArbeidsforholdSummary';
 import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';
 import TilsynsordningOppsummering from './tilsynsordning/TilsynsordningOppsummering';
-import { alleArbeidstidEndringerErInnenforGyldigePerioder } from '../../../utils/arbeidstidPeriodeValidering';
+import { getUgyldigeArbeidstidPerioder } from '../../../utils/arbeidstidPeriodeValidering';
 
 enum OppsummeringFormFields {
     harBekreftetOpplysninger = 'harBekreftetOpplysninger',
@@ -90,7 +90,7 @@ const OppsummeringStep = () => {
 
     const ugyldigePerioderIArbeidstid =
         valgteEndringer.arbeidstid || (arbeidstid && arbeidstidErEndret)
-            ? alleArbeidstidEndringerErInnenforGyldigePerioder(søknadsdata.arbeidstid, sak)
+            ? getUgyldigeArbeidstidPerioder(søknadsdata.arbeidstid, sak)
             : [];
 
     const harUgyldigArbeidstidPerioder = ugyldigePerioderIArbeidstid.length > 0;
