@@ -68,11 +68,11 @@
         "react": "19.2.8",
         "react-dom": "19.2.8",
         "react-error-boundary": "6.1.3",
-        "react-intl": "10.1.23",
+        "react-intl": "10.1.24",
         "react-loading-skeleton": "3.5.0",
-        "react-router-dom": "7.18.2",
+        "react-router-dom": "7.18.3",
         "uuid": "^14.0.2",
-        "zod": "4.4.3",
+        "zod": "4.5.2",
         "zustand": "5.0.15"
     },
     "devDependencies": {
