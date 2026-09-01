@@ -5,8 +5,9 @@ import { isDateInDateRange, ISODateRangeToDateRange } from '@navikt/sif-common-u
 import { appLogger } from '@sif/apm';
 import { AxiosError } from 'axios';
 
-const erPeriodeParameterFeil = (violation: InvalidParameterViolation) => {
-    return /^ytelse\.arbeidstid\.arbeidstakerList\[\d+\]\.perioder/.test(violation.parameterName);
+const getArbeidstakerindeksFraPeriodeParameterFeil = (violation: InvalidParameterViolation) => {
+    const match = /^ytelse\.arbeidstid\.arbeidstakerList\[(\d+)\]\.perioder/.exec(violation.parameterName);
+    return match ? Number(match[1]) : undefined;
 };
 
 const erEndretPeriodeInnenforSakensPerioder = (
@@ -24,9 +25,13 @@ export const logDebugInfoHvisPeriodefeil = (
     arbeidstid: ArbeidstidApiData,
     arbeidsaktivitetArbeidstaker: ArbeidsaktivitetArbeidstaker[],
 ) => {
-    const periodefeil = getInvalidParametersFromAxiosError(error).filter(erPeriodeParameterFeil);
-    const arbeidstakerInnsending = arbeidstid.arbeidstakerList[0];
-    if (!arbeidstakerInnsending || periodefeil.length === 0) {
+    const periodefeil = getInvalidParametersFromAxiosError(error);
+    const arbeidstakerindeks = periodefeil
+        .map(getArbeidstakerindeksFraPeriodeParameterFeil)
+        .find((indeks) => indeks !== undefined);
+    const arbeidstakerInnsending =
+        arbeidstakerindeks === undefined ? undefined : arbeidstid.arbeidstakerList[arbeidstakerindeks];
+    if (!arbeidstakerInnsending) {
         return;
     }
 
@@ -40,7 +45,9 @@ export const logDebugInfoHvisPeriodefeil = (
     );
 
     appLogger.logHandledException('Innsending feilet - periodeparameterfeil', {
-        violations: periodefeil.map(({ parameterName, reason }) => ({ parameterName, reason })),
+        violations: periodefeil
+            .filter((violation) => getArbeidstakerindeksFraPeriodeParameterFeil(violation) === arbeidstakerindeks)
+            .map(({ parameterName, reason }) => ({ parameterName, reason })),
         erEndredePerioderInnenforSakensPerioder,
         // Feltene under ligger her hvis vi skulle få behov for å logge mer info
         // perioderInnsending: JSON.stringify(endredePerioder),
