@@ -46,9 +46,10 @@ const sak = {
             },
         ],
     },
-} as Pick<Sak, 'arbeidsaktiviteter'>;
+    arbeidsgivereIkkeISak: [],
+} as unknown as Pick<Sak, 'arbeidsaktiviteter' | 'arbeidsgivereIkkeISak'>;
 
-describe('alleArbeidstidEndringerErInnenforGyldigePerioder', () => {
+describe('getUgyldigeArbeidstidPerioder', () => {
     it('returnerer ingen feil når endringen finnes blant arbeidsgivers arbeidsuker', () => {
         const resultat = getUgyldigeArbeidstidPerioder(getArbeidstid(['2026-01-12/2026-01-16']), sak);
 
@@ -79,5 +80,19 @@ describe('alleArbeidstidEndringerErInnenforGyldigePerioder', () => {
         expect(resultat).toEqual([
             { org: '987654321', ugyldigPeriode: ['2026-01-12/2026-01-16', '2026-01-19/2026-01-23'] },
         ]);
+    });
+
+    it('returnerer ingen feil når arbeidsgiveren fortsatt finnes utenfor K9-saken', () => {
+        const resultat = getUgyldigeArbeidstidPerioder(
+            getArbeidstidForArbeidsgiver('a_987654321', ['2026-01-12/2026-01-16']),
+            {
+                ...sak,
+                arbeidsgivereIkkeISak: [
+                    { key: 'a_987654321', organisasjonsnummer: '987654321', navn: 'Ny arbeidsgiver AS' },
+                ],
+            },
+        );
+
+        expect(resultat).toEqual([]);
     });
 });
