@@ -50,4 +50,19 @@ export const appLogger = {
         // eslint-disable-next-line no-console
         console.error(`API error [${context}]:`, error.message); // lgtm[js/clear-text-logging]
     },
+    /** Brukes for å logge hele feilobjektet fra backend. Skal kun brukes der en vet at
+     * responsen ikke inneholder data som ikke er lov å logge. */
+    logRawApiError: (error: AxiosError, context?: string) => {
+        const status = error.response?.status;
+        if (status === 401 || status === 0 || error.code === 'ERR_NETWORK') {
+            return;
+        }
+        captureException(new Error(`${context ?? 'unknown'}: HTTP ${status ?? error.code ?? 'unknown'}`), {
+            context: {
+                api_context: context ?? 'unknown',
+                http_status: String(status ?? error.code ?? 'unknown'),
+                api_error: error.response?.data,
+            },
+        });
+    },
 };

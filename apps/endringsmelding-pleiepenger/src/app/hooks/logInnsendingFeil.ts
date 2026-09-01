@@ -30,6 +30,7 @@ export const logDebugInfoHvisPeriodefeil = (
         return;
     }
 
+    appLogger.logRawApiError(error, 'Innsending feilet-ugyldig periode');
     const arbeidstakerSak = arbeidsaktivitetArbeidstaker.find(
         ({ arbeidsgiver }) => arbeidsgiver.organisasjonsnummer === arbeidstakerInnsending.organisasjonsnummer,
     );
