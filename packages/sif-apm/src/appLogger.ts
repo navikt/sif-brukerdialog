@@ -6,7 +6,7 @@ import { AxiosError } from 'axios';
  *
  * Saniteringsregler:
  * - 401, status 0 og ERR_NETWORK ignoreres i logApiError
- * - Kun context og HTTP-statuskode sendes for API-feil, aldri request/response-body
+ * - Kun context og HTTP-statuskode sendes for API-feil, aldri request/response-body (med unntak for logRawApiError)
  * - Feilmeldinger wrappet i ny Error for å unngå sensitiv stack-trace fra tredjepart
  */
 
