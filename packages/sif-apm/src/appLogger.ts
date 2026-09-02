@@ -10,39 +10,23 @@ import { AxiosError } from 'axios';
  * - Feilmeldinger wrappet i ny Error for å unngå sensitiv stack-trace fra tredjepart
  */
 
-const erLokalhost = () =>
-    typeof window !== 'undefined' && ['localhost', '127.0.0.1'].includes(window.location.hostname);
-
 export const appLogger = {
     logInfo: (message: string) => {
         captureMessage(message, 'info');
-        // eslint-disable-next-line no-console
-        console.info(message);
     },
 
     logError: (message: string) => {
         captureMessage(message, 'error');
-        if (erLokalhost()) {
-            // eslint-disable-next-line no-console
-            console.error(message);
-        }
     },
 
     logHandledException: (error: unknown, extra?: Record<string, unknown>) => {
         const err = error instanceof Error ? error : new Error(String(error));
         captureException(err, extra ? { context: extra } : undefined);
-        if (erLokalhost()) {
-            // eslint-disable-next-line no-console
-            console.error('Handled exception:', err, extra ?? {});
-        }
     },
 
     logException: (error: unknown, extra?: Record<string, unknown>) => {
         const err = error instanceof Error ? error : new Error(String(error));
         appLogger.logHandledException(err, extra);
-        // loglevel-safe: err.message inneholder aldri sensitiv data — falsk positiv fra CodeQL
-        // eslint-disable-next-line no-console
-        console.error('Exception:', err.message, extra ?? {}); // lgtm[js/clear-text-logging]
     },
 
     logApiError: (error: AxiosError, context?: string) => {
@@ -57,8 +41,5 @@ export const appLogger = {
                 http_status: String(status ?? error.code ?? 'unknown'),
             },
         });
-        // error.message inneholder kun HTTP-metadata, ikke sensitiv payload — falsk positiv fra CodeQL
-        // eslint-disable-next-line no-console
-        console.error(`API error [${context}]:`, error.message); // lgtm[js/clear-text-logging]
     },
 };
