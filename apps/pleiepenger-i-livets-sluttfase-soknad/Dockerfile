@@ -5,7 +5,7 @@ ENV SERVER="server"
 ENV SCOPE=@navikt/pleiepenger-i-livets-sluttfase-soknad
 
 RUN apk fix \
-    && apk add --no-cache --update libc6-compat tini \
+    && apk add --no-cache --update libc6-compat \
     && rm -rf /var/cache/apk/*
 
 RUN npm install -g turbo
@@ -73,31 +73,23 @@ RUN mv /app/apps/${APP}/dist /public
 #########################################
 # SERVER RUNTIME
 #########################################
-# Starter fra fresh node-image for å unngå å ta med npm/pnpm/turbo fra base
-FROM node:26-alpine AS server
+# Chainguard-image kjører nonroot (uid 65532) by default, ingen apk/shell/npm i slim
+FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:26-slim AS server
 WORKDIR /app
 ENV SERVER="server"
 
-# Installer kun tini - trenger ikke npm/pnpm i produksjon
-RUN apk add --no-cache tini \
-    && rm -rf /var/cache/apk/* \
-        /usr/local/lib/node_modules/npm \
-        /usr/local/lib/node_modules/corepack \
-        /usr/local/bin/npm \
-        /usr/local/bin/npx \
-        /usr/local/bin/corepack
-
 # Kopier bygget server
-COPY --from=server-build /app/${SERVER}/dist ./
-ENTRYPOINT ["/sbin/tini", "--"]
+COPY --from=server-build --chown=65532:65532 /app/${SERVER}/dist ./
 
 #########################################
 # START APP
 #########################################
 FROM server
 
-COPY --from=client-build /public ./public
+COPY --from=client-build --chown=65532:65532 /public ./public
 
-CMD ["node", "index.js"]
+EXPOSE 8080
+
+CMD ["index.js"]
 
 
