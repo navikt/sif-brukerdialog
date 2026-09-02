@@ -61,10 +61,11 @@ RUN --mount=type=secret,id=NPM_TOKEN \
 #########################################
 
 FROM installer AS client-build
+ARG VITE_BUILD_MODE=production
 WORKDIR /app
 RUN --mount=type=secret,id=NPM_TOKEN \
-    NPM_TOKEN=$(cat /run/secrets/NPM_TOKEN) pnpm turbo run build --filter=${SCOPE}
-RUN mv /app/apps-intern/${APP}/dist /public
+    NPM_TOKEN=$(cat /run/secrets/NPM_TOKEN) pnpm turbo run build --filter=${SCOPE} -- --mode ${VITE_BUILD_MODE}
+RUN mkdir /public && mv /app/apps-intern/${APP}/dist/index.html /public
 
 
 #########################################

@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
     plugins: [
         react({
             include: '**/*.{tsx}',
@@ -30,7 +30,8 @@ export default defineConfig({
         __VIS_DEMO_BRUKERE__: false,
     },
     resolve: {},
+    base: mode === 'production' ? 'https://cdn.nav.no/dusseldorf/ungdomsytelse-veileder/dist/' : '/',
     build: {
         sourcemap: true,
     },
-});
+}));

@@ -8,7 +8,7 @@ import logger from './log.js';
 import serverConfig from './serverConfig.js';
 
 export const setupAndServeHtml = async (app: Express) => {
-    // public/index.html er en placeholder lokalt; i Docker-build erstattes den av bygget klient-dist.
+    // public/index.html er en placeholder lokalt; i Docker-build erstattes den av bygget klient-index.html.
     const spaFilePath = path.resolve('./public', 'index.html');
 
     const html = fs.readFileSync(spaFilePath, 'utf-8');

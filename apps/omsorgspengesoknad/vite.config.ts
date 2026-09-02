@@ -17,6 +17,7 @@ export default defineConfig(({ mode }) => ({
         },
     ],
     resolve: {},
+    base: mode === 'production' ? 'https://cdn.nav.no/dusseldorf/omsorgspengesoknad/dist/' : '/familie/sykdom-i-familien/soknad/omsorgspenger/',
     build: {
         chunkSizeWarningLimit: 2000,
         sourcemap: true,

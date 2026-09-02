@@ -45,6 +45,11 @@ on:
                 type: boolean
                 default: false
                 description: "Run SonarCloud scan after tests"
+            use-cdn:
+                required: false
+                type: boolean
+                default: false
+                description: "Upload build output to CDN after build"
 
 jobs:
     run-tests:
@@ -78,3 +83,4 @@ jobs:
             app-name: ${{ inputs.app-name }}
             working-directory: ${{ inputs.working-directory }}
             is-next-app: ${{ inputs.is-next-app }}
+            use-cdn: ${{ inputs.use-cdn }}

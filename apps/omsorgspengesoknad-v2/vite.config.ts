@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => {
                 '@app': resolve(__dirname, './src/app'),
             },
         },
-        base: '/familie/sykdom-i-familien/soknad/omsorgspenger/',
+        base: mode === 'production' ? 'https://cdn.nav.no/dusseldorf/omsorgspengesoknad-v2/dist/' : '/familie/sykdom-i-familien/soknad/omsorgspenger/',
         preview: {
             port: 8080,
         },

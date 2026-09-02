@@ -1,5 +1,6 @@
 import { useAppIntl } from '@app/i18n';
 import { SøknadKvitteringPage } from '@sif/soknad-ui';
+import { getAppEnv } from '../../setup/appEnv';
 
 export const Kvittering = () => {
     const { text } = useAppIntl();
@@ -9,7 +10,7 @@ export const Kvittering = () => {
             applicationTitle={text('application.title')}
             infoTittel={text('kvittering.title')}
             infoMelding={text('kvittering.message')}
-            appRootUrl={import.meta.env.BASE_URL}
+            appRootUrl={getAppEnv().PUBLIC_PATH}
         />
     );
 };

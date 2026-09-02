@@ -8,7 +8,7 @@
     "author": "NAV",
     "type": "module",
     "scripts": {
-        "build": "vite build --base=/familie/sykdom-i-familien/soknad/opplaringspenger",
+        "build": "vite build",
         "build-storybook": "storybook build",
         "clean": "rm -rf node_modules dist dist-demo",
         "demo:build": "pnpm demo:build-app && pnpm demo:copy-app-files",

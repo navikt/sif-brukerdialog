@@ -113,6 +113,7 @@ jobs:
         with:
             app-name: "ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
             working-directory: "apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
+            use-cdn: true
             package-name: "@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
 
     deploy-endringsmelding-pleiepenger:
@@ -126,6 +127,7 @@ jobs:
         with:
             app-name: "endringsmelding-pleiepenger"
             working-directory: "apps/endringsmelding-pleiepenger"
+            use-cdn: true
             package-name: "@navikt/endringsmelding-pleiepenger"
             playwright-with-deps: true
 
@@ -140,6 +142,7 @@ jobs:
         with:
             app-name: "omsorgsdager-aleneomsorg-dialog"
             working-directory: "apps/omsorgsdager-aleneomsorg-dialog"
+            use-cdn: true
             package-name: "@navikt/omsorgsdager-aleneomsorg-dialog"
 
     deploy-omsorgsdager-kalkulator:
@@ -167,6 +170,7 @@ jobs:
         with:
             app-name: "omsorgspengerutbetaling-arbeidstaker-soknad"
             working-directory: "apps/omsorgspengerutbetaling-arbeidstaker-soknad"
+            use-cdn: true
             package-name: "@navikt/omsorgspengerutbetaling-arbeidstaker-soknad"
 
     deploy-omsorgspengerutbetaling-soknad:
@@ -180,6 +184,7 @@ jobs:
         with:
             app-name: "omsorgspengerutbetaling-soknad"
             working-directory: "apps/omsorgspengerutbetaling-soknad"
+            use-cdn: true
             package-name: "@navikt/omsorgspengerutbetaling-soknad"
 
     deploy-omsorgspengesoknad:
@@ -193,6 +198,7 @@ jobs:
         with:
             app-name: "omsorgspengesoknad"
             working-directory: "apps/omsorgspengesoknad"
+            use-cdn: true
             package-name: "@navikt/omsorgspengesoknad"
 
     deploy-opplaringspenger-soknad:
@@ -206,6 +212,7 @@ jobs:
         with:
             app-name: "opplaringspenger-soknad"
             working-directory: "apps/opplaringspenger-soknad"
+            use-cdn: true
             package-name: "@navikt/opplaringspenger-soknad"
 
     deploy-pleiepenger-i-livets-sluttfase-soknad:
@@ -219,6 +226,7 @@ jobs:
         with:
             app-name: "pleiepenger-i-livets-sluttfase-soknad"
             working-directory: "apps/pleiepenger-i-livets-sluttfase-soknad"
+            use-cdn: true
             package-name: "@navikt/pleiepenger-i-livets-sluttfase-soknad"
 
     deploy-pleiepenger-sykt-barn:
@@ -232,6 +240,7 @@ jobs:
         with:
             app-name: "pleiepenger-sykt-barn"
             working-directory: "apps/pleiepenger-sykt-barn"
+            use-cdn: true
             package-name: "@navikt/pleiepenger-sykt-barn"
             playwright-with-deps: true
 
@@ -246,6 +255,7 @@ jobs:
         with:
             app-name: "sif-ettersending"
             working-directory: "apps/sif-ettersending"
+            use-cdn: true
             package-name: "@navikt/sif-ettersending"
 
     deploy-ungdomsytelse-deltaker:
@@ -259,6 +269,7 @@ jobs:
         with:
             app-name: "ungdomsytelse-deltaker"
             working-directory: "apps/ungdomsytelse-deltaker"
+            use-cdn: true
             package-name: "@navikt/ungdomsytelse-deltaker"
             use-turbo-test: true
             e2e-build-command: "e2e:build"
