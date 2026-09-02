@@ -1,8 +1,9 @@
 import { StepId } from '@app/søknad/config/StepId';
-import { K9Sak, Søknadsdata, ValgteEndringer } from '@app/types';
+import { Arbeidsgiver, K9Sak, Søknadsdata, ValgteEndringer } from '@app/types';
 import { Søker } from '@navikt/sif-common-api';
 import persistence, { PersistenceInterface } from '@navikt/sif-common-core-ds/src/utils/persistence/persistence';
-import { jsonSort } from '@navikt/sif-common-utils';
+import { DateRange, jsonSort } from '@navikt/sif-common-utils';
+import { appLogger } from '@sif/apm';
 import { AxiosResponse } from 'axios';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
@@ -10,6 +11,9 @@ import hash from 'object-hash';
 
 import { MELLOMLAGRING_VERSJON } from '../../constants/MELLOMLAGRING_VERSJON';
 import { getSøknadStepRoute, SøknadRoutes } from '../../søknad/config/SøknadRoutes';
+import { getUgyldigeArbeidstidPerioder } from '../../utils/arbeidstidPeriodeValidering';
+import { Feature, isFeatureEnabled } from '../../utils/featureToggleUtils';
+import { getSakFromK9Sak } from '../../utils/getSakFromK9Sak';
 import { ApiEndpointPsb, axiosConfigPsb } from '../api';
 
 dayjs.extend(utc);
@@ -67,17 +71,55 @@ const isHashValid = (søknadState: SøknadStatePersistence, info: SøknadStateHa
     const legacyHash = hash(JSON.stringify(jsonSort(legacyInfo)));
     return søknadState.søknadHashString === legacyHash;
 };
+
+const harGyldigeArbeidstidsendringer = (
+    søknadState: SøknadStatePersistence,
+    k9sak: K9Sak,
+    arbeidsgivere: Arbeidsgiver[],
+    tillattEndringsperiode: DateRange,
+): boolean => {
+    const arbeidstid = søknadState.søknadsdata[StepId.ARBEIDSTID];
+    if (!arbeidstid) {
+        return true;
+    }
+
+    const sak = getSakFromK9Sak(k9sak, arbeidsgivere, tillattEndringsperiode);
+
+    return getUgyldigeArbeidstidPerioder(arbeidstid, sak).length === 0;
+};
+
 export const isPersistedSøknadStateValid = (
     søknadState: SøknadStatePersistence,
     info: SøknadStateHashInfo,
     k9saker: K9Sak[],
+    arbeidsgivere: Arbeidsgiver[],
+    tillattEndringsperiode: DateRange,
 ): boolean => {
-    return (
+    const k9sak = k9saker.find((sak) => sak.barn.aktørId === søknadState.barnAktørId);
+
+    if (k9sak === undefined) {
+        appLogger.logError('Persisted søknad state: k9sak ikke funnet for barnAktørId');
+    }
+
+    const harGyldigPersistedSøknadState =
         søknadState.versjon === MELLOMLAGRING_VERSJON &&
         isHashValid(søknadState, info) &&
-        k9saker.some((sak) => sak.barn.aktørId === søknadState.barnAktørId) &&
-        persistedSøknadRouteIsAvailable(søknadState)
-    );
+        k9sak !== undefined &&
+        persistedSøknadRouteIsAvailable(søknadState);
+
+    if (!harGyldigPersistedSøknadState) {
+        return false;
+    }
+
+    const arbeidstidErGyldig =
+        !isFeatureEnabled(Feature.SIF_PUBLIC_SJEKK_OM_ARBEIDSTID_ER_GYLDIG) ||
+        harGyldigeArbeidstidsendringer(søknadState, k9sak, arbeidsgivere, tillattEndringsperiode);
+
+    if (!arbeidstidErGyldig) {
+        appLogger.logError('Persisted søknad state: arbeidstidsendringer er ugyldige');
+    }
+
+    return arbeidstidErGyldig;
 };
 
 export const isPersistedSøknadStateEmpty = (søknadState: SøknadStatePersistence) => {

@@ -6,6 +6,7 @@ export const appEnvSchema = commonEnvSchema.merge(sifInnsynEnvSchema).extend({
     SIF_PUBLIC_DOMAIN_URL: z.string().min(1),
     VELG_SCENARIO: z.enum(['on', 'off']).optional(),
     SIF_PUBLIC_ENDRE_OMSORGSTILBUD: z.enum(['on', 'off']).optional(),
+    SIF_PUBLIC_SJEKK_OM_ARBEIDSTID_ER_GYLDIG: z.enum(['on', 'off']).optional(),
 });
 
 export const appDevEnvSchema = appEnvSchema.extend({

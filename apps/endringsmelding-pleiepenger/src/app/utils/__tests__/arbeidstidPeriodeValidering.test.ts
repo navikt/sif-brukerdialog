@@ -1,0 +1,119 @@
+import { ArbeidstidSøknadsdata, Sak, TimerEllerProsent } from '@app/types';
+import { vi } from 'vitest';
+
+import { getUgyldigeArbeidstidPerioder } from '../arbeidstidPeriodeValidering';
+
+vi.mock('@navikt/sif-common-env', () => ({
+    getRequiredEnv: () => '',
+    getMaybeEnv: () => '',
+    getCommonEnv: () => ({}),
+    getSifInnsynBrowserEnv: () => ({}),
+}));
+
+const getArbeidstid = (perioder: string[]): ArbeidstidSøknadsdata => ({
+    arbeidsaktivitet: {
+        a_123456789: {
+            endringer: Object.fromEntries(
+                perioder.map((periode) => [periode, { type: TimerEllerProsent.PROSENT, prosent: 50 }]),
+            ),
+        },
+    },
+});
+
+const getArbeidstidForArbeidsgiver = (arbeidsgiverKey: string, perioder: string[]): ArbeidstidSøknadsdata => ({
+    arbeidsaktivitet: {
+        [arbeidsgiverKey]: {
+            endringer: Object.fromEntries(
+                perioder.map((periode) => [periode, { type: TimerEllerProsent.PROSENT, prosent: 50 }]),
+            ),
+        },
+    },
+});
+
+const getArbeidsgiverPeriode = (perioder: string[]) => ({
+    from: new Date('2026-01-01'),
+    to: new Date('2026-01-31'),
+    arbeidsuker: Object.fromEntries(perioder.map((periode) => [periode, {}])),
+});
+
+const sak = {
+    arbeidsaktiviteter: {
+        arbeidstakerAktiviteter: [
+            {
+                key: 'a_123456789',
+                arbeidsgiver: { organisasjonsnummer: '123456789' },
+                perioderMedArbeidstid: [getArbeidsgiverPeriode(['2026-01-12/2026-01-16'])],
+            },
+        ],
+    },
+    arbeidsgivereIkkeISak: [],
+} as unknown as Pick<Sak, 'arbeidsaktiviteter' | 'arbeidsgivereIkkeISak'>;
+
+describe('getUgyldigeArbeidstidPerioder', () => {
+    it('returnerer ingen feil når endringen finnes blant arbeidsgivers arbeidsuker', () => {
+        const resultat = getUgyldigeArbeidstidPerioder(getArbeidstid(['2026-01-12/2026-01-16']), sak);
+
+        expect(resultat).toEqual([]);
+    });
+
+    it('returnerer ugyldig periode når endringen ikke finnes blant arbeidsgivers arbeidsuker', () => {
+        const resultat = getUgyldigeArbeidstidPerioder(getArbeidstid(['2026-01-02/2026-01-09']), sak);
+
+        expect(resultat).toEqual([{ org: '123456789', ugyldigPeriode: ['2026-01-02/2026-01-09'] }]);
+    });
+
+    it('returnerer alle ugyldige perioder for arbeidsgiveren', () => {
+        const resultat = getUgyldigeArbeidstidPerioder(
+            getArbeidstid(['2026-01-12/2026-01-16', '2026-02-02/2026-02-06']),
+            sak,
+        );
+
+        expect(resultat).toEqual([{ org: '123456789', ugyldigPeriode: ['2026-02-02/2026-02-06'] }]);
+    });
+
+    it('returnerer alle endringer når arbeidsgiveren ikke lenger finnes i saken', () => {
+        const resultat = getUgyldigeArbeidstidPerioder(
+            getArbeidstidForArbeidsgiver('a_987654321', ['2026-01-12/2026-01-16', '2026-01-19/2026-01-23']),
+            sak,
+        );
+
+        expect(resultat).toEqual([
+            { org: '987654321', ugyldigPeriode: ['2026-01-12/2026-01-16', '2026-01-19/2026-01-23'] },
+        ]);
+    });
+
+    it('returnerer ingen feil når arbeidsgiveren fortsatt finnes utenfor K9-saken', () => {
+        const resultat = getUgyldigeArbeidstidPerioder(
+            getArbeidstidForArbeidsgiver('a_987654321', ['2026-01-12/2026-01-16']),
+            {
+                ...sak,
+                arbeidsgivereIkkeISak: [
+                    { key: 'a_987654321', organisasjonsnummer: '987654321', navn: 'Ny arbeidsgiver AS' },
+                ],
+            },
+        );
+
+        expect(resultat).toEqual([]);
+    });
+
+    it.each(['frilanser', 'selvstendigNæringsdrivende'])(
+        'returnerer ugyldig periode når endringen ikke finnes blant aktivitetens arbeidsuker for %s',
+        (arbeidsaktivitetKey) => {
+            const resultat = getUgyldigeArbeidstidPerioder(
+                getArbeidstidForArbeidsgiver(arbeidsaktivitetKey, ['2026-01-02/2026-01-09']),
+                {
+                    ...sak,
+                    arbeidsaktiviteter: {
+                        ...sak.arbeidsaktiviteter,
+                        [arbeidsaktivitetKey]: {
+                            key: arbeidsaktivitetKey,
+                            perioderMedArbeidstid: [getArbeidsgiverPeriode(['2026-01-12/2026-01-16'])],
+                        },
+                    },
+                } as Pick<Sak, 'arbeidsaktiviteter' | 'arbeidsgivereIkkeISak'>,
+            );
+
+            expect(resultat).toEqual([{ org: arbeidsaktivitetKey, ugyldigPeriode: ['2026-01-02/2026-01-09'] }]);
+        },
+    );
+});

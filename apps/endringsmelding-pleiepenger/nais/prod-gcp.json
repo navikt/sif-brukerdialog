@@ -41,7 +41,8 @@
         "SIF_INNSYN_FRONTEND_PATH": "/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/api/sif-innsyn",
         "SIF_INNSYN_API_URL": "http://sif-innsyn-api",
         "SIF_INNSYN_API_SCOPE": "prod-gcp:dusseldorf:sif-innsyn-api",
-        "SIF_PUBLIC_ENDRE_OMSORGSTILBUD": "on"
+        "SIF_PUBLIC_ENDRE_OMSORGSTILBUD": "on",
+        "SIF_PUBLIC_SJEKK_OM_ARBEIDSTID_ER_GYLDIG": "off"
     },
     "faro": true
 }
