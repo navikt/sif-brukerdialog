@@ -1,7 +1,7 @@
-import { getDateToday } from '@sif/utils';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 import { Oppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
+import { getDateToday } from '@sif/utils';
 import dayjs from 'dayjs';
 
 /**
@@ -10,11 +10,8 @@ import dayjs from 'dayjs';
  * @returns
  */
 export const erDeltakelseAvsluttet = (deltakelsePeriode: DeltakelsePeriode): boolean => {
-    const today = getDateToday();
-    if (deltakelsePeriode.programPeriode.to && dayjs(today).isAfter(deltakelsePeriode.programPeriode.to)) {
-        return true;
-    }
-    return false;
+    const avslutningsdato = deltakelsePeriode.programPeriode.to || deltakelsePeriode.periodeMaksDato;
+    return deltakelsePeriode.status === 'IKKE_AKTIV' && dayjs(getDateToday()).isAfter(avslutningsdato);
 };
 
 /**

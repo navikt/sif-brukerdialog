@@ -25,8 +25,6 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
         harForlengetPeriode: false,
         forlengetPeriodeMaksDato: '2026-12-31',
         periodeMaksDato: '2026-12-31',
-        harUtvidetKvote: false,
-        kvoteMaksDato: '2026-12-31',
     };
 
     const mockOppgave: SøkYtelseOppgave = {

@@ -13,6 +13,7 @@ export const deltakelsePeriodeSchema = zDeltakelseDto
         id: z.string(),
         status: zDeltakelseStatus,
     })
+    .omit({ kvoteMaksDato: true, harUtvidetKvote: true })
     .transform((data) => {
         const { fraOgMed, tilOgMed, ...rest } = data;
         const programPeriode: OpenDateRange = {
