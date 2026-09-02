@@ -12,7 +12,6 @@ import { useAppIntl } from '../i18n';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { getSøknadApiDataMetadata, SøknadApiDataMetadata } from '../utils/oppsummeringUtils';
-import { logDebugInnsendingParameterViolations } from './logInnsendingFeil';
 import { useMellomlagring } from './useMellomlagring';
 
 export const useSendSøknad = () => {
@@ -36,9 +35,6 @@ export const useSendSøknad = () => {
             .catch((error) => {
                 if (isAxiosError(error)) {
                     appLogger.logApiError(error, 'Innsending feilet');
-                    if (valgteEndringer.arbeidstid && apiData.ytelse.arbeidstid) {
-                        logDebugInnsendingParameterViolations(error);
-                    }
                 }
                 logSoknadFailed(EndringsmeldingPsbApp.navn);
                 setSendSøknadError(error);
