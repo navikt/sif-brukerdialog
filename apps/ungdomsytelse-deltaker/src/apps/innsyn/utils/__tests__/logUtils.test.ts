@@ -10,6 +10,7 @@ import dayjs from 'dayjs';
 describe('logUtils.getSøknadInnsendingMeta', () => {
     const mockDeltakelse: DeltakelsePeriode = {
         id: 'test-id',
+        status: 'AKTIV',
         programPeriode: {
             from: dateToISODate(dayjs().subtract(10, 'days')),
             to: dateToISODate(dayjs().add(30, 'days')),

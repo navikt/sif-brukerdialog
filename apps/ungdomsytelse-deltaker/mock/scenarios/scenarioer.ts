@@ -1,5 +1,6 @@
 import { BrukerdialogOppgaveDto } from '@navikt/ung-brukerdialog-api';
-import { DeltakelseDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { type DeltakelseDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { type DeltakelseStatus } from '@shared/types/DeltakelsePeriode';
 import { ISODate } from '@sif/utils';
 import dayjs from 'dayjs';
 
@@ -15,6 +16,8 @@ export interface Scenario {
     description?: string;
     data: ScenarioData;
 }
+
+type DeltakelseDtoWithStatus = DeltakelseDto & { status: DeltakelseStatus };
 
 const addWorkDaysToDate = (date: ISODate, workDays: number): ISODate => {
     // Legger til antall ukedager til datoen og hopper over helgedager
@@ -48,6 +51,7 @@ const getSøknadDeltakelseData = (): ScenarioData => ({
     deltakelser: [
         {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
+            status: 'AKTIV',
             fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
             tilOgMed: undefined,
             deltaker: {
@@ -61,7 +65,7 @@ const getSøknadDeltakelseData = (): ScenarioData => ({
             harForlengetPeriode: false,
             forlengetPeriodeMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
             periodeMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
-        } satisfies DeltakelseDto,
+        } satisfies DeltakelseDtoWithStatus,
     ],
     oppgaver: [getMockOppgaver().søkYtelseOppgave],
 });
@@ -71,6 +75,7 @@ const createSøktDeltakelse = (oppgaver: BrukerdialogOppgaveDto[] = []): Scenari
     deltakelser: [
         {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
+            status: 'AKTIV',
             fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
             tilOgMed: undefined,
             søktTidspunkt: dayjs(getMockDatoer().deltakelseFraOgMed).add(17, 'days').toISOString(),
@@ -85,7 +90,7 @@ const createSøktDeltakelse = (oppgaver: BrukerdialogOppgaveDto[] = []): Scenari
             harForlengetPeriode: false,
             forlengetPeriodeMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
             periodeMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
-        } satisfies DeltakelseDto,
+        } satisfies DeltakelseDtoWithStatus,
     ],
     oppgaver,
 });
@@ -94,6 +99,7 @@ const createAvsluttetDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): Scenario
     deltakelser: [
         {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
+            status: 'IKKE_AKTIV',
             fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
             tilOgMed: dateToISODate(dayjs(getMockDatoer().deltakelseFraOgMed).add(2, 'day')),
             søktTidspunkt: dayjs(getMockDatoer().deltakelseFraOgMed).add(1, 'days').toISOString(),
@@ -108,7 +114,7 @@ const createAvsluttetDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): Scenario
             harForlengetPeriode: false,
             forlengetPeriodeMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
             periodeMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
-        } satisfies DeltakelseDto,
+        } satisfies DeltakelseDtoWithStatus,
     ],
     oppgaver,
 });
@@ -117,6 +123,7 @@ const createOpphørtDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioD
     deltakelser: [
         {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
+            status: 'IKKE_AKTIV',
             fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
             tilOgMed: dateToISODate(dayjs(getMockDatoer().deltakelseFraOgMed).add(6, 'months')),
             søktTidspunkt: dayjs(getMockDatoer().deltakelseFraOgMed).add(17, 'days').toISOString(),
@@ -131,7 +138,7 @@ const createOpphørtDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioD
             harForlengetPeriode: false,
             forlengetPeriodeMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
             periodeMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
-        } satisfies DeltakelseDto,
+        } satisfies DeltakelseDtoWithStatus,
     ],
     oppgaver,
 });
@@ -144,6 +151,7 @@ const createIkkeStartetDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): Scenar
         deltakelser: [
             {
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
+                status: 'IKKE_STARTET',
                 fraOgMed,
                 søktTidspunkt,
                 deltaker: {
@@ -157,7 +165,7 @@ const createIkkeStartetDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): Scenar
                 harForlengetPeriode: false,
                 forlengetPeriodeMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
                 periodeMaksDato: dateToISODate(getMockDatoer().periodeMaksDato),
-            } satisfies DeltakelseDto,
+            } satisfies DeltakelseDtoWithStatus,
         ],
         oppgaver,
     };

@@ -5,9 +5,13 @@ import utc from 'dayjs/plugin/utc';
 import { z } from 'zod';
 dayjs.extend(utc);
 
+/** Legges til manuelt frem til codegen blir oppdatert */
+export const zDeltakelseStatus = z.enum(['IKKE_STARTET', 'AKTIV', 'IKKE_AKTIV']);
+
 export const deltakelsePeriodeSchema = zDeltakelseDto
     .extend({
         id: z.string(),
+        status: zDeltakelseStatus,
     })
     .transform((data) => {
         const { fraOgMed, tilOgMed, ...rest } = data;
@@ -26,4 +30,5 @@ export const deltakelsePeriodeSchema = zDeltakelseDto
 
 export const deltakelsePerioderSchema = z.array(deltakelsePeriodeSchema);
 
+export type DeltakelseStatus = z.infer<typeof zDeltakelseStatus>;
 export type DeltakelsePeriode = z.infer<typeof deltakelsePeriodeSchema>;
