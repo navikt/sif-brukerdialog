@@ -68,10 +68,10 @@
         "react": "19.2.8",
         "react-dom": "19.2.8",
         "react-fast-compare": "3.2.2",
-        "react-intl": "10.1.23",
-        "react-router-dom": "7.18.2",
+        "react-intl": "10.1.24",
+        "react-router-dom": "7.18.3",
         "uuid": "^14.0.2",
-        "zod": "4.4.3"
+        "zod": "4.5.2"
     },
     "devDependencies": {
         "@axe-core/playwright": "4.13.0",

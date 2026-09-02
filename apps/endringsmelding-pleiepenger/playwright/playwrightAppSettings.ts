@@ -3,6 +3,7 @@ import { AppEnv } from '../env.schema';
 export const getPlaywrightAppSettings = (): AppEnv & any => ({
     VELG_SCENARIO: 'on',
     SIF_PUBLIC_ENDRE_OMSORGSTILBUD: 'on',
+    SIF_PUBLIC_SJEKK_OM_ARBEIDSTID_ER_GYLDIG: 'on',
     NOW: '2023-01-05T12:00:00Z',
     APP_VERSION: 'dev',
     ENV: 'dev',
