@@ -12,6 +12,7 @@ import hash from 'object-hash';
 import { MELLOMLAGRING_VERSJON } from '../../constants/MELLOMLAGRING_VERSJON';
 import { getSøknadStepRoute, SøknadRoutes } from '../../søknad/config/SøknadRoutes';
 import { getUgyldigeArbeidstidPerioder } from '../../utils/arbeidstidPeriodeValidering';
+import { Feature, isFeatureEnabled } from '../../utils/featureToggleUtils';
 import { getSakFromK9Sak } from '../../utils/getSakFromK9Sak';
 import { ApiEndpointPsb, axiosConfigPsb } from '../api';
 
@@ -110,12 +111,9 @@ export const isPersistedSøknadStateValid = (
         return false;
     }
 
-    const arbeidstidErGyldig = harGyldigeArbeidstidsendringer(
-        søknadState,
-        k9sak,
-        arbeidsgivere,
-        tillattEndringsperiode,
-    );
+    const arbeidstidErGyldig =
+        !isFeatureEnabled(Feature.SIF_PUBLIC_SJEKK_OM_ARBEIDSTID_ER_GYLDIG) ||
+        harGyldigeArbeidstidsendringer(søknadState, k9sak, arbeidsgivere, tillattEndringsperiode);
 
     if (!arbeidstidErGyldig) {
         appLogger.logError('Persisted søknad state: arbeidstidsendringer er ugyldige');
