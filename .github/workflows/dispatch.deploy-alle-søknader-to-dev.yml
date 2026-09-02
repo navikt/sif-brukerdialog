@@ -9,7 +9,7 @@ permissions: {}
 jobs:
     deploy-endringsmelding-pleiepenger:
         name: Deploy endringsmelding-pleiepenger to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: ./.github/workflows/.deploy-app-to-dev.yml
         secrets: inherit
         permissions:
             contents: read
@@ -17,10 +17,11 @@ jobs:
         with:
             app-name: "endringsmelding-pleiepenger"
             working-directory: "apps/endringsmelding-pleiepenger"
+            use-cdn: true
 
     deploy-aktivitetspenger-innsyn:
         name: Deploy aktivitetspenger-innsyn to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: ./.github/workflows/.deploy-app-to-dev.yml
         secrets: inherit
         permissions:
             contents: read
@@ -28,10 +29,11 @@ jobs:
         with:
             app-name: "aktivitetspenger-innsyn"
             working-directory: "apps/aktivitetspenger-innsyn"
+            use-cdn: true
 
     deploy-aktivitetspenger-soknad:
         name: Deploy aktivitetspenger-soknad to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: ./.github/workflows/.deploy-app-to-dev.yml
         secrets: inherit
         permissions:
             contents: read
@@ -39,10 +41,11 @@ jobs:
         with:
             app-name: "aktivitetspenger-soknad"
             working-directory: "apps/aktivitetspenger-soknad"
+            use-cdn: true
 
     deploy-ekstra-omsorgsdager-andre-forelder-ikke-tilsyn:
         name: Deploy ekstra-omsorgsdager-andre-forelder-ikke-tilsyn to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: ./.github/workflows/.deploy-app-to-dev.yml
         secrets: inherit
         permissions:
             contents: read
@@ -50,10 +53,11 @@ jobs:
         with:
             app-name: "ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
             working-directory: "apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn"
+            use-cdn: true
 
     deploy-omsorgspengesoknad:
         name: Deploy omsorgspengesoknad to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: ./.github/workflows/.deploy-app-to-dev.yml
         secrets: inherit
         permissions:
             contents: read
@@ -61,10 +65,11 @@ jobs:
         with:
             app-name: "omsorgspengesoknad"
             working-directory: "apps/omsorgspengesoknad"
+            use-cdn: true
 
     deploy-omsorgsdager-aleneomsorg-dialog:
         name: Deploy omsorgsdager-aleneomsorg-dialog to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: ./.github/workflows/.deploy-app-to-dev.yml
         secrets: inherit
         permissions:
             contents: read
@@ -72,10 +77,11 @@ jobs:
         with:
             app-name: "omsorgsdager-aleneomsorg-dialog"
             working-directory: "apps/omsorgsdager-aleneomsorg-dialog"
+            use-cdn: true
 
     deploy-omsorgspengerutbetaling-soknad:
         name: Deploy omsorgspengerutbetaling-soknad to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: ./.github/workflows/.deploy-app-to-dev.yml
         secrets: inherit
         permissions:
             contents: read
@@ -83,10 +89,11 @@ jobs:
         with:
             app-name: "omsorgspengerutbetaling-soknad"
             working-directory: "apps/omsorgspengerutbetaling-soknad"
+            use-cdn: true
 
     deploy-omsorgspengerutbetaling-arbeidstaker-soknad:
         name: Deploy omsorgspengerutbetaling-arbeidstaker-soknad to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: ./.github/workflows/.deploy-app-to-dev.yml
         secrets: inherit
         permissions:
             contents: read
@@ -94,10 +101,11 @@ jobs:
         with:
             app-name: "omsorgspengerutbetaling-arbeidstaker-soknad"
             working-directory: "apps/omsorgspengerutbetaling-arbeidstaker-soknad"
+            use-cdn: true
 
     deploy-pleiepenger-i-livets-sluttfase-soknad:
         name: Deploy pleiepenger-i-livets-sluttfase-soknad to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: ./.github/workflows/.deploy-app-to-dev.yml
         secrets: inherit
         permissions:
             contents: read
@@ -105,10 +113,11 @@ jobs:
         with:
             app-name: "pleiepenger-i-livets-sluttfase-soknad"
             working-directory: "apps/pleiepenger-i-livets-sluttfase-soknad"
+            use-cdn: true
 
     deploy-pleiepenger-sykt-barn:
         name: Deploy pleiepenger-sykt-barn to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: ./.github/workflows/.deploy-app-to-dev.yml
         secrets: inherit
         permissions:
             contents: read
@@ -116,10 +125,11 @@ jobs:
         with:
             app-name: "pleiepenger-sykt-barn"
             working-directory: "apps/pleiepenger-sykt-barn"
+            use-cdn: true
 
     deploy-sif-ettersending:
         name: Deploy sif-ettersending to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: ./.github/workflows/.deploy-app-to-dev.yml
         secrets: inherit
         permissions:
             contents: read
@@ -127,10 +137,11 @@ jobs:
         with:
             app-name: "sif-ettersending"
             working-directory: "apps/sif-ettersending"
+            use-cdn: true
 
     deploy-opplaringspenger-soknad:
         name: Deploy opplaringspenger-soknad to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: ./.github/workflows/.deploy-app-to-dev.yml
         secrets: inherit
         permissions:
             contents: read
@@ -138,6 +149,7 @@ jobs:
         with:
             app-name: "opplaringspenger-soknad"
             working-directory: "apps/opplaringspenger-soknad"
+            use-cdn: true
 
     deploy-dine-pleiepenger:
         name: Deploy dine pleiepenger to dev
@@ -164,7 +176,7 @@ jobs:
 
     deploy-ungdomsytelse-deltaker:
         name: Deploy ungdomsytelse-deltaker to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/.deploy-app-to-dev.yml@main
+        uses: ./.github/workflows/.deploy-app-to-dev.yml
         secrets: inherit
         permissions:
             contents: read
@@ -172,10 +184,11 @@ jobs:
         with:
             app-name: "ungdomsytelse-deltaker"
             working-directory: "apps/ungdomsytelse-deltaker"
+            use-cdn: true
 
     deploy-ungdomsytelse-veileder:
         name: Deploy ungdomsytelse-veileder to dev
-        uses: navikt/sif-brukerdialog/.github/workflows/deploy-veileder-app-to-dev.yml@main
+        uses: ./.github/workflows/deploy-veileder-app-to-dev.yml
         secrets: inherit
         permissions:
             contents: read

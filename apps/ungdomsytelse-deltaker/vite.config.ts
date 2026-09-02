@@ -36,6 +36,7 @@ export default defineConfig(({ mode }) => {
         server: {
             port: 8080,
         },
+        base: mode === 'production' ? 'https://cdn.nav.no/dusseldorf/ungdomsytelse-deltaker/dist/' : '/ungdomsprogrammet/ytelsen/',
         build: {
             chunkSizeWarningLimit: 2000,
             sourcemap: true,

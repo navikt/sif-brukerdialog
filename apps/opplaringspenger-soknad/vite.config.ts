@@ -17,6 +17,7 @@ export default defineConfig(({ mode }) => ({
         },
     ],
     resolve: {},
+    base: mode === 'production' ? 'https://cdn.nav.no/dusseldorf/opplaringspenger-soknad/dist/' : '/familie/sykdom-i-familien/soknad/opplaringspenger/',
     build: {
         chunkSizeWarningLimit: 2000,
         sourcemap: true,

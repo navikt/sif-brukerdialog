@@ -1,27 +1,15 @@
-FROM node:26-alpine
-
-RUN apk add --no-cache tini \
-    && addgroup --system --gid 1069 nodejs \
-    && adduser --system --uid 1069 nextjs \
-    && rm -rf /usr/local/lib/node_modules/npm \
-        /usr/local/lib/node_modules/corepack \
-        /usr/local/bin/npm \
-        /usr/local/bin/npx \
-        /usr/local/bin/corepack
+FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:26-slim
 
 WORKDIR /app
 
-COPY --chown=nextjs:nodejs /apps/dine-pleiepenger/next.config.ts .
-COPY --chown=nextjs:nodejs /apps/dine-pleiepenger/.next/standalone ./
-COPY --chown=nextjs:nodejs /apps/dine-pleiepenger/.next/static ./apps/dine-pleiepenger/.next/static
-COPY --chown=nextjs:nodejs /apps/dine-pleiepenger/public ./public
-
-USER nextjs
+COPY --chown=65532:65532 /apps/dine-pleiepenger/next.config.ts .
+COPY --chown=65532:65532 /apps/dine-pleiepenger/.next/standalone ./
+COPY --chown=65532:65532 /apps/dine-pleiepenger/.next/static ./apps/dine-pleiepenger/.next/static
+COPY --chown=65532:65532 /apps/dine-pleiepenger/public ./public
 
 ENV NODE_ENV=production
 ENV PORT=8080
 
 EXPOSE 8080
 
-ENTRYPOINT ["/sbin/tini", "--"]
-CMD ["node", "apps/dine-pleiepenger/server.js"]
+CMD ["apps/dine-pleiepenger/server.js"]

@@ -4,11 +4,11 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "vite build --base=/aktivitetspenger/soknad",
+        "build": "vite build",
         "build-storybook": "storybook build",
         "check:types": "tsc --noemit",
         "clean": "rm -rf node_modules dist",
-        "dev": "vite --base=/aktivitetspenger/soknad --config vite.local.config.ts",
+        "dev": "vite --config vite.local.config.ts",
         "lint:eslint": "eslint src",
         "lint:fix": "eslint src --fix",
         "pw:dev": "vite --config vite.local.config.ts --mode playwright",

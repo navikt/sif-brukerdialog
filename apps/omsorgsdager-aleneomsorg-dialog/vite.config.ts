@@ -19,6 +19,7 @@ export default defineConfig(({ mode }) => ({
         },
     ],
     resolve: {},
+    base: mode === 'production' ? 'https://cdn.nav.no/dusseldorf/omsorgsdager-aleneomsorg-dialog/dist/' : '/familie/sykdom-i-familien/soknad/omsorgsdager-aleneomsorg/',
     build: {
         chunkSizeWarningLimit: 2000,
         sourcemap: true,
