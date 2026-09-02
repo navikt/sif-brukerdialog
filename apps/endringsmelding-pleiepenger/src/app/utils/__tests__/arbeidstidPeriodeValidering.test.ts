@@ -95,4 +95,25 @@ describe('getUgyldigeArbeidstidPerioder', () => {
 
         expect(resultat).toEqual([]);
     });
+
+    it.each(['frilanser', 'selvstendigNæringsdrivende'])(
+        'returnerer ugyldig periode når endringen ikke finnes blant aktivitetens arbeidsuker for %s',
+        (arbeidsaktivitetKey) => {
+            const resultat = getUgyldigeArbeidstidPerioder(
+                getArbeidstidForArbeidsgiver(arbeidsaktivitetKey, ['2026-01-02/2026-01-09']),
+                {
+                    ...sak,
+                    arbeidsaktiviteter: {
+                        ...sak.arbeidsaktiviteter,
+                        [arbeidsaktivitetKey]: {
+                            key: arbeidsaktivitetKey,
+                            perioderMedArbeidstid: [getArbeidsgiverPeriode(['2026-01-12/2026-01-16'])],
+                        },
+                    },
+                } as Pick<Sak, 'arbeidsaktiviteter' | 'arbeidsgivereIkkeISak'>,
+            );
+
+            expect(resultat).toEqual([{ org: arbeidsaktivitetKey, ugyldigPeriode: ['2026-01-02/2026-01-09'] }]);
+        },
+    );
 });
