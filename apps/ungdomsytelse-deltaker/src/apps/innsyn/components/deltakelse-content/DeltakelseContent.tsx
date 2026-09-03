@@ -19,6 +19,7 @@ interface Props {
 const DeltakelseContent = ({ deltakelsePeriode, oppgaver }: Props) => {
     const { harOpphørsvedtak } = deltakelsePeriode;
     const { programPeriode } = deltakelsePeriode;
+    const avslutningsdato = programPeriode.to || deltakelsePeriode.periodeMaksDato;
 
     const deltakelseStartet = erDeltakelseStartet(deltakelsePeriode);
     const deltakelseAvsluttet = erDeltakelseAvsluttet(deltakelsePeriode);
@@ -44,8 +45,8 @@ const DeltakelseContent = ({ deltakelsePeriode, oppgaver }: Props) => {
                 <>
                     {visInfoOmDeltakelseIkkeStartet && <DeltakelseIkkeStartetInfo fraOgMed={programPeriode.from} />}
                     {visInfoOmInntektsrapportering && <DeltakelsePågåendeInfo />}
-                    {visInfoOmDeltakelseAvsluttet && programPeriode.to && (
-                        <DeltakelseAvsluttetInfo fraOgMed={programPeriode.from} tilOgMed={programPeriode.to} />
+                    {visInfoOmDeltakelseAvsluttet && (
+                        <DeltakelseAvsluttetInfo fraOgMed={programPeriode.from} tilOgMed={avslutningsdato} />
                     )}
                 </>
             )}

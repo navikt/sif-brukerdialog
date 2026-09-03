@@ -1,26 +1,19 @@
-import { getDateToday } from '@sif/utils';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 import { Oppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
+import { getDateToday } from '@sif/utils';
 import dayjs from 'dayjs';
 
 /**
- * Returnerer true hvis deltakelsen er aktiv, dvs. den er startet og er pågående
- * @param deltakelsePeriode
- * @returns
+ * Returnerer true når deltakelsen er inaktiv og avslutningsdatoen har passert.
  */
 export const erDeltakelseAvsluttet = (deltakelsePeriode: DeltakelsePeriode): boolean => {
-    const today = getDateToday();
-    if (deltakelsePeriode.programPeriode.to && dayjs(today).isAfter(deltakelsePeriode.programPeriode.to)) {
-        return true;
-    }
-    return false;
+    const avslutningsdato = deltakelsePeriode.programPeriode.to || deltakelsePeriode.periodeMaksDato;
+    return deltakelsePeriode.status === 'IKKE_AKTIV' && dayjs(getDateToday()).isAfter(avslutningsdato);
 };
 
 /**
- * Returnerer true hvis deltakelsen er påbegynt, dvs. den er startet og er pågående
- * @param deltakelsePeriode
- * @returns
+ * Returnerer true når dagens dato er lik eller etter deltakelsens startdato.
  */
 export const erDeltakelseStartet = (deltakelsePeriode: DeltakelsePeriode): boolean => {
     const today = getDateToday();

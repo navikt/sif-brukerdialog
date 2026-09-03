@@ -1,4 +1,5 @@
 import {
+    BostedsavklaringKildeType,
     BostedsvilkårIkkeOppfyltÅrsak,
     BrukerdialogOppgaveDto,
     OppgaveStatus,
@@ -347,6 +348,7 @@ const getBekreftBostedOppgaveDto = (): BrukerdialogOppgaveDto => ({
         fom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
         tom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month')),
         erBosattITrondheim: false,
+        kilde: BostedsavklaringKildeType.FOLKEREGISTER,
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
@@ -362,6 +364,8 @@ const getBekreftBostedOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
         ikkeOppfyltÅrsak: BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
         fom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
         tom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month')),
+        kilde: BostedsavklaringKildeType.FOLKEREGISTER,
+        kildeFritekst: 'Folkeregisteret',
         erBosattITrondheim: false,
     },
     respons: {

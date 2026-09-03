@@ -6,6 +6,7 @@ export {
     type BekreftBostedOppgavetypeDataDto,
     type BekreftBostedOpphørOppgavetypeDataDto,
     type BekreftOpphorVedMaksdatoOppgavetypeDataDto,
+    BostedsavklaringKildeType,
     BostedsvilkårIkkeOppfyltÅrsak,
     type BrukerdialogOppgaveDto,
     type ClientOptions,

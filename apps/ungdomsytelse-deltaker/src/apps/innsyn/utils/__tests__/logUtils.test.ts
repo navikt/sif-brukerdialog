@@ -10,6 +10,7 @@ import dayjs from 'dayjs';
 describe('logUtils.getSøknadInnsendingMeta', () => {
     const mockDeltakelse: DeltakelsePeriode = {
         id: 'test-id',
+        status: 'AKTIV',
         programPeriode: {
             from: dateToISODate(dayjs().subtract(10, 'days')),
             to: dateToISODate(dayjs().add(30, 'days')),
@@ -22,10 +23,8 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
         erSlettet: false,
         harOpphørsvedtak: false,
         harForlengetPeriode: false,
-        forlengetPeriodeMaksDato: '2026-12-31',
-        periodeMaksDato: '2026-12-31',
-        harUtvidetKvote: false,
-        kvoteMaksDato: '2026-12-31',
+        forlengetPeriodeMaksDato: dateToISODate(dayjs('2026-12-31')),
+        periodeMaksDato: dateToISODate(dayjs('2026-12-31')),
     };
 
     const mockOppgave: SøkYtelseOppgave = {

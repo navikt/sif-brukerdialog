@@ -16,6 +16,8 @@ export const zBekreftOpphorVedMaksdatoOppgavetypeDataDto = z.object({
     sluttdato: z.iso.date(),
 });
 
+export const zBostedsavklaringKildeType = z.enum(['BRUKER', 'FOLKEREGISTER', 'ANNET']);
+
 export const zBostedsvilkårIkkeOppfyltÅrsak = z.enum([
     'IKKE_BOSATTADRESSE_I_TRONDHEIM',
     'IKKE_BOSTEDSADRESSE_OG_IKKE_FOLKEREGISTRERT_I_TRONDHEIM',
@@ -28,7 +30,20 @@ export const zBekreftBostedOppgavetypeDataDto = z.object({
     erBosattITrondheim: z.boolean(),
     fom: z.iso.date(),
     ikkeOppfyltÅrsak: zBostedsvilkårIkkeOppfyltÅrsak,
-    ikkeOppfyltÅrsakFritekstbeskrivelse: z.string().optional(),
+    ikkeOppfyltÅrsakFritekstbeskrivelse: z
+        .string()
+        .min(0)
+        .max(4000)
+
+        .optional(),
+    kilde: zBostedsavklaringKildeType,
+    kildeFritekst: z
+        .string()
+        .min(0)
+        .max(1000)
+
+        .optional(),
+    kildeFritekstOk: z.boolean().optional(),
     tom: z.iso.date(),
 });
 
@@ -36,7 +51,20 @@ export const zBekreftBostedOpphørOppgavetypeDataDto = z.object({
     erBosattITrondheim: z.boolean(),
     fom: z.iso.date(),
     ikkeOppfyltÅrsak: zBostedsvilkårIkkeOppfyltÅrsak,
-    ikkeOppfyltÅrsakFritekstbeskrivelse: z.string().optional(),
+    ikkeOppfyltÅrsakFritekstbeskrivelse: z
+        .string()
+        .min(0)
+        .max(4000)
+
+        .optional(),
+    kilde: zBostedsavklaringKildeType,
+    kildeFritekst: z
+        .string()
+        .min(0)
+        .max(1000)
+
+        .optional(),
+    kildeFritekstOk: z.boolean().optional(),
 });
 
 export const zEndretSluttdatoDataDto = z.object({

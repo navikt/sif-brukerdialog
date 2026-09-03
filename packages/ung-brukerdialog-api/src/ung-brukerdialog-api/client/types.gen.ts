@@ -15,6 +15,9 @@ export type BekreftBostedOppgavetypeDataDto = {
     fom: string;
     ikkeOppfyltÅrsak: BostedsvilkårIkkeOppfyltÅrsak;
     ikkeOppfyltÅrsakFritekstbeskrivelse?: string;
+    kilde: BostedsavklaringKildeType;
+    kildeFritekst?: string;
+    kildeFritekstOk?: boolean;
     tom: string;
 };
 
@@ -23,12 +26,30 @@ export type BekreftBostedOpphørOppgavetypeDataDto = {
     fom: string;
     ikkeOppfyltÅrsak: BostedsvilkårIkkeOppfyltÅrsak;
     ikkeOppfyltÅrsakFritekstbeskrivelse?: string;
+    kilde: BostedsavklaringKildeType;
+    kildeFritekst?: string;
+    kildeFritekstOk?: boolean;
 };
 
 export type BekreftOpphorVedMaksdatoOppgavetypeDataDto = {
     maxDato: string;
     sluttdato: string;
 };
+
+export enum BostedsavklaringKildeType {
+    /**
+     * BRUKER
+     */
+    BRUKER = 'BRUKER',
+    /**
+     * FOLKEREGISTER
+     */
+    FOLKEREGISTER = 'FOLKEREGISTER',
+    /**
+     * ANNET
+     */
+    ANNET = 'ANNET',
+}
 
 export enum BostedsvilkårIkkeOppfyltÅrsak {
     /**

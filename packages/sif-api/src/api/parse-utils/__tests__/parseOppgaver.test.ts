@@ -1,4 +1,5 @@
 import {
+    BostedsavklaringKildeType,
     BostedsvilkårIkkeOppfyltÅrsak,
     OppgaveStatus,
     OppgaveType,
@@ -120,6 +121,7 @@ const baseBostedData = {
     erBosattITrondheim: false,
     ikkeOppfyltÅrsak: BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
     fom: '2026-01-01',
+    kilde: BostedsavklaringKildeType.FOLKEREGISTER,
 };
 
 const baseBostedOppgavetypeData = { type: 'BOSTED' as const, ...baseBostedData, tom: '2026-03-31' };

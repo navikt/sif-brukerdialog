@@ -6,7 +6,7 @@ interface Props {
 }
 export const StartdatoSpørsmål = ({ onDateChange }: Props) => {
     const { datepickerProps, inputProps } = useDatepicker({
-        disableWeekends: true,
+        disableWeekends: false,
         fromDate: dayjs().subtract(4, 'year').toDate(),
         toDate: dayjs().add(4, 'years').toDate(),
         onDateChange: onDateChange,
