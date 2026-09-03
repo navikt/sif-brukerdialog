@@ -221,6 +221,7 @@ type BostedOpphørOppgavetypeData = Extract<OppgavetypeDataDto, { type: 'BOSTED_
 const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Oppgave => {
     const oppgavetypeData = oppgave.oppgavetypeData as BostedOppgavetypeData | BostedOpphørOppgavetypeData;
 
+    /** kildeFritekstOk fra backend skal ikke brukes i frontend */
     const fellesdata: Pick<
         BostedOppgavetypeData,
         'erBosattITrondheim' | 'ikkeOppfyltÅrsak' | 'ikkeOppfyltÅrsakFritekstbeskrivelse' | 'kilde' | 'kildeFritekst'

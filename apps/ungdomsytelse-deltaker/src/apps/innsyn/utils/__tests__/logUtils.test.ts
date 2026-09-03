@@ -23,8 +23,8 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
         erSlettet: false,
         harOpphørsvedtak: false,
         harForlengetPeriode: false,
-        forlengetPeriodeMaksDato: '2026-12-31',
-        periodeMaksDato: '2026-12-31',
+        forlengetPeriodeMaksDato: dateToISODate(dayjs('2026-12-31')),
+        periodeMaksDato: dateToISODate(dayjs('2026-12-31')),
     };
 
     const mockOppgave: SøkYtelseOppgave = {

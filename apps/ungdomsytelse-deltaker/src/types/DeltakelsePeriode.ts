@@ -11,7 +11,7 @@ export const deltakelsePeriodeSchema = zDeltakelseDto
     })
     .omit({ kvoteMaksDato: true, harUtvidetKvote: true })
     .transform((data) => {
-        const { fraOgMed, tilOgMed, ...rest } = data;
+        const { fraOgMed, tilOgMed, periodeMaksDato, forlengetPeriodeMaksDato, ...rest } = data;
         const programPeriode: OpenDateRange = {
             from: fraOgMed as ISODate,
             to: tilOgMed ? (tilOgMed as ISODate) : undefined,
@@ -19,6 +19,8 @@ export const deltakelsePeriodeSchema = zDeltakelseDto
         return {
             ...rest,
             programPeriode,
+            periodeMaksDato: periodeMaksDato as ISODate,
+            forlengetPeriodeMaksDato: forlengetPeriodeMaksDato as ISODate,
             søktTidspunkt: data.søktTidspunkt ? dayjs.utc(data.søktTidspunkt).toDate() : undefined,
             erSlettet: data.erSlettet,
             harOpphørsvedtak: data.harOpphørsvedtak,

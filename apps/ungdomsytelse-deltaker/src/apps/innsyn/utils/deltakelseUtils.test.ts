@@ -35,7 +35,7 @@ describe('erDeltakelseAvsluttet', () => {
     it('bruker periodeMaksDato når programperioden ikke har sluttdato', () => {
         const deltakelsePeriode = getDeltakelsePeriode({
             programPeriode: { from: '2026-01-01' as ISODate },
-            periodeMaksDato: '2026-06-30',
+            periodeMaksDato: '2026-06-30' as ISODate,
         });
 
         expect(erDeltakelseAvsluttet(deltakelsePeriode)).toBe(true);
