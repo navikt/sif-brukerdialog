@@ -221,22 +221,28 @@ type BostedOpphørOppgavetypeData = Extract<OppgavetypeDataDto, { type: 'BOSTED_
 const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Oppgave => {
     const oppgavetypeData = oppgave.oppgavetypeData as BostedOppgavetypeData | BostedOpphørOppgavetypeData;
 
+    const fellesdata: Pick<
+        BostedOppgavetypeData,
+        'erBosattITrondheim' | 'ikkeOppfyltÅrsak' | 'ikkeOppfyltÅrsakFritekstbeskrivelse' | 'kilde' | 'kildeFritekst'
+    > = {
+        erBosattITrondheim: oppgavetypeData.erBosattITrondheim,
+        ikkeOppfyltÅrsak: oppgavetypeData.ikkeOppfyltÅrsak,
+        ikkeOppfyltÅrsakFritekstbeskrivelse: oppgavetypeData.ikkeOppfyltÅrsakFritekstbeskrivelse,
+        kilde: oppgavetypeData.kilde,
+        kildeFritekst: oppgavetypeData.kildeFritekst,
+    };
+
     /** Avslag i en periode */
     if (oppgavetypeData.type === 'BOSTED') {
         const bostedVilkårPeriodeOppgave: BostedVilkårPeriodeOppgave = {
             ...getOppgaveBaseProps(oppgave),
             parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED,
             oppgavetypeData: {
-                // ...oppgavetypeData,
+                ...fellesdata,
                 periode: {
                     from: oppgavetypeData.fom as ISODate,
                     to: oppgavetypeData.tom as ISODate,
                 },
-                erBosattITrondheim: oppgavetypeData.erBosattITrondheim,
-                ikkeOppfyltÅrsak: oppgavetypeData.ikkeOppfyltÅrsak,
-                ikkeOppfyltÅrsakFritekstbeskrivelse: oppgavetypeData.ikkeOppfyltÅrsakFritekstbeskrivelse,
-                kilde: oppgavetypeData.kilde,
-                kildeFritekst: oppgavetypeData.kildeFritekst,
             },
             respons: parseSvarPåVarselRespons(oppgave.respons),
         };
@@ -247,12 +253,8 @@ const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
             ...getOppgaveBaseProps(oppgave),
             parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED_OPPHØR,
             oppgavetypeData: {
+                ...fellesdata,
                 fom: oppgavetypeData.fom as ISODate,
-                erBosattITrondheim: oppgavetypeData.erBosattITrondheim,
-                ikkeOppfyltÅrsak: oppgavetypeData.ikkeOppfyltÅrsak,
-                ikkeOppfyltÅrsakFritekstbeskrivelse: oppgavetypeData.ikkeOppfyltÅrsakFritekstbeskrivelse,
-                kilde: oppgavetypeData.kilde,
-                kildeFritekst: oppgavetypeData.kildeFritekst,
             },
             respons: parseSvarPåVarselRespons(oppgave.respons),
         };
