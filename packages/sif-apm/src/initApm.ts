@@ -7,7 +7,7 @@ export const isDekoratorenException = (item: any): boolean => {
     return frames.some((f) => (f.filename ?? '').includes('personbruker/nav-dekoratoren'));
 };
 
-// Nettleseren rapporterer avbrutte/timeout-forespørsler som unhandled rejections vi ikke kan handtere
+// Nettleseren rapporterer avbrutte/timeout-forespørsler som unhandled rejections vi ikke kan håndtere
 export const isNoisyUnhandledRejection = (item: any): boolean => {
     if (item?.type !== 'exception') return false;
     const message: string = item.payload?.message ?? '';
