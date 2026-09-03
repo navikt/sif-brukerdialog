@@ -227,11 +227,16 @@ const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
             ...getOppgaveBaseProps(oppgave),
             parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED,
             oppgavetypeData: {
-                ...oppgavetypeData,
+                // ...oppgavetypeData,
                 periode: {
                     from: oppgavetypeData.fom as ISODate,
                     to: oppgavetypeData.tom as ISODate,
                 },
+                erBosattITrondheim: oppgavetypeData.erBosattITrondheim,
+                ikkeOppfyltÅrsak: oppgavetypeData.ikkeOppfyltÅrsak,
+                ikkeOppfyltÅrsakFritekstbeskrivelse: oppgavetypeData.ikkeOppfyltÅrsakFritekstbeskrivelse,
+                kilde: oppgavetypeData.kilde,
+                kildeFritekst: oppgavetypeData.kildeFritekst,
             },
             respons: parseSvarPåVarselRespons(oppgave.respons),
         };
@@ -242,8 +247,12 @@ const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
             ...getOppgaveBaseProps(oppgave),
             parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED_OPPHØR,
             oppgavetypeData: {
-                ...oppgavetypeData,
                 fom: oppgavetypeData.fom as ISODate,
+                erBosattITrondheim: oppgavetypeData.erBosattITrondheim,
+                ikkeOppfyltÅrsak: oppgavetypeData.ikkeOppfyltÅrsak,
+                ikkeOppfyltÅrsakFritekstbeskrivelse: oppgavetypeData.ikkeOppfyltÅrsakFritekstbeskrivelse,
+                kilde: oppgavetypeData.kilde,
+                kildeFritekst: oppgavetypeData.kildeFritekst,
             },
             respons: parseSvarPåVarselRespons(oppgave.respons),
         };
