@@ -2,12 +2,30 @@
 
 import * as z from 'zod';
 
+export const zAvslutningsårsak = z.enum([
+    'ARBEID',
+    'ARBEID_SELVFORSØRGET',
+    'ARBEID_MED_OPPFØLGING_FRA_NAV',
+    'UTDANNING',
+    'VIDEREGÅENDE_OPPLÆRING',
+    'HØYERE_UTDANNING',
+    'ANNEN_OPPLÆRING',
+    'MANGLENDE_DELTAKELSE',
+    'DELTAKER_ØNSKER_IKKE_Å_DELTA',
+    'FLYTTET',
+    'ANDRE_LIVSOPPHOLDSYTELSER',
+    'ANNET',
+]);
+
+export const zDeltakelseStatus = z.enum(['IKKE_STARTET', 'AKTIV', 'IKKE_AKTIV']);
+
 export const zDeltakerDto = z.object({
     deltakerIdent: z.string(),
     id: z.uuid().nullish(),
 });
 
 export const zDeltakelseDto = z.object({
+    avslutningsårsak: zAvslutningsårsak.nullish(),
     deltaker: zDeltakerDto,
     erSlettet: z.boolean(),
     forlengetPeriodeMaksDato: z.iso.date(),
@@ -18,6 +36,7 @@ export const zDeltakelseDto = z.object({
     id: z.uuid().nullish(),
     kvoteMaksDato: z.iso.date(),
     periodeMaksDato: z.iso.date(),
+    status: zDeltakelseStatus,
     søktTidspunkt: z.iso.datetime({ local: true }).nullish(),
     tilOgMed: z.iso.date().nullish(),
 });
@@ -34,6 +53,7 @@ export const zDeltakelseKomposittDto = z.object({
     kvoteMaksDato: z.iso.date(),
     oppgaver: z.array(z.unknown()),
     periodeMaksDato: z.iso.date(),
+    status: zDeltakelseStatus,
     søktTidspunkt: z.iso.datetime({ local: true }).nullish(),
     tilOgMed: z.iso.date().nullish(),
 });
