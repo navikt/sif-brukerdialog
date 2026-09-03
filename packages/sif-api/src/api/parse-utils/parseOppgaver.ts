@@ -2,7 +2,6 @@
 import { DateRange, dateToISODate, isISODate, ISODate, OpenDateRange, TidenesEnde } from '@sif/utils';
 import {
     BekreftOpphorVedMaksdatoOppgavetypeDataDto,
-    BostedsavklaringKildeType,
     BrukerdialogOppgaveDto,
     EndretPeriodeDataDto,
     EndretSluttdatoDataDto,
@@ -228,14 +227,11 @@ const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
             ...getOppgaveBaseProps(oppgave),
             parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED,
             oppgavetypeData: {
+                ...oppgavetypeData,
                 periode: {
                     from: oppgavetypeData.fom as ISODate,
                     to: oppgavetypeData.tom as ISODate,
                 },
-                erBosattITrondheim: oppgavetypeData.erBosattITrondheim,
-                ikkeOppfyltÅrsak: oppgavetypeData.ikkeOppfyltÅrsak,
-                ikkeOppfyltÅrsakFritekstbeskrivelse: oppgavetypeData.ikkeOppfyltÅrsakFritekstbeskrivelse,
-                kilde: BostedsavklaringKildeType.FOLKEREGISTER,
             },
             respons: parseSvarPåVarselRespons(oppgave.respons),
         };
@@ -246,11 +242,8 @@ const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
             ...getOppgaveBaseProps(oppgave),
             parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED_OPPHØR,
             oppgavetypeData: {
+                ...oppgavetypeData,
                 fom: oppgavetypeData.fom as ISODate,
-                erBosattITrondheim: oppgavetypeData.erBosattITrondheim,
-                ikkeOppfyltÅrsak: oppgavetypeData.ikkeOppfyltÅrsak,
-                ikkeOppfyltÅrsakFritekstbeskrivelse: oppgavetypeData.ikkeOppfyltÅrsakFritekstbeskrivelse,
-                kilde: BostedsavklaringKildeType.FOLKEREGISTER,
             },
             respons: parseSvarPåVarselRespons(oppgave.respons),
         };
