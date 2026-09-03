@@ -5,9 +5,7 @@ import { getDateToday } from '@sif/utils';
 import dayjs from 'dayjs';
 
 /**
- * Returnerer true hvis deltakelsen er aktiv, dvs. den er startet og er pågående
- * @param deltakelsePeriode
- * @returns
+ * Returnerer true når deltakelsen er inaktiv og avslutningsdatoen har passert.
  */
 export const erDeltakelseAvsluttet = (deltakelsePeriode: DeltakelsePeriode): boolean => {
     const avslutningsdato = deltakelsePeriode.programPeriode.to || deltakelsePeriode.periodeMaksDato;
@@ -15,9 +13,7 @@ export const erDeltakelseAvsluttet = (deltakelsePeriode: DeltakelsePeriode): boo
 };
 
 /**
- * Returnerer true hvis deltakelsen er påbegynt, dvs. den er startet og er pågående
- * @param deltakelsePeriode
- * @returns
+ * Returnerer true når dagens dato er lik eller etter deltakelsens startdato.
  */
 export const erDeltakelseStartet = (deltakelsePeriode: DeltakelsePeriode): boolean => {
     const today = getDateToday();
