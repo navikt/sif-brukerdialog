@@ -1,17 +1,13 @@
-import { zDeltakelseDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { zDeltakelseDto, zDeltakelseStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { ISODate, OpenDateRange } from '@sif/utils';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import { z } from 'zod';
 dayjs.extend(utc);
 
-/** Legges til manuelt frem til codegen blir oppdatert */
-export const zDeltakelseStatus = z.enum(['IKKE_STARTET', 'AKTIV', 'IKKE_AKTIV']);
-
 export const deltakelsePeriodeSchema = zDeltakelseDto
     .extend({
         id: z.string(),
-        status: zDeltakelseStatus,
     })
     .omit({ kvoteMaksDato: true, harUtvidetKvote: true })
     .transform((data) => {

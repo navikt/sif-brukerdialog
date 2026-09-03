@@ -2,6 +2,7 @@
 import { DateRange, dateToISODate, isISODate, ISODate, OpenDateRange, TidenesEnde } from '@sif/utils';
 import {
     BekreftOpphorVedMaksdatoOppgavetypeDataDto,
+    BostedsavklaringKildeType,
     BrukerdialogOppgaveDto,
     EndretPeriodeDataDto,
     EndretSluttdatoDataDto,
@@ -234,6 +235,7 @@ const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
                 erBosattITrondheim: oppgavetypeData.erBosattITrondheim,
                 ikkeOppfyltÅrsak: oppgavetypeData.ikkeOppfyltÅrsak,
                 ikkeOppfyltÅrsakFritekstbeskrivelse: oppgavetypeData.ikkeOppfyltÅrsakFritekstbeskrivelse,
+                kilde: BostedsavklaringKildeType.FOLKEREGISTER,
             },
             respons: parseSvarPåVarselRespons(oppgave.respons),
         };
@@ -248,6 +250,7 @@ const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
                 erBosattITrondheim: oppgavetypeData.erBosattITrondheim,
                 ikkeOppfyltÅrsak: oppgavetypeData.ikkeOppfyltÅrsak,
                 ikkeOppfyltÅrsakFritekstbeskrivelse: oppgavetypeData.ikkeOppfyltÅrsakFritekstbeskrivelse,
+                kilde: BostedsavklaringKildeType.FOLKEREGISTER,
             },
             respons: parseSvarPåVarselRespons(oppgave.respons),
         };
