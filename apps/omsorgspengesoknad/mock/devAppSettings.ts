@@ -1,4 +1,4 @@
-import { AppEnv } from '../env.schema';
+import type { AppEnv } from '../env.schema.ts';
 
 // Static dev app settings (replacing .env usage for dev & playwright)
 export const getDevAppSettings = (): AppEnv => ({
