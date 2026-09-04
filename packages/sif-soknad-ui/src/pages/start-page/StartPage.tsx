@@ -27,12 +27,14 @@ interface Props {
         content: ReactNode;
     };
     isPending: boolean;
+
+    startIsAvailable?: boolean;
     onStart: (bekrefterVilkår: true) => void;
     /** Innhold mellom guide og skjema */
     children: ReactNode;
 }
 
-export const StartPage = ({ title, guide, children, onStart, isPending }: Props) => {
+export const StartPage = ({ title, guide, children, onStart, isPending, startIsAvailable = true }: Props) => {
     const { text } = useSifSoknadUiIntl();
     const [error, setError] = useState(false);
     const [bekrefter, setBekrefter] = useState(false);
@@ -68,62 +70,64 @@ export const StartPage = ({ title, guide, children, onStart, isPending }: Props)
                 </GuidePanel>
 
                 <div>{children}</div>
-                <section aria-label={text('@sifSoknadUi.startPage.form.ariaLabel')}>
-                    <form onSubmit={handleSubmit}>
-                        <VStack gap="space-24">
-                            <BodyLong>
-                                <SifSoknadUiText id="@sifSoknadUi.startPage.disclosure.text" />{' '}
-                                <Link href="https://www.nav.no/endringer">
-                                    <SifSoknadUiText id="@sifSoknadUi.startPage.disclosure.linkText" />
-                                </Link>
-                                .
-                            </BodyLong>
+                {startIsAvailable && (
+                    <section aria-label={text('@sifSoknadUi.startPage.form.ariaLabel')}>
+                        <form onSubmit={handleSubmit}>
+                            <VStack gap="space-24">
+                                <BodyLong>
+                                    <SifSoknadUiText id="@sifSoknadUi.startPage.disclosure.text" />{' '}
+                                    <Link href="https://www.nav.no/endringer">
+                                        <SifSoknadUiText id="@sifSoknadUi.startPage.disclosure.linkText" />
+                                    </Link>
+                                    .
+                                </BodyLong>
 
-                            <CheckboxGroup
-                                legend={text('@sifSoknadUi.startPage.confirmation.legend')}
-                                hideLegend={true}
-                                error={error ? text('@sifSoknadUi.startPage.confirmation.error') : undefined}>
-                                <Checkbox
-                                    id="bekrefter"
-                                    name="bekrefter"
-                                    value="bekrefter"
-                                    onChange={(evt) => {
-                                        setBekrefter(evt.target.checked);
-                                        if (evt.target.checked) {
-                                            setError(false);
-                                        }
-                                    }}>
-                                    <SifSoknadUiText id="@sifSoknadUi.startPage.confirmation.checkboxLabel" />
-                                </Checkbox>
-                            </CheckboxGroup>
+                                <CheckboxGroup
+                                    legend={text('@sifSoknadUi.startPage.confirmation.legend')}
+                                    hideLegend={true}
+                                    error={error ? text('@sifSoknadUi.startPage.confirmation.error') : undefined}>
+                                    <Checkbox
+                                        id="bekrefter"
+                                        name="bekrefter"
+                                        value="bekrefter"
+                                        onChange={(evt) => {
+                                            setBekrefter(evt.target.checked);
+                                            if (evt.target.checked) {
+                                                setError(false);
+                                            }
+                                        }}>
+                                        <SifSoknadUiText id="@sifSoknadUi.startPage.confirmation.checkboxLabel" />
+                                    </Checkbox>
+                                </CheckboxGroup>
 
-                            {error && (
-                                <div ref={summaryRef} tabIndex={-1}>
-                                    <ErrorSummary heading={text('@sifSoknadUi.startPage.errorSummary.heading')}>
-                                        <ErrorSummary.Item
-                                            href="#bekrefter"
-                                            onClick={(evt) => {
-                                                evt.preventDefault();
-                                                document.getElementsByName('bekrefter')[0]?.focus();
-                                            }}>
-                                            {text('@sifSoknadUi.startPage.confirmation.error')}
-                                        </ErrorSummary.Item>
-                                    </ErrorSummary>
+                                {error && (
+                                    <div ref={summaryRef} tabIndex={-1}>
+                                        <ErrorSummary heading={text('@sifSoknadUi.startPage.errorSummary.heading')}>
+                                            <ErrorSummary.Item
+                                                href="#bekrefter"
+                                                onClick={(evt) => {
+                                                    evt.preventDefault();
+                                                    document.getElementsByName('bekrefter')[0]?.focus();
+                                                }}>
+                                                {text('@sifSoknadUi.startPage.confirmation.error')}
+                                            </ErrorSummary.Item>
+                                        </ErrorSummary>
+                                    </div>
+                                )}
+                                <div>
+                                    <Button
+                                        type="submit"
+                                        loading={isPending}
+                                        disabled={isPending}
+                                        icon={<ArrowRightIcon role="presentation" />}
+                                        iconPosition="right">
+                                        <SifSoknadUiText id="@sifSoknadUi.startPage.submitButton" />
+                                    </Button>
                                 </div>
-                            )}
-                            <div>
-                                <Button
-                                    type="submit"
-                                    loading={isPending}
-                                    disabled={isPending}
-                                    icon={<ArrowRightIcon role="presentation" />}
-                                    iconPosition="right">
-                                    <SifSoknadUiText id="@sifSoknadUi.startPage.submitButton" />
-                                </Button>
-                            </div>
-                        </VStack>
-                    </form>
-                </section>
+                            </VStack>
+                        </form>
+                    </section>
+                )}
             </VStack>
         </ApplicationPage>
     );

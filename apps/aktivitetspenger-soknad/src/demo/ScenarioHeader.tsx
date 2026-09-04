@@ -6,6 +6,27 @@ import { store } from '../../mock/state/store';
 
 const scenarioGroups: Array<ScenarioSelectorHeaderGroup<ScenarioType>> = [
     {
+        label: 'Inngangsscenarioer',
+        options: [
+            {
+                value: ScenarioType.kanSøkeFørstegang,
+                label: 'Førstegangssøknad',
+            },
+            {
+                value: ScenarioType.nyPeriodeSøknad,
+                label: 'Sperret - Ny periode søknad',
+            },
+            {
+                value: ScenarioType.ubehandletFørstegangssøknad,
+                label: 'Sperret - Ubehandlet førstegangssøknad',
+            },
+            {
+                value: ScenarioType.kanIkkeSøke,
+                label: 'Sperret - Har aktivitetspenger',
+            },
+        ],
+    },
+    {
         label: 'Søkersituasjon',
         options: [
             {
@@ -35,7 +56,7 @@ export const ScenarioHeader = () => {
 
     const setScenario = (scenario: ScenarioType) => {
         store.setScenario(scenario);
-        globalThis.location.assign(getRequiredEnv('PUBLIC_PATH'));
+        globalThis.location.assign(`${getRequiredEnv('PUBLIC_PATH')}/`);
     };
 
     return (

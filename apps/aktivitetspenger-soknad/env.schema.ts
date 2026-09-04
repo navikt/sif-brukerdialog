@@ -1,4 +1,4 @@
-import { commonEnvSchema, ungDeltakelseOpplyserEnvSchema } from '@navikt/sif-common-env';
+import { commonEnvSchema, ungBrukerdialogApiEnvSchema, ungDeltakelseOpplyserEnvSchema } from '@navikt/sif-common-env';
 import * as z from 'zod';
 
 /**
@@ -7,13 +7,12 @@ import * as z from 'zod';
  * - appEnv.ts - på server
  * */
 
-export enum AppEnvKey {
-}
+export enum AppEnvKey {}
 
 export const appEnvSchema = z
-    .object({
-    })
+    .object({})
     .extend(commonEnvSchema.shape)
-    .extend(ungDeltakelseOpplyserEnvSchema.shape);
+    .extend(ungDeltakelseOpplyserEnvSchema.shape)
+    .extend(ungBrukerdialogApiEnvSchema.shape);
 
 export type AppEnv = z.infer<typeof appEnvSchema>;
