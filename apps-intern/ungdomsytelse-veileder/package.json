@@ -17,6 +17,7 @@
         "demo:start": "vite preview --base /sif-brukerdialog/ungdomsytelse-veileder --config vite.demo.config.ts",
         "dev": "vite --base=/sif-brukerdialog/ungdomsytelse-veileder --config vite.dev.config.ts --port 8088",
         "dev:debug": "vite --debug",
+        "e2e:build": "pnpm pw:build",
         "gh-pages:clean": "rm -rf ../../docs/ungdomsytelse-veileder",
         "gh-pages:copy": "cp -r ./dist-demo ../../docs/ungdomsytelse-veileder",
         "gh-pages:rebuild": "pnpm demo:build && pnpm gh-pages:clean && pnpm gh-pages:copy",

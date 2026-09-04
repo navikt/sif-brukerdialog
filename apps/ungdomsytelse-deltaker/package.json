@@ -15,6 +15,7 @@
         "dev": "pnpm dev:vite",
         "dev:debug": "vite --debug",
         "dev:vite": "vite --config vite.dev.config.ts",
+        "e2e:build": "pnpm pw:build",
         "gh-pages:clean": "rm -rf ../../docs/ungdomsytelse-deltaker",
         "gh-pages:copy": "cp -r ./dist-demo ../../docs/ungdomsytelse-deltaker",
         "gh-pages:rebuild": "pnpm demo:build && pnpm gh-pages:clean && pnpm gh-pages:copy",

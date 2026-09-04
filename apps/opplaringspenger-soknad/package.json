@@ -16,6 +16,7 @@
         "demo:copy-app-files": "cp ./dist-demo/demo/index.html ./dist-demo/index.html && rm -rf ./dist-demo/demo && cp ./mockServiceWorker.js ./dist-demo/",
         "demo:start": "vite preview --base /sif-brukerdialog/opplaringspenger-soknad/ --config vite.demo.config.ts",
         "dev": "vite --config vite.dev.config.ts",
+        "e2e:build": "pnpm pw:build",
         "gh-pages:clean": "rm -rf ../../docs/opplaringspenger-soknad",
         "gh-pages:copy": "cp -r ./dist-demo ../../docs/opplaringspenger-soknad",
         "gh-pages:rebuild": "pnpm demo:build && pnpm gh-pages:clean && pnpm gh-pages:copy",
