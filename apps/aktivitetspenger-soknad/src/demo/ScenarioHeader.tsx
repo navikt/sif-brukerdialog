@@ -13,6 +13,10 @@ const scenarioGroups: Array<ScenarioSelectorHeaderGroup<ScenarioType>> = [
                 label: 'Førstegangssøknad',
             },
             {
+                value: ScenarioType.nyPeriodeSøknad,
+                label: 'Sperret - Ny periode søknad',
+            },
+            {
                 value: ScenarioType.ubehandletFørstegangssøknad,
                 label: 'Sperret - Ubehandlet førstegangssøknad',
             },
