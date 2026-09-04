@@ -227,6 +227,11 @@ export type OppgavetypeDataDto = (
     type: string;
 };
 
+export type OpprettSøknadHendelseRequest = {
+    mottatt: string;
+    søknadId: string;
+};
+
 export type PeriodeDto = {
     fomDato?: string;
     tomDato?: string;
@@ -274,6 +279,27 @@ export type SøkYtelseOppgavetypeDataDto = {
     fomDato: string;
 };
 
+export type TilgjengeligSøknadResponse = {
+    harInnsyn?: boolean;
+    harUbehandletSøknad?: boolean;
+    type?: TilgjengeligSøknadType;
+};
+
+export enum TilgjengeligSøknadType {
+    /**
+     * INGEN
+     */
+    INGEN = 'INGEN',
+    /**
+     * FØRSTEGANGSSØKNAD
+     */
+    FØRSTEGANGSSØKNAD = 'FØRSTEGANGSSØKNAD',
+    /**
+     * NY_PERIODE_SØKNAD
+     */
+    NY_PERIODE_SØKNAD = 'NY_PERIODE_SØKNAD',
+}
+
 export type YtelseRegisterInntektDto = {
     inntekt: number;
     ytelsetype: YtelseType;
@@ -313,6 +339,39 @@ export enum YtelseType {
      */
     ANNET = 'ANNET',
 }
+
+export type RegistrerData = {
+    /**
+     * Søknaden som er sendt inn
+     */
+    body: OpprettSøknadHendelseRequest;
+    path?: never;
+    query?: never;
+    url: '/ung/brukerdialog/ekstern/api/aktivitetspenger/soknad/registrer';
+};
+
+export type RegistrerResponses = {
+    /**
+     * default response
+     */
+    default: unknown;
+};
+
+export type TilgjengeligSøknadData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/ung/brukerdialog/ekstern/api/aktivitetspenger/soknad/tilgjengelig';
+};
+
+export type TilgjengeligSøknadResponses = {
+    /**
+     * default response
+     */
+    default: TilgjengeligSøknadResponse;
+};
+
+export type TilgjengeligSøknadResponse2 = TilgjengeligSøknadResponses[keyof TilgjengeligSøknadResponses];
 
 export type HentAlleOppgaverData = {
     body?: never;
