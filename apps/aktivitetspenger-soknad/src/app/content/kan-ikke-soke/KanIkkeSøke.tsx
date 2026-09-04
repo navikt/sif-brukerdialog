@@ -1,7 +1,7 @@
 import { BodyLong, Box, GuidePanel, Heading, InfoCard, Link, VStack } from '@navikt/ds-react';
 import { AppText, useAppIntl } from '../../i18n';
 import { Søker } from '@sif/api/k9-prosessering';
-import { TilgjengeligSøknadResponse } from '@navikt/ung-brukerdialog-api';
+import { TilgjengeligSøknadResponse, TilgjengeligSøknadType } from '@navikt/ung-brukerdialog-api';
 import { Todo } from '../../components/Todo';
 import getLenker from '../../lenker';
 import { ApplicationPage, SifSoknadUiText } from '@sif/soknad-ui';
@@ -31,9 +31,17 @@ export const getKanIkkeSøkeÅrsak = (
 
 export const KanIkkeSøkePage = ({ søker, tilgjengelig }: Props) => {
     const { text } = useAppIntl();
-    const { harInnsyn, harUbehandletSøknad } = tilgjengelig;
+    const { harInnsyn, harUbehandletSøknad, type } = tilgjengelig;
 
     const renderContent = () => {
+        if (type === TilgjengeligSøknadType.NY_PERIODE_SØKNAD) {
+            return (
+                <VStack gap="space-20">
+                    <Todo>[type === {TilgjengeligSøknadType.NY_PERIODE_SØKNAD}]</Todo>
+                    <BodyLong>Det er ikke åpnet for å søke om nye perioder enda</BodyLong>
+                </VStack>
+            );
+        }
         switch (getKanIkkeSøkeÅrsak(harInnsyn, harUbehandletSøknad)) {
             case KanIkkeSøkeÅrsak.IKKE_INNSYN_UBEHANDLET_SØKNAD:
                 return (
@@ -98,7 +106,7 @@ export const KanIkkeSøkePage = ({ søker, tilgjengelig }: Props) => {
 
                 <InfoCard data-color="info">
                     <InfoCard.Header>
-                        <InfoCard.Title>Søknad er ikke tilgjengelig for deg nå</InfoCard.Title>
+                        <InfoCard.Title>Søknaden om aktivitetspenger er ikke tilgjengelig for deg nå</InfoCard.Title>
                     </InfoCard.Header>
                     <InfoCard.Content>{renderContent()}</InfoCard.Content>
                 </InfoCard>

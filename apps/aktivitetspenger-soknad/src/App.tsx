@@ -13,6 +13,7 @@ import { Søknad } from './app/Soknad';
 import { ScenarioHeader } from './demo/ScenarioHeader';
 import { useInitialData } from './useInitialData';
 import { KanIkkeSøkePage } from './app/content/kan-ikke-soke/KanIkkeSøke';
+import { TilgjengeligSøknadType } from '@navikt/ung-brukerdialog-api';
 
 initApiClients();
 
@@ -31,7 +32,7 @@ const SøknadDataWrapper = () => {
             }
             return <InitialDataErrorPage applicationTitle={text('application.title')} />;
         case 'success':
-            if (result.data.tilgjengeligSøknad.type === 'INGEN') {
+            if (result.data.tilgjengeligSøknad.type !== TilgjengeligSøknadType.FØRSTEGANGSSØKNAD) {
                 return <KanIkkeSøkePage søker={result.data.søker} tilgjengelig={result.data.tilgjengeligSøknad} />;
             }
             return (
