@@ -1,6 +1,6 @@
 import { BodyLong, Link, List, ReadMore, VStack } from '@navikt/ds-react';
 
-import { UngInnsynText, useIngInnsynIntl } from '../../i18n';
+import { UngInnsynText, useUngInnsynIntl } from '../../i18n';
 import { Lovlenke } from '../../modules/oppgavepaneler/oppgaveLovverk';
 import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 
@@ -9,7 +9,7 @@ interface Props {
     ytelsetype: OppgaveYtelsetype;
 }
 export const RegelverkOgInnsynReadMore = ({ lenker, ytelsetype }: Props) => {
-    const { text } = useIngInnsynIntl();
+    const { text } = useUngInnsynIntl();
 
     if (lenker.length === 0) {
         return null;

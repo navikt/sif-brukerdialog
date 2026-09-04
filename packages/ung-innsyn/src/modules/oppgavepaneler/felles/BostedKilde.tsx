@@ -1,6 +1,6 @@
 import { BostedsavklaringKildeType } from '@navikt/ung-brukerdialog-api';
 import { ReadMore } from '@navikt/ds-react';
-import { UngInnsynText, useIngInnsynIntl } from '../../../i18n';
+import { UngInnsynText, useUngInnsynIntl } from '../../../i18n';
 import Fritekst from '../../../components/fritekst/Fritekst';
 
 interface Props {
@@ -9,14 +9,14 @@ interface Props {
 }
 
 export const BostedKilde = ({ kilde, kildeFritekst }: Props) => {
-    const { text } = useIngInnsynIntl();
+    const { text } = useUngInnsynIntl();
     switch (kilde) {
         case BostedsavklaringKildeType.ANNET:
-            return (
+            return kildeFritekst ? (
                 <ReadMore header={text('@ungInnsyn.bostedKilde.header')}>
                     <Fritekst text={kildeFritekst} />
                 </ReadMore>
-            );
+            ) : null;
         case BostedsavklaringKildeType.BRUKER:
             return (
                 <ReadMore header={text('@ungInnsyn.bostedKilde.header')}>

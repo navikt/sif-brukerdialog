@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import { ReactNode } from 'react';
 
 import { InntektTable } from '../../../../components';
-import { UngInnsynText, useIngInnsynIntl } from '../../../../i18n';
+import { UngInnsynText, useUngInnsynIntl } from '../../../../i18n';
 import { avvikRegisterinntektOppgaveUtils } from '../avvikRegisterinntektOppgaveUtils';
 
 interface Props {
@@ -17,7 +17,7 @@ export const getUtbetalingsmånedForAvvikRegisterinntektOppgave = (oppgaveFraOgM
 };
 
 export const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
-    const intl = useIngInnsynIntl();
+    const intl = useUngInnsynIntl();
     const formatertFrist = <span className="text-nowrap">{dateFormatter.full(oppgave.frist)}</span>;
 
     const rapporteringsmåned = dateFormatter.month(oppgave.oppgavetypeData.fraOgMed);

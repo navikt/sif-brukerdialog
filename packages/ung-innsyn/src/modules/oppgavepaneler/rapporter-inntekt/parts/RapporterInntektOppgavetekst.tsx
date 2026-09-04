@@ -3,7 +3,7 @@ import { dateFormatter, DateRange, ISODate } from '@sif/utils';
 import { ReactNode } from 'react';
 
 import { ExternalLink } from '../../../../components/external-link/ExternalLink';
-import { UngInnsynText, useIngInnsynIntl } from '../../../../i18n';
+import { UngInnsynText, useUngInnsynIntl } from '../../../../i18n';
 import { ungInnsynLenker } from '../../../../utils/lenker';
 
 interface Props {
@@ -17,7 +17,7 @@ export const RapporterInntektOppgavetekst = ({ navn, svarfrist, periode, gjelder
     const frist = dateFormatter.full(svarfrist);
     const måned = dateFormatter.month(periode.from);
 
-    const { text } = useIngInnsynIntl();
+    const { text } = useUngInnsynIntl();
     return (
         <VStack gap="space-16">
             <Heading level="2" size="medium">

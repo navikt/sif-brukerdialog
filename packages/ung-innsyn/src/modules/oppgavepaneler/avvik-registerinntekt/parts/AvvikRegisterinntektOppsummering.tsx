@@ -2,7 +2,7 @@ import { dateFormatter } from '@sif/utils';
 import { AvvikRegisterinntektOppgave } from '@sif/api/ung-brukerdialog';
 
 import { InntektTable } from '../../../../components';
-import { UngInnsynText, useIngInnsynIntl } from '../../../../i18n';
+import { UngInnsynText, useUngInnsynIntl } from '../../../../i18n';
 import { avvikRegisterinntektOppgaveUtils } from '../avvikRegisterinntektOppgaveUtils';
 
 interface AvvikRegisterinntektOppsummeringProps {
@@ -10,7 +10,7 @@ interface AvvikRegisterinntektOppsummeringProps {
 }
 
 export const AvvikRegisterinntektOppsummering = ({ oppgave }: AvvikRegisterinntektOppsummeringProps) => {
-    const intl = useIngInnsynIntl();
+    const intl = useUngInnsynIntl();
     const {
         registerinntekt: { arbeidOgFrilansInntekter = [], ytelseInntekter = [] },
         fraOgMed,

@@ -13,12 +13,12 @@ const nn: Record<UngInnsynMessageKeys, string> = {
     ...nb,
 };
 
-export const useIngInnsynIntl = () => {
+export const useUngInnsynIntl = () => {
     const intl = useIntl();
     return typedIntlHelper<UngInnsynMessageKeys>(intl);
 };
 
-export type UngInnsynIntlShape = ReturnType<typeof useIngInnsynIntl>;
+export type UngInnsynIntlShape = ReturnType<typeof useUngInnsynIntl>;
 
 interface UngInnsynTextProps {
     id: UngInnsynMessageKeys;

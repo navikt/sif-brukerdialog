@@ -1,6 +1,6 @@
 import { Loader, VStack } from '@navikt/ds-react';
 
-import { useIngInnsynIntl } from '../i18n';
+import { useUngInnsynIntl } from '../i18n';
 import { UngInnsynPage } from './UngInnsynPage';
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const UngLoadingPage = ({ applicationTitle: documentTitle }: Props) => {
-    const { text } = useIngInnsynIntl();
+    const { text } = useUngInnsynIntl();
     return (
         <UngInnsynPage documentTitle={`${text('@ungInnsyn.loading')} - ${documentTitle}`}>
             <VStack align="center" justify="center" marginBlock="space-40">

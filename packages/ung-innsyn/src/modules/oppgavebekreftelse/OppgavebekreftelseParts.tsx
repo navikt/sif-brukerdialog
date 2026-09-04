@@ -7,7 +7,7 @@ import { SifGuidePanel } from '@sif/soknad-ui';
 
 import { ForsideLenkeButton, OppgaveStatusInfo } from '../../components';
 
-import { UngInnsynText, useIngInnsynIntl } from '../../i18n';
+import { UngInnsynText, useUngInnsynIntl } from '../../i18n';
 import { useOppgavePage } from '../../pages/hooks/useOppgavePage';
 import { UttalelseSvaralternativer } from '../../types';
 import { getSvaralternativer, getTilbakemeldingFritekstLabel, getTilbakemeldingSpørsmål } from '../../utils/textUtils';
@@ -86,7 +86,7 @@ export interface UbesvartProps {
 }
 
 const Ubesvart = ({ children }: UbesvartProps) => {
-    const intl = useIngInnsynIntl();
+    const intl = useUngInnsynIntl();
     const { oppgave, visKvittering, setVisKvittering, navn } = useOppgavebekreftelse();
     const { onSuccess } = useOppgavePage();
 
@@ -165,7 +165,7 @@ export interface BesvartProps {
 }
 
 const Besvart = ({ children, beskjedFooter }: BesvartProps) => {
-    const intl = useIngInnsynIntl();
+    const intl = useUngInnsynIntl();
     const { oppgave, visKvittering } = useOppgavebekreftelse();
     if (oppgave.status === OppgaveStatus.ULØST || visKvittering) return null;
 

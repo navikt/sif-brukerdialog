@@ -1,6 +1,6 @@
 import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
 
-import { useIngInnsynIntl } from '../i18n';
+import { useUngInnsynIntl } from '../i18n';
 import { UngInnsynPage } from '../pages';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const UngOppgaveIkkeFunnetPage = ({ applikasjonTittel, oppgaveReferanse }: Props) => {
-    const { text } = useIngInnsynIntl();
+    const { text } = useUngInnsynIntl();
     return (
         <UngInnsynPage
             documentTitle={`${text('@ungInnsyn.oppgaveIkkeFunnetPage.dokumentTittel')} - ${applikasjonTittel}`}>

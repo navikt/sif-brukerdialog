@@ -9,7 +9,7 @@ import { getNumberFromNumberInputValue } from '@sif/rhf/utils';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { UngInnsynText, useIngInnsynIntl } from '../../../i18n';
+import { UngInnsynText, useUngInnsynIntl } from '../../../i18n';
 import { useOppgavePage } from '../../../pages/hooks/useOppgavePage';
 
 export enum InntektFormFields {
@@ -39,7 +39,7 @@ export const RapporterInntektForm = ({
     oppgaveReferanse,
     onSuccess,
 }: RapporterInntektFormProps) => {
-    const { text } = useIngInnsynIntl();
+    const { text } = useUngInnsynIntl();
     const { error, isPending, mutateAsync } = useRapporterInntekt(oppgaveYtelsetype);
     const { validateField } = useSifValidate('@ungInnsyn.inntektForm');
     const { onCancel, onSuccess: onPageSuccess } = useOppgavePage();

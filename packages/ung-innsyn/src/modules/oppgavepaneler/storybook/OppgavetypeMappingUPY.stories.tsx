@@ -4,7 +4,7 @@ import { ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { OppgaverList } from '../../../components';
-import { useIngInnsynIntl } from '../../../i18n';
+import { useUngInnsynIntl } from '../../../i18n';
 import { PanelPreviewWrapper, renderOppgaveStandardStater, StoryBox } from '../../../storybook/storyUtils';
 import { Lovlenke, OPPGAVE_LOVVERK } from '../oppgaveLovverk';
 import { AvvikRegisterinntektOppgavePanel } from '../avvik-registerinntekt/AvvikRegisterinntektOppgavePanel';
@@ -246,7 +246,7 @@ const KodeTag = ({ children }: { children: React.ReactNode }) => (
 );
 
 const LenkeEllerTodo = ({ lenke }: { lenke: Lovlenke }) => {
-    const { text } = useIngInnsynIntl();
+    const { text } = useUngInnsynIntl();
     const lenketekst = text(lenke.tekstKey);
 
     return lenke.url.includes('#todo') ? (
