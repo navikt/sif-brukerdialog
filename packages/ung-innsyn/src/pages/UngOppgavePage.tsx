@@ -1,6 +1,6 @@
 import { Oppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 
-import { useUngUiIntl } from '../i18n';
+import { useUngInnsynIntl } from '../i18n';
 import { AvvikRegisterinntektOppgavePanel } from '../modules/oppgavepaneler/avvik-registerinntekt/AvvikRegisterinntektOppgavePanel';
 import { BostedVilkårOppgavePanel } from '../modules/oppgavepaneler/bostedsvilkar-periode/BostedVilkarOppgavePanel';
 import { BostedVilkårOpphørOppgavePanel } from '../modules/oppgavepaneler/bostedsvilkar-opphor/BostedVilkarOpphorOppgavePanel';
@@ -54,7 +54,7 @@ interface Props {
 
 export const UngOppgavePage = (props: Props) => {
     const { navn, oppgave, applikasjonTittel, onCancel, onSuccess, dokumentarkivUrl } = props;
-    const intl = useUngUiIntl();
+    const intl = useUngInnsynIntl();
     return (
         <OppgavePageContext.Provider value={{ onCancel, onSuccess }}>
             <UngInnsynPage documentTitle={getOppgaveDokumentTittel(applikasjonTittel, oppgave, intl)}>

@@ -1,7 +1,7 @@
 import { dateFormatter } from '@sif/utils';
 import { AvvikRegisterinntektOppgave } from '@sif/api/ung-brukerdialog';
 
-import { UngUiText } from '../../../i18n';
+import { UngInnsynText } from '../../../i18n';
 import { Oppgavebekreftelse } from '../../oppgavebekreftelse/Oppgavebekreftelse';
 import {
     AvvikRegisterinntektOppgavetekst,
@@ -29,7 +29,7 @@ export const AvvikRegisterinntektOppgavePanel = ({ navn, oppgave, initialVisKvit
             </Oppgavebekreftelse.Besvart>
 
             <Oppgavebekreftelse.Kvittering>
-                <UngUiText
+                <UngInnsynText
                     id="@ungInnsyn.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.kvitteringTekst"
                     values={{
                         utbetalingsmåned: dateFormatter.monthFullYear(utbetalingsmåned),

@@ -2,7 +2,7 @@ import { BodyLong } from '@navikt/ds-react';
 import { dateFormatter, ISODate } from '@sif/utils';
 import { ReactNode } from 'react';
 
-import { UngUiText } from '../../../../i18n';
+import { UngInnsynText } from '../../../../i18n';
 
 interface Props {
     sluttdato: ISODate;
@@ -16,25 +16,25 @@ export const MeldUtOppgavetekst = ({ sluttdato, svarfrist }: Props) => {
     return (
         <>
             <BodyLong spacing>
-                <UngUiText
+                <UngInnsynText
                     id="@ungInnsyn.meldtUt.oppgavetekst.1"
                     values={{ formatertDato, strong: (content: ReactNode) => <strong>{content}</strong> }}
                 />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungInnsyn.meldtUt.oppgavetekst.2" />
+                <UngInnsynText id="@ungInnsyn.meldtUt.oppgavetekst.2" />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungInnsyn.meldtUt.oppgavetekst.3" />
+                <UngInnsynText id="@ungInnsyn.meldtUt.oppgavetekst.3" />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungInnsyn.meldtUt.oppgavetekst.4" />
+                <UngInnsynText id="@ungInnsyn.meldtUt.oppgavetekst.4" />
             </BodyLong>
             <BodyLong spacing weight="semibold">
-                <UngUiText id="@ungInnsyn.meldtUt.oppgavetekst.svarfrist" values={{ formatertFrist }} />
+                <UngInnsynText id="@ungInnsyn.meldtUt.oppgavetekst.svarfrist" values={{ formatertFrist }} />
             </BodyLong>
             <BodyLong>
-                <UngUiText id="@ungInnsyn.meldtUt.oppgavetekst.5" values={{ formatertDato }} />
+                <UngInnsynText id="@ungInnsyn.meldtUt.oppgavetekst.5" values={{ formatertDato }} />
             </BodyLong>
         </>
     );

@@ -4,7 +4,7 @@ import { InnsynPageBoundary } from '@sif/ung-innsyn/components';
 import { useDocumentTitle } from '@navikt/sif-common-hooks';
 import React, { useEffect } from 'react';
 
-import { useUngUiIntl } from '../i18n';
+import { useUngInnsynIntl } from '../i18n';
 
 interface Props {
     documentTitle: string;
@@ -21,7 +21,7 @@ const PageContentWrapper = ({ children }: { children: React.ReactNode }) => (
 );
 
 export const UngInnsynPage = ({ documentTitle, children, footer }: Props) => {
-    const { text } = useUngUiIntl();
+    const { text } = useUngInnsynIntl();
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);

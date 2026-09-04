@@ -1,7 +1,7 @@
 import { BodyLong } from '@navikt/ds-react';
 import { dateFormatter, ISODate } from '@sif/utils';
 
-import { UngUiText } from '../../../../i18n';
+import { UngInnsynText } from '../../../../i18n';
 
 interface Props {
     svarfrist: ISODate;
@@ -13,19 +13,19 @@ export const FjernetPeriodeOppgavetekst = ({ svarfrist }: Props) => {
     return (
         <>
             <BodyLong spacing>
-                <UngUiText id="@ungInnsyn.fjernetPeriode.oppgavetekst.1" />
+                <UngInnsynText id="@ungInnsyn.fjernetPeriode.oppgavetekst.1" />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungInnsyn.fjernetPeriode.oppgavetekst.2" />
+                <UngInnsynText id="@ungInnsyn.fjernetPeriode.oppgavetekst.2" />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungInnsyn.fjernetPeriode.oppgavetekst.3" />
+                <UngInnsynText id="@ungInnsyn.fjernetPeriode.oppgavetekst.3" />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungInnsyn.fjernetPeriode.oppgavetekst.4" />
+                <UngInnsynText id="@ungInnsyn.fjernetPeriode.oppgavetekst.4" />
             </BodyLong>
             <BodyLong weight="semibold">
-                <UngUiText id="@ungInnsyn.fjernetPeriode.oppgavetekst.svarfrist" values={{ formatertFrist }} />
+                <UngInnsynText id="@ungInnsyn.fjernetPeriode.oppgavetekst.svarfrist" values={{ formatertFrist }} />
             </BodyLong>
         </>
     );
