@@ -12,7 +12,7 @@ import { getAppEnv } from './app/setup/appEnv';
 import { Søknad } from './app/Soknad';
 import { ScenarioHeader } from './demo/ScenarioHeader';
 import { useInitialData } from './useInitialData';
-import { KanIkkeSøkePage } from './app/pages/KanIkkeSøkePage';
+import { KanIkkeSøkePage } from './app/content/kan-ikke-soke/KanIkkeSøke';
 
 initApiClients();
 
