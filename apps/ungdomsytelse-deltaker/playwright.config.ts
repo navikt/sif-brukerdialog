@@ -28,7 +28,7 @@ export default defineConfig({
         },
     ],
     webServer: {
-        command: 'pnpm pw:build && pnpm pw:start',
+        command: process.env.CI ? 'pnpm pw:start' : 'pnpm pw:build && pnpm pw:start',
         url: 'http://localhost:8080/ungdomsprogrammet/ytelsen/',
         reuseExistingServer: true,
     },
