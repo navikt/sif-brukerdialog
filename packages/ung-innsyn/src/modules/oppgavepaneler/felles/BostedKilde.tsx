@@ -15,7 +15,7 @@ export const BostedKilde = ({ kilde, kildeFritekst }: Props) => {
         case BostedsavklaringKildeType.ANNET:
             return (
                 <ReadMore header={text('@ungInnsyn.bostedKilde.header')}>
-                    <Fritekst text={kildeFritekst || text('@ungInnsyn.bostedKilde.FRITEKST_FALLBACK')} />
+                    <Fritekst text={kildeFritekst?.trim() || text('@ungInnsyn.bostedKilde.FRITEKST_FALLBACK')} />
                 </ReadMore>
             );
 
