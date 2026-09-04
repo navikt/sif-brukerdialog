@@ -12,6 +12,7 @@ import { getAppEnv } from './app/setup/appEnv';
 import { Søknad } from './app/Soknad';
 import { ScenarioHeader } from './demo/ScenarioHeader';
 import { useInitialData } from './useInitialData';
+import { KanIkkeSøkePage } from './app/pages/KanIkkeSøkePage';
 
 initApiClients();
 
@@ -30,6 +31,9 @@ const SøknadDataWrapper = () => {
             }
             return <InitialDataErrorPage applicationTitle={text('application.title')} />;
         case 'success':
+            if (result.data.tilgjengeligSøknad.type === 'INGEN') {
+                return <KanIkkeSøkePage søker={result.data.søker} tilgjengelig={result.data.tilgjengeligSøknad} />;
+            }
             return (
                 <AppContextProvider
                     value={{

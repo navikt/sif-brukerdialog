@@ -10,11 +10,15 @@ const scenarioGroups: Array<ScenarioSelectorHeaderGroup<ScenarioType>> = [
         options: [
             {
                 value: ScenarioType.kanSøkeFørstegang,
-                label: 'Kan søke førstegangssøknad',
+                label: 'Førstegangssøknad',
+            },
+            {
+                value: ScenarioType.ubehandletFørstegangssøknad,
+                label: 'Sperret - Ubehandlet førstegangssøknad',
             },
             {
                 value: ScenarioType.kanIkkeSøke,
-                label: 'Kan ikke søke',
+                label: 'Sperret - Har aktivitetspenger',
             },
         ],
     },

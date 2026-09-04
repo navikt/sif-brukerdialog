@@ -6,6 +6,7 @@ import { z } from 'zod';
 export enum ScenarioType {
     default = 'default',
     kanSøkeFørstegang = 'kanSøkeFørstegang',
+    ubehandletFørstegangssøknad = 'ubehandletFørstegangssøknad',
     kanIkkeSøke = 'kanIkkeSøke',
     medKontonummer = 'medKontonummer',
     ingenRegistrerteBarn = 'ingenRegistrerteBarn',
