@@ -20,7 +20,6 @@ export const BostedKilde = ({ kilde, kildeFritekst }: Props) => {
         case BostedsavklaringKildeType.BRUKER:
             return (
                 <ReadMore header={text('@ungInnsyn.bostedKilde.header')}>
-                    {text('@ungInnsyn.bostedKilde.header')}
                     <UngInnsynText id="@ungInnsyn.bostedKilde.BRUKER" />
                 </ReadMore>
             );
@@ -30,5 +29,7 @@ export const BostedKilde = ({ kilde, kildeFritekst }: Props) => {
                     <UngInnsynText id="@ungInnsyn.bostedKilde.FOLKEREGISTER" />
                 </ReadMore>
             );
+        default:
+            return null;
     }
 };
