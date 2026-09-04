@@ -30,6 +30,6 @@ export default defineConfig({
     webServer: {
         command: process.env.CI ? 'pnpm pw:start' : 'pnpm pw:build && pnpm pw:start',
         url: 'http://localhost:8080',
-        reuseExistingServer: true,
+        reuseExistingServer: !process.env.CI,
     },
 });

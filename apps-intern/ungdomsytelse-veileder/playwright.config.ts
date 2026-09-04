@@ -36,6 +36,6 @@ export default defineConfig({
     webServer: {
         command: process.env.CI ? 'pnpm pw:start' : 'pnpm pw:build && pnpm pw:start',
         url: 'http://localhost:8088/sif-brukerdialog/ungdomsytelse-veileder/',
-        reuseExistingServer: true,
+        reuseExistingServer: !process.env.CI,
     },
 });
