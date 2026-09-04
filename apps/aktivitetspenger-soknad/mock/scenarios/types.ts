@@ -5,6 +5,8 @@ import { z } from 'zod';
 
 export enum ScenarioType {
     default = 'default',
+    kanSøkeFørstegang = 'kanSøkeFørstegang',
+    kanIkkeSøke = 'kanIkkeSøke',
     medKontonummer = 'medKontonummer',
     ingenRegistrerteBarn = 'ingenRegistrerteBarn',
     utenKontonummer = 'utenKontonummer',

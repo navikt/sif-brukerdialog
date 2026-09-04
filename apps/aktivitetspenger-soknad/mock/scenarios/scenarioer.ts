@@ -14,9 +14,33 @@ const tilgjengeligSøknad = {
     type: TilgjengeligSøknadType.INGEN,
 } satisfies ScenarioData['tilgjengeligSøknad'];
 
+const kanSøkeFørstegang = {
+    harInnsyn: false,
+    harUbehandletSøknad: false,
+    type: TilgjengeligSøknadType.FØRSTEGANGSSØKNAD,
+} satisfies ScenarioData['tilgjengeligSøknad'];
+
+const kanIkkeSøke = {
+    harInnsyn: true,
+    harUbehandletSøknad: false,
+    type: TilgjengeligSøknadType.INGEN,
+} satisfies ScenarioData['tilgjengeligSøknad'];
+
 const defaultScenarioData: ScenarioData = {
     ...standardProfilMedKontonummer,
     tilgjengeligSøknad,
+    mellomlagring: undefined,
+};
+
+const kanSøkeFørstegangScenarioData: ScenarioData = {
+    ...standardProfilMedKontonummer,
+    tilgjengeligSøknad: kanSøkeFørstegang,
+    mellomlagring: undefined,
+};
+
+const kanIkkeSøkeScenarioData: ScenarioData = {
+    ...standardProfilMedKontonummer,
+    tilgjengeligSøknad: kanIkkeSøke,
     mellomlagring: undefined,
 };
 
@@ -43,6 +67,8 @@ const utenKontonummerScenarioData: ScenarioData = {
 
 const scenarioData: Record<ScenarioType, ScenarioData> = {
     [ScenarioType.default]: defaultScenarioData,
+    [ScenarioType.kanSøkeFørstegang]: kanSøkeFørstegangScenarioData,
+    [ScenarioType.kanIkkeSøke]: kanIkkeSøkeScenarioData,
     [ScenarioType.medKontonummer]: medKontonummerScenarioData,
     [ScenarioType.ingenRegistrerteBarn]: ingenRegistrerteBarnScenarioData,
     [ScenarioType.utenKontonummer]: utenKontonummerScenarioData,

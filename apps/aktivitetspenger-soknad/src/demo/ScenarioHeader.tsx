@@ -6,6 +6,19 @@ import { store } from '../../mock/state/store';
 
 const scenarioGroups: Array<ScenarioSelectorHeaderGroup<ScenarioType>> = [
     {
+        label: 'Inngangsscenarioer',
+        options: [
+            {
+                value: ScenarioType.kanSøkeFørstegang,
+                label: 'Kan søke førstegangssøknad',
+            },
+            {
+                value: ScenarioType.kanIkkeSøke,
+                label: 'Kan ikke søke',
+            },
+        ],
+    },
+    {
         label: 'Søkersituasjon',
         options: [
             {
@@ -35,7 +48,7 @@ export const ScenarioHeader = () => {
 
     const setScenario = (scenario: ScenarioType) => {
         store.setScenario(scenario);
-        globalThis.location.assign(getRequiredEnv('PUBLIC_PATH'));
+        globalThis.location.assign(`${getRequiredEnv('PUBLIC_PATH')}/`);
     };
 
     return (
