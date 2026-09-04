@@ -1,5 +1,5 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { BostedsvilkårIkkeOppfyltÅrsak, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { BostedsavklaringKildeType, BostedsvilkårIkkeOppfyltÅrsak, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { OppgaverList } from '../../../components';
@@ -7,6 +7,7 @@ import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { BostedVilkårOpphørOppgavePanel } from './BostedVilkarOpphorOppgavePanel';
 import {
+    BOSTED_OPPHØR_KILDE_SCENARIO_OPTIONS,
     BOSTED_OPPHØR_ÅRSAK_SCENARIO_OPTIONS,
     lagOpphørOppgaveMedÅrsak,
     mockBostedVilkårOpphørAKT,
@@ -19,12 +20,17 @@ const meta: Meta = {
 };
 export default meta;
 
-type Args = { årsak: BostedsvilkårIkkeOppfyltÅrsak; variant?: string };
+type Args = { årsak: BostedsvilkårIkkeOppfyltÅrsak; kilde: BostedsavklaringKildeType; variant?: string };
 type Story = StoryObj<Args>;
 
 const årsakArgType = {
     control: 'radio' as const,
     options: BOSTED_OPPHØR_ÅRSAK_SCENARIO_OPTIONS,
+};
+
+const kildeArgType = {
+    control: 'radio' as const,
+    options: BOSTED_OPPHØR_KILDE_SCENARIO_OPTIONS,
 };
 
 export const Forsidevisning: Story = {
@@ -58,22 +64,25 @@ export const Forsidevisning: Story = {
 
 export const Ubesvart: Story = {
     name: 'Ubesvart',
-    argTypes: { årsak: årsakArgType },
-    args: { årsak: BostedsvilkårIkkeOppfyltÅrsak.ANNET },
-    parameters: { controls: { include: ['årsak'] } },
-    render: ({ årsak }) => (
-        <BostedVilkårOpphørOppgavePanel oppgave={lagOpphørOppgaveMedÅrsak(mockBostedVilkårOpphørAKT, årsak)} navn="SNODIG VAFFEL" />
+    argTypes: { årsak: årsakArgType, kilde: kildeArgType },
+    args: { årsak: BostedsvilkårIkkeOppfyltÅrsak.ANNET, kilde: BostedsavklaringKildeType.ANNET },
+    parameters: { controls: { include: ['årsak', 'kilde'] } },
+    render: ({ årsak, kilde }) => (
+        <BostedVilkårOpphørOppgavePanel
+            oppgave={lagOpphørOppgaveMedÅrsak(mockBostedVilkårOpphørAKT, årsak, kilde)}
+            navn="SNODIG VAFFEL"
+        />
     ),
 };
 
 export const Kvittering: Story = {
     name: 'Kvittering',
-    argTypes: { årsak: årsakArgType },
-    args: { årsak: BostedsvilkårIkkeOppfyltÅrsak.ANNET },
-    parameters: { controls: { include: ['årsak'] } },
-    render: ({ årsak }) => (
+    argTypes: { årsak: årsakArgType, kilde: kildeArgType },
+    args: { årsak: BostedsvilkårIkkeOppfyltÅrsak.ANNET, kilde: BostedsavklaringKildeType.ANNET },
+    parameters: { controls: { include: ['årsak', 'kilde'] } },
+    render: ({ årsak, kilde }) => (
         <BostedVilkårOpphørOppgavePanel
-            oppgave={lagOpphørOppgaveMedÅrsak(mockBostedVilkårOpphørAKT, årsak)}
+            oppgave={lagOpphørOppgaveMedÅrsak(mockBostedVilkårOpphørAKT, årsak, kilde)}
             navn="SNODIG VAFFEL"
             initialVisKvittering={true}
         />
@@ -84,14 +93,19 @@ export const Besvart: Story = {
     name: 'Besvart',
     argTypes: {
         årsak: årsakArgType,
+        kilde: kildeArgType,
         variant: { control: 'radio', options: ['Uten tilbakemelding', 'Med tilbakemelding'] },
     },
-    args: { årsak: BostedsvilkårIkkeOppfyltÅrsak.ANNET, variant: 'Uten tilbakemelding' },
-    parameters: { controls: { include: ['årsak', 'variant'] } },
-    render: ({ årsak, variant }) => (
+    args: {
+        årsak: BostedsvilkårIkkeOppfyltÅrsak.ANNET,
+        kilde: BostedsavklaringKildeType.ANNET,
+        variant: 'Uten tilbakemelding',
+    },
+    parameters: { controls: { include: ['årsak', 'kilde', 'variant'] } },
+    render: ({ årsak, kilde, variant }) => (
         <BostedVilkårOpphørOppgavePanel
             oppgave={{
-                ...lagOpphørOppgaveMedÅrsak(mockBostedVilkårOpphørBesvartAKT, årsak),
+                ...lagOpphørOppgaveMedÅrsak(mockBostedVilkårOpphørBesvartAKT, årsak, kilde),
                 respons:
                     variant === 'Med tilbakemelding'
                         ? {

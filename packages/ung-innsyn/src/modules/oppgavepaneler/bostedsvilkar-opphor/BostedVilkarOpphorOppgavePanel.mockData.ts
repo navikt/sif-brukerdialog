@@ -16,14 +16,26 @@ export const BOSTED_OPPHØR_ÅRSAK_SCENARIO_OPTIONS: BostedsvilkårIkkeOppfyltÅ
     BostedsvilkårIkkeOppfyltÅrsak.ANNET,
 ];
 
+export const BOSTED_OPPHØR_KILDE_SCENARIO_OPTIONS: BostedsavklaringKildeType[] = [
+    BostedsavklaringKildeType.FOLKEREGISTER,
+    BostedsavklaringKildeType.BRUKER,
+    BostedsavklaringKildeType.ANNET,
+];
+
 export const lagOpphørOppgaveMedÅrsak = (
     base: BostedVilkårOpphørOppgave,
     årsak: BostedsvilkårIkkeOppfyltÅrsak,
+    kilde: BostedsavklaringKildeType,
 ): BostedVilkårOpphørOppgave => ({
     ...base,
     oppgavetypeData: {
         ...base.oppgavetypeData,
         ikkeOppfyltÅrsak: årsak,
+        kilde,
+        kildeFritekst:
+            kilde === BostedsavklaringKildeType.ANNET
+                ? 'Vi har fått informasjon fra din XXX som sier at du nå har flyttet tilbake til YYY.\n\nInformasjonen kom via et brev vi mottok.'
+                : undefined,
         ikkeOppfyltÅrsakFritekstbeskrivelse:
             årsak === BostedsvilkårIkkeOppfyltÅrsak.ANNET
                 ? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n\nSed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
@@ -47,7 +59,8 @@ export const mockBostedVilkårOpphørAKT: BostedVilkårOpphørOppgave = {
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n\nSed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         erBosattITrondheim: false,
         kilde: BostedsavklaringKildeType.ANNET,
-        kildeFritekst: 'Vi har fått informasjon fra din XXX som sier at du nå har flyttet\n tilbake til henne.',
+        kildeFritekst:
+            'Vi har fått informasjon fra din XXX som sier at du nå har flyttet tilbake til YYY.\n\nInformasjonen kom via et brev vi mottok.',
         fom: dateToISODate(dayjs().subtract(1, 'month')),
     },
 };

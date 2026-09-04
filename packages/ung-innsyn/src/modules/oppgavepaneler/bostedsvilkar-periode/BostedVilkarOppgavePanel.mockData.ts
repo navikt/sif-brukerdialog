@@ -16,14 +16,26 @@ export const BOSTED_ÅRSAK_SCENARIO_OPTIONS: BostedsvilkårIkkeOppfyltÅrsak[] =
     BostedsvilkårIkkeOppfyltÅrsak.ANNET,
 ];
 
+export const BOSTED_KILDE_SCENARIO_OPTIONS: BostedsavklaringKildeType[] = [
+    BostedsavklaringKildeType.FOLKEREGISTER,
+    BostedsavklaringKildeType.BRUKER,
+    BostedsavklaringKildeType.ANNET,
+];
+
 export const lagOppgaveMedÅrsak = (
     base: BostedVilkårPeriodeOppgave,
     årsak: BostedsvilkårIkkeOppfyltÅrsak,
+    kilde: BostedsavklaringKildeType,
 ): BostedVilkårPeriodeOppgave => ({
     ...base,
     oppgavetypeData: {
         ...base.oppgavetypeData,
         ikkeOppfyltÅrsak: årsak,
+        kilde,
+        kildeFritekst:
+            kilde === BostedsavklaringKildeType.ANNET
+                ? 'Vi har fått informasjon fra din XXX som sier at du nå har flyttet tilbake til YYY.\n\nInformasjonen kom via et brev vi mottok.'
+                : undefined,
         ikkeOppfyltÅrsakFritekstbeskrivelse:
             årsak === BostedsvilkårIkkeOppfyltÅrsak.ANNET
                 ? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
