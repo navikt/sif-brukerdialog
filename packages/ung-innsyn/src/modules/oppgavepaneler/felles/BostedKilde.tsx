@@ -10,13 +10,15 @@ interface Props {
 
 export const BostedKilde = ({ kilde, kildeFritekst }: Props) => {
     const { text } = useUngInnsynIntl();
+
     switch (kilde) {
         case BostedsavklaringKildeType.ANNET:
-            return kildeFritekst ? (
+            return (
                 <ReadMore header={text('@ungInnsyn.bostedKilde.header')}>
-                    <Fritekst text={kildeFritekst} />
+                    <Fritekst text={kildeFritekst || text('@ungInnsyn.bostedKilde.FRITEKST_FALLBACK')} />
                 </ReadMore>
-            ) : null;
+            );
+
         case BostedsavklaringKildeType.BRUKER:
             return (
                 <ReadMore header={text('@ungInnsyn.bostedKilde.header')}>

@@ -72,6 +72,7 @@ export const ungInnsyn_messages_nb = {
     '@ungInnsyn.bostedKilde.header': 'Hvor har vi fått opplysningene fra?',
     '@ungInnsyn.bostedKilde.BRUKER': 'Fra deg.',
     '@ungInnsyn.bostedKilde.FOLKEREGISTER': 'Folkeregisteret.',
+    '@ungInnsyn.bostedKilde.FRITEKST_FALLBACK': 'Informasjon om kilde mangler',
 
     /** InntektForm */
     '@ungInnsyn.inntektForm.validation.harInntekt.yesOrNoIsUnanswered': 'Du må svare på om du hadde inntekt.',
