@@ -56,13 +56,11 @@ jobs:
                   filters: |
                       aktivitetspenger-innsyn:
                         - 'apps/aktivitetspenger-innsyn/**'
-                        - 'packages/**'
                         - 'nais-config/**'
                         - 'server/**'
                         - 'pnpm-lock.yaml'
                       aktivitetspenger-soknad:
                         - 'apps/aktivitetspenger-soknad/**'
-                        - 'packages/**'
                         - 'nais-config/**'
                         - 'server/**'
                         - 'pnpm-lock.yaml'
@@ -370,18 +368,20 @@ jobs:
             - name: Run affected Vite Playwright tests
               run: |
                   pnpm turbo run playwright-test --affected --concurrency=1 \
-                    --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn \
-                    --filter=@navikt/endringsmelding-pleiepenger \
-                    --filter=@navikt/omsorgsdager-aleneomsorg-dialog \
-                    --filter=@navikt/omsorgspengerutbetaling-arbeidstaker-soknad \
-                    --filter=@navikt/omsorgspengerutbetaling-soknad \
-                    --filter=@navikt/omsorgspengesoknad \
-                    --filter=@navikt/opplaringspenger-soknad \
-                    --filter=@navikt/pleiepenger-i-livets-sluttfase-soknad \
-                    --filter=@navikt/pleiepenger-sykt-barn \
-                    --filter=@navikt/sif-ettersending \
-                    --filter=@navikt/ungdomsytelse-deltaker \
-                    --filter=@navikt/ungdomsytelse-veileder
+                      --filter=@navikt/aktivitetspenger-innsyn \
+                      --filter=@navikt/aktivitetspenger-soknad \
+                      --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn \
+                      --filter=@navikt/endringsmelding-pleiepenger \
+                      --filter=@navikt/omsorgsdager-aleneomsorg-dialog \
+                      --filter=@navikt/omsorgspengerutbetaling-arbeidstaker-soknad \
+                      --filter=@navikt/omsorgspengerutbetaling-soknad \
+                      --filter=@navikt/omsorgspengesoknad \
+                      --filter=@navikt/opplaringspenger-soknad \
+                      --filter=@navikt/pleiepenger-i-livets-sluttfase-soknad \
+                      --filter=@navikt/pleiepenger-sykt-barn \
+                      --filter=@navikt/sif-ettersending \
+                      --filter=@navikt/ungdomsytelse-deltaker \
+                      --filter=@navikt/ungdomsytelse-veileder
 
     sif-code-scan:
         runs-on: ubuntu-latest
