@@ -3,7 +3,7 @@ import { OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { useUngUiIntl } from '../../../i18n';
+import { useIngInnsynIntl } from '../../../i18n';
 import { PanelPreviewWrapper, renderOppgaveStandardStater } from '../../../storybook/storyUtils';
 import { Lovlenke, OPPGAVE_LOVVERK } from '../oppgaveLovverk';
 import { AvvikRegisterinntektOppgavePanel } from '../avvik-registerinntekt/AvvikRegisterinntektOppgavePanel';
@@ -129,7 +129,7 @@ const KodeTag = ({ children }: { children: React.ReactNode }) => (
 );
 
 const LenkeEllerTodo = ({ lenke }: { lenke: Lovlenke }) => {
-    const { text } = useUngUiIntl();
+    const { text } = useIngInnsynIntl();
     const lenketekst = text(lenke.tekstKey);
 
     return lenke.url.includes('#todo') ? (

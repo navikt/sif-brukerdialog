@@ -10,7 +10,7 @@ import { useSendOppgavebekreftelse } from '@sif/api/k9-prosessering';
 import { createSifFormComponents, SifForm, useSifValidate, YesOrNo } from '@sif/rhf';
 import { useForm } from 'react-hook-form';
 
-import { UngUiText, useUngUiIntl } from '../../../i18n';
+import { UngInnsynText, useIngInnsynIntl } from '../../../i18n';
 import { useOppgavePage } from '../../../pages/hooks/useOppgavePage';
 import { UttalelseSvaralternativer } from '../../../types';
 
@@ -49,7 +49,7 @@ export const UtalelseForm = ({
     onSuccess,
 }: UtalelseFormProps) => {
     const { mutateAsync, error, isPending } = useSendOppgavebekreftelse(oppgaveYtelsetype);
-    const { intl, text } = useUngUiIntl();
+    const { intl, text } = useIngInnsynIntl();
     const { validateField } = useSifValidate('@ungInnsyn.uttalelseForm');
     const { onCancel } = useOppgavePage();
 
@@ -114,7 +114,7 @@ export const UtalelseForm = ({
                         description={
                             uttalelseDescription || (
                                 <BodyLong>
-                                    <UngUiText id="@ungInnsyn.uttalelseForm.defaultDescription" />
+                                    <UngInnsynText id="@ungInnsyn.uttalelseForm.defaultDescription" />
                                 </BodyLong>
                             )
                         }

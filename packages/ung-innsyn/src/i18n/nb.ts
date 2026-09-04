@@ -11,7 +11,7 @@ import { opphorVedMaksdatoMessages_nb } from '../modules/oppgavepaneler/opphor-v
 import { rapporterInntektMessages_nb } from '../modules/oppgavepaneler/rapporter-inntekt/i18n/nb';
 import { søkYtelseOppgaveMessages_nb } from '../modules/oppgavepaneler/sok-ytelse/i18n/nb';
 
-export const ungUi_messages_nb = {
+export const ungInnsyn_messages_nb = {
     ...avvikRegisterinntektMessages_nb,
     ...endretStartOgSluttdatoMessages_nb,
     ...endretSluttdatoMessages_nb,
@@ -67,6 +67,11 @@ export const ungUi_messages_nb = {
     '@ungInnsyn.oppgavestatus.AVBRUTT': 'Avbrutt',
     '@ungInnsyn.oppgavestatus.UTLØPT': 'Utløpt',
     '@ungInnsyn.oppgavestatus.LUKKET': 'Lukket',
+
+    /** BostedKilde */
+    '@ungInnsyn.bostedKilde.header': 'Hvor har vi fått opplysningene fra?',
+    '@ungInnsyn.bostedKilde.BRUKER': 'Fra deg.',
+    '@ungInnsyn.bostedKilde.FOLKEREGISTER': 'Folkeregisteret.',
 
     /** InntektForm */
     '@ungInnsyn.inntektForm.validation.harInntekt.yesOrNoIsUnanswered': 'Du må svare på om du hadde inntekt.',

@@ -2,7 +2,7 @@ import { VStack } from '@navikt/ds-react';
 import { Oppgave } from '@sif/api/ung-brukerdialog';
 import { useNavigate } from 'react-router-dom';
 
-import { useUngUiIntl } from '../../i18n';
+import { useIngInnsynIntl } from '../../i18n';
 import { getOppgaveInfo, getOppgavePanelTittel, getOppgaveStatusText } from '../../utils/textUtils';
 import { OppgaveLinkCard } from '../oppgave-link-card/OppgaveLinkCard';
 import { OppgaveStatusTagVariant } from '../oppgave-status-tag/OppgaveStatusTag';
@@ -15,7 +15,7 @@ interface Props {
 
 export const OppgaverList = ({ oppgaver, oppgaveStatusTagVariant, visBeskrivelse = true }: Props) => {
     const navigate = useNavigate();
-    const intl = useUngUiIntl();
+    const intl = useIngInnsynIntl();
 
     return (
         <VStack gap="space-16">

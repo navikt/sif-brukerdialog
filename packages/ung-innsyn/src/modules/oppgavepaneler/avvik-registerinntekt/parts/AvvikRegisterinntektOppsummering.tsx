@@ -2,7 +2,7 @@ import { dateFormatter } from '@sif/utils';
 import { AvvikRegisterinntektOppgave } from '@sif/api/ung-brukerdialog';
 
 import { InntektTable } from '../../../../components';
-import { UngUiText, useUngUiIntl } from '../../../../i18n';
+import { UngInnsynText, useIngInnsynIntl } from '../../../../i18n';
 import { avvikRegisterinntektOppgaveUtils } from '../avvikRegisterinntektOppgaveUtils';
 
 interface AvvikRegisterinntektOppsummeringProps {
@@ -10,7 +10,7 @@ interface AvvikRegisterinntektOppsummeringProps {
 }
 
 export const AvvikRegisterinntektOppsummering = ({ oppgave }: AvvikRegisterinntektOppsummeringProps) => {
-    const intl = useUngUiIntl();
+    const intl = useIngInnsynIntl();
     const {
         registerinntekt: { arbeidOgFrilansInntekter = [], ytelseInntekter = [] },
         fraOgMed,
@@ -24,7 +24,7 @@ export const AvvikRegisterinntektOppsummering = ({ oppgave }: AvvikRegisterinnte
 
     return (
         <>
-            <UngUiText id="@ungInnsyn.avvikRegisterinntektOppsummering.intro" values={{ rapporteringsmåned }} />
+            <UngInnsynText id="@ungInnsyn.avvikRegisterinntektOppsummering.intro" values={{ rapporteringsmåned }} />
             <InntektTable
                 inntekt={inntekt}
                 navnRowHeader={avvikRegisterinntektOppgaveUtils.getInntektskildeHeader(oppgave, intl)}

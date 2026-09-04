@@ -3,7 +3,7 @@ import { dateFormatter, DateRange, ISODate } from '@sif/utils';
 import { ReactNode } from 'react';
 
 import { ExternalLink } from '../../../../components/external-link/ExternalLink';
-import { UngUiText, useUngUiIntl } from '../../../../i18n';
+import { UngInnsynText, useIngInnsynIntl } from '../../../../i18n';
 import { ungInnsynLenker } from '../../../../utils/lenker';
 
 interface Props {
@@ -17,26 +17,26 @@ export const RapporterInntektOppgavetekst = ({ navn, svarfrist, periode, gjelder
     const frist = dateFormatter.full(svarfrist);
     const måned = dateFormatter.month(periode.from);
 
-    const { text } = useUngUiIntl();
+    const { text } = useIngInnsynIntl();
     return (
         <VStack gap="space-16">
             <Heading level="2" size="medium">
-                <UngUiText id="@ungInnsyn.rapporterInntektOppgavetekst.tittel" values={{ navn }} />
+                <UngInnsynText id="@ungInnsyn.rapporterInntektOppgavetekst.tittel" values={{ navn }} />
             </Heading>
             <Box maxWidth="90%">
                 <VStack gap="space-24">
                     <BodyLong>
-                        <UngUiText
+                        <UngInnsynText
                             id="@ungInnsyn.rapporterInntektOppgavetekst.intro.1"
                             values={{
                                 måned,
                             }}
                         />{' '}
-                        <UngUiText id="@ungInnsyn.rapporterInntektOppgavetekst.intro.2" />
+                        <UngInnsynText id="@ungInnsyn.rapporterInntektOppgavetekst.intro.2" />
                     </BodyLong>
                     {gjelderDelerAvMåned && (
                         <BodyLong>
-                            <UngUiText
+                            <UngInnsynText
                                 id="@ungInnsyn.rapporterInntektOppgavetekst.intro.delerAvMåned"
                                 values={{
                                     måned,
@@ -47,35 +47,35 @@ export const RapporterInntektOppgavetekst = ({ navn, svarfrist, periode, gjelder
                     <Bleed marginBlock="space-8 space-0">
                         <ReadMore header={text('@ungInnsyn.rapporterInntektOppgave.readMore.tittel')}>
                             <BodyLong>
-                                <UngUiText id="@ungInnsyn.rapporterInntektOppgave.readMore.tekst.1" />
+                                <UngInnsynText id="@ungInnsyn.rapporterInntektOppgave.readMore.tekst.1" />
                             </BodyLong>
                             <Box marginBlock="space-8 space-24">
                                 <List>
                                     <List.Item>
-                                        <UngUiText id="@ungInnsyn.rapporterInntektOppgave.readMore.liste.1" />
+                                        <UngInnsynText id="@ungInnsyn.rapporterInntektOppgave.readMore.liste.1" />
                                     </List.Item>
                                     <List.Item>
-                                        <UngUiText id="@ungInnsyn.rapporterInntektOppgave.readMore.liste.2" />
+                                        <UngInnsynText id="@ungInnsyn.rapporterInntektOppgave.readMore.liste.2" />
                                     </List.Item>
                                     <List.Item>
-                                        <UngUiText id="@ungInnsyn.rapporterInntektOppgave.readMore.liste.3" />
+                                        <UngInnsynText id="@ungInnsyn.rapporterInntektOppgave.readMore.liste.3" />
                                     </List.Item>
                                     <List.Item>
-                                        <UngUiText id="@ungInnsyn.rapporterInntektOppgave.readMore.liste.4" />
+                                        <UngInnsynText id="@ungInnsyn.rapporterInntektOppgave.readMore.liste.4" />
                                     </List.Item>
                                     <List.Item>
-                                        <UngUiText id="@ungInnsyn.rapporterInntektOppgave.readMore.liste.5" />
+                                        <UngInnsynText id="@ungInnsyn.rapporterInntektOppgave.readMore.liste.5" />
                                     </List.Item>
                                     <List.Item>
-                                        <UngUiText id="@ungInnsyn.rapporterInntektOppgave.readMore.liste.6" />
+                                        <UngInnsynText id="@ungInnsyn.rapporterInntektOppgave.readMore.liste.6" />
                                     </List.Item>
                                     <List.Item>
-                                        <UngUiText id="@ungInnsyn.rapporterInntektOppgave.readMore.liste.7" />
+                                        <UngInnsynText id="@ungInnsyn.rapporterInntektOppgave.readMore.liste.7" />
                                     </List.Item>
                                 </List>
                             </Box>
                             <BodyLong spacing>
-                                <UngUiText
+                                <UngInnsynText
                                     id="@ungInnsyn.rapporterInntektOppgave.readMore.tekst.3"
                                     values={{
                                         link: (value) => (
@@ -92,13 +92,13 @@ export const RapporterInntektOppgavetekst = ({ navn, svarfrist, periode, gjelder
                         </ReadMore>
                     </Bleed>
                     <BodyLong>
-                        <UngUiText
+                        <UngInnsynText
                             id="@ungInnsyn.rapporterInntektOppgave.intro.3"
                             values={{ frist, strong: (content: ReactNode) => <strong>{content}</strong> }}
                         />
                     </BodyLong>
                     <BodyLong>
-                        <UngUiText
+                        <UngInnsynText
                             id="@ungInnsyn.rapporterInntektOppgave.intro.4"
                             values={{ strong: (content: ReactNode) => <strong>{content}</strong> }}
                         />

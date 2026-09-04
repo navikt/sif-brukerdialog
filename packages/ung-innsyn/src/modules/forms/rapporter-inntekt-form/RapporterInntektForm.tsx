@@ -9,7 +9,7 @@ import { getNumberFromNumberInputValue } from '@sif/rhf/utils';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { UngUiText, useUngUiIntl } from '../../../i18n';
+import { UngInnsynText, useIngInnsynIntl } from '../../../i18n';
 import { useOppgavePage } from '../../../pages/hooks/useOppgavePage';
 
 export enum InntektFormFields {
@@ -39,7 +39,7 @@ export const RapporterInntektForm = ({
     oppgaveReferanse,
     onSuccess,
 }: RapporterInntektFormProps) => {
-    const { text } = useUngUiIntl();
+    const { text } = useIngInnsynIntl();
     const { error, isPending, mutateAsync } = useRapporterInntekt(oppgaveYtelsetype);
     const { validateField } = useSifValidate('@ungInnsyn.inntektForm');
     const { onCancel, onSuccess: onPageSuccess } = useOppgavePage();
@@ -127,18 +127,18 @@ export const RapporterInntektForm = ({
                             <VStack gap="space-8">
                                 <ReadMore header={text('@ungInnsyn.inntektForm.hvordanFinnerDuUtInntekt.tittel')}>
                                     <BodyLong spacing>
-                                        <UngUiText id="@ungInnsyn.inntektForm.hvordanFinnerDuUtInntektBeskrivelse.tekst.1" />
+                                        <UngInnsynText id="@ungInnsyn.inntektForm.hvordanFinnerDuUtInntektBeskrivelse.tekst.1" />
                                     </BodyLong>
                                     <BodyLong spacing>
-                                        <UngUiText id="@ungInnsyn.inntektForm.hvordanFinnerDuUtInntektBeskrivelse.tekst.2" />
+                                        <UngInnsynText id="@ungInnsyn.inntektForm.hvordanFinnerDuUtInntektBeskrivelse.tekst.2" />
                                     </BodyLong>
                                 </ReadMore>
                                 <ReadMore header={text('@ungInnsyn.inntektForm.feilInntekt.tittel')}>
                                     <BodyLong spacing>
-                                        <UngUiText id="@ungInnsyn.inntektForm.feilInntekt.tekst.1" />
+                                        <UngInnsynText id="@ungInnsyn.inntektForm.feilInntekt.tekst.1" />
                                     </BodyLong>
                                     <BodyLong spacing>
-                                        <UngUiText id="@ungInnsyn.inntektForm.feilInntekt.tekst.2" />
+                                        <UngInnsynText id="@ungInnsyn.inntektForm.feilInntekt.tekst.2" />
                                     </BodyLong>
                                 </ReadMore>
                             </VStack>

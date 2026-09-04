@@ -1,4 +1,5 @@
 import {
+    BostedsavklaringKildeType,
     BostedsvilkårIkkeOppfyltÅrsak,
     OppgaveStatus,
     OppgaveType,
@@ -44,6 +45,7 @@ export const mockBostedVilkårAKT: BostedVilkårPeriodeOppgave = {
         ikkeOppfyltÅrsak: BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
         ikkeOppfyltÅrsakFritekstbeskrivelse: undefined,
         erBosattITrondheim: false,
+        kilde: BostedsavklaringKildeType.FOLKEREGISTER,
         periode: {
             from: dateToISODate(dayjs().subtract(1, 'month')),
             to: dateToISODate(dayjs().add(1, 'month')),

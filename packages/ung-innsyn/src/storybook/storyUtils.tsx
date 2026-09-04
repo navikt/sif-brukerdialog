@@ -10,7 +10,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { fn } from 'storybook/test';
 
 import { OppgaverList } from '../components';
-import { ungUi_messages_nb } from '../i18n/nb';
+import { ungInnsyn_messages_nb } from '../i18n/nb';
 import { OppgavePageContext } from '../pages/hooks/useOppgavePage';
 
 export const StateLabel = ({ children }: { children: React.ReactNode }) => (
@@ -53,7 +53,7 @@ const panelPreviewQueryClient = new QueryClient({
 
 export const PanelPreviewWrapper = ({ children }: { children: React.ReactNode }) => (
     <Theme hasBackground={false}>
-        <IntlProvider locale="nb" messages={ungUi_messages_nb}>
+        <IntlProvider locale="nb" messages={ungInnsyn_messages_nb}>
             <QueryClientProvider client={panelPreviewQueryClient}>
                 <BrowserRouter basename="/">
                     <OppgavePageContext.Provider value={{ onCancel: fn(), onSuccess: fn() }}>

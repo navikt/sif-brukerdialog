@@ -1,35 +1,35 @@
 import { typedIntlHelper } from '@sif/utils';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { ungUi_messages_nb } from './nb';
+import { ungInnsyn_messages_nb } from './nb';
 
 const nb = {
-    ...ungUi_messages_nb,
+    ...ungInnsyn_messages_nb,
 };
 
-export type UngUiMessageKeys = keyof typeof nb;
+export type UngInnsynMessageKeys = keyof typeof nb;
 
-const nn: Record<UngUiMessageKeys, string> = {
+const nn: Record<UngInnsynMessageKeys, string> = {
     ...nb,
 };
 
-export const useUngUiIntl = () => {
+export const useIngInnsynIntl = () => {
     const intl = useIntl();
-    return typedIntlHelper<UngUiMessageKeys>(intl);
+    return typedIntlHelper<UngInnsynMessageKeys>(intl);
 };
 
-export type UngUiIntlShape = ReturnType<typeof useUngUiIntl>;
+export type UngInnsynIntlShape = ReturnType<typeof useIngInnsynIntl>;
 
-interface UngUiTextProps {
-    id: UngUiMessageKeys;
+interface UngInnsynTextProps {
+    id: UngInnsynMessageKeys;
     values?: any;
 }
 
-export const UngUiText = (props: UngUiTextProps) => {
+export const UngInnsynText = (props: UngInnsynTextProps) => {
     return <FormattedMessage {...props} />;
 };
 
-export const ungUiMessages = {
+export const ungInnsynMessages = {
     nb,
     nn,
 };

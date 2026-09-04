@@ -3,7 +3,7 @@ import { BekreftelseOppgave } from '@sif/api/ung-brukerdialog';
 import { useMemo, useState } from 'react';
 
 import { OppgaveStatusTag } from '../../components';
-import { useUngUiIntl } from '../../i18n';
+import { useIngInnsynIntl } from '../../i18n';
 import { getOppgaveStatusText, getOppgaveTittel } from '../../utils/textUtils';
 import { OppgavebekreftelseContext } from './hooks/useOppgavebekreftelse';
 import { Besvart, Kvittering, Ubesvart } from './OppgavebekreftelseParts';
@@ -16,7 +16,7 @@ interface Props {
 }
 
 export const Oppgavebekreftelse = ({ oppgave, navn, children, initialVisKvittering = false }: Props) => {
-    const intl = useUngUiIntl();
+    const intl = useIngInnsynIntl();
     const [visKvittering, setVisKvittering] = useState(initialVisKvittering);
 
     const contextValue = useMemo(
