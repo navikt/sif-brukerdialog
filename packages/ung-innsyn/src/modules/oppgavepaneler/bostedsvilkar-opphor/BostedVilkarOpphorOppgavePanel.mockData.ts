@@ -47,7 +47,7 @@ export const mockBostedVilkårOpphørAKT: BostedVilkårOpphørOppgave = {
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n\nSed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         erBosattITrondheim: false,
         kilde: BostedsavklaringKildeType.ANNET,
-        kildeFritekst: 'Vi har fått informasjon fra din mor som sier at du nå har flyttet\n tilbake til henne.',
+        kildeFritekst: 'Vi har fått informasjon fra din XXX som sier at du nå har flyttet\n tilbake til henne.',
         fom: dateToISODate(dayjs().subtract(1, 'month')),
     },
 };
