@@ -13,7 +13,10 @@ import { Søknad } from './app/Soknad';
 import { ScenarioHeader } from './demo/ScenarioHeader';
 import { useInitialData } from './useInitialData';
 import { KanIkkeSøkePage } from './app/content/kan-ikke-soke/KanIkkeSøke';
+<<<<<<< HEAD
 import { TilgjengeligSøknadType } from '@navikt/ung-brukerdialog-api';
+=======
+>>>>>>> ee9d19e52fdf5592bf905e74ec743ba24f16d238
 
 initApiClients();
 
