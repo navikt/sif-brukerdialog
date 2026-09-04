@@ -7,7 +7,7 @@
     "include": [
         "./src/**/*",
         "mock/**/*",
-        "./playwright-config.ts",
+        "./playwright.config.ts",
         "./env.schema.ts",
         "./vite-env.d.ts",
         "./playwright/**/*"
