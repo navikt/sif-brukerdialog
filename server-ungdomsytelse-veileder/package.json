@@ -9,22 +9,22 @@
     "dependencies": {
         "@nais/apm": "0.6.0",
         "@navikt/nav-dekoratoren-moduler": "4.3.0",
-        "@navikt/oasis": "4.1.4",
+        "@navikt/oasis": "4.2.0",
         "@navikt/sif-common-env": "workspace:*",
         "csp-header": "6.3.1",
         "express": "5.2.1",
         "html-react-parser": "6.1.7",
         "http-proxy-middleware": "4.2.0",
         "jsdom": "28.1.0",
+        "morgan": "1.12.0",
         "react": "19.2.8",
         "uuid": "^14.0.2",
-        "morgan": "1.12.0",
-        "zod": "4.5.2"
+        "zod": "4.5.4"
     },
     "devDependencies": {
         "@types/express": "5.0.6",
         "@types/morgan": "1.9.10",
-        "@types/node": "26.4.0",
+        "@types/node": "26.4.1",
         "axios": "1.20.0",
         "esbuild": "0.28.2",
         "prettier": "3.9.6",
