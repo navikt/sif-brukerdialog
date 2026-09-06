@@ -9,9 +9,10 @@ overrides:
   brace-expansion@^1: ^1.1.18
   brace-expansion@^2: ^2.1.4
   brace-expansion@^5: ^5.0.9
+  fast-uri: 3.1.6
   immutable: '>=5.1.8'
   js-yaml@3.13.1: ^3.14.2
-  js-yaml@^4: ^4.2.0
+  js-yaml@^4: ^4.3.1
   jsdom: 28.1.0
   picomatch@^2: ^2.3.2
   picomatch@^4: ^4.0.4
@@ -19,7 +20,7 @@ overrides:
   sharp: '>=0.35.0'
   smol-toml: '>=1.6.1'
   undici@^6: ^6.27.0
-  undici@^7: ^7.28.0
+  undici@^7: ^7.29.0
   uuid: ^14.0.2
 
 importers:
@@ -266,11 +267,11 @@ importers:
         specifier: 1.62.1
         version: 1.62.1
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       postcss-styled-syntax:
         specifier: 0.7.2
-        version: 0.7.2(postcss@8.5.28)
+        version: 0.7.2(postcss@8.5.26)
       prettier:
         specifier: 3.9.6
         version: 3.9.6
@@ -762,7 +763,7 @@ importers:
         version: link:../../packages/eslint-config-sif
       '@storybook/nextjs':
         specifier: 10.6.0
-        version: 10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(esbuild@0.28.2)(next@16.3.4(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@playwright/test@1.62.1)(@types/node@26.4.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sass@1.103.1))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sass-embedded@1.103.1)(sass@1.103.1)(storybook@10.6.0(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(type-fest@4.41.0)(typescript@6.0.3)(webpack-hot-middleware@2.26.1)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28))
+        version: 10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(esbuild@0.28.2)(next@16.3.4(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@playwright/test@1.62.1)(@types/node@26.4.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sass@1.103.1))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sass-embedded@1.103.1)(sass@1.103.1)(storybook@10.6.0(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(type-fest@4.41.0)(typescript@6.0.3)(webpack-hot-middleware@2.26.1)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26))
       '@storybook/react':
         specifier: 10.6.0
         version: 10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(typescript@6.0.3)
@@ -806,8 +807,8 @@ importers:
         specifier: 1.62.1
         version: 1.62.1
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       react-intl:
         specifier: 10.1.26
         version: 10.1.26(@types/react@19.2.18)(react@19.2.8)
@@ -828,7 +829,7 @@ importers:
         version: 4.1.11(@opentelemetry/api@1.9.1)(@types/node@26.4.1)(@vitest/browser-playwright@4.1.11)(@vitest/coverage-v8@4.1.11)(jsdom@28.1.0(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.4.1)(typescript@6.0.3))(vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.103.1)(sass@1.103.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.0))
       webpack:
         specifier: 5.110.3
-        version: 5.110.3(esbuild@0.28.2)(postcss@8.5.28)
+        version: 5.110.3(esbuild@0.28.2)(postcss@8.5.26)
 
   apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn:
     dependencies:
@@ -999,8 +1000,8 @@ importers:
         specifier: 1.62.1
         version: 1.62.1
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       rimraf:
         specifier: 6.1.3
         version: 6.1.3
@@ -1225,8 +1226,8 @@ importers:
         specifier: 1.62.1
         version: 1.62.1
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       react-responsive:
         specifier: 10.0.1
         version: 10.0.1(react@19.2.8)
@@ -1430,8 +1431,8 @@ importers:
         specifier: 1.62.1
         version: 1.62.1
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       storybook:
         specifier: 10.6.0
         version: 10.6.0(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8)
@@ -1542,8 +1543,8 @@ importers:
         specifier: 1.62.1
         version: 1.62.1
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       tailwindcss:
         specifier: 4.3.3
         version: 4.3.3
@@ -1747,11 +1748,11 @@ importers:
         specifier: 1.62.1
         version: 1.62.1
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       postcss-nesting:
         specifier: 14.0.1
-        version: 14.0.1(postcss@8.5.28)
+        version: 14.0.1(postcss@8.5.26)
       storybook:
         specifier: 10.6.0
         version: 10.6.0(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8)
@@ -1955,11 +1956,11 @@ importers:
         specifier: 1.62.1
         version: 1.62.1
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       postcss-nesting:
         specifier: 14.0.1
-        version: 14.0.1(postcss@8.5.28)
+        version: 14.0.1(postcss@8.5.26)
       storybook:
         specifier: 10.6.0
         version: 10.6.0(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8)
@@ -2181,8 +2182,8 @@ importers:
         specifier: 1.62.1
         version: 1.62.1
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       prettier:
         specifier: 3.9.6
         version: 3.9.6
@@ -2576,11 +2577,11 @@ importers:
         specifier: 1.62.1
         version: 1.62.1
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       postcss-nesting:
         specifier: 14.0.1
-        version: 14.0.1(postcss@8.5.28)
+        version: 14.0.1(postcss@8.5.26)
       storybook:
         specifier: 10.6.0
         version: 10.6.0(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8)
@@ -2787,8 +2788,8 @@ importers:
         specifier: 1.62.1
         version: 1.62.1
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       storybook:
         specifier: 10.6.0
         version: 10.6.0(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8)
@@ -3010,8 +3011,8 @@ importers:
         specifier: 1.62.1
         version: 1.62.1
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       react-dom:
         specifier: 19.2.8
         version: 19.2.8(react@19.2.8)
@@ -3372,8 +3373,8 @@ importers:
         specifier: 1.62.1
         version: 1.62.1
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       react-dom:
         specifier: 19.2.8
         version: 19.2.8(react@19.2.8)
@@ -3466,8 +3467,8 @@ importers:
         specifier: 4.9.1
         version: 4.9.1
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -3695,11 +3696,11 @@ importers:
         specifier: 1.62.1
         version: 1.62.1
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       postcss-styled-syntax:
         specifier: 0.7.2
-        version: 0.7.2(postcss@8.5.28)
+        version: 0.7.2(postcss@8.5.26)
       prettier:
         specifier: 3.9.6
         version: 3.9.6
@@ -3768,8 +3769,8 @@ importers:
         specifier: 2.4.1
         version: 2.4.1
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       prop-types:
         specifier: 15.8.1
         version: 15.8.1
@@ -3814,8 +3815,8 @@ importers:
         specifier: 10.9.1
         version: 10.9.1(jiti@2.7.0)
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       prettier:
         specifier: 3.9.6
         version: 3.9.6
@@ -3859,8 +3860,8 @@ importers:
         specifier: 10.6.0
         version: 10.6.0(eslint@10.9.1(jiti@2.7.0))(typescript@6.0.3)
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       prettier:
         specifier: 3.9.6
         version: 3.9.6
@@ -3918,8 +3919,8 @@ importers:
         version: 8.69.0(eslint@10.9.1(jiti@2.7.0))(typescript@6.0.3)
     devDependencies:
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       prettier:
         specifier: 3.9.6
         version: 3.9.6
@@ -3952,8 +3953,8 @@ importers:
         specifier: 10.9.1
         version: 10.9.1(jiti@2.7.0)
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       prettier:
         specifier: 3.9.6
         version: 3.9.6
@@ -3992,8 +3993,8 @@ importers:
         specifier: 10.9.1
         version: 10.9.1(jiti@2.7.0)
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       prettier:
         specifier: 3.9.6
         version: 3.9.6
@@ -4032,8 +4033,8 @@ importers:
         specifier: 10.9.1
         version: 10.9.1(jiti@2.7.0)
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       prettier:
         specifier: 3.9.6
         version: 3.9.6
@@ -4246,8 +4247,8 @@ importers:
         specifier: 4.9.1
         version: 4.9.1
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -4379,8 +4380,8 @@ importers:
         specifier: 3.0.0
         version: 3.0.0(msw@2.15.0(@types/node@26.4.1)(typescript@6.0.3))(storybook@10.6.0(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       prop-types:
         specifier: 15.8.1
         version: 15.8.1
@@ -4655,8 +4656,8 @@ importers:
         specifier: 28.1.0
         version: 28.1.0(@noble/hashes@2.4.0)
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -4758,8 +4759,8 @@ importers:
         specifier: 3.0.8
         version: 3.0.8
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       react-day-picker:
         specifier: 9.14.0
         version: 9.14.0(react@19.2.8)
@@ -4982,8 +4983,8 @@ importers:
         specifier: 4.9.1
         version: 4.9.1
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -5043,8 +5044,8 @@ importers:
         specifier: 1.2.5
         version: 1.2.5
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -5092,8 +5093,8 @@ importers:
         specifier: 10.9.1
         version: 10.9.1(jiti@2.7.0)
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       prettier:
         specifier: 3.9.6
         version: 3.9.6
@@ -5467,8 +5468,8 @@ importers:
         specifier: 1.2.5
         version: 1.2.5
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -5510,8 +5511,8 @@ importers:
         specifier: workspace:*
         version: link:../config
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       typescript:
         specifier: 6.0.3
         version: 6.0.3
@@ -5547,8 +5548,8 @@ importers:
         specifier: 10.9.1
         version: 10.9.1(jiti@2.7.0)
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       prettier:
         specifier: 3.9.6
         version: 3.9.6
@@ -5596,8 +5597,8 @@ importers:
         specifier: 1.11.23
         version: 1.11.23
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -5642,8 +5643,8 @@ importers:
         specifier: 10.9.1
         version: 10.9.1(jiti@2.7.0)
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       prettier:
         specifier: 3.9.6
         version: 3.9.6
@@ -5685,8 +5686,8 @@ importers:
         specifier: 10.9.1
         version: 10.9.1(jiti@2.7.0)
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       prettier:
         specifier: 3.9.6
         version: 3.9.6
@@ -5873,8 +5874,8 @@ importers:
         specifier: 0.28.2
         version: 0.28.2
       postcss:
-        specifier: 8.5.28
-        version: 8.5.28
+        specifier: 8.5.26
+        version: 8.5.26
       prettier:
         specifier: 3.9.6
         version: 3.9.6
@@ -12542,8 +12543,8 @@ packages:
   fast-string-width@3.0.2:
     resolution: {integrity: sha512-gX8LrtNEI5hq8DVUfRQMbr5lpaS4nMIWV+7XEbXk2b8kiQIizgnlr12B4dA3ZEx3308ze0O4Q1R+cHts8kyUJg==}
 
-  fast-uri@3.1.4:
-    resolution: {integrity: sha512-8JnbkQ4juDyvYs4mgFGQqg4yCYtFDtUtmp2QIQq11ZZe5CFQ5wcqm1rqDgAh/QdMySuBnPzMUiJUNZG5N/AiQw==}
+  fast-uri@3.1.6:
+    resolution: {integrity: sha512-7Ical1vFEMr0onbVzEDIreM22I4khW+fzyQPwvAFWBp1iwdshSZRsL4jjRvPG9JP1uiqMHRto+YU6R2/CzDz5Q==}
 
   fast-wrap-ansi@0.2.2:
     resolution: {integrity: sha512-7F2Fl+TjRSenLqlU3UjSH0iyqopqoZIu7eZVpEirP2g1GtWa2G/ecEmBdgz31+Mxr+ELclgg6sokpSFIQiZ02Q==}
@@ -15243,10 +15244,6 @@ packages:
     resolution: {integrity: sha512-u82N74LFzG8ca+dD8puPnplTXoGH4fTPpVGuIbt36G3qvNlkvfD0lEAZSxaly3KX8TS/L1A1gsCEmvKmBcVbkQ==}
     engines: {node: ^10 || ^12 || >=14}
 
-  postcss@8.5.28:
-    resolution: {integrity: sha512-RRuzqDtt5Y9h3quz5hWhK+TPnsmVs6WwSU6LkJMeY4HstUEDuYTG8UJSdawMRzmzAtV+KEoG8N3Qg2qLy5vM/A==}
-    engines: {node: ^10 || ^12 || >=14}
-
   powershell-utils@0.1.0:
     resolution: {integrity: sha512-dM0jVuXJPsDN6DvRpea484tCUaMiXWjuCn++HGTqUWzGDjv5tZkEZldAJ/UMlqRYGFrD/etByo4/xOuC/snX2A==}
     engines: {node: '>=20'}
@@ -16844,10 +16841,6 @@ packages:
 
   undici-types@8.3.0:
     resolution: {integrity: sha512-j375ScV60dom+YkPFIfTLcOiPxkN/buHz5GobjLhixFuANaNs3C9l4GmrWqejgXWJ7BbJcFYpTEUkS1Ge8bpZQ==}
-
-  undici@7.28.0:
-    resolution: {integrity: sha512-cRZYrTDwWznlnRiPjggAGxZXanty6M8RV1ff8Wm4LWXBp7/IG8v5DnOm74DtUBp9OONpK75YlPnIjQqX0dBDtA==}
-    engines: {node: '>=20.18.1'}
 
   undici@7.29.0:
     resolution: {integrity: sha512-IDxfleLmmbSskfWSUATiN1nfn2rDuvnMOqb5CWR92iIfojA0Ud+ulOAAEQ57LPr9rWmsreUyf5lwyao+7GNNVw==}
@@ -20577,7 +20570,7 @@ snapshots:
     dependencies:
       playwright: 1.62.1
 
-  '@pmmmwh/react-refresh-webpack-plugin@0.5.17(react-refresh@0.14.2)(type-fest@4.41.0)(webpack-hot-middleware@2.26.1)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28))':
+  '@pmmmwh/react-refresh-webpack-plugin@0.5.17(react-refresh@0.14.2)(type-fest@4.41.0)(webpack-hot-middleware@2.26.1)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26))':
     dependencies:
       ansi-html: 0.0.9
       core-js-pure: 3.50.0
@@ -20587,7 +20580,7 @@ snapshots:
       react-refresh: 0.14.2
       schema-utils: 4.3.3
       source-map: 0.7.6
-      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.28)
+      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.26)
     optionalDependencies:
       type-fest: 4.41.0
       webpack-hot-middleware: 2.26.1
@@ -21907,18 +21900,18 @@ snapshots:
       '@storybook/core-webpack': 10.6.0(storybook@10.6.0(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))
       case-sensitive-paths-webpack-plugin: 2.4.0
       cjs-module-lexer: 1.4.3
-      css-loader: 7.1.5(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28))
+      css-loader: 7.1.5(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26))
       es-module-lexer: 1.7.0
-      fork-ts-checker-webpack-plugin: 9.1.0(typescript@6.0.3)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28))
-      html-webpack-plugin: 5.6.8(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28))
+      fork-ts-checker-webpack-plugin: 9.1.0(typescript@6.0.3)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26))
+      html-webpack-plugin: 5.6.8(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26))
       magic-string: 1.2.3
       semver: 7.8.5
       storybook: 10.6.0(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8)
-      style-loader: 4.0.0(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28))
-      terser-webpack-plugin: 5.6.1(esbuild@0.28.2)(postcss@8.5.26)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28))
+      style-loader: 4.0.0(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26))
+      terser-webpack-plugin: 5.6.1(esbuild@0.28.2)(postcss@8.5.26)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26))
       ts-dedent: 2.3.0
       webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.26)
-      webpack-dev-middleware: 6.1.3(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28))
+      webpack-dev-middleware: 6.1.3(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26))
       webpack-hot-middleware: 2.26.1
       webpack-virtual-modules: 0.6.2
     optionalDependencies:
@@ -21954,7 +21947,7 @@ snapshots:
     dependencies:
       react: 19.2.8
 
-  '@storybook/nextjs@10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(esbuild@0.28.2)(next@16.3.4(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@playwright/test@1.62.1)(@types/node@26.4.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sass@1.103.1))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sass-embedded@1.103.1)(sass@1.103.1)(storybook@10.6.0(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(type-fest@4.41.0)(typescript@6.0.3)(webpack-hot-middleware@2.26.1)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28))':
+  '@storybook/nextjs@10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(esbuild@0.28.2)(next@16.3.4(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@playwright/test@1.62.1)(@types/node@26.4.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sass@1.103.1))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sass-embedded@1.103.1)(sass@1.103.1)(storybook@10.6.0(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(type-fest@4.41.0)(typescript@6.0.3)(webpack-hot-middleware@2.26.1)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26))':
     dependencies:
       '@babel/core': 7.29.7
       '@babel/plugin-syntax-bigint': 7.8.3(@babel/core@7.29.7)
@@ -21969,27 +21962,27 @@ snapshots:
       '@babel/preset-react': 7.29.7(@babel/core@7.29.7)
       '@babel/preset-typescript': 7.29.7(@babel/core@7.29.7)
       '@babel/runtime': 7.29.7
-      '@pmmmwh/react-refresh-webpack-plugin': 0.5.17(react-refresh@0.14.2)(type-fest@4.41.0)(webpack-hot-middleware@2.26.1)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28))
+      '@pmmmwh/react-refresh-webpack-plugin': 0.5.17(react-refresh@0.14.2)(type-fest@4.41.0)(webpack-hot-middleware@2.26.1)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26))
       '@storybook/builder-webpack5': 10.6.0(esbuild@0.28.2)(postcss@8.5.26)(storybook@10.6.0(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(typescript@6.0.3)
       '@storybook/preset-react-webpack': 10.6.0(esbuild@0.28.2)(postcss@8.5.26)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(typescript@6.0.3)
       '@storybook/react': 10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(typescript@6.0.3)
       '@types/semver': 7.8.0
-      babel-loader: 9.2.1(@babel/core@7.29.7)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28))
-      css-loader: 6.11.0(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28))
+      babel-loader: 9.2.1(@babel/core@7.29.7)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26))
+      css-loader: 6.11.0(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26))
       loader-utils: 3.3.1
       next: 16.3.4(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@playwright/test@1.62.1)(@types/node@26.4.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sass@1.103.1)
-      node-polyfill-webpack-plugin: 2.0.1(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28))
+      node-polyfill-webpack-plugin: 2.0.1(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26))
       postcss: 8.5.26
-      postcss-loader: 8.2.1(postcss@8.5.26)(typescript@6.0.3)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28))
+      postcss-loader: 8.2.1(postcss@8.5.26)(typescript@6.0.3)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26))
       probe-image-size: 7.4.0
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
       react-refresh: 0.14.2
       resolve-url-loader: 5.0.0
-      sass-loader: 16.0.8(sass-embedded@1.103.1)(sass@1.103.1)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28))
+      sass-loader: 16.0.8(sass-embedded@1.103.1)(sass@1.103.1)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26))
       semver: 7.8.5
       storybook: 10.6.0(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8)
-      style-loader: 3.3.4(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28))
+      style-loader: 3.3.4(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26))
       styled-jsx: 5.1.7(@babel/core@7.29.7)(react@19.2.8)
       tsconfig-paths: 4.2.0
       tsconfig-paths-webpack-plugin: 4.2.0
@@ -21997,7 +21990,7 @@ snapshots:
       '@types/react': 19.2.18
       '@types/react-dom': 19.2.7(@types/react@19.2.18)
       typescript: 6.0.3
-      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.28)
+      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.26)
     transitivePeerDependencies:
       - '@minify-html/node'
       - '@napi-rs/image'
@@ -22031,7 +22024,7 @@ snapshots:
   '@storybook/preset-react-webpack@10.6.0(esbuild@0.28.2)(postcss@8.5.26)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(typescript@6.0.3)':
     dependencies:
       '@storybook/core-webpack': 10.6.0(storybook@10.6.0(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))
-      '@storybook/react-docgen-typescript-plugin': 1.0.6--canary.9.0c3f3b7.0(typescript@6.0.3)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28))
+      '@storybook/react-docgen-typescript-plugin': 1.0.6--canary.9.0c3f3b7.0(typescript@6.0.3)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26))
       '@types/semver': 7.8.0
       magic-string: 1.2.3
       react: 19.2.8
@@ -22064,7 +22057,7 @@ snapshots:
       - uglify-js
       - webpack-cli
 
-  '@storybook/react-docgen-typescript-plugin@1.0.6--canary.9.0c3f3b7.0(typescript@6.0.3)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28))':
+  '@storybook/react-docgen-typescript-plugin@1.0.6--canary.9.0c3f3b7.0(typescript@6.0.3)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26))':
     dependencies:
       debug: 4.4.3(supports-color@8.1.1)
       endent: 2.1.0
@@ -22074,7 +22067,7 @@ snapshots:
       react-docgen-typescript: 2.4.0(typescript@6.0.3)
       tslib: 2.8.1
       typescript: 6.0.3
-      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.28)
+      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.26)
     transitivePeerDependencies:
       - supports-color
 
@@ -23208,7 +23201,7 @@ snapshots:
   ajv@8.20.0:
     dependencies:
       fast-deep-equal: 3.1.3
-      fast-uri: 3.1.4
+      fast-uri: 3.1.6
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
 
@@ -23421,12 +23414,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  babel-loader@9.2.1(@babel/core@7.29.7)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28)):
+  babel-loader@9.2.1(@babel/core@7.29.7)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26)):
     dependencies:
       '@babel/core': 7.29.7
       find-cache-dir: 4.0.0
       schema-utils: 4.3.3
-      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.28)
+      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.26)
 
   babel-plugin-istanbul@8.0.0:
     dependencies:
@@ -24181,7 +24174,7 @@ snapshots:
 
   css-functions-list@3.3.3: {}
 
-  css-loader@6.11.0(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28)):
+  css-loader@6.11.0(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26)):
     dependencies:
       icss-utils: 5.1.0(postcss@8.5.26)
       postcss: 8.5.26
@@ -24192,9 +24185,9 @@ snapshots:
       postcss-value-parser: 4.2.0
       semver: 7.8.5
     optionalDependencies:
-      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.28)
+      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.26)
 
-  css-loader@7.1.5(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28)):
+  css-loader@7.1.5(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26)):
     dependencies:
       icss-utils: 5.1.0(postcss@8.5.26)
       postcss: 8.5.26
@@ -24205,7 +24198,7 @@ snapshots:
       postcss-value-parser: 4.2.0
       semver: 7.8.5
     optionalDependencies:
-      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.28)
+      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.26)
 
   css-mediaquery@0.1.2: {}
 
@@ -25193,7 +25186,7 @@ snapshots:
     dependencies:
       fast-string-truncated-width: 3.0.3
 
-  fast-uri@3.1.4: {}
+  fast-uri@3.1.6: {}
 
   fast-wrap-ansi@0.2.2:
     dependencies:
@@ -25365,7 +25358,7 @@ snapshots:
       cross-spawn: 7.0.6
       signal-exit: 4.1.0
 
-  fork-ts-checker-webpack-plugin@9.1.0(typescript@6.0.3)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28)):
+  fork-ts-checker-webpack-plugin@9.1.0(typescript@6.0.3)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26)):
     dependencies:
       '@babel/code-frame': 7.29.7
       chalk: 4.1.2
@@ -25380,7 +25373,7 @@ snapshots:
       semver: 7.8.5
       tapable: 2.3.3
       typescript: 6.0.3
-      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.28)
+      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.26)
 
   form-data@4.0.6:
     dependencies:
@@ -25846,7 +25839,7 @@ snapshots:
 
   html-url-attributes@3.0.1: {}
 
-  html-webpack-plugin@5.6.8(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28)):
+  html-webpack-plugin@5.6.8(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26)):
     dependencies:
       '@types/html-minifier-terser': 6.1.0
       html-minifier-terser: 6.1.0
@@ -25854,7 +25847,7 @@ snapshots:
       pretty-error: 4.0.0
       tapable: 2.3.3
     optionalDependencies:
-      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.28)
+      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.26)
 
   htmlparser2@12.0.0:
     dependencies:
@@ -26759,7 +26752,7 @@ snapshots:
       saxes: 6.0.0
       symbol-tree: 3.2.4
       tough-cookie: 6.0.1
-      undici: 7.28.0
+      undici: 7.29.0
       w3c-xmlserializer: 5.0.0
       webidl-conversions: 8.0.1
       whatwg-mimetype: 5.0.0
@@ -27543,27 +27536,16 @@ snapshots:
 
   minimist@1.2.8: {}
 
-  minimizer-webpack-plugin@5.9.0(esbuild@0.28.2)(postcss@8.5.26)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28)):
+  minimizer-webpack-plugin@5.9.0(esbuild@0.28.2)(postcss@8.5.26)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
       schema-utils: 4.3.3
       terser: 5.51.2
-      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.28)
+      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.26)
     optionalDependencies:
       esbuild: 0.28.2
       postcss: 8.5.26
-
-  minimizer-webpack-plugin@5.9.0(esbuild@0.28.2)(postcss@8.5.28)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28)):
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.31
-      jest-worker: 27.5.1
-      schema-utils: 4.3.3
-      terser: 5.51.2
-      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.28)
-    optionalDependencies:
-      esbuild: 0.28.2
-      postcss: 8.5.28
 
   minipass@7.1.3: {}
 
@@ -27763,7 +27745,7 @@ snapshots:
 
   node-int64@0.4.0: {}
 
-  node-polyfill-webpack-plugin@2.0.1(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28)):
+  node-polyfill-webpack-plugin@2.0.1(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26)):
     dependencies:
       assert: 2.1.0
       browserify-zlib: 0.2.0
@@ -27790,7 +27772,7 @@ snapshots:
       url: 0.11.4
       util: 0.12.5
       vm-browserify: 1.1.2
-      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.28)
+      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.26)
 
   node-preload@0.2.1:
     dependencies:
@@ -28310,14 +28292,14 @@ snapshots:
 
   possible-typed-array-names@1.1.0: {}
 
-  postcss-loader@8.2.1(postcss@8.5.26)(typescript@6.0.3)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28)):
+  postcss-loader@8.2.1(postcss@8.5.26)(typescript@6.0.3)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26)):
     dependencies:
       cosmiconfig: 9.0.2(typescript@6.0.3)
       jiti: 2.7.0
       postcss: 8.5.26
       semver: 7.8.5
     optionalDependencies:
-      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.28)
+      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.26)
     transitivePeerDependencies:
       - typescript
 
@@ -28342,11 +28324,11 @@ snapshots:
       icss-utils: 5.1.0(postcss@8.5.26)
       postcss: 8.5.26
 
-  postcss-nesting@14.0.1(postcss@8.5.28):
+  postcss-nesting@14.0.1(postcss@8.5.26):
     dependencies:
       '@csstools/selector-resolve-nested': 4.0.1(postcss-selector-parser@7.1.4)
       '@csstools/selector-specificity': 6.0.0(postcss-selector-parser@7.1.4)
-      postcss: 8.5.28
+      postcss: 8.5.26
       postcss-selector-parser: 7.1.4
 
   postcss-safe-parser@7.0.1(postcss@8.5.26):
@@ -28363,20 +28345,14 @@ snapshots:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
 
-  postcss-styled-syntax@0.7.2(postcss@8.5.28):
+  postcss-styled-syntax@0.7.2(postcss@8.5.26):
     dependencies:
-      postcss: 8.5.28
+      postcss: 8.5.26
       typescript: 6.0.3
 
   postcss-value-parser@4.2.0: {}
 
   postcss@8.5.26:
-    dependencies:
-      nanoid: 3.3.18
-      picocolors: 1.1.1
-      source-map-js: 1.2.1
-
-  postcss@8.5.28:
     dependencies:
       nanoid: 3.3.18
       picocolors: 1.1.1
@@ -29327,13 +29303,13 @@ snapshots:
       sass-embedded-win32-arm64: 1.103.1
       sass-embedded-win32-x64: 1.103.1
 
-  sass-loader@16.0.8(sass-embedded@1.103.1)(sass@1.103.1)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28)):
+  sass-loader@16.0.8(sass-embedded@1.103.1)(sass@1.103.1)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26)):
     dependencies:
       neo-async: 2.6.2
     optionalDependencies:
       sass: 1.103.1
       sass-embedded: 1.103.1
-      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.28)
+      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.26)
 
   sass@1.103.1:
     dependencies:
@@ -29835,13 +29811,13 @@ snapshots:
     dependencies:
       escape-string-regexp: 1.0.5
 
-  style-loader@3.3.4(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28)):
+  style-loader@3.3.4(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26)):
     dependencies:
-      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.28)
+      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.26)
 
-  style-loader@4.0.0(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28)):
+  style-loader@4.0.0(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26)):
     dependencies:
-      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.28)
+      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.26)
 
   style-mod@4.1.3: {}
 
@@ -30037,13 +30013,13 @@ snapshots:
       - bare-abort-controller
       - react-native-b4a
 
-  terser-webpack-plugin@5.6.1(esbuild@0.28.2)(postcss@8.5.26)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28)):
+  terser-webpack-plugin@5.6.1(esbuild@0.28.2)(postcss@8.5.26)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
       schema-utils: 4.3.3
       terser: 5.51.2
-      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.28)
+      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.26)
     optionalDependencies:
       esbuild: 0.28.2
       postcss: 8.5.26
@@ -30301,8 +30277,6 @@ snapshots:
       which-boxed-primitive: 1.1.1
 
   undici-types@8.3.0: {}
-
-  undici@7.28.0: {}
 
   undici@7.29.0: {}
 
@@ -30633,7 +30607,7 @@ snapshots:
 
   webidl-conversions@8.0.1: {}
 
-  webpack-dev-middleware@6.1.3(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28)):
+  webpack-dev-middleware@6.1.3(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26)):
     dependencies:
       colorette: 2.0.20
       memfs: 3.5.3
@@ -30641,7 +30615,7 @@ snapshots:
       range-parser: 1.3.0
       schema-utils: 4.3.3
     optionalDependencies:
-      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.28)
+      webpack: 5.110.3(esbuild@0.28.2)(postcss@8.5.26)
 
   webpack-hot-middleware@2.26.1:
     dependencies:
@@ -30668,46 +30642,7 @@ snapshots:
       events: 3.3.0
       graceful-fs: 4.2.11
       mime-db: 1.54.0
-      minimizer-webpack-plugin: 5.9.0(esbuild@0.28.2)(postcss@8.5.26)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28))
-      neo-async: 2.6.2
-      schema-utils: 4.3.3
-      tapable: 2.3.3
-      watchpack: 2.5.2
-      webpack-sources: 3.5.1
-    transitivePeerDependencies:
-      - '@minify-html/node'
-      - '@napi-rs/image'
-      - '@swc/core'
-      - '@swc/css'
-      - '@swc/html'
-      - clean-css
-      - cssnano
-      - csso
-      - esbuild
-      - html-minifier-terser
-      - imagemin
-      - lightningcss
-      - postcss
-      - sharp
-      - svgo
-      - uglify-js
-
-  webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28):
-    dependencies:
-      '@types/estree': 1.0.9
-      '@types/json-schema': 7.0.15
-      '@webassemblyjs/ast': 1.14.1
-      '@webassemblyjs/wasm-edit': 1.14.1
-      '@webassemblyjs/wasm-parser': 1.14.1
-      acorn: 8.18.0
-      browserslist: 4.28.8
-      chrome-trace-event: 1.0.4
-      enhanced-resolve: 5.24.5
-      es-module-lexer: 2.3.2
-      events: 3.3.0
-      graceful-fs: 4.2.11
-      mime-db: 1.54.0
-      minimizer-webpack-plugin: 5.9.0(esbuild@0.28.2)(postcss@8.5.28)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.28))
+      minimizer-webpack-plugin: 5.9.0(esbuild@0.28.2)(postcss@8.5.26)(webpack@5.110.3(esbuild@0.28.2)(postcss@8.5.26))
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.3
