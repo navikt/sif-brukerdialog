@@ -1,4 +1,4 @@
-import { AppEnv } from '../env.schema';
+import type { AppEnv } from '../env.schema.ts';
 
 export const getPlaywrightAppSettings = (): AppEnv => ({
     ENV: 'development',

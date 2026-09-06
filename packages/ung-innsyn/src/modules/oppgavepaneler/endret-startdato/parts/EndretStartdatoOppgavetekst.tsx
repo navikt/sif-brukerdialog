@@ -2,7 +2,7 @@ import { BodyLong } from '@navikt/ds-react';
 import { dateFormatter, ISODate } from '@sif/utils';
 import { ReactNode } from 'react';
 
-import { UngUiText } from '../../../../i18n';
+import { UngInnsynText } from '../../../../i18n';
 
 interface Props {
     frist: ISODate;
@@ -14,25 +14,25 @@ export const EndretStartdatoOppgavetekst = ({ frist, startdato }: Props) => {
     return (
         <>
             <BodyLong spacing>
-                <UngUiText
+                <UngInnsynText
                     id="@ungInnsyn.endretStartdato.tekst.1"
                     values={{ formatertDato, strong: (content: ReactNode) => <strong>{content}</strong> }}
                 />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungInnsyn.endretStartdato.tekst.2" />
+                <UngInnsynText id="@ungInnsyn.endretStartdato.tekst.2" />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungInnsyn.endretStartdato.tekst.3" />
+                <UngInnsynText id="@ungInnsyn.endretStartdato.tekst.3" />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungInnsyn.endretStartdato.tekst.4" />
+                <UngInnsynText id="@ungInnsyn.endretStartdato.tekst.4" />
             </BodyLong>
             <BodyLong spacing weight="semibold">
-                <UngUiText id="@ungInnsyn.endretStartdato.tekst.5" values={{ formatertFrist }} />
+                <UngInnsynText id="@ungInnsyn.endretStartdato.tekst.5" values={{ formatertFrist }} />
             </BodyLong>
             <BodyLong>
-                <UngUiText id="@ungInnsyn.endretStartdato.tekst.6" values={{ formatertDato }} />
+                <UngInnsynText id="@ungInnsyn.endretStartdato.tekst.6" values={{ formatertDato }} />
             </BodyLong>
         </>
     );

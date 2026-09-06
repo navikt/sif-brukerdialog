@@ -1,6 +1,6 @@
 import { resolve } from 'path';
 
-export const createAliasConfig = (baseDir: string = __dirname) => ({
+export const createAliasConfig = (baseDir: string = import.meta.dirname) => ({
     // Felles/root-nivå alias med @shared prefix
     '@shared/types': resolve(baseDir, './src/types'),
     '@shared/utils': resolve(baseDir, './src/utils'),

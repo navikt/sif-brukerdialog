@@ -2,7 +2,7 @@ import { dateFormatter } from '@sif/utils';
 import { EndretStartdatoOppgave } from '@sif/api/ung-brukerdialog';
 import { ReactNode } from 'react';
 
-import { UngUiText } from '../../../i18n';
+import { UngInnsynText } from '../../../i18n';
 import { Oppgavebekreftelse } from '../../oppgavebekreftelse/Oppgavebekreftelse';
 import { EndretStartdatoOppgavetekst } from './parts/EndretStartdatoOppgavetekst';
 
@@ -24,14 +24,14 @@ export const EndretStartdatoOppgavePanel = ({ navn, oppgave, initialVisKvitterin
             </Oppgavebekreftelse.Ubesvart>
 
             <Oppgavebekreftelse.Besvart>
-                <UngUiText
+                <UngInnsynText
                     id="@ungInnsyn.endretStartdato.oppsummering"
                     values={{ formatertDato, strong: (content: ReactNode) => <strong>{content}</strong> }}
                 />
             </Oppgavebekreftelse.Besvart>
 
             <Oppgavebekreftelse.Kvittering>
-                <UngUiText id="@ungInnsyn.oppgavetype.BEKREFT_ENDRET_STARTDATO.kvitteringTekst" />
+                <UngInnsynText id="@ungInnsyn.oppgavetype.BEKREFT_ENDRET_STARTDATO.kvitteringTekst" />
             </Oppgavebekreftelse.Kvittering>
         </Oppgavebekreftelse>
     );

@@ -1,11 +1,11 @@
 import { OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 
-import type { UngUiMessageKeys } from '../../i18n';
+import type { UngInnsynMessageKeys } from '../../i18n';
 
 export type Lovlenke = {
     url: string;
-    tekstKey: UngUiMessageKeys;
+    tekstKey: UngInnsynMessageKeys;
 };
 
 const FORSKRIFT_UPY_URL = 'https://lovdata.no/dokument/LTI/forskrift/2025-06-20-1182';

@@ -1,5 +1,5 @@
-import { AppEnv } from '../env.schema';
-import { getDevAppSettings } from '../mock/devAppSettings';
+import type { AppEnv } from '../env.schema.ts';
+import { getDevAppSettings } from '../mock/devAppSettings.ts';
 
 export const getPlaywrightAppSettings = (): AppEnv => ({
     ...getDevAppSettings(),

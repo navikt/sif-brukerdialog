@@ -2,7 +2,7 @@ import react from '@vitejs/plugin-react';
 import { copyFileSync } from 'fs';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
-import { getDevAppSettings } from './mock/devAppSettings';
+import { getDevAppSettings } from './mock/devAppSettings.ts';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({

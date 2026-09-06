@@ -3,7 +3,7 @@ import { dateFormatter } from '@sif/utils';
 
 import { BostedsvilkårIkkeOppfyltÅrsak } from '@navikt/ung-brukerdialog-api';
 import { BostedVilkårPeriodeOppgave } from '@sif/api/ung-brukerdialog';
-import { UngUiText } from '../../../i18n';
+import { UngInnsynText } from '../../../i18n';
 import Fritekst from '../../../components/fritekst/Fritekst';
 
 type Props = BostedVilkårPeriodeOppgave['oppgavetypeData'];
@@ -20,7 +20,7 @@ export const BostedVilkarPeriodeOppgavetekst = ({
         case BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM:
             return (
                 <BodyLong>
-                    <UngUiText
+                    <UngInnsynText
                         id="@ungInnsyn.bostedVilkårPeriodeOppgave.IKKE_BOSATTADRESSE_I_TRONDHEIM"
                         values={{ periode: periodeTekst }}
                     />
@@ -29,7 +29,7 @@ export const BostedVilkarPeriodeOppgavetekst = ({
         case BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSTEDSADRESSE_OG_IKKE_FOLKEREGISTRERT_I_TRONDHEIM:
             return (
                 <BodyLong>
-                    <UngUiText
+                    <UngInnsynText
                         id="@ungInnsyn.bostedVilkårPeriodeOppgave.IKKE_BOSTEDSADRESSE_OG_IKKE_FOLKEREGISTRERT_I_TRONDHEIM"
                         values={{ periode: periodeTekst }}
                     />
@@ -38,7 +38,7 @@ export const BostedVilkarPeriodeOppgavetekst = ({
         case BostedsvilkårIkkeOppfyltÅrsak.STUDIE_ELLER_ARBEIDSSTED_UTENFOR_TRONDHEIM:
             return (
                 <BodyLong>
-                    <UngUiText
+                    <UngInnsynText
                         id="@ungInnsyn.bostedVilkårPeriodeOppgave.STUDIE_ELLER_ARBEIDSSTED_UTENFOR_TRONDHEIM"
                         values={{ periode: periodeTekst }}
                     />
@@ -48,7 +48,7 @@ export const BostedVilkarPeriodeOppgavetekst = ({
             return (
                 <VStack gap="space-20">
                     <BodyLong>
-                        <UngUiText
+                        <UngInnsynText
                             id="@ungInnsyn.bostedVilkårPeriodeOppgave.ANNET"
                             values={{ periode: periodeTekst }}
                         />

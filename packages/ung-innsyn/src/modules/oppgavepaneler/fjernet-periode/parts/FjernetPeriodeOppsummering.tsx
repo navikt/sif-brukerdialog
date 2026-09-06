@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
 
-import { UngUiText } from '../../../../i18n';
+import { UngInnsynText } from '../../../../i18n';
 
 export const FjernetPeriodeOppsummering = () => {
     return (
-        <UngUiText
+        <UngInnsynText
             id="@ungInnsyn.fjernetPeriode.oppsummering"
             values={{
                 strong: (content: ReactNode) => <strong>{content}</strong>,

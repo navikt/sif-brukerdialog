@@ -15,19 +15,19 @@
     "dependencies": {
         "@navikt/sif-common-hooks": "workspace:*",
         "@portabletext/react": "8.0.1",
-        "@sanity/client": "8.4.0"
+        "@sanity/client": "8.5.0"
     },
     "devDependencies": {
-        "@navikt/aksel-icons": "8.16.1",
-        "@navikt/ds-css": "8.16.1",
-        "@navikt/ds-react": "8.16.1",
+        "@navikt/aksel-icons": "8.16.2",
+        "@navikt/ds-css": "8.16.2",
+        "@navikt/ds-react": "8.16.2",
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "26.4.0",
+        "@types/node": "26.4.1",
         "@types/react": "19.2.18",
-        "@types/react-dom": "19.2.5",
+        "@types/react-dom": "19.2.7",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
-        "postcss": "8.5.26",
+        "postcss": "8.5.28",
         "prop-types": "15.8.1",
         "react": "19.2.8",
         "react-dom": "19.2.8",

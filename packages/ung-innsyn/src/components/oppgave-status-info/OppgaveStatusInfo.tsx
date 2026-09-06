@@ -1,7 +1,7 @@
 import { Alert, BodyLong, Box } from '@navikt/ds-react';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 
-import { UngUiText } from '../../i18n';
+import { UngInnsynText } from '../../i18n';
 
 interface Props {
     oppgaveStatus: OppgaveStatus;
@@ -15,7 +15,7 @@ export const OppgaveStatusInfo = ({ oppgaveStatus }: Props) => {
                 <Alert variant="info">
                     <Box>
                         <BodyLong>
-                            <UngUiText id="@ungInnsyn.oppgaveStatusInfo.utløptEllerAvbrutt" />
+                            <UngInnsynText id="@ungInnsyn.oppgaveStatusInfo.utløptEllerAvbrutt" />
                         </BodyLong>
                     </Box>
                 </Alert>

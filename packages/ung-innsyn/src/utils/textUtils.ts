@@ -2,14 +2,14 @@ import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { BekreftelseOppgave, Oppgave, ParsedOppgaveBase, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import { dateFormatter, dateTimeFormatter } from '@sif/utils';
 
-import { UngUiIntlShape } from '../i18n';
+import { UngInnsynIntlShape } from '../i18n';
 import { UttalelseSvaralternativer } from '../types';
 
 const renderDatoOgKlokkeslett = (dato?: Date) => {
     return dato ? dateTimeFormatter.compactWithTime(dato) : '';
 };
 
-export const getOppgaveTittel = (oppgave: Oppgave | BekreftelseOppgave, { text }: UngUiIntlShape): string => {
+export const getOppgaveTittel = (oppgave: Oppgave | BekreftelseOppgave, { text }: UngInnsynIntlShape): string => {
     switch (oppgave.parsedOppgavetype) {
         case ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return text(`@ungInnsyn.oppgavetype.${oppgave.parsedOppgavetype}.oppgavetittel`, {
@@ -28,7 +28,7 @@ export const getOppgaveTittel = (oppgave: Oppgave | BekreftelseOppgave, { text }
     }
 };
 
-export const getOppgavePanelTittel = (oppgave: Oppgave | BekreftelseOppgave, { text }: UngUiIntlShape): string => {
+export const getOppgavePanelTittel = (oppgave: Oppgave | BekreftelseOppgave, { text }: UngInnsynIntlShape): string => {
     switch (oppgave.parsedOppgavetype) {
         case ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return text('@ungInnsyn.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.paneltittel', {
@@ -46,7 +46,7 @@ export const getOppgavePanelTittel = (oppgave: Oppgave | BekreftelseOppgave, { t
     }
 };
 
-export const getOppgaveInfo = (oppgave: Oppgave, { text }: UngUiIntlShape): string => {
+export const getOppgaveInfo = (oppgave: Oppgave, { text }: UngInnsynIntlShape): string => {
     switch (oppgave.parsedOppgavetype) {
         case ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return text('@ungInnsyn.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info', {
@@ -76,13 +76,13 @@ export const getOppgaveStatusText = (oppgave: ParsedOppgaveBase): string => {
     }
 };
 
-export const getTilbakemeldingSpørsmål = (oppgave: BekreftelseOppgave, { text }: UngUiIntlShape) => {
+export const getTilbakemeldingSpørsmål = (oppgave: BekreftelseOppgave, { text }: UngInnsynIntlShape) => {
     return text(`@ungInnsyn.oppgavetype.${oppgave.parsedOppgavetype}.harTilbakemeldingSpørsmål`);
 };
 
 export const getSvaralternativer = (
     oppgave: BekreftelseOppgave,
-    { text }: UngUiIntlShape,
+    { text }: UngInnsynIntlShape,
 ): UttalelseSvaralternativer => {
     return {
         harIkkeUttalelseLabel: text(`@ungInnsyn.oppgavetype.${oppgave.parsedOppgavetype}.harIkkeUttalelseLabel`),
@@ -90,11 +90,11 @@ export const getSvaralternativer = (
     };
 };
 
-export const getTilbakemeldingFritekstLabel = (oppgave: BekreftelseOppgave, { text }: UngUiIntlShape) => {
+export const getTilbakemeldingFritekstLabel = (oppgave: BekreftelseOppgave, { text }: UngInnsynIntlShape) => {
     return text(`@ungInnsyn.oppgavetype.${oppgave.parsedOppgavetype}.tilbakemeldingFritekstLabel`);
 };
 
-export const getOppgaveDokumentTittel = (applikasjonTittel: string, oppgave: Oppgave, intl: UngUiIntlShape) => {
+export const getOppgaveDokumentTittel = (applikasjonTittel: string, oppgave: Oppgave, intl: UngInnsynIntlShape) => {
     return getDokumentTittel(getOppgaveTittel(oppgave, intl), applikasjonTittel);
 };
 

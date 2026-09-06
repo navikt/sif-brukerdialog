@@ -3,7 +3,7 @@ import { dateFormatter } from '@sif/utils';
 
 import { BostedsvilkårIkkeOppfyltÅrsak } from '@navikt/ung-brukerdialog-api';
 import { BostedVilkårOpphørOppgave } from '@sif/api/ung-brukerdialog';
-import { UngUiText } from '../../../i18n';
+import { UngInnsynText } from '../../../i18n';
 import Fritekst from '../../../components/fritekst/Fritekst';
 
 type Props = BostedVilkårOpphørOppgave['oppgavetypeData'];
@@ -19,7 +19,7 @@ export const BostedVilkarOpphorOppgavetekst = ({
         case BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM:
             return (
                 <BodyLong>
-                    <UngUiText
+                    <UngInnsynText
                         id="@ungInnsyn.bostedVilkårOpphørOppgave.IKKE_BOSATTADRESSE_I_TRONDHEIM"
                         values={{ fom: formatertFom }}
                     />
@@ -28,7 +28,7 @@ export const BostedVilkarOpphorOppgavetekst = ({
         case BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSTEDSADRESSE_OG_IKKE_FOLKEREGISTRERT_I_TRONDHEIM:
             return (
                 <BodyLong>
-                    <UngUiText
+                    <UngInnsynText
                         id="@ungInnsyn.bostedVilkårOpphørOppgave.IKKE_BOSTEDSADRESSE_OG_IKKE_FOLKEREGISTRERT_I_TRONDHEIM"
                         values={{ fom: formatertFom }}
                     />
@@ -37,7 +37,7 @@ export const BostedVilkarOpphorOppgavetekst = ({
         case BostedsvilkårIkkeOppfyltÅrsak.STUDIE_ELLER_ARBEIDSSTED_UTENFOR_TRONDHEIM:
             return (
                 <BodyLong>
-                    <UngUiText
+                    <UngInnsynText
                         id="@ungInnsyn.bostedVilkårOpphørOppgave.STUDIE_ELLER_ARBEIDSSTED_UTENFOR_TRONDHEIM"
                         values={{ fom: formatertFom }}
                     />
@@ -47,7 +47,7 @@ export const BostedVilkarOpphorOppgavetekst = ({
             return (
                 <VStack gap="space-20">
                     <BodyLong>
-                        <UngUiText id="@ungInnsyn.bostedVilkårOpphørOppgave.ANNET" values={{ fom: formatertFom }} />
+                        <UngInnsynText id="@ungInnsyn.bostedVilkårOpphørOppgave.ANNET" values={{ fom: formatertFom }} />
                     </BodyLong>
                     <BodyLong>
                         <Fritekst text={ikkeOppfyltÅrsakFritekstbeskrivelse} />

@@ -2,7 +2,7 @@ import { BodyLong } from '@navikt/ds-react';
 import { dateFormatter, DateRange, ISODate } from '@sif/utils';
 import { ReactNode } from 'react';
 
-import { UngUiText } from '../../../../i18n';
+import { UngInnsynText } from '../../../../i18n';
 
 interface Props {
     frist: ISODate;
@@ -16,10 +16,10 @@ export const EndretStartOgSluttdatoOppgavetekst = ({ frist, nyPeriode }: Props) 
     return (
         <>
             <BodyLong spacing>
-                <UngUiText id="@ungInnsyn.endretStartOgSluttdato.tekst.1" />
+                <UngInnsynText id="@ungInnsyn.endretStartOgSluttdato.tekst.1" />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText
+                <UngInnsynText
                     id="@ungInnsyn.endretStartOgSluttdato.tekst.2"
                     values={{
                         fom,
@@ -29,19 +29,19 @@ export const EndretStartOgSluttdatoOppgavetekst = ({ frist, nyPeriode }: Props) 
                 />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungInnsyn.endretStartOgSluttdato.tekst.3" />
+                <UngInnsynText id="@ungInnsyn.endretStartOgSluttdato.tekst.3" />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungInnsyn.endretStartOgSluttdato.tekst.4" />
+                <UngInnsynText id="@ungInnsyn.endretStartOgSluttdato.tekst.4" />
             </BodyLong>
             <BodyLong spacing>
-                <UngUiText id="@ungInnsyn.endretStartOgSluttdato.tekst.5" />
+                <UngInnsynText id="@ungInnsyn.endretStartOgSluttdato.tekst.5" />
             </BodyLong>
             <BodyLong spacing weight="semibold">
-                <UngUiText id="@ungInnsyn.endretStartOgSluttdato.tekst.6" values={{ formatertFrist }} />
+                <UngInnsynText id="@ungInnsyn.endretStartOgSluttdato.tekst.6" values={{ formatertFrist }} />
             </BodyLong>
             <BodyLong>
-                <UngUiText
+                <UngInnsynText
                     id="@ungInnsyn.endretStartOgSluttdato.tekst.7"
                     values={{
                         fom,

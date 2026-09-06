@@ -6,7 +6,7 @@ import React, { useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 import { BrowserRouter } from 'react-router-dom';
 
-import { ungUi_messages_nb } from '../i18n/nb';
+import { ungInnsyn_messages_nb } from '../i18n/nb';
 import { UngInnsynPage } from '../pages';
 
 const queryClient = new QueryClient({
@@ -17,7 +17,7 @@ const queryClient = new QueryClient({
 });
 
 const allMessages: Record<string, string> = {
-    ...ungUi_messages_nb,
+    ...ungInnsyn_messages_nb,
 };
 
 export const StorybookDecorator = (Story: React.ComponentType) => {
