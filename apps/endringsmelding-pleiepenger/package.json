@@ -12,6 +12,7 @@
         "build-storybook": "storybook build",
         "clean": "rm -rf node_modules dist",
         "dev": "vite --config vite.dev.config.ts",
+        "e2e:build": "pnpm pw:build",
         "lint:eslint": "eslint src",
         "lint:fix": "eslint src --fix",
         "lint:tsc": "tsc --noEmit",

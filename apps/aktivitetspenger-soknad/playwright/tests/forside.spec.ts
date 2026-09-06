@@ -15,6 +15,6 @@ test('laster appen og starter soknadsflyten', async ({ page }) => {
     await page.locator('input[type="checkbox"]').first().check();
     await page.locator('button[type="submit"]').first().click();
 
-    await expect(page).toHaveURL(/\/soknad\/startdato/);
+    await expect(page).toHaveURL(/\/soknad\/kontonummer/);
     await testAccessibility(page);
 });
