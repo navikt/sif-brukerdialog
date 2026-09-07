@@ -1,5 +1,5 @@
 import { zSøker } from '@navikt/k9-brukerdialog-prosessering-api';
-import { BrukerdialogOppgaveDto } from '@navikt/ung-brukerdialog-api';
+import { BrukerdialogOppgaveDto, TilgjengeligSøknadResponse } from '@navikt/ung-brukerdialog-api';
 import { z } from 'zod';
 
 export enum ScenarioType {
@@ -14,4 +14,5 @@ export enum ScenarioType {
 export interface ScenarioData {
     søker: z.infer<typeof zSøker>;
     oppgaver: BrukerdialogOppgaveDto[];
+    tilgjengeligSøknad: TilgjengeligSøknadResponse;
 }
