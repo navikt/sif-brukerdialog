@@ -9,7 +9,7 @@ const OmSøknaden = () => {
     return (
         <VStack gap="space-24">
             <Todo>
-                <BodyShort>Tekster under rettsregler er ikke ferdig</BodyShort>
+                <BodyShort>Tekster under rettsregler er ikke ferdige</BodyShort>
             </Todo>
             <Box>
                 <Heading level="2" size="medium" spacing={true}>

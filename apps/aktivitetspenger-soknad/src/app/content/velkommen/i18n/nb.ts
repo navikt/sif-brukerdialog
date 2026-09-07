@@ -36,7 +36,7 @@ export const velkommenPageMessages_nb = {
         'Hvis du får sykepenger, pleiepenger, omsorgspenger eller opplæringspenger, henter vi opplysninger om dette fra a-ordningen. Opplysningene brukes til å vurdere hvor mye du kan få i aktivitetspenger.',
 
     'personopplysninger.4':
-        'Du har rett til innsyn i saken din. Vil du vite mer om hvordan Nav behandler personopplysninger? Se Se <Lenke>nav.no/personvern</Lenke>.',
+        'Du har rett til innsyn i saken din. Vil du vite mer om hvordan Nav behandler personopplysninger? Se <Lenke>nav.no/personvern</Lenke>.',
 
     'page.velkommen.regler.tittel': 'Rettsregler og automatisk saksbehandling',
     'page.velkommen.regler.tekst.1':
