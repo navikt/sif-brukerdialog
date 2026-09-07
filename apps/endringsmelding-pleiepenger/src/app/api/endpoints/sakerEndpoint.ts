@@ -21,7 +21,7 @@ const sakerEndpoint = {
             const { data } = await api.innsyn.get<K9Format[]>(ApiEndpointInnsyn.sak);
             const k9Saker: K9SakResult[] = [];
             const eldreSaker: K9SakResult[] = [];
-            data.forEach((sak, index) => {
+            data.forEach((sak) => {
                 try {
                     verifyK9Format(sak);
                     const parsedSak = parseK9Format(sak);
@@ -38,16 +38,10 @@ const sakerEndpoint = {
                             erUgyldigK9SakFormat: true,
                             detaljer,
                         });
-                        appLogger.logHandledException(error.error, {
-                            context: 'sakerEndpoint.verifyK9Format',
-                            sakIndex: index,
-                            cause: error.error instanceof Error ? error.error.cause : undefined,
-                            ...(detaljer ?? {}),
-                        });
+                        appLogger.logInfo('sakerEndpoint.verifyK9Format');
                     } else {
                         appLogger.logException(error, {
                             context: 'sakerEndpoint.parseK9Format',
-                            sakIndex: index,
                         });
                         throw error;
                     }
