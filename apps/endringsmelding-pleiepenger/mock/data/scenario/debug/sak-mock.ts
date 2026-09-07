@@ -1,50 +1,71 @@
 export default [
     {
         barn: {
-            fødselsdato: '2020-09-26',
-            fornavn: 'UMAKE',
+            fødselsdato: '2023-01-24',
+            fornavn: 'GEOMETRISK',
             mellomnavn: null,
-            etternavn: 'ORM',
-            aktørId: '2977843645893',
-            identitetsnummer: '26492089450',
+            etternavn: 'RIST',
+            aktørId: '2487158514882',
+            identitetsnummer: '24412358038',
         },
         søknad: {
             søknadId: 'generert',
             versjon: '1.0.0',
-            mottattDato: '2026-02-07T09:29:41.644Z',
+            mottattDato: '2025-01-24T07:51:23.794Z',
             søker: {
                 norskIdentitetsnummer: '00000000000',
             },
             språk: 'nb',
             ytelse: {
                 type: 'PLEIEPENGER_SYKT_BARN',
+                barn: {
+                    norskIdentitetsnummer: '00000000000',
+                    fødselsdato: null,
+                },
+                søknadsperiode: ['2024-11-01/2025-02-28'],
+                endringsperiode: [],
+                trekkKravPerioder: [],
+                opptjeningAktivitet: {},
+                dataBruktTilUtledning: null,
                 annetDataBruktTilUtledning: null,
+                infoFraPunsj: null,
+                bosteder: {
+                    perioder: {},
+                    perioderSomSkalSlettes: {},
+                },
+                utenlandsopphold: {
+                    perioder: {},
+                    perioderSomSkalSlettes: {},
+                },
+                beredskap: {
+                    perioder: {},
+                    perioderSomSkalSlettes: {},
+                },
+                nattevåk: {
+                    perioder: {},
+                    perioderSomSkalSlettes: {},
+                },
+                lovbestemtFerie: {
+                    perioder: {},
+                },
                 arbeidstid: {
                     arbeidstakerList: [
                         {
+                            norskIdentitetsnummer: null,
+                            organisasjonsnummer: '896929119',
+                            organisasjonsnavn: null,
                             arbeidstidInfo: {
                                 perioder: {
-                                    '2026-02-02/2026-02-06': {
-                                        faktiskArbeidTimerPerDag: 'PT4H',
-                                        jobberNormaltTimerPerDag: 'PT8H',
-                                    },
-                                    '2026-02-07/2026-02-08': {
+                                    '2024-11-01/2024-11-30': {
+                                        jobberNormaltTimerPerDag: 'PT7H30M',
                                         faktiskArbeidTimerPerDag: 'PT0S',
-                                        jobberNormaltTimerPerDag: 'PT8H',
                                     },
-                                    '2026-02-09/2026-02-13': {
-                                        faktiskArbeidTimerPerDag: 'PT4H',
+                                    '2024-12-01/2025-02-28': {
                                         jobberNormaltTimerPerDag: 'PT8H',
-                                    },
-                                    '2026-02-14/2026-03-31': {
                                         faktiskArbeidTimerPerDag: 'PT0S',
-                                        jobberNormaltTimerPerDag: 'PT8H',
                                     },
                                 },
                             },
-                            norskIdentitetsnummer: null,
-                            organisasjonsnavn: null,
-                            organisasjonsnummer: '967170232',
                         },
                     ],
                     frilanserArbeidstidInfo: {
@@ -57,39 +78,13 @@ export default [
                     },
                     selvstendigNæringsdrivendeArbeidstidInfo: null,
                 },
-                barn: {
-                    fødselsdato: null,
-                    norskIdentitetsnummer: '00000000000',
-                },
-                beredskap: {
-                    perioder: {},
-                    perioderSomSkalSlettes: {},
-                },
-                bosteder: {
-                    perioder: {},
-                    perioderSomSkalSlettes: {},
-                },
-                dataBruktTilUtledning: null,
-                endringsperiode: [],
+
                 erSammenMedBarnet: null,
-                infoFraPunsj: null,
-                lovbestemtFerie: {
-                    perioder: {
-                        '2026-02-03/2026-02-06': {
-                            skalHaFerie: true,
-                        },
-                    },
-                },
-                nattevåk: {
-                    perioder: {},
-                    perioderSomSkalSlettes: {},
-                },
+
                 omsorg: {
                     beskrivelseAvOmsorgsrollen: null,
                     relasjonTilBarnet: null,
                 },
-                opptjeningAktivitet: {},
-                søknadsperiode: ['2026-02-02/2026-03-31'],
                 tilsynsordning: {
                     perioder: {
                         '2026-02-02/2026-02-06': {
@@ -189,11 +184,6 @@ export default [
                             etablertTilsynTimerPerDag: 'PT5H',
                         },
                     },
-                },
-                trekkKravPerioder: [],
-                utenlandsopphold: {
-                    perioder: {},
-                    perioderSomSkalSlettes: {},
                 },
                 uttak: {
                     perioder: {},

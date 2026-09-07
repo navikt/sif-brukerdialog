@@ -1,18 +1,18 @@
 import './arbeidsaktivitetBlockHeader.scss';
 
 import { AppText } from '@app/i18n';
-import { ArbeidsaktivitetType, Arbeidsgiver } from '@app/types';
+import { ArbeidsgiverMedAnsettelseperioder, ArbeidsaktivitetType } from '@app/types';
 import { Buildings3Icon } from '@navikt/aksel-icons';
 import { BodyLong, Box, Heading, VStack } from '@navikt/ds-react';
-import { dateFormatter } from '@navikt/sif-common-utils';
 
 import EndretTag from '../tags/EndretTag';
 import NyTag from '../tags/NyTag';
 import TagsContainer from '../tags/tags-container/TagsContainer';
+import AnsettelsesperioderInfo from './AnsettelsesperioderInfo';
 
 interface Props {
     navn: string;
-    arbeidsgiver?: Arbeidsgiver;
+    arbeidsgiver?: ArbeidsgiverMedAnsettelseperioder;
     type: ArbeidsaktivitetType;
     erUkjentAktivitet?: boolean;
     endret?: {
@@ -34,24 +34,13 @@ const ArbeidsaktivitetBlockHeader = ({ type, arbeidsgiver, navn, endret, erUkjen
                     <VStack gap="space-8">
                         {type === ArbeidsaktivitetType.arbeidstaker && arbeidsgiver !== undefined ? (
                             <BodyLong as="div">
-                                <div>
+                                <Box>
                                     <AppText
                                         id="arbeidsaktivitetBlockHeader.arbeidsgiver.orgnummer"
                                         values={{ orgnr: arbeidsgiver.organisasjonsnummer }}
                                     />
-                                </div>
-                                {arbeidsgiver.ansattFom && (
-                                    <AppText
-                                        id="arbeidsaktivitetBlockHeader.arbeidsgiver.ansattFom"
-                                        values={{ dato: dateFormatter.full(arbeidsgiver.ansattFom) }}
-                                    />
-                                )}
-                                {arbeidsgiver.ansattTom && (
-                                    <AppText
-                                        id="arbeidsaktivitetBlockHeader.arbeidsgiver.ansattTom"
-                                        values={{ dato: dateFormatter.full(arbeidsgiver.ansattTom) }}
-                                    />
-                                )}
+                                </Box>
+                                <AnsettelsesperioderInfo ansettelsesperioder={arbeidsgiver.ansettelsesperioder} />
                             </BodyLong>
                         ) : undefined}
                         {(endret || erUkjentAktivitet) && (

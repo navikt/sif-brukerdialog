@@ -4,14 +4,15 @@ import { ISODurationToDuration } from '@navikt/sif-common-utils';
 
 import IkkeAnsattMelding from '../../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
 import { AppText } from '../../../../i18n';
-import { Arbeidsgiver, UkjentArbeidsforholdApiData } from '../../../../types';
+import { ArbeidsgiverMedAnsettelseperioder, UkjentArbeidsforholdApiData } from '../../../../types';
 
 interface Props {
-    arbeidsgivereIkkeISak: Arbeidsgiver[];
+    arbeidsgivereIkkeISak: ArbeidsgiverMedAnsettelseperioder[];
     ukjenteArbeidsforhold: UkjentArbeidsforholdApiData[];
 }
 
-const getTestKey = (arbeidsgiver: Arbeidsgiver, key: string) => `ukjentArbeidsforhold_${arbeidsgiver.key}_${key}`;
+const getTestKey = (arbeidsgiver: ArbeidsgiverMedAnsettelseperioder, key: string) =>
+    `ukjentArbeidsforhold_${arbeidsgiver.key}_${key}`;
 
 const NyttArbeidsforholdSummary = ({ arbeidsgivereIkkeISak, ukjenteArbeidsforhold }: Props) => {
     const nyeArbeidsforhold = arbeidsgivereIkkeISak

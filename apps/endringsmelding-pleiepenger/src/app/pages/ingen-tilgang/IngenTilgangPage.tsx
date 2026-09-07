@@ -58,6 +58,20 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     </p>
                 </BodyLong>
             );
+        case IngenTilgangÅrsak.harFlereAnsettelsesforholdHosUkjentArbeidsgiver:
+            return (
+                <BodyLong as="div" data-testid="ukjentArbeidsforhold">
+                    <p>
+                        <AppText id="ingenTilgangPage.harFlereAnsettelsesforholdHosUkjentArbeidsgiver.1" />
+                    </p>
+                    <p>
+                        <AppText
+                            id="ingenTilgangPage.harFlereAnsettelsesforholdHosUkjentArbeidsgiver.2"
+                            values={{ SkrivTilOssLink: <SkrivTilOssLink key="lenke" /> }}
+                        />
+                    </p>
+                </BodyLong>
+            );
         case IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende:
             return (
                 <BodyLong as="div" data-testid="erSN">
@@ -72,6 +86,15 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                 <BodyLong as="div" data-testid="flereSaker">
                     <p>
                         <AppText id="ingenTilgangPage.harMerEnnEnSak.1" />
+                    </p>
+                    <p>{beskjedTilOssGenerell}</p>
+                </BodyLong>
+            );
+        case IngenTilgangÅrsak.enArbeidsgiverToAnsettelserSammeUkeMedOpphold:
+            return (
+                <BodyLong as="div" data-testid="enArbeidsgiverToAnsettelserSammeUkeMedOpphold">
+                    <p>
+                        <AppText id="ingenTilgangPage.slutterOgStarterInneforSammeUke" />
                     </p>
                     <p>{beskjedTilOssGenerell}</p>
                 </BodyLong>
@@ -91,7 +114,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     <p>
                         <AppText
                             id="ingenTilgangPage.utenforEndringsperiode.2"
-                            values={{ SkrivTilOssLink: <SkrivTilOssLink /> }}
+                            values={{ SkrivTilOssLink: <SkrivTilOssLink key="lenke" /> }}
                         />
                     </p>
                 </BodyLong>

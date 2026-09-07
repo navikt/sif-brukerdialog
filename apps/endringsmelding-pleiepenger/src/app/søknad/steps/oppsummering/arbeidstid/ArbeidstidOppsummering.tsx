@@ -1,12 +1,12 @@
 import { Alert, Heading, VStack } from '@navikt/ds-react';
 
 import { AppText } from '../../../../i18n';
-import { Arbeidsgiver, ArbeidstidApiData } from '../../../../types';
+import { ArbeidsgiverMedAnsettelseperioder, ArbeidstidApiData } from '../../../../types';
 import ArbeidstidArbeidsforholdOppsummering from './ArbeidstidArbeidsforholdOppsummering';
 
 interface Props {
     arbeidstid?: ArbeidstidApiData;
-    arbeidsgivere: Arbeidsgiver[];
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[];
     arbeidstidErEndret: boolean;
     harGyldigArbeidstid: boolean;
 }
