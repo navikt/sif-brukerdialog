@@ -318,10 +318,13 @@ jobs:
             run-sonar: true
 
     test-packages:
-        name: Test affected packages and Vite apps
+        name: Test affected packages
         needs: detect-changes
         if: ${{ needs.detect-changes.outputs.any-package-changed == 'true' }}
         runs-on: ubuntu-latest
+        timeout-minutes: 15
+        outputs:
+            vite-apps: ${{ steps.affected-apps.outputs.apps }}
         steps:
             - name: Checkout
               uses: actions/checkout@v7.0.1
@@ -345,29 +348,27 @@ jobs:
             - name: Resolve Turbo SCM range
               shell: bash
               run: |
-                  head="${{ github.sha }}"
-                  base="${{ github.event.before }}"
+                  set -euo pipefail
 
-                  if [ "$base" = "0000000000000000000000000000000000000000" ]; then
-                    base="$(git hash-object -t tree /dev/null)"
-                  elif ! git cat-file -e "$base^{commit}" 2>/dev/null; then
-                    echo "Previous push commit is unavailable; falling back to merge-base with origin/main."
-                    base="$(git merge-base "$head" origin/main)"
-                  fi
+                  head="${{ github.sha }}"
+
+                  git fetch --no-tags --quiet origin +refs/heads/main:refs/remotes/origin/main
+
+                  # Samme sammenligningsgrunnlag som dorny/paths-filter (main...gren). Bruker vi
+                  # forrige push som base, vil en avbrutt kjøring (cancel-in-progress) kunne skjule
+                  # endringer som ble pushet tidligere på grenen.
+                  base="$(git merge-base "$head" refs/remotes/origin/main)"
 
                   echo "TURBO_SCM_BASE=$base" >> "$GITHUB_ENV"
                   echo "TURBO_SCM_HEAD=$head" >> "$GITHUB_ENV"
 
-            - name: Run affected unit tests
+            - name: Resolve affected Vite apps
+              id: affected-apps
+              shell: bash
               run: |
-                  pnpm turbo run test --affected
+                  set -euo pipefail
 
-            - name: Install Playwright Chromium
-              run: pnpm --filter=@navikt/endringsmelding-pleiepenger exec playwright install chromium --with-deps
-
-            - name: Run affected Vite Playwright tests
-              run: |
-                  pnpm turbo run playwright-test --affected --concurrency=1 \
+                  apps="$(pnpm turbo run playwright-test --affected --dry=json \
                       --filter=@navikt/aktivitetspenger-innsyn \
                       --filter=@navikt/aktivitetspenger-soknad \
                       --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn \
@@ -381,7 +382,55 @@ jobs:
                       --filter=@navikt/pleiepenger-sykt-barn \
                       --filter=@navikt/sif-ettersending \
                       --filter=@navikt/ungdomsytelse-deltaker \
-                      --filter=@navikt/ungdomsytelse-veileder
+                      --filter=@navikt/ungdomsytelse-veileder \
+                      | jq -c '[.tasks[] | select(.taskId | endswith("#playwright-test")) | .package]')"
+
+                  if [ -z "$apps" ]; then
+                    echo "Could not resolve affected Vite apps from Turbo output." >&2
+                    exit 1
+                  fi
+
+                  echo "Affected Vite apps: $apps"
+                  echo "apps=$apps" >> "$GITHUB_OUTPUT"
+
+            - name: Run affected unit tests
+              run: pnpm turbo run test --affected
+
+    test-affected-vite-apps:
+        name: Test affected Vite app (${{ matrix.app }})
+        needs: test-packages
+        if: ${{ !cancelled() && needs.test-packages.outputs.vite-apps != '' &&
+            needs.test-packages.outputs.vite-apps != '[]' }}
+        runs-on: ubuntu-latest
+        timeout-minutes: 60
+        strategy:
+            fail-fast: false
+            matrix:
+                app: ${{ fromJSON(needs.test-packages.outputs.vite-apps) }}
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v7.0.1
+              with:
+                  persist-credentials: false
+
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v6
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v7.0.0
+              with:
+                  node-version: 24
+                  cache: "pnpm"
+
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+              env:
+                  NPM_TOKEN: ${{ secrets.READER_TOKEN }}
+
+            - name: Install Playwright Chromium
+              run: pnpm --filter=${{ matrix.app }} exec playwright install chromium --with-deps
+
+            - name: Run Vite Playwright tests
+              run: pnpm turbo run playwright-test --filter=${{ matrix.app }}
 
     sif-code-scan:
         runs-on: ubuntu-latest
