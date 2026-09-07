@@ -10,6 +10,7 @@ import {
     UgyldigBarnFormatDetails,
 } from '@app/types';
 import { Søker } from '@navikt/sif-common-api';
+import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { DateRange } from '@navikt/sif-common-utils';
 import { appLogger } from '@sif/apm';
@@ -116,6 +117,8 @@ function useSøknadInitialData(): SøknadInitialDataState {
             .catch((error) => {
                 if (isSøknadInitialDataErrorState(error)) {
                     setInitialData(error);
+                } else if (isUnauthorized(error)) {
+                    setInitialData({ status: RequestStatus.redirectingToLogin });
                 } else {
                     const e = error instanceof Error ? error : new Error(String(error));
                     appLogger.logException(e, { context: 'fetchInitialData.error.else' });

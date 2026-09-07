@@ -9,7 +9,7 @@ import {
     UgyldigK9SakFormat,
 } from '@app/types';
 import { fetchSøker, Søker } from '@navikt/sif-common-api';
-import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
+import { isForbidden } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 import { appLogger } from '@sif/apm';
 
@@ -88,11 +88,7 @@ export const fetchInitialData = async (
             })
             .catch(handleInitialDataError);
     } catch (error) {
-        if (isUnauthorized(error)) {
-            return Promise.reject({
-                status: RequestStatus.redirectingToLogin,
-            });
-        } else if (isForbidden(error)) {
+        if (isForbidden(error)) {
             return Promise.reject({
                 status: RequestStatus.forbidden,
             });
