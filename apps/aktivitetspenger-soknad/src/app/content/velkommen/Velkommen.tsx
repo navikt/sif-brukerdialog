@@ -5,7 +5,6 @@ import { SøknadVelkommenPage } from '@sif/soknad-app';
 import OmSøknaden from './OmSoknaden';
 import { BodyLong, Link } from '@navikt/ds-react';
 import { getLenker } from '../../lenker';
-import { Todo } from '../../components/Todo';
 
 export const Velkommen = () => {
     const { text } = useAppIntl();
@@ -36,7 +35,6 @@ export const Velkommen = () => {
                     </>
                 ),
             }}>
-            <Todo>Tekster er ikke ferdig</Todo>
             <OmSøknaden />
         </SøknadVelkommenPage>
     );
