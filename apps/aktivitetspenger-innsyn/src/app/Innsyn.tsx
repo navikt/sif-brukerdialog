@@ -64,7 +64,7 @@ export const Innsyn = ({ søker, oppgaver, tilgjengeligSøknad }: Props) => {
                     </Heading>
                     <VStack gap="space-16">
                         <BodyLong>
-                            Denne siden er for dem som har søkt og fått innvilget aktivietspenger. Hvis du akkurat har
+                            Denne siden er for dem som har søkt og fått innvilget aktivitetspenger. Hvis du akkurat har
                             sendt inn søknad, kan du komme tilbake til denne siden litt senere.
                         </BodyLong>
                         <BodyLong>

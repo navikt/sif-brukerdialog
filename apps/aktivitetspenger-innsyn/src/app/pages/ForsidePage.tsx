@@ -41,7 +41,7 @@ export const ForsidePage = ({ oppgaver }: Props) => {
                         <List.Item>Egen infoboks når en er innenfor vinduet for å søke forlengelse?</List.Item>
                         <List.Item>
                             Informasjon om aktivitetspenger - f.eks. footer som på innsyn for ungdomsprogramytelsen som
-                            raskt forteller hva aktivietspenger er + lenker til mer informasjon og spørsmål og svar.
+                            raskt forteller hva aktivitetspenger er + lenker til mer informasjon og spørsmål og svar.
                         </List.Item>
                     </List>
                 </Todo>
