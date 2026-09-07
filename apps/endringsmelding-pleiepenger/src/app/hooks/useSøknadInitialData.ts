@@ -115,10 +115,10 @@ function useSøknadInitialData(): SøknadInitialDataState {
                 });
             })
             .catch((error) => {
-                if (isSøknadInitialDataErrorState(error)) {
-                    setInitialData(error);
-                } else if (isUnauthorized(error)) {
+                if (isUnauthorized(error)) {
                     setInitialData({ status: RequestStatus.redirectingToLogin });
+                } else if (isSøknadInitialDataErrorState(error)) {
+                    setInitialData(error);
                 } else if (isAxiosError(error)) {
                     setInitialData({
                         status: RequestStatus.error,
