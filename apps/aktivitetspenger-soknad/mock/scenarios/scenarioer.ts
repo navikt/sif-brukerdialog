@@ -1,10 +1,10 @@
+import { TilgjengeligSøknadType } from '@navikt/ung-brukerdialog-api';
 import {
     ingenBarnProfil,
     kontonummerApiResponse,
     standardProfil,
     standardProfilMedKontonummer,
 } from '@sif/api/mock-data';
-import { TilgjengeligSøknadType } from '@navikt/ung-brukerdialog-api';
 
 import { ScenarioData, ScenarioType } from './types';
 
@@ -40,7 +40,7 @@ const kanIkkeSøke = {
 
 const defaultScenarioData: ScenarioData = {
     ...standardProfilMedKontonummer,
-    tilgjengeligSøknad,
+    tilgjengeligSøknad: kanSøkeFørstegang,
     mellomlagring: undefined,
 };
 

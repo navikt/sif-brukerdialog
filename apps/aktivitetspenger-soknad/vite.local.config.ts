@@ -4,7 +4,7 @@ import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 
-import { getDevAppSettings } from './mock/devAppSettings';
+import { getDevAppSettings } from './mock/devAppSettings.ts';
 
 export default defineConfig(({ mode }) => {
     const isE2E = mode === 'playwright';
@@ -41,7 +41,7 @@ export default defineConfig(({ mode }) => {
         ],
         resolve: {
             alias: {
-                '@app': resolve(__dirname, './src/app'),
+                '@app': resolve(import.meta.dirname, './src/app'),
             },
         },
         base: '/aktivitetspenger/soknad/',
