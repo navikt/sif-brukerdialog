@@ -38,7 +38,7 @@ const sakerEndpoint = {
                             erUgyldigK9SakFormat: true,
                             detaljer,
                         });
-                        appLogger.logInfo('sakerEndpoint.verifyK9Format');
+                        appLogger.logInfo(`sakerEndpoint.verifyK9Format: ${ugyldigeFelt?.join(',') ?? 'ukjente felt'}`);
                     } else {
                         appLogger.logException(error, {
                             context: 'sakerEndpoint.parseK9Format',
