@@ -352,8 +352,8 @@ jobs:
 
                   head="${{ github.sha }}"
 
-                  git fetch --no-tags --quiet origin +refs/heads/main:refs/remotes/origin/main
-
+                  # origin/main er allerede hentet av checkout med fetch-depth: 0,
+                  # så vi trenger ingen egen (autentisert) fetch her.
                   # Samme sammenligningsgrunnlag som dorny/paths-filter (main...gren). Bruker vi
                   # forrige push som base, vil en avbrutt kjøring (cancel-in-progress) kunne skjule
                   # endringer som ble pushet tidligere på grenen.
