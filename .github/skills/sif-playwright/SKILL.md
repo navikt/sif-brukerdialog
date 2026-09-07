@@ -21,13 +21,13 @@ description: Standard for Playwright e2e-oppsett i app-workspaces (config, scrip
 ## Leveranse
 
 - `playwright.config.ts`
-- `vite.e2e.config.ts`
+- `vite.playwright.config.ts` (eller appens eksisterende `vite.e2e.config.ts`)
 - `playwright/playwrightAppSettings.ts`
 - `playwright/utils/scenario.ts` ved behov
 - `playwright/utils/testAccessibility.ts`
 - `playwright/files/*` ved behov for opplastingstester
 - `playwright/tests/*.spec.ts` med minst to tester
-- Scripts i `package.json`: `pw:dev`, `pw:run`, `pw:run:headed`
+- Scripts i `package.json`: `pw:build`, `pw:start`, `pw:run`
 - `tsconfig.json` oppdatert med Playwright-filer i `include`
 
 ## Standardstruktur
@@ -35,7 +35,7 @@ description: Standard for Playwright e2e-oppsett i app-workspaces (config, scrip
 ```text
 <app>/
   playwright.config.ts
-  vite.e2e.config.ts
+  vite.playwright.config.ts
   playwright/
     playwrightAppSettings.ts
     tests/
@@ -50,8 +50,8 @@ For BrowserRouter-apper må base path være samme verdi i alle relevante steder.
 
 - `src/App.tsx` eller tilsvarende: `BrowserRouter basename`
 - `vite.dev.config.ts`: `base`
-- `vite.e2e.config.ts`: `base`
-- `vite.e2e.config.ts`: proxy-rewrite for `mockServiceWorker.js`
+- Vite-konfigen: `base`
+- Vite-konfigen: proxy-rewrite for `mockServiceWorker.js`
 - `playwright.config.ts`: `use.baseURL`
 - `playwright.config.ts`: `webServer.url`
 - `playwright/playwrightAppSettings.ts`: `PUBLIC_PATH` når appen leser path fra app settings
@@ -66,7 +66,7 @@ Playwright-filer dekkes ikke av den eksisterende `include`-listen i appens `tsco
 "include": [
     "./playwright/**/*",
     "./playwright.config.ts",
-    "./vite.e2e.config.ts",
+    "./vite.playwright.config.ts",
     // ... eksisterende entries
 ]
 ```
@@ -88,9 +88,9 @@ Sjekk også at `lib` i tsconfig-kjeden inkluderer minst `ES2020`. Hvis delt conf
 
 ```json
 {
-    "pw:dev": "vite --config vite.e2e.config.ts",
-    "pw:run": "playwright test",
-    "pw:run:headed": "playwright test --headed"
+    "pw:build": "vite build --config vite.playwright.config.ts",
+    "pw:start": "vite preview --config vite.playwright.config.ts",
+    "pw:run": "playwright test"
 }
 ```
 
@@ -119,7 +119,7 @@ export default defineConfig({
         },
     ],
     webServer: {
-        command: 'pnpm pw:dev',
+        command: process.env.CI ? 'pnpm pw:start' : 'pnpm pw:build && pnpm pw:start',
         url: 'http://127.0.0.1:4173/<app-base-path>/',
         reuseExistingServer: !process.env.CI,
         timeout: 120_000,
@@ -127,7 +127,7 @@ export default defineConfig({
 });
 ```
 
-### `vite.e2e.config.ts`
+### `vite.playwright.config.ts`
 
 Bruk `mode: 'msw'` for å aktivere MSW-mocking. Viktige punkter:
 
@@ -315,7 +315,7 @@ Dette gjør Playwright-flyten stabil uten å binde referanseappen til runtime-va
 
 ## Standard testmønster
 
-1. Start appen via `pw:dev` (Vite dev med MSW og BrowserRouter).
+1. Bygg og start appen via `pw:build` og `pw:start` (MSW og BrowserRouter).
 2. Bruk `setScenario()` for å velge testdata _før_ `page.goto('/')`.
 3. Hold nettverksstubbing i Playwright minimal — MSW håndterer API-mocking.
 4. Verifiser minst én forsideflyt og én sentral brukerflyt.

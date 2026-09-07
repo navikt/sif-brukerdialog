@@ -25,6 +25,8 @@ description: Legg til nye spørsmål/felter i et eksisterende steg i en søknads
 - **Kun** endring av eksisterende steg — for å opprette helt nytt steg → bruk `sif-soknad-add-step`.
 - For ren tekst/i18n-endring uten nye felter → bruk `sif-intl`.
 - For API-henting → bruk `sif-api`.
+- For datoer og tidssoner → bruk `sif-date-handling`.
+- For filvedlegg → bruk `sif-soknad-vedlegg-step`.
 
 ## Arbeidsmodus
 

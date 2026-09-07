@@ -24,6 +24,8 @@ Signalord: `oppsummering`, `OppsummeringSteg`, `sett opp oppsummering`, `ny opps
 - Oppretter også `useSendSøknad.ts` og `soknadsdataToSøknadDTO.ts` hvis de ikke finnes fra før
 - Ikke endre andre steg eller søknadsdata-typer
 - For vedlegg: bruk komponenter fra `@sif/soknad-ui`, ikke fra gamle pakker (`@navikt/sif-common-core-ds` o.l.)
+- For i18n-konvensjoner → bruk `sif-intl`.
+- For lagring, opplasting og mapping av vedlegg → bruk `sif-soknad-vedlegg-step`.
 
 ---
 

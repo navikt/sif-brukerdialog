@@ -27,6 +27,8 @@ description: Legg til et nytt steg i en søknadsapp som bruker @sif/soknad-app o
 - For oppsett av selve setup-laget (context, store, hooks) → bruk `sif-soknad-setup`.
 - For oppsett av `Soknad.tsx`, `VelkommenPage`, `KvitteringPage` og `steps/index.ts` → bruk `sif-soknad-setup` (seksjonen "Routing shell og pages").
 - For i18n-konvensjoner utover det som dekkes her → bruk `sif-intl`.
+- For datoer og tidssoner → bruk `sif-date-handling`.
+- For filvedlegg → bruk `sif-soknad-vedlegg-step`.
 
 ## Arbeidsmodus
 
