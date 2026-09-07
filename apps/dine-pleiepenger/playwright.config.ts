@@ -22,7 +22,7 @@ export default defineConfig({
     webServer: {
         command: 'pnpm dev',
         url: 'http://localhost:8080/innsyn',
-        reuseExistingServer: true,
+        reuseExistingServer: !process.env.CI,
         env: {
             PUBLIC_PATH: '/innsyn',
             API_URL: 'http://localhost:8089',
