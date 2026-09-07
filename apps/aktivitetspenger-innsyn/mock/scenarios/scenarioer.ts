@@ -1,4 +1,4 @@
-import { BrukerdialogOppgaveDto } from '@navikt/ung-brukerdialog-api';
+import { BrukerdialogOppgaveDto, TilgjengeligSøknadType } from '@navikt/ung-brukerdialog-api';
 
 import { getMockOppgaver } from '../data/oppgaver';
 import { scenarioBaseData } from '../data/scenarioBaseData';
@@ -11,9 +11,31 @@ export interface Scenario {
     data: ScenarioData;
 }
 
-const createScenarioData = (oppgaver: BrukerdialogOppgaveDto[] = []): ScenarioData => ({
+const harInnsyn = {
+    harInnsyn: true,
+    harUbehandletSøknad: false,
+    type: TilgjengeligSøknadType.INGEN,
+} satisfies ScenarioData['tilgjengeligSøknad'];
+
+const harUbehandletSøknad = {
+    harInnsyn: false,
+    harUbehandletSøknad: true,
+    type: TilgjengeligSøknadType.INGEN,
+} satisfies ScenarioData['tilgjengeligSøknad'];
+
+const harIkkeTilgang = {
+    harInnsyn: false,
+    harUbehandletSøknad: false,
+    type: TilgjengeligSøknadType.INGEN,
+} satisfies ScenarioData['tilgjengeligSøknad'];
+
+const createScenarioData = (
+    oppgaver: BrukerdialogOppgaveDto[] = [],
+    tilgjengeligSøknad: ScenarioData['tilgjengeligSøknad'] = harInnsyn,
+): ScenarioData => ({
     ...scenarioBaseData,
     oppgaver,
+    tilgjengeligSøknad,
 });
 
 export const scenarioer: Record<ScenarioType, Scenario> = {
@@ -21,6 +43,21 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
         type: ScenarioType.default,
         name: 'Søknad sendt',
         data: createScenarioData([]),
+    },
+    [ScenarioType.harInnsyn]: {
+        type: ScenarioType.harInnsyn,
+        name: 'Har innsyn',
+        data: createScenarioData([], harInnsyn),
+    },
+    [ScenarioType.harUbehandletSøknad]: {
+        type: ScenarioType.harUbehandletSøknad,
+        name: 'Søknaden er under behandling',
+        data: createScenarioData([], harUbehandletSøknad),
+    },
+    [ScenarioType.harIkkeTilgang]: {
+        type: ScenarioType.harIkkeTilgang,
+        name: 'Ikke tilgang',
+        data: createScenarioData([], harIkkeTilgang),
     },
     [ScenarioType.rapporterInntekt]: {
         type: ScenarioType.rapporterInntekt,

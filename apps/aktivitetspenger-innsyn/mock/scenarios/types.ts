@@ -4,6 +4,9 @@ import { z } from 'zod';
 
 export enum ScenarioType {
     default = 'default',
+    harInnsyn = 'harInnsyn',
+    harUbehandletSøknad = 'harUbehandletSøknad',
+    harIkkeTilgang = 'harIkkeTilgang',
     rapporterInntekt = 'rapporterInntekt',
     rapporterInntektDelerAvMåned = 'rapporterInntektDelerAvMåned',
     avvikInntekt = 'avvikInntekt',
