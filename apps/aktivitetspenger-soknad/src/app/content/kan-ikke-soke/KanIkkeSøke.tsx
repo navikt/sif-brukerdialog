@@ -33,12 +33,19 @@ export const KanIkkeSøkePage = ({ søker, tilgjengelig }: Props) => {
     const { text } = useAppIntl();
     const { harInnsyn, harUbehandletSøknad, type } = tilgjengelig;
 
+    const innsynLenke = harInnsyn ? (
+        <BodyLong>
+            Gå til <Link href="/aktivitetspenger/innsyn">Dine aktivitetspenger</Link> for mer informasjon.
+        </BodyLong>
+    ) : null;
+
     const renderContent = () => {
         if (type === TilgjengeligSøknadType.NY_PERIODE_SØKNAD) {
             return (
                 <VStack gap="space-20">
                     <Todo>[type === {TilgjengeligSøknadType.NY_PERIODE_SØKNAD}]</Todo>
                     <BodyLong>Det er ikke åpnet for å søke om nye perioder enda</BodyLong>
+                    {innsynLenke}
                 </VStack>
             );
         }
@@ -60,9 +67,7 @@ export const KanIkkeSøkePage = ({ søker, tilgjengelig }: Props) => {
                         <BodyLong>
                             Når du har fått innvilget aktivitetspenger trenger du ikke søke på nytt før ...
                         </BodyLong>
-                        <BodyLong>
-                            Gå til <Link href="/innsyn">Dine aktivitetspenger</Link> for mer informasjon.
-                        </BodyLong>
+                        {innsynLenke}
                     </VStack>
                 );
             case KanIkkeSøkeÅrsak.ANNET:
@@ -70,6 +75,7 @@ export const KanIkkeSøkePage = ({ søker, tilgjengelig }: Props) => {
                     <VStack gap="space-20">
                         <Todo>[annet]</Todo>
                         <BodyLong>Du kan ikke sende inn ny søknad på dette tidspunktet.</BodyLong>
+                        {innsynLenke}
                     </VStack>
                 );
         }
