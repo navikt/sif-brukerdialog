@@ -1,9 +1,10 @@
 import { ArrowLeftIcon, ArrowRightIcon, PaperplaneIcon } from '@navikt/aksel-icons';
 import { Bleed, Box, BoxNewProps, Button, Heading, HeadingProps, HStack, VStack, VStackProps } from '@navikt/ds-react';
 
+import { type HTMLAttributes, type ReactNode } from 'react';
+
 import { SifSoknadUiText } from '../../i18n';
 import { SifGuidePanel, SifGuidePanelProps } from '../sif-guide-panel/SifGuidePanel';
-import { ReactNode } from 'react';
 
 /**
  * Setter opp default spacing mellom sections
@@ -15,7 +16,7 @@ const Sections = ({ ...rest }: VStackProps) => <VStack gap="space-48" {...rest} 
  * Tittel og content i en seksjon
  */
 
-type SectionProps = React.HTMLAttributes<HTMLElement> & {
+type SectionProps = HTMLAttributes<HTMLElement> & {
     title: ReactNode;
     titleIcon?: ReactNode;
     titleLevel?: '1' | '2' | '3';
@@ -108,7 +109,7 @@ const Panel = ({ bleedTop, ...rest }: PanelProps) => {
     return bleedTop ? <QuestionBleedTop>{content}</QuestionBleedTop> : content;
 };
 
-type StepGuideWrapperProps = { children: ReactNode } & React.HTMLAttributes<HTMLElement>;
+type StepGuideWrapperProps = { children: ReactNode } & HTMLAttributes<HTMLElement>;
 
 const StepGuideWrapper = ({ children, ...rest }: StepGuideWrapperProps) => {
     return (

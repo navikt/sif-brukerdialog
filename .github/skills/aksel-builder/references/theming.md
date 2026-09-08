@@ -37,6 +37,7 @@ the OS) choose, drive the `theme` prop from your own state or a library like `ne
 
 ```tsx
 'use client';
+import type { ReactNode } from 'react';
 import { ThemeProvider as NextThemeProvider } from 'next-themes';
 import { Theme } from '@navikt/ds-react';
 
