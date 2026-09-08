@@ -1,4 +1,5 @@
 import { BodyShort, Box, Heading, HGrid, Link, List, Page, VStack } from '@navikt/ds-react';
+import { ReactNode } from 'react';
 
 interface Props {
     preTitle?: string;
