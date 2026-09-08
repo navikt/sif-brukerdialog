@@ -17,7 +17,7 @@ export const appMessages_nb = {
     'application.title': 'Søknad om aktivitetspenger',
     'kvittering.documentTitle': 'Søknad om aktivitetspenger mottatt',
     'kvittering.title': 'Søknaden er sendt',
-    'kvittering.message': 'Vi har fått søknaden din om penger gjennom ungdomsprogramytelsen.',
+    'kvittering.message': 'Vi har fått søknaden din om aktivitetspenger.',
     'step.startdato.title': 'Startdato',
     'step.kontonummer.title': 'Kontonummer for utbetaling',
     'step.bosted.title': 'Bosted',
