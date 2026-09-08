@@ -11,6 +11,7 @@ import { BodyLong, Heading, Link, VStack } from '@navikt/ds-react';
 import { InnsynForsideHeader } from '@sif/ung-innsyn/components';
 import { SifGuidePanel } from '@sif/soknad-ui';
 import { getMaybeEnv } from '@navikt/sif-common-env';
+import { AppText, useAppIntl } from './i18n';
 
 interface Props {
     søker: Søker;
@@ -19,11 +20,13 @@ interface Props {
 }
 
 export const Innsyn = ({ søker, oppgaver, tilgjengeligSøknad }: Props) => {
+    const { text } = useAppIntl();
+
     if (tilgjengeligSøknad.harInnsyn || getMaybeEnv('SIF_PUBLIC_IGNORE_TILGJENGELIG_SJEKK') === 'true') {
         return (
             <InnsynContextProvider søker={søker} oppgaver={oppgaver} refetchOppgaver={() => Promise.resolve()}>
                 <Routes>
-                    <Route path="/" element={<ForsidePage oppgaver={oppgaver} />} />
+                    <Route path="/" element={<ForsidePage oppgaver={oppgaver} søker={søker} />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                     <Route path="oppgave" element={<Navigate to="/" replace={true} />} />
                     <Route path="oppgave/:oppgaveReferanse/:kvittering?" element={<OppgavePage />} />
@@ -33,22 +36,27 @@ export const Innsyn = ({ søker, oppgaver, tilgjengeligSøknad }: Props) => {
     }
     if (tilgjengeligSøknad.harUbehandletSøknad) {
         return (
-            <UngInnsynPage documentTitle="Dine aktivitetspenger">
+            <UngInnsynPage documentTitle={text('page.ubehandletSøknad.tittel')}>
                 <VStack gap="space-40">
-                    <InnsynForsideHeader title="Dine aktivitetspenger" />
+                    <InnsynForsideHeader title={text('page.ubehandletSøknad.tittel')} />
 
                     <SifGuidePanel poster={true}>
                         <Heading level="1" size="medium" spacing>
-                            Hei {søker.fornavn}
+                            <AppText id="page.ubehandletSøknad.hilsen" values={{ fornavn: søker.fornavn }} />
                         </Heading>
                         <VStack gap="space-16">
                             <BodyLong>
-                                Vi har mottatt din søknad og den vil bli behandlet snart. Du vil få beskjed når
-                                behandlingen er ferdig.
+                                <AppText id="page.ubehandletSøknad.info.1" />
                             </BodyLong>
                             <BodyLong>
-                                Du kan lese mer om aktivitetspenger på{' '}
-                                <Link href="https://www.nav.no/aktivitetspenger">nav.no/aktivitetspenger</Link>.
+                                <AppText
+                                    id="page.ubehandletSøknad.info.2"
+                                    values={{
+                                        Lenke: (chunks: React.ReactNode) => (
+                                            <Link href="https://www.nav.no/aktivitetspenger">{chunks}</Link>
+                                        ),
+                                    }}
+                                />
                             </BodyLong>
                         </VStack>
                     </SifGuidePanel>
@@ -57,20 +65,25 @@ export const Innsyn = ({ søker, oppgaver, tilgjengeligSøknad }: Props) => {
         );
     }
     return (
-        <UngInnsynPage documentTitle="Aktivitetspenger">
+        <UngInnsynPage documentTitle={text('page.ikkeTilgang.tittel')}>
             <VStack gap="space-40">
                 <SifGuidePanel poster={true}>
                     <Heading level="1" size="medium" spacing>
-                        Du har ikke tilgang til denne siden
+                        <AppText id="page.ikkeTilgang.heading" />
                     </Heading>
                     <VStack gap="space-16">
                         <BodyLong>
-                            Denne siden er for dem som har søkt og fått innvilget aktivitetspenger. Hvis du akkurat har
-                            sendt inn søknad, kan du komme tilbake til denne siden litt senere.
+                            <AppText id="page.ikkeTilgang.info.1" />
                         </BodyLong>
                         <BodyLong>
-                            Du kan lese mer om aktivitetspenger på{' '}
-                            <Link href="https://www.nav.no/aktivitetspenger">nav.no/aktivitetspenger</Link>.
+                            <AppText
+                                id="page.ikkeTilgang.info.2"
+                                values={{
+                                    Lenke: (chunks: React.ReactNode) => (
+                                        <Link href="https://www.nav.no/aktivitetspenger">{chunks}</Link>
+                                    ),
+                                }}
+                            />
                         </BodyLong>
                     </VStack>
                 </SifGuidePanel>

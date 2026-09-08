@@ -24,7 +24,7 @@ const OppgavePage = () => {
     const oppgave = oppgaver.find((o) => o.oppgaveReferanse === oppgaveReferanse);
     const queryClient = useQueryClient();
 
-    useInnsynBreadcrumbs([{ title: 'Oppgave', url: `/oppgave`, handleInApp: true }]);
+    useInnsynBreadcrumbs([{ title: text('page.oppgave.breadcrumb.tittel'), url: `/oppgave`, handleInApp: true }]);
 
     return oppgave ? (
         <UngOppgavePage

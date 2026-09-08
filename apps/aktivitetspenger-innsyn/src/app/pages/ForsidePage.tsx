@@ -1,20 +1,22 @@
-import { BodyLong, Heading, List, VStack } from '@navikt/ds-react';
+import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { InnsynForsideHeader, OppgaverList } from '@sif/ung-innsyn/components';
 import { UngInnsynPage } from '@sif/ung-innsyn/pages';
 
 import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
-import { AppText } from '../i18n';
-import { sortDateTimes } from '@sif/utils';
+import { AppText, useAppIntl } from '../i18n';
+import { formatName, sortDateTimes } from '@sif/utils';
 import { Oppgave } from '@sif/api/ung-brukerdialog';
-import { Todo } from '@sif/soknad-ui';
+import { Søker } from '@sif/api/k9-prosessering';
 
 interface Props {
     oppgaver: Oppgave[];
+    søker: Søker;
 }
 
-export const ForsidePage = ({ oppgaver }: Props) => {
+export const ForsidePage = ({ oppgaver, søker }: Props) => {
     useInnsynBreadcrumbs();
+    const { text } = useAppIntl();
 
     const uløsteOppgaver = oppgaver
         .filter((oppgave) => oppgave.status === OppgaveStatus.ULØST)
@@ -25,26 +27,10 @@ export const ForsidePage = ({ oppgaver }: Props) => {
         .sort((o1, o2) => sortDateTimes(o2.løstDato || o2.opprettetDato, o1.løstDato || o1.opprettetDato));
 
     return (
-        <UngInnsynPage documentTitle="Dine aktivitetspenger">
+        <UngInnsynPage documentTitle={text('page.forside.tittel')}>
             <VStack gap="space-40">
-                <InnsynForsideHeader title="Dine aktivitetspenger" />
-                <Todo>
-                    <Heading level="2" size="small" spacing>
-                        Hvilken informasjon skal være på denne siden.
-                    </Heading>
-                    <List>
-                        <List.Item>Identifisere bruker</List.Item>
-                        <List.Item>Informere om ubehandletsøknad (førstegangs og forlengelse)</List.Item>
-                        <List.Item>Informere om en har eller ikke har aktivitetspenger</List.Item>
-                        <List.Item>Informere om hva denne siden er/hva er oppgaver f.eks.</List.Item>
-                        <List.Item>Informere om hvordan og når en kan/må søke om forlengelse?</List.Item>
-                        <List.Item>Egen infoboks når en er innenfor vinduet for å søke forlengelse?</List.Item>
-                        <List.Item>
-                            Informasjon om aktivitetspenger - f.eks. footer som på innsyn for ungdomsprogramytelsen som
-                            raskt forteller hva aktivitetspenger er + lenker til mer informasjon og spørsmål og svar.
-                        </List.Item>
-                    </List>
-                </Todo>
+                <InnsynForsideHeader title={text('page.forside.tittel')} subtitle={formatName(søker)} />
+
                 <VStack gap="space-40">
                     <VStack gap="space-16">
                         <Heading level="2" size="medium">
