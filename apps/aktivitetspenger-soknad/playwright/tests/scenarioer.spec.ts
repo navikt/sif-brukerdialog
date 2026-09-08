@@ -5,10 +5,6 @@ import { setScenario } from '../utils/scenario';
 
 const sperredeScenarioer = [
     {
-        scenario: ScenarioType.nyPeriodeSøknad,
-        tekst: 'Det er ikke åpnet for å søke om nye perioder enda',
-    },
-    {
         scenario: ScenarioType.ubehandletFørstegangssøknad,
         tekst: 'Vi har mottatt din søknad og den er under behandling. Du trenger ikke sende inn ny søknad.',
     },
@@ -27,5 +23,18 @@ for (const { scenario, tekst } of sperredeScenarioer) {
             page.getByRole('heading', { name: 'Søknaden om aktivitetspenger er ikke tilgjengelig for deg nå' }),
         ).toBeVisible();
         await expect(page.getByText(tekst)).toBeVisible();
+    });
+}
+
+for (const scenario of [ScenarioType.kanSøkeFørstegang, ScenarioType.nyPeriodeSøknad]) {
+    test(`${scenario} starter søknadsflyten`, async ({ page }) => {
+        await setScenario(page, scenario);
+        await page.goto('/');
+
+        await expect(page.locator('main')).toBeVisible();
+        await page.locator('input[type="checkbox"]').first().check();
+        await page.locator('button[type="submit"]').first().click();
+
+        await expect(page).toHaveURL(/\/soknad\/kontonummer/);
     });
 }
