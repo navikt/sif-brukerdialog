@@ -1,6 +1,6 @@
 import { BodyLong, Heading, Link, VStack } from '@navikt/ds-react';
 import { InnsynInfoBox } from '@sif/ung-innsyn/components';
-import React from 'react';
+import { ReactNode } from 'react';
 import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
 
@@ -18,7 +18,7 @@ export const SøknadMottattInfo = ({ erFørstegangssøknad }: Props) => (
                 <AppText
                     id="soknadMottattInfo.info.1"
                     values={{
-                        Lenke: (chunks: React.ReactNode) => <Link href={getLenker().behandlingstider}>{chunks}</Link>,
+                        Lenke: (chunks: ReactNode) => <Link href={getLenker().behandlingstider}>{chunks}</Link>,
                     }}
                 />
             </BodyLong>
@@ -27,9 +27,7 @@ export const SøknadMottattInfo = ({ erFørstegangssøknad }: Props) => (
                     <AppText
                         id="soknadMottattInfo.info.2"
                         values={{
-                            Lenke: (chunks: React.ReactNode) => (
-                                <Link href={getLenker().aktivitetspenger}>{chunks}</Link>
-                            ),
+                            Lenke: (chunks: ReactNode) => <Link href={getLenker().aktivitetspenger}>{chunks}</Link>,
                         }}
                     />
                 </BodyLong>

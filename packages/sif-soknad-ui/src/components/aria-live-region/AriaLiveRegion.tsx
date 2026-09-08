@@ -1,7 +1,9 @@
+import { ReactNode } from 'react';
+
 interface Props {
     visible: boolean;
     politeness?: 'polite' | 'assertive' | 'off';
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 const offScreenStyle: React.CSSProperties = {

@@ -13,13 +13,14 @@ import { useForm } from 'react-hook-form';
 import { UngInnsynText, useUngInnsynIntl } from '../../../i18n';
 import { useOppgavePage } from '../../../pages/hooks/useOppgavePage';
 import { UttalelseSvaralternativer } from '../../../types';
+import { ReactNode } from 'react';
 
 export interface UtalelseFormProps {
     oppgaveYtelsetype: OppgaveYtelsetype;
     spørsmål: string;
     svaralternativer: UttalelseSvaralternativer;
     uttalelseLabel: string;
-    uttalelseDescription?: React.ReactNode;
+    uttalelseDescription?: ReactNode;
     oppgaveReferanse: string;
     onSuccess: (utalelse: UngdomsytelseOppgaveUttalelseDto) => void;
 }

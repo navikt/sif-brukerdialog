@@ -1,11 +1,10 @@
 import { BodyShort, Box, Heading, HGrid, Link, List, Page, VStack } from '@navikt/ds-react';
-import React from 'react';
 
 interface Props {
     preTitle?: string;
     title?: string;
     feilId?: string;
-    children?: React.ReactNode;
+    children?: ReactNode;
 }
 
 export const FallbackErrorPage = ({ preTitle, title = 'Beklager, noe gikk galt.', feilId }: Props) => {

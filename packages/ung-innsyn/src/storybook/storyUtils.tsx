@@ -4,7 +4,7 @@ import { Box, Heading, Theme, VStack } from '@navikt/ds-react';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { Oppgave } from '@sif/api/ung-brukerdialog';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import React from 'react';
+import { ReactNode } from 'react';
 import { IntlProvider } from 'react-intl';
 import { BrowserRouter } from 'react-router-dom';
 import { fn } from 'storybook/test';
@@ -13,7 +13,7 @@ import { OppgaverList } from '../components';
 import { ungInnsyn_messages_nb } from '../i18n/nb';
 import { OppgavePageContext } from '../pages/hooks/useOppgavePage';
 
-export const StateLabel = ({ children }: { children: React.ReactNode }) => (
+export const StateLabel = ({ children }: { children: ReactNode }) => (
     <Heading
         level="3"
         size="xsmall"
@@ -22,7 +22,7 @@ export const StateLabel = ({ children }: { children: React.ReactNode }) => (
     </Heading>
 );
 
-export const StoryBox = ({ children, title }: { children: React.ReactNode; title: string }) => (
+export const StoryBox = ({ children, title }: { children: ReactNode; title: string }) => (
     // <Bleed marginInline="space-32">
     <VStack gap="space-8" paddingBlock={'space-12 space-0'}>
         <StateLabel>{title}</StateLabel>
@@ -51,7 +51,7 @@ const panelPreviewQueryClient = new QueryClient({
     defaultOptions: { queries: { retry: false }, mutations: { retry: false } },
 });
 
-export const PanelPreviewWrapper = ({ children }: { children: React.ReactNode }) => (
+export const PanelPreviewWrapper = ({ children }: { children: ReactNode }) => (
     <Theme hasBackground={false}>
         <IntlProvider locale="nb" messages={ungInnsyn_messages_nb}>
             <QueryClientProvider client={panelPreviewQueryClient}>
@@ -91,7 +91,7 @@ export const getOppgaveMedStatus = <T extends Oppgave>(base: T, besvart: T, stat
 export const renderOppgaveStandardStater = <T extends Oppgave>(
     oppgave: T,
     besvartOppgave: T,
-    renderPanel: (oppgave: T, opts?: { initialVisKvittering?: boolean }) => React.ReactNode,
+    renderPanel: (oppgave: T, opts?: { initialVisKvittering?: boolean }) => ReactNode,
 ) => (
     <VStack gap="space-24">
         <StoryBox title="Forside — uløst">

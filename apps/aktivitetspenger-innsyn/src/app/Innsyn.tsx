@@ -14,6 +14,7 @@ import { getMaybeEnv } from '@navikt/sif-common-env';
 import { AppText, useAppIntl } from './i18n';
 import { formatName } from '@sif/utils';
 import { SøknadMottattInfo } from './components/soknad-mottatt-info/SoknadMottattInfo';
+import { ReactNode } from 'react';
 
 interface Props {
     søker: Søker;
@@ -73,7 +74,7 @@ export const Innsyn = ({ søker, oppgaver, tilgangsinfo: tilgjengeligSøknad }: 
                             <AppText
                                 id="page.ikkeTilgang.info.2"
                                 values={{
-                                    Lenke: (chunks: React.ReactNode) => (
+                                    Lenke: (chunks: ReactNode) => (
                                         <Link href="https://www.nav.no/aktivitetspenger">{chunks}</Link>
                                     ),
                                 }}

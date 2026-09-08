@@ -1,6 +1,6 @@
 import { Page, VStack } from '@navikt/ds-react';
 import { useDocumentTitle } from '@navikt/sif-common-hooks';
-import { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 
 import { AppHeader } from '../../components/app-header/AppHeader';
 
@@ -9,7 +9,7 @@ interface Props {
     documentTitle?: string;
     applicationTitle: string;
     headerLevel?: '1' | '2';
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 export function ApplicationPage({

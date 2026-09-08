@@ -2,7 +2,7 @@ import { Alert, Box, FormSummary, Heading, VStack } from '@navikt/ds-react';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { TextareaSvar } from '@navikt/sif-common-ui';
 import { OppgaveResponsDto, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
-import { useEffect, useRef } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 import { SifGuidePanel } from '@sif/soknad-ui';
 
 import { ForsideLenkeButton, OppgaveStatusInfo } from '../../components';
@@ -17,11 +17,11 @@ import { RegelverkOgInnsynReadMore } from '../../components/readmore/RegelverkOg
 import { getLovLenker } from '../oppgavepaneler/oppgaveLovverk';
 
 interface OppgaveOgTilbakemeldingProps {
-    beskjedFraNav: React.ReactNode;
+    beskjedFraNav: ReactNode;
     spørsmål: string;
     svaralternativer: UttalelseSvaralternativer;
     respons: OppgaveResponsDto;
-    beskjedFooter?: React.ReactNode;
+    beskjedFooter?: ReactNode;
 }
 
 const OppgaveOgTilbakemelding = ({
@@ -82,7 +82,7 @@ const OppgaveOgTilbakemelding = ({
 };
 
 export interface UbesvartProps {
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 const Ubesvart = ({ children }: UbesvartProps) => {
@@ -127,7 +127,7 @@ const Ubesvart = ({ children }: UbesvartProps) => {
 };
 
 export interface KvitteringProps {
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 const Kvittering = ({ children }: KvitteringProps) => {
@@ -160,8 +160,8 @@ const Kvittering = ({ children }: KvitteringProps) => {
 };
 
 export interface BesvartProps {
-    children: React.ReactNode;
-    beskjedFooter?: React.ReactNode;
+    children: ReactNode;
+    beskjedFooter?: ReactNode;
 }
 
 const Besvart = ({ children, beskjedFooter }: BesvartProps) => {

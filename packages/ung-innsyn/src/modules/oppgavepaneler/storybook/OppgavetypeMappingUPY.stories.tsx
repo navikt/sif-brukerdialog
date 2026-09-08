@@ -50,6 +50,7 @@ import {
 import { SøkYtelseOppgavePanel } from '../sok-ytelse/SokYtelseOppgavePanel';
 import { mockSøkYtelseBesvartUPY, mockSøkYtelseUPY } from '../sok-ytelse/SøkYtelseOppgavePanel.mockData';
 import { IntlDecorator } from '../../../storybook/IntlDecorator';
+import { ReactNode } from 'react';
 
 const meta: Meta = {
     title: 'Oppgaver/1. Oversikt/Ungdomsytelse',
@@ -63,7 +64,7 @@ const { UNGDOMSYTELSE } = OppgaveYtelsetype;
 type Rad = {
     parsedType: ParsedOppgavetype;
     kilder: { backendType: OppgaveType; betingelse?: string }[];
-    preview: React.ReactNode;
+    preview: ReactNode;
 };
 
 const rader: Rad[] = [
@@ -232,7 +233,7 @@ const rader: Rad[] = [
     },
 ];
 
-const KodeTag = ({ children }: { children: React.ReactNode }) => (
+const KodeTag = ({ children }: { children: ReactNode }) => (
     <code
         style={{
             fontSize: '0.8em',
