@@ -14,7 +14,7 @@ import { ApiEndpointInnsyn } from '.';
 
 export type K9SakResult = K9Sak | UgyldigK9SakFormat;
 
-const sakerEndpoint = {
+export const sakerEndpoint = {
     fetch: async (): Promise<{ k9Saker: K9SakResult[]; eldreSaker: K9SakResult[] }> => {
         const endringsperiode = getTillattEndringsperiode(getEndringsdato());
         try {
@@ -68,5 +68,3 @@ const sakerEndpoint = {
         }
     },
 };
-
-export default sakerEndpoint;

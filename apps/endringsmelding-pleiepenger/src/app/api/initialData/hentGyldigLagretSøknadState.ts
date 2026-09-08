@@ -2,8 +2,9 @@ import { Arbeidsgiver, K9Sak } from '@app/types';
 import { Søker } from '@navikt/sif-common-api';
 import { DateRange } from '@navikt/sif-common-utils';
 
-import søknadStateEndpoint, {
+import {
     isPersistedSøknadStateValid,
+    søknadStateEndpoint,
     SøknadStatePersistence,
 } from '../endpoints/søknadStateEndpoint';
 

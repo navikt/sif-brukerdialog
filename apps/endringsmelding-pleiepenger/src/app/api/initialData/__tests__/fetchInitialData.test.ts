@@ -39,8 +39,8 @@ vi.mock('../../../utils/tilgangskontroll', () => ({
 import { fetchSøker } from '@navikt/sif-common-api';
 
 import { arbeidsgivereEndpoint } from '../../endpoints/arbeidsgivereEndpoint';
-import sakerEndpoint from '../../endpoints/sakerEndpoint';
-import søknadStateEndpoint from '../../endpoints/søknadStateEndpoint';
+import { sakerEndpoint } from '../../endpoints/sakerEndpoint';
+import { søknadStateEndpoint } from '../../endpoints/søknadStateEndpoint';
 import { fetchInitialData } from '../fetchInitialData';
 
 const tillattEndringsperiode = {

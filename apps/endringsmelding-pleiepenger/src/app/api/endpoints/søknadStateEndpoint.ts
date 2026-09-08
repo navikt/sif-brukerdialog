@@ -126,7 +126,7 @@ export const isPersistedSøknadStateEmpty = (søknadState: SøknadStatePersisten
     return Object.keys(søknadState || {}).length === 0;
 };
 
-const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
+export const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
     create: persistSetup.create,
     purge: persistSetup.purge,
     update: (
@@ -155,5 +155,3 @@ const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
         return Promise.resolve(data);
     },
 };
-
-export default søknadStateEndpoint;

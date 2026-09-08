@@ -7,7 +7,7 @@ vi.mock('../../endpoints/søknadStateEndpoint', () => ({
     isPersistedSøknadStateValid: vi.fn(),
 }));
 
-import søknadStateEndpoint, { isPersistedSøknadStateValid } from '../../endpoints/søknadStateEndpoint';
+import { isPersistedSøknadStateValid, søknadStateEndpoint } from '../../endpoints/søknadStateEndpoint';
 import { hentGyldigLagretSøknadState } from '../hentGyldigLagretSøknadState';
 
 const søker = { fornavn: 'Ola' } as unknown as Søker;

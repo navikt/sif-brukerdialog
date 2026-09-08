@@ -25,7 +25,7 @@ import { appLogger } from '@sif/apm';
 
 import { verifyK9Format } from '../../../utils/verifyk9Format';
 import api from '../../api';
-import sakerEndpoint from '../sakerEndpoint';
+import { sakerEndpoint } from '../sakerEndpoint';
 
 const k9format = (id: string) => ({ id }) as unknown as K9Format;
 

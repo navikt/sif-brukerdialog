@@ -4,7 +4,7 @@ import { DateRange } from '@navikt/sif-common-utils';
 
 import { getPeriodeForArbeidsgiverOppslag } from '../../utils/initialDataUtils';
 import { arbeidsgivereEndpoint } from '../endpoints/arbeidsgivereEndpoint';
-import sakerEndpoint from '../endpoints/sakerEndpoint';
+import { sakerEndpoint } from '../endpoints/sakerEndpoint';
 import { hentGyldigLagretSøknadState } from './hentGyldigLagretSøknadState';
 import { IngenTilgangError, mapInitialDataError } from './initialDataError';
 import { assertHarTilgang, loggIngenSaker, validerK9Saker } from './initialDataValidering';
