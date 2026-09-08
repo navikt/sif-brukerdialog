@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { isDekoratorenException } from '../initApm';
+import { isChromeExtensionException, isDekoratorenException } from '../initApm';
 
 const exceptionFrom = (filenames: string[]) => ({
     type: 'exception',
@@ -18,5 +18,19 @@ describe('isDekoratorenException', () => {
 
     it('returnerer false for ikke-exception', () => {
         expect(isDekoratorenException({ type: 'log', payload: {} })).toBe(false);
+    });
+});
+
+describe('isChromeExtensionException', () => {
+    it('returnerer true for exception med chrome-extension-frame', () => {
+        expect(isChromeExtensionException(exceptionFrom(['chrome-extension://extension-id/bundle.js']))).toBe(true);
+    });
+
+    it('returnerer false for exception uten chrome-extension-frame', () => {
+        expect(isChromeExtensionException(exceptionFrom(['https://app.nav.no/assets/app.js']))).toBe(false);
+    });
+
+    it('returnerer false for ikke-exception', () => {
+        expect(isChromeExtensionException({ type: 'log', payload: {} })).toBe(false);
     });
 });

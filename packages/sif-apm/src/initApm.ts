@@ -7,6 +7,12 @@ export const isDekoratorenException = (item: any): boolean => {
     return frames.some((f) => (f.filename ?? '').includes('personbruker/nav-dekoratoren'));
 };
 
+export const isChromeExtensionException = (item: any): boolean => {
+    if (item?.type !== 'exception') return false;
+    const frames: any[] = item.payload?.stacktrace?.frames ?? [];
+    return frames.some((f) => (f.filename ?? '').startsWith('chrome-extension://'));
+};
+
 // Nettleseren rapporterer avbrutte/timeout-forespørsler som unhandled rejections vi ikke kan håndtere
 export const isNoisyUnhandledRejection = (item: any): boolean => {
     if (item?.type !== 'exception') return false;
@@ -22,6 +28,7 @@ export const initApm = ({ beforeSend: callerBeforeSend, ...options }: InitOption
         ...options,
         beforeSend: (item: any) => {
             if (isDekoratorenException(item)) return null;
+            if (isChromeExtensionException(item)) return null;
             if (isNoisyUnhandledRejection(item)) return null;
             return callerBeforeSend ? callerBeforeSend(item) : item;
         },
