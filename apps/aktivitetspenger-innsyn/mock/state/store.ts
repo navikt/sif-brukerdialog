@@ -8,5 +8,5 @@ export const store = createStore<ScenarioData, ScenarioType>({
     scenarioKey: 'AKT_INNSYN_MOCK_SCENARIO',
     getScenarioData: getScenarioMockData,
     scenarioValues: Object.values(ScenarioType),
-    defaultScenario: ScenarioType.default,
+    defaultScenario: ScenarioType.innsynUtenOppgaver,
 });

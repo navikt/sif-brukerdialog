@@ -11,7 +11,7 @@ export interface Scenario {
     data: ScenarioData;
 }
 
-const harInnsyn = {
+const innsynMedOppgaver = {
     harInnsyn: true,
     harUbehandletSøknad: false,
     type: TilgjengeligSøknadType.INGEN,
@@ -37,7 +37,7 @@ const harIkkeTilgang = {
 
 const createScenarioData = (
     oppgaver: BrukerdialogOppgaveDto[] = [],
-    tilgjengeligSøknad: ScenarioData['tilgangsinfo'] = harInnsyn,
+    tilgjengeligSøknad: ScenarioData['tilgangsinfo'] = innsynMedOppgaver,
 ): ScenarioData => ({
     ...scenarioBaseData,
     oppgaver,
@@ -45,24 +45,30 @@ const createScenarioData = (
 });
 
 export const scenarioer: Record<ScenarioType, Scenario> = {
-    [ScenarioType.default]: {
-        type: ScenarioType.default,
-        name: 'Søknad sendt',
-        data: createScenarioData([]),
+    [ScenarioType.innsynUtenOppgaver]: {
+        type: ScenarioType.innsynUtenOppgaver,
+        name: 'Innsyn uten oppgaver',
+        data: createScenarioData([], innsynMedOppgaver),
     },
     [ScenarioType.harUbehandletAndregangssøknad]: {
         type: ScenarioType.harUbehandletAndregangssøknad,
-        name: 'Søknaden er under behandling (andregang)',
-        data: createScenarioData([], harUbehandletAndregangssøknad),
+        name: 'Andregangssøknaden er under behandling',
+        data: createScenarioData(
+            [getMockOppgaver().bekreftAvvikOppgaveLøst, getMockOppgaver().bekreftBostedOpphørOppgave],
+            harUbehandletAndregangssøknad,
+        ),
     },
-    [ScenarioType.harInnsyn]: {
-        type: ScenarioType.harInnsyn,
-        name: 'Har innsyn',
-        data: createScenarioData([], harInnsyn),
+    [ScenarioType.innsynMedOppgaver]: {
+        type: ScenarioType.innsynMedOppgaver,
+        name: 'Innsyn med oppgaver',
+        data: createScenarioData(
+            [getMockOppgaver().bekreftAvvikOppgaveLøst, getMockOppgaver().bekreftBostedOpphørOppgave],
+            innsynMedOppgaver,
+        ),
     },
     [ScenarioType.harUbehandletFørstegangssøknad]: {
         type: ScenarioType.harUbehandletFørstegangssøknad,
-        name: 'Søknaden er under behandling',
+        name: 'Førstegangssøknad er under behandling',
         data: createScenarioData([], harUbehandletFørstegangsøknad),
     },
     [ScenarioType.harIkkeTilgang]: {
@@ -103,7 +109,7 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
     },
 };
 
-export const defaultScenario = scenarioer[ScenarioType.default];
+export const defaultScenario = scenarioer[ScenarioType.innsynUtenOppgaver];
 
 export const getScenarioMockData = (scenario: ScenarioType) => {
     return scenarioer[scenario].data;

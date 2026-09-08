@@ -3,8 +3,8 @@ import { BrukerdialogOppgaveDto, TilgjengeligSøknadResponse } from '@navikt/ung
 import { z } from 'zod';
 
 export enum ScenarioType {
-    default = 'default',
-    harInnsyn = 'harInnsyn',
+    innsynUtenOppgaver = 'innsynUtenOppgaver',
+    innsynMedOppgaver = 'harInnsyn',
     harUbehandletFørstegangssøknad = 'harUbehandletFørstegangssøknad',
     harUbehandletAndregangssøknad = 'harUbehandletAndregangssøknad',
     harIkkeTilgang = 'harIkkeTilgang',

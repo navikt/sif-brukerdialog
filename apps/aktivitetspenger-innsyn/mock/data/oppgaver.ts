@@ -220,6 +220,22 @@ const getBekreftBostedOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
     ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 });
 
+const getBekreftBostedOpphørOppgaveDto = (): BrukerdialogOppgaveDto => ({
+    oppgaveReferanse: 'aa01ce74-9cb5-4000-bbae-5ab0940b04a3',
+    oppgavetype: OppgaveType.BEKREFT_BOSTED,
+    oppgavetypeData: {
+        type: 'BOSTED_OPPHØR',
+        ikkeOppfyltÅrsak: BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
+        erBosattITrondheim: false,
+        kilde: BostedsavklaringKildeType.FOLKEREGISTER,
+        fom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
+    },
+    status: OppgaveStatus.ULØST,
+    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
+    frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
+});
+
 export const getMockOppgaver = () => ({
     rapporterInntektOppgave: getRapporterInntektOppgaveDto(),
     rapporterInntektOppgaveLøst: getRapporterInntektOppgaveDtoLøst(),
@@ -230,4 +246,5 @@ export const getMockOppgaver = () => ({
     bekreftAvvikOppgaveLøst: getBekreftAvvikOppgaveDtoLøst(),
     bekreftBostedOppgave: getBekreftBostedOppgaveDto(),
     bekreftBostedOppgaveLøst: getBekreftBostedOppgaveDtoLøst(),
+    bekreftBostedOpphørOppgave: getBekreftBostedOpphørOppgaveDto(),
 });

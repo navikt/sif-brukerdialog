@@ -5,7 +5,7 @@ import { ScenarioType } from '../scenarios/types';
 import { store } from '../state/store';
 import { mockUtils } from '../utils/mockUtils';
 
-store.init(ScenarioType.default);
+store.init(ScenarioType.innsynUtenOppgaver);
 
 export const handlers = [
     http.get(`**/oppslag/soker`, () => HttpResponse.json(store.get().søker)),

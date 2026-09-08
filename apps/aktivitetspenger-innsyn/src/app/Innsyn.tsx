@@ -24,7 +24,7 @@ interface Props {
 export const Innsyn = ({ søker, oppgaver, tilgangsinfo: tilgjengeligSøknad }: Props) => {
     const { text } = useAppIntl();
 
-    /** Har innsyn, så viser vi standard innsyn-forside med undersider  */
+    /** Innsyn med oppgaver, så viser vi standard innsyn-forside med undersider  */
     if (tilgjengeligSøknad.harInnsyn || getMaybeEnv('SIF_PUBLIC_IGNORE_TILGJENGELIG_SJEKK') === 'true') {
         return (
             <InnsynContextProvider søker={søker} oppgaver={oppgaver} refetchOppgaver={() => Promise.resolve()}>
