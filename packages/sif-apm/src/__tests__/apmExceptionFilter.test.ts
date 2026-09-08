@@ -8,7 +8,7 @@ import {
     setAppOwnership,
 } from '../initApm';
 
-const OWNERSHIP: AppOwnership = { app: 'omsorgspengesoknad', namespace: 'dusseldorf' };
+const OWNERSHIP: AppOwnership = { namespace: 'dusseldorf' };
 
 const APP_BUNDLE = 'https://cdn.nav.no/dusseldorf/omsorgspengesoknad/dist/assets/index-a1b2c3.js';
 
@@ -60,18 +60,9 @@ describe('isForeignCodeException', () => {
         );
     });
 
-    it('filtrerer en annen app i samme namespace', () => {
+    it('beholder en annen SIF-app i samme navnerom (app-segmentet skilles ikke ut)', () => {
         expect(
-            isForeignCodeException(exceptionFrom(['https://cdn.nav.no/dusseldorf/en-annen-app/dist/index.js'])),
-        ).toBe(true);
-    });
-
-    it('beholder bundle med et annet CDN-app-segment enn APM-appnøkkelen', () => {
-        expect(
-            isForeignCodeException(
-                exceptionFrom(['https://cdn.nav.no/dusseldorf/pleiepenger-sykt-barn/dist/index.js']),
-                { app: 'pleiepengesoknad', cdnApp: 'pleiepenger-sykt-barn', namespace: 'dusseldorf' },
-            ),
+            isForeignCodeException(exceptionFrom(['https://cdn.nav.no/dusseldorf/en-annen-sif-app/dist/index.js'])),
         ).toBe(false);
     });
 
@@ -167,7 +158,7 @@ describe('isNoiseException', () => {
 
 describe('regresjon: ekte app-feil skal aldri filtreres', () => {
     beforeEach(() => {
-        setAppOwnership({ app: 'endringsmelding-pleiepenger', namespace: 'dusseldorf' });
+        setAppOwnership({ namespace: 'dusseldorf' });
     });
 
     // Faktisk feil fra endringsmelding-pleiepenger i prod. Frames er sourcemap-oppløst til .ts,

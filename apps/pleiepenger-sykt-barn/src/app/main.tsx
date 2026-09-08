@@ -10,7 +10,6 @@ import App from './App';
 
 void initApm({
     app: PleiepengerSyktBarnApp.key,
-    cdnApp: 'pleiepenger-sykt-barn',
     namespace: 'dusseldorf',
     version: getMaybeEnv('APP_VERSION'),
 });

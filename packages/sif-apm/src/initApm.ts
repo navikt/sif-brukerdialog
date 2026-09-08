@@ -11,12 +11,8 @@ import { init, type InitOptions } from '@nais/apm';
  * Ukjente tredjeparter blir dermed fremmede by default.
  */
 export interface AppOwnership {
-    /** Appnøkkel brukt av APM. */
-    app: string;
     /** NAIS-namespace, tilsvarer <namespace> i CDN-stien. Normalt 'dusseldorf'. */
     namespace: string;
-    /** App-segmentet i CDN-stien når det skiller seg fra APM-appnøkkelen. */
-    cdnApp?: string;
 }
 
 const CDN_ORIGIN = 'https://cdn.nav.no';
@@ -31,9 +27,13 @@ export const setAppOwnership = (ownership: AppOwnership): void => {
     currentAppOwnership = ownership;
 };
 
-/** Prod: bundles ligger på CDN under vår egen namespace/app-sti, jf. vite `base`. */
-const getOwnedCdnPrefix = ({ namespace, app, cdnApp }: AppOwnership): string =>
-    `${CDN_ORIGIN}/${namespace}/${cdnApp ?? app}/`;
+/**
+ * Prod: bundles ligger på CDN under vårt eget navnerom, jf. vite `base`. Vi sjekker kun
+ * namespace-segmentet (ikke app-segmentet) siden 'dusseldorf' er et navnerom dedikert til
+ * dette teamet — ingen andre publiserer dit. Det unngår sprik mellom APM-appnøkkelen og
+ * det faktiske CDN-mappenavnet (de har i praksis driftet fra hverandre for enkelte apper).
+ */
+const getOwnedCdnPrefix = ({ namespace }: AppOwnership): string => `${CDN_ORIGIN}/${namespace}/`;
 
 const getCurrentOrigin = (): string | undefined => globalThis.location?.origin || undefined;
 
@@ -88,14 +88,10 @@ export const isKnownNoisyException = (item: any): boolean => {
 export const isNoiseException = (item: any, ownership = currentAppOwnership): boolean =>
     isForeignCodeException(item, ownership) || isKnownNoisyException(item);
 
-export const initApm = ({
-    beforeSend: callerBeforeSend,
-    cdnApp,
-    ...options
-}: InitOptions & { cdnApp?: string }): void => {
-    // Uten app og namespace kan vi ikke utlede CDN-stien vi eier, og lag 1 forblir avslått.
-    if (options.app && options.namespace) {
-        setAppOwnership({ app: options.app, namespace: options.namespace, cdnApp });
+export const initApm = ({ beforeSend: callerBeforeSend, ...options }: InitOptions): void => {
+    // Uten namespace kan vi ikke utlede CDN-prefikset vi eier, og lag 1 forblir avslått.
+    if (options.namespace) {
+        setAppOwnership({ namespace: options.namespace });
     }
     init({
         ...options,
