@@ -1,49 +1,70 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { init, type InitOptions } from '@nais/apm';
 
-export const isDekoratorenException = (item: any): boolean => {
+/**
+ * Lag 1: strukturell vurdering av om feilen stammer fra vår egen kode.
+ * Fanger nettleserutvidelser, injiserte in-app-skript og tredjepartsskript uten at
+ * vi må kjenne den konkrete feilmeldingen på forhånd.
+ */
+
+// Skript vi laster inn, men ikke eier. Ligger delvis på samme CDN som våre egne bundles.
+const THIRD_PARTY_SCRIPT_PATTERNS: RegExp[] = [
+    /personbruker\/nav-dekoratoren/,
+    /team-researchops\/sporing/,
+    /uxsignals/,
+    /skyra/,
+    /boost\.ai/,
+    /puzzel/,
+];
+
+const isOwnScriptFrame = (frame: any): boolean => {
+    const filename: string = frame?.filename ?? '';
+    if (!/^https?:\/\//.test(filename)) return false;
+
+    // Injiserte inline-skript rapporterer dokument-URL-en som filnavn. Egen kode peker alltid på en
+    // kildefil, enten minifisert (.js) eller sourcemap-oppløst (.ts/.tsx).
+    const path = filename.split(/[?#]/)[0];
+    if (!/\.(js|mjs|cjs|jsx|ts|tsx)$/.test(path)) return false;
+
+    return !THIRD_PARTY_SCRIPT_PATTERNS.some((pattern) => pattern.test(path));
+};
+
+export const isForeignCodeException = (item: any): boolean => {
     if (item?.type !== 'exception') return false;
     const frames: any[] = item.payload?.stacktrace?.frames ?? [];
-    return frames.some((f) => (f.filename ?? '').includes('personbruker/nav-dekoratoren'));
+    if (frames.length === 0) return false;
+    return !frames.some(isOwnScriptFrame);
 };
 
-export const isChromeExtensionException = (item: any): boolean => {
-    if (item?.type !== 'exception') return false;
-    const frames: any[] = item.payload?.stacktrace?.frames ?? [];
-    return frames.some((f) => (f.filename ?? '').startsWith('chrome-extension://'));
+/**
+ * Lag 2: kjente støymønstre som lag 1 ikke kan fange, fordi feilen mangler stacktrace
+ * eller faktisk oppstår i vår egen bundle. Hold denne listen kort.
+ */
+const KNOWN_NOISY_EXCEPTION_PATTERNS: RegExp[] = [
+    /Non-Error promise rejection captured with value: Request (timeout|aborted)/,
+    /^AxiosError: Network Error$/,
+    /^Error: Script error\.$/,
+];
+
+const getExceptionText = (item: any): string => {
+    const { type, value, message } = item.payload ?? {};
+    return [type && value ? `${type}: ${value}` : type || value, message].filter(Boolean).join(' ').trim();
 };
 
-// Nettleseren rapporterer avbrutte/timeout-forespørsler som unhandled rejections vi ikke kan håndtere
-export const isNoisyUnhandledRejection = (item: any): boolean => {
+export const isKnownNoisyException = (item: any): boolean => {
     if (item?.type !== 'exception') return false;
-    const message: string = item.payload?.message ?? '';
-    return (
-        message.includes('Non-Error promise rejection captured with value: Request timeout') ||
-        message.includes('Non-Error promise rejection captured with value: Request aborted')
-    );
+    const text = getExceptionText(item);
+    return KNOWN_NOISY_EXCEPTION_PATTERNS.some((pattern) => pattern.test(text));
 };
 
-// Axios sin generiske "Network Error" oppstår ved tapt nettverk/CORS-blokkering på klienten og gir ingen handlingsrom
-export const isAxiosNetworkErrorException = (item: any): boolean => {
-    if (item?.type !== 'exception') return false;
-    return item.payload?.type === 'AxiosError' && item.payload?.value === 'Network Error';
-};
-
-// Nettleseren skjuler feildetaljer fra skript lastet cross-origin uten CORS-headere bak "Script error." - uten stacktrace er den ikke handlingsbar
-export const isOpaqueScriptErrorException = (item: any): boolean => {
-    if (item?.type !== 'exception') return false;
-    return item.payload?.type === 'Error' && item.payload?.value === 'Script error.';
-};
+/** Samlet vurdering av begge lagene. Brukes av apper som initialiserer Faro selv. */
+export const isNoiseException = (item: any): boolean => isForeignCodeException(item) || isKnownNoisyException(item);
 
 export const initApm = ({ beforeSend: callerBeforeSend, ...options }: InitOptions): void => {
     init({
         ...options,
         beforeSend: (item: any) => {
-            if (isDekoratorenException(item)) return null;
-            if (isChromeExtensionException(item)) return null;
-            if (isNoisyUnhandledRejection(item)) return null;
-            if (isAxiosNetworkErrorException(item)) return null;
-            if (isOpaqueScriptErrorException(item)) return null;
+            if (isNoiseException(item)) return null;
             return callerBeforeSend ? callerBeforeSend(item) : item;
         },
     });
