@@ -32,7 +32,7 @@ const SøknadDataWrapper = () => {
             }
             return <InitialDataErrorPage applicationTitle={text('application.title')} />;
         case 'success':
-            if (result.data.tilgjengeligSøknad.type !== TilgjengeligSøknadType.FØRSTEGANGSSØKNAD) {
+            if (result.data.tilgjengeligSøknad.type === TilgjengeligSøknadType.INGEN) {
                 return <KanIkkeSøkePage søker={result.data.søker} tilgjengelig={result.data.tilgjengeligSøknad} />;
             }
             return (

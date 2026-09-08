@@ -14,7 +14,7 @@ const scenarioGroups: Array<ScenarioSelectorHeaderGroup<ScenarioType>> = [
             },
             {
                 value: ScenarioType.nyPeriodeSøknad,
-                label: 'Sperret - Ny periode søknad',
+                label: 'Annengangssøknad',
             },
             {
                 value: ScenarioType.ubehandletFørstegangssøknad,
@@ -22,7 +22,7 @@ const scenarioGroups: Array<ScenarioSelectorHeaderGroup<ScenarioType>> = [
             },
             {
                 value: ScenarioType.kanIkkeSøke,
-                label: 'Sperret - Har aktivitetspenger',
+                label: 'Sperret - Har aktivitetspenger og utenfor søkevindu',
             },
         ],
     },
