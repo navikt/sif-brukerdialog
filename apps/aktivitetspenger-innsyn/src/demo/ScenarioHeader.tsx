@@ -11,7 +11,7 @@ const groups: Array<ScenarioSelectorHeaderGroup<ScenarioType>> = [
         options: [
             {
                 value: ScenarioType.harIkkeTilgang,
-                label: 'Har ikke ikke tilgang',
+                label: 'Har ikke tilgang',
             },
             {
                 value: ScenarioType.harUbehandletFørstegangssøknad,
