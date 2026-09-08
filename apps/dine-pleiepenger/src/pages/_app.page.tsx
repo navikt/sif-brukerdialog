@@ -52,10 +52,11 @@ const søkerIdFetcher = async (): Promise<string> => {
     });
 };
 
+const apmAppOwnership = { app: InnsynPsbApp.key, namespace: 'dusseldorf' };
+
 initNaisAPMClient({
-    app: InnsynPsbApp.key,
-    namespace: 'dusseldorf',
-    beforeSend: (item) => (isNoiseException(item) ? null : item),
+    ...apmAppOwnership,
+    beforeSend: (item) => (isNoiseException(item, apmAppOwnership) ? null : item),
 });
 configureLogger({
     basePath: process.env.NEXT_PUBLIC_BASE_PATH,

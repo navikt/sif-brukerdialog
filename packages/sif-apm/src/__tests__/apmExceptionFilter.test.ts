@@ -1,8 +1,20 @@
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { isForeignCodeException, isKnownNoisyException, isNoiseException } from '../initApm';
+import {
+    type AppOwnership,
+    isForeignCodeException,
+    isKnownNoisyException,
+    isNoiseException,
+    setAppOwnership,
+} from '../initApm';
+
+const OWNERSHIP: AppOwnership = { app: 'omsorgspengesoknad', namespace: 'dusseldorf' };
 
 const APP_BUNDLE = 'https://cdn.nav.no/dusseldorf/omsorgspengesoknad/dist/assets/index-a1b2c3.js';
+
+beforeEach(() => {
+    setAppOwnership(OWNERSHIP);
+});
 
 const exceptionFrom = (filenames: string[]) => ({
     type: 'exception',
@@ -41,6 +53,27 @@ describe('isForeignCodeException', () => {
         ).toBe(true);
     });
 
+    it('filtrerer ukjente tredjepartsskript uten at de står på en liste', () => {
+        expect(isForeignCodeException(exceptionFrom(['https://third-party.example/widget.js']))).toBe(true);
+        expect(isForeignCodeException(exceptionFrom(['https://cdn.nav.no/et-annet-team/ny-widget/bundle.js']))).toBe(
+            true,
+        );
+    });
+
+    it('filtrerer en annen app i samme namespace', () => {
+        expect(
+            isForeignCodeException(exceptionFrom(['https://cdn.nav.no/dusseldorf/en-annen-app/dist/index.js'])),
+        ).toBe(true);
+    });
+
+    it('krever eksakt app-segment, ikke bare prefiks', () => {
+        expect(
+            isForeignCodeException(
+                exceptionFrom(['https://cdn.nav.no/dusseldorf/omsorgspengesoknad-v2/dist/index.js']),
+            ),
+        ).toBe(true);
+    });
+
     it('ignorerer query og hash når filtype vurderes', () => {
         expect(isForeignCodeException(exceptionFrom([`${APP_BUNDLE}?v=123`]))).toBe(false);
     });
@@ -51,6 +84,12 @@ describe('isForeignCodeException', () => {
 
     it('returnerer false for ikke-exception', () => {
         expect(isForeignCodeException({ type: 'log', payload: {} })).toBe(false);
+    });
+
+    it('slår seg av (fail-open) når eierskap ikke er etablert', async () => {
+        vi.resetModules();
+        const uninitialised = await import('../initApm');
+        expect(uninitialised.isForeignCodeException(exceptionFrom(['chrome-extension://abc/inject.js']))).toBe(false);
     });
 });
 
@@ -124,6 +163,10 @@ describe('isNoiseException', () => {
 });
 
 describe('regresjon: ekte app-feil skal aldri filtreres', () => {
+    beforeEach(() => {
+        setAppOwnership({ app: 'endringsmelding-pleiepenger', namespace: 'dusseldorf' });
+    });
+
     // Faktisk feil fra endringsmelding-pleiepenger i prod. Frames er sourcemap-oppløst til .ts,
     // og flere frames er runtime-interne (<anonymous>, Promise.all).
     const verifyK9FormatBarnException = {

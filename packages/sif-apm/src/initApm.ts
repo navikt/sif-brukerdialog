@@ -5,35 +5,59 @@ import { init, type InitOptions } from '@nais/apm';
  * Lag 1: strukturell vurdering av om feilen stammer fra vår egen kode.
  * Fanger nettleserutvidelser, injiserte in-app-skript og tredjepartsskript uten at
  * vi må kjenne den konkrete feilmeldingen på forhånd.
+ *
+ * Vurderingen er en positiv eierskapssjekk (allowlist), ikke en denylist over kjente
+ * tredjeparter: en frame regnes som vår kun hvis den ligger under en URL vi faktisk eier.
+ * Ukjente tredjeparter blir dermed fremmede by default.
  */
+export interface AppOwnership {
+    /** Appnøkkel, tilsvarer <app> i CDN-stien. */
+    app: string;
+    /** NAIS-namespace, tilsvarer <namespace> i CDN-stien. Normalt 'dusseldorf'. */
+    namespace: string;
+}
 
-// Skript vi laster inn, men ikke eier. Ligger delvis på samme CDN som våre egne bundles.
-const THIRD_PARTY_SCRIPT_PATTERNS: RegExp[] = [
-    /personbruker\/nav-dekoratoren/,
-    /team-researchops\/sporing/,
-    /uxsignals/,
-    /skyra/,
-    /boost\.ai/,
-    /puzzel/,
-];
+const CDN_ORIGIN = 'https://cdn.nav.no';
 
-const isOwnScriptFrame = (frame: any): boolean => {
+const SCRIPT_FILE_PATTERN = /\.(js|mjs|cjs|jsx|ts|tsx)$/;
+
+/** Settes av initApm. Uten den kan vi ikke avgjøre eierskap, og lag 1 slår seg av. */
+let currentAppOwnership: AppOwnership | undefined;
+
+/** For apper som initialiserer Faro selv og derfor ikke går via initApm. */
+export const setAppOwnership = (ownership: AppOwnership): void => {
+    currentAppOwnership = ownership;
+};
+
+/** Prod: bundles ligger på CDN under vår egen namespace/app-sti, jf. vite `base`. */
+const getOwnedCdnPrefix = ({ namespace, app }: AppOwnership): string => `${CDN_ORIGIN}/${namespace}/${app}/`;
+
+const getCurrentOrigin = (): string | undefined => globalThis.location?.origin || undefined;
+
+const isOwnScriptFrame = (frame: any, ownership: AppOwnership): boolean => {
     const filename: string = frame?.filename ?? '';
     if (!/^https?:\/\//.test(filename)) return false;
 
-    // Injiserte inline-skript rapporterer dokument-URL-en som filnavn. Egen kode peker alltid på en
-    // kildefil, enten minifisert (.js) eller sourcemap-oppløst (.ts/.tsx).
     const path = filename.split(/[?#]/)[0];
-    if (!/\.(js|mjs|cjs|jsx|ts|tsx)$/.test(path)) return false;
 
-    return !THIRD_PARTY_SCRIPT_PATTERNS.some((pattern) => pattern.test(path));
+    if (path.startsWith(getOwnedCdnPrefix(ownership))) return true;
+
+    // Dev og lokal kjøring serverer bundlene fra samme origin som dokumentet. Vi krever
+    // fortsatt at framen peker på en kildefil, siden injiserte inline-skript rapporterer
+    // dokument-URL-en som filnavn.
+    const origin = getCurrentOrigin();
+    if (origin && path.startsWith(`${origin}/`)) return SCRIPT_FILE_PATTERN.test(path);
+
+    return false;
 };
 
-export const isForeignCodeException = (item: any): boolean => {
+export const isForeignCodeException = (item: any, ownership = currentAppOwnership): boolean => {
     if (item?.type !== 'exception') return false;
+    // Fail-open: uten kjent eierskap er det bedre å beholde støy enn å miste ekte feil.
+    if (!ownership) return false;
     const frames: any[] = item.payload?.stacktrace?.frames ?? [];
     if (frames.length === 0) return false;
-    return !frames.some(isOwnScriptFrame);
+    return !frames.some((frame) => isOwnScriptFrame(frame, ownership));
 };
 
 /**
@@ -58,9 +82,14 @@ export const isKnownNoisyException = (item: any): boolean => {
 };
 
 /** Samlet vurdering av begge lagene. Brukes av apper som initialiserer Faro selv. */
-export const isNoiseException = (item: any): boolean => isForeignCodeException(item) || isKnownNoisyException(item);
+export const isNoiseException = (item: any, ownership = currentAppOwnership): boolean =>
+    isForeignCodeException(item, ownership) || isKnownNoisyException(item);
 
 export const initApm = ({ beforeSend: callerBeforeSend, ...options }: InitOptions): void => {
+    // Uten app og namespace kan vi ikke utlede CDN-stien vi eier, og lag 1 forblir avslått.
+    if (options.app && options.namespace) {
+        setAppOwnership({ app: options.app, namespace: options.namespace });
+    }
     init({
         ...options,
         beforeSend: (item: any) => {
