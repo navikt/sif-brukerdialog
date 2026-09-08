@@ -15,6 +15,8 @@ export const handlers = [
         return HttpResponse.json(oppgaver);
     }),
 
+    http.get('**/aktivitetspenger/soknad/tilgjengelig', () => HttpResponse.json(store.get().tilgjengeligSøknad)),
+
     http.post('**/aktivitetspenger/oppgavebekreftelse/innsending', async ({ request }) => {
         const text = await request.text();
         try {

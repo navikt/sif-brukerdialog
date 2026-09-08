@@ -278,29 +278,24 @@ validateMellomlagring?: (blob: MellomlagringBlob) => MellomlagringBlob | null;
 
 `formValuesToSøknadsdata` er opt-in — uten den er konsistenssjekken deaktivert.
 
-**Implementasjonsmønster i appen:** Lag en `useFormValuesToSøknadsdata`-hook som returnerer funksjonen. Hook-mønsteret er foretrukket fremfor statisk utility fordi konverteringen typisk trenger app-kontekst (f.eks. `barn`, `søker`):
+**Implementasjonsmønster i appen:** Lag en statisk `formValuesToSøknadsdata`-funksjon. Data som trengs for konverteringen skal være en del av stegets lagrede data:
 
 ```ts
-// src/app/hooks/useFormValuesToSøknadsdata.ts
-export const useFormValuesToSøknadsdata = () => {
-    const { barn } = useAppContext();
-    return useCallback(
-        (stepId, formValues) => {
-            switch (stepId) {
-                case SøknadStepId.OM_BARNET:
-                    return toOmBarnetSøknadsdata(formValues as unknown as OmBarnetFormValues, barn) as
-                        Record<string, unknown> | undefined;
-                // ...
-                default:
-                    return undefined;
-            }
-        },
-        [barn],
-    );
+// src/app/utils/formValuesToSøknadsdata.ts
+export const formValuesToSøknadsdata = (
+    stepId: string,
+    formValues: Record<string, unknown>,
+): Record<string, unknown> | undefined => {
+    switch (stepId) {
+        case SøknadStepId.OM_BARNET:
+            return toOmBarnetSøknadsdata(formValues as OmBarnetFormValues) as Record<string, unknown>;
+        // ...
+        default:
+            return undefined;
+    }
 };
 
 // src/app/Soknad.tsx
-const formValuesToSøknadsdata = useFormValuesToSøknadsdata();
 ```
 
 `undefined` fra `default`-casen betyr "hopp over konsistenssjekk for dette steget" — bruk som bevisst escape hatch, ikke som placeholder. Steg som trenger dynamisk data (f.eks. arbeidsgivere hentet basert på brukervalg): commit den hentede dataen som del av søknadsdata, slik at konverteringen forblir en ren funksjon av formValues.
@@ -321,8 +316,8 @@ const formValuesToSøknadsdata = useFormValuesToSøknadsdata();
 | Problem                                                              | Årsak                                                                                     | Fix                                                                           |
 | -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `lagre()` lagrer ikke for steget brukeren er på                      | `resumeStepId` ≠ montert steg                                                             | `getAllLiveFormValues()` brukes nå — løst                                     |
-| Konsistenssjekk virker ikke                                          | `formValuesToSøknadsdata` ikke satt på `SøknadRouter`                                     | Lag `useFormValuesToSøknadsdata`-hook og implementer switch per stepId        |
-| Falsk inconsistency-advarsel for ett steg                            | `formValuesToSøknadsdata` returnerer `undefined` for steget, men søknadsdata er committet | Implementer konverteringen — bruk hook-mønster med app-kontekst i closure     |
+| Konsistenssjekk virker ikke                                          | `formValuesToSøknadsdata` ikke satt på `SøknadRouter`                                     | Lag funksjon med switch per stepId                                             |
+| Falsk inconsistency-advarsel for ett steg                            | `formValuesToSøknadsdata` returnerer `undefined` for steget, men søknadsdata er committet | Implementer konverteringen som en ren funksjon                                |
 | Kvitteringssiden vises ikke                                          | `setSøknadSendt()` setter `resumeStepId: undefined` → `SøknadStepGuard` redirecter        | `SøknadRouter` renderer `kvitteringElement` state-basert, ikke route-basert   |
 | Navigerer til feil steg etter back+re-submit                         | `resumeStepId` peker på et steg lenger frem                                               | `commitState` bruker alltid `includedSteps[fromIndex + 1]` — løst             |
 | Velkommensiden blinker ved reload med mellomlagring                  | `children` ble rendret før init + navigate                                                | `SøknadRouter` holder `children` tilbake til `isInitialized = true` — løst    |

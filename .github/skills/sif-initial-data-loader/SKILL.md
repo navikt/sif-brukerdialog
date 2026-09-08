@@ -25,7 +25,7 @@ description: Mønster for å kombinere flere API-hooks til én asynkron laster (
 
 `useInitialData.ts` legges i `src/` (rot for appen), ikke i `src/app/`. Dette er et entrypoint-nivå-concern — det kjøres før `AppContext` og `Soknad` initialiseres.
 
-> **Merk:** Mellomlagring håndteres av `SøknadRouter` fra `@sif/soknad-app`. `useInitialData` skal IKKE hente mellomlagring.
+> **Merk:** Mellomlagring håndteres av `SøknadRouter` fra `@sif/soknad-app`. Ikke hent den i `useInitialData`.
 
 ---
 
@@ -45,7 +45,7 @@ src/
 - `error` → `<InitialDataErrorPage />`
 - `success` → `<AppContextProvider value={data}><Søknad /></AppContextProvider>`
 
-`Søknad` mottar ikke lenger props — data leveres via `AppContext`.
+`Søknad` mottar ikke props; data leveres via `AppContext`.
 
 ---
 
@@ -57,7 +57,7 @@ src/
 - Kombinerer loading/error-tilstander til én `InitialDataResult`.
 - Returnerer typet `data`-objekt ved suksess.
 
-**Ikke** hente mellomlagring her — det håndteres av `SøknadRouter`.
+**Ikke** hent mellomlagring her; det håndteres av `SøknadRouter`.
 
 ### Returtype-mønster
 
@@ -121,7 +121,7 @@ export const useInitialData = (): InitialDataResult => {
     - Required: legg til i `requiredQueries`-arrayen.
     - Optional: sjekk `isLoading` separat, bruk fallback-verdi i `data`-objektet.
 4. Legg til feltet i `InitialData`-interfacet.
-5. Send feltet videre som prop til `<Søknad />`.
+5. Eksponer feltet gjennom `AppContext`.
 
 ---
 
@@ -130,6 +130,4 @@ export const useInitialData = (): InitialDataResult => {
 | Feil                              | Diagnose                                                                                                              |
 | --------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | Appen er stuck i loading          | En hook er aldri ferdig (`isFetched` forblir false). Sjekk at API-klient er initialisert og env-variabler er satt.    |
-| Mellomlagring ignoreres           | `metadata` er ikke klart når `useYtelseMellomlagring` kalles. Sjekk `useMemo`-avhengighetene.                         |
-| Feilside vises selv om API svarer | En query i `requiredQueries` eller `mellomlagring` har `isError: true`. Logg `errors` i dev-mode for å finne hvilken. |
-| Ugyldig steg ved retur til søknad | `getValidertMellomlagring` filtrerer ikke riktig — sjekk at `søknadStepConfig` er importert korrekt.                  |
+| Feilside vises selv om API svarer | En query i `requiredQueries` har `isError: true`. Logg `errors` i dev-mode for å finne hvilken.                       |

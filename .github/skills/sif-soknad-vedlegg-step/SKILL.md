@@ -16,7 +16,7 @@ description: Implementer et vedleggssteg i en v2-app — VedleggPanel, Persisted
 - Opplasting, sletting og hydration virker
 - Mellomlagring oppdateres når vedlegg lastes opp eller slettes
 - Submit sperres ved pending uploads
-- DTO får vedleggs-IDer
+- DTO får vedleggenes backend-URL-er
 - Oppsummering kan vise vedlegg som lenker
 
 ## Endre disse filene
@@ -175,7 +175,7 @@ import { VedleggSummaryList } from '@sif/soknad-ui/components';
 <VedleggSummaryList vedlegg={state.søknadsdata[SøknadStepId.LEGEERKLÆRING]?.vedlegg ?? []} />;
 ```
 
-DTO har normalt bare ID-er. Oppsummering trenger `name`, `url` og `size`.
+DTO inneholder bare backend-URL-er. Oppsummering trenger `name`, `url` og `size`.
 
 ## 7. MSW
 

@@ -27,6 +27,7 @@ interface Props {
         content: ReactNode;
     };
     isPending: boolean;
+
     onStart: (bekrefterVilkår: true) => void;
     /** Innhold mellom guide og skjema */
     children: ReactNode;
@@ -68,6 +69,7 @@ export const StartPage = ({ title, guide, children, onStart, isPending }: Props)
                 </GuidePanel>
 
                 <div>{children}</div>
+
                 <section aria-label={text('@sifSoknadUi.startPage.form.ariaLabel')}>
                     <form onSubmit={handleSubmit}>
                         <VStack gap="space-24">

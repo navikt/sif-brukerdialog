@@ -522,6 +522,9 @@ importers:
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
+      '@navikt/ung-brukerdialog-api':
+        specifier: workspace:*
+        version: link:../../packages/ung-brukerdialog-api
       '@navikt/ung-deltakelse-opplyser-api-deltaker':
         specifier: workspace:*
         version: link:../../packages/ung-deltakelse-opplyser-api-deltaker

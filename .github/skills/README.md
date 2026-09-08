@@ -87,6 +87,21 @@ Bruk denne indeksen for rask routing til riktig skill.
     - Triggerord: `gh-pages`, `demo-deploy`, `legg til i gh-pages`, `vite.demo.config`, `demo:build`, `gh-pages:rebuild`, `dist-demo`.
     - Fil: `.github/skills/sif-gh-pages/SKILL.md`
 
+- `sif-apm`
+    - Når: sette opp eller feilsøke browser-telemetri.
+    - Triggerord: `initApm`, `@sif/apm`, `Faro`, `telemetri`, `Grafana`.
+    - Fil: `.github/skills/sif-apm/SKILL.md`
+
+- `sif-date-handling`
+    - Når: håndtere datoer, tid, parsing eller tidssoner.
+    - Triggerord: `dayjs`, `ISODate`, `ISODateTime`, `tidssone`, `UTC`, `Europe/Oslo`.
+    - Fil: `.github/skills/sif-date-handling/SKILL.md`
+
+- `sif-surveys`
+    - Når: sette opp eller feilsøke Skyra-undersøkelser og UxSignals.
+    - Triggerord: `skyra`, `skyra-survey`, `SkyraHandler`, `uxsignals`.
+    - Fil: `.github/skills/sif-surveys/SKILL.md`
+
 - `nav-architecture-review`
     - Når: arkitekturvurdering og generering av ADR (Architecture Decision Records).
     - Triggerord: `ADR`, `architecture review`, `arkitekturbeslutning`, `beslutningsdokument`, `vurder arkitektur`.

@@ -27,7 +27,7 @@ description: Veiledning for oppsett av en ny søknadsapp med @sif/soknad-app —
 - `src/app/setup/appEnv.ts` — env-henting
 - `src/app/types/SoknadStepId.ts` — steg-enum
 - `src/app/types/Soknadsdata.ts` — per-steg domentyper
-- `src/app/hooks/useFormValuesToSøknadsdata.ts` — hook som returnerer konverteringsfunksjonen
+- `src/app/utils/formValuesToSøknadsdata.ts` — konverterer skjemaverdier til søknadsdata
 - `src/app/i18n/index.tsx` + `src/app/i18n/nb.ts` — i18n-aggregering
 - `src/app/content/velkommen/Velkommen.tsx` — `SøknadVelkommenPage`
 - `src/app/content/kvittering/Kvittering.tsx` — `SøknadKvitteringPage`
@@ -142,40 +142,29 @@ export type Søknadsdata = {
 
 Ingen `BaseSøknadsdata`-extend — det er en interim-v2-type.
 
-### 5. `src/app/hooks/useFormValuesToSøknadsdata.ts`
+### 5. `src/app/utils/formValuesToSøknadsdata.ts`
 
-Hook som returnerer `formValuesToSøknadsdata`-funksjonen. Bruk hook fremfor statisk utility fordi konverteringen ofte trenger app-kontekst (f.eks. `barn`, `søker`) for å rekonstruere søknadsdata korrekt.
+Statisk funksjon som konverterer skjemaverdier til søknadsdata per steg. Data som trengs for konverteringen skal være en del av stegets lagrede data.
 
 ```ts
-import { useCallback } from 'react';
-import { useAppContext } from '../context/AppContext';
 import { SøknadStepId } from '../types/SoknadStepId';
 import { toMittStegSøknadsdata } from '../steps/mitt-steg/mittStegUtils';
 import { MittStegFormValues } from '../steps/mitt-steg/types';
 
-export const useFormValuesToSøknadsdata = () => {
-    const { barn } = useAppContext(); // hent det du trenger fra kontekst
-
-    return useCallback(
-        (stepId: string, formValues: Record<string, unknown>): Record<string, unknown> | undefined => {
-            switch (stepId) {
-                case SøknadStepId.MITT_STEG:
-                    return toMittStegSøknadsdata(
-                        formValues as unknown as MittStegFormValues,
-                        barn, // kontekst-data i closure
-                    ) as Record<string, unknown> | undefined;
-                default:
-                    return undefined;
-            }
-        },
-        [barn],
-    );
+export const formValuesToSøknadsdata = (
+    stepId: string,
+    formValues: Record<string, unknown>,
+): Record<string, unknown> | undefined => {
+    switch (stepId) {
+        case SøknadStepId.MITT_STEG:
+            return toMittStegSøknadsdata(formValues as MittStegFormValues) as Record<string, unknown>;
+        default:
+            return undefined;
+    }
 };
 ```
 
-**Viktig:** `undefined` fra `default`-casen betyr "kan ikke konverteres for dette steget — hopp over konsistenssjekk". Bruk det kun som bevisst escape hatch, ikke som placeholder. Alle steg som kan konverteres uten ekstern data bør implementeres.
-
-**Steg som trenger dynamisk lastet data** (f.eks. arbeidsgivere hentet basert på brukerens valg i et tidligere steg): commit den hentede dataen som del av søknadsdata i det aktuelle steget. Da er dataen tilgjengelig i `formValues` ved konvertering, uten behov for ekstra API-kall.
+**Viktig:** `undefined` betyr at steget ikke kan konverteres og konsistenssjekken hoppes over. Bruk det bare bevisst. Steg som trenger dynamisk lastet data må lagre dataen som del av søknadsdata.
 
 ### 6. `src/app/context/AppContext.tsx`
 
@@ -252,7 +241,7 @@ export const applicationIntlMessages: IntlMessageObjectFormat = { nb, nn };
 import { søknadStepConfig, søknadStepOrder } from '@app/setup/soknadStepConfig';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '@app/setup/constants';
-import { useFormValuesToSøknadsdata } from '@app/hooks/useFormValuesToSøknadsdata';
+import { formValuesToSøknadsdata } from '@app/utils/formValuesToSøknadsdata';
 import { SøknadRouter, SøknadStepGuard } from '@sif/soknad-app';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAppIntl } from './i18n';
@@ -262,8 +251,6 @@ import { OppsummeringSteg } from './steps';
 
 export const Søknad = () => {
     const { text } = useAppIntl();
-    const formValuesToSøknadsdata = useFormValuesToSøknadsdata();
-
     return (
         <SøknadRouter
             config={søknadStepConfig}
@@ -427,7 +414,7 @@ Se `sif-initial-data-loader` for fullt mønster. Mellomlagring håndteres av `S�
 | `setup/appEnv.ts`                     | Ytelse-spesifikke env-variabler                                           |
 | `types/Soknadsdata.ts`                | Per-steg søknadsdatatyper                                                 |
 | `context/AppContext.tsx`              | App-spesifikke dataprop (søker, barn, kontonummer osv.)                   |
-| `hooks/useFormValuesToSøknadsdata.ts` | Hook med switch per steg, kontekst i closure                              |
+| `utils/formValuesToSøknadsdata.ts`    | Statisk funksjon med switch per steg                                      |
 | `i18n/nb.ts`                          | Aggreger steg-meldinger + `application.title`, `step.<id>.title` per steg |
 | `content/velkommen/Velkommen.tsx`     | `guide.content` — app-spesifikt innhold                                   |
 | `App.tsx`                             | `applicationKey`, `AppContextProvider` props                              |
@@ -465,7 +452,7 @@ Kaller `useStartSøknad` internt. Ingen manuell navigering eller `lagreSøknad()
 - [ ] `setup/soknadStepConfig.ts` med routes og isCompleted
 - [ ] `setup/constants.ts` med riktig `APP_YTELSE`
 - [ ] `types/Soknadsdata.ts` med per-steg typer (ikke BaseSøknadsdata)
-- [ ] `hooks/useFormValuesToSøknadsdata.ts` med switch per steg
+- [ ] `utils/formValuesToSøknadsdata.ts` med switch per steg
 - [ ] `context/AppContext.tsx` med app-spesifikke felt
 - [ ] `i18n/nb.ts` med `application.title` og `step.<id>.title` per steg
 - [ ] `i18n/index.tsx` med `applicationIntlMessages`

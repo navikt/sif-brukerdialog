@@ -1,9 +1,12 @@
 import { zSøker } from '@navikt/k9-brukerdialog-prosessering-api';
-import { BrukerdialogOppgaveDto } from '@navikt/ung-brukerdialog-api';
+import { BrukerdialogOppgaveDto, TilgjengeligSøknadResponse } from '@navikt/ung-brukerdialog-api';
 import { z } from 'zod';
 
 export enum ScenarioType {
     default = 'default',
+    harInnsyn = 'harInnsyn',
+    harUbehandletSøknad = 'harUbehandletSøknad',
+    harIkkeTilgang = 'harIkkeTilgang',
     rapporterInntekt = 'rapporterInntekt',
     rapporterInntektDelerAvMåned = 'rapporterInntektDelerAvMåned',
     avvikInntekt = 'avvikInntekt',
@@ -14,4 +17,5 @@ export enum ScenarioType {
 export interface ScenarioData {
     søker: z.infer<typeof zSøker>;
     oppgaver: BrukerdialogOppgaveDto[];
+    tilgjengeligSøknad: TilgjengeligSøknadResponse;
 }

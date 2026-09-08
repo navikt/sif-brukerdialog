@@ -1,4 +1,5 @@
 import { Page } from '@playwright/test';
+
 import { ScenarioType } from '../../mock/scenarios/types';
 
 const SCENARIO_KEY = 'AKT_SOKNAD_MOCK_SCENARIO';

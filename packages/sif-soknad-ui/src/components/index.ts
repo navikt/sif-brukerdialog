@@ -11,6 +11,7 @@ export { Kvittering } from './kvittering/Kvittering';
 export { JaNeiSvar } from './oppsummering-svar/JaNeiSvar';
 export { PictureScanningGuide } from './picture-scanning-guide/PictureScanningGuide';
 export { ProgressStepper } from './progress-stepper/ProgressStepper';
+export { Todo } from './todo/Todo';
 export { type ProgressStep } from './progress-stepper/ProgressStepper';
 export { RegistrerteBarnListe } from './registrerte-barn-liste/RegistrerteBarnListe';
 export {

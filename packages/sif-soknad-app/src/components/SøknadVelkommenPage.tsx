@@ -16,6 +16,7 @@ export const SøknadVelkommenPage = ({
     title,
     guide,
     isPending = false,
+
     children,
 }: PropsWithChildren<SøknadVelkommenPageProps>) => {
     const { startSøknad } = useStartSøknad();

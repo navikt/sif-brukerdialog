@@ -98,6 +98,11 @@ export const zOppgaveType = z.enum([
 
 export const zOppgaveYtelsetype = z.enum(['UNGDOMSYTELSE', 'AKTIVITETSPENGER']);
 
+export const zOpprettSøknadHendelseRequest = z.object({
+    mottatt: z.iso.datetime({ local: true }),
+    søknadId: z.uuid(),
+});
+
 export const zPeriodeDto = z.object({
     fomDato: z.iso.date().optional(),
     tomDato: z.iso.date().optional(),
@@ -156,6 +161,14 @@ export const zLøsOppgaveRequest = z.object({
 
 export const zSøkYtelseOppgavetypeDataDto = z.object({
     fomDato: z.iso.date(),
+});
+
+export const zTilgjengeligSøknadType = z.enum(['INGEN', 'FØRSTEGANGSSØKNAD', 'NY_PERIODE_SØKNAD']);
+
+export const zTilgjengeligSøknadResponse = z.object({
+    harInnsyn: z.boolean().optional(),
+    harUbehandletSøknad: z.boolean().optional(),
+    type: zTilgjengeligSøknadType.optional(),
 });
 
 export const zYtelseType = z.enum([
@@ -265,6 +278,16 @@ export const zBrukerdialogOppgaveDto = z.object({
     status: zOppgaveStatus,
     ytelsetype: zOppgaveYtelsetype,
 });
+
+/**
+ * Søknaden som er sendt inn
+ */
+export const zRegistrerBody = zOpprettSøknadHendelseRequest;
+
+/**
+ * default response
+ */
+export const zTilgjengeligSøknadResponse2 = zTilgjengeligSøknadResponse;
 
 export const zHentAlleOppgaverQuery = z.object({
     ytelsetype: zOppgaveYtelsetype.optional(),

@@ -11,6 +11,10 @@ import type {
     HentOppgaveResponses,
     LøsOppgaveData,
     LøsOppgaveResponses,
+    RegistrerData,
+    RegistrerResponses,
+    TilgjengeligSøknadData,
+    TilgjengeligSøknadResponses,
 } from './types.gen';
 import {
     zHentAlleOppgaverQuery,
@@ -20,6 +24,8 @@ import {
     zLøsOppgaveBody,
     zLøsOppgavePath,
     zLøsOppgaveResponse,
+    zRegistrerBody,
+    zTilgjengeligSøknadResponse2,
 } from './zod.gen';
 
 export type Options<
@@ -39,6 +45,55 @@ export type Options<
      */
     meta?: keyof ClientMeta extends never ? Record<string, unknown> : ClientMeta;
 };
+
+export class BrukerdialogSøknad {
+    /**
+     * Registrerer at innlogget deltaker har sendt inn aktivitetspenger-søknad
+     */
+    public static registrer<ThrowOnError extends boolean = true>(
+        options: Options<RegistrerData, ThrowOnError>,
+    ): RequestResult<RegistrerResponses, unknown, ThrowOnError> {
+        return (options.client ?? client).post<RegistrerResponses, unknown, ThrowOnError>({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: zRegistrerBody,
+                        path: z.never().optional(),
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/ung/brukerdialog/ekstern/api/aktivitetspenger/soknad/registrer',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers,
+            },
+        });
+    }
+
+    /**
+     * Om innlogget deltaker kan sende inn aktivitetspenger-søknad nå, og i så fall hva slags
+     */
+    public static tilgjengeligSøknad<ThrowOnError extends boolean = true>(
+        options?: Options<TilgjengeligSøknadData, ThrowOnError>,
+    ): RequestResult<TilgjengeligSøknadResponses, unknown, ThrowOnError> {
+        return (options?.client ?? client).get<TilgjengeligSøknadResponses, unknown, ThrowOnError>({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: z.never().optional(),
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
+            responseValidator: async (data) => await zTilgjengeligSøknadResponse2.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/ung/brukerdialog/ekstern/api/aktivitetspenger/soknad/tilgjengelig',
+            ...options,
+        });
+    }
+}
 
 export class BrukerdialogOppgave {
     /**

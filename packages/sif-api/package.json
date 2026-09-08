@@ -10,6 +10,7 @@
         "./ung-brukerdialog": "./src/ung-brukerdialog/index.ts",
         "./ung-deltaker": "./src/ung-deltaker/index.ts",
         "./k9-sak-innsyn-api": "./src/k9-sak-innsyn-api/index.ts",
+        "./ung-brukerdialog-api": "./src/ung-brukerdialog-api/index.ts",
         "./components": "./src/components/index.ts",
         "./schemas": "./src/schemas/index.ts",
         "./mock-data": "./src/mock-data/index.ts",
