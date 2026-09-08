@@ -23,6 +23,18 @@ export const isNoisyUnhandledRejection = (item: any): boolean => {
     );
 };
 
+// Axios sin generiske "Network Error" oppstår ved tapt nettverk/CORS-blokkering på klienten og gir ingen handlingsrom
+export const isAxiosNetworkErrorException = (item: any): boolean => {
+    if (item?.type !== 'exception') return false;
+    return item.payload?.type === 'AxiosError' && item.payload?.value === 'Network Error';
+};
+
+// Nettleseren skjuler feildetaljer fra skript lastet cross-origin uten CORS-headere bak "Script error." - uten stacktrace er den ikke handlingsbar
+export const isOpaqueScriptErrorException = (item: any): boolean => {
+    if (item?.type !== 'exception') return false;
+    return item.payload?.type === 'Error' && item.payload?.value === 'Script error.';
+};
+
 export const initApm = ({ beforeSend: callerBeforeSend, ...options }: InitOptions): void => {
     init({
         ...options,
@@ -30,6 +42,8 @@ export const initApm = ({ beforeSend: callerBeforeSend, ...options }: InitOption
             if (isDekoratorenException(item)) return null;
             if (isChromeExtensionException(item)) return null;
             if (isNoisyUnhandledRejection(item)) return null;
+            if (isAxiosNetworkErrorException(item)) return null;
+            if (isOpaqueScriptErrorException(item)) return null;
             return callerBeforeSend ? callerBeforeSend(item) : item;
         },
     });
