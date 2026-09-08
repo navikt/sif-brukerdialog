@@ -1,7 +1,6 @@
-import { IngenTilgangMeta } from '@app/hooks';
 import { AppText, useAppIntl } from '@app/i18n';
 import { SøknadContextProvider } from '@app/søknad/context/SøknadContext';
-import { IngenTilgangÅrsak } from '@app/types';
+import { IngenTilgangÅrsak, IngenTilgangMeta } from '@app/types';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { Søker } from '@navikt/sif-common-api';

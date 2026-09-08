@@ -1,4 +1,3 @@
-import { RequestStatus } from '@app/types';
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/storageParser';
 import { getSifInnsynBrowserEnv } from '@navikt/sif-common-env';
@@ -36,9 +35,6 @@ axios.interceptors.response.use(
     (error: AxiosError) => {
         if (isUnauthorized(error)) {
             relocateToLoginPage();
-            return Promise.reject({
-                status: RequestStatus.redirectingToLogin,
-            });
         }
         return Promise.reject(error);
     },

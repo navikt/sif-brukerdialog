@@ -1,22 +1,10 @@
-import {
-    Arbeidsgiver,
-    IngenTilgangÅrsak,
-    K9Sak,
-    RequestStatus,
-    Sak,
-    SøknadContextState,
-    SøknadInitialDataState,
-    TimerEllerProsent,
-    UgyldigBarnFormatDetails,
-} from '@app/types';
-import { Søker } from '@navikt/sif-common-api';
+import { RequestStatus, Sak, SøknadContextState, SøknadInitialDataState, TimerEllerProsent } from '@app/types';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { DateRange } from '@navikt/sif-common-utils';
 import { appLogger } from '@sif/apm';
 import { useState } from 'react';
 
-import { SøknadStatePersistence } from '../api/endpoints/søknadStateEndpoint';
-import { fetchInitialData } from '../api/fetchInitialData';
+import { fetchInitialData, InitialData, isSøknadInitialDataErrorState } from '../api/initialData';
 import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import { getEndringsdato, getTillattEndringsperiode } from '../utils/endringsperiode';
@@ -24,39 +12,11 @@ import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
 
 export type SøknadInitialData = Omit<SøknadContextState, 'sak'> & { sak: Sak | undefined };
 
-export type IngenTilgangMeta = {
-    erArbeidstaker?: boolean;
-    erSN?: boolean;
-    erFrilanser?: boolean;
-    error?: UgyldigBarnFormatDetails;
-};
-
-export type SøknadInitialIkkeTilgang = {
-    status: RequestStatus.success;
-    kanBrukeSøknad: false;
-    årsak: IngenTilgangÅrsak[];
-    søker: Søker;
-    ingenTilgangMeta?: IngenTilgangMeta;
-};
-
-export const isSøknadInitialDataErrorState = (error: any): error is SøknadInitialDataState => {
-    return error !== undefined && Object.keys(error).length > 0 && error.status !== undefined;
-};
-
 const defaultSøknadState: Partial<SøknadContextState> = {
     søknadRoute: SøknadRoutes.VELKOMMEN,
 };
 
-const prepInitialData = (
-    loadedData: {
-        søker: Søker;
-        k9saker: K9Sak[];
-        antallSakerFørEndringsperiode: number;
-        arbeidsgivere: Arbeidsgiver[];
-        lagretSøknadState?: SøknadStatePersistence;
-    },
-    tillattEndringsperiode: DateRange,
-): SøknadInitialData => {
+const prepInitialData = (loadedData: InitialData, tillattEndringsperiode: DateRange): SøknadInitialData => {
     const { arbeidsgivere, lagretSøknadState, k9saker, søker, antallSakerFørEndringsperiode } = loadedData;
 
     const persistedSak = lagretSøknadState

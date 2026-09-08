@@ -14,7 +14,7 @@ import { ApiEndpointInnsyn } from '.';
 
 export type K9SakResult = K9Sak | UgyldigK9SakFormat;
 
-const sakerEndpoint = {
+export const sakerEndpoint = {
     fetch: async (): Promise<{ k9Saker: K9SakResult[]; eldreSaker: K9SakResult[] }> => {
         const endringsperiode = getTillattEndringsperiode(getEndringsdato());
         try {
@@ -38,12 +38,16 @@ const sakerEndpoint = {
                             erUgyldigK9SakFormat: true,
                             detaljer,
                         });
-                        appLogger.logHandledException(error.error, {
-                            context: 'sakerEndpoint.verifyK9Format',
-                            sakIndex: index,
-                            cause: error.error instanceof Error ? error.error.cause : undefined,
-                            ...(detaljer ?? {}),
-                        });
+                        /**
+                         * Håndtert valideringsfeil (saken fra backend har feil format), ikke en
+                         * uventet feil i frontend. Logges derfor som info, ikke som exception.
+                         * ugyldigeFelt inneholder kun feltnavn, ikke verdier, og er trygt å logge.
+                         */
+                        appLogger.logInfo(
+                            `sakerEndpoint.verifyK9Format: ugyldig k9-format${
+                                detaljer ? ` (ugyldigeFelt=${detaljer.ugyldigeFelt.join(',')})` : ''
+                            }`,
+                        );
                     } else {
                         appLogger.logException(error, {
                             context: 'sakerEndpoint.parseK9Format',
@@ -64,5 +68,3 @@ const sakerEndpoint = {
         }
     },
 };
-
-export default sakerEndpoint;
