@@ -39,8 +39,19 @@ export type SøknadInitialIkkeTilgang = {
     ingenTilgangMeta?: IngenTilgangMeta;
 };
 
+const requestStatusValues: string[] = Object.values(RequestStatus);
+
+/**
+ * En AxiosError har også en status-property (tallverdi fra http-responsen), så det holder ikke
+ * å sjekke at status er satt. Kun kjente RequestStatus-verdier regnes som en tilstand fra appen.
+ */
 export const isSøknadInitialDataErrorState = (error: any): error is SøknadInitialDataState => {
-    return error !== undefined && Object.keys(error).length > 0 && error.status !== undefined;
+    return (
+        error !== null &&
+        typeof error === 'object' &&
+        typeof error.status === 'string' &&
+        requestStatusValues.includes(error.status)
+    );
 };
 
 const defaultSøknadState: Partial<SøknadContextState> = {

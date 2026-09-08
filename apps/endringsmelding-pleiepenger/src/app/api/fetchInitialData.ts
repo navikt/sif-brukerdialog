@@ -5,6 +5,7 @@ import {
     isUgyldigK9SakFormat,
     K9Sak,
     RequestStatus,
+    SøknadInitialDataState,
     SøknadInitialIkkeTilgang,
     UgyldigK9SakFormat,
 } from '@app/types';
@@ -12,6 +13,7 @@ import { fetchSøker, Søker } from '@navikt/sif-common-api';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 import { appLogger } from '@sif/apm';
+import { isAxiosError } from 'axios';
 
 import { IngenTilgangMeta, isSøknadInitialDataErrorState } from '../hooks/useSøknadInitialData';
 import { getPeriodeForArbeidsgiverOppslag } from '../utils/initialDataUtils';
@@ -33,76 +35,79 @@ export const fetchInitialData = async (
     arbeidsgivere: Arbeidsgiver[];
     lagretSøknadState?: SøknadStatePersistence;
 }> => {
+    let søker: Søker | undefined;
+
     try {
-        const [søker, k9sakerResult] = await Promise.all([fetchSøker(), sakerEndpoint.fetch()]);
+        const [søkerResult, k9sakerResult] = await Promise.all([fetchSøker(), sakerEndpoint.fetch()]);
+        søker = søkerResult;
 
         if (k9sakerResult.k9Saker.length === 0 && k9sakerResult.eldreSaker.length === 0) {
             appLogger.logInfo('fetchInitialData.ingenSaker');
         }
 
-        const handleInitialDataError = (error: any) => {
-            if (isSøknadInitialDataErrorState(error)) {
-                return Promise.reject({
-                    ...error,
-                    søker,
-                });
-            }
-            return Promise.reject(error);
-        };
-
-        let k9saker: K9Sak[];
-        let arbeidsgivere: Arbeidsgiver[];
-
         const sakerInnenforEndringsperiode = k9sakerResult.k9Saker;
         const sakerFørEndringsperiode = k9sakerResult.eldreSaker;
 
-        return kontrollerSaker(sakerInnenforEndringsperiode, sakerFørEndringsperiode.length, tillattEndringsperiode)
-            .then((result) => {
-                k9saker = result.k9saker;
-                const periodeForArbeidsgiveroppslag = getPeriodeForArbeidsgiverOppslag(
-                    result.dateRangeAlleSaker,
-                    tillattEndringsperiode,
-                );
-                if (!periodeForArbeidsgiveroppslag) {
-                    return Promise.reject(
-                        getKanIkkeBrukeSøknadRejection([
-                            IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode,
-                        ]),
-                    );
-                }
-                return arbeidsgivereEndpoint.fetch(periodeForArbeidsgiveroppslag);
-            })
-            .then((result) => {
-                arbeidsgivere = result;
-                return kontrollerTilgang(k9saker, tillattEndringsperiode);
-            })
-            .then(() => hentOgKontrollerLagretSøknadState(søker, k9saker, arbeidsgivere, tillattEndringsperiode))
-            .then((lagretSøknadState) => {
-                return Promise.resolve({
+        const { k9saker, dateRangeAlleSaker } = await kontrollerSaker(
+            sakerInnenforEndringsperiode,
+            sakerFørEndringsperiode.length,
+            tillattEndringsperiode,
+        );
+
+        const periodeForArbeidsgiveroppslag = getPeriodeForArbeidsgiverOppslag(
+            dateRangeAlleSaker,
+            tillattEndringsperiode,
+        );
+        if (!periodeForArbeidsgiveroppslag) {
+            return Promise.reject(
+                mapInitialDataError(
+                    getKanIkkeBrukeSøknadRejection([IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode]),
                     søker,
-                    arbeidsgivere,
-                    k9saker,
-                    antallSakerFørEndringsperiode: sakerFørEndringsperiode.length,
-                    lagretSøknadState,
-                });
-            })
-            .catch(handleInitialDataError);
+                ),
+            );
+        }
+
+        const arbeidsgivere = await arbeidsgivereEndpoint.fetch(periodeForArbeidsgiveroppslag);
+
+        await kontrollerTilgang(k9saker, tillattEndringsperiode);
+
+        const lagretSøknadState = await hentOgKontrollerLagretSøknadState(
+            søker,
+            k9saker,
+            arbeidsgivere,
+            tillattEndringsperiode,
+        );
+
+        return {
+            søker,
+            arbeidsgivere,
+            k9saker,
+            antallSakerFørEndringsperiode: sakerFørEndringsperiode.length,
+            lagretSøknadState,
+        };
     } catch (error) {
+        return Promise.reject(mapInitialDataError(error, søker));
+    }
+};
+
+/**
+ * Oversetter enhver feil fra oppstartslastingen til en tilstand appen kan vise.
+ * Alt som ikke er en kjent tilstand eller en håndtert http-status ender som RequestStatus.error,
+ * slik at brukeren aldri blir stående med en uhåndtert tilstand.
+ */
+const mapInitialDataError = (error: unknown, søker?: Søker): SøknadInitialDataState => {
+    if (isSøknadInitialDataErrorState(error)) {
+        return søker ? ({ ...error, søker } as SøknadInitialDataState) : error;
+    }
+    if (isAxiosError(error)) {
         if (isUnauthorized(error)) {
-            return Promise.reject({
-                status: RequestStatus.redirectingToLogin,
-            });
-        } else if (isForbidden(error)) {
-            return Promise.reject({
-                status: RequestStatus.forbidden,
-            });
-        } else {
-            return Promise.reject({
-                status: RequestStatus.error,
-                error,
-            });
+            return { status: RequestStatus.redirectingToLogin };
+        }
+        if (isForbidden(error)) {
+            return { status: RequestStatus.forbidden };
         }
     }
+    return { status: RequestStatus.error, error };
 };
 
 const getKanIkkeBrukeSøknadRejection = (
