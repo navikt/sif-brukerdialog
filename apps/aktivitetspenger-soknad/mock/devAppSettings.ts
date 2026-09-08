@@ -17,9 +17,9 @@ export const getDevAppSettings = (): AppEnv => ({
     K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
     K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: '/api/brukerdialog',
 
-    UNG_BRUKERDIALOG_API_API_URL: '#',
-    UNG_BRUKERDIALOG_API_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
-    UNG_BRUKERDIALOG_API_FRONTEND_PATH: '/api/brukerdialog',
+    UNG_BRUKERDIALOG_API_FRONTEND_PATH: '/api/ung-brukerdialog-api',
+    UNG_BRUKERDIALOG_API_API_SCOPE: 'dev-gcp:k9saksbehandling:ung-brukerdialog-api',
+    UNG_BRUKERDIALOG_API_API_URL: 'http://ung-brukerdialog-api.k9saksbehandling',
 
     UNG_DELTAKELSE_OPPLYSER_API_URL: '#',
     UNG_DELTAKELSE_OPPLYSER_API_SCOPE: 'dev-gcp:k9saksbehandling:ung-deltakelse-opplyser',
