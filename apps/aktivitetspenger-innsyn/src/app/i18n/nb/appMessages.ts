@@ -21,7 +21,7 @@ export const appMessages_nb = {
     // Søknad mottatt info
     'soknadMottattInfo.tittel': 'Vi har mottatt din søknad om aktivitetspenger',
     'soknadMottattInfo.info.1':
-        'Du vil vil få beskjed når behandlingen er ferdig. Informasjon om behandlingstider finner du på <Lenke>nav.no/behandlingstider</Lenke>.',
+        'Du vil få beskjed når behandlingen er ferdig. Informasjon om behandlingstider finner du på <Lenke>nav.no/saksbehandlingstider</Lenke>.',
     'soknadMottattInfo.info.2': 'Du kan lese mer om aktivitetspenger på <Lenke>nav.no/aktivitetspenger</Lenke>.',
 
     // Ikke tilgang
