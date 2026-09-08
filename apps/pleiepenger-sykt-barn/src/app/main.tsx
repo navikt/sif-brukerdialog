@@ -8,7 +8,12 @@ import { createRoot } from 'react-dom/client';
 import { enableMocking } from '../../mock/msw/enableMocking';
 import App from './App';
 
-void initApm({ app: PleiepengerSyktBarnApp.key, namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
+void initApm({
+    app: PleiepengerSyktBarnApp.key,
+    cdnApp: 'pleiepenger-sykt-barn',
+    namespace: 'dusseldorf',
+    version: getMaybeEnv('APP_VERSION'),
+});
 
 if (import.meta.env.INJECT_DECORATOR) {
     injectDecoratorClientSide({

@@ -11,10 +11,12 @@ import { init, type InitOptions } from '@nais/apm';
  * Ukjente tredjeparter blir dermed fremmede by default.
  */
 export interface AppOwnership {
-    /** Appnøkkel, tilsvarer <app> i CDN-stien. */
+    /** Appnøkkel brukt av APM. */
     app: string;
     /** NAIS-namespace, tilsvarer <namespace> i CDN-stien. Normalt 'dusseldorf'. */
     namespace: string;
+    /** App-segmentet i CDN-stien når det skiller seg fra APM-appnøkkelen. */
+    cdnApp?: string;
 }
 
 const CDN_ORIGIN = 'https://cdn.nav.no';
@@ -30,7 +32,8 @@ export const setAppOwnership = (ownership: AppOwnership): void => {
 };
 
 /** Prod: bundles ligger på CDN under vår egen namespace/app-sti, jf. vite `base`. */
-const getOwnedCdnPrefix = ({ namespace, app }: AppOwnership): string => `${CDN_ORIGIN}/${namespace}/${app}/`;
+const getOwnedCdnPrefix = ({ namespace, app, cdnApp }: AppOwnership): string =>
+    `${CDN_ORIGIN}/${namespace}/${cdnApp ?? app}/`;
 
 const getCurrentOrigin = (): string | undefined => globalThis.location?.origin || undefined;
 
@@ -85,10 +88,14 @@ export const isKnownNoisyException = (item: any): boolean => {
 export const isNoiseException = (item: any, ownership = currentAppOwnership): boolean =>
     isForeignCodeException(item, ownership) || isKnownNoisyException(item);
 
-export const initApm = ({ beforeSend: callerBeforeSend, ...options }: InitOptions): void => {
+export const initApm = ({
+    beforeSend: callerBeforeSend,
+    cdnApp,
+    ...options
+}: InitOptions & { cdnApp?: string }): void => {
     // Uten app og namespace kan vi ikke utlede CDN-stien vi eier, og lag 1 forblir avslått.
     if (options.app && options.namespace) {
-        setAppOwnership({ app: options.app, namespace: options.namespace });
+        setAppOwnership({ app: options.app, namespace: options.namespace, cdnApp });
     }
     init({
         ...options,

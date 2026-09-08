@@ -48,9 +48,9 @@ describe('isForeignCodeException', () => {
         expect(
             isForeignCodeException(exceptionFrom(['https://cdn.nav.no/personbruker/nav-dekoratoren/public/bundle.js'])),
         ).toBe(true);
-        expect(
-            isForeignCodeException(exceptionFrom(['https://cdn.nav.no/team-researchops/sporing/sporing.js'])),
-        ).toBe(true);
+        expect(isForeignCodeException(exceptionFrom(['https://cdn.nav.no/team-researchops/sporing/sporing.js']))).toBe(
+            true,
+        );
     });
 
     it('filtrerer ukjente tredjepartsskript uten at de står på en liste', () => {
@@ -66,12 +66,13 @@ describe('isForeignCodeException', () => {
         ).toBe(true);
     });
 
-    it('krever eksakt app-segment, ikke bare prefiks', () => {
+    it('beholder bundle med et annet CDN-app-segment enn APM-appnøkkelen', () => {
         expect(
             isForeignCodeException(
-                exceptionFrom(['https://cdn.nav.no/dusseldorf/omsorgspengesoknad-v2/dist/index.js']),
+                exceptionFrom(['https://cdn.nav.no/dusseldorf/pleiepenger-sykt-barn/dist/index.js']),
+                { app: 'pleiepengesoknad', cdnApp: 'pleiepenger-sykt-barn', namespace: 'dusseldorf' },
             ),
-        ).toBe(true);
+        ).toBe(false);
     });
 
     it('ignorerer query og hash når filtype vurderes', () => {
@@ -110,9 +111,9 @@ describe('isKnownNoisyException', () => {
     });
 
     it('filtrerer Axios Network Error', () => {
-        expect(isKnownNoisyException({ type: 'exception', payload: { type: 'AxiosError', value: 'Network Error' } })).toBe(
-            true,
-        );
+        expect(
+            isKnownNoisyException({ type: 'exception', payload: { type: 'AxiosError', value: 'Network Error' } }),
+        ).toBe(true);
     });
 
     it('beholder andre Axios-feil', () => {
@@ -125,7 +126,9 @@ describe('isKnownNoisyException', () => {
     });
 
     it('filtrerer opak "Script error."', () => {
-        expect(isKnownNoisyException({ type: 'exception', payload: { type: 'Error', value: 'Script error.' } })).toBe(true);
+        expect(isKnownNoisyException({ type: 'exception', payload: { type: 'Error', value: 'Script error.' } })).toBe(
+            true,
+        );
     });
 
     it('beholder legitim app-feil', () => {
@@ -209,7 +212,10 @@ describe('regresjon: ekte app-feil skal aldri filtreres', () => {
                     ...verifyK9FormatBarnException.payload,
                     stacktrace: {
                         frames: [
-                            { filename: 'https://cdn.nav.no/dusseldorf/endringsmelding-pleiepenger/dist/assets/index-a1b2.js' },
+                            {
+                                filename:
+                                    'https://cdn.nav.no/dusseldorf/endringsmelding-pleiepenger/dist/assets/index-a1b2.js',
+                            },
                             { filename: '<anonymous>' },
                         ],
                     },
