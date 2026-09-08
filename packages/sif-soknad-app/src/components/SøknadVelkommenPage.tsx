@@ -10,14 +10,13 @@ interface SøknadVelkommenPageProps {
         content: ReactNode;
     };
     isPending?: boolean;
-    startIsAvailable?: boolean;
 }
 
 export const SøknadVelkommenPage = ({
     title,
     guide,
     isPending = false,
-    startIsAvailable,
+
     children,
 }: PropsWithChildren<SøknadVelkommenPageProps>) => {
     const { startSøknad } = useStartSøknad();
@@ -27,7 +26,6 @@ export const SøknadVelkommenPage = ({
             title={title}
             guide={guide}
             isPending={isPending}
-            startIsAvailable={startIsAvailable}
             onStart={async (harForståttRettigheterOgPlikter) => {
                 await startSøknad({ harForståttRettigheterOgPlikter });
             }}>
