@@ -362,6 +362,25 @@ jobs:
                   echo "TURBO_SCM_BASE=$base" >> "$GITHUB_ENV"
                   echo "TURBO_SCM_HEAD=$head" >> "$GITHUB_ENV"
 
+            - name: Resolve already-tested apps
+              id: already-tested
+              shell: bash
+              env:
+                  # Apper som detect-changes allerede har funnet direkte endringer i, og som
+                  # derfor får en dedikert test-<app>-jobb (unit + playwright) uansett. Disse
+                  # skal ekskluderes her, ellers kjøres de samme testene to ganger når både
+                  # appen selv og packages/** endres i samme push.
+                  DETECT_CHANGES_APPS: ${{ needs.detect-changes.outputs.apps }}
+              run: |
+                  set -euo pipefail
+
+                  exclude_filters="$(echo "$DETECT_CHANGES_APPS" \
+                      | jq -r '.[] | "--filter=!@navikt/" + .' \
+                      | paste -sd' ' -)"
+
+                  echo "Excluding already-tested apps: $DETECT_CHANGES_APPS"
+                  echo "exclude-filters=$exclude_filters" >> "$GITHUB_OUTPUT"
+
             - name: Resolve affected Vite apps
               id: affected-apps
               shell: bash
@@ -383,6 +402,7 @@ jobs:
                       --filter=@navikt/sif-ettersending \
                       --filter=@navikt/ungdomsytelse-deltaker \
                       --filter=@navikt/ungdomsytelse-veileder \
+                      ${{ steps.already-tested.outputs.exclude-filters }} \
                       | jq -c '[.tasks[] | select(.taskId | endswith("#playwright-test")) | .package]')"
 
                   if [ -z "$apps" ]; then
@@ -394,7 +414,7 @@ jobs:
                   echo "apps=$apps" >> "$GITHUB_OUTPUT"
 
             - name: Run affected unit tests
-              run: pnpm turbo run test --affected
+              run: pnpm turbo run test --affected ${{ steps.already-tested.outputs.exclude-filters }}
 
     test-affected-vite-apps:
         name: Test affected Vite app (${{ matrix.app }})
