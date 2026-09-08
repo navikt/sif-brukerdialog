@@ -366,10 +366,10 @@ jobs:
               id: already-tested
               shell: bash
               env:
-                  # Apper som detect-changes allerede har funnet direkte endringer i, og som
-                  # derfor får en dedikert test-<app>-jobb (unit + playwright) uansett. Disse
-                  # skal ekskluderes her, ellers kjøres de samme testene to ganger når både
-                  # appen selv og packages/** endres i samme push.
+                  # Apper som detect-changes allerede har flagget for egen test-<app>-jobb (unit + playwright)
+                  # basert på paths-filter (uavhengig av om det er direkte app-endring, packages/** osv.). Disse
+                  # skal ekskluderes her, ellers kjøres de samme testene to ganger når både packages/** og en
+                  # av app-triggerne matcher i samme push.
                   DETECT_CHANGES_APPS: ${{ needs.detect-changes.outputs.apps }}
               run: |
                   set -euo pipefail
