@@ -17,8 +17,10 @@ interface Props {
     tilgjengeligSøknad: TilgjengeligSøknadResponse;
 }
 
+const IGNORE_TILGJENGELIG_SJEKK = true;
+
 export const Innsyn = ({ søker, oppgaver, tilgjengeligSøknad }: Props) => {
-    if (tilgjengeligSøknad.harInnsyn) {
+    if (tilgjengeligSøknad.harInnsyn || IGNORE_TILGJENGELIG_SJEKK) {
         return (
             <InnsynContextProvider søker={søker} oppgaver={oppgaver} refetchOppgaver={() => Promise.resolve()}>
                 <Routes>
