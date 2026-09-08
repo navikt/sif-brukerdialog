@@ -1,5 +1,5 @@
 import { Heading, Link, List, VStack } from '@navikt/ds-react';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import { AppText } from '../../i18n';
 
@@ -47,7 +47,7 @@ const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
                 <AppText
                     id="personopplysninger.5"
                     values={{
-                        Lenke: (children: React.ReactNode) => (
+                        Lenke: (children: ReactNode) => (
                             <Link
                                 href="https://www.nav.no/personvernerklaering"
                                 target="_blank"

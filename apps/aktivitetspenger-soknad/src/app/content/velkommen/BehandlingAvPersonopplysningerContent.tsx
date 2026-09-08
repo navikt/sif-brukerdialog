@@ -1,7 +1,7 @@
 import { AppText } from '@app/i18n';
 import { useLenker } from '@app/lenker';
 import { BodyLong, Heading, Link, List, VStack } from '@navikt/ds-react';
-import React from 'react';
+import { ReactNode } from 'react';
 
 const BehandlingAvPersonopplysningerContent = () => {
     const lenker = useLenker();
@@ -51,7 +51,7 @@ const BehandlingAvPersonopplysningerContent = () => {
                 <AppText
                     id="personopplysninger.4"
                     values={{
-                        Lenke: (children: React.ReactNode) => (
+                        Lenke: (children: ReactNode) => (
                             <Link href={lenker.navPersonvernerklaering} target="_blank" rel="noopener noreferrer">
                                 {children}
                             </Link>

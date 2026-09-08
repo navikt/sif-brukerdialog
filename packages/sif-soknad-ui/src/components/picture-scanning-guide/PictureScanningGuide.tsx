@@ -3,6 +3,7 @@ import { BodyLong, Box, Heading, HGrid, HStack, Link, List, ReadMore, VStack } f
 
 import { useSifSoknadUiIntl } from '../../i18n';
 import ScanningIcon from './ScanningIcon';
+import { ReactNode } from 'react';
 
 type HeadingLevel = '2' | '3' | '4' | '5';
 
@@ -22,7 +23,7 @@ const ScanningExample = ({
     description,
     headingLevel,
 }: {
-    image: React.ReactNode;
+    image: ReactNode;
     statusText: string;
     isGood: boolean;
     description: string;

@@ -2,8 +2,9 @@ import { getRequiredEnv } from '@navikt/sif-common-env';
 import { BrowserRouter } from 'react-router-dom';
 
 import DemoAppRouter from '../demo/DemoAppRouter';
+import { ReactNode } from 'react';
 
-const AppRouter = ({ children }: { children: React.ReactNode }) => {
+const AppRouter = ({ children }: { children: ReactNode }) => {
     const publicPath = getRequiredEnv('PUBLIC_PATH');
 
     return __IS_GITHUB_PAGES__ || __IS_DEMO__ ? (

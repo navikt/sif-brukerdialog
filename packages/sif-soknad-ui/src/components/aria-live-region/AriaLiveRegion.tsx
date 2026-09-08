@@ -1,10 +1,12 @@
+import { type CSSProperties, type ReactNode } from 'react';
+
 interface Props {
     visible: boolean;
     politeness?: 'polite' | 'assertive' | 'off';
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
-const offScreenStyle: React.CSSProperties = {
+const offScreenStyle: CSSProperties = {
     border: 0,
     clip: 'rect(0 0 0 0)',
     height: '1px',

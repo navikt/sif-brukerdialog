@@ -1,9 +1,9 @@
 import { ExclamationmarkTriangleFillIcon, InformationSquareFillIcon } from '@navikt/aksel-icons';
 import { InfoCard, InfoCardProps } from '@navikt/ds-react';
-import React from 'react';
+import { ReactNode } from 'react';
 
 interface Props extends InfoCardProps {
-    children: React.ReactNode;
+    children: ReactNode;
     variant?: 'info' | 'warning';
 }
 

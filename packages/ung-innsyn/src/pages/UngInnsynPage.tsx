@@ -2,17 +2,17 @@ import { Box } from '@navikt/ds-react';
 import { InnsynPageBoundary } from '@sif/ung-innsyn/components';
 
 import { useDocumentTitle } from '@navikt/sif-common-hooks';
-import React, { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 
 import { useUngInnsynIntl } from '../i18n';
 
 interface Props {
     documentTitle: string;
-    children: React.ReactNode;
-    footer?: React.ReactNode;
+    children: ReactNode;
+    footer?: ReactNode;
 }
 
-const PageContentWrapper = ({ children }: { children: React.ReactNode }) => (
+const PageContentWrapper = ({ children }: { children: ReactNode }) => (
     <InnsynPageBoundary>
         <Box paddingBlock="space-40" className="mx-auto">
             {children}

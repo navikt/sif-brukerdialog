@@ -3,9 +3,10 @@ import { BrukerdialogOppgaveDto, TilgjengeligSøknadResponse } from '@navikt/ung
 import { z } from 'zod';
 
 export enum ScenarioType {
-    default = 'default',
-    harInnsyn = 'harInnsyn',
-    harUbehandletSøknad = 'harUbehandletSøknad',
+    innsynUtenOppgaver = 'innsynUtenOppgaver',
+    innsynMedOppgaver = 'harInnsyn',
+    harUbehandletFørstegangssøknad = 'harUbehandletFørstegangssøknad',
+    harUbehandletAndregangssøknad = 'harUbehandletAndregangssøknad',
     harIkkeTilgang = 'harIkkeTilgang',
     rapporterInntekt = 'rapporterInntekt',
     rapporterInntektDelerAvMåned = 'rapporterInntektDelerAvMåned',
@@ -17,5 +18,5 @@ export enum ScenarioType {
 export interface ScenarioData {
     søker: z.infer<typeof zSøker>;
     oppgaver: BrukerdialogOppgaveDto[];
-    tilgjengeligSøknad: TilgjengeligSøknadResponse;
+    tilgangsinfo: TilgjengeligSøknadResponse;
 }

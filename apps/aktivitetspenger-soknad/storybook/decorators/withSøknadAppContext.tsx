@@ -7,7 +7,7 @@ import {
     SøknadAppContext,
     SøknadStepFormProvider,
 } from '@sif/soknad-app';
-import { useRef } from 'react';
+import { ReactNode, useRef } from 'react';
 
 import { AppContextData, AppContextProvider } from '../../src/app/context/AppContext';
 import { søknadStepConfig, søknadStepOrder } from '../../src/app/setup/soknadStepConfig';
@@ -21,14 +21,12 @@ const defaultAppContextData: AppContextData = {
 };
 
 interface Props {
-    children: React.ReactNode;
+    children: ReactNode;
     appContextOverrides?: Partial<AppContextData>;
 }
 
 const SøknadContextWrapper = ({ children, appContextOverrides }: Props) => {
-    const storeRef = useRef(
-        createSøknadAppStore({ config: søknadStepConfig, stepOrder: søknadStepOrder }),
-    );
+    const storeRef = useRef(createSøknadAppStore({ config: søknadStepConfig, stepOrder: søknadStepOrder }));
 
     // Initialiser uten mellomlagring — viser første steg, ingen redirect
     storeRef.current.getState().init(null);

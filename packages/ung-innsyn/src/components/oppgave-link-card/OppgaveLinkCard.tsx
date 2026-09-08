@@ -5,10 +5,11 @@ import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 
 import { OppgaveStatusIkon } from '../oppgave-status-ikon/OppgaveStatusIkon';
 import { OppgaveStatusTag, OppgaveStatusTagVariant } from '../oppgave-status-tag/OppgaveStatusTag';
+import { ReactNode } from 'react';
 
 export interface OppgaveLinkCardProps {
-    tittel: React.ReactNode;
-    beskrivelse?: React.ReactNode;
+    tittel: ReactNode;
+    beskrivelse?: ReactNode;
     oppgaveStatus: OppgaveStatus;
     oppgaveStatusTekst: string;
     oppgaveStatusTagVariant?: OppgaveStatusTagVariant;

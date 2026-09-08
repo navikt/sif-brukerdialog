@@ -11,48 +11,65 @@ export interface Scenario {
     data: ScenarioData;
 }
 
-const harInnsyn = {
+const innsynMedOppgaver = {
     harInnsyn: true,
     harUbehandletSøknad: false,
     type: TilgjengeligSøknadType.INGEN,
-} satisfies ScenarioData['tilgjengeligSøknad'];
+} satisfies ScenarioData['tilgangsinfo'];
 
-const harUbehandletSøknad = {
+const harUbehandletFørstegangsøknad = {
     harInnsyn: false,
     harUbehandletSøknad: true,
     type: TilgjengeligSøknadType.INGEN,
-} satisfies ScenarioData['tilgjengeligSøknad'];
+} satisfies ScenarioData['tilgangsinfo'];
+
+const harUbehandletAndregangssøknad = {
+    harInnsyn: true,
+    harUbehandletSøknad: true,
+    type: TilgjengeligSøknadType.INGEN,
+} satisfies ScenarioData['tilgangsinfo'];
 
 const harIkkeTilgang = {
     harInnsyn: false,
     harUbehandletSøknad: false,
     type: TilgjengeligSøknadType.INGEN,
-} satisfies ScenarioData['tilgjengeligSøknad'];
+} satisfies ScenarioData['tilgangsinfo'];
 
 const createScenarioData = (
     oppgaver: BrukerdialogOppgaveDto[] = [],
-    tilgjengeligSøknad: ScenarioData['tilgjengeligSøknad'] = harInnsyn,
+    tilgjengeligSøknad: ScenarioData['tilgangsinfo'] = innsynMedOppgaver,
 ): ScenarioData => ({
     ...scenarioBaseData,
     oppgaver,
-    tilgjengeligSøknad,
+    tilgangsinfo: tilgjengeligSøknad,
 });
 
 export const scenarioer: Record<ScenarioType, Scenario> = {
-    [ScenarioType.default]: {
-        type: ScenarioType.default,
-        name: 'Søknad sendt',
-        data: createScenarioData([]),
+    [ScenarioType.innsynUtenOppgaver]: {
+        type: ScenarioType.innsynUtenOppgaver,
+        name: 'Innsyn uten oppgaver',
+        data: createScenarioData([], innsynMedOppgaver),
     },
-    [ScenarioType.harInnsyn]: {
-        type: ScenarioType.harInnsyn,
-        name: 'Har innsyn',
-        data: createScenarioData([], harInnsyn),
+    [ScenarioType.harUbehandletAndregangssøknad]: {
+        type: ScenarioType.harUbehandletAndregangssøknad,
+        name: 'Andregangssøknaden er under behandling',
+        data: createScenarioData(
+            [getMockOppgaver().bekreftAvvikOppgaveLøst, getMockOppgaver().bekreftBostedOpphørOppgave],
+            harUbehandletAndregangssøknad,
+        ),
     },
-    [ScenarioType.harUbehandletSøknad]: {
-        type: ScenarioType.harUbehandletSøknad,
-        name: 'Søknaden er under behandling',
-        data: createScenarioData([], harUbehandletSøknad),
+    [ScenarioType.innsynMedOppgaver]: {
+        type: ScenarioType.innsynMedOppgaver,
+        name: 'Innsyn med oppgaver',
+        data: createScenarioData(
+            [getMockOppgaver().bekreftAvvikOppgaveLøst, getMockOppgaver().bekreftBostedOpphørOppgave],
+            innsynMedOppgaver,
+        ),
+    },
+    [ScenarioType.harUbehandletFørstegangssøknad]: {
+        type: ScenarioType.harUbehandletFørstegangssøknad,
+        name: 'Førstegangssøknad er under behandling',
+        data: createScenarioData([], harUbehandletFørstegangsøknad),
     },
     [ScenarioType.harIkkeTilgang]: {
         type: ScenarioType.harIkkeTilgang,
@@ -92,7 +109,7 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
     },
 };
 
-export const defaultScenario = scenarioer[ScenarioType.default];
+export const defaultScenario = scenarioer[ScenarioType.innsynUtenOppgaver];
 
 export const getScenarioMockData = (scenario: ScenarioType) => {
     return scenarioer[scenario].data;

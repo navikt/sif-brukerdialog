@@ -6,7 +6,7 @@ import { ScenarioData } from '../scenarios/types';
 export const scenarioBaseData: ScenarioData = {
     søker: søkerTestBrukeresen,
     oppgaver: [],
-    tilgjengeligSøknad: {
+    tilgangsinfo: {
         harInnsyn: true,
         harUbehandletSøknad: false,
         type: TilgjengeligSøknadType.INGEN,

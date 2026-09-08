@@ -11,19 +11,34 @@ import { BodyLong, Heading, Link, VStack } from '@navikt/ds-react';
 import { InnsynForsideHeader } from '@sif/ung-innsyn/components';
 import { SifGuidePanel } from '@sif/soknad-ui';
 import { getMaybeEnv } from '@navikt/sif-common-env';
+import { AppText, useAppIntl } from './i18n';
+import { formatName } from '@sif/utils';
+import { SøknadMottattInfo } from './components/soknad-mottatt-info/SoknadMottattInfo';
 
 interface Props {
     søker: Søker;
     oppgaver: Oppgave[];
-    tilgjengeligSøknad: TilgjengeligSøknadResponse;
+    tilgangsinfo: TilgjengeligSøknadResponse;
 }
 
-export const Innsyn = ({ søker, oppgaver, tilgjengeligSøknad }: Props) => {
+export const Innsyn = ({ søker, oppgaver, tilgangsinfo: tilgjengeligSøknad }: Props) => {
+    const { text } = useAppIntl();
+
+    /** Innsyn med oppgaver, så viser vi standard innsyn-forside med undersider  */
     if (tilgjengeligSøknad.harInnsyn || getMaybeEnv('SIF_PUBLIC_IGNORE_TILGJENGELIG_SJEKK') === 'true') {
         return (
             <InnsynContextProvider søker={søker} oppgaver={oppgaver} refetchOppgaver={() => Promise.resolve()}>
                 <Routes>
-                    <Route path="/" element={<ForsidePage oppgaver={oppgaver} />} />
+                    <Route
+                        path="/"
+                        element={
+                            <ForsidePage
+                                oppgaver={oppgaver}
+                                søker={søker}
+                                harUbehandletSøknad={tilgjengeligSøknad.harUbehandletSøknad === true}
+                            />
+                        }
+                    />
                     <Route path="*" element={<Navigate to="/" replace />} />
                     <Route path="oppgave" element={<Navigate to="/" replace={true} />} />
                     <Route path="oppgave/:oppgaveReferanse/:kvittering?" element={<OppgavePage />} />
@@ -31,46 +46,38 @@ export const Innsyn = ({ søker, oppgaver, tilgjengeligSøknad }: Props) => {
             </InnsynContextProvider>
         );
     }
+    /** Har ikke innsyn, så dette betyr ubehandlet førstegangssøknad */
     if (tilgjengeligSøknad.harUbehandletSøknad) {
         return (
-            <UngInnsynPage documentTitle="Dine aktivitetspenger">
+            <UngInnsynPage documentTitle={text('page.ubehandletSøknad.tittel')}>
                 <VStack gap="space-40">
-                    <InnsynForsideHeader title="Dine aktivitetspenger" />
-
-                    <SifGuidePanel poster={true}>
-                        <Heading level="1" size="medium" spacing>
-                            Hei {søker.fornavn}
-                        </Heading>
-                        <VStack gap="space-16">
-                            <BodyLong>
-                                Vi har mottatt din søknad og den vil bli behandlet snart. Du vil få beskjed når
-                                behandlingen er ferdig.
-                            </BodyLong>
-                            <BodyLong>
-                                Du kan lese mer om aktivitetspenger på{' '}
-                                <Link href="https://www.nav.no/aktivitetspenger">nav.no/aktivitetspenger</Link>.
-                            </BodyLong>
-                        </VStack>
-                    </SifGuidePanel>
+                    <InnsynForsideHeader title={text('page.ubehandletSøknad.tittel')} subtitle={formatName(søker)} />
+                    <SøknadMottattInfo erFørstegangssøknad={true} />
                 </VStack>
             </UngInnsynPage>
         );
     }
+    /** Har ikke tilgang */
     return (
-        <UngInnsynPage documentTitle="Aktivitetspenger">
+        <UngInnsynPage documentTitle={text('page.ikkeTilgang.tittel')}>
             <VStack gap="space-40">
                 <SifGuidePanel poster={true}>
                     <Heading level="1" size="medium" spacing>
-                        Du har ikke tilgang til denne siden
+                        <AppText id="page.ikkeTilgang.heading" />
                     </Heading>
                     <VStack gap="space-16">
                         <BodyLong>
-                            Denne siden er for dem som har søkt og fått innvilget aktivitetspenger. Hvis du akkurat har
-                            sendt inn søknad, kan du komme tilbake til denne siden litt senere.
+                            <AppText id="page.ikkeTilgang.info.1" />
                         </BodyLong>
                         <BodyLong>
-                            Du kan lese mer om aktivitetspenger på{' '}
-                            <Link href="https://www.nav.no/aktivitetspenger">nav.no/aktivitetspenger</Link>.
+                            <AppText
+                                id="page.ikkeTilgang.info.2"
+                                values={{
+                                    Lenke: (chunks) => (
+                                        <Link href="https://www.nav.no/aktivitetspenger">{chunks}</Link>
+                                    ),
+                                }}
+                            />
                         </BodyLong>
                     </VStack>
                 </SifGuidePanel>

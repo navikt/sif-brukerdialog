@@ -10,16 +10,24 @@ const groups: Array<ScenarioSelectorHeaderGroup<ScenarioType>> = [
         label: 'Tilgang',
         options: [
             {
-                value: ScenarioType.harInnsyn,
-                label: 'Har innsyn',
-            },
-            {
-                value: ScenarioType.harUbehandletSøknad,
-                label: 'Søknaden er under behandling',
-            },
-            {
                 value: ScenarioType.harIkkeTilgang,
-                label: 'Ikke tilgang',
+                label: 'Har ikke tilgang',
+            },
+            {
+                value: ScenarioType.harUbehandletFørstegangssøknad,
+                label: 'Førstegangssøknad under behandling',
+            },
+            {
+                value: ScenarioType.innsynUtenOppgaver,
+                label: 'Innsyn uten oppgaver (søknad behandlet)',
+            },
+            {
+                value: ScenarioType.innsynMedOppgaver,
+                label: 'Innsyn med oppgaver',
+            },
+            {
+                value: ScenarioType.harUbehandletAndregangssøknad,
+                label: 'Andregangssøknad under behandling',
             },
         ],
     },

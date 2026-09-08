@@ -1,7 +1,7 @@
 import './itemListDarkside.css';
 
 import { guid } from '@sif/utils';
-import React from 'react';
+import { ReactNode } from 'react';
 
 import { useSifSoknadUiIntl } from '../../i18n';
 import ActionLink from '../action-link/ActionLink';
@@ -12,11 +12,11 @@ interface Props<T> {
     useTrashcan?: boolean;
     getItemId: (item: T) => string;
     getItemTitle: (item: T) => string;
-    labelRenderer?: (item: T, onEdit?: (item: T) => void) => React.ReactNode;
-    iconRender?: (item: T) => React.ReactNode;
+    labelRenderer?: (item: T, onEdit?: (item: T) => void) => ReactNode;
+    iconRender?: (item: T) => ReactNode;
     onDelete?: (item: T) => void;
     onEdit?: (item: T) => void;
-    deleteRenderer?: (item: T) => React.ReactNode;
+    deleteRenderer?: (item: T) => ReactNode;
 }
 
 function ItemListDarkside<T>({

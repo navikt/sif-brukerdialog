@@ -10,10 +10,10 @@ correctly. v8 defaults to light mode — if you don't need dark mode, no extra s
 top-most instance, and resets the base color.
 
 ```tsx
-import { Theme } from "@navikt/ds-react";
+import { Theme } from '@navikt/ds-react';
 
 <Theme theme="light" hasBackground>
-  <App />
+    <App />
 </Theme>;
 ```
 
@@ -36,35 +36,33 @@ At minimum, set it up once at the root with `hasBackground`.
 the OS) choose, drive the `theme` prop from your own state or a library like `next-themes`.
 
 ```tsx
-"use client";
-import { ThemeProvider as NextThemeProvider } from "next-themes";
-import { Theme } from "@navikt/ds-react";
+'use client';
+import type { ReactNode } from 'react';
+import { ThemeProvider as NextThemeProvider } from 'next-themes';
+import { Theme } from '@navikt/ds-react';
 
-function ThemeProvider({ children }: { children: React.ReactNode }) {
-  return (
-    <NextThemeProvider
-      attribute="class"
-      storageKey="app-theme"
-      enableSystem
-      themes={["light", "dark"]}
-      disableTransitionOnChange
-    >
-      <Theme hasBackground>{children}</Theme>
-    </NextThemeProvider>
-  );
+function ThemeProvider({ children }: { children: ReactNode }) {
+    return (
+        <NextThemeProvider
+            attribute="class"
+            storageKey="app-theme"
+            enableSystem
+            themes={['light', 'dark']}
+            disableTransitionOnChange>
+            <Theme hasBackground>{children}</Theme>
+        </NextThemeProvider>
+    );
 }
 ```
 
 For a simple in-app toggle without a library, hold the mode in state and pass it down:
 
 ```tsx
-const [mode, setMode] = useState<"light" | "dark">("light");
+const [mode, setMode] = useState<'light' | 'dark'>('light');
 
 <Theme theme={mode} hasBackground>
-  <Button onClick={() => setMode((m) => (m === "light" ? "dark" : "light"))}>
-    Toggle theme
-  </Button>
-  <App />
+    <Button onClick={() => setMode((m) => (m === 'light' ? 'dark' : 'light'))}>Toggle theme</Button>
+    <App />
 </Theme>;
 ```
 
@@ -76,17 +74,17 @@ different base color.
 
 ```tsx
 <Theme theme="light" hasBackground>
-  <App /> {/* light */}
-  <Theme theme="dark">
-    {" "}
-    {/* this subtree is dark */}
-    <PromoPanel />
-  </Theme>
-  <Theme data-color="success">
-    {" "}
-    {/* success becomes the base interactive color here */}
-    <OnboardingFlow />
-  </Theme>
+    <App /> {/* light */}
+    <Theme theme="dark">
+        {' '}
+        {/* this subtree is dark */}
+        <PromoPanel />
+    </Theme>
+    <Theme data-color="success">
+        {' '}
+        {/* success becomes the base interactive color here */}
+        <OnboardingFlow />
+    </Theme>
 </Theme>
 ```
 

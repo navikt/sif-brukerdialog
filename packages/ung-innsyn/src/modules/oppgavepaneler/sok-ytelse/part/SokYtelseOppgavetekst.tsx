@@ -8,6 +8,7 @@ import { RegelverkOgInnsynReadMore } from '../../../../components/readmore/Regel
 import { getLovLenker } from '../../oppgaveLovverk';
 import { UngInnsynText } from '../../../../i18n';
 import { getOppgaveStatusText } from '../../../../utils/textUtils';
+import { ReactNode } from 'react';
 
 interface Props {
     oppgave: SøkYtelseOppgave;
@@ -67,9 +68,7 @@ export const SøkYtelseOppgavetekst = ({ oppgave, dokumentarkivUrl }: Props) => 
                                 <UngInnsynText
                                     id={`@ungInnsyn.søkYtelseOppgave.${oppgave.ytelsetype}.oppsummering.dineSvar.tekst`}
                                     values={{
-                                        link: (chunks: React.ReactNode) => (
-                                            <Link href={dokumentarkivUrl}>{chunks}</Link>
-                                        ),
+                                        link: (chunks: ReactNode) => <Link href={dokumentarkivUrl}>{chunks}</Link>,
                                     }}
                                 />
                             </FormSummary.Value>

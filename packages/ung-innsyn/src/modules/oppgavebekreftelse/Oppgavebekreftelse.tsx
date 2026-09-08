@@ -1,6 +1,6 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import { BekreftelseOppgave } from '@sif/api/ung-brukerdialog';
-import { useMemo, useState } from 'react';
+import { ReactNode, useMemo, useState } from 'react';
 
 import { OppgaveStatusTag } from '../../components';
 import { useUngInnsynIntl } from '../../i18n';
@@ -11,7 +11,7 @@ import { Besvart, Kvittering, Ubesvart } from './OppgavebekreftelseParts';
 interface Props {
     oppgave: BekreftelseOppgave;
     navn: string;
-    children: React.ReactNode;
+    children: ReactNode;
     initialVisKvittering?: boolean;
 }
 

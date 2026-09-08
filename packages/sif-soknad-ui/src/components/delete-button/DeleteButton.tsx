@@ -1,5 +1,5 @@
 import { Button } from '@navikt/ds-react';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import { SifSoknadUiText } from '../../i18n';
 import Trashcan from './TrashcanSvg';
@@ -7,7 +7,7 @@ import Trashcan from './TrashcanSvg';
 interface Props {
     ariaLabel: string;
     useTrashcan?: boolean;
-    children?: React.ReactNode;
+    children?: ReactNode;
     onClick: (e?: React.SyntheticEvent) => void;
 }
 
