@@ -15,27 +15,33 @@ const harInnsyn = {
     harInnsyn: true,
     harUbehandletSøknad: false,
     type: TilgjengeligSøknadType.INGEN,
-} satisfies ScenarioData['tilgjengeligSøknad'];
+} satisfies ScenarioData['tilgangsinfo'];
 
-const harUbehandletSøknad = {
+const harUbehandletFørstegangsøknad = {
     harInnsyn: false,
     harUbehandletSøknad: true,
     type: TilgjengeligSøknadType.INGEN,
-} satisfies ScenarioData['tilgjengeligSøknad'];
+} satisfies ScenarioData['tilgangsinfo'];
+
+const harUbehandletAndregangssøknad = {
+    harInnsyn: true,
+    harUbehandletSøknad: true,
+    type: TilgjengeligSøknadType.INGEN,
+} satisfies ScenarioData['tilgangsinfo'];
 
 const harIkkeTilgang = {
     harInnsyn: false,
     harUbehandletSøknad: false,
     type: TilgjengeligSøknadType.INGEN,
-} satisfies ScenarioData['tilgjengeligSøknad'];
+} satisfies ScenarioData['tilgangsinfo'];
 
 const createScenarioData = (
     oppgaver: BrukerdialogOppgaveDto[] = [],
-    tilgjengeligSøknad: ScenarioData['tilgjengeligSøknad'] = harInnsyn,
+    tilgjengeligSøknad: ScenarioData['tilgangsinfo'] = harInnsyn,
 ): ScenarioData => ({
     ...scenarioBaseData,
     oppgaver,
-    tilgjengeligSøknad,
+    tilgangsinfo: tilgjengeligSøknad,
 });
 
 export const scenarioer: Record<ScenarioType, Scenario> = {
@@ -44,15 +50,20 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
         name: 'Søknad sendt',
         data: createScenarioData([]),
     },
+    [ScenarioType.harUbehandletAndregangssøknad]: {
+        type: ScenarioType.harUbehandletAndregangssøknad,
+        name: 'Søknaden er under behandling (andregang)',
+        data: createScenarioData([], harUbehandletAndregangssøknad),
+    },
     [ScenarioType.harInnsyn]: {
         type: ScenarioType.harInnsyn,
         name: 'Har innsyn',
         data: createScenarioData([], harInnsyn),
     },
-    [ScenarioType.harUbehandletSøknad]: {
-        type: ScenarioType.harUbehandletSøknad,
+    [ScenarioType.harUbehandletFørstegangssøknad]: {
+        type: ScenarioType.harUbehandletFørstegangssøknad,
         name: 'Søknaden er under behandling',
-        data: createScenarioData([], harUbehandletSøknad),
+        data: createScenarioData([], harUbehandletFørstegangsøknad),
     },
     [ScenarioType.harIkkeTilgang]: {
         type: ScenarioType.harIkkeTilgang,

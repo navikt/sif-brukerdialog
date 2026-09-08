@@ -8,13 +8,16 @@ import { AppText, useAppIntl } from '../i18n';
 import { formatName, sortDateTimes } from '@sif/utils';
 import { Oppgave } from '@sif/api/ung-brukerdialog';
 import { Søker } from '@sif/api/k9-prosessering';
+import { SøknadMottattInfo } from '../components/soknad-mottatt-info/SoknadMottattInfo';
 
 interface Props {
     oppgaver: Oppgave[];
     søker: Søker;
+
+    harUbehandletSøknad: boolean;
 }
 
-export const ForsidePage = ({ oppgaver, søker }: Props) => {
+export const ForsidePage = ({ oppgaver, søker, harUbehandletSøknad }: Props) => {
     useInnsynBreadcrumbs();
     const { text } = useAppIntl();
 
@@ -30,6 +33,8 @@ export const ForsidePage = ({ oppgaver, søker }: Props) => {
         <UngInnsynPage documentTitle={text('page.forside.tittel')}>
             <VStack gap="space-40">
                 <InnsynForsideHeader title={text('page.forside.tittel')} subtitle={formatName(søker)} />
+
+                {harUbehandletSøknad && <SøknadMottattInfo />}
 
                 <VStack gap="space-40">
                     <VStack gap="space-16">

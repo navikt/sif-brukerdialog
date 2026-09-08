@@ -14,7 +14,11 @@ const groups: Array<ScenarioSelectorHeaderGroup<ScenarioType>> = [
                 label: 'Har innsyn',
             },
             {
-                value: ScenarioType.harUbehandletSøknad,
+                value: ScenarioType.harUbehandletAndregangssøknad,
+                label: 'Har innsyn - ubehandlet andregangssøknad',
+            },
+            {
+                value: ScenarioType.harUbehandletFørstegangssøknad,
                 label: 'Søknaden er under behandling',
             },
             {

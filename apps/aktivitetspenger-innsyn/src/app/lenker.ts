@@ -6,6 +6,8 @@ import { getAppEnv } from './appEnv';
 interface Lenker {
     minSide: string;
     dokumentarkivAktivitetspenger: string;
+    aktivitetspenger: string;
+    behandlingstider: string;
 }
 
 const getEnvironment = () => (getAppEnv().ENV === 'dev' ? 'dev' : 'prod');
@@ -16,6 +18,8 @@ const getLenker = (): Lenker => {
     return {
         minSide: lenker.navMinSide,
         dokumentarkivAktivitetspenger: lenker.navDokumentarkivAktivitetspenger,
+        aktivitetspenger: 'https://www.nav.no/aktivitetspenger',
+        behandlingstider: 'https://www.nav.no/saksbehandlingstider#aktivitetspenger',
     };
 };
 

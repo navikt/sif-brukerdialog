@@ -5,7 +5,7 @@ import { Oppgave, useOppgaver, useTilgjengeligAktivitetspengerSøknad } from '@s
 interface InitialData {
     søker: Søker;
     oppgaver: Oppgave[];
-    tilgjengeligSøknad: TilgjengeligSøknadResponse;
+    tilgangsinfo: TilgjengeligSøknadResponse;
 }
 
 type InitialDataResult =
@@ -36,7 +36,7 @@ export const useInitialData = (): InitialDataResult => {
         data: {
             søker: søker.data,
             oppgaver: oppgaver.data,
-            tilgjengeligSøknad: tilgjengeligSøknad.data,
+            tilgangsinfo: tilgjengeligSøknad.data,
         },
     };
 };

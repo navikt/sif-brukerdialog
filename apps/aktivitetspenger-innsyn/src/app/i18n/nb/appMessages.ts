@@ -17,9 +17,12 @@ export const appMessages_nb = {
     // Ubehandlet søknad
     'page.ubehandletSøknad.tittel': 'Dine aktivitetspenger',
     'page.ubehandletSøknad.hilsen': 'Hei {fornavn}',
-    'page.ubehandletSøknad.info.1':
-        'Vi har mottatt din søknad og den vil bli behandlet snart. Du vil få beskjed når behandlingen er ferdig.',
-    'page.ubehandletSøknad.info.2': 'Du kan lese mer om aktivitetspenger på <Lenke>nav.no/aktivitetspenger</Lenke>.',
+
+    // Søknad mottatt info
+    'soknadMottattInfo.tittel': 'Vi har mottatt din søknad om aktivitetspenger',
+    'soknadMottattInfo.info.1':
+        'Du vil vil få beskjed når behandlingen er ferdig. Informasjon om behandlingstider finner du på <Lenke>nav.no/behandlingstider</Lenke>.',
+    'soknadMottattInfo.info.2': 'Du kan lese mer om aktivitetspenger på <Lenke>nav.no/aktivitetspenger</Lenke>.',
 
     // Ikke tilgang
     'page.ikkeTilgang.tittel': 'Aktivitetspenger',
