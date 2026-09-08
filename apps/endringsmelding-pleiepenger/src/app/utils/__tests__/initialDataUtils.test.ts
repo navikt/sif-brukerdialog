@@ -1,6 +1,6 @@
 import { dateToISODate, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 
-import { getPeriodeForArbeidsgiverOppslag } from '../../utils/initialDataUtils';
+import { getPeriodeForArbeidsgiverOppslag } from '../initialDataUtils';
 
 describe('getPeriodeForArbeidsgiverOppslag', () => {
     const endringsperiode = ISODateRangeToDateRange('2022-05-01/2022-10-01');

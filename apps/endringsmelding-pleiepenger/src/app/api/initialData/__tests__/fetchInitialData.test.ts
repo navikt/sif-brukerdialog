@@ -18,29 +18,29 @@ vi.mock('@sif/apm', () => ({
     appLogger: { logInfo: vi.fn(), logError: vi.fn(), logException: vi.fn(), logApiError: vi.fn() },
 }));
 
-vi.mock('../endpoints/sakerEndpoint', () => ({
+vi.mock('../../endpoints/sakerEndpoint', () => ({
     default: { fetch: vi.fn() },
 }));
 
-vi.mock('../endpoints/arbeidsgivereEndpoint', () => ({
+vi.mock('../../endpoints/arbeidsgivereEndpoint', () => ({
     arbeidsgivereEndpoint: { fetch: vi.fn() },
 }));
 
-vi.mock('../endpoints/søknadStateEndpoint', () => ({
+vi.mock('../../endpoints/søknadStateEndpoint', () => ({
     default: { fetch: vi.fn(), purge: vi.fn() },
     isPersistedSøknadStateValid: vi.fn(() => true),
 }));
 
 /** Har egne tester i utils/__tests__/tilgangskontroll.test.ts */
-vi.mock('../../utils/tilgangskontroll', () => ({
+vi.mock('../../../utils/tilgangskontroll', () => ({
     tilgangskontroll: vi.fn(() => ({ kanBrukeSøknad: true })),
 }));
 
 import { fetchSøker } from '@navikt/sif-common-api';
 
-import { arbeidsgivereEndpoint } from '../endpoints/arbeidsgivereEndpoint';
-import sakerEndpoint from '../endpoints/sakerEndpoint';
-import søknadStateEndpoint from '../endpoints/søknadStateEndpoint';
+import { arbeidsgivereEndpoint } from '../../endpoints/arbeidsgivereEndpoint';
+import sakerEndpoint from '../../endpoints/sakerEndpoint';
+import søknadStateEndpoint from '../../endpoints/søknadStateEndpoint';
 import { fetchInitialData } from '../fetchInitialData';
 
 const tillattEndringsperiode = {

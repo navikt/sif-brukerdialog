@@ -6,6 +6,7 @@ export * from './ArbeidstidEndring';
 export * from './ArbeidstidSøknadsdata';
 export * from './EndringType';
 export * from './IngenTilgangÅrsak';
+export * from './IngenTilgangMeta';
 export * from './K9Format';
 export * from './K9Sak';
 export * from './LovbestemtFeriePeriode';
