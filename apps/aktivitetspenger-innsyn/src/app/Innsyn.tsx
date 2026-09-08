@@ -17,7 +17,7 @@ interface Props {
     tilgjengeligSøknad: TilgjengeligSøknadResponse;
 }
 
-const IGNORE_TILGJENGELIG_SJEKK = true;
+const IGNORE_TILGJENGELIG_SJEKK = false;
 
 export const Innsyn = ({ søker, oppgaver, tilgjengeligSøknad }: Props) => {
     if (tilgjengeligSøknad.harInnsyn || IGNORE_TILGJENGELIG_SJEKK) {
