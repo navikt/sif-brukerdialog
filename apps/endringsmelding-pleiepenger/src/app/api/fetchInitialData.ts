@@ -33,23 +33,23 @@ export const fetchInitialData = async (
     arbeidsgivere: Arbeidsgiver[];
     lagretSøknadState?: SøknadStatePersistence;
 }> => {
-    const [søker, k9sakerResult] = await Promise.all([fetchSøker(), sakerEndpoint.fetch()]);
-
-    if (k9sakerResult.k9Saker.length === 0 && k9sakerResult.eldreSaker.length === 0) {
-        appLogger.logInfo('fetchInitialData.ingenSaker');
-    }
-
-    const handleInitialDataError = (error: any) => {
-        if (isSøknadInitialDataErrorState(error)) {
-            return Promise.reject({
-                ...error,
-                søker,
-            });
-        }
-        return Promise.reject(error);
-    };
-
     try {
+        const [søker, k9sakerResult] = await Promise.all([fetchSøker(), sakerEndpoint.fetch()]);
+
+        if (k9sakerResult.k9Saker.length === 0 && k9sakerResult.eldreSaker.length === 0) {
+            appLogger.logInfo('fetchInitialData.ingenSaker');
+        }
+
+        const handleInitialDataError = (error: any) => {
+            if (isSøknadInitialDataErrorState(error)) {
+                return Promise.reject({
+                    ...error,
+                    søker,
+                });
+            }
+            return Promise.reject(error);
+        };
+
         let k9saker: K9Sak[];
         let arbeidsgivere: Arbeidsgiver[];
 
