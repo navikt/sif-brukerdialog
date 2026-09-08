@@ -19,7 +19,7 @@ vi.mock('@sif/apm', () => ({
 }));
 
 vi.mock('../../endpoints/sakerEndpoint', () => ({
-    default: { fetch: vi.fn() },
+    sakerEndpoint: { fetch: vi.fn() },
 }));
 
 vi.mock('../../endpoints/arbeidsgivereEndpoint', () => ({
@@ -27,7 +27,7 @@ vi.mock('../../endpoints/arbeidsgivereEndpoint', () => ({
 }));
 
 vi.mock('../../endpoints/søknadStateEndpoint', () => ({
-    default: { fetch: vi.fn(), purge: vi.fn() },
+    søknadStateEndpoint: { fetch: vi.fn(), purge: vi.fn() },
     isPersistedSøknadStateValid: vi.fn(() => true),
 }));
 

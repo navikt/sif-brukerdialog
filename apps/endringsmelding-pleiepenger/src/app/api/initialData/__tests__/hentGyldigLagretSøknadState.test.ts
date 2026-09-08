@@ -3,7 +3,7 @@ import { Søker } from '@navikt/sif-common-api';
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 
 vi.mock('../../endpoints/søknadStateEndpoint', () => ({
-    default: { fetch: vi.fn(), purge: vi.fn() },
+    søknadStateEndpoint: { fetch: vi.fn(), purge: vi.fn() },
     isPersistedSøknadStateValid: vi.fn(),
 }));
 
