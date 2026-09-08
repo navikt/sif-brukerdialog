@@ -10,6 +10,7 @@ import { UngInnsynPage } from '@sif/ung-innsyn/pages';
 import { BodyLong, Heading, Link, VStack } from '@navikt/ds-react';
 import { InnsynForsideHeader } from '@sif/ung-innsyn/components';
 import { SifGuidePanel } from '@sif/soknad-ui';
+import { getMaybeEnv } from '@navikt/sif-common-env';
 
 interface Props {
     søker: Søker;
@@ -17,10 +18,8 @@ interface Props {
     tilgjengeligSøknad: TilgjengeligSøknadResponse;
 }
 
-const IGNORE_TILGJENGELIG_SJEKK = false;
-
 export const Innsyn = ({ søker, oppgaver, tilgjengeligSøknad }: Props) => {
-    if (tilgjengeligSøknad.harInnsyn || IGNORE_TILGJENGELIG_SJEKK) {
+    if (tilgjengeligSøknad.harInnsyn || getMaybeEnv('SIF_PUBLIC_IGNORE_TILGJENGELIG_SJEKK') === 'true') {
         return (
             <InnsynContextProvider søker={søker} oppgaver={oppgaver} refetchOppgaver={() => Promise.resolve()}>
                 <Routes>
