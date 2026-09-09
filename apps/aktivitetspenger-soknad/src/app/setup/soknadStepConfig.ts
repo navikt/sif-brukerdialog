@@ -11,9 +11,9 @@ export const søknadStepConfig: Record<SøknadStepId, StepDefinition> = {
         route: 'bosted',
         isCompleted: (s) => s[SøknadStepId.BOSTED] !== undefined,
     },
-    [SøknadStepId.BOSTED_UTLAND]: {
+    [SøknadStepId.MEDLEMSKAP]: {
         route: 'medlemskap',
-        isCompleted: (s) => s[SøknadStepId.BOSTED_UTLAND] !== undefined,
+        isCompleted: (s) => s[SøknadStepId.MEDLEMSKAP] !== undefined,
     },
     [SøknadStepId.BARN]: {
         route: 'barn',
@@ -27,7 +27,7 @@ export const søknadStepConfig: Record<SøknadStepId, StepDefinition> = {
 export const søknadStepOrder: SøknadStepId[] = [
     SøknadStepId.KONTONUMMER,
     SøknadStepId.BOSTED,
-    SøknadStepId.BOSTED_UTLAND,
+    SøknadStepId.MEDLEMSKAP,
     SøknadStepId.BARN,
     SøknadStepId.OPPSUMMERING,
 ];

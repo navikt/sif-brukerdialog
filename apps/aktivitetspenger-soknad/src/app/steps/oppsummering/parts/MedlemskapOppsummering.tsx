@@ -1,15 +1,15 @@
 import { FormSummary } from '@navikt/ds-react';
-import { ForutgåendeBosteder } from '@navikt/k9-brukerdialog-prosessering-api';
+import { MedlemskapAktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
 import { JaNeiSvar } from '@sif/soknad-ui';
 import { useStepNavigation } from '@sif/soknad-app';
 
 import { SøknadStepId } from '../../../types/SoknadStepId';
 
 interface Props {
-    forutgåendeBosteder: ForutgåendeBosteder;
+    medlemskap: MedlemskapAktivitetspenger;
 }
 
-export const MedlemskapOppsummering = ({ forutgåendeBosteder: { harBoddIUtlandetSiste5År } }: Props) => {
+export const MedlemskapOppsummering = ({ medlemskap: { harBoddIUtlandetSiste5År } }: Props) => {
     const { navigateToStep } = useStepNavigation();
     return (
         <FormSummary>
@@ -32,7 +32,7 @@ export const MedlemskapOppsummering = ({ forutgåendeBosteder: { harBoddIUtlande
                     onClick={(evt) => {
                         evt.preventDefault();
                         evt.stopPropagation();
-                        navigateToStep(SøknadStepId.BOSTED_UTLAND);
+                        navigateToStep(SøknadStepId.MEDLEMSKAP);
                     }}
                 />
             </FormSummary.Footer>

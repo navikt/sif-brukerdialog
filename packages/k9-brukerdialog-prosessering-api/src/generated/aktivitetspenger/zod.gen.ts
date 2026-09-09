@@ -35,7 +35,7 @@ export const zBosted = z.object({
     tilOgMed: z.iso.date(),
 });
 
-export const zForutgåendeBosteder = z.object({
+export const zMedlemskapAktivitetspenger = z.object({
     harBoddIUtlandetSiste5År: z.boolean(),
     utenlandsoppholdSiste5År: z.array(zBosted),
 });
@@ -60,7 +60,7 @@ export const zKontonummerInfo = z.object({
 export const zAktivitetspengersøknad = z.object({
     barnErRiktig: z.boolean(),
     erBosattITrondheim: z.boolean(),
-    forutgåendeBosteder: zForutgåendeBosteder,
+    forutgåendeBosteder: zMedlemskapAktivitetspenger,
     harBekreftetOpplysninger: z.boolean(),
     harForståttRettigheterOgPlikter: z.boolean(),
     kontonummerInfo: zKontonummerInfo,

@@ -29,6 +29,6 @@ export interface Søknadsdata {
     harForståttRettigheterOgPlikter?: boolean;
     [SøknadStepId.KONTONUMMER]?: KontonummerSøknadsdata;
     [SøknadStepId.BOSTED]?: BostedSøknadsdata;
-    [SøknadStepId.BOSTED_UTLAND]?: MedlemskapSøknadsdata;
+    [SøknadStepId.MEDLEMSKAP]?: MedlemskapSøknadsdata;
     [SøknadStepId.BARN]?: BarnSøknadsdata;
 }

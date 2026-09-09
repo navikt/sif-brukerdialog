@@ -20,7 +20,7 @@ import { HarJobbetUtenforNorgeSporsmal } from './sporsmal/HarJobbetUtenforNorgeS
 import { ArbeidsstederUtlandSporsmal } from './sporsmal/ArbeidsstederUtlandSporsmal';
 import { HarJobbetINorgeSporsmal } from './sporsmal/HarJobbetINorgeSporsmal';
 
-const stepId = SøknadStepId.BOSTED_UTLAND;
+const stepId = SøknadStepId.MEDLEMSKAP;
 
 const getMinDate = () => {
     return dateToISODate(dayjs(getDateToday()).subtract(5, 'year'));

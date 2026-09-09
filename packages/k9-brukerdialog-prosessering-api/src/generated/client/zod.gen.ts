@@ -139,9 +139,20 @@ export const zFerieuttakIPerioden = z.object({
     skalTaUtFerieIPerioden: z.boolean(),
 });
 
-export const zForutgåendeBosteder = z.object({
-    harBoddIUtlandetSiste5År: z.boolean(),
-    utenlandsoppholdSiste5År: z.array(zBosted),
+export const zArbeidUtland = z.object({
+    fraOgMed: z.iso.date(),
+    landkode: z.string().min(1),
+    landnavn: z.string(),
+    tilOgMed: z.iso.date(),
+    identitetsnummer: z.string().optional(),
+});
+
+export const zMedlemskapAktivitetspenger = z.object({
+    harBoddINorge: z.boolean(),
+    harJobbetUtenforNorge: z.boolean().optional(),
+    bostederUtenforNorge: z.array(zBosted).optional(),
+    harBoddIUtlandetSiste5År: z.boolean().optional(),
+    arbeidsstederUtenforNorge: z.array(zArbeidUtland).optional(),
 });
 
 export const zFosterhjemgodtgjørelse = z.object({
@@ -206,7 +217,7 @@ export const zKontonummerInfo = z.object({
 export const zAktivitetspengersøknad = z.object({
     barnErRiktig: z.boolean(),
     erBosattITrondheim: z.boolean(),
-    forutgåendeBosteder: zForutgåendeBosteder,
+    forutgåendeBosteder: zMedlemskapAktivitetspenger,
     harBekreftetOpplysninger: z.boolean(),
     harForståttRettigheterOgPlikter: z.boolean(),
     kontonummerInfo: zKontonummerInfo,

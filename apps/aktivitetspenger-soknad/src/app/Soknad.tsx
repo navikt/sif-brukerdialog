@@ -44,7 +44,7 @@ export const Søknad = () => {
                 <Route path="/soknad" element={<SøknadStepGuard basePath="/soknad" />}>
                     <Route path={søknadStepConfig[SøknadStepId.KONTONUMMER].route} element={<KontonummerForm />} />
                     <Route path={søknadStepConfig[SøknadStepId.BOSTED].route} element={<BostedForm />} />
-                    <Route path={søknadStepConfig[SøknadStepId.BOSTED_UTLAND].route} element={<MedlemskapForm />} />
+                    <Route path={søknadStepConfig[SøknadStepId.MEDLEMSKAP].route} element={<MedlemskapForm />} />
                     <Route path={søknadStepConfig[SøknadStepId.BARN].route} element={<BarnForm />} />
                     <Route path={søknadStepConfig[SøknadStepId.OPPSUMMERING].route} element={<OppsummeringSteg />} />
                     <Route path="*" element={<Navigate to="/" replace />} />

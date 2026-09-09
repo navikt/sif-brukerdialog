@@ -2,9 +2,10 @@
 
 /** Lagt inn manuelt midlertidig */
 export type ArbeidUtland = {
-    periode: Periode;
+    fraOgMed: string;
     landkode: string;
     landnavn: string;
+    tilOgMed: string;
     idnummer?: string;
 };
 
@@ -34,7 +35,7 @@ export type AktivitetspengerOppgavebekreftelse = {
 export type Aktivitetspengersøknad = {
     barnErRiktig: boolean;
     erBosattITrondheim: boolean;
-    forutgåendeBosteder: ForutgåendeBosteder | any;
+    medlemskap: MedlemskapAktivitetspenger | any;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
     kontonummerInfo: KontonummerInfo;
@@ -252,7 +253,7 @@ export type FerieuttakIPerioden = {
     skalTaUtFerieIPerioden: boolean;
 };
 
-export type ForutgåendeBosteder = {
+export type MedlemskapAktivitetspenger = {
     harBoddINorge: boolean;
     harJobbetUtenforNorge?: boolean;
     bostederUtenforNorge?: Bosted[];

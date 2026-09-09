@@ -34,7 +34,7 @@ export const søknadsdataToSøknadDTO = ({
             ...kontoInfo,
             kontonummerErRiktig: kontonummer.kontonummerErRiktig,
         },
-        forutgåendeBosteder: {
+        medlemskap: {
             // harBoddIUtlandetSiste5År: !medlemskap.harBoddINorge,
             // utenlandsoppholdSiste5År: (medlemskap.bostederUtenforNorge || []).map((b) => ({
             //     fraOgMed: dateToISODate(b.periode.from),

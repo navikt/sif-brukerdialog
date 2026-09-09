@@ -103,7 +103,7 @@ export const OppsummeringSteg = () => {
                                     kontoOppslagInfo={kontoInfo}
                                 />
                                 <BostedOppsummering erBosattITrondheim={dto.erBosattITrondheim} />
-                                <MedlemskapOppsummering forutgåendeBosteder={dto.forutgåendeBosteder} />
+                                <MedlemskapOppsummering medlemskap={dto.medlemskap} />
                                 <BarnOppsummering barn={registrerteBarn} barnErRiktig={dto.barnErRiktig} />
                             </FormLayout.Summary>
                         )}
