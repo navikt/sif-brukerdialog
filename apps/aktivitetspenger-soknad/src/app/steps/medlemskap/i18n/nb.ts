@@ -42,8 +42,10 @@ export const medlemskapStegMessages_nb = {
         'Oppgi i hvilke perioder og land du har jobbet utenfor Norge de fem siste årene.',
     'medlemskapSteg.arbeidsstederUtenforNorge.leggTil': 'Legg til periode med jobb utenfor Norge',
 
-    'bostedUtlandForm.validation.harBoddINorge.yesOrNoIsUnanswered':
+    'medlemskapForm.validation.harBoddINorge.yesOrNoIsUnanswered':
         'Du må svare på om du har bodd sammenhengende i Norge de siste 5 årene',
-    'bostedUtlandForm.validation.bosteder.listIsEmpty': 'Du må legge til minst ett bosted i utlandet',
-    'bostedUtlandForm.validation.bosteder.listHasTooFewItems': 'Du må legge til minst ett bosted i utlandet',
+    'medlemskapForm.validation.bosteder.listIsEmpty': 'Du må legge til minst ett bosted i utlandet',
+
+    'medlemskapForm.validation.arbeidsstederUtenforNorge.listIsEmpty':
+        'Du må legge til minst en periode med jobb i utlandet',
 };

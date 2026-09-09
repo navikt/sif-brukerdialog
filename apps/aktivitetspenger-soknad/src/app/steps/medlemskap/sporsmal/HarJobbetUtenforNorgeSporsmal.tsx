@@ -12,7 +12,7 @@ interface Props {
 
 export const HarJobbetUtenforNorgeSporsmal = ({ harJobbetINorge }: Props) => {
     const { text } = useAppIntl();
-    const { validateField } = useSifValidate('bostedUtlandForm');
+    const { validateField } = useSifValidate('medlemskapForm');
     return harJobbetINorge ? (
         <YesOrNoQuestion
             name={MedlemskapFormFields.harJobbetUtenforNorge}
