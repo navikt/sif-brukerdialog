@@ -47,6 +47,7 @@ const formValuesToArbeidUtland = (
         periode: { from, to },
         landkode: values.landkode,
         landnavn: getCountryName(values.landkode, locale),
+        identitetsnummer: values.idnummer,
     };
 };
 
@@ -55,7 +56,7 @@ const arbeidUtlandToFormValues = (arbeidssted: ArbeidUtland): ArbeidUtlandFormVa
         fom: dateToISODate(arbeidssted.periode.from),
         tom: dateToISODate(arbeidssted.periode.to),
         landkode: arbeidssted.landkode,
-        idnummer: arbeidssted.idnummer,
+        idnummer: arbeidssted.identitetsnummer,
     };
 };
 

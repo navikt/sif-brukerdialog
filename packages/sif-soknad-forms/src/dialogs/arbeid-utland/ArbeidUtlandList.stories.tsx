@@ -20,6 +20,7 @@ const exampleArbeider: ArbeidUtland[] = [
             from: '2024-01-01' as ISODate,
             to: '2024-03-31' as ISODate,
         },
+        identitetsnummer: undefined,
     },
     {
         id: '2',
@@ -29,6 +30,7 @@ const exampleArbeider: ArbeidUtland[] = [
             from: '2024-05-01' as ISODate,
             to: '2024-06-15' as ISODate,
         },
+        identitetsnummer: undefined,
     },
 ];
 

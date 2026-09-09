@@ -150,8 +150,8 @@ export const zArbeidUtland = z.object({
 export const zMedlemskapAktivitetspenger = z.object({
     harBoddINorge: z.boolean(),
     harJobbetUtenforNorge: z.boolean().optional(),
+    harJobbetINorge: z.boolean().optional(),
     bostederUtenforNorge: z.array(zBosted).optional(),
-    harBoddIUtlandetSiste5År: z.boolean().optional(),
     arbeidsstederUtenforNorge: z.array(zArbeidUtland).optional(),
 });
 

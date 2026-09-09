@@ -21,7 +21,7 @@ export const appMessages_nb = {
     'step.startdato.title': 'Startdato',
     'step.kontonummer.title': 'Kontonummer for utbetaling',
     'step.bosted.title': 'Bosted',
-    'step.medlemskap.title': 'Bosted i utlandet',
+    'step.medlemskap.title': 'Medlemskap i folketrygden',
     'step.barn.title': 'Barn',
     'step.oppsummering.title': 'Oppsummering',
 };

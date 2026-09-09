@@ -35,7 +35,7 @@ export type AktivitetspengerOppgavebekreftelse = {
 export type Aktivitetspengersøknad = {
     barnErRiktig: boolean;
     erBosattITrondheim: boolean;
-    medlemskap: MedlemskapAktivitetspenger | any;
+    medlemskap: MedlemskapAktivitetspenger;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
     kontonummerInfo: KontonummerInfo;
@@ -255,9 +255,9 @@ export type FerieuttakIPerioden = {
 
 export type MedlemskapAktivitetspenger = {
     harBoddINorge: boolean;
+    harJobbetINorge?: boolean;
     harJobbetUtenforNorge?: boolean;
     bostederUtenforNorge?: Bosted[];
-    harBoddIUtlandetSiste5År?: boolean;
     arbeidsstederUtenforNorge?: ArbeidUtland[];
 };
 

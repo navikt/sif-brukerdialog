@@ -13,7 +13,6 @@ import { useForm } from 'react-hook-form';
 import { toMedlemskapStegFormValues, toMedlemskapStegSøknadsdata } from './medlemskapStegUtils';
 import { MedlemskapFormFields, MedlemskapFormValues } from './types';
 import dayjs from 'dayjs';
-import { Todo } from '../../components/Todo';
 import { HarBoddINorgeSporsmal } from './sporsmal/HarBoddINorgeSporsmal';
 import { BostederUtlandSporsmal } from './sporsmal/BostederUtlandSporsmal';
 import { HarJobbetUtenforNorgeSporsmal } from './sporsmal/HarJobbetUtenforNorgeSporsmal';
@@ -122,10 +121,6 @@ export const MedlemskapForm = () => {
     return (
         <SøknadStep stepId={stepId}>
             <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
-                <Todo spacing={false}>
-                    Tekster og spørsmål er i hovedsak hentet fra AAP, og kan bli justert. Spørsmål om jobb i utlandet er
-                    ikke tatt inn enda.
-                </Todo>
                 <SifGuidePanel>
                     <AppText id="medlemskapSteg.veileder.tekst.1" />
                 </SifGuidePanel>
@@ -148,6 +143,7 @@ export const MedlemskapForm = () => {
                                 )}
                             </>
                         )}
+
                         {/* Bosteder utenfor Norge */}
                         {vis(MedlemskapFormFields.bostederUtenforNorge) && (
                             <BostederUtlandSporsmal

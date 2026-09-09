@@ -14,4 +14,6 @@ export const oppsummeringStegMessages_nb = {
     'oppsummeringSteg.kontonummer.kontonummerInfoMangler.tekst':
         'Vi klarer ikke se om du har registrert kontonummer hos oss.',
     'oppsummeringSteg.barn.tittel': 'Barn',
+
+    'oppsummering.medlemskap.arbeidstederUtenforNorge': 'Jobb utenfor Norge',
 };

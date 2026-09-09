@@ -35,11 +35,6 @@ export const zBosted = z.object({
     tilOgMed: z.iso.date(),
 });
 
-export const zMedlemskapAktivitetspenger = z.object({
-    harBoddIUtlandetSiste5År: z.boolean(),
-    utenlandsoppholdSiste5År: z.array(zBosted),
-});
-
 export const zFrilansoppdragDto = z.object({
     ansattFom: z.iso.date().nullish(),
     ansattTom: z.iso.date().nullish(),
@@ -57,10 +52,26 @@ export const zKontonummerInfo = z.object({
     kontonummerFraRegister: z.string().nullish(),
 });
 
+export const zArbeidUtland = z.object({
+    fraOgMed: z.iso.date(),
+    landkode: z.string().min(1),
+    landnavn: z.string(),
+    tilOgMed: z.iso.date(),
+    identitetsnummer: z.string().optional(),
+});
+
+export const zMedlemskapAktivitetspenger = z.object({
+    harBoddINorge: z.boolean(),
+    harJobbetINorge: z.boolean().optional(),
+    harJobbetUtenforNorge: z.boolean().optional(),
+    bostederUtenforNorge: z.array(zBosted).optional(),
+    arbeidsstederUtenforNorge: z.array(zArbeidUtland).optional(),
+});
+
 export const zAktivitetspengersøknad = z.object({
     barnErRiktig: z.boolean(),
     erBosattITrondheim: z.boolean(),
-    forutgåendeBosteder: zMedlemskapAktivitetspenger,
+    medlemskap: zMedlemskapAktivitetspenger,
     harBekreftetOpplysninger: z.boolean(),
     harForståttRettigheterOgPlikter: z.boolean(),
     kontonummerInfo: zKontonummerInfo,

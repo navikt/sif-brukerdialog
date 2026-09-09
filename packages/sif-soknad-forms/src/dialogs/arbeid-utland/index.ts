@@ -5,7 +5,7 @@ export type ArbeidUtland = {
     periode: DateRange;
     landkode: string;
     landnavn: string;
-    idnummer?: string;
+    identitetsnummer: string | undefined;
 };
 
 export * from './ArbeidUtlandDialog';
