@@ -7,7 +7,7 @@ import { getListValidator } from '@navikt/sif-validation';
 import { useSifValidate, YesOrNo } from '@sif/rhf';
 import { SøknadStep, useMellomlagring, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { FormLayout, SifGuidePanel } from '@sif/soknad-ui';
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { toMedlemskapStegFormValues, toMedlemskapStegSøknadsdata } from './medlemskapStegUtils';
@@ -41,60 +41,13 @@ export const MedlemskapForm = () => {
 
     const minDate = useMemo(() => getMinDate(), []);
     const maxDate = useMemo(() => getDateToday(), []);
-    const { trigger } = methods;
+    const { unregister } = methods;
 
     const harBoddINorge = methods.watch(MedlemskapFormFields.harBoddINorge);
     const harJobbetINorge = methods.watch(MedlemskapFormFields.harJobbetINorge);
     const harJobbetUtenforNorge = methods.watch(MedlemskapFormFields.harJobbetUtenforNorge);
     const bostederUtenforNorge = methods.watch(MedlemskapFormFields.bostederUtenforNorge);
     const arbeidsstederUtenforNorge = methods.watch(MedlemskapFormFields.arbeidsstederUtenforNorge);
-
-    const isMounted = useRef(false);
-
-    methods.register(MedlemskapFormFields.bostederUtenforNorge, {
-        validate: (value) => {
-            if (vis(MedlemskapFormFields.bostederUtenforNorge)) {
-                return validateField(
-                    MedlemskapFormFields.bostederUtenforNorge,
-                    getListValidator({ minItems: 1, required: true }),
-                )(value);
-            }
-        },
-    });
-    methods.register(MedlemskapFormFields.arbeidsstederUtenforNorge, {
-        validate: (value) => {
-            if (vis(MedlemskapFormFields.arbeidsstederUtenforNorge)) {
-                return validateField(
-                    MedlemskapFormFields.arbeidsstederUtenforNorge,
-                    getListValidator({ minItems: 1, required: true }),
-                )(value);
-            }
-        },
-    });
-
-    useEffect(() => {
-        if (!isMounted.current) {
-            isMounted.current = true;
-            return;
-        }
-        trigger(MedlemskapFormFields.bostederUtenforNorge);
-    }, [harBoddINorge, trigger]);
-
-    const oppdaterBosteder = (
-        oppdaterteBosteder: MedlemskapFormValues[typeof MedlemskapFormFields.bostederUtenforNorge],
-    ) => {
-        methods.setValue(MedlemskapFormFields.bostederUtenforNorge, oppdaterteBosteder);
-        methods.trigger(MedlemskapFormFields.bostederUtenforNorge);
-        void lagre();
-    };
-
-    const oppdaterArbeidssteder = (
-        oppdaterteArbeidssteder: MedlemskapFormValues[typeof MedlemskapFormFields.arbeidsstederUtenforNorge],
-    ) => {
-        methods.setValue(MedlemskapFormFields.arbeidsstederUtenforNorge, oppdaterteArbeidssteder);
-        methods.trigger(MedlemskapFormFields.arbeidsstederUtenforNorge);
-        void lagre();
-    };
 
     const vis = (field: MedlemskapFormFields) => {
         switch (field) {
@@ -115,9 +68,55 @@ export const MedlemskapForm = () => {
 
             case MedlemskapFormFields.arbeidsstederUtenforNorge:
                 return harJobbetUtenforNorge === YesOrNo.YES;
+
             default:
                 return false;
         }
+    };
+
+    const visBostederUtenforNorge = vis(MedlemskapFormFields.bostederUtenforNorge);
+    const visArbeidsstederUtenforNorge = vis(MedlemskapFormFields.arbeidsstederUtenforNorge);
+
+    if (visBostederUtenforNorge) {
+        methods.register(MedlemskapFormFields.bostederUtenforNorge, {
+            validate: validateField(
+                MedlemskapFormFields.bostederUtenforNorge,
+                getListValidator({ minItems: 1, required: true }),
+            ),
+        });
+    }
+    if (visArbeidsstederUtenforNorge) {
+        methods.register(MedlemskapFormFields.arbeidsstederUtenforNorge, {
+            validate: validateField(
+                MedlemskapFormFields.arbeidsstederUtenforNorge,
+                getListValidator({ minItems: 1, required: true }),
+            ),
+        });
+    }
+
+    useEffect(() => {
+        if (!visBostederUtenforNorge) {
+            unregister(MedlemskapFormFields.bostederUtenforNorge);
+        }
+        if (!visArbeidsstederUtenforNorge) {
+            unregister(MedlemskapFormFields.arbeidsstederUtenforNorge);
+        }
+    }, [unregister, visArbeidsstederUtenforNorge, visBostederUtenforNorge]);
+
+    const oppdaterBosteder = (
+        oppdaterteBosteder: MedlemskapFormValues[typeof MedlemskapFormFields.bostederUtenforNorge],
+    ) => {
+        methods.setValue(MedlemskapFormFields.bostederUtenforNorge, oppdaterteBosteder);
+        methods.trigger(MedlemskapFormFields.bostederUtenforNorge);
+        void lagre();
+    };
+
+    const oppdaterArbeidssteder = (
+        oppdaterteArbeidssteder: MedlemskapFormValues[typeof MedlemskapFormFields.arbeidsstederUtenforNorge],
+    ) => {
+        methods.setValue(MedlemskapFormFields.arbeidsstederUtenforNorge, oppdaterteArbeidssteder);
+        methods.trigger(MedlemskapFormFields.arbeidsstederUtenforNorge);
+        void lagre();
     };
 
     return (

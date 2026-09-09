@@ -6,7 +6,7 @@ export type ArbeidUtland = {
     landkode: string;
     landnavn: string;
     tilOgMed: string;
-    idnummer?: string;
+    identitetsnummer?: string;
 };
 
 export type ClientOptions = {

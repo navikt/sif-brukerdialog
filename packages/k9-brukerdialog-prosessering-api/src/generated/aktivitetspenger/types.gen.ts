@@ -60,9 +60,20 @@ export type Bosted = {
     tilOgMed: string;
 };
 
+export type ArbeidUtland = {
+    fraOgMed: string;
+    landkode: string;
+    landnavn: string;
+    tilOgMed: string;
+    identitetsnummer?: string;
+};
+
 export type MedlemskapAktivitetspenger = {
-    harBoddIUtlandetSiste5År: boolean;
-    utenlandsoppholdSiste5År: Bosted[];
+    harBoddINorge: boolean;
+    harJobbetINorge?: boolean;
+    harJobbetUtenforNorge?: boolean;
+    bostederUtenforNorge?: Bosted[];
+    arbeidsstederUtenforNorge?: ArbeidUtland[];
 };
 
 export type FrilansoppdragDto = {
