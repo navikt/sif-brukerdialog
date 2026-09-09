@@ -32,9 +32,12 @@ export const HarJobbetUtenforNorgeSporsmal = ({ harJobbetINorge }: Props) => {
             name={MedlemskapFormFields.harJobbetUtenforNorge}
             legend={text('medlemskapSteg.spørsmål.harJobbetUtenforNorge')}
             description={
-                <ReadMore header={text('medlemskapSteg.readMore.ytelserIUtlandet.tittel')}>
-                    {text('medlemskapSteg.readMore.ytelserIUtlandet.tekst')}
-                </ReadMore>
+                <VStack gap="space-8">
+                    <AppText id="medlemskapSteg.spørsmål.harJobbetINorgeOgUtenforNorge.info" />
+                    <ReadMore header={text('medlemskapSteg.readMore.ytelserIUtlandet.tittel')}>
+                        {text('medlemskapSteg.readMore.ytelserIUtlandet.tekst')}
+                    </ReadMore>
+                </VStack>
             }
             validate={validateField(MedlemskapFormFields.harJobbetUtenforNorge, getYesOrNoValidator())}
         />

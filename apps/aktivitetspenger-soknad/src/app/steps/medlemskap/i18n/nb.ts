@@ -1,11 +1,11 @@
 export const medlemskapStegMessages_nb = {
     'medlemskapSteg.veileder.tekst.1':
-        'For å finne ut om du oppfyller kravene til medlemskap i folketrygden, trenger vi å vite om du har bodd eller jobbet i utlandet',
+        'For å finne ut om du oppfyller kravene til medlemskap i folketrygden, trenger vi å vite om du har bodd eller jobbet i utlandet.',
 
     // Read more - ytelser i Norge
-    'medlemskapSteg.readMore.utelserINorge.tittel': 'Regnes ytelser fra norske myndigheter som jobb?',
-    'medlemskapSteg.readMore.utelserINorge.tekst':
-        'Med "jobb" menes også offentlige ytelser du har fått som erstatning for arbeid, for eksempel dagpenger, sykepenger og foreldrepenger',
+    'medlemskapSteg.readMore.ytelserINorge.tittel': 'Regnes ytelser fra norske myndigheter som jobb?',
+    'medlemskapSteg.readMore.ytelserINorge.tekst':
+        'Offentlige ytelser som du har har fått som erstatning for inntekt, for eksempel dagpenger, sykepenger og foreldrepenger, regner vi også som jobb.',
 
     // Read more - ytelser i utlandet
     'medlemskapSteg.readMore.ytelserIUtlandet.tittel':
@@ -17,9 +17,9 @@ export const medlemskapStegMessages_nb = {
     'medlemskapSteg.spørsmål.harBoddINorge': 'Har du bodd sammenhengende i Norge de fem siste årene?',
     'medlemskapSteg.spørsmål.harBoddINorge.readMore.tittel': 'Hva menes med å ha "bodd sammenhengende"?',
     'medlemskapSteg.spørsmål.harBoddINorge.readMore.tekst':
-        'Dette betyr at du har oppholdt deg i Norge mesteparten av hvert av disse årene.',
+        'Det vil si at du har vært i Norge mesteparten av tiden i hvert av de siste fem årene.',
 
-    // Har jobbet i Noreg
+    // Har jobbet i Norge
     'medlemskapSteg.spørsmål.harJobbetINorge': 'Har du jobbet sammenhengende i Norge de fem siste årene?',
 
     // Har jobbet i utlandet
@@ -27,17 +27,17 @@ export const medlemskapStegMessages_nb = {
 
     // Har jobbet i Norge og utlandet
     'medlemskapSteg.spørsmål.harJobbetINorgeOgUtenforNorge':
-        'Har du i tillegg til jobb i Norge, jobbet i et annet land de siste fem årene?',
+        'Har du jobbet i et annet land de siste fem årene, i tillegg til å ha jobbet i Norge?',
     'medlemskapSteg.spørsmål.harJobbetINorgeOgUtenforNorge.info':
-        'Hvis du har jobbet i et annet land, kan du i noen tilfeller få med utbetalt i Aktivitetspenger. Nav bruker bare denne inntekten hvis det er til fordel for deg.',
+        'Hvis du har jobbet i et annet land, kan du i noen tilfeller få mer utbetalt i aktivitetspenger. Nav bruker denne inntekten bare hvis det er til fordel for deg.',
 
     // Bosteder i utlandet
-    'medlemskapSteg.bosteder.tittel': 'Bosteder i utlandet siste 5 år',
+    'medlemskapSteg.bosteder.tittel': 'Bosteder i utlandet de siste fem årene',
     'medlemskapSteg.bosteder.info.1': 'Oppgi i hvilke perioder og land du har bodd utenfor Norge de siste fem årene.',
     'medlemskapSteg.bosteder.leggTil': 'Legg til bosted',
 
     // Arbeidssteder i utlandet
-    'medlemskapSteg.arbeidsstederUtenforNorge.tittel': 'Arbeidssteder i utlandet siste 5 år',
+    'medlemskapSteg.arbeidsstederUtenforNorge.tittel': 'Jobb i utlandet de siste fem årene',
     'medlemskapSteg.arbeidsstederUtenforNorge.info.1':
         'Oppgi i hvilke perioder og land du har jobbet utenfor Norge de fem siste årene.',
     'medlemskapSteg.arbeidsstederUtenforNorge.leggTil': 'Legg til periode med jobb utenfor Norge',

@@ -16,8 +16,8 @@ export const HarJobbetINorgeSporsmal = ({}: Props) => {
             name={MedlemskapFormFields.harJobbetINorge}
             legend={text('medlemskapSteg.spørsmål.harJobbetINorge')}
             description={
-                <ReadMore header={text('medlemskapSteg.readMore.utelserINorge.tittel')}>
-                    {text('medlemskapSteg.readMore.utelserINorge.tekst')}
+                <ReadMore header={text('medlemskapSteg.readMore.ytelserINorge.tittel')}>
+                    {text('medlemskapSteg.readMore.ytelserINorge.tekst')}
                 </ReadMore>
             }
             validate={validateField(MedlemskapFormFields.harJobbetINorge, getYesOrNoValidator())}

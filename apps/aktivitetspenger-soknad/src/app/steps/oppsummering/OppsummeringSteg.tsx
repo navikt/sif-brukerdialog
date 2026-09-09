@@ -34,7 +34,7 @@ export const OppsummeringSteg = () => {
     const stepId = SøknadStepId.OPPSUMMERING;
 
     const { validateField } = useSifValidate('oppsummeringForm');
-    const [startdato, setStartdato] = useState<ISODate | undefined>(undefined);
+    const [startdato, setStartdato] = useState<ISODate | undefined>('2026-12-01' as ISODate);
 
     const { søker, kontoInfo, registrerteBarn } = useAppContext();
     const søknadsdata = useSøknadsdata<Søknadsdata>();

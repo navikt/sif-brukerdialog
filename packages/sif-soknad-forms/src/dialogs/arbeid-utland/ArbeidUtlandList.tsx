@@ -8,6 +8,7 @@ import { ArbeidUtland } from '.';
 
 interface Props {
     arbeidssteder: ArbeidUtland[];
+    variant?: 'default' | 'summary';
     onEdit?: (arbeidssted: ArbeidUtland) => void;
     onDelete?: (arbeidssted: ArbeidUtland) => void;
 }
@@ -28,10 +29,13 @@ const renderArbeidUtlandLabel = (
             <BodyShort>
                 {onEdit ? <ActionLink onClick={() => onEdit(arbeidssted)}>{title}</ActionLink> : <span>{title}</span>}
             </BodyShort>
+            {arbeidssted.identitetsnummer ? (
+                <BodyShort size="small">ID-nummer/personnummer: {arbeidssted.identitetsnummer}</BodyShort>
+            ) : null}
         </VStack>
     );
 };
-export const ArbeidUtlandList = ({ arbeidssteder, onEdit, onDelete }: Props) => {
+export const ArbeidUtlandList = ({ arbeidssteder, onEdit, onDelete, variant }: Props) => {
     const { locale } = useUiIntl();
     return (
         <ItemListDarkside<ArbeidUtland>
@@ -40,6 +44,7 @@ export const ArbeidUtlandList = ({ arbeidssteder, onEdit, onDelete }: Props) => 
             labelRenderer={(arbeidssted) => renderArbeidUtlandLabel(arbeidssted, locale, onEdit)}
             items={arbeidssteder}
             onDelete={onDelete}
+            variant={variant}
         />
     );
 };
