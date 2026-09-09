@@ -1,13 +1,11 @@
-import { AppText, useAppIntl } from '@app/i18n';
+import { AppText } from '@app/i18n';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { SøknadStepForm } from '@sif/soknad-app';
 import { BostedUtlandSøknadsdata } from '@app/types/Soknadsdata';
-import { BodyLong, Heading, ReadMore, VStack } from '@navikt/ds-react';
 import { dateToISODate, getDateToday } from '@sif/utils';
-import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
-import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
+import { getListValidator } from '@navikt/sif-validation';
+import { useSifValidate, YesOrNo } from '@sif/rhf';
 import { SøknadStep, useMellomlagring, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
-import { BostedUtlandListAndDialog } from '@sif/soknad-forms';
 import { FormLayout, SifGuidePanel } from '@sif/soknad-ui';
 import { useEffect, useMemo, useRef } from 'react';
 import { useForm } from 'react-hook-form';
@@ -16,8 +14,11 @@ import { toBostedUtlandStegFormValues, toBostedUtlandStegSøknadsdata } from './
 import { BostedUtlandFormFields, BostedUtlandFormValues } from './types';
 import dayjs from 'dayjs';
 import { Todo } from '../../components/Todo';
-
-const { YesOrNoQuestion } = createSifFormComponents<BostedUtlandFormValues>();
+import { HarBoddINorgeSporsmal } from './sporsmal/HarBoddINorgeSporsmal';
+import { BostederUtlandSporsmal } from './sporsmal/BostederUtlandSporsmal';
+import { HarJobbetUtenforNorgeSporsmal } from './sporsmal/HarJobbetUtenforNorgeSporsmal';
+import { ArbeidsstederUtlandSporsmal } from './sporsmal/ArbeidsstederUtlandSporsmal';
+import { HarJobbetINorgeSporsmal } from './sporsmal/HarJobbetINorgeSporsmal';
 
 const stepId = SøknadStepId.BOSTED_UTLAND;
 
@@ -26,7 +27,6 @@ const getMinDate = () => {
 };
 
 export const BostedUtlandForm = () => {
-    const { text } = useAppIntl();
     const { validateField } = useSifValidate('bostedUtlandForm');
 
     const { lagretData, commit, draftFormValues } = useStepData<BostedUtlandSøknadsdata, BostedUtlandFormValues>(
@@ -34,6 +34,7 @@ export const BostedUtlandForm = () => {
     );
     const methods = useForm<BostedUtlandFormValues>({
         defaultValues: draftFormValues ?? toBostedUtlandStegFormValues(lagretData),
+        shouldUnregister: true,
     });
     useSaveSøknadFormValues(stepId, methods.getValues);
     const { lagre } = useMellomlagring();
@@ -43,15 +44,30 @@ export const BostedUtlandForm = () => {
     const minDate = useMemo(() => getMinDate(), []);
     const maxDate = useMemo(() => getDateToday(), []);
     const { trigger } = methods;
+
     const harBoddINorge = methods.watch(BostedUtlandFormFields.harBoddINorge);
-    const bosteder = methods.watch(BostedUtlandFormFields.bosteder);
+    const harJobbetINorge = methods.watch(BostedUtlandFormFields.harJobbetINorge);
+    const harJobbetUtenforNorge = methods.watch(BostedUtlandFormFields.harJobbetUtenforNorge);
+    const bostederUtenforNorge = methods.watch(BostedUtlandFormFields.bostederUtenforNorge);
+    const arbeidsstederUtenforNorge = methods.watch(BostedUtlandFormFields.arbeidsstederUtenforNorge);
+
     const isMounted = useRef(false);
 
-    methods.register(BostedUtlandFormFields.bosteder, {
+    methods.register(BostedUtlandFormFields.bostederUtenforNorge, {
         validate: (value) => {
             if (harBoddINorge === YesOrNo.NO) {
                 return validateField(
-                    BostedUtlandFormFields.bosteder,
+                    BostedUtlandFormFields.bostederUtenforNorge,
+                    getListValidator({ minItems: 1, required: true }),
+                )(value);
+            }
+        },
+    });
+    methods.register(BostedUtlandFormFields.arbeidsstederUtenforNorge, {
+        validate: (value) => {
+            if (harJobbetUtenforNorge === YesOrNo.YES) {
+                return validateField(
+                    BostedUtlandFormFields.arbeidsstederUtenforNorge,
                     getListValidator({ minItems: 1, required: true }),
                 )(value);
             }
@@ -63,13 +79,47 @@ export const BostedUtlandForm = () => {
             isMounted.current = true;
             return;
         }
-        trigger(BostedUtlandFormFields.bosteder);
+        trigger(BostedUtlandFormFields.bostederUtenforNorge);
     }, [harBoddINorge, trigger]);
 
-    const oppdaterBosteder = (oppdaterteBosteder: BostedUtlandFormValues[typeof BostedUtlandFormFields.bosteder]) => {
-        methods.setValue(BostedUtlandFormFields.bosteder, oppdaterteBosteder);
-        methods.trigger(BostedUtlandFormFields.bosteder);
+    const oppdaterBosteder = (
+        oppdaterteBosteder: BostedUtlandFormValues[typeof BostedUtlandFormFields.bostederUtenforNorge],
+    ) => {
+        methods.setValue(BostedUtlandFormFields.bostederUtenforNorge, oppdaterteBosteder);
+        methods.trigger(BostedUtlandFormFields.bostederUtenforNorge);
         void lagre();
+    };
+
+    const oppdaterArbeidssteder = (
+        oppdaterteArbeidssteder: BostedUtlandFormValues[typeof BostedUtlandFormFields.arbeidsstederUtenforNorge],
+    ) => {
+        methods.setValue(BostedUtlandFormFields.arbeidsstederUtenforNorge, oppdaterteArbeidssteder);
+        methods.trigger(BostedUtlandFormFields.arbeidsstederUtenforNorge);
+        void lagre();
+    };
+
+    const vis = (field: BostedUtlandFormFields) => {
+        switch (field) {
+            case BostedUtlandFormFields.harJobbetUtenforNorge:
+                return (
+                    harBoddINorge === YesOrNo.YES || (harBoddINorge === YesOrNo.NO && harJobbetINorge === YesOrNo.YES)
+                );
+            case BostedUtlandFormFields.harJobbetINorge:
+                return harBoddINorge === YesOrNo.NO;
+
+            case BostedUtlandFormFields.bostederUtenforNorge:
+                return (
+                    (harBoddINorge === YesOrNo.NO && harJobbetINorge === YesOrNo.NO) ||
+                    (harBoddINorge === YesOrNo.NO &&
+                        harJobbetINorge !== YesOrNo.YES &&
+                        harJobbetUtenforNorge === YesOrNo.YES)
+                );
+
+            case BostedUtlandFormFields.arbeidsstederUtenforNorge:
+                return harJobbetUtenforNorge === YesOrNo.YES;
+            default:
+                return false;
+        }
     };
 
     return (
@@ -84,35 +134,41 @@ export const BostedUtlandForm = () => {
                 </SifGuidePanel>
                 <FormLayout.Content>
                     <FormLayout.Questions>
-                        <YesOrNoQuestion
-                            name={BostedUtlandFormFields.harBoddINorge}
-                            legend={text('bostedUtlandSteg.spørsmål.harBoddINorge')}
-                            validate={validateField(BostedUtlandFormFields.harBoddINorge, getYesOrNoValidator())}
-                            description={
-                                <ReadMore header={text('bostedUtlandSteg.spørsmål.readMore.tittel')}>
-                                    <AppText id="bostedUtlandSteg.spørsmål.readMore.tekst" />
-                                </ReadMore>
-                            }
-                        />
-                        {harBoddINorge === YesOrNo.NO && (
-                            <FormLayout.Panel bleedTop={true}>
-                                <VStack gap="space-16">
-                                    <Heading size="xsmall" level="3">
-                                        <AppText id="bostedUtlandSteg.bosteder.tittel" />
-                                    </Heading>
-                                    <BodyLong>
-                                        <AppText id="bostedUtlandSteg.bosteder.info.1" />
-                                    </BodyLong>
-                                    <BostedUtlandListAndDialog
-                                        minDate={minDate}
-                                        maxDate={maxDate}
-                                        bosteder={bosteder}
-                                        addButtonId={BostedUtlandFormFields.bosteder}
-                                        addButtonLabel={<AppText id="bostedUtlandSteg.bosteder.leggTil" />}
-                                        onChange={oppdaterBosteder}
-                                    />
-                                </VStack>
-                            </FormLayout.Panel>
+                        <HarBoddINorgeSporsmal />
+
+                        {harBoddINorge === YesOrNo.YES ? (
+                            <>
+                                <HarJobbetUtenforNorgeSporsmal harJobbetINorge={harJobbetINorge === YesOrNo.YES} />
+                            </>
+                        ) : (
+                            <>
+                                {/* Jobbet i Norge */}
+                                {vis(BostedUtlandFormFields.harJobbetINorge) && <HarJobbetINorgeSporsmal />}
+
+                                {/* Jobbet utenfor Norge */}
+                                {vis(BostedUtlandFormFields.harJobbetUtenforNorge) && (
+                                    <HarJobbetUtenforNorgeSporsmal harJobbetINorge={harJobbetINorge === YesOrNo.YES} />
+                                )}
+                            </>
+                        )}
+                        {/* Bosteder utenfor Norge */}
+                        {vis(BostedUtlandFormFields.bostederUtenforNorge) && (
+                            <BostederUtlandSporsmal
+                                minDate={minDate}
+                                maxDate={maxDate}
+                                bostederUtenforNorge={bostederUtenforNorge}
+                                onChange={oppdaterBosteder}
+                            />
+                        )}
+
+                        {/* Arbeidssteder utenfor Norge */}
+                        {vis(BostedUtlandFormFields.arbeidsstederUtenforNorge) && (
+                            <ArbeidsstederUtlandSporsmal
+                                minDate={minDate}
+                                maxDate={maxDate}
+                                arbeidsstederUtenforNorge={arbeidsstederUtenforNorge}
+                                onChange={oppdaterArbeidssteder}
+                            />
                         )}
                     </FormLayout.Questions>
                 </FormLayout.Content>

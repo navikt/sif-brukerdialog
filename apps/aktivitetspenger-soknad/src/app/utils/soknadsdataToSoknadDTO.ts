@@ -1,6 +1,6 @@
 import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
 import { Søker } from '@sif/api/k9-prosessering';
-import { dateToISODate, ISODate } from '@sif/utils';
+import { ISODate } from '@sif/utils';
 
 import { SøknadApiData } from '../types/SoknadApiData';
 import { Søknadsdata } from '../types/Soknadsdata';
@@ -35,13 +35,13 @@ export const søknadsdataToSøknadDTO = ({
             kontonummerErRiktig: kontonummer.kontonummerErRiktig,
         },
         forutgåendeBosteder: {
-            harBoddIUtlandetSiste5År: !bostedUtland.harBoddINorge,
-            utenlandsoppholdSiste5År: (bostedUtland.bosteder || []).map((b) => ({
-                fraOgMed: dateToISODate(b.periode.from),
-                tilOgMed: dateToISODate(b.periode.to),
-                landkode: b.landkode,
-                landnavn: b.landnavn,
-            })),
+            // harBoddIUtlandetSiste5År: !bostedUtland.harBoddINorge,
+            // utenlandsoppholdSiste5År: (bostedUtland.bostederUtenforNorge || []).map((b) => ({
+            //     fraOgMed: dateToISODate(b.periode.from),
+            //     tilOgMed: dateToISODate(b.periode.to),
+            //     landkode: b.landkode,
+            //     landnavn: b.landnavn,
+            // })),
         },
         erBosattITrondheim: bosted.erBosattITrondheim,
         startdato: startdato,

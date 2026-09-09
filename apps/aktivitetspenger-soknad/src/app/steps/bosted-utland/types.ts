@@ -1,17 +1,18 @@
 import { YesOrNo } from '@sif/rhf';
-import { BostedUtland } from '@sif/soknad-forms';
+import { ArbeidUtland, BostedUtland } from '@sif/soknad-forms';
 
 export enum BostedUtlandFormFields {
     harBoddINorge = 'harBoddINorge',
-    harJobbetSammenhengendeINorge = 'harJobbetSammenhengendeINorge',
-    harJobbetIUtlandet = 'harJobbetIUtlandet',
-    bosteder = 'bosteder',
-    arbeidssteder = 'arbeidssteder',
+    harJobbetINorge = 'harJobbetINorge',
+    harJobbetUtenforNorge = 'harJobbetUtenforNorge',
+    bostederUtenforNorge = 'bostederUtenforNorge',
+    arbeidsstederUtenforNorge = 'arbeidsstederUtenforNorge',
 }
 
 export interface BostedUtlandFormValues {
     [BostedUtlandFormFields.harBoddINorge]?: YesOrNo;
-    [BostedUtlandFormFields.bosteder]?: BostedUtland[];
-    [BostedUtlandFormFields.harJobbetIUtlandet]?: YesOrNo;
-    [BostedUtlandFormFields.arbeidssteder]?: BostedUtland[];
+    [BostedUtlandFormFields.harJobbetINorge]?: YesOrNo;
+    [BostedUtlandFormFields.harJobbetUtenforNorge]?: YesOrNo;
+    [BostedUtlandFormFields.bostederUtenforNorge]?: BostedUtland[];
+    [BostedUtlandFormFields.arbeidsstederUtenforNorge]?: ArbeidUtland[];
 }
