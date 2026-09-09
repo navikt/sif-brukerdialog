@@ -1,12 +1,15 @@
 import { Bleed, Box, DatePicker, Tag, useDatepicker, VStack } from '@navikt/ds-react';
+import { ISODate, ISODateToDate } from '@sif/utils';
 import dayjs from 'dayjs';
 
 interface Props {
     onDateChange: (date: Date | undefined) => void;
+    value: ISODate;
 }
-export const StartdatoSpørsmål = ({ onDateChange }: Props) => {
+export const StartdatoSpørsmål = ({ onDateChange, value }: Props) => {
     const { datepickerProps, inputProps } = useDatepicker({
         disableWeekends: false,
+        defaultSelected: ISODateToDate(value),
         fromDate: dayjs().subtract(4, 'year').toDate(),
         toDate: dayjs().add(4, 'years').toDate(),
         onDateChange: onDateChange,

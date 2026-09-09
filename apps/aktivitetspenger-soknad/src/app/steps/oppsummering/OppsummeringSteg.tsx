@@ -4,7 +4,7 @@ import { SøknadStepForm } from '@sif/soknad-app';
 import { useAppContext } from '@app/context/AppContext';
 import { Søknadsdata } from '@app/types/Soknadsdata';
 import { InfoCard } from '@navikt/ds-react';
-import { dateToISODate, ISODate } from '@sif/utils';
+import { dateToISODate, getDateToday, ISODate } from '@sif/utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { SøknadStep, useSøknadSendt, useSøknadsdata } from '@sif/soknad-app';
@@ -34,7 +34,7 @@ export const OppsummeringSteg = () => {
     const stepId = SøknadStepId.OPPSUMMERING;
 
     const { validateField } = useSifValidate('oppsummeringForm');
-    const [startdato, setStartdato] = useState<ISODate | undefined>('2026-12-01' as ISODate);
+    const [startdato, setStartdato] = useState<ISODate>(dateToISODate(getDateToday()));
 
     const { søker, kontoInfo, registrerteBarn } = useAppContext();
     const søknadsdata = useSøknadsdata<Søknadsdata>();
@@ -74,6 +74,7 @@ export const OppsummeringSteg = () => {
                 submitDisabled={!dto || !startdato}>
                 {
                     <StartdatoSpørsmål
+                        value={startdato}
                         onDateChange={(dato) => {
                             if (dato) {
                                 setStartdato(dateToISODate(dato));
