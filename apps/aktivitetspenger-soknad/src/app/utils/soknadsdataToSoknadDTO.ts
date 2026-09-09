@@ -34,6 +34,10 @@ export const søknadsdataToSøknadDTO = ({
             ...kontoInfo,
             kontonummerErRiktig: kontonummer.kontonummerErRiktig,
         },
+        forutgåendeBosteder: {
+            harBoddIUtlandetSiste5År: false,
+            utenlandsoppholdSiste5År: [],
+        },
         medlemskap: {
             harBoddINorge: medlemskap.harBoddINorge,
             harJobbetINorge: medlemskap.harJobbetINorge,

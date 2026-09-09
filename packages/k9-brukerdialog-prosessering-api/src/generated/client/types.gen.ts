@@ -32,9 +32,14 @@ export type AktivitetspengerOppgavebekreftelse = {
     oppgave: AktivitetspengerOppgaveDto;
 };
 
+export type ForutgåendeBosteder = {
+    harBoddIUtlandetSiste5År: boolean;
+    utenlandsoppholdSiste5År: Bosted[];
+};
 export type Aktivitetspengersøknad = {
     barnErRiktig: boolean;
     erBosattITrondheim: boolean;
+    forutgåendeBosteder: ForutgåendeBosteder;
     medlemskap: MedlemskapAktivitetspenger;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
