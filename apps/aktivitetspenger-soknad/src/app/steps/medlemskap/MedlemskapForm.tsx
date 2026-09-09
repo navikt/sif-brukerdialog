@@ -105,10 +105,10 @@ export const MedlemskapForm = () => {
     return (
         <SøknadStep stepId={stepId}>
             <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
-                <SifGuidePanel>
-                    <AppText id="medlemskapSteg.veileder.tekst.1" />
-                </SifGuidePanel>
                 <FormLayout.Content>
+                    <SifGuidePanel>
+                        <AppText id="medlemskapSteg.veileder.tekst.1" />
+                    </SifGuidePanel>
                     <FormLayout.Questions>
                         <HarBoddINorgeSporsmal />
 
