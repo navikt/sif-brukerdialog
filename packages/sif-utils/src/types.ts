@@ -1,3 +1,9 @@
+export enum YesOrNo {
+    YES = 'yes',
+    NO = 'no',
+    UNANSWERED = 'unanswered',
+}
+
 // declare const ISODateBrand: unique symbol;
 declare const ISODurationBrand: unique symbol;
 
@@ -35,11 +41,11 @@ export interface NumberDuration {
 }
 
 export enum Weekday {
-    'monday' = 'monday',
-    'tuesday' = 'tuesday',
-    'wednesday' = 'wednesday',
-    'thursday' = 'thursday',
-    'friday' = 'friday',
+    monday = 'monday',
+    tuesday = 'tuesday',
+    wednesday = 'wednesday',
+    thursday = 'thursday',
+    friday = 'friday',
 }
 
 export type DurationWeekdays = {

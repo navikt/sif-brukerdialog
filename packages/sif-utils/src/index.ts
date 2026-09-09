@@ -18,3 +18,4 @@ export * from './typedIntlUtils';
 export * from './typeGuardUtilities';
 export * from './types';
 export * from './weekdayUtils';
+export * from './yesOrNoUtils';
