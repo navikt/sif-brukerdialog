@@ -278,6 +278,11 @@ export const UtenlandsoppholdDialogForm = ({
                 noValidate>
                 <FormLayout.Content>
                     <FormLayout.Questions>
+                        <CountrySelect
+                            name={UtenlandsoppholdFormFields.landkode}
+                            label={sifIntl.text('@sifSoknadForms.utenlandsopphold.form.land.label')}
+                            validate={validateField(UtenlandsoppholdFormFields.landkode, getRequiredFieldValidator())}
+                        />
                         <DateRangePicker
                             name="utenlandsoppholdPeriode"
                             legend={sifIntl.text('@sifSoknadForms.utenlandsopphold.form.tidsperiode.legend')}
@@ -331,12 +336,6 @@ export const UtenlandsoppholdDialogForm = ({
                                     },
                                 ),
                             }}
-                        />
-
-                        <CountrySelect
-                            name={UtenlandsoppholdFormFields.landkode}
-                            label={sifIntl.text('@sifSoknadForms.utenlandsopphold.form.land.label')}
-                            validate={validateField(UtenlandsoppholdFormFields.landkode, getRequiredFieldValidator())}
                         />
 
                         {showErSammenMedBarnetQuestion && (
