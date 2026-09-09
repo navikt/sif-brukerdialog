@@ -1,7 +1,7 @@
 import { AppText } from '@app/i18n';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { SøknadStepForm } from '@sif/soknad-app';
-import { BostedUtlandSøknadsdata } from '@app/types/Soknadsdata';
+import { MedlemskapSøknadsdata } from '@app/types/Soknadsdata';
 import { dateToISODate, getDateToday } from '@sif/utils';
 import { getListValidator } from '@navikt/sif-validation';
 import { useSifValidate, YesOrNo } from '@sif/rhf';
@@ -10,8 +10,8 @@ import { FormLayout, SifGuidePanel } from '@sif/soknad-ui';
 import { useEffect, useMemo, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { toBostedUtlandStegFormValues, toBostedUtlandStegSøknadsdata } from './bostedUtlandStegUtils';
-import { BostedUtlandFormFields, BostedUtlandFormValues } from './types';
+import { toMedlemskapStegFormValues, toMedlemskapStegSøknadsdata } from './medlemskapStegUtils';
+import { MedlemskapFormFields, MedlemskapFormValues } from './types';
 import dayjs from 'dayjs';
 import { Todo } from '../../components/Todo';
 import { HarBoddINorgeSporsmal } from './sporsmal/HarBoddINorgeSporsmal';
@@ -26,48 +26,46 @@ const getMinDate = () => {
     return dateToISODate(dayjs(getDateToday()).subtract(5, 'year'));
 };
 
-export const BostedUtlandForm = () => {
+export const MedlemskapForm = () => {
     const { validateField } = useSifValidate('bostedUtlandForm');
 
-    const { lagretData, commit, draftFormValues } = useStepData<BostedUtlandSøknadsdata, BostedUtlandFormValues>(
-        stepId,
-    );
-    const methods = useForm<BostedUtlandFormValues>({
-        defaultValues: draftFormValues ?? toBostedUtlandStegFormValues(lagretData),
+    const { lagretData, commit, draftFormValues } = useStepData<MedlemskapSøknadsdata, MedlemskapFormValues>(stepId);
+    const methods = useForm<MedlemskapFormValues>({
+        defaultValues: draftFormValues ?? toMedlemskapStegFormValues(lagretData),
         shouldUnregister: true,
     });
     useSaveSøknadFormValues(stepId, methods.getValues);
     const { lagre } = useMellomlagring();
 
-    const onSubmit = (data: BostedUtlandFormValues) => commit(toBostedUtlandStegSøknadsdata(data));
+    const onSubmit = (data: MedlemskapFormValues) => commit(toMedlemskapStegSøknadsdata(data));
 
     const minDate = useMemo(() => getMinDate(), []);
     const maxDate = useMemo(() => getDateToday(), []);
     const { trigger } = methods;
 
-    const harBoddINorge = methods.watch(BostedUtlandFormFields.harBoddINorge);
-    const harJobbetINorge = methods.watch(BostedUtlandFormFields.harJobbetINorge);
-    const harJobbetUtenforNorge = methods.watch(BostedUtlandFormFields.harJobbetUtenforNorge);
-    const bostederUtenforNorge = methods.watch(BostedUtlandFormFields.bostederUtenforNorge);
-    const arbeidsstederUtenforNorge = methods.watch(BostedUtlandFormFields.arbeidsstederUtenforNorge);
+    const harBoddINorge = methods.watch(MedlemskapFormFields.harBoddINorge);
+    const harJobbetINorge = methods.watch(MedlemskapFormFields.harJobbetINorge);
+    const harJobbetUtenforNorge = methods.watch(MedlemskapFormFields.harJobbetUtenforNorge);
+    const bostederUtenforNorge = methods.watch(MedlemskapFormFields.bostederUtenforNorge);
+    const arbeidsstederUtenforNorge = methods.watch(MedlemskapFormFields.arbeidsstederUtenforNorge);
 
     const isMounted = useRef(false);
 
-    methods.register(BostedUtlandFormFields.bostederUtenforNorge, {
+    methods.register(MedlemskapFormFields.bostederUtenforNorge, {
         validate: (value) => {
             if (harBoddINorge === YesOrNo.NO) {
                 return validateField(
-                    BostedUtlandFormFields.bostederUtenforNorge,
+                    MedlemskapFormFields.bostederUtenforNorge,
                     getListValidator({ minItems: 1, required: true }),
                 )(value);
             }
         },
     });
-    methods.register(BostedUtlandFormFields.arbeidsstederUtenforNorge, {
+    methods.register(MedlemskapFormFields.arbeidsstederUtenforNorge, {
         validate: (value) => {
             if (harJobbetUtenforNorge === YesOrNo.YES) {
                 return validateField(
-                    BostedUtlandFormFields.arbeidsstederUtenforNorge,
+                    MedlemskapFormFields.arbeidsstederUtenforNorge,
                     getListValidator({ minItems: 1, required: true }),
                 )(value);
             }
@@ -79,35 +77,35 @@ export const BostedUtlandForm = () => {
             isMounted.current = true;
             return;
         }
-        trigger(BostedUtlandFormFields.bostederUtenforNorge);
+        trigger(MedlemskapFormFields.bostederUtenforNorge);
     }, [harBoddINorge, trigger]);
 
     const oppdaterBosteder = (
-        oppdaterteBosteder: BostedUtlandFormValues[typeof BostedUtlandFormFields.bostederUtenforNorge],
+        oppdaterteBosteder: MedlemskapFormValues[typeof MedlemskapFormFields.bostederUtenforNorge],
     ) => {
-        methods.setValue(BostedUtlandFormFields.bostederUtenforNorge, oppdaterteBosteder);
-        methods.trigger(BostedUtlandFormFields.bostederUtenforNorge);
+        methods.setValue(MedlemskapFormFields.bostederUtenforNorge, oppdaterteBosteder);
+        methods.trigger(MedlemskapFormFields.bostederUtenforNorge);
         void lagre();
     };
 
     const oppdaterArbeidssteder = (
-        oppdaterteArbeidssteder: BostedUtlandFormValues[typeof BostedUtlandFormFields.arbeidsstederUtenforNorge],
+        oppdaterteArbeidssteder: MedlemskapFormValues[typeof MedlemskapFormFields.arbeidsstederUtenforNorge],
     ) => {
-        methods.setValue(BostedUtlandFormFields.arbeidsstederUtenforNorge, oppdaterteArbeidssteder);
-        methods.trigger(BostedUtlandFormFields.arbeidsstederUtenforNorge);
+        methods.setValue(MedlemskapFormFields.arbeidsstederUtenforNorge, oppdaterteArbeidssteder);
+        methods.trigger(MedlemskapFormFields.arbeidsstederUtenforNorge);
         void lagre();
     };
 
-    const vis = (field: BostedUtlandFormFields) => {
+    const vis = (field: MedlemskapFormFields) => {
         switch (field) {
-            case BostedUtlandFormFields.harJobbetUtenforNorge:
+            case MedlemskapFormFields.harJobbetUtenforNorge:
                 return (
                     harBoddINorge === YesOrNo.YES || (harBoddINorge === YesOrNo.NO && harJobbetINorge === YesOrNo.YES)
                 );
-            case BostedUtlandFormFields.harJobbetINorge:
+            case MedlemskapFormFields.harJobbetINorge:
                 return harBoddINorge === YesOrNo.NO;
 
-            case BostedUtlandFormFields.bostederUtenforNorge:
+            case MedlemskapFormFields.bostederUtenforNorge:
                 return (
                     (harBoddINorge === YesOrNo.NO && harJobbetINorge === YesOrNo.NO) ||
                     (harBoddINorge === YesOrNo.NO &&
@@ -115,7 +113,7 @@ export const BostedUtlandForm = () => {
                         harJobbetUtenforNorge === YesOrNo.YES)
                 );
 
-            case BostedUtlandFormFields.arbeidsstederUtenforNorge:
+            case MedlemskapFormFields.arbeidsstederUtenforNorge:
                 return harJobbetUtenforNorge === YesOrNo.YES;
             default:
                 return false;
@@ -130,7 +128,7 @@ export const BostedUtlandForm = () => {
                     ikke tatt inn enda.
                 </Todo>
                 <SifGuidePanel>
-                    <AppText id="bostedUtlandSteg.veileder.tekst.1" />
+                    <AppText id="medlemskapSteg.veileder.tekst.1" />
                 </SifGuidePanel>
                 <FormLayout.Content>
                     <FormLayout.Questions>
@@ -143,16 +141,16 @@ export const BostedUtlandForm = () => {
                         ) : (
                             <>
                                 {/* Jobbet i Norge */}
-                                {vis(BostedUtlandFormFields.harJobbetINorge) && <HarJobbetINorgeSporsmal />}
+                                {vis(MedlemskapFormFields.harJobbetINorge) && <HarJobbetINorgeSporsmal />}
 
                                 {/* Jobbet utenfor Norge */}
-                                {vis(BostedUtlandFormFields.harJobbetUtenforNorge) && (
+                                {vis(MedlemskapFormFields.harJobbetUtenforNorge) && (
                                     <HarJobbetUtenforNorgeSporsmal harJobbetINorge={harJobbetINorge === YesOrNo.YES} />
                                 )}
                             </>
                         )}
                         {/* Bosteder utenfor Norge */}
-                        {vis(BostedUtlandFormFields.bostederUtenforNorge) && (
+                        {vis(MedlemskapFormFields.bostederUtenforNorge) && (
                             <BostederUtlandSporsmal
                                 minDate={minDate}
                                 maxDate={maxDate}
@@ -162,7 +160,7 @@ export const BostedUtlandForm = () => {
                         )}
 
                         {/* Arbeidssteder utenfor Norge */}
-                        {vis(BostedUtlandFormFields.arbeidsstederUtenforNorge) && (
+                        {vis(MedlemskapFormFields.arbeidsstederUtenforNorge) && (
                             <ArbeidsstederUtlandSporsmal
                                 minDate={minDate}
                                 maxDate={maxDate}

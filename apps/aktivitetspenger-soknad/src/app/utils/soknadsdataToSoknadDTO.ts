@@ -18,9 +18,9 @@ export const søknadsdataToSøknadDTO = ({
     kontoInfo: KontonummerInfo;
     startdato?: ISODate;
 }): Omit<SøknadApiData, 'harBekreftetOpplysninger'> | undefined => {
-    const { barn, harForståttRettigheterOgPlikter, bostedUtland, kontonummer, bosted } = søknadsdata;
+    const { barn, harForståttRettigheterOgPlikter, medlemskap, kontonummer, bosted } = søknadsdata;
 
-    if (!barn || !harForståttRettigheterOgPlikter || !bosted || !kontonummer || !bostedUtland || !startdato) {
+    if (!barn || !harForståttRettigheterOgPlikter || !bosted || !kontonummer || !medlemskap || !startdato) {
         // eslint-disable-next-line no-console
         console.error('Manglende data i søknadsdata');
         return undefined;
@@ -35,8 +35,8 @@ export const søknadsdataToSøknadDTO = ({
             kontonummerErRiktig: kontonummer.kontonummerErRiktig,
         },
         forutgåendeBosteder: {
-            // harBoddIUtlandetSiste5År: !bostedUtland.harBoddINorge,
-            // utenlandsoppholdSiste5År: (bostedUtland.bostederUtenforNorge || []).map((b) => ({
+            // harBoddIUtlandetSiste5År: !medlemskap.harBoddINorge,
+            // utenlandsoppholdSiste5År: (medlemskap.bostederUtenforNorge || []).map((b) => ({
             //     fraOgMed: dateToISODate(b.periode.from),
             //     tilOgMed: dateToISODate(b.periode.to),
             //     landkode: b.landkode,

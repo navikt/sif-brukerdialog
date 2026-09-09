@@ -9,7 +9,7 @@ interface Props {
     forutgåendeBosteder: ForutgåendeBosteder;
 }
 
-export const BostedUtlandOppsummering = ({ forutgåendeBosteder: { harBoddIUtlandetSiste5År } }: Props) => {
+export const MedlemskapOppsummering = ({ forutgåendeBosteder: { harBoddIUtlandetSiste5År } }: Props) => {
     const { navigateToStep } = useStepNavigation();
     return (
         <FormSummary>

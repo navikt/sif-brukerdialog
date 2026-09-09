@@ -3,7 +3,7 @@ import { FormLayout } from '@sif/soknad-ui';
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { ArbeidUtland, ArbeidUtlandListAndDialog } from '@sif/soknad-forms';
 import { ISODate } from '@sif/utils';
-import { BostedUtlandFormFields } from '../types';
+import { MedlemskapFormFields } from '../types';
 
 interface Props {
     minDate: ISODate;
@@ -17,17 +17,17 @@ export const ArbeidsstederUtlandSporsmal = ({ minDate, maxDate, arbeidsstederUte
         <FormLayout.Panel bleedTop={true}>
             <VStack gap="space-16">
                 <Heading size="xsmall" level="3">
-                    <AppText id="bostedUtlandSteg.arbeidsstederUtenforNorge.tittel" />
+                    <AppText id="medlemskapSteg.arbeidsstederUtenforNorge.tittel" />
                 </Heading>
                 <BodyLong>
-                    <AppText id="bostedUtlandSteg.arbeidsstederUtenforNorge.info.1" />
+                    <AppText id="medlemskapSteg.arbeidsstederUtenforNorge.info.1" />
                 </BodyLong>
                 <ArbeidUtlandListAndDialog
                     minDate={minDate}
                     maxDate={maxDate}
                     arbeidssteder={arbeidsstederUtenforNorge}
-                    addButtonId={BostedUtlandFormFields.arbeidsstederUtenforNorge}
-                    addButtonLabel={<AppText id="bostedUtlandSteg.arbeidsstederUtenforNorge.leggTil" />}
+                    addButtonId={MedlemskapFormFields.arbeidsstederUtenforNorge}
+                    addButtonLabel={<AppText id="medlemskapSteg.arbeidsstederUtenforNorge.leggTil" />}
                     onChange={onChange}
                 />
             </VStack>

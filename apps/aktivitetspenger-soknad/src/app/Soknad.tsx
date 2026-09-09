@@ -9,7 +9,7 @@ import { lazy, Suspense } from 'react';
 import { useAppIntl } from './i18n';
 import { Kvittering } from './content/kvittering/Kvittering';
 import { Velkommen } from './content/velkommen/Velkommen';
-import { BarnForm, BostedForm, BostedUtlandForm, KontonummerForm, OppsummeringSteg } from './steps';
+import { BarnForm, BostedForm, MedlemskapForm, KontonummerForm, OppsummeringSteg } from './steps';
 import { LoadingPage } from '@sif/soknad-ui';
 import { getAppEnv } from './setup/appEnv';
 
@@ -44,7 +44,7 @@ export const Søknad = () => {
                 <Route path="/soknad" element={<SøknadStepGuard basePath="/soknad" />}>
                     <Route path={søknadStepConfig[SøknadStepId.KONTONUMMER].route} element={<KontonummerForm />} />
                     <Route path={søknadStepConfig[SøknadStepId.BOSTED].route} element={<BostedForm />} />
-                    <Route path={søknadStepConfig[SøknadStepId.BOSTED_UTLAND].route} element={<BostedUtlandForm />} />
+                    <Route path={søknadStepConfig[SøknadStepId.BOSTED_UTLAND].route} element={<MedlemskapForm />} />
                     <Route path={søknadStepConfig[SøknadStepId.BARN].route} element={<BarnForm />} />
                     <Route path={søknadStepConfig[SøknadStepId.OPPSUMMERING].route} element={<OppsummeringSteg />} />
                     <Route path="*" element={<Navigate to="/" replace />} />

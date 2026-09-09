@@ -9,7 +9,7 @@ export type BostedSøknadsdata = {
     erBosattITrondheim: boolean;
 };
 
-export type BostedUtlandSøknadsdata = {
+export type MedlemskapSøknadsdata = {
     harBoddINorge: boolean;
     harJobbetINorge?: boolean;
     harJobbetUtenforNorge?: boolean;
@@ -29,6 +29,6 @@ export interface Søknadsdata {
     harForståttRettigheterOgPlikter?: boolean;
     [SøknadStepId.KONTONUMMER]?: KontonummerSøknadsdata;
     [SøknadStepId.BOSTED]?: BostedSøknadsdata;
-    [SøknadStepId.BOSTED_UTLAND]?: BostedUtlandSøknadsdata;
+    [SøknadStepId.BOSTED_UTLAND]?: MedlemskapSøknadsdata;
     [SøknadStepId.BARN]?: BarnSøknadsdata;
 }

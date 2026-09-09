@@ -12,7 +12,7 @@ export const søknadStepConfig: Record<SøknadStepId, StepDefinition> = {
         isCompleted: (s) => s[SøknadStepId.BOSTED] !== undefined,
     },
     [SøknadStepId.BOSTED_UTLAND]: {
-        route: 'bosted-utland',
+        route: 'medlemskap',
         isCompleted: (s) => s[SøknadStepId.BOSTED_UTLAND] !== undefined,
     },
     [SøknadStepId.BARN]: {

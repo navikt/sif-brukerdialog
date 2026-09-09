@@ -15,7 +15,7 @@ import { useSendSøknad } from '../../hooks/useSendSoknad';
 import { søknadsdataToSøknadDTO } from '../../utils/soknadsdataToSoknadDTO';
 import { BarnOppsummering } from './parts/BarnOppsummering';
 import { BostedOppsummering } from './parts/BostedOppsummering';
-import { BostedUtlandOppsummering } from './parts/BostedUtlandOppsummering';
+import { MedlemskapOppsummering } from './parts/MedlemskapOppsummering';
 import { KontonummerOppsummering } from './parts/KontonummerOppsummering';
 import { useState } from 'react';
 import { StartdatoSpørsmål } from './parts/StartdatoSpørsmål';
@@ -103,7 +103,7 @@ export const OppsummeringSteg = () => {
                                     kontoOppslagInfo={kontoInfo}
                                 />
                                 <BostedOppsummering erBosattITrondheim={dto.erBosattITrondheim} />
-                                <BostedUtlandOppsummering forutgåendeBosteder={dto.forutgåendeBosteder} />
+                                <MedlemskapOppsummering forutgåendeBosteder={dto.forutgåendeBosteder} />
                                 <BarnOppsummering barn={registrerteBarn} barnErRiktig={dto.barnErRiktig} />
                             </FormLayout.Summary>
                         )}
