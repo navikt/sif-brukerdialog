@@ -53,7 +53,7 @@ export const MedlemskapForm = () => {
 
     methods.register(MedlemskapFormFields.bostederUtenforNorge, {
         validate: (value) => {
-            if (harBoddINorge === YesOrNo.NO) {
+            if (vis(MedlemskapFormFields.bostederUtenforNorge)) {
                 return validateField(
                     MedlemskapFormFields.bostederUtenforNorge,
                     getListValidator({ minItems: 1, required: true }),
@@ -63,7 +63,7 @@ export const MedlemskapForm = () => {
     });
     methods.register(MedlemskapFormFields.arbeidsstederUtenforNorge, {
         validate: (value) => {
-            if (harJobbetUtenforNorge === YesOrNo.YES) {
+            if (vis(MedlemskapFormFields.arbeidsstederUtenforNorge)) {
                 return validateField(
                     MedlemskapFormFields.arbeidsstederUtenforNorge,
                     getListValidator({ minItems: 1, required: true }),
