@@ -1,7 +1,8 @@
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { MedlemskapFormFields, MedlemskapFormValues } from '../types';
-import { useAppIntl } from '../../../i18n';
+import { AppText, useAppIntl } from '../../../i18n';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
+import { ReadMore, VStack } from '@navikt/ds-react';
 
 const { YesOrNoQuestion } = createSifFormComponents<MedlemskapFormValues>();
 
@@ -16,14 +17,25 @@ export const HarJobbetUtenforNorgeSporsmal = ({ harJobbetINorge }: Props) => {
         <YesOrNoQuestion
             name={MedlemskapFormFields.harJobbetUtenforNorge}
             legend={text('medlemskapSteg.spørsmål.harJobbetINorgeOgUtenforNorge')}
-            description={text('medlemskapSteg.spørsmål.harJobbetUtenforNorge.info')}
+            description={
+                <VStack gap="space-8">
+                    <AppText id="medlemskapSteg.spørsmål.harJobbetINorgeOgUtenforNorge.info" />
+                    <ReadMore header={text('medlemskapSteg.readMore.ytelserIUtlandet.tittel')}>
+                        {text('medlemskapSteg.readMore.ytelserIUtlandet.tekst')}
+                    </ReadMore>
+                </VStack>
+            }
             validate={validateField(MedlemskapFormFields.harJobbetUtenforNorge, getYesOrNoValidator())}
         />
     ) : (
         <YesOrNoQuestion
             name={MedlemskapFormFields.harJobbetUtenforNorge}
             legend={text('medlemskapSteg.spørsmål.harJobbetUtenforNorge')}
-            description={text('medlemskapSteg.spørsmål.harJobbetUtenforNorge.info')}
+            description={
+                <ReadMore header={text('medlemskapSteg.readMore.ytelserIUtlandet.tittel')}>
+                    {text('medlemskapSteg.readMore.ytelserIUtlandet.tekst')}
+                </ReadMore>
+            }
             validate={validateField(MedlemskapFormFields.harJobbetUtenforNorge, getYesOrNoValidator())}
         />
     );
