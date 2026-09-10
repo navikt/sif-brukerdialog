@@ -3,6 +3,7 @@ import { MedlemskapFormFields, MedlemskapFormValues } from '../types';
 import { AppText, useAppIntl } from '../../../i18n';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { ReadMore } from '@navikt/ds-react';
+import { Todo } from '@sif/soknad-ui';
 
 const { YesOrNoQuestion } = createSifFormComponents<MedlemskapFormValues>();
 
@@ -17,9 +18,14 @@ export const HarBoddINorgeSporsmal = ({}: Props) => {
             legend={text('medlemskapSteg.spørsmål.harBoddINorge')}
             validate={validateField(MedlemskapFormFields.harBoddINorge, getYesOrNoValidator())}
             description={
-                <ReadMore header={text('medlemskapSteg.spørsmål.harBoddINorge.readMore.tittel')}>
-                    <AppText id="medlemskapSteg.spørsmål.harBoddINorge.readMore.tekst" />
-                </ReadMore>
+                <>
+                    <ReadMore header={text('medlemskapSteg.spørsmål.harBoddINorge.readMore.tittel')}>
+                        <AppText id="medlemskapSteg.spørsmål.harBoddINorge.readMore.tekst" />
+                        <Todo>
+                            AAp: Dette betyr at du har oppholdt deg i Norge mesteparten av hvert av disse årene.
+                        </Todo>
+                    </ReadMore>
+                </>
             }
         />
     );

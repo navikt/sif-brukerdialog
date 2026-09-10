@@ -15,9 +15,9 @@ export const medlemskapStegMessages_nb = {
 
     // Har bodd i Norge
     'medlemskapSteg.spørsmål.harBoddINorge': 'Har du bodd sammenhengende i Norge de fem siste årene?',
-    'medlemskapSteg.spørsmål.harBoddINorge.readMore.tittel': 'Hva menes med å ha "bodd sammenhengende"?',
+    'medlemskapSteg.spørsmål.harBoddINorge.readMore.tittel': 'Mer informasjon om kravet om å bo i Norge',
     'medlemskapSteg.spørsmål.harBoddINorge.readMore.tekst':
-        'Det vil si at du har vært i Norge mesteparten av tiden i hvert av de siste fem årene.',
+        'Vi trenger å vite om du har vært i Norge mesteparten av tiden i hvert av de siste fem årene. Hvis du har bodd utenfor Norge i perioder som har vært lengre enn 6 måneder, svarer du nei.',
 
     // Har jobbet i Norge
     'medlemskapSteg.spørsmål.harJobbetINorge': 'Har du jobbet sammenhengende i Norge de fem siste årene?',
