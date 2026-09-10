@@ -56,6 +56,7 @@ export const søknadsdataToSøknadDTO = ({
                 fraOgMed: b.periode.from,
                 tilOgMed: b.periode.to,
                 jobbetIPerioden: b.jobbetIPerioden,
+                identitetsnummer: b.identitetsnummer,
             })),
         },
         erBosattITrondheim: bosted.erBosattITrondheim,

@@ -5,7 +5,7 @@ import { useStepNavigation } from '@sif/soknad-app';
 
 import { SøknadStepId } from '../../../types/SoknadStepId';
 import { AppText } from '../../../i18n';
-import { ArbeidUtlandList, BostedUtlandList } from '@sif/soknad-forms';
+import { ArbeidUtlandList } from '@sif/soknad-forms';
 import { ISODate } from '@sif/utils';
 import { getMedlemskapSynlighet } from '../../medlemskap/medlemskapSynlighet';
 
@@ -68,10 +68,13 @@ export const MedlemskapOppsummering = ({ medlemskap }: Props) => {
                         <FormSummary.Label>Bosteder utenfor Norge siste 5 år</FormSummary.Label>
                         <FormSummary.Value>
                             <Box marginBlock="space-12">
-                                <BostedUtlandList
-                                    bosteder={bostederUtenforNorge.map((a, index) => ({
+                                <ArbeidUtlandList
+                                    arbeidUtlandVariant="generell"
+                                    variant="summary"
+                                    arbeidssteder={bostederUtenforNorge.map((a, index) => ({
                                         ...a,
                                         id: `${index}`,
+                                        identitetsnummer: a.identitetsnummer,
                                         periode: {
                                             from: a.fraOgMed as ISODate,
                                             to: a.tilOgMed as ISODate,

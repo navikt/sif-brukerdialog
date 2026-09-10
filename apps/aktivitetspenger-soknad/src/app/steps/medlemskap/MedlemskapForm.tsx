@@ -19,7 +19,7 @@ import { BostederUtlandSporsmal } from './sporsmal/BostederUtlandSporsmal';
 import { HarJobbetUtenforNorgeSporsmal } from './sporsmal/HarJobbetUtenforNorgeSporsmal';
 import { ArbeidsstederUtlandSporsmal } from './sporsmal/ArbeidsstederUtlandSporsmal';
 import { HarJobbetINorgeSporsmal } from './sporsmal/HarJobbetINorgeSporsmal';
-import { BodyLong } from '@navikt/ds-react';
+import { BodyLong, VStack } from '@navikt/ds-react';
 
 const stepId = SøknadStepId.MEDLEMSKAP;
 
@@ -108,12 +108,14 @@ export const MedlemskapForm = () => {
             <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
                 <FormLayout.Content>
                     <SifGuidePanel>
-                        <BodyLong>
-                            <AppText id="medlemskapSteg.veileder.tekst.1" />
-                        </BodyLong>
-                        <BodyLong>
-                            <AppText id="medlemskapSteg.veileder.tekst.2" />
-                        </BodyLong>
+                        <VStack gap="space-16">
+                            <BodyLong>
+                                <AppText id="medlemskapSteg.veileder.tekst.1" />
+                            </BodyLong>
+                            <BodyLong>
+                                <AppText id="medlemskapSteg.veileder.tekst.2" />
+                            </BodyLong>
+                        </VStack>
                     </SifGuidePanel>
                     <FormLayout.Questions>
                         <HarBoddINorgeSporsmal />

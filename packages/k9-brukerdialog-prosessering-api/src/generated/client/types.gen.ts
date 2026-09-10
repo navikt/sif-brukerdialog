@@ -3,9 +3,9 @@
 /** Lagt inn manuelt midlertidig */
 export type UtenlandsoppholdAktivitetspenger = {
     fraOgMed: string;
+    tilOgMed: string;
     landkode: string;
     landnavn: string;
-    tilOgMed: string;
     jobbetIPerioden: boolean;
     identitetsnummer?: string;
 };
@@ -263,7 +263,7 @@ export type MedlemskapAktivitetspenger = {
     harBoddINorge: boolean;
     harJobbetINorge?: boolean;
     harJobbetUtenforNorge?: boolean;
-    bostederUtenforNorge?: Bosted[];
+    bostederUtenforNorge?: UtenlandsoppholdAktivitetspenger[];
     arbeidsstederUtenforNorge?: UtenlandsoppholdAktivitetspenger[];
 };
 
