@@ -87,6 +87,9 @@ type Story = StoryObj<typeof meta>;
 
 export const Generell: Story = {
     name: 'Standard',
+    args: {
+        variant: 'generell',
+    },
 };
 export const ArbeidIPerioden: Story = {
     name: 'Periode med jobb',
@@ -94,11 +97,3 @@ export const ArbeidIPerioden: Story = {
         variant: 'periodeMedJobb',
     },
 };
-
-// export const RedigerArbeid: Story = {
-//     name: 'Generell/Rediger arbeid',
-//     args: {
-//         arbeidssted: alleArbeider[0],
-//         alleArbeider,
-//     },
-// };

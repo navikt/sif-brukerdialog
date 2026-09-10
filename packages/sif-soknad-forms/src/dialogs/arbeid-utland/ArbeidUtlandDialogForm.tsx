@@ -1,5 +1,5 @@
 import { FormLayout } from '@navikt/sif-common-ui';
-import { dateToISODate, getCountryName, getYesOrNoFromBoolean, ISODate } from '@sif/utils';
+import { countryIsMemberOfEøsOrEfta, dateToISODate, getCountryName, getYesOrNoFromBoolean, ISODate } from '@sif/utils';
 import {
     getISODateValidator,
     getRequiredFieldValidator,
@@ -98,6 +98,8 @@ export const ArbeidUtlandDialogForm = ({
     const validateLandkode = validateField(ArbeidUtlandFormFields.landkode, getRequiredFieldValidator());
 
     const jobbetIPerioden = methods.watch(ArbeidUtlandFormFields.jobbetIPerioden);
+    const landkode = methods.watch(ArbeidUtlandFormFields.landkode);
+    const valgtLandErEøsEfta = landkode ? countryIsMemberOfEøsOrEfta(landkode) : undefined;
 
     return (
         <FormProvider {...methods}>
@@ -166,7 +168,7 @@ export const ArbeidUtlandDialogForm = ({
                                 validate={validateField(ArbeidUtlandFormFields.jobbetIPerioden, getYesOrNoValidator())}
                             />
                         )}
-                        {(variant === 'periodeMedJobb' || jobbetIPerioden === YesOrNo.YES) && (
+                        {(variant === 'periodeMedJobb' || jobbetIPerioden === YesOrNo.YES) && valgtLandErEøsEfta && (
                             <TextField
                                 maxLength={20}
                                 style={{ maxWidth: '20rem' }}
