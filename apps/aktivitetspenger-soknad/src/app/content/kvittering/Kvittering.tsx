@@ -16,7 +16,7 @@ export const Kvittering = () => {
             appRootUrl={getAppEnv().PUBLIC_PATH}>
             <VStack gap="space-32">
                 <div>
-                    <Heading level="3" size="small" spacing>
+                    <Heading level="2" size="small" spacing>
                         <AppText id="kvitteringPage.hvaSkjerVidere" />
                     </Heading>
                     <List>
