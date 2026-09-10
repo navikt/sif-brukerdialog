@@ -20,6 +20,7 @@ const exampleArbeider: ArbeidUtland[] = [
             from: '2024-01-01' as ISODate,
             to: '2024-03-31' as ISODate,
         },
+        jobbetIPerioden: true,
         identitetsnummer: undefined,
     },
     {
@@ -30,6 +31,7 @@ const exampleArbeider: ArbeidUtland[] = [
             from: '2024-05-01' as ISODate,
             to: '2024-06-15' as ISODate,
         },
+        jobbetIPerioden: true,
         identitetsnummer: undefined,
     },
 ];
@@ -39,6 +41,7 @@ function ArbeidUtlandListStory({ arbeidssteder, withActions = false }: StoryProp
 
     return (
         <ArbeidUtlandList
+            arbeidUtlandVariant="generell"
             arbeidssteder={items}
             onDelete={
                 withActions ? (arbeidssted) => setItems(items.filter((item) => item.id !== arbeidssted.id)) : undefined

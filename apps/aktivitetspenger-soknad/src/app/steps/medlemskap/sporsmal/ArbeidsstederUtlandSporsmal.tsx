@@ -25,6 +25,7 @@ export const ArbeidsstederUtlandSporsmal = ({ minDate, maxDate, arbeidsstederUte
                 <ArbeidUtlandListAndDialog
                     minDate={minDate}
                     maxDate={maxDate}
+                    variant="periodeMedJobb"
                     arbeidssteder={arbeidsstederUtenforNorge}
                     addButtonId={MedlemskapFormFields.arbeidsstederUtenforNorge}
                     addButtonLabel={<AppText id="medlemskapSteg.arbeidsstederUtenforNorge.leggTil" />}

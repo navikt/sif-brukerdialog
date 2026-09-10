@@ -1,5 +1,5 @@
 import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
-import { ArbeidUtland, BostedUtland } from '@sif/soknad-forms';
+import { ArbeidUtland } from '@sif/soknad-forms';
 
 import { SøknadStepId } from './SoknadStepId';
 
@@ -13,7 +13,7 @@ export type MedlemskapSøknadsdata = {
     harBoddINorge: boolean;
     harJobbetINorge?: boolean;
     harJobbetUtenforNorge?: boolean;
-    bostederUtenforNorge?: BostedUtland[];
+    bostederUtenforNorge?: ArbeidUtland[];
     arbeidsstederUtenforNorge?: ArbeidUtland[];
 };
 

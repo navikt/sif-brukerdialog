@@ -91,6 +91,7 @@ export const MedlemskapOppsummering = ({ medlemskap }: Props) => {
                             <FormSummary.Value>
                                 <Box marginBlock="space-12">
                                     <ArbeidUtlandList
+                                        arbeidUtlandVariant="periodeMedJobb"
                                         variant="summary"
                                         arbeidssteder={arbeidsstederUtenforNorge.map((a, index) => ({
                                             ...a,

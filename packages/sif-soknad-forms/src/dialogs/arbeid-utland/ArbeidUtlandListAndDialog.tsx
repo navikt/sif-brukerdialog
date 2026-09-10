@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 import { ModalFormAndList } from '../../components';
-import { ArbeidUtland } from '.';
+import { ArbeidUtland, ArbeidUtlandVariant } from '.';
 import { ArbeidUtlandFormDialog } from './ArbeidUtlandDialog';
 import { ArbeidUtlandList } from './ArbeidUtlandList';
 import { ISODate } from '@sif/utils';
@@ -12,6 +12,7 @@ interface Props {
     arbeidssteder?: ArbeidUtland[];
     addButtonLabel: ReactNode;
     addButtonId?: string;
+    variant?: ArbeidUtlandVariant;
     onChange: (arbeidssteder: ArbeidUtland[]) => void;
 }
 
@@ -21,6 +22,7 @@ export const ArbeidUtlandListAndDialog = ({
     arbeidssteder,
     addButtonLabel,
     addButtonId,
+    variant = 'generell',
     onChange,
 }: Props) => {
     return (
@@ -31,7 +33,12 @@ export const ArbeidUtlandListAndDialog = ({
             addButtonId={addButtonId}
             onChange={onChange}
             listRenderer={({ items, onEdit, onDelete }) => (
-                <ArbeidUtlandList arbeidssteder={items} onEdit={onEdit} onDelete={onDelete} />
+                <ArbeidUtlandList
+                    arbeidUtlandVariant={variant}
+                    arbeidssteder={items}
+                    onEdit={onEdit}
+                    onDelete={onDelete}
+                />
             )}
             dialogRenderer={({ item, allItems, isOpen, onSubmit, onCancel }) => (
                 <ArbeidUtlandFormDialog
@@ -40,6 +47,7 @@ export const ArbeidUtlandListAndDialog = ({
                     arbeidssted={item}
                     alleArbeider={allItems}
                     isOpen={isOpen}
+                    variant={variant}
                     onValidSubmit={onSubmit}
                     onCancel={onCancel}
                 />

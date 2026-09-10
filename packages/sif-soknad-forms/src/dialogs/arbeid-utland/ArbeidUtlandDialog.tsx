@@ -1,7 +1,7 @@
-import { Button, Dialog } from '@navikt/ds-react';
+import { BodyLong, Button, Dialog, Box } from '@navikt/ds-react';
 
 import { SifSoknadFormsText } from '../../i18n';
-import { ArbeidUtland } from '.';
+import { ArbeidUtland, ArbeidUtlandVariant } from '.';
 import { ArbeidUtlandDialogForm } from './ArbeidUtlandDialogForm';
 import { ISODate } from '@sif/utils';
 
@@ -11,6 +11,7 @@ interface Props {
     arbeidssted?: ArbeidUtland;
     alleArbeider?: ArbeidUtland[];
     isOpen?: boolean;
+    variant: ArbeidUtlandVariant;
     onCancel: () => void;
     onValidSubmit: (arbeidssted: ArbeidUtland) => void;
 }
@@ -21,6 +22,7 @@ export const ArbeidUtlandFormDialog = ({
     maxDate,
     arbeidssted,
     alleArbeider,
+    variant,
     onValidSubmit,
     onCancel,
 }: Props) => {
@@ -37,11 +39,35 @@ export const ArbeidUtlandFormDialog = ({
                 if (!open) onCancel();
             }}>
             <Dialog.Popup closeOnOutsideClick={false}>
-                <Dialog.Header>
-                    <Dialog.Title>
-                        <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.tittel" />
-                    </Dialog.Title>
-                </Dialog.Header>
+                {variant === 'generell' ? (
+                    <Dialog.Header>
+                        <Dialog.Title>
+                            <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.tittel.generell" />
+                        </Dialog.Title>
+                        <Dialog.Description>
+                            <Box marginBlock="space-12">
+                                <BodyLong>
+                                    Oppgi land og periode du har bodd, studert eller jobbet utenfor Norge.
+                                </BodyLong>
+                                <BodyLong>Ta med alle perioder siden du var 16 år.</BodyLong>
+                            </Box>
+                        </Dialog.Description>
+                    </Dialog.Header>
+                ) : (
+                    <Dialog.Header>
+                        <Dialog.Title>
+                            <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.tittel.periodeMedJobb" />
+                        </Dialog.Title>
+                        <Dialog.Description>
+                            <Box marginBlock="space-12">
+                                <BodyLong>
+                                    Oppgi land og periode du har jobbet utenfor Norge de fem siste årene.
+                                </BodyLong>
+                            </Box>
+                        </Dialog.Description>
+                    </Dialog.Header>
+                )}
+
                 <Dialog.Body>
                     <ArbeidUtlandDialogForm
                         alleArbeider={alleArbeider}
@@ -50,8 +76,10 @@ export const ArbeidUtlandFormDialog = ({
                         maxDate={maxDate}
                         arbeidssted={arbeidssted}
                         onValidSubmit={onValidSubmit}
+                        variant={variant}
                     />
                 </Dialog.Body>
+
                 <Dialog.Footer>
                     <Dialog.CloseTrigger>
                         <Button type="button" variant="secondary">

@@ -1,5 +1,6 @@
 export const arbeidUtlandMessages_nb = {
-    '@sifSoknadForms.arbeidUtland.dialog.tittel': 'Periode med jobb utenfor Norge',
+    '@sifSoknadForms.arbeidUtland.dialog.tittel.generell': 'Utenlandsopphold',
+    '@sifSoknadForms.arbeidUtland.dialog.tittel.periodeMedJobb': 'Periode med jobb utenfor Norge',
     '@sifSoknadForms.arbeidUtland.dialog.avbrytKnapp': 'Avbryt',
     '@sifSoknadForms.arbeidUtland.dialog.leggTilKnapp': 'Legg til',
     '@sifSoknadForms.arbeidUtland.dialog.oppdaterKnapp': 'Oppdater',
@@ -7,6 +8,7 @@ export const arbeidUtlandMessages_nb = {
     '@sifSoknadForms.arbeidUtland.form.fom.label': 'Fra og med',
     '@sifSoknadForms.arbeidUtland.form.tom.label': 'Til og med',
     '@sifSoknadForms.arbeidUtland.form.land.label': 'Velg land',
+    '@sifSoknadForms.arbeidUtland.form.jobbetIPerioden.label': 'Jobbet du i dette landet i denne perioden?',
     '@sifSoknadForms.arbeidUtland.form.idnummer.label': 'ID-nummer/personnummer for det landet (valgfritt)',
     '@sifSoknadForms.arbeidUtlandForm.validation.fom.dateHasNoValue':
         'Du må oppgi hvilken dato perioden med jobb startet. Skriv inn eller velg dato.',

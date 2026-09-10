@@ -47,6 +47,7 @@ export const søknadsdataToSøknadDTO = ({
                 landnavn: a.landnavn,
                 fraOgMed: a.periode.from,
                 tilOgMed: a.periode.to,
+                jobbetIPerioden: a.jobbetIPerioden,
                 identitetsnummer: a.identitetsnummer,
             })),
             bostederUtenforNorge: medlemskap.bostederUtenforNorge?.map((b) => ({
@@ -54,6 +55,7 @@ export const søknadsdataToSøknadDTO = ({
                 landnavn: b.landnavn,
                 fraOgMed: b.periode.from,
                 tilOgMed: b.periode.to,
+                jobbetIPerioden: b.jobbetIPerioden,
             })),
         },
         erBosattITrondheim: bosted.erBosattITrondheim,

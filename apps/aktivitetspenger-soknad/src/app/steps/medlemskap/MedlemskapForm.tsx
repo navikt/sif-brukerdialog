@@ -19,6 +19,7 @@ import { BostederUtlandSporsmal } from './sporsmal/BostederUtlandSporsmal';
 import { HarJobbetUtenforNorgeSporsmal } from './sporsmal/HarJobbetUtenforNorgeSporsmal';
 import { ArbeidsstederUtlandSporsmal } from './sporsmal/ArbeidsstederUtlandSporsmal';
 import { HarJobbetINorgeSporsmal } from './sporsmal/HarJobbetINorgeSporsmal';
+import { BodyLong } from '@navikt/ds-react';
 
 const stepId = SøknadStepId.MEDLEMSKAP;
 
@@ -107,7 +108,12 @@ export const MedlemskapForm = () => {
             <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
                 <FormLayout.Content>
                     <SifGuidePanel>
-                        <AppText id="medlemskapSteg.veileder.tekst.1" />
+                        <BodyLong>
+                            <AppText id="medlemskapSteg.veileder.tekst.1" />
+                        </BodyLong>
+                        <BodyLong>
+                            <AppText id="medlemskapSteg.veileder.tekst.2" />
+                        </BodyLong>
                     </SifGuidePanel>
                     <FormLayout.Questions>
                         <HarBoddINorgeSporsmal />
@@ -117,7 +123,9 @@ export const MedlemskapForm = () => {
 
                         {/* Jobbet utenfor Norge */}
                         {synlig.harJobbetUtenforNorge && (
-                            <HarJobbetUtenforNorgeSporsmal harJobbetINorge={harJobbetINorgeSvar === true} />
+                            <HarJobbetUtenforNorgeSporsmal
+                            // harJobbetINorge={harJobbetINorgeSvar === true}
+                            />
                         )}
 
                         {/* Bosteder utenfor Norge */}
@@ -125,7 +133,7 @@ export const MedlemskapForm = () => {
                             <BostederUtlandSporsmal
                                 minDate={minDate}
                                 maxDate={maxDate}
-                                bostederUtenforNorge={bostederUtenforNorge}
+                                utenlandsopphold={bostederUtenforNorge}
                                 onChange={oppdaterBosteder}
                             />
                         )}

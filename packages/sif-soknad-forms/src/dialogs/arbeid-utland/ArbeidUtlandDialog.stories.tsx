@@ -4,11 +4,12 @@ import { useState } from 'react';
 
 import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { ArbeidUtlandFormDialog } from './ArbeidUtlandDialog';
-import type { ArbeidUtland } from './index';
+import type { ArbeidUtland, ArbeidUtlandVariant } from './index';
 import { dateToISODate } from '@sif/utils';
 
 type StoryProps = {
     arbeidssted?: ArbeidUtland;
+    variant: ArbeidUtlandVariant;
     alleArbeider?: ArbeidUtland[];
 };
 
@@ -24,6 +25,7 @@ const alleArbeider: ArbeidUtland[] = [
             to: dateToISODate(today.subtract(6, 'month').subtract(10, 'day')),
         },
         identitetsnummer: undefined,
+        jobbetIPerioden: true,
     },
     {
         id: '2',
@@ -34,6 +36,7 @@ const alleArbeider: ArbeidUtland[] = [
             to: dateToISODate(today.subtract(2, 'month').subtract(10, 'day')),
         },
         identitetsnummer: undefined,
+        jobbetIPerioden: true,
     },
 ];
 
@@ -49,10 +52,11 @@ function ArbeidUtlandDialogStory(props: StoryProps) {
             )}
             <ArbeidUtlandFormDialog
                 isOpen={open}
-                minDate={dateToISODate(today.subtract(1, 'year'))}
-                maxDate={dateToISODate(today.add(1, 'year'))}
+                minDate={dateToISODate(today.subtract(5, 'year'))}
+                maxDate={dateToISODate(today)}
                 arbeidssted={props.arbeidssted}
                 alleArbeider={props.alleArbeider}
+                variant={props.variant}
                 onCancel={() => setOpen(false)}
                 onValidSubmit={() => setOpen(false)}
             />
@@ -81,11 +85,20 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const NyttArbeid: Story = {};
-
-export const RedigerArbeid: Story = {
+export const Generell: Story = {
+    name: 'Standard',
+};
+export const ArbeidIPerioden: Story = {
+    name: 'Periode med jobb',
     args: {
-        arbeidssted: alleArbeider[0],
-        alleArbeider,
+        variant: 'periodeMedJobb',
     },
 };
+
+// export const RedigerArbeid: Story = {
+//     name: 'Generell/Rediger arbeid',
+//     args: {
+//         arbeidssted: alleArbeider[0],
+//         alleArbeider,
+//     },
+// };

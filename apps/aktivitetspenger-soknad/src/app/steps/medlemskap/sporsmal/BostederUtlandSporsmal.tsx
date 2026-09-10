@@ -1,18 +1,18 @@
 import { AppText } from '../../../i18n';
 import { FormLayout } from '@sif/soknad-ui';
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
-import { BostedUtland, BostedUtlandListAndDialog } from '@sif/soknad-forms';
+import { ArbeidUtland, ArbeidUtlandListAndDialog } from '@sif/soknad-forms';
 import { ISODate } from '@sif/utils';
 import { MedlemskapFormFields } from '../types';
 
 interface Props {
     minDate: ISODate;
     maxDate: ISODate;
-    bostederUtenforNorge?: BostedUtland[];
-    onChange: (bosteder: BostedUtland[]) => void;
+    utenlandsopphold?: ArbeidUtland[];
+    onChange: (bosteder: ArbeidUtland[]) => void;
 }
 
-export const BostederUtlandSporsmal = ({ minDate, maxDate, bostederUtenforNorge = [], onChange }: Props) => {
+export const BostederUtlandSporsmal = ({ minDate, maxDate, utenlandsopphold = [], onChange }: Props) => {
     return (
         <FormLayout.Panel bleedTop={true}>
             <VStack gap="space-16">
@@ -22,11 +22,12 @@ export const BostederUtlandSporsmal = ({ minDate, maxDate, bostederUtenforNorge 
                 <BodyLong>
                     <AppText id="medlemskapSteg.bosteder.info.1" />
                 </BodyLong>
-                <BostedUtlandListAndDialog
+                <ArbeidUtlandListAndDialog
                     minDate={minDate}
                     maxDate={maxDate}
-                    bosteder={bostederUtenforNorge}
-                    addButtonId={MedlemskapFormFields.bostederUtenforNorge}
+                    variant="generell"
+                    arbeidssteder={utenlandsopphold}
+                    addButtonId={MedlemskapFormFields.arbeidsstederUtenforNorge}
                     addButtonLabel={<AppText id="medlemskapSteg.bosteder.leggTil" />}
                     onChange={onChange}
                 />
