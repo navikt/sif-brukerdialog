@@ -263,8 +263,7 @@ export type MedlemskapAktivitetspenger = {
     harBoddINorge: boolean;
     harJobbetINorge?: boolean;
     harJobbetUtenforNorge?: boolean;
-    bostederUtenforNorge?: UtenlandsoppholdAktivitetspenger[];
-    arbeidsstederUtenforNorge?: UtenlandsoppholdAktivitetspenger[];
+    utenlandsopphold?: UtenlandsoppholdAktivitetspenger[];
 };
 
 export type Fosterhjemgodtgjørelse = {

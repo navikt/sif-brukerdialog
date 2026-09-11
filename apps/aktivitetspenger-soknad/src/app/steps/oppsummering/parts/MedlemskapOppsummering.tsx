@@ -15,8 +15,7 @@ interface Props {
 
 export const MedlemskapOppsummering = ({ medlemskap }: Props) => {
     const { navigateToStep } = useStepNavigation();
-    const { harBoddINorge, arbeidsstederUtenforNorge, harJobbetINorge, bostederUtenforNorge, harJobbetUtenforNorge } =
-        medlemskap;
+    const { harBoddINorge, utenlandsopphold, harJobbetINorge, harJobbetUtenforNorge } = medlemskap;
 
     /* API-typen har allerede boolean-svar, og kan sendes rett inn */
     const synlig = getMedlemskapSynlighet(medlemskap);
@@ -63,7 +62,7 @@ export const MedlemskapOppsummering = ({ medlemskap }: Props) => {
                     </FormSummary.Answer>
                 )}
 
-                {synlig.bostederUtenforNorge && bostederUtenforNorge && bostederUtenforNorge.length > 0 && (
+                {synlig.bostederUtenforNorge && utenlandsopphold && utenlandsopphold.length > 0 && (
                     <FormSummary.Answer>
                         <FormSummary.Label>
                             <AppText id="oppsummeringSteg.medlemskap.bostederUtenforNorge" />
@@ -73,7 +72,7 @@ export const MedlemskapOppsummering = ({ medlemskap }: Props) => {
                                 <ArbeidUtlandList
                                     arbeidUtlandVariant="generell"
                                     variant="summary"
-                                    arbeidssteder={bostederUtenforNorge.map((a, index) => ({
+                                    arbeidssteder={utenlandsopphold.map((a, index) => ({
                                         ...a,
                                         id: `${index}`,
                                         identitetsnummer: a.identitetsnummer,
@@ -88,32 +87,30 @@ export const MedlemskapOppsummering = ({ medlemskap }: Props) => {
                     </FormSummary.Answer>
                 )}
 
-                {synlig.arbeidsstederUtenforNorge &&
-                    arbeidsstederUtenforNorge &&
-                    arbeidsstederUtenforNorge.length > 0 && (
-                        <FormSummary.Answer>
-                            <FormSummary.Label>
-                                <AppText id="oppsummering.medlemskap.arbeidstederUtenforNorge" />
-                            </FormSummary.Label>
-                            <FormSummary.Value>
-                                <Box marginBlock="space-12">
-                                    <ArbeidUtlandList
-                                        arbeidUtlandVariant="periodeMedJobb"
-                                        variant="summary"
-                                        arbeidssteder={arbeidsstederUtenforNorge.map((a, index) => ({
-                                            ...a,
-                                            id: `${index}`,
-                                            identitetsnummer: a.identitetsnummer,
-                                            periode: {
-                                                from: a.fraOgMed as ISODate,
-                                                to: a.tilOgMed as ISODate,
-                                            },
-                                        }))}
-                                    />
-                                </Box>
-                            </FormSummary.Value>
-                        </FormSummary.Answer>
-                    )}
+                {synlig.arbeidsstederUtenforNorge && utenlandsopphold && utenlandsopphold.length > 0 && (
+                    <FormSummary.Answer>
+                        <FormSummary.Label>
+                            <AppText id="oppsummering.medlemskap.arbeidstederUtenforNorge" />
+                        </FormSummary.Label>
+                        <FormSummary.Value>
+                            <Box marginBlock="space-12">
+                                <ArbeidUtlandList
+                                    arbeidUtlandVariant="periodeMedJobb"
+                                    variant="summary"
+                                    arbeidssteder={utenlandsopphold.map((a, index) => ({
+                                        ...a,
+                                        id: `${index}`,
+                                        identitetsnummer: a.identitetsnummer,
+                                        periode: {
+                                            from: a.fraOgMed as ISODate,
+                                            to: a.tilOgMed as ISODate,
+                                        },
+                                    }))}
+                                />
+                            </Box>
+                        </FormSummary.Value>
+                    </FormSummary.Answer>
+                )}
             </FormSummary.Answers>
 
             <FormSummary.Footer>

@@ -1,9 +1,32 @@
-import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
+import { SøknadApiData } from '@app/types/SoknadApiData';
+import { MedlemskapSøknadsdata, Søknadsdata } from '@app/types/Soknadsdata';
+import { KontonummerInfo, UtenlandsoppholdAktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
 import { Søker } from '@sif/api/k9-prosessering';
 import { ISODate } from '@sif/utils';
 
-import { SøknadApiData } from '@app/types/SoknadApiData';
-import { Søknadsdata } from '@app/types/Soknadsdata';
+import { getMedlemskapSynlighet } from '../steps/medlemskap/medlemskapSynlighet';
+
+const getUtenlandsoppholdFromMedlemskap = (medlemskap: MedlemskapSøknadsdata): UtenlandsoppholdAktivitetspenger[] => {
+    const synlig = getMedlemskapSynlighet(medlemskap);
+    const utenlandsopphold: UtenlandsoppholdAktivitetspenger[] = synlig.arbeidsstederUtenforNorge
+        ? medlemskap.arbeidsstederUtenforNorge?.map((a) => ({
+              landkode: a.landkode,
+              landnavn: a.landnavn,
+              fraOgMed: a.periode.from,
+              tilOgMed: a.periode.to,
+              jobbetIPerioden: a.jobbetIPerioden,
+              identitetsnummer: a.identitetsnummer,
+          })) || []
+        : medlemskap.bostederUtenforNorge?.map((b) => ({
+              landkode: b.landkode,
+              landnavn: b.landnavn,
+              fraOgMed: b.periode.from,
+              tilOgMed: b.periode.to,
+              jobbetIPerioden: b.jobbetIPerioden,
+              identitetsnummer: b.identitetsnummer,
+          })) || [];
+    return utenlandsopphold;
+};
 
 export const søknadsdataToSøknadDTO = ({
     søker,
@@ -42,22 +65,7 @@ export const søknadsdataToSøknadDTO = ({
             harBoddINorge: medlemskap.harBoddINorge,
             harJobbetINorge: medlemskap.harJobbetINorge,
             harJobbetUtenforNorge: medlemskap.harJobbetUtenforNorge,
-            arbeidsstederUtenforNorge: medlemskap.arbeidsstederUtenforNorge?.map((a) => ({
-                landkode: a.landkode,
-                landnavn: a.landnavn,
-                fraOgMed: a.periode.from,
-                tilOgMed: a.periode.to,
-                jobbetIPerioden: a.jobbetIPerioden,
-                identitetsnummer: a.identitetsnummer,
-            })),
-            bostederUtenforNorge: medlemskap.bostederUtenforNorge?.map((b) => ({
-                landkode: b.landkode,
-                landnavn: b.landnavn,
-                fraOgMed: b.periode.from,
-                tilOgMed: b.periode.to,
-                jobbetIPerioden: b.jobbetIPerioden,
-                identitetsnummer: b.identitetsnummer,
-            })),
+            utenlandsopphold: getUtenlandsoppholdFromMedlemskap(medlemskap),
         },
         erBosattITrondheim: bosted.erBosattITrondheim,
         startdato: startdato,

@@ -1,8 +1,8 @@
+import { Søknadsdata } from '@app/types/Soknadsdata';
+import { SøknadStepId } from '@app/types/SoknadStepId';
 import { Søker } from '@sif/api/k9-prosessering';
 import { ISODate } from '@sif/utils';
 
-import { Søknadsdata } from '@app/types/Soknadsdata';
-import { SøknadStepId } from '@app/types/SoknadStepId';
 import { søknadsdataToSøknadDTO } from '../soknadsdataToSoknadDTO';
 
 const søker: Søker = {
@@ -30,6 +30,16 @@ const komplettSøknadsdata: Søknadsdata = {
                 identitetsnummer: undefined,
             },
         ],
+        bostederUtenforNorge: [
+            {
+                id: '2',
+                landkode: 'DK',
+                landnavn: 'Danmark',
+                periode: { from: '2020-07-01' as ISODate, to: '2020-12-31' as ISODate },
+                jobbetIPerioden: false,
+                identitetsnummer: undefined,
+            },
+        ],
     },
 };
 
@@ -49,7 +59,7 @@ describe('søknadsdataToSøknadDTO', () => {
         expect(result?.barnErRiktig).toBe(true);
         expect(result?.erBosattITrondheim).toBe(true);
         expect(result?.startdato).toBe('2024-01-01');
-        expect(result?.medlemskap.arbeidsstederUtenforNorge).toEqual([
+        expect(result?.medlemskap.utenlandsopphold).toEqual([
             {
                 landkode: 'SE',
                 landnavn: 'Sverige',
@@ -65,6 +75,39 @@ describe('søknadsdataToSøknadDTO', () => {
         const result = søknadsdataToSøknadDTO({ ...baseArgs, søknadsdata: komplettSøknadsdata, språk: 'nn' });
 
         expect(result?.språk).toBe('nn');
+    });
+
+    it('skal mappe bosteder utenfor Norge når arbeidssteder utenfor Norge ikke er relevant', () => {
+        const søknadsdata: Søknadsdata = {
+            ...komplettSøknadsdata,
+            [SøknadStepId.MEDLEMSKAP]: {
+                harBoddINorge: false,
+                harJobbetINorge: false,
+                bostederUtenforNorge: [
+                    {
+                        id: '2',
+                        landkode: 'DK',
+                        landnavn: 'Danmark',
+                        periode: { from: '2020-07-01' as ISODate, to: '2020-12-31' as ISODate },
+                        jobbetIPerioden: false,
+                        identitetsnummer: '1234567890',
+                    },
+                ],
+            },
+        };
+
+        const result = søknadsdataToSøknadDTO({ ...baseArgs, søknadsdata });
+
+        expect(result?.medlemskap.utenlandsopphold).toEqual([
+            {
+                landkode: 'DK',
+                landnavn: 'Danmark',
+                fraOgMed: '2020-07-01',
+                tilOgMed: '2020-12-31',
+                jobbetIPerioden: false,
+                identitetsnummer: '1234567890',
+            },
+        ]);
     });
 
     it.each([
