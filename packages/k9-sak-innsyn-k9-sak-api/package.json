@@ -24,11 +24,11 @@
         "@sif/eslint-config": "workspace:*",
         "axios": "1.20.0",
         "config": "workspace:*",
-        "eslint": "10.9.1",
+        "eslint": "10.10.0",
         "postcss": "8.5.28",
         "prettier": "3.9.6",
         "typescript": "6.0.3",
-        "vitest": "4.1.11",
+        "vitest": "5.0.0",
         "zod": "4.5.4"
     },
     "peerDependencies": {

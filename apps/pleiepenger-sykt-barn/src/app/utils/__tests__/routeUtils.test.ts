@@ -35,7 +35,7 @@ describe('routeUtils', () => {
 
         it('should return result from calling opplysningerOmTidsromStepAvailable if route=StepID.TIDSROM', () => {
             const result = isAvailable(StepID.TIDSROM, formValues);
-            expect(stepUtils.opplysningerOmBarnetStepAvailable).toHaveBeenCalledWith(formValues);
+            expect(stepUtils.opplysningerOmTidsromStepAvailable).toHaveBeenCalledWith(formValues);
             expect(result).toEqual(stepUtils.opplysningerOmTidsromStepAvailable(formValues));
         });
 

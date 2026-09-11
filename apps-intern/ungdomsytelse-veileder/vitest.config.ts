@@ -11,7 +11,7 @@ export default defineConfig({
         environment: 'jsdom',
         css: false,
         alias: {
-            '@i18n': path.resolve(__dirname, './src/app/i18n'),
+            '@i18n': path.resolve(import.meta.dirname, './src/app/i18n'),
         },
     },
 });

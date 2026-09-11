@@ -29,7 +29,7 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            '@app': resolve(__dirname, './src/app'),
+            '@app': resolve(import.meta.dirname, './src/app'),
         },
     },
     base: '/familie/sykdom-i-familien/soknad/omsorgspenger/',

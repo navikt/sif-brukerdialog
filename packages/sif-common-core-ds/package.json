@@ -39,19 +39,19 @@
         "@navikt/ds-tailwind": "8.16.2",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
-        "@playwright/test": "1.62.1",
+        "@playwright/test": "1.63.0",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-a11y": "10.6.0",
         "@storybook/builder-vite": "10.6.0",
         "@storybook/react-vite": "10.6.0",
-        "@types/node": "26.4.1",
+        "@types/node": "26.5.0",
         "@types/react": "19.2.18",
         "@types/react-dom": "19.2.7",
         "@vitejs/plugin-react": "6.1.1",
         "axios": "1.20.0",
         "config": "workspace:*",
         "copyfiles": "2.4.1",
-        "eslint": "10.9.1",
+        "eslint": "10.10.0",
         "eslint-plugin-storybook": "10.6.0",
         "formik": "2.4.9",
         "msw": "2.15.0",
@@ -68,6 +68,6 @@
         "uuid": "^14.0.2",
         "vite": "8.2.2",
         "vite-plugin-checker": "0.14.5",
-        "vitest": "4.1.11"
+        "vitest": "5.0.0"
     }
 }

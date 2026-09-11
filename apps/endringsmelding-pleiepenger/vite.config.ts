@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => ({
     ],
     resolve: {
         alias: {
-            '@app': path.resolve(__dirname, './src/app'),
+            '@app': path.resolve(import.meta.dirname, './src/app'),
         },
     },
     base: mode === 'production' ? 'https://cdn.nav.no/dusseldorf/endringsmelding-pleiepenger/dist/' : '/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/',

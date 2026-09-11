@@ -23,9 +23,9 @@
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "classnames": "2.5.1",
-        "dompurify": "3.4.14",
+        "dompurify": "3.4.15",
         "react-day-picker": "9.14.0",
-        "sass-embedded": "1.103.1"
+        "sass-embedded": "1.104.0"
     },
     "devDependencies": {
         "@navikt/sif-common-analytics": "workspace:*",
@@ -35,7 +35,7 @@
         "@types/react": "19.2.18",
         "copyfiles": "2.4.1",
         "dayjs": "1.11.23",
-        "eslint": "10.9.1",
+        "eslint": "10.10.0",
         "eslint-plugin-storybook": "10.6.0",
         "globals": "17.12.0",
         "intl": "1.2.5",

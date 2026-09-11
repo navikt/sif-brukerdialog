@@ -19,7 +19,7 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@nais/apm": "0.6.0",
+        "@nais/apm": "0.6.3",
         "@navikt/appstatus-react-ds": "workspace:*",
         "@navikt/ds-react": "8.16.2",
         "@navikt/nav-dekoratoren-moduler": "4.3.0",
@@ -45,7 +45,7 @@
         "react": "19.2.8",
         "react-dom": "19.2.8",
         "typescript": "6.0.3",
-        "vitest": "4.1.11"
+        "vitest": "5.0.0"
     },
     "peerDependencies": {
         "react": ">=19",
