@@ -5,29 +5,13 @@ import { TilgjengeligSøknadResponse, TilgjengeligSøknadType } from '@navikt/un
 import { Todo } from '@app/components/Todo';
 import getLenker from '@app/lenker';
 import { ApplicationPage, SifSoknadUiText } from '@sif/soknad-ui';
+
+import { getKanIkkeSøkeÅrsak, KanIkkeSøkeÅrsak } from './kanIkkeSøkeUtils';
+
 interface Props {
     søker: Søker;
     tilgjengelig: TilgjengeligSøknadResponse;
 }
-
-export enum KanIkkeSøkeÅrsak {
-    IKKE_INNSYN_UBEHANDLET_SØKNAD = 'IKKE_INNSYN_UBEHANDLET_SØKNAD',
-    INNSYN_UBEHANDLET_SØKNAD = 'INNSYN_UBEHANDLET_SØKNAD',
-    ANNET = 'ANNET',
-}
-
-export const getKanIkkeSøkeÅrsak = (
-    harInnsyn: boolean | undefined,
-    harUbehandletSøknad: boolean | undefined,
-): KanIkkeSøkeÅrsak => {
-    if (harUbehandletSøknad && !harInnsyn) {
-        return KanIkkeSøkeÅrsak.IKKE_INNSYN_UBEHANDLET_SØKNAD;
-    }
-    if (!harUbehandletSøknad && harInnsyn) {
-        return KanIkkeSøkeÅrsak.INNSYN_UBEHANDLET_SØKNAD;
-    }
-    return KanIkkeSøkeÅrsak.ANNET;
-};
 
 export const KanIkkeSøkePage = ({ søker, tilgjengelig }: Props) => {
     const { text } = useAppIntl();
