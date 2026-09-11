@@ -24,7 +24,7 @@ const exampleArbeider: ArbeidUtland[] = [
             to: dateToISODate(today.subtract(6, 'month').subtract(10, 'day')),
         },
         jobbetIPerioden: true,
-        identitetsnummer: undefined,
+        utenlandskNasjonalId: undefined,
     },
     {
         id: '2',
@@ -35,7 +35,7 @@ const exampleArbeider: ArbeidUtland[] = [
             to: dateToISODate(today.subtract(2, 'month').subtract(10, 'day')),
         },
         jobbetIPerioden: true,
-        identitetsnummer: undefined,
+        utenlandskNasjonalId: undefined,
     },
 ];
 

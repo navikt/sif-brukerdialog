@@ -27,7 +27,7 @@ enum ArbeidUtlandFormFields {
     tom = 'tom',
     landkode = 'landkode',
     jobbetIPerioden = 'jobbetIPerioden',
-    idnummer = 'idnummer',
+    utenlandskNasjonalId = 'utenlandskNasjonalId',
 }
 
 type ArbeidUtlandFormValues = {
@@ -35,7 +35,7 @@ type ArbeidUtlandFormValues = {
     [ArbeidUtlandFormFields.tom]: string;
     [ArbeidUtlandFormFields.landkode]: string;
     [ArbeidUtlandFormFields.jobbetIPerioden]?: YesOrNo;
-    [ArbeidUtlandFormFields.idnummer]?: string;
+    [ArbeidUtlandFormFields.utenlandskNasjonalId]?: string;
 };
 
 const { DateRangePicker, CountrySelect, TextField, YesOrNoQuestion } =
@@ -58,8 +58,10 @@ const formValuesToArbeidUtland = (
         landkode: values.landkode,
         landnavn: getCountryName(values.landkode, locale),
         jobbetIPerioden: values.jobbetIPerioden === YesOrNo.YES,
-        identitetsnummer:
-            variant === 'periodeMedJobb' || values.jobbetIPerioden === YesOrNo.YES ? values.idnummer : undefined,
+        utenlandskNasjonalId:
+            variant === 'periodeMedJobb' || values.jobbetIPerioden === YesOrNo.YES
+                ? values.utenlandskNasjonalId
+                : undefined,
     };
 };
 
@@ -68,7 +70,7 @@ const arbeidUtlandToFormValues = (arbeidssted: ArbeidUtland): ArbeidUtlandFormVa
         fom: dateToISODate(arbeidssted.periode.from),
         tom: dateToISODate(arbeidssted.periode.to),
         landkode: arbeidssted.landkode,
-        idnummer: arbeidssted.identitetsnummer,
+        utenlandskNasjonalId: arbeidssted.utenlandskNasjonalId,
         jobbetIPerioden: getYesOrNoFromBoolean(arbeidssted.jobbetIPerioden),
     };
 };
@@ -172,10 +174,10 @@ export const ArbeidUtlandDialogForm = ({
                             <TextField
                                 maxLength={20}
                                 style={{ maxWidth: '20rem' }}
-                                name={ArbeidUtlandFormFields.idnummer}
-                                label={sifIntl.text('@sifSoknadForms.arbeidUtland.form.idnummer.label')}
+                                name={ArbeidUtlandFormFields.utenlandskNasjonalId}
+                                label={sifIntl.text('@sifSoknadForms.arbeidUtland.form.utenlandskNasjonalId.label')}
                                 validate={validateField(
-                                    ArbeidUtlandFormFields.idnummer,
+                                    ArbeidUtlandFormFields.utenlandskNasjonalId,
                                     getStringValidator({ disallowUnicodeCharacters: true }),
                                 )}
                             />

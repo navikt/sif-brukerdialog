@@ -1,8 +1,7 @@
-import { ArbeidUtland } from '@sif/soknad-forms';
-import { YesOrNo } from '@sif/rhf';
-import { ISODate } from '@sif/utils';
-
 import { MedlemskapSøknadsdata } from '@app/types/Soknadsdata';
+import { YesOrNo } from '@sif/rhf';
+import { ArbeidUtland } from '@sif/soknad-forms';
+import { ISODate } from '@sif/utils';
 
 import { toMedlemskapStegFormValues, toMedlemskapStegSøknadsdata } from '../medlemskapStegUtils';
 import { MedlemskapFormValues } from '../types';
@@ -13,7 +12,7 @@ const arbeidUtland: ArbeidUtland = {
     landnavn: 'Sverige',
     periode: { from: '2020-01-01' as ISODate, to: '2020-06-01' as ISODate },
     jobbetIPerioden: true,
-    identitetsnummer: undefined,
+    utenlandskNasjonalId: undefined,
 };
 
 describe('toMedlemskapStegFormValues', () => {

@@ -11,7 +11,7 @@ export const arbeidUtlandMessages_nn: Record<keyof typeof arbeidUtlandMessages_n
     '@sifSoknadForms.arbeidUtland.form.tom.label': 'Til og med',
     '@sifSoknadForms.arbeidUtland.form.land.label': 'Velg land',
     '@sifSoknadForms.arbeidUtland.form.jobbetIPerioden.label': 'Jobba du i dette landet i denne perioden?',
-    '@sifSoknadForms.arbeidUtland.form.idnummer.label': 'ID-nummer/personnummer for det landet (valfritt)',
+    '@sifSoknadForms.arbeidUtland.form.utenlandskNasjonalId.label': 'ID-nummer/personnummer for det landet (valfritt)',
     '@sifSoknadForms.arbeidUtlandForm.validation.fom.dateHasNoValue':
         'Du må oppgje kva dato perioden med jobb starta. Skriv inn eller vel dato.',
     '@sifSoknadForms.arbeidUtlandForm.validation.fom.dateIsAfterMax':

@@ -26,7 +26,9 @@ const renderArbeidUtlandLabel = (
 ): ReactNode => {
     const title = getTitle(arbeidssted, locale);
 
-    const idInfo = arbeidssted.identitetsnummer ? <>ID-nummer/personnummer: {arbeidssted.identitetsnummer}</> : null;
+    const idInfo = arbeidssted.utenlandskNasjonalId ? (
+        <>ID-nummer/personnummer: {arbeidssted.utenlandskNasjonalId}</>
+    ) : null;
 
     return (
         <VStack gap="space-2">

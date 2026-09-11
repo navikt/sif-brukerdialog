@@ -27,7 +27,7 @@ const komplettSøknadsdata: Søknadsdata = {
                 landnavn: 'Sverige',
                 periode: { from: '2020-01-01' as ISODate, to: '2020-06-01' as ISODate },
                 jobbetIPerioden: true,
-                identitetsnummer: undefined,
+                utenlandskNasjonalId: undefined,
             },
         ],
         bostederUtenforNorge: [
@@ -37,7 +37,7 @@ const komplettSøknadsdata: Søknadsdata = {
                 landnavn: 'Danmark',
                 periode: { from: '2020-07-01' as ISODate, to: '2020-12-31' as ISODate },
                 jobbetIPerioden: false,
-                identitetsnummer: undefined,
+                utenlandskNasjonalId: undefined,
             },
         ],
     },
@@ -66,7 +66,7 @@ describe('søknadsdataToSøknadDTO', () => {
                 fraOgMed: '2020-01-01',
                 tilOgMed: '2020-06-01',
                 jobbetIPerioden: true,
-                identitetsnummer: undefined,
+                utenlandskNasjonalId: undefined,
             },
         ]);
     });
@@ -90,7 +90,7 @@ describe('søknadsdataToSøknadDTO', () => {
                         landnavn: 'Danmark',
                         periode: { from: '2020-07-01' as ISODate, to: '2020-12-31' as ISODate },
                         jobbetIPerioden: false,
-                        identitetsnummer: '1234567890',
+                        utenlandskNasjonalId: '1234567890',
                     },
                 ],
             },
@@ -105,7 +105,7 @@ describe('søknadsdataToSøknadDTO', () => {
                 fraOgMed: '2020-07-01',
                 tilOgMed: '2020-12-31',
                 jobbetIPerioden: false,
-                identitetsnummer: '1234567890',
+                utenlandskNasjonalId: '1234567890',
             },
         ]);
     });

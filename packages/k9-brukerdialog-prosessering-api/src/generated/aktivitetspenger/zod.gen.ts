@@ -52,20 +52,20 @@ export const zKontonummerInfo = z.object({
     kontonummerFraRegister: z.string().nullish(),
 });
 
-export const zArbeidUtland = z.object({
+export const zUtenlandsoppholdAktivitetspenger = z.object({
     fraOgMed: z.iso.date(),
+    tilOgMed: z.iso.date(),
     landkode: z.string().min(1),
     landnavn: z.string(),
-    tilOgMed: z.iso.date(),
-    identitetsnummer: z.string().optional(),
+    jobbetIPerioden: z.boolean(),
+    utenlandskNasjonalId: z.string().optional(),
 });
 
 export const zMedlemskapAktivitetspenger = z.object({
     harBoddINorge: z.boolean(),
     harJobbetINorge: z.boolean().optional(),
     harJobbetUtenforNorge: z.boolean().optional(),
-    bostederUtenforNorge: z.array(zBosted).optional(),
-    arbeidsstederUtenforNorge: z.array(zArbeidUtland).optional(),
+    utenlandsopphold: z.array(zUtenlandsoppholdAktivitetspenger).optional(),
 });
 
 export const zAktivitetspengersøknad = z.object({

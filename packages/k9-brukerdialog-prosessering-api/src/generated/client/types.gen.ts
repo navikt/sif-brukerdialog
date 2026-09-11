@@ -7,7 +7,7 @@ export type UtenlandsoppholdAktivitetspenger = {
     landkode: string;
     landnavn: string;
     jobbetIPerioden: boolean;
-    identitetsnummer?: string;
+    utenlandskNasjonalId?: string;
 };
 
 export type ClientOptions = {

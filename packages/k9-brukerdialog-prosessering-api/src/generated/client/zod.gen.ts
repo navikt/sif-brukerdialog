@@ -145,15 +145,14 @@ export const zUtenlandsoppholdAktivitetspenger = z.object({
     landkode: z.string().min(1),
     landnavn: z.string(),
     jobbetIPerioden: z.boolean(),
-    identitetsnummer: z.string().optional(),
+    utenlandskNasjonalId: z.string().optional(),
 });
 
 export const zMedlemskapAktivitetspenger = z.object({
     harBoddINorge: z.boolean(),
     harJobbetUtenforNorge: z.boolean().optional(),
     harJobbetINorge: z.boolean().optional(),
-    bostederUtenforNorge: z.array(zUtenlandsoppholdAktivitetspenger).optional(),
-    arbeidsstederUtenforNorge: z.array(zUtenlandsoppholdAktivitetspenger).optional(),
+    utenlandsopphold: z.array(zUtenlandsoppholdAktivitetspenger).optional(),
 });
 
 export const zFosterhjemgodtgjørelse = z.object({

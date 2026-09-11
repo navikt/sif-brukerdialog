@@ -15,7 +15,7 @@ const getUtenlandsoppholdFromMedlemskap = (medlemskap: MedlemskapSøknadsdata): 
               fraOgMed: a.periode.from,
               tilOgMed: a.periode.to,
               jobbetIPerioden: a.jobbetIPerioden,
-              identitetsnummer: a.identitetsnummer,
+              utenlandskNasjonalId: a.utenlandskNasjonalId,
           })) || []
         : medlemskap.bostederUtenforNorge?.map((b) => ({
               landkode: b.landkode,
@@ -23,7 +23,7 @@ const getUtenlandsoppholdFromMedlemskap = (medlemskap: MedlemskapSøknadsdata): 
               fraOgMed: b.periode.from,
               tilOgMed: b.periode.to,
               jobbetIPerioden: b.jobbetIPerioden,
-              identitetsnummer: b.identitetsnummer,
+              utenlandskNasjonalId: b.utenlandskNasjonalId,
           })) || [];
     return utenlandsopphold;
 };

@@ -21,7 +21,7 @@ const exampleArbeider: ArbeidUtland[] = [
             to: '2024-03-31' as ISODate,
         },
         jobbetIPerioden: true,
-        identitetsnummer: undefined,
+        utenlandskNasjonalId: undefined,
     },
     {
         id: '2',
@@ -32,7 +32,7 @@ const exampleArbeider: ArbeidUtland[] = [
             to: '2024-06-15' as ISODate,
         },
         jobbetIPerioden: true,
-        identitetsnummer: undefined,
+        utenlandskNasjonalId: undefined,
     },
 ];
 

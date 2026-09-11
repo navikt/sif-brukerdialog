@@ -6,7 +6,7 @@ export type ArbeidUtland = {
     landkode: string;
     landnavn: string;
     jobbetIPerioden: boolean;
-    identitetsnummer: string | undefined;
+    utenlandskNasjonalId: string | undefined;
 };
 
 export type ArbeidUtlandVariant = 'generell' | 'periodeMedJobb';

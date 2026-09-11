@@ -75,7 +75,7 @@ export const MedlemskapOppsummering = ({ medlemskap }: Props) => {
                                     arbeidssteder={utenlandsopphold.map((a, index) => ({
                                         ...a,
                                         id: `${index}`,
-                                        identitetsnummer: a.identitetsnummer,
+                                        utenlandskNasjonalId: a.utenlandskNasjonalId,
                                         periode: {
                                             from: a.fraOgMed as ISODate,
                                             to: a.tilOgMed as ISODate,
@@ -100,7 +100,7 @@ export const MedlemskapOppsummering = ({ medlemskap }: Props) => {
                                     arbeidssteder={utenlandsopphold.map((a, index) => ({
                                         ...a,
                                         id: `${index}`,
-                                        identitetsnummer: a.identitetsnummer,
+                                        utenlandskNasjonalId: a.utenlandskNasjonalId,
                                         periode: {
                                             from: a.fraOgMed as ISODate,
                                             to: a.tilOgMed as ISODate,
