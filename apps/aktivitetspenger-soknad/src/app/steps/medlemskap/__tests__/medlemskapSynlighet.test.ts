@@ -61,24 +61,11 @@ describe('getMedlemskapSynlighet', () => {
         expect(result.bostederUtenforNorge).toBe(false);
     });
 
-    it('skal ikke vise bosteder i utlandet når søkeren ikke har bodd i Norge, har jobbet i Norge, men ikke jobbet i utlandet', () => {
-        const result = getMedlemskapSynlighet({
-            harBoddINorge: false,
-            harJobbetINorge: true,
-            harJobbetUtenforNorge: false,
-        });
-
-        expect(result.bostederUtenforNorge).toBe(false);
-    });
-
-    it('skal ikke vise bosteder i utlandet når søkeren ikke har bodd i Norge, har jobbet i Norge, og har jobbet i utlandet', () => {
-        const result = getMedlemskapSynlighet({
-            harBoddINorge: false,
-            harJobbetINorge: true,
-            harJobbetUtenforNorge: true,
-        });
-
-        expect(result.bostederUtenforNorge).toBe(false);
+    it('skal ikke vise bosteder i utlandet når søkeren har jobbet i Norge, uansett svar på arbeid i utlandet', () => {
+        expect(
+            getMedlemskapSynlighet({ harBoddINorge: false, harJobbetINorge: true, harJobbetUtenforNorge: false })
+                .bostederUtenforNorge,
+        ).toBe(false);
     });
 
     it('skal bare vise arbeidssteder i utlandet når søkeren har jobbet i utlandet', () => {

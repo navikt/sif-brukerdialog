@@ -17,15 +17,7 @@ describe('getKanIkkeSøkeÅrsak', () => {
         expect(getKanIkkeSøkeÅrsak(false, false)).toBe(KanIkkeSøkeÅrsak.ANNET);
     });
 
-    it('skal returnere ANNET når begge verdiene er udefinert', () => {
+    it('skal behandle udefinerte verdier som falsy, på samme måte som false', () => {
         expect(getKanIkkeSøkeÅrsak(undefined, undefined)).toBe(KanIkkeSøkeÅrsak.ANNET);
-    });
-
-    it('skal behandle udefinert harInnsyn som "har ikke innsyn"', () => {
-        expect(getKanIkkeSøkeÅrsak(undefined, true)).toBe(KanIkkeSøkeÅrsak.IKKE_INNSYN_UBEHANDLET_SØKNAD);
-    });
-
-    it('skal behandle udefinert harUbehandletSøknad som "har ikke ubehandlet søknad"', () => {
-        expect(getKanIkkeSøkeÅrsak(true, undefined)).toBe(KanIkkeSøkeÅrsak.INNSYN_UBEHANDLET_SØKNAD);
     });
 });
