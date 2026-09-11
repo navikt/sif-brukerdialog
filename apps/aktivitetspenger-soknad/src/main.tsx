@@ -9,10 +9,18 @@ import { App } from './App';
 
 void initApm({ app: AktivitetspengerSoknadApp.key, namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
 
-enableMocking().then(() => {
+const renderApp = () => {
     createRoot(document.getElementById('root')!).render(
         <StrictMode>
             <App />
         </StrictMode>,
     );
-});
+};
+
+void enableMocking()
+    .then(renderApp)
+    .catch((error: unknown) => {
+        // eslint-disable-next-line no-console
+        console.error('Kunne ikke starte MSW', error);
+        renderApp();
+    });

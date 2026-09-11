@@ -2,11 +2,14 @@ import { Bleed, Box, DatePicker, Tag, useDatepicker, VStack } from '@navikt/ds-r
 import { ISODate, ISODateToDate } from '@sif/utils';
 import dayjs from 'dayjs';
 
+import { AppText, useAppIntl } from '../../../i18n';
+
 interface Props {
     onDateChange: (date: Date | undefined) => void;
     value: ISODate;
 }
 export const StartdatoSpørsmål = ({ onDateChange, value }: Props) => {
+    const { text } = useAppIntl();
     const { datepickerProps, inputProps } = useDatepicker({
         disableWeekends: false,
         defaultSelected: ISODateToDate(value),
@@ -20,11 +23,14 @@ export const StartdatoSpørsmål = ({ onDateChange, value }: Props) => {
             <VStack gap="space-16">
                 <Bleed marginBlock="space-16 space-0" marginInline="space-16 space-0">
                     <Tag variant="strong" size="small" data-color="meta-purple">
-                        Kun for testing i Q
+                        <AppText id="oppsummeringSteg.startdato.testing" />
                     </Tag>
                 </Bleed>
                 <DatePicker {...datepickerProps}>
-                    <DatePicker.Input {...inputProps} label="Velg startdato som skal gjelde for denne søknaden" />
+                    <DatePicker.Input
+                        {...inputProps}
+                        label={text('oppsummeringSteg.startdato.velgStartdato')}
+                    />
                 </DatePicker>
             </VStack>
         </Box>

@@ -5,7 +5,9 @@ import { Todo } from '../../components/Todo';
 const ReglerOgAutomatiskSaksbehandlingContent = () => {
     return (
         <>
-            <Todo>Tekster er ikke ferdig</Todo>
+            <Todo>
+                <AppText id="page.velkommen.regler.todo" />
+            </Todo>
             <BodyLong spacing>
                 <AppText id="page.velkommen.regler.tekst.1" />
             </BodyLong>

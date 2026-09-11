@@ -65,7 +65,9 @@ export const MedlemskapOppsummering = ({ medlemskap }: Props) => {
 
                 {synlig.bostederUtenforNorge && bostederUtenforNorge && bostederUtenforNorge.length > 0 && (
                     <FormSummary.Answer>
-                        <FormSummary.Label>Bosteder utenfor Norge siste 5 år</FormSummary.Label>
+                        <FormSummary.Label>
+                            <AppText id="oppsummeringSteg.medlemskap.bostederUtenforNorge" />
+                        </FormSummary.Label>
                         <FormSummary.Value>
                             <Box marginBlock="space-12">
                                 <ArbeidUtlandList
@@ -90,7 +92,9 @@ export const MedlemskapOppsummering = ({ medlemskap }: Props) => {
                     arbeidsstederUtenforNorge &&
                     arbeidsstederUtenforNorge.length > 0 && (
                         <FormSummary.Answer>
-                            <FormSummary.Label>Jobb utenfor Norge siste 5 år</FormSummary.Label>
+                            <FormSummary.Label>
+                                <AppText id="oppsummering.medlemskap.arbeidstederUtenforNorge" />
+                            </FormSummary.Label>
                             <FormSummary.Value>
                                 <Box marginBlock="space-12">
                                     <ArbeidUtlandList

@@ -15,5 +15,10 @@ export const oppsummeringStegMessages_nb = {
         'Vi klarer ikke se om du har registrert kontonummer hos oss.',
     'oppsummeringSteg.barn.tittel': 'Barn',
 
-    'oppsummering.medlemskap.arbeidstederUtenforNorge': 'Jobb utenfor Norge',
+    'oppsummeringSteg.startdato.testing': 'Kun for testing i Q',
+    'oppsummeringSteg.startdato.velgStartdato': 'Velg startdato som skal gjelde for denne søknaden',
+    'oppsummeringSteg.bosted.tittel': 'Bosted',
+    'oppsummeringSteg.bosted.erBosattITrondheim': 'Er du bosatt i Trondheim kommune?',
+    'oppsummeringSteg.medlemskap.bostederUtenforNorge': 'Bosteder utenfor Norge siste 5 år',
+    'oppsummering.medlemskap.arbeidstederUtenforNorge': 'Jobb utenfor Norge siste 5 år',
 };

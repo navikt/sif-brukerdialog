@@ -35,7 +35,12 @@ export const KanIkkeSøkePage = ({ søker, tilgjengelig }: Props) => {
 
     const innsynLenke = harInnsyn ? (
         <BodyLong>
-            Gå til <Link href="/aktivitetspenger/innsyn">Dine aktivitetspenger</Link> for mer informasjon.
+            <AppText
+                id="page.kanIkkeSøke.innsynLenke"
+                values={{
+                    InnsynLenke: (children) => <Link href={getLenker().aktivitetspengerInnsyn}>{children}</Link>,
+                }}
+            />
         </BodyLong>
     ) : null;
 
@@ -44,7 +49,9 @@ export const KanIkkeSøkePage = ({ søker, tilgjengelig }: Props) => {
             return (
                 <VStack gap="space-20">
                     <Todo>[type === {TilgjengeligSøknadType.NY_PERIODE_SØKNAD}]</Todo>
-                    <BodyLong>Det er ikke åpnet for å søke om nye perioder enda</BodyLong>
+                    <BodyLong>
+                        <AppText id="page.kanIkkeSøke.nyPeriode" />
+                    </BodyLong>
                     {innsynLenke}
                 </VStack>
             );
@@ -55,9 +62,11 @@ export const KanIkkeSøkePage = ({ søker, tilgjengelig }: Props) => {
                     <VStack gap="space-20">
                         <Todo>[harUbehandletSøknad && !harInnsyn]</Todo>
                         <BodyLong>
-                            Vi har mottatt din søknad og den er under behandling. Du trenger ikke sende inn ny søknad.
+                            <AppText id="page.kanIkkeSøke.ubehandletSøknad" />
                         </BodyLong>
-                        <BodyLong>Du vil høre fra oss ...</BodyLong>
+                        <BodyLong>
+                            <AppText id="page.kanIkkeSøke.ubehandletSøknad.videre" />
+                        </BodyLong>
                     </VStack>
                 );
             case KanIkkeSøkeÅrsak.INNSYN_UBEHANDLET_SØKNAD:
@@ -65,7 +74,7 @@ export const KanIkkeSøkePage = ({ søker, tilgjengelig }: Props) => {
                     <VStack gap="space-20">
                         <Todo>[!harUbehandletSøknad && harInnsyn]</Todo>
                         <BodyLong>
-                            Når du har fått innvilget aktivitetspenger trenger du ikke søke på nytt før ...
+                            <AppText id="page.kanIkkeSøke.harInnsyn" />
                         </BodyLong>
                         {innsynLenke}
                     </VStack>
@@ -74,7 +83,9 @@ export const KanIkkeSøkePage = ({ søker, tilgjengelig }: Props) => {
                 return (
                     <VStack gap="space-20">
                         <Todo>[annet]</Todo>
-                        <BodyLong>Du kan ikke sende inn ny søknad på dette tidspunktet.</BodyLong>
+                        <BodyLong>
+                            <AppText id="page.kanIkkeSøke.annet" />
+                        </BodyLong>
                         {innsynLenke}
                     </VStack>
                 );
@@ -112,7 +123,9 @@ export const KanIkkeSøkePage = ({ søker, tilgjengelig }: Props) => {
 
                 <InfoCard data-color="info">
                     <InfoCard.Header>
-                        <InfoCard.Title>Søknaden om aktivitetspenger er ikke tilgjengelig for deg nå</InfoCard.Title>
+                        <InfoCard.Title>
+                            <AppText id="page.kanIkkeSøke.tittel" />
+                        </InfoCard.Title>
                     </InfoCard.Header>
                     <InfoCard.Content>{renderContent()}</InfoCard.Content>
                 </InfoCard>

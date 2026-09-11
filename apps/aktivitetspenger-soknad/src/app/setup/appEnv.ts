@@ -1,5 +1,6 @@
 import {
     getCommonEnv,
+    getRequiredEnv,
     getUngBrukerdialogApiBrowserEnv,
     getUngDeltakelseOpplyserBrowserEnv,
 } from '@navikt/sif-common-env';
@@ -10,4 +11,5 @@ export const getAppEnv = (): AppEnv => ({
     ...getCommonEnv(),
     ...getUngBrukerdialogApiBrowserEnv(),
     ...getUngDeltakelseOpplyserBrowserEnv(),
+    SIF_PUBLIC_AKTIVITETSPENGER_INNSYN_URL: getRequiredEnv('SIF_PUBLIC_AKTIVITETSPENGER_INNSYN_URL'),
 });
