@@ -15,10 +15,13 @@ export default defineConfig(({ mode }) => {
         ],
         resolve: {
             alias: {
-                '@app': resolve(__dirname, './src/app'),
+                '@app': resolve(import.meta.dirname, './src/app'),
             },
         },
-        base: mode === 'production' ? 'https://cdn.nav.no/dusseldorf/omsorgspengesoknad-v2/dist/' : '/familie/sykdom-i-familien/soknad/omsorgspenger/',
+        base:
+            mode === 'production'
+                ? 'https://cdn.nav.no/dusseldorf/omsorgspengesoknad-v2/dist/'
+                : '/familie/sykdom-i-familien/soknad/omsorgspenger/',
         preview: {
             port: 8080,
         },

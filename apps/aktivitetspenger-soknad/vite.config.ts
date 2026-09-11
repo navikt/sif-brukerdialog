@@ -15,10 +15,13 @@ export default defineConfig(({ mode }) => {
         ],
         resolve: {
             alias: {
-                '@app': resolve(__dirname, './src/app'),
+                '@app': resolve(import.meta.dirname, './src/app'),
             },
         },
-        base: mode === 'production' ? 'https://cdn.nav.no/dusseldorf/aktivitetspenger-soknad/dist/' : '/aktivitetspenger/soknad/',
+        base:
+            mode === 'production'
+                ? 'https://cdn.nav.no/dusseldorf/aktivitetspenger-soknad/dist/'
+                : '/aktivitetspenger/soknad/',
         preview: {
             port: 8080,
         },
