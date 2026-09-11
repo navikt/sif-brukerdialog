@@ -27,9 +27,20 @@ export function SifForm<T extends FieldValues>({
     const summaryRef = useRef<HTMLDivElement>(null);
     useFocusOnValidationError(summaryRef, methods.formState);
 
+    // RHF sin handleSubmit fanger ikke feil fra asynkrone submit-handlere. Uten denne
+    // catchen ender feilen som en unhandled rejection. Forventede feil håndteres og
+    // vises av skjemaet selv — her fanges bare restene.
+    const handleSubmit: SubmitHandler<T> = async (values, event) => {
+        try {
+            await onSubmit(values, event);
+        } catch {
+            // Ingen rapportering her — se kommentar over.
+        }
+    };
+
     return (
         <FormProvider {...methods}>
-            <form onSubmit={methods.handleSubmit(onSubmit)} noValidate className={className} id={id}>
+            <form onSubmit={methods.handleSubmit(handleSubmit)} noValidate className={className} id={id}>
                 <VStack gap="space-32">
                     {children}
                     <SifValidationSummary ref={summaryRef} heading={validationSummaryHeading} />

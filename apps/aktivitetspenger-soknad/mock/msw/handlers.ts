@@ -29,7 +29,12 @@ export const handlers = [
         return HttpResponse.json({}, { status: 200 });
     }),
 
-    http.post('**/aktivitetspenger/soknad/innsending-feil', async () => {
+    http.post('**/aktivitetspenger/soknad/innsending-500feil', async () => {
+        await delay(300);
+        return HttpResponse.json({}, { status: 500 });
+    }),
+
+    http.post('**/aktivitetspenger/soknad/innsending-parameterfeil', async () => {
         await delay(300);
         return HttpResponse.json(
             {
