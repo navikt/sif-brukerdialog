@@ -10,13 +10,10 @@ function getAbsolutePath(value: string) {
 
 const config: StorybookConfig = {
     stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
-    addons: [
-        getAbsolutePath('@storybook/addon-vitest'),
-        getAbsolutePath('@storybook/addon-a11y'),
-    ],
+    addons: [getAbsolutePath('@storybook/addon-a11y')],
     framework: getAbsolutePath('@storybook/react-vite'),
     typescript: {
-        reactDocgen: 'react-docgen-typescript-plugin',
+        reactDocgen: 'react-docgen-typescript',
     },
 };
 export default config;
