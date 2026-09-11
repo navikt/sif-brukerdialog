@@ -21,11 +21,14 @@ export default defineConfig(({ mode }) => ({
     ],
     resolve: {
         alias: {
-            '@i18n': path.resolve(__dirname, './src/app/i18n'),
-            '@sb': path.resolve(__dirname, './src/storybook'),
+            '@i18n': path.resolve(import.meta.dirname, './src/app/i18n'),
+            '@sb': path.resolve(import.meta.dirname, './src/storybook'),
         },
     },
-    base: mode === 'production' ? 'https://cdn.nav.no/dusseldorf/pleiepenger-sykt-barn/dist/' : '/familie/sykdom-i-familien/soknad/pleiepenger/',
+    base:
+        mode === 'production'
+            ? 'https://cdn.nav.no/dusseldorf/pleiepenger-sykt-barn/dist/'
+            : '/familie/sykdom-i-familien/soknad/pleiepenger/',
     build: {
         chunkSizeWarningLimit: 2000,
         sourcemap: true,

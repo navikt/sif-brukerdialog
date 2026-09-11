@@ -40,7 +40,7 @@
         ]
     },
     "dependencies": {
-        "@changesets/cli": "3.0.1",
+        "@changesets/cli": "3.0.2",
         "glob": "13.0.6",
         "tailwindcss": "4.3.3",
         "turbo": "2.10.12"
@@ -50,11 +50,11 @@
         "config": "workspace:*",
         "gh-pages": "6.3.0",
         "husky": "9.1.7",
-        "lint-staged": "17.4.1",
+        "lint-staged": "17.5.0",
         "prettier": "3.9.6",
         "sort-package-json": "4.0.0",
         "typescript": "6.0.3",
-        "vitest": "4.1.11"
+        "vitest": "5.0.0"
     },
     "packageManager": "pnpm@10.33.4",
     "pnpm": {

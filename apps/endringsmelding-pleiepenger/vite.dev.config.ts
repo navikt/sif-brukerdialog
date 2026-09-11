@@ -30,13 +30,13 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            '@app': path.resolve(__dirname, './src/app'),
-            '@app/utils': path.resolve(__dirname, './src/app/utils'),
-            '@app/types': path.resolve(__dirname, './src/app/types'),
-            '@app/hooks': path.resolve(__dirname, './src/app/hooks'),
-            '@app/modules': path.resolve(__dirname, './src/app/modules'),
-            '@app/components': path.resolve(__dirname, './src/app/components'),
-            '@app/i18n': path.resolve(__dirname, './src/app/i18n'),
+            '@app': path.resolve(import.meta.dirname, './src/app'),
+            '@app/utils': path.resolve(import.meta.dirname, './src/app/utils'),
+            '@app/types': path.resolve(import.meta.dirname, './src/app/types'),
+            '@app/hooks': path.resolve(import.meta.dirname, './src/app/hooks'),
+            '@app/modules': path.resolve(import.meta.dirname, './src/app/modules'),
+            '@app/components': path.resolve(import.meta.dirname, './src/app/components'),
+            '@app/i18n': path.resolve(import.meta.dirname, './src/app/i18n'),
         },
     },
     define: {
