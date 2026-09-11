@@ -3,7 +3,9 @@ import { SøknadStepId } from '@app/types/SoknadStepId';
 import { SøknadStepForm } from '@sif/soknad-app';
 import { useAppContext } from '@app/context/AppContext';
 import { Søknadsdata } from '@app/types/Soknadsdata';
-import { InfoCard } from '@navikt/ds-react';
+import { ErrorSummary, InfoCard } from '@navikt/ds-react';
+import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
+import { getInvalidParametersFromApiError } from '@sif/api';
 import { dateToISODate, getDateToday, ISODate } from '@sif/utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
@@ -17,7 +19,8 @@ import { BarnOppsummering } from './parts/BarnOppsummering';
 import { BostedOppsummering } from './parts/BostedOppsummering';
 import { MedlemskapOppsummering } from './parts/MedlemskapOppsummering';
 import { KontonummerOppsummering } from './parts/KontonummerOppsummering';
-import { useState } from 'react';
+import { InnsendingFeiletAlert } from './InnsendingFeiletAlert';
+import { useEffect, useRef, useState } from 'react';
 import { StartdatoSpørsmål } from './parts/StartdatoSpørsmål';
 
 enum FormFields {
@@ -43,7 +46,8 @@ export const OppsummeringSteg = () => {
 
     const methods = useForm<FormValues>({ defaultValues: {} });
 
-    const { isPending, mutateAsync } = useSendSøknad();
+    const { isPending, mutateAsync, error: sendSøknadError } = useSendSøknad();
+    const sendSøknadErrorSummary = useRef<HTMLDivElement>(null);
 
     const dto = søknadsdataToSøknadDTO({
         søker,
@@ -54,6 +58,13 @@ export const OppsummeringSteg = () => {
     });
 
     const harBekreftetOpplysninger = methods.watch(FormFields.bekrefterOpplysninger);
+    const invalidParameters = getInvalidParametersFromApiError(sendSøknadError);
+
+    useEffect(() => {
+        if (sendSøknadError && !invalidParameters) {
+            sendSøknadErrorSummary.current?.focus();
+        }
+    }, [sendSøknadError, invalidParameters]);
 
     const onSubmit = async () => {
         if (dto === undefined) {
@@ -115,6 +126,14 @@ export const OppsummeringSteg = () => {
                                 <AppText id="oppsummeringSteg.bekrefterOpplysninger.label" />
                             </Checkbox>
                         </FormLayout.Questions>
+                        {sendSøknadError && invalidParameters && (
+                            <InnsendingFeiletAlert invalidParameters={invalidParameters} />
+                        )}
+                        {sendSøknadError && !invalidParameters && (
+                            <ErrorSummary ref={sendSøknadErrorSummary}>
+                                <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
+                            </ErrorSummary>
+                        )}
                     </>
                 )}
             </SøknadStepForm>

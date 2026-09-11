@@ -2,6 +2,14 @@ export const oppsummeringStegMessages_nb = {
     'oppsummeringSteg.feil.tittel': 'Det skjedde en feil',
     'oppsummeringSteg.feil.innhold':
         'Det mangler nødvendig informasjon for å kunne sende inn søknaden. Prøv igjen senere.',
+
+    'oppsummeringSteg.innsendingFeilet.tittel': 'Oops, noe gikk galt.',
+    'oppsummeringSteg.innsendingFeilet.tekst.generell.1':
+        'Det oppstod en feil ved innsending av søknaden. Du kan prøve på nytt om en liten stund.',
+    'oppsummeringSteg.innsendingFeilet.tekst.generell.2':
+        'Hvis feilen bare fortsetter og du ikke kommer videre, ber vi deg kontakte oss på <Telefon>55 55 33 33</Telefon> for videre veiledning.',
+    'oppsummeringSteg.innsendingFeilet.merInformasjon.header': 'Mer informasjon om feilen',
+
     'oppsummeringSteg.oppsummering.tittel': 'Informasjon du har oppgitt',
     'oppsummeringSteg.startdato.tittel': 'Startdato',
     'oppsummeringSteg.startdato.label': 'Når skal aktivitetspengene starte?',
