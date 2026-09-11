@@ -55,6 +55,7 @@ test('viser bare besvarte spørsmål når søkeren har bodd i Norge og ikke jobb
     await startSøknadTilMedlemskap(page);
     await svar(page, harBoddINorge, 'Ja');
     await svar(page, harJobbetUtenforNorge, 'Nei');
+    await testAccessibility(page);
     await gåTilOppsummering(page);
 
     const oppsummering = page.getByRole('heading', { name: 'Medlemskap' }).locator('..').locator('..');
@@ -75,8 +76,8 @@ test('legger til og fjerner arbeidsperioder og viser den gjenværende perioden i
     await expect(page.getByRole('button', { name: /Fjern.*Sverige/ })).toBeVisible();
     await page.getByRole('button', { name: /Fjern.*Sverige/ }).click();
     await expect(page.getByRole('button', { name: /Fjern.*Sverige/ })).not.toBeVisible();
-
     await leggTilArbeidsperiode(page, 'Danmark', '01.02.2024', '29.02.2024');
+    await testAccessibility(page);
     await gåTilOppsummering(page);
 
     const oppsummering = page.getByRole('heading', { name: 'Medlemskap' }).locator('..').locator('..');
@@ -103,6 +104,7 @@ test('viser utenlandsopphold når søkeren ikke har bodd eller jobbet sammenheng
         .getByLabel('Nei', { exact: true })
         .check();
     await dialog.getByRole('button', { name: 'Legg til', exact: true }).click();
+    await testAccessibility(page);
     await gåTilOppsummering(page);
 
     const oppsummering = page.getByRole('heading', { name: 'Medlemskap' }).locator('..').locator('..');

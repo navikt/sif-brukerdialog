@@ -80,7 +80,7 @@ export const KontonummerForm = () => {
                         )}
                         {kontonummerInfo.harKontonummer === HarKontonummerEnum.NEI && (
                             <SifInfoCard variant="info">
-                                <Heading level="3" size="small" spacing>
+                                <Heading level="2" size="small" spacing>
                                     <AppText id="kontonummerSteg.harIkkeKontonummer.tittel" />
                                 </Heading>
                                 <BodyLong spacing>
@@ -102,7 +102,7 @@ export const KontonummerForm = () => {
                         )}
                         {kontonummerInfo.harKontonummer === HarKontonummerEnum.UVISST && (
                             <SifInfoCard variant="warning">
-                                <Heading level="3" size="small" spacing>
+                                <Heading level="2" size="small" spacing>
                                     <AppText id="kontonummerSteg.kontonummerInfoMangler.info.1" />
                                 </Heading>
                                 <BodyLong spacing>

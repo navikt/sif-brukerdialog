@@ -16,7 +16,7 @@ export const BostederUtlandSporsmal = ({ minDate, maxDate, utenlandsopphold = []
     return (
         <FormLayout.Panel bleedTop={true}>
             <VStack gap="space-16">
-                <Heading size="xsmall" level="3">
+                <Heading size="xsmall" level="2">
                     <AppText id="medlemskapSteg.bosteder.tittel" />
                 </Heading>
                 <BodyLong>

@@ -68,7 +68,7 @@ export const BarnForm = () => {
                         <AriaLiveRegion visible={infoStemmer === YesOrNo.NO}>
                             <FormLayout.QuestionRelatedMessage>
                                 <SifInfoCard>
-                                    <Heading level="3" size="small" spacing>
+                                    <Heading level="2" size="small" spacing>
                                         <AppText id="barnSteg.opplysninger.info.tittel" />
                                     </Heading>
                                     <BodyLong>

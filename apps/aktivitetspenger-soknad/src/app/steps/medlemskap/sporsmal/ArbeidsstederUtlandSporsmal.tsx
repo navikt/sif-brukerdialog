@@ -16,7 +16,7 @@ export const ArbeidsstederUtlandSporsmal = ({ minDate, maxDate, arbeidsstederUte
     return (
         <FormLayout.Panel bleedTop={true}>
             <VStack gap="space-16">
-                <Heading size="xsmall" level="3">
+                <Heading size="xsmall" level="2">
                     <AppText id="medlemskapSteg.arbeidsstederUtenforNorge.tittel" />
                 </Heading>
                 <BodyLong>

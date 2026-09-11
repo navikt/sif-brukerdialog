@@ -29,11 +29,10 @@ test('fyller ut og sender inn søknaden', async ({ page }) => {
     await page.getByLabel('Jeg bekrefter at jeg vil svare så riktig som jeg kan.').check();
     await page.getByRole('button', { name: 'Start søknad' }).click();
 
-    // const kontonummerSpørsmål = /Stemmer det at ditt kontonummer er/;
-    // await expect(page.getByRole('radiogroup', { name: kontonummerSpørsmål })).toBeVisible();
+    const kontonummerSpørsmål = /Stemmer det at ditt kontonummer er/;
+    await expect(page.getByRole('radiogroup', { name: kontonummerSpørsmål })).toBeVisible();
     await testAccessibility(page);
-    await page.getByText('Ja').click();
-    // await svarJa(page, kontonummerSpørsmål);
+    await svarJa(page, kontonummerSpørsmål);
     await gåTilNesteSteg(page, 'bosted');
 
     const bostedSpørsmål = 'Bor du i Trondheim kommune?';
