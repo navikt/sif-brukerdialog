@@ -3,7 +3,7 @@ import { ScenarioSelectorHeader, type ScenarioSelectorHeaderGroup } from '@sif/s
 
 import { ScenarioType } from '../../mock/scenarios/types';
 import { store } from '../../mock/state/store';
-import { useAppIntl } from '../app/i18n';
+import { useAppIntl } from '@app/i18n';
 
 export const ScenarioHeader = () => {
     const { text } = useAppIntl();

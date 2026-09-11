@@ -2,8 +2,8 @@ import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
 import { Søker } from '@sif/api/k9-prosessering';
 import { ISODate } from '@sif/utils';
 
-import { SøknadApiData } from '../types/SoknadApiData';
-import { Søknadsdata } from '../types/Soknadsdata';
+import { SøknadApiData } from '@app/types/SoknadApiData';
+import { Søknadsdata } from '@app/types/Soknadsdata';
 
 export const søknadsdataToSøknadDTO = ({
     søker,

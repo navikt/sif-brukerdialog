@@ -1,6 +1,6 @@
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { MedlemskapFormFields, MedlemskapFormValues } from '../types';
-import { AppText, useAppIntl } from '../../../i18n';
+import { AppText, useAppIntl } from '@app/i18n';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { BodyLong, ReadMore, VStack } from '@navikt/ds-react';
 

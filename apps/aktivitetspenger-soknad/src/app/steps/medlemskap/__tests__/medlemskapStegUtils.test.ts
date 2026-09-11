@@ -2,7 +2,7 @@ import { ArbeidUtland } from '@sif/soknad-forms';
 import { YesOrNo } from '@sif/rhf';
 import { ISODate } from '@sif/utils';
 
-import { MedlemskapSøknadsdata } from '../../../types/Soknadsdata';
+import { MedlemskapSøknadsdata } from '@app/types/Soknadsdata';
 
 import { toMedlemskapStegFormValues, toMedlemskapStegSøknadsdata } from '../medlemskapStegUtils';
 import { MedlemskapFormValues } from '../types';

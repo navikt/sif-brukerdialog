@@ -2,7 +2,7 @@ import { Bleed, Box, InfoCard, Tag } from '@navikt/ds-react';
 import { ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
 import { ReactNode } from 'react';
 
-import { AppText } from '../i18n';
+import { AppText } from '@app/i18n';
 
 interface Props {
     spacing?: boolean;

@@ -1,6 +1,6 @@
 import { AppText } from '@app/i18n';
 import { BodyLong } from '@navikt/ds-react';
-import { Todo } from '../../components/Todo';
+import { Todo } from '@app/components/Todo';
 
 const ReglerOgAutomatiskSaksbehandlingContent = () => {
     return (

@@ -3,8 +3,8 @@ import { MedlemskapAktivitetspenger } from '@navikt/k9-brukerdialog-prosessering
 import { JaNeiSvar } from '@sif/soknad-ui';
 import { useStepNavigation } from '@sif/soknad-app';
 
-import { SøknadStepId } from '../../../types/SoknadStepId';
-import { AppText } from '../../../i18n';
+import { SøknadStepId } from '@app/types/SoknadStepId';
+import { AppText } from '@app/i18n';
 import { ArbeidUtlandList } from '@sif/soknad-forms';
 import { ISODate } from '@sif/utils';
 import { getMedlemskapSynlighet } from '../../medlemskap/medlemskapSynlighet';

@@ -12,7 +12,7 @@ import { FormLayout } from '@sif/soknad-ui';
 import { AriaLiveRegion, ExternalLink, SifGuidePanel, SifInfoCard } from '@sif/soknad-ui/components';
 import { useForm } from 'react-hook-form';
 
-import getLenker from '../../lenker';
+import getLenker from '@app/lenker';
 import { toKontonummerFormValues, toKontonummerSøknadsdata } from './kontonummerStegUtils';
 import { KontonummerFormFields, KontonummerFormValues } from './types';
 

@@ -1,6 +1,6 @@
 import { YesOrNo } from '@sif/rhf';
 
-import { BarnSøknadsdata } from '../../../types/Soknadsdata';
+import { BarnSøknadsdata } from '@app/types/Soknadsdata';
 
 import { toBarnFormValues, toBarnSøknadsdata } from '../barnStegUtils';
 

@@ -1,8 +1,8 @@
 import { Søker } from '@sif/api/k9-prosessering';
 import { ISODate } from '@sif/utils';
 
-import { Søknadsdata } from '../../types/Soknadsdata';
-import { SøknadStepId } from '../../types/SoknadStepId';
+import { Søknadsdata } from '@app/types/Soknadsdata';
+import { SøknadStepId } from '@app/types/SoknadStepId';
 import { søknadsdataToSøknadDTO } from '../soknadsdataToSoknadDTO';
 
 const søker: Søker = {

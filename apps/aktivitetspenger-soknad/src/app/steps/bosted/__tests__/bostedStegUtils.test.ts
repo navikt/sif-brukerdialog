@@ -1,6 +1,6 @@
 import { YesOrNo } from '@sif/rhf';
 
-import { BostedSøknadsdata } from '../../../types/Soknadsdata';
+import { BostedSøknadsdata } from '@app/types/Soknadsdata';
 
 import { toBostedFormValues, toBostedSøknadsdata } from '../bostedStegUtils';
 

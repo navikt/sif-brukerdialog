@@ -11,8 +11,8 @@ import { SøknadStep, useSøknadSendt, useSøknadsdata } from '@sif/soknad-app';
 import { FormLayout } from '@sif/soknad-ui';
 import { useForm } from 'react-hook-form';
 
-import { useSendSøknad } from '../../hooks/useSendSoknad';
-import { søknadsdataToSøknadDTO } from '../../utils/soknadsdataToSoknadDTO';
+import { useSendSøknad } from '@app/hooks/useSendSoknad';
+import { søknadsdataToSøknadDTO } from '@app/utils/soknadsdataToSoknadDTO';
 import { BarnOppsummering } from './parts/BarnOppsummering';
 import { BostedOppsummering } from './parts/BostedOppsummering';
 import { MedlemskapOppsummering } from './parts/MedlemskapOppsummering';

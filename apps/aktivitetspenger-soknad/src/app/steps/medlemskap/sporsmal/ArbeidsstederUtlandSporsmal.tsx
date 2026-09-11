@@ -1,4 +1,4 @@
-import { AppText } from '../../../i18n';
+import { AppText } from '@app/i18n';
 import { FormLayout } from '@sif/soknad-ui';
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { ArbeidUtland, ArbeidUtlandListAndDialog } from '@sif/soknad-forms';

@@ -3,7 +3,7 @@ import { Accordion, BodyShort, Box, Heading, List, VStack } from '@navikt/ds-rea
 
 import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysningerContent';
 import ReglerOgAutomatiskSaksbehandlingContent from './ReglerOgAutomatiskSaksbehandlingContent';
-import { Todo } from '../../components/Todo';
+import { Todo } from '@app/components/Todo';
 
 const OmSøknaden = () => {
     return (

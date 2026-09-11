@@ -1,9 +1,9 @@
 import { BodyLong, Box, GuidePanel, Heading, InfoCard, Link, VStack } from '@navikt/ds-react';
-import { AppText, useAppIntl } from '../../i18n';
+import { AppText, useAppIntl } from '@app/i18n';
 import { Søker } from '@sif/api/k9-prosessering';
 import { TilgjengeligSøknadResponse, TilgjengeligSøknadType } from '@navikt/ung-brukerdialog-api';
-import { Todo } from '../../components/Todo';
-import getLenker from '../../lenker';
+import { Todo } from '@app/components/Todo';
+import getLenker from '@app/lenker';
 import { ApplicationPage, SifSoknadUiText } from '@sif/soknad-ui';
 interface Props {
     søker: Søker;

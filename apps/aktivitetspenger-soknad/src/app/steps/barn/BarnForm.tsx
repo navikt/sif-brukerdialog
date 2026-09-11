@@ -17,7 +17,7 @@ import {
 } from '@sif/soknad-ui/components';
 import { useForm } from 'react-hook-form';
 
-import getLenker from '../../lenker';
+import getLenker from '@app/lenker';
 import { toBarnFormValues, toBarnSøknadsdata } from './barnStegUtils';
 import { BarnFormFields, BarnFormValues } from './types';
 

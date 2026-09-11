@@ -1,6 +1,6 @@
 import { StepDefinition } from '@sif/soknad-app';
 
-import { SøknadStepId } from '../types/SoknadStepId';
+import { SøknadStepId } from '@app/types/SoknadStepId';
 
 export const søknadStepConfig: Record<SøknadStepId, StepDefinition> = {
     [SøknadStepId.KONTONUMMER]: {
