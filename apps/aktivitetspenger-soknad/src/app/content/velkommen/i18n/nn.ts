@@ -8,7 +8,7 @@ export const velkommenPageMessages_nn: Record<keyof typeof velkommenPageMessages
     'page.velkommen.guide.info.2':
         'Aktivitetspengar er for deg som er mellom 18 og 30 år og treng oppfølging frå Nav for å kome i jobb eller utdanning.',
     'page.velkommen.guide.info.3': 'Dette er eit forsøk berre for deg som er busett i Trondheim kommune.',
-    'page.velkommen.guide.info.4': 'Les meir om aktivitetspengar på <Lenke>nav.no</Lenke> [TODO: oppdatere lenkje].',
+    'page.velkommen.guide.info.4': 'Les meir om aktivitetspengar på <Lenke>nav.no</Lenke>.',
     'page.velkommen.omSøknaden.tittel': 'Om søknaden',
     'page.velkommen.omSøknaden.1': 'Du får rettleiing undervegs i søknaden om kva du skal fylle ut, og korleis.',
     'page.velkommen.omSøknaden.2':

@@ -7,7 +7,7 @@ export const velkommenPageMessages_nb = {
     'page.velkommen.guide.info.2':
         'Aktivitetspenger er for deg som er mellom 18 og 30 år og trenger oppfølging fra Nav for å komme i jobb eller utdanning.',
     'page.velkommen.guide.info.3': 'Dette er et forsøk bare for deg som er bosatt i Trondheim kommune.',
-    'page.velkommen.guide.info.4': 'Les mer om aktivitetspenger på <Lenke>nav.no</Lenke> [TODO: oppdatere lenke].',
+    'page.velkommen.guide.info.4': 'Les mer om aktivitetspenger på <Lenke>nav.no</Lenke>.',
 
     'page.velkommen.omSøknaden.tittel': 'Om søknaden',
     'page.velkommen.omSøknaden.1': 'Du får veiledning underveis i søknaden om hva du skal fylle ut, og hvordan.',
