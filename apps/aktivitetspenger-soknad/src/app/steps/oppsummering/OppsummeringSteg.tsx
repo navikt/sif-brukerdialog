@@ -4,19 +4,20 @@ import { SøknadStepForm } from '@sif/soknad-app';
 import { useAppContext } from '@app/context/AppContext';
 import { Søknadsdata } from '@app/types/Soknadsdata';
 import { InfoCard } from '@navikt/ds-react';
-import { dateToISODate, ISODate } from '@sif/utils';
+import { dateToISODate, getDateToday, ISODate } from '@sif/utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { SøknadStep, useSøknadSendt, useSøknadsdata } from '@sif/soknad-app';
 import { FormLayout } from '@sif/soknad-ui';
 import { useForm } from 'react-hook-form';
 
-import { useSendSøknad } from '../../hooks/useSendSoknad';
-import { søknadsdataToSøknadDTO } from '../../utils/soknadsdataToSoknadDTO';
+import { useSendSøknad } from '@app/hooks/useSendSoknad';
+import { søknadsdataToSøknadDTO } from '@app/utils/soknadsdataToSoknadDTO';
 import { BarnOppsummering } from './parts/BarnOppsummering';
 import { BostedOppsummering } from './parts/BostedOppsummering';
-import { BostedUtlandOppsummering } from './parts/BostedUtlandOppsummering';
+import { MedlemskapOppsummering } from './parts/MedlemskapOppsummering';
 import { KontonummerOppsummering } from './parts/KontonummerOppsummering';
+import { InnsendingFeiletAlert } from './InnsendingFeiletAlert';
 import { useState } from 'react';
 import { StartdatoSpørsmål } from './parts/StartdatoSpørsmål';
 
@@ -34,7 +35,7 @@ export const OppsummeringSteg = () => {
     const stepId = SøknadStepId.OPPSUMMERING;
 
     const { validateField } = useSifValidate('oppsummeringForm');
-    const [startdato, setStartdato] = useState<ISODate | undefined>(undefined);
+    const [startdato, setStartdato] = useState<ISODate>(dateToISODate(getDateToday()));
 
     const { søker, kontoInfo, registrerteBarn } = useAppContext();
     const søknadsdata = useSøknadsdata<Søknadsdata>();
@@ -43,7 +44,7 @@ export const OppsummeringSteg = () => {
 
     const methods = useForm<FormValues>({ defaultValues: {} });
 
-    const { isPending, mutateAsync } = useSendSøknad();
+    const { isPending, mutate, error: sendSøknadError } = useSendSøknad();
 
     const dto = søknadsdataToSøknadDTO({
         søker,
@@ -55,12 +56,11 @@ export const OppsummeringSteg = () => {
 
     const harBekreftetOpplysninger = methods.watch(FormFields.bekrefterOpplysninger);
 
-    const onSubmit = async () => {
+    const onSubmit = () => {
         if (dto === undefined) {
             return;
         }
-        await mutateAsync({ ...dto, harBekreftetOpplysninger });
-        await onSøknadSendt();
+        mutate({ ...dto, harBekreftetOpplysninger }, { onSuccess: () => onSøknadSendt() });
     };
 
     return (
@@ -74,6 +74,7 @@ export const OppsummeringSteg = () => {
                 submitDisabled={!dto || !startdato}>
                 {
                     <StartdatoSpørsmål
+                        value={startdato}
                         onDateChange={(dato) => {
                             if (dato) {
                                 setStartdato(dateToISODate(dato));
@@ -103,7 +104,7 @@ export const OppsummeringSteg = () => {
                                     kontoOppslagInfo={kontoInfo}
                                 />
                                 <BostedOppsummering erBosattITrondheim={dto.erBosattITrondheim} />
-                                <BostedUtlandOppsummering forutgåendeBosteder={dto.forutgåendeBosteder} />
+                                <MedlemskapOppsummering medlemskap={dto.medlemskap} />
                                 <BarnOppsummering barn={registrerteBarn} barnErRiktig={dto.barnErRiktig} />
                             </FormLayout.Summary>
                         )}
@@ -114,6 +115,7 @@ export const OppsummeringSteg = () => {
                                 <AppText id="oppsummeringSteg.bekrefterOpplysninger.label" />
                             </Checkbox>
                         </FormLayout.Questions>
+                        {sendSøknadError && <InnsendingFeiletAlert error={sendSøknadError} />}
                     </>
                 )}
             </SøknadStepForm>

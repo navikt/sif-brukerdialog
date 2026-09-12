@@ -7,6 +7,7 @@ import React from 'react';
 import ActionLink from '../../atoms/action-link/ActionLink';
 import DeleteButton from '../../atoms/delete-button/DeleteButton';
 import bemUtils from '../../utils/bemUtils';
+import { List } from '@navikt/ds-react';
 
 interface Props<T> {
     items: T[];
@@ -18,6 +19,7 @@ interface Props<T> {
     onDelete?: (item: T) => void;
     onEdit?: (item: T) => void;
     deleteRenderer?: (item: T) => React.ReactNode;
+    variant?: 'default' | 'summary';
 }
 
 const bem = bemUtils('itemListDarkside');
@@ -34,9 +36,21 @@ function ItemListDarkside<T>({
     getItemTitle,
     deleteRenderer,
     useTrashcan = false,
+    variant = 'default',
 }: Props<T>) {
+    if (variant === 'summary') {
+        return (
+            <List>
+                {items.map((item) => (
+                    <List.Item key={getItemId(item) || guid()}>
+                        {labelRenderer ? labelRenderer(item) : getItemTitle(item)}
+                    </List.Item>
+                ))}
+            </List>
+        );
+    }
     return (
-        <ol className={classNames(bem.block)}>
+        <ol className={classNames(bem.block, bem.modifier(variant))}>
             {items.map((item) => {
                 const itemTitle = getItemTitle(item);
                 return (

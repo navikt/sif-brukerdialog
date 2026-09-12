@@ -86,6 +86,12 @@ export const BostedUtlandDialogForm = ({
                 noValidate>
                 <FormLayout.Content>
                     <FormLayout.Questions>
+                        <CountrySelect
+                            name={BostedUtlandFormFields.landkode}
+                            label={sifIntl.text('@sifSoknadForms.bostedUtland.form.land.label')}
+                            validate={validateLandkode}
+                        />
+
                         <DateRangePicker
                             name="bosted"
                             legend={sifIntl.text('@sifSoknadForms.bostedUtland.form.tidsperiode.legend')}
@@ -126,11 +132,6 @@ export const BostedUtlandDialogForm = ({
                                     },
                                 ),
                             }}
-                        />
-                        <CountrySelect
-                            name={BostedUtlandFormFields.landkode}
-                            label={sifIntl.text('@sifSoknadForms.bostedUtland.form.land.label')}
-                            validate={validateLandkode}
                         />
                     </FormLayout.Questions>
                 </FormLayout.Content>

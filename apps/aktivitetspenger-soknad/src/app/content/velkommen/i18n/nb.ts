@@ -7,7 +7,7 @@ export const velkommenPageMessages_nb = {
     'page.velkommen.guide.info.2':
         'Aktivitetspenger er for deg som er mellom 18 og 30 år og trenger oppfølging fra Nav for å komme i jobb eller utdanning.',
     'page.velkommen.guide.info.3': 'Dette er et forsøk bare for deg som er bosatt i Trondheim kommune.',
-    'page.velkommen.guide.info.4': 'Les mer om aktivitetspenger på <Lenke>nav.no</Lenke> [TODO: oppdatere lenke].',
+    'page.velkommen.guide.info.4': 'Les mer om aktivitetspenger på <Lenke>nav.no</Lenke>.',
 
     'page.velkommen.omSøknaden.tittel': 'Om søknaden',
     'page.velkommen.omSøknaden.1': 'Du får veiledning underveis i søknaden om hva du skal fylle ut, og hvordan.',
@@ -45,6 +45,8 @@ export const velkommenPageMessages_nb = {
         'Etter at du har sendt inn søknaden blir det gjennomført en delautomatisk behandling, og som regel får du svar på søknaden innen XX.',
     'page.velkommen.regler.tekst.3':
         'Dersom du ønsker å motsette deg automatisk behandling, så må du ikke sende inn denne søknaden. Da må du ta kontakt med veileder i Nav for å informere om dette.',
+    'page.velkommen.regler.todo': 'Tekster er ikke ferdig',
+    'page.velkommen.rettsregler.todo': 'Tekster under rettsregler er ikke ferdige',
 
     'page.velkommen.harForståttRettigheterOgPlikter.notChecked': 'Du må velge at du har forstått ditt ansvar som søker',
 };

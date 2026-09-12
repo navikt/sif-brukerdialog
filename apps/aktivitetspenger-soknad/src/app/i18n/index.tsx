@@ -5,11 +5,16 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import { IntlMessageObjectFormat } from '@sif/soknad-app';
 import { appMessages_nb } from './nb';
+import { appMessages_nn } from './nn';
 
 const libMessages = {
     nb: {
         ...sifSoknadUiMessages.nb,
         ...sifSoknadFormsMessages.nb,
+    },
+    nn: {
+        ...sifSoknadUiMessages.nn,
+        ...sifSoknadFormsMessages.nn,
     },
 };
 
@@ -21,7 +26,8 @@ const nb = {
 export type AppMessageKeys = keyof typeof nb;
 
 const nn: Record<AppMessageKeys, string> = {
-    ...nb,
+    ...libMessages.nn,
+    ...appMessages_nn,
 };
 
 export const useAppIntl = () => {

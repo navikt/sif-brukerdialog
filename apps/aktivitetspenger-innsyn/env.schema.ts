@@ -8,10 +8,14 @@ import * as z from 'zod';
  * */
 
 export enum AppEnvKey {
+    SIF_PUBLIC_URL_AKTIVITETSPENGER = 'SIF_PUBLIC_URL_AKTIVITETSPENGER',
+    SIF_PUBLIC_URL_SAKSBEHANDLINGSTIDER = 'SIF_PUBLIC_URL_SAKSBEHANDLINGSTIDER',
 }
 
 export const appEnvSchema = z
     .object({
+        SIF_PUBLIC_URL_AKTIVITETSPENGER: z.url(),
+        SIF_PUBLIC_URL_SAKSBEHANDLINGSTIDER: z.url(),
     })
     .extend(commonEnvSchema.shape)
     .extend(ungDeltakelseOpplyserEnvSchema.shape)

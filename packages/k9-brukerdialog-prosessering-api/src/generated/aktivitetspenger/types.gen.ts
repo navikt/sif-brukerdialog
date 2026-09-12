@@ -26,7 +26,7 @@ export type AktivitetspengerOppgavebekreftelse = {
 export type Aktivitetspengersøknad = {
     barnErRiktig: boolean;
     erBosattITrondheim: boolean;
-    forutgåendeBosteder: ForutgåendeBosteder;
+    medlemskap: MedlemskapAktivitetspenger;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
     kontonummerInfo: KontonummerInfo;
@@ -60,9 +60,20 @@ export type Bosted = {
     tilOgMed: string;
 };
 
-export type ForutgåendeBosteder = {
-    harBoddIUtlandetSiste5År: boolean;
-    utenlandsoppholdSiste5År: Bosted[];
+export type UtenlandsoppholdAktivitetspenger = {
+    fraOgMed: string;
+    tilOgMed: string;
+    landkode: string;
+    landnavn: string;
+    jobbetIPerioden: boolean;
+    utenlandskNasjonalId?: string;
+};
+
+export type MedlemskapAktivitetspenger = {
+    harBoddINorge: boolean;
+    harJobbetINorge?: boolean;
+    harJobbetUtenforNorge?: boolean;
+    utenlandsopphold?: UtenlandsoppholdAktivitetspenger[];
 };
 
 export type FrilansoppdragDto = {

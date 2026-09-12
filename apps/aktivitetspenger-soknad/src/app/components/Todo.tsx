@@ -2,6 +2,8 @@ import { Bleed, Box, InfoCard, Tag } from '@navikt/ds-react';
 import { ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
 import { ReactNode } from 'react';
 
+import { AppText } from '@app/i18n';
+
 interface Props {
     spacing?: boolean;
     children: ReactNode;
@@ -12,7 +14,7 @@ export const Todo = ({ children, spacing = true }: Props) => (
         <Bleed marginInline={'space-8'}>
             <div style={{ zIndex: 2, position: 'relative' }}>
                 <Tag variant="strong" size="xsmall" data-color="danger" style={{ rotate: '-12deg' }}>
-                    Todo
+                    <AppText id="component.todo.label" />
                 </Tag>
             </div>
         </Bleed>

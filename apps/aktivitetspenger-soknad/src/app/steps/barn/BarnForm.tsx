@@ -17,7 +17,7 @@ import {
 } from '@sif/soknad-ui/components';
 import { useForm } from 'react-hook-form';
 
-import getLenker from '../../lenker';
+import getLenker from '@app/lenker';
 import { toBarnFormValues, toBarnSøknadsdata } from './barnStegUtils';
 import { BarnFormFields, BarnFormValues } from './types';
 
@@ -68,7 +68,7 @@ export const BarnForm = () => {
                         <AriaLiveRegion visible={infoStemmer === YesOrNo.NO}>
                             <FormLayout.QuestionRelatedMessage>
                                 <SifInfoCard>
-                                    <Heading level="3" size="small" spacing>
+                                    <Heading level="2" size="small" spacing>
                                         <AppText id="barnSteg.opplysninger.info.tittel" />
                                     </Heading>
                                     <BodyLong>

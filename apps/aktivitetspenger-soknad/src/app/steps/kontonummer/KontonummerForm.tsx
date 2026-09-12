@@ -12,7 +12,7 @@ import { FormLayout } from '@sif/soknad-ui';
 import { AriaLiveRegion, ExternalLink, SifGuidePanel, SifInfoCard } from '@sif/soknad-ui/components';
 import { useForm } from 'react-hook-form';
 
-import getLenker from '../../lenker';
+import getLenker from '@app/lenker';
 import { toKontonummerFormValues, toKontonummerSøknadsdata } from './kontonummerStegUtils';
 import { KontonummerFormFields, KontonummerFormValues } from './types';
 
@@ -80,7 +80,7 @@ export const KontonummerForm = () => {
                         )}
                         {kontonummerInfo.harKontonummer === HarKontonummerEnum.NEI && (
                             <SifInfoCard variant="info">
-                                <Heading level="3" size="small" spacing>
+                                <Heading level="2" size="small" spacing>
                                     <AppText id="kontonummerSteg.harIkkeKontonummer.tittel" />
                                 </Heading>
                                 <BodyLong spacing>
@@ -102,7 +102,7 @@ export const KontonummerForm = () => {
                         )}
                         {kontonummerInfo.harKontonummer === HarKontonummerEnum.UVISST && (
                             <SifInfoCard variant="warning">
-                                <Heading level="3" size="small" spacing>
+                                <Heading level="2" size="small" spacing>
                                     <AppText id="kontonummerSteg.kontonummerInfoMangler.info.1" />
                                 </Heading>
                                 <BodyLong spacing>

@@ -56,6 +56,18 @@ export const isApiAxiosError = (error: unknown): error is ApiAxiosError => {
 };
 
 /**
+ * Bygger en teknisk feilbeskrivelse fra zod-issues: `feltnavn: melding`.
+ */
+export const getFeltOgMeldingFraZodError = (error: ZodError): string => {
+    const feil = error.issues.map((issue) => {
+        const path = issue.path[0] === 'body' ? issue.path.slice(1) : issue.path;
+        const feltnavn = path.join('.') || 'body';
+        return `${feltnavn}: ${issue.message}`;
+    });
+    return [...new Set(feil)].join(', ');
+};
+
+/**
  * Håndterer feil ut fra hvilken type feil det er
  * @param error
  * @returns
@@ -69,7 +81,7 @@ export const handleApiError = (
         return {
             type: ApiErrorType.ZodValidationError,
             context,
-            message: error.issues.map((err) => err.message).join(', '),
+            message: getFeltOgMeldingFraZodError(error),
             originalError: error,
         };
     } else if (axios.isAxiosError(error)) {

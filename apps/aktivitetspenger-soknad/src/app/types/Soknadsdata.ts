@@ -1,5 +1,5 @@
 import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
-import { BostedUtland } from '@sif/soknad-forms';
+import { ArbeidUtland } from '@sif/soknad-forms';
 
 import { SøknadStepId } from './SoknadStepId';
 
@@ -9,9 +9,12 @@ export type BostedSøknadsdata = {
     erBosattITrondheim: boolean;
 };
 
-export type BostedUtlandSøknadsdata = {
+export type MedlemskapSøknadsdata = {
     harBoddINorge: boolean;
-    bosteder: BostedUtland[] | undefined;
+    harJobbetINorge?: boolean;
+    harJobbetUtenforNorge?: boolean;
+    bostederUtenforNorge?: ArbeidUtland[];
+    arbeidsstederUtenforNorge?: ArbeidUtland[];
 };
 
 export type BarnSøknadsdata = {
@@ -26,6 +29,6 @@ export interface Søknadsdata {
     harForståttRettigheterOgPlikter?: boolean;
     [SøknadStepId.KONTONUMMER]?: KontonummerSøknadsdata;
     [SøknadStepId.BOSTED]?: BostedSøknadsdata;
-    [SøknadStepId.BOSTED_UTLAND]?: BostedUtlandSøknadsdata;
+    [SøknadStepId.MEDLEMSKAP]?: MedlemskapSøknadsdata;
     [SøknadStepId.BARN]?: BarnSøknadsdata;
 }

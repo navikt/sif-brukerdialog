@@ -3,13 +3,15 @@ import { Accordion, BodyShort, Box, Heading, List, VStack } from '@navikt/ds-rea
 
 import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysningerContent';
 import ReglerOgAutomatiskSaksbehandlingContent from './ReglerOgAutomatiskSaksbehandlingContent';
-import { Todo } from '../../components/Todo';
+import { Todo } from '@app/components/Todo';
 
 const OmSøknaden = () => {
     return (
         <VStack gap="space-24">
             <Todo>
-                <BodyShort>Tekster under rettsregler er ikke ferdige</BodyShort>
+                <BodyShort>
+                    <AppText id="page.velkommen.rettsregler.todo" />
+                </BodyShort>
             </Todo>
             <Box>
                 <Heading level="2" size="medium" spacing={true}>
