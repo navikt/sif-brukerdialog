@@ -33,7 +33,7 @@ export { useStepNavigation } from './hooks/useStepNavigation';
 
 export { useSøknadsdata } from './hooks/useSøknadsdata';
 
-// Ruting
+// Ruting — stien eies av SøknadRouter
 export { KVITTERING_PATH } from './utils/routeUtils';
 
 // Intern kontekst — eksportert for avansert bruk (f.eks. storybook-dekoratører)

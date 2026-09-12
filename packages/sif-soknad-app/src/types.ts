@@ -64,10 +64,7 @@ export interface SøknadRouterProps {
     resumeLaterUrl?: string;
     /** Element som vises mens en routeren initialiseres; typisk LoadingPage komponent. */
     loadingElement?: ReactNode;
-    /**
-     * Kvitteringsside. Vises av SøknadRouter på KVITTERING_PATH etter vellykket
-     * innsending. Appen registrerer ikke ruten selv — routeren eier den.
-     */
+    /** Kvitteringssiden. Vises av SøknadRouter på KVITTERING_PATH etter innsending. */
     kvitteringElement: ReactNode;
     /**
      * Konverterer RHF-skjemaverdier for et steg til søknadsdata-format.

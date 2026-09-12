@@ -28,54 +28,13 @@ const DEFAULT_RESUME_LATER_URL = 'https://www.nav.no/minside';
 /**
  * Hoved-inngangskomponent for søknadsrammeverket.
  *
- * Fungerer som en ren kontekst-provider: setter opp Zustand-store,
- * henter og validerer mellomlagring ved mount, og eksponerer kontekst
- * for useStepData, useAvbryt, useSøknadSendt, useStartSøknad og useStepNavigation.
+ * Setter opp Zustand-store og kontekst for hookene, henter og validerer
+ * mellomlagring ved mount, og eier kvitteringsruten.
  *
- * Venter på mellomlagring-henting uten å rendre children (unngår blinking).
- * Dersom gyldig mellomlagring finnes, navigeres bruker automatisk til
- * gjenopptakingspunktet. Uten mellomlagring vises children (velkommensiden).
+ * Children (appens <Routes>) vises først når initialiseringen er ferdig, slik at
+ * velkomstsiden ikke blinker før en eventuell resume-navigering.
  *
- * Etter vellykket innsending synkes URL-en til `KVITTERING_PATH`, og routeren viser
- * `kvitteringElement` i stedet for children. Kvitteringsruten eies av rammeverket,
- * ikke av appen, og kan ikke åpnes via direkte URL uten innsendt søknad.
- *
- * ---
- * ## Navigasjonsansvar i rammeverket
- *
- * Navigasjon er fordelt etter hvem som eier beslutningen:
- *
- * | Beslutning                        | Eier                          |
- * |-----------------------------------|-------------------------------|
- * | Resume fra mellomlagring ved mount| SøknadRouter (useEffect nedenfor) |
- * | Start søknad → første steg        | useStartSøknad                |
- * | Neste steg etter submit           | useStepData.commit            |
- * | Forrige steg / hopp til steg      | useStepNavigation             |
- * | Klikk i progress-stepper         | SøknadStep.onStepSelect       |
- * | Avbryt → forsiden                 | SøknadStep.onAbort            |
- * | Fortsett senere                   | SøknadStep.onResumeLater      |
- * | Kvittering etter innsending       | SøknadRouter (useEffect nedenfor) |
- * | URL-guard / redirect              | StepRouteGuard (passive)      |
- *
- * Appen er ansvarlig for <Routes>-oppsett for velkomstside og steg. Bruk
- * <SøknadStepGuard> for å beskytte steg-rutene. Kvitteringsruten settes opp
- * av routeren via kvitteringElement.
- *
- * Bruk i app (eksempel):
- * ```tsx
- * // Soknad.tsx:
- * <SøknadRouter
- *   config={...} stepOrder={...} ytelse="aktivitetspenger" versjon={1}
- *   applicationTitle="..."
- *   kvitteringElement={<KvitteringPage />}>
- *   <Routes>
- *     <Route path="/" element={<VelkommenPage />} />
- *     <Route path="/soknad" element={<SøknadStepGuard />}>
- *       <Route path="startdato" element={<StartdatoForm />} />
- *     </Route>
- *   </Routes>
- * </SøknadRouter>
- * ```
+ * Se README for navigasjonsansvar og oppsett i app.
  */
 export const SøknadRouter = ({
     config,
@@ -103,8 +62,7 @@ export const SøknadRouter = ({
     const navigate = useNavigate();
     const location = useLocation();
 
-    // Navigasjon: etter mellomlagring-henting ved mount — send bruker til gjenopptakingspunktet.
-    // Alle andre navigasjonsbeslutninger er dokumentert i JSDoc-tabellen over.
+    // Etter mellomlagring-henting ved mount — send bruker til gjenopptakingspunktet.
     useEffect(() => {
         let cancelled = false;
 
@@ -155,10 +113,7 @@ export const SøknadRouter = ({
         }
     }, [isInitialized, resumeStepId, location.pathname, config, basePath, navigate]);
 
-    // Navigasjon: når søknaden er sendt — synk URL til kvitteringsruten.
-    // Effekten kjører etter commit, så søknadSendt er garantert true når
-    // renderContent nedenfor evaluerer kvitteringsruten. Dermed er rekkefølgen
-    // mellom state-oppdatering og navigering ikke lenger noe kallstedet må tenke på.
+    // Synker URL mot søknadSendt, slik at kallstedet slipper å navigere selv.
     useEffect(() => {
         if (søknadSendt && location.pathname !== KVITTERING_PATH) {
             navigate(KVITTERING_PATH, { replace: true });
@@ -206,9 +161,7 @@ export const SøknadRouter = ({
         ],
     );
 
-    // Kvitteringsruten eies av rammeverket: URL-en er kilden til sannhet for hva
-    // som vises, og søknadSendt avgjør kun om ruten er tilgjengelig. Dermed kan
-    // kvitteringen ikke åpnes via direkte URL uten innsendt søknad.
+    // URL-en avgjør hva som vises; søknadSendt avgjør kun om kvitteringen er tilgjengelig.
     const renderContent = () => {
         if (!isInitialized) {
             return loadingElement || null;

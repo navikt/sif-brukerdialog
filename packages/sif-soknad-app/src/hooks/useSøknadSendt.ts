@@ -7,13 +7,7 @@ import { useSøknadAppContext } from '../context/SøknadAppContext';
  * Hook for å fullføre søknadsinnsending.
  * Kall `onSøknadSendt()` etter vellykket POST til backend.
  *
- * Gjør i rekkefølge:
- * 1. Sletter mellomlagring
- * 2. Logger "skjema fullført"-hendelse
- * 3. Markerer søknad som sendt i store
- *
- * Navigasjon til kvitteringssiden håndteres av SøknadRouter, som synker URL-en
- * mot `søknadSendt`. Denne hooken navigerer derfor ikke selv.
+ * Navigerer ikke selv — SøknadRouter synker URL mot `søknadSendt`.
  */
 export function useSøknadSendt(): { onSøknadSendt: () => Promise<void> } {
     const { store, slettMellomlagring } = useSøknadAppContext();

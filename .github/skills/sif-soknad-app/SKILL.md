@@ -94,7 +94,7 @@ Lokale parametere som betyr "steget som vises nå" heter fortsatt `currentStepId
 
 **Live getters (manuell mellomlagring):**
 
-- `liveGettersRef` — `Map<stepId, () => StepFormValues>` i en ref (unngår re-renders)
+- `liveGettersRef` — `Map<stepId, () => StepFormValuesRecord>` i en ref (unngår re-renders)
 - `registerGetValuesForStep` / `unregisterGetValuesForStep`
 - `getAllLiveFormValues()` — henter verdier fra ALLE registrerte getters (typisk kun ett steg montert)
 
@@ -257,14 +257,15 @@ interface MellomlagringBlob {
 
 ---
 
-## `SøknadRouterProps` — viktige valgfrie props
+## `SøknadRouterProps` — viktige props
 
 ```ts
+// Påkrevd. Kvitteringssiden — SøknadRouter eier ruten /kvittering og rendrer
+// dette elementet i stedet for children når søknaden er sendt.
+kvitteringElement: ReactNode;
+
 // Aktiverer konsistenssjekk (browser back/forward-advarsel)
 formValuesToSøknadsdata?: (stepId: string, formValues: Record<string, unknown>) => Record<string, unknown> | undefined;
-
-// Vises etter vellykket innsending; URL settes til /kvittering
-kvitteringElement?: ReactNode;
 
 // Basepath for steg-ruter (default: '/soknad')
 basePath?: string;
@@ -318,7 +319,7 @@ export const formValuesToSøknadsdata = (
 | `lagre()` lagrer ikke for steget brukeren er på                      | `resumeStepId` ≠ montert steg                                                             | `getAllLiveFormValues()` brukes nå — løst                                     |
 | Konsistenssjekk virker ikke                                          | `formValuesToSøknadsdata` ikke satt på `SøknadRouter`                                     | Lag funksjon med switch per stepId                                             |
 | Falsk inconsistency-advarsel for ett steg                            | `formValuesToSøknadsdata` returnerer `undefined` for steget, men søknadsdata er committet | Implementer konverteringen som en ren funksjon                                |
-| Kvitteringssiden vises ikke                                          | `setSøknadSendt()` setter `resumeStepId: undefined` → `SøknadStepGuard` redirecter        | `SøknadRouter` renderer `kvitteringElement` state-basert, ikke route-basert   |
+| Kvitteringssiden vises ikke                                          | `useSøknadSendt` navigerte selv, før `søknadSendt` var satt i storen                      | `SøknadRouter` synker URL mot `søknadSendt` i en effekt — rekkefølgen er løst  |
 | Navigerer til feil steg etter back+re-submit                         | `resumeStepId` peker på et steg lenger frem                                               | `commitState` bruker alltid `includedSteps[fromIndex + 1]` — løst             |
 | Velkommensiden blinker ved reload med mellomlagring                  | `children` ble rendret før init + navigate                                                | `SøknadRouter` holder `children` tilbake til `isInitialized = true` — løst    |
 | Bruker sendes til velkommensiden i stedet for riktig steg ved reload | `init(blob)` uten påfølgende `navigate`                                                   | `SøknadRouter` navigerer automatisk til `resumeStepId` etter init — løst      |
