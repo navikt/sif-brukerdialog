@@ -181,7 +181,7 @@ describe('createSøknadAppStore — setPersistedFormValues', () => {
 });
 
 describe('createSøknadAppStore — setSøknadSendt og reset', () => {
-    it('setSøknadSendt markerer søknad som sendt og nullstiller draft og resumeStepId', () => {
+    it('setSøknadSendt markerer søknad som sendt og nullstiller draft, men beholder resumeStepId', () => {
         const store = createStore();
         store.getState().init({
             versjon: 1,
@@ -193,8 +193,10 @@ describe('createSøknadAppStore — setSøknadSendt og reset', () => {
 
         const state = store.getState();
         expect(state.søknadSendt).toBe(true);
-        expect(state.resumeStepId).toBeUndefined();
         expect(state.persistedFormValues).toEqual({});
+        // resumeStepId beholdes så StepRouteGuard ikke redirecter til forsiden
+        // i renderen før URL-en er synket til kvitteringsruten.
+        expect(state.resumeStepId).toBe('oppsummering');
     });
 
     it('reset tømmer alt og setter isInitialized til true', () => {

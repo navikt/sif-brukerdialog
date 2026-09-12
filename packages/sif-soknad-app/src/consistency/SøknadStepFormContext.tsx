@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useCallback, useContext, useRef, useState } from 'react';
 
-export type StepFormValues = Record<string, unknown>;
-export type StepFormValuesMap = Record<string, StepFormValues>;
+export type StepFormValuesRecord = Record<string, unknown>;
+export type StepFormValuesMap = Record<string, StepFormValuesRecord>;
 
 /**
  * Skjemaverdier for RHF-steg håndteres i to lag her:
@@ -24,7 +24,7 @@ export type StepFormValuesMap = Record<string, StepFormValues>;
 interface SøknadStepFormContextValue {
     // --- Lag 1: unmount-lagrede verdier (konsistenssjekk + kilde for blob) ---
     draftFormValues: StepFormValuesMap;
-    setFormValuesForStep: (stepId: string, formValues: StepFormValues) => void;
+    setFormValuesForStep: (stepId: string, formValues: StepFormValuesRecord) => void;
     clearFormValuesForStep: (stepId: string) => void;
     /** Marker at unmount-handleren for dette steget skal hoppes over (settes av useStepData.commit). */
     markSkipNextUnmountSaveForStep: (stepId: string) => void;
@@ -34,10 +34,10 @@ interface SøknadStepFormContextValue {
     clearAllFormValues: () => void;
 
     // --- Lag 2: live getters for monterte steg ---
-    registerGetValuesForStep: (stepId: string, getValues: () => StepFormValues) => void;
+    registerGetValuesForStep: (stepId: string, getValues: () => StepFormValuesRecord) => void;
     unregisterGetValuesForStep: (stepId: string) => void;
     /** Returnerer gjeldende verdier fra alle monterte steg — for bruk i useMellomlagring. */
-    getAllLiveFormValues: () => Record<string, StepFormValues>;
+    getAllLiveFormValues: () => Record<string, StepFormValuesRecord>;
 }
 
 const SøknadStepFormContext = createContext<SøknadStepFormContextValue | null>(null);
@@ -49,9 +49,9 @@ const SøknadStepFormContext = createContext<SøknadStepFormContextValue | null>
 export const SøknadStepFormProvider = ({ children }: { children: ReactNode }) => {
     const [values, setValues] = useState<StepFormValuesMap>({});
     const skipNextUnmountSaveRef = useRef<Set<string>>(new Set());
-    const liveGettersRef = useRef<Map<string, () => StepFormValues>>(new Map());
+    const liveGettersRef = useRef<Map<string, () => StepFormValuesRecord>>(new Map());
 
-    const setFormValuesForStep = useCallback((stepId: string, formValues: StepFormValues) => {
+    const setFormValuesForStep = useCallback((stepId: string, formValues: StepFormValuesRecord) => {
         setValues((prev) => ({ ...prev, [stepId]: formValues }));
     }, []);
 
@@ -72,7 +72,7 @@ export const SøknadStepFormProvider = ({ children }: { children: ReactNode }) =
         return false;
     }, []);
 
-    const registerGetValuesForStep = useCallback((stepId: string, getValues: () => StepFormValues) => {
+    const registerGetValuesForStep = useCallback((stepId: string, getValues: () => StepFormValuesRecord) => {
         liveGettersRef.current.set(stepId, getValues);
     }, []);
 
@@ -88,8 +88,8 @@ export const SøknadStepFormProvider = ({ children }: { children: ReactNode }) =
         liveGettersRef.current.clear();
     }, []);
 
-    const getAllLiveFormValues = useCallback((): Record<string, StepFormValues> => {
-        const result: Record<string, StepFormValues> = {};
+    const getAllLiveFormValues = useCallback((): Record<string, StepFormValuesRecord> => {
+        const result: Record<string, StepFormValuesRecord> = {};
         liveGettersRef.current.forEach((getter, stepId) => {
             result[stepId] = getter();
         });

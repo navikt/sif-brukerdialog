@@ -13,10 +13,10 @@ Referanseapp: [`apps/aktivitetspenger-soknad`](../../apps/aktivitetspenger-sokna
   <SøknadRouter>              Zustand-store, mellomlagring-init, kontekst for alle hooks
     <SøknadStepFormProvider> In-session skjemaverdier per steg (konsistenssjekk + live getters)
       <SøknadAppContext>       Store + config eksponert til alle hooks
-        {children}             Appens <Routes> — velkomst, steg, kvittering
+        {children}             Appens <Routes> — velkomst og steg
 ```
 
-`SøknadRouter` venter på mellomlagring-henting før den viser `children` (unngår blinking). Dersom gyldig mellomlagring finnes, navigeres bruker automatisk til gjenopptakingspunktet.
+`SøknadRouter` venter på mellomlagring-henting før den viser `children` (unngår blinking). Dersom gyldig mellomlagring finnes, navigeres bruker automatisk til gjenopptakingspunktet. Kvitteringsruten ligger utenfor appens `<Routes>` — den eies av `SøknadRouter`.
 
 ---
 
@@ -55,7 +55,7 @@ Navigasjon er fordelt etter hvem som eier beslutningen:
 | Klikk i progress-stepper | `SøknadStep` |
 | Avbryt → forsiden | `SøknadStep` |
 | Fortsett senere | `SøknadStep` |
-| Kvittering etter innsending | `useSøknadSendt` |
+| Kvittering etter innsending | `SøknadRouter` (synker URL mot `søknadSendt`) |
 | URL-guard / redirect | `StepRouteGuard` |
 
 ---
@@ -144,8 +144,9 @@ const { onSøknadSendt } = useSøknadSendt();
 
 // Kall etter vellykket POST:
 await onSøknadSendt();
-// → sletter mellomlagring, logger analytics, navigerer til /kvittering
-// → SøknadRouter viser kvitteringElement basert på Zustand-state (ikke rute-basert)
+// → sletter mellomlagring, logger analytics, setter søknadSendt = true
+// → SøknadRouter synker URL til /kvittering og viser kvitteringElement
 ```
 
-Pass `kvitteringElement` til `SøknadRouter` for å vise kvitteringssiden.
+`kvitteringElement` er påkrevd på `SøknadRouter`. Ruten eies av rammeverket, så appen
+registrerer ingen egen `<Route>` for `/kvittering`, og den kan ikke åpnes via direkte URL.
