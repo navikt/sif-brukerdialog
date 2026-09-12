@@ -44,7 +44,7 @@ export const OppsummeringSteg = () => {
 
     const methods = useForm<FormValues>({ defaultValues: {} });
 
-    const { isPending, mutateAsync, error: sendSøknadError } = useSendSøknad();
+    const { isPending, mutate, error: sendSøknadError } = useSendSøknad();
 
     const dto = søknadsdataToSøknadDTO({
         søker,
@@ -56,17 +56,11 @@ export const OppsummeringSteg = () => {
 
     const harBekreftetOpplysninger = methods.watch(FormFields.bekrefterOpplysninger);
 
-    const onSubmit = async () => {
+    const onSubmit = () => {
         if (dto === undefined) {
             return;
         }
-        try {
-            await mutateAsync({ ...dto, harBekreftetOpplysninger });
-        } catch {
-            // Feilen vises via sendSøknadError. Avbryter så onSøknadSendt ikke kjører.
-            return;
-        }
-        await onSøknadSendt();
+        mutate({ ...dto, harBekreftetOpplysninger }, { onSuccess: () => onSøknadSendt() });
     };
 
     return (
