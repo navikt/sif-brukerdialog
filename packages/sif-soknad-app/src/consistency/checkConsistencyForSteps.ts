@@ -1,6 +1,6 @@
-import { StepFormValuesMap, StepFormValues } from './SøknadStepFormContext';
+import { StepFormValuesMap, StepFormValuesRecord } from './SøknadStepFormContext';
 
-type FormValuesToSøknadsdataFn = (stepId: string, formValues: StepFormValues) => Record<string, unknown> | undefined;
+type FormValuesToSøknadsdataFn = (stepId: string, formValues: StepFormValuesRecord) => Record<string, unknown> | undefined;
 
 type GetSøknadsdataForStepFn = (stepId: string) => Record<string, unknown> | undefined;
 
