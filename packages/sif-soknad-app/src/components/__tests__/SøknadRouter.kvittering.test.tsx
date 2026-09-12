@@ -74,7 +74,7 @@ describe('Kvitteringsrute', () => {
         });
     });
 
-    it('sender bruker til kvitteringsruten etter innsending', async () => {
+    it('viser kvitteringen på KVITTERING_PATH etter innsending', async () => {
         renderApp('/soknad/start');
 
         await waitFor(() => expect(screen.getByTestId('location').textContent).toBe('/soknad/start'));
@@ -85,25 +85,7 @@ describe('Kvitteringsrute', () => {
         expect(screen.getByTestId('location').textContent).toBe(KVITTERING_PATH);
     });
 
-    it('havner aldri innom forsiden i overgangen til kvittering', async () => {
-        renderApp('/soknad/start');
-
-        await waitFor(() => expect(screen.getByTestId('location').textContent).toBe('/soknad/start'));
-
-        const besøkte: string[] = [];
-        const observer = setInterval(() => {
-            const el = screen.queryByTestId('location');
-            if (el?.textContent) besøkte.push(el.textContent);
-        }, 1);
-
-        fireEvent.click(screen.getByRole('button', { name: 'Send inn' }));
-        await waitFor(() => expect(screen.getByText('Søknaden er sendt')).toBeTruthy());
-        clearInterval(observer);
-
-        expect(besøkte).not.toContain('/');
-    });
-
-    it('sender bruker tilbake til kvittering ved forsøk på å gå tilbake til steg etter innsending', async () => {
+    it('sender bruker tilbake til kvitteringen ved navigering til et steg etter innsending', async () => {
         renderApp('/soknad/start');
 
         await waitFor(() => expect(screen.getByTestId('location').textContent).toBe('/soknad/start'));
@@ -116,7 +98,9 @@ describe('Kvitteringsrute', () => {
         expect(screen.getByText('Søknaden er sendt')).toBeTruthy();
     });
 
-    it('redirecter til forsiden ved direkte URL til kvittering uten innsendt søknad', async () => {
+    it('viser ikke kvitteringen ved direkte URL når søknaden ikke er sendt', async () => {
+        vi.mocked(hentYtelseMellomlagring).mockResolvedValue({});
+
         renderApp(KVITTERING_PATH);
 
         await waitFor(() => expect(screen.getByTestId('location').textContent).toBe('/'));

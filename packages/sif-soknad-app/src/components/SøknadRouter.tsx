@@ -157,8 +157,8 @@ export const SøknadRouter = ({
 
     // Navigasjon: når søknaden er sendt — synk URL til kvitteringsruten.
     // Effekten kjører etter commit, så søknadSendt er garantert true når
-    // SøknadKvitteringGuard evaluerer ruten. Dermed er rekkefølgen mellom
-    // state-oppdatering og navigering ikke lenger noe kallstedet må tenke på.
+    // renderContent nedenfor evaluerer kvitteringsruten. Dermed er rekkefølgen
+    // mellom state-oppdatering og navigering ikke lenger noe kallstedet må tenke på.
     useEffect(() => {
         if (søknadSendt && location.pathname !== KVITTERING_PATH) {
             navigate(KVITTERING_PATH, { replace: true });
