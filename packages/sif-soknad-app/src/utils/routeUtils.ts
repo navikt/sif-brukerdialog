@@ -37,3 +37,9 @@ export const buildStepPath = (basePath: string, route: string): string => {
 
     return `${normalizedBasePath}/${normalizedRoute}`;
 };
+
+/**
+ * Rute for kvitteringssiden. Eksporteres slik at appen registrerer nøyaktig
+ * den stien SøknadRouter navigerer til etter innsending.
+ */
+export const KVITTERING_PATH = '/kvittering';

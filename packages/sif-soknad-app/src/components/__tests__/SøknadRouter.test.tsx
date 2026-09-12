@@ -25,7 +25,8 @@ const renderRouter = (initialPath: string) =>
                 stepOrder={['start']}
                 ytelse="PLEIEPENGER_SYKT_BARN"
                 versjon={1}
-                applicationTitle="Test">
+                applicationTitle="Test"
+                kvitteringElement={<div>Kvittering</div>}>
                 <Routes>
                     <Route path="/" element={<LocationDisplay />} />
                     <Route path="/soknad/start" element={<LocationDisplay />} />

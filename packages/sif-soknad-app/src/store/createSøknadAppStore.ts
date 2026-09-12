@@ -42,6 +42,12 @@ export interface SøknadStoreActions {
     setPersistedFormValues: (values: Record<string, Record<string, unknown>>) => void;
     /** Oppdaterer gjenopptakingspunktet direkte — brukes ved tilbake-navigering. */
     setResumeStepId: (stepId: string) => void;
+    /**
+     * Markerer søknaden som sendt. `resumeStepId` beholdes bevisst:
+     * StepRouteGuard redirecter til forsiden når den mangler, og i renderen
+     * mellom «sendt» og URL-bytte til kvittering står bruker fortsatt på et steg.
+     * Mellomlagringen er slettet, så ved reload re-initialiseres storen tom uansett.
+     */
     setSøknadSendt: () => void;
     reset: () => void;
 }
@@ -149,7 +155,6 @@ export const createSøknadAppStore = (options: StoreOptions): UseBoundStore<Stor
         setSøknadSendt: () =>
             set({
                 søknadSendt: true,
-                resumeStepId: undefined,
                 persistedFormValues: {},
             }),
 

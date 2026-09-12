@@ -33,6 +33,9 @@ export { useStepNavigation } from './hooks/useStepNavigation';
 
 export { useSøknadsdata } from './hooks/useSøknadsdata';
 
+// Ruting
+export { KVITTERING_PATH } from './utils/routeUtils';
+
 // Intern kontekst — eksportert for avansert bruk (f.eks. storybook-dekoratører)
 export { SøknadAppContext } from './context/SøknadAppContext';
 export { useSøknadAppContext } from './context/SøknadAppContext';

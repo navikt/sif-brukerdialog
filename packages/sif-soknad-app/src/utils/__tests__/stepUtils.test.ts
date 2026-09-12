@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { StepDefinition } from '../../types';
-import { findNextStepId, getIncludedSteps, getPreviousNextStep } from '../stepUtils';
+import { getIncludedSteps, getPreviousNextStep } from '../stepUtils';
 
 const stepOrder = ['start', 'barn', 'arbeid', 'oppsummering'];
 
@@ -65,50 +65,5 @@ describe('getPreviousNextStep', () => {
     it('returnerer null for begge når currentStepId ikke er inkludert', () => {
         const steps = getIncludedSteps(stepOrder, config, {});
         expect(getPreviousNextStep(steps, 'barn')).toEqual({ previousStepId: null, nextStepId: null });
-    });
-});
-
-describe('findNextStepId', () => {
-    it('returnerer neste uferdige steg etter fromStepId', () => {
-        const steps = getIncludedSteps(stepOrder, config, { harBarn: true, jobber: true });
-        expect(findNextStepId(steps, 'start')).toBe('barn');
-    });
-
-    it('hopper over allerede completed steg', () => {
-        const flatConfig: Record<string, StepDefinition> = {
-            start: { route: 'start' },
-            barn: { route: 'barn', isCompleted: () => true },
-            arbeid: { route: 'arbeid' },
-            oppsummering: { route: 'oppsummering' },
-        };
-        const steps = getIncludedSteps(stepOrder, flatConfig, {});
-        expect(findNextStepId(steps, 'start')).toBe('arbeid');
-    });
-
-    it('faller tilbake til neste steg i rekkefølge når alle gjenstående er completed', () => {
-        const configAllComplete: Record<string, StepDefinition> = {
-            start: { route: 'start' },
-            barn: { route: 'barn', isCompleted: () => true },
-            arbeid: { route: 'arbeid', isCompleted: () => true },
-            oppsummering: { route: 'oppsummering', isCompleted: () => true },
-        };
-        const steps = getIncludedSteps(stepOrder, configAllComplete, { harBarn: true, jobber: true });
-        expect(findNextStepId(steps, 'start')).toBe('barn');
-    });
-
-    it('returnerer undefined for ukjent fromStepId når ingen uferdige steg finnes', () => {
-        const configAllComplete: Record<string, StepDefinition> = {
-            start: { route: 'start', isCompleted: () => true },
-            barn: { route: 'barn', isCompleted: () => true },
-            arbeid: { route: 'arbeid', isCompleted: () => true },
-            oppsummering: { route: 'oppsummering', isCompleted: () => true },
-        };
-        const steps = getIncludedSteps(stepOrder, configAllComplete, { harBarn: true, jobber: true });
-        expect(findNextStepId(steps, 'ukjent')).toBeUndefined();
-    });
-
-    it('returnerer undefined når fromStepId er siste steg', () => {
-        const steps = getIncludedSteps(stepOrder, config, {});
-        expect(findNextStepId(steps, 'oppsummering')).toBeUndefined();
     });
 });

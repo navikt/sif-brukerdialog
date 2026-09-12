@@ -5,13 +5,13 @@ import {
     slettYtelseMellomlagring,
 } from '@sif/api/k9-prosessering';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
 import { SøknadStepFormProvider } from '../consistency/SøknadStepFormContext';
 import { SøknadAppContext, SøknadAppContextValue } from '../context/SøknadAppContext';
 import { createSøknadAppStore } from '../store/createSøknadAppStore';
 import { MellomlagringBlob, SøknadRouterProps } from '../types';
-import { buildStepPath } from '../utils/routeUtils';
+import { buildStepPath, KVITTERING_PATH } from '../utils/routeUtils';
 const isMellomlagringBlob = (value: unknown): value is MellomlagringBlob => {
     if (typeof value !== 'object' || value === null) return false;
     const v = value as Record<string, unknown>;
@@ -36,8 +36,9 @@ const DEFAULT_RESUME_LATER_URL = 'https://www.nav.no/minside';
  * Dersom gyldig mellomlagring finnes, navigeres bruker automatisk til
  * gjenopptakingspunktet. Uten mellomlagring vises children (velkommensiden).
  *
- * Etter vellykket innsending vises `kvitteringElement` basert på Zustand-state
- * (ikke rute-basert — kvitteringen er ikke tilgjengelig via direkte URL).
+ * Etter vellykket innsending synkes URL-en til `KVITTERING_PATH`, og routeren viser
+ * `kvitteringElement` i stedet for children. Kvitteringsruten eies av rammeverket,
+ * ikke av appen, og kan ikke åpnes via direkte URL uten innsendt søknad.
  *
  * ---
  * ## Navigasjonsansvar i rammeverket
@@ -53,18 +54,20 @@ const DEFAULT_RESUME_LATER_URL = 'https://www.nav.no/minside';
  * | Klikk i progress-stepper         | SøknadStep.onStepSelect       |
  * | Avbryt → forsiden                 | SøknadStep.onAbort            |
  * | Fortsett senere                   | SøknadStep.onResumeLater      |
- * | Kvittering etter innsending       | useSøknadSendt                |
+ * | Kvittering etter innsending       | SøknadRouter (useEffect nedenfor) |
  * | URL-guard / redirect              | StepRouteGuard (passive)      |
  *
- * Appen er ansvarlig for <Routes>-oppsett. Bruk <SøknadStepGuard> for å
- * beskytte steg-rutene.
+ * Appen er ansvarlig for <Routes>-oppsett for velkomstside og steg. Bruk
+ * <SøknadStepGuard> for å beskytte steg-rutene. Kvitteringsruten settes opp
+ * av routeren via kvitteringElement.
  *
  * Bruk i app (eksempel):
  * ```tsx
  * // Soknad.tsx:
  * <SøknadRouter
  *   config={...} stepOrder={...} ytelse="aktivitetspenger" versjon={1}
- *   applicationTitle="..." kvitteringElement={<KvitteringPage />}>
+ *   applicationTitle="..."
+ *   kvitteringElement={<KvitteringPage />}>
  *   <Routes>
  *     <Route path="/" element={<VelkommenPage />} />
  *     <Route path="/soknad" element={<SøknadStepGuard />}>
@@ -83,8 +86,8 @@ export const SøknadRouter = ({
     basePath = '/soknad',
     validateMellomlagring,
     resumeLaterUrl = DEFAULT_RESUME_LATER_URL,
-    kvitteringElement,
     loadingElement,
+    kvitteringElement,
     formValuesToSøknadsdata,
     children,
 }: SøknadRouterProps) => {
@@ -152,6 +155,16 @@ export const SøknadRouter = ({
         }
     }, [isInitialized, resumeStepId, location.pathname, config, basePath, navigate]);
 
+    // Navigasjon: når søknaden er sendt — synk URL til kvitteringsruten.
+    // Effekten kjører etter commit, så søknadSendt er garantert true når
+    // SøknadKvitteringGuard evaluerer ruten. Dermed er rekkefølgen mellom
+    // state-oppdatering og navigering ikke lenger noe kallstedet må tenke på.
+    useEffect(() => {
+        if (søknadSendt && location.pathname !== KVITTERING_PATH) {
+            navigate(KVITTERING_PATH, { replace: true });
+        }
+    }, [søknadSendt, location.pathname, navigate]);
+
     const lagreMellomlagring = useCallback(
         async (blobData: MellomlagringBlob): Promise<void> => {
             await oppdaterYtelseMellomlagring(
@@ -193,15 +206,22 @@ export const SøknadRouter = ({
         ],
     );
 
+    // Kvitteringsruten eies av rammeverket: URL-en er kilden til sannhet for hva
+    // som vises, og søknadSendt avgjør kun om ruten er tilgjengelig. Dermed kan
+    // kvitteringen ikke åpnes via direkte URL uten innsendt søknad.
+    const renderContent = () => {
+        if (!isInitialized) {
+            return loadingElement || null;
+        }
+        if (location.pathname !== KVITTERING_PATH) {
+            return children;
+        }
+        return søknadSendt ? kvitteringElement : <Navigate to="/" replace />;
+    };
+
     return (
         <SøknadStepFormProvider>
-            <SøknadAppContext.Provider value={contextValue}>
-                {søknadSendt && kvitteringElement
-                    ? kvitteringElement
-                    : isInitialized
-                      ? children
-                      : loadingElement || null}
-            </SøknadAppContext.Provider>
+            <SøknadAppContext.Provider value={contextValue}>{renderContent()}</SøknadAppContext.Provider>
         </SøknadStepFormProvider>
     );
 };
