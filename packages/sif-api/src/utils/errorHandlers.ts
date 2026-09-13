@@ -102,10 +102,14 @@ export const handleApiError = (
 };
 
 const getNetworkErrorMessage = (error: AxiosError, httpStatusMessages?: HttpStatusErrorMessages): string => {
-    // Sjekk om det er spesifikk ProblemDetail fra opplyser-tjenesten
+    // ProblemDetail fra backend har forrang, men bare når den faktisk har en tekst å vise.
+    // Uten tekst faller vi videre til statuskode, slik at httpStatusMessages får virke.
     if (isProblemDetail(error.response?.data)) {
         const { title, detail } = error.response.data;
-        return detail || title || 'Ukjent feil oppstod under nettverksforespørselen.';
+        const problemDetailMessage = detail || title;
+        if (problemDetailMessage) {
+            return problemDetailMessage;
+        }
     }
 
     // Hent statuskode og tilhørende melding
@@ -129,11 +133,24 @@ const getNetworkErrorMessage = (error: AxiosError, httpStatusMessages?: HttpStat
     return error.message || 'En ukjent feil oppstod under nettverksforespørselen.';
 };
 
-/** Overstyrer generert zod schema for å tillate strings som ikke har url format (for lokal utvikling) */
-export const zProblemDetailWithoutUrl = zProblemDetail.omit({ type: true, instance: true }).extend({
-    type: z.string().optional(), // Endrer type til kun string
-    instance: z.string().optional(), // Endrer type til kun string
-});
+const harTekst = (verdi: unknown): boolean => typeof verdi === 'string' && verdi.trim().length > 0;
+
+/**
+ * Overstyrer generert zod schema for å tillate strings som ikke har url format (for lokal utvikling).
+ *
+ * Alle feltene i ProblemDetail er valgfrie, og z.object stripper ukjente nøkler i stedet for å feile.
+ * Skjemaet alene ville derfor godtatt et hvilket som helst objekt, inkludert `{}`. Vi krever minst ett
+ * identifiserende felt for at svaret skal regnes som en ProblemDetail.
+ */
+export const zProblemDetailWithoutUrl = zProblemDetail
+    .omit({ type: true, instance: true })
+    .extend({
+        type: z.string().optional(), // Endrer type til kun string
+        instance: z.string().optional(), // Endrer type til kun string
+    })
+    .refine(({ type, title, detail }) => harTekst(type) || harTekst(title) || harTekst(detail), {
+        error: 'Mangler type, title og detail — regnes ikke som ProblemDetail',
+    });
 
 export const isProblemDetail = (obj: unknown): obj is ProblemDetail => {
     const result = zProblemDetailWithoutUrl.safeParse(obj);

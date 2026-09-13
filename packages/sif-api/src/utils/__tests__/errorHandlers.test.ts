@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
+import { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { ZodError, ZodIssue } from 'zod';
 
-import { ApiErrorType, getFeltOgMeldingFraZodError, handleApiError } from '../errorHandlers';
+import { ApiErrorType, getFeltOgMeldingFraZodError, handleApiError, isProblemDetail } from '../errorHandlers';
 
 const issue = (path: (string | number)[]): ZodIssue =>
     ({
@@ -12,6 +13,15 @@ const issue = (path: (string | number)[]): ZodIssue =>
     }) as unknown as ZodIssue;
 
 const MSG = 'Invalid input: expected boolean, received undefined';
+
+const axiosFeil = (data: unknown, status = 500): AxiosError =>
+    new AxiosError('Request failed with status code 500', 'ERR_BAD_RESPONSE', undefined, undefined, {
+        data,
+        status,
+        statusText: '',
+        headers: {},
+        config: {} as InternalAxiosRequestConfig,
+    });
 
 describe('getFeltOgMeldingFraZodError', () => {
     it('stripper body-prefikset og beholder meldingen', () => {
@@ -55,5 +65,43 @@ describe('handleApiError med ZodError', () => {
         expect(apiError.message).toBe(`søkerNorskIdent: ${MSG}, startdato: ${MSG}`);
         expect(apiError.context).toBe('sendSøknad');
         expect(apiError.originalError).toBe(error);
+    });
+});
+
+describe('isProblemDetail', () => {
+    it('avviser tomt objekt selv om alle felt er valgfrie', () => {
+        expect(isProblemDetail({})).toBe(false);
+    });
+
+    it('avviser objekt uten identifiserende felt', () => {
+        expect(isProblemDetail({ noeHeltAnnet: 'verdi' })).toBe(false);
+    });
+
+    it('godtar svar med type, title og detail', () => {
+        const problemDetail = {
+            type: 'https://k9-brukerdialog-prosessering/problem-details/invalid-request-parameters',
+            title: 'invalid-request-parameters',
+            status: 400,
+            detail: 'Forespørselen inneholder valideringsfeil',
+        };
+
+        expect(isProblemDetail(problemDetail)).toBe(true);
+    });
+});
+
+describe('handleApiError med nettverksfeil', () => {
+    it('bruker detail fra ProblemDetail', () => {
+        const error = axiosFeil({ title: 'invalid-request-parameters', detail: 'Startdato er ugyldig' }, 400);
+
+        expect(handleApiError(error, 'sendSøknad').message).toBe('Startdato er ugyldig');
+    });
+
+    it('bruker statuskode-melding når svaret er et tomt objekt', () => {
+        const error = axiosFeil({}, 500);
+
+        const apiError = handleApiError(error, 'sendSøknad', { 500: 'Tjenesten er ikke tilgjengelig' });
+
+        expect(apiError.type).toBe(ApiErrorType.NetworkError);
+        expect(apiError.message).toBe('Tjenesten er ikke tilgjengelig');
     });
 });
