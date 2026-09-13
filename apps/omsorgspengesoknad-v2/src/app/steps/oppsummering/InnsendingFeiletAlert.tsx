@@ -1,14 +1,15 @@
 import { List, LocalAlert } from '@navikt/ds-react';
-import { InvalidParameterViolation } from '@sif/api';
+import { ApiError, ApiErrorType, getInvalidParametersFromApiError, InvalidParameterViolation } from '@sif/api';
+import { useEffect, useRef } from 'react';
 
 import { AppText } from '../../i18n';
 
 interface Props {
-    invalidParameters: InvalidParameterViolation[];
+    error: ApiError;
 }
 
-const renderFeilmelding = (invalidParameter: InvalidParameterViolation) => {
-    const erBeskrivelseFeil = invalidParameter.parameterName === 'høyereRisikoForFraværBeskrivelse';
+const renderFeilmelding = (invalidParameter?: InvalidParameterViolation) => {
+    const erBeskrivelseFeil = invalidParameter?.parameterName === 'høyereRisikoForFraværBeskrivelse';
 
     return (
         <>
@@ -39,15 +40,25 @@ const renderFeilmelding = (invalidParameter: InvalidParameterViolation) => {
     );
 };
 
-export const InnsendingFeiletAlert = ({ invalidParameters }: Props) => {
+export const InnsendingFeiletAlert = ({ error }: Props) => {
+    const alertRef = useRef<HTMLDivElement>(null);
+    const erZodFeil = error.type === ApiErrorType.ZodValidationError;
+    const invalidParameters = erZodFeil ? [] : getInvalidParametersFromApiError(error);
+
+    useEffect(() => {
+        alertRef.current?.focus();
+    }, [error]);
+
     return (
-        <LocalAlert status="error">
+        <LocalAlert status="error" ref={alertRef}>
             <LocalAlert.Header>
                 <LocalAlert.Title>
                     <AppText id="oppsummeringSteg.innsendingFeilet.tittel" />
                 </LocalAlert.Title>
             </LocalAlert.Header>
-            <LocalAlert.Content>{renderFeilmelding(invalidParameters[0])}</LocalAlert.Content>
+            <LocalAlert.Content>
+                {invalidParameters ? renderFeilmelding(invalidParameters[0]) : error.message}
+            </LocalAlert.Content>
         </LocalAlert>
     );
 };
