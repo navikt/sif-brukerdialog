@@ -5,6 +5,8 @@ import { annetBarnMessages_nb } from '../dialogs/annet-barn/i18n/nb';
 import { annetBarnMessages_nn } from '../dialogs/annet-barn/i18n/nn';
 import { bostedUtlandMessages_nb } from '../dialogs/bosted-utland/i18n/nb';
 import { bostedUtlandMessages_nn } from '../dialogs/bosted-utland/i18n/nn';
+import { arbeidUtlandMessages_nb } from '../dialogs/arbeid-utland/i18n/nb';
+import { arbeidUtlandMessages_nn } from '../dialogs/arbeid-utland/i18n/nn';
 import { enkeltdatoMessages_nb } from '../dialogs/enkeltdatoer/i18n/nb';
 import { enkeltdatoMessages_nn } from '../dialogs/enkeltdatoer/i18n/nn';
 import { ferieuttakMessages_nb } from '../dialogs/ferieuttak/i18n/nb';
@@ -31,6 +33,7 @@ import { velgRegistrertBarnPanelMessages_nn } from '../panels/velg-registrert-ba
 const nb = {
     ...annetBarnMessages_nb,
     ...bostedUtlandMessages_nb,
+    ...arbeidUtlandMessages_nb,
     ...enkeltdatoMessages_nb,
     ...ferieuttakMessages_nb,
     ...fosterbarnMessages_nb,
@@ -46,6 +49,7 @@ const nb = {
 
 const nn: Record<keyof typeof nb, string> = {
     ...annetBarnMessages_nn,
+    ...arbeidUtlandMessages_nn,
     ...bostedUtlandMessages_nn,
     ...enkeltdatoMessages_nn,
     ...ferieuttakMessages_nn,

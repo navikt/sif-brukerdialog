@@ -14,7 +14,7 @@ export const Kvittering = ({ infoTittel, infoInnhold, children }: Props) => {
             <InfoCard data-color="success">
                 <InfoCard.Message icon={<CheckmarkCircleFillIcon aria-hidden="true" color="#06893A" />}>
                     <VStack gap="space-16">
-                        <Heading level="2" size="small">
+                        <Heading level="1" size="small">
                             {infoTittel}
                         </Heading>
                         {infoInnhold}
