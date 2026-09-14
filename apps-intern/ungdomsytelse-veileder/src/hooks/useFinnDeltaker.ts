@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
-import { ApiError } from '@navikt/ung-common';
+import { ApiError } from '@sif/api';
 import { isAxiosError } from 'axios';
 import { findDeltakerByIdent } from '../api/deltaker/findDeltaker';
 import { queryKeys } from '../queries/queryKeys';

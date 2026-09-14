@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { ApiError } from '@navikt/ung-common';
+import { ApiError } from '@sif/api';
 import { getDeltakerById } from '../api/deltaker/getDeltaker';
 import { queryKeys } from '../queries/queryKeys';
 import { Deltaker } from '../types/Deltaker';

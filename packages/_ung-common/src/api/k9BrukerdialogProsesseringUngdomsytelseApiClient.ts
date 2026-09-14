@@ -2,9 +2,9 @@ import { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { getCommonEnv, getMaybeEnv } from '@navikt/sif-common-env';
 import { v4 } from 'uuid';
 
-import { commonRequestHeader, isUnauthorized } from './';
+import { commonRequestHeader, isUnauthorized } from '.';
 
-export const initK9BrukerdialogProsesseringApiClient = () => {
+export const initK9BrukerdialogProsesseringUngdomsytelseApiClient = () => {
     const apiBaseUrl = (typeof window !== 'undefined' && window.location.origin) || '';
     /** Set config for generert klient */
     ungdomsytelse.client.setConfig({

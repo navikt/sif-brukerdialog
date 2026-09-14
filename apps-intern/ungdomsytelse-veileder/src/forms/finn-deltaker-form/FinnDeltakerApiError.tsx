@@ -1,5 +1,5 @@
 import { Alert, BodyShort, Box } from '@navikt/ds-react';
-import { ApiError } from '@navikt/ung-common';
+import { ApiError } from '@sif/api';
 import { isAxiosError } from 'axios';
 import FødselsnummerInline from '../../atoms/FødselsnummerInline';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';

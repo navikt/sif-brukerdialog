@@ -12,7 +12,7 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { getCheckedValidator, getDateValidator, getYesOrNoValidator } from '@navikt/sif-validation';
-import { ApiErrorType } from '@navikt/ung-common';
+import { ApiErrorType } from '@sif/api';
 import dayjs from 'dayjs';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import { useMeldInnDeltaker } from '../../hooks/useMeldInnDeltaker';

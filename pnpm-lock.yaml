@@ -118,12 +118,12 @@ importers:
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/sif-validation
-      '@navikt/ung-common':
-        specifier: workspace:*
-        version: link:../../packages/ung-common
       '@navikt/ung-deltakelse-opplyser-api-veileder':
         specifier: workspace:*
         version: link:../../packages/ung-deltakelse-opplyser-api-veileder
+      '@sif/api':
+        specifier: workspace:*
+        version: link:../../packages/sif-api
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/sif-apm
@@ -3723,6 +3723,61 @@ importers:
         specifier: 5.0.0
         version: 5.0.0(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.0)(@vitest/coverage-v8@5.0.0)(@vitest/ui@5.0.0)(jsdom@28.1.0(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.5.0)(typescript@6.0.3))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.104.0)(sass@1.104.0)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.0))
 
+  packages/_ung-common:
+    dependencies:
+      '@navikt/k9-brukerdialog-prosessering-api':
+        specifier: workspace:*
+        version: link:../k9-brukerdialog-prosessering-api
+      '@navikt/sif-common-env':
+        specifier: workspace:*
+        version: link:../sif-common-env
+      '@navikt/ung-deltakelse-opplyser-api-deltaker':
+        specifier: workspace:*
+        version: link:../ung-deltakelse-opplyser-api-deltaker
+      '@navikt/ung-deltakelse-opplyser-api-veileder':
+        specifier: workspace:*
+        version: link:../ung-deltakelse-opplyser-api-veileder
+    devDependencies:
+      '@navikt/ds-react':
+        specifier: 8.16.2
+        version: 8.16.2(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      '@navikt/sif-common-utils':
+        specifier: workspace:*
+        version: link:../sif-common-utils
+      '@sif/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config-sif
+      axios:
+        specifier: 1.20.0
+        version: 1.20.0
+      config:
+        specifier: workspace:*
+        version: link:../config
+      dayjs:
+        specifier: 1.11.23
+        version: 1.11.23
+      postcss:
+        specifier: 8.5.26
+        version: 8.5.26
+      react:
+        specifier: 19.2.8
+        version: 19.2.8
+      react-dom:
+        specifier: 19.2.8
+        version: 19.2.8(react@19.2.8)
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      uuid:
+        specifier: ^14.0.2
+        version: 14.0.2
+      vitest:
+        specifier: 5.0.0
+        version: 5.0.0(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.0)(@vitest/coverage-v8@5.0.0)(@vitest/ui@5.0.0)(jsdom@28.1.0(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.5.0)(typescript@6.0.3))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.104.0)(sass@1.104.0)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.0))
+      zod:
+        specifier: 4.5.4
+        version: 4.5.4
+
   packages/appstatus-react-ds:
     dependencies:
       '@navikt/sif-common-hooks':
@@ -5550,61 +5605,6 @@ importers:
       typescript:
         specifier: 6.0.3
         version: 6.0.3
-      vitest:
-        specifier: 5.0.0
-        version: 5.0.0(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.0)(@vitest/coverage-v8@5.0.0)(@vitest/ui@5.0.0)(jsdom@28.1.0(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.5.0)(typescript@6.0.3))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.104.0)(sass@1.104.0)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.0))
-      zod:
-        specifier: 4.5.4
-        version: 4.5.4
-
-  packages/ung-common:
-    dependencies:
-      '@navikt/k9-brukerdialog-prosessering-api':
-        specifier: workspace:*
-        version: link:../k9-brukerdialog-prosessering-api
-      '@navikt/sif-common-env':
-        specifier: workspace:*
-        version: link:../sif-common-env
-      '@navikt/ung-deltakelse-opplyser-api-deltaker':
-        specifier: workspace:*
-        version: link:../ung-deltakelse-opplyser-api-deltaker
-      '@navikt/ung-deltakelse-opplyser-api-veileder':
-        specifier: workspace:*
-        version: link:../ung-deltakelse-opplyser-api-veileder
-    devDependencies:
-      '@navikt/ds-react':
-        specifier: 8.16.2
-        version: 8.16.2(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@navikt/sif-common-utils':
-        specifier: workspace:*
-        version: link:../sif-common-utils
-      '@sif/eslint-config':
-        specifier: workspace:*
-        version: link:../eslint-config-sif
-      axios:
-        specifier: 1.20.0
-        version: 1.20.0
-      config:
-        specifier: workspace:*
-        version: link:../config
-      dayjs:
-        specifier: 1.11.23
-        version: 1.11.23
-      postcss:
-        specifier: 8.5.26
-        version: 8.5.26
-      react:
-        specifier: 19.2.8
-        version: 19.2.8
-      react-dom:
-        specifier: 19.2.8
-        version: 19.2.8(react@19.2.8)
-      typescript:
-        specifier: 6.0.3
-        version: 6.0.3
-      uuid:
-        specifier: ^14.0.2
-        version: 14.0.2
       vitest:
         specifier: 5.0.0
         version: 5.0.0(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.0)(@vitest/coverage-v8@5.0.0)(@vitest/ui@5.0.0)(jsdom@28.1.0(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.5.0)(typescript@6.0.3))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.104.0)(sass@1.104.0)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.0))
