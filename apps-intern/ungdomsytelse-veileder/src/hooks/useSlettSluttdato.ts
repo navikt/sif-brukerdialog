@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ApiError } from '@navikt/ung-common';
+import { ApiError } from '@sif/api';
 import { queryKeys } from '../queries/queryKeys';
 import { AppHendelse } from '../utils/analytics';
 import { useAppEventLogger } from '../utils/analyticsHelper';

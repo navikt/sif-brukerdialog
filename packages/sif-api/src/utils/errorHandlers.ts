@@ -106,7 +106,7 @@ const getNetworkErrorMessage = (error: AxiosError, httpStatusMessages?: HttpStat
     // Uten tekst faller vi videre til statuskode, slik at httpStatusMessages får virke.
     if (isProblemDetail(error.response?.data)) {
         const { title, detail } = error.response.data;
-        const problemDetailMessage = detail || title;
+        const problemDetailMessage = harTekst(detail) ? detail : title;
         if (problemDetailMessage) {
             return problemDetailMessage;
         }

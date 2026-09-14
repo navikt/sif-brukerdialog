@@ -5,6 +5,7 @@ import { dateRangeFormatter, getCountryName, Locale } from '@sif/utils';
 import { ReactNode } from 'react';
 
 import { ArbeidUtland, ArbeidUtlandVariant } from '.';
+import { SifSoknadFormsText } from '../../i18n';
 
 interface Props {
     arbeidssteder: ArbeidUtland[];
@@ -27,7 +28,10 @@ const renderArbeidUtlandLabel = (
     const title = getTitle(arbeidssted, locale);
 
     const idInfo = arbeidssted.utenlandskNasjonalId ? (
-        <>ID-nummer/personnummer: {arbeidssted.utenlandskNasjonalId}</>
+        <SifSoknadFormsText
+            id="@sifSoknadForms.arbeidUtlandList.utenlandskNasjonalId"
+            values={{ utenlandskNasjonalId: arbeidssted.utenlandskNasjonalId }}
+        />
     ) : null;
 
     return (
@@ -37,7 +41,10 @@ const renderArbeidUtlandLabel = (
             </BodyShort>
             {arbeidUtlandVariant == 'generell' ? (
                 <BodyShort size="small">
-                    Jobbet i perioden: {arbeidssted.jobbetIPerioden ? 'Ja' : 'Nei'}. {idInfo}
+                    <SifSoknadFormsText
+                        id="@sifSoknadForms.arbeidUtlandList.jobbetIPerioden"
+                        values={{ jobbetIPerioden: arbeidssted.jobbetIPerioden, idInfo }}
+                    />
                 </BodyShort>
             ) : idInfo ? (
                 <BodyShort size="small">{idInfo}</BodyShort>
