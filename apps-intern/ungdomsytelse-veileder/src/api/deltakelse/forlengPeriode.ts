@@ -1,4 +1,4 @@
-import { handleApiError } from '@navikt/ung-common';
+import { handleApiError } from '@sif/api';
 import { Veileder } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import { Deltakelse, deltakelseSchema } from '../../types/Deltakelse';
 

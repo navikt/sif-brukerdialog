@@ -1,10 +1,10 @@
-import { ApiError } from '@navikt/ung-common';
+import { ApiError } from '@sif/api';
 import constate from 'constate';
 
 const MAX_AWAIT_TIME = 500;
 
 export enum AnalyticsEvents {
-    'apiError' = 'api-error',
+    apiError = 'api-error',
 }
 
 export enum AppHendelse {

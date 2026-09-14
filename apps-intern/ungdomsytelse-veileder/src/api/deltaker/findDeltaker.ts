@@ -1,4 +1,4 @@
-import { handleApiError } from '@navikt/ung-common';
+import { handleApiError } from '@sif/api';
 import { Oppslag } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import {
     Deltaker,

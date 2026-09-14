@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ApiError } from '@navikt/ung-common';
+import { ApiError } from '@sif/api';
 import { Avslutningsårsak } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import { endreSluttdatoForDeltakelse } from '../api/deltakelse/endreSluttdatoForDeltakelse';
 import { endreStartdatoForDeltakelse } from '../api/deltakelse/endreStartdatoForDeltakelse';

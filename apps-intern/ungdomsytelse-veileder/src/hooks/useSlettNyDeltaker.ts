@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ApiError } from '@navikt/ung-common';
+import { ApiError } from '@sif/api';
 import { slettDeltaker } from '../api/deltaker/slettDeltaker';
 import { queryKeys } from '../queries/queryKeys';
 
