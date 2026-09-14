@@ -24,6 +24,7 @@ type Props<T extends FieldValues> = {
     description?: ReactNode;
     fromInputProps: DatepickerFieldProps<T>;
     toInputProps: DatepickerFieldProps<T>;
+    dropdownCaption?: boolean;
     validate?: ({
         fromDate,
         toDate,
@@ -40,6 +41,7 @@ export function SifDateRangePicker<T extends FieldValues>({
     description,
     fromInputProps,
     toInputProps,
+    dropdownCaption,
     validate,
 }: Props<T>) {
     const { watch, setError, clearErrors } = useFormContext<T>();
@@ -73,8 +75,8 @@ export function SifDateRangePicker<T extends FieldValues>({
         <SifInputGroup name={name} legend={legend} hideLegend={hideLegend}>
             {description}
             <HStack gap="space-16" wrap>
-                <SifDatepicker<T> {...fromInputProps} maxDate={resolvedFromMaxDate} />
-                <SifDatepicker<T> {...toInputProps} minDate={resolvedToMinDate} />
+                <SifDatepicker<T> {...fromInputProps} maxDate={resolvedFromMaxDate} dropdownCaption={dropdownCaption} />
+                <SifDatepicker<T> {...toInputProps} minDate={resolvedToMinDate} dropdownCaption={dropdownCaption} />
             </HStack>
         </SifInputGroup>
     );
