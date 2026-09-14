@@ -90,6 +90,7 @@ export const ArbeidUtlandDialogForm = ({
                         name={ArbeidUtlandFormFields.landkode}
                         label={sifIntl.text('@sifSoknadForms.arbeidUtland.form.land.label')}
                         validate={validateLandkode}
+                        excludeNorway={true}
                     />
                     <DateRangePicker
                         name="arbeidssted"
