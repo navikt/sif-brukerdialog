@@ -28,6 +28,8 @@ export const arbeidUtlandMessages_nn: Record<keyof typeof arbeidUtlandMessages_n
         'Du må oppgje når perioden med jobb starta i eit gyldig format. Gyldig format er dd.mm.åååå.',
     '@sifSoknadForms.arbeidUtlandForm.validation.arbeidssted.fromDateIsAfterToDate':
         'Datoen perioden med jobb starta kan ikkje vere etter datoen det vart avslutta. Skriv inn eller vel startdato frå datoveljaren.',
+    '@sifSoknadForms.arbeidUtlandForm.validation.arbeidssted.perioderOverlapper':
+        'Perioden med jobb kan ikkje overlappe med ein annan periode. Vel ein annan periode.',
     '@sifSoknadForms.arbeidUtlandList.utenlandskNasjonalId': 'ID-nummer/personnummer:  {utenlandskNasjonalId}',
     '@sifSoknadForms.arbeidUtlandList.jobbetIPerioden':
         'Jobba i perioden: {jobbetIPerioden, select, true {Ja} other {Nei}}. {idInfo}',

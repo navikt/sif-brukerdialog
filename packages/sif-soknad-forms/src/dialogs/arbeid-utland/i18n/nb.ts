@@ -26,6 +26,8 @@ export const arbeidUtlandMessages_nb = {
         'Du må oppgi når perioden med jobb startet i et gyldig format. Gyldig format er dd.mm.åååå.',
     '@sifSoknadForms.arbeidUtlandForm.validation.arbeidssted.fromDateIsAfterToDate':
         'Datoen perioden med jobb startet kan ikke være etter datoen det ble avsluttet. Skriv inn eller velg startdato fra datovelgeren.',
+    '@sifSoknadForms.arbeidUtlandForm.validation.arbeidssted.perioderOverlapper':
+        'Perioden med jobb kan ikke overlappe med en annen periode. Velg en annen periode.',
     '@sifSoknadForms.arbeidUtlandForm.validation.tom.dateHasNoValue':
         'Du må oppgi hvilken dato perioden med jobb ble avsluttet. Skriv inn eller velg dato fra datovelgeren.',
     '@sifSoknadForms.arbeidUtlandForm.validation.tom.dateIsAfterMax':

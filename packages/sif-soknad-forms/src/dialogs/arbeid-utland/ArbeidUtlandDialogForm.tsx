@@ -1,5 +1,5 @@
 import { FormLayout } from '@navikt/sif-common-ui';
-import { countryIsMemberOfEøsOrEfta, ISODate } from '@sif/utils';
+import { countryIsMemberOfEøsOrEfta, dateRangesCollide, ISODate } from '@sif/utils';
 import {
     getISODateValidator,
     getRequiredFieldValidator,
@@ -97,6 +97,15 @@ export const ArbeidUtlandDialogForm = ({
                         dropdownCaption={true}
                         validate={validateField('arbeidssted', ({ fromDate, toDate }) => {
                             if (fromDate && toDate && fromDate > toDate) return 'fromDateIsAfterToDate';
+                            if (
+                                fromDate &&
+                                toDate &&
+                                utilgjengeligePerioder.some((periode) =>
+                                    dateRangesCollide([{ from: fromDate, to: toDate }, periode]),
+                                )
+                            ) {
+                                return 'perioderOverlapper';
+                            }
                         })}
                         fromInputProps={{
                             name: ArbeidUtlandFormFields.fom,
