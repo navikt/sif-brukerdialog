@@ -1,9 +1,12 @@
 export const arbeidUtlandMessages_nb = {
     '@sifSoknadForms.arbeidUtland.dialog.tittel.generell': 'Utenlandsopphold',
-    '@sifSoknadForms.arbeidUtland.dialog.beskrivelse.1':
+    '@sifSoknadForms.arbeidUtland.dialog.generell.beskrivelse.1':
         'Oppgi land og periode du har bodd, studert eller jobbet utenfor Norge.',
-    '@sifSoknadForms.arbeidUtland.dialog.beskrivelse.2': 'Ta med alle perioder siden du var 16 år.',
+    '@sifSoknadForms.arbeidUtland.dialog.generell.beskrivelse.2': 'Ta med alle perioder siden du var 16 år.',
     '@sifSoknadForms.arbeidUtland.dialog.tittel.periodeMedJobb': 'Periode med jobb utenfor Norge',
+    '@sifSoknadForms.arbeidUtland.dialog.periodeMedJobb.beskrivelse.1':
+        'Oppgi land og periode du har jobbet utenfor Norge de fem siste årene.',
+    '@sifSoknadForms.arbeidUtland.dialog.periodeMedJobb.beskrivelse.2': 'Ta med alle perioder siden du var 16 år.',
     '@sifSoknadForms.arbeidUtland.dialog.avbrytKnapp': 'Avbryt',
     '@sifSoknadForms.arbeidUtland.dialog.leggTilKnapp': 'Legg til',
     '@sifSoknadForms.arbeidUtland.dialog.oppdaterKnapp': 'Oppdater',
@@ -31,6 +34,9 @@ export const arbeidUtlandMessages_nb = {
         'Datoen perioden med jobb ble avsluttet kan ikke være før {dato}. Skriv inn eller velg dato fra datovelgeren.',
     '@sifSoknadForms.arbeidUtlandForm.validation.tom.dateHasInvalidFormat':
         'Du må oppgi når perioden med jobb ble avsluttet i et gyldig format. Gyldig format er dd.mm.åååå.',
+    '@sifSoknadForms.arbeidUtlandList.utenlandskNasjonalId': 'ID-nummer/personnummer:  {utenlandskNasjonalId}',
+    '@sifSoknadForms.arbeidUtlandList.jobbetIPerioden':
+        'Jobbet i perioden: {jobbetIPerioden, select, true {Ja} other {Nei}}. {idInfo}',
     '@sifSoknadForms.arbeidUtlandForm.validation.tom.toDateIsBeforeFromDate':
         'Datoen perioden med jobb ble avsluttet kan ikke være før datoen det ble startet. Skriv inn eller velg sluttdato fra datovelgeren.',
     '@sifSoknadForms.arbeidUtlandForm.validation.landkode.noValue': 'Du må velge land',

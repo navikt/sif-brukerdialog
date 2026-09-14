@@ -47,10 +47,10 @@ export const ArbeidUtlandFormDialog = ({
                         <Dialog.Description>
                             <Box marginBlock="space-12">
                                 <BodyLong>
-                                    <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.beskrivelse.1" />
+                                    <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.generell.beskrivelse.1" />
                                 </BodyLong>
                                 <BodyLong>
-                                    <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.beskrivelse.2" />
+                                    <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.generell.beskrivelse.2" />
                                 </BodyLong>
                             </Box>
                         </Dialog.Description>
@@ -63,7 +63,10 @@ export const ArbeidUtlandFormDialog = ({
                         <Dialog.Description>
                             <Box marginBlock="space-12">
                                 <BodyLong>
-                                    Oppgi land og periode du har jobbet utenfor Norge de fem siste årene.
+                                    <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.periodeMedJobb.beskrivelse.1" />
+                                </BodyLong>
+                                <BodyLong>
+                                    <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.periodeMedJobb.beskrivelse.2" />
                                 </BodyLong>
                             </Box>
                         </Dialog.Description>

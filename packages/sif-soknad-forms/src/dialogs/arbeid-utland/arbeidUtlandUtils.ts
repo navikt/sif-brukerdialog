@@ -12,8 +12,14 @@ const formValuesToArbeidUtland = (
     const from = datePickerUtils.parseDatePickerValueToISODate(values.fom);
     const to = datePickerUtils.parseDatePickerValueToISODate(values.tom);
 
-    if (!from || !to) {
-        throw new Error('Invalid date values');
+    if (!from || !to || !values.landkode) {
+        throw new Error('Datoer er ikke gyldig');
+    }
+    if (!values.landkode) {
+        throw new Error('Land er ikke valgt');
+    }
+    if (variant === 'generell' && !values.jobbetIPerioden) {
+        throw new Error('Jobbet i perioden er ikke valgt');
     }
 
     const jobbetIPerioden = variant === 'periodeMedJobb' || values.jobbetIPerioden === YesOrNo.YES;

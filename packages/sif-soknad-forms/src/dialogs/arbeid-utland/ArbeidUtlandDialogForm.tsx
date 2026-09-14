@@ -6,8 +6,8 @@ import {
     getStringValidator,
     getYesOrNoValidator,
 } from '@navikt/sif-validation';
-import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
-import { FormProvider, useForm } from 'react-hook-form';
+import { SifForm, createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
+import { useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
 import { ArbeidUtland, ArbeidUtlandVariant } from '.';
@@ -53,6 +53,7 @@ export const ArbeidUtlandDialogForm = ({
 }: ArbeidUtlandFormProps) => {
     const sifIntl = useSifSoknadFormsIntl();
     const { validateField } = useSifValidate('@sifSoknadForms.arbeidUtlandForm');
+    // const [invalidValues, setInvalidValues] = useState<string | undefined>();
 
     const methods = useForm<ArbeidUtlandFormValues>({
         defaultValues: arbeidssted ? arbeidUtlandUtils.arbeidUtlandToFormValues(arbeidssted) : undefined,
@@ -61,13 +62,17 @@ export const ArbeidUtlandDialogForm = ({
     const utilgjengeligePerioder = (alleArbeider?.filter((b) => b.id !== arbeidssted?.id) || []).map((b) => b.periode);
 
     const handleValidSubmit = (values: ArbeidUtlandFormValues): void => {
-        const arbeidUtland = arbeidUtlandUtils.formValuesToArbeidUtland(
-            values,
-            variant,
-            sifIntl.locale,
-            arbeidssted?.id,
-        );
-        onValidSubmit(arbeidUtland);
+        try {
+            const arbeidUtland = arbeidUtlandUtils.formValuesToArbeidUtland(
+                values,
+                variant,
+                sifIntl.locale,
+                arbeidssted?.id,
+            );
+            onValidSubmit(arbeidUtland);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const validateLandkode = validateField(ArbeidUtlandFormFields.landkode, getRequiredFieldValidator());
@@ -78,88 +83,79 @@ export const ArbeidUtlandDialogForm = ({
     const jobbetIPerioden = variant === 'periodeMedJobb' || jobbetIPeriodenFormValue === YesOrNo.YES;
 
     return (
-        <FormProvider {...methods}>
-            <form
-                id={formId}
-                onSubmit={(event) => {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    methods.handleSubmit(handleValidSubmit)();
-                }}
-                noValidate>
-                <FormLayout.Content>
-                    <FormLayout.Questions>
-                        <CountrySelect
-                            name={ArbeidUtlandFormFields.landkode}
-                            label={sifIntl.text('@sifSoknadForms.arbeidUtland.form.land.label')}
-                            validate={validateLandkode}
-                        />
-                        <DateRangePicker
-                            name="arbeidssted"
-                            legend={sifIntl.text('@sifSoknadForms.arbeidUtland.form.tidsperiode.legend')}
-                            dropdownCaption={true}
-                            validate={validateField('arbeidssted', ({ fromDate, toDate }) => {
-                                if (fromDate && toDate && fromDate > toDate) return 'fromDateIsAfterToDate';
-                            })}
-                            fromInputProps={{
-                                name: ArbeidUtlandFormFields.fom,
-                                label: sifIntl.text('@sifSoknadForms.arbeidUtland.form.fom.label'),
-                                minDate,
-                                maxDate,
+        <SifForm methods={methods} id={formId} onSubmit={handleValidSubmit}>
+            <FormLayout.Content>
+                <FormLayout.Questions>
+                    <CountrySelect
+                        name={ArbeidUtlandFormFields.landkode}
+                        label={sifIntl.text('@sifSoknadForms.arbeidUtland.form.land.label')}
+                        validate={validateLandkode}
+                    />
+                    <DateRangePicker
+                        name="arbeidssted"
+                        legend={sifIntl.text('@sifSoknadForms.arbeidUtland.form.tidsperiode.legend')}
+                        dropdownCaption={true}
+                        validate={validateField('arbeidssted', ({ fromDate, toDate }) => {
+                            if (fromDate && toDate && fromDate > toDate) return 'fromDateIsAfterToDate';
+                        })}
+                        fromInputProps={{
+                            name: ArbeidUtlandFormFields.fom,
+                            label: sifIntl.text('@sifSoknadForms.arbeidUtland.form.fom.label'),
+                            minDate,
+                            maxDate,
 
-                                disabledDateRanges: utilgjengeligePerioder,
-                                validate: validateField(
-                                    ArbeidUtlandFormFields.fom,
-                                    getISODateValidator({ required: true, min: minDate, max: maxDate }),
-                                    (errorCode) => {
-                                        if (errorCode === 'dateIsBeforeMin' && minDate)
-                                            return { dato: sifIntl.date(minDate, 'compact') };
-                                        if (errorCode === 'dateIsAfterMax' && maxDate)
-                                            return { dato: sifIntl.date(maxDate, 'compact') };
-                                    },
-                                ),
-                            }}
-                            toInputProps={{
-                                name: ArbeidUtlandFormFields.tom,
-                                label: sifIntl.text('@sifSoknadForms.arbeidUtland.form.tom.label'),
-                                minDate,
-                                maxDate,
-                                disabledDateRanges: utilgjengeligePerioder,
-                                validate: validateField(
-                                    ArbeidUtlandFormFields.tom,
-                                    getISODateValidator({ required: true, min: minDate, max: maxDate }),
-                                    (errorCode) => {
-                                        if (errorCode === 'dateIsBeforeMin' && minDate)
-                                            return { dato: sifIntl.date(minDate, 'compact') };
-                                        if (errorCode === 'dateIsAfterMax' && maxDate)
-                                            return { dato: sifIntl.date(maxDate, 'compact') };
-                                    },
-                                ),
-                            }}
+                            disabledDateRanges: utilgjengeligePerioder,
+                            validate: validateField(
+                                ArbeidUtlandFormFields.fom,
+                                getISODateValidator({ required: true, min: minDate, max: maxDate }),
+                                (errorCode) => {
+                                    if (errorCode === 'dateIsBeforeMin' && minDate)
+                                        return { dato: sifIntl.date(minDate, 'compact') };
+                                    if (errorCode === 'dateIsAfterMax' && maxDate)
+                                        return { dato: sifIntl.date(maxDate, 'compact') };
+                                },
+                            ),
+                        }}
+                        toInputProps={{
+                            name: ArbeidUtlandFormFields.tom,
+                            label: sifIntl.text('@sifSoknadForms.arbeidUtland.form.tom.label'),
+                            minDate,
+                            maxDate,
+                            disabledDateRanges: utilgjengeligePerioder,
+                            validate: validateField(
+                                ArbeidUtlandFormFields.tom,
+                                getISODateValidator({ required: true, min: minDate, max: maxDate }),
+                                (errorCode) => {
+                                    if (errorCode === 'dateIsBeforeMin' && minDate)
+                                        return { dato: sifIntl.date(minDate, 'compact') };
+                                    if (errorCode === 'dateIsAfterMax' && maxDate)
+                                        return { dato: sifIntl.date(maxDate, 'compact') };
+                                },
+                            ),
+                        }}
+                    />
+                    {variant !== 'periodeMedJobb' && (
+                        <YesOrNoQuestion
+                            name={ArbeidUtlandFormFields.jobbetIPerioden}
+                            legend={sifIntl.text('@sifSoknadForms.arbeidUtland.form.jobbetIPerioden.label')}
+                            validate={validateField(ArbeidUtlandFormFields.jobbetIPerioden, getYesOrNoValidator())}
                         />
-                        {variant !== 'periodeMedJobb' && (
-                            <YesOrNoQuestion
-                                name={ArbeidUtlandFormFields.jobbetIPerioden}
-                                legend={sifIntl.text('@sifSoknadForms.arbeidUtland.form.jobbetIPerioden.label')}
-                                validate={validateField(ArbeidUtlandFormFields.jobbetIPerioden, getYesOrNoValidator())}
-                            />
-                        )}
+                    )}
 
-                        {jobbetIPerioden && countryIsMemberOfEøsOrEfta(landkodeFormValue) && (
-                            <TextField
-                                maxLength={20}
-                                style={{ maxWidth: '20rem' }}
-                                name={ArbeidUtlandFormFields.utenlandskNasjonalId}
-                                label={sifIntl.text('@sifSoknadForms.arbeidUtland.form.utenlandskNasjonalId.label')}
-                                validate={validateField(
-                                    ArbeidUtlandFormFields.utenlandskNasjonalId,
-                                    getStringValidator({ disallowUnicodeCharacters: true }),
-                                )}
-                            />
-                        )}
-                    </FormLayout.Questions>
-                </FormLayout.Content>
-            </form>
-        </FormProvider>
+                    {jobbetIPerioden && countryIsMemberOfEøsOrEfta(landkodeFormValue) && (
+                        <TextField
+                            maxLength={20}
+                            style={{ maxWidth: '20rem' }}
+                            name={ArbeidUtlandFormFields.utenlandskNasjonalId}
+                            label={sifIntl.text('@sifSoknadForms.arbeidUtland.form.utenlandskNasjonalId.label')}
+                            validate={validateField(
+                                ArbeidUtlandFormFields.utenlandskNasjonalId,
+                                getStringValidator({ disallowUnicodeCharacters: true }),
+                            )}
+                        />
+                    )}
+                </FormLayout.Questions>
+            </FormLayout.Content>
+        </SifForm>
     );
 };
