@@ -11,6 +11,11 @@ export const appMessages_nb = {
     // Forside
     'page.forside.tittel': 'Dine aktivitetspenger',
 
+    'page.forside.om.tittel': 'Om aktivitetspenger',
+    'page.forside.om.tekst.1':
+        'Aktivitetspenger er for deg som er mellom 18 og 30 år, trenger oppfølging fra Nav for å komme i jobb eller utdanning og har behov for pengestøtte underveis. Dette er et forsøk bare for deg som er bosatt i Trondheim kommune.',
+    'page.forside.om.tekst.2': 'Du kan lese mer om aktivitetspenger på <Lenke>nav.no/aktivitetspenger</Lenke>.',
+
     // Oppgave
     'page.oppgave.breadcrumb.tittel': 'Oppgave',
 
@@ -19,9 +24,9 @@ export const appMessages_nb = {
     'page.ubehandletSøknad.hilsen': 'Hei {fornavn}',
 
     // Søknad mottatt info
-    'soknadMottattInfo.tittel': 'Vi har mottatt din søknad om aktivitetspenger',
+    'soknadMottattInfo.tittel': 'Vi har fått søknaden din om aktivitetspenger',
     'soknadMottattInfo.info.1':
-        'Du vil få beskjed når behandlingen er ferdig. Informasjon om behandlingstider finner du på <Lenke>nav.no/saksbehandlingstider</Lenke>.',
+        'Du får beskjed når vi har behandlet søknaden din. Saksbehandlingstider finner du på <Lenke>nav.no/saksbehandlingstider</Lenke>.',
     'soknadMottattInfo.info.2': 'Du kan lese mer om aktivitetspenger på <Lenke>nav.no/aktivitetspenger</Lenke>.',
 
     // Ikke tilgang

@@ -1,6 +1,6 @@
-import { BodyLong, Heading, VStack } from '@navikt/ds-react';
+import { BodyLong, Heading, Link, VStack } from '@navikt/ds-react';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
-import { InnsynForsideHeader, OppgaverList } from '@sif/ung-innsyn/components';
+import { InnsynForsideHeader, InnsynInfoBox, OppgaverList } from '@sif/ung-innsyn/components';
 import { UngInnsynPage } from '@sif/ung-innsyn/pages';
 
 import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
@@ -9,6 +9,8 @@ import { formatName, sortDateTimes } from '@sif/utils';
 import { Oppgave } from '@sif/api/ung-brukerdialog';
 import { Søker } from '@sif/api/k9-prosessering';
 import { SøknadMottattInfo } from '../components/soknad-mottatt-info/SoknadMottattInfo';
+import { ReactNode } from 'react';
+import getLenker from '../lenker';
 
 interface Props {
     oppgaver: Oppgave[];
@@ -67,6 +69,22 @@ export const ForsidePage = ({ oppgaver, søker, harUbehandletSøknad }: Props) =
                         )}
                     </VStack>
                 </VStack>
+                <InnsynInfoBox>
+                    <Heading level="2" size="small" spacing>
+                        <AppText id="page.forside.om.tittel" />
+                    </Heading>
+                    <BodyLong spacing>
+                        <AppText id="page.forside.om.tekst.1" />
+                    </BodyLong>
+                    <BodyLong>
+                        <AppText
+                            id="page.forside.om.tekst.2"
+                            values={{
+                                Lenke: (chunks: ReactNode) => <Link href={getLenker().aktivitetspenger}>{chunks}</Link>,
+                            }}
+                        />
+                    </BodyLong>
+                </InnsynInfoBox>
             </VStack>
         </UngInnsynPage>
     );
