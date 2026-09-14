@@ -1,5 +1,8 @@
 export const arbeidUtlandMessages_nb = {
     '@sifSoknadForms.arbeidUtland.dialog.tittel.generell': 'Utenlandsopphold',
+    '@sifSoknadForms.arbeidUtland.dialog.beskrivelse.1':
+        'Oppgi land og periode du har bodd, studert eller jobbet utenfor Norge.',
+    '@sifSoknadForms.arbeidUtland.dialog.beskrivelse.2': 'Ta med alle perioder siden du var 16 år.',
     '@sifSoknadForms.arbeidUtland.dialog.tittel.periodeMedJobb': 'Periode med jobb utenfor Norge',
     '@sifSoknadForms.arbeidUtland.dialog.avbrytKnapp': 'Avbryt',
     '@sifSoknadForms.arbeidUtland.dialog.leggTilKnapp': 'Legg til',
@@ -31,4 +34,6 @@ export const arbeidUtlandMessages_nb = {
     '@sifSoknadForms.arbeidUtlandForm.validation.tom.toDateIsBeforeFromDate':
         'Datoen perioden med jobb ble avsluttet kan ikke være før datoen det ble startet. Skriv inn eller velg sluttdato fra datovelgeren.',
     '@sifSoknadForms.arbeidUtlandForm.validation.landkode.noValue': 'Du må velge land',
+    '@sifSoknadForms.arbeidUtlandForm.validation.jobbetIPerioden.yesOrNoIsUnanswered':
+        'Du må svare på om du jobbet i dette landet i denne perioden',
 };

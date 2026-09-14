@@ -47,9 +47,11 @@ export const ArbeidUtlandFormDialog = ({
                         <Dialog.Description>
                             <Box marginBlock="space-12">
                                 <BodyLong>
-                                    Oppgi land og periode du har bodd, studert eller jobbet utenfor Norge.
+                                    <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.beskrivelse.1" />
                                 </BodyLong>
-                                <BodyLong>Ta med alle perioder siden du var 16 år.</BodyLong>
+                                <BodyLong>
+                                    <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.beskrivelse.2" />
+                                </BodyLong>
                             </Box>
                         </Dialog.Description>
                     </Dialog.Header>

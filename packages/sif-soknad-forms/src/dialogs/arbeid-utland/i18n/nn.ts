@@ -2,6 +2,9 @@ import { arbeidUtlandMessages_nb } from './nb';
 
 export const arbeidUtlandMessages_nn: Record<keyof typeof arbeidUtlandMessages_nb, string> = {
     '@sifSoknadForms.arbeidUtland.dialog.tittel.generell': 'Utenlandsopphald',
+    '@sifSoknadForms.arbeidUtland.dialog.beskrivelse.1':
+        'Oppgi land og periode du har budd, studert eller jobba utanfor Noreg.',
+    '@sifSoknadForms.arbeidUtland.dialog.beskrivelse.2': 'Ta med alle periodar sidan du var 16 år.',
     '@sifSoknadForms.arbeidUtland.dialog.tittel.periodeMedJobb': 'Periode med jobb utanfor Norge',
     '@sifSoknadForms.arbeidUtland.dialog.avbrytKnapp': 'Avbryt',
     '@sifSoknadForms.arbeidUtland.dialog.leggTilKnapp': 'Legg til',
@@ -33,4 +36,6 @@ export const arbeidUtlandMessages_nn: Record<keyof typeof arbeidUtlandMessages_n
     '@sifSoknadForms.arbeidUtlandForm.validation.tom.toDateIsBeforeFromDate':
         'Datoen perioden med jobb vart avslutta kan ikkje vere før datoen det starta. Skriv inn eller vel sluttdato frå datoveljaren.',
     '@sifSoknadForms.arbeidUtlandForm.validation.landkode.noValue': 'Du må velja land',
+    '@sifSoknadForms.arbeidUtlandForm.validation.jobbetIPerioden.yesOrNoIsUnanswered':
+        'Du må svara på om du jobba i dette landet i denne perioden',
 };
