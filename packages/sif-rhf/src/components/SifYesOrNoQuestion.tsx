@@ -1,13 +1,10 @@
 import { FieldValues, Path } from 'react-hook-form';
 
-import { SifRadioGroup, SifRadioProp } from './SifRadioGroup';
+import { YesOrNo } from '@sif/utils';
 import { ReactNode } from 'react';
+import { SifRadioGroup, SifRadioProp } from './SifRadioGroup';
 
-export enum YesOrNo {
-    YES = 'yes',
-    NO = 'no',
-    UNANSWERED = 'unanswered',
-}
+export { YesOrNo } from '@sif/utils';
 
 type Props<T extends FieldValues> = {
     name: Path<T>;

@@ -1,4 +1,5 @@
 export * from './annet-barn';
+export * from './arbeid-utland';
 export * from './bosted-utland';
 export * from './enkeltdatoer';
 export * from './ferieuttak';

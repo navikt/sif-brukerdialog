@@ -8,6 +8,7 @@ type Props<T extends FieldValues> = Omit<SelectProps, 'name' | 'children'> & {
     name: Path<T>;
     validate?: (value: string) => string | undefined;
     showOnlyEuAndEftaCountries?: boolean;
+    excludeNorway?: boolean;
 };
 
 const getLangToUse = (locale: string) => {
@@ -20,14 +21,17 @@ export function SifCountrySelect<T extends FieldValues>({
     name,
     validate,
     showOnlyEuAndEftaCountries = false,
+    excludeNorway = false,
     ...rest
 }: Props<T>) {
     const { control } = useFormContext<T>();
     const intl = useIntl();
 
     const options = useMemo(() => {
-        return getCountries(showOnlyEuAndEftaCountries, getLangToUse(intl.locale));
-    }, [intl.locale, showOnlyEuAndEftaCountries]);
+        return getCountries(showOnlyEuAndEftaCountries, getLangToUse(intl.locale)).filter(
+            (country) => !(excludeNorway && country.alpha3 === 'NOR'),
+        );
+    }, [intl.locale, showOnlyEuAndEftaCountries, excludeNorway]);
 
     return (
         <Controller
