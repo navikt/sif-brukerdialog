@@ -8,7 +8,7 @@ export const InnsynFooter = () => {
     return (
         <footer>
             <Bleed marginInline="full" asChild>
-                <Box background="brand-blue-moderateA" paddingBlock="space-24 space-48">
+                <Box background="brand-blue-softA" paddingBlock="space-24 space-48">
                     <InnsynPageBoundary>
                         <Box className="mx-auto">
                             <Heading level="2" size="medium" spacing>
