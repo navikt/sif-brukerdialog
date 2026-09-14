@@ -103,7 +103,6 @@ export const ArbeidUtlandDialogForm = ({
                             label: sifIntl.text('@sifSoknadForms.arbeidUtland.form.fom.label'),
                             minDate,
                             maxDate,
-
                             disabledDateRanges: utilgjengeligePerioder,
                             validate: validateField(
                                 ArbeidUtlandFormFields.fom,
@@ -142,7 +141,7 @@ export const ArbeidUtlandDialogForm = ({
                         />
                     )}
 
-                    {jobbetIPerioden && countryIsMemberOfEøsOrEfta(landkodeFormValue) && (
+                    {jobbetIPerioden && landkodeFormValue && countryIsMemberOfEøsOrEfta(landkodeFormValue) && (
                         <TextField
                             maxLength={20}
                             style={{ maxWidth: '20rem' }}

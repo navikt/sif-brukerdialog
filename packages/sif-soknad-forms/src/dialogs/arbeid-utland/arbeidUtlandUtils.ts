@@ -12,7 +12,7 @@ const formValuesToArbeidUtland = (
     const from = datePickerUtils.parseDatePickerValueToISODate(values.fom);
     const to = datePickerUtils.parseDatePickerValueToISODate(values.tom);
 
-    if (!from || !to || !values.landkode) {
+    if (!from || !to) {
         throw new Error('Datoer er ikke gyldig');
     }
     if (!values.landkode) {
