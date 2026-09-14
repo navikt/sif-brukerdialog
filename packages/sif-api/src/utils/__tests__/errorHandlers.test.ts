@@ -96,6 +96,12 @@ describe('handleApiError med nettverksfeil', () => {
         expect(handleApiError(error, 'sendSøknad').message).toBe('Startdato er ugyldig');
     });
 
+    it('bruker title når detail bare inneholder blanktegn', () => {
+        const error = axiosFeil({ title: 'Startdato er ugyldig', detail: '   ' }, 400);
+
+        expect(handleApiError(error, 'sendSøknad').message).toBe('Startdato er ugyldig');
+    });
+
     it('bruker statuskode-melding når svaret er et tomt objekt', () => {
         const error = axiosFeil({}, 500);
 
