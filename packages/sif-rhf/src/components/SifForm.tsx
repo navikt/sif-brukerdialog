@@ -1,5 +1,5 @@
 import { VStack } from '@navikt/ds-react';
-import { ReactNode, useRef } from 'react';
+import { FormEvent, ReactNode, useRef } from 'react';
 import { FieldValues, FormProvider, SubmitHandler, UseFormReturn } from 'react-hook-form';
 
 import { useFocusOnValidationError } from '../hooks/useFocusOnValidationError';
@@ -13,6 +13,7 @@ interface Props<T extends FieldValues> {
     validationSummaryHeading?: string;
     className?: string;
     id?: string;
+    stopPropagationOnSubmit?: boolean;
 }
 
 export function SifForm<T extends FieldValues>({
@@ -23,13 +24,23 @@ export function SifForm<T extends FieldValues>({
     validationSummaryHeading,
     className,
     id,
+    stopPropagationOnSubmit = false,
 }: Props<T>) {
     const summaryRef = useRef<HTMLDivElement>(null);
     useFocusOnValidationError(summaryRef, methods.formState);
 
     return (
         <FormProvider {...methods}>
-            <form onSubmit={methods.handleSubmit(onSubmit)} noValidate className={className} id={id}>
+            <form
+                onSubmit={(event: FormEvent<HTMLFormElement>) => {
+                    if (stopPropagationOnSubmit) {
+                        event.stopPropagation();
+                    }
+                    methods.handleSubmit(onSubmit)(event);
+                }}
+                noValidate
+                className={className}
+                id={id}>
                 <VStack gap="space-32">
                     {children}
                     <SifValidationSummary ref={summaryRef} heading={validationSummaryHeading} />

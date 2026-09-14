@@ -83,7 +83,7 @@ export const ArbeidUtlandDialogForm = ({
     const jobbetIPerioden = variant === 'periodeMedJobb' || jobbetIPeriodenFormValue === YesOrNo.YES;
 
     return (
-        <SifForm methods={methods} id={formId} onSubmit={handleValidSubmit}>
+        <SifForm methods={methods} id={formId} onSubmit={handleValidSubmit} stopPropagationOnSubmit={true}>
             <FormLayout.Content>
                 <FormLayout.Questions>
                     <CountrySelect
