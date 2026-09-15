@@ -1,55 +1,91 @@
-import { getFeltOgMeldingFraZodError } from '@sif/api';
-import { describe, expect, it } from 'vitest';
-import { ZodError, ZodIssue } from 'zod';
+import { sendSøknad } from '@app/api/sendSoknad';
+import { useSendSøknad } from '@app/hooks/useSendSoknad';
+import { SøknadApiData } from '@app/types/SoknadApiData';
+import { ApiError, ApiErrorType } from '@sif/api';
+import { appLogger } from '@sif/apm';
+import { useAnalyticsInstance, useSøknadSendt } from '@sif/soknad-app';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-const issue = (path: Array<string | number>): ZodIssue =>
-    ({
-        code: 'invalid_type',
-        expected: 'boolean',
-        path,
-        message: 'Invalid input: expected boolean, received undefined',
-    }) as unknown as ZodIssue;
+type MutationOptions = {
+    mutationFn: (data: SøknadApiData) => Promise<void>;
+    onSuccess: () => void;
+    onError: (error: ApiError) => void;
+};
 
-describe('getFeltOgMeldingFraZodError', () => {
-    it('stripper body-prefikset fra feltnavn', () => {
-        const error = new ZodError([issue(['body', 'barnErRiktig']), issue(['body', 'søkerNorskIdent'])]);
+const mocks = vi.hoisted(() => ({
+    sendSøknad: vi.fn(),
+    isApiAxiosError: vi.fn(),
+    logSkjemaFeilet: vi.fn(),
+    onSøknadSendt: vi.fn(),
+    logError: vi.fn(),
+    logApiError: vi.fn(),
+    mutate: vi.fn(),
+}));
 
-        expect(getFeltOgMeldingFraZodError(error)).toBe(
-            'barnErRiktig: Invalid input: expected boolean, received undefined, søkerNorskIdent: Invalid input: expected boolean, received undefined',
+vi.mock('@app/api/sendSoknad', () => ({ sendSøknad: mocks.sendSøknad }));
+vi.mock('@sif/api', async (importOriginal) => ({
+    ...(await importOriginal<typeof import('@sif/api')>()),
+    isApiAxiosError: mocks.isApiAxiosError,
+}));
+vi.mock('@sif/apm', () => ({ appLogger: { logError: mocks.logError, logApiError: mocks.logApiError } }));
+vi.mock('@sif/soknad-app', () => ({
+    useAnalyticsInstance: () => ({ logSkjemaFeilet: mocks.logSkjemaFeilet }),
+    useSøknadSendt: () => ({ onSøknadSendt: mocks.onSøknadSendt }),
+}));
+
+let mutationOptions: MutationOptions;
+let mutationError: ApiError | null = null;
+
+vi.mock('@tanstack/react-query', () => ({
+    useMutation: vi.fn((options: MutationOptions) => {
+        mutationOptions = options;
+        return { mutate: mocks.mutate, isPending: false, error: mutationError };
+    }),
+}));
+
+const søknad = {} as SøknadApiData;
+
+describe('useSendSøknad', () => {
+    beforeEach(() => {
+        vi.clearAllMocks();
+        mutationError = null;
+    });
+
+    it('sender søknaden og markerer den som sendt ved vellykket innsending', async () => {
+        mocks.sendSøknad.mockResolvedValue(undefined);
+
+        const { sendSøknad: send, sendSøknadError } = useSendSøknad();
+        await mutationOptions.mutationFn(søknad);
+        mutationOptions.onSuccess();
+
+        expect(send).toBe(mocks.mutate);
+        expect(sendSøknadError).toBeNull();
+        expect(sendSøknad).toHaveBeenCalledWith(søknad);
+        expect(useSøknadSendt().onSøknadSendt).toHaveBeenCalledOnce();
+    });
+
+    it('logger teknisk feilmelding ved request-valideringsfeil', () => {
+        const error = { type: ApiErrorType.ZodValidationError, message: 'startdato: Invalid input' } as ApiError;
+        useSendSøknad();
+
+        mutationOptions.onError(error);
+
+        expect(useAnalyticsInstance().logSkjemaFeilet).toHaveBeenCalledOnce();
+        expect(appLogger.logError).toHaveBeenCalledWith(
+            'sendSøknad: request-validering feilet for felt: startdato: Invalid input',
         );
     });
 
-    it('beholder andre prefiks enn body', () => {
-        const error = new ZodError([issue(['headers', 'X-Correlation-ID'])]);
+    it('logger opprinnelig feil ved API-feil og eksponerer mutation-feilen', () => {
+        const originalError = new Error('Nettverksfeil');
+        const error = { type: ApiErrorType.NetworkError, originalError } as ApiError;
+        mutationError = error;
+        mocks.isApiAxiosError.mockReturnValue(true);
 
-        expect(getFeltOgMeldingFraZodError(error)).toBe(
-            'headers.X-Correlation-ID: Invalid input: expected boolean, received undefined',
-        );
-    });
+        const { sendSøknadError } = useSendSøknad();
+        mutationOptions.onError(error);
 
-    it('beholder nøstede feltnavn', () => {
-        const error = new ZodError([issue(['body', 'kontonummerInfo', 'kontonummer'])]);
-
-        expect(getFeltOgMeldingFraZodError(error)).toBe(
-            'kontonummerInfo.kontonummer: Invalid input: expected boolean, received undefined',
-        );
-    });
-
-    it('rapporterer body når hele bodyen mangler', () => {
-        const error = new ZodError([issue(['body'])]);
-
-        expect(getFeltOgMeldingFraZodError(error)).toBe('body: Invalid input: expected boolean, received undefined');
-    });
-
-    it('fjerner duplikate feltnavn', () => {
-        const error = new ZodError([issue(['body', 'medlemskap']), issue(['body', 'medlemskap'])]);
-
-        expect(getFeltOgMeldingFraZodError(error)).toBe('medlemskap: Invalid input: expected boolean, received undefined');
-    });
-
-    it('inkluderer zod-meldingen i den tekniske feilbeskrivelsen', () => {
-        const error = new ZodError([issue(['body', 'søkerNorskIdent'])]);
-
-        expect(getFeltOgMeldingFraZodError(error)).toContain('Invalid input');
+        expect(sendSøknadError).toBe(error);
+        expect(appLogger.logApiError).toHaveBeenCalledWith(originalError, 'sendSøknad');
     });
 });
