@@ -1,7 +1,7 @@
 import { MellomlagringBlob } from '@sif/soknad-app';
 
 export const mellomlagringTilMedlemskap: MellomlagringBlob = {
-    versjon: 1,
+    versjon: 1.1,
     resumeStepId: 'medlemskap',
     søknadsdata: {
         harForståttRettigheterOgPlikter: true,
