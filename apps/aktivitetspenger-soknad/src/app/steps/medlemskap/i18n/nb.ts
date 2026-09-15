@@ -49,6 +49,10 @@ export const medlemskapStegMessages_nb = {
 
     'medlemskapForm.validation.harBoddINorge.yesOrNoIsUnanswered':
         'Du må svare på om du har bodd sammenhengende i Norge de siste 5 årene',
+    'medlemskapForm.validation.harJobbetINorge.yesOrNoIsUnanswered':
+        'Du må svare på om du har jobbet sammenhengende i Norge de siste 5 årene',
+    'medlemskapForm.validation.harJobbetUtenforNorge.yesOrNoIsUnanswered':
+        'Du må svare på om du har jobbet utenfor Norge de siste 5 årene',
     'medlemskapForm.validation.bosteder.listIsEmpty': 'Du må legge til minst ett bosted i utlandet',
 
     'medlemskapForm.validation.arbeidsstederUtenforNorge.listIsEmpty':

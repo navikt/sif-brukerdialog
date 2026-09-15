@@ -35,6 +35,10 @@ export const medlemskapStegMessages_nn: Record<keyof typeof medlemskapStegMessag
     'medlemskapSteg.arbeidsstederUtenforNorge.leggTil': 'Legg til periode med jobb utanfor Noreg',
     'medlemskapForm.validation.harBoddINorge.yesOrNoIsUnanswered':
         'Du må svare på om du har budd samanhengande i Noreg dei siste 5 åra',
+    'medlemskapForm.validation.harJobbetINorge.yesOrNoIsUnanswered':
+        'Du må svare på om du har jobba samanhengande i Noreg dei siste 5 åra',
+    'medlemskapForm.validation.harJobbetUtenforNorge.yesOrNoIsUnanswered':
+        'Du må svare på om du har jobba utanfor Noreg dei siste 5 åra',
     'medlemskapForm.validation.bosteder.listIsEmpty': 'Du må leggje til minst éin bustad i utlandet',
     'medlemskapForm.validation.arbeidsstederUtenforNorge.listIsEmpty':
         'Du må leggje til minst éin periode med jobb i utlandet',
