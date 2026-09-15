@@ -2,7 +2,7 @@ import { zProblemDetail } from '@navikt/k9-brukerdialog-prosessering-api';
 import { z } from 'zod';
 
 export const invalidParameterViolationSchema = z.object({
-    invalidValue: z.string(),
+    invalidValue: z.string().nullable(),
     parameterName: z.string(),
     parameterType: z.string(),
     reason: z.string(),
