@@ -149,6 +149,52 @@ Sjekker om foregående stegs umonterte skjemaverdier avviker fra committet `søk
 
 Merk: `SøknadStepForm` kaller også `useCheckConsistency` internt for å deaktivere submit-knappen. De to kallene (fra `SøknadStep` og `SøknadStepForm`) er uavhengige og harmløse.
 
+### `useSøknadSendt()`
+
+Fullfører innsendingen etter vellykket POST: sletter mellomlagring, logger `skjemaFullført` og setter `søknadSendt` i storen. Navigerer ikke selv — `SøknadRouter` synker URL mot `søknadSendt`.
+
+#### Mønster: `useSendSøknad` eier innsendingsflyten
+
+Appens `useSendSøknad` eier POST, opprydding og feillogging, og eksponerer domenenavn utad — ikke mutasjonsobjektet. Samme konvensjon som `useYtelseMellomlagring` i `@sif/api` (`lagre`, `opprett`, `slett`) og som v1-appene (`sendSøknad`, `sendSøknadError`).
+
+```ts
+// apps/<app>/src/app/hooks/useSendSoknad.ts
+export const useSendSøknad = () => {
+    const { logSkjemaFeilet } = useAnalyticsInstance();
+    const { onSøknadSendt } = useSøknadSendt();
+
+    const { mutate, isPending, error } = useMutation<void, ApiError, SøknadApiData>({
+        mutationFn: (data) => sendSøknad(data),
+        // Holder isPending til søknaden er markert som sendt. Se useSøknadSendt.
+        onSuccess: onSøknadSendt,
+        onError: (error) => {
+            /* logging */
+        },
+    });
+
+    return { sendSøknad: mutate, isPending, sendSøknadError: error };
+};
+```
+
+Da blir oppsummeringssteget trivielt — det sier bare «send inn»:
+
+```tsx
+const { sendSøknad, isPending, sendSøknadError } = useSendSøknad();
+
+const onSubmit = () => {
+    if (dto === undefined) return;
+    sendSøknad({ ...dto, harBekreftetOpplysninger });
+};
+```
+
+**Hvorfor `onSuccess` i mutasjonsoppsettet:** React Query awaiter `options.onSuccess` og kjører den _før_ status settes til `success`. `isPending` står derfor til `søknadSendt` er satt, og submit-knappen er deaktivert hele veien. Legges `onSøknadSendt` i stedet som per-kall-callback i `mutate(data, { onSuccess })`, kjører den etter at status er `success` og awaites ikke — det gir et vindu på ett nettverks-round-trip der knappen er aktiv og en dobbel innsending går gjennom.
+
+**Hvorfor `mutate` og ikke `mutateAsync`:** innsendingsfeil skal bli liggende i mutasjonens `error`-state og rendres av appens `InnsendingFeiletAlert`. `mutateAsync` uten `try/catch` re-kastes av RHF `handleSubmit`, og `SifForm` fanger ikke — altså unhandled rejection ved hver feilede innsending. `await mutateAsync()` lukker heller ikke double-submit-vinduet, siden `success` dispatches før promisen resolver og `FormLayout.FormButtons` kun leser `submitPending`/`submitDisabled`, ikke `formState.isSubmitting`.
+
+Begge fellene forsvinner fra kallstedet når hooken kun returnerer `sendSøknad` — verken `mutateAsync` eller per-kall-callbacken er tilgjengelig.
+
+**Invariant:** `onSøknadSendt()` rejecter aldri — opprydding og analytics er pakket i `try/catch` i hooken. Det er en forutsetning for mønsteret: en rejection fra `options.onSuccess` ville sendt mutasjonen til error-state og vist innsendingsfeil selv om søknaden faktisk ble sendt. Bevar den egenskapen om hooken utvides.
+
 ---
 
 ## `SøknadAppProvider`
@@ -317,9 +363,9 @@ export const formValuesToSøknadsdata = (
 | Problem                                                              | Årsak                                                                                     | Fix                                                                           |
 | -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `lagre()` lagrer ikke for steget brukeren er på                      | `resumeStepId` ≠ montert steg                                                             | `getAllLiveFormValues()` brukes nå — løst                                     |
-| Konsistenssjekk virker ikke                                          | `formValuesToSøknadsdata` ikke satt på `SøknadRouter`                                     | Lag funksjon med switch per stepId                                             |
+| Konsistenssjekk virker ikke                                          | `formValuesToSøknadsdata` ikke satt på `SøknadRouter`                                     | Lag funksjon med switch per stepId                                            |
 | Falsk inconsistency-advarsel for ett steg                            | `formValuesToSøknadsdata` returnerer `undefined` for steget, men søknadsdata er committet | Implementer konverteringen som en ren funksjon                                |
-| Kvitteringssiden vises ikke                                          | `useSøknadSendt` navigerte selv, før `søknadSendt` var satt i storen                      | `SøknadRouter` synker URL mot `søknadSendt` i en effekt — rekkefølgen er løst  |
+| Kvitteringssiden vises ikke                                          | `useSøknadSendt` navigerte selv, før `søknadSendt` var satt i storen                      | `SøknadRouter` synker URL mot `søknadSendt` i en effekt — rekkefølgen er løst |
 | Navigerer til feil steg etter back+re-submit                         | `resumeStepId` peker på et steg lenger frem                                               | `commitState` bruker alltid `includedSteps[fromIndex + 1]` — løst             |
 | Velkommensiden blinker ved reload med mellomlagring                  | `children` ble rendret før init + navigate                                                | `SøknadRouter` holder `children` tilbake til `isInitialized = true` — løst    |
 | Bruker sendes til velkommensiden i stedet for riktig steg ved reload | `init(blob)` uten påfølgende `navigate`                                                   | `SøknadRouter` navigerer automatisk til `resumeStepId` etter init — løst      |
@@ -327,3 +373,5 @@ export const formValuesToSøknadsdata = (
 | Verdier fra andre steg forsvinner ved manuell lagring                | Blob bygges kun fra aktive in-memory-verdier                                              | Merge `store.persistedFormValues` før draft- og live-verdier                  |
 | Gamle verdier kommer tilbake etter «slett søknad»                    | Et aktivt steg lagrer verdiene sine i unmount etter reset                                 | Bruk `clearAllFormValues` ved avbryt og før ny start                          |
 | Submit aktivt selv om `InconsistentFormValuesMessage` vises          | `submitDisabled`-prop videresendt uten konsistenssjekk                                    | Bruk `SøknadStepForm` — deaktiverer submit automatisk via `SøknadStepContext` |
+| Unhandled rejection ved feilet innsending                            | `mutateAsync` uten `try/catch` — RHF `handleSubmit` re-kaster, `SifForm` fanger ikke      | Bruk `mutate`, og render mutasjonens `error`-state                            |
+| Bruker rekker å klikke «Send inn» to ganger                          | `onSøknadSendt` lagt i per-kall-`mutate(data, { onSuccess })` — kjører etter `success`    | Legg `onSuccess: onSøknadSendt` i mutasjonsoppsettet; da holder `isPending`   |

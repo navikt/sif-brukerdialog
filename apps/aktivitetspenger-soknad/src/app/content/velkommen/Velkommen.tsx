@@ -4,7 +4,7 @@ import { SøknadVelkommenPage } from '@sif/soknad-app';
 
 import OmSøknaden from './OmSoknaden';
 import { BodyLong, Link } from '@navikt/ds-react';
-import { getLenker } from '../../lenker';
+import { getLenker } from '@app/lenker';
 
 export const Velkommen = () => {
     const { text } = useAppIntl();

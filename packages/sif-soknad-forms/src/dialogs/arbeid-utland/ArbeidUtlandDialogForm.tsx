@@ -10,17 +10,17 @@ import { SifForm, createSifFormComponents, useSifValidate, YesOrNo } from '@sif/
 import { useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
-import { ArbeidUtland, ArbeidUtlandVariant } from '.';
+import { ArbeidUtlandFormData, ArbeidUtlandVariant } from '.';
 import { arbeidUtlandUtils } from './arbeidUtlandUtils';
 
 interface ArbeidUtlandFormProps {
     formId: string;
     minDate?: ISODate;
     maxDate?: ISODate;
-    arbeidssted?: ArbeidUtland;
-    alleArbeider?: ArbeidUtland[];
+    arbeidssted?: ArbeidUtlandFormData;
+    alleArbeider?: ArbeidUtlandFormData[];
     variant: ArbeidUtlandVariant;
-    onValidSubmit: (values: ArbeidUtland) => void;
+    onValidSubmit: (values: ArbeidUtlandFormData) => void;
 }
 
 export enum ArbeidUtlandFormFields {

@@ -1,3 +1,3 @@
-import { Aktivitetspengersøknad } from '@navikt/k9-brukerdialog-prosessering-api';
+import type { aktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
 
-export type SøknadApiData = Aktivitetspengersøknad;
+export type SøknadApiData = aktivitetspenger.Aktivitetspengersøknad;

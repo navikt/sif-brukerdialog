@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 import { ModalFormAndList } from '../../components';
-import { ArbeidUtland, ArbeidUtlandVariant } from '.';
+import { ArbeidUtlandFormData, ArbeidUtlandVariant } from '.';
 import { ArbeidUtlandFormDialog } from './ArbeidUtlandDialog';
 import { ArbeidUtlandList } from './ArbeidUtlandList';
 import { ISODate } from '@sif/utils';
@@ -9,11 +9,11 @@ import { ISODate } from '@sif/utils';
 interface Props {
     minDate?: ISODate;
     maxDate?: ISODate;
-    arbeidssteder?: ArbeidUtland[];
+    arbeidssteder?: ArbeidUtlandFormData[];
     addButtonLabel: ReactNode;
     addButtonId?: string;
     variant?: ArbeidUtlandVariant;
-    onChange: (arbeidssteder: ArbeidUtland[]) => void;
+    onChange: (arbeidssteder: ArbeidUtlandFormData[]) => void;
 }
 
 export const ArbeidUtlandListAndDialog = ({

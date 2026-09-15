@@ -47,6 +47,8 @@
         "SIF_PUBLIC_FULL_DEKORATOR": "on",
         "SIF_PUBLIC_LOGIN_URL": "https://aktivitetspenger-innsyn.intern.dev.nav.no/oauth2/login?redirect=/aktivitetspenger/innsyn",
         "SIF_PUBLIC_MINSIDE_URL": "https://www.intern.dev.nav.no/minside",
+        "SIF_PUBLIC_URL_AKTIVITETSPENGER": "https://www.dev.nav.no/aktivitetspenger",
+        "SIF_PUBLIC_URL_SAKSBEHANDLINGSTIDER": "https://www.ansatt.dev.nav.no/saksbehandlingstider#aktivitetspenger",
         "SIF_PUBLIC_IGNORE_TILGJENGELIG_SJEKK": "true",
         "REQUIRED_PROXY_SERVICES": "K9_BRUKERDIALOG_PROSESSERING,UNG_DELTAKELSE_OPPLYSER,UNG_BRUKERDIALOG_API",
         "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/api/brukerdialog",

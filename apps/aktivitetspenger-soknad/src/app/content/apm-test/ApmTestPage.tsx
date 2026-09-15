@@ -2,23 +2,26 @@ import { appLogger } from '@sif/apm';
 import { Alert, BodyShort, Box, Button, Heading, HStack, Page, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 
+import { AppText, useAppIntl } from '../../i18n';
+
 /**
  * Kun tilgjengelig i dev (ENV !== 'production').
  * Brukes til å generere testdata for Grafana APM-alerts.
  */
 const ApmTestPage = () => {
     const [log, setLog] = useState<string[]>([]);
+    const { text } = useAppIntl();
 
     const addLog = (msg: string) => setLog((prev) => [`${new Date().toISOString()} — ${msg}`, ...prev]);
 
     const handleLogInfo = () => {
         appLogger.logInfo('Test: appLogger.logInfo');
-        addLog('logInfo sendt');
+        addLog(text('page.apmTest.logg.logInfoSendt'));
     };
 
     const handleLogError = () => {
         appLogger.logError('Test: appLogger.logError');
-        addLog('logError sendt');
+        addLog(text('page.apmTest.logg.logErrorSendt'));
     };
 
     const handleLogException = () => {
@@ -26,19 +29,19 @@ const ApmTestPage = () => {
             throw new Error('Test: appLogger.logException via try/catch');
         } catch (e) {
             appLogger.logException(e, { source: 'ApmTestPage', type: 'caught' });
-            addLog('logException sendt');
+            addLog(text('page.apmTest.logg.logExceptionSendt'));
         }
     };
 
     const handleUncaughtException = () => {
-        addLog('Kaster uncaught exception (siden krasjer — reload nødvendig)');
+        addLog(text('page.apmTest.logg.uncaughtException'));
         setTimeout(() => {
             throw new Error('Test: uncaught exception — auto-instrumentering');
         }, 100);
     };
 
     const handleUnhandledRejection = () => {
-        addLog('Kaster uncaught promise rejection');
+        addLog(text('page.apmTest.logg.uncaughtPromiseRejection'));
         Promise.reject(new Error('Test: unhandled promise rejection — auto-instrumentering'));
     };
 
@@ -47,34 +50,40 @@ const ApmTestPage = () => {
             <Page.Block as="main" width="text" gutters>
                 <VStack gap="space-8" paddingBlock="space-8">
                     <Alert variant="warning">
-                        Denne siden sender reelle APM-hendelser til Grafana. Kun ment for testing av alerts i dev-miljø.
+                        <AppText id="page.apmTest.advarsel" />
                     </Alert>
 
-                    <Heading size="large">APM Test</Heading>
+                    <Heading size="large">
+                        <AppText id="page.apmTest.tittel" />
+                    </Heading>
 
                     <VStack gap="space-4">
-                        <Heading size="small">appLogger (@sif/apm)</Heading>
+                        <Heading size="small">
+                            <AppText id="page.apmTest.appLogger.tittel" />
+                        </Heading>
                         <HStack gap="space-4" wrap>
                             <Button variant="secondary" size="small" onClick={handleLogInfo}>
-                                logInfo
+                                <AppText id="page.apmTest.appLogger.logInfo" />
                             </Button>
                             <Button variant="secondary" size="small" onClick={handleLogError}>
-                                logError
+                                <AppText id="page.apmTest.appLogger.logError" />
                             </Button>
                             <Button variant="secondary" size="small" onClick={handleLogException}>
-                                logException
+                                <AppText id="page.apmTest.appLogger.logException" />
                             </Button>
                         </HStack>
                     </VStack>
 
                     <VStack gap="space-4">
-                        <Heading size="small">Auto-instrumentering (ukfangede feil)</Heading>
+                        <Heading size="small">
+                            <AppText id="page.apmTest.autoInstrumentering.tittel" />
+                        </Heading>
                         <HStack gap="space-4" wrap>
                             <Button variant="danger" size="small" onClick={handleUncaughtException}>
-                                uncaught exception (krasjer siden)
+                                <AppText id="page.apmTest.autoInstrumentering.uncaughtException" />
                             </Button>
                             <Button variant="secondary" size="small" onClick={handleUnhandledRejection}>
-                                uncaught promise rejection
+                                <AppText id="page.apmTest.autoInstrumentering.uncaughtPromiseRejection" />
                             </Button>
                         </HStack>
                     </VStack>
@@ -82,7 +91,9 @@ const ApmTestPage = () => {
                     {log.length > 0 && (
                         <Box background="neutral-soft" padding="space-4" borderRadius="4">
                             <VStack gap="space-2">
-                                <Heading size="small">Logg</Heading>
+                                <Heading size="small">
+                                    <AppText id="page.apmTest.logg.tittel" />
+                                </Heading>
                                 {log.map((entry, i) => (
                                     <BodyShort key={i} size="small" as="code">
                                         {entry}

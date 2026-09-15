@@ -9,6 +9,7 @@ import { formatName, sortDateTimes } from '@sif/utils';
 import { Oppgave } from '@sif/api/ung-brukerdialog';
 import { Søker } from '@sif/api/k9-prosessering';
 import { SøknadMottattInfo } from '../components/soknad-mottatt-info/SoknadMottattInfo';
+import { InnsynFooter } from '../components/innsyn-footer/InnsynFooter';
 
 interface Props {
     oppgaver: Oppgave[];
@@ -30,44 +31,47 @@ export const ForsidePage = ({ oppgaver, søker, harUbehandletSøknad }: Props) =
         .sort((o1, o2) => sortDateTimes(o2.løstDato || o2.opprettetDato, o1.løstDato || o1.opprettetDato));
 
     return (
-        <UngInnsynPage documentTitle={text('page.forside.tittel')}>
-            <VStack gap="space-40">
-                <InnsynForsideHeader title={text('page.forside.tittel')} subtitle={formatName(søker)} />
-
-                {harUbehandletSøknad && <SøknadMottattInfo />}
-
+        <VStack gap="space-24">
+            <UngInnsynPage documentTitle={text('page.forside.tittel')}>
                 <VStack gap="space-40">
-                    <VStack gap="space-16">
-                        <Heading level="2" size="medium">
-                            <AppText id="dineOppgaver" />
-                        </Heading>
+                    <InnsynForsideHeader title={text('page.forside.tittel')} subtitle={formatName(søker)} />
 
-                        {uløsteOppgaver.length > 0 ? (
-                            <OppgaverList oppgaver={uløsteOppgaver} />
-                        ) : (
-                            <BodyLong>
-                                <AppText id="ingenUløsteOppgaver" />
-                            </BodyLong>
-                        )}
-                    </VStack>
-                    <VStack gap="space-16">
-                        <Heading level="2" size="medium">
-                            <AppText id="tidligereOppgaver" />
-                        </Heading>
-                        {tidligereOppgaver.length > 0 ? (
-                            <OppgaverList
-                                oppgaver={tidligereOppgaver}
-                                oppgaveStatusTagVariant="text"
-                                visBeskrivelse={false}
-                            />
-                        ) : (
-                            <BodyLong>
-                                <AppText id="ingenTidligereOppgaver" />
-                            </BodyLong>
-                        )}
+                    {harUbehandletSøknad && <SøknadMottattInfo />}
+
+                    <VStack gap="space-40">
+                        <VStack gap="space-16">
+                            <Heading level="2" size="medium">
+                                <AppText id="dineOppgaver" />
+                            </Heading>
+
+                            {uløsteOppgaver.length > 0 ? (
+                                <OppgaverList oppgaver={uløsteOppgaver} />
+                            ) : (
+                                <BodyLong>
+                                    <AppText id="ingenUløsteOppgaver" />
+                                </BodyLong>
+                            )}
+                        </VStack>
+                        <VStack gap="space-16">
+                            <Heading level="2" size="medium">
+                                <AppText id="tidligereOppgaver" />
+                            </Heading>
+                            {tidligereOppgaver.length > 0 ? (
+                                <OppgaverList
+                                    oppgaver={tidligereOppgaver}
+                                    oppgaveStatusTagVariant="text"
+                                    visBeskrivelse={false}
+                                />
+                            ) : (
+                                <BodyLong>
+                                    <AppText id="ingenTidligereOppgaver" />
+                                </BodyLong>
+                            )}
+                        </VStack>
                     </VStack>
                 </VStack>
-            </VStack>
-        </UngInnsynPage>
+            </UngInnsynPage>
+            <InnsynFooter />
+        </VStack>
     );
 };

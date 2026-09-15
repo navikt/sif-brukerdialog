@@ -4,10 +4,10 @@ import { toBarnSøknadsdata } from '../steps/barn/barnStegUtils';
 import { BarnFormValues } from '../steps/barn/types';
 import { toBostedSøknadsdata } from '../steps/bosted/bostedStegUtils';
 import { BostedFormValues } from '../steps/bosted/types';
-import { toBostedUtlandStegSøknadsdata } from '../steps/bosted-utland/bostedUtlandStegUtils';
-import { BostedUtlandFormValues } from '../steps/bosted-utland/types';
 import { toKontonummerSøknadsdata } from '../steps/kontonummer/kontonummerStegUtils';
 import { KontonummerFormValues } from '../steps/kontonummer/types';
+import { toMedlemskapStegSøknadsdata } from '../steps/medlemskap/medlemskapStegUtils';
+import { MedlemskapFormValues } from '../steps/medlemskap/types';
 
 /**
  * Konverterer lagrede RHF-skjemaverdier til søknadsdata-format per steg.
@@ -22,8 +22,8 @@ export const formValuesToSøknadsdata = (
             return toKontonummerSøknadsdata(formValues as KontonummerFormValues) as Record<string, unknown>;
         case SøknadStepId.BOSTED:
             return toBostedSøknadsdata(formValues as BostedFormValues) as Record<string, unknown>;
-        case SøknadStepId.BOSTED_UTLAND:
-            return toBostedUtlandStegSøknadsdata(formValues as BostedUtlandFormValues) as Record<string, unknown>;
+        case SøknadStepId.MEDLEMSKAP:
+            return toMedlemskapStegSøknadsdata(formValues as MedlemskapFormValues) as Record<string, unknown>;
         case SøknadStepId.BARN:
             return toBarnSøknadsdata(formValues as BarnFormValues) as Record<string, unknown>;
         default:

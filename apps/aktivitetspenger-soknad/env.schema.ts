@@ -7,10 +7,14 @@ import * as z from 'zod';
  * - appEnv.ts - på server
  * */
 
-export enum AppEnvKey {}
+export enum AppEnvKey {
+    SIF_PUBLIC_AKTIVITETSPENGER_INNSYN_URL = 'SIF_PUBLIC_AKTIVITETSPENGER_INNSYN_URL',
+}
 
 export const appEnvSchema = z
-    .object({})
+    .object({
+        SIF_PUBLIC_AKTIVITETSPENGER_INNSYN_URL: z.url(),
+    })
     .extend(commonEnvSchema.shape)
     .extend(ungDeltakelseOpplyserEnvSchema.shape)
     .extend(ungBrukerdialogApiEnvSchema.shape);

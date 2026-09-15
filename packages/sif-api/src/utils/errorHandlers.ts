@@ -171,11 +171,13 @@ export const getInvalidParametersFromApiError = (error: ApiError | null): Invali
     }
 
     const invalidParameters =
-        'invalidParameters' in data
-            ? (data as { invalidParameters?: unknown }).invalidParameters
-            : 'invalid_parameters' in data
-              ? (data as { invalid_parameters?: unknown }).invalid_parameters
-              : undefined;
+        'violations' in data
+            ? (data as { violations?: unknown }).violations
+            : 'invalidParameters' in data
+              ? (data as { invalidParameters?: unknown }).invalidParameters
+              : 'invalid_parameters' in data
+                ? (data as { invalid_parameters?: unknown }).invalid_parameters
+                : undefined;
 
     if (!Array.isArray(invalidParameters)) {
         return undefined;

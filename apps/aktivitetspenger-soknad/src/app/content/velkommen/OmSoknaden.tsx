@@ -1,16 +1,13 @@
 import { AppText } from '@app/i18n';
-import { Accordion, BodyShort, Box, Heading, List, VStack } from '@navikt/ds-react';
+import { Accordion, Box, Heading, List, VStack } from '@navikt/ds-react';
 
 import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysningerContent';
 import ReglerOgAutomatiskSaksbehandlingContent from './ReglerOgAutomatiskSaksbehandlingContent';
-import { Todo } from '../../components/Todo';
+import { TodoFlag } from '@app/components/Todo';
 
 const OmSøknaden = () => {
     return (
         <VStack gap="space-24">
-            <Todo>
-                <BodyShort>Tekster under rettsregler er ikke ferdige</BodyShort>
-            </Todo>
             <Box>
                 <Heading level="2" size="medium" spacing={true}>
                     <AppText id="page.velkommen.omSøknaden.tittel" />
@@ -39,6 +36,7 @@ const OmSøknaden = () => {
                 <Accordion.Item>
                     <Accordion.Header>
                         <AppText id="page.velkommen.regler.tittel" />
+                        <TodoFlag />
                     </Accordion.Header>
                     <Accordion.Content>
                         <ReglerOgAutomatiskSaksbehandlingContent />

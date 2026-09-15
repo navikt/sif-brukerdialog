@@ -1,6 +1,6 @@
 export const barnStegMessages_nb = {
     'barnSteg.tittel': 'Barn',
-    'barnSteg.beskrivelse': 'Hvis du deltar i ungdomsprogrammet og har barn, har du rett på et barnetillegg.',
+    'barnSteg.beskrivelse': 'Hvis du har barn, har du rett på barnetillegg i tillegg til aktivitetspengene.',
     'barnSteg.registrerteBarn.tittel': 'Barn vi har registrert på deg:',
     'barnSteg.barnStemmer.ja.label': 'Ja',
     'barnSteg.barnStemmer.nei.label': 'Nei',

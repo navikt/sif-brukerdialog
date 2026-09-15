@@ -1,19 +1,19 @@
 import { BodyLong, Button, Dialog, Box } from '@navikt/ds-react';
 
 import { SifSoknadFormsText } from '../../i18n';
-import { ArbeidUtland, ArbeidUtlandVariant } from '.';
+import { ArbeidUtlandFormData, ArbeidUtlandVariant } from '.';
 import { ArbeidUtlandDialogForm } from './ArbeidUtlandDialogForm';
 import { ISODate } from '@sif/utils';
 
 interface Props {
     minDate?: ISODate;
     maxDate?: ISODate;
-    arbeidssted?: ArbeidUtland;
-    alleArbeider?: ArbeidUtland[];
+    arbeidssted?: ArbeidUtlandFormData;
+    alleArbeider?: ArbeidUtlandFormData[];
     isOpen?: boolean;
     variant: ArbeidUtlandVariant;
     onCancel: () => void;
-    onValidSubmit: (arbeidssted: ArbeidUtland) => void;
+    onValidSubmit: (arbeidssted: ArbeidUtlandFormData) => void;
 }
 
 export const ArbeidUtlandFormDialog = ({

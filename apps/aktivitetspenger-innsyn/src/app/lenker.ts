@@ -18,8 +18,8 @@ const getLenker = (): Lenker => {
     return {
         minSide: lenker.navMinSide,
         dokumentarkivAktivitetspenger: lenker.navDokumentarkivAktivitetspenger,
-        aktivitetspenger: 'https://www.nav.no/aktivitetspenger',
-        behandlingstider: 'https://www.nav.no/saksbehandlingstider#aktivitetspenger',
+        aktivitetspenger: getAppEnv().SIF_PUBLIC_URL_AKTIVITETSPENGER,
+        behandlingstider: getAppEnv().SIF_PUBLIC_URL_SAKSBEHANDLINGSTIDER,
     };
 };
 

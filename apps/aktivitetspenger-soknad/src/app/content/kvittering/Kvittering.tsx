@@ -1,8 +1,8 @@
 import { AppText, useAppIntl } from '@app/i18n';
 import { BodyLong, Heading, Link, List, VStack } from '@navikt/ds-react';
 import { SøknadKvitteringPage } from '@sif/soknad-ui';
-import getLenker from '../../lenker';
-import { getAppEnv } from '../../setup/appEnv';
+import getLenker from '@app/lenker';
+import { getAppEnv } from '@app/setup/appEnv';
 
 export const Kvittering = () => {
     const { text } = useAppIntl();
@@ -16,7 +16,7 @@ export const Kvittering = () => {
             appRootUrl={getAppEnv().PUBLIC_PATH}>
             <VStack gap="space-32">
                 <div>
-                    <Heading level="3" size="small" spacing>
+                    <Heading level="2" size="small" spacing>
                         <AppText id="kvitteringPage.hvaSkjerVidere" />
                     </Heading>
                     <List>

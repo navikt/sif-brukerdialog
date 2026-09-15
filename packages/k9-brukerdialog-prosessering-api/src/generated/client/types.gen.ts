@@ -26,10 +26,10 @@ export type AktivitetspengerOppgavebekreftelse = {
 export type Aktivitetspengersøknad = {
     barnErRiktig: boolean;
     erBosattITrondheim: boolean;
-    forutgåendeBosteder: ForutgåendeBosteder;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
     kontonummerInfo: KontonummerInfo;
+    medlemskap: MedlemskapAktivitetspenger;
     språk: string;
     startdato: string;
     søkerNorskIdent: string;
@@ -227,13 +227,6 @@ export type EttersendingAvVedlegg = {
     vedleggSomSkalEttersendes?: Array<'LEGEERKLÆRING' | 'KURSINFORMASJON' | 'ANNET'>;
 };
 
-export type FamiliePdfPostRequest = {
-    label: string;
-    pdfConfig: PdfConfig;
-    skjemanummer?: string;
-    verdiliste: VerdilisteElement[];
-};
-
 export type Ferieuttak = {
     fraOgMed: string;
     tilOgMed: string;
@@ -242,11 +235,6 @@ export type Ferieuttak = {
 export type FerieuttakIPerioden = {
     ferieuttak: Ferieuttak[];
     skalTaUtFerieIPerioden: boolean;
-};
-
-export type ForutgåendeBosteder = {
-    harBoddIUtlandetSiste5År: boolean;
-    utenlandsoppholdSiste5År: Bosted[];
 };
 
 export type Fosterhjemgodtgjørelse = {
@@ -360,6 +348,13 @@ export type Medlemskap = {
     skalBoIUtlandetNeste12Mnd?: boolean;
     utenlandsoppholdNeste12Mnd: Bosted[];
     utenlandsoppholdSiste12Mnd: Bosted[];
+};
+
+export type MedlemskapAktivitetspenger = {
+    harBoddINorge: boolean;
+    harJobbetINorge?: boolean;
+    harJobbetUtenforNorge?: boolean;
+    utenlandsopphold: UtenlandsoppholdAktivitetspenger[];
 };
 
 export type Nattevåk = {
@@ -518,11 +513,6 @@ export type OrganisasjonDto = {
     ansattTom?: string;
     navn?: string;
     organisasjonsnummer: string;
-};
-
-export type PdfConfig = {
-    harInnholdsfortegnelse: boolean;
-    språk: string;
 };
 
 export type Periode = {
@@ -768,6 +758,14 @@ export type Utenlandsopphold = {
         | 'ANNET';
 };
 
+export type UtenlandsoppholdAktivitetspenger = {
+    fraOgMed: string;
+    jobbetIPerioden: boolean;
+    land: Land;
+    tilOgMed: string;
+    utenlandskNasjonalId?: string;
+};
+
 export type UtenlandsoppholdIPerioden = {
     opphold: Utenlandsopphold[];
     skalOppholdeSegIUtlandetIPerioden?: boolean;
@@ -785,13 +783,6 @@ export type UttakPeriodeInfo = {
 
 export type VarigEndring = {
     dato: string;
-};
-
-export type VerdilisteElement = {
-    alternativer?: string;
-    label: string;
-    verdi?: string;
-    visningsVariant?: string;
 };
 
 export type Virksomhet = {
@@ -1688,43 +1679,6 @@ export type HentSøkerResponses = {
 };
 
 export type HentSøkerResponse = HentSøkerResponses[keyof HentSøkerResponses];
-
-export type LagPdfData = {
-    body: FamiliePdfPostRequest;
-    path?: never;
-    query?: never;
-    url: '/pdf';
-};
-
-export type LagPdfErrors = {
-    /**
-     * Bad Request
-     */
-    400: ProblemDetail;
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type LagPdfError = LagPdfErrors[keyof LagPdfErrors];
-
-export type LagPdfResponses = {
-    /**
-     * OK
-     */
-    200: Blob | File;
-};
-
-export type LagPdfResponse = LagPdfResponses[keyof LagPdfResponses];
 
 export type InnsendingPleiepengerILivetsSluttfaseSøknadData = {
     body: PleiepengerILivetsSluttfaseSøknadWritable;

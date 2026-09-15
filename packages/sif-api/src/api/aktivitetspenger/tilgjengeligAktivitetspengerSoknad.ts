@@ -5,7 +5,7 @@ import { commonRequestHeader } from '../../utils/initApiClient';
 
 export const tilgjengeligAktivitetspengerSoknad = async (): Promise<TilgjengeligSøknadResponse> => {
     try {
-        const response = await BrukerdialogSøknad.tilgjengeligSøknad({
+        const response = await BrukerdialogSøknad.hentTilgjengeligSøknad({
             headers: commonRequestHeader,
         });
         return response.data;

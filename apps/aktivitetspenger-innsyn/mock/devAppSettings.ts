@@ -11,6 +11,8 @@ export const getDevAppSettings = (): AppEnv => ({
     SIF_PUBLIC_DEKORATOR_URL: 'https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false',
     SIF_PUBLIC_LOGIN_URL: '#',
     SIF_PUBLIC_MINSIDE_URL: '#',
+    SIF_PUBLIC_URL_AKTIVITETSPENGER: 'https://www.dev.nav.no/aktivitetspenger',
+    SIF_PUBLIC_URL_SAKSBEHANDLINGSTIDER: 'https://www.ansatt.dev.nav.no/saksbehandlingstider#aktivitetspenger',
     SIF_PUBLIC_USE_ANALYTICS: 'true',
 
     K9_BRUKERDIALOG_PROSESSERING_API_URL: '#',

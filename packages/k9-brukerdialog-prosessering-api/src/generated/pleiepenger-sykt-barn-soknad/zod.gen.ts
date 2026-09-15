@@ -90,7 +90,7 @@ export const zJsonNode = z.unknown();
 
 export const zLand = z.object({
     landkode: z.string().min(1),
-    landnavn: z.string().min(1),
+    landnavn: z.string().min(0).max(100),
 });
 
 export const zMedlemskap = z.object({

@@ -75,9 +75,6 @@ import type {
     InntektrapporteringData,
     InntektrapporteringErrors,
     InntektrapporteringResponses,
-    LagPdfData,
-    LagPdfErrors,
-    LagPdfResponses,
     LagreVedleggData,
     LagreVedleggErrors,
     LagreVedleggResponses,
@@ -137,8 +134,6 @@ import {
     zInntektrapportering1Headers,
     zInntektrapporteringBody,
     zInntektrapporteringHeaders,
-    zLagPdfBody,
-    zLagPdfResponse,
     zLagreVedleggBody,
     zOppgavebekreftelse1Body,
     zOppgavebekreftelse1Headers,
@@ -614,32 +609,6 @@ export class SØkerController {
             security: [{ scheme: 'bearer', type: 'http' }],
             url: '/oppslag/soker',
             ...options,
-        });
-    }
-}
-
-export class PdfController {
-    public static lagPdf<ThrowOnError extends boolean = true>(
-        options: Options<LagPdfData, ThrowOnError>,
-    ): RequestResult<LagPdfResponses, LagPdfErrors, ThrowOnError> {
-        return (options.client ?? client).post<LagPdfResponses, LagPdfErrors, ThrowOnError>({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: zLagPdfBody,
-                        path: z.never().optional(),
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
-            responseType: 'blob',
-            responseValidator: async (data) => await zLagPdfResponse.parseAsync(data),
-            security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/pdf',
-            ...options,
-            headers: {
-                'Content-Type': 'application/json',
-                ...options.headers,
-            },
         });
     }
 }

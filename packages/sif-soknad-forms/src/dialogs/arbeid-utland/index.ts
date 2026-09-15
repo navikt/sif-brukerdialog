@@ -1,10 +1,12 @@
 import { DateRange } from '@sif/utils';
 
-export type ArbeidUtland = {
+export type ArbeidUtlandFormData = {
     id: string;
     periode: DateRange;
-    landkode: string;
-    landnavn: string;
+    land: {
+        landkode: string;
+        landnavn: string;
+    };
     jobbetIPerioden: boolean;
     utenlandskNasjonalId: string | undefined;
 };
