@@ -65,8 +65,10 @@ describe('søknadsdataToSøknadDTO', () => {
         expect(result?.startdato).toBe('2024-01-01');
         expect(result?.medlemskap.utenlandsopphold).toEqual([
             {
-                landkode: 'SE',
-                landnavn: 'Sverige',
+                land: {
+                    landkode: 'SE',
+                    landnavn: 'Sverige',
+                },
                 fraOgMed: '2020-01-01',
                 tilOgMed: '2020-06-01',
                 jobbetIPerioden: true,
@@ -106,8 +108,10 @@ describe('søknadsdataToSøknadDTO', () => {
 
         expect(result?.medlemskap.utenlandsopphold).toEqual([
             {
-                landkode: 'DK',
-                landnavn: 'Danmark',
+                land: {
+                    landkode: 'DK',
+                    landnavn: 'Danmark',
+                },
                 fraOgMed: '2020-07-01',
                 tilOgMed: '2020-12-31',
                 jobbetIPerioden: false,
