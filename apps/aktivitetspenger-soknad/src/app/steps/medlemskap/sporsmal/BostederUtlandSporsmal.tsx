@@ -27,7 +27,7 @@ export const BostederUtlandSporsmal = ({ minDate, maxDate, utenlandsopphold = []
                     maxDate={maxDate}
                     variant="generell"
                     arbeidssteder={utenlandsopphold}
-                    addButtonId={MedlemskapFormFields.arbeidsstederUtenforNorge}
+                    addButtonId={MedlemskapFormFields.bostederUtenforNorge}
                     addButtonLabel={<AppText id="medlemskapSteg.bosteder.leggTil" />}
                     onChange={onChange}
                 />

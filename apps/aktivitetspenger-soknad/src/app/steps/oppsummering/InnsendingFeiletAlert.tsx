@@ -19,7 +19,7 @@ export const InnsendingFeiletAlert = ({ error }: Props) => {
     }, [error]);
 
     return (
-        <LocalAlert status="error" ref={alertRef}>
+        <LocalAlert status="error" ref={alertRef} tabIndex={-1}>
             <LocalAlert.Header>
                 <LocalAlert.Title>
                     <AppText id="oppsummeringSteg.innsendingFeilet.tittel" />
