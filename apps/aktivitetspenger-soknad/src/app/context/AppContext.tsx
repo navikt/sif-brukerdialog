@@ -10,6 +10,10 @@ export interface AppContextData {
 
 const AppContext = createContext<AppContextData | null>(null);
 
+/**
+ * AppContextProvider inneholder data som er lastet inn ved oppstart
+ * av applikasjonen - "grunndata"
+ */
 export const AppContextProvider = AppContext.Provider;
 
 export const useAppContext = (): AppContextData => {
