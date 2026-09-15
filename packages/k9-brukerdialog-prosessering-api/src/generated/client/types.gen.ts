@@ -26,10 +26,10 @@ export type AktivitetspengerOppgavebekreftelse = {
 export type Aktivitetspengersøknad = {
     barnErRiktig: boolean;
     erBosattITrondheim: boolean;
-    forutgåendeBosteder: ForutgåendeBosteder;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
     kontonummerInfo: KontonummerInfo;
+    medlemskap: MedlemskapAktivitetspenger;
     språk: string;
     startdato: string;
     søkerNorskIdent: string;
@@ -244,11 +244,6 @@ export type FerieuttakIPerioden = {
     skalTaUtFerieIPerioden: boolean;
 };
 
-export type ForutgåendeBosteder = {
-    harBoddIUtlandetSiste5År: boolean;
-    utenlandsoppholdSiste5År: Bosted[];
-};
-
 export type Fosterhjemgodtgjørelse = {
     mottarFosterhjemsgodtgjørelse: boolean;
     type: 'MOTTAR_IKKE' | 'MOTTAR_FRIKJØPT' | 'MOTTAR_I_DELER_AV_PERIODEN' | 'MOTTAR_I_HELE_PERIODEN';
@@ -360,6 +355,13 @@ export type Medlemskap = {
     skalBoIUtlandetNeste12Mnd?: boolean;
     utenlandsoppholdNeste12Mnd: Bosted[];
     utenlandsoppholdSiste12Mnd: Bosted[];
+};
+
+export type MedlemskapAktivitetspenger = {
+    harBoddINorge: boolean;
+    harJobbetINorge?: boolean;
+    harJobbetUtenforNorge?: boolean;
+    utenlandsopphold: UtenlandsoppholdAktivitetspenger[];
 };
 
 export type Nattevåk = {
@@ -766,6 +768,14 @@ export type Utenlandsopphold = {
         | 'BARNET_INNLAGT_I_HELSEINSTITUSJON_FOR_NORSK_OFFENTLIG_REGNING'
         | 'BARNET_INNLAGT_I_HELSEINSTITUSJON_DEKKET_ETTER_AVTALE_MED_ET_ANNET_LAND_OM_TRYGD'
         | 'ANNET';
+};
+
+export type UtenlandsoppholdAktivitetspenger = {
+    fraOgMed: string;
+    jobbetIPerioden: boolean;
+    land: Land;
+    tilOgMed: string;
+    utenlandskNasjonalId?: string;
 };
 
 export type UtenlandsoppholdIPerioden = {
