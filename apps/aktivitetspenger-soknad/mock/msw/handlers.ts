@@ -24,7 +24,7 @@ export const handlers = [
         return HttpResponse.json(store.get().kontonummer);
     }),
 
-    http.post('**/aktivitetspenger/soknad/innsending-', async () => {
+    http.post('**/aktivitetspenger/soknad/innsending', async () => {
         await delay(300);
         return HttpResponse.json({}, { status: 200 });
     }),
@@ -34,7 +34,7 @@ export const handlers = [
         return HttpResponse.json({}, { status: 500 });
     }),
 
-    http.post('**/aktivitetspenger/soknad/innsending', async () => {
+    http.post('**/aktivitetspenger/soknad/innsending-invalid-parameters', async () => {
         await delay(300);
         const errorDetails = {
             violations: [
