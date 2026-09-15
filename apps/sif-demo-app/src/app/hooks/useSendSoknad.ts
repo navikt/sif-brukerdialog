@@ -8,9 +8,11 @@ import { SøknadApiData } from '../types/SoknadApiData';
 export const useSendSøknad = () => {
     const { onSøknadSendt } = useSøknadSendt();
 
-    return useMutation<void, ApiError, SøknadApiData>({
+    const { mutate, isPending, error } = useMutation<void, ApiError, SøknadApiData>({
         mutationFn: (data) => sendSøknad(data),
         // Holder isPending til søknaden er markert som sendt. Se useSøknadSendt.
         onSuccess: onSøknadSendt,
     });
+
+    return { sendSøknad: mutate, isPending, sendSøknadError: error };
 };

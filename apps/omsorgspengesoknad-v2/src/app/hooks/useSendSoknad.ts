@@ -10,22 +10,24 @@ export const useSendSøknad = () => {
     const { logSkjemaFeilet } = useAnalyticsInstance();
     const { onSøknadSendt } = useSøknadSendt();
 
-    return useMutation<void, ApiError, SøknadApiData>({
+    const { mutate, isPending, error } = useMutation<void, ApiError, SøknadApiData>({
         mutationFn: (data) => sendSøknad(data),
         // Holder isPending til søknaden er markert som sendt. Se useSøknadSendt.
         onSuccess: onSøknadSendt,
-        onError: (error) => {
+        onError: (e) => {
             logSkjemaFeilet();
 
-            if (error.type === ApiErrorType.ZodValidationError) {
+            if (e.type === ApiErrorType.ZodValidationError) {
                 // message inneholder feltstier og Zod-meldinger for teknisk feilsøking.
                 // Requesten forlot aldri nettleseren — backend har ingen logg av dette.
-                appLogger.logError(`sendSøknad: request-validering feilet for felt: ${error.message}`);
-            } else if (isApiAxiosError(error)) {
-                appLogger.logApiError(error.originalError, 'sendSøknad');
+                appLogger.logError(`sendSøknad: request-validering feilet for felt: ${e.message}`);
+            } else if (isApiAxiosError(e)) {
+                appLogger.logApiError(e.originalError, 'sendSøknad');
             } else {
-                appLogger.logError(`sendSøknad: innsending feilet (${error.type})`);
+                appLogger.logError(`sendSøknad: innsending feilet (${e.type})`);
             }
         },
     });
+
+    return { sendSøknad: mutate, isPending, sendSøknadError: error };
 };

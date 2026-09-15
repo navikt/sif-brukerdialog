@@ -35,7 +35,7 @@ export const OppsummeringSteg = () => {
     const søknadsdata = useSøknadsdata<Søknadsdata>();
 
     const methods = useForm<FormValues>({ defaultValues: {} });
-    const { isPending, mutate } = useSendSøknad();
+    const { sendSøknad, isPending } = useSendSøknad();
 
     const dto = getSøknadApiDataFromSøknad({
         søker,
@@ -48,7 +48,7 @@ export const OppsummeringSteg = () => {
 
     const onSubmit = () => {
         if (!dto) return;
-        mutate({ ...dto, harBekreftetOpplysninger });
+        sendSøknad({ ...dto, harBekreftetOpplysninger });
     };
 
     return (

@@ -41,7 +41,7 @@ export const OppsummeringSteg = () => {
     const søknadsdata = useSøknadsdata<Søknadsdata>();
 
     const { locale } = useAppIntl();
-    const { isPending, mutate, error: sendSøknadError } = useSendSøknad();
+    const { sendSøknad, isPending, sendSøknadError } = useSendSøknad();
 
     const dto = søknadsdataToSøknadDTO({
         søker,
@@ -55,7 +55,7 @@ export const OppsummeringSteg = () => {
         if (dto === undefined) {
             return;
         }
-        mutate({ ...dto, harBekreftetOpplysninger });
+        sendSøknad({ ...dto, harBekreftetOpplysninger });
     };
 
     return (

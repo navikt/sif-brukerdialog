@@ -42,7 +42,7 @@ export const OppsummeringSteg = () => {
 
     const methods = useForm<FormValues>({ defaultValues: {} });
 
-    const { isPending, mutate, error: sendSøknadError } = useSendSøknad();
+    const { sendSøknad, isPending, sendSøknadError } = useSendSøknad();
 
     const dto = søknadsdataToSøknadDTO({
         søker,
@@ -58,7 +58,7 @@ export const OppsummeringSteg = () => {
         if (dto === undefined) {
             return;
         }
-        mutate({ ...dto, harBekreftetOpplysninger });
+        sendSøknad({ ...dto, harBekreftetOpplysninger });
     };
 
     return (

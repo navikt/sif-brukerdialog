@@ -153,9 +153,9 @@ Merk: `SøknadStepForm` kaller også `useCheckConsistency` internt for å deakti
 
 Fullfører innsendingen etter vellykket POST: sletter mellomlagring, logger `skjemaFullført` og setter `søknadSendt` i storen. Navigerer ikke selv — `SøknadRouter` synker URL mot `søknadSendt`.
 
-#### Mønster: `onSøknadSendt` som mutasjonens `onSuccess`
+#### Mønster: `useSendSøknad` eier innsendingsflyten
 
-Legg `onSøknadSendt` i mutasjonsoppsettet i appens `useSendSøknad`, ikke som per-kall-callback i `mutate()`:
+Appens `useSendSøknad` eier POST, opprydding og feillogging, og eksponerer domenenavn utad — ikke mutasjonsobjektet. Samme konvensjon som `useYtelseMellomlagring` i `@sif/api` (`lagre`, `opprett`, `slett`) og som v1-appene (`sendSøknad`, `sendSøknadError`).
 
 ```ts
 // apps/<app>/src/app/hooks/useSendSoknad.ts
@@ -163,30 +163,35 @@ export const useSendSøknad = () => {
     const { logSkjemaFeilet } = useAnalyticsInstance();
     const { onSøknadSendt } = useSøknadSendt();
 
-    return useMutation<void, ApiError, SøknadApiData>({
+    const { mutate, isPending, error } = useMutation<void, ApiError, SøknadApiData>({
         mutationFn: (data) => sendSøknad(data),
+        // Holder isPending til søknaden er markert som sendt. Se useSøknadSendt.
         onSuccess: onSøknadSendt,
         onError: (error) => {
             /* logging */
         },
     });
+
+    return { sendSøknad: mutate, isPending, sendSøknadError: error };
 };
 ```
 
 Da blir oppsummeringssteget trivielt — det sier bare «send inn»:
 
 ```tsx
-const { isPending, mutate, error: sendSøknadError } = useSendSøknad();
+const { sendSøknad, isPending, sendSøknadError } = useSendSøknad();
 
 const onSubmit = () => {
     if (dto === undefined) return;
-    mutate({ ...dto, harBekreftetOpplysninger });
+    sendSøknad({ ...dto, harBekreftetOpplysninger });
 };
 ```
 
-**Hvorfor `onSuccess` i mutasjonsoppsettet og ikke i `mutate()`:** React Query awaiter `options.onSuccess` og kjører den _før_ status settes til `success`. `isPending` står derfor til kvitteringen vises, og submit-knappen kan ikke klikkes to ganger. Per-kall-callbacken i `mutate(data, { onSuccess })` kjører derimot etter at status allerede er `success`, og awaites ikke — det gir et vindu på ett nettverks-round-trip der knappen er aktiv og en dobbel innsending går gjennom.
+**Hvorfor `onSuccess` i mutasjonsoppsettet:** React Query awaiter `options.onSuccess` og kjører den _før_ status settes til `success`. `isPending` står derfor til `søknadSendt` er satt, og submit-knappen er deaktivert hele veien. Legges `onSøknadSendt` i stedet som per-kall-callback i `mutate(data, { onSuccess })`, kjører den etter at status er `success` og awaites ikke — det gir et vindu på ett nettverks-round-trip der knappen er aktiv og en dobbel innsending går gjennom.
 
 **Hvorfor `mutate` og ikke `mutateAsync`:** innsendingsfeil skal bli liggende i mutasjonens `error`-state og rendres av appens `InnsendingFeiletAlert`. `mutateAsync` uten `try/catch` re-kastes av RHF `handleSubmit`, og `SifForm` fanger ikke — altså unhandled rejection ved hver feilede innsending. `await mutateAsync()` lukker heller ikke double-submit-vinduet, siden `success` dispatches før promisen resolver og `FormLayout.FormButtons` kun leser `submitPending`/`submitDisabled`, ikke `formState.isSubmitting`.
+
+Begge fellene forsvinner fra kallstedet når hooken kun returnerer `sendSøknad` — verken `mutateAsync` eller per-kall-callbacken er tilgjengelig.
 
 **Invariant:** `onSøknadSendt()` rejecter aldri — opprydding og analytics er pakket i `try/catch` i hooken. Det er en forutsetning for mønsteret: en rejection fra `options.onSuccess` ville sendt mutasjonen til error-state og vist innsendingsfeil selv om søknaden faktisk ble sendt. Bevar den egenskapen om hooken utvides.
 
