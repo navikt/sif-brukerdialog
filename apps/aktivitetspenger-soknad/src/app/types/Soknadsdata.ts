@@ -1,9 +1,9 @@
-import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
+import type { aktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
 import { ArbeidUtlandFormData } from '@sif/soknad-forms';
 
 import { SøknadStepId } from './SoknadStepId';
 
-export type KontonummerSøknadsdata = Pick<KontonummerInfo, 'kontonummerErRiktig'>;
+export type KontonummerSøknadsdata = Pick<aktivitetspenger.KontonummerInfo, 'kontonummerErRiktig'>;
 
 export type BostedSøknadsdata = {
     erBosattITrondheim: boolean;

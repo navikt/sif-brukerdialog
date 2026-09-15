@@ -50,7 +50,7 @@ export const InnsendingFeiletAlert = ({ error }: Props) => {
                         </BodyLong>
                     </VStack>
                 ) : (
-                    error.message
+                    <AppText id="oppsummeringSteg.innsendingFeilet.tekst.generell.1" />
                 )}
             </LocalAlert.Content>
         </LocalAlert>

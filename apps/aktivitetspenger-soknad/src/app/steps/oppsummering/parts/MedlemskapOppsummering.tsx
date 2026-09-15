@@ -1,5 +1,5 @@
 import { Box, FormSummary } from '@navikt/ds-react';
-import { MedlemskapAktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
+import type { aktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
 import { JaNeiSvar } from '@sif/soknad-ui';
 import { useStepNavigation } from '@sif/soknad-app';
 
@@ -10,7 +10,7 @@ import { ISODate } from '@sif/utils';
 import { getMedlemskapSynlighet } from '../../medlemskap/medlemskapSynlighet';
 
 interface Props {
-    medlemskap: MedlemskapAktivitetspenger;
+    medlemskap: aktivitetspenger.MedlemskapAktivitetspenger;
 }
 
 export const MedlemskapOppsummering = ({ medlemskap }: Props) => {

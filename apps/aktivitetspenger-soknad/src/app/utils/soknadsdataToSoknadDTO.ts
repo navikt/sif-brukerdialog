@@ -1,14 +1,16 @@
 import { SøknadApiData } from '@app/types/SoknadApiData';
 import { MedlemskapSøknadsdata, Søknadsdata } from '@app/types/Soknadsdata';
-import { KontonummerInfo, UtenlandsoppholdAktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
+import type { aktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
 import { Søker } from '@sif/api/k9-prosessering';
 import { ISODate } from '@sif/utils';
 
 import { getMedlemskapSynlighet } from '../steps/medlemskap/medlemskapSynlighet';
 
-const getUtenlandsoppholdFromMedlemskap = (medlemskap: MedlemskapSøknadsdata): UtenlandsoppholdAktivitetspenger[] => {
+const getUtenlandsoppholdFromMedlemskap = (
+    medlemskap: MedlemskapSøknadsdata,
+): aktivitetspenger.UtenlandsoppholdAktivitetspenger[] => {
     const synlig = getMedlemskapSynlighet(medlemskap);
-    const utenlandsopphold: UtenlandsoppholdAktivitetspenger[] = synlig.arbeidsstederUtenforNorge
+    const utenlandsopphold: aktivitetspenger.UtenlandsoppholdAktivitetspenger[] = synlig.arbeidsstederUtenforNorge
         ? medlemskap.arbeidsstederUtenforNorge?.map((a) => ({
               land: a.land,
               fraOgMed: a.periode.from,
@@ -36,7 +38,7 @@ export const søknadsdataToSøknadDTO = ({
     søknadsdata: Søknadsdata;
     søker: Søker;
     språk?: 'nb' | 'nn';
-    kontoInfo: KontonummerInfo;
+    kontoInfo: aktivitetspenger.KontonummerInfo;
     startdato?: ISODate;
 }): Omit<SøknadApiData, 'harBekreftetOpplysninger'> | undefined => {
     const { barn, harForståttRettigheterOgPlikter, medlemskap, kontonummer, bosted } = søknadsdata;

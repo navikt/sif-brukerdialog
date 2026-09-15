@@ -1,4 +1,4 @@
-import { AppText } from '@app/i18n';
+import { AppText, useAppIntl } from '@app/i18n';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { SøknadStepForm } from '@sif/soknad-app';
 import { useAppContext } from '@app/context/AppContext';
@@ -33,6 +33,7 @@ const { Checkbox } = createSifFormComponents<FormValues>();
 
 export const OppsummeringSteg = () => {
     const stepId = SøknadStepId.OPPSUMMERING;
+    const { locale } = useAppIntl();
 
     const { validateField } = useSifValidate('oppsummeringForm');
     const [startdato, setStartdato] = useState<ISODate>(dateToISODate(getDateToday()));
@@ -48,7 +49,7 @@ export const OppsummeringSteg = () => {
         søker,
         kontoInfo,
         søknadsdata,
-        språk: 'nb',
+        språk: locale,
         startdato,
     });
 
