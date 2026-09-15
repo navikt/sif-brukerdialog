@@ -4,6 +4,16 @@ Rammeverk for søknadsapper i sif-brukerdialog. Pakken eier den delen av en søk
 
 Referanseapp: [`apps/aktivitetspenger-soknad`](../../apps/aktivitetspenger-soknad)
 
+## Innhold
+
+- [Hva rammeverket gjør](#hva-rammeverket-gjør)
+- [Hva appen selv eier](#hva-appen-selv-eier)
+- [Kom i gang](#kom-i-gang)
+- [API](#api)
+- [Konsepter](#konsepter)
+- [Oppskrifter](#oppskrifter)
+- [Utvikling](#utvikling)
+
 ## Hva rammeverket gjør
 
 | Ansvar | Beskrivelse |
