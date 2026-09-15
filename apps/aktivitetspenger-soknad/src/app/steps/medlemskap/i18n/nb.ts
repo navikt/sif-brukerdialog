@@ -7,7 +7,7 @@ export const medlemskapStegMessages_nb = {
     // Read more - ytelser i Norge
     'medlemskapSteg.readMore.ytelserINorge.tittel': 'Regnes ytelser fra norske myndigheter som jobb?',
     'medlemskapSteg.readMore.ytelserINorge.tekst':
-        'Offentlige ytelser som du har har fått som erstatning for inntekt, for eksempel dagpenger, sykepenger og foreldrepenger, regner vi også som jobb.',
+        'Offentlige ytelser som du har fått som erstatning for inntekt, for eksempel dagpenger, sykepenger og foreldrepenger, regner vi også som jobb.',
 
     // Read more - ytelser i utlandet
     'medlemskapSteg.readMore.ytelserIUtlandet.tittel':
