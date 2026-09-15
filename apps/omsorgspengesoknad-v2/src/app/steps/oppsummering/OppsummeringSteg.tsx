@@ -9,7 +9,7 @@ import { Søker } from '@sif/api/k9-prosessering';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { PersistedVedlegg } from '@sif/soknad-forms';
 import { FormLayout, VedleggSummaryList } from '@sif/soknad-ui/components';
-import { SøknadStep, SøknadStepForm, useSøknadSendt, useSøknadsdata } from '@sif/soknad-app';
+import { SøknadStep, SøknadStepForm, useSøknadsdata } from '@sif/soknad-app';
 import { useForm } from 'react-hook-form';
 
 import { useSkyraReloader } from '@sif/surveys';
@@ -40,8 +40,6 @@ export const OppsummeringSteg = () => {
     const { søker } = useAppContext();
     const søknadsdata = useSøknadsdata<Søknadsdata>();
 
-    const { onSøknadSendt } = useSøknadSendt();
-
     const { locale } = useAppIntl();
     const { isPending, mutate, error: sendSøknadError } = useSendSøknad();
 
@@ -57,7 +55,7 @@ export const OppsummeringSteg = () => {
         if (dto === undefined) {
             return;
         }
-        mutate({ ...dto, harBekreftetOpplysninger }, { onSuccess: () => onSøknadSendt() });
+        mutate({ ...dto, harBekreftetOpplysninger });
     };
 
     return (

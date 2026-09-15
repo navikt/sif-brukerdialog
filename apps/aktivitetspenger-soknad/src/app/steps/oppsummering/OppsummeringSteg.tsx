@@ -7,7 +7,7 @@ import { InfoCard } from '@navikt/ds-react';
 import { dateToISODate, getDateToday, ISODate } from '@sif/utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
-import { SøknadStep, useSøknadSendt, useSøknadsdata } from '@sif/soknad-app';
+import { SøknadStep, useSøknadsdata } from '@sif/soknad-app';
 import { FormLayout } from '@sif/soknad-ui';
 import { useForm } from 'react-hook-form';
 
@@ -40,8 +40,6 @@ export const OppsummeringSteg = () => {
     const { søker, kontoInfo, registrerteBarn } = useAppContext();
     const søknadsdata = useSøknadsdata<Søknadsdata>();
 
-    const { onSøknadSendt } = useSøknadSendt();
-
     const methods = useForm<FormValues>({ defaultValues: {} });
 
     const { isPending, mutate, error: sendSøknadError } = useSendSøknad();
@@ -60,7 +58,7 @@ export const OppsummeringSteg = () => {
         if (dto === undefined) {
             return;
         }
-        mutate({ ...dto, harBekreftetOpplysninger }, { onSuccess: () => onSøknadSendt() });
+        mutate({ ...dto, harBekreftetOpplysninger });
     };
 
     return (

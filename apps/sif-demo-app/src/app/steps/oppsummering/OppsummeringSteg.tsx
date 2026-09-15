@@ -7,7 +7,7 @@ import { FormSummary, InlineMessage } from '@navikt/ds-react';
 import { dateFormatter, formatName } from '@sif/utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
-import { SøknadStep, useSøknadSendt, useSøknadsdata } from '@sif/soknad-app';
+import { SøknadStep, useSøknadsdata } from '@sif/soknad-app';
 import { FormLayout } from '@sif/soknad-ui';
 import { PersistedVedlegg } from '@sif/soknad-forms';
 import { VedleggSummaryList } from '@sif/soknad-ui/components';
@@ -34,9 +34,8 @@ export const OppsummeringSteg = () => {
     const { søker, barn: registrerteBarn } = useAppContext();
     const søknadsdata = useSøknadsdata<Søknadsdata>();
 
-    const { onSøknadSendt } = useSøknadSendt();
     const methods = useForm<FormValues>({ defaultValues: {} });
-    const { isPending, mutateAsync } = useSendSøknad();
+    const { isPending, mutate } = useSendSøknad();
 
     const dto = getSøknadApiDataFromSøknad({
         søker,
@@ -47,10 +46,9 @@ export const OppsummeringSteg = () => {
 
     const harBekreftetOpplysninger = methods.watch(FormFields.bekrefterOpplysninger);
 
-    const onSubmit = async () => {
+    const onSubmit = () => {
         if (!dto) return;
-        await mutateAsync({ ...dto, harBekreftetOpplysninger });
-        await onSøknadSendt();
+        mutate({ ...dto, harBekreftetOpplysninger });
     };
 
     return (
