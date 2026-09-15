@@ -9,6 +9,7 @@
         "build": "next build --webpack",
         "clean": "rm -rf node_modules",
         "dev": "next dev --webpack -p 8080",
+        "lint:tsc": "tsc --noEmit",
         "playwright-test": "playwright test",
         "start": "next start -p 8080",
         "test": "vitest run"

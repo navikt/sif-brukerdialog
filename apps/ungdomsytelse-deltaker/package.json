@@ -21,6 +21,7 @@
         "gh-pages:rebuild": "pnpm demo:build && pnpm gh-pages:clean && pnpm gh-pages:copy",
         "lint:eslint": "eslint src",
         "lint:fix": "eslint src --fix",
+        "lint:tsc": "tsc --noEmit",
         "playwright-test": "playwright test",
         "pw:build": "pnpm pw:build-app && pnpm demo:copy-app-files",
         "pw:build-app": "vite build --config vite.playwright.config.ts",
