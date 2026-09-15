@@ -1,8 +1,7 @@
 import { medlemskapStegMessages_nb } from './nb';
 
 export const medlemskapStegMessages_nn: Record<keyof typeof medlemskapStegMessages_nb, string> = {
-    'medlemskapSteg.veileder.tekst.1':
-        'Her treng me å vite om du har budd eller jobba i utlandet dei siste fem åra.',
+    'medlemskapSteg.veileder.tekst.1': 'Her treng me å vite om du har budd eller jobba i utlandet dei siste fem åra.',
     'medlemskapSteg.veileder.tekst.2':
         'Det er for at me skal kunne vurdere om du oppfyller krava til medlemskap i folketrygda. Viss du bur eller jobbar i Noreg, er du vanlegvis medlem  ',
     'medlemskapSteg.readMore.ytelserINorge.tittel': 'Blir ytingar frå norske styresmakter rekna som jobb?',
@@ -39,4 +38,5 @@ export const medlemskapStegMessages_nn: Record<keyof typeof medlemskapStegMessag
     'medlemskapForm.validation.bosteder.listIsEmpty': 'Du må leggje til minst éin bustad i utlandet',
     'medlemskapForm.validation.arbeidsstederUtenforNorge.listIsEmpty':
         'Du må leggje til minst éin periode med jobb i utlandet',
+    'medlemskapForm.validation.bostederUtenforNorge.listIsEmpty': 'Du må leggje til minst eitt utanlandsopphald',
 };

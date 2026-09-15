@@ -25,3 +25,11 @@ export const Todo = ({ children, spacing = true }: Props) => (
         </Bleed>
     </Box>
 );
+export const TodoFlag = () => (
+    <span
+        style={{ zIndex: 2, position: 'absolute', display: 'inline-block', padding: '0 .5rem', marginTop: '-0.25rem' }}>
+        <Tag variant="strong" size="xsmall" data-color="danger" style={{ rotate: '-12deg' }}>
+            <AppText id="component.todo.label" />
+        </Tag>
+    </span>
+);

@@ -53,4 +53,6 @@ export const medlemskapStegMessages_nb = {
 
     'medlemskapForm.validation.arbeidsstederUtenforNorge.listIsEmpty':
         'Du må legge til minst en periode med jobb i utlandet',
+
+    'medlemskapForm.validation.bostederUtenforNorge.listIsEmpty': 'Du må legge til minst ett utenlandsopphold',
 };
