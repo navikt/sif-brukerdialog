@@ -4,7 +4,8 @@ import { fetchAndNormalizeSpec, getNavBaseUrl, parseCodegenEnv } from '../../../
 
 /** TODO: Fjern override når prod-spec er tilgjengelig */
 const env = parseCodegenEnv();
-const base = env === 'prod' ? 'intern.dev.nav.no' : getNavBaseUrl(env);
+const base = getNavBaseUrl(env);
+// const base = env === 'prod' ? 'intern.dev.nav.no' : getNavBaseUrl(env);
 const service = `k9-brukerdialog-prosessering.${base}`;
 
 const specs = [
