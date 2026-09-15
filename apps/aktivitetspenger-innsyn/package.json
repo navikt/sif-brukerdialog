@@ -16,6 +16,7 @@
         "gh-pages:rebuild": "pnpm demo:build && pnpm gh-pages:clean && pnpm gh-pages:copy",
         "lint:eslint": "eslint src",
         "lint:fix": "eslint src --fix",
+        "lint:tsc": "tsc --noEmit",
         "playwright-test": "playwright test",
         "pw:build": "vite build --config vite.e2e.config.ts",
         "pw:dev": "vite --config vite.e2e.config.ts",

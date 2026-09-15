@@ -12,6 +12,7 @@
         "e2e:build": "pnpm pw:build",
         "lint:eslint": "eslint src",
         "lint:fix": "eslint src --fix",
+        "lint:tsc": "tsc --noEmit",
         "playwright-test": "playwright test",
         "pw:build": "vite build --config vite.local.config.ts --mode playwright",
         "pw:dev": "vite --config vite.local.config.ts --mode playwright",

@@ -11,6 +11,7 @@
         "dev": "vite --config vite.dev.config.ts",
         "lint:eslint": "eslint src",
         "lint:fix": "eslint src --fix",
+        "lint:tsc": "tsc --noEmit",
         "pw:dev": "vite --config vite.e2e.config.ts",
         "pw:run": "playwright test",
         "pw:run:headed": "playwright test --headed",
