@@ -3,45 +3,42 @@ import { ApplicationUnavailableContent, DevBranchInfo } from '@sif/soknad-ui';
 import { UxSignalsLoaderProvider } from '@sif/surveys';
 import { PropsWithChildren } from 'react';
 
-import { AnalyticsProvider, AnalyticsProviderConfig } from '../analytics/analytics';
+import { AnalyticsProvider } from '../analytics/analytics';
 import { AppIntlConfig, AppIntlProvider } from './AppIntlProvider';
 import { AppErrorBoundary } from './AppErrorBoundary';
 import { SifQueryClientProvider } from './SifQueryClientProvider';
 
 export type { SanityConfig };
 
-export interface AppStatusConfig {
+interface AppStatusConfig {
     sanityConfig: SanityConfig;
 }
 
+/**
+ * Provider-komponent som setter opp standard kontekster for søknadsapplikasjonen med:
+ * - analytics (innblikk)
+ * - internasjonalisering (i18n)
+ * - SifQueryClientProvider (react-query) med feil-logging via @sif/apm
+ * - appstatus (sanity)
+ * - feilgrensesnitt (error boundary)
+ * - UxSignals (laster inn ux signals)
+ */
 interface SøknadAppProviderProps {
+    /** Nøkkel for applikasjonen som brukes til å identifisere appen i
+     * ulike kontekster, f.eks. analytics og appstatus */
     applicationKey: string;
-    analyticsConfig?: AnalyticsProviderConfig;
+    /** Om analytics skal være aktivert. Hvis aktiv wrappes applikasjonen med
+     * AnalyticsProvider som setter ioo logging til Navs innblikk  */
+    useAnalytics?: boolean;
+    /** Konfigurasjon for internasjonalisering (i18n) */
     intlConfig?: AppIntlConfig;
+    /** Konfigurasjon for appstatus - sif's sanity løsning for å skru av og på applikasjoner som er ei produksjon */
     appStatusConfig?: AppStatusConfig;
 }
 
-const AppStatusChildren = ({
-    applicationKey,
-    appStatusConfig,
-    children,
-}: PropsWithChildren<{ applicationKey: string; appStatusConfig?: AppStatusConfig }>) => {
-    if (!appStatusConfig) {
-        return <>{children}</>;
-    }
-    return (
-        <AppStatusWrapper
-            applicationKey={applicationKey}
-            sanityConfig={appStatusConfig.sanityConfig}
-            contentRenderer={() => children}
-            unavailableContentRenderer={() => <ApplicationUnavailableContent />}
-        />
-    );
-};
-
 export const SøknadAppProvider = ({
     applicationKey,
-    analyticsConfig,
+    useAnalytics,
     intlConfig,
     appStatusConfig,
     children,
@@ -49,12 +46,19 @@ export const SøknadAppProvider = ({
     return (
         <AppErrorBoundary>
             <SifQueryClientProvider>
-                <AnalyticsProvider applicationKey={applicationKey} isActive={analyticsConfig?.isActive}>
+                <AnalyticsProvider applicationKey={applicationKey} isActive={useAnalytics}>
                     <UxSignalsLoaderProvider>
                         <AppIntlProvider config={intlConfig}>
-                            <AppStatusChildren applicationKey={applicationKey} appStatusConfig={appStatusConfig}>
-                                {children}
-                            </AppStatusChildren>
+                            {appStatusConfig ? (
+                                <AppStatusWrapper
+                                    applicationKey={applicationKey}
+                                    sanityConfig={appStatusConfig.sanityConfig}
+                                    contentRenderer={() => children}
+                                    unavailableContentRenderer={() => <ApplicationUnavailableContent />}
+                                />
+                            ) : (
+                                <>{children}</>
+                            )}
                         </AppIntlProvider>
                     </UxSignalsLoaderProvider>
                 </AnalyticsProvider>

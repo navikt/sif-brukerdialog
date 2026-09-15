@@ -4,18 +4,18 @@ import { createContext, PropsWithChildren, useContext, useMemo } from 'react';
 const MAX_AWAIT_TIME = 500;
 
 export enum CustomAnalyticsEvents {
-    'applikasjonInfo' = 'applikasjon-info',
-    'applikasjonHendelse' = 'applikasjon-hendelse',
-    'apiError' = 'api-error',
+    applikasjonInfo = 'applikasjon-info',
+    applikasjonHendelse = 'applikasjon-hendelse',
+    apiError = 'api-error',
 }
 
 export enum ApplikasjonHendelse {
-    'avbryt' = 'avbryt',
-    'fortsettSenere' = 'fortsettSenere',
-    'starterMedMellomlagring' = 'starterMedMellomlagring',
-    'ugyldigMellomlagring' = 'ugyldigMellomlagring',
-    'vedleggOpplastingFeilet' = 'vedleggOpplastingFeilet',
-    'innloggetBrukerErEndret' = 'innloggetBrukerErEndret',
+    avbryt = 'avbryt',
+    fortsettSenere = 'fortsettSenere',
+    starterMedMellomlagring = 'starterMedMellomlagring',
+    ugyldigMellomlagring = 'ugyldigMellomlagring',
+    vedleggOpplastingFeilet = 'vedleggOpplastingFeilet',
+    innloggetBrukerErEndret = 'innloggetBrukerErEndret',
 }
 
 interface AnalyticsContextValue {
@@ -46,10 +46,6 @@ interface AnalyticsProviderProps {
     applicationKey: string;
     isActive?: boolean;
 }
-export interface AnalyticsProviderConfig {
-    isActive: boolean;
-}
-
 export const AnalyticsProvider = ({
     applicationKey,
     isActive = true,
