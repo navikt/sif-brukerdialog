@@ -4,22 +4,24 @@ import { useState } from 'react';
 
 import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { ArbeidUtlandFormDialog } from './ArbeidUtlandDialog';
-import type { ArbeidUtland, ArbeidUtlandVariant } from './index';
+import type { ArbeidUtlandFormData, ArbeidUtlandVariant } from './index';
 import { dateToISODate } from '@sif/utils';
 
 type StoryProps = {
-    arbeidssted?: ArbeidUtland;
+    arbeidssted?: ArbeidUtlandFormData;
     variant: ArbeidUtlandVariant;
-    alleArbeider?: ArbeidUtland[];
+    alleArbeider?: ArbeidUtlandFormData[];
 };
 
 const today = dayjs();
 
-const alleArbeider: ArbeidUtland[] = [
+const alleArbeider: ArbeidUtlandFormData[] = [
     {
         id: '1',
-        landkode: 'SWE',
-        landnavn: 'Sverige',
+        land: {
+            landkode: 'SWE',
+            landnavn: 'Sverige',
+        },
         periode: {
             from: dateToISODate(today.subtract(8, 'month')),
             to: dateToISODate(today.subtract(6, 'month').subtract(10, 'day')),
@@ -29,8 +31,10 @@ const alleArbeider: ArbeidUtland[] = [
     },
     {
         id: '2',
-        landkode: 'DNK',
-        landnavn: 'Danmark',
+        land: {
+            landkode: 'DNK',
+            landnavn: 'Danmark',
+        },
         periode: {
             from: dateToISODate(today.subtract(4, 'month')),
             to: dateToISODate(today.subtract(2, 'month').subtract(10, 'day')),

@@ -43,7 +43,6 @@ export const zBekreftBostedOppgavetypeDataDto = z.object({
         .max(1000)
 
         .optional(),
-    kildeFritekstOk: z.boolean().optional(),
     tom: z.iso.date(),
 });
 
@@ -64,7 +63,6 @@ export const zBekreftBostedOpphørOppgavetypeDataDto = z.object({
         .max(1000)
 
         .optional(),
-    kildeFritekstOk: z.boolean().optional(),
 });
 
 export const zEndretSluttdatoDataDto = z.object({
@@ -83,7 +81,48 @@ export const zInntektsrapporteringOppgavetypeDataDto = z.object({
     tilOgMed: z.iso.date(),
 });
 
+export const zOppgaveAvsnitt = z.object({
+    innhold: z.string().optional(),
+    tittel: z.string().optional(),
+});
+
+export const zOppgavePunktliste = z.object({
+    fet: z.boolean().optional(),
+    punkter: z.array(z.string()).optional(),
+    tittel: z.string().optional(),
+});
+
 export const zOppgaveStatus = z.enum(['LØST', 'ULØST', 'AVBRUTT', 'UTLØPT']);
+
+export const zOppgaveTabell = z.object({
+    fet: z.boolean().optional(),
+    kolonneOverskrifter: z.array(z.string()).optional(),
+    rader: z.array(z.array(z.string())).optional(),
+    tittel: z.string().optional(),
+});
+
+export const zOppgaveTekst = z.intersection(
+    z.union([
+        z
+            .object({
+                type: z.literal('AVSNITT'),
+            })
+            .and(zOppgaveAvsnitt),
+        z
+            .object({
+                type: z.literal('PUNKT_LISTE'),
+            })
+            .and(zOppgavePunktliste),
+        z
+            .object({
+                type: z.literal('TABELL'),
+            })
+            .and(zOppgaveTabell),
+    ]),
+    z.object({
+        type: z.string(),
+    }),
+);
 
 export const zOppgaveType = z.enum([
     'BEKREFT_ENDRET_STARTDATO',
@@ -276,6 +315,8 @@ export const zBrukerdialogOppgaveDto = z.object({
     opprettetDato: z.iso.datetime({ local: true }),
     respons: zOppgaveResponsDto.optional(),
     status: zOppgaveStatus,
+    undertittel: z.string().optional(),
+    varselInnhold: z.array(zOppgaveTekst),
     ytelsetype: zOppgaveYtelsetype,
 });
 
@@ -287,7 +328,7 @@ export const zRegistrerBody = zOpprettSøknadHendelseRequest;
 /**
  * default response
  */
-export const zTilgjengeligSøknadResponse2 = zTilgjengeligSøknadResponse;
+export const zHentTilgjengeligSøknadResponse = zTilgjengeligSøknadResponse;
 
 export const zHentAlleOppgaverQuery = z.object({
     ytelsetype: zOppgaveYtelsetype.optional(),

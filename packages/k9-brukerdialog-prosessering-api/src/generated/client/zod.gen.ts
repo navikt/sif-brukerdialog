@@ -139,22 +139,6 @@ export const zFerieuttakIPerioden = z.object({
     skalTaUtFerieIPerioden: z.boolean(),
 });
 
-export const zUtenlandsoppholdAktivitetspenger = z.object({
-    fraOgMed: z.iso.date(),
-    tilOgMed: z.iso.date(),
-    landkode: z.string().min(1),
-    landnavn: z.string(),
-    jobbetIPerioden: z.boolean(),
-    utenlandskNasjonalId: z.string().optional(),
-});
-
-export const zMedlemskapAktivitetspenger = z.object({
-    harBoddINorge: z.boolean(),
-    harJobbetUtenforNorge: z.boolean().optional(),
-    harJobbetINorge: z.boolean().optional(),
-    utenlandsopphold: z.array(zUtenlandsoppholdAktivitetspenger).optional(),
-});
-
 export const zFosterhjemgodtgjørelse = z.object({
     mottarFosterhjemsgodtgjørelse: z.boolean(),
     type: z.enum(['MOTTAR_IKKE', 'MOTTAR_FRIKJØPT', 'MOTTAR_I_DELER_AV_PERIODEN', 'MOTTAR_I_HELE_PERIODEN']),
@@ -214,18 +198,6 @@ export const zKontonummerInfo = z.object({
     kontonummerFraRegister: z.string().nullish(),
 });
 
-export const zAktivitetspengersøknad = z.object({
-    barnErRiktig: z.boolean(),
-    erBosattITrondheim: z.boolean(),
-    medlemskap: zMedlemskapAktivitetspenger,
-    harBekreftetOpplysninger: z.boolean(),
-    harForståttRettigheterOgPlikter: z.boolean(),
-    kontonummerInfo: zKontonummerInfo,
-    språk: z.string(),
-    startdato: z.iso.date(),
-    søkerNorskIdent: z.string(),
-});
-
 export const zKursDag = z.object({
     dato: z.iso.date(),
     tidKurs: z.string().nullish(),
@@ -239,7 +211,7 @@ export const zKursholder = z.object({
 
 export const zLand = z.object({
     landkode: z.string().min(1),
-    landnavn: z.string().min(1),
+    landnavn: z.string().min(0).max(100),
 });
 
 export const zLovbestemtFeriePeriodeInfo = z.object({
@@ -620,6 +592,33 @@ export const zUtenlandsopphold = z.object({
             'ANNET',
         ])
         .optional(),
+});
+
+export const zUtenlandsoppholdAktivitetspenger = z.object({
+    fraOgMed: z.iso.date(),
+    jobbetIPerioden: z.boolean(),
+    land: zLand,
+    tilOgMed: z.iso.date(),
+    utenlandskNasjonalId: z.string().min(0).max(50).nullish(),
+});
+
+export const zMedlemskapAktivitetspenger = z.object({
+    harBoddINorge: z.boolean(),
+    harJobbetINorge: z.boolean().nullish(),
+    harJobbetUtenforNorge: z.boolean().nullish(),
+    utenlandsopphold: z.array(zUtenlandsoppholdAktivitetspenger),
+});
+
+export const zAktivitetspengersøknad = z.object({
+    barnErRiktig: z.boolean(),
+    erBosattITrondheim: z.boolean(),
+    harBekreftetOpplysninger: z.boolean(),
+    harForståttRettigheterOgPlikter: z.boolean(),
+    kontonummerInfo: zKontonummerInfo,
+    medlemskap: zMedlemskapAktivitetspenger,
+    språk: z.string(),
+    startdato: z.iso.date(),
+    søkerNorskIdent: z.string(),
 });
 
 export const zUtenlandsoppholdIPerioden = z.object({

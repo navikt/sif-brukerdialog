@@ -1,5 +1,5 @@
 import { datePickerUtils } from '@sif/rhf';
-import { ArbeidUtland, ArbeidUtlandVariant } from '.';
+import { ArbeidUtlandFormData, ArbeidUtlandVariant } from '.';
 import { ArbeidUtlandFormValues } from './ArbeidUtlandDialogForm';
 import { countryIsMemberOfEøsOrEfta, dateToISODate, getCountryName, getYesOrNoFromBoolean, YesOrNo } from '@sif/utils';
 
@@ -8,7 +8,7 @@ const formValuesToArbeidUtland = (
     variant: ArbeidUtlandVariant,
     locale: string,
     arbeidsstedId?: string,
-): ArbeidUtland => {
+): ArbeidUtlandFormData => {
     const from = datePickerUtils.parseDatePickerValueToISODate(values.fom);
     const to = datePickerUtils.parseDatePickerValueToISODate(values.tom);
 
@@ -27,19 +27,21 @@ const formValuesToArbeidUtland = (
     return {
         id: arbeidsstedId || crypto.randomUUID(),
         periode: { from, to },
-        landkode: values.landkode,
-        landnavn: getCountryName(values.landkode, locale),
+        land: {
+            landkode: values.landkode,
+            landnavn: getCountryName(values.landkode, locale),
+        },
         jobbetIPerioden,
         utenlandskNasjonalId:
             jobbetIPerioden && countryIsMemberOfEøsOrEfta(values.landkode) ? values.utenlandskNasjonalId : undefined,
     };
 };
 
-const arbeidUtlandToFormValues = (arbeidssted: ArbeidUtland): ArbeidUtlandFormValues => {
+const arbeidUtlandToFormValues = (arbeidssted: ArbeidUtlandFormData): ArbeidUtlandFormValues => {
     return {
         fom: dateToISODate(arbeidssted.periode.from),
         tom: dateToISODate(arbeidssted.periode.to),
-        landkode: arbeidssted.landkode,
+        landkode: arbeidssted.land.landkode,
         utenlandskNasjonalId: arbeidssted.utenlandskNasjonalId,
         jobbetIPerioden: getYesOrNoFromBoolean(arbeidssted.jobbetIPerioden),
     };

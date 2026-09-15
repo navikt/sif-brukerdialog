@@ -4,26 +4,26 @@ import { dateRangeFormatter, getCountryName, Locale } from '@sif/utils';
 
 import { ReactNode } from 'react';
 
-import { ArbeidUtland, ArbeidUtlandVariant } from '.';
+import { ArbeidUtlandFormData, ArbeidUtlandVariant } from '.';
 import { SifSoknadFormsText } from '../../i18n';
 
 interface Props {
-    arbeidssteder: ArbeidUtland[];
+    arbeidssteder: ArbeidUtlandFormData[];
     variant?: 'default' | 'summary';
     arbeidUtlandVariant: ArbeidUtlandVariant;
-    onEdit?: (arbeidssted: ArbeidUtland) => void;
-    onDelete?: (arbeidssted: ArbeidUtland) => void;
+    onEdit?: (arbeidssted: ArbeidUtlandFormData) => void;
+    onDelete?: (arbeidssted: ArbeidUtlandFormData) => void;
 }
 
-const getTitle = (arbeidssted: ArbeidUtland, locale: Locale): string => {
-    return `${dateRangeFormatter.compact(arbeidssted.periode)}: ${getCountryName(arbeidssted.landkode, locale)}`;
+const getTitle = (arbeidssted: ArbeidUtlandFormData, locale: Locale): string => {
+    return `${dateRangeFormatter.compact(arbeidssted.periode)}: ${getCountryName(arbeidssted.land.landkode, locale)}`;
 };
 
 const renderArbeidUtlandLabel = (
     arbeidUtlandVariant: ArbeidUtlandVariant,
-    arbeidssted: ArbeidUtland,
+    arbeidssted: ArbeidUtlandFormData,
     locale: Locale,
-    onEdit?: (arbeidssted: ArbeidUtland) => void,
+    onEdit?: (arbeidssted: ArbeidUtlandFormData) => void,
 ): ReactNode => {
     const title = getTitle(arbeidssted, locale);
 
@@ -55,7 +55,7 @@ const renderArbeidUtlandLabel = (
 export const ArbeidUtlandList = ({ arbeidssteder, onEdit, onDelete, variant, arbeidUtlandVariant }: Props) => {
     const { locale } = useUiIntl();
     return (
-        <ItemListDarkside<ArbeidUtland>
+        <ItemListDarkside<ArbeidUtlandFormData>
             getItemId={(arbeidssted): string => arbeidssted.id}
             getItemTitle={(arbeidssted) => getTitle(arbeidssted, locale)}
             labelRenderer={(arbeidssted) => renderArbeidUtlandLabel(arbeidUtlandVariant, arbeidssted, locale, onEdit)}

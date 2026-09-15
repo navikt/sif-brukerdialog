@@ -10,16 +10,14 @@ const getUtenlandsoppholdFromMedlemskap = (medlemskap: MedlemskapSøknadsdata): 
     const synlig = getMedlemskapSynlighet(medlemskap);
     const utenlandsopphold: UtenlandsoppholdAktivitetspenger[] = synlig.arbeidsstederUtenforNorge
         ? medlemskap.arbeidsstederUtenforNorge?.map((a) => ({
-              landkode: a.landkode,
-              landnavn: a.landnavn,
+              land: a.land,
               fraOgMed: a.periode.from,
               tilOgMed: a.periode.to,
               jobbetIPerioden: a.jobbetIPerioden,
               utenlandskNasjonalId: a.utenlandskNasjonalId,
           })) || []
         : medlemskap.bostederUtenforNorge?.map((b) => ({
-              landkode: b.landkode,
-              landnavn: b.landnavn,
+              land: b.land,
               fraOgMed: b.periode.from,
               tilOgMed: b.periode.to,
               jobbetIPerioden: b.jobbetIPerioden,
@@ -56,10 +54,6 @@ export const søknadsdataToSøknadDTO = ({
         kontonummerInfo: {
             ...kontoInfo,
             kontonummerErRiktig: kontonummer.kontonummerErRiktig,
-        },
-        forutgåendeBosteder: {
-            harBoddIUtlandetSiste5År: false,
-            utenlandsoppholdSiste5År: [],
         },
         medlemskap: {
             harBoddINorge: medlemskap.harBoddINorge,

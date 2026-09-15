@@ -19,7 +19,6 @@ export type {
     ArbeidsgivereDto,
     BarnOppslag,
     BarnOppslagListe,
-    Bosted,
     ClientOptions,
     CreateMellomlagringData,
     CreateMellomlagringError,
@@ -69,6 +68,7 @@ export type {
     LagreVedleggError,
     LagreVedleggErrors,
     LagreVedleggResponses,
+    Land,
     MedlemskapAktivitetspenger,
     OppgavebekreftelseData,
     OppgavebekreftelseError,
@@ -88,6 +88,7 @@ export type {
     UpdateMellomlagringError,
     UpdateMellomlagringErrors,
     UpdateMellomlagringResponses,
+    UtenlandsoppholdAktivitetspenger,
 } from './types.gen';
 export {
     zAktivitetspengerInntektsrapportering,
@@ -98,7 +99,6 @@ export {
     zArbeidsgivereDto,
     zBarnOppslag,
     zBarnOppslagListe,
-    zBosted,
     zCreateMellomlagringBody,
     zCreateMellomlagringPath,
     zDeleteMellomlagringPath,
@@ -118,6 +118,7 @@ export {
     zJsonNode,
     zKontonummerInfo,
     zLagreVedleggBody,
+    zLand,
     zMedlemskapAktivitetspenger,
     zOppgavebekreftelseBody,
     zOppgavebekreftelseHeaders,
@@ -130,4 +131,5 @@ export {
     zSøker,
     zUpdateMellomlagringBody,
     zUpdateMellomlagringPath,
+    zUtenlandsoppholdAktivitetspenger,
 } from './zod.gen';

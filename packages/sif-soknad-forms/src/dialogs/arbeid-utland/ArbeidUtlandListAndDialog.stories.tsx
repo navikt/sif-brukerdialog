@@ -5,20 +5,22 @@ import { useState } from 'react';
 import { SifSoknadFormsText } from '../../i18n';
 import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { ArbeidUtlandListAndDialog } from './ArbeidUtlandListAndDialog';
-import type { ArbeidUtland } from './index';
+import type { ArbeidUtlandFormData } from './index';
 import { dateToISODate } from '@sif/utils';
 
 type StoryProps = {
-    arbeidssteder?: ArbeidUtland[];
+    arbeidssteder?: ArbeidUtlandFormData[];
 };
 
 const today = dayjs();
 
-const exampleArbeider: ArbeidUtland[] = [
+const exampleArbeider: ArbeidUtlandFormData[] = [
     {
         id: '1',
-        landkode: 'SWE',
-        landnavn: 'Sverige',
+        land: {
+            landkode: 'SWE',
+            landnavn: 'Sverige',
+        },
         periode: {
             from: dateToISODate(today.subtract(8, 'month')),
             to: dateToISODate(today.subtract(6, 'month').subtract(10, 'day')),
@@ -28,8 +30,10 @@ const exampleArbeider: ArbeidUtland[] = [
     },
     {
         id: '2',
-        landkode: 'DNK',
-        landnavn: 'Danmark',
+        land: {
+            landkode: 'DNK',
+            landnavn: 'Danmark',
+        },
         periode: {
             from: dateToISODate(today.subtract(4, 'month')),
             to: dateToISODate(today.subtract(2, 'month').subtract(10, 'day')),

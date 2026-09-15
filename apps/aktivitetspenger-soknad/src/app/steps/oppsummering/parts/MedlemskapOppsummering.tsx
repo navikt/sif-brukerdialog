@@ -73,8 +73,9 @@ export const MedlemskapOppsummering = ({ medlemskap }: Props) => {
                                     arbeidUtlandVariant="generell"
                                     variant="summary"
                                     arbeidssteder={utenlandsopphold.map((a, index) => ({
-                                        ...a,
                                         id: `${index}`,
+                                        jobbetIPerioden: a.jobbetIPerioden,
+                                        land: a.land,
                                         utenlandskNasjonalId: a.utenlandskNasjonalId,
                                         periode: {
                                             from: a.fraOgMed as ISODate,

@@ -3,19 +3,21 @@ import { useState } from 'react';
 
 import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { ArbeidUtlandList } from './ArbeidUtlandList';
-import type { ArbeidUtland } from './index';
+import type { ArbeidUtlandFormData } from './index';
 import { ISODate } from '@sif/utils';
 
 type StoryProps = {
-    arbeidssteder: ArbeidUtland[];
+    arbeidssteder: ArbeidUtlandFormData[];
     withActions?: boolean;
 };
 
-const exampleArbeider: ArbeidUtland[] = [
+const exampleArbeider: ArbeidUtlandFormData[] = [
     {
         id: '1',
-        landkode: 'SWE',
-        landnavn: 'Sverige',
+        land: {
+            landkode: 'SWE',
+            landnavn: 'Sverige',
+        },
         periode: {
             from: '2024-01-01' as ISODate,
             to: '2024-03-31' as ISODate,
@@ -25,8 +27,10 @@ const exampleArbeider: ArbeidUtland[] = [
     },
     {
         id: '2',
-        landkode: 'DNK',
-        landnavn: 'Danmark',
+        land: {
+            landkode: 'DNK',
+            landnavn: 'Danmark',
+        },
         periode: {
             from: '2024-05-01' as ISODate,
             to: '2024-06-15' as ISODate,

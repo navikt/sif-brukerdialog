@@ -17,7 +17,6 @@ export type BekreftBostedOppgavetypeDataDto = {
     ikkeOppfyltÅrsakFritekstbeskrivelse?: string;
     kilde: BostedsavklaringKildeType;
     kildeFritekst?: string;
-    kildeFritekstOk?: boolean;
     tom: string;
 };
 
@@ -28,7 +27,6 @@ export type BekreftBostedOpphørOppgavetypeDataDto = {
     ikkeOppfyltÅrsakFritekstbeskrivelse?: string;
     kilde: BostedsavklaringKildeType;
     kildeFritekst?: string;
-    kildeFritekstOk?: boolean;
 };
 
 export type BekreftOpphorVedMaksdatoOppgavetypeDataDto = {
@@ -83,6 +81,8 @@ export type BrukerdialogOppgaveDto = {
     opprettetDato: string;
     respons?: OppgaveResponsDto;
     status: OppgaveStatus;
+    undertittel?: string;
+    varselInnhold: OppgaveTekst[];
     ytelsetype: OppgaveYtelsetype;
 };
 
@@ -119,6 +119,17 @@ export type LøsOppgaveRequest = {
     oppgaveRespons?: OppgaveResponsDto;
 };
 
+export type OppgaveAvsnitt = {
+    innhold?: string;
+    tittel?: string;
+};
+
+export type OppgavePunktliste = {
+    fet?: boolean;
+    punkter?: string[];
+    tittel?: string;
+};
+
 export type OppgaveResponsDto = (
     | ({
           type: 'VARSEL_SVAR';
@@ -148,6 +159,27 @@ export enum OppgaveStatus {
      */
     UTLØPT = 'UTLØPT',
 }
+
+export type OppgaveTabell = {
+    fet?: boolean;
+    kolonneOverskrifter?: string[];
+    rader?: string[][];
+    tittel?: string;
+};
+
+export type OppgaveTekst = (
+    | ({
+          type: 'AVSNITT';
+      } & OppgaveAvsnitt)
+    | ({
+          type: 'PUNKT_LISTE';
+      } & OppgavePunktliste)
+    | ({
+          type: 'TABELL';
+      } & OppgaveTabell)
+) & {
+    type: string;
+};
 
 export enum OppgaveType {
     /**
@@ -357,21 +389,21 @@ export type RegistrerResponses = {
     default: unknown;
 };
 
-export type TilgjengeligSøknadData = {
+export type HentTilgjengeligSøknadData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/ung/brukerdialog/ekstern/api/aktivitetspenger/soknad/tilgjengelig';
 };
 
-export type TilgjengeligSøknadResponses = {
+export type HentTilgjengeligSøknadResponses = {
     /**
      * default response
      */
     default: TilgjengeligSøknadResponse;
 };
 
-export type TilgjengeligSøknadResponse2 = TilgjengeligSøknadResponses[keyof TilgjengeligSøknadResponses];
+export type HentTilgjengeligSøknadResponse = HentTilgjengeligSøknadResponses[keyof HentTilgjengeligSøknadResponses];
 
 export type HentAlleOppgaverData = {
     body?: never;

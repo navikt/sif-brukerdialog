@@ -26,10 +26,10 @@ export type AktivitetspengerOppgavebekreftelse = {
 export type Aktivitetspengersøknad = {
     barnErRiktig: boolean;
     erBosattITrondheim: boolean;
-    medlemskap: MedlemskapAktivitetspenger;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
     kontonummerInfo: KontonummerInfo;
+    medlemskap: MedlemskapAktivitetspenger;
     språk: string;
     startdato: string;
     søkerNorskIdent: string;
@@ -53,29 +53,6 @@ export type BarnOppslagListe = {
     barn: BarnOppslag[];
 };
 
-export type Bosted = {
-    fraOgMed: string;
-    landkode: string;
-    landnavn: string;
-    tilOgMed: string;
-};
-
-export type UtenlandsoppholdAktivitetspenger = {
-    fraOgMed: string;
-    tilOgMed: string;
-    landkode: string;
-    landnavn: string;
-    jobbetIPerioden: boolean;
-    utenlandskNasjonalId?: string;
-};
-
-export type MedlemskapAktivitetspenger = {
-    harBoddINorge: boolean;
-    harJobbetINorge?: boolean;
-    harJobbetUtenforNorge?: boolean;
-    utenlandsopphold?: UtenlandsoppholdAktivitetspenger[];
-};
-
 export type FrilansoppdragDto = {
     ansattFom?: string;
     ansattTom?: string;
@@ -91,6 +68,18 @@ export type KontonummerInfo = {
     harKontonummer: 'JA' | 'NEI' | 'UVISST';
     kontonummerErRiktig?: boolean;
     kontonummerFraRegister?: string;
+};
+
+export type Land = {
+    landkode: string;
+    landnavn: string;
+};
+
+export type MedlemskapAktivitetspenger = {
+    harBoddINorge: boolean;
+    harJobbetINorge?: boolean;
+    harJobbetUtenforNorge?: boolean;
+    utenlandsopphold: UtenlandsoppholdAktivitetspenger[];
 };
 
 export type OppgittInntekt = {
@@ -128,6 +117,14 @@ export type Søker = {
     fødselsdato: string;
     fødselsnummer: string;
     mellomnavn?: string;
+};
+
+export type UtenlandsoppholdAktivitetspenger = {
+    fraOgMed: string;
+    jobbetIPerioden: boolean;
+    land: Land;
+    tilOgMed: string;
+    utenlandskNasjonalId?: string;
 };
 
 export type InntektrapporteringData = {

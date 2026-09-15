@@ -1,5 +1,5 @@
 import { YesOrNo } from '@sif/rhf';
-import { ArbeidUtland } from '@sif/soknad-forms';
+import { ArbeidUtlandFormData } from '@sif/soknad-forms';
 
 export enum MedlemskapFormFields {
     harBoddINorge = 'harBoddINorge',
@@ -13,6 +13,6 @@ export interface MedlemskapFormValues {
     [MedlemskapFormFields.harBoddINorge]?: YesOrNo;
     [MedlemskapFormFields.harJobbetINorge]?: YesOrNo;
     [MedlemskapFormFields.harJobbetUtenforNorge]?: YesOrNo;
-    [MedlemskapFormFields.bostederUtenforNorge]?: ArbeidUtland[];
-    [MedlemskapFormFields.arbeidsstederUtenforNorge]?: ArbeidUtland[];
+    [MedlemskapFormFields.bostederUtenforNorge]?: ArbeidUtlandFormData[];
+    [MedlemskapFormFields.arbeidsstederUtenforNorge]?: ArbeidUtlandFormData[];
 }

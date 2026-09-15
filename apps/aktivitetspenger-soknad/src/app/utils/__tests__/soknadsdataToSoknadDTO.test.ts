@@ -23,8 +23,10 @@ const komplettSøknadsdata: Søknadsdata = {
         arbeidsstederUtenforNorge: [
             {
                 id: '1',
-                landkode: 'SE',
-                landnavn: 'Sverige',
+                land: {
+                    landkode: 'SE',
+                    landnavn: 'Sverige',
+                },
                 periode: { from: '2020-01-01' as ISODate, to: '2020-06-01' as ISODate },
                 jobbetIPerioden: true,
                 utenlandskNasjonalId: undefined,
@@ -33,8 +35,10 @@ const komplettSøknadsdata: Søknadsdata = {
         bostederUtenforNorge: [
             {
                 id: '2',
-                landkode: 'DK',
-                landnavn: 'Danmark',
+                land: {
+                    landkode: 'DK',
+                    landnavn: 'Danmark',
+                },
                 periode: { from: '2020-07-01' as ISODate, to: '2020-12-31' as ISODate },
                 jobbetIPerioden: false,
                 utenlandskNasjonalId: undefined,
@@ -86,8 +90,10 @@ describe('søknadsdataToSøknadDTO', () => {
                 bostederUtenforNorge: [
                     {
                         id: '2',
-                        landkode: 'DK',
-                        landnavn: 'Danmark',
+                        land: {
+                            landkode: 'DK',
+                            landnavn: 'Danmark',
+                        },
                         periode: { from: '2020-07-01' as ISODate, to: '2020-12-31' as ISODate },
                         jobbetIPerioden: false,
                         utenlandskNasjonalId: '1234567890',

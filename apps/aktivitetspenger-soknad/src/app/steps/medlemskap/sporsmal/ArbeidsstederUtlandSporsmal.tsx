@@ -1,15 +1,15 @@
 import { AppText } from '@app/i18n';
 import { FormLayout } from '@sif/soknad-ui';
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
-import { ArbeidUtland, ArbeidUtlandListAndDialog } from '@sif/soknad-forms';
+import { ArbeidUtlandFormData, ArbeidUtlandListAndDialog } from '@sif/soknad-forms';
 import { ISODate } from '@sif/utils';
 import { MedlemskapFormFields } from '../types';
 
 interface Props {
     minDate: ISODate;
     maxDate: ISODate;
-    arbeidsstederUtenforNorge?: ArbeidUtland[];
-    onChange: (arbeidssteder: ArbeidUtland[]) => void;
+    arbeidsstederUtenforNorge?: ArbeidUtlandFormData[];
+    onChange: (arbeidssteder: ArbeidUtlandFormData[]) => void;
 }
 
 export const ArbeidsstederUtlandSporsmal = ({ minDate, maxDate, arbeidsstederUtenforNorge = [], onChange }: Props) => {
