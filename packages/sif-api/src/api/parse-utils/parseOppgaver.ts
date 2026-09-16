@@ -233,7 +233,8 @@ const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
         kildeFritekst: oppgavetypeData.kildeFritekst,
     };
 
-    if (!oppgavetypeData.varseltekst || !oppgavetypeData.varseltekst) {
+    const { varseltekst } = oppgavetypeData;
+    if (!varseltekst) {
         throw new Error(`Oppgave mangler varseltekst: ${oppgave.oppgaveReferanse}`);
     }
 
@@ -248,7 +249,7 @@ const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
                     from: oppgavetypeData.fom as ISODate,
                     to: oppgavetypeData.tom as ISODate,
                 },
-                varseltekst: oppgavetypeData.varseltekst!,
+                varseltekst,
             },
             respons: parseSvarPåVarselRespons(oppgave.respons),
         };
@@ -261,7 +262,7 @@ const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
             oppgavetypeData: {
                 ...fellesdata,
                 fom: oppgavetypeData.fom as ISODate,
-                varseltekst: oppgavetypeData.varseltekst!,
+                varseltekst,
             },
             respons: parseSvarPåVarselRespons(oppgave.respons),
         };
