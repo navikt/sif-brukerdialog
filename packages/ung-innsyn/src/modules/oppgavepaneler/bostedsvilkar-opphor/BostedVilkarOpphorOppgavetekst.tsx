@@ -13,7 +13,9 @@ export const BostedVilkarOpphorOppgavetekst = ({
 }: Props) => {
     return varseltekst ? (
         <VStack gap="space-20">
-            <BodyLong>{varseltekst}</BodyLong>
+            <BodyLong>
+                <Fritekst text={varseltekst} />
+            </BodyLong>
             {ikkeOppfyltÅrsak === BostedsvilkårIkkeOppfyltÅrsak.ANNET && (
                 <BodyLong>
                     <Fritekst text={ikkeOppfyltÅrsakFritekstbeskrivelse} />
