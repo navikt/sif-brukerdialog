@@ -18,6 +18,7 @@ export type BekreftBostedOppgavetypeDataDto = {
     kilde: BostedsavklaringKildeType;
     kildeFritekst?: string;
     tom: string;
+    varseltekst?: string;
 };
 
 export type BekreftBostedOpphørOppgavetypeDataDto = {
@@ -27,11 +28,13 @@ export type BekreftBostedOpphørOppgavetypeDataDto = {
     ikkeOppfyltÅrsakFritekstbeskrivelse?: string;
     kilde: BostedsavklaringKildeType;
     kildeFritekst?: string;
+    varseltekst?: string;
 };
 
 export type BekreftOpphorVedMaksdatoOppgavetypeDataDto = {
     maxDato: string;
     sluttdato: string;
+    varseltekst?: string;
 };
 
 export enum BostedsavklaringKildeType {
@@ -81,8 +84,6 @@ export type BrukerdialogOppgaveDto = {
     opprettetDato: string;
     respons?: OppgaveResponsDto;
     status: OppgaveStatus;
-    undertittel?: string;
-    varselInnhold: OppgaveTekst[];
     ytelsetype: OppgaveYtelsetype;
 };
 
@@ -90,22 +91,26 @@ export type EndretPeriodeDataDto = {
     endringer: PeriodeEndringType[];
     forrigePeriode?: PeriodeDto;
     nyPeriode?: PeriodeDto;
+    varseltekst?: string;
 };
 
 export type EndretSluttdatoDataDto = {
     forrigeSluttdato?: string;
     nySluttdato: string;
+    varseltekst?: string;
 };
 
 export type EndretStartdatoDataDto = {
     forrigeStartdato: string;
     nyStartdato: string;
+    varseltekst?: string;
 };
 
 export type InntektsrapporteringOppgavetypeDataDto = {
     fraOgMed: string;
     gjelderDelerAvMåned: boolean;
     tilOgMed: string;
+    varseltekst?: string;
 };
 
 export type KontrollerRegisterinntektOppgavetypeDataDto = {
@@ -113,21 +118,11 @@ export type KontrollerRegisterinntektOppgavetypeDataDto = {
     gjelderDelerAvMåned: boolean;
     registerinntekt: RegisterinntektDto;
     tilOgMed: string;
+    varseltekst?: string;
 };
 
 export type LøsOppgaveRequest = {
     oppgaveRespons?: OppgaveResponsDto;
-};
-
-export type OppgaveAvsnitt = {
-    innhold?: string;
-    tittel?: string;
-};
-
-export type OppgavePunktliste = {
-    fet?: boolean;
-    punkter?: string[];
-    tittel?: string;
 };
 
 export type OppgaveResponsDto = (
@@ -159,27 +154,6 @@ export enum OppgaveStatus {
      */
     UTLØPT = 'UTLØPT',
 }
-
-export type OppgaveTabell = {
-    fet?: boolean;
-    kolonneOverskrifter?: string[];
-    rader?: string[][];
-    tittel?: string;
-};
-
-export type OppgaveTekst = (
-    | ({
-          type: 'AVSNITT';
-      } & OppgaveAvsnitt)
-    | ({
-          type: 'PUNKT_LISTE';
-      } & OppgavePunktliste)
-    | ({
-          type: 'TABELL';
-      } & OppgaveTabell)
-) & {
-    type: string;
-};
 
 export enum OppgaveType {
     /**
@@ -309,6 +283,7 @@ export type SvarPåVarselDto = {
 
 export type SøkYtelseOppgavetypeDataDto = {
     fomDato: string;
+    varseltekst?: string;
 };
 
 export type TilgjengeligSøknadResponse = {

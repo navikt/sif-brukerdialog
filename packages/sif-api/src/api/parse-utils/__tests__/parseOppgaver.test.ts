@@ -21,7 +21,6 @@ const baseOppgave = {
     status: OppgaveStatus.ULØST,
     opprettetDato: '2026-05-01T08:00:00.000Z',
     frist: '2026-05-15T07:00:00.000Z',
-    varselInnhold: [],
 };
 
 describe('parseOppgaver - BEKREFT_OPPHOR_VED_MAKSDATO', () => {

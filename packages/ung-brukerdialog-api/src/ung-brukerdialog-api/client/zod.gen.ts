@@ -14,6 +14,7 @@ export const zArbeidOgFrilansRegisterInntektDto = z.object({
 export const zBekreftOpphorVedMaksdatoOppgavetypeDataDto = z.object({
     maxDato: z.iso.date(),
     sluttdato: z.iso.date(),
+    varseltekst: z.string().optional(),
 });
 
 export const zBostedsavklaringKildeType = z.enum(['BRUKER', 'FOLKEREGISTER', 'ANNET']);
@@ -44,6 +45,7 @@ export const zBekreftBostedOppgavetypeDataDto = z.object({
 
         .optional(),
     tom: z.iso.date(),
+    varseltekst: z.string().optional(),
 });
 
 export const zBekreftBostedOpphørOppgavetypeDataDto = z.object({
@@ -63,66 +65,29 @@ export const zBekreftBostedOpphørOppgavetypeDataDto = z.object({
         .max(1000)
 
         .optional(),
+    varseltekst: z.string().optional(),
 });
 
 export const zEndretSluttdatoDataDto = z.object({
     forrigeSluttdato: z.iso.date().optional(),
     nySluttdato: z.iso.date(),
+    varseltekst: z.string().optional(),
 });
 
 export const zEndretStartdatoDataDto = z.object({
     forrigeStartdato: z.iso.date(),
     nyStartdato: z.iso.date(),
+    varseltekst: z.string().optional(),
 });
 
 export const zInntektsrapporteringOppgavetypeDataDto = z.object({
     fraOgMed: z.iso.date(),
     gjelderDelerAvMåned: z.boolean(),
     tilOgMed: z.iso.date(),
-});
-
-export const zOppgaveAvsnitt = z.object({
-    innhold: z.string().optional(),
-    tittel: z.string().optional(),
-});
-
-export const zOppgavePunktliste = z.object({
-    fet: z.boolean().optional(),
-    punkter: z.array(z.string()).optional(),
-    tittel: z.string().optional(),
+    varseltekst: z.string().optional(),
 });
 
 export const zOppgaveStatus = z.enum(['LØST', 'ULØST', 'AVBRUTT', 'UTLØPT']);
-
-export const zOppgaveTabell = z.object({
-    fet: z.boolean().optional(),
-    kolonneOverskrifter: z.array(z.string()).optional(),
-    rader: z.array(z.array(z.string())).optional(),
-    tittel: z.string().optional(),
-});
-
-export const zOppgaveTekst = z.intersection(
-    z.union([
-        z
-            .object({
-                type: z.literal('AVSNITT'),
-            })
-            .and(zOppgaveAvsnitt),
-        z
-            .object({
-                type: z.literal('PUNKT_LISTE'),
-            })
-            .and(zOppgavePunktliste),
-        z
-            .object({
-                type: z.literal('TABELL'),
-            })
-            .and(zOppgaveTabell),
-    ]),
-    z.object({
-        type: z.string(),
-    }),
-);
 
 export const zOppgaveType = z.enum([
     'BEKREFT_ENDRET_STARTDATO',
@@ -158,6 +123,7 @@ export const zEndretPeriodeDataDto = z.object({
     endringer: z.array(zPeriodeEndringType).min(0).max(4),
     forrigePeriode: zPeriodeDto.optional(),
     nyPeriode: zPeriodeDto.optional(),
+    varseltekst: z.string().optional(),
 });
 
 export const zRapportertInntektDto = z.object({
@@ -200,6 +166,7 @@ export const zLøsOppgaveRequest = z.object({
 
 export const zSøkYtelseOppgavetypeDataDto = z.object({
     fomDato: z.iso.date(),
+    varseltekst: z.string().optional(),
 });
 
 export const zTilgjengeligSøknadType = z.enum(['INGEN', 'FØRSTEGANGSSØKNAD', 'NY_PERIODE_SØKNAD']);
@@ -251,6 +218,7 @@ export const zKontrollerRegisterinntektOppgavetypeDataDto = z.object({
     gjelderDelerAvMåned: z.boolean(),
     registerinntekt: zRegisterinntektDto,
     tilOgMed: z.iso.date(),
+    varseltekst: z.string().optional(),
 });
 
 export const zOppgavetypeDataDto = z.intersection(
@@ -315,8 +283,6 @@ export const zBrukerdialogOppgaveDto = z.object({
     opprettetDato: z.iso.datetime({ local: true }),
     respons: zOppgaveResponsDto.optional(),
     status: zOppgaveStatus,
-    undertittel: z.string().optional(),
-    varselInnhold: z.array(zOppgaveTekst),
     ytelsetype: zOppgaveYtelsetype,
 });
 

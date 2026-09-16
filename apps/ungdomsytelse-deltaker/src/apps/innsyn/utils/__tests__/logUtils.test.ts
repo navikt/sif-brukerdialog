@@ -38,7 +38,6 @@ describe('logUtils.getSøknadInnsendingMeta', () => {
             fomDato: dateToISODate(dayjs().subtract(10, 'days')),
         },
         ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
-        varselInnhold: [],
     };
 
     describe('kontonummer-logikk', () => {
