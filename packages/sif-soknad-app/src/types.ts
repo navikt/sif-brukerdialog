@@ -85,22 +85,3 @@ export interface SøknadStepProps {
     stepId: string;
     children: ReactNode;
 }
-
-/**
- * TypeScript-type med alle i18n-nøkler rammeverket forventer å finne i appens IntlProvider.
- * Bruk denne typen i appens nb.ts/nn.ts for å få compile-time-feil ved manglende nøkler.
- *
- * Steg-titler følger konvensjonen `step.${stepId}.title` og er IKKE inkludert her
- * siden de er steg-spesifikke og defineres av appen.
- */
-export type SøknadFrameworkIntlKeys = {
-    'soknad.steg.neste': string;
-    'soknad.steg.forrige': string;
-    'soknad.steg.send': string;
-    'soknad.avbryt.tittel': string;
-    'soknad.avbryt.bekreft': string;
-    'soknad.avbryt.avbryt': string;
-    'soknad.fortsettSenere.tittel': string;
-    'soknad.fortsettSenere.bekreft': string;
-    'soknad.fortsettSenere.avbryt': string;
-};

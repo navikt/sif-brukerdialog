@@ -217,11 +217,12 @@ import { appMessages_nb } from './nb';
 
 const libMessages = {
     nb: { ...sifSoknadUiMessages.nb, ...sifSoknadFormsMessages.nb },
+    nn: { ...sifSoknadUiMessages.nn, ...sifSoknadFormsMessages.nn },
 };
 
 const nb = { ...libMessages.nb, ...appMessages_nb };
 export type AppMessageKeys = keyof typeof nb;
-const nn: Record<AppMessageKeys, string> = { ...nb };
+const nn: Record<AppMessageKeys, string> = { ...libMessages.nn, ...appMessages_nb };
 
 export const useAppIntl = () => typedIntlHelper<AppMessageKeys>(useIntl());
 export type AppIntlShape = ReturnType<typeof useAppIntl>;
@@ -245,6 +246,7 @@ import { formValuesToSøknadsdata } from '@app/utils/formValuesToSøknadsdata';
 import { SøknadRouter, SøknadStepGuard } from '@sif/soknad-app';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAppIntl } from './i18n';
+import { LoadingPage } from '@sif/soknad-ui';
 import { Kvittering } from './content/kvittering/Kvittering';
 import { Velkommen } from './content/velkommen/Velkommen';
 import { OppsummeringSteg } from './steps';
@@ -259,7 +261,8 @@ export const Søknad = () => {
             versjon={MELLOMLAGRING_VERSJON}
             applicationTitle={text('application.title')}
             formValuesToSøknadsdata={formValuesToSøknadsdata}
-            kvitteringElement={<Kvittering />}>
+            kvitteringElement={<Kvittering />}
+            loadingElement={<LoadingPage applicationTitle={text('application.title')} />}>
             <Routes>
                 <Route path="/" element={<Velkommen />} />
                 <Route path="/soknad" element={<SøknadStepGuard basePath="/soknad" />}>
@@ -300,6 +303,7 @@ export const Velkommen = () => {
 
 ```tsx
 import { useAppIntl } from '@app/i18n';
+import { getAppEnv } from '@app/setup/appEnv';
 import { SøknadKvitteringPage } from '@sif/soknad-ui';
 
 export const Kvittering = () => {
@@ -310,7 +314,7 @@ export const Kvittering = () => {
             applicationTitle={text('application.title')}
             infoTittel={text('kvittering.title')}
             infoMelding={text('kvittering.message')}
-            appRootUrl={import.meta.env.BASE_URL}
+            appRootUrl={getAppEnv().PUBLIC_PATH}
         />
     );
 };
@@ -362,7 +366,7 @@ export const App = () => {
     return (
         <SøknadAppProvider
             applicationKey={SomAppKey.key}
-            analyticsConfig={{ isActive: env.SIF_PUBLIC_USE_ANALYTICS === 'true' }}
+            useAnalytics={env.SIF_PUBLIC_USE_ANALYTICS === 'true'}
             intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
             <BrowserRouter basename={env.PUBLIC_PATH}>
                 {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
@@ -406,24 +410,26 @@ Se `sif-initial-data-loader` for fullt mønster. Mellomlagring håndteres av `S�
 
 ## Tilpasningspunkter per app
 
-| Fil                                   | Hva som tilpasses                                                         |
-| ------------------------------------- | ------------------------------------------------------------------------- |
-| `types/SoknadStepId.ts`               | Enum-verdier og steg-IDer                                                 |
-| `setup/soknadStepConfig.ts`           | routes, isCompleted, stepOrder                                            |
-| `setup/constants.ts`                  | `APP_YTELSE`, `MELLOMLAGRING_VERSJON`                                     |
-| `setup/appEnv.ts`                     | Ytelse-spesifikke env-variabler                                           |
-| `types/Soknadsdata.ts`                | Per-steg søknadsdatatyper                                                 |
-| `context/AppContext.tsx`              | App-spesifikke dataprop (søker, barn, kontonummer osv.)                   |
-| `utils/formValuesToSøknadsdata.ts`    | Statisk funksjon med switch per steg                                      |
-| `i18n/nb.ts`                          | Aggreger steg-meldinger + `application.title`, `step.<id>.title` per steg |
-| `content/velkommen/Velkommen.tsx`     | `guide.content` — app-spesifikt innhold                                   |
-| `App.tsx`                             | `applicationKey`, `AppContextProvider` props                              |
+| Fil                                | Hva som tilpasses                                                         |
+| ---------------------------------- | ------------------------------------------------------------------------- |
+| `types/SoknadStepId.ts`            | Enum-verdier og steg-IDer                                                 |
+| `setup/soknadStepConfig.ts`        | routes, isCompleted, stepOrder                                            |
+| `setup/constants.ts`               | `APP_YTELSE`, `MELLOMLAGRING_VERSJON`                                     |
+| `setup/appEnv.ts`                  | Ytelse-spesifikke env-variabler                                           |
+| `types/Soknadsdata.ts`             | Per-steg søknadsdatatyper                                                 |
+| `context/AppContext.tsx`           | App-spesifikke dataprop (søker, barn, kontonummer osv.)                   |
+| `utils/formValuesToSøknadsdata.ts` | Statisk funksjon med switch per steg                                      |
+| `i18n/nb.ts`                       | Aggreger steg-meldinger + `application.title`, `step.<id>.title` per steg |
+| `content/velkommen/Velkommen.tsx`  | `guide.content` — app-spesifikt innhold                                   |
+| `App.tsx`                          | `applicationKey`, `AppContextProvider` props                              |
 
 ## Viktige regler
 
 ### Stegtitler kommer fra i18n
 
-`SøknadStep` henter stegtittel via `step.${stepId}.title` fra IntlProvider. Ingen `useStepTitles`-hook — legg bare til `'step.<id>.title': 'Min tittel'` i `nb.ts`.
+`SøknadStep` henter stegtittel via `step.${stepId}.title` fra IntlProvider. Dette er den **eneste** nøkkelen `@sif/soknad-app` slår opp — ingen `useStepTitles`-hook. Legg bare til `'step.<id>.title': 'Min tittel'` i `nb.ts`.
+
+Knappetekster, avbryt- og fortsett-senere-dialogene eies av `@sif/soknad-ui` under `@sifSoknadUi.*` og kommer inn via `sifSoknadUiMessages`-spreadet i `i18n/index.tsx`. Ikke definer `soknad.steg.*`-nøkler i appen — rammeverket slår dem ikke opp.
 
 ### Ingen boilerplate-hooks i app
 

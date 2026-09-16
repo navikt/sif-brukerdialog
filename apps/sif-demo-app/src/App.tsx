@@ -48,7 +48,7 @@ export const App = () => {
     return (
         <SøknadAppProvider
             applicationKey={'sif-demo-app'}
-            analyticsConfig={{ isActive: false }}
+            useAnalytics={false}
             intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
             <BrowserRouter basename={env.PUBLIC_PATH}>
                 {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}

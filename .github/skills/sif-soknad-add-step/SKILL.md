@@ -17,7 +17,6 @@ description: Legg til et nytt steg i en søknadsapp som bruker @sif/soknad-app o
 - `src/app/steps/<steg>/<Prefix>Form.tsx` — skjemakomponent
 - `src/app/steps/<steg>/<prefix>StegUtils.ts` — mapping mellom FormValues og søknadsdata
 - `src/app/steps/<steg>/i18n/nb.ts` og `nn.ts` — tekster og valideringsmeldinger
-- `src/app/steps/<steg>/index.ts` — barrel-eksport
 - Oppdatert `SoknadStepId`, `soknadStepConfig`, `Soknadsdata`, `formValuesToSoknadsdata`, `steps/index.ts` og i18n-aggregering
 
 ## Avgrensning
@@ -126,6 +125,7 @@ import { OmsorgspengerKroniskSyktBarnSøknad } from '@navikt/k9-brukerdialog-pro
 Tilgjengelige subpaths: `omsorgspenger`, `aktivitetspenger`, `ungdomsytelse`, `ettersendelse`, `omsorgspenger-aleneomsorg`, o.l. — se `src/index.ts` i pakken.
 
 Samme prinsipp gjelder controllers i `sendSoknad.ts`:
+
 ```ts
 // ✅
 await omsorgspenger.OmsorgspengerUtvidetRettController.innsendingOmsorgspengerKroniskSyktBarnSøknad(...)
@@ -182,7 +182,7 @@ export const <prefix>StegMessages_nb = {
 };
 ```
 
-> **Valideringsnøkkel-format:** `{scope}.validation.{felt}.{errorCode}` — der `scope` er strengen sendt til `useSifValidate('oppsummeringForm')` og `errorCode` er enum-verdien fra validatoren (f.eks. `notChecked`, `yesOrNoIsUnanswered`). Nøkkelen må finnes i i18n-filene, ellers vises raw key i UI.
+> **Valideringsnøkkel-format:** `{scope}.validation.{felt}.{errorCode}` — der `scope` er strengen sendt til `useSifValidate('<prefix>Form')` og `errorCode` er enum-verdien fra validatoren (f.eks. `notChecked`, `yesOrNoIsUnanswered`). Nøkkelen må finnes i i18n-filene, ellers vises raw key i UI.
 
 #### `i18n/nn.ts`
 
@@ -257,7 +257,7 @@ Legg til i `søknadStepConfig`:
 ```ts
 [SøknadStepId.<STEP_ID>]: {
     route: '<mappename>',
-    isCompleted: (s) => s.<camelCase> !== undefined,
+    isCompleted: (s) => s[SøknadStepId.<STEP_ID>] !== undefined,
 },
 ```
 
@@ -306,7 +306,7 @@ case SøknadStepId.<STEP_ID>:
 
 - Importer `<prefix>StegMessages_nb` fra stegets `i18n/nb.ts`
 - Spread i `appMessages_nb`
-- Legg til `'step.<camelCase>.title': '<Stegtittel>'`
+- Legg til `'step.<stepId>.title': '<Stegtittel>'` — `<stepId>` er **string-verdien** i enumen (f.eks. `step.mitt-steg.title`), ikke enum-navnet
 
 #### 6. `src/app/steps/index.ts`
 
@@ -327,11 +327,11 @@ export { <Prefix>Form } from './<mappename>/<Prefix>Form';
 
 ### Steg 4 — Verifiser
 
-Kjør `npx tsc --noEmit` i app-mappen. Ingen feil = ferdig.
+Kjør `pnpm --filter <app> lint:tsc` (eller `check:types` der det finnes). Ingen feil = ferdig.
 
 ## Sjekkliste
 
-- [ ] 4 nye filer opprettet (`types.ts`, `*StegUtils.ts`, `i18n/nb.ts`, `*Form.tsx`)
+- [ ] 5 nye filer opprettet (`types.ts`, `*StegUtils.ts`, `i18n/nb.ts`, `i18n/nn.ts`, `*Form.tsx`)
 - [ ] `SoknadStepId.ts` — ny enum-verdi
 - [ ] `soknadStepConfig.ts` — config + stepOrder
 - [ ] `Soknadsdata.ts` — type + interface-felt
@@ -339,4 +339,4 @@ Kjør `npx tsc --noEmit` i app-mappen. Ingen feil = ferdig.
 - [ ] `nb.ts` — import + spread + steg-tittel
 - [ ] `steps/index.ts` — eksport
 - [ ] `Soknad.tsx` — import + Route
-- [ ] `tsc --noEmit` passerer
+- [ ] `lint:tsc` passerer
