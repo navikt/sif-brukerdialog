@@ -16,16 +16,16 @@ Referanseapp: [`apps/aktivitetspenger-soknad`](../../apps/aktivitetspenger-sokna
 
 ## Hva rammeverket gjør
 
-| Ansvar | Beskrivelse |
-|--------|-------------|
-| Stegflyt | Rekkefølge, hvilke steg som er inkludert, hvilke som er ferdige |
-| Navigasjon | Neste/forrige steg, hopp til steg, redirect ved ugyldig URL |
-| Mellomlagring | Lagrer automatisk etter hvert steg, henter og validerer ved oppstart |
-| Gjenopptaking | Sender bruker tilbake til riktig steg etter reload eller ny sesjon |
-| Skjemaverdier | Tar vare på ulagrede verdier ved browser back/forward og reload |
-| Konsistenssjekk | Varsler når et tidligere steg er endret uten å være lagret |
-| Kvittering | Eier `/kvittering`-ruten og rydder opp etter innsending |
-| App-oppsett | `SøknadAppProvider` med react-query, i18n, analytics, appstatus og error boundary |
+| Ansvar          | Beskrivelse                                                                       |
+| --------------- | --------------------------------------------------------------------------------- |
+| Stegflyt        | Rekkefølge, hvilke steg som er inkludert, hvilke som er ferdige                   |
+| Navigasjon      | Neste/forrige steg, hopp til steg, redirect ved ugyldig URL                       |
+| Mellomlagring   | Lagrer automatisk etter hvert steg, henter og validerer ved oppstart              |
+| Gjenopptaking   | Sender bruker tilbake til riktig steg etter reload eller ny sesjon                |
+| Skjemaverdier   | Tar vare på ulagrede verdier ved browser back/forward og reload                   |
+| Konsistenssjekk | Varsler når et tidligere steg er endret uten å være lagret                        |
+| Kvittering      | Eier `/kvittering`-ruten og rydder opp etter innsending                           |
+| App-oppsett     | `SøknadAppProvider` med react-query, i18n, analytics, appstatus og error boundary |
 
 ## Hva appen selv eier
 
@@ -68,11 +68,7 @@ export const søknadStepConfig: Record<SøknadStepId, StepDefinition> = {
     [SøknadStepId.OPPSUMMERING]: { route: 'oppsummering' },
 };
 
-export const søknadStepOrder: SøknadStepId[] = [
-    SøknadStepId.BOSTED,
-    SøknadStepId.BARN,
-    SøknadStepId.OPPSUMMERING,
-];
+export const søknadStepOrder: SøknadStepId[] = [SøknadStepId.BOSTED, SøknadStepId.BARN, SøknadStepId.OPPSUMMERING];
 ```
 
 ### 3. Router og ruter
@@ -109,69 +105,74 @@ Merk: `/kvittering` registreres **ikke** av appen. Ruten eies av `SøknadRouter`
 
 ### 4. Påkrevde i18n-nøkler
 
-Rammeverket henter tekster fra appens `IntlProvider`. Bruk typen `SøknadFrameworkIntlKeys` i appens `nb.ts`/`nn.ts` for å få compile-time-feil ved manglende nøkler:
+Rammeverket henter tekster fra appens `IntlProvider` og krever **én nøkkel per steg**, etter konvensjonen `step.${stepId}.title`:
 
 ```ts
-const nb: SøknadFrameworkIntlKeys & MineEgneNøkler = { ... };
+export const appMessages_nb = {
+    'application.title': 'Søknad om ...',
+    'step.bosted.title': 'Bosted',
+    'step.barn.title': 'Barn',
+    'step.oppsummering.title': 'Oppsummering',
+};
 ```
 
-Nøklene er `soknad.steg.neste`, `soknad.steg.forrige`, `soknad.steg.send`, `soknad.avbryt.tittel|bekreft|avbryt` og `soknad.fortsettSenere.tittel|bekreft|avbryt`.
+Tittelen brukes i progress-stepperen, som dokumenttittel og i konsistensvarselet. Mangler nøkkelen, kaster `react-intl` i runtime.
 
-I tillegg må appen definere en tittel per steg etter konvensjonen `step.${stepId}.title`. Denne brukes både i progress-stepperen og som dokumenttittel, og er ikke med i typen fordi steg-ID-ene er app-spesifikke.
+Knappetekster («Neste steg», «Forrige steg»), avbryt- og fortsett-senere-dialogene eies av `@sif/soknad-ui` under `@sifSoknadUi.*`-nøkler. Appen får dem ved å spre `sifSoknadUiMessages` inn i sine egne meldinger — ikke ved å definere dem selv.
 
 ## API
 
 ### Komponenter
 
-| Komponent | Formål |
-|-----------|--------|
-| `SøknadAppProvider` | App-rot: error boundary, react-query, analytics, UxSignals, i18n og appstatus (Sanity) |
-| `SøknadRouter` | Hoved-inngang: store, mellomlagring, gjenopptaking, kvitteringsrute |
-| `SøknadStepGuard` | Routing-guard på layout-ruten for steg |
-| `SøknadStep` | Wrapper for ett steg: tittel, progress-stepper, avbryt, fortsett senere, konsistenssjekk |
-| `SøknadStepForm` | RHF-skjema for ett steg: submit-/forrige-knapp, deaktivering ved inkonsistens |
-| `SøknadVelkommenPage` | Startside med guide og «start søknad»-knapp (bruker `useStartSøknad` internt) |
-| `AppIntlProvider` | i18n med språkvelger mot dekoratøren. Settes normalt opp via `SøknadAppProvider` |
-| `SifQueryClientProvider` | react-query med feillogging via `@sif/apm` |
-| `AppErrorBoundary` | Feilgrense rundt appen |
-| `AnalyticsProvider` | Innblikk-logging |
-| `InconsistentFormValuesMessage` | Varsel ved ulagrede endringer i tidligere steg (rendres av `SøknadStep`) |
-| `SøknadStepFormProvider` | In-session skjemaverdier. Rendres av `SøknadRouter` — eksportert for tester/Storybook |
+| Komponent                       | Formål                                                                                   |
+| ------------------------------- | ---------------------------------------------------------------------------------------- |
+| `SøknadAppProvider`             | App-rot: error boundary, react-query, analytics, UxSignals, i18n og appstatus (Sanity)   |
+| `SøknadRouter`                  | Hoved-inngang: store, mellomlagring, gjenopptaking, kvitteringsrute                      |
+| `SøknadStepGuard`               | Routing-guard på layout-ruten for steg                                                   |
+| `SøknadStep`                    | Wrapper for ett steg: tittel, progress-stepper, avbryt, fortsett senere, konsistenssjekk |
+| `SøknadStepForm`                | RHF-skjema for ett steg: submit-/forrige-knapp, deaktivering ved inkonsistens            |
+| `SøknadVelkommenPage`           | Startside med guide og «start søknad»-knapp (bruker `useStartSøknad` internt)            |
+| `AppIntlProvider`               | i18n med språkvelger mot dekoratøren. Settes normalt opp via `SøknadAppProvider`         |
+| `SifQueryClientProvider`        | react-query med feillogging via `@sif/apm`                                               |
+| `AppErrorBoundary`              | Feilgrense rundt appen                                                                   |
+| `AnalyticsProvider`             | Innblikk-logging                                                                         |
+| `InconsistentFormValuesMessage` | Varsel ved ulagrede endringer i tidligere steg (rendres av `SøknadStep`)                 |
+| `SøknadStepFormProvider`        | In-session skjemaverdier. Rendres av `SøknadRouter` — eksportert for tester/Storybook    |
 
 ### `SøknadRouter`-props
 
-| Prop | Påkrevd | Beskrivelse |
-|------|---------|-------------|
-| `config` | ✅ | `Record<stepId, StepDefinition>` |
-| `stepOrder` | ✅ | Rekkefølgen av steg-ID-er |
-| `ytelse` | ✅ | Ytelse-identifikator for mellomlagrings-API-et |
-| `versjon` | ✅ | Mellomlagringsversjon. **Bump ved brytende endringer i søknadsdata** — lagret data med annen versjon forkastes |
-| `applicationTitle` | ✅ | Vises i hvert steg |
-| `kvitteringElement` | ✅ | Vises på `/kvittering` etter innsending |
-| `basePath` | | Basepath for steg. Default `/soknad`. Må matche `<Route path>` og `SøknadStepGuard` |
-| `validateMellomlagring` | | Egen validering av lagret blob. Returner `null` for å forkaste |
-| `resumeLaterUrl` | | URL ved «fortsett senere». Default Nav Min side |
-| `loadingElement` | | Vises mens mellomlagring hentes |
-| `formValuesToSøknadsdata` | | Aktiverer konsistenssjekk. Uten denne er sjekken stille deaktivert |
+| Prop                      | Påkrevd | Beskrivelse                                                                                                    |
+| ------------------------- | ------- | -------------------------------------------------------------------------------------------------------------- |
+| `config`                  | ✅      | `Record<stepId, StepDefinition>`                                                                               |
+| `stepOrder`               | ✅      | Rekkefølgen av steg-ID-er                                                                                      |
+| `ytelse`                  | ✅      | Ytelse-identifikator for mellomlagrings-API-et                                                                 |
+| `versjon`                 | ✅      | Mellomlagringsversjon. **Bump ved brytende endringer i søknadsdata** — lagret data med annen versjon forkastes |
+| `applicationTitle`        | ✅      | Vises i hvert steg                                                                                             |
+| `kvitteringElement`       | ✅      | Vises på `/kvittering` etter innsending                                                                        |
+| `basePath`                |         | Basepath for steg. Default `/soknad`. Må matche `<Route path>` og `SøknadStepGuard`                            |
+| `validateMellomlagring`   |         | Egen validering av lagret blob. Returner `null` for å forkaste                                                 |
+| `resumeLaterUrl`          |         | URL ved «fortsett senere». Default Nav Min side                                                                |
+| `loadingElement`          |         | Vises mens mellomlagring hentes                                                                                |
+| `formValuesToSøknadsdata` |         | Aktiverer konsistenssjekk. Uten denne er sjekken stille deaktivert                                             |
 
 ### Hooks
 
-| Hook | Returnerer |
-|------|-----------|
-| `useStepData<TCommitted, TDraft>(stepId)` | `{ lagretData, draftFormValues, commit }` — hoved-hooken i et steg |
-| `useSaveSøknadFormValues(stepId, getValues)` | Lagrer ulagrede verdier ved unmount (browser back/forward) |
-| `useSøknadsdata<T>()` | All committet søknadsdata — brukes i oppsummering |
-| `useStartSøknad()` | `{ startSøknad }` — initierer søknad og går til første steg |
-| `useStepNavigation()` | `{ canGoPrevious, navigateToPreviousStep, navigateToStep }` |
-| `useMellomlagring()` | `{ lagre }` — manuell lagring midt i et steg |
-| `useSøknadSendt()` | `{ onSøknadSendt }` — kalles etter vellykket innsending |
-| `useAvbryt()` | `{ avbryt }` — sletter mellomlagring og går til forsiden |
-| `useCheckConsistency(stepId)` | `stepId` for første inkonsistente steg, ellers `undefined`. Kjøres av `SøknadStep` |
-| `useAnalyticsInstance()` | Innblikk-logging |
+| Hook                                         | Returnerer                                                                         |
+| -------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `useStepData<TCommitted, TDraft>(stepId)`    | `{ lagretData, draftFormValues, commit }` — hoved-hooken i et steg                 |
+| `useSaveSøknadFormValues(stepId, getValues)` | Lagrer ulagrede verdier ved unmount (browser back/forward)                         |
+| `useSøknadsdata<T>()`                        | All committet søknadsdata — brukes i oppsummering                                  |
+| `useStartSøknad()`                           | `{ startSøknad }` — initierer søknad og går til første steg                        |
+| `useStepNavigation()`                        | `{ canGoPrevious, navigateToPreviousStep, navigateToStep }`                        |
+| `useMellomlagring()`                         | `{ lagre }` — manuell lagring midt i et steg                                       |
+| `useSøknadSendt()`                           | `{ onSøknadSendt }` — kalles etter vellykket innsending                            |
+| `useAvbryt()`                                | `{ avbryt }` — sletter mellomlagring og går til forsiden                           |
+| `useCheckConsistency(stepId)`                | `stepId` for første inkonsistente steg, ellers `undefined`. Kjøres av `SøknadStep` |
+| `useAnalyticsInstance()`                     | Innblikk-logging                                                                   |
 
 ### Typer og konstanter
 
-`StepDefinition`, `IncludedStep`, `StepFormValues`, `MellomlagringBlob`, `SøknadRouterProps`, `SøknadStepProps`, `SøknadFrameworkIntlKeys`, `AppIntlConfig`, `SanityConfig`, `ApplikasjonHendelse`, `CustomAnalyticsEvents`, `KVITTERING_PATH`.
+`StepDefinition`, `IncludedStep`, `StepFormValues`, `MellomlagringBlob`, `SøknadRouterProps`, `SøknadStepProps`, `AppIntlConfig`, `SanityConfig`, `ApplikasjonHendelse`, `CustomAnalyticsEvents`, `KVITTERING_PATH`.
 
 `SøknadAppContext`, `useSøknadAppContext` og `createSøknadAppStore` er eksportert for avansert bruk — typisk Storybook-dekoratører og tester som trenger kontekst uten en full `SøknadRouter`.
 
@@ -202,27 +203,27 @@ Gjenopptakingspunktet i storen — steget brukeren skal landes på ved reload. D
 
 Midlertidige skjemaverdier (ikke submittet) finnes på tre steder med ulik levetid:
 
-| Lag | Hvor | Levetid | Formål |
-|-----|------|---------|--------|
-| 1 | `SøknadStepFormContext` (`draftFormValues` state) | Innenfor sesjonen | Back/forward-navigasjon + konsistenssjekk |
-| 2 | Zustand `persistedFormValues` | Mellom sesjoner | Reload-gjenoppretting (leses fra blob) |
-| 3 | `liveGettersRef` (ref) | Mens steg er montert | Manuell lagring via `useMellomlagring` |
+| Lag | Hvor                                              | Levetid              | Formål                                    |
+| --- | ------------------------------------------------- | -------------------- | ----------------------------------------- |
+| 1   | `SøknadStepFormContext` (`draftFormValues` state) | Innenfor sesjonen    | Back/forward-navigasjon + konsistenssjekk |
+| 2   | Zustand `persistedFormValues`                     | Mellom sesjoner      | Reload-gjenoppretting (leses fra blob)    |
+| 3   | `liveGettersRef` (ref)                            | Mens steg er montert | Manuell lagring via `useMellomlagring`    |
 
 `useStepData` returnerer lag 1 hvis satt, ellers lag 2 — begge eksponert som `draftFormValues`. Committet domenedata (`lagretData`) er fallback for `defaultValues`.
 
 ### Navigasjonsansvar
 
-| Beslutning | Eier |
-|------------|------|
-| Resume fra mellomlagring ved mount | `SøknadRouter` |
-| Start søknad → første steg | `useStartSøknad` |
-| Neste steg etter submit | `useStepData.commit` |
-| Forrige steg / hopp til steg | `useStepNavigation` |
-| Klikk i progress-stepper | `SøknadStep` |
-| Avbryt → forsiden | `SøknadStep` / `useAvbryt` |
-| Fortsett senere | `SøknadStep` |
-| Kvittering etter innsending | `SøknadRouter` (synker URL mot `søknadSendt`) |
-| URL-guard / redirect | `SøknadStepGuard` |
+| Beslutning                         | Eier                                          |
+| ---------------------------------- | --------------------------------------------- |
+| Resume fra mellomlagring ved mount | `SøknadRouter`                                |
+| Start søknad → første steg         | `useStartSøknad`                              |
+| Neste steg etter submit            | `useStepData.commit`                          |
+| Forrige steg / hopp til steg       | `useStepNavigation`                           |
+| Klikk i progress-stepper           | `SøknadStep`                                  |
+| Avbryt → forsiden                  | `SøknadStep` / `useAvbryt`                    |
+| Fortsett senere                    | `SøknadStep`                                  |
+| Kvittering etter innsending        | `SøknadRouter` (synker URL mot `søknadSendt`) |
+| URL-guard / redirect               | `SøknadStepGuard`                             |
 
 ### Konsistenssjekk (browser back/forward)
 

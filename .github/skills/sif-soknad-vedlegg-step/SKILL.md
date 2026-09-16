@@ -89,6 +89,7 @@ Hjelperne gjør følgende:
 ## 4. Form-komponent
 
 ```tsx
+import { useAppIntl } from '@app/i18n';
 import { useLenker } from '@app/lenker';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { <Prefix>Søknadsdata } from '@app/types/Soknadsdata';

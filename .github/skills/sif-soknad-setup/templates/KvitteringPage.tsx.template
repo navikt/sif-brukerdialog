@@ -1,6 +1,7 @@
 // src/app/content/kvittering/Kvittering.tsx
 // Tilpass: i18n-nøkler
 import { useAppIntl } from '@app/i18n';
+import { getAppEnv } from '@app/setup/appEnv';
 import { SøknadKvitteringPage } from '@sif/soknad-ui';
 
 export const Kvittering = () => {
@@ -11,7 +12,7 @@ export const Kvittering = () => {
             applicationTitle={text('application.title')}
             infoTittel={text('kvittering.title')}
             infoMelding={text('kvittering.message')}
-            appRootUrl={import.meta.env.BASE_URL}
+            appRootUrl={getAppEnv().PUBLIC_PATH}
         />
     );
 };

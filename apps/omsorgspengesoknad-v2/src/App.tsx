@@ -49,7 +49,7 @@ export const App = () => {
     return (
         <SøknadAppProvider
             applicationKey={OmsorgsdagerKroniskApp.key}
-            analyticsConfig={{ isActive: env.SIF_PUBLIC_USE_ANALYTICS === 'true' }}
+            useAnalytics={env.SIF_PUBLIC_USE_ANALYTICS === 'true'}
             intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
             <BrowserRouter basename={env.PUBLIC_PATH}>
                 {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}

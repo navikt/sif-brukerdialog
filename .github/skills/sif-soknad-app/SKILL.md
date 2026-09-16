@@ -44,11 +44,12 @@ Referanseimplementasjon: `apps/aktivitetspenger-soknad`
 ## Arkitektur
 
 ```
-<SøknadAppProvider>              ← AppErrorBoundary (appLogger), QueryClient, Analytics
-  <SøknadRouter>                 ← Zustand-store, mellomlagring-init, context-provider
-    <SøknadStepFormProvider>   ← in-session skjemaverdier per steg (konsistenssjekk + live getters)
-      <SøknadAppContext.Provider>← store + config eksponert til alle hooks
-        {children}               ← appen sine <Routes> bor her
+<SøknadAppProvider>                ← ErrorBoundary, QueryClient, Analytics, UxSignals, i18n, appstatus
+  <BrowserRouter>                  ← appens ansvar — SøknadRouter krever React Router-kontekst
+    <SøknadRouter>                 ← Zustand-store, mellomlagring-init, context-provider
+      <SøknadStepFormProvider>     ← in-session skjemaverdier per steg (konsistenssjekk + live getters)
+        <SøknadAppContext.Provider>← store + config eksponert til alle hooks
+          {children}               ← appen sine <Routes> bor her
 ```
 
 - `SøknadRouter` er primært en kontekst-provider, men har to `useEffect` med navigering:
@@ -145,9 +146,9 @@ await lagre();
 
 ### `useCheckConsistency(currentStepId)`
 
-Sjekker om foregående stegs umonterte skjemaverdier avviker fra committet `søknadsdata`. Returnerer første inkonsistente `stepId`, eller `undefined`. Aktiveres automatisk i `SøknadStep`. Krever at `formValuesToSøknadsdata` er satt på `SøknadRouter`.
+Sjekker om foregående stegs umonterte skjemaverdier avviker fra committet `søknadsdata`. Returnerer første inkonsistente `stepId`, eller `undefined`. Krever at `formValuesToSøknadsdata` er satt på `SøknadRouter`.
 
-Merk: `SøknadStepForm` kaller også `useCheckConsistency` internt for å deaktivere submit-knappen. De to kallene (fra `SøknadStep` og `SøknadStepForm`) er uavhengige og harmløse.
+Kjøres **én gang**, i `SøknadStep`. Resultatet deles ned til `SøknadStepForm` via `SøknadStepContext`, som bruker det til å deaktivere submit. `SøknadStepForm` kaller ikke hooken selv — den leser `inconsistentStepId` fra konteksten. Derfor må `SøknadStepForm` brukes innenfor en `SøknadStep`.
 
 ### `useSøknadSendt()`
 
@@ -210,21 +211,34 @@ void initApm({ app: PleiepengerSyktBarnApp.key, namespace: 'dusseldorf', version
 // App.tsx
 <SøknadAppProvider
     applicationKey={PleiepengerSyktBarnApp.key}
-    analyticsConfig={{ isActive: env.SIF_PUBLIC_USE_ANALYTICS === 'true' }}
+    useAnalytics={env.SIF_PUBLIC_USE_ANALYTICS === 'true'}
     intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}
     appStatusConfig={{ sanityConfig: { projectId: '...', dataset: '...' } }}>
     <App />
 </SøknadAppProvider>;
 ```
 
-Setter opp:
+Setter opp (i denne rekkefølgen, ytterst først):
 
 - `AppErrorBoundary` — global error boundary, fanger React render-feil og logger via `appLogger.logException`
-- `SifQueryClientProvider` — React Query-klient
-- `AnalyticsProvider` — analytics-instans
+- `SifQueryClientProvider` — React Query-klient med feillogging via `@sif/apm`
+- `AnalyticsProvider` — analytics-instans (aktiv når `useAnalytics` er true)
+- `UxSignalsLoaderProvider` — laster UxSignals
+- `AppIntlProvider` — `IntlProvider` med språkvelger mot dekoratøren. Rendres kun når `intlConfig` er satt
+- `AppStatusWrapper` — Sanity-basert av/på-styring. Rendres kun når `appStatusConfig` er satt; ellers rendres children direkte
 - `DevBranchInfo` — vises kun i dev/PR-bygg
 
-APM (`@nais/apm`) initialiseres **ikke** av `SøknadAppProvider`. Kall `init()` fra `@nais/apm` i `main.tsx` før `createRoot`, slik at feil som oppstår under oppstart også fanges. Props `appVersion`, `faroConfig`, `telemetryCollectorURL` og `sentryConfig` finnes ikke lenger.
+`SøknadAppProvider` inneholder ingen router. Appen må selv legge `<BrowserRouter>` mellom provideren og `SøknadRouter`.
+
+APM (`@nais/apm`) initialiseres **ikke** av `SøknadAppProvider`. Kall `initApm` fra `@sif/apm` i `main.tsx` før `createRoot`, slik at feil som oppstår under oppstart også fanges. Props `appVersion`, `faroConfig`, `telemetryCollectorURL` og `sentryConfig` finnes ikke lenger.
+
+---
+
+## i18n i rammeverket
+
+Pakken slår kun opp **én** nøkkel: `step.${stepId}.title` (i `SøknadStep` — progress-stepper, dokumenttittel og konsistensvarsel). Alle knappe- og dialogtekster kommer fra `@sif/soknad-ui` under `@sifSoknadUi.*`-nøkler, som appen sprer inn via `sifSoknadUiMessages`.
+
+Typen `SøknadFrameworkIntlKeys` (`soknad.steg.*`, `soknad.avbryt.*`, `soknad.fortsettSenere.*`) ble fjernet i denne omgangen — den beskrev nøkler ingen komponent slo opp. Ikke gjeninnfør den; legg heller nye rammeverkstekster i `@sif/soknad-ui` under `@sifSoknadUi.*`.
 
 ---
 

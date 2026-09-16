@@ -50,19 +50,41 @@ Disse to filene er forutsetninger for `OppsummeringSteg`. Opprett dem om de ikke
 
 ### `src/app/hooks/useSendSoknad.ts`
 
+Hooken eier POST, opprydding og feillogging, og eksponerer domenenavn utad — ikke mutasjonsobjektet. `onSøknadSendt` fra `@sif/soknad-app` **må** ligge som `onSuccess` i mutasjonsoppsettet. Se `sif-soknad-app`-skillen for hvorfor.
+
 ```ts
-import { ApiError } from '@sif/api';
+import { sendSøknad } from '@app/api/sendSoknad';
+import { SøknadApiData } from '@app/types/SoknadApiData';
+import { ApiError, ApiErrorType, isApiAxiosError } from '@sif/api';
+import { appLogger } from '@sif/apm';
+import { useAnalyticsInstance, useSøknadSendt } from '@sif/soknad-app';
 import { useMutation } from '@tanstack/react-query';
 
-import { sendSøknad } from '../api/sendSoknad';
-import { SøknadApiData } from '../types/SoknadApiData';
-
 export const useSendSøknad = () => {
-    return useMutation<void, ApiError, SøknadApiData>({
+    const { logSkjemaFeilet } = useAnalyticsInstance();
+    const { onSøknadSendt } = useSøknadSendt();
+
+    const { mutate, isPending, error } = useMutation<void, ApiError, SøknadApiData>({
         mutationFn: (data) => sendSøknad(data),
+        // Holder isPending til søknaden er markert som sendt. Se useSøknadSendt.
+        onSuccess: onSøknadSendt,
+        onError: (e) => {
+            logSkjemaFeilet();
+            if (e.type === ApiErrorType.ZodValidationError) {
+                appLogger.logError(`sendSøknad: request-validering feilet for felt: ${e.message}`);
+            } else if (isApiAxiosError(e)) {
+                appLogger.logApiError(e.originalError, 'sendSøknad');
+            } else {
+                appLogger.logError(`sendSøknad: innsending feilet (${e.type})`);
+            }
+        },
     });
+
+    return { sendSøknad: mutate, isPending, sendSøknadError: error };
 };
 ```
+
+**Ikke** kall `slettMellomlagring()` eller `setSøknadSendt()` manuelt i oppsummeringssteget — `onSøknadSendt` gjør begge deler, og `SøknadRouter` navigerer selv til `/kvittering`. **Ikke** bruk `mutateAsync`: uten `try/catch` re-kaster RHF `handleSubmit`, og `SifForm` fanger ikke — det gir unhandled rejection ved hver feilede innsending.
 
 ### `src/app/utils/soknadsdataToSoknadDTO.ts`
 
@@ -102,6 +124,7 @@ export const søknadsdataToSøknadDTO = ({
 ```
 
 Viktige detaljer:
+
 - Returner `undefined` om obligatoriske steg mangler i søknadsdata
 - Vedlegg mappes til backend-URL-array: `.map(v => v.backendUrl)` — DTO-kontrakten forventer `string[]` med fulle API-URLer
 - `backendUrl` er allerede satt på `PersistedVedlegg` av `toPersistedVedlegg` i steg-utils
@@ -155,14 +178,14 @@ const RelasjonTilBarnetTekst = ({ relasjon }: { relasjon: SøkersRelasjonTilBarn
 
 ### Vedlegg
 
-Vis vedlegg som lenkeliste, ikke bare antall. Bruk `VedleggSummaryList` fra `@sif/soknad-ui/components` og les vedleggene fra `state.søknadsdata`, ikke fra DTO. Importer `PersistedVedlegg` fra `@sif/soknad-forms` for type-annotering.
+Vis vedlegg som lenkeliste, ikke bare antall. Bruk `VedleggSummaryList` fra `@sif/soknad-ui/components` og les vedleggene fra `søknadsdata`, ikke fra DTO. Importer `PersistedVedlegg` fra `@sif/soknad-forms` for type-annotering.
 
 Når gammel løsning brukte `Alert inline`, bruk `InlineMessage` fra Aksel.
 
 ```tsx
 import { VedleggSummaryList } from '@sif/soknad-ui/components';
 
-const legeerklæring = state.søknadsdata[SøknadStepId.LEGEERKLÆRING]?.vedlegg ?? [];
+const legeerklæring = søknadsdata[SøknadStepId.LEGEERKLÆRING]?.vedlegg ?? [];
 
 {
     legeerklæring.length === 0 ? (
@@ -179,42 +202,50 @@ DTO-feltene inneholder backend-URLer (strenger). Lenkelista trenger `name`, `url
 
 ### Feil-tilstand
 
-Hvis DTO ikke kan bygges (`dto === undefined`), vis `InfoCard variant="warning"` og disable submit:
+Hvis DTO ikke kan bygges (`dto === undefined`), vis `InfoCard data-color="warning"` og disable submit. Oppsummeringssteget er siste steg, så `isFinalSubmit` skal settes:
 
 ```tsx
-submitDisabled={!dto}
+<SøknadStepForm
+    stepId={stepId}
+    methods={methods}
+    onSubmit={onSubmit}
+    isPending={isPending}
+    isFinalSubmit={true}
+    submitDisabled={!dto}>
 ```
 
 ```tsx
-{!dto && (
-    <InfoCard data-color="warning">
-        <InfoCard.Header>
-            <InfoCard.Title><AppText id="oppsummeringSteg.feil.tittel" /></InfoCard.Title>
-        </InfoCard.Header>
-        <InfoCard.Content><AppText id="oppsummeringSteg.feil.innhold" /></InfoCard.Content>
-    </InfoCard>
-)}
-{dto && (
-    <FormLayout.Summary>
-        {/* domeneseksjoner */}
-    </FormLayout.Summary>
-)}
+{
+    !dto && (
+        <InfoCard data-color="warning">
+            <InfoCard.Header>
+                <InfoCard.Title>
+                    <AppText id="oppsummeringSteg.feil.tittel" />
+                </InfoCard.Title>
+            </InfoCard.Header>
+            <InfoCard.Content>
+                <AppText id="oppsummeringSteg.feil.innhold" />
+            </InfoCard.Content>
+        </InfoCard>
+    );
+}
+{
+    dto && <FormLayout.Summary>{/* domeneseksjoner */}</FormLayout.Summary>;
+}
 ```
 
 `FormLayout.Summary` importeres fra `@sif/soknad-ui`.
 
 ### Hente søknadsdata og kontekst
 
-I nåværende v2-mønster hentes state fra `useSøknadAppContext` (ikke `useSøknadState`):
+Søknadsdata hentes med `useSøknadsdata<T>()` — ikke via `useSøknadAppContext`-storen direkte:
 
 ```tsx
-import { useSøknadAppContext, useSøknadSendt } from '@sif/soknad-app';
-const { store } = useSøknadAppContext();
-const søknadsdata = store((s) => s.søknadsdata) as Søknadsdata;
-const { onSøknadSendt } = useSøknadSendt();
+import { useSøknadsdata } from '@sif/soknad-app';
+const søknadsdata = useSøknadsdata<Søknadsdata>();
 ```
 
-App-spesifikk data (søker, barn, kontoInfo) hentes via `useAppContext()` fra `@app/context/AppContext`.
+App-spesifikk data (søker, barn, kontoInfo) hentes via `useAppContext()` fra `@app/context/AppContext`. `useSøknadSendt` kalles ikke i steget — den brukes inne i `useSendSøknad`.
 
 ### i18n-nøkler
 
@@ -226,43 +257,43 @@ Nøkkelprefikset for oppsummeringssteget er `oppsummeringSteg.*`. Alltid inklude
 
 ### Innsendingsfeil
 
-Håndter feil fra `useSendSøknad` ved innsending. `mutateAsync` kaster `ApiError` — bruk `getInvalidParametersFromApiError` fra `@sif/api` for å sjekke om feilen inneholder ugyldige parametre.
+Feil fra `useSendSøknad` blir liggende i mutasjonens `error`-state (`sendSøknadError`) og rendres av steget. Bruk `getInvalidParametersFromApiError` fra `@sif/api` for å sjekke om feilen inneholder ugyldige parametre.
 
 Mønster:
 
-1. Hent `error` fra `useSendSøknad()` (via `useMutation`)
-2. Bruk `getInvalidParametersFromApiError(error)` for å ekstrahere eventuelle `InvalidParameterViolation[]`
-3. Vis domenespesifikk feilmelding i en `LocalAlert status="error"` (med `LocalAlert.Header`/`LocalAlert.Content`) hvis `invalidParameters` finnes
+1. Hent `sendSøknadError` fra `useSendSøknad()`
+2. Bruk `getInvalidParametersFromApiError(sendSøknadError)` for å ekstrahere eventuelle `InvalidParameterViolation[]`
+3. Vis domenespesifikk feilmelding via `InnsendingFeiletAlert` hvis `invalidParameters` finnes
 4. Vis generell `ErrorSummary` med `error.message` ellers
 
 ```tsx
 import { getInvalidParametersFromApiError } from '@sif/api';
 
-const { isPending, mutateAsync, error: sendSøknadError } = useSendSøknad();
+const { sendSøknad, isPending, sendSøknadError } = useSendSøknad();
 const invalidParameters = getInvalidParametersFromApiError(sendSøknadError);
 
-const onSubmit = async () => {
-    try {
-        await mutateAsync({ ...dto, harBekreftetOpplysninger });
-        await slettMellomlagring();
-        setSøknadSendt();
-    } catch {
-        return; // Feilen håndteres via sendSøknadError-state
+const onSubmit = () => {
+    if (dto === undefined) {
+        return;
     }
+    sendSøknad({ ...dto, harBekreftetOpplysninger });
 };
 
 // I JSX:
-{sendSøknadError && invalidParameters && (
-    <InnsendingFeiletAlert invalidParameters={invalidParameters} />
-)}
-{sendSøknadError && !invalidParameters && (
-    <ErrorSummary ref={errorSummaryRef}>
-        <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
-    </ErrorSummary>
-)}
+{
+    sendSøknadError && invalidParameters && <InnsendingFeiletAlert invalidParameters={invalidParameters} />;
+}
+{
+    sendSøknadError && !invalidParameters && (
+        <ErrorSummary ref={errorSummaryRef}>
+            <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
+        </ErrorSummary>
+    );
+}
 ```
 
 i18n-nøkler for innsendingsfeil (prefiks `oppsummeringSteg.innsendingFeilet.*`):
+
 - `oppsummeringSteg.innsendingFeilet.tittel`
 - Domenespesifikke feilmeldinger per `parameterName`
 - Generelle fallback-tekster

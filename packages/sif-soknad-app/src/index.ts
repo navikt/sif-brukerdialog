@@ -45,7 +45,6 @@ export { createSøknadAppStore } from './store/createSøknadAppStore';
 export type {
     IncludedStep,
     MellomlagringBlob,
-    SøknadFrameworkIntlKeys,
     SøknadRouterProps,
     SøknadStepProps,
     StepDefinition,

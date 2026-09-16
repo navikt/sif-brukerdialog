@@ -293,8 +293,11 @@ Scope-en bestemmer prefixen i valideringsnøkkelen: `<prefix>Form.validation.<fe
 
 #### d) Legg til watch for betinget visning (hvis relevant)
 
+Skjemaet settes opp med `useForm` + `useStepData` som ellers — det finnes ingen `useSøknadRhfForm`-hook:
+
 ```ts
-const methods = useSøknadRhfForm(stepId, defaultValues);
+const { lagretData, commit, draftFormValues } = useStepData<<Prefix>Søknadsdata, <Prefix>FormValues>(stepId);
+const methods = useForm<<Prefix>FormValues>({ defaultValues: draftFormValues ?? to<Prefix>FormValues(lagretData) });
 const triggerFelt = methods.watch(<Prefix>FormFields.eksisterendeFelt);
 ```
 
@@ -324,7 +327,7 @@ For betinget visning, wrap i en betingelse:
 
 ### 8. Verifiser
 
-Kjør `npx tsc --noEmit` i app-mappen.
+Kjør `pnpm --filter <app> lint:tsc` (eller `check:types` der det finnes) i app-workspacet.
 
 ---
 
@@ -333,7 +336,6 @@ Kjør `npx tsc --noEmit` i app-mappen.
 Bruk `methods.watch()` for å observere et annet felt, og vis det nye feltet betinget med vanlig `&&`-rendering:
 
 ```tsx
-const methods = useSøknadRhfForm(stepId, defaultValues);
 const feltVerdi = methods.watch(<Prefix>FormFields.triggerFelt);
 
 // I JSX — ett felt:
@@ -409,4 +411,4 @@ steps/oppsummering/alert/UgyldigSøknadAlert.tsx               → LocalAlert st
 - [ ] `Soknadsdata.ts` — nytt felt i søknadsdatatype
 - [ ] `*StegUtils.ts` — mapping begge veier, med opprydding av betingede felter
 - [ ] `*Form.tsx` — ny komponent, evt. betinget visning, riktig validator
-- [ ] `tsc --noEmit` passerer
+- [ ] `lint:tsc` passerer
