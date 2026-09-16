@@ -36,7 +36,7 @@
         "@types/react": "19.3.0",
         "dayjs": "1.11.23",
         "eslint": "10.10.0",
-        "postcss": "8.5.26",
+        "postcss": "8.5.28",
         "prettier": "3.9.6",
         "react-is": "19.3.0",
         "styled-components": "6.5.3",
