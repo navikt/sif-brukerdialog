@@ -136,6 +136,25 @@ describe('isKnownNoisyException', () => {
     });
 });
 
+describe('isKnownNoisyException med isNextJsApp', () => {
+    const dekoratorenFetchFailures = [
+        'console.error: [ERROR] Failed to renew session. {"error":"TypeError: Failed to fetch"}',
+        'console.error: [ERROR] Failed to fetch auth data. {"error":"TypeError: Failed to fetch"}',
+        'console.error: [ERROR] Failed to archive notifications from link {"error":"TypeError: Failed to fetch"}',
+        'console.error: [ERROR] Failed to fetch session. {"error":"TypeError: Failed to fetch"}',
+    ];
+
+    it.each(dekoratorenFetchFailures)('filtrerer dekoratørens fetch-feil når isNextJsApp er satt: %s', (value) => {
+        expect(
+            isKnownNoisyException({ type: 'exception', payload: { type: 'Error', value } }, { isNextJsApp: true }),
+        ).toBe(true);
+    });
+
+    it.each(dekoratorenFetchFailures)('beholder samme melding når isNextJsApp IKKE er satt (Vite-apper)', (value) => {
+        expect(isKnownNoisyException({ type: 'exception', payload: { type: 'Error', value } })).toBe(false);
+    });
+});
+
 describe('isNoiseException', () => {
     it('fanger både fremmed kode og kjente støymønstre', () => {
         expect(isNoiseException(exceptionFrom(['chrome-extension://abc/inject.js']))).toBe(true);
