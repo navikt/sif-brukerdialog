@@ -12,13 +12,13 @@
     "dependencies": {
         "@navikt/ds-react": "8.16.2",
         "@navikt/sif-common-hooks": "workspace:*",
-        "react": "19.2.8",
+        "react": "19.3.0",
         "react-router-dom": "7.18.3",
         "typescript": "6.0.3"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "26.5.0",
-        "@types/react": "19.2.18"
+        "@types/node": "26.5.1",
+        "@types/react": "19.3.0"
     }
 }

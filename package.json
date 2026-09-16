@@ -50,7 +50,7 @@
         "config": "workspace:*",
         "gh-pages": "6.3.0",
         "husky": "9.1.7",
-        "lint-staged": "17.5.0",
+        "lint-staged": "17.5.1",
         "prettier": "3.9.6",
         "sort-package-json": "4.0.0",
         "typescript": "6.0.3",
