@@ -1,15 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { init, type InitOptions } from '@nais/apm';
 
-/**
- * Lag 1: strukturell vurdering av om feilen stammer fra vår egen kode.
- * Fanger nettleserutvidelser, injiserte in-app-skript og tredjepartsskript uten at
- * vi må kjenne den konkrete feilmeldingen på forhånd.
- *
- * Vurderingen er en positiv eierskapssjekk (allowlist), ikke en denylist over kjente
- * tredjeparter: en frame regnes som vår kun hvis den ligger under en URL vi faktisk eier.
- * Ukjente tredjeparter blir dermed fremmede by default.
- */
+/** Lag 1: positiv eierskapssjekk (allowlist) på om feilen stammer fra vår egen kode. */
 export interface AppOwnership {
     /** NAIS-namespace, tilsvarer <namespace> i CDN-stien. Normalt 'dusseldorf'. */
     namespace: string;
@@ -27,12 +19,7 @@ export const setAppOwnership = (ownership: AppOwnership): void => {
     currentAppOwnership = ownership;
 };
 
-/**
- * Prod: bundles ligger på CDN under vårt eget navnerom, jf. vite `base`. Vi sjekker kun
- * namespace-segmentet (ikke app-segmentet) siden 'dusseldorf' er et navnerom dedikert til
- * dette teamet — ingen andre publiserer dit. Det unngår sprik mellom APM-appnøkkelen og
- * det faktiske CDN-mappenavnet (de har i praksis driftet fra hverandre for enkelte apper).
- */
+/** Kun namespace-segmentet, ikke app-segmentet: 'dusseldorf' er dedikert til dette teamet. */
 const getOwnedCdnPrefix = ({ namespace }: AppOwnership): string => `${CDN_ORIGIN}/${namespace}/`;
 
 const getCurrentOrigin = (): string | undefined => globalThis.location?.origin || undefined;
@@ -45,9 +32,8 @@ const isOwnScriptFrame = (frame: any, ownership: AppOwnership): boolean => {
 
     if (path.startsWith(getOwnedCdnPrefix(ownership))) return true;
 
-    // Dev og lokal kjøring serverer bundlene fra samme origin som dokumentet. Vi krever
-    // fortsatt at framen peker på en kildefil, siden injiserte inline-skript rapporterer
-    // dokument-URL-en som filnavn.
+    // Dev/lokal: bundlene serveres fra samme origin som dokumentet, men vi krever
+    // fortsatt en kildefil-etterlikning for å ikke matche injiserte inline-skript.
     const origin = getCurrentOrigin();
     if (origin && path.startsWith(`${origin}/`)) return SCRIPT_FILE_PATTERN.test(path);
 
@@ -73,20 +59,39 @@ const KNOWN_NOISY_EXCEPTION_PATTERNS: RegExp[] = [
     /^Error: Script error\.$/,
 ];
 
+/**
+ * Kun relevant for Next.js-apper som kjører Nav Dekoratøren (i dag: dine-pleiepenger).
+ * Fanger dekoratørens console.error-format for feilede bakgrunnskall.
+ */
+const NEXTJS_NOISY_EXCEPTION_PATTERNS: RegExp[] = [
+    /^Error: console\.error: \[ERROR\] .*"error":"TypeError: Failed to fetch"\}$/,
+];
+
 const getExceptionText = (item: any): string => {
     const { type, value, message } = item.payload ?? {};
     return [type && value ? `${type}: ${value}` : type || value, message].filter(Boolean).join(' ').trim();
 };
 
-export const isKnownNoisyException = (item: any): boolean => {
+export interface NoiseFilterOptions {
+    /** Sett til true for Next.js-apper med Nav Dekoratøren. Skal ikke settes for Vite-apper. */
+    isNextJsApp?: boolean;
+}
+
+export const isKnownNoisyException = (item: any, options: NoiseFilterOptions = {}): boolean => {
     if (item?.type !== 'exception') return false;
     const text = getExceptionText(item);
-    return KNOWN_NOISY_EXCEPTION_PATTERNS.some((pattern) => pattern.test(text));
+    const patterns = options.isNextJsApp
+        ? [...KNOWN_NOISY_EXCEPTION_PATTERNS, ...NEXTJS_NOISY_EXCEPTION_PATTERNS]
+        : KNOWN_NOISY_EXCEPTION_PATTERNS;
+    return patterns.some((pattern) => pattern.test(text));
 };
 
 /** Samlet vurdering av begge lagene. Brukes av apper som initialiserer Faro selv. */
-export const isNoiseException = (item: any, ownership = currentAppOwnership): boolean =>
-    isForeignCodeException(item, ownership) || isKnownNoisyException(item);
+export const isNoiseException = (
+    item: any,
+    ownership = currentAppOwnership,
+    options?: NoiseFilterOptions,
+): boolean => isForeignCodeException(item, ownership) || isKnownNoisyException(item, options);
 
 export const initApm = ({ beforeSend: callerBeforeSend, ...options }: InitOptions): void => {
     // Uten namespace kan vi ikke utlede CDN-prefikset vi eier, og lag 1 forblir avslått.
@@ -96,6 +101,7 @@ export const initApm = ({ beforeSend: callerBeforeSend, ...options }: InitOption
     init({
         ...options,
         beforeSend: (item: any) => {
+            // Kun Vite-appene bruker initApm; NEXTJS_NOISY_EXCEPTION_PATTERNS er derfor ikke aktivert her.
             if (isNoiseException(item)) return null;
             return callerBeforeSend ? callerBeforeSend(item) : item;
         },

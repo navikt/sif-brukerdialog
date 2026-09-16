@@ -57,7 +57,7 @@ const apmAppOwnership = { namespace: 'dusseldorf' };
 initNaisAPMClient({
     app: InnsynPsbApp.key,
     ...apmAppOwnership,
-    beforeSend: (item) => (isNoiseException(item, apmAppOwnership) ? null : item),
+    beforeSend: (item) => (isNoiseException(item, apmAppOwnership, { isNextJsApp: true }) ? null : item),
 });
 configureLogger({
     basePath: process.env.NEXT_PUBLIC_BASE_PATH,
