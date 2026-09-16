@@ -70,6 +70,7 @@ export interface BostedVilkårPeriodeOppgave extends ParsedOppgaveBase {
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED;
     oppgavetypeData: Omit<BekreftBostedOppgavetypeDataDto, 'fom' | 'tom'> & {
         periode: DateRange;
+        varseltekst: string;
     };
     respons?: SvarPåVarselRespons;
 }
@@ -78,6 +79,7 @@ export interface BostedVilkårOpphørOppgave extends ParsedOppgaveBase {
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED_OPPHØR;
     oppgavetypeData: Omit<BekreftBostedOpphørOppgavetypeDataDto, 'fom'> & {
         fom: ISODate;
+        varseltekst: string;
     };
     respons?: SvarPåVarselRespons;
 }

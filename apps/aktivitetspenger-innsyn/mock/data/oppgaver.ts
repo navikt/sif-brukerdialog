@@ -10,6 +10,7 @@ import { dateToISODate } from '@sif/utils';
 import dayjs from 'dayjs';
 
 import { getMockToday } from '../utils/mockDate';
+import { mockVarseltekster } from './varseltekster';
 
 const getDatoer = () => {
     const datoer = {
@@ -25,7 +26,6 @@ const getRapporterInntektOppgaveDto = (): BrukerdialogOppgaveDto => ({
     status: OppgaveStatus.ULØST,
     opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
     frist: getDatoer().oppgaveMåned.add(7, 'days').add(7, 'hours').toISOString(),
-    varselInnhold: [],
     oppgavetypeData: {
         type: 'INNTEKTSRAPPORTERING',
         fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month')),
@@ -42,7 +42,6 @@ const getRapporterInntektOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
     opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
     frist: getDatoer().oppgaveMåned.add(7, 'days').add(7, 'hours').toISOString(),
     løstDato: getDatoer().oppgaveMåned.add(4, 'days').add(12, 'hours').toISOString(),
-    varselInnhold: [],
 
     oppgavetypeData: {
         type: 'INNTEKTSRAPPORTERING',
@@ -65,7 +64,6 @@ const getRapporterInntektDelerAvMånedOppgaveDto = (): BrukerdialogOppgaveDto =>
     status: OppgaveStatus.ULØST,
     opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
     frist: getDatoer().oppgaveMåned.add(7, 'days').add(7, 'hours').toISOString(),
-    varselInnhold: [],
     oppgavetypeData: {
         type: 'INNTEKTSRAPPORTERING',
         fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month')),
@@ -82,7 +80,6 @@ const getRapporterInntektDelerAvMånedOppgaveDtoLøst = (): BrukerdialogOppgaveD
     opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
     frist: getDatoer().oppgaveMåned.add(7, 'days').add(7, 'hours').toISOString(),
     løstDato: getDatoer().oppgaveMåned.add(4, 'days').add(12, 'hours').toISOString(),
-    varselInnhold: [],
     oppgavetypeData: {
         type: 'INNTEKTSRAPPORTERING',
         fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month')),
@@ -101,7 +98,6 @@ const getRapporterInntektDelerAvMånedOppgaveDtoLøst = (): BrukerdialogOppgaveD
 const getBekreftAvvikOppgaveDto = (): BrukerdialogOppgaveDto => ({
     oppgaveReferanse: 'be07ce74-9cb5-4012-bbae-5ab0940b04f7',
     oppgavetype: OppgaveType.BEKREFT_AVVIK_REGISTERINNTEKT,
-    varselInnhold: [],
     oppgavetypeData: {
         type: 'KONTROLLER_REGISTERINNTEKT',
         fraOgMed: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
@@ -130,7 +126,6 @@ const getBekreftAvvikOppgaveDto = (): BrukerdialogOppgaveDto => ({
 const getBekreftAvvikOppgaveDelerAvMånedDto = (): BrukerdialogOppgaveDto => ({
     oppgaveReferanse: 'be06ce74-9cb5-4000-bbae-5ab0940b04f7',
     oppgavetype: OppgaveType.BEKREFT_AVVIK_REGISTERINNTEKT,
-    varselInnhold: [],
     oppgavetypeData: {
         type: 'KONTROLLER_REGISTERINNTEKT',
         fraOgMed: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
@@ -159,7 +154,6 @@ const getBekreftAvvikOppgaveDelerAvMånedDto = (): BrukerdialogOppgaveDto => ({
 
 const getBekreftAvvikOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
     ...getBekreftAvvikOppgaveDto(),
-    varselInnhold: [],
     oppgavetypeData: {
         type: 'KONTROLLER_REGISTERINNTEKT',
         fraOgMed: dateToISODate(getDatoer().oppgaveMåned.startOf('month')),
@@ -191,13 +185,19 @@ const getBekreftAvvikOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
 const getBekreftBostedOppgaveDto = (): BrukerdialogOppgaveDto => ({
     oppgaveReferanse: 'aa01ce74-9cb5-4000-bbae-5ab0940b04a1',
     oppgavetype: OppgaveType.BEKREFT_BOSTED,
-    varselInnhold: [],
     oppgavetypeData: {
         type: 'BOSTED',
         ikkeOppfyltÅrsak: BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
         fom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
         tom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month')),
         erBosattITrondheim: false,
+        varseltekst: mockVarseltekster.getBostedVilkårPeriodeOppgaveVarseltekst(
+            {
+                from: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
+                to: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month')),
+            },
+            BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
+        ),
         kilde: BostedsavklaringKildeType.FOLKEREGISTER,
     },
     status: OppgaveStatus.ULØST,
@@ -209,12 +209,18 @@ const getBekreftBostedOppgaveDto = (): BrukerdialogOppgaveDto => ({
 const getBekreftBostedOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
     oppgaveReferanse: 'aa01ce74-9cb5-4000-bbae-5ab0940b04a2',
     oppgavetype: OppgaveType.BEKREFT_BOSTED,
-    varselInnhold: [],
     oppgavetypeData: {
         type: 'BOSTED',
         ikkeOppfyltÅrsak: BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
         fom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
         tom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month')),
+        varseltekst: mockVarseltekster.getBostedVilkårPeriodeOppgaveVarseltekst(
+            {
+                from: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
+                to: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month')),
+            },
+            BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
+        ),
         kilde: BostedsavklaringKildeType.FOLKEREGISTER,
         kildeFritekst: 'Folkeregisteret',
         erBosattITrondheim: false,
@@ -233,13 +239,16 @@ const getBekreftBostedOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
 const getBekreftBostedOpphørOppgaveDto = (): BrukerdialogOppgaveDto => ({
     oppgaveReferanse: 'aa01ce74-9cb5-4000-bbae-5ab0940b04a3',
     oppgavetype: OppgaveType.BEKREFT_BOSTED,
-    varselInnhold: [],
     oppgavetypeData: {
         type: 'BOSTED_OPPHØR',
         ikkeOppfyltÅrsak: BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
         erBosattITrondheim: false,
         kilde: BostedsavklaringKildeType.FOLKEREGISTER,
         fom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
+        varseltekst: mockVarseltekster.getBostedVilkårOpphørOppgaveVarseltekst(
+            dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
+            BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
+        ),
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),

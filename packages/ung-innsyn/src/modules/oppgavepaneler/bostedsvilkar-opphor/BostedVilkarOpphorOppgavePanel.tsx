@@ -3,9 +3,9 @@ import { BostedVilkårOpphørOppgave } from '@sif/api/ung-brukerdialog';
 import { UngInnsynText } from '../../../i18n';
 import { Oppgavebekreftelse } from '../../oppgavebekreftelse/Oppgavebekreftelse';
 import { VStack } from '@navikt/ds-react';
-import { BostedVilkarOpphorOppgavetekst } from './BostedVilkarOpphorOppgavetekst';
 import { OppgavebekreftelseTilbakemeldingInfo } from '../felles/OppgavebekreftelseTilbakemeldingInfo';
 import { BostedKilde } from '../felles/BostedKilde';
+import { BostedVilkarOpphorOppgavetekst } from './BostedVilkarOpphorOppgavetekst';
 
 interface Props {
     navn: string;

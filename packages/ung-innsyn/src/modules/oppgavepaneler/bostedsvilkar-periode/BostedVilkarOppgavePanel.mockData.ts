@@ -6,7 +6,7 @@ import {
     OppgaveYtelsetype,
 } from '@navikt/ung-brukerdialog-api';
 import { BostedVilkårPeriodeOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
-import { dateToISODate } from '@sif/utils';
+import { dateFormatter, dateToISODate, ISODate } from '@sif/utils';
 import dayjs from 'dayjs';
 
 export const BOSTED_ÅRSAK_SCENARIO_OPTIONS: BostedsvilkårIkkeOppfyltÅrsak[] = [
@@ -22,6 +22,24 @@ export const BOSTED_KILDE_SCENARIO_OPTIONS: BostedsavklaringKildeType[] = [
     BostedsavklaringKildeType.ANNET,
 ];
 
+const bostedVilkårPeriodeOppgaveTekster = {
+    IKKE_BOSATTADRESSE_I_TRONDHEIM:
+        'Vi har fått opplysninger om at du i perioden {periode} ikke bor i Trondheim kommune. Du må ha bostedsadresse i Trondheim kommune for å få aktivitetspenger.',
+    IKKE_BOSTEDSADRESSE_OG_IKKE_FOLKEREGISTRERT_I_TRONDHEIM:
+        'Vi har fått opplysninger om at du i perioden {periode} ikke bor i Trondheim kommune, og at du heller ikke er folkeregistrert der. Du må ha bostedsadresse i Trondheim kommune for å få aktivitetspenger.',
+    STUDIE_ELLER_ARBEIDSSTED_UTENFOR_TRONDHEIM:
+        'Vi har fått opplysninger om at du i perioden {periode} ikke har studie- eller arbeidssted i Trondheim kommune. Du må bo i Trondheim kommune for å få aktivitetspenger.',
+    ANNET: 'Vi har fått opplysninger om at du i perioden {periode} ikke bor i Trondheim kommune. Du må bo i Trondheim kommune for å få aktivitetspenger.',
+};
+
+const getVarselTekst = (periode: { from: ISODate; to: ISODate }, årsak: BostedsvilkårIkkeOppfyltÅrsak): string => {
+    const formatertFom = dateFormatter.compact(periode.from);
+    const formatertTom = dateFormatter.compact(periode.to);
+    const periodeTekst = `${formatertFom} - ${formatertTom}`;
+    const tekst = bostedVilkårPeriodeOppgaveTekster[årsak];
+    return tekst.replace('{periode}', periodeTekst);
+};
+
 export const lagOppgaveMedÅrsak = (
     base: BostedVilkårPeriodeOppgave,
     årsak: BostedsvilkårIkkeOppfyltÅrsak,
@@ -32,6 +50,7 @@ export const lagOppgaveMedÅrsak = (
         ...base.oppgavetypeData,
         ikkeOppfyltÅrsak: årsak,
         kilde,
+        varseltekst: getVarselTekst(base.oppgavetypeData.periode, årsak),
         kildeFritekst:
             kilde === BostedsavklaringKildeType.ANNET
                 ? 'Vi har fått informasjon fra din XXX som sier at du nå har flyttet tilbake til YYY.\n\nInformasjonen kom via et brev vi mottok.'
@@ -62,6 +81,13 @@ export const mockBostedVilkårAKT: BostedVilkårPeriodeOppgave = {
             from: dateToISODate(dayjs().subtract(1, 'month')),
             to: dateToISODate(dayjs().add(1, 'month')),
         },
+        varseltekst: getVarselTekst(
+            {
+                from: dateToISODate(dayjs().subtract(1, 'month')),
+                to: dateToISODate(dayjs().add(1, 'month')),
+            },
+            BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
+        ),
     },
 };
 

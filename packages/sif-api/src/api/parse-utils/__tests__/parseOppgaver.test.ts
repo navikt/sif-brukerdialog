@@ -21,7 +21,6 @@ const baseOppgave = {
     status: OppgaveStatus.ULØST,
     opprettetDato: '2026-05-01T08:00:00.000Z',
     frist: '2026-05-15T07:00:00.000Z',
-    varselInnhold: [],
 };
 
 describe('parseOppgaver - BEKREFT_OPPHOR_VED_MAKSDATO', () => {
@@ -123,6 +122,7 @@ const baseBostedData = {
     ikkeOppfyltÅrsak: BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
     fom: '2026-01-01',
     kilde: BostedsavklaringKildeType.FOLKEREGISTER,
+    varseltekst: 'mock',
 };
 
 const baseBostedOppgavetypeData = { type: 'BOSTED' as const, ...baseBostedData, tom: '2026-03-31' };

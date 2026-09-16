@@ -1,60 +1,26 @@
 import { BodyLong, VStack } from '@navikt/ds-react';
-import { dateFormatter } from '@sif/utils';
 
 import { BostedsvilkårIkkeOppfyltÅrsak } from '@navikt/ung-brukerdialog-api';
 import { BostedVilkårOpphørOppgave } from '@sif/api/ung-brukerdialog';
-import { UngInnsynText } from '../../../i18n';
 import Fritekst from '../../../components/fritekst/Fritekst';
 
 type Props = BostedVilkårOpphørOppgave['oppgavetypeData'];
 
 export const BostedVilkarOpphorOppgavetekst = ({
-    fom,
     ikkeOppfyltÅrsak,
     ikkeOppfyltÅrsakFritekstbeskrivelse,
+    varseltekst,
 }: Props) => {
-    const formatertFom = dateFormatter.compact(fom);
-
-    switch (ikkeOppfyltÅrsak) {
-        case BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM:
-            return (
+    return varseltekst ? (
+        <VStack gap="space-20">
+            <BodyLong>
+                <Fritekst text={varseltekst} />
+            </BodyLong>
+            {ikkeOppfyltÅrsak === BostedsvilkårIkkeOppfyltÅrsak.ANNET && (
                 <BodyLong>
-                    <UngInnsynText
-                        id="@ungInnsyn.bostedVilkårOpphørOppgave.IKKE_BOSATTADRESSE_I_TRONDHEIM"
-                        values={{ fom: formatertFom }}
-                    />
+                    <Fritekst text={ikkeOppfyltÅrsakFritekstbeskrivelse} />
                 </BodyLong>
-            );
-        case BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSTEDSADRESSE_OG_IKKE_FOLKEREGISTRERT_I_TRONDHEIM:
-            return (
-                <BodyLong>
-                    <UngInnsynText
-                        id="@ungInnsyn.bostedVilkårOpphørOppgave.IKKE_BOSTEDSADRESSE_OG_IKKE_FOLKEREGISTRERT_I_TRONDHEIM"
-                        values={{ fom: formatertFom }}
-                    />
-                </BodyLong>
-            );
-        case BostedsvilkårIkkeOppfyltÅrsak.STUDIE_ELLER_ARBEIDSSTED_UTENFOR_TRONDHEIM:
-            return (
-                <BodyLong>
-                    <UngInnsynText
-                        id="@ungInnsyn.bostedVilkårOpphørOppgave.STUDIE_ELLER_ARBEIDSSTED_UTENFOR_TRONDHEIM"
-                        values={{ fom: formatertFom }}
-                    />
-                </BodyLong>
-            );
-        case BostedsvilkårIkkeOppfyltÅrsak.ANNET:
-            return (
-                <VStack gap="space-20">
-                    <BodyLong>
-                        <UngInnsynText id="@ungInnsyn.bostedVilkårOpphørOppgave.ANNET" values={{ fom: formatertFom }} />
-                    </BodyLong>
-                    <BodyLong>
-                        <Fritekst text={ikkeOppfyltÅrsakFritekstbeskrivelse} />
-                    </BodyLong>
-                </VStack>
-            );
-        default:
-            return null;
-    }
+            )}
+        </VStack>
+    ) : null;
 };
