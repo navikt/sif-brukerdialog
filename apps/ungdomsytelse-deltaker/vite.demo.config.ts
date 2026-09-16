@@ -5,7 +5,7 @@ import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 
 import { getDevAppSettings } from './mock/devAppSettings.ts';
-import { createAliasConfig } from './vite.shared';
+import { createAliasConfig } from './vite.shared.ts';
 
 export default defineConfig({
     mode: 'msw',

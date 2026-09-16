@@ -2,6 +2,7 @@
     "extends": "../../packages/config/tsconfig-apps.json",
     "compilerOptions": {
         "allowImportingTsExtensions": true,
+        "noEmit": true,
         "outDir": "build/dist",
         "paths": {
             "@app/*": ["./src/app/*"],
