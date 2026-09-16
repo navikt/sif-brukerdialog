@@ -233,6 +233,10 @@ const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
         kildeFritekst: oppgavetypeData.kildeFritekst,
     };
 
+    if (!oppgavetypeData.varseltekst || !oppgavetypeData.varseltekst) {
+        throw new Error(`Oppgave mangler varseltekst: ${oppgave.oppgaveReferanse}`);
+    }
+
     /** Avslag i en periode */
     if (oppgavetypeData.type === 'BOSTED') {
         const bostedVilkårPeriodeOppgave: BostedVilkårPeriodeOppgave = {
@@ -244,6 +248,7 @@ const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
                     from: oppgavetypeData.fom as ISODate,
                     to: oppgavetypeData.tom as ISODate,
                 },
+                varseltekst: oppgavetypeData.varseltekst!,
             },
             respons: parseSvarPåVarselRespons(oppgave.respons),
         };
@@ -256,6 +261,7 @@ const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
             oppgavetypeData: {
                 ...fellesdata,
                 fom: oppgavetypeData.fom as ISODate,
+                varseltekst: oppgavetypeData.varseltekst!,
             },
             respons: parseSvarPåVarselRespons(oppgave.respons),
         };

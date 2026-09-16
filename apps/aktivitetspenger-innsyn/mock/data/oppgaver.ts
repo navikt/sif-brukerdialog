@@ -10,6 +10,7 @@ import { dateToISODate } from '@sif/utils';
 import dayjs from 'dayjs';
 
 import { getMockToday } from '../utils/mockDate';
+import { mockVarseltekster } from './varseltekster';
 
 const getDatoer = () => {
     const datoer = {
@@ -190,6 +191,13 @@ const getBekreftBostedOppgaveDto = (): BrukerdialogOppgaveDto => ({
         fom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
         tom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month')),
         erBosattITrondheim: false,
+        varseltekst: mockVarseltekster.getBostedVilkårPeriodeOppgaveVarseltekst(
+            {
+                from: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
+                to: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month')),
+            },
+            BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
+        ),
         kilde: BostedsavklaringKildeType.FOLKEREGISTER,
     },
     status: OppgaveStatus.ULØST,
@@ -206,6 +214,13 @@ const getBekreftBostedOppgaveDtoLøst = (): BrukerdialogOppgaveDto => ({
         ikkeOppfyltÅrsak: BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
         fom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
         tom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month')),
+        varseltekst: mockVarseltekster.getBostedVilkårPeriodeOppgaveVarseltekst(
+            {
+                from: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
+                to: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month')),
+            },
+            BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
+        ),
         kilde: BostedsavklaringKildeType.FOLKEREGISTER,
         kildeFritekst: 'Folkeregisteret',
         erBosattITrondheim: false,
@@ -230,6 +245,10 @@ const getBekreftBostedOpphørOppgaveDto = (): BrukerdialogOppgaveDto => ({
         erBosattITrondheim: false,
         kilde: BostedsavklaringKildeType.FOLKEREGISTER,
         fom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
+        varseltekst: mockVarseltekster.getBostedVilkårOpphørOppgaveVarseltekst(
+            dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
+            BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
+        ),
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
