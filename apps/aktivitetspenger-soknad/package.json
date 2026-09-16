@@ -46,7 +46,7 @@
         "@sif/utils": "workspace:*",
         "@tanstack/react-query": "5.102.8",
         "dayjs": "1.11.23",
-        "jsdom": "28.1.0",
+        "jsdom": "30.0.1",
         "react": "19.3.0",
         "react-day-picker": "10.0.1",
         "react-dom": "19.3.0",
