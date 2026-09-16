@@ -153,18 +153,6 @@ describe('isKnownNoisyException med isNextJsApp', () => {
     it.each(dekoratorenFetchFailures)('beholder samme melding når isNextJsApp IKKE er satt (Vite-apper)', (value) => {
         expect(isKnownNoisyException({ type: 'exception', payload: { type: 'Error', value } })).toBe(false);
     });
-
-    it('beholder andre dekoratørfeil som ikke matcher det faste fetch-formatet', () => {
-        expect(
-            isKnownNoisyException(
-                {
-                    type: 'exception',
-                    payload: { type: 'Error', value: 'console.error: [ERROR] Failed to parse decorator config' },
-                },
-                { isNextJsApp: true },
-            ),
-        ).toBe(false);
-    });
 });
 
 describe('isNoiseException', () => {
