@@ -4,7 +4,7 @@ import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 
-import { getPlaywrightAppSettings } from './playwright/playwrightAppSettings';
+import { getPlaywrightAppSettings } from './playwright/playwrightAppSettings.ts';
 
 export default defineConfig({
     mode: 'msw',
