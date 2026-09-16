@@ -1,6 +1,7 @@
 {
     "extends": "../../packages/config/tsconfig-apps.json",
     "compilerOptions": {
+        "allowImportingTsExtensions": true,
         "outDir": "build/dist",
         "lib": ["ES2022", "DOM"],
         "paths": {
@@ -15,9 +16,7 @@
         "./playwright/**/*",
         "./vite-env.d.ts",
         "./tailwind.config.ts",
-        "./vite.config.ts",
-        "./vite.dev.config.ts",
-        "./vite.e2e.config.ts",
+        "./vite*.config.ts",
         "./playwright.config.ts",
         "env.schema.ts"
     ]

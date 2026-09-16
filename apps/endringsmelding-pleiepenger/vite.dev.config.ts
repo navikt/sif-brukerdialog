@@ -5,7 +5,7 @@ import * as path from 'path';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 
-import { getDevAppSettings } from './mock/devAppSettings';
+import { getDevAppSettings } from './mock/devAppSettings.ts';
 
 export default defineConfig({
     mode: 'msw',

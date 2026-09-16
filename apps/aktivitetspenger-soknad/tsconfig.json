@@ -18,8 +18,7 @@
         "./playwright/**/*",
         "./vite-env.d.ts",
         "./tailwind.config.ts",
-        "./vite.config.ts",
-        "./vite.local.config.ts",
+        "./vite*.config.ts",
         "./playwright.config.ts",
         "env.schema.ts"
     ]

@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 
-import { getDevAppSettings } from './mock/devAppSettings';
+import { getDevAppSettings } from './mock/devAppSettings.ts';
 import { createAliasConfig } from './vite.shared';
 
 export default defineConfig({
