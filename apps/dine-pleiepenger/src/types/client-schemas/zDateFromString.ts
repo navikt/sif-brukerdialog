@@ -1,7 +1,10 @@
 import { innsyn } from '@navikt/k9-sak-innsyn-api';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 import z from 'zod';
+
+dayjs.extend(utc);
 
 export const validateAndConvertToUTCDate = (val: string): Date => {
     if (!dayjs(val).isValid()) {

@@ -1,83 +1,44 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { OppgaveStatus, OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
-import { ParsedOppgavetype, RapporterInntektOppgave } from '@sif/api/ung-brukerdialog';
+import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import dayjs from 'dayjs';
 
 import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { RapporterInntektOppgavePanel } from './RapporterInntektOppgavePanel';
-import { dateToISODate, ISODate } from '@sif/utils';
+import {
+    lagRapporterInntektOppgaveMedScenario,
+    mockRapporterInntektBesvartUPY,
+    mockRapporterInntektUPY,
+    RAPPORTER_INNTEKT_SCENARIO_OPTIONS,
+    RapporterInntektScenario,
+} from './RapporterInntektOppgavePanel.mockData';
+
 const meta: Meta = {
     title: 'Oppgaver/Ungdomsprogramytelsen/Rapporter inntekt',
-    parameters: {},
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
 export default meta;
 
-type Story = StoryObj;
+type KvitteringVariant = 'Har hatt inntekt' | 'Ingen inntekt';
+type StoryArgs = { scenario: RapporterInntektScenario; kvitteringVariant: KvitteringVariant };
+type Story = StoryObj<StoryArgs>;
 
-const oppgave: RapporterInntektOppgave = {
-    oppgaveYtelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
-    oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
-    oppgavetype: OppgaveType.RAPPORTER_INNTEKT,
-    parsedOppgavetype: ParsedOppgavetype.RAPPORTER_INNTEKT,
-    oppgavetypeData: {
-        fraOgMed: '2025-05-01' as ISODate,
-        tilOgMed: '2025-05-31' as ISODate,
-        gjelderDelerAvMåned: false,
-    },
-    status: OppgaveStatus.ULØST,
-    opprettetDato: dayjs('2025-06-01').toDate(),
-    frist: dateToISODate(dayjs('2025-06-06').startOf('day')),
-    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
+const scenarioArgType = {
+    control: 'radio' as const,
+    options: RAPPORTER_INNTEKT_SCENARIO_OPTIONS,
 };
 
-const besvartOppgave: RapporterInntektOppgave = {
-    ...oppgave,
-    oppgavetypeData: {
-        fraOgMed: '2025-05-01' as ISODate,
-        tilOgMed: '2025-05-31' as ISODate,
-        gjelderDelerAvMåned: false,
-    },
-    respons: {
-        type: 'RAPPORTERT_INNTEKT',
-        fraOgMed: '2025-05-01' as ISODate,
-        tilOgMed: '2025-05-31' as ISODate,
-        arbeidstakerOgFrilansInntekt: 10000,
-    },
-    status: OppgaveStatus.LØST,
-    løstDato: dayjs().subtract(1, 'days').toDate(),
-};
-
-const utløptUbesvartOppgave: RapporterInntektOppgave = {
-    oppgaveYtelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
-    oppgaveReferanse: 'ab0a18f8-8a6e-485b-b2b6-8d43a438165d',
-    oppgavetype: OppgaveType.RAPPORTER_INNTEKT,
-    parsedOppgavetype: ParsedOppgavetype.RAPPORTER_INNTEKT,
-    oppgavetypeData: {
-        fraOgMed: '2025-09-01' as ISODate,
-        tilOgMed: '2025-09-30' as ISODate,
-        gjelderDelerAvMåned: false,
-    },
-    respons: undefined,
-    status: OppgaveStatus.UTLØPT,
-    opprettetDato: dayjs('2025-10-01T05:00:29.527840Z').toDate(),
-    løstDato: dayjs('2025-10-08T05:00:54.739162Z').toDate(),
-    frist: dateToISODate(dayjs('2025-10-08T00:00:00Z')),
-    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
-};
-
-export const OppgavePanel: Story = {
-    name: 'Oppgavevisning på forside',
+export const Forsidevisning: Story = {
+    name: 'Forsidevisning',
+    parameters: { controls: { disable: true } },
     render: () => (
         <VStack gap="space-40">
             <VStack gap="space-16">
                 <Heading level="2" size="medium">
                     Uløst oppgave
                 </Heading>
-                <OppgaverList oppgaver={[oppgave]} />
+                <OppgaverList oppgaver={[mockRapporterInntektUPY]} />
             </VStack>
             <VStack gap="space-16">
                 <Heading level="2" size="medium">
@@ -87,48 +48,80 @@ export const OppgavePanel: Story = {
                     visBeskrivelse={false}
                     oppgaveStatusTagVariant="text"
                     oppgaver={[
-                        { ...oppgave, status: OppgaveStatus.AVBRUTT },
-                        { ...oppgave, status: OppgaveStatus.UTLØPT },
-                        { ...oppgave, status: OppgaveStatus.LØST },
+                        { ...mockRapporterInntektUPY, status: OppgaveStatus.AVBRUTT },
+                        { ...mockRapporterInntektUPY, status: OppgaveStatus.UTLØPT },
+                        { ...mockRapporterInntektUPY, status: OppgaveStatus.LØST },
                     ]}
                 />
             </VStack>
         </VStack>
     ),
 };
-export const UbesvartOppgave: Story = {
-    name: 'Ubesvart oppgave',
-    render: () => <RapporterInntektOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" />,
-};
 
-export const KvitteringHarInntekt: Story = {
-    name: 'Kvittering - med inntekt',
-    render: () => (
+export const Ubesvart: Story = {
+    name: 'Ubesvart',
+    argTypes: { scenario: scenarioArgType },
+    args: { scenario: 'Hel måned', kvitteringVariant: 'Har hatt inntekt' },
+    parameters: { controls: { include: ['scenario'] } },
+    render: ({ scenario }) => (
         <RapporterInntektOppgavePanel
-            oppgave={oppgave}
+            oppgave={lagRapporterInntektOppgaveMedScenario(mockRapporterInntektUPY, scenario)}
             navn="SNODIG VAFFEL"
-            initialKvitteringData={{ harHattInntektOver0: true }}
         />
     ),
 };
 
-export const KvitteringUtenInntekt: Story = {
-    name: 'Kvittering - uten inntekt',
-    render: () => (
+export const Kvittering: Story = {
+    name: 'Kvittering',
+    argTypes: {
+        scenario: scenarioArgType,
+        kvitteringVariant: {
+            control: 'radio',
+            options: ['Har hatt inntekt', 'Ingen inntekt'],
+        },
+    },
+    args: { scenario: 'Hel måned', kvitteringVariant: 'Har hatt inntekt' },
+    parameters: { controls: { include: ['scenario', 'kvitteringVariant'] } },
+    render: ({ scenario, kvitteringVariant }) => (
         <RapporterInntektOppgavePanel
-            oppgave={oppgave}
+            oppgave={lagRapporterInntektOppgaveMedScenario(mockRapporterInntektUPY, scenario)}
             navn="SNODIG VAFFEL"
-            initialKvitteringData={{ harHattInntektOver0: false }}
+            initialKvitteringData={{ harHattInntektOver0: kvitteringVariant === 'Har hatt inntekt' }}
         />
     ),
 };
 
-export const BesvartOppgave: Story = {
-    name: 'Besvart oppgave',
-    render: () => <RapporterInntektOppgavePanel oppgave={besvartOppgave} navn="SNODIG VAFFEL" />,
+export const Besvart: Story = {
+    name: 'Besvart',
+    argTypes: { scenario: scenarioArgType },
+    args: { scenario: 'Hel måned', kvitteringVariant: 'Har hatt inntekt' },
+    parameters: { controls: { include: ['scenario'] } },
+    render: ({ scenario }) => (
+        <RapporterInntektOppgavePanel
+            oppgave={lagRapporterInntektOppgaveMedScenario(mockRapporterInntektBesvartUPY, scenario)}
+            navn="SNODIG VAFFEL"
+        />
+    ),
 };
 
-export const UtløptOppgave: Story = {
-    name: 'Utløpt oppgave',
-    render: () => <RapporterInntektOppgavePanel oppgave={utløptUbesvartOppgave} navn="SNODIG VAFFEL" />,
+export const Utløpt: Story = {
+    name: 'Utløpt',
+    parameters: { controls: { disable: true } },
+    render: () => (
+        <RapporterInntektOppgavePanel
+            oppgave={{ ...mockRapporterInntektUPY, status: OppgaveStatus.UTLØPT, løstDato: new Date() }}
+            navn="SNODIG VAFFEL"
+        />
+    ),
+};
+
+export const Avbrutt: Story = {
+    name: 'Avbrutt',
+    parameters: { controls: { disable: true } },
+    render: () => (
+        <RapporterInntektOppgavePanel
+            oppgave={{ ...mockRapporterInntektUPY, status: OppgaveStatus.AVBRUTT, løstDato: new Date() }}
+            navn="SNODIG VAFFEL"
+        />
+    ),
 };

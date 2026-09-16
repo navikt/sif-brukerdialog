@@ -1,19 +1,16 @@
 import { AppText, useAppIntl } from '@app/i18n';
-import { SøknadStepId } from '@app/setup/config/SoknadStepId';
-import { useSøknadMellomlagring, useSøknadRhfForm, useSøknadsflyt, useSøknadState } from '@app/setup/hooks';
-import { AppForm } from '@app/setup/soknad/AppForm';
-import { SøknadStep } from '@app/setup/soknad/SoknadStep';
-import { ErrorSummary, FormSummary, InlineMessage, LocalAlert } from '@navikt/ds-react';
-import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
+import { useAppContext } from '@app/context/AppContext';
+import { SøknadStepId } from '@app/types/SoknadStepId';
+import { Søknadsdata } from '@app/types/Soknadsdata';
+import { FormSummary, InlineMessage, LocalAlert } from '@navikt/ds-react';
 import { dateFormatter, formatName, ISODate } from '@sif/utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
-import { getInvalidParametersFromApiError } from '@sif/api';
 import { Søker } from '@sif/api/k9-prosessering';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
-import { useSøknadFormValues } from '@sif/soknad/consistency';
 import { PersistedVedlegg } from '@sif/soknad-forms';
 import { FormLayout, VedleggSummaryList } from '@sif/soknad-ui/components';
-import { useEffect, useRef } from 'react';
+import { SøknadStep, SøknadStepForm, useSøknadsdata } from '@sif/soknad-app';
+import { useForm } from 'react-hook-form';
 
 import { useSkyraReloader } from '@sif/surveys';
 import { useSendSøknad } from '../../hooks/useSendSoknad';
@@ -38,49 +35,32 @@ export const OppsummeringSteg = () => {
     const stepId = SøknadStepId.OPPSUMMERING;
 
     const { validateField } = useSifValidate('oppsummeringForm');
-    const methods = useSøknadRhfForm<FormValues>(stepId, {});
+    const methods = useForm<FormValues>({ defaultValues: {} });
 
-    const { setSøknadSendt } = useSøknadsflyt();
-    const { clearSøknadFormValues } = useSøknadFormValues();
-    const { slettMellomlagring } = useSøknadMellomlagring();
-    const state = useSøknadState();
+    const { søker } = useAppContext();
+    const søknadsdata = useSøknadsdata<Søknadsdata>();
 
     const { locale } = useAppIntl();
-    const { isPending, mutateAsync, error: sendSøknadError } = useSendSøknad();
-    const sendSøknadErrorSummary = useRef<HTMLDivElement>(null);
+    const { sendSøknad, isPending, sendSøknadError } = useSendSøknad();
 
     const dto = søknadsdataToSøknadDTO({
-        søker: state.søker,
-        søknadsdata: state.søknadsdata,
+        søker,
+        søknadsdata,
         språk: locale,
     });
 
     const harBekreftetOpplysninger = methods.watch(FormFields.bekrefterOpplysninger);
-    const invalidParameters = getInvalidParametersFromApiError(sendSøknadError);
 
-    useEffect(() => {
-        if (sendSøknadError && !invalidParameters) {
-            sendSøknadErrorSummary.current?.focus();
-        }
-    }, [sendSøknadError, invalidParameters]);
-
-    const onSubmit = async () => {
+    const onSubmit = () => {
         if (dto === undefined) {
             return;
         }
-        try {
-            await mutateAsync({ ...dto, harBekreftetOpplysninger });
-            await slettMellomlagring();
-            clearSøknadFormValues();
-            setSøknadSendt();
-        } catch {
-            return;
-        }
+        sendSøknad({ ...dto, harBekreftetOpplysninger });
     };
 
     return (
         <SøknadStep stepId={SøknadStepId.OPPSUMMERING}>
-            <AppForm
+            <SøknadStepForm
                 stepId={stepId}
                 methods={methods}
                 onSubmit={onSubmit}
@@ -102,11 +82,11 @@ export const OppsummeringSteg = () => {
                     )}
                     {dto && (
                         <>
-                            <OmSøkerOppsummering søker={state.søker} />
+                            <OmSøkerOppsummering søker={søker} />
                             <OmBarnetOppsummering dto={dto} />
                             <VedleggOppsummering
-                                legeerklæring={state.søknadsdata[SøknadStepId.LEGEERKLÆRING]?.vedlegg ?? []}
-                                samværsavtale={state.søknadsdata[SøknadStepId.DELT_BOSTED]?.samværsavtale}
+                                legeerklæring={søknadsdata[SøknadStepId.LEGEERKLÆRING]?.vedlegg ?? []}
+                                samværsavtale={søknadsdata[SøknadStepId.DELT_BOSTED]?.samværsavtale}
                             />
                         </>
                     )}
@@ -115,16 +95,9 @@ export const OppsummeringSteg = () => {
                         validate={validateField(FormFields.bekrefterOpplysninger, getCheckedValidator())}>
                         <AppText id="oppsummeringSteg.bekrefterOpplysninger.label" />
                     </Checkbox>
-                    {sendSøknadError && invalidParameters && (
-                        <InnsendingFeiletAlert invalidParameters={invalidParameters} />
-                    )}
-                    {sendSøknadError && !invalidParameters && (
-                        <ErrorSummary ref={sendSøknadErrorSummary}>
-                            <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
-                        </ErrorSummary>
-                    )}
+                    {sendSøknadError && <InnsendingFeiletAlert error={sendSøknadError} />}
                 </FormLayout.Content>
-            </AppForm>
+            </SøknadStepForm>
         </SøknadStep>
     );
 };
@@ -296,7 +269,7 @@ const VedleggOppsummering = ({
                                 <AppText id="oppsummeringSteg.vedlegg.ingenLastetOpp" />
                             </InlineMessage>
                         ) : (
-                            <VedleggListe vedlegg={legeerklæring} />
+                            <VedleggSummaryList vedlegg={legeerklæring} />
                         )}
                     </FormSummary.Value>
                 </FormSummary.Answer>
@@ -311,7 +284,7 @@ const VedleggOppsummering = ({
                                     <AppText id="oppsummeringSteg.vedlegg.ingenLastetOpp" />
                                 </InlineMessage>
                             ) : (
-                                <VedleggListe vedlegg={samværsavtale} />
+                                <VedleggSummaryList vedlegg={samværsavtale} />
                             )}
                         </FormSummary.Value>
                     </FormSummary.Answer>
@@ -319,10 +292,6 @@ const VedleggOppsummering = ({
             </FormSummary.Answers>
         </FormSummary>
     );
-};
-
-const VedleggListe = ({ vedlegg }: { vedlegg: PersistedVedlegg[] }) => {
-    return <VedleggSummaryList vedlegg={vedlegg} />;
 };
 
 const RelasjonTilBarnetTekst = ({ relasjon }: { relasjon: SøkersRelasjonTilBarnet }): any => {

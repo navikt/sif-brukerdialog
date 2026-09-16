@@ -1,24 +1,49 @@
-import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
-import { dateToISODate } from '@sif/utils';
+import { SøknadApiData } from '@app/types/SoknadApiData';
+import { MedlemskapSøknadsdata, Søknadsdata } from '@app/types/Soknadsdata';
+import type { aktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
 import { Søker } from '@sif/api/k9-prosessering';
+import { ISODate } from '@sif/utils';
 
-import { SøknadApiData } from '../types/SoknadApiData';
-import { Søknadsdata } from '../types/Soknadsdata';
+import { getMedlemskapSynlighet } from '../steps/medlemskap/medlemskapSynlighet';
+
+const getUtenlandsoppholdFromMedlemskap = (
+    medlemskap: MedlemskapSøknadsdata,
+): aktivitetspenger.UtenlandsoppholdAktivitetspenger[] => {
+    const synlig = getMedlemskapSynlighet(medlemskap);
+    const utenlandsopphold: aktivitetspenger.UtenlandsoppholdAktivitetspenger[] = synlig.arbeidsstederUtenforNorge
+        ? medlemskap.arbeidsstederUtenforNorge?.map((a) => ({
+              land: a.land,
+              fraOgMed: a.periode.from,
+              tilOgMed: a.periode.to,
+              jobbetIPerioden: a.jobbetIPerioden,
+              utenlandskNasjonalId: a.utenlandskNasjonalId,
+          })) || []
+        : medlemskap.bostederUtenforNorge?.map((b) => ({
+              land: b.land,
+              fraOgMed: b.periode.from,
+              tilOgMed: b.periode.to,
+              jobbetIPerioden: b.jobbetIPerioden,
+              utenlandskNasjonalId: b.utenlandskNasjonalId,
+          })) || [];
+    return utenlandsopphold;
+};
 
 export const søknadsdataToSøknadDTO = ({
     søker,
     søknadsdata,
     språk = 'nb',
     kontoInfo,
+    startdato,
 }: {
     søknadsdata: Søknadsdata;
     søker: Søker;
     språk?: 'nb' | 'nn';
-    kontoInfo: KontonummerInfo;
+    kontoInfo: aktivitetspenger.KontonummerInfo;
+    startdato?: ISODate;
 }): Omit<SøknadApiData, 'harBekreftetOpplysninger'> | undefined => {
-    const { barn, harForståttRettigheterOgPlikter, bostedUtland, kontonummer, bosted, startdato } = søknadsdata;
+    const { barn, harForståttRettigheterOgPlikter, medlemskap, kontonummer, bosted } = søknadsdata;
 
-    if (!barn || !harForståttRettigheterOgPlikter || !bosted || !kontonummer || !bostedUtland || !startdato) {
+    if (!barn || !harForståttRettigheterOgPlikter || !bosted || !kontonummer || !medlemskap || !startdato) {
         // eslint-disable-next-line no-console
         console.error('Manglende data i søknadsdata');
         return undefined;
@@ -32,17 +57,14 @@ export const søknadsdataToSøknadDTO = ({
             ...kontoInfo,
             kontonummerErRiktig: kontonummer.kontonummerErRiktig,
         },
-        forutgåendeBosteder: {
-            harBoddIUtlandetSiste5År: bostedUtland.harBoddIUtlandetSiste5år,
-            utenlandsoppholdSiste5År: (bostedUtland.bosteder || []).map((b) => ({
-                fraOgMed: dateToISODate(b.periode.from),
-                tilOgMed: dateToISODate(b.periode.to),
-                landkode: b.landkode,
-                landnavn: b.landnavn,
-            })),
+        medlemskap: {
+            harBoddINorge: medlemskap.harBoddINorge,
+            harJobbetINorge: medlemskap.harJobbetINorge,
+            harJobbetUtenforNorge: medlemskap.harJobbetUtenforNorge,
+            utenlandsopphold: getUtenlandsoppholdFromMedlemskap(medlemskap),
         },
         erBosattITrondheim: bosted.erBosattITrondheim,
-        startdato: startdato.startdato,
+        startdato: startdato,
         harForståttRettigheterOgPlikter,
     };
 };

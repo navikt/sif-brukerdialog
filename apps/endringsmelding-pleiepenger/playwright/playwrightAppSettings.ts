@@ -1,15 +1,15 @@
-import { AppEnv } from '../env.schema';
+import type { AppEnv } from '../env.schema.ts';
 
 export const getPlaywrightAppSettings = (): AppEnv & any => ({
     VELG_SCENARIO: 'on',
     SIF_PUBLIC_ENDRE_OMSORGSTILBUD: 'on',
-    NOW: '2023-01-01',
+    SIF_PUBLIC_SJEKK_OM_ARBEIDSTID_ER_GYLDIG: 'on',
+    NOW: '2023-01-05T12:00:00Z',
     APP_VERSION: 'dev',
     ENV: 'dev',
     GITHUB_REF_NAME: 'some_branch_name',
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger',
 
-    SIF_PUBLIC_ANALYTICS_API_KEY: 'default',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
     SIF_PUBLIC_DEKORATOR_URL:

@@ -1,5 +1,25 @@
 # @navikt/omsorgspengesoknad-v2
 
+## 0.1.0
+
+### Minor Changes
+
+- Erstatte all bruk av sentry med nais/apm
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-app-register@0.2.0
+    - @navikt/sif-common-env@0.2.0
+    - @sif/apm@0.2.0
+    - @sif/soknad@0.2.0
+    - @sif/soknad-app@0.2.0
+    - @sif/soknad-ui@0.2.0
+    - @sif/api@0.1.2
+    - @navikt/sif-common-hooks@0.3.11
+    - @navikt/sif-validation@1.0.22
+    - @sif/soknad-forms@0.1.2
+
 ## 0.0.12
 
 ### Patch Changes

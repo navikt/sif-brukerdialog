@@ -14,11 +14,10 @@ description: Arkitekturreferanse og beslutningslogg for @sif/soknad-app — ramm
 
 ## Avgrensning — dette er IKKE
 
-- **`sif-soknad-setup`** — som setter opp en ny *app* som bruker rammeverket.
-- **`sif-soknad-add-step`** — som legger til steg i en *app*.
-- **`sif-migration-baseline`** — som migrerer en *app* fra v1 til v2.
+- **`sif-soknad-setup`** — som setter opp en ny _app_ som bruker rammeverket.
+- **`sif-soknad-add-step`** — som legger til steg i en _app_.
 
-Disse skillene handler om å *bruke* rammeverket fra en app. Denne skillen handler om rammeverket *i seg selv*.
+Disse skillene handler om å _bruke_ rammeverket fra en app. Denne skillen handler om rammeverket _i seg selv_.
 
 ---
 
@@ -27,10 +26,10 @@ Disse skillene handler om å *bruke* rammeverket fra en app. Denne skillen handl
 ```
 packages/sif-soknad-app/src/
   components/       SøknadAppProvider, SøknadRouter, SøknadStep, SøknadStepForm,
-                    SøknadStepGuard, SøknadVelkommenPage, SøknadKvitteringPage, StepRouteGuard
-  consistency/      SøknadFormValuesContext, checkConsistencyForSteps, InconsistentFormValuesMessage
+                    SøknadStepContext, SøknadStepGuard, SøknadVelkommenPage, StepRouteGuard
+  consistency/      SøknadStepFormContext, checkConsistencyForSteps, InconsistentFormValuesMessage
   context/          SøknadAppContext
-  hooks/            useStepData, useMellomlagring, useSaveSøknadFormValues,
+  hooks/            useStepData, useSøknadsdata, useMellomlagring, useSaveSøknadFormValues,
                     useCheckConsistency, useStartSøknad, useSøknadSendt,
                     useAvbryt, useStepNavigation
   store/            createSøknadAppStore (Zustand)
@@ -45,16 +44,17 @@ Referanseimplementasjon: `apps/aktivitetspenger-soknad`
 ## Arkitektur
 
 ```
-<SøknadAppProvider>              ← Faro, AppErrorBoundary, QueryClient, Analytics, Sentry-init
-  <SøknadRouter>                 ← Zustand-store, mellomlagring-init, context-provider
-    <SøknadFormValuesProvider>   ← draft-verdier for konsistenssjekk og live getters
-      <SøknadAppContext.Provider>← store + config eksponert til alle hooks
-        {children}               ← appen sine <Routes> bor her
+<SøknadAppProvider>                ← ErrorBoundary, QueryClient, Analytics, UxSignals, i18n, appstatus
+  <BrowserRouter>                  ← appens ansvar — SøknadRouter krever React Router-kontekst
+    <SøknadRouter>                 ← Zustand-store, mellomlagring-init, context-provider
+      <SøknadStepFormProvider>     ← in-session skjemaverdier per steg (konsistenssjekk + live getters)
+        <SøknadAppContext.Provider>← store + config eksponert til alle hooks
+          {children}               ← appen sine <Routes> bor her
 ```
 
 - `SøknadRouter` er primært en kontekst-provider, men har to `useEffect` med navigering:
-  - Ved mount: henter mellomlagring → kaller `init(blob)` → navigerer til `resumeStepId` hvis gyldig blob
-  - Ved `søknadSendt`: navigerer til `/kvittering`
+    - Ved mount: henter mellomlagring → kaller `init(blob)` → navigerer til `resumeStepId` hvis gyldig blob
+    - Etter initialisering: hvis browser-back sender brukeren til velkommensiden (`/`) mens `resumeStepId` finnes, navigeres brukeren tilbake til gjenopptakingspunktet med `replace`
 - `SøknadRouter` holder `children` tilbake til mellomlagring er hentet (`isInitialized`). Dersom gyldig mellomlagring finnes, navigeres bruker automatisk til `resumeStepId` uten at velkommensiden vises.
 - `SøknadStepGuard` styrer redirect basert på `resumeStepId` fra Zustand-storen
 - `SøknadStep` er wrapper for ett steg — henter tittel via `step.${stepId}.title`, bygger progress-stepper, kjører konsistenssjekk
@@ -74,23 +74,29 @@ Referanseimplementasjon: `apps/aktivitetspenger-soknad`
 
 Lokale parametere som betyr "steget som vises nå" heter fortsatt `currentStepId` (f.eks. i `useCheckConsistency`, `checkConsistencyForSteps`, `stepUtils.getPreviousNextStep`).
 
-### `søknadsdata` vs `draftFormValues`
+### `søknadsdata` vs `draftFormValues` vs `persistedFormValues`
 
-| Felt | Type | Innhold | Oppdateres |
-|------|------|---------|------------|
-| `søknadsdata` | `Record<stepId, TCommitted>` | Committet domendata | Kun ved `commitState()` |
-| `draftFormValues` | `Record<stepId, Record<string, unknown>>` | Rå RHF-skjemaverdier | Lagres til/leses fra mellomlagring-blob |
+| Felt                  | Type                                      | Innhold                     | Oppdateres                              |
+| --------------------- | ----------------------------------------- | --------------------------- | --------------------------------------- |
+| `søknadsdata`         | `Record<stepId, TCommitted>`              | Committet domendata         | Kun ved `commitState()`                 |
+| `persistedFormValues` | `Record<stepId, Record<string, unknown>>` | Rå RHF-skjemaverdier (blob) | Lagres til/leses fra mellomlagring-blob |
+| `draftFormValues`     | `Record<stepId, Record<string, unknown>>` | In-session skjemaverdier    | Lagres ved steg-unmount denne sesjonen  |
 
-### `SøknadFormValuesContext` — to subsystemer
+`useStepData` returnerer `draftFormValues` (context, høyest prioritet) ?? `persistedFormValues` (blob, fallback ved reload).
+
+### `SøknadStepFormContext` — to subsystemer
 
 **Konsistenssjekk (browser back/forward):**
-- `søknadFormValues` — in-memory unmount-lagrede verdier per steg
+
+- `draftFormValues` — in-memory unmount-lagrede verdier per steg
 - `setFormValuesForStep` / `clearFormValuesForStep`
 - `markSkipNextUnmountSaveForStep` / `shouldSaveOnUnmountForStep`
+- `clearAllFormValues` — tømmer draft-verdier og hindrer aktive stegs unmount-handler i å skrive gamle verdier tilbake; brukes ved avbryt og ved ny start
 
 **Live getters (manuell mellomlagring):**
-- `liveGettersRef` — `Map<stepId, () => StepFormValues>` i en ref (unngår re-renders)
-- `registerGetValuesForStep` / `unregisterGetValuesForStep` / `getLiveFormValuesForStep`
+
+- `liveGettersRef` — `Map<stepId, () => StepFormValuesRecord>` i en ref (unngår re-renders)
+- `registerGetValuesForStep` / `unregisterGetValuesForStep`
 - `getAllLiveFormValues()` — henter verdier fra ALLE registrerte getters (typisk kun ett steg montert)
 
 ---
@@ -105,12 +111,20 @@ const methods = useForm({ defaultValues: draftFormValues ?? toMyFormValues(lagre
 ```
 
 - `lagretData` — committet domendata (`søknadsdata[stepId]`), `undefined` første gang
-- `draftFormValues` — midlertidige RHF-verdier fra mellomlagring-blob (`draftFormValues[stepId]`), bruk som `defaultValues` foran `lagretData` etter reload
-- `commit(data)` — commitState + rydder draft + lagrer mellomlagring (uten `draftFormValues` — de er nettopp ryddet) + navigerer til neste steg
+- `draftFormValues` — beste tilgjengelige skjemaverdier: in-session (back/forward) hvis satt, ellers `persistedFormValues` fra mellomlagring-blob. Bruk som `defaultValues` foran `lagretData`.
+- `commit(data)` — commitState + rydder draft + lagrer mellomlagring + navigerer til neste steg
+
+### `useSøknadsdata<T>()`
+
+Henter all committet søknadsdata castet til appens domene-type. Bruk i oppsummering.
+
+```tsx
+const søknadsdata = useSøknadsdata<Søknadsdata>();
+```
 
 ### `useSaveSøknadFormValues(stepId, getValues)`
 
-Lagrer skjemaverdier til `SøknadFormValuesContext` ved unmount. Brukes i hvert steg-form for å fange opp endringer via browser back/forward. Registrerer også live getter for `useMellomlagring`.
+Lagrer skjemaverdier til `SøknadStepFormContext` ved unmount. Brukes i hvert steg-form for å fange opp endringer via browser back/forward. Registrerer også live getter for `useMellomlagring`.
 
 ```tsx
 useSaveSøknadFormValues(stepId, methods.getValues);
@@ -128,13 +142,59 @@ const { lagre } = useMellomlagring();
 await lagre();
 ```
 
-`lagre()` henter live verdier fra `getAllLiveFormValues()` — uavhengig av `resumeStepId`. Dette er viktig fordi `resumeStepId` kan peke på et annet steg enn det brukeren ser på.
+`lagre()` henter live verdier fra `getAllLiveFormValues()` — uavhengig av `resumeStepId`. Dette er viktig fordi `resumeStepId` kan peke på et annet steg enn det brukeren ser på. Den beholder også eksisterende `persistedFormValues` fra mellomlagring og lar nyere draft- og live-verdier overskrive per steg.
 
 ### `useCheckConsistency(currentStepId)`
 
-Sjekker om foregående stegs umonterte skjemaverdier avviker fra committet `søknadsdata`. Returnerer første inkonsistente `stepId`, eller `undefined`. Aktiveres automatisk i `SøknadStep`. Krever at `formValuesToSøknadsdata` er satt på `SøknadRouter`.
+Sjekker om foregående stegs umonterte skjemaverdier avviker fra committet `søknadsdata`. Returnerer første inkonsistente `stepId`, eller `undefined`. Krever at `formValuesToSøknadsdata` er satt på `SøknadRouter`.
 
-Merk: `SøknadStepForm` kaller også `useCheckConsistency` internt for å deaktivere submit-knappen. De to kallene (fra `SøknadStep` og `SøknadStepForm`) er uavhengige og harmløse.
+Kjøres **én gang**, i `SøknadStep`. Resultatet deles ned til `SøknadStepForm` via `SøknadStepContext`, som bruker det til å deaktivere submit. `SøknadStepForm` kaller ikke hooken selv — den leser `inconsistentStepId` fra konteksten. Derfor må `SøknadStepForm` brukes innenfor en `SøknadStep`.
+
+### `useSøknadSendt()`
+
+Fullfører innsendingen etter vellykket POST: sletter mellomlagring, logger `skjemaFullført` og setter `søknadSendt` i storen. Navigerer ikke selv — `SøknadRouter` synker URL mot `søknadSendt`.
+
+#### Mønster: `useSendSøknad` eier innsendingsflyten
+
+Appens `useSendSøknad` eier POST, opprydding og feillogging, og eksponerer domenenavn utad — ikke mutasjonsobjektet. Samme konvensjon som `useYtelseMellomlagring` i `@sif/api` (`lagre`, `opprett`, `slett`) og som v1-appene (`sendSøknad`, `sendSøknadError`).
+
+```ts
+// apps/<app>/src/app/hooks/useSendSoknad.ts
+export const useSendSøknad = () => {
+    const { logSkjemaFeilet } = useAnalyticsInstance();
+    const { onSøknadSendt } = useSøknadSendt();
+
+    const { mutate, isPending, error } = useMutation<void, ApiError, SøknadApiData>({
+        mutationFn: (data) => sendSøknad(data),
+        // Holder isPending til søknaden er markert som sendt. Se useSøknadSendt.
+        onSuccess: onSøknadSendt,
+        onError: (error) => {
+            /* logging */
+        },
+    });
+
+    return { sendSøknad: mutate, isPending, sendSøknadError: error };
+};
+```
+
+Da blir oppsummeringssteget trivielt — det sier bare «send inn»:
+
+```tsx
+const { sendSøknad, isPending, sendSøknadError } = useSendSøknad();
+
+const onSubmit = () => {
+    if (dto === undefined) return;
+    sendSøknad({ ...dto, harBekreftetOpplysninger });
+};
+```
+
+**Hvorfor `onSuccess` i mutasjonsoppsettet:** React Query awaiter `options.onSuccess` og kjører den _før_ status settes til `success`. `isPending` står derfor til `søknadSendt` er satt, og submit-knappen er deaktivert hele veien. Legges `onSøknadSendt` i stedet som per-kall-callback i `mutate(data, { onSuccess })`, kjører den etter at status er `success` og awaites ikke — det gir et vindu på ett nettverks-round-trip der knappen er aktiv og en dobbel innsending går gjennom.
+
+**Hvorfor `mutate` og ikke `mutateAsync`:** innsendingsfeil skal bli liggende i mutasjonens `error`-state og rendres av appens `InnsendingFeiletAlert`. `mutateAsync` uten `try/catch` re-kastes av RHF `handleSubmit`, og `SifForm` fanger ikke — altså unhandled rejection ved hver feilede innsending. `await mutateAsync()` lukker heller ikke double-submit-vinduet, siden `success` dispatches før promisen resolver og `FormLayout.FormButtons` kun leser `submitPending`/`submitDisabled`, ikke `formState.isSubmitting`.
+
+Begge fellene forsvinner fra kallstedet når hooken kun returnerer `sendSøknad` — verken `mutateAsync` eller per-kall-callbacken er tilgjengelig.
+
+**Invariant:** `onSøknadSendt()` rejecter aldri — opprydding og analytics er pakket i `try/catch` i hooken. Det er en forutsetning for mønsteret: en rejection fra `options.onSuccess` ville sendt mutasjonen til error-state og vist innsendingsfeil selv om søknaden faktisk ble sendt. Bevar den egenskapen om hooken utvides.
 
 ---
 
@@ -143,22 +203,42 @@ Merk: `SøknadStepForm` kaller også `useCheckConsistency` internt for å deakti
 Ytterste wrapper-komponent — brukes av apper som ikke setter opp providers selv.
 
 ```tsx
+// main.tsx — APM initialiseres før rendering
+import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
+// app-verdien MÅ matche "app"-feltet i nais/prod-gcp.json — se sif-apm-skillen
+void initApm({ app: PleiepengerSyktBarnApp.key, namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
+
+// App.tsx
 <SøknadAppProvider
-  applicationKey="min-app"
-  appVersion={import.meta.env.VITE_APP_VERSION}
-  sentryConfig={{ dsn: '...', application: 'min-app' }}
-  telemetryCollectorURL={import.meta.env.VITE_TELEMETRY_URL}>
-  <App />
-</SøknadAppProvider>
+    applicationKey={PleiepengerSyktBarnApp.key}
+    useAnalytics={env.SIF_PUBLIC_USE_ANALYTICS === 'true'}
+    intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}
+    appStatusConfig={{ sanityConfig: { projectId: '...', dataset: '...' } }}>
+    <App />
+</SøknadAppProvider>;
 ```
 
-Setter opp:
-- `FaroProvider` — Grafana Faro observability
-- `AppErrorBoundary` — global error boundary
-- `SifQueryClientProvider` — React Query-klient
-- `AnalyticsProvider` — analytics-instans
+Setter opp (i denne rekkefølgen, ytterst først):
+
+- `AppErrorBoundary` — global error boundary, fanger React render-feil og logger via `appLogger.logException`
+- `SifQueryClientProvider` — React Query-klient med feillogging via `@sif/apm`
+- `AnalyticsProvider` — analytics-instans (aktiv når `useAnalytics` er true)
+- `UxSignalsLoaderProvider` — laster UxSignals
+- `AppIntlProvider` — `IntlProvider` med språkvelger mot dekoratøren. Rendres kun når `intlConfig` er satt
+- `AppStatusWrapper` — Sanity-basert av/på-styring. Rendres kun når `appStatusConfig` er satt; ellers rendres children direkte
 - `DevBranchInfo` — vises kun i dev/PR-bygg
-- Sentry-init — kjøres én gang (modul-global flaggvariabel)
+
+`SøknadAppProvider` inneholder ingen router. Appen må selv legge `<BrowserRouter>` mellom provideren og `SøknadRouter`.
+
+APM (`@nais/apm`) initialiseres **ikke** av `SøknadAppProvider`. Kall `initApm` fra `@sif/apm` i `main.tsx` før `createRoot`, slik at feil som oppstår under oppstart også fanges. Props `appVersion`, `faroConfig`, `telemetryCollectorURL` og `sentryConfig` finnes ikke lenger.
+
+---
+
+## i18n i rammeverket
+
+Pakken slår kun opp **én** nøkkel: `step.${stepId}.title` (i `SøknadStep` — progress-stepper, dokumenttittel og konsistensvarsel). Alle knappe- og dialogtekster kommer fra `@sif/soknad-ui` under `@sifSoknadUi.*`-nøkler, som appen sprer inn via `sifSoknadUiMessages`.
+
+Typen `SøknadFrameworkIntlKeys` (`soknad.steg.*`, `soknad.avbryt.*`, `soknad.fortsettSenere.*`) ble fjernet i denne omgangen — den beskrev nøkler ingen komponent slo opp. Ikke gjeninnfør den; legg heller nye rammeverkstekster i `@sif/soknad-ui` under `@sifSoknadUi.*`.
 
 ---
 
@@ -168,11 +248,12 @@ Standard wrapper for RHF-baserte steg-skjema. Eksporteres fra `@sif/soknad-app`.
 
 ```tsx
 <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={isPending}>
-  {/* skjemafelter */}
+    {/* skjemafelter */}
 </SøknadStepForm>
 ```
 
 Håndterer automatisk:
+
 - Forrige-knapp via `useStepNavigation`
 - Deaktivering av submit-knapp ved konsistenssjekk-treff (`useCheckConsistency`)
 - Valgfri `submitDisabled`, `isFinalSubmit`, `submitLabel`
@@ -186,32 +267,12 @@ Erstatter app-spesifikk `AppForm`-boilerplate. Alle apper som bruker `@sif/sokna
 Ferdig velkomstside — wrapper rundt `StartPage` fra `@sif/soknad-ui`.
 
 ```tsx
-<SøknadVelkommenPage
-  title="Søknad om aktivitetspenger"
-  guide={{ navn: 'Kari Veileder', content: <p>...</p> }}>
-  {/* valgfritt ekstra innhold */}
+<SøknadVelkommenPage title="Søknad om aktivitetspenger" guide={{ navn: 'Kari Veileder', content: <p>...</p> }}>
+    {/* valgfritt ekstra innhold */}
 </SøknadVelkommenPage>
 ```
 
 Bruker `useStartSøknad` internt — kaller `startSøknad({ harForståttRettigheterOgPlikter })` ved klikk.
-
----
-
-## `SøknadKvitteringPage`
-
-Ferdig kvitteringsside.
-
-```tsx
-<SøknadKvitteringPage
-  documentTitle="Søknad sendt"
-  applicationTitle="Aktivitetspenger"
-  tittel="Vi har mottatt søknaden din"
-  appRootUrl={import.meta.env.BASE_URL}>
-  <p>Forventet saksbehandlingstid er ...</p>
-</SøknadKvitteringPage>
-```
-
-Props: `documentTitle`, `applicationTitle`, `tittel`, `appRootUrl?`, `restartLabel?` (default: `'Tilbake til forsiden'`).
 
 ---
 
@@ -232,10 +293,10 @@ Aksepterer `initialSøknadsdata: Record<string, unknown>` (default `{}`). Initia
 
 ```ts
 interface MellomlagringBlob {
-  versjon: number;
-  resumeStepId: string;           // gjenopptakingspunkt
-  søknadsdata: Record<string, unknown>;
-  draftFormValues?: Record<string, Record<string, unknown>>;  // midlertidige verdier
+    versjon: number;
+    resumeStepId: string; // gjenopptakingspunkt
+    søknadsdata: Record<string, unknown>;
+    persistedFormValues?: Record<string, Record<string, unknown>>; // persisterte skjemaverdier
 }
 ```
 
@@ -252,18 +313,19 @@ interface MellomlagringBlob {
 5. `resumeStepId = includedSteps[fromIndex + 1]?.stepId` (alltid neste i sekvens)
 6. Returner `{ newResumeStepId, newRoute }` (ingen side-effekter i storen)
 
-`useStepData.commit()` håndterer side-effektene etter: rydder draft-verdier, lagrer mellomlagring, navigerer.
+`useStepData.commit()` håndterer side-effektene etter: rydder draft-verdier for det committede steget, beholder persisterte verdier for andre steg, lagrer mellomlagring og navigerer.
 
 ---
 
-## `SøknadRouterProps` — viktige valgfrie props
+## `SøknadRouterProps` — viktige props
 
 ```ts
+// Påkrevd. Kvitteringssiden — SøknadRouter eier ruten /kvittering og rendrer
+// dette elementet i stedet for children når søknaden er sendt.
+kvitteringElement: ReactNode;
+
 // Aktiverer konsistenssjekk (browser back/forward-advarsel)
 formValuesToSøknadsdata?: (stepId: string, formValues: Record<string, unknown>) => Record<string, unknown> | undefined;
-
-// Vises etter vellykket innsending; URL settes til /kvittering
-kvitteringElement?: ReactNode;
 
 // Basepath for steg-ruter (default: '/soknad')
 basePath?: string;
@@ -277,7 +339,27 @@ validateMellomlagring?: (blob: MellomlagringBlob) => MellomlagringBlob | null;
 
 `formValuesToSøknadsdata` er opt-in — uten den er konsistenssjekken deaktivert.
 
-> **Merk:** `SøknadRouterProps` har også `dialogs`-prop i typedefinisjon (`avbryt` og `fortsettSenere` override-komponenter), men denne brukes ikke av `SøknadRouter` i dag — dead prop.
+**Implementasjonsmønster i appen:** Lag en statisk `formValuesToSøknadsdata`-funksjon. Data som trengs for konverteringen skal være en del av stegets lagrede data:
+
+```ts
+// src/app/utils/formValuesToSøknadsdata.ts
+export const formValuesToSøknadsdata = (
+    stepId: string,
+    formValues: Record<string, unknown>,
+): Record<string, unknown> | undefined => {
+    switch (stepId) {
+        case SøknadStepId.OM_BARNET:
+            return toOmBarnetSøknadsdata(formValues as OmBarnetFormValues) as Record<string, unknown>;
+        // ...
+        default:
+            return undefined;
+    }
+};
+
+// src/app/Soknad.tsx
+```
+
+`undefined` fra `default`-casen betyr "hopp over konsistenssjekk for dette steget" — bruk som bevisst escape hatch, ikke som placeholder. Steg som trenger dynamisk data (f.eks. arbeidsgivere hentet basert på brukervalg): commit den hentede dataen som del av søknadsdata, slik at konverteringen forblir en ren funksjon av formValues.
 
 ## `SøknadStepGuard` — props
 
@@ -292,12 +374,18 @@ validateMellomlagring?: (blob: MellomlagringBlob) => MellomlagringBlob | null;
 
 ## Kjente fallgruver
 
-| Problem | Årsak | Fix |
-|---------|-------|-----|
-| `lagre()` lagrer ikke for steget brukeren er på | `resumeStepId` ≠ montert steg | `getAllLiveFormValues()` brukes nå — løst |
-| Konsistenssjekk virker ikke | `formValuesToSøknadsdata` ikke satt på `SøknadRouter` | Legg til prop og implementer switch per stepId |
-| Kvitteringssiden vises ikke | `setSøknadSendt()` setter `resumeStepId: undefined` → `SøknadStepGuard` redirecter | `SøknadRouter` renderer `kvitteringElement` state-basert, ikke route-basert |
-| Navigerer til feil steg etter back+re-submit | `resumeStepId` peker på et steg lenger frem | `commitState` bruker alltid `includedSteps[fromIndex + 1]` — løst |
-| Velkommensiden blinker ved reload med mellomlagring | `children` ble rendret før init + navigate | `SøknadRouter` holder `children` tilbake til `isInitialized = true` — løst |
-| Bruker sendes til velkommensiden i stedet for riktig steg ved reload | `init(blob)` uten påfølgende `navigate` | `SøknadRouter` navigerer automatisk til `resumeStepId` etter init — løst |
-| Submit aktivt selv om `InconsistentFormValuesMessage` vises | `submitDisabled`-prop videresendt uten konsistenssjekk | Bruk `SøknadStepForm` — deaktiverer submit automatisk via `useCheckConsistency` |
+| Problem                                                              | Årsak                                                                                     | Fix                                                                           |
+| -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `lagre()` lagrer ikke for steget brukeren er på                      | `resumeStepId` ≠ montert steg                                                             | `getAllLiveFormValues()` brukes nå — løst                                     |
+| Konsistenssjekk virker ikke                                          | `formValuesToSøknadsdata` ikke satt på `SøknadRouter`                                     | Lag funksjon med switch per stepId                                            |
+| Falsk inconsistency-advarsel for ett steg                            | `formValuesToSøknadsdata` returnerer `undefined` for steget, men søknadsdata er committet | Implementer konverteringen som en ren funksjon                                |
+| Kvitteringssiden vises ikke                                          | `useSøknadSendt` navigerte selv, før `søknadSendt` var satt i storen                      | `SøknadRouter` synker URL mot `søknadSendt` i en effekt — rekkefølgen er løst |
+| Navigerer til feil steg etter back+re-submit                         | `resumeStepId` peker på et steg lenger frem                                               | `commitState` bruker alltid `includedSteps[fromIndex + 1]` — løst             |
+| Velkommensiden blinker ved reload med mellomlagring                  | `children` ble rendret før init + navigate                                                | `SøknadRouter` holder `children` tilbake til `isInitialized = true` — løst    |
+| Bruker sendes til velkommensiden i stedet for riktig steg ved reload | `init(blob)` uten påfølgende `navigate`                                                   | `SøknadRouter` navigerer automatisk til `resumeStepId` etter init — løst      |
+| Browser-back viser velkommensiden selv om søknaden kan gjenopptas    | Routeren reagerer ikke på at URL-en går tilbake til `/`                                   | `SøknadRouter` redirecter fra `/` til `resumeStepId` etter initialisering     |
+| Verdier fra andre steg forsvinner ved manuell lagring                | Blob bygges kun fra aktive in-memory-verdier                                              | Merge `store.persistedFormValues` før draft- og live-verdier                  |
+| Gamle verdier kommer tilbake etter «slett søknad»                    | Et aktivt steg lagrer verdiene sine i unmount etter reset                                 | Bruk `clearAllFormValues` ved avbryt og før ny start                          |
+| Submit aktivt selv om `InconsistentFormValuesMessage` vises          | `submitDisabled`-prop videresendt uten konsistenssjekk                                    | Bruk `SøknadStepForm` — deaktiverer submit automatisk via `SøknadStepContext` |
+| Unhandled rejection ved feilet innsending                            | `mutateAsync` uten `try/catch` — RHF `handleSubmit` re-kaster, `SifForm` fanger ikke      | Bruk `mutate`, og render mutasjonens `error`-state                            |
+| Bruker rekker å klikke «Send inn» to ganger                          | `onSøknadSendt` lagt i per-kall-`mutate(data, { onSuccess })` — kjører etter `success`    | Legg `onSuccess: onSøknadSendt` i mutasjonsoppsettet; da holder `isPending`   |

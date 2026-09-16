@@ -11,6 +11,7 @@ export enum ScenarioType {
     avvikInntekt = 'avvikInntekt',
     avvikInntektDelerAvMåned = 'avvikInntektDelerAvMåned',
     avsluttet = 'avsluttet',
+    avsluttetVedMaksdato = 'avsluttetVedMaksdato',
     ikkeStartet = 'ikkeStartet',
     opphørt = 'opphørt',
     bekreftOpphørVedMaksdato = 'bekreftOpphørVedMaksdato',

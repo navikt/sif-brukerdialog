@@ -19,14 +19,14 @@ jobs:
     steps:
       # Sjekk ut koden
       - name: Checkout repository
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v7.0.1
 
       # Sett opp pnpm
       - name: Setup pnpm
         uses: pnpm/action-setup@v6
       # Sett opp Node.js
       - name: Setup Node.js
-        uses: actions/setup-node@v6.4.0
+        uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
           cache: "pnpm"
@@ -60,15 +60,15 @@ jobs:
           mv apps/ungdomsytelse-deltaker/dist-demo/* deployment/ungdomsytelse-deltaker/
 
       # Bygg ungdomsytelse-veileder demo-app med gh-pages:rebuild
-      - name: Build ungdomsytelse-veileder
-        run: pnpm gh-pages:rebuild
-        working-directory: apps-intern/ungdomsytelse-veileder
+      # - name: Build ungdomsytelse-veileder
+      #   run: pnpm gh-pages:rebuild
+      #   working-directory: apps-intern/ungdomsytelse-veileder
 
       # Flytt ungdomsytelse-veileder-output til en subfolder
-      - name: Kopier ungdomsytelse-veileder demo til gh-pages
-        run: |
-          mkdir -p deployment/ungdomsytelse-veileder
-          mv apps-intern/ungdomsytelse-veileder/dist-demo/* deployment/ungdomsytelse-veileder/
+      # - name: Kopier ungdomsytelse-veileder demo til gh-pages
+      #   run: |
+      #     mkdir -p deployment/ungdomsytelse-veileder
+      #     mv apps-intern/ungdomsytelse-veileder/dist-demo/* deployment/ungdomsytelse-veileder/
 
       # Bygg opplaringspenger-soknad demo-app med gh-pages:rebuild
       - name: Build opplaringspenger-soknad
@@ -91,6 +91,17 @@ jobs:
         run: |
           mkdir -p deployment/aktivitetspenger-innsyn
           mv apps/aktivitetspenger-innsyn/dist-demo/* deployment/aktivitetspenger-innsyn/
+
+      # Bygg aktivitetspenger-soknad-storybook
+      - name: Build aktivitetspenger-soknad-storybook
+        run: pnpm build-storybook
+        working-directory: apps/aktivitetspenger-soknad
+
+      # Flytt aktivitetspenger-soknad-storybook til gh-pages
+      - name: Kopier aktivitetspenger-soknad-storybook til gh-pages
+        run: |
+          mkdir -p deployment/aktivitetspenger-soknad-storybook
+          mv apps/aktivitetspenger-soknad/storybook-static/* deployment/aktivitetspenger-soknad-storybook/
 
       # Bygg ungdomsytelse-deltaker-storybook
       - name: Build ungdomsytelse-deltaker-storybook
@@ -116,7 +127,7 @@ jobs:
 
       # Last opp bygget som en artefakt
       - name: Upload artifact for GitHub Pages
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-pages-artifact@v3
         with:
           path: deployment
 
@@ -131,4 +142,4 @@ jobs:
       name: github-pages
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@v4

@@ -13,9 +13,14 @@ Bruk denne indeksen for rask routing til riktig skill.
     - Fil: `.github/skills/sif-intl/SKILL.md`
 
 - `sif-soknad-setup`
-    - Når: oppsett av `src/app/setup` og routing shell (`Soknad.tsx`, `VelkommenPage`, `KvitteringPage`) i app med `@sif/soknad` og `@sif/rhf`.
+    - Når: oppsett av `src/app/setup` og routing shell (`Soknad.tsx`, `VelkommenPage`, `KvitteringPage`) i app med `@sif/soknad-app` og `@sif/rhf`.
     - Triggerord: `soknadContext`, `stepConfig`, `useStepSubmit`, `useStepDefaultValues`, `VelkommenPage`, `KvitteringPage`, `Soknad.tsx`, `routing-skall`.
     - Fil: `.github/skills/sif-soknad-setup/SKILL.md`
+
+- `sif-soknad-app`
+    - Når: endre eller feilsøke selve søknadsrammeverket, inkludert steg-navigering, mellomlagring og gjenopptak.
+    - Triggerord: `@sif/soknad-app`, `SøknadRouter`, `SøknadStep`, `SøknadStepGuard`, `useStepData`, `useMellomlagring`, `resumeStepId`.
+    - Fil: `.github/skills/sif-soknad-app/SKILL.md`
 
 - `aksel-spacing`
     - Når: layout/spacing med Aksel Design System.
@@ -37,11 +42,6 @@ Bruk denne indeksen for rask routing til riktig skill.
     - Triggerord: `formik til rhf`, `konverter skjema`, `bytt ut formik`, `migrer form`, `sif-common-formik-ds`, `FormikWrapper`, `getTypedFormComponents`.
     - Fil: `.github/skills/sif-formik-to-rhf/SKILL.md`
 
-- `sif-migration-baseline`
-    - Når: migrering av app til ny v2 setup.
-    - Triggerord: `migrering`, `baseline`, `bootstrap`, `sif-demo-app`.
-    - Fil: `.github/skills/sif-migration-baseline/SKILL.md`
-
 - `sif-initial-data-loader`
     - Når: sette opp eller endre initial data-henting (useInitialData + InitialDataLoader) i en søknadsapp.
     - Triggerord: `useInitialData`, `InitialDataLoader`, `InitialData`, `loading/error/success`, `required queries`, `optional queries`, `mellomlagringsvalidering`, `legg til hook`, `ny datakilde`, `blokkerer loading`, `fallback-verdi`.
@@ -51,6 +51,11 @@ Bruk denne indeksen for rask routing til riktig skill.
     - Når: verifisere eller feilsøke proxy/path-oppsett mellom app, env og backend.
     - Triggerord: `reverse proxy`, `proxy`, `returnerer html`, `catch-all`, `api path`, `frontendPath`, `PUBLIC_PATH`, `baseURL`.
     - Fil: `.github/skills/sif-server-proxy-api-config/SKILL.md`
+
+- `sif-cdn`
+    - Når: sette opp eller feilsøke CDN-hosting av Vite-assets og sourcemaps.
+    - Triggerord: `cdn`, `cdn.nav.no`, `cdn-upload`, `sourcemap`, `NoSuchKey`, `Vite base`, `import.meta.env.BASE_URL`.
+    - Fil: `.github/skills/sif-cdn/SKILL.md`
 
 - `sif-playwright`
     - Når: sette opp Playwright e2e-testing i en app-workspace, inkludert accessibility-testing med axe.
@@ -82,6 +87,21 @@ Bruk denne indeksen for rask routing til riktig skill.
     - Triggerord: `gh-pages`, `demo-deploy`, `legg til i gh-pages`, `vite.demo.config`, `demo:build`, `gh-pages:rebuild`, `dist-demo`.
     - Fil: `.github/skills/sif-gh-pages/SKILL.md`
 
+- `sif-apm`
+    - Når: sette opp eller feilsøke browser-telemetri.
+    - Triggerord: `initApm`, `@sif/apm`, `Faro`, `telemetri`, `Grafana`.
+    - Fil: `.github/skills/sif-apm/SKILL.md`
+
+- `sif-date-handling`
+    - Når: håndtere datoer, tid, parsing eller tidssoner.
+    - Triggerord: `dayjs`, `ISODate`, `ISODateTime`, `tidssone`, `UTC`, `Europe/Oslo`.
+    - Fil: `.github/skills/sif-date-handling/SKILL.md`
+
+- `sif-surveys`
+    - Når: sette opp eller feilsøke Skyra-undersøkelser og UxSignals.
+    - Triggerord: `skyra`, `skyra-survey`, `SkyraHandler`, `uxsignals`.
+    - Fil: `.github/skills/sif-surveys/SKILL.md`
+
 - `nav-architecture-review`
     - Når: arkitekturvurdering og generering av ADR (Architecture Decision Records).
     - Triggerord: `ADR`, `architecture review`, `arkitekturbeslutning`, `beslutningsdokument`, `vurder arkitektur`.
@@ -111,3 +131,8 @@ Bruk denne indeksen for rask routing til riktig skill.
     - Når: gjennomgang og feilretting av visuelt design på nettsider.
     - Triggerord: `designgjennomgang`, `design review`, `visuell inspeksjon`, `layout-feil`, `CSS-feil`.
     - Fil: `.github/skills/web-design-reviewer/SKILL.md`
+
+- `ung-innsyn-oppgaver`
+    - Når: legge til eller endre oppgavetyper, lovhenvisninger, panelkomponenter, `.preview.tsx`-filer eller Storybook-oversikter i `ung-innsyn`.
+    - Triggerord: `OppgaveType`, `ParsedOppgavetype`, `parseOppgaver`, `oppgaveLovverk`, `getLovLenker`, `OppgavePanel`, `preview.tsx`, `OppgavetypeMappingUPY`, `OppgavetypeMappingAKT`, `RegelverkOgInnsynReadMore`.
+    - Fil: `.github/skills/ung-innsyn-oppgaver/SKILL.md`

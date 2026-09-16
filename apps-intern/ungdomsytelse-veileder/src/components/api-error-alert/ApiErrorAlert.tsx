@@ -1,5 +1,5 @@
 import { Alert, BodyShort, Detail, ReadMore, VStack } from '@navikt/ds-react';
-import { ApiError, isApiAxiosError } from '@navikt/ung-common';
+import { ApiError, isApiAxiosError } from '@sif/api';
 
 interface Props {
     error: ApiError;

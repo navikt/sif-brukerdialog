@@ -1,25 +1,27 @@
-import { Alert, Box, FormSummary, GuidePanel, Heading, VStack } from '@navikt/ds-react';
+import { Alert, Box, FormSummary, Heading, VStack } from '@navikt/ds-react';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { TextareaSvar } from '@navikt/sif-common-ui';
 import { OppgaveResponsDto, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
-import { useEffect, useRef } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
+import { SifGuidePanel } from '@sif/soknad-ui';
 
 import { ForsideLenkeButton, OppgaveStatusInfo } from '../../components';
 
-import { UngUiText, useUngUiIntl } from '../../i18n';
+import { UngInnsynText, useUngInnsynIntl } from '../../i18n';
 import { useOppgavePage } from '../../pages/hooks/useOppgavePage';
 import { UttalelseSvaralternativer } from '../../types';
 import { getSvaralternativer, getTilbakemeldingFritekstLabel, getTilbakemeldingSpørsmål } from '../../utils/textUtils';
 import { UtalelseForm } from '../forms/uttalelse-form/UtalelseForm';
 import { useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
 import { RegelverkOgInnsynReadMore } from '../../components/readmore/RegelverkOgInnsynReadMore';
-import { getLovLenkerForOppgave } from '../oppgavepaneler/utils/lovverk';
+import { getLovLenker } from '../oppgavepaneler/oppgaveLovverk';
 
 interface OppgaveOgTilbakemeldingProps {
-    beskjedFraNav: React.ReactNode;
+    beskjedFraNav: ReactNode;
     spørsmål: string;
     svaralternativer: UttalelseSvaralternativer;
     respons: OppgaveResponsDto;
+    beskjedFooter?: ReactNode;
 }
 
 const OppgaveOgTilbakemelding = ({
@@ -27,26 +29,30 @@ const OppgaveOgTilbakemelding = ({
     spørsmål,
     svaralternativer,
     respons,
+    beskjedFooter,
 }: OppgaveOgTilbakemeldingProps) => {
     return (
         <section aria-labelledby="summaryHeading">
             <FormSummary>
                 <FormSummary.Header>
                     <FormSummary.Heading level="2" id="summaryHeading">
-                        <UngUiText id="@ungInnsyn.oppgaveOgTilbakemelding.header" />
+                        <UngInnsynText id="@ungInnsyn.oppgaveOgTilbakemelding.header" />
                     </FormSummary.Heading>
                 </FormSummary.Header>
                 <FormSummary.Answers>
                     <FormSummary.Answer>
                         <FormSummary.Label>
-                            <UngUiText id="@ungInnsyn.oppgaveOgTilbakemelding.beskjedFraNav" />
+                            <UngInnsynText id="@ungInnsyn.oppgaveOgTilbakemelding.beskjedFraNav" />
                         </FormSummary.Label>
                         <FormSummary.Value>
-                            <Box marginBlock="space-8 space-0">
-                                <Box background="accent-moderate" borderRadius="12" padding="space-16">
-                                    {beskjedFraNav}
+                            <VStack gap="space-16">
+                                <Box marginBlock="space-8 space-0">
+                                    <Box background="accent-moderate" borderRadius="12" padding="space-16">
+                                        {beskjedFraNav}
+                                    </Box>
                                 </Box>
-                            </Box>
+                                {beskjedFooter}
+                            </VStack>
                         </FormSummary.Value>
                     </FormSummary.Answer>
                     <FormSummary.Answer>
@@ -62,7 +68,7 @@ const OppgaveOgTilbakemelding = ({
                     <FormSummary.Answers>
                         <FormSummary.Answer>
                             <FormSummary.Label>
-                                <UngUiText id="@ungInnsyn.oppgaveOgTilbakemelding.tilbakemeldingLabel" />
+                                <UngInnsynText id="@ungInnsyn.oppgaveOgTilbakemelding.tilbakemeldingLabel" />
                             </FormSummary.Label>
                             <FormSummary.Value>
                                 <TextareaSvar text={respons.uttalelseFraBruker} />
@@ -76,11 +82,11 @@ const OppgaveOgTilbakemelding = ({
 };
 
 export interface UbesvartProps {
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 const Ubesvart = ({ children }: UbesvartProps) => {
-    const intl = useUngUiIntl();
+    const intl = useUngInnsynIntl();
     const { oppgave, visKvittering, setVisKvittering, navn } = useOppgavebekreftelse();
     const { onSuccess } = useOppgavePage();
 
@@ -89,20 +95,19 @@ const Ubesvart = ({ children }: UbesvartProps) => {
     return (
         <VStack gap="space-32">
             <section aria-label={intl.text('@ungInnsyn.oppgavebekreftelse.oppgavetekst.ariaLabel')}>
-                <GuidePanel>
+                <SifGuidePanel>
                     <VStack gap="space-16">
                         <Heading level="2" size="medium">
-                            <UngUiText id="@ungInnsyn.oppgavebekreftelse.ubesvart.tittel" values={{ navn }} />
+                            <UngInnsynText id="@ungInnsyn.oppgavebekreftelse.ubesvart.tittel" values={{ navn }} />
                         </Heading>
+
                         <Box maxWidth="90%">{children}</Box>
+
                         <Box marginBlock="space-0 space-16">
-                            <RegelverkOgInnsynReadMore
-                                ytelsetype={oppgave.ytelsetype}
-                                lenker={getLovLenkerForOppgave(oppgave.oppgavetype, oppgave.ytelsetype)}
-                            />
+                            <RegelverkOgInnsynReadMore ytelsetype={oppgave.ytelsetype} lenker={getLovLenker(oppgave)} />
                         </Box>
                     </VStack>
-                </GuidePanel>
+                </SifGuidePanel>
             </section>
             <section aria-label={intl.text('@ungInnsyn.oppgavebekreftelse.uttalelseform.ariaLabel')}>
                 <UtalelseForm
@@ -122,7 +127,7 @@ const Ubesvart = ({ children }: UbesvartProps) => {
 };
 
 export interface KvitteringProps {
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 const Kvittering = ({ children }: KvitteringProps) => {
@@ -143,7 +148,7 @@ const Kvittering = ({ children }: KvitteringProps) => {
         <>
             <Alert variant="success" tabIndex={-1} ref={alertRef}>
                 <Heading level="2" size="small" spacing>
-                    <UngUiText id="@ungInnsyn.oppgavebekreftelse.kvittering.tittel" />
+                    <UngInnsynText id="@ungInnsyn.oppgavebekreftelse.kvittering.tittel" />
                 </Heading>
                 {children}
             </Alert>
@@ -155,11 +160,12 @@ const Kvittering = ({ children }: KvitteringProps) => {
 };
 
 export interface BesvartProps {
-    children: React.ReactNode;
+    children: ReactNode;
+    beskjedFooter?: ReactNode;
 }
 
-const Besvart = ({ children }: BesvartProps) => {
-    const intl = useUngUiIntl();
+const Besvart = ({ children, beskjedFooter }: BesvartProps) => {
+    const intl = useUngInnsynIntl();
     const { oppgave, visKvittering } = useOppgavebekreftelse();
     if (oppgave.status === OppgaveStatus.ULØST || visKvittering) return null;
 
@@ -171,6 +177,7 @@ const Besvart = ({ children }: BesvartProps) => {
                     svaralternativer={getSvaralternativer(oppgave, intl)}
                     spørsmål={getTilbakemeldingSpørsmål(oppgave, intl)}
                     respons={oppgave.respons}
+                    beskjedFooter={beskjedFooter}
                 />
             );
         }
@@ -179,7 +186,7 @@ const Besvart = ({ children }: BesvartProps) => {
         if (oppgave.status === OppgaveStatus.LØST && !oppgave.respons) {
             return (
                 <Alert variant="info">
-                    <UngUiText id="@ungInnsyn.oppgavebekreftelse.besvart.svarMangler" />
+                    <UngInnsynText id="@ungInnsyn.oppgavebekreftelse.besvart.svarMangler" />
                 </Alert>
             );
         }

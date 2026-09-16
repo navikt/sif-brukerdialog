@@ -3,7 +3,7 @@ import './progressStepper.css';
 import { ArrowLeftIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box, FormProgress, Heading, Link, VStack } from '@navikt/ds-react';
 import { StepperStepProps } from '@navikt/ds-react/Stepper';
-import React, { useEffect, useRef } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 
 import { useSifSoknadUiIntl } from '../../i18n';
 
@@ -18,8 +18,8 @@ interface Props {
     steps: ProgressStep[];
     currentStepIndex: number;
     titleHeadingLevel?: '1' | '2';
-    allStepsHeader?: React.ReactNode;
-    allStepsFooter?: React.ReactNode;
+    allStepsHeader?: ReactNode;
+    allStepsFooter?: ReactNode;
     includeBackLink?: boolean;
     setFocusOnHeadingOnMount?: boolean;
     onStepSelect?: (step: ProgressStep) => void;

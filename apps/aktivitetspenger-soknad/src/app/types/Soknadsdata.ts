@@ -1,21 +1,20 @@
-import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
-import { BostedUtland } from '@sif/soknad-forms';
+import type { aktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
+import { ArbeidUtlandFormData } from '@sif/soknad-forms';
 
 import { SøknadStepId } from './SoknadStepId';
 
-export type KontonummerSøknadsdata = Pick<KontonummerInfo, 'kontonummerErRiktig'>;
-
-export type StartdatoSøknadsdata = {
-    startdato: string;
-};
+export type KontonummerSøknadsdata = Pick<aktivitetspenger.KontonummerInfo, 'kontonummerErRiktig'>;
 
 export type BostedSøknadsdata = {
     erBosattITrondheim: boolean;
 };
 
-export type BostedUtlandSøknadsdata = {
-    harBoddIUtlandetSiste5år: boolean;
-    bosteder: BostedUtland[] | undefined;
+export type MedlemskapSøknadsdata = {
+    harBoddINorge: boolean;
+    harJobbetINorge?: boolean;
+    harJobbetUtenforNorge?: boolean;
+    bostederUtenforNorge?: ArbeidUtlandFormData[];
+    arbeidsstederUtenforNorge?: ArbeidUtlandFormData[];
 };
 
 export type BarnSøknadsdata = {
@@ -28,9 +27,8 @@ export type BarnSøknadsdata = {
  */
 export interface Søknadsdata {
     harForståttRettigheterOgPlikter?: boolean;
-    [SøknadStepId.STARTDATO]?: StartdatoSøknadsdata;
     [SøknadStepId.KONTONUMMER]?: KontonummerSøknadsdata;
     [SøknadStepId.BOSTED]?: BostedSøknadsdata;
-    [SøknadStepId.BOSTED_UTLAND]?: BostedUtlandSøknadsdata;
+    [SøknadStepId.MEDLEMSKAP]?: MedlemskapSøknadsdata;
     [SøknadStepId.BARN]?: BarnSøknadsdata;
 }

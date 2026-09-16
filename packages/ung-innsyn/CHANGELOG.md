@@ -1,5 +1,21 @@
 # @sif/ung-innsyn
 
+## 0.2.0
+
+### Minor Changes
+
+- Erstatte all bruk av sentry med nais/apm
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-ui@0.12.0
+    - @sif/soknad-ui@0.2.0
+    - @sif/api@0.1.2
+    - @navikt/sif-common-hooks@0.3.11
+    - @navikt/sif-validation@1.0.22
+    - @navikt/ung-brukerdialog-api@0.0.8
+
 ## 0.1.1
 
 ### Patch Changes

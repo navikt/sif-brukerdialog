@@ -10,16 +10,17 @@ import { useSendOppgavebekreftelse } from '@sif/api/k9-prosessering';
 import { createSifFormComponents, SifForm, useSifValidate, YesOrNo } from '@sif/rhf';
 import { useForm } from 'react-hook-form';
 
-import { UngUiText, useUngUiIntl } from '../../../i18n';
+import { UngInnsynText, useUngInnsynIntl } from '../../../i18n';
 import { useOppgavePage } from '../../../pages/hooks/useOppgavePage';
 import { UttalelseSvaralternativer } from '../../../types';
+import { ReactNode } from 'react';
 
 export interface UtalelseFormProps {
     oppgaveYtelsetype: OppgaveYtelsetype;
     spørsmål: string;
     svaralternativer: UttalelseSvaralternativer;
     uttalelseLabel: string;
-    uttalelseDescription?: React.ReactNode;
+    uttalelseDescription?: ReactNode;
     oppgaveReferanse: string;
     onSuccess: (utalelse: UngdomsytelseOppgaveUttalelseDto) => void;
 }
@@ -49,7 +50,7 @@ export const UtalelseForm = ({
     onSuccess,
 }: UtalelseFormProps) => {
     const { mutateAsync, error, isPending } = useSendOppgavebekreftelse(oppgaveYtelsetype);
-    const { intl, text } = useUngUiIntl();
+    const { intl, text } = useUngInnsynIntl();
     const { validateField } = useSifValidate('@ungInnsyn.uttalelseForm');
     const { onCancel } = useOppgavePage();
 
@@ -114,7 +115,7 @@ export const UtalelseForm = ({
                         description={
                             uttalelseDescription || (
                                 <BodyLong>
-                                    <UngUiText id="@ungInnsyn.uttalelseForm.defaultDescription" />
+                                    <UngInnsynText id="@ungInnsyn.uttalelseForm.defaultDescription" />
                                 </BodyLong>
                             )
                         }

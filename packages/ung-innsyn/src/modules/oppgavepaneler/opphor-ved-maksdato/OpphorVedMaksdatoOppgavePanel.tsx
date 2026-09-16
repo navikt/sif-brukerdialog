@@ -1,6 +1,6 @@
 import { OpphorVedMaksdatoOppgave } from '@sif/api/ung-brukerdialog';
 
-import { UngUiText } from '../../../i18n';
+import { UngInnsynText } from '../../../i18n';
 import { Oppgavebekreftelse } from '../../oppgavebekreftelse/Oppgavebekreftelse';
 import { OpphorVedMaksdatoOppgavetekst } from './parts/OpphorVedMaksdatoOppgavetekst';
 import { OpphorVedMaksdatoOppsummering } from './parts/OpphorVedMaksdatoOppsummering';
@@ -26,7 +26,7 @@ export const OpphorVedMaksdatoOppgavePanel = ({ navn, oppgave, initialVisKvitter
             </Oppgavebekreftelse.Besvart>
 
             <Oppgavebekreftelse.Kvittering>
-                <UngUiText id="@ungInnsyn.oppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO.kvitteringTekst" />
+                <UngInnsynText id="@ungInnsyn.oppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO.kvitteringTekst" />
             </Oppgavebekreftelse.Kvittering>
         </Oppgavebekreftelse>
     );

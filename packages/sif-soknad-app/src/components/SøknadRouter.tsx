@@ -5,14 +5,13 @@ import {
     slettYtelseMellomlagring,
 } from '@sif/api/k9-prosessering';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
-import { SøknadFormValuesProvider } from '../consistency/SøknadFormValuesContext';
+import { SøknadStepFormProvider } from '../consistency/SøknadStepFormContext';
 import { SøknadAppContext, SøknadAppContextValue } from '../context/SøknadAppContext';
 import { createSøknadAppStore } from '../store/createSøknadAppStore';
 import { MellomlagringBlob, SøknadRouterProps } from '../types';
-import { buildStepPath } from '../utils/routeUtils';
-
+import { buildStepPath, KVITTERING_PATH } from '../utils/routeUtils';
 const isMellomlagringBlob = (value: unknown): value is MellomlagringBlob => {
     if (typeof value !== 'object' || value === null) return false;
     const v = value as Record<string, unknown>;
@@ -29,33 +28,13 @@ const DEFAULT_RESUME_LATER_URL = 'https://www.nav.no/minside';
 /**
  * Hoved-inngangskomponent for søknadsrammeverket.
  *
- * Fungerer som en ren kontekst-provider: setter opp Zustand-store,
- * henter og validerer mellomlagring ved mount, og eksponerer kontekst
- * for useStepData, useAvbryt, useSøknadSendt, useStartSøknad og useStepNavigation.
+ * Setter opp Zustand-store og kontekst for hookene, henter og validerer
+ * mellomlagring ved mount, og eier kvitteringsruten.
  *
- * Venter på mellomlagring-henting uten å rendre children (unngår blinking).
- * Dersom gyldig mellomlagring finnes, navigeres bruker automatisk til
- * gjenopptakingspunktet. Uten mellomlagring vises children (velkommensiden).
+ * Children (appens <Routes>) vises først når initialiseringen er ferdig, slik at
+ * velkomstsiden ikke blinker før en eventuell resume-navigering.
  *
- * Etter vellykket innsending vises `kvitteringElement` og URL settes til '/kvittering'.
- *
- * Appen er ansvarlig for <Routes>-oppsett. Bruk <SøknadStepGuard> for å
- * beskytte steg-rutene.
- *
- * Bruk i app (eksempel):
- * ```tsx
- * // Soknad.tsx:
- * <SøknadRouter
- *   config={...} stepOrder={...} ytelse="aktivitetspenger" versjon={1}
- *   applicationTitle="..." kvitteringElement={<KvitteringPage />}>
- *   <Routes>
- *     <Route path="/" element={<VelkommenPage />} />
- *     <Route path="/soknad" element={<SøknadStepGuard />}>
- *       <Route path="startdato" element={<StartdatoForm />} />
- *     </Route>
- *   </Routes>
- * </SøknadRouter>
- * ```
+ * Se README for navigasjonsansvar og oppsett i app.
  */
 export const SøknadRouter = ({
     config,
@@ -66,8 +45,8 @@ export const SøknadRouter = ({
     basePath = '/soknad',
     validateMellomlagring,
     resumeLaterUrl = DEFAULT_RESUME_LATER_URL,
-    kvitteringElement,
     loadingElement,
+    kvitteringElement,
     formValuesToSøknadsdata,
     children,
 }: SøknadRouterProps) => {
@@ -79,16 +58,11 @@ export const SøknadRouter = ({
     const store = storeRef.current;
     const søknadSendt = store((s) => s.søknadSendt);
     const isInitialized = store((s) => s.isInitialized);
+    const resumeStepId = store((s) => s.resumeStepId);
     const navigate = useNavigate();
+    const location = useLocation();
 
-    // Naviger til kvitteringssti når søknad er sendt
-    useEffect(() => {
-        if (søknadSendt) {
-            navigate('/kvittering', { replace: true });
-        }
-    }, [søknadSendt, navigate]);
-
-    // Hent og initialiser fra mellomlagring ved mount
+    // Etter mellomlagring-henting ved mount — send bruker til gjenopptakingspunktet.
     useEffect(() => {
         let cancelled = false;
 
@@ -127,6 +101,24 @@ export const SøknadRouter = ({
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+        if (!isInitialized || !resumeStepId || location.pathname !== '/') {
+            return;
+        }
+
+        const route = config[resumeStepId]?.route;
+        if (route) {
+            navigate(buildStepPath(basePath, route), { replace: true });
+        }
+    }, [isInitialized, resumeStepId, location.pathname, config, basePath, navigate]);
+
+    // Synker URL mot søknadSendt, slik at kallstedet slipper å navigere selv.
+    useEffect(() => {
+        if (søknadSendt && location.pathname !== KVITTERING_PATH) {
+            navigate(KVITTERING_PATH, { replace: true });
+        }
+    }, [søknadSendt, location.pathname, navigate]);
 
     const lagreMellomlagring = useCallback(
         async (blobData: MellomlagringBlob): Promise<void> => {
@@ -169,15 +161,20 @@ export const SøknadRouter = ({
         ],
     );
 
+    // URL-en avgjør hva som vises; søknadSendt avgjør kun om kvitteringen er tilgjengelig.
+    const renderContent = () => {
+        if (!isInitialized) {
+            return loadingElement || null;
+        }
+        if (location.pathname !== KVITTERING_PATH) {
+            return children;
+        }
+        return søknadSendt ? kvitteringElement : <Navigate to="/" replace />;
+    };
+
     return (
-        <SøknadFormValuesProvider>
-            <SøknadAppContext.Provider value={contextValue}>
-                {søknadSendt && kvitteringElement
-                    ? kvitteringElement
-                    : isInitialized
-                      ? children
-                      : loadingElement || null}
-            </SøknadAppContext.Provider>
-        </SøknadFormValuesProvider>
+        <SøknadStepFormProvider>
+            <SøknadAppContext.Provider value={contextValue}>{renderContent()}</SøknadAppContext.Provider>
+        </SøknadStepFormProvider>
     );
 };

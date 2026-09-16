@@ -11,15 +11,58 @@ export const zArbeidOgFrilansRegisterInntektDto = z.object({
         .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
 });
 
-export const zBekreftBostedOppgavetypeDataDto = z.object({
-    erBosattITrondheim: z.boolean(),
-    fom: z.iso.date(),
-    tom: z.iso.date(),
-});
-
 export const zBekreftOpphorVedMaksdatoOppgavetypeDataDto = z.object({
     maxDato: z.iso.date(),
     sluttdato: z.iso.date(),
+});
+
+export const zBostedsavklaringKildeType = z.enum(['BRUKER', 'FOLKEREGISTER', 'ANNET']);
+
+export const zBostedsvilkårIkkeOppfyltÅrsak = z.enum([
+    'IKKE_BOSATTADRESSE_I_TRONDHEIM',
+    'IKKE_BOSTEDSADRESSE_OG_IKKE_FOLKEREGISTRERT_I_TRONDHEIM',
+    'STUDIE_ELLER_ARBEIDSSTED_UTENFOR_TRONDHEIM',
+    'ANNET',
+    'UDEFINERT',
+]);
+
+export const zBekreftBostedOppgavetypeDataDto = z.object({
+    erBosattITrondheim: z.boolean(),
+    fom: z.iso.date(),
+    ikkeOppfyltÅrsak: zBostedsvilkårIkkeOppfyltÅrsak,
+    ikkeOppfyltÅrsakFritekstbeskrivelse: z
+        .string()
+        .min(0)
+        .max(4000)
+
+        .optional(),
+    kilde: zBostedsavklaringKildeType,
+    kildeFritekst: z
+        .string()
+        .min(0)
+        .max(1000)
+
+        .optional(),
+    tom: z.iso.date(),
+});
+
+export const zBekreftBostedOpphørOppgavetypeDataDto = z.object({
+    erBosattITrondheim: z.boolean(),
+    fom: z.iso.date(),
+    ikkeOppfyltÅrsak: zBostedsvilkårIkkeOppfyltÅrsak,
+    ikkeOppfyltÅrsakFritekstbeskrivelse: z
+        .string()
+        .min(0)
+        .max(4000)
+
+        .optional(),
+    kilde: zBostedsavklaringKildeType,
+    kildeFritekst: z
+        .string()
+        .min(0)
+        .max(1000)
+
+        .optional(),
 });
 
 export const zEndretSluttdatoDataDto = z.object({
@@ -38,7 +81,48 @@ export const zInntektsrapporteringOppgavetypeDataDto = z.object({
     tilOgMed: z.iso.date(),
 });
 
+export const zOppgaveAvsnitt = z.object({
+    innhold: z.string().optional(),
+    tittel: z.string().optional(),
+});
+
+export const zOppgavePunktliste = z.object({
+    fet: z.boolean().optional(),
+    punkter: z.array(z.string()).optional(),
+    tittel: z.string().optional(),
+});
+
 export const zOppgaveStatus = z.enum(['LØST', 'ULØST', 'AVBRUTT', 'UTLØPT']);
+
+export const zOppgaveTabell = z.object({
+    fet: z.boolean().optional(),
+    kolonneOverskrifter: z.array(z.string()).optional(),
+    rader: z.array(z.array(z.string())).optional(),
+    tittel: z.string().optional(),
+});
+
+export const zOppgaveTekst = z.intersection(
+    z.union([
+        z
+            .object({
+                type: z.literal('AVSNITT'),
+            })
+            .and(zOppgaveAvsnitt),
+        z
+            .object({
+                type: z.literal('PUNKT_LISTE'),
+            })
+            .and(zOppgavePunktliste),
+        z
+            .object({
+                type: z.literal('TABELL'),
+            })
+            .and(zOppgaveTabell),
+    ]),
+    z.object({
+        type: z.string(),
+    }),
+);
 
 export const zOppgaveType = z.enum([
     'BEKREFT_ENDRET_STARTDATO',
@@ -52,6 +136,11 @@ export const zOppgaveType = z.enum([
 ]);
 
 export const zOppgaveYtelsetype = z.enum(['UNGDOMSYTELSE', 'AKTIVITETSPENGER']);
+
+export const zOpprettSøknadHendelseRequest = z.object({
+    mottatt: z.iso.datetime({ local: true }),
+    søknadId: z.uuid(),
+});
 
 export const zPeriodeDto = z.object({
     fomDato: z.iso.date().optional(),
@@ -113,6 +202,14 @@ export const zSøkYtelseOppgavetypeDataDto = z.object({
     fomDato: z.iso.date(),
 });
 
+export const zTilgjengeligSøknadType = z.enum(['INGEN', 'FØRSTEGANGSSØKNAD', 'NY_PERIODE_SØKNAD']);
+
+export const zTilgjengeligSøknadResponse = z.object({
+    harInnsyn: z.boolean().optional(),
+    harUbehandletSøknad: z.boolean().optional(),
+    type: zTilgjengeligSøknadType.optional(),
+});
+
 export const zYtelseType = z.enum([
     'DAGPENGER',
     'SYKEPENGER',
@@ -165,6 +262,11 @@ export const zOppgavetypeDataDto = z.intersection(
             .and(zBekreftBostedOppgavetypeDataDto),
         z
             .object({
+                type: z.literal('BOSTED_OPPHØR'),
+            })
+            .and(zBekreftBostedOpphørOppgavetypeDataDto),
+        z
+            .object({
                 type: z.literal('ENDRET_PERIODE'),
             })
             .and(zEndretPeriodeDataDto),
@@ -213,8 +315,20 @@ export const zBrukerdialogOppgaveDto = z.object({
     opprettetDato: z.iso.datetime({ local: true }),
     respons: zOppgaveResponsDto.optional(),
     status: zOppgaveStatus,
+    undertittel: z.string().optional(),
+    varselInnhold: z.array(zOppgaveTekst),
     ytelsetype: zOppgaveYtelsetype,
 });
+
+/**
+ * Søknaden som er sendt inn
+ */
+export const zRegistrerBody = zOpprettSøknadHendelseRequest;
+
+/**
+ * default response
+ */
+export const zHentTilgjengeligSøknadResponse = zTilgjengeligSøknadResponse;
 
 export const zHentAlleOppgaverQuery = z.object({
     ytelsetype: zOppgaveYtelsetype.optional(),

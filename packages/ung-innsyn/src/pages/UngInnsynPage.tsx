@@ -1,26 +1,27 @@
 import { Box } from '@navikt/ds-react';
-import PageBoundary from '@navikt/sif-common-core-ds/src/components/page-boundary/PageBoundary';
-import { useDocumentTitle } from '@navikt/sif-common-hooks';
-import React, { useEffect } from 'react';
+import { InnsynPageBoundary } from '@sif/ung-innsyn/components';
 
-import { useUngUiIntl } from '../i18n';
+import { useDocumentTitle } from '@navikt/sif-common-hooks';
+import { ReactNode, useEffect } from 'react';
+
+import { useUngInnsynIntl } from '../i18n';
 
 interface Props {
     documentTitle: string;
-    children: React.ReactNode;
-    footer?: React.ReactNode;
+    children: ReactNode;
+    footer?: ReactNode;
 }
 
-const PageContentWrapper = ({ children }: { children: React.ReactNode }) => (
-    <PageBoundary>
+const PageContentWrapper = ({ children }: { children: ReactNode }) => (
+    <InnsynPageBoundary>
         <Box paddingBlock="space-40" className="mx-auto">
             {children}
         </Box>
-    </PageBoundary>
+    </InnsynPageBoundary>
 );
 
 export const UngInnsynPage = ({ documentTitle, children, footer }: Props) => {
-    const { text } = useUngUiIntl();
+    const { text } = useUngInnsynIntl();
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);

@@ -8,14 +8,14 @@ import * as z from 'zod';
  * */
 
 export enum AppEnvKey {
-    'SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL' = 'SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL',
-    'SIF_PUBLIC_USE_FARO' = 'SIF_PUBLIC_USE_FARO',
+    SIF_PUBLIC_URL_AKTIVITETSPENGER = 'SIF_PUBLIC_URL_AKTIVITETSPENGER',
+    SIF_PUBLIC_URL_SAKSBEHANDLINGSTIDER = 'SIF_PUBLIC_URL_SAKSBEHANDLINGSTIDER',
 }
 
 export const appEnvSchema = z
     .object({
-        [AppEnvKey.SIF_PUBLIC_USE_FARO]: z.string().optional(),
-        [AppEnvKey.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL]: z.string().optional(),
+        SIF_PUBLIC_URL_AKTIVITETSPENGER: z.url(),
+        SIF_PUBLIC_URL_SAKSBEHANDLINGSTIDER: z.url(),
     })
     .extend(commonEnvSchema.shape)
     .extend(ungDeltakelseOpplyserEnvSchema.shape)

@@ -16,7 +16,7 @@ export default [
             ytelse: {
                 type: 'PLEIEPENGER_SYKT_BARN',
                 barn: { norskIdentitetsnummer: '00000000000', fødselsdato: null },
-                søknadsperiode: ['2024-01-01/2024-09-31'],
+                søknadsperiode: ['2024-01-01/2024-09-30'],
                 endringsperiode: [],
                 trekkKravPerioder: [],
                 opptjeningAktivitet: {},
@@ -269,7 +269,7 @@ export default [
                                         jobberNormaltTimerPerDag: 'PT7H30M',
                                         faktiskArbeidTimerPerDag: 'PT4H30M',
                                     },
-                                    '2023-03-13/2023-09-31': {
+                                    '2023-03-13/2023-09-30': {
                                         jobberNormaltTimerPerDag: 'PT7H30M',
                                         faktiskArbeidTimerPerDag: 'PT1H30M',
                                     },
@@ -331,7 +331,7 @@ export default [
                                 jobberNormaltTimerPerDag: 'PT3H',
                                 faktiskArbeidTimerPerDag: 'PT0S',
                             },
-                            '2023-03-27/2023-09-31': {
+                            '2023-03-27/2023-09-30': {
                                 jobberNormaltTimerPerDag: 'PT3H',
                                 faktiskArbeidTimerPerDag: 'PT0S',
                             },

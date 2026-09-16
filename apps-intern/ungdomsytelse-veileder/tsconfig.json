@@ -1,6 +1,8 @@
 {
     "extends": "../../packages/config/tsconfig-apps.json",
     "compilerOptions": {
+        "allowImportingTsExtensions": true,
+        "noEmit": true,
         "outDir": "build/dist",
         "typeRoots": ["../../node_modules/@types", "./node_modules/@types"]
     },
@@ -9,10 +11,9 @@
         "./src/**/*",
         "./mock/**/*",
         "./playwright/**/*",
+        "./playwright.config.ts",
         "./vite-env.d.ts",
         "./storybook/**/*",
-        "./vite.config.ts",
-        "vite.playwright.config.ts",
-        "vite.storybook.config.ts"
+        "./vite*.config.ts"
     ]
 }

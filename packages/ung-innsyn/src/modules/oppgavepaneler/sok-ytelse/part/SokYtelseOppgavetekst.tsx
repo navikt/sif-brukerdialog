@@ -4,23 +4,28 @@ import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
 
 import { ForsideLenkeButton, OppgaveStatusTag } from '../../../../components';
-import { UngUiText } from '../../../../i18n';
+import { RegelverkOgInnsynReadMore } from '../../../../components/readmore/RegelverkOgInnsynReadMore';
+import { getLovLenker } from '../../oppgaveLovverk';
+import { UngInnsynText } from '../../../../i18n';
 import { getOppgaveStatusText } from '../../../../utils/textUtils';
+import { ReactNode } from 'react';
 
 interface Props {
     oppgave: SøkYtelseOppgave;
+    dokumentarkivUrl: string;
 }
 
-export const SøkYtelseOppgavetekst = ({ oppgave }: Props) => {
+export const SøkYtelseOppgavetekst = ({ oppgave, dokumentarkivUrl }: Props) => {
     if (oppgave.status !== OppgaveStatus.LØST) {
         return (
             <VStack gap="space-24">
                 <Heading level="1" size="large">
-                    <UngUiText id={`@ungInnsyn.oppgavetype.SØK_YTELSE.${oppgave.ytelsetype}.oppgavetittel`} />
+                    <UngInnsynText id={`@ungInnsyn.oppgavetype.SØK_YTELSE.${oppgave.ytelsetype}.oppgavetittel`} />
                 </Heading>
                 <Alert variant="info">
-                    <UngUiText id={`@ungInnsyn.søkYtelseOppgave.${oppgave.ytelsetype}.uløst.info`} />
+                    <UngInnsynText id={`@ungInnsyn.søkYtelseOppgave.${oppgave.ytelsetype}.uløst.info`} />
                 </Alert>
+                <RegelverkOgInnsynReadMore ytelsetype={oppgave.ytelsetype} lenker={getLovLenker(oppgave)} />
                 <div>
                     <ForsideLenkeButton />
                 </div>
@@ -33,19 +38,21 @@ export const SøkYtelseOppgavetekst = ({ oppgave }: Props) => {
                 <OppgaveStatusTag oppgaveStatus={oppgave.status} oppgaveStatusTekst={getOppgaveStatusText(oppgave)} />
             </div>
             <Heading level="1" size="large">
-                <UngUiText id={`@ungInnsyn.oppgavetype.SØK_YTELSE.${oppgave.ytelsetype}.oppgavetittel`} />
+                <UngInnsynText id={`@ungInnsyn.oppgavetype.SØK_YTELSE.${oppgave.ytelsetype}.oppgavetittel`} />
             </Heading>
             <section aria-labelledby="summaryHeading">
                 <FormSummary>
                     <FormSummary.Header>
                         <FormSummary.Heading level="2" id="summaryHeading">
-                            <UngUiText id={`@ungInnsyn.søkYtelseOppgave.${oppgave.ytelsetype}.oppsummering.tittel`} />
+                            <UngInnsynText
+                                id={`@ungInnsyn.søkYtelseOppgave.${oppgave.ytelsetype}.oppsummering.tittel`}
+                            />
                         </FormSummary.Heading>
                     </FormSummary.Header>
                     <FormSummary.Answers>
                         <FormSummary.Answer>
                             <FormSummary.Label>
-                                <UngUiText
+                                <UngInnsynText
                                     id={`@ungInnsyn.søkYtelseOppgave.${oppgave.ytelsetype}.oppsummering.startdato`}
                                 />
                             </FormSummary.Label>
@@ -53,19 +60,15 @@ export const SøkYtelseOppgavetekst = ({ oppgave }: Props) => {
                         </FormSummary.Answer>
                         <FormSummary.Answer>
                             <FormSummary.Label>
-                                <UngUiText
+                                <UngInnsynText
                                     id={`@ungInnsyn.søkYtelseOppgave.${oppgave.ytelsetype}.oppsummering.dineSvar`}
                                 />
                             </FormSummary.Label>
                             <FormSummary.Value>
-                                <UngUiText
+                                <UngInnsynText
                                     id={`@ungInnsyn.søkYtelseOppgave.${oppgave.ytelsetype}.oppsummering.dineSvar.tekst`}
                                     values={{
-                                        link: (chunks: React.ReactNode) => (
-                                            <Link href="#" target="_blank" rel="noreferrer">
-                                                {chunks}
-                                            </Link>
-                                        ),
+                                        link: (chunks: ReactNode) => <Link href={dokumentarkivUrl}>{chunks}</Link>,
                                     }}
                                 />
                             </FormSummary.Value>

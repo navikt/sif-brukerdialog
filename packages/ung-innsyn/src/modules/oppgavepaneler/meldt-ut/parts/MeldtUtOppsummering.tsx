@@ -1,7 +1,7 @@
 import { dateFormatter, ISODate } from '@sif/utils';
 import { ReactNode } from 'react';
 
-import { UngUiText } from '../../../../i18n';
+import { UngInnsynText } from '../../../../i18n';
 
 interface EndretSluttdatoOppsummeringProps {
     sluttdato: ISODate;
@@ -9,7 +9,7 @@ interface EndretSluttdatoOppsummeringProps {
 
 export const MeldtUtOppsummering = ({ sluttdato }: EndretSluttdatoOppsummeringProps) => {
     return (
-        <UngUiText
+        <UngInnsynText
             id="@ungInnsyn.meldtUt.oppsummering"
             values={{
                 ny: dateFormatter.full(sluttdato),

@@ -2,7 +2,7 @@ import { dateFormatter } from '@sif/utils';
 import { EndretStartOgSluttdatoOppgave } from '@sif/api/ung-brukerdialog';
 import { ReactNode } from 'react';
 
-import { UngUiText } from '../../../i18n';
+import { UngInnsynText } from '../../../i18n';
 import { Oppgavebekreftelse } from '../../oppgavebekreftelse/Oppgavebekreftelse';
 import { EndretStartOgSluttdatoOppgavetekst } from './parts/EndretStartOgSluttdatoOppgavetekst';
 
@@ -23,7 +23,7 @@ export const EndretStartOgSluttdatoOppgavePanel = ({ navn, oppgave, initialVisKv
             </Oppgavebekreftelse.Ubesvart>
 
             <Oppgavebekreftelse.Besvart>
-                <UngUiText
+                <UngInnsynText
                     id="@ungInnsyn.endretStartOgSluttdato.oppsummering"
                     values={{
                         fom: dateFormatter.full(oppgave.oppgavetypeData.nyPeriode.from),
@@ -34,7 +34,7 @@ export const EndretStartOgSluttdatoOppgavePanel = ({ navn, oppgave, initialVisKv
             </Oppgavebekreftelse.Besvart>
 
             <Oppgavebekreftelse.Kvittering>
-                <UngUiText id="@ungInnsyn.oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.kvitteringTekst" />
+                <UngInnsynText id="@ungInnsyn.oppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO.kvitteringTekst" />
             </Oppgavebekreftelse.Kvittering>
         </Oppgavebekreftelse>
     );

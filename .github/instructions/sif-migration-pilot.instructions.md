@@ -1,5 +1,5 @@
 ---
-applyTo: 'apps/omsorgspengesoknad-v2/**,apps/omsorgspengesoknad/**,apps/sif-demo-app/**,packages/sif-soknad/**,packages/sif-rhf/**,docs/migration/**,.github/skills/sif-migration-baseline/**'
+applyTo: 'apps/omsorgspengesoknad-v2/**,apps/omsorgspengesoknad/**,apps/sif-demo-app/**,packages/sif-soknad-app/**,packages/sif-rhf/**,docs/migration/**,.github/skills/sif-migration-baseline/**'
 ---
 
 # SIF migration pilot instructions

@@ -1,0 +1,13 @@
+{
+    "extends": ["//"],
+    "tasks": {
+        "e2e:build": {
+            "outputs": ["dist-playwright/**"]
+        },
+        "playwright-test": {
+            "outputs": [],
+            "dependsOn": ["e2e:build"],
+            "env": ["PLAYWRIGHT_BROWSERS_PATH"]
+        }
+    }
+}

@@ -1,89 +1,40 @@
-// Eksempel: src/app/Soknad.tsx
-// Tilpass: Props-interface, init({ søker, barn }), Route-elementer
-import { useEffect } from 'react';
-import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+// src/app/Soknad.tsx
+// Tilpass: import steg, legg til <Route> per steg
+import { søknadStepConfig, søknadStepOrder } from '@app/setup/soknadStepConfig';
+import { SøknadStepId } from '@app/types/SoknadStepId';
+import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '@app/setup/constants';
+import { formValuesToSøknadsdata } from '@app/utils/formValuesToSøknadsdata';
+import { SøknadRouter, SøknadStepGuard } from '@sif/soknad-app';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { RegistrertBarn, Søker } from '@sif/api/k9-prosessering';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
-import { StepRouteGuard } from '@sif/soknad/navigation';
+import { useAppIntl } from './i18n';
+import { Kvittering } from './content/kvittering/Kvittering';
+import { Velkommen } from './content/velkommen/Velkommen';
+import { LoadingPage } from '@sif/soknad-ui';
+import { OppsummeringSteg } from './steps';
 
-import { søknadStepConfig } from '@app/setup/config/soknadStepConfig';
-import { SøknadStepId } from '@app/setup/config/SoknadStepId';
-import { SøknadContextProvider } from '@app/setup/context/soknadContext';
-import { useSøknadStore, useStepTitles } from '@app/setup/hooks';
-
-import { KvitteringPage, VelkommenPage } from './pages';
-import { SøknadMellomlagring } from './types/Mellomlagring';
-// import steg her etter hvert: import { MittSteg } from './steps';
-
-interface Props {
-    søker: Søker;
-    barn: RegistrertBarn[]; // fjern om appen ikke har barn
-    mellomlagring?: SøknadMellomlagring;
-}
-
-export const Søknad = ({ søker, barn, mellomlagring }: Props) => {
-    const stepTitles = useStepTitles();
-    const init = useSøknadStore((s) => s.init);
-    const søknadSendt = useSøknadStore((s) => s.søknadSendt);
-    const søknadState = useSøknadStore((s) => s.søknadState);
-    const currentStepId = useSøknadStore((s) => s.currentStepId);
-    const includedSteps = useSøknadStore((s) => s.includedSteps);
-
-    const location = useLocation();
-    const navigate = useNavigate();
-
-    useEffectOnce(() => {
-        init({ søker, barn }, mellomlagring?.søknadsdata, mellomlagring?.currentStepId);
-    });
-
-    useEffect(() => {
-        if (søknadSendt && location.pathname !== '/kvittering') {
-            navigate('/kvittering', { replace: true });
-        } else if (!søknadSendt && location.pathname === '/kvittering') {
-            navigate('/', { replace: true });
-        }
-    }, [søknadSendt, location.pathname, navigate]);
-
-    const currentStepRoute = currentStepId ? søknadStepConfig[currentStepId]?.route : undefined;
-    useEffect(() => {
-        if (currentStepRoute && location.pathname === '/') {
-            navigate(`/soknad/${currentStepRoute}`, { replace: true });
-        }
-    }, [currentStepRoute, location.pathname, navigate]);
-
-    if (søknadSendt && location.pathname !== '/kvittering') {
-        return <KvitteringPage />;
-    }
-
-    if (!søknadSendt && location.pathname === '/kvittering') {
-        return (
-            <SøknadContextProvider stepTitles={stepTitles}>
-                <VelkommenPage />
-            </SøknadContextProvider>
-        );
-    }
+export const Søknad = () => {
+    const { text } = useAppIntl();
 
     return (
-        <SøknadContextProvider initialFormValues={mellomlagring?.skjemadata} stepTitles={stepTitles}>
+        <SøknadRouter
+            config={søknadStepConfig}
+            stepOrder={søknadStepOrder}
+            ytelse={APP_YTELSE}
+            versjon={MELLOMLAGRING_VERSJON}
+            applicationTitle={text('application.title')}
+            formValuesToSøknadsdata={formValuesToSøknadsdata}
+            kvitteringElement={<Kvittering />}
+            loadingElement={<LoadingPage applicationTitle={text('application.title')} />}>
             <Routes>
-                <Route path="/" element={<VelkommenPage />} />
-                <Route path="/kvittering" element={<KvitteringPage />} />
-                <Route
-                    path="/soknad"
-                    element={
-                        <StepRouteGuard
-                            steps={includedSteps}
-                            currentStepId={currentStepId}
-                            isInitialized={!!søknadState}
-                        />
-                    }>
-                    {/* Legg til én Route per steg her */}
-                    <Route path={søknadStepConfig[SøknadStepId.OPPSUMMERING].route} element={<div />} />
+                <Route path="/" element={<Velkommen />} />
+                <Route path="/soknad" element={<SøknadStepGuard basePath="/soknad" />}>
+                    {/* Legg til en Route per steg her */}
+                    <Route path={søknadStepConfig[SøknadStepId.OPPSUMMERING].route} element={<OppsummeringSteg />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Route>
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
-        </SøknadContextProvider>
+        </SøknadRouter>
     );
 };

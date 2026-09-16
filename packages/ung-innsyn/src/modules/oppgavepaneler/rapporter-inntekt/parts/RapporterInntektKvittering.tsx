@@ -2,7 +2,7 @@ import { Alert, BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { forwardRef } from 'react';
 
 import { ForsideLenkeButton } from '../../../../components';
-import { UngUiText } from '../../../../i18n';
+import { UngInnsynText } from '../../../../i18n';
 import { RapporterInntektKvitteringData } from '../RapporterInntektOppgavePanel';
 
 interface Props {
@@ -14,15 +14,15 @@ export const RapporterInntektKvittering = forwardRef<HTMLDivElement, Props>(({ k
         <VStack gap="space-32">
             <Alert variant="success" ref={ref} tabIndex={-1}>
                 <Heading level="2" size="small" spacing>
-                    <UngUiText id="@ungInnsyn.rapporterInntektKvittering.tittel" />
+                    <UngInnsynText id="@ungInnsyn.rapporterInntektKvittering.tittel" />
                 </Heading>
                 {kvitteringData.harHattInntektOver0 ? (
                     <BodyLong>
-                        <UngUiText id="@ungInnsyn.rapporterInntektKvittering.harHattInntekt" />
+                        <UngInnsynText id="@ungInnsyn.rapporterInntektKvittering.harHattInntekt" />
                     </BodyLong>
                 ) : (
                     <BodyLong>
-                        <UngUiText id="@ungInnsyn.rapporterInntektKvittering.harIkkeHattInntekt" />
+                        <UngInnsynText id="@ungInnsyn.rapporterInntektKvittering.harIkkeHattInntekt" />
                     </BodyLong>
                 )}
             </Alert>

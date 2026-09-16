@@ -34,6 +34,7 @@ export const sifLenkerProdBokmal = {
     navUngdomsprogrammet: 'https://www.nav.no/ungdomsprogrammet',
     navDokumentarkivOmsorgspenger: 'https://www.nav.no/dokumentarkiv/tema/OMS',
     navDokumentarkivUngdomsytelse: 'https://www.nav.no/dokumentarkiv/tema/UNG',
+    navDokumentarkivAktivitetspenger: 'https://www.nav.no/dokumentarkiv/tema/UNG',
     innboksBeskjedTilOssEndringSykdomIFamilien:
         'https://innboks.nav.no/s/beskjed-til-oss?category=Endring-sykdom-familien',
     innboksSkrivTilOssPleiepenger: 'https://innboks.nav.no/s/skriv-til-oss?category=Pleiepenger',

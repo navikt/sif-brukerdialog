@@ -1,25 +1,27 @@
+import { TilgjengeligSøknadResponse } from '@navikt/ung-brukerdialog-api';
 import { RegistrertBarn, Søker, useRegistrerteBarn, useSøker } from '@sif/api/k9-prosessering';
+import { useTilgjengeligAktivitetspengerSøknad } from '@sif/api/ung-brukerdialog';
 import { kontonummerFallback, useKontonummer, UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 
 interface InitialData {
     søker: Søker;
     barn: RegistrertBarn[];
     kontonummer: UtvidetKontonummerInfo;
+    tilgjengeligSøknad: TilgjengeligSøknadResponse;
 }
 
 type InitialDataResult =
-    | { status: 'loading' }
-    | { status: 'error'; errors: unknown[] }
-    | { status: 'success'; data: InitialData };
+    { status: 'loading' } | { status: 'error'; errors: unknown[] } | { status: 'success'; data: InitialData };
 
 export const useInitialData = (): InitialDataResult => {
     const søker = useSøker();
+    const tilgjengeligSøknad = useTilgjengeligAktivitetspengerSøknad();
     const registrerteBarn = useRegistrerteBarn();
     const kontonummer = useKontonummer();
 
-    const requiredQueries = [søker, registrerteBarn];
+    const requiredQueries = [søker, registrerteBarn, tilgjengeligSøknad];
 
-    if (requiredQueries.some((q) => q.isLoading) || kontonummer.isLoading) {
+    if (requiredQueries.some((q) => q.isLoading) || kontonummer.isLoading || tilgjengeligSøknad.isLoading) {
         return { status: 'loading' };
     }
 
@@ -28,7 +30,7 @@ export const useInitialData = (): InitialDataResult => {
         return { status: 'error', errors };
     }
 
-    if (!søker.data || !registrerteBarn.data) {
+    if (!søker.data || !registrerteBarn.data || !tilgjengeligSøknad.data) {
         return { status: 'error', errors: [new Error('Nødvendig data mangler')] };
     }
 
@@ -38,6 +40,7 @@ export const useInitialData = (): InitialDataResult => {
             søker: søker.data,
             barn: registrerteBarn.data,
             kontonummer: kontonummer.data ?? kontonummerFallback,
+            tilgjengeligSøknad: tilgjengeligSøknad.data,
         },
     };
 };

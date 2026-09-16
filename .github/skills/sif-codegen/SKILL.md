@@ -85,5 +85,5 @@ export const initApiClients = () => {
 
 - `codegenUtils.js` (root) — delt post-prosesseringslogikk for alle pakker
 - `packages/*/scripts/fix-generated-regex.mjs` — kaller `fixAndFormatGeneratedCode` fra root
-- `packages/*/configs/openapi-ts.config*.ts` — codegen-konfig per API/miljø
+- `packages/*/configs/openapi-ts.config*.ts` eller `packages/*/openapi-ts.config.ts` — codegen-konfig per API/miljø
 - `packages/*/scripts/download-spec.mjs` — spec-nedlasting (bruker `CODEGEN_ENV`)

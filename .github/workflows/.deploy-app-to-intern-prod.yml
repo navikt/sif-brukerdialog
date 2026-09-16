@@ -23,14 +23,14 @@ jobs:
             image: ${{ steps.docker-push.outputs.image }}
         steps:
             - name: Checkout code
-              uses: actions/checkout@v7.0.0
+              uses: actions/checkout@v7.0.1
               with:
                   persist-credentials: false
 
             - name: Setup pnpm
               uses: pnpm/action-setup@v6
             - name: Setup Node.js environment
-              uses: actions/setup-node@v6.4.0
+              uses: actions/setup-node@v7.0.0
               with:
                   node-version: 24
                   cache: "pnpm"
@@ -42,6 +42,15 @@ jobs:
 
             - name: Build application
               run: pnpm turbo run build --filter=@navikt/${{ inputs.app-name }}
+
+            - name: Upload assets to CDN
+              uses: nais/deploy/actions/cdn-upload/v2@027a91857992525139798892f2804b0ca21f4af6 # master per 2026-08-27
+              with:
+                  team: dusseldorf
+                  source: apps-intern/${{ inputs.app-name }}/dist
+                  destination: /${{ inputs.app-name }}
+                  project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+                  identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
 
             - name: Build and publish docker image
               uses: nais/docker-build-push@v0

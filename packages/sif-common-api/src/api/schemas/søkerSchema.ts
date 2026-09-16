@@ -1,7 +1,5 @@
 import { z } from 'zod';
 
-import { parseMaybeDateStringToDate } from '../../utils/jsonParseUtils';
-
 export const søkerResponseSchema = z.object({
     aktørId: z.string(),
     fødselsnummer: z.string(),
@@ -12,5 +10,5 @@ export const søkerResponseSchema = z.object({
         .nullable()
         .transform((v) => (v === null ? undefined : v))
         .optional(),
-    fødselsdato: z.preprocess(parseMaybeDateStringToDate, z.date()),
+    fødselsdato: z.iso.date(),
 });

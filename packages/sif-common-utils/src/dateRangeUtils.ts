@@ -363,7 +363,10 @@ export const getWeeksInDateRange = (dateRange: DateRange): DateRange[] => {
     const weeks: DateRange[] = [];
     let current = dayjs(dateRange.from);
     do {
-        const weekDateRange: DateRange = { from: current.toDate(), to: current.endOf('isoWeek').toDate() };
+        const weekDateRange: DateRange = {
+            from: current.toDate(),
+            to: current.endOf('isoWeek').toDate(),
+        };
         const rangeToPush: DateRange = {
             from: weekDateRange.from,
             to: getFirstOfTwoDates(weekDateRange.to, dateRange.to),

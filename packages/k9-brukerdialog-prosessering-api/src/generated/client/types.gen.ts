@@ -26,10 +26,10 @@ export type AktivitetspengerOppgavebekreftelse = {
 export type Aktivitetspengersøknad = {
     barnErRiktig: boolean;
     erBosattITrondheim: boolean;
-    forutgåendeBosteder: ForutgåendeBosteder;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
     kontonummerInfo: KontonummerInfo;
+    medlemskap: MedlemskapAktivitetspenger;
     språk: string;
     startdato: string;
     søkerNorskIdent: string;
@@ -86,7 +86,7 @@ export type Arbeidsgiver = {
 };
 
 export type ArbeidsgiverOlp = {
-    arbeidsforhold?: ArbeidsforholdOlp;
+    [key: string]: unknown;
 };
 
 export type ArbeidsgivereDto = {
@@ -178,9 +178,6 @@ export type DataBruktTilUtledning = {
     annetData?: string;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
-    /**
-     * @deprecated
-     */
     soknadDialogCommitSha?: string;
 };
 
@@ -230,13 +227,6 @@ export type EttersendingAvVedlegg = {
     vedleggSomSkalEttersendes?: Array<'LEGEERKLÆRING' | 'KURSINFORMASJON' | 'ANNET'>;
 };
 
-export type FamiliePdfPostRequest = {
-    label: string;
-    pdfConfig: PdfConfig;
-    skjemanummer?: string;
-    verdiliste: VerdilisteElement[];
-};
-
 export type Ferieuttak = {
     fraOgMed: string;
     tilOgMed: string;
@@ -245,11 +235,6 @@ export type Ferieuttak = {
 export type FerieuttakIPerioden = {
     ferieuttak: Ferieuttak[];
     skalTaUtFerieIPerioden: boolean;
-};
-
-export type ForutgåendeBosteder = {
-    harBoddIUtlandetSiste5År: boolean;
-    utenlandsoppholdSiste5År: Bosted[];
 };
 
 export type Fosterhjemgodtgjørelse = {
@@ -365,6 +350,13 @@ export type Medlemskap = {
     utenlandsoppholdSiste12Mnd: Bosted[];
 };
 
+export type MedlemskapAktivitetspenger = {
+    harBoddINorge: boolean;
+    harJobbetINorge?: boolean;
+    harJobbetUtenforNorge?: boolean;
+    utenlandsopphold: UtenlandsoppholdAktivitetspenger[];
+};
+
 export type Nattevåk = {
     harNattevåk: boolean;
     tilleggsinformasjon?: string;
@@ -438,7 +430,7 @@ export type OmsorgspengerutbetalingSnfSøknad = {
     språk: string;
     spørsmål: SpørsmålOgSvar[];
     søkerNorskIdent?: string;
-    utbetalingsperioder: unknown[];
+    utbetalingsperioder: Utbetalingsperiode[];
     vedlegg: string[];
 };
 
@@ -523,11 +515,6 @@ export type OrganisasjonDto = {
     organisasjonsnummer: string;
 };
 
-export type PdfConfig = {
-    harInnholdsfortegnelse: boolean;
-    språk: string;
-};
-
 export type Periode = {
     fraOgMed: string;
     tilOgMed: string;
@@ -601,9 +588,7 @@ export type PleiepengerSyktBarnSøknad = {
     dataBruktTilUtledningAnnetData?: string;
     ferieuttakIPerioden?: FerieuttakIPerioden;
     fosterhjemgodtgjørelse?:
-        | FosterhjemsgodtgjørelseFrikjøpt
-        | FosterhjemsgodtgjørelseIkkeFrikjøpt
-        | FosterhjemsgodtgjørelseMottarIkke;
+        FosterhjemsgodtgjørelseFrikjøpt | FosterhjemsgodtgjørelseIkkeFrikjøpt | FosterhjemsgodtgjørelseMottarIkke;
     fraOgMed: string;
     frilans: Frilans;
     fødselsattestVedleggUrls?: string[];
@@ -618,6 +603,11 @@ export type PleiepengerSyktBarnSøknad = {
     opptjeningIUtlandet: OpptjeningIUtlandet[];
     selvstendigNæringsdrivende: SelvstendigNæringsdrivende;
     språk: 'nb' | 'nn';
+    /**
+     * StønadGodtgjørelse er deprecated og vil bli fjernet i fremtidige versjoner av APIet
+     *
+     * @deprecated
+     */
     stønadGodtgjørelse?: null;
     søkerNorskIdent?: string;
     tilOgMed: string;
@@ -734,12 +724,8 @@ export type Ungdomsytelsesøknad = {
 };
 
 export type Utbetalingsperiode = {
-    aktivitetFravær?: Array<'ARBEIDSTAKER' | 'FRILANSER' | 'SELVSTENDIG_VIRKSOMHET'>;
-    antallTimerBorte?: string;
-    antallTimerPlanlagt?: string;
-    fraOgMed?: string;
-    tilOgMed?: string;
-    årsak?: 'STENGT_SKOLE_ELLER_BARNEHAGE' | 'SMITTEVERNHENSYN' | 'ORDINÆRT_FRAVÆR';
+    fraOgMed: string;
+    tilOgMed: string;
 };
 
 export type UtenlandskArbeidsforhold = {
@@ -772,6 +758,14 @@ export type Utenlandsopphold = {
         | 'ANNET';
 };
 
+export type UtenlandsoppholdAktivitetspenger = {
+    fraOgMed: string;
+    jobbetIPerioden: boolean;
+    land: Land;
+    tilOgMed: string;
+    utenlandskNasjonalId?: string;
+};
+
 export type UtenlandsoppholdIPerioden = {
     opphold: Utenlandsopphold[];
     skalOppholdeSegIUtlandetIPerioden?: boolean;
@@ -788,16 +782,7 @@ export type UttakPeriodeInfo = {
 };
 
 export type VarigEndring = {
-    dato?: string;
-    forklaring?: string;
-    inntektEtterEndring?: number;
-};
-
-export type VerdilisteElement = {
-    alternativer?: string;
-    label: string;
-    verdi?: string;
-    visningsVariant?: string;
+    dato: string;
 };
 
 export type Virksomhet = {
@@ -813,7 +798,7 @@ export type Virksomhet = {
     registrertIUtlandet?: Land;
     regnskapsfører?: null;
     tilOgMed?: string;
-    varigEndring?: null;
+    varigEndring?: VarigEndring;
     yrkesaktivSisteTreFerdigliknedeÅrene?: null;
 };
 
@@ -867,7 +852,7 @@ export type OmsorgspengerutbetalingSnfSøknadWritable = {
     språk: string;
     spørsmål: SpørsmålOgSvar[];
     søkerNorskIdent?: string;
-    utbetalingsperioder: Utbetalingsperiode[];
+    utbetalingsperioder: UtbetalingsperiodeWritable[];
     vedlegg: string[];
 };
 
@@ -966,9 +951,7 @@ export type PleiepengerSyktBarnSøknadWritable = {
     dataBruktTilUtledningAnnetData?: string;
     ferieuttakIPerioden?: FerieuttakIPerioden;
     fosterhjemgodtgjørelse?:
-        | FosterhjemsgodtgjørelseFrikjøpt
-        | FosterhjemsgodtgjørelseIkkeFrikjøpt
-        | FosterhjemsgodtgjørelseMottarIkke;
+        FosterhjemsgodtgjørelseFrikjøpt | FosterhjemsgodtgjørelseIkkeFrikjøpt | FosterhjemsgodtgjørelseMottarIkke;
     fraOgMed: string;
     frilans: Frilans;
     fødselsattestVedleggUrls?: string[];
@@ -983,6 +966,11 @@ export type PleiepengerSyktBarnSøknadWritable = {
     opptjeningIUtlandet: OpptjeningIUtlandet[];
     selvstendigNæringsdrivende: SelvstendigNæringsdrivendeWritable;
     språk: 'nb' | 'nn';
+    /**
+     * StønadGodtgjørelse er deprecated og vil bli fjernet i fremtidige versjoner av APIet
+     *
+     * @deprecated
+     */
     stønadGodtgjørelse?: StønadGodtgjørelse;
     søkerNorskIdent?: string;
     tilOgMed: string;
@@ -1002,6 +990,21 @@ export type SelvstendigNæringsdrivendeOlpWritable = {
     virksomhet: VirksomhetWritable;
 };
 
+export type UtbetalingsperiodeWritable = {
+    aktivitetFravær?: Array<'ARBEIDSTAKER' | 'FRILANSER' | 'SELVSTENDIG_VIRKSOMHET'>;
+    antallTimerBorte?: string;
+    antallTimerPlanlagt?: string;
+    fraOgMed: string;
+    tilOgMed: string;
+    årsak?: 'STENGT_SKOLE_ELLER_BARNEHAGE' | 'SMITTEVERNHENSYN' | 'ORDINÆRT_FRAVÆR';
+};
+
+export type VarigEndringWritable = {
+    dato: string;
+    forklaring?: string;
+    inntektEtterEndring?: number;
+};
+
 export type VirksomhetWritable = {
     erNyoppstartet: boolean;
     fiskerErPåBladB?: boolean;
@@ -1015,7 +1018,7 @@ export type VirksomhetWritable = {
     registrertIUtlandet?: Land;
     regnskapsfører?: Regnskapsfører;
     tilOgMed?: string;
-    varigEndring?: VarigEndring;
+    varigEndring?: VarigEndringWritable;
     yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
 };
 
@@ -1676,43 +1679,6 @@ export type HentSøkerResponses = {
 };
 
 export type HentSøkerResponse = HentSøkerResponses[keyof HentSøkerResponses];
-
-export type LagPdfData = {
-    body: FamiliePdfPostRequest;
-    path?: never;
-    query?: never;
-    url: '/pdf';
-};
-
-export type LagPdfErrors = {
-    /**
-     * Bad Request
-     */
-    400: ProblemDetail;
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type LagPdfError = LagPdfErrors[keyof LagPdfErrors];
-
-export type LagPdfResponses = {
-    /**
-     * OK
-     */
-    200: Blob | File;
-};
-
-export type LagPdfResponse = LagPdfResponses[keyof LagPdfResponses];
 
 export type InnsendingPleiepengerILivetsSluttfaseSøknadData = {
     body: PleiepengerILivetsSluttfaseSøknadWritable;

@@ -1,4 +1,4 @@
-import { AppEnv } from '../env.schema';
+import type { AppEnv } from '../env.schema.ts';
 
 export const getPlaywrightAppSettings = (): AppEnv => ({
     ENV: 'dev',
@@ -6,7 +6,6 @@ export const getPlaywrightAppSettings = (): AppEnv => ({
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker',
     GITHUB_REF_NAME: 'branch-name',
     SIF_PUBLIC_FEATURE_NYNORSK: 'on',
-    SIF_PUBLIC_ANALYTICS_API_KEY: 'default',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
     SIF_PUBLIC_DEKORATOR_URL:
@@ -19,6 +18,6 @@ export const getPlaywrightAppSettings = (): AppEnv => ({
         '/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/api',
     K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
     K9_BRUKERDIALOG_PROSESSERING_API_URL: 'http://k9-brukerdialog-prosessering',
-    MOCK_DATE: '2024-08-01',
+    MOCK_DATE: '2024-08-01T12:00:00Z',
     USE_MOCK_DATE: 'true',
 });

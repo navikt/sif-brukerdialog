@@ -6,7 +6,7 @@ import { appEnvSchema } from '../env.schema.js';
 import config from './serverConfig.js';
 
 export const setupAndServeHtml = async (app: Express) => {
-    // When deployed, the built frontend is copied into the public directory. If running BFF locally the index.html will not exist.
+    // When deployed, the generated frontend index.html is copied into the public directory. If running BFF locally the index.html will not exist.
     const spaFilePath = path.resolve('./public', 'index.html');
 
     const html = await injectDecorator(spaFilePath, config.app.fullDekorator);

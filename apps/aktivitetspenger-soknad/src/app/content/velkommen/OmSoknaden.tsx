@@ -2,6 +2,8 @@ import { AppText } from '@app/i18n';
 import { Accordion, Box, Heading, List, VStack } from '@navikt/ds-react';
 
 import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysningerContent';
+import ReglerOgAutomatiskSaksbehandlingContent from './ReglerOgAutomatiskSaksbehandlingContent';
+import { TodoFlag } from '@app/components/Todo';
 
 const OmSøknaden = () => {
     return (
@@ -25,10 +27,19 @@ const OmSøknaden = () => {
             <Accordion data-color="accent">
                 <Accordion.Item>
                     <Accordion.Header>
-                        <AppText id="page.velkommen.omSøknaden.4" />
+                        <AppText id="page.velkommen.personopplysninger.tittel" />
                     </Accordion.Header>
                     <Accordion.Content>
                         <BehandlingAvPersonopplysningerContent />
+                    </Accordion.Content>
+                </Accordion.Item>
+                <Accordion.Item>
+                    <Accordion.Header>
+                        <AppText id="page.velkommen.regler.tittel" />
+                        <TodoFlag />
+                    </Accordion.Header>
+                    <Accordion.Content>
+                        <ReglerOgAutomatiskSaksbehandlingContent />
                     </Accordion.Content>
                 </Accordion.Item>
             </Accordion>

@@ -22,7 +22,8 @@ export const handlers = [
 
     http.put('**/deltakelse/register/:id/marker-har-sokt/v2', () => new HttpResponse(null, { status: 500 })),
 
-    http.get('**/oppgave/hent/alle', () => {
+    http.get('**/oppgave/hent/alle', async () => {
+        await delay(500);
         const oppgaver = store.get().oppgaver;
         return HttpResponse.json(oppgaver);
     }),
@@ -54,6 +55,7 @@ export const handlers = [
     }),
 
     http.post('**/ungdomsytelse/oppgavebekreftelse/innsending', async ({ request }) => {
+        await delay(2500);
         const text = await request.text();
         try {
             const parsed: UngdomsytelseOppgavebekreftelse = JSON.parse(text);

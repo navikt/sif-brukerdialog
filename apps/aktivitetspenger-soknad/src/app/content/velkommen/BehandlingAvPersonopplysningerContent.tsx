@@ -1,56 +1,64 @@
 import { AppText } from '@app/i18n';
 import { useLenker } from '@app/lenker';
-import { Heading, Link, List, VStack } from '@navikt/ds-react';
-import React from 'react';
+import { BodyLong, Heading, Link, List, VStack } from '@navikt/ds-react';
+import { ReactNode } from 'react';
 
-const BehandlingAvPersonopplysningerContent: React.FunctionComponent = () => {
+const BehandlingAvPersonopplysningerContent = () => {
     const lenker = useLenker();
 
     return (
-        <VStack gap="space-8" paddingBlock="space-8 space-0">
+        <VStack gap="space-24" paddingBlock="space-8 space-0">
+            <BodyLong>
+                <AppText id="personopplysninger.1" />
+            </BodyLong>
+
             <div>
-                <Heading level="3" size="xsmall" spacing={true}>
-                    <AppText id="personopplysninger.1" />
-                </Heading>
-                <p>
+                <Heading level="3" size="xsmall" spacing>
                     <AppText id="personopplysninger.2" />
-                </p>
-            </div>
-            <div>
-                <Heading level="3" size="xsmall">
-                    <AppText id="personopplysninger.3" />
                 </Heading>
-                <p>
-                    <AppText id="personopplysninger.4" />
-                </p>
 
                 <List>
                     <List.Item>
-                        <AppText id="personopplysninger.4.1" />
+                        <AppText id="personopplysninger.2.1" />
                     </List.Item>
                     <List.Item>
-                        <AppText id="personopplysninger.4.2" />
+                        <AppText id="personopplysninger.2.2" />
                     </List.Item>
                     <List.Item>
-                        <AppText id="personopplysninger.4.3" />
+                        <AppText id="personopplysninger.2.3" />
                     </List.Item>
                     <List.Item>
-                        <AppText id="personopplysninger.4.4" />
+                        <AppText id="personopplysninger.2.4" />
                     </List.Item>
                 </List>
             </div>
+
             <div>
+                <Heading level="3" size="xsmall" spacing>
+                    <AppText id="personopplysninger.3" />
+                </Heading>
+                <List>
+                    <List.Item>
+                        <AppText id="personopplysninger.3.1" />
+                    </List.Item>
+                    <List.Item>
+                        <AppText id="personopplysninger.3.2" />
+                    </List.Item>
+                </List>
+            </div>
+
+            <BodyLong>
                 <AppText
-                    id="personopplysninger.5"
+                    id="personopplysninger.4"
                     values={{
-                        Lenke: (children: React.ReactNode) => (
+                        Lenke: (children: ReactNode) => (
                             <Link href={lenker.navPersonvernerklaering} target="_blank" rel="noopener noreferrer">
                                 {children}
                             </Link>
                         ),
                     }}
                 />
-            </div>
+            </BodyLong>
         </VStack>
     );
 };

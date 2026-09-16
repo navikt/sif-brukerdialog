@@ -1,5 +1,11 @@
 # @navikt/sif-common-analytics
 
+## 0.1.0
+
+### Minor Changes
+
+- Erstatte all bruk av sentry med nais/apm
+
 ## 0.0.7
 
 ### Patch Changes

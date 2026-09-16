@@ -18,17 +18,9 @@ import RouteConfig from './config/routeConfig';
 import { appEnv } from './env/appEnv';
 import { applicationIntlMessages } from './i18n';
 import Søknad from './søknad/Søknad';
-import appSentryLogger from './utils/appSentryLogger';
 import { relocateToSoknad } from './utils/navigationUtils';
 
-const {
-    PUBLIC_PATH,
-    SIF_PUBLIC_APPSTATUS_DATASET,
-    SIF_PUBLIC_APPSTATUS_PROJECT_ID,
-    APP_VERSION,
-    SIF_PUBLIC_USE_ANALYTICS,
-    SIF_PUBLIC_ANALYTICS_API_KEY,
-} = appEnv;
+const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID, SIF_PUBLIC_USE_ANALYTICS } = appEnv;
 ensureBaseNameForReactRouter(PUBLIC_PATH);
 
 const envNow = getMaybeEnv('MOCK_DATE');
@@ -38,7 +30,6 @@ if (envNow && getMaybeEnv('USE_MOCK_DATE') === 'true') {
     MockDate.set(new Date(envNow));
 }
 
-appSentryLogger.init();
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -56,7 +47,6 @@ const App = () => {
         <Theme>
             <QueryClientProvider client={queryClient}>
                 <SoknadApplication
-                    appVersion={APP_VERSION}
                     appKey={PleiepengerSyktBarnApp.key}
                     appName={PleiepengerSyktBarnApp.navn}
                     appTitle={PleiepengerSyktBarnApp.tittel.nb}
@@ -65,7 +55,6 @@ const App = () => {
                     useLanguageSelector={appEnv.SIF_PUBLIC_FEATURE_NYNORSK === 'on'}
                     useAnalytics={SIF_PUBLIC_USE_ANALYTICS ? SIF_PUBLIC_USE_ANALYTICS === 'true' : isProd()}
                     publicPath={PUBLIC_PATH}
-                    analyticsApiKey={SIF_PUBLIC_ANALYTICS_API_KEY}
                     onResetSoknad={handleResetSoknad}>
                     <SoknadApplicationCommonRoutes
                         onReset={() => {

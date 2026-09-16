@@ -1,11 +1,11 @@
 import { Link } from '@navikt/ds-react';
-import React from 'react';
+import { ReactNode } from 'react';
 
 interface Props {
     className?: string;
     onClick: () => void;
     ariaLabel?: string;
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 const ActionLink = ({ onClick, children, className, ariaLabel }: Props) => {

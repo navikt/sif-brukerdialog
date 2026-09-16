@@ -1,6 +1,6 @@
 {
     "name": "@sif/soknad-forms",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "private": true,
     "repository": {
         "type": "git",
@@ -23,41 +23,40 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "8.14.0",
-        "@navikt/ds-react": "8.14.0",
+        "@navikt/aksel-icons": "8.16.2",
+        "@navikt/ds-react": "8.16.2",
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@sif/api": "workspace:*",
         "@sif/rhf": "workspace:*",
-        "@sif/soknad": "workspace:*",
         "@sif/soknad-ui": "workspace:*",
         "@sif/utils": "workspace:*",
-        "react-hook-form": "7.80.0"
+        "react-hook-form": "7.88.0"
     },
     "devDependencies": {
-        "@navikt/ds-css": "8.14.0",
+        "@navikt/ds-css": "8.16.2",
         "@sif/eslint-config": "workspace:*",
-        "@storybook/addon-a11y": "10.4.6",
-        "@storybook/addon-docs": "10.4.6",
-        "@storybook/react-vite": "10.4.6",
-        "@types/node": "25.9.3",
-        "@types/react": "19.2.17",
-        "@types/react-dom": "19.2.3",
-        "@vitejs/plugin-react": "6.0.3",
-        "dayjs": "1.11.21",
-        "react": "19.2.7",
-        "react-day-picker": "9.14.0",
-        "react-dom": "19.2.7",
-        "react-intl": "10.1.14",
-        "storybook": "10.4.6",
+        "@storybook/addon-a11y": "10.6.0",
+        "@storybook/addon-docs": "10.6.0",
+        "@storybook/react-vite": "10.6.0",
+        "@types/node": "26.5.1",
+        "@types/react": "19.3.0",
+        "@types/react-dom": "19.3.0",
+        "@vitejs/plugin-react": "6.1.1",
+        "dayjs": "1.11.23",
+        "react": "19.3.0",
+        "react-day-picker": "10.0.1",
+        "react-dom": "19.3.0",
+        "react-intl": "10.2.2",
+        "storybook": "10.6.0",
         "typescript": "6.0.3",
-        "vite": "8.1.0",
-        "vitest": "4.1.9"
+        "vite": "8.3.0",
+        "vitest": "5.0.0"
     },
     "peerDependencies": {
         "dayjs": ">=1.11.19",
         "react": ">=19",
-        "react-day-picker": ">=9.14.0",
+        "react-day-picker": ">=10",
         "react-dom": ">=19",
         "react-intl": "10"
     }

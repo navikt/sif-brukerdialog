@@ -14,9 +14,16 @@ export default defineConfig({
             name: 'chromium',
             use: { ...devices['Desktop Chrome'] },
         },
+        {
+            name: 'chromium-los-angeles',
+            use: {
+                ...devices['Desktop Chrome'],
+                timezoneId: 'America/Los_Angeles',
+            },
+        },
     ],
     webServer: {
-        command: 'pnpm pw:dev',
+        command: process.env.CI ? 'pnpm pw:start' : 'pnpm pw:build && pnpm pw:start',
         url: 'http://127.0.0.1:4173/aktivitetspenger/innsyn/',
         reuseExistingServer: !process.env.CI,
         timeout: 120_000,

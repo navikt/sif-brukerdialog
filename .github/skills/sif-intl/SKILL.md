@@ -110,10 +110,7 @@ export const sifSoknadUiMessages = {
 src/app/
   i18n/
     index.tsx          ← samler lib-meldinger + app-meldinger; eksporterer AppText, useAppIntl
-    nb/
-      appMessages.ts   ← aggregerer steg- og domain-meldinger
-    nn/
-      appMessages.ts   ← Record<keyof typeof appMessages_nb, string>
+    nb.ts              ← aggregerer steg-, side- og domenemeldinger
   pages/
     velkommen/
       i18n/
@@ -149,7 +146,7 @@ export const barnStegMessages_nn: Record<keyof typeof barnStegMessages_nb, strin
 };
 ```
 
-**`i18n/nb/appMessages.ts`:**
+**`i18n/nb.ts`:**
 
 ```ts
 import { barnStegMessages_nb } from '../../steps/barn/i18n/nb';
@@ -160,11 +157,11 @@ export const appMessages_nb = {
 };
 ```
 
-**`i18n/nn/appMessages.ts`:**
+**Nynorsk:** Legg til `i18n/nn.ts` bare når appen faktisk tilbyr nynorsk. Typen må alltid følge nøklene i `nb.ts`.
 
 ```ts
 import { barnStegMessages_nn } from '../../steps/barn/i18n/nn';
-import { appMessages_nb } from '../nb/appMessages';
+import { appMessages_nb } from './nb';
 
 export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     ...barnStegMessages_nn,
@@ -178,26 +175,19 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
 import { typedIntlHelper } from '@navikt/sif-common-utils';
 import { sifSoknadUiMessages } from '@sif/soknad-ui/i18n';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { velkommenPageMessages_nb } from '../pages/velkommen/i18n/nb';
-import { velkommenPageMessages_nn } from '../pages/velkommen/i18n/nn';
-import { appMessages_nb } from './nb/appMessages';
-import { appMessages_nn } from './nn/appMessages';
+import { appMessages_nb } from './nb';
 
 const libMessages = {
     nb: { ...sifSoknadUiMessages.nb },
-    nn: { ...sifSoknadUiMessages.nn },
 };
 
 const nb = {
     ...libMessages.nb,
     ...appMessages_nb,
-    ...velkommenPageMessages_nb,
 };
 
 const nn: Record<keyof typeof nb, string> = {
-    ...libMessages.nn,
-    ...appMessages_nn,
-    ...velkommenPageMessages_nn,
+    ...nb,
 };
 
 export type AppMessageKeys = keyof typeof nb;
@@ -336,9 +326,9 @@ I komponenten sendes taggen inn som en `values`-funksjon:
 
 ### Aggregering
 
-- Bruk spread (`...`) for å samle meldinger fra steg/sider inn i `appMessages.ts`.
-- `nn/appMessages.ts` sprer `...stegMessages_nn` og typecheckes mot `keyof typeof appMessages_nb`.
-- `index.tsx` i appen sprer lib-meldinger først, så app-meldinger, så side-meldinger (senere spread vinner ved nøkkelkonflikt).
+- Bruk spread (`...`) for å samle meldinger fra steg og sider i `i18n/nb.ts`.
+- `i18n/nn.ts` typecheckes mot `keyof typeof appMessages_nb` når appen tilbyr nynorsk.
+- `index.tsx` i appen sprer lib-meldinger først, så app-meldinger.
 
 ### Eksport fra pakker
 
@@ -371,14 +361,14 @@ Gitt en komponent i `steps/<steg-mappenavn>/`, les følgende fire filer i parall
 | `steps/<steg-mappenavn>/<StegComponent>.tsx` | Komponentfilen med hardkodede tekster |
 | `steps/<steg-mappenavn>/i18n/nb.ts`          | Eksisterende nb-nøkler for steget     |
 | `steps/<steg-mappenavn>/i18n/nn.ts`          | Eksisterende nn-nøkler for steget     |
-| `i18n/nb/appMessages.ts`                     | Bekrefter steg-modulen er registrert  |
+| `i18n/nb.ts`                                 | Bekrefter steg-modulen er registrert  |
 
 Eksempel: For `AndreYtelserSteg.tsx` i `steps/andre-ytelser/`, les:
 
 - `steps/andre-ytelser/AndreYtelserSteg.tsx`
 - `steps/andre-ytelser/i18n/nb.ts`
 - `steps/andre-ytelser/i18n/nn.ts`
-- `i18n/nb/appMessages.ts`
+- `i18n/nb.ts`
 
 ### Side-komponent i en app
 
@@ -412,8 +402,8 @@ Når du skal opprette eller oppdatere i18n-filer:
 
 1. Opprett/oppdater `nb.ts` med eksisterende eller eksplisitt levert bokmålstekst, uten omskriving.
 2. Opprett/oppdater `nn.ts` med `Record<keyof typeof ..._nb, string>` — ikke kopier nb som utgangspunkt, bruk heller spread ...nb. Da ser vi nå noen nn nøkler mangler
-3. Importer og spread i riktig `appMessages.ts` (nb og nn).
-4. Verifiser at `index.tsx` i appen inkluderer nn-versjon av alle kilder.
+3. Importer og spread i `i18n/nb.ts`; oppdater `i18n/nn.ts` bare når appen tilbyr nynorsk.
+4. Verifiser at `index.tsx` i appen inkluderer app-meldingene.
 5. Sjekk at `applicationIntlMessages` eksporterer `{ nb, nn }`.
 
 Hvis oppgaven gjelder uttrekk fra hardkodede tekster i komponenter, skal `nb.ts` gjengi nøyaktig samme tekst som stod i komponenten før uttrekket.
@@ -452,7 +442,7 @@ For hvert steg med inline tekster:
 3. Opprett `nn.ts` med `Record<keyof typeof nb, string>` og spread `...nb` — **ikke oversett tekstene til nynorsk**. Nynorsk-oversettelse gjøres manuelt av utvikler i etterkant.
 4. **For pakker:** importer og spread `_nb`-variabelen i pakkens `i18n/index.tsx` (i `nb`-objektet), slik at meldingene eksporteres via `sifSoknadUiMessages` / `applicationIntlMessages`. Uten dette steget er meldingene ikke tilgjengelige i konsumerende apper.
     - Importer og spread også `_nn`-variabelen i `nn`-objektet **bare hvis den inneholder faktiske nynorsk-oversettelser** (dvs. ikke er kun `{ ...nb }`). Hvis `nn.ts` bare er et spread av `nb`, er `...nb` i `nn` allerede tilstrekkelig — ikke legg til redundant import.
-5. Tekstene eksporteres i `appMessages.ts` ved å spre `...barnStegMessages_nb` og `...barnStegMessages_nn`.
+5. Tekstene eksporteres fra `i18n/nb.ts` ved å spre `...barnStegMessages_nb`.
 
 ### Steg 3 — Oppdater alle komponenter (batch)
 
@@ -571,7 +561,7 @@ MENINGSAVVIK
 ## Kildereferanser
 
 - App: `apps/aktivitetspenger-soknad/src/app/i18n/index.tsx`
-- App-meldinger: `apps/aktivitetspenger-soknad/src/app/i18n/nb/appMessages.ts`
+- App-meldinger: `apps/aktivitetspenger-soknad/src/app/i18n/nb.ts`
 - Side-meldinger: `apps/aktivitetspenger-soknad/src/app/pages/velkommen/i18n/nb.ts` / `nn.ts`
 - Steg-meldinger: `apps/aktivitetspenger-soknad/src/app/steps/barn/i18n/nb.ts`
 - Pakke: `packages/sif-soknad-ui/src/i18n/index.tsx`

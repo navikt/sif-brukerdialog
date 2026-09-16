@@ -1,7 +1,17 @@
 version: 2
+
+registries:
+  github-npm:
+    type: npm-registry
+    url: https://npm.pkg.github.com
+    token: ${{secrets.READER_TOKEN}}
+    scope: "@navikt"
+
 updates:
   - package-ecosystem: npm
     directory: "/"
+    registries:
+      - github-npm
     schedule:
       interval: daily
     cooldown:
@@ -19,9 +29,6 @@ updates:
           - "react"
           - "react-dom"
           - "@types/react"
-      sentry:
-        patterns:
-          - "@sentry*"
       typescript-eslint:
         patterns:
           - "@typescript-eslint*"

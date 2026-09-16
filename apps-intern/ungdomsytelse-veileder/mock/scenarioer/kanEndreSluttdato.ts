@@ -1,10 +1,13 @@
 import {
+    Avslutningsårsak,
     DeltakelseDto,
     DeltakelseHistorikkDto,
+    DeltakelseStatus,
     DeltakerPersonalia,
     Endringstype,
     Revisjonstype,
 } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { PeriodeKanForlengesÅrsak } from '../../src/utils/deltakelseUtils';
 import { beregnPeriodeMaksDato, relativeMockISODate, relativeMockTimestamp } from '../mockDateUtils';
 import { MockScenario } from './types';
 
@@ -35,7 +38,9 @@ const deltakelse: DeltakelseDto = {
     deltaker: { id: DELTAKER_ID, deltakerIdent: '24529831982' },
     fraOgMed: FRA_OG_MED,
     tilOgMed: relativeMockISODate(6, 'months'),
+    avslutningsårsak: Avslutningsårsak.ARBEID_MED_OPPFØLGING_FRA_NAV,
     erSlettet: false,
+    status: DeltakelseStatus.AKTIV,
     harOpphørsvedtak: false,
     søktTidspunkt: relativeMockTimestamp(-8, 'months'),
     harForlengetPeriode: false,
@@ -74,12 +79,12 @@ export const kanEndreSluttdatoScenario: MockScenario = {
     beskrivelse: 'Kan endre sluttdato (utmeldt, aktiv periode)',
     gruppe: 'handlinger',
     forventedeHandlinger: {
-        kanSletteDeltakelse: { resultat: false, årsak: '' },
-        kanEndreStartdato: { resultat: true, årsak: '' },
-        kanMeldesUt: { resultat: false, årsak: '' },
-        kanEndreSluttdato: { resultat: true, årsak: '' },
-        kanSletteSluttdato: { resultat: true, årsak: '' },
-        kanForlengePeriode: { resultat: false, årsak: '' },
+        kanSletteDeltakelse: { tillatt: false, årsak: '' },
+        kanEndreStartdato: { tillatt: true, årsak: '' },
+        kanMeldesUt: { tillatt: false, årsak: '' },
+        kanEndreSluttdato: { tillatt: true, årsak: '' },
+        kanSletteSluttdato: { tillatt: true, årsak: '' },
+        kanForlengePeriode: { tillatt: false, årsak: '', årsakskode: PeriodeKanForlengesÅrsak.SLUTTDATO_ER_SATT },
     },
     deltakerPersonalia,
     skjultPåGithubPages: true,

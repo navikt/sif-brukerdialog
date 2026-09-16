@@ -1,37 +1,13 @@
-import { logFaroError } from '@shared/utils/faroUtils';
-import { ApiError, ApiErrorType, isApiAxiosError } from '@sif/api';
+import { appLogger } from '@sif/apm';
+import { ApiError, isApiAxiosError } from '@sif/api';
 
 export const logApiErrorFaro = (hookName: string, error: ApiError): void => {
-    const logData = {
-        hookName,
-        context: error.context,
-        message: error.message,
+    const axiosError = isApiAxiosError(error) ? error.originalError : undefined;
+    appLogger.logException(new Error(`API error in ${hookName}`), {
         type: error.type,
-        timestamp: new Date().toISOString(),
-        url: globalThis.location.href,
-    };
-
-    // Legg til metadata fra AxiosError uten sensitive data
-    if (isApiAxiosError(error)) {
-        const axiosError = error.originalError;
-        Object.assign(logData, {
-            httpStatus: axiosError.response?.status,
-            httpStatusText: axiosError.response?.statusText,
-            apiUrl: axiosError.config?.url,
-            requestTimeout: axiosError.config?.timeout,
-            // Legg til headers som ikke er sensitive
-            responseHeaders: axiosError.response?.headers
-                ? {
-                      'x-correlation-id': axiosError.response.headers['x-correlation-id'],
-                  }
-                : undefined,
-            errorCode: axiosError.code,
-        });
-    } else if (error.type === ApiErrorType.ZodValidationError) {
-        Object.assign(logData, {
-            originalError: error.originalError,
-        });
-    }
-
-    logFaroError(`API error in ${hookName}`, JSON.stringify(logData, null, 2));
+        context: error.context,
+        httpStatus: axiosError?.response?.status,
+        errorCode: axiosError?.code,
+        correlationId: axiosError?.response?.headers?.['x-correlation-id'],
+    });
 };

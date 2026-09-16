@@ -2,12 +2,7 @@ import { SøknadRoutes } from '@app/søknad/config/SøknadRoutes';
 import { expect, test } from '@playwright/test';
 
 import { routeUtils } from '../../utils/routeUtils';
-import { setNow as setNow } from '../../utils/setNow';
 import { testAccessibility } from '../../utils/testAccessibility';
-
-test.beforeEach(async ({ page }) => {
-    await setNow(page);
-});
 
 test('Ugyldig k9format på sak', async ({ page }) => {
     await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN, 'ugyldig-k9-format');

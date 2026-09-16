@@ -1,15 +1,17 @@
-import { opphorVedMaksdatoMessages_nb } from '../modules/oppgavepaneler/opphor-ved-maksdato/i18n/nb';
+import { oppgavebekreftelse_nb } from '../modules/oppgavebekreftelse/i18n/nb';
 import { avvikRegisterinntektMessages_nb } from '../modules/oppgavepaneler/avvik-registerinntekt/i18n/nb';
-import { bostedVilkårMessages_nb } from '../modules/oppgavepaneler/bostedsvilkar/i18n/nb';
+import { bostedVilkårOpphørMessages_nb } from '../modules/oppgavepaneler/bostedsvilkar-opphor/i18n/nb';
+import { bostedVilkårMessages_nb } from '../modules/oppgavepaneler/bostedsvilkar-periode/i18n/nb';
 import { endretSluttdatoMessages_nb } from '../modules/oppgavepaneler/endret-sluttdato/i18n/nb';
 import { endretStartOgSluttdatoMessages_nb } from '../modules/oppgavepaneler/endret-start-og-sluttdato/i18n/nb';
 import { endretStartdatoMessages_nb } from '../modules/oppgavepaneler/endret-startdato/i18n/nb';
 import { fjernetPeriodeMessages_nb } from '../modules/oppgavepaneler/fjernet-periode/i18n/nb';
 import { meldtUtMessages_nb } from '../modules/oppgavepaneler/meldt-ut/i18n/nb';
+import { opphorVedMaksdatoMessages_nb } from '../modules/oppgavepaneler/opphor-ved-maksdato/i18n/nb';
 import { rapporterInntektMessages_nb } from '../modules/oppgavepaneler/rapporter-inntekt/i18n/nb';
 import { søkYtelseOppgaveMessages_nb } from '../modules/oppgavepaneler/sok-ytelse/i18n/nb';
 
-export const ungUi_messages_nb = {
+export const ungInnsyn_messages_nb = {
     ...avvikRegisterinntektMessages_nb,
     ...endretStartOgSluttdatoMessages_nb,
     ...endretSluttdatoMessages_nb,
@@ -18,6 +20,8 @@ export const ungUi_messages_nb = {
     ...meldtUtMessages_nb,
     ...rapporterInntektMessages_nb,
     ...søkYtelseOppgaveMessages_nb,
+    ...oppgavebekreftelse_nb,
+    ...bostedVilkårOpphørMessages_nb,
     ...bostedVilkårMessages_nb,
     ...opphorVedMaksdatoMessages_nb,
 
@@ -53,12 +57,9 @@ export const ungUi_messages_nb = {
     '@ungInnsyn.oppgaveOgTilbakemelding.beskjedFraNav': 'Beskjed fra Nav',
     '@ungInnsyn.oppgaveOgTilbakemelding.tilbakemeldingLabel': 'Tilbakemelding',
 
-    '@ungInnsyn.oppgavebekreftelse.ubesvart.tittel': 'Hei {navn}',
-    '@ungInnsyn.oppgavebekreftelse.kvittering.tittel': 'Svaret ditt er sendt inn',
-    '@ungInnsyn.oppgavebekreftelse.besvart.svarMangler': 'Informasjon om hva du svarte er ikke tilgjengelig enda.',
-
-    '@ungInnsyn.oppgavebekreftelse.oppgavetekst.ariaLabel': 'Oppgaveinformasjon',
-    '@ungInnsyn.oppgavebekreftelse.uttalelseform.ariaLabel': 'Svarskjema',
+    '@ungInnsyn.lovlenke.arbeidsmarkedsloven_13_fjerde_ledd': '§ 13 fjerde ledd i arbeidsmarkedsloven (lovdata.no)',
+    '@ungInnsyn.lovlenke.forskriftUpy_11':
+        '§ 11 i Forskrift om forsøk med ungdomsprogram og ungdomsprogramytelse (gjelder fra 1. august 2025) (lovdata.no)',
 
     /** OppgaveMessages */
     '@ungInnsyn.oppgavestatus.LØST': 'Løst',
@@ -66,6 +67,12 @@ export const ungUi_messages_nb = {
     '@ungInnsyn.oppgavestatus.AVBRUTT': 'Avbrutt',
     '@ungInnsyn.oppgavestatus.UTLØPT': 'Utløpt',
     '@ungInnsyn.oppgavestatus.LUKKET': 'Lukket',
+
+    /** BostedKilde */
+    '@ungInnsyn.bostedKilde.header': 'Hvor har vi fått opplysningene fra?',
+    '@ungInnsyn.bostedKilde.BRUKER': 'Fra deg.',
+    '@ungInnsyn.bostedKilde.FOLKEREGISTER': 'Folkeregisteret.',
+    '@ungInnsyn.bostedKilde.FRITEKST_FALLBACK': 'Informasjon om kilde mangler',
 
     /** InntektForm */
     '@ungInnsyn.inntektForm.validation.harInntekt.yesOrNoIsUnanswered': 'Du må svare på om du hadde inntekt.',

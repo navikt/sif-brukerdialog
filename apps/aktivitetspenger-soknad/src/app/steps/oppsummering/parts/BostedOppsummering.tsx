@@ -2,7 +2,8 @@ import { FormSummary } from '@navikt/ds-react';
 import { JaNeiSvar } from '@sif/soknad-ui';
 import { useStepNavigation } from '@sif/soknad-app';
 
-import { SøknadStepId } from '../../../types/SoknadStepId';
+import { SøknadStepId } from '@app/types/SoknadStepId';
+import { AppText } from '@app/i18n';
 
 interface Props {
     erBosattITrondheim: boolean;
@@ -13,12 +14,16 @@ export const BostedOppsummering = ({ erBosattITrondheim }: Props) => {
     return (
         <FormSummary>
             <FormSummary.Header>
-                <FormSummary.Heading level="2">Bosted</FormSummary.Heading>
+                <FormSummary.Heading level="2">
+                    <AppText id="oppsummeringSteg.bosted.tittel" />
+                </FormSummary.Heading>
             </FormSummary.Header>
 
             <FormSummary.Answers>
                 <FormSummary.Answer>
-                    <FormSummary.Label>Er du bosatt i Trondheim kommune?</FormSummary.Label>
+                    <FormSummary.Label>
+                        <AppText id="oppsummeringSteg.bosted.erBosattITrondheim" />
+                    </FormSummary.Label>
                     <FormSummary.Value className="capitalize">
                         <JaNeiSvar harSvartJa={erBosattITrondheim} />
                     </FormSummary.Value>

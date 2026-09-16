@@ -5,6 +5,7 @@ import { dateFormatter, dateToISODate, formatName } from '@sif/utils';
 import { SifSoknadUiText, useSifSoknadUiIntl } from '../../i18n';
 import ItemListDarkside from '../item-list-darkside/ItemListDarkside';
 import { RegistrertBarn } from '@sif/api/k9-prosessering';
+import { ReactNode } from 'react';
 
 interface Props {
     listetittel: string;
@@ -29,7 +30,7 @@ export const RegistrerteBarnListe = ({
             <ItemListDarkside<RegistrertBarn>
                 getItemId={(barn): string => barn.aktørId}
                 getItemTitle={(barn): string => barn.etternavn}
-                labelRenderer={(barn): React.ReactNode => (
+                labelRenderer={(barn): ReactNode => (
                     <HStack gap="space-16">
                         <Box>
                             <SifSoknadUiText

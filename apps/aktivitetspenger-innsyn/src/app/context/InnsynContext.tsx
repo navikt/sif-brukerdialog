@@ -1,6 +1,6 @@
 import { Søker } from '@sif/api/k9-prosessering';
 import { Oppgave } from '@sif/api/ung-brukerdialog';
-import { createContext, useMemo } from 'react';
+import { createContext, ReactNode, useMemo } from 'react';
 
 export interface InnsynContextType {
     søker: Søker;
@@ -11,7 +11,7 @@ export interface InnsynContextType {
 export const InnsynContext = createContext<InnsynContextType>(null!);
 
 interface ContextProviderProps extends InnsynContextType {
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 export const InnsynContextProvider = ({ children, søker, oppgaver, refetchOppgaver }: ContextProviderProps) => {

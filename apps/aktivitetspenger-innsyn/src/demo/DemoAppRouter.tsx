@@ -2,8 +2,9 @@ import { VStack } from '@navikt/ds-react';
 import { HashRouter } from 'react-router-dom';
 
 import ScenarioHeader from './ScenarioHeader';
+import { ReactNode } from 'react';
 
-const DemoAppRouter = ({ children }: { children: React.ReactNode }) => {
+const DemoAppRouter = ({ children }: { children: ReactNode }) => {
     return (
         <HashRouter>
             <div className="demoMode">

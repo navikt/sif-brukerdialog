@@ -31,6 +31,8 @@ export const zAnnenForelder = z.object({
     situasjonBeskrivelse: z.string().nullish(),
 });
 
+export const zArbeidsgiverOlp = z.record(z.string(), z.unknown());
+
 export const zArbeidstidPeriodeInfo = z.object({
     faktiskArbeidTimerPerDag: z.string(),
     jobberNormaltTimerPerDag: z.string(),
@@ -137,11 +139,6 @@ export const zFerieuttakIPerioden = z.object({
     skalTaUtFerieIPerioden: z.boolean(),
 });
 
-export const zForutgåendeBosteder = z.object({
-    harBoddIUtlandetSiste5År: z.boolean(),
-    utenlandsoppholdSiste5År: z.array(zBosted),
-});
-
 export const zFosterhjemgodtgjørelse = z.object({
     mottarFosterhjemsgodtgjørelse: z.boolean(),
     type: z.enum(['MOTTAR_IKKE', 'MOTTAR_FRIKJØPT', 'MOTTAR_I_DELER_AV_PERIODEN', 'MOTTAR_I_HELE_PERIODEN']),
@@ -201,18 +198,6 @@ export const zKontonummerInfo = z.object({
     kontonummerFraRegister: z.string().nullish(),
 });
 
-export const zAktivitetspengersøknad = z.object({
-    barnErRiktig: z.boolean(),
-    erBosattITrondheim: z.boolean(),
-    forutgåendeBosteder: zForutgåendeBosteder,
-    harBekreftetOpplysninger: z.boolean(),
-    harForståttRettigheterOgPlikter: z.boolean(),
-    kontonummerInfo: zKontonummerInfo,
-    språk: z.string(),
-    startdato: z.iso.date(),
-    søkerNorskIdent: z.string(),
-});
-
 export const zKursDag = z.object({
     dato: z.iso.date(),
     tidKurs: z.string().nullish(),
@@ -226,7 +211,7 @@ export const zKursholder = z.object({
 
 export const zLand = z.object({
     landkode: z.string().min(1),
-    landnavn: z.string().min(1),
+    landnavn: z.string().min(0).max(100),
 });
 
 export const zLovbestemtFeriePeriodeInfo = z.object({
@@ -357,11 +342,6 @@ export const zOrganisasjonDto = z.object({
     organisasjonsnummer: z.string(),
 });
 
-export const zPdfConfig = z.object({
-    harInnholdsfortegnelse: z.boolean(),
-    språk: z.string(),
-});
-
 export const zPeriode = z.object({
     fraOgMed: z.iso.date(),
     tilOgMed: z.iso.date(),
@@ -400,10 +380,6 @@ export const zArbeidsgiver = z.object({
     navn: z.string().min(1),
     organisasjonsnummer: z.string().min(0).max(20),
     sluttetFørSøknadsperiode: z.boolean().nullish(),
-});
-
-export const zArbeidsgiverOlp = z.object({
-    arbeidsforhold: zArbeidsforholdOlp.nullish(),
 });
 
 export const zFrilans = z.object({
@@ -548,7 +524,10 @@ export const zUngdomsytelseInntektsrapportering = z.object({
 
 export const zUngdomsytelseOppgaveUttalelseDto = z.object({
     harUttalelse: z.boolean(),
-    uttalelseFraDeltaker: z.string().nullish(),
+    uttalelseFraDeltaker: z
+        .string()
+
+        .nullish(),
 });
 
 export const zUngdomsytelseOppgaveDto = z.object({
@@ -573,12 +552,8 @@ export const zUngdomsytelsesøknad = z.object({
 });
 
 export const zUtbetalingsperiode = z.object({
-    aktivitetFravær: z.array(z.enum(['ARBEIDSTAKER', 'FRILANSER', 'SELVSTENDIG_VIRKSOMHET'])).optional(),
-    antallTimerBorte: z.string().nullish(),
-    antallTimerPlanlagt: z.string().nullish(),
-    fraOgMed: z.iso.date().optional(),
-    tilOgMed: z.iso.date().optional(),
-    årsak: z.enum(['STENGT_SKOLE_ELLER_BARNEHAGE', 'SMITTEVERNHENSYN', 'ORDINÆRT_FRAVÆR']).optional(),
+    fraOgMed: z.iso.date(),
+    tilOgMed: z.iso.date(),
 });
 
 export const zUtenlandskArbeidsforhold = z.object({
@@ -614,6 +589,33 @@ export const zUtenlandsopphold = z.object({
         .optional(),
 });
 
+export const zUtenlandsoppholdAktivitetspenger = z.object({
+    fraOgMed: z.iso.date(),
+    jobbetIPerioden: z.boolean(),
+    land: zLand,
+    tilOgMed: z.iso.date(),
+    utenlandskNasjonalId: z.string().min(0).max(50).nullish(),
+});
+
+export const zMedlemskapAktivitetspenger = z.object({
+    harBoddINorge: z.boolean(),
+    harJobbetINorge: z.boolean().nullish(),
+    harJobbetUtenforNorge: z.boolean().nullish(),
+    utenlandsopphold: z.array(zUtenlandsoppholdAktivitetspenger),
+});
+
+export const zAktivitetspengersøknad = z.object({
+    barnErRiktig: z.boolean(),
+    erBosattITrondheim: z.boolean(),
+    harBekreftetOpplysninger: z.boolean(),
+    harForståttRettigheterOgPlikter: z.boolean(),
+    kontonummerInfo: zKontonummerInfo,
+    medlemskap: zMedlemskapAktivitetspenger,
+    språk: z.string(),
+    startdato: z.iso.date(),
+    søkerNorskIdent: z.string(),
+});
+
 export const zUtenlandsoppholdIPerioden = z.object({
     opphold: z.array(zUtenlandsopphold),
     skalOppholdeSegIUtlandetIPerioden: z.boolean().nullish(),
@@ -628,27 +630,7 @@ export const zUttak = z.object({
 });
 
 export const zVarigEndring = z.object({
-    dato: z.iso.date().optional(),
-    forklaring: z.string().optional(),
-    inntektEtterEndring: z
-        .int()
-        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
-        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
-        .optional(),
-});
-
-export const zVerdilisteElement = z.object({
-    alternativer: z.string().nullish(),
-    label: z.string(),
-    verdi: z.string().nullish(),
-    visningsVariant: z.string().nullish(),
-});
-
-export const zFamiliePdfPostRequest = z.object({
-    label: z.string(),
-    pdfConfig: zPdfConfig,
-    skjemanummer: z.string().nullish(),
-    verdiliste: z.array(zVerdilisteElement),
+    dato: z.iso.date(),
 });
 
 export const zVirksomhet = z.object({
@@ -668,7 +650,7 @@ export const zVirksomhet = z.object({
     registrertIUtlandet: zLand.nullish(),
     regnskapsfører: z.null().optional(),
     tilOgMed: z.iso.date().nullish(),
-    varigEndring: z.null().optional(),
+    varigEndring: zVarigEndring.nullish(),
     yrkesaktivSisteTreFerdigliknedeÅrene: z.null().optional(),
 });
 
@@ -687,7 +669,7 @@ export const zOmsorgspengerutbetalingSnfSøknad = z.object({
     språk: z.string(),
     spørsmål: z.array(zSpørsmålOgSvar),
     søkerNorskIdent: z.string().nullish(),
-    utbetalingsperioder: z.array(z.unknown()),
+    utbetalingsperioder: z.array(zUtbetalingsperiode),
     vedlegg: z.array(z.string()),
 });
 
@@ -854,6 +836,25 @@ export const zOmsorgspengerutbetalingArbeidstakerSøknadWritable = z.object({
     vedlegg: z.array(z.string()),
 });
 
+export const zUtbetalingsperiodeWritable = z.object({
+    aktivitetFravær: z.array(z.enum(['ARBEIDSTAKER', 'FRILANSER', 'SELVSTENDIG_VIRKSOMHET'])).optional(),
+    antallTimerBorte: z.string().nullish(),
+    antallTimerPlanlagt: z.string().nullish(),
+    fraOgMed: z.iso.date(),
+    tilOgMed: z.iso.date(),
+    årsak: z.enum(['STENGT_SKOLE_ELLER_BARNEHAGE', 'SMITTEVERNHENSYN', 'ORDINÆRT_FRAVÆR']).optional(),
+});
+
+export const zVarigEndringWritable = z.object({
+    dato: z.iso.date(),
+    forklaring: z.string().optional(),
+    inntektEtterEndring: z
+        .int()
+        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
+        .optional(),
+});
+
 export const zVirksomhetWritable = z.object({
     erNyoppstartet: z.boolean(),
     fiskerErPåBladB: z.boolean().nullish(),
@@ -871,7 +872,7 @@ export const zVirksomhetWritable = z.object({
     registrertIUtlandet: zLand.nullish(),
     regnskapsfører: zRegnskapsfører.nullish(),
     tilOgMed: z.iso.date().nullish(),
-    varigEndring: zVarigEndring.nullish(),
+    varigEndring: zVarigEndringWritable.nullish(),
     yrkesaktivSisteTreFerdigliknedeÅrene: zYrkesaktivSisteTreFerdigliknedeArene.nullish(),
 });
 
@@ -890,7 +891,7 @@ export const zOmsorgspengerutbetalingSnfSøknadWritable = z.object({
     språk: z.string(),
     spørsmål: z.array(zSpørsmålOgSvar),
     søkerNorskIdent: z.string().nullish(),
-    utbetalingsperioder: z.array(zUtbetalingsperiode),
+    utbetalingsperioder: z.array(zUtbetalingsperiodeWritable),
     vedlegg: z.array(z.string()),
 });
 
@@ -1142,13 +1143,6 @@ export const zHentBarnResponse = zBarnOppslagListe;
  * OK
  */
 export const zHentSøkerResponse = zSøker;
-
-export const zLagPdfBody = zFamiliePdfPostRequest;
-
-/**
- * OK
- */
-export const zLagPdfResponse = z.string();
 
 export const zInnsendingPleiepengerILivetsSluttfaseSøknadBody = zPleiepengerILivetsSluttfaseSøknadWritable;
 

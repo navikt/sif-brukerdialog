@@ -1,10 +1,12 @@
 import {
     DeltakelseDto,
     DeltakelseHistorikkDto,
+    DeltakelseStatus,
     DeltakerPersonalia,
     Endringstype,
     Revisjonstype,
 } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { PeriodeKanForlengesÅrsak } from '../../src/utils/deltakelseUtils';
 import { beregnPeriodeMaksDato, relativeMockTimestamp } from '../mockDateUtils';
 import { MockScenario } from './types';
 
@@ -36,6 +38,7 @@ const deltakelse: DeltakelseDto = {
     fraOgMed: FRA_OG_MED,
     tilOgMed: undefined,
     erSlettet: true,
+    status: DeltakelseStatus.IKKE_AKTIV,
     harOpphørsvedtak: true,
     harForlengetPeriode: false,
     forlengetPeriodeMaksDato: beregnPeriodeMaksDato(FRA_OG_MED),
@@ -67,12 +70,12 @@ export const slettetDeltakerScenario: MockScenario = {
     beskrivelse: 'Slettet deltaker',
     gruppe: 'grunnscenarioer',
     forventedeHandlinger: {
-        kanEndreStartdato: { resultat: false, årsak: '' },
-        kanMeldesUt: { resultat: false, årsak: '' },
-        kanEndreSluttdato: { resultat: false, årsak: '' },
-        kanSletteSluttdato: { resultat: false, årsak: '' },
-        kanForlengePeriode: { resultat: false, årsak: '' },
-        kanSletteDeltakelse: { resultat: false, årsak: '' },
+        kanEndreStartdato: { tillatt: false, årsak: '' },
+        kanMeldesUt: { tillatt: false, årsak: '' },
+        kanEndreSluttdato: { tillatt: false, årsak: '' },
+        kanSletteSluttdato: { tillatt: false, årsak: '' },
+        kanForlengePeriode: { tillatt: false, årsak: '', årsakskode: PeriodeKanForlengesÅrsak.DELTAKELSE_ER_SLETTET },
+        kanSletteDeltakelse: { tillatt: false, årsak: '' },
     },
     deltakerPersonalia,
     deltakelse,

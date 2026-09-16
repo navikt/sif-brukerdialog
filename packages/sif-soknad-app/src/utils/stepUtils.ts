@@ -37,17 +37,3 @@ export const getPreviousNextStep = (
         nextStepId: currentIndex < includedStepIds.length - 1 ? includedStepIds[currentIndex + 1] : null,
     };
 };
-
-/**
- * Finner første uferdige steg ETTER fromStepId i inkluderte steg.
- * Fallback: neste steg i rekkefølge, eller undefined hvis fromStepId er siste steg.
- */
-export const findNextStepId = (includedSteps: IncludedStep[], fromStepId: string): string | undefined => {
-    const fromIndex = includedSteps.findIndex((s) => s.stepId === fromStepId);
-    if (fromIndex === -1) {
-        return includedSteps.find((s) => !s.completed)?.stepId;
-    }
-
-    const remaining = includedSteps.slice(fromIndex + 1);
-    return remaining.find((s) => !s.completed)?.stepId ?? remaining[0]?.stepId;
-};

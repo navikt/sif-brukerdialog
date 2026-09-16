@@ -22,7 +22,7 @@ export default defineConfig({
     webServer: {
         command: 'pnpm dev',
         url: 'http://localhost:8080/innsyn',
-        reuseExistingServer: true,
+        reuseExistingServer: !process.env.CI,
         env: {
             PUBLIC_PATH: '/innsyn',
             API_URL: 'http://localhost:8089',
@@ -30,9 +30,8 @@ export default defineConfig({
             NEXT_PUBLIC_FEATURE_FARO: 'off',
             NEXT_PUBLIC_FEATURE_INNTEKTSMELDING: 'on',
             NEXT_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
-            NEXT_PUBLIC_APPSTATUS_DATASET: 'staging',
+            NEXT_PUBLIC_APPSTATUS_DATASET: 'production',
             NEXT_PUBLIC_ANALYTICS_KEY: 'default',
-            NEXT_PUBLIC_SCRUB_SENTRY: 'on',
             NEXT_PUBLIC_BASE_PATH: '/innsyn',
             NEXT_PUBLIC_LOGIN_URL: '/dummy',
             NEXT_PUBLIC_RUNTIME_ENVIRONMENT: 'dev',

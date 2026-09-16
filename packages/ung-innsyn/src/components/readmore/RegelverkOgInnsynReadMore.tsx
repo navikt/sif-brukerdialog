@@ -1,7 +1,7 @@
 import { BodyLong, Link, List, ReadMore, VStack } from '@navikt/ds-react';
 
-import { UngUiText, useUngUiIntl } from '../../i18n';
-import { Lovlenke } from '../../modules/oppgavepaneler/utils/lovverk';
+import { UngInnsynText, useUngInnsynIntl } from '../../i18n';
+import { Lovlenke } from '../../modules/oppgavepaneler/oppgaveLovverk';
 import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
     ytelsetype: OppgaveYtelsetype;
 }
 export const RegelverkOgInnsynReadMore = ({ lenker, ytelsetype }: Props) => {
-    const { text } = useUngUiIntl();
+    const { text } = useUngInnsynIntl();
 
     if (lenker.length === 0) {
         return null;
@@ -27,13 +27,13 @@ export const RegelverkOgInnsynReadMore = ({ lenker, ytelsetype }: Props) => {
                     {lenker.map((lenke) => (
                         <List.Item key={lenke.url}>
                             <Link href={lenke.url} target="_blank" rel="noopener noreferrer">
-                                {lenke.tekst}
+                                {text(lenke.tekstKey)}
                             </Link>
                         </List.Item>
                     ))}
                 </List>
                 <BodyLong>
-                    <UngUiText
+                    <UngInnsynText
                         id="@ungInnsyn.regelverkOgInnsyn.readMore.dokumenter"
                         values={{ link: (content) => <Link href="https://www.nav.no/innsynskrav">{content}</Link> }}
                     />

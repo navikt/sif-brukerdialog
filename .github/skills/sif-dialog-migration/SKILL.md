@@ -28,6 +28,7 @@ description: Porter *ListAndDialog-komponenter fra sif-common-forms-ds (v1/Formi
 - Skillen gjelder **én dialog om gangen**.
 - For generell Formik→RHF i app-steg (ikke dialoger i `sif-soknad-forms`) → bruk `sif-formik-to-rhf`.
 - For rene i18n-endringer → bruk `sif-intl`.
+- For datoer og tidssoner → bruk `sif-date-handling`.
 
 ---
 

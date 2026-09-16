@@ -1,12 +1,13 @@
-// Eksempel: types/Soknadsdata.ts
-// Tilpass: legg til per-steg typer
-import { SøknadStepId } from '@app/setup/config/SoknadStepId';
-import { BaseSøknadsdata } from '@sif/soknad/types';
+// src/app/types/Soknadsdata.ts
+// Tilpass: legg til per-steg typer, ingen BaseSøknadsdata
+import { SøknadStepId } from './SoknadStepId';
 
 export type MittStegSøknadsdata = {
-    // TODO: legg til felt når steget implementeres
+    // TODO: legg til felter
 };
 
-export interface Søknadsdata extends BaseSøknadsdata {
+export type Søknadsdata = {
+    harForståttRettigheterOgPlikter?: boolean;
     [SøknadStepId.MITT_STEG]?: MittStegSøknadsdata;
-}
+    [SøknadStepId.OPPSUMMERING]?: never;
+};

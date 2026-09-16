@@ -1,4 +1,4 @@
-import { ungUiMessages } from '@sif/ung-innsyn/i18n';
+import { ungInnsynMessages } from '@sif/ung-innsyn/i18n';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { appMessages_nb } from './nb/appMessages';
@@ -6,7 +6,7 @@ import { typedIntlHelper } from '@sif/utils';
 
 const libMessages = {
     nb: {
-        ...ungUiMessages.nb,
+        ...ungInnsynMessages.nb,
     },
 };
 

@@ -1,5 +1,18 @@
 # @navikt/sif-common-ui
 
+## 0.5.0
+
+### Minor Changes
+
+- Erstatte all bruk av sentry med nais/apm
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-env@0.2.0
+    - @navikt/sif-common-formik-ds@2.6.0
+    - @navikt/sif-validation@1.0.22
+
 ## 0.4.96
 
 ### Patch Changes

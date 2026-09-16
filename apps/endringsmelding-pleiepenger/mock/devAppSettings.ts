@@ -7,7 +7,6 @@ export const getDevAppSettings = (isTest?: boolean) => {
         PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger',
         GITHUB_REF_NAME: 'some_branch_name',
 
-        SIF_PUBLIC_ANALYTICS_API_KEY: 'key',
         SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
         SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
         SIF_PUBLIC_DEKORATOR_URL:
@@ -29,11 +28,11 @@ export const getDevAppSettings = (isTest?: boolean) => {
         SIF_INNSYN_API_URL: 'http://sif-innsyn-api',
 
         SIF_PUBLIC_ENDRE_OMSORGSTILBUD: 'on', //isTest ? 'off' : 'on',
+        SIF_PUBLIC_SJEKK_OM_ARBEIDSTID_ER_GYLDIG: 'on',
 
         VELG_SCENARIO: isTest ? 'on' : 'on',
         MSW: isTest ? 'off' : 'on',
         E2E_TEST: isTest ? 'true' : false,
-        NOW: '2023-01-01',
-        SIF_PUBLIC_DEBUG: 'true',
+        NOW: '2023-01-05T12:00:00Z',
     };
 };

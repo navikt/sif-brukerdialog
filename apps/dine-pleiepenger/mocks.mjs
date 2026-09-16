@@ -162,4 +162,4 @@ const server = setupServer(...handlers);
 server.listen({ onUnhandledRequest: 'bypass' });
 
 // eslint-disable-next-line no-console
-console.log(`[MSW] Mock server started with scenario: ${scenario}`);
+console.error(`[MSW] Mock server started with scenario: ${scenario}`);

@@ -1,13 +1,15 @@
-import { getCommonEnv, getMaybeEnv, getUngDeltakelseOpplyserBrowserEnv } from '@navikt/sif-common-env';
+import {
+    getCommonEnv,
+    getRequiredEnv,
+    getUngBrukerdialogApiBrowserEnv,
+    getUngDeltakelseOpplyserBrowserEnv,
+} from '@navikt/sif-common-env';
 
-import { AppEnv, AppEnvKey } from '../../../env.schema';
+import { AppEnv } from '../../../env.schema.ts';
 
 export const getAppEnv = (): AppEnv => ({
     ...getCommonEnv(),
+    ...getUngBrukerdialogApiBrowserEnv(),
     ...getUngDeltakelseOpplyserBrowserEnv(),
-
-    [AppEnvKey.SIF_PUBLIC_USE_FARO]: getMaybeEnv(AppEnvKey.SIF_PUBLIC_USE_FARO),
-    [AppEnvKey.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL]: getMaybeEnv(
-        AppEnvKey.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL,
-    ),
+    SIF_PUBLIC_AKTIVITETSPENGER_INNSYN_URL: getRequiredEnv('SIF_PUBLIC_AKTIVITETSPENGER_INNSYN_URL'),
 });

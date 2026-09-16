@@ -1,51 +1,69 @@
-import { initSentry, SentryConfig } from '@navikt/sif-common-sentry';
-import { FaroProvider, FaroProviderConfig } from '@navikt/sif-common-faro';
-import { DevBranchInfo } from '@sif/soknad-ui';
+import { AppStatusWrapper, SanityConfig } from '@navikt/appstatus-react-ds';
+import { ApplicationUnavailableContent, DevBranchInfo } from '@sif/soknad-ui';
+import { UxSignalsLoaderProvider } from '@sif/surveys';
 import { PropsWithChildren } from 'react';
 
-import { AnalyticsProvider, AnalyticsProviderConfig } from '../analytics/analytics';
+import { AnalyticsProvider } from '../analytics/analytics';
+import { AppIntlConfig, AppIntlProvider } from './AppIntlProvider';
 import { AppErrorBoundary } from './AppErrorBoundary';
 import { SifQueryClientProvider } from './SifQueryClientProvider';
-import { AppIntlConfig, AppIntlProvider } from './AppIntlProvider';
 
-interface SøknadAppProviderProps {
-    applicationKey: string;
-    appVersion: string;
-    faroConfig?: FaroProviderConfig;
-    analyticsConfig?: AnalyticsProviderConfig;
-    sentryConfig?: SentryConfig;
-    intlConfig?: AppIntlConfig;
+export type { SanityConfig };
+
+interface AppStatusConfig {
+    sanityConfig: SanityConfig;
 }
 
-let sentryInitialized = false;
+/**
+ * Provider-komponent som setter opp standard kontekster for søknadsapplikasjonen med:
+ * - analytics (innblikk)
+ * - internasjonalisering (i18n)
+ * - SifQueryClientProvider (react-query) med feil-logging via @sif/apm
+ * - appstatus (sanity)
+ * - feilgrensesnitt (error boundary)
+ * - UxSignals (laster inn ux signals)
+ */
+interface SøknadAppProviderProps {
+    /** Nøkkel for applikasjonen som brukes til å identifisere appen i
+     * ulike kontekster, f.eks. analytics og appstatus */
+    applicationKey: string;
+    /** Om analytics skal være aktivert. Hvis aktiv wrappes applikasjonen med
+     * AnalyticsProvider som setter ioo logging til Navs innblikk  */
+    useAnalytics?: boolean;
+    /** Konfigurasjon for internasjonalisering (i18n) */
+    intlConfig?: AppIntlConfig;
+    /** Konfigurasjon for appstatus - sif's sanity løsning for å skru av og på applikasjoner som er ei produksjon */
+    appStatusConfig?: AppStatusConfig;
+}
 
 export const SøknadAppProvider = ({
     applicationKey,
-    appVersion,
-    analyticsConfig,
-    faroConfig,
-    sentryConfig,
+    useAnalytics,
     intlConfig,
+    appStatusConfig,
     children,
 }: PropsWithChildren<SøknadAppProviderProps>) => {
-    if (sentryConfig && !sentryInitialized) {
-        initSentry(sentryConfig);
-        sentryInitialized = true;
-    }
     return (
-        <FaroProvider
-            applicationKey={applicationKey}
-            appVersion={appVersion}
-            isActive={faroConfig?.isActive}
-            telemetryCollectorURL={faroConfig?.telemetryCollectorURL}>
-            <AppErrorBoundary>
-                <SifQueryClientProvider>
-                    <AnalyticsProvider applicationKey={applicationKey} isActive={analyticsConfig?.isActive}>
-                        <AppIntlProvider config={intlConfig}>{children}</AppIntlProvider>
-                    </AnalyticsProvider>
-                </SifQueryClientProvider>
-            </AppErrorBoundary>
+        <AppErrorBoundary>
+            <SifQueryClientProvider>
+                <AnalyticsProvider applicationKey={applicationKey} isActive={useAnalytics}>
+                    <UxSignalsLoaderProvider>
+                        <AppIntlProvider config={intlConfig}>
+                            {appStatusConfig ? (
+                                <AppStatusWrapper
+                                    applicationKey={applicationKey}
+                                    sanityConfig={appStatusConfig.sanityConfig}
+                                    contentRenderer={() => children}
+                                    unavailableContentRenderer={() => <ApplicationUnavailableContent />}
+                                />
+                            ) : (
+                                <>{children}</>
+                            )}
+                        </AppIntlProvider>
+                    </UxSignalsLoaderProvider>
+                </AnalyticsProvider>
+            </SifQueryClientProvider>
             <DevBranchInfo />
-        </FaroProvider>
+        </AppErrorBoundary>
     );
 };

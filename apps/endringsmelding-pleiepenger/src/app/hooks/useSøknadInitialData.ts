@@ -1,64 +1,22 @@
-import {
-    ArbeidsgiverMedAnsettelseperioder,
-    IngenTilgangÅrsak,
-    K9Sak,
-    RequestStatus,
-    Sak,
-    SøknadContextState,
-    SøknadInitialDataState,
-    TimerEllerProsent,
-    UgyldigBarnFormatDetails,
-} from '@app/types';
-import { appSentryLogger } from '@app/utils';
-import { Søker } from '@navikt/sif-common-api';
-import { getMaybeEnv } from '@navikt/sif-common-env';
+import { RequestStatus, Sak, SøknadContextState, SøknadInitialDataState, TimerEllerProsent } from '@app/types';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { DateRange } from '@navikt/sif-common-utils';
+import { appLogger } from '@sif/apm';
 import { useState } from 'react';
 
-import { SøknadStatePersistence } from '../api/endpoints/søknadStateEndpoint';
-import { fetchInitialData } from '../api/fetchInitialData';
+import { fetchInitialData, InitialData, isSøknadInitialDataErrorState } from '../api/initialData';
 import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import { getEndringsdato, getTillattEndringsperiode } from '../utils/endringsperiode';
 import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
-import { getSakOgArbeidsgivereDebugInfo } from '../utils/getSakOgArbeidsgivereDebugInfo';
 
 export type SøknadInitialData = Omit<SøknadContextState, 'sak'> & { sak: Sak | undefined };
-
-export type IngenTilgangMeta = {
-    erArbeidstaker?: boolean;
-    erSN?: boolean;
-    erFrilanser?: boolean;
-    error?: UgyldigBarnFormatDetails;
-};
-
-export type SøknadInitialIkkeTilgang = {
-    status: RequestStatus.success;
-    kanBrukeSøknad: false;
-    årsak: IngenTilgangÅrsak[];
-    søker: Søker;
-    ingenTilgangMeta?: IngenTilgangMeta;
-};
-
-export const isSøknadInitialDataErrorState = (error: any): error is SøknadInitialDataState => {
-    return error !== undefined && Object.keys(error).length > 0 && error.status !== undefined;
-};
 
 const defaultSøknadState: Partial<SøknadContextState> = {
     søknadRoute: SøknadRoutes.VELKOMMEN,
 };
 
-const prepInitialData = (
-    loadedData: {
-        søker: Søker;
-        k9saker: K9Sak[];
-        antallSakerFørEndringsperiode: number;
-        arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[];
-        lagretSøknadState?: SøknadStatePersistence;
-    },
-    tillattEndringsperiode: DateRange,
-): SøknadInitialData => {
+const prepInitialData = (loadedData: InitialData, tillattEndringsperiode: DateRange): SøknadInitialData => {
     const { arbeidsgivere, lagretSøknadState, k9saker, søker, antallSakerFørEndringsperiode } = loadedData;
 
     const persistedSak = lagretSøknadState
@@ -70,17 +28,7 @@ const prepInitialData = (
             return getSakFromK9Sak(persistedSak, arbeidsgivere, tillattEndringsperiode);
         }
         if (k9saker.length === 1) {
-            const sak = getSakFromK9Sak(k9saker[0], arbeidsgivere, tillattEndringsperiode);
-
-            if (getMaybeEnv('SIF_PUBLIC_DEBUG') === 'true') {
-                appSentryLogger.logInfo(
-                    'debug.maskedSakInfo',
-                    JSON.stringify(
-                        getSakOgArbeidsgivereDebugInfo(k9saker[0], sak, arbeidsgivere, tillattEndringsperiode),
-                    ),
-                );
-            }
-            return sak;
+            return getSakFromK9Sak(k9saker[0], arbeidsgivere, tillattEndringsperiode);
         }
         return undefined;
     };
@@ -130,7 +78,7 @@ function useSøknadInitialData(): SøknadInitialDataState {
                     setInitialData(error);
                 } else {
                     const e = error instanceof Error ? error : new Error(String(error));
-                    appSentryLogger.logException(e, { context: 'fetchInitialData.error.else' });
+                    appLogger.logException(e, { context: 'fetchInitialData.error.else' });
                     setInitialData({
                         status: RequestStatus.error,
                         error,

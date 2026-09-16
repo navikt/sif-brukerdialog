@@ -13,13 +13,64 @@ export type ArbeidOgFrilansRegisterInntektDto = {
 export type BekreftBostedOppgavetypeDataDto = {
     erBosattITrondheim: boolean;
     fom: string;
+    ikkeOppfyltÅrsak: BostedsvilkårIkkeOppfyltÅrsak;
+    ikkeOppfyltÅrsakFritekstbeskrivelse?: string;
+    kilde: BostedsavklaringKildeType;
+    kildeFritekst?: string;
     tom: string;
+};
+
+export type BekreftBostedOpphørOppgavetypeDataDto = {
+    erBosattITrondheim: boolean;
+    fom: string;
+    ikkeOppfyltÅrsak: BostedsvilkårIkkeOppfyltÅrsak;
+    ikkeOppfyltÅrsakFritekstbeskrivelse?: string;
+    kilde: BostedsavklaringKildeType;
+    kildeFritekst?: string;
 };
 
 export type BekreftOpphorVedMaksdatoOppgavetypeDataDto = {
     maxDato: string;
     sluttdato: string;
 };
+
+export enum BostedsavklaringKildeType {
+    /**
+     * BRUKER
+     */
+    BRUKER = 'BRUKER',
+    /**
+     * FOLKEREGISTER
+     */
+    FOLKEREGISTER = 'FOLKEREGISTER',
+    /**
+     * ANNET
+     */
+    ANNET = 'ANNET',
+}
+
+export enum BostedsvilkårIkkeOppfyltÅrsak {
+    /**
+     * IKKE_BOSATTADRESSE_I_TRONDHEIM
+     */
+    IKKE_BOSATTADRESSE_I_TRONDHEIM = 'IKKE_BOSATTADRESSE_I_TRONDHEIM',
+    /**
+     * IKKE_BOSTEDSADRESSE_OG_IKKE_FOLKEREGISTRERT_I_TRONDHEIM
+     */
+    IKKE_BOSTEDSADRESSE_OG_IKKE_FOLKEREGISTRERT_I_TRONDHEIM = 'IKKE_BOSTEDSADRESSE_OG_IKKE_FOLKEREGISTRERT_I_TRONDHEIM',
+    /**
+     * STUDIE_ELLER_ARBEIDSSTED_UTENFOR_TRONDHEIM
+     */
+    STUDIE_ELLER_ARBEIDSSTED_UTENFOR_TRONDHEIM = 'STUDIE_ELLER_ARBEIDSSTED_UTENFOR_TRONDHEIM',
+    /**
+     * ANNET
+     */
+    ANNET = 'ANNET',
+    /**
+     * UDEFINERT
+     */
+    UDEFINERT = 'UDEFINERT',
+}
 
 export type BrukerdialogOppgaveDto = {
     frist?: string;
@@ -30,6 +81,8 @@ export type BrukerdialogOppgaveDto = {
     opprettetDato: string;
     respons?: OppgaveResponsDto;
     status: OppgaveStatus;
+    undertittel?: string;
+    varselInnhold: OppgaveTekst[];
     ytelsetype: OppgaveYtelsetype;
 };
 
@@ -66,6 +119,17 @@ export type LøsOppgaveRequest = {
     oppgaveRespons?: OppgaveResponsDto;
 };
 
+export type OppgaveAvsnitt = {
+    innhold?: string;
+    tittel?: string;
+};
+
+export type OppgavePunktliste = {
+    fet?: boolean;
+    punkter?: string[];
+    tittel?: string;
+};
+
 export type OppgaveResponsDto = (
     | ({
           type: 'VARSEL_SVAR';
@@ -95,6 +159,27 @@ export enum OppgaveStatus {
      */
     UTLØPT = 'UTLØPT',
 }
+
+export type OppgaveTabell = {
+    fet?: boolean;
+    kolonneOverskrifter?: string[];
+    rader?: string[][];
+    tittel?: string;
+};
+
+export type OppgaveTekst = (
+    | ({
+          type: 'AVSNITT';
+      } & OppgaveAvsnitt)
+    | ({
+          type: 'PUNKT_LISTE';
+      } & OppgavePunktliste)
+    | ({
+          type: 'TABELL';
+      } & OppgaveTabell)
+) & {
+    type: string;
+};
 
 export enum OppgaveType {
     /**
@@ -147,6 +232,9 @@ export type OppgavetypeDataDto = (
           type: 'BOSTED';
       } & BekreftBostedOppgavetypeDataDto)
     | ({
+          type: 'BOSTED_OPPHØR';
+      } & BekreftBostedOpphørOppgavetypeDataDto)
+    | ({
           type: 'ENDRET_PERIODE';
       } & EndretPeriodeDataDto)
     | ({
@@ -169,6 +257,11 @@ export type OppgavetypeDataDto = (
       } & SøkYtelseOppgavetypeDataDto)
 ) & {
     type: string;
+};
+
+export type OpprettSøknadHendelseRequest = {
+    mottatt: string;
+    søknadId: string;
 };
 
 export type PeriodeDto = {
@@ -218,6 +311,27 @@ export type SøkYtelseOppgavetypeDataDto = {
     fomDato: string;
 };
 
+export type TilgjengeligSøknadResponse = {
+    harInnsyn?: boolean;
+    harUbehandletSøknad?: boolean;
+    type?: TilgjengeligSøknadType;
+};
+
+export enum TilgjengeligSøknadType {
+    /**
+     * INGEN
+     */
+    INGEN = 'INGEN',
+    /**
+     * FØRSTEGANGSSØKNAD
+     */
+    FØRSTEGANGSSØKNAD = 'FØRSTEGANGSSØKNAD',
+    /**
+     * NY_PERIODE_SØKNAD
+     */
+    NY_PERIODE_SØKNAD = 'NY_PERIODE_SØKNAD',
+}
+
 export type YtelseRegisterInntektDto = {
     inntekt: number;
     ytelsetype: YtelseType;
@@ -257,6 +371,39 @@ export enum YtelseType {
      */
     ANNET = 'ANNET',
 }
+
+export type RegistrerData = {
+    /**
+     * Søknaden som er sendt inn
+     */
+    body: OpprettSøknadHendelseRequest;
+    path?: never;
+    query?: never;
+    url: '/ung/brukerdialog/ekstern/api/aktivitetspenger/soknad/registrer';
+};
+
+export type RegistrerResponses = {
+    /**
+     * default response
+     */
+    default: unknown;
+};
+
+export type HentTilgjengeligSøknadData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/ung/brukerdialog/ekstern/api/aktivitetspenger/soknad/tilgjengelig';
+};
+
+export type HentTilgjengeligSøknadResponses = {
+    /**
+     * default response
+     */
+    default: TilgjengeligSøknadResponse;
+};
+
+export type HentTilgjengeligSøknadResponse = HentTilgjengeligSøknadResponses[keyof HentTilgjengeligSøknadResponses];
 
 export type HentAlleOppgaverData = {
     body?: never;

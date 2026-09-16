@@ -5,7 +5,7 @@ import { ScenarioType } from '../scenarios/types';
 import { store } from '../state/store';
 import { mockUtils } from '../utils/mockUtils';
 
-store.init(ScenarioType.default);
+store.init(ScenarioType.innsynUtenOppgaver);
 
 export const handlers = [
     http.get(`**/oppslag/soker`, () => HttpResponse.json(store.get().søker)),
@@ -14,6 +14,8 @@ export const handlers = [
         const oppgaver = store.get().oppgaver;
         return HttpResponse.json(oppgaver);
     }),
+
+    http.get('**/aktivitetspenger/soknad/tilgjengelig', () => HttpResponse.json(store.get().tilgangsinfo)),
 
     http.post('**/aktivitetspenger/oppgavebekreftelse/innsending', async ({ request }) => {
         const text = await request.text();

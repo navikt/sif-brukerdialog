@@ -1,5 +1,7 @@
 import { DateRange, ISODate, OpenDateRange } from '@sif/utils';
 import {
+    BekreftBostedOppgavetypeDataDto,
+    BekreftBostedOpphørOppgavetypeDataDto,
     BrukerdialogOppgaveDto,
     OppgaveStatus,
     OppgaveYtelsetype,
@@ -10,6 +12,7 @@ import {
 
 export enum ParsedOppgavetype {
     BEKREFT_BOSTED = 'BEKREFT_BOSTED',
+    BEKREFT_BOSTED_OPPHØR = 'BEKREFT_BOSTED_OPPHØR',
     BEKREFT_OPPHOR_VED_MAKSDATO = 'BEKREFT_OPPHOR_VED_MAKSDATO',
     BEKREFT_AVVIK_REGISTERINNTEKT = 'BEKREFT_AVVIK_REGISTERINNTEKT',
     BEKREFT_ENDRET_STARTDATO = 'BEKREFT_ENDRET_STARTDATO',
@@ -63,11 +66,18 @@ export interface EndretStartdatoOppgave extends ParsedOppgaveBase {
     };
     respons?: SvarPåVarselRespons;
 }
-export interface BostedVilkårOppgave extends ParsedOppgaveBase {
+export interface BostedVilkårPeriodeOppgave extends ParsedOppgaveBase {
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED;
-    oppgavetypeData: {
+    oppgavetypeData: Omit<BekreftBostedOppgavetypeDataDto, 'fom' | 'tom'> & {
         periode: DateRange;
-        erBosattITrondheim: boolean;
+    };
+    respons?: SvarPåVarselRespons;
+}
+
+export interface BostedVilkårOpphørOppgave extends ParsedOppgaveBase {
+    parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED_OPPHØR;
+    oppgavetypeData: Omit<BekreftBostedOpphørOppgavetypeDataDto, 'fom'> & {
+        fom: ISODate;
     };
     respons?: SvarPåVarselRespons;
 }
@@ -119,7 +129,8 @@ export type BekreftelseOppgave =
     | FjernetPeriodeOppgave
     | MeldtUtOppgave
     | OpphorVedMaksdatoOppgave
-    | BostedVilkårOppgave
+    | BostedVilkårPeriodeOppgave
+    | BostedVilkårOpphørOppgave
     | (AvvikRegisterinntektOppgave & {
           respons?: SvarPåVarselRespons;
       });
@@ -143,7 +154,8 @@ export interface SøkYtelseOppgave extends ParsedOppgaveBase {
 
 export type Oppgave =
     | AvvikRegisterinntektOppgave
-    | BostedVilkårOppgave
+    | BostedVilkårPeriodeOppgave
+    | BostedVilkårOpphørOppgave
     | EndretSluttdatoOppgave
     | EndretStartdatoOppgave
     | EndretStartOgSluttdatoOppgave

@@ -21,6 +21,7 @@ index-decorated.html
 .copilot-workspace
 specs
 .sisyphus
+.node-version
 .github/.nav-pilot-state.json
 .env.sentry-build-plugin
 apps-depr
@@ -30,6 +31,9 @@ public/dist
 out
 dist-e2e
 dist-playwright
+
+# cplt config
+.cplt.toml
 
 # next.js
 /.next/
@@ -62,3 +66,6 @@ build-storybook.log
 
 # OpenCode skill symlinks (generated)
 .opencode
+
+# Personlig kunnskapsbase (lærdom fra refaktorering) - ikke del av prosjektet
+kunnskapsbase/

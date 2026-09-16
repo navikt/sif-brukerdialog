@@ -1,8 +1,6 @@
 import { typedIntlHelper } from '@sif/utils';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { appErrorFallbackMessages_nb } from '../components/app-error-fallback/i18n/nb';
-import { appErrorFallbackMessages_nn } from '../components/app-error-fallback/i18n/nn';
 import { deleteButtonMessages_nb } from '../components/delete-button/i18n/nb';
 import { deleteButtonMessages_nn } from '../components/delete-button/i18n/nn';
 import { formLayoutMessages_nb } from '../components/form-layout/i18n/nb';
@@ -31,7 +29,6 @@ import { stepPageMessages_nn } from '../pages/step-page/i18n/nn';
 const nb = {
     '@sifSoknadUi.jaNeiSvar.Ja': 'Ja',
     '@sifSoknadUi.jaNeiSvar.Nei': 'Nei',
-    ...appErrorFallbackMessages_nb,
     ...deleteButtonMessages_nb,
     ...formLayoutMessages_nb,
     ...itemListDarksideMessages_nb,
@@ -49,7 +46,6 @@ const nb = {
 const nn: Record<keyof typeof nb, string> = {
     '@sifSoknadUi.jaNeiSvar.Ja': 'Ja',
     '@sifSoknadUi.jaNeiSvar.Nei': 'Nei',
-    ...appErrorFallbackMessages_nn,
     ...deleteButtonMessages_nn,
     ...formLayoutMessages_nn,
     ...itemListDarksideMessages_nn,

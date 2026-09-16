@@ -1,3 +1,5 @@
+@import '@navikt/ds-css';
+
 /** Overstyrer bottom-placement på smale skjermer */
 .aksel-dialog__popup {
     top: 0;

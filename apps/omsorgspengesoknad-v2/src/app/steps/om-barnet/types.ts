@@ -1,7 +1,7 @@
 import { BarnSammeAdresse } from '@app/types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '@app/types/SøkersRelasjonTilBarnet';
 import { YesOrNo } from '@sif/rhf';
-import { StepFormValues } from '@sif/soknad/types';
+import { StepFormValues } from '@sif/soknad-app';
 import { ANNET_BARN } from '@sif/soknad-forms';
 
 export { ANNET_BARN };

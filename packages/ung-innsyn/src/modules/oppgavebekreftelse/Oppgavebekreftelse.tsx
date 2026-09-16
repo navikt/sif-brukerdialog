@@ -1,9 +1,9 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import { BekreftelseOppgave } from '@sif/api/ung-brukerdialog';
-import { useMemo, useState } from 'react';
+import { ReactNode, useMemo, useState } from 'react';
 
 import { OppgaveStatusTag } from '../../components';
-import { useUngUiIntl } from '../../i18n';
+import { useUngInnsynIntl } from '../../i18n';
 import { getOppgaveStatusText, getOppgaveTittel } from '../../utils/textUtils';
 import { OppgavebekreftelseContext } from './hooks/useOppgavebekreftelse';
 import { Besvart, Kvittering, Ubesvart } from './OppgavebekreftelseParts';
@@ -11,12 +11,12 @@ import { Besvart, Kvittering, Ubesvart } from './OppgavebekreftelseParts';
 interface Props {
     oppgave: BekreftelseOppgave;
     navn: string;
-    children: React.ReactNode;
+    children: ReactNode;
     initialVisKvittering?: boolean;
 }
 
 export const Oppgavebekreftelse = ({ oppgave, navn, children, initialVisKvittering = false }: Props) => {
-    const intl = useUngUiIntl();
+    const intl = useUngInnsynIntl();
     const [visKvittering, setVisKvittering] = useState(initialVisKvittering);
 
     const contextValue = useMemo(

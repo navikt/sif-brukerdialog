@@ -10,6 +10,7 @@ import { StepId } from '../søknad/config/StepId';
 import { useStepFormValuesContext } from '../søknad/context/StepFormValuesContext';
 import { getArbeidstidSøknadsdataFromFormValues } from '../søknad/steps/arbeidstid/arbeidstidStepUtils';
 import { getLovbestemtFerieSøknadsdataFromFormValues } from '../søknad/steps/lovbestemt-ferie/lovbestemtFerieStepUtils';
+import { getTilsynsordningSøknadsdataFromFormValues } from '../søknad/steps/tilsynsordning/tilsynsordningStepUtils';
 import { getUkjentArbeidsforholdSøknadsdataFromFormValues } from '../søknad/steps/ukjent-arbeidsforhold/ukjentArbeidsforholdStepUtils';
 
 const getPrecedingSteps = (currentStepIndex: number, stepConfig: SoknadStepsConfig<StepId>): StepId[] => {
@@ -32,6 +33,8 @@ const getStepSøknadsdataFromStepFormValues = (
             return getLovbestemtFerieSøknadsdataFromFormValues(formValues as any);
         case StepId.ARBEIDSTID:
             return getArbeidstidSøknadsdataFromFormValues(formValues as any);
+        case StepId.TILSYNSORDNING:
+            return getTilsynsordningSøknadsdataFromFormValues(formValues as any);
     }
     return undefined;
 };

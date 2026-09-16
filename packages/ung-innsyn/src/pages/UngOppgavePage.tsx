@@ -1,8 +1,9 @@
 import { Oppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 
-import { useUngUiIntl } from '../i18n';
+import { useUngInnsynIntl } from '../i18n';
 import { AvvikRegisterinntektOppgavePanel } from '../modules/oppgavepaneler/avvik-registerinntekt/AvvikRegisterinntektOppgavePanel';
-import { BostedVilkårOppgavePanel } from '../modules/oppgavepaneler/bostedsvilkar/BostedVilkarOppgavePanel';
+import { BostedVilkårOppgavePanel } from '../modules/oppgavepaneler/bostedsvilkar-periode/BostedVilkarOppgavePanel';
+import { BostedVilkårOpphørOppgavePanel } from '../modules/oppgavepaneler/bostedsvilkar-opphor/BostedVilkarOpphorOppgavePanel';
 import { EndretSluttdatoOppgavePanel } from '../modules/oppgavepaneler/endret-sluttdato/EndretSluttdatoOppgavePanel';
 import { EndretStartOgSluttdatoOppgavePanel } from '../modules/oppgavepaneler/endret-start-og-sluttdato/EndretStartOgSluttdatoOppgavePanel';
 import { EndretStartdatoOppgavePanel } from '../modules/oppgavepaneler/endret-startdato/EndretStartdatoOppgavePanel';
@@ -15,12 +16,14 @@ import { OppgavePageContext } from './hooks/useOppgavePage';
 import { UngInnsynPage } from './UngInnsynPage';
 import { OpphorVedMaksdatoOppgavePanel } from '../modules/oppgavepaneler/opphor-ved-maksdato/OpphorVedMaksdatoOppgavePanel';
 
-const getOppgavePageComponent = (navn: string, oppgave: Oppgave): React.JSX.Element => {
+const getOppgavePageComponent = (navn: string, oppgave: Oppgave, dokumentarkivUrl: string): React.JSX.Element => {
     switch (oppgave.parsedOppgavetype) {
         case ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return <AvvikRegisterinntektOppgavePanel oppgave={oppgave} navn={navn} />;
         case ParsedOppgavetype.BEKREFT_BOSTED:
             return <BostedVilkårOppgavePanel navn={navn} oppgave={oppgave} />;
+        case ParsedOppgavetype.BEKREFT_BOSTED_OPPHØR:
+            return <BostedVilkårOpphørOppgavePanel navn={navn} oppgave={oppgave} />;
         case ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO:
             return <EndretStartdatoOppgavePanel navn={navn} oppgave={oppgave} />;
         case ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO:
@@ -30,7 +33,7 @@ const getOppgavePageComponent = (navn: string, oppgave: Oppgave): React.JSX.Elem
         case ParsedOppgavetype.RAPPORTER_INNTEKT:
             return <RapporterInntektOppgavePanel oppgave={oppgave} navn={navn} />;
         case ParsedOppgavetype.SØK_YTELSE:
-            return <SøkYtelseOppgavePanel oppgave={oppgave} />;
+            return <SøkYtelseOppgavePanel oppgave={oppgave} dokumentarkivUrl={dokumentarkivUrl} />;
         case ParsedOppgavetype.BEKREFT_FJERNET_PERIODE:
             return <FjernetPeriodeOppgavePanel oppgave={oppgave} navn={navn} />;
         case ParsedOppgavetype.BEKREFT_ENDRET_START_OG_SLUTTDATO:
@@ -44,17 +47,18 @@ interface Props {
     navn: string;
     oppgave: Oppgave;
     applikasjonTittel: string;
+    dokumentarkivUrl: string;
     onCancel: () => void;
     onSuccess?: () => void;
 }
 
 export const UngOppgavePage = (props: Props) => {
-    const { navn, oppgave, applikasjonTittel, onCancel, onSuccess } = props;
-    const intl = useUngUiIntl();
+    const { navn, oppgave, applikasjonTittel, onCancel, onSuccess, dokumentarkivUrl } = props;
+    const intl = useUngInnsynIntl();
     return (
         <OppgavePageContext.Provider value={{ onCancel, onSuccess }}>
             <UngInnsynPage documentTitle={getOppgaveDokumentTittel(applikasjonTittel, oppgave, intl)}>
-                {getOppgavePageComponent(navn, oppgave)}
+                {getOppgavePageComponent(navn, oppgave, dokumentarkivUrl)}
             </UngInnsynPage>
         </OppgavePageContext.Provider>
     );

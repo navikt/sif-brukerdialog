@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { mapPeriodeDtoToDateRange, mapPeriodeDtoToOpenDateRange } from '../parseOppgaverElement';
+import { mapPeriodeDtoToDateRange, mapPeriodeDtoToOpenDateRange } from '../parseOppgaver';
 
 describe('mapPeriodeDtoToOpenDateRange', () => {
     it('mapper fomDato og tomDato til OpenDateRange med from og to', () => {

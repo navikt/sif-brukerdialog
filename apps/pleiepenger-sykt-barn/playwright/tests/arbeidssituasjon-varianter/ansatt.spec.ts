@@ -3,7 +3,6 @@ import { expect, Page, test } from '@playwright/test';
 import { StepID } from '../../../src/app/types/StepID';
 import { mellomlagringMock } from '../../mock-data/mellomlagring';
 import { routeUtils } from '../../utils/routeUtils';
-import { setNow } from '../../utils/setNow';
 
 const getSpørOmSluttetISøknadsperiodeFraEnv = async (page: Page): Promise<boolean> => {
     const appSettings = await page.evaluate(() => {
@@ -17,7 +16,6 @@ const getSpørOmSluttetISøknadsperiodeFraEnv = async (page: Page): Promise<bool
 };
 
 test.beforeEach(async ({ page }) => {
-    await setNow(page);
     await routeUtils.setupMockRoutes(page, {
         mellomlagring: mellomlagringMock,
         lastStep: StepID.TIDSROM,

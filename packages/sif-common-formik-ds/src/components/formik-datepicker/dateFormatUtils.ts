@@ -1,4 +1,4 @@
-import { format, isValid } from 'date-fns';
+import { dateToISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import utc from 'dayjs/plugin/utc';
@@ -18,7 +18,6 @@ export type INVALID_DATE_TYPE = 'Invalid date';
 export const INVALID_DATE_VALUE = 'Invalid date';
 export const INPUT_DATE_STRING_FORMAT: InputDateString = 'DD.MM.YYYY';
 export const ISO_DATE_STRING_FORMAT: ISODateString = 'YYYY-MM-DD';
-export const ISO_DATE_STRING_FORMAT_date_fns: ISODateString = 'yyyy-MM-dd';
 
 const ALLOWED_INPUT_FORMATS = [
     INPUT_DATE_STRING_FORMAT,
@@ -39,15 +38,22 @@ const stringToUTCDate = (dateString: string | undefined, f: string): Date | unde
     return undefined;
 };
 
-const dateToInputDateString = (date?: Date): InputDateString | INVALID_DATE_TYPE =>
-    date ? dayjs.utc(date).format(INPUT_DATE_STRING_FORMAT) : INVALID_DATE_VALUE;
-
 export const dateToISODateString = (date: Date): ISODateString | INVALID_DATE_TYPE => {
-    return isValid(date) ? format(date, ISO_DATE_STRING_FORMAT_date_fns) : date.toString();
+    if (isNaN(date.getTime())) {
+        return INVALID_DATE_VALUE;
+    }
+    return dateToISODate(date) as ISODateString;
 };
 
-export const ISODateStringToUTCDate = (isoDateString?: ISODateString): Date | undefined => {
-    return stringToUTCDate(isoDateString, ISO_DATE_STRING_FORMAT);
+export const ISODateStringToLocalDate = (isoDateString?: ISODateString): Date | undefined => {
+    if (!isoDateString || isoDateString.length < 10) return undefined;
+    const [year, month, day] = isoDateString.split('-').map(Number);
+    if (!year || !month || !day) return undefined;
+    const date = ISODateToDate(isoDateString);
+    if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) {
+        return undefined;
+    }
+    return date;
 };
 
 export const InputDateStringToUTCDate = (inputDateString?: InputDateString): Date | undefined => {
@@ -56,8 +62,7 @@ export const InputDateStringToUTCDate = (inputDateString?: InputDateString): Dat
 
 export const ISODateStringToInputDateString = (isoDateString: ISODateString): InputDateString | INVALID_DATE_TYPE => {
     const date = stringToUTCDate(isoDateString, ISO_DATE_STRING_FORMAT);
-    const stringValue = date ? dateToInputDateString(date) : INVALID_DATE_VALUE;
-    return stringValue === INVALID_DATE_VALUE ? INVALID_DATE_VALUE : stringValue;
+    return date ? dayjs.utc(date).format(INPUT_DATE_STRING_FORMAT) : INVALID_DATE_VALUE;
 };
 
 const twoDigitYearFormats = ['DDMMYY', 'D.M.YY', 'DD.MM.YY'];
@@ -87,9 +92,9 @@ const assignCenturyToDateWithTwoYearDigits = (dateString: string) => {
 
     if (dateIn20thCentury.isValid() && dateIn21stCentury.isValid()) {
         if (dateIn20thCentury.isBefore(date80YearsAgo)) {
-            return dateToISODateString(dateIn21stCentury.toDate());
+            return dateIn21stCentury.format(ISO_DATE_STRING_FORMAT);
         } else {
-            return dateToISODateString(dateIn20thCentury.toDate());
+            return dateIn20thCentury.format(ISO_DATE_STRING_FORMAT);
         }
     }
     return INVALID_DATE_VALUE;
@@ -101,5 +106,5 @@ export const InputDateStringToISODateString = (inputDateString: InputDateString)
     }
 
     const date = dayjs(inputDateString, ALLOWED_INPUT_FORMATS, true).utc(true);
-    return date.isValid() ? dateToISODateString(date.toDate()) : INVALID_DATE_VALUE;
+    return date.isValid() ? date.format(ISO_DATE_STRING_FORMAT) : INVALID_DATE_VALUE;
 };

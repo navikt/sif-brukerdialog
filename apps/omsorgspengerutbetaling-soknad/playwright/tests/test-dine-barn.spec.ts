@@ -1,12 +1,7 @@
 import { expect, Page, test } from '@playwright/test';
 
 import { playwrightApiMockData } from '../mock-data/playwrightApiMockData';
-import { setNow } from '../utils/setNow';
 import { utfyllingUtils } from '../utils/utfyllingUtils';
-
-test.beforeEach(async ({ page }) => {
-    await setNow(page);
-});
 
 const startScenario = async (page: Page, barnMockData: any) => {
     await page.route('**/oppslag/soker', async (route) => {

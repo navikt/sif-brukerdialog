@@ -1,10 +1,14 @@
-import { Bleed, BodyLong, BodyShort, Box, Button, VStack } from '@navikt/ds-react';
+import { Bleed, BodyLong, BodyShort, Box, Button, ReadMore, VStack } from '@navikt/ds-react';
 import { Deltakelse } from '../../../types/Deltakelse';
 import { Deltaker } from '../../../types/Deltaker';
 import { useState } from 'react';
 import ForlengPeriodeModal from '../../../components/forleng-periode-modal/ForlengPeriodeModal';
-import { dateFormatter } from '@navikt/sif-common-utils';
-import { getDeltakelseHandlinger } from '../../../utils/deltakelseUtils';
+import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
+import {
+    erInnenforSisteMånederFørPeriodeslutt,
+    getDeltakelseHandlinger,
+    PeriodeKanForlengesÅrsak,
+} from '../../../utils/deltakelseUtils';
 
 interface DatoBoksProps {
     deltaker: Deltaker;
@@ -31,13 +35,24 @@ const TildeltPeriodePanel = ({ deltaker, deltakelse, onDeltakelseChanged }: Dato
                             Maksdato: <strong>{dateFormatter.dayCompactDate(periodeMaksDato)}</strong>.
                         </BodyLong>
                     )}
-                    {handlinger.kanForlengePeriode.resultat && (
+                    {handlinger.kanForlengePeriode.tillatt && (
                         <Box paddingBlock="space-8 space-0">
                             <Button variant="secondary" size="small" onClick={() => setVisDialog(true)}>
                                 Registrer forlenget periode
                             </Button>
                         </Box>
                     )}
+                    {!handlinger.kanForlengePeriode.tillatt &&
+                        handlinger.kanForlengePeriode.årsakskode === PeriodeKanForlengesÅrsak.SLUTTDATO_ER_SATT &&
+                        handlinger.kanSletteSluttdato.tillatt &&
+                        erInnenforSisteMånederFørPeriodeslutt(deltakelse, getDateToday()) && (
+                            <ReadMore header="Forlenget periode">
+                                <BodyLong>
+                                    Perioden kan ikke forlenges fordi en sluttdato er registrert. Du kan slette
+                                    sluttdatoen under &quot;Vis unntakshendelser&quot; ovenfor.
+                                </BodyLong>
+                            </ReadMore>
+                        )}
                 </VStack>
             </Bleed>
 

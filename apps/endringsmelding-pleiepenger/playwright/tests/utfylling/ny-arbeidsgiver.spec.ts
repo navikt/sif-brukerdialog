@@ -1,12 +1,7 @@
+import { SøknadRoutes } from '@app/søknad/config/SøknadRoutes';
 import { expect, test } from '@playwright/test';
 
-import { SøknadRoutes } from '@app/søknad/config/SøknadRoutes';
 import { routeUtils } from '../../utils/routeUtils';
-import { setNow } from '../../utils/setNow';
-
-test.beforeEach(async ({ page }) => {
-    await setNow(page);
-});
 
 test('test', async ({ page }) => {
     await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN, 'arbeidsgiver-ikke-i-sak');

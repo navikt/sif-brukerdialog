@@ -219,9 +219,7 @@ export type PleiepengerSyktBarnSøknad = {
     dataBruktTilUtledningAnnetData?: string;
     ferieuttakIPerioden?: FerieuttakIPerioden;
     fosterhjemgodtgjørelse?:
-        | FosterhjemsgodtgjørelseFrikjøpt
-        | FosterhjemsgodtgjørelseIkkeFrikjøpt
-        | FosterhjemsgodtgjørelseMottarIkke;
+        FosterhjemsgodtgjørelseFrikjøpt | FosterhjemsgodtgjørelseIkkeFrikjøpt | FosterhjemsgodtgjørelseMottarIkke;
     fraOgMed: string;
     frilans: Frilans;
     fødselsattestVedleggUrls?: string[];
@@ -236,6 +234,11 @@ export type PleiepengerSyktBarnSøknad = {
     opptjeningIUtlandet: OpptjeningIUtlandet[];
     selvstendigNæringsdrivende: SelvstendigNæringsdrivende;
     språk: 'nb' | 'nn';
+    /**
+     * StønadGodtgjørelse er deprecated og vil bli fjernet i fremtidige versjoner av APIet
+     *
+     * @deprecated
+     */
     stønadGodtgjørelse?: null;
     søkerNorskIdent?: string;
     tilOgMed: string;
@@ -317,9 +320,7 @@ export type UtenlandsoppholdIPerioden = {
 };
 
 export type VarigEndring = {
-    dato?: string;
-    forklaring?: string;
-    inntektEtterEndring?: number;
+    dato: string;
 };
 
 export type Virksomhet = {
@@ -335,7 +336,7 @@ export type Virksomhet = {
     registrertIUtlandet?: Land;
     regnskapsfører?: null;
     tilOgMed?: string;
-    varigEndring?: null;
+    varigEndring?: VarigEndring;
     yrkesaktivSisteTreFerdigliknedeÅrene?: null;
 };
 
@@ -353,9 +354,7 @@ export type PleiepengerSyktBarnSøknadWritable = {
     dataBruktTilUtledningAnnetData?: string;
     ferieuttakIPerioden?: FerieuttakIPerioden;
     fosterhjemgodtgjørelse?:
-        | FosterhjemsgodtgjørelseFrikjøpt
-        | FosterhjemsgodtgjørelseIkkeFrikjøpt
-        | FosterhjemsgodtgjørelseMottarIkke;
+        FosterhjemsgodtgjørelseFrikjøpt | FosterhjemsgodtgjørelseIkkeFrikjøpt | FosterhjemsgodtgjørelseMottarIkke;
     fraOgMed: string;
     frilans: Frilans;
     fødselsattestVedleggUrls?: string[];
@@ -370,6 +369,11 @@ export type PleiepengerSyktBarnSøknadWritable = {
     opptjeningIUtlandet: OpptjeningIUtlandet[];
     selvstendigNæringsdrivende: SelvstendigNæringsdrivendeWritable;
     språk: 'nb' | 'nn';
+    /**
+     * StønadGodtgjørelse er deprecated og vil bli fjernet i fremtidige versjoner av APIet
+     *
+     * @deprecated
+     */
     stønadGodtgjørelse?: StønadGodtgjørelse;
     søkerNorskIdent?: string;
     tilOgMed: string;
@@ -382,6 +386,12 @@ export type SelvstendigNæringsdrivendeWritable = {
     arbeidsforhold?: Arbeidsforhold;
     harInntektSomSelvstendig: boolean;
     virksomhet?: VirksomhetWritable;
+};
+
+export type VarigEndringWritable = {
+    dato: string;
+    forklaring?: string;
+    inntektEtterEndring?: number;
 };
 
 export type VirksomhetWritable = {
@@ -397,7 +407,7 @@ export type VirksomhetWritable = {
     registrertIUtlandet?: Land;
     regnskapsfører?: Regnskapsfører;
     tilOgMed?: string;
-    varigEndring?: VarigEndring;
+    varigEndring?: VarigEndringWritable;
     yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
 };
 

@@ -11,6 +11,7 @@ export { AppErrorBoundary } from './components/AppErrorBoundary';
 export type { AppIntlConfig, IntlMessageObjectFormat } from './components/AppIntlProvider';
 export { AppIntlProvider } from './components/AppIntlProvider';
 export { SifQueryClientProvider } from './components/SifQueryClientProvider';
+export type { SanityConfig } from './components/SøknadAppProvider';
 export { SøknadAppProvider } from './components/SøknadAppProvider';
 export { SøknadRouter } from './components/SøknadRouter';
 export { SøknadStep } from './components/SøknadStep';
@@ -18,6 +19,7 @@ export { SøknadStepForm } from './components/SøknadStepForm';
 export { SøknadStepGuard } from './components/SøknadStepGuard';
 export { SøknadVelkommenPage } from './components/SøknadVelkommenPage';
 export { InconsistentFormValuesMessage } from './consistency/InconsistentFormValuesMessage';
+export { SøknadStepFormProvider } from './consistency/SøknadStepFormContext';
 
 // Hooks
 export { useAvbryt } from './hooks/useAvbryt';
@@ -29,16 +31,22 @@ export { useStartSøknad } from './hooks/useStartSøknad';
 export { useStepData } from './hooks/useStepData';
 export { useStepNavigation } from './hooks/useStepNavigation';
 
-// Intern kontekst — eksportert for avansert bruk (f.eks. oppsummering, direkte store-aksess)
+export { useSøknadsdata } from './hooks/useSøknadsdata';
+
+// Ruting — stien eies av SøknadRouter
+export { KVITTERING_PATH } from './utils/routeUtils';
+
+// Intern kontekst — eksportert for avansert bruk (f.eks. storybook-dekoratører)
+export { SøknadAppContext } from './context/SøknadAppContext';
 export { useSøknadAppContext } from './context/SøknadAppContext';
+export { createSøknadAppStore } from './store/createSøknadAppStore';
 
 // Typer
 export type {
-    DialogProps,
     IncludedStep,
     MellomlagringBlob,
-    SøknadFrameworkIntlKeys,
     SøknadRouterProps,
     SøknadStepProps,
     StepDefinition,
+    StepFormValues,
 } from './types';

@@ -2,6 +2,7 @@
 
 export { Oppslag, type Options, Veileder } from './sdk.gen';
 export {
+    Avslutningsårsak,
     type ClientOptions,
     type DeltakelseDto,
     type DeltakelseHistorikkData,
@@ -11,6 +12,7 @@ export {
     type DeltakelseHistorikkResponse,
     type DeltakelseHistorikkResponses,
     type DeltakelseInnmeldingDto,
+    DeltakelseStatus,
     type DeltakelseUtmeldingDto,
     type DeltakerDto,
     type DeltakerPersonalia,

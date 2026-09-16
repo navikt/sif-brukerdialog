@@ -7,6 +7,31 @@ import { store } from '../../mock/state/store';
 
 const groups: Array<ScenarioSelectorHeaderGroup<ScenarioType>> = [
     {
+        label: 'Tilgang',
+        options: [
+            {
+                value: ScenarioType.harIkkeTilgang,
+                label: 'Har ikke tilgang',
+            },
+            {
+                value: ScenarioType.harUbehandletFørstegangssøknad,
+                label: 'Førstegangssøknad under behandling',
+            },
+            {
+                value: ScenarioType.innsynUtenOppgaver,
+                label: 'Innsyn uten oppgaver (søknad behandlet)',
+            },
+            {
+                value: ScenarioType.innsynMedOppgaver,
+                label: 'Innsyn med oppgaver',
+            },
+            {
+                value: ScenarioType.harUbehandletAndregangssøknad,
+                label: 'Andregangssøknad under behandling',
+            },
+        ],
+    },
+    {
         label: 'Oppgaver',
         options: [
             {

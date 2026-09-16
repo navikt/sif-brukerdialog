@@ -1,5 +1,26 @@
 # @navikt/ungdomsytelse-veileder
 
+## 0.10.0
+
+### Minor Changes
+
+- Erstatte all bruk av sentry med nais/apm
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-app-register@0.2.0
+    - @navikt/sif-common-api@0.5.0
+    - @navikt/sif-common-core-ds@10.4.0
+    - @navikt/sif-common-env@0.2.0
+    - @navikt/sif-common-formik-ds@2.6.0
+    - @navikt/sif-common-ui@0.12.0
+    - @sif/apm@0.2.0
+    - @navikt/sif-common-hooks@0.3.11
+    - @navikt/sif-validation@1.0.22
+    - @navikt/ung-common@0.0.104
+    - @navikt/ung-deltakelse-opplyser-api-veileder@0.3.14
+
 ## 0.9.71
 
 ### Patch Changes

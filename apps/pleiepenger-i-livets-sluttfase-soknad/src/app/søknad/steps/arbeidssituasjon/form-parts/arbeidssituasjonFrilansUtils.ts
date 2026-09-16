@@ -1,5 +1,5 @@
 import { datepickerUtils, DateRange, YesOrNo } from '@navikt/sif-common-formik-ds';
-/* eslint-disable no-console */
+import { appLogger } from '@sif/apm';
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 
@@ -74,17 +74,17 @@ export const getPeriodeSomFrilanserInnenforPeriode = (
         const frilansSluttdato = datepickerUtils.getDateFromDateString(sluttdato);
 
         if (frilansStartdato === undefined) {
-            console.error('getPeriodeSomFrilanserInneforPeriode - Startdato ikke satt');
+            appLogger.logError('getPeriodeSomFrilanserInneforPeriode - Startdato ikke satt');
             return undefined;
         }
         if (arbeidFrilansSøknadsdata.jobberFortsattSomFrilans && sluttdato !== undefined) {
-            console.error(
+            appLogger.logError(
                 'getPeriodeSomFrilanserInneforPeriode - Jobber fortsatt som frilanser, men sluttdato er satt',
             );
             return undefined;
         }
         if (!arbeidFrilansSøknadsdata.jobberFortsattSomFrilans && !frilansSluttdato) {
-            console.error('getPeriodeSomFrilanserInneforPeriode - Er ikke frilanser, men sluttdato er ikke satt');
+            appLogger.logError('getPeriodeSomFrilanserInneforPeriode - Er ikke frilanser, men sluttdato er ikke satt');
             return undefined;
         }
 

@@ -1,5 +1,5 @@
 import { BrukerdialogOppgaveDto } from '@navikt/ung-brukerdialog-api';
-import { DeltakelseDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { type DeltakelseDto, DeltakelseStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { ISODate } from '@sif/utils';
 import dayjs from 'dayjs';
 
@@ -48,6 +48,7 @@ const getSøknadDeltakelseData = (): ScenarioData => ({
     deltakelser: [
         {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
+            status: DeltakelseStatus.AKTIV,
             fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
             tilOgMed: undefined,
             deltaker: {
@@ -71,6 +72,7 @@ const createSøktDeltakelse = (oppgaver: BrukerdialogOppgaveDto[] = []): Scenari
     deltakelser: [
         {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
+            status: DeltakelseStatus.AKTIV,
             fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
             tilOgMed: undefined,
             søktTidspunkt: dayjs(getMockDatoer().deltakelseFraOgMed).add(17, 'days').toISOString(),
@@ -94,6 +96,7 @@ const createAvsluttetDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): Scenario
     deltakelser: [
         {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
+            status: DeltakelseStatus.IKKE_AKTIV,
             fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
             tilOgMed: dateToISODate(dayjs(getMockDatoer().deltakelseFraOgMed).add(2, 'day')),
             søktTidspunkt: dayjs(getMockDatoer().deltakelseFraOgMed).add(1, 'days').toISOString(),
@@ -112,11 +115,36 @@ const createAvsluttetDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): Scenario
     ],
     oppgaver,
 });
+const createAvsluttetVedMaksdatoDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioData => ({
+    ...deltakerBaseScenarioData,
+    deltakelser: [
+        {
+            id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
+            status: DeltakelseStatus.IKKE_AKTIV,
+            fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
+            tilOgMed: undefined,
+            søktTidspunkt: dayjs(getMockDatoer().deltakelseFraOgMed).add(1, 'days').toISOString(),
+            deltaker: {
+                id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
+                deltakerIdent: '234',
+            },
+            erSlettet: false,
+            harOpphørsvedtak: false,
+            harForlengetPeriode: false,
+            forlengetPeriodeMaksDato: dateToISODate(getMockToday()),
+            harUtvidetKvote: false,
+            kvoteMaksDato: dateToISODate(getMockToday()),
+            periodeMaksDato: dateToISODate(dayjs(getMockToday()).subtract(1, 'day')),
+        } satisfies DeltakelseDto,
+    ],
+    oppgaver,
+});
 const createOpphørtDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): ScenarioData => ({
     ...deltakerBaseScenarioData,
     deltakelser: [
         {
             id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
+            status: DeltakelseStatus.IKKE_AKTIV,
             fraOgMed: dateToISODate(getMockDatoer().deltakelseFraOgMed),
             tilOgMed: dateToISODate(dayjs(getMockDatoer().deltakelseFraOgMed).add(6, 'months')),
             søktTidspunkt: dayjs(getMockDatoer().deltakelseFraOgMed).add(17, 'days').toISOString(),
@@ -144,6 +172,7 @@ const createIkkeStartetDeltakelse = (oppgaver: BrukerdialogOppgaveDto[]): Scenar
         deltakelser: [
             {
                 id: '8c21972b-f23d-4193-8851-b2fa6c6b2f63',
+                status: DeltakelseStatus.IKKE_STARTET,
                 fraOgMed,
                 søktTidspunkt,
                 deltaker: {
@@ -250,6 +279,15 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
         type: ScenarioType.avvikInntekt,
         name: 'Avsluttet deltakelse',
         data: createAvsluttetDeltakelse([
+            getMockOppgaver().søkYtelseOppgaveLøst,
+            getMockOppgaver().rapporterInntektOppgaveLøst,
+            getMockOppgaver().bekreftAvvikOppgaveLøst,
+        ]),
+    },
+    [ScenarioType.avsluttetVedMaksdato]: {
+        type: ScenarioType.avsluttetVedMaksdato,
+        name: 'Avsluttet deltakelse ved maksdato',
+        data: createAvsluttetVedMaksdatoDeltakelse([
             getMockOppgaver().søkYtelseOppgaveLøst,
             getMockOppgaver().rapporterInntektOppgaveLøst,
             getMockOppgaver().bekreftAvvikOppgaveLøst,

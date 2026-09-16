@@ -1,13 +1,11 @@
-import { isK9FormatError, K9Format, K9FormatArbeidstid, K9Sak, UgyldigK9SakFormat } from '@app/types';
+import { isK9FormatError, K9Format, K9Sak, UgyldigK9SakFormat } from '@app/types';
 import {
-    appSentryLogger,
     getEndringsdato,
     getTillattEndringsperiode,
     isK9SakErInnenforGyldigEndringsperiode,
-    maskString,
     parseK9Format,
 } from '@app/utils';
-import { getMaybeEnv } from '@navikt/sif-common-env';
+import { appLogger } from '@sif/apm';
 import { isAxiosError } from 'axios';
 
 import { verifyK9Format } from '../../utils/verifyk9Format';
@@ -16,29 +14,7 @@ import { ApiEndpointInnsyn } from '.';
 
 export type K9SakResult = K9Sak | UgyldigK9SakFormat;
 
-const maskK9FormatArbeidstid = (arbeidstid: K9FormatArbeidstid) => {
-    return {
-        arbeidstakerList: (arbeidstid.arbeidstakerList || []).map((arbtaker) => {
-            const key = maskString(arbtaker.organisasjonsnummer) || 'ingenOrg';
-            return { [key]: arbtaker.arbeidstidInfo };
-        }),
-        frilanserArbeidstidInfo: arbeidstid.frilanserArbeidstidInfo,
-        selvstendigNæringsdrivendeArbeidstidInfo: arbeidstid.selvstendigNæringsdrivendeArbeidstidInfo,
-    };
-};
-
-const maskK9FormatSak = (sak: K9Format) => {
-    const ytelse = sak?.søknad?.ytelse;
-    if (!ytelse) {
-        return { søknadsperiode: undefined, arbeidstid: undefined };
-    }
-    return {
-        søknadsperiode: ytelse.søknadsperiode,
-        arbeidstid: ytelse.arbeidstid ? maskK9FormatArbeidstid(ytelse.arbeidstid) : undefined,
-    };
-};
-
-const sakerEndpoint = {
+export const sakerEndpoint = {
     fetch: async (): Promise<{ k9Saker: K9SakResult[]; eldreSaker: K9SakResult[] }> => {
         const endringsperiode = getTillattEndringsperiode(getEndringsdato());
         try {
@@ -54,22 +30,26 @@ const sakerEndpoint = {
                     } else {
                         eldreSaker.push(parsedSak);
                     }
-                    if (getMaybeEnv('SIF_PUBLIC_DEBUG') === 'true') {
-                        appSentryLogger.logInfo('debug.k9format.gyldig', JSON.stringify(maskK9FormatSak(sak)));
-                    }
                 } catch (error) {
                     if (isK9FormatError(error)) {
                         const ugyldigeFelt = error.error.cause?.ugyldigeFelt;
+                        const detaljer = Array.isArray(ugyldigeFelt) ? { ugyldigeFelt } : undefined;
                         k9Saker.push({
                             erUgyldigK9SakFormat: true,
-                            detaljer: Array.isArray(ugyldigeFelt) ? { ugyldigeFelt } : undefined,
+                            detaljer,
                         });
-                        appSentryLogger.logException(error.error, {
-                            sakIndex: index,
-                            cause: error.error instanceof Error ? error.error.cause : undefined,
-                        });
+                        /**
+                         * Håndtert valideringsfeil (saken fra backend har feil format), ikke en
+                         * uventet feil i frontend. Logges derfor som info, ikke som exception.
+                         * ugyldigeFelt inneholder kun feltnavn, ikke verdier, og er trygt å logge.
+                         */
+                        appLogger.logInfo(
+                            `sakerEndpoint.verifyK9Format: ugyldig k9-format${
+                                detaljer ? ` (ugyldigeFelt=${detaljer.ugyldigeFelt.join(',')})` : ''
+                            }`,
+                        );
                     } else {
-                        appSentryLogger.logException(error, {
+                        appLogger.logException(error, {
                             context: 'sakerEndpoint.parseK9Format',
                             sakIndex: index,
                         });
@@ -80,13 +60,11 @@ const sakerEndpoint = {
             return { k9Saker, eldreSaker };
         } catch (error) {
             if (isAxiosError(error)) {
-                appSentryLogger.logApiError(error, 'sakerEndpoint.fetch');
+                appLogger.logApiError(error, 'sakerEndpoint.fetch');
             } else if (!isK9FormatError(error)) {
-                appSentryLogger.logException(error, { context: 'sakerEndpoint.fetch failed - unexpected' });
+                appLogger.logException(error, { context: 'sakerEndpoint.fetch failed - unexpected' });
             }
             return Promise.reject(error);
         }
     },
 };
-
-export default sakerEndpoint;

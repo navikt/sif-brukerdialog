@@ -5,7 +5,7 @@ import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { useEffect, useRef, useState } from 'react';
 
 import { ForsideLenkeButton, OppgaveStatusInfo, OppgaveStatusTag } from '../../../../components';
-import { UngUiText } from '../../../../i18n';
+import { UngInnsynText } from '../../../../i18n';
 import { getOppgaveStatusText } from '../../../../utils/textUtils';
 import { RapporterInntektKvitteringData, RapporterInntektOppgaveProps } from '../RapporterInntektOppgavePanel';
 import { RapporterInntektKvittering } from './RapporterInntektKvittering';
@@ -55,7 +55,7 @@ export const RapporterInntektOppgavePart = ({ navn, oppgave, initialKvitteringDa
                         {arbeidstakerOgFrilansInntekt === undefined ? (
                             /** Oppgaven er akkurat besvart og informasjonen er ikke kommet på oppgaven som er lastet inn */
                             <Alert variant="info">
-                                <UngUiText id="@ungInnsyn.rapporterInntektOppgavePart.løst.utenInfo" />
+                                <UngInnsynText id="@ungInnsyn.rapporterInntektOppgavePart.løst.utenInfo" />
                             </Alert>
                         ) : (
                             <RapportertInntektOppsummering måned={måned} inntekt={arbeidstakerOgFrilansInntekt} />
@@ -72,7 +72,7 @@ export const RapporterInntektOppgavePart = ({ navn, oppgave, initialKvitteringDa
                 <OppgaveStatusTag oppgaveStatus={oppgave.status} oppgaveStatusTekst={getOppgaveStatusText(oppgave)} />
             </div>
             <Heading level="1" size="large">
-                <UngUiText id="@ungInnsyn.rapporterInntektOppgavePart.tittel" values={{ månedOgÅr }} />
+                <UngInnsynText id="@ungInnsyn.rapporterInntektOppgavePart.tittel" values={{ månedOgÅr }} />
             </Heading>
             {kvitteringData ? (
                 <RapporterInntektKvittering ref={kvitteringAlertRef} kvitteringData={kvitteringData} />

@@ -3,11 +3,6 @@ import { expect, test } from '@playwright/test';
 import { StepID } from '../../../src/app/types/StepID';
 import { mellomlagringMock } from '../../mock-data/mellomlagring';
 import { routeUtils } from '../../utils/routeUtils';
-import { setNow } from '../../utils/setNow';
-
-test.beforeEach(async ({ page }) => {
-    await setNow(page);
-});
 
 test('Fyll ut periodesteget', async ({ page }) => {
     await routeUtils.setupMockRoutes(page, {

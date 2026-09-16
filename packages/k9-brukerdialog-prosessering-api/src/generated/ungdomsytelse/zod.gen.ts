@@ -87,7 +87,10 @@ export const zUngdomsytelseInntektsrapportering = z.object({
 
 export const zUngdomsytelseOppgaveUttalelseDto = z.object({
     harUttalelse: z.boolean(),
-    uttalelseFraDeltaker: z.string().nullish(),
+    uttalelseFraDeltaker: z
+        .string()
+
+        .nullish(),
 });
 
 export const zUngdomsytelseOppgaveDto = z.object({

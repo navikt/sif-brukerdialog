@@ -4,14 +4,19 @@ import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '@app/setup/constants';
 import { formValuesToSøknadsdata } from '@app/utils/formValuesToSøknadsdata';
 import { SøknadRouter, SøknadStepGuard } from '@sif/soknad-app';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 
 import { useAppIntl } from './i18n';
 import { Kvittering } from './content/kvittering/Kvittering';
 import { Velkommen } from './content/velkommen/Velkommen';
-import { BarnForm, BostedForm, BostedUtlandForm, KontonummerForm, OppsummeringSteg, StartdatoForm } from './steps';
+import { BarnForm, BostedForm, MedlemskapForm, KontonummerForm, OppsummeringSteg } from './steps';
 import { LoadingPage } from '@sif/soknad-ui';
+import { getAppEnv } from './setup/appEnv';
+
+const ApmTestPage = lazy(() => import('./content/apm-test/ApmTestPage'));
 
 export const Søknad = () => {
+    const env = getAppEnv();
     const { text } = useAppIntl();
 
     return (
@@ -26,11 +31,20 @@ export const Søknad = () => {
             loadingElement={<LoadingPage applicationTitle={text('application.title')} />}>
             <Routes>
                 <Route path="/" element={<Velkommen />} />
+                {env.ENV !== 'production' && (
+                    <Route
+                        path="/apm-test"
+                        element={
+                            <Suspense fallback={null}>
+                                <ApmTestPage />
+                            </Suspense>
+                        }
+                    />
+                )}
                 <Route path="/soknad" element={<SøknadStepGuard basePath="/soknad" />}>
-                    <Route path={søknadStepConfig[SøknadStepId.STARTDATO].route} element={<StartdatoForm />} />
                     <Route path={søknadStepConfig[SøknadStepId.KONTONUMMER].route} element={<KontonummerForm />} />
                     <Route path={søknadStepConfig[SøknadStepId.BOSTED].route} element={<BostedForm />} />
-                    <Route path={søknadStepConfig[SøknadStepId.BOSTED_UTLAND].route} element={<BostedUtlandForm />} />
+                    <Route path={søknadStepConfig[SøknadStepId.MEDLEMSKAP].route} element={<MedlemskapForm />} />
                     <Route path={søknadStepConfig[SøknadStepId.BARN].route} element={<BarnForm />} />
                     <Route path={søknadStepConfig[SøknadStepId.OPPSUMMERING].route} element={<OppsummeringSteg />} />
                     <Route path="*" element={<Navigate to="/" replace />} />

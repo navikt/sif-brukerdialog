@@ -3,7 +3,7 @@
 
 import { defineConfig } from 'vitest/config';
 
-import { createAliasConfig } from './vite.shared';
+import { createAliasConfig } from './vite.shared.ts';
 
 export default defineConfig({
     resolve: {

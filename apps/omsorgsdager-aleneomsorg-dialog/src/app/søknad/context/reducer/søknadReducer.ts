@@ -4,6 +4,7 @@ import { SøknadContextState } from '../../../types/SøknadContextState';
 import { SøknadRoutes } from '../../../types/SøknadRoutes';
 import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
+import { appLogger } from '@sif/apm';
 
 export const initialSøknadsdata: Søknadsdata = {
     id: undefined,
@@ -104,8 +105,8 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     isReloadingApp: true,
                 };
             default:
-                // eslint-disable-next-line no-console
-                console.error(`Missing handler for ${action.type}`);
+                
+                appLogger.logError(`Missing handler for ${action.type}`);
         }
     }
     return state;

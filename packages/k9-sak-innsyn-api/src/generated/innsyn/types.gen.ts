@@ -30,7 +30,7 @@ export type Aktivitetspenger = Omit<Ytelse, 'type'> & {
     erBosattITrondheim?: boolean;
     forutgåendeBosteder: Bosteder;
     inntekter?: OppgittInntekt;
-    søknadsperiode: string;
+    søknadsperiodeFom?: string;
     type: 'Aktivitetspenger';
 };
 
@@ -96,7 +96,7 @@ export type Barn = {
 };
 
 export type BarnOppslagDto = {
-    adressebeskyttelse$k9_sak_innsyn_api: Adressebeskyttelse[];
+    adressebeskyttelse$no_nav_k9_sak_innsyn_api: Adressebeskyttelse[];
     aktørId: string;
     etternavn: string;
     fornavn: string;

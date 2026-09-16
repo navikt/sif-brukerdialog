@@ -2,16 +2,7 @@
 
 import * as z from 'zod';
 
-export const zArbeidIPeriode = z.record(z.string(), z.unknown());
-
-export const zArbeidsforholdOlp = z.object({
-    arbeidIPeriode: zArbeidIPeriode,
-    jobberNormaltTimer: z.number(),
-});
-
-export const zArbeidsgiverOlp = z.object({
-    arbeidsforhold: zArbeidsforholdOlp.nullish(),
-});
+export const zArbeidsgiverOlp = z.record(z.string(), z.unknown());
 
 export const zBarnDetaljer = z.object({
     aktørId: z.string().nullish(),
@@ -46,6 +37,17 @@ export const zBosted = z.object({
 export const zEnkeltdag = z.object({
     dato: z.iso.date(),
     tid: z.string(),
+});
+
+export const zArbeidIPeriode = z.object({
+    enkeltdager: z.array(zEnkeltdag),
+    enkeltdagerFravær: z.array(zEnkeltdag),
+    jobberIPerioden: z.enum(['SOM_VANLIG', 'REDUSERT', 'HELT_FRAVÆR']),
+});
+
+export const zArbeidsforholdOlp = z.object({
+    arbeidIPeriode: zArbeidIPeriode,
+    jobberNormaltTimer: z.number(),
 });
 
 export const zEttersendingAvVedlegg = z.object({
@@ -96,7 +98,7 @@ export const zKursholder = z.object({
 
 export const zLand = z.object({
     landkode: z.string().min(1),
-    landnavn: z.string().min(1),
+    landnavn: z.string().min(0).max(100),
 });
 
 export const zMedlemskap = z.object({
@@ -203,13 +205,7 @@ export const zUtenlandsoppholdIPerioden = z.object({
 });
 
 export const zVarigEndring = z.object({
-    dato: z.iso.date().optional(),
-    forklaring: z.string().optional(),
-    inntektEtterEndring: z
-        .int()
-        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
-        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
-        .optional(),
+    dato: z.iso.date(),
 });
 
 export const zVirksomhet = z.object({
@@ -229,7 +225,7 @@ export const zVirksomhet = z.object({
     registrertIUtlandet: zLand.nullish(),
     regnskapsfører: z.null().optional(),
     tilOgMed: z.iso.date().nullish(),
-    varigEndring: z.null().optional(),
+    varigEndring: zVarigEndring.nullish(),
     yrkesaktivSisteTreFerdigliknedeÅrene: z.null().optional(),
 });
 
@@ -268,30 +264,21 @@ export const zYrkesaktivSisteTreFerdigliknedeArene = z.object({
     oppstartsdato: z.iso.date().optional(),
 });
 
-export const zArbeidIPeriodeWritable = z.object({
-    enkeltdager: z.array(zEnkeltdag).optional(),
-    enkeltdagerFravær: z.array(zEnkeltdag).optional(),
-    jobberIPerioden: z.enum(['SOM_VANLIG', 'REDUSERT', 'HELT_FRAVÆR']).optional(),
-});
-
-export const zArbeidsforholdOlpWritable = z.object({
-    arbeidIPeriode: zArbeidIPeriodeWritable,
-    jobberNormaltTimer: z.number(),
-});
-
 export const zArbeidsgiverOlpWritable = z.object({
-    arbeidsforhold: zArbeidsforholdOlpWritable.nullish(),
+    arbeidsforhold: zArbeidsforholdOlp.nullish(),
     erAnsatt: z.boolean().optional(),
     navn: z.string().optional(),
     organisasjonsnummer: z.string().optional(),
 });
 
-export const zFrilansOlpWritable = z.object({
-    arbeidsforhold: zArbeidsforholdOlpWritable.nullish(),
-    harHattInntektSomFrilanser: z.boolean().nullable(),
-    jobberFortsattSomFrilans: z.boolean(),
-    sluttdato: z.iso.date().nullish(),
-    startdato: z.iso.date(),
+export const zVarigEndringWritable = z.object({
+    dato: z.iso.date(),
+    forklaring: z.string().optional(),
+    inntektEtterEndring: z
+        .int()
+        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
+        .optional(),
 });
 
 export const zVirksomhetWritable = z.object({
@@ -311,12 +298,12 @@ export const zVirksomhetWritable = z.object({
     registrertIUtlandet: zLand.nullish(),
     regnskapsfører: zRegnskapsfører.nullish(),
     tilOgMed: z.iso.date().nullish(),
-    varigEndring: zVarigEndring.nullish(),
+    varigEndring: zVarigEndringWritable.nullish(),
     yrkesaktivSisteTreFerdigliknedeÅrene: zYrkesaktivSisteTreFerdigliknedeArene.nullish(),
 });
 
 export const zSelvstendigNæringsdrivendeOlpWritable = z.object({
-    arbeidsforhold: zArbeidsforholdOlpWritable,
+    arbeidsforhold: zArbeidsforholdOlp,
     virksomhet: zVirksomhetWritable,
 });
 
@@ -328,7 +315,7 @@ export const zOpplæringspengerSøknadWritable = z.object({
     ettersendingAvVedlegg: zEttersendingAvVedlegg.nullish(),
     ferieuttakIPerioden: zFerieuttakIPerioden.nullish(),
     fraOgMed: z.iso.date(),
-    frilans: zFrilansOlpWritable.nullish(),
+    frilans: zFrilansOlp.nullish(),
     harBekreftetOpplysninger: z.boolean(),
     harForståttRettigheterOgPlikter: z.boolean(),
     harVærtEllerErVernepliktig: z.boolean().nullish(),

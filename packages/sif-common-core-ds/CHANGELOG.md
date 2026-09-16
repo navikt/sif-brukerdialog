@@ -1,5 +1,18 @@
 # @navikt/sif-common-core-ds
 
+## 10.4.0
+
+### Minor Changes
+
+- Erstatte all bruk av sentry med nais/apm
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/sif-common-api@0.5.0
+    - @navikt/sif-common-env@0.2.0
+    - @navikt/sif-common-hooks@0.3.11
+
 ## 10.3.57
 
 ### Patch Changes

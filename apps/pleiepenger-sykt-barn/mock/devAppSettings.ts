@@ -1,4 +1,4 @@
-import { AppEnv } from '../env.schema';
+import type { AppEnv } from '../env.schema.ts';
 
 export const getDevAppSettings = (): AppEnv => ({
     ENV: 'dev',
@@ -6,7 +6,6 @@ export const getDevAppSettings = (): AppEnv => ({
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/pleiepenger',
     GITHUB_REF_NAME: 'dev',
 
-    SIF_PUBLIC_ANALYTICS_API_KEY: '234',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
     SIF_PUBLIC_DEKORATOR_URL: 'https://www.nav.no/dekoratoren/?simple=true&chatbot=false',
@@ -23,6 +22,6 @@ export const getDevAppSettings = (): AppEnv => ({
     K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
     K9_BRUKERDIALOG_PROSESSERING_API_URL: '#',
 
-    MOCK_DATE: '2023-01-01',
+    MOCK_DATE: '2023-01-02T12:00:00Z',
     USE_MOCK_DATE: 'true',
 });

@@ -28,18 +28,6 @@ export const zBarnOppslagListe = z.object({
     barn: z.array(zBarnOppslag),
 });
 
-export const zBosted = z.object({
-    fraOgMed: z.iso.date(),
-    landkode: z.string().min(1),
-    landnavn: z.string(),
-    tilOgMed: z.iso.date(),
-});
-
-export const zForutgåendeBosteder = z.object({
-    harBoddIUtlandetSiste5År: z.boolean(),
-    utenlandsoppholdSiste5År: z.array(zBosted),
-});
-
 export const zFrilansoppdragDto = z.object({
     ansattFom: z.iso.date().nullish(),
     ansattTom: z.iso.date().nullish(),
@@ -57,16 +45,9 @@ export const zKontonummerInfo = z.object({
     kontonummerFraRegister: z.string().nullish(),
 });
 
-export const zAktivitetspengersøknad = z.object({
-    barnErRiktig: z.boolean(),
-    erBosattITrondheim: z.boolean(),
-    forutgåendeBosteder: zForutgåendeBosteder,
-    harBekreftetOpplysninger: z.boolean(),
-    harForståttRettigheterOgPlikter: z.boolean(),
-    kontonummerInfo: zKontonummerInfo,
-    språk: z.string(),
-    startdato: z.iso.date(),
-    søkerNorskIdent: z.string(),
+export const zLand = z.object({
+    landkode: z.string().min(1),
+    landnavn: z.string().min(0).max(100),
 });
 
 export const zOppgittInntekt = z.object({
@@ -121,6 +102,33 @@ export const zSøker = z.object({
     fødselsdato: z.iso.date(),
     fødselsnummer: z.string(),
     mellomnavn: z.string().nullish(),
+});
+
+export const zUtenlandsoppholdAktivitetspenger = z.object({
+    fraOgMed: z.iso.date(),
+    jobbetIPerioden: z.boolean(),
+    land: zLand,
+    tilOgMed: z.iso.date(),
+    utenlandskNasjonalId: z.string().min(0).max(50).nullish(),
+});
+
+export const zMedlemskapAktivitetspenger = z.object({
+    harBoddINorge: z.boolean(),
+    harJobbetINorge: z.boolean().nullish(),
+    harJobbetUtenforNorge: z.boolean().nullish(),
+    utenlandsopphold: z.array(zUtenlandsoppholdAktivitetspenger),
+});
+
+export const zAktivitetspengersøknad = z.object({
+    barnErRiktig: z.boolean(),
+    erBosattITrondheim: z.boolean(),
+    harBekreftetOpplysninger: z.boolean(),
+    harForståttRettigheterOgPlikter: z.boolean(),
+    kontonummerInfo: zKontonummerInfo,
+    medlemskap: zMedlemskapAktivitetspenger,
+    språk: z.string(),
+    startdato: z.iso.date(),
+    søkerNorskIdent: z.string(),
 });
 
 export const zInntektrapporteringBody = zAktivitetspengerInntektsrapportering;

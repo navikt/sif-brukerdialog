@@ -4,7 +4,7 @@ import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 
-import { getPlaywrightAppSettings } from './playwright/playwrightAppSettings';
+import { getPlaywrightAppSettings } from './playwright/playwrightAppSettings.ts';
 
 export default defineConfig({
     mode: 'msw',
@@ -29,7 +29,7 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            '@app': resolve(__dirname, './src/app'),
+            '@app': resolve(import.meta.dirname, './src/app'),
         },
     },
     base: '/aktivitetspenger/innsyn/',

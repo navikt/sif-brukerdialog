@@ -6,7 +6,6 @@ export const getDevAppSettings = (): AppEnv => ({
     GITHUB_REF_NAME: 'dev',
     PUBLIC_PATH: '/sif-demo',
 
-    SIF_PUBLIC_ANALYTICS_API_KEY: 'default',
     SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
     SIF_PUBLIC_DEKORATOR_URL: 'https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false',

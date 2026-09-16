@@ -1,15 +1,18 @@
 {
     "extends": "../../packages/config/tsconfig-apps.json",
     "compilerOptions": {
+        "allowImportingTsExtensions": true,
+        "noEmit": true,
         "outDir": "build/dist"
     },
     "exclude": ["node_modules", "**.js", "dist"],
     "include": [
         "./src/**/*",
         "mock/**/*",
-        "./playwright-config.ts",
+        "./playwright.config.ts",
         "./env.schema.ts",
         "./vite-env.d.ts",
+        "./vite*.config.ts",
         "./playwright/**/*"
     ]
 }

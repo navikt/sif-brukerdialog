@@ -1,4 +1,11 @@
-import { ComponentType, ReactNode } from 'react';
+import { ReactNode } from 'react';
+
+/**
+ * Basetype for skjema-verdier i ett steg.
+ * Bruker object i stedet for Record<string, unknown> så stegspesifikke interfaces
+ * ikke trenger en index-signatur.
+ */
+export type StepFormValues = object;
 
 /**
  * Mellomlagring-blob som rammeverket lagrer og henter som opak struktur.
@@ -8,8 +15,8 @@ export interface MellomlagringBlob {
     /** Gjenopptakingspunkt — steget brukeren skal landes på ved reload. */
     resumeStepId: string;
     søknadsdata: Record<string, unknown>;
-    /** Midlertidige skjemaverdier (ikke submittet) — brukes som defaultValues etter reload */
-    draftFormValues?: Record<string, Record<string, unknown>>;
+    /** Persisterte skjemaverdier (ikke submittet) — brukes som defaultValues etter reload */
+    persistedFormValues?: Record<string, Record<string, unknown>>;
 }
 
 /**
@@ -33,18 +40,12 @@ export interface IncludedStep {
     completed: boolean;
 }
 
-/**
- * Props til dialog-komponenter som kan overrides av appen.
- */
-export interface DialogProps {
-    onConfirm: () => void;
-    onCancel: () => void;
-}
 
 /**
  * Props til SøknadRouter — hoved-inngangskomponenten for søknadsrammeverket.
  */
 export interface SøknadRouterProps {
+
     /** Steg-konfigurasjon: route, isCompleted, isIncluded per steg-ID */
     config: Record<string, StepDefinition>;
     /** Rekkefølge av steg-ID-er */
@@ -61,15 +62,10 @@ export interface SøknadRouterProps {
     validateMellomlagring?: (blob: MellomlagringBlob) => MellomlagringBlob | null;
     /** URL det navigeres til ved "fortsett senere". Default: NAV Min side */
     resumeLaterUrl?: string;
-    /** Override dialog-komponenter */
-    dialogs?: {
-        avbryt?: ComponentType<DialogProps>;
-        fortsettSenere?: ComponentType<DialogProps>;
-    };
     /** Element som vises mens en routeren initialiseres; typisk LoadingPage komponent. */
     loadingElement?: ReactNode;
-    /** Element som vises etter vellykket innsending (kvitteringside) */
-    kvitteringElement?: ReactNode;
+    /** Kvitteringssiden. Vises av SøknadRouter på KVITTERING_PATH etter innsending. */
+    kvitteringElement: ReactNode;
     /**
      * Konverterer RHF-skjemaverdier for et steg til søknadsdata-format.
      * Nødvendig for å aktivere konsistenssjekk (browser back/forward-advarsel).
@@ -89,22 +85,3 @@ export interface SøknadStepProps {
     stepId: string;
     children: ReactNode;
 }
-
-/**
- * TypeScript-type med alle i18n-nøkler rammeverket forventer å finne i appens IntlProvider.
- * Bruk denne typen i appens nb.ts/nn.ts for å få compile-time-feil ved manglende nøkler.
- *
- * Steg-titler følger konvensjonen `step.${stepId}.title` og er IKKE inkludert her
- * siden de er steg-spesifikke og defineres av appen.
- */
-export type SøknadFrameworkIntlKeys = {
-    'soknad.steg.neste': string;
-    'soknad.steg.forrige': string;
-    'soknad.steg.send': string;
-    'soknad.avbryt.tittel': string;
-    'soknad.avbryt.bekreft': string;
-    'soknad.avbryt.avbryt': string;
-    'soknad.fortsettSenere.tittel': string;
-    'soknad.fortsettSenere.bekreft': string;
-    'soknad.fortsettSenere.avbryt': string;
-};

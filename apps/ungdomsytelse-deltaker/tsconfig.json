@@ -1,6 +1,8 @@
 {
     "extends": "../../packages/config/tsconfig-apps.json",
     "compilerOptions": {
+        "allowImportingTsExtensions": true,
+        "noEmit": true,
         "outDir": "build/dist",
         "typeRoots": ["../../node_modules/@types", "./node_modules/@types", "../../node_modules", "./src/types"],
         "paths": {
@@ -57,6 +59,7 @@
         "./env.schema.ts",
         "./playwright/**/*.ts",
         "./vite-env.d.ts",
+        "./vite*.config.ts",
         "./tailwind.config.ts",
         "./postcss.config.ts",
         "./storybook/**/*"

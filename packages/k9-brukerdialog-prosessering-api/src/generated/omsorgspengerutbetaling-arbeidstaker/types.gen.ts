@@ -5,21 +5,7 @@ export type ClientOptions = {
 };
 
 export type Arbeidsgiver = {
-    arbeidsgiverHarUtbetaltLønn?: boolean;
-    harHattFraværHosArbeidsgiver?: boolean;
-    konfliktForklaring?: string;
-    navn?: string;
-    organisasjonsnummer?: string;
-    perioder?: Utbetalingsperiode[];
-    utbetalingsårsak?: 'ARBEIDSGIVER_KONKURS' | 'NYOPPSTARTET_HOS_ARBEIDSGIVER' | 'KONFLIKT_MED_ARBEIDSGIVER';
-    årsakNyoppstartet?:
-        | 'JOBBET_HOS_ANNEN_ARBEIDSGIVER'
-        | 'VAR_FRILANSER'
-        | 'VAR_SELVSTENDIGE'
-        | 'SØKTE_ANDRE_UTBETALINGER'
-        | 'ARBEID_I_UTLANDET'
-        | 'UTØVDE_VERNEPLIKT'
-        | 'ANNET';
+    [key: string]: unknown;
 };
 
 export type ArbeidsgivereDto = {
@@ -29,11 +15,7 @@ export type ArbeidsgivereDto = {
 };
 
 export type Barn = {
-    aktørId?: string;
-    fødselsdato?: string;
-    identitetsnummer?: string;
-    navn?: string;
-    type?: 'FRA_OPPSLAG' | 'FOSTERBARN' | 'ANNET';
+    fødselsdato: string;
 };
 
 export type BarnOppslag = {
@@ -54,15 +36,12 @@ export type Bekreftelser = {
 };
 
 export type Bosted = {
-    erEØSLand?: boolean;
-    fraOgMed?: string;
-    landkode?: string;
-    landnavn?: string;
-    tilOgMed?: string;
+    fraOgMed: string;
+    tilOgMed: string;
 };
 
 export type DineBarn = {
-    barn: unknown[];
+    barn: Barn[];
     harDeltBosted: boolean;
 };
 
@@ -78,8 +57,8 @@ export type FrilansoppdragDto = {
 export type JsonNode = unknown;
 
 export type OmsorgspengerutbetalingArbeidstakerSøknad = {
-    bosteder: unknown[];
-    opphold: unknown[];
+    bosteder: Bosted[];
+    opphold: Bosted[];
     språk: string;
     søkerNorskIdent?: string;
     vedlegg: string[];
@@ -119,31 +98,70 @@ export type Søker = {
 };
 
 export type Utbetalingsperiode = {
-    aktivitetFravær?: Array<'ARBEIDSTAKER' | 'FRILANSER' | 'SELVSTENDIG_VIRKSOMHET'>;
-    antallTimerBorte?: string;
-    antallTimerPlanlagt?: string;
-    fraOgMed?: string;
-    tilOgMed?: string;
-    årsak?: 'STENGT_SKOLE_ELLER_BARNEHAGE' | 'SMITTEVERNHENSYN' | 'ORDINÆRT_FRAVÆR';
+    fraOgMed: string;
+    tilOgMed: string;
+};
+
+export type ArbeidsgiverWritable = {
+    arbeidsgiverHarUtbetaltLønn?: boolean;
+    harHattFraværHosArbeidsgiver?: boolean;
+    konfliktForklaring?: string;
+    navn?: string;
+    organisasjonsnummer?: string;
+    perioder?: UtbetalingsperiodeWritable[];
+    utbetalingsårsak?: 'ARBEIDSGIVER_KONKURS' | 'NYOPPSTARTET_HOS_ARBEIDSGIVER' | 'KONFLIKT_MED_ARBEIDSGIVER';
+    årsakNyoppstartet?:
+        | 'JOBBET_HOS_ANNEN_ARBEIDSGIVER'
+        | 'VAR_FRILANSER'
+        | 'VAR_SELVSTENDIGE'
+        | 'SØKTE_ANDRE_UTBETALINGER'
+        | 'ARBEID_I_UTLANDET'
+        | 'UTØVDE_VERNEPLIKT'
+        | 'ANNET';
+};
+
+export type BarnWritable = {
+    aktørId?: string;
+    fødselsdato: string;
+    identitetsnummer?: string;
+    navn?: string;
+    type?: 'FRA_OPPSLAG' | 'FOSTERBARN' | 'ANNET';
+};
+
+export type BostedWritable = {
+    erEØSLand?: boolean;
+    fraOgMed: string;
+    landkode?: string;
+    landnavn?: string;
+    tilOgMed: string;
 };
 
 export type DineBarnWritable = {
-    barn: Barn[];
+    barn: BarnWritable[];
     harDeltBosted: boolean;
 };
 
 export type OmsorgspengerutbetalingArbeidstakerSøknadWritable = {
-    arbeidsgivere?: Arbeidsgiver[];
+    arbeidsgivere?: ArbeidsgiverWritable[];
     bekreftelser?: Bekreftelser;
-    bosteder: Bosted[];
+    bosteder: BostedWritable[];
     dataBruktTilUtledningAnnetData?: string;
     dineBarn?: DineBarnWritable;
     hjemmePgaSmittevernhensyn?: boolean;
     hjemmePgaStengtBhgSkole?: boolean;
-    opphold: Bosted[];
+    opphold: BostedWritable[];
     språk: string;
     søkerNorskIdent?: string;
     vedlegg: string[];
+};
+
+export type UtbetalingsperiodeWritable = {
+    aktivitetFravær?: Array<'ARBEIDSTAKER' | 'FRILANSER' | 'SELVSTENDIG_VIRKSOMHET'>;
+    antallTimerBorte?: string;
+    antallTimerPlanlagt?: string;
+    fraOgMed: string;
+    tilOgMed: string;
+    årsak?: 'STENGT_SKOLE_ELLER_BARNEHAGE' | 'SMITTEVERNHENSYN' | 'ORDINÆRT_FRAVÆR';
 };
 
 export type DeleteMellomlagringData = {

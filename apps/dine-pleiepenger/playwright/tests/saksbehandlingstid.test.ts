@@ -18,7 +18,9 @@ const getSakResponseMedUtledetStatus = (status: any) => ({
 
 test('Saksbehandlingstid er i fremtid', async ({ page }) => {
     await page.route('**/api/sak/*', async (route) => {
-        const response = getSakResponseMedUtledetStatus({ saksbehandlingsFrist: dayjs().add(1, 'day').toDate() });
+        const response = getSakResponseMedUtledetStatus({
+            saksbehandlingsFrist: dayjs().add(1, 'day').format('YYYY-MM-DD'),
+        });
         await route.fulfill({ status: 200, body: JSON.stringify(response) });
     });
     await page.goto('http://localhost:8080/innsyn');
@@ -28,7 +30,7 @@ test('Saksbehandlingstid er i fremtid', async ({ page }) => {
 
 test('Saksbehandlingstid er i dag', async ({ page }) => {
     await page.route('**/api/sak/*', async (route) => {
-        const response = getSakResponseMedUtledetStatus({ saksbehandlingsFrist: dayjs().toDate() });
+        const response = getSakResponseMedUtledetStatus({ saksbehandlingsFrist: dayjs().format('YYYY-MM-DD') });
         await route.fulfill({ status: 200, body: JSON.stringify(response) });
     });
     await page.goto('http://localhost:8080/innsyn');
@@ -38,7 +40,9 @@ test('Saksbehandlingstid er i dag', async ({ page }) => {
 
 test('Saksbehandlingstid er i fortid', async ({ page }) => {
     await page.route('**/api/sak/*', async (route) => {
-        const response = getSakResponseMedUtledetStatus({ saksbehandlingsFrist: dayjs().subtract(1, 'day').toDate() });
+        const response = getSakResponseMedUtledetStatus({
+            saksbehandlingsFrist: dayjs().subtract(1, 'day').format('YYYY-MM-DD'),
+        });
         await route.fulfill({ status: 200, body: JSON.stringify(response) });
     });
     await page.goto('http://localhost:8080/innsyn');
@@ -48,7 +52,7 @@ test('Saksbehandlingstid er i fortid', async ({ page }) => {
 
 test('Ingen Saksbehandlingstid, men behandlingstid', async ({ page }) => {
     await page.route('**/api/sak/*', async (route) => {
-        const response = getSakResponseMedUtledetStatus({ saksbehandlingsFrist: dayjs().toDate() });
+        const response = getSakResponseMedUtledetStatus({ saksbehandlingsFrist: dayjs().format('YYYY-MM-DD') });
         await route.fulfill({ status: 200, body: JSON.stringify(response) });
     });
     await page.goto('http://localhost:8080/innsyn');

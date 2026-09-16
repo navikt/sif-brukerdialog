@@ -1,6 +1,5 @@
 import '@navikt/ds-css';
 import { UngdomsytelseVeilederApp } from '@navikt/sif-app-register';
-import { FaroProvider } from '@navikt/sif-common-faro';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { IntlProvider } from 'react-intl';
 import './app.css';
@@ -31,30 +30,24 @@ const App = () => {
         <ThemeProvider>
             {registerAnalytics(env.SIF_PUBLIC_UMAMI_NETTSIDE_ID)}
             <VeilederProvider>
-                <FaroProvider
-                    appVersion={env.APP_VERSION}
-                    applicationKey={UngdomsytelseVeilederApp.key}
-                    telemetryCollectorURL={env.SIF_PUBLIC_NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL}
-                    isActive={env.SIF_PUBLIC_USE_FARO}>
-                    <ErrorBoundary fallback={<AppErrorFallback />}>
-                        <AnalyticsProvider applicationKey={UngdomsytelseVeilederApp.key} isActive={true}>
-                            <QueryClientProvider client={queryClient}>
-                                <GlobalQueryLogger />
-                                <IntlProvider locale="nb" messages={appMessages.nb}>
-                                    <AppRouter>
-                                        <DrawerProvider
-                                            initialContent={<DrawerArticles />}
-                                            initialOpen={false}
-                                            initialTitle="Hjelp og informasjon">
-                                            <AppHeader />
-                                            <AppRoutes />
-                                        </DrawerProvider>
-                                    </AppRouter>
-                                </IntlProvider>
-                            </QueryClientProvider>
-                        </AnalyticsProvider>
-                    </ErrorBoundary>
-                </FaroProvider>
+                <ErrorBoundary fallback={<AppErrorFallback />}>
+                    <AnalyticsProvider applicationKey={UngdomsytelseVeilederApp.key} isActive={true}>
+                        <QueryClientProvider client={queryClient}>
+                            <GlobalQueryLogger />
+                            <IntlProvider locale="nb" messages={appMessages.nb}>
+                                <AppRouter>
+                                    <DrawerProvider
+                                        initialContent={<DrawerArticles />}
+                                        initialOpen={false}
+                                        initialTitle="Hjelp og informasjon">
+                                        <AppHeader />
+                                        <AppRoutes />
+                                    </DrawerProvider>
+                                </AppRouter>
+                            </IntlProvider>
+                        </QueryClientProvider>
+                    </AnalyticsProvider>
+                </ErrorBoundary>
             </VeilederProvider>
             <DevBranchInfo />
         </ThemeProvider>

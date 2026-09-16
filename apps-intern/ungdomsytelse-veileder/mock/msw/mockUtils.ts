@@ -4,6 +4,7 @@ import { dateFormatter, dateToISODate, ISODateToDate } from '@navikt/sif-common-
 import {
     DeltakelseDto,
     DeltakelseHistorikkDto,
+    DeltakelseStatus,
     DeltakerPersonalia,
     Endringstype,
     Revisjonstype,
@@ -141,6 +142,7 @@ const meldInnDeltaker = (deltakerIdent: string, startdato: string) => {
             id: deltakerId,
         },
         erSlettet: false,
+        status: DeltakelseStatus.IKKE_STARTET,
         harOpphørsvedtak: false,
         harUtvidetKvote: false,
         fraOgMed: startdato,
@@ -252,6 +254,7 @@ const endreSluttdato = (deltakelseId: string, dato: string) => {
         deltakelse: {
             ...deltakelse.deltakelse,
             tilOgMed: dato,
+            avslutningsårsak: deltakelse.deltakelse.avslutningsårsak,
         },
         historikk: [...deltakelse.historikk, getEndretSluttdatoHistorikk(deltakelse.deltakelse.tilOgMed!, dato)],
     };

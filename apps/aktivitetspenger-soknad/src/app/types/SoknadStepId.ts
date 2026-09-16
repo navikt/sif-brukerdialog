@@ -1,8 +1,7 @@
 export enum SøknadStepId {
-    STARTDATO = 'startdato',
     KONTONUMMER = 'kontonummer',
     BOSTED = 'bosted',
-    BOSTED_UTLAND = 'bostedUtland',
+    MEDLEMSKAP = 'medlemskap',
     BARN = 'barn',
     OPPSUMMERING = 'oppsummering',
 }

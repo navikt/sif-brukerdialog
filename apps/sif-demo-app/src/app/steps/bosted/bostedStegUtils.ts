@@ -1,14 +1,14 @@
 import { YesOrNo } from '@sif/rhf';
 
 import { BostedSøknadsdata } from '../../types/Soknadsdata';
-import { BostedFormValues } from './BostedForm';
+import { BostedFormValues, BostedFormFields } from './types';
 
-export const toBostedFormValues = (søknadsdata: BostedSøknadsdata): BostedFormValues => {
+export const toBostedFormValues = (søknadsdata: BostedSøknadsdata | undefined): Partial<BostedFormValues> => {
     if (søknadsdata?.erBosattITrondheim === undefined) {
         return {};
     }
     return {
-        erBosattITrondheim: søknadsdata.erBosattITrondheim ? YesOrNo.YES : YesOrNo.NO,
+        [BostedFormFields.erBosattITrondheim]: søknadsdata.erBosattITrondheim ? YesOrNo.YES : YesOrNo.NO,
     };
 };
 

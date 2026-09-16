@@ -1,5 +1,4 @@
 /// <reference types="vitest" />
-import { sentryVitePlugin } from '@sentry/vite-plugin';
 import react from '@vitejs/plugin-react';
 import * as path from 'path';
 import { defineConfig } from 'vite';
@@ -19,25 +18,17 @@ export default defineConfig(({ mode }) => ({
                 return html.replace(/<link rel="stylesheet" crossorigin/g, '<link rel="stylesheet" type="text/css"');
             },
         },
-        ...[
-            process.env.SENTRY_AUTH_TOKEN
-                ? [
-                      sentryVitePlugin({
-                          org: 'nav',
-                          project: 'sykdom-i-familien',
-                          url: 'https://sentry.gc.nav.no/',
-                          authToken: process.env.SENTRY_AUTH_TOKEN,
-                      }),
-                  ]
-                : [],
-        ],
     ],
     resolve: {
         alias: {
-            '@i18n': path.resolve(__dirname, './src/app/i18n'),
-            '@sb': path.resolve(__dirname, './src/storybook'),
+            '@i18n': path.resolve(import.meta.dirname, './src/app/i18n'),
+            '@sb': path.resolve(import.meta.dirname, './src/storybook'),
         },
     },
+    base:
+        mode === 'production'
+            ? 'https://cdn.nav.no/dusseldorf/pleiepenger-sykt-barn/dist/'
+            : '/familie/sykdom-i-familien/soknad/pleiepenger/',
     build: {
         chunkSizeWarningLimit: 2000,
         sourcemap: true,

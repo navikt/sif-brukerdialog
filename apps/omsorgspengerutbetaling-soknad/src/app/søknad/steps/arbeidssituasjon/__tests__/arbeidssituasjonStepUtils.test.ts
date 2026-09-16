@@ -6,7 +6,7 @@ import { ArbeidssituasjonTidsromValidationKeys, validateArbeidssituasjonTidsrom 
 
 describe('arbeidssituasjonStepUtils', () => {
     describe('validateArbeidssituasjonTidsrom', () => {
-        const fraværsperiode: DateRange = ISODateRangeToDateRange('2022-15-01/2022-20-01');
+        const fraværsperiode: DateRange = ISODateRangeToDateRange('2022-01-15/2022-01-20');
         it('godtar at en starter som frilanser på samme dag som en starter fraværsperiode', () => {
             const result = validateArbeidssituasjonTidsrom(
                 {

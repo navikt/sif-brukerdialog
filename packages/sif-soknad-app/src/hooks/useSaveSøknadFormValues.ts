@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 
-import { StepFormValues, useSøknadFormValues } from '../consistency/SøknadFormValuesContext';
+import { StepFormValuesRecord, useSøknadStepFormContext } from '../consistency/SøknadStepFormContext';
 
 /**
- * Lagrer skjemaverdier til SøknadFormValuesContext ved unmount.
+ * Lagrer skjemaverdier til SøknadStepFormContext ved unmount.
  * Fanger opp endringer når bruker navigerer bort fra steget uten å submitte
  * (f.eks. via browser back/forward).
  *
@@ -18,7 +18,7 @@ import { StepFormValues, useSøknadFormValues } from '../consistency/SøknadForm
  */
 export const useSaveSøknadFormValues = (stepId: string, getValues: () => unknown) => {
     const { setFormValuesForStep, shouldSaveOnUnmountForStep, registerGetValuesForStep, unregisterGetValuesForStep } =
-        useSøknadFormValues();
+        useSøknadStepFormContext();
     const getValuesRef = useRef(getValues);
 
     useEffect(() => {
@@ -27,7 +27,7 @@ export const useSaveSøknadFormValues = (stepId: string, getValues: () => unknow
 
     // Registrer live getter slik at useMellomlagring kan hente verdier mens komponenten er montert
     useEffect(() => {
-        registerGetValuesForStep(stepId, () => getValuesRef.current() as StepFormValues);
+        registerGetValuesForStep(stepId, () => getValuesRef.current() as StepFormValuesRecord);
         return () => {
             unregisterGetValuesForStep(stepId);
         };
@@ -38,7 +38,7 @@ export const useSaveSøknadFormValues = (stepId: string, getValues: () => unknow
             if (!shouldSaveOnUnmountForStep(stepId)) {
                 return;
             }
-            setFormValuesForStep(stepId, getValuesRef.current() as StepFormValues);
+            setFormValuesForStep(stepId, getValuesRef.current() as StepFormValuesRecord);
         };
     }, [stepId, setFormValuesForStep, shouldSaveOnUnmountForStep]);
 };

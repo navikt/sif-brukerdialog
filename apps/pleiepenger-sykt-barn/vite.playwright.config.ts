@@ -1,13 +1,11 @@
-// @ts-expect-error: vite-plugin has no types
 import tailwindcss from '@tailwindcss/vite';
-// @ts-expect-error: vite-plugin has no types
 import react from '@vitejs/plugin-react';
 import { copyFileSync } from 'fs';
 import * as path from 'path';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 
-import { getDevAppSettings } from './mock/devAppSettings';
+import { getDevAppSettings } from './mock/devAppSettings.ts';
 
 export default defineConfig({
     mode: 'playwright',
@@ -38,8 +36,8 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            '@i18n': path.resolve(__dirname, './src/app/i18n'),
-            '@sb': path.resolve(__dirname, './src/storybook'),
+            '@i18n': path.resolve(import.meta.dirname, './src/app/i18n'),
+            '@sb': path.resolve(import.meta.dirname, './src/storybook'),
         },
     },
     define: {

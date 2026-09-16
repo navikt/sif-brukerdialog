@@ -1,5 +1,15 @@
 # @navikt/sif-common-formik-ds
 
+## 2.6.0
+
+### Minor Changes
+
+- Erstatte all bruk av sentry med nais/apm
+
+### Patch Changes
+
+- @navikt/sif-validation@1.0.22
+
 ## 2.5.47
 
 ### Patch Changes

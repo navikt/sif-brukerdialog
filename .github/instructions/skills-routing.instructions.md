@@ -17,6 +17,10 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
 - `sif-gh-pages`:
     - Deploy til demo: `gh-pages`, `demo-deploy`, `legg til i gh-pages`, `gh-pages:rebuild`, `vite.demo.config`, `dist-demo`.
     - MSW på gh-pages: `msw klager`, `service worker feil`, `mockServiceWorker gh-pages`.
+- `sif-cdn`:
+    - CDN og assets: `cdn`, `cdn.nav.no`, `cdn-upload`, `bruk cdn`, `last opp til cdn`, `CDN-assets`, `NoSuchKey`.
+    - Vite og sourcemaps: `sourcemap`, `sourceMappingURL`, `deobfuskering`, `minifisert stack trace`, `Vite base`, `import.meta.env.BASE_URL`.
+    - Deploy og feil: `dist/dist`, `assets 404`, `JS 404`, `sourcemap 404`, `CDN URL`.
 - `sif-intl`:
     - Implementering: `i18n`, `intl`, `nb.ts`, `nn.ts`, `oversettelse`, `tekster`, `nynorsk`, `bokmål`, `legg til tekst`, `ny tekst`.
     - Hooks og komponenter: `AppText`, `useAppIntl`, `AppIntlShape`, `useSifSoknadUiIntl`, `SifSoknadUiText`, `typedIntlHelper`, `applicationIntlMessages`.
@@ -44,8 +48,6 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
 - `sif-formik-to-rhf`:
     - Migrer skjema: `formik til rhf`, `konverter skjema`, `bytt ut formik`, `migrer form`, `erstatt formik`, `sif-common-formik-ds`.
     - Formik-konsepter: `FormikWrapper`, `getTypedFormComponents`, `getIntlFormErrorHandler`, `renderForm`.
-- `sif-migration-baseline`:
-    - Migrering/bootstrapping av app til v2-oppsett.
 - `sif-initial-data-loader`:
     - Initial data-flyt: `useInitialData`, `InitialDataLoader`, `InitialData`, loading/error/success, required queries, optional queries, mellomlagringsvalidering.
     - Ny datakilde i initial-data: `legg til hook`, `ny datakilde`, `blokkerer loading`, `fallback-verdi`.
@@ -69,6 +71,10 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
     - Portering av dialoger: `porter dialog`, `migrer ListAndDialog`, `flytt til sif-soknad-forms`, `ModalFormAndList`, `ListAndDialog til v2`.
     - Spesifikke dialoger: `BostedUtlandListAndDialog`, `UtenlandsoppholdListAndDialog`, `TidsperiodeListAndDialog`, `FerieuttakListAndDialog`, `OpptjeningUtlandListAndDialog`, `EnkeltdatoListAndDialog`, `AnnetBarnListAndDialog`, `UtenlandskNæringListAndDialog`, `FraværListAndDialog`, `FosterbarnListAndDialog`.
     - Storybook i sif-soknad-forms: `withIntl`, `StoryFrame`, `withRHFForm`, `story i sif-soknad-forms`.
+- `sif-apm`:
+    - Telemetri og Faro: `initApm`, `@sif/apm`, `@nais/apm`, telemetri, Faro, Grafana.
+    - Feilsøking: `ingen telemetri`, `no browser telemetry data found`, `app-nøkkel`, `appKey`.
+    - Verifisering: `sif-app-register` nøkkel mot NAIS deployment-navn.
 - `sif-surveys`:
     - Skyra-oppsett: `skyra`, `skyra-survey`, `SkyraHandler`, `useSkyraReloader`, `SkyraTestPage`, `SkyraSlug`, `slug`.
     - Feilsøking: `survey vises ikke`, `reload fungerer ikke`, `globalThis.skyra`, `skyra test`.
@@ -80,11 +86,17 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
     - Formatteringshjelpere: `dateFormatter`, `dateRangeFormatter`, `dateTimeFormat`, `formatDate`, `formatDateTime`, `formatDateRange`.
     - Tidssone: `tidssone`, `sommertid`, `vintertid`, `UTC`, `norsk tid`.
     - Kontekst: dato/tid fra backend, API, DTO eller respons, dato fra API-svar.
+- `ung-innsyn-oppgaver`:
+    - Ny oppgavetype: `ny oppgavetype`, `OppgaveType`, `ParsedOppgavetype`, `parseOppgaver`, `legg til oppgave`.
+    - Lovhenvisninger: `oppgaveLovverk`, `getLovLenker`, `OPPGAVE_LOVVERK`, `LENKEKATALOG`, `RegelverkOgInnsynReadMore`, `lovverk for oppgave`.
+    - Storybook/preview: `oppgavepanel story`, `.preview.tsx`, `OppgavetypeMappingUPY`, `OppgavetypeMappingAKT`, `panelpreview`, `renderXxxAlleStater`.
+    - Panelkomponenter: `OppgavePanel`, `Oppgavebekreftelse`, `oppgavepaneler`, `ung-innsyn oppgave`.
 
 ## Prioritering ved overlapp
 
 - Hvis oppgaven handler om i18n, tekster, nb/nn eller oversettelse, prioriter `sif-intl`.
 - Hvis oppgaven handler om datahenting + env/API-klient-oppsett, prioriter `sif-api`.
+- Hvis oppgaven handler om CDN-hosting av Vite-assets eller sourcemaps, prioriter `sif-cdn`.
 - Rene domeneord alene (f.eks. `barn`, `søker`) skal ikke trigge `sif-api` uten tydelig API-hentekontekst.
 - Hvis oppgaven handler om setup-arkitektur i app, prioriter `sif-soknad-setup`.
 - Bruk flere skills ved behov, men hold endringer scoped til aktuell workspace.
@@ -99,3 +111,4 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
 - Hvis oppgaven handler om Skyra (`skyra-survey`, slug/reload/testside), prioriter `sif-surveys`.
 - Hvis oppgaven handler om å endre eller utvide selve rammeverk-pakken (`packages/sif-soknad-app`), prioriter `sif-soknad-app` over `sif-soknad-setup`/`sif-soknad-add-step`.
 - Hvis oppgaven handler om dato/tid, parsing, formattering, tidssone eller Day.js, prioriter `sif-date-handling`.
+- Hvis oppgaven handler om oppgavetyper i ung-innsyn (ny oppgavetype, lovhenvisninger, panelkomponent, preview eller Storybook-oversikt for oppgaver), prioriter `ung-innsyn-oppgaver`.

@@ -1,6 +1,6 @@
 import { FjernetPeriodeOppgave } from '@sif/api/ung-brukerdialog';
 
-import { UngUiText } from '../../../i18n';
+import { UngInnsynText } from '../../../i18n';
 import { Oppgavebekreftelse } from '../../oppgavebekreftelse/Oppgavebekreftelse';
 import { FjernetPeriodeOppgavetekst } from './parts/FjernetPeriodeOppgavetekst';
 import { FjernetPeriodeOppsummering } from './parts/FjernetPeriodeOppsummering';
@@ -23,7 +23,7 @@ export const FjernetPeriodeOppgavePanel = ({ navn, oppgave, initialVisKvittering
             </Oppgavebekreftelse.Besvart>
 
             <Oppgavebekreftelse.Kvittering>
-                <UngUiText id="@ungInnsyn.oppgavetype.BEKREFT_FJERNET_PERIODE.kvitteringTekst" />
+                <UngInnsynText id="@ungInnsyn.oppgavetype.BEKREFT_FJERNET_PERIODE.kvitteringTekst" />
             </Oppgavebekreftelse.Kvittering>
         </Oppgavebekreftelse>
     );

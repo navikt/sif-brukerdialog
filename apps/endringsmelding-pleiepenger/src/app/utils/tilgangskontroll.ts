@@ -1,6 +1,7 @@
 import {
     ArbeidsgiverMedAnsettelseperioder,
     IngenTilgangÅrsak,
+    IngenTilgangMeta,
     K9Sak,
     K9SakArbeidstaker,
     K9SakArbeidstid,
@@ -10,7 +11,6 @@ import { DateRange, durationToDecimalDuration, ensureDateRange, sortDateRange } 
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 
-import { IngenTilgangMeta } from '../hooks/useSøknadInitialData';
 import { finnesArbeidsgiverIK9Sak, getSamletDateRangeForK9Saker } from './k9SakUtils';
 
 dayjs.extend(isSameOrAfter);

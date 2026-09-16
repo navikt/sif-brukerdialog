@@ -1,5 +1,5 @@
 export const bostedUtlandMessages_nb = {
-    '@sifSoknadForms.bostedUtland.dialog.tittel': 'Utenlandsopphold',
+    '@sifSoknadForms.bostedUtland.dialog.tittel': 'Bosted i utlandet',
     '@sifSoknadForms.bostedUtland.dialog.avbrytKnapp': 'Avbryt',
     '@sifSoknadForms.bostedUtland.dialog.leggTilKnapp': 'Legg til',
     '@sifSoknadForms.bostedUtland.dialog.oppdaterKnapp': 'Oppdater',

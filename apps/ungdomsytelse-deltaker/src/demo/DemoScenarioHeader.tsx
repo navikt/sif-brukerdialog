@@ -68,6 +68,9 @@ export const DemoScenarioHeader = () => {
                         <ActionMenu.Item onSelect={() => setScenario(ScenarioType.avsluttet)}>
                             Deltakelse avsluttet
                         </ActionMenu.Item>
+                        <ActionMenu.Item onSelect={() => setScenario(ScenarioType.avsluttetVedMaksdato)}>
+                            Deltakelse avsluttet ved maksdato
+                        </ActionMenu.Item>
                         <ActionMenu.Item onSelect={() => setScenario(ScenarioType.opphørt)}>
                             Deltakelse slettet
                         </ActionMenu.Item>

@@ -1,4 +1,4 @@
-import søknadStateEndpoint from '../api/endpoints/søknadStateEndpoint';
+import { søknadStateEndpoint } from '../api/endpoints/søknadStateEndpoint';
 
 export const useMellomlagring = () => {
     return {

@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 
 import { checkConsistencyForSteps } from '../consistency/checkConsistencyForSteps';
-import { useSøknadFormValues } from '../consistency/SøknadFormValuesContext';
+import { useSøknadStepFormContext } from '../consistency/SøknadStepFormContext';
 import { useSøknadAppContext } from '../context/SøknadAppContext';
 
 /**
@@ -13,7 +13,7 @@ import { useSøknadAppContext } from '../context/SøknadAppContext';
  */
 export function useCheckConsistency(currentStepId: string): string | undefined {
     const { store, stepOrder, formValuesToSøknadsdata } = useSøknadAppContext();
-    const { søknadFormValues } = useSøknadFormValues();
+    const { draftFormValues } = useSøknadStepFormContext();
     const søknadsdata = store((s) => s.søknadsdata);
 
     return useMemo(() => {
@@ -22,9 +22,9 @@ export function useCheckConsistency(currentStepId: string): string | undefined {
         return checkConsistencyForSteps({
             currentStepId,
             stepOrder,
-            formValues: søknadFormValues,
+            formValues: draftFormValues,
             getSøknadsdataForStep: (stepId) => søknadsdata[stepId] as Record<string, unknown> | undefined,
             formValuesToSøknadsdata,
         });
-    }, [currentStepId, stepOrder, søknadFormValues, søknadsdata, formValuesToSøknadsdata]);
+    }, [currentStepId, stepOrder, draftFormValues, søknadsdata, formValuesToSøknadsdata]);
 }

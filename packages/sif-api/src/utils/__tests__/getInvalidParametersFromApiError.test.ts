@@ -66,6 +66,14 @@ describe('getInvalidParametersFromApiError', () => {
         expect(result).toEqual([validViolation]);
     });
 
+    it('returnerer violations fra backend', () => {
+        const error = createNetworkApiError({
+            violations: [{ ...validViolation, invalidValue: null, parameterType: 'ENTITY' }],
+        });
+        const result = getInvalidParametersFromApiError(error);
+        expect(result).toEqual([{ ...validViolation, invalidValue: null, parameterType: 'ENTITY' }]);
+    });
+
     it('returnerer violations fra invalid_parameters (snake_case)', () => {
         const error = createNetworkApiError({
             invalid_parameters: [

@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import { execSync } from 'child_process';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { glob } from 'glob';
 import path from 'path';
 
@@ -33,13 +33,7 @@ export function getNavBaseUrl(env) {
 export async function fetchAndNormalizeSpec(url, outputPath) {
     const response = await fetch(url);
     if (!response.ok) {
-        if (existsSync(outputPath)) {
-            console.warn(`⚠ Fetch failed for ${url} (${response.status}), using cached spec: ${outputPath}`);
-            return false;
-        }
-        throw new Error(
-            `Failed to fetch spec ${url}: ${response.status} ${response.statusText} (no cached file at ${outputPath})`,
-        );
+        throw new Error(`Failed to fetch spec ${url}: ${response.status} ${response.statusText}`);
     }
     const spec = await response.json();
     const sorted = sortKeysDeep(spec);

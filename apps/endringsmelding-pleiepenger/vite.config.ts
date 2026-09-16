@@ -1,5 +1,4 @@
 /// <reference types="vitest" />
-import { sentryVitePlugin } from '@sentry/vite-plugin';
 import react from '@vitejs/plugin-react';
 import * as path from 'path';
 import { defineConfig } from 'vite';
@@ -17,23 +16,13 @@ export default defineConfig(({ mode }) => ({
                 return html.replace(/<link rel="stylesheet" crossorigin/g, '<link rel="stylesheet" type="text/css"');
             },
         },
-        ...[
-            process.env.SENTRY_AUTH_TOKEN
-                ? [
-                      sentryVitePlugin({
-                          org: 'nav',
-                          project: 'sykdom-i-familien',
-                          authToken: process.env.SENTRY_AUTH_TOKEN,
-                      }),
-                  ]
-                : [],
-        ],
     ],
     resolve: {
         alias: {
-            '@app': path.resolve(__dirname, './src/app'),
+            '@app': path.resolve(import.meta.dirname, './src/app'),
         },
     },
+    base: mode === 'production' ? 'https://cdn.nav.no/dusseldorf/endringsmelding-pleiepenger/dist/' : '/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/',
     build: {
         chunkSizeWarningLimit: 2000,
         sourcemap: true,

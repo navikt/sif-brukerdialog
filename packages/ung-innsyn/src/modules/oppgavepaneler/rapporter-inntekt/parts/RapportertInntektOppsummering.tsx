@@ -1,7 +1,7 @@
 import { FormSummary } from '@navikt/ds-react';
 import { TallSvar } from '@navikt/sif-common-ui';
 
-import { UngUiText } from '../../../../i18n';
+import { UngInnsynText } from '../../../../i18n';
 
 interface Props {
     måned: string;
@@ -14,22 +14,25 @@ export const RapportertInntektOppsummering = ({ måned, inntekt }: Props) => {
             <FormSummary>
                 <FormSummary.Header>
                     <FormSummary.Heading level="2" id="summaryHeading">
-                        <UngUiText id="@ungInnsyn.rapporterInntektOppgavePart.oppsummering" />
+                        <UngInnsynText id="@ungInnsyn.rapporterInntektOppgavePart.oppsummering" />
                     </FormSummary.Heading>
                 </FormSummary.Header>
                 <FormSummary.Answers>
                     <FormSummary.Answer>
                         <FormSummary.Label>
-                            <UngUiText id="@ungInnsyn.rapporterInntektOppgavePart.haddeInntekt" values={{ måned }} />
+                            <UngInnsynText
+                                id="@ungInnsyn.rapporterInntektOppgavePart.haddeInntekt"
+                                values={{ måned }}
+                            />
                         </FormSummary.Label>
                         <FormSummary.Value>
-                            {inntekt > 0 ? <UngUiText id="@ungInnsyn.Ja" /> : <UngUiText id="@ungInnsyn.Nei" />}
+                            {inntekt > 0 ? <UngInnsynText id="@ungInnsyn.Ja" /> : <UngInnsynText id="@ungInnsyn.Nei" />}
                         </FormSummary.Value>
                     </FormSummary.Answer>
                     {inntekt > 0 && (
                         <FormSummary.Answer>
                             <FormSummary.Label>
-                                <UngUiText id="@ungInnsyn.rapporterInntektOppgavePart.inntektFørSkatt" />
+                                <UngInnsynText id="@ungInnsyn.rapporterInntektOppgavePart.inntektFørSkatt" />
                             </FormSummary.Label>
                             <FormSummary.Value>
                                 <TallSvar verdi={inntekt} />

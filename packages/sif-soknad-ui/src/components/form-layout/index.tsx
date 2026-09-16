@@ -1,6 +1,8 @@
 import { ArrowLeftIcon, ArrowRightIcon, PaperplaneIcon } from '@navikt/aksel-icons';
 import { Bleed, Box, BoxNewProps, Button, Heading, HeadingProps, HStack, VStack, VStackProps } from '@navikt/ds-react';
 
+import { type HTMLAttributes, type ReactNode } from 'react';
+
 import { SifSoknadUiText } from '../../i18n';
 import { SifGuidePanel, SifGuidePanelProps } from '../sif-guide-panel/SifGuidePanel';
 
@@ -14,9 +16,9 @@ const Sections = ({ ...rest }: VStackProps) => <VStack gap="space-48" {...rest} 
  * Tittel og content i en seksjon
  */
 
-type SectionProps = React.HTMLAttributes<HTMLElement> & {
-    title: React.ReactNode;
-    titleIcon?: React.ReactNode;
+type SectionProps = HTMLAttributes<HTMLElement> & {
+    title: ReactNode;
+    titleIcon?: ReactNode;
     titleLevel?: '1' | '2' | '3';
 };
 
@@ -35,7 +37,7 @@ const Section = ({ title, titleIcon, titleLevel = '2', children, ...rest }: Sect
  * Header i en FormSection
  */
 
-type SectionHeadingProps = { icon?: React.ReactNode } & HeadingProps;
+type SectionHeadingProps = { icon?: ReactNode } & HeadingProps;
 
 const SectionHeading = ({ children, icon, level = '2', size = 'medium', ...rest }: SectionHeadingProps) => (
     <Heading level={level} size={size} {...rest}>
@@ -54,7 +56,7 @@ const SectionHeading = ({ children, icon, level = '2', size = 'medium', ...rest 
  * Wrapper innhold og knytter det nærmere visuelt til foregående innhold vha Bleed
  * @children Innholdet
  */
-const QuestionRelatedMessage = ({ children }: { children: React.ReactNode }) => {
+const QuestionRelatedMessage = ({ children }: { children: ReactNode }) => {
     return <Bleed marginBlock="space-24 space-0">{children}</Bleed>;
 };
 
@@ -62,7 +64,7 @@ const QuestionRelatedMessage = ({ children }: { children: React.ReactNode }) => 
  * Wrapper innhold og knytter det nærmere visuelt til foregående innhold vha Bleed
  * @children Innholdet
  */
-const QuestionBleedTop = ({ children }: { children: React.ReactNode }) => {
+const QuestionBleedTop = ({ children }: { children: ReactNode }) => {
     return <Bleed marginBlock="space-24 space-0">{children}</Bleed>;
 };
 
@@ -70,7 +72,7 @@ const QuestionBleedTop = ({ children }: { children: React.ReactNode }) => {
  * Wrapper innhold og knytter det nærmere visuelt til foregående innhold vha Bleed
  * @children Innholdet
  */
-const QuestionBleedBottom = ({ children }: { children: React.ReactNode }) => {
+const QuestionBleedBottom = ({ children }: { children: ReactNode }) => {
     return <Bleed marginBlock="space-0 space-16">{children}</Bleed>;
 };
 
@@ -107,7 +109,7 @@ const Panel = ({ bleedTop, ...rest }: PanelProps) => {
     return bleedTop ? <QuestionBleedTop>{content}</QuestionBleedTop> : content;
 };
 
-type StepGuideWrapperProps = { children: React.ReactNode } & React.HTMLAttributes<HTMLElement>;
+type StepGuideWrapperProps = { children: ReactNode } & HTMLAttributes<HTMLElement>;
 
 const StepGuideWrapper = ({ children, ...rest }: StepGuideWrapperProps) => {
     return (
@@ -174,11 +176,11 @@ const FormButtons = ({
     );
 };
 
-const Content = ({ children }: { children: React.ReactNode }) => {
+const Content = ({ children }: { children: ReactNode }) => {
     return <VStack gap="space-48">{children}</VStack>;
 };
 
-const Summary = ({ children }: { children: React.ReactNode }) => {
+const Summary = ({ children }: { children: ReactNode }) => {
     return <VStack gap="space-24">{children}</VStack>;
 };
 

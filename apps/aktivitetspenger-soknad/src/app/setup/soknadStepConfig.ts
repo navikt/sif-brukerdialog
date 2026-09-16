@@ -1,12 +1,8 @@
 import { StepDefinition } from '@sif/soknad-app';
 
-import { SøknadStepId } from '../types/SoknadStepId';
+import { SøknadStepId } from '@app/types/SoknadStepId';
 
 export const søknadStepConfig: Record<SøknadStepId, StepDefinition> = {
-    [SøknadStepId.STARTDATO]: {
-        route: 'startdato',
-        isCompleted: (s) => s[SøknadStepId.STARTDATO] !== undefined,
-    },
     [SøknadStepId.KONTONUMMER]: {
         route: 'kontonummer',
         isCompleted: (s) => s[SøknadStepId.KONTONUMMER] !== undefined,
@@ -15,9 +11,9 @@ export const søknadStepConfig: Record<SøknadStepId, StepDefinition> = {
         route: 'bosted',
         isCompleted: (s) => s[SøknadStepId.BOSTED] !== undefined,
     },
-    [SøknadStepId.BOSTED_UTLAND]: {
-        route: 'bosted-utland',
-        isCompleted: (s) => s[SøknadStepId.BOSTED_UTLAND] !== undefined,
+    [SøknadStepId.MEDLEMSKAP]: {
+        route: 'medlemskap',
+        isCompleted: (s) => s[SøknadStepId.MEDLEMSKAP] !== undefined,
     },
     [SøknadStepId.BARN]: {
         route: 'barn',
@@ -29,10 +25,9 @@ export const søknadStepConfig: Record<SøknadStepId, StepDefinition> = {
 };
 
 export const søknadStepOrder: SøknadStepId[] = [
-    SøknadStepId.STARTDATO,
     SøknadStepId.KONTONUMMER,
     SøknadStepId.BOSTED,
-    SøknadStepId.BOSTED_UTLAND,
+    SøknadStepId.MEDLEMSKAP,
     SøknadStepId.BARN,
     SøknadStepId.OPPSUMMERING,
 ];

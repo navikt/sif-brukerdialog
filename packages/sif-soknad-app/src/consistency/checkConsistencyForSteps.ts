@@ -1,13 +1,13 @@
-import { SøknadFormValues, StepFormValues } from './SøknadFormValuesContext';
+import { StepFormValuesMap, StepFormValuesRecord } from './SøknadStepFormContext';
 
-type FormValuesToSøknadsdataFn = (stepId: string, formValues: StepFormValues) => Record<string, unknown> | undefined;
+type FormValuesToSøknadsdataFn = (stepId: string, formValues: StepFormValuesRecord) => Record<string, unknown> | undefined;
 
 type GetSøknadsdataForStepFn = (stepId: string) => Record<string, unknown> | undefined;
 
 interface CheckConsistencyParams {
     currentStepId: string;
     stepOrder: string[];
-    formValues: SøknadFormValues;
+    formValues: StepFormValuesMap;
     getSøknadsdataForStep: GetSøknadsdataForStepFn;
     formValuesToSøknadsdata: FormValuesToSøknadsdataFn;
 }

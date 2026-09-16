@@ -141,12 +141,12 @@ Hver hook avhenger av en spesifikk API-klient som må være initialisert, og til
 
 ### `@sif/api/ung-brukerdialog` — ung-brukerdialog-api
 
-**Hooks:** `useOppgaver`
+**Hooks:** `useOppgaver`, `useTilgjengeligAktivitetspengerSøknad`
 
 | Element       | Verdi                                                                                          |
 | ------------- | ---------------------------------------------------------------------------------------------- |
 | Pakke         | `@navikt/ung-brukerdialog-api`                                                                 |
-| Init-funksjon | `initUngBrukerdialogApiClient({ onUnauthorized })`                                             |
+| Init-funksjon | `initUngBrukerdialogApiClient({ frontendPath, loginURL, onUnauthorized })`                    |
 | Env-variabler | `UNG_BRUKERDIALOG_API_FRONTEND_PATH`, `UNG_BRUKERDIALOG_API_SCOPE`, `UNG_BRUKERDIALOG_API_URL` |
 
 ### `@sif/api/ung-deltaker` — ung-deltakelse-opplyser-api-deltaker
@@ -156,7 +156,7 @@ Hver hook avhenger av en spesifikk API-klient som må være initialisert, og til
 | Element       | Verdi                                                                                                           |
 | ------------- | --------------------------------------------------------------------------------------------------------------- |
 | Pakke         | `@navikt/ung-deltakelse-opplyser-api-deltaker`                                                                  |
-| Init-funksjon | `initUngDeltakelseOpplyserApiDeltakerClient({ onUnauthorized })`                                                |
+| Init-funksjon | `initUngDeltakelseOpplyserApiDeltakerClient({ frontendPath, loginURL, onUnauthorized })`                       |
 | Env-schema    | `ungDeltakelseOpplyserEnvSchema` (fra `@navikt/sif-common-env`)                                                 |
 | Env-variabler | `UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH`, `UNG_DELTAKELSE_OPPLYSER_API_SCOPE`, `UNG_DELTAKELSE_OPPLYSER_API_URL` |
 
@@ -209,10 +209,14 @@ export const initApiClients = () => {
     });
     // Kun hvis useOppgaver trengs:
     initUngBrukerdialogApiClient({
+        frontendPath: getRequiredEnv(EnvKey.UNG_BRUKERDIALOG_API_FRONTEND_PATH),
+        loginURL: '#',
         onUnauthorized: () => globalThis.location.reload(),
     });
     // Kun hvis useKontonummer trengs:
     initUngDeltakelseOpplyserApiDeltakerClient({
+        frontendPath: getRequiredEnv(EnvKey.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH),
+        loginURL: '#',
         onUnauthorized: () => globalThis.location.reload(),
     });
 };

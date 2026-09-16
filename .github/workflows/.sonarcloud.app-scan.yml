@@ -20,12 +20,12 @@ jobs:
             contents: read # required: actions/checkout
             id-token: none
         steps:
-            - uses: actions/checkout@v7.0.0
+            - uses: actions/checkout@v7.0.1
               with:
                   fetch-depth: 0
 
             - name: SonarQube Scan
-              uses: SonarSource/sonarqube-scan-action@v8.2.0
+              uses: SonarSource/sonarqube-scan-action@v8.2.1
               with:
                   args: >
                       -Dproject.settings=${{ inputs.working-directory }}/sonar-project.properties

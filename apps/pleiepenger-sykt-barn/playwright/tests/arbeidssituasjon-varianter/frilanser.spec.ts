@@ -3,10 +3,8 @@ import { expect, test } from '@playwright/test';
 import { StepID } from '../../../src/app/types/StepID';
 import { mellomlagringMock } from '../../mock-data/mellomlagring';
 import { routeUtils } from '../../utils/routeUtils';
-import { setNow } from '../../utils/setNow';
 
 test.beforeEach(async ({ page }) => {
-    await setNow(page);
     await routeUtils.setupMockRoutes(page, {
         mellomlagring: mellomlagringMock,
         lastStep: StepID.TIDSROM,
@@ -41,7 +39,7 @@ test.describe('Fosterhjemsgodtgjørelse ', () => {
         await page.getByRole('radiogroup', { name: 'Mottar du denne godtgjørelsen gjennom' }).getByLabel('Nei').check();
         await page.getByRole('radiogroup', { name: 'Starter godtgjørelsen' }).getByLabel('Ja').check();
         await page.getByRole('button', { name: 'Åpne datovelger' }).click();
-        await page.getByLabel('mandag 2', { exact: true }).click();
+        await page.getByLabel('tirsdag 3', { exact: true }).click();
         await page.getByRole('radiogroup', { name: 'Stopper godtgjørelsen' }).getByLabel('Ja').check();
         await page
             .locator('div')
@@ -56,7 +54,7 @@ test.describe('Fosterhjemsgodtgjørelse ', () => {
         await expect(
             summary.getByText('Mottar fosterhjemsgodtgjørelsen i deler av perioden jeg søker om'),
         ).toBeVisible();
-        await expect(summary.getByText('Starter 2. januar')).toBeVisible();
+        await expect(summary.getByText('Starter 3. januar')).toBeVisible();
         await expect(summary.getByText('Slutter 3. januar')).toBeVisible();
     });
 });

@@ -1,5 +1,11 @@
 # @navikt/sif-common-ui
 
+## 0.2.0
+
+### Minor Changes
+
+- Erstatte all bruk av sentry med nais/apm
+
 ## 0.1.10
 
 ### Patch Changes

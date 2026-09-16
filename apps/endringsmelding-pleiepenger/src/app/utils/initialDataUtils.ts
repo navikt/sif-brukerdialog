@@ -1,8 +1,9 @@
 import { DateRange, ISODateToDate, MaybeDateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+
+import { AARegArbeidsgiverOrganisasjon } from '../api/endpoints/arbeidsgivereEndpoint';
 import { ArbeidsgiverMedAnsettelseperioder } from '../types';
 import { getArbeidsgiverKey } from './arbeidsgiverUtils';
-import { AARegArbeidsgiverOrganisasjon } from '../api/endpoints/arbeidsgivereEndpoint';
 
 export const getPeriodeForArbeidsgiverOppslag = (
     dateRangeAlleSaker: DateRange,

@@ -26,7 +26,6 @@ import { Søkerdata } from '../../types/Søkerdata';
 import { SøknadApiData } from '../../types/søknad-api-data/SøknadApiData';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { StepID } from '../../types/StepID';
-import appSentryLogger from '../../utils/appSentryLogger';
 import { harArbeidIPerioden, harFraværFraJobb } from '../../utils/arbeidUtils';
 import { getDataBruktTilUtledning } from '../../utils/getDataBruktTilUtledning';
 import { relocateToLoginPage } from '../../utils/navigationUtils';
@@ -47,6 +46,7 @@ import OmsorgstilbudSummary from './omsorgstilbud-summary/OmsorgstilbudSummary';
 import PeriodeSummary from './periode-summary/PeriodeSummary';
 import SøkerSummary from './søker-summary/SøkerSummary';
 import { useSkyraReloader } from '@sif/surveys';
+import { appLogger } from '@sif/apm';
 
 interface Props {
     values: SøknadFormValues;
@@ -98,8 +98,17 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                 setSendSoknadFailed(true);
                 if (isInvalidParameterErrorResponse(error.response?.data)) {
                     setInvalidParameters(error.response.data.violations);
+                    appLogger.logHandledException(new Error('sendSøknad-invalidParameters'), {
+                        httpStatus: error.response?.status,
+                        title: error.response.data.title,
+                        invalidParameters: error.response.data.violations.map(({ parameterName, parameterType }) => ({
+                            parameterName,
+                            parameterType,
+                        })),
+                    });
+                } else {
+                    appLogger.logApiError(error, 'sendSøknad');
                 }
-                appSentryLogger.logApiError(error as any, 'sendSøknad-invalidParameters');
             } else if (isUnauthorized(error)) {
                 logUserLoggedOut('Ved innsending av søknad');
                 relocateToLoginPage();
@@ -107,7 +116,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                 setSendingInProgress(false);
                 setSendSoknadFailed(true);
                 await logSoknadFailed(PleiepengerSyktBarnApp.navn);
-                appSentryLogger.logApiError(error, 'sendSøknad');
+                appLogger.logApiError(error as any, 'sendSøknad');
             }
         }
     };

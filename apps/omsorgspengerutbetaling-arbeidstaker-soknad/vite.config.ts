@@ -19,6 +19,7 @@ export default defineConfig(({ mode }) => ({
         },
     ],
     resolve: {},
+    base: mode === 'production' ? 'https://cdn.nav.no/dusseldorf/omsorgspengerutbetaling-arbeidstaker-soknad/dist/' : '/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker/',
     build: {
         chunkSizeWarningLimit: 2000,
         sourcemap: true,

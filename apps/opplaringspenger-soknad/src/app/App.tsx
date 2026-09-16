@@ -22,14 +22,7 @@ import { SøknadRoutes } from './types/SøknadRoutes';
 import { appEnv } from './utils/appEnv';
 import { relocateToWelcomePage } from './utils/navigationUtils';
 
-const {
-    PUBLIC_PATH,
-    SIF_PUBLIC_APPSTATUS_DATASET,
-    SIF_PUBLIC_APPSTATUS_PROJECT_ID,
-    APP_VERSION,
-    SIF_PUBLIC_USE_ANALYTICS,
-    SIF_PUBLIC_ANALYTICS_API_KEY,
-} = appEnv;
+const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID, SIF_PUBLIC_USE_ANALYTICS } = appEnv;
 
 ensureBaseNameForReactRouter(PUBLIC_PATH);
 const queryClient = new QueryClient();
@@ -48,7 +41,6 @@ const App = () => {
                 <UxSignalsLoaderProvider>
                     <div className={__IS_GITHUB_PAGES__ ? 'demoMode' : undefined}>
                         <SoknadApplication
-                            appVersion={APP_VERSION}
                             appKey={OpplæringspengerApp.key}
                             appName={OpplæringspengerApp.navn}
                             appTitle={OpplæringspengerApp.tittel.nb}
@@ -66,8 +58,7 @@ const App = () => {
                                 await mellomlagringService.purge();
                                 relocateToWelcomePage();
                             }}
-                            useAnalytics={SIF_PUBLIC_USE_ANALYTICS ? SIF_PUBLIC_USE_ANALYTICS === 'true' : isProd()}
-                            analyticsApiKey={SIF_PUBLIC_ANALYTICS_API_KEY}>
+                            useAnalytics={SIF_PUBLIC_USE_ANALYTICS ? SIF_PUBLIC_USE_ANALYTICS === 'true' : isProd()}>
                             <SoknadApplicationCommonRoutes
                                 contentRoutes={[
                                     <Route index key="redirect" element={<Navigate to={SøknadRoutes.VELKOMMEN} />} />,

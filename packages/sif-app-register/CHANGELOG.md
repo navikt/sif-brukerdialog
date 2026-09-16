@@ -1,5 +1,11 @@
 # @navikt/sif-app-register
 
+## 0.2.0
+
+### Minor Changes
+
+- Erstatte all bruk av sentry med nais/apm
+
 ## 0.1.13
 
 ### Patch Changes

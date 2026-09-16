@@ -2,11 +2,6 @@ import { SøknadRoutes } from '@app/søknad/config/SøknadRoutes';
 import { expect, test } from '@playwright/test';
 
 import { routeUtils } from '../../utils/routeUtils';
-import { setNow as setNow } from '../../utils/setNow';
-
-test.beforeEach(async ({ page }) => {
-    await setNow(page);
-});
 
 test('endringsmelding om ferie og arbeid', async ({ page }) => {
     await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN);

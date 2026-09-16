@@ -1,7 +1,7 @@
 import { bostedUtlandMessages_nb } from './nb';
 
 export const bostedUtlandMessages_nn: Record<keyof typeof bostedUtlandMessages_nb, string> = {
-    '@sifSoknadForms.bostedUtland.dialog.tittel': 'Utanlandsopphald',
+    '@sifSoknadForms.bostedUtland.dialog.tittel': 'Bustad i utlandet',
     '@sifSoknadForms.bostedUtland.dialog.avbrytKnapp': 'Avbryt',
     '@sifSoknadForms.bostedUtland.dialog.leggTilKnapp': 'Legg til',
     '@sifSoknadForms.bostedUtland.dialog.oppdaterKnapp': 'Oppdater',

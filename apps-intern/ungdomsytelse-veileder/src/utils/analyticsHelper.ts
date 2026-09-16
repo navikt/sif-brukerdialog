@@ -1,11 +1,11 @@
+import { Avslutningsårsak } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import { SlettDeltakerÅrsak } from '../types/SlettDeltakerÅrsaker';
-import { Utmeldingsårsak } from '../types/Utmeldingsårsaker';
 import { AppHendelse, useAnalyticsInstance } from './analytics';
 
 // Map event to payload shape for type safety.
 export type AppEventPayloads = {
     [AppHendelse.startdatoEndret]: { endring: number };
-    [AppHendelse.sluttdatoSattFørsteGang]: { årsak: Utmeldingsårsak };
+    [AppHendelse.sluttdatoSattFørsteGang]: { årsak: Avslutningsårsak };
     [AppHendelse.aktivDeltakerSlettet]: { årsak: SlettDeltakerÅrsak };
     [AppHendelse.sluttdatoEndret]: void;
     [AppHendelse.sluttdatoSlettet]: void;

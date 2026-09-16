@@ -40,7 +40,7 @@ Korte beslutninger som skal hjelpe neste migrering.
 
 ### D-005 Standard oppstart for ny app (demo-baseline)
 
-- Beslutning: Ny app starter med demo-baseline fra `apps/sif-demo-app` frem til og med `src/main.tsx` som renderer `<App />`, inkludert grunnoppsett for Sentry, Storybook, Vitest/Playwright-relatert setup og MSW.
+- Beslutning: Ny app starter med demo-baseline fra `apps/sif-demo-app` frem til og med `src/main.tsx` som renderer `<App />`, inkludert grunnoppsett for Storybook, Vitest/Playwright-relatert setup og MSW.
 - Hvorfor: Gir rask, forutsigbar bootstrap med kjent tooling og mindre beslutningskostnad tidlig i migreringen.
 - Gjenbruk i neste app: Copy-first av baselinefiler, og kun minimale app-spesifikke justeringer i `package.json`, `vite.config.ts`, `vite.dev.config.ts` og `index.html`.
 - Etappe: sif-soknad

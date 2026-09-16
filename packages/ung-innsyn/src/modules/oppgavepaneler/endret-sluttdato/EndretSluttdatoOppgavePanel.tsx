@@ -1,6 +1,6 @@
 import { EndretSluttdatoOppgave } from '@sif/api/ung-brukerdialog';
 
-import { UngUiText } from '../../../i18n';
+import { UngInnsynText } from '../../../i18n';
 import { Oppgavebekreftelse } from '../../oppgavebekreftelse/Oppgavebekreftelse';
 import { EndretSluttdatoOppgavetekst } from './parts/EndretSluttdatoOppgavetekst';
 import { EndretSluttdatoOppsummering } from './parts/EndretSluttdatoOppsummering';
@@ -29,7 +29,7 @@ export const EndretSluttdatoOppgavePanel = ({ navn, oppgave, initialVisKvitterin
             </Oppgavebekreftelse.Besvart>
 
             <Oppgavebekreftelse.Kvittering>
-                <UngUiText id="@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.kvitteringTekst" />
+                <UngInnsynText id="@ungInnsyn.oppgavetype.BEKREFT_ENDRET_SLUTTDATO.kvitteringTekst" />
             </Oppgavebekreftelse.Kvittering>
         </Oppgavebekreftelse>
     );

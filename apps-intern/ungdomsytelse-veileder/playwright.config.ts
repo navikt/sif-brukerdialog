@@ -24,11 +24,18 @@ export default defineConfig({
             name: 'chromium',
             use: { ...devices['Desktop Chrome'] },
         },
+        {
+            name: 'chromium-los-angeles',
+            use: {
+                ...devices['Desktop Chrome'],
+                timezoneId: 'America/Los_Angeles',
+            },
+        },
     ],
 
     webServer: {
-        command: 'pnpm pw:build && pnpm pw:start',
+        command: process.env.CI ? 'pnpm pw:start' : 'pnpm pw:build && pnpm pw:start',
         url: 'http://localhost:8088/sif-brukerdialog/ungdomsytelse-veileder/',
-        reuseExistingServer: true,
+        reuseExistingServer: !process.env.CI,
     },
 });

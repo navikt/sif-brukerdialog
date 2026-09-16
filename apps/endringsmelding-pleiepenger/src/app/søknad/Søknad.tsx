@@ -1,5 +1,5 @@
 import { RequestStatus } from '@app/types';
-import { appSentryLogger } from '@app/utils';
+import { appLogger } from '@sif/apm';
 import { Alert } from '@navikt/ds-react';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { getMaybeEnv } from '@navikt/sif-common-env';
@@ -33,7 +33,7 @@ const Søknad = () => {
     }
 
     if (status === RequestStatus.forbidden) {
-        appSentryLogger.logError('Søknad.requestStatus', RequestStatus.forbidden);
+        appLogger.logError(`Søknad.requestStatus: ${RequestStatus.forbidden}`);
         return (
             <ErrorPage
                 pageTitle="Ingen tilgang"
@@ -44,10 +44,10 @@ const Søknad = () => {
 
     if (status === RequestStatus.error) {
         if (isAxiosError(initialData.error)) {
-            appSentryLogger.logApiError(initialData.error, 'useSøknadInitialData');
+            appLogger.logApiError(initialData.error, 'useSøknadInitialData');
         } else {
             const e = initialData.error instanceof Error ? initialData.error : new Error(String(initialData.error));
-            appSentryLogger.logException(e, { context: 'Søknad.requestStatus' });
+            appLogger.logException(e, { context: 'Søknad.requestStatus' });
         }
         return (
             <ErrorPage

@@ -86,9 +86,6 @@ export type DataBruktTilUtledning = {
     annetData?: string;
     harBekreftetOpplysninger: boolean;
     harForståttRettigheterOgPlikter: boolean;
-    /**
-     * @deprecated
-     */
     soknadDialogCommitSha?: string;
 };
 

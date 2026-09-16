@@ -1,26 +1,8 @@
 import { Page } from '@playwright/test';
 
-const testDate = new Date('2023-10-04');
-
-const getSetDateScript = (timestamp: number) => `
-{
-    // Extend Date constructor to default to fakeNow
-    Date = class extends Date {
-      constructor(...args) {
-        if (args.length === 0) {
-          super(${timestamp});
-        } else {
-          super(...args);
-        }
-      }
-    }
-    // Override Date.now() to start from fakeNow
-    const __DateNowOffset = ${timestamp} - Date.now();
-    const __DateNow = Date.now;
-    Date.now = () => __DateNow() + __DateNowOffset;
-  }
-`;
+// Eksplisitt UTC for å unngå tvetydig tolkning på tvers av tidssoner.
+const testDate = new Date('2023-10-04T12:00:00Z');
 
 export const setNow = async (page: Page, date: Date = testDate) => {
-    await page.addInitScript(getSetDateScript(date.valueOf()));
+    await page.clock.setFixedTime(date);
 };

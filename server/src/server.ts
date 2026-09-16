@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'node:path';
 import { configureReverseProxyApi } from './utils/reverseProxy.js';
+import { getRequiredServicesFromEnv } from './utils/serverConfig.js';
 import { verifyToken } from './utils/tokenValidation.js';
 import { setupActuators } from './utils/actuators.js';
 import { errorHandling } from './utils/errorHandler.js';
@@ -19,7 +20,7 @@ server.use(express.static('./public', { index: false }));
 server.use(`${serverConfig.app.publicPath}/assets`, express.static(path.resolve(path.resolve('public'), 'assets')));
 server.use(verifyToken);
 
-configureReverseProxyApi(server);
+configureReverseProxyApi(server, getRequiredServicesFromEnv());
 
 // Catch all route, må være sist
 setupAndServeHtml(server);

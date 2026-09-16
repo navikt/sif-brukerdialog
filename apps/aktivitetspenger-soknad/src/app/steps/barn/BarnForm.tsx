@@ -7,10 +7,17 @@ import { BodyLong, Heading } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { SøknadStep, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
-import { AriaLiveRegion, ExternalLink, FormLayout, RegistrerteBarnListe, SifInfoCard } from '@sif/soknad-ui/components';
+import {
+    AriaLiveRegion,
+    ExternalLink,
+    FormLayout,
+    RegistrerteBarnListe,
+    SifGuidePanel,
+    SifInfoCard,
+} from '@sif/soknad-ui/components';
 import { useForm } from 'react-hook-form';
 
-import getLenker from '../../lenker';
+import getLenker from '@app/lenker';
 import { toBarnFormValues, toBarnSøknadsdata } from './barnStegUtils';
 import { BarnFormFields, BarnFormValues } from './types';
 
@@ -35,6 +42,9 @@ export const BarnForm = () => {
         <SøknadStep stepId={stepId}>
             <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
                 <FormLayout.Content>
+                    <SifGuidePanel>
+                        <AppText id="barnSteg.beskrivelse" />
+                    </SifGuidePanel>
                     <FormLayout.Questions>
                         {registrerteBarn.length > 0 && (
                             <RegistrerteBarnListe
@@ -58,7 +68,7 @@ export const BarnForm = () => {
                         <AriaLiveRegion visible={infoStemmer === YesOrNo.NO}>
                             <FormLayout.QuestionRelatedMessage>
                                 <SifInfoCard>
-                                    <Heading level="3" size="small" spacing>
+                                    <Heading level="2" size="small" spacing>
                                         <AppText id="barnSteg.opplysninger.info.tittel" />
                                     </Heading>
                                     <BodyLong>

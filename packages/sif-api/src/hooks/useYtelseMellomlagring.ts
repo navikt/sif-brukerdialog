@@ -50,7 +50,7 @@ export const useYtelseMellomlagring = <State, MetaData>(
             try {
                 const payload = await hentYtelseMellomlagring(ytelse);
 
-                if (!payload) {
+                if (!payload || Object.keys(payload).length === 0) {
                     return null;
                 }
 

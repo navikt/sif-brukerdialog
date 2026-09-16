@@ -1,3 +1,4 @@
+import { ISODateToDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 
@@ -16,9 +17,12 @@ const isISODateString = (value: any): value is string => {
 const getDateFromString = (value?: string): Date | undefined => {
     if (typeof value === 'string') {
         if (isISODateString(value)) {
-            return dayjs.utc(value, 'YYYY-MM-DD').toDate();
+            // Kalenderdate (YYYY-MM-DD) tolkes som lokal midnatt via ISODateToDate —
+            // ikke UTC midnight, som ville gitt feil visningsdag vest for UTC.
+            return ISODateToDate(value);
         }
         if (dayjs(value).isValid()) {
+            // Timestamps med tid tolkes som UTC — korrekt for ISO 8601-timestamps.
             return dayjs.utc(value).toDate();
         } else {
             throw new Error(`Could not parse date string: ${value}`);

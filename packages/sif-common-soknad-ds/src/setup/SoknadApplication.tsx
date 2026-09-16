@@ -16,7 +16,6 @@ import {
     getNynorskLocale,
     setLocaleInSessionStorage,
 } from '@navikt/sif-common-core-ds/src/utils/localeUtils';
-import { FaroProvider } from '@navikt/sif-common-faro';
 import dayjs from 'dayjs';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
@@ -29,8 +28,7 @@ import useDecoratorLanguageSelector from '../hooks/useDecoratorLanguageSelector'
 import ErrorPage from '../pages/error-page/ErrorPage';
 
 interface Props {
-    appVersion: string;
-    /** Key used in analytics and sentry logs */
+    /** Key used in analytics */
     appKey: string;
     /** App name - not visual to user */
     appName: string;
@@ -44,11 +42,6 @@ interface Props {
     useLanguageSelector?: boolean;
     /** If analytics logging is active or not*/
     useAnalytics: boolean;
-    /** Analytics project api key */
-    analyticsApiKey: string;
-    /** Faro logging */
-    useFaro?: boolean;
-    naisFrontendTelemetryCollectorUrl?: string;
     /** Config for connecting to the appStatus sanity project */
     appStatus: {
         sanityConfig: SanityConfig;
@@ -70,13 +63,9 @@ const SoknadApplication = ({
     publicPath,
     appKey,
     useAnalytics,
-    analyticsApiKey,
     useLanguageSelector,
     children,
     appTitle,
-    appVersion,
-    naisFrontendTelemetryCollectorUrl,
-    useFaro,
     onResetSoknad,
     useHashRouter,
 }: Props) => {
@@ -92,38 +81,32 @@ const SoknadApplication = ({
 
     return (
         <SifAppWrapper>
-            <FaroProvider
-                applicationKey={appKey}
-                telemetryCollectorURL={naisFrontendTelemetryCollectorUrl}
-                appVersion={appVersion}
-                isActive={useFaro}>
-                <ErrorBoundary appKey={appKey} onResetSoknad={onResetSoknad} appTitle={appTitle}>
-                    <AnalyticsProvider apiKey={analyticsApiKey} applicationKey={appKey} isActive={useAnalytics}>
-                        <IntlProvider
-                            locale={locale === 'nb' ? getBokmålLocale() : getNynorskLocale()}
-                            messages={localeMessages}>
-                            <Router basename={useHashRouter ? undefined : publicPath}>
-                                {/* Staging-datasettet er slettet på grunn av økonomi */}
-                                {appStatus.sanityConfig.dataset === 'staging' ? (
-                                    children
-                                ) : (
-                                    <AppStatusWrapper
-                                        applicationKey={appKey}
-                                        sanityConfig={appStatus.sanityConfig}
-                                        contentRenderer={() => <>{children}</>}
-                                        unavailableContentRenderer={() => (
-                                            <ErrorPage
-                                                contentRenderer={() => <SoknadErrorMessages.ApplicationUnavailable />}
-                                            />
-                                        )}
-                                    />
-                                )}
-                                <DevBranchInfo />
-                            </Router>
-                        </IntlProvider>
-                    </AnalyticsProvider>
-                </ErrorBoundary>
-            </FaroProvider>
+            <ErrorBoundary appKey={appKey} onResetSoknad={onResetSoknad} appTitle={appTitle}>
+                <AnalyticsProvider applicationKey={appKey} isActive={useAnalytics}>
+                    <IntlProvider
+                        locale={locale === 'nb' ? getBokmålLocale() : getNynorskLocale()}
+                        messages={localeMessages}>
+                        <Router basename={useHashRouter ? undefined : publicPath}>
+                            {/* Staging-datasettet er slettet på grunn av økonomi */}
+                            {appStatus.sanityConfig.dataset === 'staging' ? (
+                                children
+                            ) : (
+                                <AppStatusWrapper
+                                    applicationKey={appKey}
+                                    sanityConfig={appStatus.sanityConfig}
+                                    contentRenderer={() => <>{children}</>}
+                                    unavailableContentRenderer={() => (
+                                        <ErrorPage
+                                            contentRenderer={() => <SoknadErrorMessages.ApplicationUnavailable />}
+                                        />
+                                    )}
+                                />
+                            )}
+                            <DevBranchInfo />
+                        </Router>
+                    </IntlProvider>
+                </AnalyticsProvider>
+            </ErrorBoundary>
         </SifAppWrapper>
     );
 };

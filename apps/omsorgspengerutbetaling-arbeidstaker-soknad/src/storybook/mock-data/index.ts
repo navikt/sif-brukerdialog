@@ -9,7 +9,7 @@ export const søkerStorybookMock: Søker = {
     fødselsnummer: '09908799647',
     fornavn: 'GODSLIG',
     aktørId: '132',
-    fødselsdato: ISODateToDate('1990-01-01'),
+    fødselsdato: '1990-01-01',
     etternavn: 'KRONJUVEL',
 };
 

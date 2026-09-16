@@ -2,7 +2,7 @@ import { ArbeidOgFrilansRegisterInntektDto, YtelseRegisterInntektDto } from '@na
 import { AvvikRegisterinntektOppgave } from '@sif/api/ung-brukerdialog';
 
 import { InntektTableRow } from '../../../components/inntekt-table/InntektTable';
-import { UngUiIntlShape } from '../../../i18n';
+import { UngInnsynIntlShape } from '../../../i18n';
 
 const mapArbeidOgFrilansInntektToInntektTabellRad = (
     inntekt: ArbeidOgFrilansRegisterInntektDto[],
@@ -19,7 +19,7 @@ const mapArbeidOgFrilansInntektToInntektTabellRad = (
 
 const mapYtelseInntektToInntektTabellRad = (
     inntekt: YtelseRegisterInntektDto[],
-    intl: UngUiIntlShape,
+    intl: UngInnsynIntlShape,
 ): InntektTableRow[] => {
     if (inntekt.length === 0) {
         return [];
@@ -30,7 +30,7 @@ const mapYtelseInntektToInntektTabellRad = (
     }));
 };
 
-const getInntektskildeHeader = (oppgave: AvvikRegisterinntektOppgave, intl: UngUiIntlShape) => {
+const getInntektskildeHeader = (oppgave: AvvikRegisterinntektOppgave, intl: UngInnsynIntlShape) => {
     const harYtelser = (oppgave.oppgavetypeData.registerinntekt.ytelseInntekter || []).length > 0;
     const harArbeidgiverInntekt = (oppgave.oppgavetypeData.registerinntekt.arbeidOgFrilansInntekter || []).length > 0;
 

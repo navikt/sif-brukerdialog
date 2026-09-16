@@ -1,11 +1,11 @@
 import { expect, test } from '@playwright/test';
-import { ScenarioType } from '../../mock/scenarios/types';
 
+import { ScenarioType } from '../../mock/scenarios/types';
 import { setScenario } from '../utils/scenario';
 import { testAccessibility } from '../utils/testAccessibility';
 
-test('viser tomtilstand for uloste oppgaver i default-scenarioet', async ({ page }) => {
-    await setScenario(page, ScenarioType.default);
+test('viser tomtilstand for uløste oppgaver i innsynUtenOppgaver-scenarioet', async ({ page }) => {
+    await setScenario(page, ScenarioType.innsynUtenOppgaver);
 
     await page.goto('/');
 
