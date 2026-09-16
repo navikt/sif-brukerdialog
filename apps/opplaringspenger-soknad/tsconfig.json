@@ -12,6 +12,7 @@
         "./playwright.config.ts",
         "./env.schema.ts",
         "./vite-env.d.ts",
+        "./vite*.config.ts",
         "./playwright/**/*"
     ]
 }

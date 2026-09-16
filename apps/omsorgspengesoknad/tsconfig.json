@@ -13,6 +13,7 @@
         "./env.schema.ts",
         "./playwright/**/*.ts",
         "./vite-env.d.ts",
+        "./vite*.config.ts",
         "./tailwind.config.ts",
         "./postcss.config.ts"
     ]

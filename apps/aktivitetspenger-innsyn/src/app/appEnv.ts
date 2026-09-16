@@ -5,7 +5,7 @@ import {
     getUngDeltakelseOpplyserBrowserEnv,
 } from '@navikt/sif-common-env';
 
-import { AppEnv } from '../../env.schema';
+import { AppEnv } from '../../env.schema.ts';
 
 export const getAppEnv = (): AppEnv => ({
     ...getCommonEnv(),

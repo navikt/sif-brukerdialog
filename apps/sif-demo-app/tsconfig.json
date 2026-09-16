@@ -1,6 +1,8 @@
 {
     "extends": "../../packages/config/tsconfig-apps.json",
     "compilerOptions": {
+        "allowImportingTsExtensions": true,
+        "noEmit": true,
         "outDir": "build/dist",
         "paths": {
             "@app/*": ["./src/app/*"],
@@ -13,11 +15,9 @@
         "./mock/**/*",
         "./playwright/**/*",
         "./playwright.config.ts",
-        "./vite.e2e.config.ts",
         "./vite-env.d.ts",
         "./tailwind.config.ts",
-        "./vite.config.ts",
-        "./vite.dev.config.ts",
+        "./vite*.config.ts",
         "env.schema.ts"
     ]
 }

@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 
-import { createAliasConfig } from './vite.shared';
+import { createAliasConfig } from './vite.shared.ts';
 
 export default defineConfig(({ mode }) => {
     return {
@@ -36,7 +36,10 @@ export default defineConfig(({ mode }) => {
         server: {
             port: 8080,
         },
-        base: mode === 'production' ? 'https://cdn.nav.no/dusseldorf/ungdomsytelse-deltaker/dist/' : '/ungdomsprogrammet/ytelsen/',
+        base:
+            mode === 'production'
+                ? 'https://cdn.nav.no/dusseldorf/ungdomsytelse-deltaker/dist/'
+                : '/ungdomsprogrammet/ytelsen/',
         build: {
             chunkSizeWarningLimit: 2000,
             sourcemap: true,

@@ -1,12 +1,10 @@
 /// <reference types="vitest" />
-// @ts-expect-error: vite-plugin has no types
 import tailwindcss from '@tailwindcss/vite';
-// @ts-expect-error: vite-plugin has no types
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 
-import { getDevAppSettings } from './mock/devAppSettings';
+import { getDevAppSettings } from './mock/devAppSettings.ts';
 
 export default defineConfig({
     mode: 'msw',
