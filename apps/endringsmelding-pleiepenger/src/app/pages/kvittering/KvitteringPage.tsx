@@ -5,7 +5,6 @@ import { Kvittering } from '@navikt/sif-common-soknad-ds';
 import { Skyra, SkyraSlug } from '@sif/surveys';
 import { useEffect } from 'react';
 
-import { Feature, isFeatureEnabled } from '../../utils';
 import { appEnv } from '../../utils/appEnv';
 
 interface Props {
@@ -32,9 +31,7 @@ const KvitteringPage = ({ onUnmount }: Props) => {
                         />
                     </BodyShort>
                 </Kvittering>
-                {isFeatureEnabled(Feature.SIF_PUBLIC_ENDRE_OMSORGSTILBUD) && (
-                    <Skyra slug={SkyraSlug.endringsmelding_pleiepenger} />
-                )}
+                <Skyra slug={SkyraSlug.endringsmelding_pleiepenger} />
             </VStack>
         </Page>
     );

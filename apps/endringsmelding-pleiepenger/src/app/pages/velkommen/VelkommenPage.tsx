@@ -1,7 +1,7 @@
 import { useSakUtledet as useSakInfo, useStartSøknad } from '@app/hooks';
 import { AppText, useAppIntl } from '@app/i18n';
 import { EndringType } from '@app/types';
-import { BodyLong, Heading, VStack } from '@navikt/ds-react';
+import { Bleed, BodyLong, Heading, VStack } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { SamtykkeFormPart } from '@navikt/sif-common-soknad-ds';
@@ -32,11 +32,19 @@ const VelkommenPage = () => {
     const { startSøknad } = useStartSøknad();
     const { søkersFornavn, barnetsNavn, samletSøknadsperiodeTekst } = useSakInfo();
 
+    const featureVelgEndringV2Enabled = isFeatureEnabled(Feature.SIF_PUBLIC_VELG_ENDRING_V2);
+
     return (
         <Page title={text('application.title')}>
             <FormikWrapper
                 initialValues={{ harForståttRettigheterOgPlikter: false, hvaSkalEndres: [] }}
-                onSubmit={(values) => startSøknad(values.hvaSkalEndres)}
+                onSubmit={(values) => {
+                    if (featureVelgEndringV2Enabled) {
+                        startSøknad([EndringType.arbeidstid, EndringType.lovbestemtFerie, EndringType.tilsynsordning]);
+                    } else {
+                        startSøknad(values.hvaSkalEndres);
+                    }
+                }}
                 renderForm={() => (
                     <Form
                         includeValidationSummary={true}
@@ -44,10 +52,10 @@ const VelkommenPage = () => {
                         submitButtonLabel={text('velkommenForm.submitButtonLabel')}
                         formErrorHandler={getIntlFormErrorHandler(intl, 'velkommenForm')}>
                         <FormLayout.Guide poster={true}>
-                            <Heading level="1" size="large" data-testid="velkommen-header" spacing={false}>
+                            <Heading level="1" size="large" data-testid="velkommen-header" spacing>
                                 <AppText id="velkommenPage.guide.tittel" values={{ navn: søkersFornavn }} />
                             </Heading>
-                            <VStack gap="space-24">
+                            <VStack gap="space-16">
                                 <BodyLong size="large">
                                     {barnetsNavn === '' ? (
                                         <AppText
@@ -66,43 +74,45 @@ const VelkommenPage = () => {
                                         />
                                     )}
                                 </BodyLong>
-
-                                <CheckboxGroup
-                                    data-color="accent"
-                                    name={VelkommenFormFields.hvaSkalEndres}
-                                    legend={
-                                        <Heading level="2" size="small">
-                                            <AppText id="velkommenPage.endre.spm" />
-                                        </Heading>
-                                    }
-                                    validate={getListValidator({ minItems: 1 })}
-                                    checkboxes={[
-                                        {
-                                            'data-testid': 'endreArbeidstid',
-                                            label: text('velkommenPage.endre.jobb'),
-                                            value: EndringType.arbeidstid,
-                                        },
-                                        {
-                                            'data-testid': 'endreLovbestemtFerie',
-                                            label: text('velkommenPage.endre.ferie'),
-                                            value: EndringType.lovbestemtFerie,
-                                        },
-                                        ...(isFeatureEnabled(Feature.SIF_PUBLIC_ENDRE_OMSORGSTILBUD)
-                                            ? [
-                                                  {
-                                                      'data-testid': 'endreOmsorgstilbud',
-                                                      label: text('velkommenPage.endre.tilsynsordning'),
-                                                      value: EndringType.tilsynsordning,
-                                                  },
-                                              ]
-                                            : []),
-                                    ]}
-                                />
-                                <OmSøknaden />
+                                {featureVelgEndringV2Enabled ? (
+                                    <BodyLong size="large">Du velger hva du ønsker å endre underveis</BodyLong>
+                                ) : (
+                                    <CheckboxGroup
+                                        data-color="accent"
+                                        name={VelkommenFormFields.hvaSkalEndres}
+                                        legend={
+                                            <Heading level="2" size="small">
+                                                <AppText id="velkommenPage.endre.spm" />
+                                            </Heading>
+                                        }
+                                        validate={getListValidator({ minItems: 1 })}
+                                        checkboxes={[
+                                            {
+                                                'data-testid': 'endreArbeidstid',
+                                                label: text('velkommenPage.endre.jobb'),
+                                                value: EndringType.arbeidstid,
+                                            },
+                                            {
+                                                'data-testid': 'endreLovbestemtFerie',
+                                                label: text('velkommenPage.endre.ferie'),
+                                                value: EndringType.lovbestemtFerie,
+                                            },
+                                            {
+                                                'data-testid': 'endreOmsorgstilbud',
+                                                label: text('velkommenPage.endre.tilsynsordning'),
+                                                value: EndringType.tilsynsordning,
+                                            },
+                                        ]}
+                                    />
+                                )}
                             </VStack>
                         </FormLayout.Guide>
-
-                        <SamtykkeFormPart />
+                        <Bleed marginBlock="space-12 space-0">
+                            <VStack gap="space-24">
+                                <OmSøknaden />
+                                <SamtykkeFormPart />
+                            </VStack>
+                        </Bleed>
                     </Form>
                 )}
             />

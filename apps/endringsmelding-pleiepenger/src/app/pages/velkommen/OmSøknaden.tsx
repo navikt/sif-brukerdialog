@@ -8,7 +8,7 @@ const OmSøknaden = () => {
     const { text } = useAppIntl();
     return (
         <div>
-            <Heading level="2" size="small" spacing={true}>
+            <Heading level="2" size="medium" spacing={true}>
                 <AppText id="velkommenPage.merInformasjon.tittel" />
             </Heading>
             <ExpandableInfo title={text('velkommenPage.omSøknaden.tittel')}>

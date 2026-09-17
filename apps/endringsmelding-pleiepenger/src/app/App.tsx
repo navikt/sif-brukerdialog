@@ -1,6 +1,6 @@
 import '@navikt/ds-css';
-import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 
+// import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import { Theme } from '@navikt/ds-react';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
 import { getMaybeEnv } from '@navikt/sif-common-env';

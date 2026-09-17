@@ -22,7 +22,7 @@ const nb = {
         'Vi tar vare på svarene dine i 72 timer. Hvis du innenfor den tiden for eksempel vil ta en pause eller blir automatisk logget ut, fortsetter du der du var når du kommer tilbake.',
     'velkommenPage.omSøknaden.3': 'Du må svare på alle spørsmålene for å kunne gå videre.',
 
-    'velkommenPage.merInformasjon.tittel': 'Mer informasjon',
+    'velkommenPage.merInformasjon.tittel': 'Mer informasjon om endringsmelding',
     'velkommenPage.personopplysninger.tittel': 'Om hvordan vi innhenter opplysninger om deg',
 
     'personopplysninger.1': 'Slik behandler Nav personopplysningene dine',
