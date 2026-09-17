@@ -40,7 +40,7 @@ export const fetchInitialData = async (tillattEndringsperiode: DateRange): Promi
 
         const arbeidsgivere = await arbeidsgivereEndpoint.fetch(periodeForArbeidsgiveroppslag);
 
-        assertHarTilgang(k9saker, tillattEndringsperiode);
+        assertHarTilgang(k9saker, tillattEndringsperiode, arbeidsgivere);
 
         const lagretSøknadState = await hentGyldigLagretSøknadState({
             søker,
