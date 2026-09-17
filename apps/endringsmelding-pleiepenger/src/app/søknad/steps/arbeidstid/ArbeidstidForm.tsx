@@ -1,6 +1,6 @@
+import PersistStepFormValues from '@app/components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit, useSøknadContext } from '@app/hooks';
 import { AppText } from '@app/i18n';
-import PersistStepFormValues from '@app/components/persist-step-form-values/PersistStepFormValues';
 import { StepId } from '@app/søknad/config/StepId';
 import actionsCreator from '@app/søknad/context/action/actionCreator';
 import { useStepFormValuesContext } from '@app/søknad/context/StepFormValuesContext';
@@ -53,7 +53,7 @@ const ArbeidstidForm = ({ goBack }: Props) => {
     const intl = useIntl();
     const {
         dispatch,
-        state: { søknadsdata, sak },
+        state: { søknadsdata, sak, tillattEndringsperiode },
     } = useSøknadContext();
     const { clearStepFormValues, stepFormValues } = useStepFormValuesContext();
 
@@ -113,6 +113,7 @@ const ArbeidstidForm = ({ goBack }: Props) => {
                         sak.søknadsperioder,
                         sak.arbeidsgivereIkkeISak,
                         aktiviteterValuesMap,
+                        tillattEndringsperiode,
                         søknadsdata.ukjentArbeidsforhold,
                     ),
                     ...getAktiviteterSomSkalEndres(sak.arbeidsaktiviteter),
@@ -148,6 +149,7 @@ const ArbeidstidForm = ({ goBack }: Props) => {
                                         key={arbeidsaktivitet.key}
                                         arbeidsaktivitet={arbeidsaktivitet}
                                         lovbestemtFerie={søknadsdata.lovbestemtFerie}
+                                        tillattEndringsperiode={tillattEndringsperiode}
                                         aktivitetFormValues={(values.arbeidsaktivitet || {})[arbeidsaktivitet.key]}
                                         onArbeidstidChange={(arbeidstidEndringer) => {
                                             onArbeidstidAktivitetChange(

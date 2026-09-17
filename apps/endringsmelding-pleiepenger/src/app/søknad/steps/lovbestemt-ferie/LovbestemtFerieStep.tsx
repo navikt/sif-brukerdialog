@@ -1,9 +1,9 @@
 import DateRangeExpansionCards from '@app/components/date-range-expansion-cards/DateRangeExpansionCards';
+import PersistStepFormValues from '@app/components/persist-step-form-values/PersistStepFormValues';
 import EndretTag from '@app/components/tags/EndretTag';
 import { useOnValidSubmit, useSøknadContext } from '@app/hooks';
 import { useStepConfig } from '@app/hooks/useStepConfig';
 import { AppText } from '@app/i18n';
-import PersistStepFormValues from '@app/components/persist-step-form-values/PersistStepFormValues';
 import { StepId } from '@app/søknad/config/StepId';
 import actionsCreator from '@app/søknad/context/action/actionCreator';
 import { useStepFormValuesContext } from '@app/søknad/context/StepFormValuesContext';

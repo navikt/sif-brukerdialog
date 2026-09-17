@@ -28,10 +28,38 @@ test('Flere saker', async ({ page }) => {
     await testAccessibility(page);
 });
 
+test('Flere saker, men kun én innenfor endringsperioden', async ({ page }) => {
+    await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN, 'flere-saker-kun-en-aktiv');
+    await expect(page).toHaveTitle('Ingen tilgang - Endringsmelding for pleiepenger sykt barn');
+    await expect(page.getByText('Hei Nora')).toBeVisible();
+    await expect(page.getByTestId('flereSaker')).toBeVisible();
+    await testAccessibility(page);
+});
+
 test('Er selvstendig næringsdrivende', async ({ page }) => {
     await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN, 'selvstendig-næringsdrivende');
     await expect(page).toHaveTitle('Ingen tilgang - Endringsmelding for pleiepenger sykt barn');
     await expect(page.getByText('Hei Nora')).toBeVisible();
     await expect(page.getByTestId('erSN')).toBeVisible();
+    await testAccessibility(page);
+});
+
+test('Har en arbeidsgiver med to ansettelsesforhold som slutter og starter samme uke med opphold', async ({ page }) => {
+    await routeUtils.resumeFromRoute(
+        page,
+        SøknadRoutes.VELKOMMEN,
+        'en-arbeidsgiver-to-ansettelser-samme-uke-med-opphold',
+    );
+    await expect(page).toHaveTitle('Ingen tilgang - Endringsmelding for pleiepenger sykt barn');
+    await expect(page.getByText('Hei Nora')).toBeVisible();
+    await expect(page.getByTestId('enArbeidsgiverToAnsettelserSammeUkeMedOpphold')).toBeVisible();
+    await testAccessibility(page);
+});
+
+test('Har arbeidsgiver som ikke er i sak med flere ansettelsesforhold', async ({ page }) => {
+    await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN, 'arbeidsgiver-ikke-i-sak-flere-ansettelser');
+    await expect(page).toHaveTitle('Ingen tilgang - Endringsmelding for pleiepenger sykt barn');
+    await expect(page.getByText('Hei Nora')).toBeVisible();
+    await expect(page.getByTestId('ukjentArbeidsforhold')).toBeVisible();
     await testAccessibility(page);
 });

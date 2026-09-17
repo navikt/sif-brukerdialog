@@ -10,10 +10,8 @@ describe('getDateRangeForSaker', () => {
         } as any;
         const range = getSamletDateRangeForK9Saker([sak]);
         expect(range).toBeDefined();
-        if (range) {
-            expect(dateToISODate(range.from)).toEqual('2021-01-01');
-            expect(dateToISODate(range.to)).toEqual('2021-01-02');
-        }
+        expect(dateToISODate(range!.from)).toEqual('2021-01-01');
+        expect(dateToISODate(range!.to)).toEqual('2021-01-02');
     });
     it('returnerer undefined når det ikke er noen saker', () => {
         const range = getSamletDateRangeForK9Saker([]);
@@ -30,10 +28,8 @@ describe('getDateRangeForSaker', () => {
         } as any;
         const range = getSamletDateRangeForK9Saker([sak]);
         expect(range).toBeDefined();
-        if (range) {
-            expect(dateToISODate(range.from)).toEqual('2021-01-01');
-            expect(dateToISODate(range.to)).toEqual('2021-01-04');
-        }
+        expect(dateToISODate(range!.from)).toEqual('2021-01-01');
+        expect(dateToISODate(range!.to)).toEqual('2021-01-04');
     });
     it('returnerer riktig når det er to saker som overlapper', () => {
         const sak: K9Sak = {
@@ -46,10 +42,8 @@ describe('getDateRangeForSaker', () => {
         } as any;
         const range = getSamletDateRangeForK9Saker([sak]);
         expect(range).toBeDefined();
-        if (range) {
-            expect(dateToISODate(range.from)).toEqual('2021-01-01');
-            expect(dateToISODate(range.to)).toEqual('2021-01-03');
-        }
+        expect(dateToISODate(range!.from)).toEqual('2021-01-01');
+        expect(dateToISODate(range!.to)).toEqual('2021-01-03');
     });
 });
 describe('k9SakErInnenforGyldigEndringsperiode', () => {

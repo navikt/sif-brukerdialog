@@ -3,9 +3,10 @@ import { ISODateToDate } from '@navikt/sif-common-utils';
 import {
     ArbeiderIPeriodenSvar,
     ArbeidsforholdAktivt,
-    Arbeidsgiver,
+    ArbeidsgiverMedAnsettelseperioder,
     ArbeidstidSøknadsdata,
     TimerEllerProsent,
+    UkjentArbeidsforholdApiData,
 } from '../../../types';
 import {
     getDataBruktTilUtledningAnnetDataApiData,
@@ -54,12 +55,12 @@ describe('getDataBruktTilUtledningAnnetData', () => {
 });
 
 describe('getUkjentArbeidsforholdApiDataFromSøknadsdata', () => {
-    const arbeidsgivere: Arbeidsgiver[] = [
+    const arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[] = [
         {
             organisasjonsnummer: '123',
             key: 'a_123',
             navn: 'Arbeidsgibvernavn',
-            ansattFom: ISODateToDate('2001-01-01'),
+            ansettelsesperioder: [{ from: ISODateToDate('2001-01-01') }],
         },
     ];
     const arbeidstid: ArbeidstidSøknadsdata = {
@@ -81,11 +82,11 @@ describe('getUkjentArbeidsforholdApiDataFromSøknadsdata', () => {
 });
 
 describe('mapArbeidsforholdToArbeidsforholdApiData', () => {
-    const arbeidsgiver: Arbeidsgiver = {
+    const arbeidsgiver: ArbeidsgiverMedAnsettelseperioder = {
         organisasjonsnummer: '123',
         key: 'a_123',
         navn: 'Arbeidsgibvernavn',
-        ansattFom: ISODateToDate('2001-01-01'),
+        ansettelsesperioder: [{ from: ISODateToDate('2001-01-01') }],
     };
 
     it('returnerer riktig hvis en ikke er ansatt i arbeidsforholdet', () => {
@@ -112,10 +113,9 @@ describe('mapArbeidsforholdToArbeidsforholdApiData', () => {
             );
             expect(result.organisasjonsnummer).toEqual('123');
             expect(result.erAnsatt).toBeTruthy();
-            if (result.erAnsatt) {
-                expect(result.arbeiderIPerioden).toEqual(ArbeiderIPeriodenSvar.somVanlig);
-                expect(result.normalarbeidstid.timerPerUke).toEqual('PT40H5M');
-            }
+            const ansattResult = result as Extract<UkjentArbeidsforholdApiData, { erAnsatt: true }>;
+            expect(ansattResult.arbeiderIPerioden).toEqual(ArbeiderIPeriodenSvar.somVanlig);
+            expect(ansattResult.normalarbeidstid.timerPerUke).toEqual('PT40H5M');
         });
         it('returnerer riktig når en ikke jobber i perioden', () => {
             const result = mapArbeidsforholdToArbeidsforholdApiData(
@@ -125,10 +125,9 @@ describe('mapArbeidsforholdToArbeidsforholdApiData', () => {
             );
             expect(result.organisasjonsnummer).toEqual('123');
             expect(result.erAnsatt).toBeTruthy();
-            if (result.erAnsatt) {
-                expect(result.arbeiderIPerioden).toEqual(ArbeiderIPeriodenSvar.heltFravær);
-                expect(result.normalarbeidstid.timerPerUke).toEqual('PT40H5M');
-            }
+            const ansattResult = result as Extract<UkjentArbeidsforholdApiData, { erAnsatt: true }>;
+            expect(ansattResult.arbeiderIPerioden).toEqual(ArbeiderIPeriodenSvar.heltFravær);
+            expect(ansattResult.normalarbeidstid.timerPerUke).toEqual('PT40H5M');
         });
         it('returnerer riktig når en kombinerer jobb og pleiepenger i perioden', () => {
             const result = mapArbeidsforholdToArbeidsforholdApiData(
@@ -138,10 +137,9 @@ describe('mapArbeidsforholdToArbeidsforholdApiData', () => {
             );
             expect(result.organisasjonsnummer).toEqual('123');
             expect(result.erAnsatt).toBeTruthy();
-            if (result.erAnsatt) {
-                expect(result.arbeiderIPerioden).toEqual(ArbeiderIPeriodenSvar.redusert);
-                expect(result.normalarbeidstid.timerPerUke).toEqual('PT40H5M');
-            }
+            const ansattResult = result as Extract<UkjentArbeidsforholdApiData, { erAnsatt: true }>;
+            expect(ansattResult.arbeiderIPerioden).toEqual(ArbeiderIPeriodenSvar.redusert);
+            expect(ansattResult.normalarbeidstid.timerPerUke).toEqual('PT40H5M');
         });
     });
 });

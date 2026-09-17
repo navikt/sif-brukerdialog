@@ -10,8 +10,8 @@ import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { useSkyraReloader } from '@sif/surveys';
 import { getCheckedValidator } from '@navikt/sif-validation';
+import { useSkyraReloader } from '@sif/surveys';
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -40,7 +40,7 @@ const OppsummeringStep = () => {
     const navigate = useNavigate();
     const { text, intl, locale } = useAppIntl();
     const {
-        state: { søknadsdata, sak, arbeidsgivere, valgteEndringer, søker },
+        state: { søknadsdata, sak, arbeidsgivere, valgteEndringer, søker, tillattEndringsperiode },
     } = useSøknadContext();
 
     const { goBack, stepConfig } = useStepConfig(stepId);
@@ -62,6 +62,7 @@ const OppsummeringStep = () => {
         valgteEndringer,
         arbeidsgivere,
         locale,
+        tillattEndringsperiode,
     );
 
     if (!apiData) {
