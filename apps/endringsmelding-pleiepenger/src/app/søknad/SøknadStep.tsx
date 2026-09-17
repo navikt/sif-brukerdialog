@@ -1,11 +1,11 @@
 import InvalidStepSøknadsdataInfo from '@app/components/invalid-step-søknadsdata-info/InvalidStepSøknadsdataInfo';
+import { VStack } from '@navikt/ds-react';
 import { SoknadStepsConfig, soknadStepUtils, Step } from '@navikt/sif-common-soknad-ds';
 import React from 'react';
 
 import useAvbrytEllerFortsettSenere from '../hooks/useAvbrytSøknad';
 import { useAppIntl } from '../i18n';
 import { StepId } from './config/StepId';
-import { VStack } from '@navikt/ds-react';
 
 interface Props {
     stepId: StepId;

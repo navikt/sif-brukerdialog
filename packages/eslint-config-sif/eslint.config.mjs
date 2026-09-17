@@ -46,7 +46,10 @@ export default [
         ],
         settings: {
             react: {
-                version: 'detect',
+                // Satt til en fast versjon i stedet for 'detect': eslint-plugin-react@7.37.5 sin
+                // auto-deteksjon kaller context.getFilename(), som ble fjernet i eslint@10, og
+                // krasjer da hele lint-kjøringen. Se https://github.com/jsx-eslint/eslint-plugin-react/issues/4018
+                version: '19.3.0',
             },
         },
         plugins: {

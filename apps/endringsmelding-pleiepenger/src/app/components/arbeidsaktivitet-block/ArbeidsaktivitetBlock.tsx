@@ -1,6 +1,5 @@
-import { ExpansionCard, VStack } from '@navikt/ds-react';
 import { ArbeidsaktivitetType, ArbeidsgiverMedAnsettelseperioder } from '@app/types';
-import { Box } from '@navikt/ds-react';
+import { Box, ExpansionCard, VStack } from '@navikt/ds-react';
 
 import ArbeidsaktivitetBlockHeader from './ArbeidsaktivitetBlockHeader';
 

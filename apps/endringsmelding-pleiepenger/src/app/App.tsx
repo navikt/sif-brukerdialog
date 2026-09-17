@@ -5,11 +5,11 @@ import { Theme } from '@navikt/ds-react';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import { ensureBaseNameForReactRouter, SoknadApplication } from '@navikt/sif-common-soknad-ds';
+import { SkyraHandler } from '@sif/surveys';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { SkyraHandler } from '@sif/surveys';
 import DevPage from './dev/DevPage';
 import { applicationIntlMessages } from './i18n';
 import { SøknadRoutes } from './søknad/config/SøknadRoutes';

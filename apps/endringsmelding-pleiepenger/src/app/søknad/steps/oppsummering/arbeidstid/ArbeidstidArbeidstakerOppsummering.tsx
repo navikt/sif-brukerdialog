@@ -1,5 +1,5 @@
-import { ArbeiderIPeriodenSvar, ArbeidsgiverMedAnsettelseperioder, ArbeidstakerApiData } from '@app/types';
 import { AppText } from '@app/i18n';
+import { ArbeiderIPeriodenSvar, ArbeidsgiverMedAnsettelseperioder, ArbeidstakerApiData } from '@app/types';
 import { FormSummary } from '@navikt/ds-react';
 
 import { ArbeiderIPeriodenSvarIntlKey } from '../../arbeidstid/arbeidsaktivitet-form-part/components/ArbeiderIPeriodenSpørsmål';

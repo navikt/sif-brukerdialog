@@ -1,7 +1,8 @@
 import { Box } from '@navikt/ds-react';
-import { getDagerTekst } from '../../../utils';
-import { Arbeidsuke } from '../../../types';
+
 import { AppText } from '../../../i18n';
+import { Arbeidsuke } from '../../../types';
+import { getDagerTekst } from '../../../utils';
 
 interface Props {
     arbeidsuke: Arbeidsuke;

@@ -1,7 +1,8 @@
-import { dateFormatter, MaybeDateRange, sortMaybeDateRange } from '@navikt/sif-common-utils';
-import { AppText, useAppIntl } from '../../i18n';
 import { Box, List } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+import { dateFormatter, MaybeDateRange, sortMaybeDateRange } from '@navikt/sif-common-utils';
+
+import { AppText, useAppIntl } from '../../i18n';
 
 interface Props {
     ansettelsesperioder: MaybeDateRange[];

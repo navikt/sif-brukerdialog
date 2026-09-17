@@ -23,8 +23,8 @@ import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types';
 import { FormikInputGroup, FormikYesOrNoQuestion } from '@navikt/sif-common-formik-ds';
 import {
-    DateRange,
     dateFormatter,
+    DateRange,
     dateRangeToISODateRange,
     isDateInDateRange,
     ISODateRangeToDateRange,

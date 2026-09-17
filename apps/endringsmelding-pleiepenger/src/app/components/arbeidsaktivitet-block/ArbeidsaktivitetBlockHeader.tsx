@@ -1,7 +1,7 @@
 import './arbeidsaktivitetBlockHeader.scss';
 
 import { AppText } from '@app/i18n';
-import { ArbeidsgiverMedAnsettelseperioder, ArbeidsaktivitetType } from '@app/types';
+import { ArbeidsaktivitetType,ArbeidsgiverMedAnsettelseperioder } from '@app/types';
 import { Buildings3Icon } from '@navikt/aksel-icons';
 import { BodyLong, Box, Heading, VStack } from '@navikt/ds-react';
 

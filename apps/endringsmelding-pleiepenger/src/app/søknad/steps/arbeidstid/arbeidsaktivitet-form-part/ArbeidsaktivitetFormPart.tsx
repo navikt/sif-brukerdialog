@@ -8,7 +8,7 @@ import {
     ArbeidstidEndringMap,
     LovbestemtFerieSøknadsdata,
 } from '@app/types';
-import { isDateInDateRange, ISODateRangeToDateRange, DateRange } from '@navikt/sif-common-utils';
+import { DateRange,isDateInDateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 
 import { ArbeidsaktivitetFormValues, ArbeidstidFormFields } from '../ArbeidstidForm';
 import ArbeidsaktivitetContent from './components/ArbeidsaktivitetContent';

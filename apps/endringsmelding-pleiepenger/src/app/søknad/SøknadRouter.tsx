@@ -1,5 +1,4 @@
 import StartPåNyttDialog from '@app/components/start-på-nytt-dialog/StartPåNyttDialog';
-import { appLogger } from '@sif/apm';
 import { BodyShort, Button, VStack } from '@navikt/ds-react';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { fetchSøkerId } from '@navikt/sif-common-api';
@@ -10,6 +9,7 @@ import {
     useVerifyUserOnWindowFocus,
 } from '@navikt/sif-common-soknad-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
+import { appLogger } from '@sif/apm';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 import { useMellomlagring } from '../hooks/useMellomlagring';

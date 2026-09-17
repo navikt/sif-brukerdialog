@@ -7,7 +7,7 @@ export type EndreArbeidstidIntlValues = {
 };
 
 export const getEndreArbeidstidIntlValues = (info: { arbeidsuker: Arbeidsuke[] }): EndreArbeidstidIntlValues => {
-    let periode = '';
+    let periode: string;
     if (info.arbeidsuker.length === 1) {
         const uke = info.arbeidsuker[0];
         periode = erKortArbeidsuke(uke.periode)

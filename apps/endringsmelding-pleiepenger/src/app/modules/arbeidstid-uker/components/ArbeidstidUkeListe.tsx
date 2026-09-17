@@ -1,7 +1,7 @@
-import { BodyShort, Box, Heading, HStack, VStack } from '@navikt/ds-react';
-import { getDateRangeText } from '@navikt/sif-common-utils';
 import { SelectableListType } from '@app/hooks/useSelectableList';
 import { AppText } from '@app/i18n';
+import { BodyShort, Box, Heading, HStack, VStack } from '@navikt/ds-react';
+import { getDateRangeText } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import React, { ReactElement } from 'react';
 import { useIntl } from 'react-intl';
