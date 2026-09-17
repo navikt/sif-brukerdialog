@@ -18,11 +18,12 @@ import {
     LovbestemtFerieSøknadsdata,
     PeriodeMedArbeidstid,
 } from '@app/types';
-import { getEndringsdato, getTillattEndringsperiode, harFjernetFerieIPeriode } from '@app/utils';
+import { harFjernetFerieIPeriode } from '@app/utils';
 import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types';
 import { FormikInputGroup, FormikYesOrNoQuestion } from '@navikt/sif-common-formik-ds';
 import {
+    DateRange,
     dateFormatter,
     dateRangeToISODateRange,
     isDateInDateRange,
@@ -46,6 +47,7 @@ interface Props {
     arbeidsaktivitet: Arbeidsaktivitet;
     parentFieldName: string;
     formValues: ArbeidsaktivitetFormValues;
+    tillattEndringsperiode: DateRange;
     onArbeidstidAktivitetChange: (arbeidstidEndringer: ArbeidstidEndringMap) => void;
 }
 
@@ -56,6 +58,7 @@ const ArbeidsaktivitetContent = ({
     arbeidsaktivitet,
     formValues,
     parentFieldName,
+    tillattEndringsperiode,
     onArbeidstidAktivitetChange,
 }: Props) => {
     const [arbeidsukerForEndring, setArbeidsukerForEndring] = useState<Arbeidsuke[] | undefined>();
@@ -156,7 +159,7 @@ const ArbeidsaktivitetContent = ({
                                     <VStack gap="space-24">
                                         <ArbeidsaktivitetUtenforPeriodeInfo
                                             arbeidsaktivitet={arbeidsaktivitet}
-                                            tillattEndringsperiode={getTillattEndringsperiode(getEndringsdato())}
+                                            tillattEndringsperiode={tillattEndringsperiode}
                                         />
                                         <FormikInputGroup
                                             legend={arbeidsaktivitet.navn}
@@ -187,7 +190,7 @@ const ArbeidsaktivitetContent = ({
                                     </Heading>
                                     <ArbeidsaktivitetUtenforPeriodeInfo
                                         arbeidsaktivitet={arbeidsaktivitet}
-                                        tillattEndringsperiode={getTillattEndringsperiode(getEndringsdato())}
+                                        tillattEndringsperiode={tillattEndringsperiode}
                                     />
                                 </>
                             )}

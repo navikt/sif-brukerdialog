@@ -1,8 +1,7 @@
 import { ArbeidsgiverMedAnsettelseperioder, Sak, SøknadApiData, Søknadsdata, ValgteEndringer } from '@app/types';
 import { Locale } from '@navikt/sif-common-core-ds/src/types';
-import { dateToISODate } from '@navikt/sif-common-utils';
+import { DateRange, dateToISODate } from '@navikt/sif-common-utils';
 
-import { getEndringsdato, getTillattEndringsperiode } from '../endringsperiode';
 import { getArbeidstidApiDataFromSøknadsdata } from './getArbeidstidApiDataFromSøknadsdata';
 import { getDataBruktTilUtledningAnnetDataApiData, getDataBruktTilUtledningApiData } from './getDataBruktTilUtledning';
 import { getLovbestemtFerieApiDataFromSøknadsdata } from './getLovbestemtFerieApiDataFraSøknadsdata';
@@ -15,6 +14,7 @@ export const getApiDataFromSøknadsdata = (
     valgteEndringer: ValgteEndringer,
     arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
     locale: Locale,
+    tillattEndringsperiode: DateRange,
 ): SøknadApiData | undefined => {
     const { id, arbeidstid, lovbestemtFerie, tilsynsordning, ukjentArbeidsforhold } = søknadsdata;
 
@@ -37,7 +37,7 @@ export const getApiDataFromSøknadsdata = (
             tilsynsordning: tilsynsordning ? getTilsynsordningApiDataFraSøknadsdata(tilsynsordning) : undefined,
             arbeidstid: arbeidstid
                 ? getArbeidstidApiDataFromSøknadsdata(
-                      getTillattEndringsperiode(getEndringsdato()),
+                      tillattEndringsperiode,
                       sak.søknadsperioder,
                       arbeidstid.arbeidsaktivitet,
                       sak.arbeidsaktiviteter,
