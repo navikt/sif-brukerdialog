@@ -151,6 +151,7 @@ export const getArbeidstidApiDataFromSøknadsdata = (
                 arbeidsgiver,
                 arbeidsforhold,
                 endringsperiode,
+                arbeiderIPerioden,
             );
 
             const arbeidsuker = getArbeidsukerIArbeidsaktivitet(arbeidsaktivitet);

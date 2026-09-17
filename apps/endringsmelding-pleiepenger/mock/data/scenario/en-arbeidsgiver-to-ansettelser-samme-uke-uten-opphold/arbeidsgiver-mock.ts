@@ -9,7 +9,7 @@ export default {
         {
             organisasjonsnummer: '947064649',
             navn: 'Norsk bedrift AS',
-            ansattFom: '2023-01-01',
+            ansattFom: '2022-12-06',
             ansattTom: null,
         },
     ],
