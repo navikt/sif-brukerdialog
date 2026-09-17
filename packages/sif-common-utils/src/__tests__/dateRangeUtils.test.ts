@@ -8,6 +8,7 @@ import {
     dateRangeToISODateRange,
     datesCollideWithDateRanges,
     dateToISODate,
+    ensureDateRange,
     getDateRangeFromDateRanges,
     getDateRangesBetweenDateRanges,
     getDateRangesFromDates,
@@ -60,6 +61,25 @@ describe('dateRangeUtils', () => {
             const from2: Date = ISODateToDate('2020-01-1');
             const to2: Date = ISODateToDate('2020-01-1');
             expect(isDateRange({ from: from2, to: to2 })).toBeTruthy();
+        });
+    });
+    describe('ensureDateRange', () => {
+        const fallbackDateRange = {
+            from: ISODateToDate('2020-01-01'),
+            to: ISODateToDate('2020-01-31'),
+        };
+
+        it('bruker fallback for manglende datoer', () => {
+            expect(ensureDateRange({}, fallbackDateRange)).toEqual(fallbackDateRange);
+        });
+
+        it('bevarer oppgitte datoer', () => {
+            const dateRange = {
+                from: ISODateToDate('2020-01-10'),
+                to: ISODateToDate('2020-01-20'),
+            };
+
+            expect(ensureDateRange(dateRange, fallbackDateRange)).toEqual(dateRange);
         });
     });
     describe('sortDateRange', () => {
