@@ -757,21 +757,12 @@ export const getFirstDateInDateRanges = (dateRanges: DateRange[]): Date | undefi
     return dates[0];
 };
 
-// const dateRangeDifference = (range1: DateRange[], range2: DateRange[]): DateRange[] {
-//   const difference: DateRange[] = [];
-//   range1.forEach((r1) => {
-//     let isOverlap = false;
-//     range2.forEach((r2) => {
-//       if ((r1.from <= r2.from && r1.to >= r2.from) || (r1.from <= r2.to && r1.to >= r2.to)) {
-//         isOverlap = true;
-//       }
-//     });
-//     if (!isOverlap) {
-//       difference.push(r1);
-//     }
-//   });
-//   return difference;
-// }
+export const ensureDateRange = (maybeDateRange: MaybeDateRange, fallbackDateRange: DateRange): DateRange => {
+    return {
+        from: maybeDateRange.from || fallbackDateRange.from,
+        to: maybeDateRange.to || fallbackDateRange.to,
+    };
+};
 
 export const getDateRangesBetweenDateRangesWithinDateRange = (
     minDate: Date,
@@ -809,6 +800,7 @@ export const dateRangeUtils = {
     dateRangeIsAdjacentToDateRange,
     dateRangesCollide,
     dateRangeToISODateRange,
+    ensureDateRange,
     datesCollideWithDateRanges,
     getDateRangeFromDateRanges,
     getDateRangeFromDates,
