@@ -39,7 +39,7 @@ import {
     joinAdjacentDateRanges,
     MaybeDateRange,
     numberDurationAsDuration,
-    sortMaybeDateRange,
+    sortDates,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
@@ -182,7 +182,8 @@ export const getArbeidsaktiviteterMedUkjentArbeidsgiver = (
 };
 
 /**
- * Korter ned periode til sluttdato for arbeidsforholdet, hvis denne er satt
+ * Korter ned periode til seneste sluttdato blant ansettelsesperiodene.
+ * En ansettelsesperiode uten sluttdato er pågående, og gir ingen nedkorting.
  * @param tillattEndringsperiode
  * @param arbeidsgiver
  * @returns DateRange
@@ -191,8 +192,13 @@ const getEndringsperiodeForArbeidsgiver = (
     tillattEndringsperiode: DateRange,
     arbeidsgiver: ArbeidsgiverMedAnsettelseperioder,
 ): DateRange => {
-    const { ansettelsesperioder } = arbeidsgiver;
-    const sisteAnsattTom = [...ansettelsesperioder].sort(sortMaybeDateRange).reverse()[0]?.to;
+    const sluttdatoer = arbeidsgiver.ansettelsesperioder.map(({ to }) => to);
+    const sisteAnsattTom = sluttdatoer.includes(undefined)
+        ? undefined
+        : sluttdatoer
+              .filter((to) => to !== undefined)
+              .sort(sortDates)
+              .at(-1);
     const skalKortesNed =
         sisteAnsattTom !== undefined && dayjs(sisteAnsattTom).isBefore(tillattEndringsperiode.to, 'day');
     return {

@@ -64,6 +64,33 @@ describe('getSakFromK9Sak', () => {
             expect(dateToISODate(result.from)).toEqual(isoFrom);
             expect(dateToISODate(result.to)).toEqual(isoTo);
         });
+        it('korter ned til seneste sluttdato når denne er innenfor endringsperioden', () => {
+            const result = getEndringsperiodeForArbeidsgiver(endringsperiode, {
+                ansettelsesperioder: [
+                    { from: ISODateToDate('2022-01-03'), to: ISODateToDate('2022-01-20') },
+                    { from: ISODateToDate('2022-01-05'), to: ISODateToDate('2022-01-10') },
+                ],
+            } as ArbeidsgiverMedAnsettelseperioder);
+            expect(dateToISODate(result.to)).toEqual('2022-01-20');
+        });
+        it('bruker seneste sluttdato ved overlappende ansettelsesperioder', () => {
+            const result = getEndringsperiodeForArbeidsgiver(endringsperiode, {
+                ansettelsesperioder: [
+                    { from: ISODateToDate('2022-01-01'), to: ISODateToDate('2022-12-31') },
+                    { from: ISODateToDate('2022-01-15'), to: ISODateToDate('2022-01-17') },
+                ],
+            } as ArbeidsgiverMedAnsettelseperioder);
+            expect(dateToISODate(result.to)).toEqual(isoTo);
+        });
+        it('beholder endringsperioden når en overlappende ansettelsesperiode er åpen', () => {
+            const result = getEndringsperiodeForArbeidsgiver(endringsperiode, {
+                ansettelsesperioder: [
+                    { from: ISODateToDate('2022-01-01') },
+                    { from: ISODateToDate('2022-01-15'), to: ISODateToDate('2022-01-17') },
+                ],
+            } as ArbeidsgiverMedAnsettelseperioder);
+            expect(dateToISODate(result.to)).toEqual(isoTo);
+        });
         it('muterer ikke ansettelsesperioder', () => {
             const ansettelsesperioder = [{ to: ISODateToDate(isoSluttdato) }, { to: ISODateToDate('2022-01-10') }];
             getEndringsperiodeForArbeidsgiver(endringsperiode, {
