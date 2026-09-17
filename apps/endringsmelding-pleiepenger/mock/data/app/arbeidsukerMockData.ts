@@ -8,7 +8,6 @@ import {
     getDatesInDateRange,
     ISODateRange,
     ISODateRangeToDateRange,
-    ISODateToDate,
 } from '@navikt/sif-common-utils';
 
 const getMockArbeidsuke = (
@@ -34,7 +33,6 @@ const getMockArbeidsuke = (
         isoDateRange,
         periode,
         arbeidstidEnkeltdager,
-        dagerSøktFor: dagerSøktFor.map(ISODateToDate),
         normalt: {
             uke: decimalDurationToDuration(durationToDecimalDuration(normaltPerDag) * antallDagerMedArbeidstid),
             dag: normaltPerDag,

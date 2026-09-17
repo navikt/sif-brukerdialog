@@ -359,7 +359,6 @@ export const getArbeidsukeFromEnkeltdagerIUken = (
         isoDateRange: dateRangeToISODateRange(ansattUke),
         periode: ansattUke,
         arbeidstidEnkeltdager: arbeidstidEnkeltdagerIUken,
-        dagerSøktFor: dagerSøktFor.map(ISODateToDate),
         antallDagerMedArbeidstid: dagerSøktFor.length,
         faktisk: faktiskSummertHeleUken
             ? {

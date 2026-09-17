@@ -65,7 +65,6 @@ export interface Arbeidsuke {
     faktisk?: ArbeidsukeTimer;
     normalt: ArbeidsukeTimer;
     antallDagerMedArbeidstid: number;
-    dagerSøktFor: Date[];
 }
 
 export type ArbeidsukeMap = ISODateRangeMap<Arbeidsuke>;
@@ -101,9 +100,7 @@ export interface ArbeidsaktivitetSelvstendigNæringsdrivende extends Arbeidsakti
 }
 
 export type Arbeidsaktivitet =
-    | ArbeidsaktivitetArbeidstaker
-    | ArbeidsaktivitetFrilanser
-    | ArbeidsaktivitetSelvstendigNæringsdrivende;
+    ArbeidsaktivitetArbeidstaker | ArbeidsaktivitetFrilanser | ArbeidsaktivitetSelvstendigNæringsdrivende;
 
 export interface Arbeidsaktiviteter {
     arbeidstakerAktiviteter: ArbeidsaktivitetArbeidstaker[];
