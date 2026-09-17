@@ -5,7 +5,8 @@ model: Claude Sonnet 5
 tools:
   - read
   - edit
-  - search
+  - grep
+  - glob
   - todo
   - github/get_file_contents
   - github/search_code
@@ -89,7 +90,7 @@ Bruk verb, ikke substantiv laget av verb. De gjør teksten tung. Eksempel: ing +
 
 ## AI-markører
 
-Språknøytrale AI-markører (svulstige ord, åpnings- og avslutningsfraser, retoriske mønstre, strukturelle tegn og tegnsetting) står i `instructions/output-style.instructions.md` og gjelder alltid. Her står bare det som er spesifikt for norsk.
+Ordlistene over AI-markører (svulstige ord, åpnings- og avslutningsfraser, retoriske mønstre og strukturelle tegn) ligger i `klarsprak`-skillen. Last den før du vasker en tekst. Listene er skrevet på norsk, men markørene er de samme på engelsk. `instructions/output-style.instructions.md` har bare fire raske tells og tegnsettingsreglene, og de gjelder alltid. Her står bare det som er spesifikt for norsk.
 
 ### Engelske AI-ord som siver inn i norsk
 
