@@ -46,7 +46,7 @@ const AnsettelsesperioderInfo = ({ ansettelsesperioder }: Props) => {
         <ExpandableInfo title={text('arbeidsaktivitetBlockHeader.arbeidsgiver.ansettelsesperioder')}>
             <Box marginBlock="space-0 space-24">
                 <List>
-                    {ansettelsesperioder
+                    {[...ansettelsesperioder]
                         .sort(sortMaybeDateRange)
                         .reverse()
                         .map((periode, index) => {
