@@ -262,7 +262,7 @@ export default [
                                         jobberNormaltTimerPerDag: 'PT7H30M',
                                         faktiskArbeidTimerPerDag: 'PT4H30M',
                                     },
-                                    '2023-03-13/2023-09-31': {
+                                    '2023-03-13/2023-09-30': {
                                         jobberNormaltTimerPerDag: 'PT7H30M',
                                         faktiskArbeidTimerPerDag: 'PT1H30M',
                                     },
@@ -324,7 +324,7 @@ export default [
                                 jobberNormaltTimerPerDag: 'PT3H',
                                 faktiskArbeidTimerPerDag: 'PT0S',
                             },
-                            '2023-03-27/2023-09-31': {
+                            '2023-03-27/2023-09-30': {
                                 jobberNormaltTimerPerDag: 'PT3H',
                                 faktiskArbeidTimerPerDag: 'PT0S',
                             },
