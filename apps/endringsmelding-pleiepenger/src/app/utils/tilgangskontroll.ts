@@ -152,28 +152,32 @@ const harAnsettelsesforholdSomStarterOgSlutterSammeUkeMedOpphold = (
 /**
  * Går gjennom array for å se om det er perioder som slutter og starter innenfor samme
  * uke, og hvor det er opphold på en dag mellom periodene.
+ *
+ * Perioder kan overlappe hverandre, og et opphold mellom to påfølgende perioder kan
+ * være dekket av en tidligere periode. Derfor sammenlignes hver periode mot den
+ * seneste sluttdatoen som er dekket så langt, ikke bare mot forrige periode.
  * @param ansettelsesperioder DateRange
  * @returns boolean
  */
 const perioderSlutterOgStarterSammeUkeMedOpphold = (ansettelsesperioder: DateRange[]) => {
     const sortertePerioder = [...ansettelsesperioder].sort(sortDateRange);
-    return sortertePerioder.some((periode, index) => {
-        if (index === 0) {
-            return false;
-        }
-        const forrigePeriode = sortertePerioder[index - 1];
 
-        /** Slutter og starter periodene innenfor samme uke */
-        if (!dayjs(periode.from).isSame(dayjs(forrigePeriode.to), 'isoWeek')) {
-            return false;
-        }
-        /** Periodene er sammenhengende */
-        if (dayjs(periode.from).diff(forrigePeriode.to, 'day') <= 1) {
-            return false;
-        }
+    let dekketTilOgMed: Date | undefined;
 
-        return true;
-    });
+    for (const periode of sortertePerioder) {
+        if (dekketTilOgMed !== undefined) {
+            const harOpphold = dayjs(periode.from).diff(dekketTilOgMed, 'day') > 1;
+            const sammeUke = dayjs(periode.from).isSame(dekketTilOgMed, 'isoWeek');
+            if (harOpphold && sammeUke) {
+                return true;
+            }
+        }
+        if (dekketTilOgMed === undefined || dayjs(periode.to).isAfter(dekketTilOgMed, 'day')) {
+            dekketTilOgMed = periode.to;
+        }
+    }
+
+    return false;
 };
 
 export const tilgangskontrollUtils = {

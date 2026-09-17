@@ -214,6 +214,12 @@ describe('slutterOgStarterHosArbeidsgiverSammeUke', () => {
             tilgangskontrollUtils.perioderSlutterOgStarterSammeUkeMedOpphold([uke2, uke4, uke3ManOns, uke3FreSøn]),
         ).toBeTruthy();
     });
+    it('returnerer false hvis oppholdet mellom to perioder er dekket av en tidligere, overlappende periode', () => {
+        const heleJanuar: DateRange = ISODateRangeToDateRange('2025-01-01/2025-01-31');
+        expect(
+            tilgangskontrollUtils.perioderSlutterOgStarterSammeUkeMedOpphold([heleJanuar, uke3ManOns, uke3FreSøn]),
+        ).toBeFalsy();
+    });
     it('muterer ikke perioder som sendes inn', () => {
         const perioder = [uke4, uke2];
         tilgangskontrollUtils.perioderSlutterOgStarterSammeUkeMedOpphold(perioder);
