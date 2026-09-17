@@ -336,10 +336,18 @@ export const getArbeidsukeFromEnkeltdagerIUken = (
     const arbeidstidEnkeltdagerIUken = fjernArbeidstidEnkeltdagerUtenforPeriode(ansattUke, arbeidstidEnkeltdager);
     const dagerSøktFor = Object.keys(arbeidstidEnkeltdagerIUken);
     const antallDagerMedArbeidstid = dagerSøktFor.length;
-    const faktisk = dagerSøktFor.map((key) => arbeidstidEnkeltdagerIUken[key].faktisk);
+    const faktiskEnkeltdager = dagerSøktFor.map((key) => arbeidstidEnkeltdagerIUken[key].faktisk);
     const normalt = dagerSøktFor.map((key) => arbeidstidEnkeltdagerIUken[key].normalt);
     const normaltSummertHeleUken = numberDurationAsDuration(durationUtils.summarizeDurations(normalt));
-    const faktiskSummertHeleUken = numberDurationAsDuration(durationUtils.summarizeDurations(faktisk));
+
+    /**
+     * Faktisk arbeidstid skal være undefined dersom ingen dager har faktisk arbeidstid.
+     * Uten denne sjekken blir «ikke oppgitt» tolket som 0 timer av skjema og oppsummering.
+     */
+    const harFaktiskArbeidstid = faktiskEnkeltdager.some((f) => f !== undefined);
+    const faktiskSummertHeleUken = harFaktiskArbeidstid
+        ? numberDurationAsDuration(durationUtils.summarizeDurations(faktiskEnkeltdager))
+        : undefined;
 
     const arbeidsuke: Arbeidsuke = {
         isoDateRange: dateRangeToISODateRange(ansattUke),
@@ -347,10 +355,12 @@ export const getArbeidsukeFromEnkeltdagerIUken = (
         arbeidstidEnkeltdager: arbeidstidEnkeltdagerIUken,
         dagerSøktFor: dagerSøktFor.map(ISODateToDate),
         antallDagerMedArbeidstid: dagerSøktFor.length,
-        faktisk: {
-            uke: faktiskSummertHeleUken,
-            dag: beregnSnittTimerPerDag(faktiskSummertHeleUken, antallDagerMedArbeidstid),
-        },
+        faktisk: faktiskSummertHeleUken
+            ? {
+                  uke: faktiskSummertHeleUken,
+                  dag: beregnSnittTimerPerDag(faktiskSummertHeleUken, antallDagerMedArbeidstid),
+              }
+            : undefined,
         normalt: {
             uke: normaltSummertHeleUken,
             dag: beregnSnittTimerPerDag(normaltSummertHeleUken, antallDagerMedArbeidstid),

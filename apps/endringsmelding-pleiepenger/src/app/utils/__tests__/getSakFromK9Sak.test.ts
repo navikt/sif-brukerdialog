@@ -329,6 +329,16 @@ describe('getSakFromK9Sak', () => {
             expect(durationToISODuration(uke.normalt.uke)).toEqual(durationToISODuration(arbeidstid.normalt));
         });
 
+        it('setter faktisk til undefined når ingen dager har faktisk arbeidstid', () => {
+            const utenFaktisk: ArbeidstidEnkeltdagMap = {
+                '2022-01-03': { normalt: jobberNormaltTimerPerDag },
+                '2022-01-04': { normalt: jobberNormaltTimerPerDag },
+            };
+            const uke = getArbeidsukeFromEnkeltdagerIUken(periodeHelUke, utenFaktisk);
+            expect(uke.faktisk).toBeUndefined();
+            expect(durationToISODuration(uke.normalt.uke)).toEqual('PT15H0M');
+        });
+
         it('returnerer riktig for én uke', () => {
             const uke = getArbeidsukeFromEnkeltdagerIUken(periodeHelUke, helUke);
             expect(uke.antallDagerMedArbeidstid).toEqual(5);
