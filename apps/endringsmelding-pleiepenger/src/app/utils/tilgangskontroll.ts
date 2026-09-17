@@ -167,7 +167,7 @@ const perioderSlutterOgStarterSammeUkeMedOpphold = (ansettelsesperioder: DateRan
             return false;
         }
         /** Periodene er sammenhengende */
-        if (dayjs(periode.from).diff(forrigePeriode.to, 'day') === 1) {
+        if (dayjs(periode.from).diff(forrigePeriode.to, 'day') <= 1) {
             return false;
         }
 

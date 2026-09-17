@@ -188,6 +188,7 @@ describe('slutterOgStarterHosArbeidsgiverSammeUke', () => {
     const uke4: DateRange = ISODateRangeToDateRange('2025-01-20/2025-01-26');
     const uke3ManOns: DateRange = ISODateRangeToDateRange('2025-01-13/2025-01-15');
     const uke3TorFre: DateRange = ISODateRangeToDateRange('2025-01-16/2025-01-17');
+    const uke3OnsFre: DateRange = ISODateRangeToDateRange('2025-01-15/2025-01-17');
     const uke3FreSøn: DateRange = ISODateRangeToDateRange('2025-01-17/2025-01-19');
 
     it('returnerer false hvis det ikke er noen ansettelsesperiode', () => {
@@ -201,6 +202,9 @@ describe('slutterOgStarterHosArbeidsgiverSammeUke', () => {
     });
     it('returnerer false hvis det to ansettelsesperiode med er sammenhengende', () => {
         expect(tilgangskontrollUtils.perioderSlutterOgStarterSammeUkeMedOpphold([uke3ManOns, uke3TorFre])).toBeFalsy();
+    });
+    it('returnerer false hvis to ansettelsesperioder overlapper', () => {
+        expect(tilgangskontrollUtils.perioderSlutterOgStarterSammeUkeMedOpphold([uke3ManOns, uke3OnsFre])).toBeFalsy();
     });
     it('returnerer true hvis to perioder slutter og starter innenfor samme uke men med opphold', () => {
         expect(tilgangskontrollUtils.perioderSlutterOgStarterSammeUkeMedOpphold([uke3ManOns, uke3FreSøn])).toBeTruthy();
