@@ -1,4 +1,5 @@
 import { ArbeidstidSøknadsdata, Sak, TimerEllerProsent } from '@app/types';
+import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import { vi } from 'vitest';
 
 import { getUgyldigeArbeidstidPerioder } from '../arbeidstidPeriodeValidering';
@@ -88,7 +89,12 @@ describe('getUgyldigeArbeidstidPerioder', () => {
             {
                 ...sak,
                 arbeidsgivereIkkeISak: [
-                    { key: 'a_987654321', organisasjonsnummer: '987654321', navn: 'Ny arbeidsgiver AS' },
+                    {
+                        key: 'a_987654321',
+                        organisasjonsnummer: '987654321',
+                        navn: 'Ny arbeidsgiver AS',
+                        ansettelsesperioder: [ISODateRangeToDateRange('2026-01-12/2026-01-16')],
+                    },
                 ],
             },
         );
