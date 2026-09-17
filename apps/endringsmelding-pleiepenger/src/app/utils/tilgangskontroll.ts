@@ -156,11 +156,12 @@ const harAnsettelsesforholdSomStarterOgSlutterSammeUkeMedOpphold = (
  * @returns boolean
  */
 const perioderSlutterOgStarterSammeUkeMedOpphold = (ansettelsesperioder: DateRange[]) => {
-    return ansettelsesperioder.sort(sortDateRange).some((periode, index) => {
+    const sortertePerioder = [...ansettelsesperioder].sort(sortDateRange);
+    return sortertePerioder.some((periode, index) => {
         if (index === 0) {
             return false;
         }
-        const forrigePeriode = ansettelsesperioder[index - 1];
+        const forrigePeriode = sortertePerioder[index - 1];
 
         /** Slutter og starter periodene innenfor samme uke */
         if (!dayjs(periode.from).isSame(dayjs(forrigePeriode.to), 'isoWeek')) {

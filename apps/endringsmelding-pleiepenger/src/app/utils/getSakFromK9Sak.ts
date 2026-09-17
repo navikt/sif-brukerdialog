@@ -192,10 +192,12 @@ const getEndringsperiodeForArbeidsgiver = (
     arbeidsgiver: ArbeidsgiverMedAnsettelseperioder,
 ): DateRange => {
     const { ansettelsesperioder } = arbeidsgiver;
-    const sisteAnsattTom = ansettelsesperioder.sort(sortMaybeDateRange).reverse()[0]?.to;
+    const sisteAnsattTom = [...ansettelsesperioder].sort(sortMaybeDateRange).reverse()[0]?.to;
+    const skalKortesNed =
+        sisteAnsattTom !== undefined && dayjs(sisteAnsattTom).isBefore(tillattEndringsperiode.to, 'day');
     return {
         ...tillattEndringsperiode,
-        to: sisteAnsattTom || tillattEndringsperiode.to,
+        to: skalKortesNed ? sisteAnsattTom : tillattEndringsperiode.to,
     };
 };
 
@@ -467,7 +469,7 @@ const getPerioderMedArbeidstid = (
 ): PeriodeMedArbeidstid[] => {
     const perioder = trimArbeidstidTilTillattEndringsperiode(arbeidstidPeriodeMap, tillattEndringsperiode);
 
-    return grupperArbeidstidPerioder(perioder).map((gruppertPeriode) => {
+    return grupperArbeidstidPerioder(perioder).flatMap((gruppertPeriode): PeriodeMedArbeidstid[] => {
         const enkeltdagerIPeriode = getArbeidstidEnkeltdagMapFromPerioder(gruppertPeriode.arbeidstidPerioder);
         const arbeidsdagerSomKanEndres = getArbeidsdagerInneforEndringsperiodeOgAnsettelsesperioder(
             enkeltdagerIPeriode,
@@ -478,13 +480,16 @@ const getPerioderMedArbeidstid = (
             arbeidsdagerSomKanEndres,
             ansettelsesperioderInnenforEndringsperiode,
         );
+        if (uker.length === 0) {
+            return []; // Ingen dager i perioden kan endres, f.eks. når hele perioden er utenfor ansettelsesperiodene
+        }
         const periodeSomKanEndres: DateRange = { from: uker[0].periode.from, to: uker[uker.length - 1].periode.to };
         const arbeidsuker = getArbeidsukerMapFromArbeidsuker(uker);
         const periode: PeriodeMedArbeidstid = {
             ...periodeSomKanEndres,
             arbeidsuker,
         };
-        return periode;
+        return [periode];
     });
 };
 
@@ -732,6 +737,7 @@ export const _getSakFromK9Sak = {
     getArbeidstidEnkeltdagMapFromPerioder,
     getEndringsperiodeForArbeidsgiver,
     getArbeidsukerFromEnkeltdager,
+    getPerioderMedArbeidstid,
     getArbeidsukeFromEnkeltdagerIUken,
     grupperArbeidstidPerioder,
     trimArbeidstidTilTillattEndringsperiode,

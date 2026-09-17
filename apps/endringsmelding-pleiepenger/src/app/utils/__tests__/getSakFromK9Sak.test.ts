@@ -27,6 +27,7 @@ const {
     getArbeidsukeFromEnkeltdagerIUken,
     getArbeidsukerFromEnkeltdager,
     erArbeidsgiverInnenforSøknadsperioder,
+    getPerioderMedArbeidstid,
 } = _getSakFromK9Sak;
 
 const faktiskISODuration: ISODuration = 'PT2H0M';
@@ -55,6 +56,20 @@ describe('getSakFromK9Sak', () => {
             } as ArbeidsgiverMedAnsettelseperioder);
             expect(dateToISODate(result.from)).toEqual(isoFrom);
             expect(dateToISODate(result.to)).toEqual(isoSluttdato);
+        });
+        it('beholder uendret endringsperiode hvis sluttdato er etter endringsperiode sluttdato', () => {
+            const result = getEndringsperiodeForArbeidsgiver(endringsperiode, {
+                ansettelsesperioder: [{ to: ISODateToDate('2022-03-01') }],
+            } as ArbeidsgiverMedAnsettelseperioder);
+            expect(dateToISODate(result.from)).toEqual(isoFrom);
+            expect(dateToISODate(result.to)).toEqual(isoTo);
+        });
+        it('muterer ikke ansettelsesperioder', () => {
+            const ansettelsesperioder = [{ to: ISODateToDate(isoSluttdato) }, { to: ISODateToDate('2022-01-10') }];
+            getEndringsperiodeForArbeidsgiver(endringsperiode, {
+                ansettelsesperioder,
+            } as ArbeidsgiverMedAnsettelseperioder);
+            expect(dateToISODate(ansettelsesperioder[0].to)).toEqual(isoSluttdato);
         });
     });
 
@@ -97,6 +112,36 @@ describe('getSakFromK9Sak', () => {
             const tillattPeriode = ISODateRangeToDateRange('2022-02-02/2022-02-03');
             const result = trimArbeidstidTilTillattEndringsperiode(perioder, tillattPeriode);
             expect(Object.keys(result)).toHaveLength(0);
+        });
+    });
+
+    describe('getPerioderMedArbeidstid', () => {
+        const tillattEndringsperiode = ISODateRangeToDateRange('2022-01-03/2022-02-04');
+        const perioder: K9SakArbeidstidPeriodeMap = {
+            '2022-01-03/2022-01-07': { faktiskArbeidTimerPerDag, jobberNormaltTimerPerDag },
+            '2022-01-24/2022-01-28': { faktiskArbeidTimerPerDag, jobberNormaltTimerPerDag },
+        };
+
+        it('utelater perioder hvor ingen dager er innenfor ansettelsesperiodene', () => {
+            const ansettelsesperioder = [ISODateRangeToDateRange('2022-01-03/2022-01-07')];
+            const result = getPerioderMedArbeidstid(perioder, tillattEndringsperiode, ansettelsesperioder);
+            expect(result).toHaveLength(1);
+            expect(dateToISODate(result[0].from)).toEqual('2022-01-03');
+        });
+
+        it('returnerer tom liste når ingen dager er innenfor ansettelsesperiodene', () => {
+            const ansettelsesperioder = [ISODateRangeToDateRange('2022-02-01/2022-02-04')];
+            const result = getPerioderMedArbeidstid(perioder, tillattEndringsperiode, ansettelsesperioder);
+            expect(result).toHaveLength(0);
+        });
+
+        it('beholder perioder på hver side av et opphold i ansettelsen', () => {
+            const ansettelsesperioder = [
+                ISODateRangeToDateRange('2022-01-03/2022-01-07'),
+                ISODateRangeToDateRange('2022-01-24/2022-01-28'),
+            ];
+            const result = getPerioderMedArbeidstid(perioder, tillattEndringsperiode, ansettelsesperioder);
+            expect(result).toHaveLength(2);
         });
     });
 

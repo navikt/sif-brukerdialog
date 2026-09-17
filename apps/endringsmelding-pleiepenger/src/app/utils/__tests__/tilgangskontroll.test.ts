@@ -214,4 +214,9 @@ describe('slutterOgStarterHosArbeidsgiverSammeUke', () => {
             tilgangskontrollUtils.perioderSlutterOgStarterSammeUkeMedOpphold([uke2, uke4, uke3ManOns, uke3FreSøn]),
         ).toBeTruthy();
     });
+    it('muterer ikke perioder som sendes inn', () => {
+        const perioder = [uke4, uke2];
+        tilgangskontrollUtils.perioderSlutterOgStarterSammeUkeMedOpphold(perioder);
+        expect(perioder).toEqual([uke4, uke2]);
+    });
 });
