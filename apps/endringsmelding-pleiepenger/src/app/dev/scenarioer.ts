@@ -8,6 +8,7 @@ export type ScenarioType =
     | 'debug'
     | 'selvstendig-næringsdrivende'
     | 'flere-saker'
+    | 'flere-saker-kun-en-aktiv'
     | 'ingen-sak'
     | 'arbeidsaktivitet-uten-arbeidsgiver'
     | 'ugyldig-k9-format'
@@ -60,6 +61,11 @@ export const scenarioer: Scenario[] = [
     {
         name: 'Saker for flere barn',
         value: 'flere-saker',
+        harTilgang: false,
+    },
+    {
+        name: 'Saker for flere barn, kun én innenfor endringsperioden',
+        value: 'flere-saker-kun-en-aktiv',
         harTilgang: false,
     },
     {

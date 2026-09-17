@@ -11,6 +11,7 @@ import { EnArbeidsgiverToAnsettelserSammeUkeMedOpphold } from './en-arbeidsgiver
 import { EnArbeidsgiverToAnsettelserSammeUkeUtenOpphold } from './en-arbeidsgiver-to-ansettelser-samme-uke-uten-opphold/EnArbeidsgiverToAnsettelserSammeUkeUtenOpphold';
 import { EnArbeidsgiverToPerioder } from './en-arbeidsgiver-to-perioder/EnArbeidsgiverToPerioder';
 import { FlereSaker } from './flere-saker/FlereSaker';
+import { FlereSakerKunEnAktiv } from './flere-saker-kun-en-aktiv/FlereSakerKunEnAktiv';
 import { IngenSak } from './ingen-sak/IngenSak';
 import { SelvstendigNæringsdrivende } from './selvstendig-næringsdrivende/SelvstendigNæringsdrivende';
 import { UgyldigK9Format } from './ugyldig-k9-format/UgyldigK9Format';
@@ -24,6 +25,7 @@ export const mockData: ScenarioMap = {
     ['arbeidsgivere-og-frilanser']: ArbeidsgivereOgFrilanser,
     ['selvstendig-næringsdrivende']: SelvstendigNæringsdrivende,
     ['flere-saker']: FlereSaker,
+    ['flere-saker-kun-en-aktiv']: FlereSakerKunEnAktiv,
     ['ingen-sak']: IngenSak,
     ['debug']: Debug,
     ['arbeidsgiver-ikke-i-sak']: ArbeidsgiverIkkeISak,
