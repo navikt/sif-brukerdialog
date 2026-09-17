@@ -89,6 +89,23 @@ describe('harFlereAnsettelsesforholdHosUkjentArbeidsgiver', () => {
         );
         expect(result).toBeFalsy();
     });
+
+    it('returnerer false når flere ansettelsesperioder kun overlapper hullet mellom søknadsperioder', () => {
+        const result = tilgangskontrollUtils.harFlereAnsettelsesforholdHosUkjentArbeidsgiver(
+            [
+                {
+                    ...arbeidsgiverFlereAnsettelsesperioder,
+                    ansettelsesperioder: [
+                        ISODateRangeToDateRange('2023-02-01/2023-02-02'),
+                        ISODateRangeToDateRange('2023-02-10/2023-02-11'),
+                    ],
+                },
+            ],
+            [arbeidstaker1, arbeidstaker2],
+            [ISODateRangeToDateRange('2023-02-01/2023-02-02'), ISODateRangeToDateRange('2023-02-20/2023-02-21')],
+        );
+        expect(result).toBeFalsy();
+    });
 });
 
 describe('harSakSøknadsperiodeInnenforTillattEndringsperiode', () => {

@@ -7,7 +7,13 @@ import {
     K9SakArbeidstid,
     K9SakArbeidstidInfo,
 } from '@app/types';
-import { DateRange, durationToDecimalDuration, ensureDateRange, sortDateRange } from '@navikt/sif-common-utils';
+import {
+    DateRange,
+    dateRangeUtils,
+    durationToDecimalDuration,
+    ensureDateRange,
+    sortDateRange,
+} from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 
@@ -68,7 +74,13 @@ export const tilgangskontroll = (
     }
 
     /** Bruker har flere ansettelsperioder hos ukjent arbeidsgiver */
-    if (harFlereAnsettelsesforholdHosUkjentArbeidsgiver(arbeidsgivere, sak.ytelse.arbeidstid.arbeidstakerList)) {
+    if (
+        harFlereAnsettelsesforholdHosUkjentArbeidsgiver(
+            arbeidsgivere,
+            sak.ytelse.arbeidstid.arbeidstakerList,
+            dateRangeUtils.getDateRangesWithinDateRange(sak.ytelse.søknadsperioder, tillattEndringsperiode),
+        )
+    ) {
         ingenTilgangÅrsak.push(IngenTilgangÅrsak.harFlereAnsettelsesforholdHosUkjentArbeidsgiver);
     }
 
@@ -109,13 +121,25 @@ const getIngenTilgangMeta = (arbeidstid: K9SakArbeidstid): IngenTilgangMeta => {
 const harFlereAnsettelsesforholdHosUkjentArbeidsgiver = (
     arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
     k9SakArbeidstaker: K9SakArbeidstaker[] = [],
+    søknadsperioder?: DateRange[],
 ): boolean => {
     return arbeidsgivere.some((arbeidsgiver) => {
         const erUkjentArbeidsgiver = finnesArbeidsgiverIK9Sak(arbeidsgiver, k9SakArbeidstaker) === false;
         if (!erUkjentArbeidsgiver) {
             return false;
         }
-        return arbeidsgiver.ansettelsesperioder.length > 1;
+        return (
+            arbeidsgiver.ansettelsesperioder.filter(
+                (ansettelsesperiode) =>
+                    søknadsperioder === undefined ||
+                    søknadsperioder.some((søknadsperiode) =>
+                        dateRangeUtils.dateRangesCollide([
+                            ensureDateRange(ansettelsesperiode, søknadsperiode),
+                            søknadsperiode,
+                        ]),
+                    ),
+            ).length > 1
+        );
     });
 };
 
