@@ -53,6 +53,7 @@ test('Har en arbeidsgiver med to ansettelsesforhold som slutter og starter samme
     await expect(page).toHaveTitle('Ingen tilgang - Endringsmelding for pleiepenger sykt barn');
     await expect(page.getByText('Hei Nora')).toBeVisible();
     await expect(page.getByTestId('enArbeidsgiverToAnsettelserSammeUkeMedOpphold')).toBeVisible();
+    await testAccessibility(page);
 });
 
 test('Har arbeidsgiver som ikke er i sak med flere ansettelsesforhold', async ({ page }) => {
