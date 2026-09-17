@@ -1,5 +1,5 @@
+import { ArbeiderIPeriodenSvar, ArbeidsgiverMedAnsettelseperioder, ArbeidstakerApiData } from '@app/types';
 import { AppText } from '@app/i18n';
-import { ArbeiderIPeriodenSvar, Arbeidsgiver, ArbeidstakerApiData } from '@app/types';
 import { FormSummary } from '@navikt/ds-react';
 
 import { ArbeiderIPeriodenSvarIntlKey } from '../../arbeidstid/arbeidsaktivitet-form-part/components/ArbeiderIPeriodenSpørsmål';
@@ -8,7 +8,7 @@ import ArbeidstidFormSummary from './ArbeidstidFormSummary';
 
 type Props = {
     arbeidstaker: ArbeidstakerApiData;
-    arbeidsgivere: Arbeidsgiver[];
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[];
     arbeidstidKolonneTittel?: string;
 };
 

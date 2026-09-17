@@ -14,6 +14,7 @@ import {
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
+import { getEndringsdato, getTillattEndringsperiode } from '@app/utils';
 import { useIntl } from 'react-intl';
 
 import { getLenker } from '../../../lenker';
@@ -113,6 +114,7 @@ const ArbeidstidForm = ({ goBack }: Props) => {
                         sak.søknadsperioder,
                         sak.arbeidsgivereIkkeISak,
                         aktiviteterValuesMap,
+                        getTillattEndringsperiode(getEndringsdato()),
                         søknadsdata.ukjentArbeidsforhold,
                     ),
                     ...getAktiviteterSomSkalEndres(sak.arbeidsaktiviteter),

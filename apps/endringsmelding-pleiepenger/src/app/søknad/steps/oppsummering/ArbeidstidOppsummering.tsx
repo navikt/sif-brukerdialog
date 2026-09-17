@@ -1,22 +1,25 @@
-import { useAppIntl } from '@app/i18n';
+import { Heading, VStack } from '@navikt/ds-react';
 import { ArbeidsgiverMedAnsettelseperioder, ArbeidstidApiData } from '@app/types';
 
+import { AppText, useAppIntl } from '../../../i18n';
+import ArbeidstidUker from '../../../modules/arbeidstid-uker/ArbeidstidUker';
 import ArbeidstidArbeidstakerOppsummering from './ArbeidstidArbeidstakerOppsummering';
-import ArbeidstidEndringerAnswer from './ArbeidstidEndringerAnswer';
-import ArbeidstidFormSummary from './ArbeidstidFormSummary';
+import { oppsummeringStepUtils } from './oppsummeringStepUtils';
 
 interface Props {
     arbeidstid: ArbeidstidApiData;
     arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[];
 }
 
-const ArbeidstidArbeidsforholdOppsummering = ({ arbeidstid, arbeidsgivere }: Props) => {
+const ArbeidstidOppsummering = ({ arbeidstid, arbeidsgivere }: Props) => {
     const { text } = useAppIntl();
     const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } = arbeidstid;
+    const arbeidstidKolonneTittel = text('oppsummeringStep.arbeidstid.kolonne.endretArbeidstid');
+
     const eksisterendeArbeidstakere = arbeidstakerList.filter((a) => a._erUkjentArbeidsforhold === false);
     const ukjenteArbeidsforhold = arbeidstakerList.filter((a) => a._erUkjentArbeidsforhold === true);
     return (
-        <>
+        <VStack gap="space-32">
             {ukjenteArbeidsforhold &&
                 Object.keys(ukjenteArbeidsforhold).map((key) => (
                     <ArbeidstidArbeidstakerOppsummering
@@ -26,6 +29,7 @@ const ArbeidstidArbeidsforholdOppsummering = ({ arbeidstid, arbeidsgivere }: Pro
                         arbeidstidKolonneTittel={text('oppsummeringStep.arbeidstid.kolonne.iPerioden')}
                     />
                 ))}
+
             {eksisterendeArbeidstakere &&
                 Object.keys(eksisterendeArbeidstakere).map((key) => (
                     <ArbeidstidArbeidstakerOppsummering
@@ -34,18 +38,35 @@ const ArbeidstidArbeidsforholdOppsummering = ({ arbeidstid, arbeidsgivere }: Pro
                         arbeidsgivere={arbeidsgivere}
                     />
                 ))}
+
             {frilanserArbeidstidInfo && (
-                <ArbeidstidFormSummary title={text('oppsummeringStep.arbeidstid.frilanser.tittel')}>
-                    <ArbeidstidEndringerAnswer perioder={frilanserArbeidstidInfo.perioder} />
-                </ArbeidstidFormSummary>
+                <>
+                    <Heading level="3" size="small">
+                        <AppText id="oppsummeringStep.arbeidstid.frilanser.tittel" />
+                    </Heading>
+
+                    <ArbeidstidUker
+                        listItems={oppsummeringStepUtils.getArbeidstidUkerItems(frilanserArbeidstidInfo.perioder)}
+                        arbeidstidKolonneTittel={arbeidstidKolonneTittel}
+                    />
+                </>
             )}
             {selvstendigNæringsdrivendeArbeidstidInfo && (
-                <ArbeidstidFormSummary title={text('oppsummeringStep.arbeidstid.sn.tittel')}>
-                    <ArbeidstidEndringerAnswer perioder={selvstendigNæringsdrivendeArbeidstidInfo.perioder} />
-                </ArbeidstidFormSummary>
+                <>
+                    <Heading level="3" size="small">
+                        <AppText id="oppsummeringStep.arbeidstid.sn.tittel" />
+                    </Heading>
+
+                    <ArbeidstidUker
+                        listItems={oppsummeringStepUtils.getArbeidstidUkerItems(
+                            selvstendigNæringsdrivendeArbeidstidInfo.perioder,
+                        )}
+                        arbeidstidKolonneTittel={arbeidstidKolonneTittel}
+                    />
+                </>
             )}
-        </>
+        </VStack>
     );
 };
 
-export default ArbeidstidArbeidsforholdOppsummering;
+export default ArbeidstidOppsummering;
