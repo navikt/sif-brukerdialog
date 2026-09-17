@@ -73,6 +73,20 @@ describe('dateRangeUtils', () => {
             expect(ensureDateRange({}, fallbackDateRange)).toEqual(fallbackDateRange);
         });
 
+        it('bruker fallback for manglende fra-dato', () => {
+            expect(ensureDateRange({ to: ISODateToDate('2020-01-20') }, fallbackDateRange)).toEqual({
+                from: fallbackDateRange.from,
+                to: ISODateToDate('2020-01-20'),
+            });
+        });
+
+        it('bruker fallback for manglende til-dato', () => {
+            expect(ensureDateRange({ from: ISODateToDate('2020-01-10') }, fallbackDateRange)).toEqual({
+                from: ISODateToDate('2020-01-10'),
+                to: fallbackDateRange.to,
+            });
+        });
+
         it('bevarer oppgitte datoer', () => {
             const dateRange = {
                 from: ISODateToDate('2020-01-10'),
