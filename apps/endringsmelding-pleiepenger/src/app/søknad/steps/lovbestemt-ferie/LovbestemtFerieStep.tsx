@@ -3,7 +3,7 @@ import PersistStepFormValues from '@app/components/persist-step-form-values/Pers
 import EndretTag from '@app/components/tags/EndretTag';
 import { useOnValidSubmit, useSøknadContext } from '@app/hooks';
 import { useStepConfig } from '@app/hooks/useStepConfig';
-import { AppText } from '@app/i18n';
+import { AppText, useAppIntl } from '@app/i18n';
 import { StepId } from '@app/søknad/config/StepId';
 import actionsCreator from '@app/søknad/context/action/actionCreator';
 import { useStepFormValuesContext } from '@app/søknad/context/StepFormValuesContext';
@@ -15,7 +15,6 @@ import { Alert, Box, Heading, List, VStack } from '@navikt/ds-react';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { dateFormatter, ISODate } from '@navikt/sif-common-utils';
-import { useIntl } from 'react-intl';
 
 import FeriedagerISøknadsperiode from './FeriedagerISøknadperiode';
 import {
@@ -45,11 +44,11 @@ const { FormikWrapper, Form } = getTypedFormComponents<LovbestemtFerieFormFields
 
 const LovbestemtFerieStep = () => {
     const stepId = StepId.LOVBESTEMT_FERIE;
-    const intl = useIntl();
+    const { intl, text } = useAppIntl();
 
     const {
         dispatch,
-        state: { søknadsdata, sak, valgteEndringer },
+        state: { søknadsdata, sak, valgteEndringer, singleStepMode },
     } = useSøknadContext();
 
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
@@ -82,7 +81,7 @@ const LovbestemtFerieStep = () => {
     const initialValues = getLovbestemtFerieStepInitialValues(søknadsdata, stepFormValues.lovbestemtFerie);
 
     return (
-        <SøknadStep stepId={stepId} stepConfig={stepConfig}>
+        <SøknadStep stepId={stepId} stepConfig={stepConfig} singleStepMode={singleStepMode}>
             <FormLayout.Guide>
                 <Heading level="2" size="xsmall" spacing={true}>
                     <AppText id="lovbestemtFerieStep.guide.tittel" />
@@ -118,6 +117,7 @@ const LovbestemtFerieStep = () => {
                                 includeValidationSummary={true}
                                 submitPending={isSubmitting}
                                 runDelayedFormValidation={true}
+                                submitButtonLabel={singleStepMode ? text('singleStepMode.stepSubmitButton') : undefined}
                                 onBack={goBack}>
                                 <VStack gap="space-24">
                                     {sak.søknadsperioder.length === 1 ? null : (

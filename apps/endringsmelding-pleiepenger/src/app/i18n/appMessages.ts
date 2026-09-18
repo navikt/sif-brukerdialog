@@ -151,6 +151,8 @@ const nb = {
     'calendarGrid.Uke': 'Uke',
     'calendarGrid.måned': 'måned',
     'calendarGrid.Måned': 'Måned',
+
+    'singleStepMode.stepSubmitButton': 'Ok, tilbake til oversikt',
 };
 
 const nn: Record<keyof typeof nb, string> = { ...nb };

@@ -22,6 +22,8 @@ interface Props {
     topContentRenderer?: () => React.ReactElement<any>;
     onCancel?: () => void;
     onContinueLater?: () => void;
+    stepTitle?: string;
+    singleStepMode?: boolean;
     cancelOrContinueLaterAriaLabel?: string;
 }
 
@@ -31,7 +33,9 @@ function Step({
     activeStepId,
     onCancel,
     onContinueLater,
+    stepTitle: stepTitleOverride,
     validationSummary,
+    singleStepMode,
     cancelOrContinueLaterAriaLabel,
     children,
 }: Props) {
@@ -39,7 +43,7 @@ function Step({
     const navigate = useNavigate();
     const sectionRef = useRef<HTMLDivElement>(null);
 
-    const stepTitle = steps[currentStepIndex].label;
+    const stepTitle = stepTitleOverride ?? steps[currentStepIndex].label;
     const pageTitle = `${stepTitle} - ${applicationTitle}`;
 
     const handleOnStepSelect = (step: ProgressStep) => {
@@ -60,9 +64,11 @@ function Step({
             <section aria-label="Skjema" ref={sectionRef}>
                 <VStack gap="space-40">
                     <ProgressStepper
+                        stepTitle={stepTitle}
                         steps={steps}
                         currentStepIndex={currentStepIndex}
                         onStepSelect={handleOnStepSelect}
+                        singleStepMode={singleStepMode}
                     />
                     <div>{children}</div>
                 </VStack>

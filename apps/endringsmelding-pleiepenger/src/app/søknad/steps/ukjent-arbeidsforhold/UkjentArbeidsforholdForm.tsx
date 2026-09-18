@@ -23,8 +23,8 @@ import {
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { useIntl } from 'react-intl';
 
+import { useAppIntl } from '../../../i18n';
 import {
     getErAnsattValidator,
     getTimerPerUkeValidator,
@@ -67,6 +67,7 @@ interface Props {
     arbeidsgivereIkkeISak: ArbeidsgiverMedAnsettelseperioder[];
     ukjentArbeidsforholdSøknadsdata?: UkjentArbeidsforholdSøknadsdata;
     stepId: StepId;
+    singleStepMode?: boolean;
     goBack?: () => void;
 }
 
@@ -76,8 +77,9 @@ const UkjentArbeidsforholdForm = ({
     arbeidsgivere,
     arbeidsgivereIkkeISak,
     ukjentArbeidsforholdSøknadsdata,
+    singleStepMode,
 }: Props) => {
-    const intl = useIntl();
+    const { text, intl } = useAppIntl();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values: UkjentArbeidsforholdFormValues) => {
@@ -115,7 +117,8 @@ const UkjentArbeidsforholdForm = ({
                             includeValidationSummary={true}
                             submitPending={isSubmitting}
                             runDelayedFormValidation={true}
-                            onBack={goBack}>
+                            submitButtonLabel={singleStepMode ? text('singleStepMode.stepSubmitButton') : undefined}
+                            onBack={singleStepMode ? undefined : goBack}>
                             <VStack gap="space-32">
                                 {arbeidsgivereIkkeISak.map((arbeidsgiver) => {
                                     const arbeidsgiverFieldName = `${UkjentArbeidsforholdFormFields.arbeidsforhold}.${arbeidsgiver.key}`;

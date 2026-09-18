@@ -14,7 +14,10 @@ const ArbeidstidStep = () => {
     const stepId = StepId.ARBEIDSTID;
 
     const {
+        // dispatch,
         state: {
+            valgteEndringer,
+            singleStepMode,
             sak: { arbeidsaktivitetMedUkjentArbeidsgiver, arbeidsaktiviteter },
         },
     } = useSøknadContext();
@@ -23,8 +26,18 @@ const ArbeidstidStep = () => {
 
     const { harFjernetFerie } = useSøknadsdataInfo();
 
+    // const setEndringsvalg = (valgt: boolean) => {
+    //     dispatch({
+    //         type: SøknadContextActionKeys.SET_ENDRINGSVALG,
+    //         payload: {
+    //             endring: EndringType.arbeidstid,
+    //             valgt,
+    //         },
+    //     });
+    // };
+
     return (
-        <SøknadStep stepId={stepId} stepConfig={stepConfig}>
+        <SøknadStep stepId={stepId} stepConfig={stepConfig} singleStepMode={singleStepMode}>
             <FormLayout.Guide>
                 <Heading level="2" size="xsmall" spacing={true}>
                     <AppText id="arbeidstidStep.title" />
@@ -41,13 +54,22 @@ const ArbeidstidStep = () => {
                     </List.Item>
                 </List>
             </FormLayout.Guide>
+
             <VStack gap="space-32">
+                {/* <Box background="info-softA" padding="space-16" borderRadius="8">
+                    <RadioGroup
+                        name="23"
+                        legend="Ønsker du å melde fra om endring i arbeidstiden din?"
+                        onChange={(value) => setEndringsvalg(value === 'ja')}>
+                        <Radio value="ja">Ja</Radio>
+                        <Radio value="nei">Nei</Radio>
+                    </RadioGroup>
+                </Box> */}
                 {harFjernetFerie && (
                     <Alert variant="warning">
                         <AppText id="arbeidstidStep.fjernetFerie.melding" />
                     </Alert>
                 )}
-
                 {arbeidsaktivitetMedUkjentArbeidsgiver.length === 0 ? null : (
                     <ArbeidsaktiviteterMedUkjentArbeidsgiver
                         arbeidsaktivitetMedUkjentArbeidsgiver={arbeidsaktivitetMedUkjentArbeidsgiver}
@@ -55,7 +77,7 @@ const ArbeidstidStep = () => {
                     />
                 )}
 
-                <ArbeidstidForm goBack={goBack} />
+                {valgteEndringer.arbeidstid && <ArbeidstidForm goBack={goBack} />}
             </VStack>
         </SøknadStep>
     );

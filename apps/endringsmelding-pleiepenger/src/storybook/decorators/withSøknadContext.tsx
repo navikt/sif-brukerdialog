@@ -13,6 +13,7 @@ export const initialStateStorybook: SøknadContextState = {
     søknadsdata: {
         id: '123',
     },
+    singleStepMode: false,
     k9saker: [],
     valgteEndringer: {
         arbeidstid: true,

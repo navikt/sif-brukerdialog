@@ -1,6 +1,6 @@
 import PersistStepFormValues from '@app/components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit, useSøknadContext } from '@app/hooks';
-import { AppText } from '@app/i18n';
+import { AppText, useAppIntl } from '@app/i18n';
 import { StepId } from '@app/søknad/config/StepId';
 import actionsCreator from '@app/søknad/context/action/actionCreator';
 import { useStepFormValuesContext } from '@app/søknad/context/StepFormValuesContext';
@@ -14,7 +14,6 @@ import {
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
-import { useIntl } from 'react-intl';
 
 import { getLenker } from '../../../lenker';
 import ArbeidsaktivitetFormPart from './arbeidsaktivitet-form-part/ArbeidsaktivitetFormPart';
@@ -50,10 +49,10 @@ interface Props {
 
 const ArbeidstidForm = ({ goBack }: Props) => {
     const stepId = StepId.ARBEIDSTID;
-    const intl = useIntl();
+    const { intl, text } = useAppIntl();
     const {
         dispatch,
-        state: { søknadsdata, sak, tillattEndringsperiode },
+        state: { søknadsdata, sak, tillattEndringsperiode, singleStepMode },
     } = useSøknadContext();
     const { clearStepFormValues, stepFormValues } = useStepFormValuesContext();
 
@@ -142,7 +141,8 @@ const ArbeidstidForm = ({ goBack }: Props) => {
                             includeValidationSummary={true}
                             submitPending={isSubmitting}
                             runDelayedFormValidation={true}
-                            onBack={goBack}>
+                            onBack={singleStepMode ? undefined : goBack}
+                            submitButtonLabel={singleStepMode ? text('singleStepMode.stepSubmitButton') : undefined}>
                             <VStack gap="space-16">
                                 {arbeidsaktiviteter.map((arbeidsaktivitet) => (
                                     <ArbeidsaktivitetFormPart

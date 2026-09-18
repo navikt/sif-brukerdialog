@@ -5,16 +5,17 @@ import { StepId } from '@app/søknad/config/StepId';
 import SøknadStep from '@app/søknad/SøknadStep';
 import { getApiDataFromSøknadsdata, harUkjentArbeidsforholdMenHarIkkeBesvartArbeidstid } from '@app/utils';
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
-import { Alert, BodyLong, Button, ErrorSummary, Heading, Link, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, Button, ErrorSummary, Heading, InlineMessage, Link, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
-import { FormLayout } from '@navikt/sif-common-ui';
+import { ActionLink, FormLayout } from '@navikt/sif-common-ui';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { useSkyraReloader } from '@sif/surveys';
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { getSøknadStepRoute } from '../../config/SøknadRoutes';
 import ArbeidstidOppsummering from './arbeidstid/ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './lovbestemt-ferie/LovbestemtFerieOppsummering';
 import NyttArbeidsforholdSummary from './nytt-arbeidsforhold/NyttArbeidsforholdSummary';
@@ -40,7 +41,7 @@ const OppsummeringStep = () => {
     const navigate = useNavigate();
     const { text, intl, locale } = useAppIntl();
     const {
-        state: { søknadsdata, sak, arbeidsgivere, valgteEndringer, søker, tillattEndringsperiode },
+        state: { søknadsdata, sak, arbeidsgivere, valgteEndringer, søker, tillattEndringsperiode, singleStepMode },
     } = useSøknadContext();
 
     const { goBack, stepConfig } = useStepConfig(stepId);
@@ -89,7 +90,11 @@ const OppsummeringStep = () => {
     const harFeilPgaManglendeArbeidstidInfo = harUkjentArbeidsforholdMenHarIkkeBesvartArbeidstid(sak, apiData);
 
     return (
-        <SøknadStep stepId={stepId} stepConfig={stepConfig}>
+        <SøknadStep
+            stepId={stepId}
+            stepConfig={stepConfig}
+            singleStepMode={singleStepMode}
+            stepTitle={singleStepMode ? 'Dine endringer' : undefined}>
             <FormLayout.Guide>
                 <p>
                     <AppText id="oppsummeringStep.guide" />
@@ -120,9 +125,14 @@ const OppsummeringStep = () => {
                         {lovbestemtFerie !== undefined && lovbestemtFerieErEndret ? (
                             <LovbestemtFerieOppsummering lovbestemtFerie={lovbestemtFerie} />
                         ) : (
-                            <Alert variant="info">
-                                <AppText id="oppsummeringStep.ferie.ingenEndringer" />
-                            </Alert>
+                            <VStack gap="space-16">
+                                <InlineMessage status="info">
+                                    <AppText id="oppsummeringStep.ferie.ingenEndringer" />
+                                </InlineMessage>
+                                <ActionLink onClick={() => navigate(getSøknadStepRoute(StepId.LOVBESTEMT_FERIE))}>
+                                    Gå til endring av ferie
+                                </ActionLink>
+                            </VStack>
                         )}
                     </VStack>
                 )}
@@ -137,9 +147,14 @@ const OppsummeringStep = () => {
                                 tidOpprinnelig={sak.tilsynsordning.tilsynsdagerMap}
                             />
                         ) : (
-                            <Alert variant="info">
-                                <AppText id="oppsummeringStep.tilsynsordning.ingenEndringer" />
-                            </Alert>
+                            <VStack gap="space-16">
+                                <InlineMessage status="info">
+                                    <AppText id="oppsummeringStep.tilsynsordning.ingenEndringer" />
+                                </InlineMessage>
+                                <ActionLink onClick={() => navigate(getSøknadStepRoute(StepId.TILSYNSORDNING))}>
+                                    Gå til endring av tid i omsorgstilbud
+                                </ActionLink>
+                            </VStack>
                         )}
                     </VStack>
                 )}
@@ -163,15 +178,19 @@ const OppsummeringStep = () => {
                 )}
 
                 {harIngenEndringer || harFeilPgaManglendeArbeidstidInfo ? (
-                    <div>
-                        <Button
-                            type="button"
-                            variant="secondary"
-                            onClick={goBack}
-                            icon={<ChevronLeftIcon aria-label={text('oppsummeringStep.forrige.ariaLabel')} />}>
-                            <AppText id="oppsummeringStep.forrige" />
-                        </Button>
-                    </div>
+                    <>
+                        {singleStepMode ? null : (
+                            <div>
+                                <Button
+                                    type="button"
+                                    variant="secondary"
+                                    onClick={goBack}
+                                    icon={<ChevronLeftIcon aria-label={text('oppsummeringStep.forrige.ariaLabel')} />}>
+                                    <AppText id="oppsummeringStep.forrige" />
+                                </Button>
+                            </div>
+                        )}
+                    </>
                 ) : (
                     <FormikWrapper
                         initialValues={getOppsummeringStepInitialValues(søknadsdata)}
@@ -197,7 +216,7 @@ const OppsummeringStep = () => {
                                         isFinalSubmit={true}
                                         submitPending={isSubmitting}
                                         backButtonDisabled={isSubmitting}
-                                        onBack={goBack}>
+                                        onBack={singleStepMode ? undefined : goBack}>
                                         <ConfirmationCheckbox
                                             disabled={isSubmitting || harIngenEndringer || !harGyldigArbeidstid}
                                             label={text('oppsummeringStep.bekrefter.tekst')}

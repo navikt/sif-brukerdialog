@@ -30,6 +30,7 @@ export enum SøknadContextActionKeys {
     SET_UNSUBMITTED_STEP_FORM_VALUES = 'setUnsubmittedStepFormValues',
     CLEAR_STEP_SØKNADSDATA = 'clearStepSøknadsdata',
     SET_INPUT_PREFERANSER = 'setInputPreferanser',
+    SET_ENDRINGSVALG = 'setEndringsvalg',
 }
 
 interface SetSak {
@@ -94,6 +95,11 @@ interface ClearStepSøknadsdata {
 interface SetInputPreferanser {
     type: SøknadContextActionKeys.SET_INPUT_PREFERANSER;
     payload: { inputPreferanser: Partial<SøknadContextInputPreferanse> };
+}
+
+interface SetEndringsvalg {
+    type: SøknadContextActionKeys.SET_ENDRINGSVALG;
+    payload: { endring: EndringType; valgt: boolean };
 }
 
 const setSak = (sak: Sak): SetSak => ({
@@ -172,9 +178,17 @@ const setInputPreferanser = (inputPreferanser: SøknadContextInputPreferanse): S
         inputPreferanser,
     },
 });
+const setEndringsvalg = (endring: EndringType, valgt: boolean): SetEndringsvalg => ({
+    type: SøknadContextActionKeys.SET_ENDRINGSVALG,
+    payload: {
+        endring,
+        valgt,
+    },
+});
 
 export type SøknadContextAction =
     | SetSak
+    | SetEndringsvalg
     | AvbrytSøknad
     | ClearStepSøknadsdata
     | FortsettSøknadSenere
@@ -208,6 +222,7 @@ const actionsCreator = {
     setEndringsmeldingSendt,
     startSøknad,
     setInputPreferanser,
+    setEndringsvalg,
 };
 
 export default actionsCreator;

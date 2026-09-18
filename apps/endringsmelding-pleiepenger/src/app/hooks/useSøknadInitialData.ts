@@ -56,6 +56,7 @@ const prepInitialData = (loadedData: InitialData, tillattEndringsperiode: DateRa
         inputPreferanser: {
             timerEllerProsent: TimerEllerProsent.PROSENT,
         },
+        singleStepMode: true,
         ...(lagretSøknadState ? lagretSøknadState : defaultSøknadState),
     };
 };

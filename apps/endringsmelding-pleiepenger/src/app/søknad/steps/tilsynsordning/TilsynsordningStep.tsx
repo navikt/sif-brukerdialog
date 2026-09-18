@@ -31,6 +31,7 @@ const TilsynsordningStep = () => {
         dispatch,
         state: {
             sak,
+            singleStepMode,
             søknadsdata: { tilsynsordning },
         },
     } = useSøknadContext();
@@ -64,7 +65,7 @@ const TilsynsordningStep = () => {
     const initialValues = getTilsynsordningStepInitialValues(tilsynsordning, stepFormValues.tilsynsordning);
 
     return (
-        <SøknadStep stepId={stepId} stepConfig={stepConfig}>
+        <SøknadStep stepId={stepId} stepConfig={stepConfig} singleStepMode={singleStepMode}>
             <FormLayout.Guide>
                 <Heading level="2" size="xsmall" spacing={true}>
                     <AppText id="omsorgstilbudStep.title" />
@@ -107,7 +108,8 @@ const TilsynsordningStep = () => {
                             <>
                                 <PersistStepFormValues stepId={stepId} />
                                 <TilsynsordningForm
-                                    goBack={goBack}
+                                    singleStepMode={singleStepMode}
+                                    goBack={singleStepMode ? undefined : goBack}
                                     søknadsperioder={sak.søknadsperioder}
                                     opprinneligTilsynsdager={sak.tilsynsordning.tilsynsdagerMap}
                                     isSubmitting={isSubmitting}

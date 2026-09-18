@@ -1,10 +1,13 @@
 import { FormSummary, Heading, VStack } from '@navikt/ds-react';
-import { DurationText, JaNeiSvar } from '@navikt/sif-common-ui';
+import { ActionLink, DurationText, JaNeiSvar } from '@navikt/sif-common-ui';
 import { ISODurationToDuration } from '@navikt/sif-common-utils';
+import { useNavigate } from 'react-router-dom';
 
 import IkkeAnsattMelding from '../../../../components/ikke-ansatt-melding/IkkeAnsattMelding';
 import { AppText } from '../../../../i18n';
 import { ArbeidsgiverMedAnsettelseperioder, UkjentArbeidsforholdApiData } from '../../../../types';
+import { getSøknadStepRoute } from '../../../config/SøknadRoutes';
+import { StepId } from '../../../config/StepId';
 
 interface Props {
     arbeidsgivereIkkeISak: ArbeidsgiverMedAnsettelseperioder[];
@@ -15,6 +18,7 @@ const getTestKey = (arbeidsgiver: ArbeidsgiverMedAnsettelseperioder, key: string
     `ukjentArbeidsforhold_${arbeidsgiver.key}_${key}`;
 
 const NyttArbeidsforholdSummary = ({ arbeidsgivereIkkeISak, ukjenteArbeidsforhold }: Props) => {
+    const navigate = useNavigate();
     const nyeArbeidsforhold = arbeidsgivereIkkeISak
         .map((arbeidsgiver) => {
             const arbeidsforhold = ukjenteArbeidsforhold.find(
@@ -81,6 +85,11 @@ const NyttArbeidsforholdSummary = ({ arbeidsgivereIkkeISak, ukjenteArbeidsforhol
                     </FormSummary.Answers>
                 </FormSummary>
             ))}
+            <VStack gap="space-16">
+                <ActionLink onClick={() => navigate(getSøknadStepRoute(StepId.UKJENT_ARBEIDSFOHOLD))}>
+                    Gå til endring av arbeidstid
+                </ActionLink>
+            </VStack>
         </VStack>
     );
 };

@@ -22,6 +22,8 @@ interface Props {
     allStepsFooter?: React.ReactNode;
     includeBackLink?: boolean;
     setFocusOnHeadingOnMount?: boolean;
+    singleStepMode?: boolean;
+    stepTitle?: string;
     onStepSelect?: (step: ProgressStep) => void;
 }
 
@@ -31,6 +33,8 @@ const ProgressStepper = ({
     titleHeadingLevel = '1',
     includeBackLink = true,
     setFocusOnHeadingOnMount = true,
+    singleStepMode = false,
+    stepTitle,
     onStepSelect,
 }: Props) => {
     const { text } = useUiIntl();
@@ -45,11 +49,17 @@ const ProgressStepper = ({
 
     const handleBackClick = () => {
         if (onStepSelect) {
-            onStepSelect(steps[currentStepIndex - 1]);
+            if (singleStepMode) {
+                onStepSelect(steps[steps.length - 1]);
+            } else {
+                onStepSelect(steps[currentStepIndex - 1]);
+            }
         }
     };
 
-    const includeGotoPreviousStepLink = onStepSelect !== undefined && includeBackLink === true;
+    const includeGotoPreviousStepLink = singleStepMode
+        ? currentStepIndex !== steps.length - 1
+        : onStepSelect !== undefined && includeBackLink === true;
 
     const headingRef = useRef<HTMLHeadingElement>(null);
 
@@ -66,7 +76,7 @@ const ProgressStepper = ({
                     <BodyShort size="medium" as="div">
                         <Link href="#" onClick={handleBackClick}>
                             <ArrowLeftIcon aria-hidden="true" />
-                            {text('@ui.progressStepper.goToPreviousStepLabel')}
+                            {singleStepMode ? 'Tilbake' : text('@ui.progressStepper.goToPreviousStepLabel')}
                         </Link>
                     </BodyShort>
                 </Box>
@@ -77,28 +87,30 @@ const ProgressStepper = ({
                 level={titleHeadingLevel}
                 className="progressStepper__heading__title"
                 ref={headingRef}>
-                {step.label}
+                {stepTitle ?? step.label}
             </Heading>
-            <FormProgress activeStep={currentStepIndex + 1} totalSteps={steps.length}>
-                {steps.map((s) => (
-                    <FormProgress.Step
-                        key={s.id}
-                        completed={s.completed}
-                        href="#"
-                        onClick={
-                            s.completed
-                                ? (evt) => {
-                                      evt.stopPropagation();
-                                      evt.preventDefault();
-                                      handleStepChange(s.index + 1);
-                                  }
-                                : undefined
-                        }
-                        interactive={onStepSelect !== undefined && s.completed === true}>
-                        {s.label}
-                    </FormProgress.Step>
-                ))}
-            </FormProgress>
+            {singleStepMode === false && (
+                <FormProgress activeStep={currentStepIndex + 1} totalSteps={steps.length}>
+                    {steps.map((s) => (
+                        <FormProgress.Step
+                            key={s.id}
+                            completed={s.completed}
+                            href="#"
+                            onClick={
+                                s.completed
+                                    ? (evt) => {
+                                          evt.stopPropagation();
+                                          evt.preventDefault();
+                                          handleStepChange(s.index + 1);
+                                      }
+                                    : undefined
+                            }
+                            interactive={onStepSelect !== undefined && s.completed === true}>
+                            {s.label}
+                        </FormProgress.Step>
+                    ))}
+                </FormProgress>
+            )}
         </VStack>
     );
 };

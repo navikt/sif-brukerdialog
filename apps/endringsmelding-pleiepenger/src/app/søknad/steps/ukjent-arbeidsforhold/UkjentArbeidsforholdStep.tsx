@@ -12,13 +12,13 @@ const UkjentArbeidsforholdStep = () => {
     const stepId = StepId.UKJENT_ARBEIDSFOHOLD;
 
     const {
-        state: { søknadsdata, sak, arbeidsgivere },
+        state: { søknadsdata, sak, arbeidsgivere, singleStepMode },
     } = useSøknadContext();
 
     const { goBack, stepConfig } = useStepConfig(stepId);
 
     return (
-        <SøknadStep stepId={stepId} stepConfig={stepConfig}>
+        <SøknadStep stepId={stepId} stepConfig={stepConfig} singleStepMode={singleStepMode}>
             <FormLayout.Guide>
                 <Heading level="2" size="xsmall" spacing={true}>
                     Vi trenger informasjon om et nytt arbeidsforhold
@@ -34,6 +34,7 @@ const UkjentArbeidsforholdStep = () => {
                 goBack={goBack}
                 arbeidsgivere={arbeidsgivere}
                 arbeidsgivereIkkeISak={sak.arbeidsgivereIkkeISak}
+                singleStepMode={singleStepMode}
                 ukjentArbeidsforholdSøknadsdata={søknadsdata.ukjentArbeidsforhold}
             />
         </SøknadStep>

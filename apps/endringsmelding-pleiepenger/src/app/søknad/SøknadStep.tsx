@@ -10,10 +10,12 @@ import { StepId } from './config/StepId';
 interface Props {
     stepId: StepId;
     stepConfig: SoknadStepsConfig<StepId>;
+    singleStepMode?: boolean;
+    stepTitle?: string;
     children: React.ReactNode;
 }
 
-const SøknadStep = ({ stepId, stepConfig, children }: Props) => {
+const SøknadStep = ({ stepId, stepConfig, children, singleStepMode, stepTitle }: Props) => {
     const { text, intl } = useAppIntl();
 
     const { avbrytSøknad, fortsettSøknadSenere } = useAvbrytEllerFortsettSenere();
@@ -24,7 +26,9 @@ const SøknadStep = ({ stepId, stepConfig, children }: Props) => {
         <Step
             activeStepId={stepId}
             applicationTitle={text('application.title')}
+            stepTitle={stepTitle}
             steps={soknadStepUtils.getProgressStepsFromConfig(stepConfig, index, intl)}
+            singleStepMode={singleStepMode}
             onCancel={avbrytSøknad}
             onContinueLater={fortsettSøknadSenere}>
             <VStack gap="space-24">

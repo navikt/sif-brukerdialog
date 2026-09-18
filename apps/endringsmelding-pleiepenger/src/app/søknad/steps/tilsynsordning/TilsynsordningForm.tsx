@@ -1,7 +1,7 @@
 import DateRangeExpansionCards from '@app/components/date-range-expansion-cards/DateRangeExpansionCards';
 import EndretTag from '@app/components/tags/EndretTag';
 import TagsContainer from '@app/components/tags/tags-container/TagsContainer';
-import { AppText } from '@app/i18n';
+import { AppText, useAppIntl } from '@app/i18n';
 import { Heading, VStack } from '@navikt/ds-react';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import {
@@ -14,7 +14,6 @@ import {
     ISODateToDate,
 } from '@navikt/sif-common-utils';
 import { useFormikContext } from 'formik';
-import { useIntl } from 'react-intl';
 
 import { TidEnkeltdagEndring } from '../../../components/tid-enkeltdag-dialog/TidEnkeltdagForm';
 import TilsynsordningSøknadsperiode from './TilsynsordningSøknadsperiode';
@@ -39,6 +38,7 @@ interface Props {
     søknadsperioder: DateRange[];
     opprinneligTilsynsdager: DateDurationMap;
     isSubmitting?: boolean;
+    singleStepMode?: boolean;
     goBack?: () => void;
     onTilsynsordningChanged?: (tilsynsdager: DateDurationMap) => void;
 }
@@ -48,9 +48,10 @@ const TilsynsordningForm = ({
     søknadsperioder,
     opprinneligTilsynsdager,
     isSubmitting,
+    singleStepMode,
     onTilsynsordningChanged,
 }: Props) => {
-    const intl = useIntl();
+    const { intl, text } = useAppIntl();
     const { values, setFieldValue } = useFormikContext<TilsynsordningFormValues>();
     const { tilsynsdager } = values;
 
@@ -121,6 +122,7 @@ const TilsynsordningForm = ({
             includeValidationSummary={true}
             submitPending={isSubmitting}
             runDelayedFormValidation={true}
+            submitButtonLabel={singleStepMode ? text('singleStepMode.stepSubmitButton') : undefined}
             onBack={goBack}>
             <VStack gap="space-16">
                 <Heading level="2" size="small">

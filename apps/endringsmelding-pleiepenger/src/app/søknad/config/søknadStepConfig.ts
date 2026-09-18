@@ -1,5 +1,5 @@
 import { Arbeidsforhold, Søknadsdata, ValgteEndringer } from '@app/types';
-import { harEndretArbeidstid, harFjernetLovbestemtFerie } from '@app/utils';
+import { Feature, harEndretArbeidstid, harFjernetLovbestemtFerie, isFeatureEnabled } from '@app/utils';
 import { SoknadApplicationType, SoknadStepsConfig, soknadStepUtils } from '@navikt/sif-common-soknad-ds';
 
 import { getSøknadStepRoute } from './SøknadRoutes';
@@ -26,21 +26,21 @@ export const getSøknadSteps = (
 ): StepId[] => {
     const steps: StepId[] = [];
 
-    const visArbeidstidSteg = skalViseArbeidstid(valgteEndringer, søknadsdata);
+    const featureVelgEndringV2Enabled = isFeatureEnabled(Feature.SIF_PUBLIC_VELG_ENDRING_V2);
 
     if (harArbeidsgivereIkkeISak) {
         steps.push(StepId.UKJENT_ARBEIDSFOHOLD);
     }
 
-    if (visArbeidstidSteg) {
-        steps.push(StepId.ARBEIDSTID);
-    }
-
-    if (valgteEndringer.lovbestemtFerie) {
+    if (featureVelgEndringV2Enabled || valgteEndringer.lovbestemtFerie) {
         steps.push(StepId.LOVBESTEMT_FERIE);
     }
 
-    if (valgteEndringer.tilsynsordning) {
+    if (featureVelgEndringV2Enabled || skalViseArbeidstid(valgteEndringer, søknadsdata)) {
+        steps.push(StepId.ARBEIDSTID);
+    }
+
+    if (featureVelgEndringV2Enabled || valgteEndringer.tilsynsordning) {
         steps.push(StepId.TILSYNSORDNING);
     }
 

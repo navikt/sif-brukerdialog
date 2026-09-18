@@ -26,7 +26,9 @@ export const useOnValidSubmit = <T>(
         if (hasSubmitted && postSubmit) {
             postSubmit(state)
                 .then(() => {
-                    if (nextStep) {
+                    if (state.singleStepMode) {
+                        navigate(getSøknadStepRoute(state.søknadSteps[state.søknadSteps.length - 1]));
+                    } else if (nextStep) {
                         navigate(getSøknadStepRoute(nextStep));
                     }
                 })

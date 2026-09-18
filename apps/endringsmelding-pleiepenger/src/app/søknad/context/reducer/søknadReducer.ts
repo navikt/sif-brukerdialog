@@ -37,7 +37,9 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                 sak,
                 valgteEndringer,
                 søknadSteps,
-                søknadRoute: getSøknadStepRoute(søknadSteps[0]),
+                søknadRoute: state.singleStepMode
+                    ? getSøknadStepRoute(søknadSteps[søknadSteps.length - 1])
+                    : getSøknadStepRoute(søknadSteps[0]),
                 børMellomlagres: true,
             };
         }
@@ -178,6 +180,14 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     inputPreferanser: {
                         ...state.inputPreferanser,
                         ...action.payload.inputPreferanser,
+                    },
+                };
+            case SøknadContextActionKeys.SET_ENDRINGSVALG:
+                return {
+                    ...state,
+                    valgteEndringer: {
+                        ...state.valgteEndringer,
+                        [action.payload.endring]: action.payload.valgt,
                     },
                 };
 
