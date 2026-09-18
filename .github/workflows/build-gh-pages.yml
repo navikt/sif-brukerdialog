@@ -59,6 +59,17 @@ jobs:
           mkdir -p deployment/ungdomsytelse-deltaker
           mv apps/ungdomsytelse-deltaker/dist-demo/* deployment/ungdomsytelse-deltaker/
 
+      # Bygg endringsmelding-pleiepenger demo-app med gh-pages:rebuild
+      - name: Build endringsmelding-pleiepenger
+        run: pnpm gh-pages:rebuild
+        working-directory: apps/endringsmelding-pleiepenger
+
+      # Flytt endringsmelding-pleiepenger-output til en subfolder
+      - name: Kopier endringsmelding-pleiepenger til gh-pages
+        run: |
+          mkdir -p deployment/endringsmelding-pleiepenger
+          mv apps/endringsmelding-pleiepenger/dist-demo/* deployment/endringsmelding-pleiepenger/
+
       # Bygg ungdomsytelse-veileder demo-app med gh-pages:rebuild
       # - name: Build ungdomsytelse-veileder
       #   run: pnpm gh-pages:rebuild

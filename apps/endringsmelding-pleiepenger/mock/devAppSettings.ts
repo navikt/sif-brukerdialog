@@ -36,3 +36,9 @@ export const getDevAppSettings = (isTest?: boolean) => {
         NOW: '2023-01-05T12:00:00Z',
     };
 };
+
+export const getGitHubPagesAppSettings = () => ({
+    ...getDevAppSettings(),
+    PUBLIC_PATH: '/sif-brukerdialog/endringsmelding-pleiepenger',
+    SIF_PUBLIC_DOMAIN_URL: 'https://navikt.github.io',
+});

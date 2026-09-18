@@ -7,5 +7,12 @@ export async function enableMocking() {
         return;
     }
     const { worker } = await import('./browser');
+    if (__IS_GITHUB_PAGES__) {
+        return worker.start({
+            serviceWorker: {
+                url: import.meta.env.BASE_URL + 'mockServiceWorker.js',
+            },
+        });
+    }
     return worker.start();
 }
