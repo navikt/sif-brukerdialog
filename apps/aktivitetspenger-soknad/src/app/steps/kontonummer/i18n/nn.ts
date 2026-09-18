@@ -6,12 +6,12 @@ export const kontonummerStegMessages_nn: Record<keyof typeof kontonummerStegMess
     'kontonummerSteg.spørsmål.kontonummerErRiktig': 'Stemmer det at kontonummeret ditt er {kontonummer}?',
     'kontonummerForm.validation.kontonummerErRiktig.yesOrNoIsUnanswered': 'Du må svare på om kontonummeret stemmer',
     'kontonummerSteg.kontonummer.stemmerIkke.info':
-        'Gå til <Lenke>personopplysningar på Mi side</Lenke> for å endre bankkontonummeret ditt.',
+        'Gå til <Lenke>personopplysningar på Mi side</Lenke> for å endre kontonummeret ditt.',
     'kontonummerSteg.kontonummer.stemmerIkke.info.2':
         'Me rår til at du endrar kontonummeret ditt før du sender inn søknaden.',
     'kontonummerSteg.harIkkeKontonummer.tittel': 'Du har ikkje registrert kontonummer hos oss',
     'kontonummerSteg.harIkkeKontonummer.info.1':
-        'Gå til <Lenke>personopplysningar på Mi side</Lenke> for å endre bankkontonummeret ditt.',
+        'Gå til <Lenke>personopplysningar på Mi side</Lenke> for å endre kontonummeret ditt.',
     'kontonummerSteg.harIkkeKontonummer.info.2':
         'Me rår til at du endrar kontonummeret ditt før du sender inn søknaden.',
     'kontonummerSteg.kontonummerInfoMangler.info.1': 'Me klarer ikkje å sjå om du har registrert kontonummer hos oss',

@@ -4,12 +4,12 @@ export const kontonummerStegMessages_nb = {
     'kontonummerSteg.spørsmål.kontonummerErRiktig': 'Stemmer det at ditt kontonummer er {kontonummer}?',
     'kontonummerForm.validation.kontonummerErRiktig.yesOrNoIsUnanswered': 'Du må svare på om kontonummeret stemmer',
     'kontonummerSteg.kontonummer.stemmerIkke.info':
-        'Gå til <Lenke>personopplysninger på Min side</Lenke> for å endre bankkontonummeret ditt.',
+        'Gå til <Lenke>personopplysninger på Min side</Lenke> for å endre kontonummeret ditt.',
     'kontonummerSteg.kontonummer.stemmerIkke.info.2':
         'Vi anbefaler at du endrer kontonummeret ditt før du sender inn søknaden.',
     'kontonummerSteg.harIkkeKontonummer.tittel': 'Du har ikke registrert kontonummer hos oss',
     'kontonummerSteg.harIkkeKontonummer.info.1':
-        'Gå til <Lenke>personopplysninger på Min side</Lenke> for å endre bankkontonummeret ditt.',
+        'Gå til <Lenke>personopplysninger på Min side</Lenke> for å endre kontonummeret ditt.',
     'kontonummerSteg.harIkkeKontonummer.info.2':
         'Vi anbefaler at du endrer kontonummeret ditt før du sender inn søknaden.',
     'kontonummerSteg.kontonummerInfoMangler.info.1': 'Vi klarer ikke se om du har kontonummer registrert hos oss',
