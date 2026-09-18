@@ -11,7 +11,7 @@ import { ScenarioData, ScenarioType } from './types';
 const tilgjengeligSøknad = {
     harInnsyn: true,
     harUbehandletSøknad: true,
-    type: TilgjengeligSøknadType.INGEN,
+    type: TilgjengeligSøknadType.FØRSTEGANGSSØKNAD,
 } satisfies ScenarioData['tilgjengeligSøknad'];
 
 const kanSøkeFørstegang = {
@@ -83,7 +83,6 @@ const ingenRegistrerteBarnScenarioData: ScenarioData = {
 
 const utenKontonummerScenarioData: ScenarioData = {
     ...standardProfil,
-
     kontonummer: { harKontonummer: false, kontonummer: null } as any,
     tilgjengeligSøknad,
     mellomlagring: undefined,
