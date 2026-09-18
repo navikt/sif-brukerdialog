@@ -9,9 +9,9 @@ export const kontonummerStegMessages_nb = {
         'Vi anbefaler at du endrer kontonummeret ditt før du sender inn søknaden.',
     'kontonummerSteg.harIkkeKontonummer.tittel': 'Du har ikke registrert kontonummer hos oss',
     'kontonummerSteg.harIkkeKontonummer.info.1':
-        'Gå til <Lenke>personopplysninger på Min side</Lenke> for å endre kontonummeret ditt.',
+        'Gå til <Lenke>personopplysninger på Min side</Lenke> for å registrere kontonummeret ditt.',
     'kontonummerSteg.harIkkeKontonummer.info.2':
-        'Vi anbefaler at du endrer kontonummeret ditt før du sender inn søknaden.',
+        'Du kan fremdeles sende inn søknaden, men vi anbefaler at du registrerer kontonummeret ditt med én gang.',
     'kontonummerSteg.kontonummerInfoMangler.info.1': 'Vi klarer ikke se om du har kontonummer registrert hos oss',
     'kontonummerSteg.kontonummerInfoMangler.info.2':
         'For at du skal få utbetalt pengene til rett konto, er det viktig at du har registrert kontonummeret ditt hos oss. Gå til <Lenke>personopplysninger på Min side</Lenke> for å sjekke dette.',
