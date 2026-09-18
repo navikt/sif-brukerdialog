@@ -41,6 +41,7 @@ export default defineConfig({
     },
     define: {
         INJECT_DECORATOR: true,
+        __IS_GITHUB_PAGES__: false,
     },
     server: {
         port: 8080,

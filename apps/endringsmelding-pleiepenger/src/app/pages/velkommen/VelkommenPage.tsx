@@ -56,7 +56,7 @@ const VelkommenPage = () => {
                                 <AppText id="velkommenPage.guide.tittel" values={{ navn: søkersFornavn }} />
                             </Heading>
                             <VStack gap="space-16">
-                                <BodyLong size="large">
+                                <BodyLong size="large" className="noPadding">
                                     {barnetsNavn === '' ? (
                                         <AppText
                                             id="velkommenPage.guide.tekst.anonymisertBarn"
@@ -75,7 +75,9 @@ const VelkommenPage = () => {
                                     )}
                                 </BodyLong>
                                 {featureVelgEndringV2Enabled ? (
-                                    <BodyLong size="large">Du velger hva du ønsker å endre underveis</BodyLong>
+                                    <BodyLong className="noPadding" size="large">
+                                        Du velger hva du ønsker å endre underveis
+                                    </BodyLong>
                                 ) : (
                                     <CheckboxGroup
                                         data-color="accent"

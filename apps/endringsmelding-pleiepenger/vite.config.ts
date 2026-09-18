@@ -22,6 +22,9 @@ export default defineConfig(({ mode }) => ({
             '@app': path.resolve(import.meta.dirname, './src/app'),
         },
     },
+    define: {
+        __IS_GITHUB_PAGES__: false,
+    },
     base: mode === 'production' ? 'https://cdn.nav.no/dusseldorf/endringsmelding-pleiepenger/dist/' : '/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/',
     build: {
         chunkSizeWarningLimit: 2000,
