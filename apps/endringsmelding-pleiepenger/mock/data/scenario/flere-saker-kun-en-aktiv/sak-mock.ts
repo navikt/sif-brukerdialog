@@ -4,7 +4,7 @@ export default [
             fødselsdato: '2016-03-02',
             fornavn: 'Kari',
             mellomnavn: null,
-            etternavn: 'Nordmann',
+            etternavn: 'SPISEPINNE',
             aktørId: '2559652436212',
             identitetsnummer: '02031699742',
         },
@@ -97,9 +97,9 @@ export default [
     {
         barn: {
             fødselsdato: '2017-03-02',
-            fornavn: 'NORA',
+            fornavn: 'GULLIG',
             mellomnavn: null,
-            etternavn: 'Nordmann',
+            etternavn: 'SPISEPINNE',
             aktørId: '2559652436222',
             identitetsnummer: '03831799742',
         },

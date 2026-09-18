@@ -4,7 +4,7 @@ import { AxiosError } from 'axios';
 
 import { IngenTilgangError, isSøknadInitialDataErrorState, mapInitialDataError } from '../initialDataError';
 
-const søker = { fornavn: 'Ola', etternavn: 'Nordmann', fødselsnummer: '12345678901' } as unknown as Søker;
+const søker = { fornavn: 'Ola', etternavn: 'SPISEPINNE', fødselsnummer: '12345678901' } as unknown as Søker;
 
 const httpError = (status: number) =>
     new AxiosError('feil', 'ERR_BAD_RESPONSE', {} as any, {}, { status, data: {} } as any);

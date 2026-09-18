@@ -48,7 +48,7 @@ const tillattEndringsperiode = {
     to: ISODateToDate('2024-12-31'),
 };
 
-const søker = { fornavn: 'Ola', etternavn: 'Nordmann', fødselsnummer: '12345678901' } as any;
+const søker = { fornavn: 'Ola', etternavn: 'SPISEPINNE', fødselsnummer: '12345678901' } as any;
 
 const gyldigSak = {
     ytelse: {

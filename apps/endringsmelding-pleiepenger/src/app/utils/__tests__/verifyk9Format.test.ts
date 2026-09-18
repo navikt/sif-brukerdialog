@@ -5,9 +5,9 @@ import { verifyK9Format } from '../verifyk9Format';
 
 const gyldigBarn = {
     fødselsdato: '2017-03-03',
-    fornavn: 'NORA',
+    fornavn: 'GULLIG',
     mellomnavn: null,
-    etternavn: 'Nordmann',
+    etternavn: 'SPISEPINNE',
     aktørId: '2559652436225',
     identitetsnummer: '03831799748',
 };

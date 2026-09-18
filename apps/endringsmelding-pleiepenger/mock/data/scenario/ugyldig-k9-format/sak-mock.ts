@@ -2,9 +2,9 @@ export default [
     {
         barn: {
             fødselsdato: '2017-03-03',
-            fornavn: 'NORA',
+            fornavn: 'GULLIG',
             mellomnavn: null,
-            etternavn: 'Nordmann',
+            etternavn: 'SPISEPINNE',
             aktørId: '2559652436225',
             identitetsnummer: null,
         },
