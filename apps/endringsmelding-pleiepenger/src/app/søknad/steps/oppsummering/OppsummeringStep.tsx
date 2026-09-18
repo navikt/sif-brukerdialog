@@ -16,6 +16,7 @@ import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { getSøknadStepRoute } from '../../config/SøknadRoutes';
+import actionsCreator from '../../context/action/actionCreator';
 import ArbeidstidOppsummering from './arbeidstid/ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './lovbestemt-ferie/LovbestemtFerieOppsummering';
 import NyttArbeidsforholdSummary from './nytt-arbeidsforhold/NyttArbeidsforholdSummary';
@@ -41,6 +42,7 @@ const OppsummeringStep = () => {
     const navigate = useNavigate();
     const { text, intl, locale } = useAppIntl();
     const {
+        dispatch,
         state: { søknadsdata, sak, arbeidsgivere, valgteEndringer, søker, tillattEndringsperiode, singleStepMode },
     } = useSøknadContext();
 
@@ -56,6 +58,10 @@ const OppsummeringStep = () => {
         }
     }, [previousSøknadError, sendSøknadError]);
 
+    useEffect(() => {
+        dispatch(actionsCreator.setSøknadRoute(getSøknadStepRoute(StepId.OPPSUMMERING)));
+        dispatch(actionsCreator.requestLagreSøknad());
+    }, []);
     const apiData = getApiDataFromSøknadsdata(
         søker.fødselsnummer,
         søknadsdata,
@@ -94,49 +100,54 @@ const OppsummeringStep = () => {
             stepId={stepId}
             stepConfig={stepConfig}
             singleStepMode={singleStepMode}
-            stepTitle={singleStepMode ? 'Dine endringer' : undefined}>
+            stepTitle={singleStepMode ? 'Oversikt over endringer' : undefined}>
             <FormLayout.Guide>
-                <p>
-                    <AppText id="oppsummeringStep.guide" />
-                </p>
+                {singleStepMode ? (
+                    <BodyLong>
+                        Nedenfor ser du hva du kan endre og endringer du har gjort. Når du er ferdig, se over at alt
+                        stemmer, og så sender du inn.
+                    </BodyLong>
+                ) : (
+                    <p>
+                        <AppText id="oppsummeringStep.guide" />
+                    </p>
+                )}
             </FormLayout.Guide>
 
             <VStack gap="space-48">
-                {sak.harArbeidsgivereIkkeISak && ukjenteArbeidsforhold && (
-                    <NyttArbeidsforholdSummary
-                        arbeidsgivereIkkeISak={sak.arbeidsgivereIkkeISak}
-                        ukjenteArbeidsforhold={ukjenteArbeidsforhold}
-                    />
-                )}
+                <VStack gap="space-16">
+                    {sak.harArbeidsgivereIkkeISak && ukjenteArbeidsforhold && (
+                        <NyttArbeidsforholdSummary
+                            arbeidsgivereIkkeISak={sak.arbeidsgivereIkkeISak}
+                            ukjenteArbeidsforhold={ukjenteArbeidsforhold}
+                        />
+                    )}
 
-                {(valgteEndringer.arbeidstid || (arbeidstid && arbeidstidErEndret)) && (
-                    <ArbeidstidOppsummering
-                        arbeidstid={arbeidstid}
-                        arbeidsgivere={[...arbeidsgivere, ...sak.arbeidsgivereIkkeISak]}
-                        arbeidstidErEndret={arbeidstidErEndret}
-                        harGyldigArbeidstid={harGyldigArbeidstid}
-                    />
-                )}
-                {valgteEndringer.lovbestemtFerie && (
-                    <VStack gap="space-16">
-                        <Heading level="2" size="medium">
-                            <AppText id="oppsummeringStep.ferie.tittel" />
-                        </Heading>
-                        {lovbestemtFerie !== undefined && lovbestemtFerieErEndret ? (
-                            <LovbestemtFerieOppsummering lovbestemtFerie={lovbestemtFerie} />
-                        ) : (
-                            <VStack gap="space-16">
-                                <InlineMessage status="info">
-                                    <AppText id="oppsummeringStep.ferie.ingenEndringer" />
-                                </InlineMessage>
-                                <ActionLink onClick={() => navigate(getSøknadStepRoute(StepId.LOVBESTEMT_FERIE))}>
-                                    Gå til endring av ferie
-                                </ActionLink>
-                            </VStack>
-                        )}
-                    </VStack>
-                )}
-                {valgteEndringer.tilsynsordning && (
+                    {(valgteEndringer.arbeidstid || (arbeidstid && arbeidstidErEndret)) && (
+                        <ArbeidstidOppsummering
+                            brukAccordion={true}
+                            arbeidstid={arbeidstid}
+                            arbeidsgivere={[...arbeidsgivere, ...sak.arbeidsgivereIkkeISak]}
+                            arbeidstidErEndret={arbeidstidErEndret}
+                            harGyldigArbeidstid={harGyldigArbeidstid}
+                        />
+                    )}
+                    {valgteEndringer.lovbestemtFerie && (
+                        <LovbestemtFerieOppsummering
+                            brukExpansionCard={true}
+                            lovbestemtFerieErEndret={lovbestemtFerieErEndret}
+                            lovbestemtFerie={lovbestemtFerie}
+                        />
+                    )}
+                    {valgteEndringer.tilsynsordning && (
+                        <TilsynsordningOppsummering
+                            brukExpansionCard={true}
+                            tilsynsordning={tilsynsordning}
+                            tidOpprinnelig={sak.tilsynsordning.tilsynsdagerMap}
+                        />
+                    )}
+                </VStack>
+                {valgteEndringer.tilsynsordning && 1 + 1 === 3 && (
                     <VStack gap="space-16">
                         <Heading level="2" size="medium">
                             <AppText id="oppsummeringStep.tilsynsordning.tittel" />

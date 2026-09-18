@@ -1,0 +1,7 @@
+.capsFirstLetter::first-letter {
+    text-transform: capitalize;
+}
+
+.stepOppsummering .aksel-form-summary {
+    border-radius: 2px;
+}
