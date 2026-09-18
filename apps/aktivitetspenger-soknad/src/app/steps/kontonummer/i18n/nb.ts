@@ -11,10 +11,10 @@ export const kontonummerStegMessages_nb = {
     'kontonummerSteg.harIkkeKontonummer.info.1':
         'Gå til <Lenke>personopplysninger på Min side</Lenke> for å registrere kontonummeret ditt.',
     'kontonummerSteg.harIkkeKontonummer.info.2':
-        'Du kan fremdeles sende inn søknaden, men vi anbefaler at du registrerer kontonummeret ditt med én gang.',
+        'Du kan fremdeles sende inn søknaden, men vi anbefaler at du registrerer kontonummeret ditt før du sender inn.',
     'kontonummerSteg.kontonummerInfoMangler.info.1': 'Vi klarer ikke se om du har kontonummer registrert hos oss',
     'kontonummerSteg.kontonummerInfoMangler.info.2':
         'For at du skal få utbetalt pengene til rett konto, er det viktig at du har registrert kontonummeret ditt hos oss. Gå til <Lenke>personopplysninger på Min side</Lenke> for å sjekke dette.',
     'kontonummerSteg.kontonummerInfoMangler.info.3':
-        'Du kan fremdeles sende inn søknaden, men vi anbefaler at du sjekker med én gang.',
+        'Du kan fremdeles sende inn søknaden, men vi anbefaler at du sjekker før du sender inn.',
 };
