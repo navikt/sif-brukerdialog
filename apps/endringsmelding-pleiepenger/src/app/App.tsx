@@ -2,7 +2,7 @@ import '@navikt/ds-css';
 import './app.css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 
-import { Theme } from '@navikt/ds-react';
+import { Alert, HStack, Theme } from '@navikt/ds-react';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import { ensureBaseNameForReactRouter, SoknadApplication } from '@navikt/sif-common-soknad-ds';
@@ -28,32 +28,41 @@ ensureBaseNameForReactRouter(PUBLIC_PATH);
 
 const App = () => (
     <Theme>
-        <SoknadApplication
-            appKey={EndringsmeldingPsbApp.key}
-            appName={EndringsmeldingPsbApp.navn}
-            appTitle={EndringsmeldingPsbApp.tittel.nb}
-            intlMessages={applicationIntlMessages}
-            useAnalytics={!isE2E}
-            useHashRouter={isGitHubPages}
-            appStatus={{
-                sanityConfig: {
-                    projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
-                    dataset: SIF_PUBLIC_APPSTATUS_DATASET,
-                },
-            }}
-            publicPath={PUBLIC_PATH}>
-            <SkyraHandler />
-            <Routes>
-                <Route key="dev" path="/dev" element={<DevPage />} />,
-                <Route
-                    key="root"
-                    index={true}
-                    path={SøknadRoutes.APP_ROOT}
-                    element={<Navigate to={SøknadRoutes.VELKOMMEN} replace={true} />}
-                />
-                <Route path={SøknadRoutes.INNLOGGET_ROOT} key="soknad" element={<Søknad />} />,
-            </Routes>
-        </SoknadApplication>
+        <div className={isGitHubPages ? 'demoMode' : undefined}>
+            {isGitHubPages && (
+                <HStack justify="center" marginBlock="space-24">
+                    <Alert variant="warning" style={{ maxWidth: '600px' }}>
+                        Dette er en demo. All informasjon og datoer som vises i denne er fiktive demodata.
+                    </Alert>
+                </HStack>
+            )}
+            <SoknadApplication
+                appKey={EndringsmeldingPsbApp.key}
+                appName={EndringsmeldingPsbApp.navn}
+                appTitle={EndringsmeldingPsbApp.tittel.nb}
+                intlMessages={applicationIntlMessages}
+                useAnalytics={!isE2E}
+                useHashRouter={isGitHubPages}
+                appStatus={{
+                    sanityConfig: {
+                        projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+                        dataset: SIF_PUBLIC_APPSTATUS_DATASET,
+                    },
+                }}
+                publicPath={PUBLIC_PATH}>
+                <SkyraHandler />
+                <Routes>
+                    <Route key="dev" path="/dev" element={<DevPage />} />,
+                    <Route
+                        key="root"
+                        index={true}
+                        path={SøknadRoutes.APP_ROOT}
+                        element={<Navigate to={SøknadRoutes.VELKOMMEN} replace={true} />}
+                    />
+                    <Route path={SøknadRoutes.INNLOGGET_ROOT} key="soknad" element={<Søknad />} />,
+                </Routes>
+            </SoknadApplication>
+        </div>
     </Theme>
 );
 
