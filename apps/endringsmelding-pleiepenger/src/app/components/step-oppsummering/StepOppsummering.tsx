@@ -18,7 +18,7 @@ interface Props {
 
 export const StepOppsummering = ({ tittel, stepId, children, icon, endreLinkTekst, endret }: Props) => {
     const navigate = useNavigate();
-    const [isOpen, setIsOpen] = useState<boolean>(!endret);
+    const [isOpen, setIsOpen] = useState<boolean>(true);
     return (
         <ExpansionCard aria-label="Arbeidstid" open={isOpen} onToggle={() => setIsOpen(!isOpen)}>
             <ExpansionCard.Header>
