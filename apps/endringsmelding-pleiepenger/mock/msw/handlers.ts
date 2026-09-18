@@ -1,5 +1,5 @@
 import { getScenarioFromLocalStorage } from '@app/dev/scenarioer';
-import { delay, http, HttpResponse } from 'msw';
+import { delay, http, HttpResponse, passthrough } from 'msw';
 
 import { getScenarioMockData } from '../data/scenario';
 
@@ -48,7 +48,12 @@ export const getHandlers = () => {
             return new HttpResponse(null, { status: 200 });
         }),
         http.post('*', () => new HttpResponse(null, { status: 200 })),
-        http.get('*', () => new HttpResponse(null, { status: 200 })),
+        http.get('*', ({ request }) => {
+            if (new URL(request.url).origin !== globalThis.location.origin) {
+                return passthrough();
+            }
+            return new HttpResponse(null, { status: 200 });
+        }),
     ];
 
     return handlers;
