@@ -57,7 +57,6 @@
         "dayjs": ">=1.11.19",
         "react": ">=19",
         "react-day-picker": ">=10",
-        "react-dom": ">=19",
-        "react-intl": "10"
+        "react-dom": ">=19"
     }
 }
