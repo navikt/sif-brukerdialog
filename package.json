@@ -40,10 +40,10 @@
         ]
     },
     "dependencies": {
-        "@changesets/cli": "3.0.2",
+        "@changesets/cli": "3.0.3",
         "glob": "13.0.6",
         "tailwindcss": "4.3.3",
-        "turbo": "2.10.12"
+        "turbo": "2.10.13"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
@@ -51,15 +51,16 @@
         "gh-pages": "6.3.0",
         "husky": "9.1.7",
         "lint-staged": "17.5.1",
-        "prettier": "3.9.6",
+        "prettier": "3.9.7",
         "sort-package-json": "4.0.0",
         "typescript": "6.0.3",
-        "vitest": "5.0.0"
+        "vitest": "5.0.1"
     },
     "packageManager": "pnpm@10.33.4",
     "pnpm": {
         "overrides": {
-            "adm-zip": ">=0.6.0",
+            "adm-zip": "0.6.1",
+            "qs": "6.16.0",
             "brace-expansion@^1": "^1.1.18",
             "brace-expansion@^2": "^2.1.4",
             "brace-expansion@^5": "^5.0.9",
