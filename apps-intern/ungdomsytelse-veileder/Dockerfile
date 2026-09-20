@@ -19,7 +19,7 @@ FROM base AS prune
 WORKDIR /app
 COPY . .
 # Prune med app og server
-RUN turbo prune --scope=${SCOPE} --scope=@navikt/server-ungdomsytelse-veileder --docker
+RUN turbo prune ${SCOPE} @navikt/server-ungdomsytelse-veileder --docker
 
 #########################################
 # INSTALLER - Installer pakker og kopier kildekode
@@ -89,5 +89,4 @@ COPY --from=client-build --chown=65532:65532 /public ./public
 EXPOSE 8080
 
 CMD ["index.js"]
-
 
