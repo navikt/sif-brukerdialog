@@ -31,7 +31,8 @@
         "@sif/rhf": "workspace:*",
         "@sif/soknad-ui": "workspace:*",
         "@sif/utils": "workspace:*",
-        "react-hook-form": "7.88.0"
+        "react-hook-form": "7.88.0",
+        "react-intl": "12.1.0"
     },
     "devDependencies": {
         "@navikt/ds-css": "8.16.2",
