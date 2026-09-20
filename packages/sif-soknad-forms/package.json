@@ -31,7 +31,8 @@
         "@sif/rhf": "workspace:*",
         "@sif/soknad-ui": "workspace:*",
         "@sif/utils": "workspace:*",
-        "react-hook-form": "7.88.0"
+        "react-hook-form": "7.88.0",
+        "react-intl": "12.1.0"
     },
     "devDependencies": {
         "@navikt/ds-css": "8.16.2",
@@ -39,7 +40,7 @@
         "@storybook/addon-a11y": "10.6.0",
         "@storybook/addon-docs": "10.6.0",
         "@storybook/react-vite": "10.6.0",
-        "@types/node": "26.5.1",
+        "@types/node": "26.6.1",
         "@types/react": "19.3.0",
         "@types/react-dom": "19.3.0",
         "@vitejs/plugin-react": "6.1.1",
@@ -47,17 +48,15 @@
         "react": "19.3.0",
         "react-day-picker": "10.0.1",
         "react-dom": "19.3.0",
-        "react-intl": "10.2.2",
         "storybook": "10.6.0",
         "typescript": "6.0.3",
         "vite": "8.3.0",
-        "vitest": "5.0.0"
+        "vitest": "5.0.1"
     },
     "peerDependencies": {
         "dayjs": ">=1.11.19",
         "react": ">=19",
         "react-day-picker": ">=10",
-        "react-dom": ">=19",
-        "react-intl": "10"
+        "react-dom": ">=19"
     }
 }
