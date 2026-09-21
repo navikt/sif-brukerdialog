@@ -1,5 +1,7 @@
 import { DateRange, ISODate, OpenDateRange } from '@sif/utils';
 import {
+    BekreftAndreLivsoppholdsytelserOppgavetypeDataDto,
+    BekreftAndreLivsoppholdsytelserOpphørOppgavetypeDataDto,
     BekreftBostedOppgavetypeDataDto,
     BekreftBostedOpphørOppgavetypeDataDto,
     BrukerdialogOppgaveDto,
@@ -13,6 +15,8 @@ import {
 export enum ParsedOppgavetype {
     BEKREFT_BOSTED = 'BEKREFT_BOSTED',
     BEKREFT_BOSTED_OPPHØR = 'BEKREFT_BOSTED_OPPHØR',
+    BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER = 'BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER',
+    BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER_OPPHØR = 'BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER_OPPHØR',
     BEKREFT_OPPHOR_VED_MAKSDATO = 'BEKREFT_OPPHOR_VED_MAKSDATO',
     BEKREFT_AVVIK_REGISTERINNTEKT = 'BEKREFT_AVVIK_REGISTERINNTEKT',
     BEKREFT_ENDRET_STARTDATO = 'BEKREFT_ENDRET_STARTDATO',
@@ -84,6 +88,24 @@ export interface BostedVilkårOpphørOppgave extends ParsedOppgaveBase {
     respons?: SvarPåVarselRespons;
 }
 
+export interface AndreLivsoppholdsytelserOppgave extends ParsedOppgaveBase {
+    parsedOppgavetype: ParsedOppgavetype.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER;
+    oppgavetypeData: Omit<BekreftAndreLivsoppholdsytelserOppgavetypeDataDto, 'fom' | 'tom'> & {
+        periode: DateRange;
+        varseltekst: string;
+    };
+    respons?: SvarPåVarselRespons;
+}
+
+export interface AndreLivsoppholdsytelserOpphørOppgave extends ParsedOppgaveBase {
+    parsedOppgavetype: ParsedOppgavetype.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER_OPPHØR;
+    oppgavetypeData: Omit<BekreftAndreLivsoppholdsytelserOpphørOppgavetypeDataDto, 'fom'> & {
+        fom: ISODate;
+        varseltekst: string;
+    };
+    respons?: SvarPåVarselRespons;
+}
+
 export interface EndretSluttdatoOppgave extends ParsedOppgaveBase {
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO;
     oppgavetypeData: {
@@ -133,6 +155,8 @@ export type BekreftelseOppgave =
     | OpphorVedMaksdatoOppgave
     | BostedVilkårPeriodeOppgave
     | BostedVilkårOpphørOppgave
+    | AndreLivsoppholdsytelserOppgave
+    | AndreLivsoppholdsytelserOpphørOppgave
     | (AvvikRegisterinntektOppgave & {
           respons?: SvarPåVarselRespons;
       });
@@ -158,6 +182,8 @@ export type Oppgave =
     | AvvikRegisterinntektOppgave
     | BostedVilkårPeriodeOppgave
     | BostedVilkårOpphørOppgave
+    | AndreLivsoppholdsytelserOppgave
+    | AndreLivsoppholdsytelserOpphørOppgave
     | EndretSluttdatoOppgave
     | EndretStartdatoOppgave
     | EndretStartOgSluttdatoOppgave

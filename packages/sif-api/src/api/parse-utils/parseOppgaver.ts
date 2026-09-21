@@ -21,6 +21,8 @@ import {
 import dayjs from 'dayjs';
 
 import {
+    AndreLivsoppholdsytelserOppgave,
+    AndreLivsoppholdsytelserOpphørOppgave,
     AvvikRegisterinntektOppgave,
     BostedVilkårPeriodeOppgave,
     BostedVilkårOpphørOppgave,
@@ -270,12 +272,75 @@ const getOppgaveFraBekreftBostedOppgave = (oppgave: BrukerdialogOppgaveDto): Opp
     }
 };
 
+type AndreLivsoppholdsytelserOppgavetypeData = Extract<OppgavetypeDataDto, { type: 'ANDRE_LIVSOPPHOLDSYTELSER' }>;
+type AndreLivsoppholdsytelserOpphørOppgavetypeData = Extract<
+    OppgavetypeDataDto,
+    { type: 'ANDRE_LIVSOPPHOLDSYTELSER_OPPHØR' }
+>;
+
+const getOppgaveFraBekreftAndreLivsoppholdsytelserOppgave = (oppgave: BrukerdialogOppgaveDto): Oppgave => {
+    const oppgavetypeData = oppgave.oppgavetypeData as
+        | AndreLivsoppholdsytelserOppgavetypeData
+        | AndreLivsoppholdsytelserOpphørOppgavetypeData;
+
+    /** kildeFritekstOk fra backend skal ikke brukes i frontend */
+    const fellesdata: Pick<
+        AndreLivsoppholdsytelserOppgavetypeData,
+        'ikkeOppfyltÅrsak' | 'ikkeOppfyltÅrsakFritekstbeskrivelse' | 'kilde' | 'kildeFritekst'
+    > = {
+        ikkeOppfyltÅrsak: oppgavetypeData.ikkeOppfyltÅrsak,
+        ikkeOppfyltÅrsakFritekstbeskrivelse: oppgavetypeData.ikkeOppfyltÅrsakFritekstbeskrivelse,
+        kilde: oppgavetypeData.kilde,
+        kildeFritekst: oppgavetypeData.kildeFritekst,
+    };
+
+    const { varseltekst } = oppgavetypeData;
+    if (!varseltekst) {
+        throw new Error(`Oppgave mangler varseltekst: ${oppgave.oppgaveReferanse}`);
+    }
+
+    /** Avslag i en periode */
+    if (oppgavetypeData.type === 'ANDRE_LIVSOPPHOLDSYTELSER') {
+        const andreLivsoppholdsytelserOppgave: AndreLivsoppholdsytelserOppgave = {
+            ...getOppgaveBaseProps(oppgave),
+            parsedOppgavetype: ParsedOppgavetype.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+            oppgavetypeData: {
+                ...fellesdata,
+                periode: {
+                    from: oppgavetypeData.fom as ISODate,
+                    to: oppgavetypeData.tom as ISODate,
+                },
+                varseltekst,
+            },
+            respons: parseSvarPåVarselRespons(oppgave.respons),
+        };
+        return andreLivsoppholdsytelserOppgave;
+        /** Opphør fra en date */
+    } else {
+        const andreLivsoppholdsytelserOpphørOppgave: AndreLivsoppholdsytelserOpphørOppgave = {
+            ...getOppgaveBaseProps(oppgave),
+            parsedOppgavetype: ParsedOppgavetype.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER_OPPHØR,
+            oppgavetypeData: {
+                ...fellesdata,
+                fom: oppgavetypeData.fom as ISODate,
+                varseltekst,
+            },
+            respons: parseSvarPåVarselRespons(oppgave.respons),
+        };
+        return andreLivsoppholdsytelserOpphørOppgave;
+    }
+};
+
 export const parseOppgaver = (oppgaveYtelsetype: OppgaveYtelsetype, oppgaver: BrukerdialogOppgaveDto[]): Oppgave[] => {
     const parsedOppgaver: Oppgave[] = [];
     oppgaver.forEach((oppgave) => {
         switch (oppgave.oppgavetype) {
             case OppgaveType.BEKREFT_BOSTED:
                 parsedOppgaver.push(getOppgaveFraBekreftBostedOppgave(oppgave));
+                return;
+
+            case OppgaveType.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER:
+                parsedOppgaver.push(getOppgaveFraBekreftAndreLivsoppholdsytelserOppgave(oppgave));
                 return;
 
             case OppgaveType.BEKREFT_ENDRET_STARTDATO:

@@ -73,6 +73,22 @@ export const OPPGAVE_LOVVERK_PARSED = {
 
 **Vanlig feil:** Lovverk vises ikke → sjekk at mock-objektet har riktig `ytelsetype`. UPY-paneler krever `OppgaveYtelsetype.UNGDOMSYTELSE`, AKT-paneler krever `OppgaveYtelsetype.AKTIVITETSPENGER`.
 
+**Vanlig feil:** `*_SCENARIO_OPTIONS`-arrayer i `.mockData.ts` dekker ikke alle verdier i årsak-/kilde-enumet. Dette gir ingen kompileringsfeil (arrayet er bare `EnumType[]`, ikke `satisfies Record<EnumType, ...>`), så det oppdages kun ved manuell sjekk mot `types.gen.ts`.
+
+**Anbefalt mønster (kompileringssikkert):** Ikke list scenario-verdier manuelt. Legg heller `satisfies Record<EnumType, string>` på tekstoppslaget, og utled `SCENARIO_OPTIONS` fra det:
+
+```ts
+const oppgaveTekster = {
+    ÅRSAK_A: '...',
+    ÅRSAK_B: '...',
+} satisfies Record<EnumType, string>; // kompileringsfeil hvis en verdi mangler
+
+export const ÅRSAK_SCENARIO_OPTIONS = Object.keys(oppgaveTekster) as EnumType[];
+export const KILDE_SCENARIO_OPTIONS = Object.values(KildeEnumType); // hvis alle kildeverdier alltid skal vises
+```
+
+Da blir det umulig for arrayet og enumet å komme ut av synk. Brukt i `AndreLivsoppholdsytelser*` og `BostedVilkar*`-mockData.
+
 ---
 
 ## .mockData.ts — mønsteret
@@ -127,10 +143,11 @@ renderOppgaveStandardStater(
 1. **`oppgaveLovverk.ts`** — legg til ny `OppgaveType` i `OPPGAVE_LOVVERK` og ny `ParsedOppgavetype` i `OPPGAVE_LOVVERK_PARSED` (TypeScript krever dette pga. `satisfies`).
 2. **`parseOppgaver.ts`** — legg til parsing for ny type, definer ny `ParsedOppgavetype` i `Oppgave.ts` ved behov.
 3. **Panelkomponent** — opprett `<Type>OppgavePanel.tsx` i ny mappe under `oppgavepaneler/`.
-4. **`.mockData.ts`** — opprett `<Type>OppgavePanel.mockData.ts` med mock-objekter (uløst + besvart) per ytelsetype.
+4. **`.mockData.ts`** — opprett `<Type>OppgavePanel.mockData.ts` med mock-objekter (uløst + besvart) per ytelsetype. Hvis oppgavetypen har et årsak-/kilde-enum: eksporter `*_SCENARIO_OPTIONS`-arrayer som dekker **alle** verdier i det enumet (ikke bare et utvalg) — sjekk backend-enumet i `@navikt/ung-brukerdialog-api` (`types.gen.ts`) og tell antall verdier. Manglende verdier oppdages ikke av TypeScript siden `SCENARIO_OPTIONS`-arrayer ikke er `satisfies`-sjekket mot enumet, så de må verifiseres manuelt (f.eks. `grep -c "EnumNavn\." fil.ts` mot antall enum-medlemmer).
 5. **`.stories.tsx`** — opprett `<Type>OppgavePanel.stories.tsx` under riktig title (`Aktivitetspenger/` eller `Ungdomsprogramytelsen/`).
 6. **Oversiktsstories** — importer mock-objektene og legg til rad med `renderOppgaveStandardStater` i `OppgavetypeMappingUPY` og/eller `OppgavetypeMappingAKT`.
 7. **Typecheck** — kjør `pnpm --filter @sif/ung-innsyn exec tsc --noEmit`.
+8. **Verifiser enum-dekning** — for hvert årsak-/kilde-enum brukt i den nye typen: tell verdier i `types.gen.ts` og sammenlign med antall i tilhørende `*_SCENARIO_OPTIONS`-array og tekstoppslaget (f.eks. `bostedVilkårPeriodeOppgaveTekster`). Dette er lett å glemme siden kompilatoren ikke fanger det opp.
 
 ---
 

@@ -23,6 +23,16 @@ import {
     mockBostedVilkårAKT,
     mockBostedVilkårBesvartAKT,
 } from '../bostedsvilkar-periode/BostedVilkarOppgavePanel.mockData';
+import { AndreLivsoppholdsytelserOpphørOppgavePanel } from '../andre-livsoppholdsytelser-opphor/AndreLivsoppholdsytelserOpphørOppgavePanel';
+import {
+    mockAndreLivsoppholdsytelserOpphørAKT,
+    mockAndreLivsoppholdsytelserOpphørBesvartAKT,
+} from '../andre-livsoppholdsytelser-opphor/AndreLivsoppholdsytelserOpphørOppgavePanel.mockData';
+import { AndreLivsoppholdsytelserOppgavePanel } from '../andre-livsoppholdsytelser-periode/AndreLivsoppholdsytelserOppgavePanel';
+import {
+    mockAndreLivsoppholdsytelserAKT,
+    mockAndreLivsoppholdsytelserBesvartAKT,
+} from '../andre-livsoppholdsytelser-periode/AndreLivsoppholdsytelserOppgavePanel.mockData';
 import { RapporterInntektOppgavePanel } from '../rapporter-inntekt/RapporterInntektOppgavePanel';
 import {
     lagRapporterInntektOppgaveMedScenario,
@@ -88,6 +98,50 @@ const rader: Rad[] = [
                     mockBostedVilkårOpphørBesvartAKT,
                     (oppgave, opts) => (
                         <BostedVilkårOpphørOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />
+                    ),
+                )}
+            </PanelPreviewWrapper>
+        ),
+    },
+    {
+        parsedType: ParsedOppgavetype.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+        kilder: [
+            {
+                backendType: OppgaveType.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+                betingelse: 'oppgavetypeData.type = ANDRE_LIVSOPPHOLDSYTELSER',
+            },
+        ],
+        preview: (
+            <PanelPreviewWrapper>
+                {renderOppgaveStandardStater(
+                    mockAndreLivsoppholdsytelserAKT,
+                    mockAndreLivsoppholdsytelserBesvartAKT,
+                    (oppgave, opts) => (
+                        <AndreLivsoppholdsytelserOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />
+                    ),
+                )}
+            </PanelPreviewWrapper>
+        ),
+    },
+    {
+        parsedType: ParsedOppgavetype.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER_OPPHØR,
+        kilder: [
+            {
+                backendType: OppgaveType.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+                betingelse: 'oppgavetypeData.type = ANDRE_LIVSOPPHOLDSYTELSER_OPPHØR',
+            },
+        ],
+        preview: (
+            <PanelPreviewWrapper>
+                {renderOppgaveStandardStater(
+                    mockAndreLivsoppholdsytelserOpphørAKT,
+                    mockAndreLivsoppholdsytelserOpphørBesvartAKT,
+                    (oppgave, opts) => (
+                        <AndreLivsoppholdsytelserOpphørOppgavePanel
+                            oppgave={oppgave}
+                            navn="SNODIG VAFFEL"
+                            {...opts}
+                        />
                     ),
                 )}
             </PanelPreviewWrapper>
