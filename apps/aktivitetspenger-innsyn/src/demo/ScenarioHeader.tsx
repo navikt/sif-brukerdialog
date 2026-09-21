@@ -50,6 +50,11 @@ const groups: Array<ScenarioSelectorHeaderGroup<ScenarioType>> = [
                 value: ScenarioType.avvikInntektDelerAvMåned,
                 label: 'Inntektskontroll - sjekke avvik i inntekt (deler av måned)',
             },
+        ],
+    },
+    {
+        label: 'Opphør',
+        options: [
             {
                 value: ScenarioType.bekreftBosted,
                 label: 'Bekreft bosted',
