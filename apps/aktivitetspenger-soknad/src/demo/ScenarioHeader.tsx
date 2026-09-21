@@ -25,7 +25,7 @@ export const ScenarioHeader = () => {
                 },
                 {
                     value: ScenarioType.ubehandletAndregangssøknad,
-                    label: text('scenarioHeader.sperretUbehandletAnnengangssøknad'),
+                    label: text('scenarioHeader.sperretUbehandletAndregangssøknad'),
                 },
                 {
                     value: ScenarioType.harAktivitetspengerMenUtenforSøknadsvindu,

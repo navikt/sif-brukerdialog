@@ -3,7 +3,7 @@ export const scenarioHeaderMessages_nb = {
     'scenarioHeader.inngangsscenarioer': 'Inngangsscenarioer',
     'scenarioHeader.førstegangssøknad': 'Åpen for søknad',
     'scenarioHeader.sperretUbehandletFørstegangssøknad': 'Sperret - Ubehandlet førstegangssøknad',
-    'scenarioHeader.sperretUbehandletAnnengangssøknad': 'Sperret - Ubehandlet annengangssøknad',
+    'scenarioHeader.sperretUbehandletAndregangssøknad': 'Sperret - Ubehandlet andregangssøknad',
     'scenarioHeader.sperretUtenforSøkevindu': 'Sperret - Har aktivitetspenger og utenfor søkevindu',
     'scenarioHeader.sperretAnnet': 'Sperret - Annet',
     'scenarioHeader.søkersituasjon': 'Søkersituasjon',
