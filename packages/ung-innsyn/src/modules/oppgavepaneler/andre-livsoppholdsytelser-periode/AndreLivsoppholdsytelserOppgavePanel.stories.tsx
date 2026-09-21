@@ -19,7 +19,7 @@ import {
 } from './AndreLivsoppholdsytelserOppgavePanel.mockData';
 
 const meta: Meta = {
-    title: 'Oppgaver/Aktivitetspenger/Bekreft andre livsoppholdsytelser periode',
+    title: 'Oppgaver/Aktivitetspenger/Opphør/Andre livsoppholdsytelser periode',
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
 export default meta;

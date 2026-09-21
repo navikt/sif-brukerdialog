@@ -15,7 +15,7 @@ import {
 } from './AvvikRegisterinntektOppgavePanel.mockData';
 
 const meta: Meta = {
-    title: 'Oppgaver/Aktivitetspenger/Avvik registerinntekt',
+    title: 'Oppgaver/Aktivitetspenger/Inntekt/Avvik registerinntekt',
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
 export default meta;

@@ -15,7 +15,7 @@ import {
 } from './RapporterInntektOppgavePanel.mockData';
 
 const meta: Meta = {
-    title: 'Oppgaver/Aktivitetspenger/Rapporter inntekt',
+    title: 'Oppgaver/Aktivitetspenger/Inntekt/Rapporter inntekt',
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
 export default meta;
