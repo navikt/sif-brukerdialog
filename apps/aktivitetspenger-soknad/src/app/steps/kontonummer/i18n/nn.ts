@@ -13,7 +13,7 @@ export const kontonummerStegMessages_nn: Record<keyof typeof kontonummerStegMess
     'kontonummerSteg.harIkkeKontonummer.info.1':
         'Gå til <Lenke>personopplysningar på Mi side</Lenke> for å registrere kontonummeret ditt.',
     'kontonummerSteg.harIkkeKontonummer.info.2':
-        'Du kan framleis sende inn søknaden, men me tilrår at du registrerer kontonummeret ditt før du sender inn.',
+        'Du kan framleis sende inn søknaden, men me tilrår at du legg inn kontonummeret før du sender inn.',
     'kontonummerSteg.kontonummerInfoMangler.info.1': 'Me klarer ikkje å sjå om du har registrert kontonummer hos oss',
     'kontonummerSteg.kontonummerInfoMangler.info.2':
         'For at du skal få pengane utbetalte til rett konto, er det viktig at du har registrert kontonummeret ditt hos oss. Gå til <Lenke>personopplysningar på Mi side</Lenke> for å sjekke dette.',
