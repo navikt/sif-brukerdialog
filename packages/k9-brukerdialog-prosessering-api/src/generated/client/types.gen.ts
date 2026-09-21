@@ -227,6 +227,13 @@ export type EttersendingAvVedlegg = {
     vedleggSomSkalEttersendes?: Array<'LEGEERKLÆRING' | 'KURSINFORMASJON' | 'ANNET'>;
 };
 
+export type FamiliePdfPostRequest = {
+    label: string;
+    pdfConfig: PdfConfig;
+    skjemanummer?: string;
+    verdiliste: VerdilisteElement[];
+};
+
 export type Ferieuttak = {
     fraOgMed: string;
     tilOgMed: string;
@@ -515,6 +522,11 @@ export type OrganisasjonDto = {
     organisasjonsnummer: string;
 };
 
+export type PdfConfig = {
+    harInnholdsfortegnelse: boolean;
+    språk: string;
+};
+
 export type Periode = {
     fraOgMed: string;
     tilOgMed: string;
@@ -783,6 +795,14 @@ export type UttakPeriodeInfo = {
 
 export type VarigEndring = {
     dato: string;
+};
+
+export type VerdilisteElement = {
+    alternativer?: string;
+    label: string;
+    verdi?: string;
+    verdiliste?: VerdilisteElement[];
+    visningsVariant?: string;
 };
 
 export type Virksomhet = {
@@ -1679,6 +1699,43 @@ export type HentSøkerResponses = {
 };
 
 export type HentSøkerResponse = HentSøkerResponses[keyof HentSøkerResponses];
+
+export type LagPdfData = {
+    body: FamiliePdfPostRequest;
+    path?: never;
+    query?: never;
+    url: '/pdf';
+};
+
+export type LagPdfErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetail;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type LagPdfError = LagPdfErrors[keyof LagPdfErrors];
+
+export type LagPdfResponses = {
+    /**
+     * OK
+     */
+    200: Blob | File;
+};
+
+export type LagPdfResponse = LagPdfResponses[keyof LagPdfResponses];
 
 export type InnsendingPleiepengerILivetsSluttfaseSøknadData = {
     body: PleiepengerILivetsSluttfaseSøknadWritable;

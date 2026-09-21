@@ -342,6 +342,11 @@ export const zOrganisasjonDto = z.object({
     organisasjonsnummer: z.string(),
 });
 
+export const zPdfConfig = z.object({
+    harInnholdsfortegnelse: z.boolean(),
+    språk: z.string(),
+});
+
 export const zPeriode = z.object({
     fraOgMed: z.iso.date(),
     tilOgMed: z.iso.date(),
@@ -633,6 +638,21 @@ export const zVarigEndring = z.object({
     dato: z.iso.date(),
 });
 
+export const zVerdilisteElement = z.object({
+    alternativer: z.string().nullish(),
+    label: z.string(),
+    verdi: z.string().nullish(),
+    verdiliste: z.array(z.lazy((): any => zVerdilisteElement)).nullish(),
+    visningsVariant: z.string().nullish(),
+});
+
+export const zFamiliePdfPostRequest = z.object({
+    label: z.string(),
+    pdfConfig: zPdfConfig,
+    skjemanummer: z.string().nullish(),
+    verdiliste: z.array(zVerdilisteElement),
+});
+
 export const zVirksomhet = z.object({
     erNyoppstartet: z.boolean(),
     fiskerErPåBladB: z.boolean().nullish(),
@@ -755,7 +775,7 @@ export const zPleiepengerSyktBarnSøknad = z.object({
             zFosterhjemsgodtgjørelseIkkeFrikjøpt,
             zFosterhjemsgodtgjørelseMottarIkke,
         ])
-        .nullish(),
+        .optional(),
     fraOgMed: z.iso.date(),
     frilans: zFrilans,
     fødselsattestVedleggUrls: z.array(z.string()).nullish(),
@@ -767,7 +787,7 @@ export const zPleiepengerSyktBarnSøknad = z.object({
     newVersion: z.boolean().nullish(),
     omsorgsstønad: z
         .union([zOmsorgsstønadMottarDelerAvPerioden, zOmsorgsstønadMottarHelePerioden, zOmsorgsstønadMottarIkke])
-        .nullish(),
+        .optional(),
     omsorgstilbud: zOmsorgstilbud.nullish(),
     opptjeningIUtlandet: z.array(zOpptjeningIUtlandet),
     selvstendigNæringsdrivende: zSelvstendigNæringsdrivende,
@@ -979,7 +999,7 @@ export const zPleiepengerSyktBarnSøknadWritable = z.object({
             zFosterhjemsgodtgjørelseIkkeFrikjøpt,
             zFosterhjemsgodtgjørelseMottarIkke,
         ])
-        .nullish(),
+        .optional(),
     fraOgMed: z.iso.date(),
     frilans: zFrilans,
     fødselsattestVedleggUrls: z.array(z.string()).nullish(),
@@ -991,7 +1011,7 @@ export const zPleiepengerSyktBarnSøknadWritable = z.object({
     newVersion: z.boolean().nullish(),
     omsorgsstønad: z
         .union([zOmsorgsstønadMottarDelerAvPerioden, zOmsorgsstønadMottarHelePerioden, zOmsorgsstønadMottarIkke])
-        .nullish(),
+        .optional(),
     omsorgstilbud: zOmsorgstilbud.nullish(),
     opptjeningIUtlandet: z.array(zOpptjeningIUtlandet),
     selvstendigNæringsdrivende: zSelvstendigNæringsdrivendeWritable,
@@ -1143,6 +1163,13 @@ export const zHentBarnResponse = zBarnOppslagListe;
  * OK
  */
 export const zHentSøkerResponse = zSøker;
+
+export const zLagPdfBody = zFamiliePdfPostRequest;
+
+/**
+ * OK
+ */
+export const zLagPdfResponse = z.string();
 
 export const zInnsendingPleiepengerILivetsSluttfaseSøknadBody = zPleiepengerILivetsSluttfaseSøknadWritable;
 
