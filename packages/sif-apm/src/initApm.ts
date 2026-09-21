@@ -60,11 +60,12 @@ const KNOWN_NOISY_EXCEPTION_PATTERNS: RegExp[] = [
 ];
 
 /**
- * Kun relevant for Next.js-apper som kjører Nav Dekoratøren (i dag: dine-pleiepenger).
- * Fanger dekoratørens console.error-format for feilede bakgrunnskall.
+ * Fanger Nav Dekoratørens console.error-format for bakgrunnskall som feiler på nettverksnivå.
+ * Meldingsteksten settes av nettlesermotoren (Failed to fetch, Load failed, NetworkError ...),
+ * derfor matcher vi feilklassen framfor den enkelte formuleringen.
  */
-const NEXTJS_NOISY_EXCEPTION_PATTERNS: RegExp[] = [
-    /^Error: console\.error: \[ERROR\] .*"error":"TypeError: Failed to fetch"\}$/,
+const DECORATOR_NOISY_EXCEPTION_PATTERNS: RegExp[] = [
+    /^(?:Error: )?console\.error: \[ERROR\] .*"error":"(?:TypeError|AbortError)[^"]*"\}$/,
 ];
 
 const getExceptionText = (item: any): string => {
@@ -72,26 +73,16 @@ const getExceptionText = (item: any): string => {
     return [type && value ? `${type}: ${value}` : type || value, message].filter(Boolean).join(' ').trim();
 };
 
-export interface NoiseFilterOptions {
-    /** Sett til true for Next.js-apper med Nav Dekoratøren. Skal ikke settes for Vite-apper. */
-    isNextJsApp?: boolean;
-}
-
-export const isKnownNoisyException = (item: any, options: NoiseFilterOptions = {}): boolean => {
+export const isKnownNoisyException = (item: any): boolean => {
     if (item?.type !== 'exception') return false;
     const text = getExceptionText(item);
-    const patterns = options.isNextJsApp
-        ? [...KNOWN_NOISY_EXCEPTION_PATTERNS, ...NEXTJS_NOISY_EXCEPTION_PATTERNS]
-        : KNOWN_NOISY_EXCEPTION_PATTERNS;
+    const patterns = [...KNOWN_NOISY_EXCEPTION_PATTERNS, ...DECORATOR_NOISY_EXCEPTION_PATTERNS];
     return patterns.some((pattern) => pattern.test(text));
 };
 
 /** Samlet vurdering av begge lagene. Brukes av apper som initialiserer Faro selv. */
-export const isNoiseException = (
-    item: any,
-    ownership = currentAppOwnership,
-    options?: NoiseFilterOptions,
-): boolean => isForeignCodeException(item, ownership) || isKnownNoisyException(item, options);
+export const isNoiseException = (item: any, ownership = currentAppOwnership): boolean =>
+    isForeignCodeException(item, ownership) || isKnownNoisyException(item);
 
 export const initApm = ({ beforeSend: callerBeforeSend, ...options }: InitOptions): void => {
     // Uten namespace kan vi ikke utlede CDN-prefikset vi eier, og lag 1 forblir avslått.
@@ -101,7 +92,6 @@ export const initApm = ({ beforeSend: callerBeforeSend, ...options }: InitOption
     init({
         ...options,
         beforeSend: (item: any) => {
-            // Kun Vite-appene bruker initApm; NEXTJS_NOISY_EXCEPTION_PATTERNS er derfor ikke aktivert her.
             if (isNoiseException(item)) return null;
             return callerBeforeSend ? callerBeforeSend(item) : item;
         },
