@@ -1,5 +1,13 @@
 # @navikt/omsorgspengesoknad-v2
 
+## 0.1.1
+
+### Patch Changes
+
+- Updated dependencies
+    - @sif/apm@0.2.1
+    - @sif/soknad-app@0.2.1
+
 ## 0.1.0
 
 ### Minor Changes
