@@ -1,16 +1,16 @@
 import { getKanIkkeSøkeÅrsak, KanIkkeSøkeÅrsak } from '../kanIkkeSøkeUtils';
 
 describe('getKanIkkeSøkeÅrsak', () => {
-    it('skal returnere IKKE_INNSYN_UBEHANDLET_SØKNAD når søkeren har en ubehandlet søknad, men ikke innsyn', () => {
-        expect(getKanIkkeSøkeÅrsak(false, true)).toBe(KanIkkeSøkeÅrsak.IKKE_INNSYN_UBEHANDLET_SØKNAD);
+    it('skal returnere UBEHANDLET_FØRSTEGANGSSØKNAD når søkeren har en ubehandlet søknad, men ikke innsyn', () => {
+        expect(getKanIkkeSøkeÅrsak(false, true)).toBe(KanIkkeSøkeÅrsak.UBEHANDLET_FØRSTEGANGSSØKNAD);
     });
 
-    it('skal returnere INNSYN_UBEHANDLET_SØKNAD når søkeren har innsyn, men ingen ubehandlet søknad', () => {
-        expect(getKanIkkeSøkeÅrsak(true, false)).toBe(KanIkkeSøkeÅrsak.INNSYN_UBEHANDLET_SØKNAD);
+    it('skal returnere UBEHANDLET_ANDREGANGSSØKNAD når søkeren har både innsyn og en ubehandlet søknad', () => {
+        expect(getKanIkkeSøkeÅrsak(true, true)).toBe(KanIkkeSøkeÅrsak.UBEHANDLET_ANDREGANGSSØKNAD);
     });
 
-    it('skal returnere ANNET når søkeren har både innsyn og en ubehandlet søknad', () => {
-        expect(getKanIkkeSøkeÅrsak(true, true)).toBe(KanIkkeSøkeÅrsak.ANNET);
+    it('skal returnere UTENFOR_SØKNADSVINDU når søkeren har innsyn, men ingen ubehandlet søknad', () => {
+        expect(getKanIkkeSøkeÅrsak(true, false)).toBe(KanIkkeSøkeÅrsak.UTENFOR_SØKNADSVINDU);
     });
 
     it('skal returnere ANNET når søkeren verken har innsyn eller en ubehandlet søknad', () => {
