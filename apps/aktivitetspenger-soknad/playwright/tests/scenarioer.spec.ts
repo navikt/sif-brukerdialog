@@ -6,17 +6,17 @@ import { setScenario } from '../utils/scenario';
 const sperredeScenarioer = [
     {
         scenario: ScenarioType.ubehandletFørstegangssøknad,
-        tekst: 'Vi har mottatt din søknad om aktivitetspenger. Du får beskjed når den er ferdig behandlet.',
+        tekst: 'Du har nylig sendt inn en søknad om aktivitetspenger, og den ligger i kø til behandling. Du kan derfor ikke sende inn en ny søknad nå.',
         harInnsynLenke: false,
     },
     {
         scenario: ScenarioType.ubehandletAndregangssøknad,
-        tekst: 'Vi har mottatt din søknad om aktivitetspenger. Du får beskjed når den er ferdig behandlet.',
+        tekst: 'Du har nylig sendt inn en søknad om aktivitetspenger, og den ligger i kø til behandling. Du kan derfor ikke sende inn en ny søknad nå.',
         harInnsynLenke: true,
     },
     {
         scenario: ScenarioType.harAktivitetspengerMenUtenforSøknadsvindu,
-        tekst: 'Du kan ikke sende inn ny søknad om aktivitetspenger på dette tidspunktet.',
+        tekst: 'Du har allerede fått innvilget aktivitetspenger. Du kan derfor ikke sende inn en ny søknad nå.',
         harInnsynLenke: true,
     },
     {

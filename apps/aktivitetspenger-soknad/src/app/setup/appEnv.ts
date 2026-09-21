@@ -12,4 +12,5 @@ export const getAppEnv = (): AppEnv => ({
     ...getUngBrukerdialogApiBrowserEnv(),
     ...getUngDeltakelseOpplyserBrowserEnv(),
     SIF_PUBLIC_AKTIVITETSPENGER_INNSYN_URL: getRequiredEnv('SIF_PUBLIC_AKTIVITETSPENGER_INNSYN_URL'),
+    SIF_PUBLIC_SEND_BESKJED: getRequiredEnv('SIF_PUBLIC_SEND_BESKJED'),
 });

@@ -16,43 +16,68 @@ export const KanIkkeSøkePage = ({ søker, tilgjengelig }: Props) => {
     const { text } = useAppIntl();
     const { harInnsyn, harUbehandletSøknad } = tilgjengelig;
 
-    const innsynLenke = harInnsyn ? (
-        <BodyLong>
-            <AppText
-                id="page.kanIkkeSøke.innsynLenke"
-                values={{
-                    InnsynLenke: (children) => <Link href={getLenker().aktivitetspengerInnsyn}>{children}</Link>,
-                }}
-            />
-        </BodyLong>
-    ) : null;
-
     const renderContent = () => {
-        switch (getKanIkkeSøkeÅrsak(harInnsyn, harUbehandletSøknad)) {
+        const årsak = getKanIkkeSøkeÅrsak(harInnsyn, harUbehandletSøknad);
+        switch (årsak) {
             case KanIkkeSøkeÅrsak.UBEHANDLET_FØRSTEGANGSSØKNAD:
-                return (
-                    <VStack gap="space-20">
-                        <BodyLong>
-                            <AppText id="page.kanIkkeSøke.ubehandletFørstegangssøknad" />
-                        </BodyLong>
-                    </VStack>
-                );
             case KanIkkeSøkeÅrsak.UBEHANDLET_ANDREGANGSSØKNAD:
                 return (
                     <VStack gap="space-20">
                         <BodyLong>
-                            <AppText id="page.kanIkkeSøke.ubehandletAndregangssøknad" />
+                            <AppText id="page.kanIkkeSøke.ubehandletSøknad.1" />
                         </BodyLong>
-                        {innsynLenke}
+                        <BodyLong>
+                            <AppText id="page.kanIkkeSøke.ubehandletSøknad.2" />
+                        </BodyLong>
+                        <BodyLong>
+                            <AppText
+                                id="page.kanIkkeSøke.ubehandletSøknad.sendBeskjed"
+                                values={{
+                                    Lenke: (children) => <Link href={getLenker().sendBeskjed}>{children}</Link>,
+                                }}
+                            />
+                        </BodyLong>
+                        {harInnsyn && (
+                            <BodyLong>
+                                <AppText
+                                    id="page.kanIkkeSøke.innsynLenke"
+                                    values={{
+                                        Lenke: (children) => (
+                                            <Link href={getLenker().aktivitetspengerInnsyn}>{children}</Link>
+                                        ),
+                                    }}
+                                />
+                            </BodyLong>
+                        )}
                     </VStack>
                 );
             case KanIkkeSøkeÅrsak.UTENFOR_SØKNADSVINDU:
                 return (
                     <VStack gap="space-20">
                         <BodyLong>
-                            <AppText id="page.kanIkkeSøke.utenforSøknadsvindu" />
+                            <AppText id="page.kanIkkeSøke.utenforSøknadsvindu.1" />
                         </BodyLong>
-                        {innsynLenke}
+                        <BodyLong>
+                            <AppText id="page.kanIkkeSøke.utenforSøknadsvindu.2" />
+                        </BodyLong>
+                        <BodyLong>
+                            <AppText
+                                id="page.kanIkkeSøke.innsynLenke"
+                                values={{
+                                    Lenke: (children) => (
+                                        <Link href={getLenker().aktivitetspengerInnsyn}>{children}</Link>
+                                    ),
+                                }}
+                            />
+                        </BodyLong>
+                        <BodyLong>
+                            <AppText
+                                id="page.kanIkkeSøke.utenforSøknadsvindu.sendBeskjed"
+                                values={{
+                                    Lenke: (children) => <Link href={getLenker().sendBeskjed}>{children}</Link>,
+                                }}
+                            />
+                        </BodyLong>
                     </VStack>
                 );
             case KanIkkeSøkeÅrsak.ANNET:
@@ -61,7 +86,6 @@ export const KanIkkeSøkePage = ({ søker, tilgjengelig }: Props) => {
                         <BodyLong>
                             <AppText id="page.kanIkkeSøke.annet" />
                         </BodyLong>
-                        {innsynLenke}
                     </VStack>
                 );
         }

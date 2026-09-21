@@ -12,6 +12,7 @@ export const getDevAppSettings = (): AppEnv => ({
     SIF_PUBLIC_LOGIN_URL: '#',
     SIF_PUBLIC_MINSIDE_URL: '#',
     SIF_PUBLIC_AKTIVITETSPENGER_INNSYN_URL: 'https://aktivitetspenger-innsyn.intern.dev.nav.no/aktivitetspenger/innsyn',
+    SIF_PUBLIC_SEND_BESKJED: 'https://innboks.intern.dev.nav.no/s/beskjed-til-oss?category=Aktivitetspenger',
     SIF_PUBLIC_USE_ANALYTICS: 'true',
 
     K9_BRUKERDIALOG_PROSESSERING_API_URL: '#',
