@@ -7,7 +7,7 @@ export const scenarioHeaderMessages_nn: Record<keyof typeof scenarioHeaderMessag
     'scenarioHeader.annengangssøknad': 'Andregongssøknad',
     'scenarioHeader.sperretUbehandletFørstegangssøknad': 'Sperra – ubehandla førstegongssøknad',
     'scenarioHeader.sperretUtenforSøkevindu': 'Sperra – har aktivitetspengar og er utanfor søkjevindauget',
-    'scenarioHeader.søkersituasjon': 'Søkjesituasjon',
+    'scenarioHeader.søkersituasjon': 'Søkjar sin situasjon',
     'scenarioHeader.standardMedKontonummer': 'Standard (med kontonummer)',
     'scenarioHeader.medKontonummer': 'Med kontonummer',
     'scenarioHeader.utenKontonummer': 'Utan kontonummer',
