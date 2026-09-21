@@ -5,6 +5,7 @@ import { getAppEnv } from './setup/appEnv';
 
 interface Lenker extends SifLenker {
     aktivitetspengerInnsyn: string;
+    sendBeskjed: string;
 }
 
 const getEnvironment = () => (getAppEnv().ENV === 'dev' ? 'dev' : 'prod');
@@ -12,6 +13,7 @@ const getEnvironment = () => (getAppEnv().ENV === 'dev' ? 'dev' : 'prod');
 const getLenker = (): Lenker => ({
     ...getSifLenker(decoratorLocaleUtils.getLocaleFromSessionStorage(), getEnvironment()),
     aktivitetspengerInnsyn: getAppEnv().SIF_PUBLIC_AKTIVITETSPENGER_INNSYN_URL,
+    sendBeskjed: getAppEnv().SIF_PUBLIC_SEND_BESKJED,
 });
 
 const useLenker = (): Lenker => getLenker();

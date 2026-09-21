@@ -44,6 +44,7 @@
         "SIF_PUBLIC_LOGIN_URL": "https://www.nav.no/aktivitetspenger/soknad/oauth2/login?redirect=/aktivitetspenger/soknad",
         "SIF_PUBLIC_MINSIDE_URL": "https://www.nav.no/minside",
         "SIF_PUBLIC_AKTIVITETSPENGER_INNSYN_URL": "https://www.nav.no/aktivitetspenger/innsyn",
+        "SIF_PUBLIC_SEND_BESKJED": "https://innboks.nav.no/s/beskjed-til-oss?category=Aktivitetspenger",
         "SIF_PUBLIC_URL_DOKUMENTARKIV": "https://www.nav.no/dokumentarkiv/tema/UNG",
         "SIF_PUBLIC_URL_RETT_OG_PLIKT": "https://www.nav.no/endringer",
         "SIF_PUBLIC_URL_PERSONOPPLYSNINGER": "https://www.nav.no/person/personopplysninger/nb/",
