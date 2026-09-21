@@ -2,7 +2,7 @@ export const kanIkkeSøkePageMessages_nb = {
     'page.kanIkkeSøke.innsynLenke':
         'Gå til <Lenke>Dine aktivitetspenger</Lenke> for å se oppgaver og varsler for aktivitetspenger.',
     'page.kanIkkeSøke.ubehandletSøknad.1':
-        'Du har nylig sendt inn en søknad om aktivitetspenger, og den ligger i kø til behandling. Du kan derfor ikke sende inn en ny søknad nå.',
+        'Du har allerede sendt inn en søknad om aktivitetspenger, og den ligger i kø til behandling. Du kan derfor ikke sende inn en ny søknad nå.',
     'page.kanIkkeSøke.ubehandletSøknad.2': 'Du får beskjed på SMS eller e-post når søknaden din er ferdig behandlet. ',
     'page.kanIkkeSøke.ubehandletSøknad.sendBeskjed':
         'Trenger du å gjøre endringer i søknaden du har sendt inn, <Lenke>send beskjed</Lenke> eller kontakt oss på telefon 55 55 33 33.',
