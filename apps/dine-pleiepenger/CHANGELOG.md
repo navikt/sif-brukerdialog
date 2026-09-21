@@ -1,5 +1,13 @@
 # @navikt/dine-pleiepenger
 
+## 2.3.1
+
+### Patch Changes
+
+- Justere filter for feil til apm
+- Updated dependencies
+    - @sif/apm@0.2.1
+
 ## 2.3.0
 
 ### Minor Changes

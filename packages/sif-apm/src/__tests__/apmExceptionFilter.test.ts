@@ -136,22 +136,37 @@ describe('isKnownNoisyException', () => {
     });
 });
 
-describe('isKnownNoisyException med isNextJsApp', () => {
+describe('isKnownNoisyException for Nav Dekoratøren', () => {
     const dekoratorenFetchFailures = [
         'console.error: [ERROR] Failed to renew session. {"error":"TypeError: Failed to fetch"}',
+        'console.error: [ERROR] Failed to renew session. {"error":"TypeError: Load failed"}',
         'console.error: [ERROR] Failed to fetch auth data. {"error":"TypeError: Failed to fetch"}',
+        'console.error: [ERROR] Failed to fetch auth data. {"error":"AbortError: Fetch is aborted"}',
+        'console.error: [ERROR] Failed to fetch auth data. {"error":"TypeError: NetworkError when attempting to fetch resource."}',
         'console.error: [ERROR] Failed to archive notifications from link {"error":"TypeError: Failed to fetch"}',
         'console.error: [ERROR] Failed to fetch session. {"error":"TypeError: Failed to fetch"}',
     ];
 
-    it.each(dekoratorenFetchFailures)('filtrerer dekoratørens fetch-feil når isNextJsApp er satt: %s', (value) => {
-        expect(
-            isKnownNoisyException({ type: 'exception', payload: { type: 'Error', value } }, { isNextJsApp: true }),
-        ).toBe(true);
+    it.each(dekoratorenFetchFailures)('filtrerer dekoratørens fetch-feil: %s', (value) => {
+        expect(isKnownNoisyException({ type: 'exception', payload: { type: 'Error', value } })).toBe(true);
     });
 
-    it.each(dekoratorenFetchFailures)('beholder samme melding når isNextJsApp IKKE er satt (Vite-apper)', (value) => {
-        expect(isKnownNoisyException({ type: 'exception', payload: { type: 'Error', value } })).toBe(false);
+    it('beholder egne nettverksfeil som ikke har dekoratørens loggformat', () => {
+        expect(
+            isKnownNoisyException({ type: 'exception', payload: { type: 'TypeError', value: 'Failed to fetch' } }),
+        ).toBe(false);
+    });
+
+    it('beholder dekoratørfeil som ikke er nettverksrelatert', () => {
+        expect(
+            isKnownNoisyException({
+                type: 'exception',
+                payload: {
+                    type: 'Error',
+                    value: 'console.error: [ERROR] Failed to fetch auth data. {"error":"SyntaxError: Unexpected token"}',
+                },
+            }),
+        ).toBe(false);
     });
 });
 

@@ -1,5 +1,12 @@
 # @navikt/sif-common-soknad-ds
 
+## 26.2.1
+
+### Patch Changes
+
+- Updated dependencies
+    - @sif/apm@0.2.1
+
 ## 26.2.0
 
 ### Minor Changes

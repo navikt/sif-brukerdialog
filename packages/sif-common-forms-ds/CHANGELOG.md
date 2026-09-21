@@ -1,5 +1,11 @@
 # @navikt/sif-common-forms-ds
 
+## 21.0.61
+
+### Patch Changes
+
+- @navikt/sif-common-soknad-ds@26.2.1
+
 ## 21.0.60
 
 ### Patch Changes
