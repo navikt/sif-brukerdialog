@@ -42,6 +42,10 @@ sif-api (ung-brukerdialog-api)
 | `src/modules/oppgavepaneler/storybook/OppgavetypeMappingUPY.stories.tsx` | Oversiktstabell for UPY med ekspandert panelpreview |
 | `src/modules/oppgavepaneler/storybook/OppgavetypeMappingAKT.stories.tsx` | Oversiktstabell for AKT med ekspandert panelpreview |
 | `src/storybook/storyUtils.tsx` | `StoryBox`, `StateLabel`, `PanelPreviewWrapper`, `renderOppgaveStandardStater` |
+| `apps/<ytelse>-innsyn/mock/data/oppgaver.ts` | DTO-mocker for demoappens oppgavescenarioer |
+| `apps/<ytelse>-innsyn/mock/data/varseltekster.ts` | Varseltekster brukt av DTO-mockene |
+| `apps/<ytelse>-innsyn/mock/scenarios/{types,scenarioer}.ts` | Scenariotype og registrering av demo-scenario |
+| `apps/<ytelse>-innsyn/src/demo/ScenarioHeader.tsx` | Eksponerer scenarioet i demoappens scenario-velger |
 
 ---
 
@@ -118,6 +122,26 @@ renderOppgaveStandardStater(
 
 ---
 
+## Demo-scenarioer i innsynsappene
+
+Storybook-mocker alene gjør ikke oppgaven tilgjengelig i appens demo. Når oppgaven skal kunne velges i en innsynsapp, må hele denne kjeden oppdateres:
+
+1. Legg til én `ScenarioType` per variant, for eksempel periode og opphør.
+2. Opprett DTO-mocker i `mock/data/oppgaver.ts`. Bruk backendens `oppgavetype` og riktig diskriminator i `oppgavetypeData.type`.
+3. Registrer hvert scenario i `mock/scenarios/scenarioer.ts`.
+4. Legg dem til i gruppen «Oppgaver» i `src/demo/ScenarioHeader.tsx`.
+
+**Kritisk:** `varseltekst` er valgfritt i den genererte API-typen, men obligatorisk i `parseOppgaver.ts` for bosted og oppgaver om andre livsoppholdsytelser. En DTO uten feltet gir runtime-feil og appens «Oops»-side. Hent mockteksten fra oppgavens `.mockData.ts` i `ung-innsyn`, formater datoene på samme måte som der, og legg resultatet i DTO-en.
+
+Ved oppgaver med periode og opphør skal mockene ha separate DTO-er:
+
+| Variant | `oppgavetypeData.type` | Datoer |
+|---|---|---|
+| Periode | Variantens periodeverdi | `fom` og `tom` |
+| Opphør | Variantens opphørsverdi | Kun `fom` |
+
+---
+
 ## Backend-OppgaveType → ParsedOppgavetype
 
 `BEKREFT_ENDRET_STARTDATO` og `BEKREFT_ENDRET_SLUTTDATO` finnes nå som **egne backend-`OppgaveType`** i tillegg til å kunne komme fra `BEKREFT_ENDRET_PERIODE`. `BEKREFT_ENDRET_PERIODE` parses fortsatt til fem parsed-typer basert på `endringer`-feltet:
@@ -148,6 +172,9 @@ renderOppgaveStandardStater(
 6. **Oversiktsstories** — importer mock-objektene og legg til rad med `renderOppgaveStandardStater` i `OppgavetypeMappingUPY` og/eller `OppgavetypeMappingAKT`.
 7. **Typecheck** — kjør `pnpm --filter @sif/ung-innsyn exec tsc --noEmit`.
 8. **Verifiser enum-dekning** — for hvert årsak-/kilde-enum brukt i den nye typen: tell verdier i `types.gen.ts` og sammenlign med antall i tilhørende `*_SCENARIO_OPTIONS`-array og tekstoppslaget (f.eks. `bostedVilkårPeriodeOppgaveTekster`). Dette er lett å glemme siden kompilatoren ikke fanger det opp.
+9. **Demo-scenario i aktuell innsynsapp** — legg til DTO-mocker, `ScenarioType`, scenario-registrering og valg i `ScenarioHeader`. Bruk ett scenario per diskriminert variant.
+10. **Varseltekst i demo-DTO** — dersom parseren krever `varseltekst`, legg den alltid i DTO-en selv om API-typen markerer feltet som valgfritt. Hent teksten fra oppgavens `ung-innsyn`-mock og formater datoene.
+11. **Verifiser innsynsappen** — kjør `pnpm --filter @navikt/<ytelse>-innsyn lint:tsc` og velg hvert nytt scenario i demoen. Dersom appen viser «Oops», kontroller først at DTO-en har riktig diskriminator og en ikke-tom `varseltekst`.
 
 ---
 
