@@ -20,16 +20,20 @@ export const ScenarioHeader = () => {
                     label: text('scenarioHeader.førstegangssøknad'),
                 },
                 {
-                    value: ScenarioType.nyPeriodeSøknad,
-                    label: text('scenarioHeader.annengangssøknad'),
-                },
-                {
                     value: ScenarioType.ubehandletFørstegangssøknad,
                     label: text('scenarioHeader.sperretUbehandletFørstegangssøknad'),
                 },
                 {
-                    value: ScenarioType.kanIkkeSøke,
+                    value: ScenarioType.ubehandletAndregangssøknad,
+                    label: text('scenarioHeader.sperretUbehandletAndregangssøknad'),
+                },
+                {
+                    value: ScenarioType.harAktivitetspengerMenUtenforSøknadsvindu,
                     label: text('scenarioHeader.sperretUtenforSøkevindu'),
+                },
+                {
+                    value: ScenarioType.sperretAnnet,
+                    label: text('scenarioHeader.sperretAnnet'),
                 },
             ],
         },

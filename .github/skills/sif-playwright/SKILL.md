@@ -386,9 +386,30 @@ pnpm pw:run
 pnpm check:types
 ```
 
+### Agenter skal ikke kjøre Playwright selv
+
+`pnpm pw:run` (og `pw:run:headed`, `playwright test`) skal alltid kjøres av utvikleren, ikke av agenten.
+
+Agentens sandkasse kan lytte på en port, men nektes utgående `connect()` — også mot loopback. Da blir symptomet:
+
+```text
+Error: Timed out waiting 120000ms from config.webServer
+[vite] http proxy error: connect EPERM 127.0.0.1:4173
+```
+
+Dette ser ut som en feil i `playwright.config.ts` eller MSW-oppsettet, men er et miljøproblem: `pw:build` og `pw:start` fungerer, og siden svarer i utviklerens egen nettleser.
+
+Arbeidsdeling:
+
+- Agent kjører `pnpm pw:build`, `pnpm check:types`, `pnpm lint:eslint` og `pnpm test`.
+- Utvikler kjører `pnpm pw:run` og limer inn output.
+- Agent tolker output og retter opp.
+
+Agenten skal ikke bruke webServer-timeout eller EPERM-feil fra egne kjøringer som grunnlag for å endre config.
+
 ## Ferdig-kriterier
 
-- `pnpm pw:run` passerer lokalt.
+- `pnpm pw:run` passerer lokalt (kjørt av utvikler, se Verifisering).
 - `pnpm check:types` passerer lokalt.
 - Testene bruker BrowserRouter-flyt (ikke demo/HashRouter).
 - A11y-scan er inkludert i minst forside- og sentral flyttest.
@@ -397,4 +418,4 @@ pnpm check:types
 
 - Fase 1: Etabler oppsett (config, scripts, dependencies, tsconfig).
 - Fase 2: Legg til første flyttester med a11y-scan.
-- Fase 3: Verifiser `pnpm pw:run` og `pnpm check:types`.
+- Fase 3: Agenten kjører `pnpm check:types` og `pnpm pw:build`, og ber deretter utvikleren kjøre `pnpm pw:run`.

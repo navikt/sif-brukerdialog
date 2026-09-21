@@ -20,20 +20,26 @@ const kanSøkeFørstegang = {
     type: TilgjengeligSøknadType.FØRSTEGANGSSØKNAD,
 } satisfies ScenarioData['tilgjengeligSøknad'];
 
-const nyPeriodeSøknad = {
-    harInnsyn: true,
-    harUbehandletSøknad: false,
-    type: TilgjengeligSøknadType.NY_PERIODE_SØKNAD,
-} satisfies ScenarioData['tilgjengeligSøknad'];
-
 const ubehandletFørstegangssøknad = {
     harInnsyn: false,
     harUbehandletSøknad: true,
     type: TilgjengeligSøknadType.INGEN,
 } satisfies ScenarioData['tilgjengeligSøknad'];
 
-const kanIkkeSøke = {
+const ubehandletAndregangssøknad = {
     harInnsyn: true,
+    harUbehandletSøknad: true,
+    type: TilgjengeligSøknadType.INGEN,
+} satisfies ScenarioData['tilgjengeligSøknad'];
+
+const harAktivitetspengerMenUtenforSøknadsvindu = {
+    harInnsyn: true,
+    harUbehandletSøknad: false,
+    type: TilgjengeligSøknadType.INGEN,
+} satisfies ScenarioData['tilgjengeligSøknad'];
+
+const ikkeInnsynIngenSøknad = {
+    harInnsyn: false,
     harUbehandletSøknad: false,
     type: TilgjengeligSøknadType.INGEN,
 } satisfies ScenarioData['tilgjengeligSøknad'];
@@ -50,21 +56,27 @@ const kanSøkeFørstegangScenarioData: ScenarioData = {
     mellomlagring: undefined,
 };
 
-const nyPeriodeSøknadScenarioData: ScenarioData = {
-    ...standardProfilMedKontonummer,
-    tilgjengeligSøknad: nyPeriodeSøknad,
-    mellomlagring: undefined,
-};
-
 const ubehandletFørstegangssøknadScenarioData: ScenarioData = {
     ...standardProfilMedKontonummer,
     tilgjengeligSøknad: ubehandletFørstegangssøknad,
     mellomlagring: undefined,
 };
 
-const kanIkkeSøkeScenarioData: ScenarioData = {
+const ubehandletAndregangssøknadScenarioData: ScenarioData = {
     ...standardProfilMedKontonummer,
-    tilgjengeligSøknad: kanIkkeSøke,
+    tilgjengeligSøknad: ubehandletAndregangssøknad,
+    mellomlagring: undefined,
+};
+
+const sperretAnnetScenarioData: ScenarioData = {
+    ...standardProfilMedKontonummer,
+    tilgjengeligSøknad: ikkeInnsynIngenSøknad,
+    mellomlagring: undefined,
+};
+
+const harAktivitetspengerMenUtenforSøknadsvinduScenarioData: ScenarioData = {
+    ...standardProfilMedKontonummer,
+    tilgjengeligSøknad: harAktivitetspengerMenUtenforSøknadsvindu,
     mellomlagring: undefined,
 };
 
@@ -91,9 +103,10 @@ const utenKontonummerScenarioData: ScenarioData = {
 const scenarioData: Record<ScenarioType, ScenarioData> = {
     [ScenarioType.default]: defaultScenarioData,
     [ScenarioType.kanSøkeFørstegang]: kanSøkeFørstegangScenarioData,
-    [ScenarioType.nyPeriodeSøknad]: nyPeriodeSøknadScenarioData,
     [ScenarioType.ubehandletFørstegangssøknad]: ubehandletFørstegangssøknadScenarioData,
-    [ScenarioType.kanIkkeSøke]: kanIkkeSøkeScenarioData,
+    [ScenarioType.ubehandletAndregangssøknad]: ubehandletAndregangssøknadScenarioData,
+    [ScenarioType.harAktivitetspengerMenUtenforSøknadsvindu]: harAktivitetspengerMenUtenforSøknadsvinduScenarioData,
+    [ScenarioType.sperretAnnet]: sperretAnnetScenarioData,
     [ScenarioType.medKontonummer]: medKontonummerScenarioData,
     [ScenarioType.ingenRegistrerteBarn]: ingenRegistrerteBarnScenarioData,
     [ScenarioType.utenKontonummer]: utenKontonummerScenarioData,
