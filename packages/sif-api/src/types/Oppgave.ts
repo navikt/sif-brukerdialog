@@ -95,6 +95,7 @@ export interface AndreLivsoppholdsytelserOppgave extends ParsedOppgaveBase {
     respons?: SvarPåVarselRespons;
 }
 
+/** Dekker både avslag i en periode og opphør fra en dato. */
 export interface EndretSluttdatoOppgave extends ParsedOppgaveBase {
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO;
     oppgavetypeData: {

@@ -109,13 +109,9 @@ Render-logikken for oversiktsstoriene er sentralisert i `storyUtils.tsx` via `re
 
 ```tsx
 // I OppgavetypeMappingUPY.stories.tsx
-renderOppgaveStandardStater(
-    mockEndretStartdatoUPY,
-    mockEndretStartdatoBesvartUPY,
-    (oppgave, opts) => (
-        <EndretStartdatoOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />
-    ),
-)
+renderOppgaveStandardStater(mockEndretStartdatoUPY, mockEndretStartdatoBesvartUPY, (oppgave, opts) => (
+    <EndretStartdatoOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />
+));
 ```
 
 `renderOppgaveStandardStater` rendrer automatisk: Forside (uløst), Ubesvart oppgave, Kvittering, Besvart oppgave, Forside (løst).
