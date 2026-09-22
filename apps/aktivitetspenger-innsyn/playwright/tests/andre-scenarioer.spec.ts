@@ -21,7 +21,7 @@ test('rapporterInntektDelerAvMåned kan besvares og viser registrert svar ved gj
 
     await åpneOppgaveFraForside(page, /Meld fra om du hadde inntekt i/i);
 
-    await expect(page.getByText(/selv om du ikke hadde ungdomsprogramytelsen hele måneden/i)).toBeVisible();
+    await expect(page.getByText(/selv om du ikke hadde aktivitetspenger hele måneden/i)).toBeVisible();
 
     await page
         .getByRole('radiogroup', { name: /Hadde du inntekt i/i })
