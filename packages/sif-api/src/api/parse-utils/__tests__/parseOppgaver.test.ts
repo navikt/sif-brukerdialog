@@ -7,12 +7,7 @@ import {
 } from '@navikt/ung-brukerdialog-api';
 import { describe, expect, it } from 'vitest';
 
-import {
-    BostedVilkårPeriodeOppgave,
-    BostedVilkårOpphørOppgave,
-    OpphorVedMaksdatoOppgave,
-    ParsedOppgavetype,
-} from '../../../types/Oppgave';
+import { BostedVilkårOppgave, OpphorVedMaksdatoOppgave, ParsedOppgavetype } from '../../../types/Oppgave';
 import { parseOppgaver } from '../parseOppgaver';
 
 const baseOppgave = {
@@ -25,7 +20,7 @@ const baseOppgave = {
 
 describe('parseOppgaver - BEKREFT_OPPHOR_VED_MAKSDATO', () => {
     it('setter frist til dagen før oppgavens frist', () => {
-        const [result] = parseOppgaver(OppgaveYtelsetype.UNGDOMSYTELSE, [
+        const [result] = parseOppgaver([
             {
                 ...baseOppgave,
                 frist: '2026-05-15T07:00:00.000Z',
@@ -37,7 +32,7 @@ describe('parseOppgaver - BEKREFT_OPPHOR_VED_MAKSDATO', () => {
     });
 
     it('mapper maxDato til oppgavetypeData.maksdato som ISODate', () => {
-        const [result] = parseOppgaver(OppgaveYtelsetype.UNGDOMSYTELSE, [
+        const [result] = parseOppgaver([
             {
                 ...baseOppgave,
                 oppgavetype: OppgaveType.BEKREFT_OPPHOR_VED_MAKSDATO,
@@ -55,7 +50,7 @@ describe('parseOppgaver - BEKREFT_OPPHOR_VED_MAKSDATO', () => {
     });
 
     it('bevarer sluttdato som ISODate', () => {
-        const [result] = parseOppgaver(OppgaveYtelsetype.UNGDOMSYTELSE, [
+        const [result] = parseOppgaver([
             {
                 ...baseOppgave,
                 oppgavetype: OppgaveType.BEKREFT_OPPHOR_VED_MAKSDATO,
@@ -72,7 +67,7 @@ describe('parseOppgaver - BEKREFT_OPPHOR_VED_MAKSDATO', () => {
     });
 
     it('parser VARSEL_SVAR-respons korrekt', () => {
-        const [result] = parseOppgaver(OppgaveYtelsetype.UNGDOMSYTELSE, [
+        const [result] = parseOppgaver([
             {
                 ...baseOppgave,
                 oppgavetype: OppgaveType.BEKREFT_OPPHOR_VED_MAKSDATO,
@@ -100,7 +95,7 @@ describe('parseOppgaver - BEKREFT_OPPHOR_VED_MAKSDATO', () => {
     });
 
     it('setter respons til undefined når ingen respons er oppgitt', () => {
-        const [result] = parseOppgaver(OppgaveYtelsetype.UNGDOMSYTELSE, [
+        const [result] = parseOppgaver([
             {
                 ...baseOppgave,
                 oppgavetype: OppgaveType.BEKREFT_OPPHOR_VED_MAKSDATO,
@@ -128,9 +123,9 @@ const baseBostedData = {
 const baseBostedOppgavetypeData = { type: 'BOSTED' as const, ...baseBostedData, tom: '2026-03-31' };
 const baseBostedOpphørOppgavetypeData = { type: 'BOSTED_OPPHØR' as const, ...baseBostedData };
 
-describe('parseOppgaver - BEKREFT_BOSTED (BostedVilkårPeriodeOppgave)', () => {
+describe('parseOppgaver - BEKREFT_BOSTED', () => {
     it('setter parsedOppgavetype til BEKREFT_BOSTED når data har tom', () => {
-        const [result] = parseOppgaver(OppgaveYtelsetype.UNGDOMSYTELSE, [
+        const [result] = parseOppgaver([
             {
                 ...baseOppgave,
                 oppgavetype: OppgaveType.BEKREFT_BOSTED,
@@ -138,11 +133,11 @@ describe('parseOppgaver - BEKREFT_BOSTED (BostedVilkårPeriodeOppgave)', () => {
             },
         ]);
 
-        expect((result as BostedVilkårPeriodeOppgave).parsedOppgavetype).toBe(ParsedOppgavetype.BEKREFT_BOSTED);
+        expect((result as BostedVilkårOppgave).parsedOppgavetype).toBe(ParsedOppgavetype.BEKREFT_BOSTED);
     });
 
-    it('mapper fom og tom til periode.from og periode.to', () => {
-        const [result] = parseOppgaver(OppgaveYtelsetype.UNGDOMSYTELSE, [
+    it('tar ikke med datoene fra backend', () => {
+        const [result] = parseOppgaver([
             {
                 ...baseOppgave,
                 oppgavetype: OppgaveType.BEKREFT_BOSTED,
@@ -150,13 +145,14 @@ describe('parseOppgaver - BEKREFT_BOSTED (BostedVilkårPeriodeOppgave)', () => {
             },
         ]);
 
-        const oppgave = result as BostedVilkårPeriodeOppgave;
-        expect(oppgave.oppgavetypeData.periode.from).toBe('2026-01-01');
-        expect(oppgave.oppgavetypeData.periode.to).toBe('2026-03-31');
+        const oppgave = result as BostedVilkårOppgave;
+        expect(oppgave.oppgavetypeData).not.toHaveProperty('periode');
+        expect(oppgave.oppgavetypeData).not.toHaveProperty('fom');
+        expect(oppgave.oppgavetypeData).not.toHaveProperty('tom');
     });
 
-    it('bevarer erBosattITrondheim og ikkeOppfyltÅrsak', () => {
-        const [result] = parseOppgaver(OppgaveYtelsetype.UNGDOMSYTELSE, [
+    it('bevarer ikkeOppfyltÅrsak', () => {
+        const [result] = parseOppgaver([
             {
                 ...baseOppgave,
                 oppgavetype: OppgaveType.BEKREFT_BOSTED,
@@ -164,15 +160,14 @@ describe('parseOppgaver - BEKREFT_BOSTED (BostedVilkårPeriodeOppgave)', () => {
             },
         ]);
 
-        const oppgave = result as BostedVilkårPeriodeOppgave;
-        expect(oppgave.oppgavetypeData.erBosattITrondheim).toBe(false);
+        const oppgave = result as BostedVilkårOppgave;
         expect(oppgave.oppgavetypeData.ikkeOppfyltÅrsak).toBe(
             BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
         );
     });
 
     it('setter frist til dagen før oppgavens frist', () => {
-        const [result] = parseOppgaver(OppgaveYtelsetype.UNGDOMSYTELSE, [
+        const [result] = parseOppgaver([
             {
                 ...baseOppgave,
                 frist: '2026-05-15T07:00:00.000Z',
@@ -181,11 +176,11 @@ describe('parseOppgaver - BEKREFT_BOSTED (BostedVilkårPeriodeOppgave)', () => {
             },
         ]);
 
-        expect((result as BostedVilkårPeriodeOppgave).frist).toBe('2026-05-14');
+        expect((result as BostedVilkårOppgave).frist).toBe('2026-05-14');
     });
 
     it('parser VARSEL_SVAR-respons korrekt', () => {
-        const [result] = parseOppgaver(OppgaveYtelsetype.UNGDOMSYTELSE, [
+        const [result] = parseOppgaver([
             {
                 ...baseOppgave,
                 oppgavetype: OppgaveType.BEKREFT_BOSTED,
@@ -196,12 +191,12 @@ describe('parseOppgaver - BEKREFT_BOSTED (BostedVilkårPeriodeOppgave)', () => {
             },
         ]);
 
-        const oppgave = result as BostedVilkårPeriodeOppgave;
+        const oppgave = result as BostedVilkårOppgave;
         expect(oppgave.respons).toEqual({ type: 'VARSEL_SVAR', harUttalelse: true, uttalelseFraBruker: 'Ok' });
     });
 
     it('setter respons til undefined når ingen respons er oppgitt', () => {
-        const [result] = parseOppgaver(OppgaveYtelsetype.UNGDOMSYTELSE, [
+        const [result] = parseOppgaver([
             {
                 ...baseOppgave,
                 oppgavetype: OppgaveType.BEKREFT_BOSTED,
@@ -209,13 +204,13 @@ describe('parseOppgaver - BEKREFT_BOSTED (BostedVilkårPeriodeOppgave)', () => {
             },
         ]);
 
-        expect((result as BostedVilkårPeriodeOppgave).respons).toBeUndefined();
+        expect((result as BostedVilkårOppgave).respons).toBeUndefined();
     });
 });
 
-describe('parseOppgaver - BEKREFT_BOSTED (BostedVilkårOpphørOppgave)', () => {
-    it('setter parsedOppgavetype til BEKREFT_BOSTED_OPPHØR når data mangler tom', () => {
-        const [result] = parseOppgaver(OppgaveYtelsetype.UNGDOMSYTELSE, [
+describe('parseOppgaver - BEKREFT_BOSTED (opphørsvarianten)', () => {
+    it('gir samme parsedOppgavetype som periodevarianten', () => {
+        const [result] = parseOppgaver([
             {
                 ...baseOppgave,
                 oppgavetype: OppgaveType.BEKREFT_BOSTED,
@@ -223,11 +218,11 @@ describe('parseOppgaver - BEKREFT_BOSTED (BostedVilkårOpphørOppgave)', () => {
             },
         ]);
 
-        expect((result as BostedVilkårOpphørOppgave).parsedOppgavetype).toBe(ParsedOppgavetype.BEKREFT_BOSTED_OPPHØR);
+        expect((result as BostedVilkårOppgave).parsedOppgavetype).toBe(ParsedOppgavetype.BEKREFT_BOSTED);
     });
 
-    it('bevarer fom som ISODate', () => {
-        const [result] = parseOppgaver(OppgaveYtelsetype.UNGDOMSYTELSE, [
+    it('tar ikke med datoene fra backend', () => {
+        const [result] = parseOppgaver([
             {
                 ...baseOppgave,
                 oppgavetype: OppgaveType.BEKREFT_BOSTED,
@@ -235,12 +230,14 @@ describe('parseOppgaver - BEKREFT_BOSTED (BostedVilkårOpphørOppgave)', () => {
             },
         ]);
 
-        const oppgave = result as BostedVilkårOpphørOppgave;
-        expect(oppgave.oppgavetypeData.fom).toBe('2026-01-01');
+        const oppgave = result as BostedVilkårOppgave;
+        expect(oppgave.oppgavetypeData).not.toHaveProperty('fom');
+        expect(oppgave.oppgavetypeData).not.toHaveProperty('tom');
+        expect(oppgave.oppgavetypeData).not.toHaveProperty('periode');
     });
 
-    it('bevarer erBosattITrondheim og ikkeOppfyltÅrsak', () => {
-        const [result] = parseOppgaver(OppgaveYtelsetype.UNGDOMSYTELSE, [
+    it('bevarer ikkeOppfyltÅrsak', () => {
+        const [result] = parseOppgaver([
             {
                 ...baseOppgave,
                 oppgavetype: OppgaveType.BEKREFT_BOSTED,
@@ -248,51 +245,8 @@ describe('parseOppgaver - BEKREFT_BOSTED (BostedVilkårOpphørOppgave)', () => {
             },
         ]);
 
-        const oppgave = result as BostedVilkårOpphørOppgave;
-        expect(oppgave.oppgavetypeData.erBosattITrondheim).toBe(false);
-        expect(oppgave.oppgavetypeData.ikkeOppfyltÅrsak).toBe(
+        expect((result as BostedVilkårOppgave).oppgavetypeData.ikkeOppfyltÅrsak).toBe(
             BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
         );
-    });
-
-    it('setter frist til dagen før oppgavens frist', () => {
-        const [result] = parseOppgaver(OppgaveYtelsetype.UNGDOMSYTELSE, [
-            {
-                ...baseOppgave,
-                frist: '2026-05-15T07:00:00.000Z',
-                oppgavetype: OppgaveType.BEKREFT_BOSTED,
-                oppgavetypeData: baseBostedOpphørOppgavetypeData,
-            },
-        ]);
-
-        expect((result as BostedVilkårOpphørOppgave).frist).toBe('2026-05-14');
-    });
-
-    it('parser VARSEL_SVAR-respons korrekt', () => {
-        const [result] = parseOppgaver(OppgaveYtelsetype.UNGDOMSYTELSE, [
-            {
-                ...baseOppgave,
-                oppgavetype: OppgaveType.BEKREFT_BOSTED,
-                oppgavetypeData: baseBostedOpphørOppgavetypeData,
-                respons: { type: 'VARSEL_SVAR', harUttalelse: false, uttalelseFraBruker: undefined },
-                status: OppgaveStatus.LØST,
-                løstDato: '2026-05-10T12:00:00.000Z',
-            },
-        ]);
-
-        const oppgave = result as BostedVilkårOpphørOppgave;
-        expect(oppgave.respons).toEqual({ type: 'VARSEL_SVAR', harUttalelse: false, uttalelseFraBruker: undefined });
-    });
-
-    it('setter respons til undefined når ingen respons er oppgitt', () => {
-        const [result] = parseOppgaver(OppgaveYtelsetype.UNGDOMSYTELSE, [
-            {
-                ...baseOppgave,
-                oppgavetype: OppgaveType.BEKREFT_BOSTED,
-                oppgavetypeData: baseBostedOpphørOppgavetypeData,
-            },
-        ]);
-
-        expect((result as BostedVilkårOpphørOppgave).respons).toBeUndefined();
     });
 });

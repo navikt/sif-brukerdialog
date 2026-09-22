@@ -20,7 +20,6 @@ const delerAvMånedOppgavetypeData = {
 };
 
 export const lagRapporterInntektOppgave = (ytelsetype: OppgaveYtelsetype): RapporterInntektOppgave => ({
-    oppgaveYtelsetype: ytelsetype,
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
     oppgavetype: OppgaveType.RAPPORTER_INNTEKT,
     parsedOppgavetype: ParsedOppgavetype.RAPPORTER_INNTEKT,

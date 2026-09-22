@@ -5,14 +5,16 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { OppgaverList } from '../../../components';
 import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
-import { BostedVilkårOpphørOppgavePanel } from './BostedVilkarOpphorOppgavePanel';
+import { BostedVilkårOppgavePanel } from './BostedVilkarOppgavePanel';
 import {
-    BOSTED_OPPHØR_KILDE_SCENARIO_OPTIONS,
-    BOSTED_OPPHØR_ÅRSAK_SCENARIO_OPTIONS,
-    lagOpphørOppgaveMedÅrsak,
-    mockBostedVilkårOpphørAKT,
-    mockBostedVilkårOpphørBesvartAKT,
-} from './BostedVilkarOpphorOppgavePanel.mockData';
+    BOSTED_KILDE_SCENARIO_OPTIONS,
+    BOSTED_VARIANT_SCENARIO_OPTIONS,
+    BOSTED_ÅRSAK_SCENARIO_OPTIONS,
+    BostedVarselVariant,
+    lagOppgaveMedÅrsak,
+    mockBostedVilkårAKT,
+    mockBostedVilkårBesvartAKT,
+} from './BostedVilkarOppgavePanel.mockData';
 
 const meta: Meta = {
     title: 'Oppgaver/2. Aktivitetspenger/Bosted',
@@ -20,27 +22,43 @@ const meta: Meta = {
 };
 export default meta;
 
-type Args = { årsak: BostedsvilkårIkkeOppfyltÅrsak; kilde: BostedsavklaringKildeType; variant?: string };
+type Args = {
+    årsak: BostedsvilkårIkkeOppfyltÅrsak;
+    kilde: BostedsavklaringKildeType;
+    varselvariant: BostedVarselVariant;
+    variant?: string;
+};
 type Story = StoryObj<Args>;
 
 const årsakArgType = {
     control: 'radio' as const,
-    options: BOSTED_OPPHØR_ÅRSAK_SCENARIO_OPTIONS,
+    options: BOSTED_ÅRSAK_SCENARIO_OPTIONS,
 };
 
 const kildeArgType = {
     control: 'radio' as const,
-    options: BOSTED_OPPHØR_KILDE_SCENARIO_OPTIONS,
+    options: BOSTED_KILDE_SCENARIO_OPTIONS,
+};
+
+const varselvariantArgType = {
+    control: 'radio' as const,
+    options: BOSTED_VARIANT_SCENARIO_OPTIONS,
+};
+
+const scenarioArgs = {
+    årsak: BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
+    kilde: BostedsavklaringKildeType.FOLKEREGISTER,
+    varselvariant: 'Periode' as const,
 };
 
 export const Ubesvart: Story = {
     name: 'Ubesvart',
-    argTypes: { årsak: årsakArgType, kilde: kildeArgType },
-    args: { årsak: BostedsvilkårIkkeOppfyltÅrsak.ANNET, kilde: BostedsavklaringKildeType.ANNET },
-    parameters: { controls: { include: ['årsak', 'kilde'] } },
-    render: ({ årsak, kilde }) => (
-        <BostedVilkårOpphørOppgavePanel
-            oppgave={lagOpphørOppgaveMedÅrsak(mockBostedVilkårOpphørAKT, årsak, kilde)}
+    argTypes: { årsak: årsakArgType, kilde: kildeArgType, varselvariant: varselvariantArgType },
+    args: scenarioArgs,
+    parameters: { controls: { include: ['årsak', 'kilde', 'varselvariant'] } },
+    render: ({ årsak, kilde, varselvariant }) => (
+        <BostedVilkårOppgavePanel
+            oppgave={lagOppgaveMedÅrsak(mockBostedVilkårAKT, årsak, kilde, varselvariant)}
             navn="SNODIG VAFFEL"
         />
     ),
@@ -55,7 +73,7 @@ export const Forsidevisning: Story = {
                 <Heading level="2" size="medium">
                     Uløst oppgave
                 </Heading>
-                <OppgaverList oppgaver={[mockBostedVilkårOpphørAKT]} />
+                <OppgaverList oppgaver={[mockBostedVilkårAKT]} />
             </VStack>
             <VStack gap="space-16">
                 <Heading level="2" size="medium">
@@ -65,9 +83,9 @@ export const Forsidevisning: Story = {
                     visBeskrivelse={false}
                     oppgaveStatusTagVariant="text"
                     oppgaver={[
-                        { ...mockBostedVilkårOpphørAKT, status: OppgaveStatus.AVBRUTT },
-                        { ...mockBostedVilkårOpphørAKT, status: OppgaveStatus.UTLØPT },
-                        { ...mockBostedVilkårOpphørAKT, status: OppgaveStatus.LØST },
+                        { ...mockBostedVilkårAKT, status: OppgaveStatus.AVBRUTT },
+                        { ...mockBostedVilkårAKT, status: OppgaveStatus.UTLØPT },
+                        { ...mockBostedVilkårAKT, status: OppgaveStatus.LØST },
                     ]}
                 />
             </VStack>
@@ -77,12 +95,12 @@ export const Forsidevisning: Story = {
 
 export const Kvittering: Story = {
     name: 'Kvittering',
-    argTypes: { årsak: årsakArgType, kilde: kildeArgType },
-    args: { årsak: BostedsvilkårIkkeOppfyltÅrsak.ANNET, kilde: BostedsavklaringKildeType.ANNET },
-    parameters: { controls: { include: ['årsak', 'kilde'] } },
-    render: ({ årsak, kilde }) => (
-        <BostedVilkårOpphørOppgavePanel
-            oppgave={lagOpphørOppgaveMedÅrsak(mockBostedVilkårOpphørAKT, årsak, kilde)}
+    argTypes: { årsak: årsakArgType, kilde: kildeArgType, varselvariant: varselvariantArgType },
+    args: scenarioArgs,
+    parameters: { controls: { include: ['årsak', 'kilde', 'varselvariant'] } },
+    render: ({ årsak, kilde, varselvariant }) => (
+        <BostedVilkårOppgavePanel
+            oppgave={lagOppgaveMedÅrsak(mockBostedVilkårAKT, årsak, kilde, varselvariant)}
             navn="SNODIG VAFFEL"
             initialVisKvittering={true}
         />
@@ -94,25 +112,22 @@ export const Besvart: Story = {
     argTypes: {
         årsak: årsakArgType,
         kilde: kildeArgType,
+        varselvariant: varselvariantArgType,
         variant: { control: 'radio', options: ['Uten tilbakemelding', 'Med tilbakemelding'] },
     },
-    args: {
-        årsak: BostedsvilkårIkkeOppfyltÅrsak.ANNET,
-        kilde: BostedsavklaringKildeType.ANNET,
-        variant: 'Uten tilbakemelding',
-    },
-    parameters: { controls: { include: ['årsak', 'kilde', 'variant'] } },
-    render: ({ årsak, kilde, variant }) => (
-        <BostedVilkårOpphørOppgavePanel
+    args: { ...scenarioArgs, variant: 'Uten tilbakemelding' },
+    parameters: { controls: { include: ['årsak', 'kilde', 'varselvariant', 'variant'] } },
+    render: ({ årsak, kilde, varselvariant, variant }) => (
+        <BostedVilkårOppgavePanel
             oppgave={{
-                ...lagOpphørOppgaveMedÅrsak(mockBostedVilkårOpphørBesvartAKT, årsak, kilde),
+                ...lagOppgaveMedÅrsak(mockBostedVilkårBesvartAKT, årsak, kilde, varselvariant),
                 respons:
                     variant === 'Med tilbakemelding'
                         ? {
                               type: 'VARSEL_SVAR',
                               harUttalelse: true,
                               uttalelseFraBruker:
-                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.',
                           }
                         : { type: 'VARSEL_SVAR', harUttalelse: false },
             }}
@@ -125,8 +140,8 @@ export const Utløpt: Story = {
     name: 'Utløpt',
     parameters: { controls: { disable: true } },
     render: () => (
-        <BostedVilkårOpphørOppgavePanel
-            oppgave={{ ...mockBostedVilkårOpphørAKT, status: OppgaveStatus.UTLØPT, løstDato: new Date() }}
+        <BostedVilkårOppgavePanel
+            oppgave={{ ...mockBostedVilkårAKT, status: OppgaveStatus.UTLØPT, løstDato: new Date() }}
             navn="SNODIG VAFFEL"
         />
     ),
@@ -136,8 +151,8 @@ export const Avbrutt: Story = {
     name: 'Avbrutt',
     parameters: { controls: { disable: true } },
     render: () => (
-        <BostedVilkårOpphørOppgavePanel
-            oppgave={{ ...mockBostedVilkårOpphørAKT, status: OppgaveStatus.AVBRUTT, løstDato: new Date() }}
+        <BostedVilkårOppgavePanel
+            oppgave={{ ...mockBostedVilkårAKT, status: OppgaveStatus.AVBRUTT, løstDato: new Date() }}
             navn="SNODIG VAFFEL"
         />
     ),

@@ -13,16 +13,8 @@ import {
     lagAvvikRegisterinntektOppgave,
     lagOppgaveMedInntekt,
 } from '../avvik-registerinntekt/AvvikRegisterinntektOppgavePanel.mockData';
-import { BostedVilkårOpphørOppgavePanel } from '../bostedsvilkar-opphor/BostedVilkarOpphorOppgavePanel';
-import {
-    mockBostedVilkårOpphørAKT,
-    mockBostedVilkårOpphørBesvartAKT,
-} from '../bostedsvilkar-opphor/BostedVilkarOpphorOppgavePanel.mockData';
-import { BostedVilkårOppgavePanel } from '../bostedsvilkar-periode/BostedVilkarOppgavePanel';
-import {
-    mockBostedVilkårAKT,
-    mockBostedVilkårBesvartAKT,
-} from '../bostedsvilkar-periode/BostedVilkarOppgavePanel.mockData';
+import { BostedVilkårOppgavePanel } from '../bostedsvilkar/BostedVilkarOppgavePanel';
+import { mockBostedVilkårAKT, mockBostedVilkårBesvartAKT } from '../bostedsvilkar/BostedVilkarOppgavePanel.mockData';
 import { RapporterInntektOppgavePanel } from '../rapporter-inntekt/RapporterInntektOppgavePanel';
 import {
     lagRapporterInntektBesvartOppgave,
@@ -69,27 +61,15 @@ const rader: Rad[] = [
     },
     {
         parsedType: ParsedOppgavetype.BEKREFT_BOSTED,
-        kilder: [{ backendType: OppgaveType.BEKREFT_BOSTED, betingelse: 'oppgavetypeData.type = BOSTED' }],
+        kilder: [
+            { backendType: OppgaveType.BEKREFT_BOSTED, betingelse: 'oppgavetypeData.type = BOSTED' },
+            { backendType: OppgaveType.BEKREFT_BOSTED, betingelse: 'oppgavetypeData.type = BOSTED_OPPHØR' },
+        ],
         preview: (
             <PanelPreviewWrapper>
                 {renderOppgaveStandardStater(mockBostedVilkårAKT, mockBostedVilkårBesvartAKT, (oppgave, opts) => (
                     <BostedVilkårOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />
                 ))}
-            </PanelPreviewWrapper>
-        ),
-    },
-    {
-        parsedType: ParsedOppgavetype.BEKREFT_BOSTED_OPPHØR,
-        kilder: [{ backendType: OppgaveType.BEKREFT_BOSTED, betingelse: 'oppgavetypeData.type = BOSTED_OPPHØR' }],
-        preview: (
-            <PanelPreviewWrapper>
-                {renderOppgaveStandardStater(
-                    mockBostedVilkårOpphørAKT,
-                    mockBostedVilkårOpphørBesvartAKT,
-                    (oppgave, opts) => (
-                        <BostedVilkårOpphørOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />
-                    ),
-                )}
             </PanelPreviewWrapper>
         ),
     },
