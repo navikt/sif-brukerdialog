@@ -1,7 +1,7 @@
 import { oppgavebekreftelse_nb } from '../modules/oppgavebekreftelse/i18n/nb';
-import { avvikRegisterinntektMessages_nb } from '../modules/oppgavepaneler/avvik-registerinntekt/i18n/nb';
 import { andreLivsoppholdsytelserOpphørMessages_nb } from '../modules/oppgavepaneler/andre-livsoppholdsytelser-opphor/i18n/nb';
 import { andreLivsoppholdsytelserMessages_nb } from '../modules/oppgavepaneler/andre-livsoppholdsytelser-periode/i18n/nb';
+import { avvikRegisterinntektMessages_nb } from '../modules/oppgavepaneler/avvik-registerinntekt/i18n/nb';
 import { bostedVilkårOpphørMessages_nb } from '../modules/oppgavepaneler/bostedsvilkar-opphor/i18n/nb';
 import { bostedVilkårMessages_nb } from '../modules/oppgavepaneler/bostedsvilkar-periode/i18n/nb';
 import { endretSluttdatoMessages_nb } from '../modules/oppgavepaneler/endret-sluttdato/i18n/nb';

@@ -28,6 +28,19 @@ const scenarioArgType = {
     options: AVVIK_SCENARIO_OPTIONS,
 };
 
+export const Ubesvart: Story = {
+    name: 'Ubesvart',
+    argTypes: { scenario: scenarioArgType },
+    args: { scenario: 'Én arbeidsgiver' },
+    parameters: { controls: { include: ['scenario'] } },
+    render: ({ scenario }) => (
+        <AvvikRegisterinntektOppgavePanel
+            oppgave={lagOppgaveMedScenario(mockAvvikRegisterinntektUPY, scenario)}
+            navn="SNODIG VAFFEL"
+        />
+    ),
+};
+
 export const Forsidevisning: Story = {
     name: 'Forsidevisning',
     parameters: { controls: { disable: true } },
@@ -54,19 +67,6 @@ export const Forsidevisning: Story = {
                 />
             </VStack>
         </VStack>
-    ),
-};
-
-export const Ubesvart: Story = {
-    name: 'Ubesvart',
-    argTypes: { scenario: scenarioArgType },
-    args: { scenario: 'Én arbeidsgiver' },
-    parameters: { controls: { include: ['scenario'] } },
-    render: ({ scenario }) => (
-        <AvvikRegisterinntektOppgavePanel
-            oppgave={lagOppgaveMedScenario(mockAvvikRegisterinntektUPY, scenario)}
-            navn="SNODIG VAFFEL"
-        />
     ),
 };
 

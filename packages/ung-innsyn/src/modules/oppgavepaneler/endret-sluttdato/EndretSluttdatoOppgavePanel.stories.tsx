@@ -16,6 +16,12 @@ export default meta;
 
 type Story = StoryObj<{ variant?: string }>;
 
+export const Ubesvart: Story = {
+    name: 'Ubesvart',
+    parameters: { controls: { disable: true } },
+    render: () => <EndretSluttdatoOppgavePanel oppgave={mockEndretSluttdatoUPY} navn="SNODIG VAFFEL" />,
+};
+
 export const Forsidevisning: Story = {
     name: 'Forsidevisning',
     parameters: { controls: { disable: true } },
@@ -43,12 +49,6 @@ export const Forsidevisning: Story = {
             </VStack>
         </VStack>
     ),
-};
-
-export const Ubesvart: Story = {
-    name: 'Ubesvart',
-    parameters: { controls: { disable: true } },
-    render: () => <EndretSluttdatoOppgavePanel oppgave={mockEndretSluttdatoUPY} navn="SNODIG VAFFEL" />,
 };
 
 export const Kvittering: Story = {

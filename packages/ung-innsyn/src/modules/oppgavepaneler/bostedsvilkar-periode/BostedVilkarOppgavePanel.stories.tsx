@@ -33,6 +33,21 @@ const kildeArgType = {
     options: BOSTED_KILDE_SCENARIO_OPTIONS,
 };
 
+export const Ubesvart: Story = {
+    name: 'Ubesvart',
+    argTypes: { årsak: årsakArgType, kilde: kildeArgType },
+    args: {
+        årsak: BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
+        kilde: BostedsavklaringKildeType.FOLKEREGISTER,
+    },
+    parameters: { controls: { include: ['årsak', 'kilde'] } },
+    render: ({ årsak, kilde }) => (
+        <BostedVilkårOppgavePanel
+            oppgave={lagOppgaveMedÅrsak(mockBostedVilkårAKT, årsak, kilde)}
+            navn="SNODIG VAFFEL"
+        />
+    ),
+};
 export const Forsidevisning: Story = {
     name: 'Forsidevisning',
     parameters: { controls: { disable: true } },
@@ -61,23 +76,6 @@ export const Forsidevisning: Story = {
         </VStack>
     ),
 };
-
-export const Ubesvart: Story = {
-    name: 'Ubesvart',
-    argTypes: { årsak: årsakArgType, kilde: kildeArgType },
-    args: {
-        årsak: BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
-        kilde: BostedsavklaringKildeType.FOLKEREGISTER,
-    },
-    parameters: { controls: { include: ['årsak', 'kilde'] } },
-    render: ({ årsak, kilde }) => (
-        <BostedVilkårOppgavePanel
-            oppgave={lagOppgaveMedÅrsak(mockBostedVilkårAKT, årsak, kilde)}
-            navn="SNODIG VAFFEL"
-        />
-    ),
-};
-
 export const Kvittering: Story = {
     name: 'Kvittering',
     argTypes: { årsak: årsakArgType, kilde: kildeArgType },

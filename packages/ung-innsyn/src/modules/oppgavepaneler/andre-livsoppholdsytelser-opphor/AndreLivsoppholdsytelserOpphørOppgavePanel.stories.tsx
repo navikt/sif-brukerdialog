@@ -41,6 +41,22 @@ const kildeArgType = {
     options: ANDRE_LIVSOPPHOLDSYTELSER_OPPHØR_KILDE_SCENARIO_OPTIONS,
 };
 
+export const Ubesvart: Story = {
+    name: 'Ubesvart',
+    argTypes: { årsak: årsakArgType, kilde: kildeArgType },
+    args: {
+        årsak: AndreLivsoppholdsytelserIkkeOppfyltÅrsak.MOTTAR_ANNEN_YTELSE,
+        kilde: AndreLivsoppholdsytelserAvklaringKildeType.ANNET,
+    },
+    parameters: { controls: { include: ['årsak', 'kilde'] } },
+    render: ({ årsak, kilde }) => (
+        <AndreLivsoppholdsytelserOpphørOppgavePanel
+            oppgave={lagOpphørOppgaveMedÅrsak(mockAndreLivsoppholdsytelserOpphørAKT, årsak, kilde)}
+            navn="SNODIG VAFFEL"
+        />
+    ),
+};
+
 export const Forsidevisning: Story = {
     name: 'Forsidevisning',
     parameters: { controls: { disable: true } },
@@ -67,22 +83,6 @@ export const Forsidevisning: Story = {
                 />
             </VStack>
         </VStack>
-    ),
-};
-
-export const Ubesvart: Story = {
-    name: 'Ubesvart',
-    argTypes: { årsak: årsakArgType, kilde: kildeArgType },
-    args: {
-        årsak: AndreLivsoppholdsytelserIkkeOppfyltÅrsak.MOTTAR_ANNEN_YTELSE,
-        kilde: AndreLivsoppholdsytelserAvklaringKildeType.ANNET,
-    },
-    parameters: { controls: { include: ['årsak', 'kilde'] } },
-    render: ({ årsak, kilde }) => (
-        <AndreLivsoppholdsytelserOpphørOppgavePanel
-            oppgave={lagOpphørOppgaveMedÅrsak(mockAndreLivsoppholdsytelserOpphørAKT, årsak, kilde)}
-            navn="SNODIG VAFFEL"
-        />
     ),
 };
 
