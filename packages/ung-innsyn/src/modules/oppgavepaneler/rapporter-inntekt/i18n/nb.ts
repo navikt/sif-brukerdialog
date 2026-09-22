@@ -7,7 +7,9 @@ export const rapporterInntektMessages_nb = {
     '@ungInnsyn.rapporterInntektOppgavetekst.intro.1': 'Gi oss beskjed hvis du hadde inntekt i {måned}.',
     '@ungInnsyn.rapporterInntektOppgavetekst.intro.2':
         'Inntekt er lønn, men det kan også være for eksempel etterbetaling, feriepenger, overtid og tillegg for ubekvem arbeidstid.',
-    '@ungInnsyn.rapporterInntektOppgavetekst.intro.delerAvMåned':
+    '@ungInnsyn.rapporterInntektOppgavetekst.intro.delerAvMåned.AKTIVITETSPENGER':
+        'Du skal gi beskjed om hele inntekten du hadde i {måned}, selv om du ikke hadde aktivitetspenger hele måneden.',
+    '@ungInnsyn.rapporterInntektOppgavetekst.intro.delerAvMåned.UNGDOMSYTELSE':
         'Du skal gi beskjed om hele inntekten du hadde i {måned}, selv om du ikke hadde ungdomsprogramytelsen hele måneden.',
     '@ungInnsyn.rapporterInntektOppgave.readMore.tittel': 'Les mer om inntekt',
     '@ungInnsyn.rapporterInntektOppgave.readMore.tekst.1':

@@ -137,11 +137,7 @@ const rader: Rad[] = [
                     mockAndreLivsoppholdsytelserOpphørAKT,
                     mockAndreLivsoppholdsytelserOpphørBesvartAKT,
                     (oppgave, opts) => (
-                        <AndreLivsoppholdsytelserOpphørOppgavePanel
-                            oppgave={oppgave}
-                            navn="SNODIG VAFFEL"
-                            {...opts}
-                        />
+                        <AndreLivsoppholdsytelserOpphørOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />
                     ),
                 )}
             </PanelPreviewWrapper>
