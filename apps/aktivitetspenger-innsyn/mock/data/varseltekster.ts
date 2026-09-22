@@ -1,6 +1,4 @@
-import {
-    BostedsvilkårIkkeOppfyltÅrsak,
-} from '@navikt/ung-brukerdialog-api';
+import { BostedsvilkårIkkeOppfyltÅrsak } from '@navikt/ung-brukerdialog-api';
 import { dateFormatter, ISODate } from '@sif/utils';
 
 /** Bosted opphør */
@@ -42,13 +40,11 @@ const getBostedVilkårPeriodeOppgaveVarseltekst = (
     return tekst.replace('{periode}', periodeTekst);
 };
 
-const getAndreLivsoppholdsytelserOppgaveVarseltekst = (
-    periode: { from: ISODate; to: ISODate },
-): string => {
+const getAndreLivsoppholdsytelserOppgaveVarseltekst = (periode: { from: ISODate; to: ISODate }): string => {
     const formatertFom = dateFormatter.compact(periode.from);
     const formatertTom = dateFormatter.compact(periode.to);
     const periodeTekst = `${formatertFom} - ${formatertTom}`;
-    return 'Vi har fått opplysninger om at du i perioden {periode} mottar arbeidsavklaringspenger. Du kan ikke få ungdomsprogramytelse samtidig som du mottar arbeidsavklaringspenger.'.replace(
+    return 'Vi har fått opplysninger om at du i perioden {periode} mottar arbeidsavklaringspenger. Du kan ikke få aktivitetspenger samtidig som du mottar arbeidsavklaringspenger.'.replace(
         '{periode}',
         periodeTekst,
     );
@@ -56,7 +52,7 @@ const getAndreLivsoppholdsytelserOppgaveVarseltekst = (
 
 const getAndreLivsoppholdsytelserOpphørOppgaveVarseltekst = (fom: ISODate): string => {
     const formatertFom = dateFormatter.compact(fom);
-    return 'Vi har fått opplysninger om at du fra {fom} mottar arbeidsavklaringspenger. Du kan ikke få ungdomsprogramytelse samtidig som du mottar arbeidsavklaringspenger.'.replace(
+    return 'Vi har fått opplysninger om at du fra {fom} mottar arbeidsavklaringspenger. Du kan ikke få aktivitetspenger samtidig som du mottar arbeidsavklaringspenger.'.replace(
         '{fom}',
         formatertFom,
     );

@@ -11,27 +11,27 @@ import dayjs from 'dayjs';
 
 const andreLivsoppholdsytelserOppgaveTekster = {
     MOTTAR_ARBEIDSAVKLARINGSPENGER:
-        'Vi har fått opplysninger om at du i perioden {periode} mottar arbeidsavklaringspenger. Du kan ikke få ungdomsprogramytelse samtidig som du mottar arbeidsavklaringspenger.',
+        'Vi har fått opplysninger om at du i perioden {periode} mottar arbeidsavklaringspenger. Du kan ikke få aktivitetspenger samtidig som du mottar arbeidsavklaringspenger.',
     MOTTAR_TILTAKSPENGER:
-        'Vi har fått opplysninger om at du i perioden {periode} mottar tiltakspenger. Du kan ikke få ungdomsprogramytelse samtidig som du mottar tiltakspenger.',
+        'Vi har fått opplysninger om at du i perioden {periode} mottar tiltakspenger. Du kan ikke få aktivitetspenger samtidig som du mottar tiltakspenger.',
     MOTTAR_KVALIFISERINGSSTØNAD:
-        'Vi har fått opplysninger om at du i perioden {periode} mottar kvalifiseringsstønad. Du kan ikke få ungdomsprogramytelse samtidig som du mottar kvalifiseringsstønad.',
+        'Vi har fått opplysninger om at du i perioden {periode} mottar kvalifiseringsstønad. Du kan ikke få aktivitetspenger samtidig som du mottar kvalifiseringsstønad.',
     MOTTAR_DAGPENGER:
-        'Vi har fått opplysninger om at du i perioden {periode} mottar dagpenger. Du kan ikke få ungdomsprogramytelse samtidig som du mottar dagpenger.',
+        'Vi har fått opplysninger om at du i perioden {periode} mottar dagpenger. Du kan ikke få aktivitetspenger samtidig som du mottar dagpenger.',
     MOTTAR_FORELDREPENGER:
-        'Vi har fått opplysninger om at du i perioden {periode} mottar foreldrepenger. Du kan ikke få ungdomsprogramytelse samtidig som du mottar foreldrepenger.',
+        'Vi har fått opplysninger om at du i perioden {periode} mottar foreldrepenger. Du kan ikke få aktivitetspenger samtidig som du mottar foreldrepenger.',
     MOTTAR_SVANGERSKAPSPENGER:
-        'Vi har fått opplysninger om at du i perioden {periode} mottar svangerskapspenger. Du kan ikke få ungdomsprogramytelse samtidig som du mottar svangerskapspenger.',
+        'Vi har fått opplysninger om at du i perioden {periode} mottar svangerskapspenger. Du kan ikke få aktivitetspenger samtidig som du mottar svangerskapspenger.',
     MOTTAR_UFØRETRYGD:
-        'Vi har fått opplysninger om at du i perioden {periode} mottar uføretrygd. Du kan ikke få ungdomsprogramytelse samtidig som du mottar uføretrygd.',
+        'Vi har fått opplysninger om at du i perioden {periode} mottar uføretrygd. Du kan ikke få aktivitetspenger samtidig som du mottar uføretrygd.',
     MOTTAR_INTRODUKSJONSSTØNAD:
-        'Vi har fått opplysninger om at du i perioden {periode} mottar introduksjonsstønad. Du kan ikke få ungdomsprogramytelse samtidig som du mottar introduksjonsstønad.',
+        'Vi har fått opplysninger om at du i perioden {periode} mottar introduksjonsstønad. Du kan ikke få aktivitetspenger samtidig som du mottar introduksjonsstønad.',
     MOTTAR_BARNEPENSJON:
-        'Vi har fått opplysninger om at du i perioden {periode} mottar barnepensjon. Du kan ikke få ungdomsprogramytelse samtidig som du mottar barnepensjon.',
+        'Vi har fått opplysninger om at du i perioden {periode} mottar barnepensjon. Du kan ikke få aktivitetspenger samtidig som du mottar barnepensjon.',
     MOTTAR_ANNEN_YTELSE:
-        'Vi har fått opplysninger om at du i perioden {periode} mottar en annen livsoppholdsytelse. Du kan ikke få ungdomsprogramytelse samtidig som du mottar denne ytelsen.',
+        'Vi har fått opplysninger om at du i perioden {periode} mottar en annen livsoppholdsytelse. Du kan ikke få aktivitetspenger samtidig som du mottar denne ytelsen.',
     UDEFINERT:
-        'Vi har fått opplysninger om at du i perioden {periode} mottar en livsoppholdsytelse. Du kan ikke få ungdomsprogramytelse samtidig som du mottar denne ytelsen.',
+        'Vi har fått opplysninger om at du i perioden {periode} mottar en livsoppholdsytelse. Du kan ikke få aktivitetspenger samtidig som du mottar denne ytelsen.',
 } satisfies Record<AndreLivsoppholdsytelserIkkeOppfyltÅrsak, string>;
 
 /**
@@ -43,8 +43,9 @@ export const ANDRE_LIVSOPPHOLDSYTELSER_ÅRSAK_SCENARIO_OPTIONS = Object.keys(
 ) as AndreLivsoppholdsytelserIkkeOppfyltÅrsak[];
 
 /** Alle kildeverdier skal alltid være med i scenario-listen. */
-export const ANDRE_LIVSOPPHOLDSYTELSER_KILDE_SCENARIO_OPTIONS = Object.values(AndreLivsoppholdsytelserAvklaringKildeType);
-
+export const ANDRE_LIVSOPPHOLDSYTELSER_KILDE_SCENARIO_OPTIONS = Object.values(
+    AndreLivsoppholdsytelserAvklaringKildeType,
+);
 
 const getVarselTekst = (
     periode: { from: ISODate; to: ISODate },
