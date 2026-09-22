@@ -103,6 +103,7 @@ const rader: Rad[] = [
             </PanelPreviewWrapper>
         ),
     },
+
     {
         parsedType: ParsedOppgavetype.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
         kilder: [
