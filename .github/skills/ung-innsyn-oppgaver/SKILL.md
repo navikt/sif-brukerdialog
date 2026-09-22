@@ -157,7 +157,8 @@ Ved oppgaver med periode og opphør skal mockene ha separate DTO-er:
 
 **Vilkårsoppgavene (bosted, andre livsoppholdsytelser)** har én `ParsedOppgavetype` hver, selv om backend
 skiller mellom avslag i en periode og opphør fra en dato. Grunnen er at datoene er innbakt i `varseltekst`
-fra backend og utelates i parseren — dermed er dataene og tekstene identiske for de to variantene.
+fra backend og utelates som egne felter i parseren — dermed har de to variantene samme parsede struktur
+(samme interface og felter), men ulikt innhold i `varseltekst` (periode med fom/tom vs. opphør med kun fom).
 Varianten er derfor kun synlig som ulik `varseltekst`, og dekkes i Storybook via en `varselvariant`-kontroll.
 
 ---

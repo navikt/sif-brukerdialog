@@ -79,7 +79,7 @@ export interface EndretStartdatoOppgave extends ParsedOppgaveBase {
     };
     respons?: SvarPåVarselRespons;
 }
-/** Dekker både avslag i en periode og opphør fra en dato. */
+/** Dekker både avslag i en periode og opphør fra en dato pga bosted endring. */
 export interface BostedVilkårOppgave extends ParsedOppgaveBase {
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED;
     oppgavetypeData: ParsedVilkårOppgavetypeData<BekreftBostedOppgavetypeDataDto>;
