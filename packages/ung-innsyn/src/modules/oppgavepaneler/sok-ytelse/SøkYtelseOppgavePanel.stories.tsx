@@ -9,7 +9,7 @@ import { SøkYtelseOppgavePanel } from './SokYtelseOppgavePanel';
 import { mockSøkYtelseBesvartUPY, mockSøkYtelseUPY } from './SøkYtelseOppgavePanel.mockData';
 
 const meta: Meta = {
-    title: 'Oppgaver/Ungdomsprogramytelsen/Søk ytelsen',
+    title: 'Oppgaver/3. Ungdomsprogramytelsen/Søk ytelsen',
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
 export default meta;
@@ -22,11 +22,15 @@ export const Forsidevisning: Story = {
     render: () => (
         <VStack gap="space-40">
             <VStack gap="space-16">
-                <Heading level="2" size="medium">Uløst oppgave</Heading>
+                <Heading level="2" size="medium">
+                    Uløst oppgave
+                </Heading>
                 <OppgaverList oppgaver={[mockSøkYtelseUPY]} />
             </VStack>
             <VStack gap="space-16">
-                <Heading level="2" size="medium">Løste oppgaver</Heading>
+                <Heading level="2" size="medium">
+                    Løste oppgaver
+                </Heading>
                 <OppgaverList
                     visBeskrivelse={false}
                     oppgaveStatusTagVariant="text"
@@ -50,7 +54,9 @@ export const Ubesvart: Story = {
 export const Besvart: Story = {
     name: 'Besvart',
     parameters: { controls: { disable: true } },
-    render: () => <SøkYtelseOppgavePanel oppgave={mockSøkYtelseBesvartUPY} dokumentarkivUrl="https://example.com/docs" />,
+    render: () => (
+        <SøkYtelseOppgavePanel oppgave={mockSøkYtelseBesvartUPY} dokumentarkivUrl="https://example.com/docs" />
+    ),
 };
 
 export const Utløpt: Story = {

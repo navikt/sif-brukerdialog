@@ -61,7 +61,8 @@ export const lagOppgaveMedInntekt = (
 
 // ─── Scenariovarianter ───────────────────────────────────────────────────────
 
-export type AvvikScenario = 'Én arbeidsgiver' | 'To arbeidsgivere' | 'Kun Nav-ytelse' | 'Arbeidsgiver og Nav-ytelse' | 'Ingen inntekt';
+export type AvvikScenario =
+    'Én arbeidsgiver' | 'To arbeidsgivere' | 'Kun Nav-ytelse' | 'Arbeidsgiver og Nav-ytelse' | 'Ingen inntekt';
 
 export const AVVIK_SCENARIO_OPTIONS: AvvikScenario[] = [
     'Én arbeidsgiver',
@@ -76,15 +77,20 @@ export const lagOppgaveMedScenario = (
     scenario: AvvikScenario,
 ): AvvikRegisterinntektOppgave => {
     switch (scenario) {
-        case 'Én arbeidsgiver':           return lagOppgaveMedInntekt(base, [inntektArbeidsgiver1]);
-        case 'To arbeidsgivere':          return lagOppgaveMedInntekt(base, [inntektArbeidsgiver1, inntektArbeidsgiver2]);
-        case 'Kun Nav-ytelse':            return lagOppgaveMedInntekt(base, undefined, [inntektYtelse1]);
-        case 'Arbeidsgiver og Nav-ytelse':return lagOppgaveMedInntekt(base, [inntektArbeidsgiver1], [inntektYtelse1]);
-        case 'Ingen inntekt':             return lagOppgaveMedInntekt(base, [], []);
+        case 'Én arbeidsgiver':
+            return lagOppgaveMedInntekt(base, [inntektArbeidsgiver1]);
+        case 'To arbeidsgivere':
+            return lagOppgaveMedInntekt(base, [inntektArbeidsgiver1, inntektArbeidsgiver2]);
+        case 'Kun Nav-ytelse':
+            return lagOppgaveMedInntekt(base, undefined, [inntektYtelse1]);
+        case 'Arbeidsgiver og Nav-ytelse':
+            return lagOppgaveMedInntekt(base, [inntektArbeidsgiver1], [inntektYtelse1]);
+        case 'Ingen inntekt':
+            return lagOppgaveMedInntekt(base, [], []);
     }
 };
 
-export const mockAvvikRegisterinntektUPY: AvvikRegisterinntektOppgave = {
+export const lagAvvikRegisterinntektOppgave = (ytelsetype: OppgaveYtelsetype): AvvikRegisterinntektOppgave => ({
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
     oppgavetype: OppgaveType.BEKREFT_AVVIK_REGISTERINNTEKT,
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT,
@@ -97,24 +103,12 @@ export const mockAvvikRegisterinntektUPY: AvvikRegisterinntektOppgave = {
     status: OppgaveStatus.ULØST,
     opprettetDato: dayjs().subtract(1, 'days').toDate(),
     frist: dateToISODate(dayjs().add(14, 'days')),
-    ytelsetype: OppgaveYtelsetype.UNGDOMSYTELSE,
-};
+    ytelsetype,
+});
 
-export const mockAvvikRegisterinntektBesvartUPY: AvvikRegisterinntektOppgave = {
-    ...mockAvvikRegisterinntektUPY,
+export const lagAvvikRegisterinntektBesvartOppgave = (ytelsetype: OppgaveYtelsetype): AvvikRegisterinntektOppgave => ({
+    ...lagAvvikRegisterinntektOppgave(ytelsetype),
     respons: { type: 'VARSEL_SVAR', harUttalelse: false },
     status: OppgaveStatus.LØST,
     løstDato: dayjs().toDate(),
-};
-
-// ─── AKT-mocks ───────────────────────────────────────────────────────────────
-
-export const mockAvvikRegisterinntektAKT: AvvikRegisterinntektOppgave = {
-    ...mockAvvikRegisterinntektUPY,
-    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
-};
-
-export const mockAvvikRegisterinntektBesvartAKT: AvvikRegisterinntektOppgave = {
-    ...mockAvvikRegisterinntektBesvartUPY,
-    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
-};
+});

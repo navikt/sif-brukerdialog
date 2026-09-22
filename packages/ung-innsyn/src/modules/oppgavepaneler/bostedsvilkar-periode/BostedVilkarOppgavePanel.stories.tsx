@@ -15,7 +15,7 @@ import {
 } from './BostedVilkarOppgavePanel.mockData';
 
 const meta: Meta = {
-    title: 'Oppgaver/Aktivitetspenger/Opphør/Bosted periode',
+    title: 'Oppgaver/2. Aktivitetspenger/Bosted periode',
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
 export default meta;

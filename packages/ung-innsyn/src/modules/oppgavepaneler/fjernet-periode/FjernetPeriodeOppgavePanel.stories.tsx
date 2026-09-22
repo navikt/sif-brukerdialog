@@ -9,7 +9,7 @@ import { FjernetPeriodeOppgavePanel } from './FjernetPeriodeOppgavePanel';
 import { mockFjernetPeriodeBesvartUPY, mockFjernetPeriodeUPY } from './FjernetPeriodeOppgavePanel.mockData';
 
 const meta: Meta = {
-    title: 'Oppgaver/Ungdomsprogramytelsen/Fjernet periode',
+    title: 'Oppgaver/3. Ungdomsprogramytelsen/Fjernet periode',
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
 export default meta;

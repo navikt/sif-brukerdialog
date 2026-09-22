@@ -9,7 +9,7 @@ import { MeldtUtOppgavePanel } from './MeldtUtOppgavePanel';
 import { mockMeldtUtBesvartUPY, mockMeldtUtUPY } from './MeldtUtOppgavePanel.mockData';
 
 const meta: Meta = {
-    title: 'Oppgaver/Ungdomsprogramytelsen/Meldt ut',
+    title: 'Oppgaver/3. Ungdomsprogramytelsen/Meldt ut',
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
 export default meta;

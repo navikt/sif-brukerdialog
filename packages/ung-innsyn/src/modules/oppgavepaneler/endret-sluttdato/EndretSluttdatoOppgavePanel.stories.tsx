@@ -9,7 +9,7 @@ import { EndretSluttdatoOppgavePanel } from './EndretSluttdatoOppgavePanel';
 import { mockEndretSluttdatoBesvartUPY, mockEndretSluttdatoUPY } from './EndretSluttdatoOppgavePanel.mockData';
 
 const meta: Meta = {
-    title: 'Oppgaver/Ungdomsprogramytelsen/Endret sluttdato',
+    title: 'Oppgaver/3. Ungdomsprogramytelsen/Endret sluttdato',
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
 export default meta;

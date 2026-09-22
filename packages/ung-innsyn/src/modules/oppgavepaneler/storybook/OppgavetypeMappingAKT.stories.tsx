@@ -9,9 +9,9 @@ import { Lovlenke, OPPGAVE_LOVVERK } from '../oppgaveLovverk';
 import { AvvikRegisterinntektOppgavePanel } from '../avvik-registerinntekt/AvvikRegisterinntektOppgavePanel';
 import {
     inntektArbeidsgiver1,
+    lagAvvikRegisterinntektBesvartOppgave,
+    lagAvvikRegisterinntektOppgave,
     lagOppgaveMedInntekt,
-    mockAvvikRegisterinntektAKT,
-    mockAvvikRegisterinntektBesvartAKT,
 } from '../avvik-registerinntekt/AvvikRegisterinntektOppgavePanel.mockData';
 import { BostedVilkårOpphørOppgavePanel } from '../bostedsvilkar-opphor/BostedVilkarOpphorOppgavePanel';
 import {
@@ -35,15 +35,15 @@ import {
 } from '../andre-livsoppholdsytelser-periode/AndreLivsoppholdsytelserOppgavePanel.mockData';
 import { RapporterInntektOppgavePanel } from '../rapporter-inntekt/RapporterInntektOppgavePanel';
 import {
+    lagRapporterInntektBesvartOppgave,
+    lagRapporterInntektOppgave,
     lagRapporterInntektOppgaveMedScenario,
-    mockRapporterInntektAKT,
-    mockRapporterInntektBesvartAKT,
 } from '../rapporter-inntekt/RapporterInntektOppgavePanel.mockData';
 import { IntlDecorator } from '../../../storybook/IntlDecorator';
 import { ReactNode } from 'react';
 
 const meta: Meta = {
-    title: 'Oppgaver/1. Oversikt/Aktivitetspenger',
+    title: 'Oppgaver/Oversikt/Aktivitetspenger',
     decorators: [IntlDecorator],
 };
 export default meta;
@@ -64,8 +64,8 @@ const rader: Rad[] = [
         preview: (
             <PanelPreviewWrapper>
                 {renderOppgaveStandardStater(
-                    mockAvvikRegisterinntektAKT,
-                    mockAvvikRegisterinntektBesvartAKT,
+                    lagAvvikRegisterinntektOppgave(AKTIVITETSPENGER),
+                    lagAvvikRegisterinntektBesvartOppgave(AKTIVITETSPENGER),
                     (oppgave, opts) => (
                         <AvvikRegisterinntektOppgavePanel
                             oppgave={lagOppgaveMedInntekt(oppgave, [inntektArbeidsgiver1])}
@@ -149,8 +149,8 @@ const rader: Rad[] = [
         preview: (
             <PanelPreviewWrapper>
                 {renderOppgaveStandardStater(
-                    mockRapporterInntektAKT,
-                    mockRapporterInntektBesvartAKT,
+                    lagRapporterInntektOppgave(AKTIVITETSPENGER),
+                    lagRapporterInntektBesvartOppgave(AKTIVITETSPENGER),
                     (oppgave, opts) => (
                         <RapporterInntektOppgavePanel
                             oppgave={lagRapporterInntektOppgaveMedScenario(oppgave, 'Hel måned')}

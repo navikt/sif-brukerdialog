@@ -12,7 +12,7 @@ import {
 } from './EndretStartOgSluttdatoOppgavePanel.mockData';
 
 const meta: Meta = {
-    title: 'Oppgaver/Ungdomsprogramytelsen/Endret start og sluttdato',
+    title: 'Oppgaver/3. Ungdomsprogramytelsen/Endret start og sluttdato',
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
 export default meta;

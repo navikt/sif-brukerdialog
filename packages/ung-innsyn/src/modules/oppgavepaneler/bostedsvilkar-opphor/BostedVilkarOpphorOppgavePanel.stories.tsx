@@ -15,7 +15,7 @@ import {
 } from './BostedVilkarOpphorOppgavePanel.mockData';
 
 const meta: Meta = {
-    title: 'Oppgaver/Aktivitetspenger/Opphør/Bosted',
+    title: 'Oppgaver/2. Aktivitetspenger/Bosted',
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
 export default meta;

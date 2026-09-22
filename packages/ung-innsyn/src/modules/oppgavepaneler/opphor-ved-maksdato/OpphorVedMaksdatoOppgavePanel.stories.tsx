@@ -9,7 +9,7 @@ import { OpphorVedMaksdatoOppgavePanel } from './OpphorVedMaksdatoOppgavePanel';
 import { mockOpphorVedMaksdatoBesvartUPY, mockOpphorVedMaksdatoUPY } from './OpphorVedMaksdatoOppgavePanel.mockData';
 
 const meta: Meta = {
-    title: 'Oppgaver/Ungdomsprogramytelsen/Opphør ved maksdato',
+    title: 'Oppgaver/3. Ungdomsprogramytelsen/Opphør ved maksdato',
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
 export default meta;
