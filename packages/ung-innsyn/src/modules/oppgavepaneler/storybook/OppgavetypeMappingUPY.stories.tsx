@@ -10,9 +10,9 @@ import { Lovlenke, OPPGAVE_LOVVERK } from '../oppgaveLovverk';
 import { AvvikRegisterinntektOppgavePanel } from '../avvik-registerinntekt/AvvikRegisterinntektOppgavePanel';
 import {
     inntektArbeidsgiver1,
+    lagAvvikRegisterinntektBesvartOppgave,
+    lagAvvikRegisterinntektOppgave,
     lagOppgaveMedInntekt,
-    mockAvvikRegisterinntektBesvartUPY,
-    mockAvvikRegisterinntektUPY,
 } from '../avvik-registerinntekt/AvvikRegisterinntektOppgavePanel.mockData';
 import { EndretSluttdatoOppgavePanel } from '../endret-sluttdato/EndretSluttdatoOppgavePanel';
 import {
@@ -43,9 +43,9 @@ import {
 } from '../opphor-ved-maksdato/OpphorVedMaksdatoOppgavePanel.mockData';
 import { RapporterInntektOppgavePanel } from '../rapporter-inntekt/RapporterInntektOppgavePanel';
 import {
+    lagRapporterInntektBesvartOppgave,
+    lagRapporterInntektOppgave,
     lagRapporterInntektOppgaveMedScenario,
-    mockRapporterInntektBesvartUPY,
-    mockRapporterInntektUPY,
 } from '../rapporter-inntekt/RapporterInntektOppgavePanel.mockData';
 import { SøkYtelseOppgavePanel } from '../sok-ytelse/SokYtelseOppgavePanel';
 import { mockSøkYtelseBesvartUPY, mockSøkYtelseUPY } from '../sok-ytelse/SøkYtelseOppgavePanel.mockData';
@@ -53,7 +53,7 @@ import { IntlDecorator } from '../../../storybook/IntlDecorator';
 import { ReactNode } from 'react';
 
 const meta: Meta = {
-    title: 'Oppgaver/1. Oversikt/Ungdomsytelse',
+    title: 'Oppgaver/Oversikt/Ungdomsytelse',
     decorators: [IntlDecorator],
 };
 export default meta;
@@ -74,8 +74,8 @@ const rader: Rad[] = [
         preview: (
             <PanelPreviewWrapper>
                 {renderOppgaveStandardStater(
-                    mockAvvikRegisterinntektUPY,
-                    mockAvvikRegisterinntektBesvartUPY,
+                    lagAvvikRegisterinntektOppgave(UNGDOMSYTELSE),
+                    lagAvvikRegisterinntektBesvartOppgave(UNGDOMSYTELSE),
                     (oppgave, opts) => (
                         <AvvikRegisterinntektOppgavePanel
                             oppgave={lagOppgaveMedInntekt(oppgave, [inntektArbeidsgiver1])}
@@ -187,8 +187,8 @@ const rader: Rad[] = [
         preview: (
             <PanelPreviewWrapper>
                 {renderOppgaveStandardStater(
-                    mockRapporterInntektUPY,
-                    mockRapporterInntektBesvartUPY,
+                    lagRapporterInntektOppgave(UNGDOMSYTELSE),
+                    lagRapporterInntektBesvartOppgave(UNGDOMSYTELSE),
                     (oppgave, opts) => (
                         <RapporterInntektOppgavePanel
                             oppgave={lagRapporterInntektOppgaveMedScenario(oppgave, 'Hel måned')}

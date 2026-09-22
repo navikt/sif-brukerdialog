@@ -9,12 +9,18 @@ import { MeldtUtOppgavePanel } from './MeldtUtOppgavePanel';
 import { mockMeldtUtBesvartUPY, mockMeldtUtUPY } from './MeldtUtOppgavePanel.mockData';
 
 const meta: Meta = {
-    title: 'Oppgaver/Ungdomsprogramytelsen/Meldt ut',
+    title: 'Oppgaver/3. Ungdomsprogramytelsen/Meldt ut',
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
 export default meta;
 
 type Story = StoryObj<{ variant?: string }>;
+
+export const Ubesvart: Story = {
+    name: 'Ubesvart',
+    parameters: { controls: { disable: true } },
+    render: () => <MeldtUtOppgavePanel oppgave={mockMeldtUtUPY} navn="SNODIG VAFFEL" />,
+};
 
 export const Forsidevisning: Story = {
     name: 'Forsidevisning',
@@ -43,12 +49,6 @@ export const Forsidevisning: Story = {
             </VStack>
         </VStack>
     ),
-};
-
-export const Ubesvart: Story = {
-    name: 'Ubesvart',
-    parameters: { controls: { disable: true } },
-    render: () => <MeldtUtOppgavePanel oppgave={mockMeldtUtUPY} navn="SNODIG VAFFEL" />,
 };
 
 export const Kvittering: Story = {

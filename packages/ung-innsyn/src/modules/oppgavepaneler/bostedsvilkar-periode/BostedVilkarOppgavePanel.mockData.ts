@@ -9,19 +9,6 @@ import { BostedVilkårPeriodeOppgave, ParsedOppgavetype } from '@sif/api/ung-bru
 import { dateFormatter, dateToISODate, ISODate } from '@sif/utils';
 import dayjs from 'dayjs';
 
-export const BOSTED_ÅRSAK_SCENARIO_OPTIONS: BostedsvilkårIkkeOppfyltÅrsak[] = [
-    BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
-    BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSTEDSADRESSE_OG_IKKE_FOLKEREGISTRERT_I_TRONDHEIM,
-    BostedsvilkårIkkeOppfyltÅrsak.STUDIE_ELLER_ARBEIDSSTED_UTENFOR_TRONDHEIM,
-    BostedsvilkårIkkeOppfyltÅrsak.ANNET,
-];
-
-export const BOSTED_KILDE_SCENARIO_OPTIONS: BostedsavklaringKildeType[] = [
-    BostedsavklaringKildeType.FOLKEREGISTER,
-    BostedsavklaringKildeType.BRUKER,
-    BostedsavklaringKildeType.ANNET,
-];
-
 const bostedVilkårPeriodeOppgaveTekster = {
     IKKE_BOSATTADRESSE_I_TRONDHEIM:
         'Vi har fått opplysninger om at du i perioden {periode} ikke bor i Trondheim kommune. Du må ha bostedsadresse i Trondheim kommune for å få aktivitetspenger.',
@@ -30,7 +17,21 @@ const bostedVilkårPeriodeOppgaveTekster = {
     STUDIE_ELLER_ARBEIDSSTED_UTENFOR_TRONDHEIM:
         'Vi har fått opplysninger om at du i perioden {periode} ikke har studie- eller arbeidssted i Trondheim kommune. Du må bo i Trondheim kommune for å få aktivitetspenger.',
     ANNET: 'Vi har fått opplysninger om at du i perioden {periode} ikke bor i Trondheim kommune. Du må bo i Trondheim kommune for å få aktivitetspenger.',
-};
+    UDEFINERT:
+        'Vi har fått opplysninger om at du i perioden {periode} ikke bor i Trondheim kommune. Du må bo i Trondheim kommune for å få aktivitetspenger.',
+} satisfies Record<BostedsvilkårIkkeOppfyltÅrsak, string>;
+
+/**
+ * Utledet fra tekstoppslaget over, som er `satisfies`-sjekket mot enumet.
+ * Garanterer at scenario-listen alltid dekker alle årsaker uten manuell synkronisering.
+ */
+export const BOSTED_ÅRSAK_SCENARIO_OPTIONS = Object.keys(
+    bostedVilkårPeriodeOppgaveTekster,
+) as BostedsvilkårIkkeOppfyltÅrsak[];
+
+/** Alle kildeverdier skal alltid være med i scenario-listen. */
+export const BOSTED_KILDE_SCENARIO_OPTIONS = Object.values(BostedsavklaringKildeType);
+
 
 const getVarselTekst = (periode: { from: ISODate; to: ISODate }, årsak: BostedsvilkårIkkeOppfyltÅrsak): string => {
     const formatertFom = dateFormatter.compact(periode.from);

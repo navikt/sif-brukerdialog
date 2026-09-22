@@ -113,7 +113,7 @@ export const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                 <BodyLong weight="semibold">
                     <UngInnsynText id="@ungInnsyn.avvikRegisterinntektOppgavetekst.5" />
                 </BodyLong>
-                <BodyLong spacing>
+                <BodyLong spacing weight="semibold">
                     <UngInnsynText id="@ungInnsyn.avvikRegisterinntektOppgavetekst.6" values={{ formatertFrist }} />
                 </BodyLong>
                 <BodyLong>
