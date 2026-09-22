@@ -1,12 +1,9 @@
 import { DateRange, ISODate, OpenDateRange } from '@sif/utils';
 import {
     BekreftAndreLivsoppholdsytelserOppgavetypeDataDto,
-    BekreftAndreLivsoppholdsytelserOpphørOppgavetypeDataDto,
     BekreftBostedOppgavetypeDataDto,
-    BekreftBostedOpphørOppgavetypeDataDto,
     BrukerdialogOppgaveDto,
     OppgaveStatus,
-    OppgaveYtelsetype,
     RapportertInntektDto,
     RegisterinntektDto,
     SvarPåVarselDto,
@@ -14,9 +11,7 @@ import {
 
 export enum ParsedOppgavetype {
     BEKREFT_BOSTED = 'BEKREFT_BOSTED',
-    BEKREFT_BOSTED_OPPHØR = 'BEKREFT_BOSTED_OPPHØR',
     BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER = 'BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER',
-    BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER_OPPHØR = 'BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER_OPPHØR',
     BEKREFT_OPPHOR_VED_MAKSDATO = 'BEKREFT_OPPHOR_VED_MAKSDATO',
     BEKREFT_AVVIK_REGISTERINNTEKT = 'BEKREFT_AVVIK_REGISTERINNTEKT',
     BEKREFT_ENDRET_STARTDATO = 'BEKREFT_ENDRET_STARTDATO',
@@ -35,6 +30,22 @@ export type RapportertInntektRespons = RapportertInntektDto & {
 export type SvarPåVarselRespons = SvarPåVarselDto & {
     type: 'VARSEL_SVAR';
 };
+
+/**
+ * Vilkårsoppgaver (bosted, andre livsoppholdsytelser) viser kun årsak, kilde og varseltekst
+ * til bruker. Datoene fra backend er allerede innbakt i varselteksten, og utelates her slik at
+ * de ikke spres videre til frontend.
+ *
+ * Backend skiller mellom avslag i en periode og opphør fra en dato, men siden datoene utelates
+ * blir dataene identiske. Derfor har vi kun én oppgavetype per vilkår i frontend.
+ */
+type ParsedVilkårOppgavetypeData<TOppgavetypeDataDto> = Omit<
+    TOppgavetypeDataDto,
+    'erBosattITrondheim' | 'fom' | 'tom' | 'varseltekst'
+> & {
+    varseltekst: string;
+};
+
 export interface ParsedOppgaveBase extends Omit<
     BrukerdialogOppgaveDto,
     'oppgavetypeData' | 'respons' | 'frist' | 'løstDato' | 'opprettetDato'
@@ -70,39 +81,17 @@ export interface EndretStartdatoOppgave extends ParsedOppgaveBase {
     };
     respons?: SvarPåVarselRespons;
 }
-export interface BostedVilkårPeriodeOppgave extends ParsedOppgaveBase {
+/** Dekker både avslag i en periode og opphør fra en dato. */
+export interface BostedVilkårOppgave extends ParsedOppgaveBase {
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED;
-    oppgavetypeData: Omit<BekreftBostedOppgavetypeDataDto, 'fom' | 'tom'> & {
-        periode: DateRange;
-        varseltekst: string;
-    };
+    oppgavetypeData: ParsedVilkårOppgavetypeData<BekreftBostedOppgavetypeDataDto>;
     respons?: SvarPåVarselRespons;
 }
 
-export interface BostedVilkårOpphørOppgave extends ParsedOppgaveBase {
-    parsedOppgavetype: ParsedOppgavetype.BEKREFT_BOSTED_OPPHØR;
-    oppgavetypeData: Omit<BekreftBostedOpphørOppgavetypeDataDto, 'fom'> & {
-        fom: ISODate;
-        varseltekst: string;
-    };
-    respons?: SvarPåVarselRespons;
-}
-
+/** Dekker både avslag i en periode og opphør fra en dato. */
 export interface AndreLivsoppholdsytelserOppgave extends ParsedOppgaveBase {
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER;
-    oppgavetypeData: Omit<BekreftAndreLivsoppholdsytelserOppgavetypeDataDto, 'fom' | 'tom'> & {
-        periode: DateRange;
-        varseltekst: string;
-    };
-    respons?: SvarPåVarselRespons;
-}
-
-export interface AndreLivsoppholdsytelserOpphørOppgave extends ParsedOppgaveBase {
-    parsedOppgavetype: ParsedOppgavetype.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER_OPPHØR;
-    oppgavetypeData: Omit<BekreftAndreLivsoppholdsytelserOpphørOppgavetypeDataDto, 'fom'> & {
-        fom: ISODate;
-        varseltekst: string;
-    };
+    oppgavetypeData: ParsedVilkårOppgavetypeData<BekreftAndreLivsoppholdsytelserOppgavetypeDataDto>;
     respons?: SvarPåVarselRespons;
 }
 
@@ -153,16 +142,13 @@ export type BekreftelseOppgave =
     | FjernetPeriodeOppgave
     | MeldtUtOppgave
     | OpphorVedMaksdatoOppgave
-    | BostedVilkårPeriodeOppgave
-    | BostedVilkårOpphørOppgave
+    | BostedVilkårOppgave
     | AndreLivsoppholdsytelserOppgave
-    | AndreLivsoppholdsytelserOpphørOppgave
     | (AvvikRegisterinntektOppgave & {
           respons?: SvarPåVarselRespons;
       });
 
 export interface RapporterInntektOppgave extends ParsedRapportertInntektOppgave {
-    oppgaveYtelsetype: OppgaveYtelsetype;
     parsedOppgavetype: ParsedOppgavetype.RAPPORTER_INNTEKT;
     oppgavetypeData: {
         fraOgMed: ISODate;
@@ -180,10 +166,8 @@ export interface SøkYtelseOppgave extends ParsedOppgaveBase {
 
 export type Oppgave =
     | AvvikRegisterinntektOppgave
-    | BostedVilkårPeriodeOppgave
-    | BostedVilkårOpphørOppgave
+    | BostedVilkårOppgave
     | AndreLivsoppholdsytelserOppgave
-    | AndreLivsoppholdsytelserOpphørOppgave
     | EndretSluttdatoOppgave
     | EndretStartdatoOppgave
     | EndretStartOgSluttdatoOppgave

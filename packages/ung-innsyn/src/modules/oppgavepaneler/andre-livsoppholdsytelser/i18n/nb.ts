@@ -5,7 +5,8 @@ export const andreLivsoppholdsytelserMessages_nb = {
         felles['@ungInnsyn.oppgavebekreftelse.felles.paneltittel'],
     '@ungInnsyn.oppgavetype.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER.oppgavetittel':
         felles['@ungInnsyn.oppgavebekreftelse.felles.oppgavetittel'],
-    '@ungInnsyn.oppgavetype.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER.info': felles['@ungInnsyn.oppgavebekreftelse.felles.info'],
+    '@ungInnsyn.oppgavetype.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER.info':
+        felles['@ungInnsyn.oppgavebekreftelse.felles.info'],
     '@ungInnsyn.oppgavetype.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER.harTilbakemeldingSpørsmål':
         felles['@ungInnsyn.oppgavebekreftelse.felles.harTilbakemeldingSpørsmål'],
     '@ungInnsyn.oppgavetype.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER.harIkkeUttalelseLabel':

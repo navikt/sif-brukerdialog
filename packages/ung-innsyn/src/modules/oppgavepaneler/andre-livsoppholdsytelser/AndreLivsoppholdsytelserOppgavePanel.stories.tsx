@@ -12,14 +12,16 @@ import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { AndreLivsoppholdsytelserOppgavePanel } from './AndreLivsoppholdsytelserOppgavePanel';
 import {
     ANDRE_LIVSOPPHOLDSYTELSER_KILDE_SCENARIO_OPTIONS,
+    ANDRE_LIVSOPPHOLDSYTELSER_VARIANT_SCENARIO_OPTIONS,
     ANDRE_LIVSOPPHOLDSYTELSER_ÅRSAK_SCENARIO_OPTIONS,
+    AndreLivsoppholdsytelserVarselVariant,
     lagOppgaveMedÅrsak,
     mockAndreLivsoppholdsytelserAKT,
     mockAndreLivsoppholdsytelserBesvartAKT,
 } from './AndreLivsoppholdsytelserOppgavePanel.mockData';
 
 const meta: Meta = {
-    title: 'Oppgaver/2. Aktivitetspenger/Andre livsoppholdsytelser periode',
+    title: 'Oppgaver/2. Aktivitetspenger/Andre livsoppholdsytelser',
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
 export default meta;
@@ -27,6 +29,7 @@ export default meta;
 type Args = {
     årsak: AndreLivsoppholdsytelserIkkeOppfyltÅrsak;
     kilde: AndreLivsoppholdsytelserAvklaringKildeType;
+    varselvariant: AndreLivsoppholdsytelserVarselVariant;
     variant?: string;
 };
 type Story = StoryObj<Args>;
@@ -41,17 +44,25 @@ const kildeArgType = {
     options: ANDRE_LIVSOPPHOLDSYTELSER_KILDE_SCENARIO_OPTIONS,
 };
 
+const varselvariantArgType = {
+    control: 'radio' as const,
+    options: ANDRE_LIVSOPPHOLDSYTELSER_VARIANT_SCENARIO_OPTIONS,
+};
+
+const scenarioArgs = {
+    årsak: AndreLivsoppholdsytelserIkkeOppfyltÅrsak.MOTTAR_ARBEIDSAVKLARINGSPENGER,
+    kilde: AndreLivsoppholdsytelserAvklaringKildeType.NAV,
+    varselvariant: 'Periode' as const,
+};
+
 export const Ubesvart: Story = {
     name: 'Ubesvart',
-    argTypes: { årsak: årsakArgType, kilde: kildeArgType },
-    args: {
-        årsak: AndreLivsoppholdsytelserIkkeOppfyltÅrsak.MOTTAR_ARBEIDSAVKLARINGSPENGER,
-        kilde: AndreLivsoppholdsytelserAvklaringKildeType.NAV,
-    },
-    parameters: { controls: { include: ['årsak', 'kilde'] } },
-    render: ({ årsak, kilde }) => (
+    argTypes: { årsak: årsakArgType, kilde: kildeArgType, varselvariant: varselvariantArgType },
+    args: scenarioArgs,
+    parameters: { controls: { include: ['årsak', 'kilde', 'varselvariant'] } },
+    render: ({ årsak, kilde, varselvariant }) => (
         <AndreLivsoppholdsytelserOppgavePanel
-            oppgave={lagOppgaveMedÅrsak(mockAndreLivsoppholdsytelserAKT, årsak, kilde)}
+            oppgave={lagOppgaveMedÅrsak(mockAndreLivsoppholdsytelserAKT, årsak, kilde, varselvariant)}
             navn="SNODIG VAFFEL"
         />
     ),
@@ -88,15 +99,12 @@ export const Forsidevisning: Story = {
 
 export const Kvittering: Story = {
     name: 'Kvittering',
-    argTypes: { årsak: årsakArgType, kilde: kildeArgType },
-    args: {
-        årsak: AndreLivsoppholdsytelserIkkeOppfyltÅrsak.MOTTAR_ARBEIDSAVKLARINGSPENGER,
-        kilde: AndreLivsoppholdsytelserAvklaringKildeType.NAV,
-    },
-    parameters: { controls: { include: ['årsak', 'kilde'] } },
-    render: ({ årsak, kilde }) => (
+    argTypes: { årsak: årsakArgType, kilde: kildeArgType, varselvariant: varselvariantArgType },
+    args: scenarioArgs,
+    parameters: { controls: { include: ['årsak', 'kilde', 'varselvariant'] } },
+    render: ({ årsak, kilde, varselvariant }) => (
         <AndreLivsoppholdsytelserOppgavePanel
-            oppgave={lagOppgaveMedÅrsak(mockAndreLivsoppholdsytelserAKT, årsak, kilde)}
+            oppgave={lagOppgaveMedÅrsak(mockAndreLivsoppholdsytelserAKT, årsak, kilde, varselvariant)}
             navn="SNODIG VAFFEL"
             initialVisKvittering={true}
         />
@@ -108,18 +116,15 @@ export const Besvart: Story = {
     argTypes: {
         årsak: årsakArgType,
         kilde: kildeArgType,
+        varselvariant: varselvariantArgType,
         variant: { control: 'radio', options: ['Uten tilbakemelding', 'Med tilbakemelding'] },
     },
-    args: {
-        årsak: AndreLivsoppholdsytelserIkkeOppfyltÅrsak.MOTTAR_ARBEIDSAVKLARINGSPENGER,
-        kilde: AndreLivsoppholdsytelserAvklaringKildeType.NAV,
-        variant: 'Uten tilbakemelding',
-    },
-    parameters: { controls: { include: ['årsak', 'kilde', 'variant'] } },
-    render: ({ årsak, kilde, variant }) => (
+    args: { ...scenarioArgs, variant: 'Uten tilbakemelding' },
+    parameters: { controls: { include: ['årsak', 'kilde', 'varselvariant', 'variant'] } },
+    render: ({ årsak, kilde, varselvariant, variant }) => (
         <AndreLivsoppholdsytelserOppgavePanel
             oppgave={{
-                ...lagOppgaveMedÅrsak(mockAndreLivsoppholdsytelserBesvartAKT, årsak, kilde),
+                ...lagOppgaveMedÅrsak(mockAndreLivsoppholdsytelserBesvartAKT, årsak, kilde, varselvariant),
                 respons:
                     variant === 'Med tilbakemelding'
                         ? {

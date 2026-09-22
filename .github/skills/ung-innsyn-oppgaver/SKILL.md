@@ -34,7 +34,8 @@ sif-api (ung-brukerdialog-api)
 | Fil | Formål |
 |-----|--------|
 | `@navikt/ung-brukerdialog-api` (npm) | Kilde til `OppgaveType`, `OppgaveYtelsetype`, `OppgaveStatus` |
-| `packages/sif-api/src/api/parse-utils/parseOppgaver.ts` | Parser backend-respons til `ParsedOppgave` med `parsedOppgavetype` |
+| `packages/sif-api/src/api/parse-utils/parseOppgaver.ts` | Registry som kobler backendens `OppgaveType` til riktig parser |
+| `packages/sif-api/src/api/parse-utils/oppgaver/` | Én parser per oppgavetype, pluss felles base-, respons- og vilkårshjelpere |
 | `packages/sif-api/src/types/Oppgave.ts` | `ParsedOppgavetype`-enum og alle oppgave-interfaces |
 | `src/modules/oppgavepaneler/oppgaveLovverk.ts` | Tabeller over lovverk per `OppgaveType` og `ParsedOppgavetype` |
 | `src/modules/oppgavepaneler/<type>/<Panel>.mockData.ts` | Mock-objekter (uløst + besvart) per ytelsetype |
@@ -65,7 +66,6 @@ export const OPPGAVE_LOVVERK = {
 export const OPPGAVE_LOVVERK_PARSED = {
     BEKREFT_ENDRET_STARTDATO: { UNGDOMSYTELSE: ufyFelles },
     BEKREFT_BOSTED: { AKTIVITETSPENGER: [forskriftAktivitetspenger] },
-    BEKREFT_BOSTED_OPPHØR: { AKTIVITETSPENGER: [forskriftAktivitetspenger] },
     // ...
 } satisfies Record<ParsedOppgavetype, Partial<Record<OppgaveYtelsetype, Lovlenke[]>>>;
 ```
@@ -157,15 +157,20 @@ Ved oppgaver med periode og opphør skal mockene ha separate DTO-er:
 | `BEKREFT_AVVIK_REGISTERINNTEKT` | `BEKREFT_AVVIK_REGISTERINNTEKT` direkte |
 | `RAPPORTER_INNTEKT` | `RAPPORTER_INNTEKT` direkte |
 | `SØK_YTELSE` | `SØK_YTELSE` direkte |
-| `BEKREFT_BOSTED` | `BEKREFT_BOSTED` med `oppgavetypeData.type = 'BOSTED'` |
-| `BEKREFT_BOSTED_OPPHØR` | `BEKREFT_BOSTED` med `oppgavetypeData.type = 'BOSTED_OPPHØR'` |
+| `BEKREFT_BOSTED` | `BEKREFT_BOSTED`, både `oppgavetypeData.type = 'BOSTED'` og `'BOSTED_OPPHØR'` |
+| `BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER` | `BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER`, både `'ANDRE_LIVSOPPHOLDSYTELSER'` og `'ANDRE_LIVSOPPHOLDSYTELSER_OPPHØR'` |
+
+**Vilkårsoppgavene (bosted, andre livsoppholdsytelser)** har én `ParsedOppgavetype` hver, selv om backend
+skiller mellom avslag i en periode og opphør fra en dato. Grunnen er at datoene er innbakt i `varseltekst`
+fra backend og utelates i parseren — dermed er dataene og tekstene identiske for de to variantene.
+Varianten er derfor kun synlig som ulik `varseltekst`, og dekkes i Storybook via en `varselvariant`-kontroll.
 
 ---
 
 ## Legge til en ny oppgavetype — sjekkliste
 
 1. **`oppgaveLovverk.ts`** — legg til ny `OppgaveType` i `OPPGAVE_LOVVERK` og ny `ParsedOppgavetype` i `OPPGAVE_LOVVERK_PARSED` (TypeScript krever dette pga. `satisfies`).
-2. **`parseOppgaver.ts`** — legg til parsing for ny type, definer ny `ParsedOppgavetype` i `Oppgave.ts` ved behov.
+2. **`parseOppgaver.ts`** — opprett en parser i `parse-utils/oppgaver/` og registrer den i `oppgaveParsers`. Registeret er `satisfies Record<OppgaveType, OppgaveParser>`, så en ny backend-type gir kompileringsfeil til den er registrert. Definer ny `ParsedOppgavetype` i `Oppgave.ts` ved behov.
 3. **Panelkomponent** — opprett `<Type>OppgavePanel.tsx` i ny mappe under `oppgavepaneler/`.
 4. **`.mockData.ts`** — opprett `<Type>OppgavePanel.mockData.ts` med mock-objekter (uløst + besvart) per ytelsetype. Hvis oppgavetypen har et årsak-/kilde-enum: eksporter `*_SCENARIO_OPTIONS`-arrayer som dekker **alle** verdier i det enumet (ikke bare et utvalg) — sjekk backend-enumet i `@navikt/ung-brukerdialog-api` (`types.gen.ts`) og tell antall verdier. Manglende verdier oppdages ikke av TypeScript siden `SCENARIO_OPTIONS`-arrayer ikke er `satisfies`-sjekket mot enumet, så de må verifiseres manuelt (f.eks. `grep -c "EnumNavn\." fil.ts` mot antall enum-medlemmer).
 5. **`.stories.tsx`** — opprett `<Type>OppgavePanel.stories.tsx` under riktig title (`Aktivitetspenger/` eller `Ungdomsprogramytelsen/`).
@@ -207,6 +212,8 @@ packages/ung-innsyn/src/modules/oppgavepaneler/
 
 packages/sif-api/src/api/parse-utils/
   parseOppgaver.ts
+  mapPeriodeDto.ts
+  oppgaver/                ← én parser per oppgavetype + felles hjelpere
 
 packages/sif-api/src/types/
   Oppgave.ts               ← ParsedOppgavetype-enum og oppgave-interfaces

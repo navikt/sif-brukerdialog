@@ -66,9 +66,7 @@ export const OPPGAVE_LOVVERK_PARSED = {
     RAPPORTER_INNTEKT: { UNGDOMSYTELSE: ufyFelles },
     SØK_YTELSE: { UNGDOMSYTELSE: ufyFelles },
     BEKREFT_BOSTED: {},
-    BEKREFT_BOSTED_OPPHØR: {},
     BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER: {},
-    BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER_OPPHØR: {},
 } satisfies Record<ParsedOppgavetype, Partial<Record<OppgaveYtelsetype, Lovlenke[]>>>;
 
 export const getLovLenkerForParsedType = (oppgave: {
