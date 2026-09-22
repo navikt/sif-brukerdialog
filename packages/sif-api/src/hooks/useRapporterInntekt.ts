@@ -7,8 +7,7 @@ import { rapporterInntektUngdomsytelse } from '../api/ungdomsytelse/rapporterInn
 import { ApiError } from '../utils/errorHandlers';
 
 export type InntektsrapporteringDto =
-    | aktivitetspenger.AktivitetspengerInntektsrapportering
-    | ungdomsytelse.UngdomsytelseInntektsrapportering;
+    aktivitetspenger.AktivitetspengerInntektsrapportering | ungdomsytelse.UngdomsytelseInntektsrapportering;
 
 export const useRapporterInntekt = (ytelse: OppgaveYtelsetype) => {
     return useMutation<void, ApiError, InntektsrapporteringDto>({

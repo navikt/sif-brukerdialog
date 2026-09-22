@@ -26,8 +26,7 @@ const ufyFelles = [LENKEKATALOG.arbeidsmarkedsloven_13_fjerde_ledd, LENKEKATALOG
 
 /**
  * Deklarativ tabell over hvilke lovhenvisninger som gjelder per oppgavetype og ytelse.
- * `satisfies Record<OppgaveType, ...>` sørger for at TypeScript varsler ved kompilering
- * dersom en ny OppgaveType legges til uten at tabellen oppdateres.
+ * `satisfies Record<OppgaveType, ...>` gir kompileringsfeil dersom en ny OppgaveType legges til uten at tabellen oppdateres.
  */
 export const OPPGAVE_LOVVERK = {
     BEKREFT_ENDRET_STARTDATO: { UNGDOMSYTELSE: ufyFelles },
@@ -58,7 +57,6 @@ export const OPPGAVE_LOVVERK_PARSED = {
     RAPPORTER_INNTEKT: { UNGDOMSYTELSE: ufyFelles },
     SØK_YTELSE: { UNGDOMSYTELSE: ufyFelles },
     BEKREFT_BOSTED: {},
-    BEKREFT_BOSTED_OPPHØR: {},
 } satisfies Record<ParsedOppgavetype, Partial<Record<OppgaveYtelsetype, Lovlenke[]>>>;
 
 export const getLovLenkerForParsedType = (oppgave: {
