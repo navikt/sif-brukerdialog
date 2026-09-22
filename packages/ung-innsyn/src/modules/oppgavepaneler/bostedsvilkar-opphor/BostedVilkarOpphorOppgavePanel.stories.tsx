@@ -15,7 +15,7 @@ import {
 } from './BostedVilkarOpphorOppgavePanel.mockData';
 
 const meta: Meta = {
-    title: 'Oppgaver/Aktivitetspenger/Bekreft bosted opphør',
+    title: 'Oppgaver/2. Aktivitetspenger/Bosted',
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
 export default meta;
@@ -31,6 +31,19 @@ const årsakArgType = {
 const kildeArgType = {
     control: 'radio' as const,
     options: BOSTED_OPPHØR_KILDE_SCENARIO_OPTIONS,
+};
+
+export const Ubesvart: Story = {
+    name: 'Ubesvart',
+    argTypes: { årsak: årsakArgType, kilde: kildeArgType },
+    args: { årsak: BostedsvilkårIkkeOppfyltÅrsak.ANNET, kilde: BostedsavklaringKildeType.ANNET },
+    parameters: { controls: { include: ['årsak', 'kilde'] } },
+    render: ({ årsak, kilde }) => (
+        <BostedVilkårOpphørOppgavePanel
+            oppgave={lagOpphørOppgaveMedÅrsak(mockBostedVilkårOpphørAKT, årsak, kilde)}
+            navn="SNODIG VAFFEL"
+        />
+    ),
 };
 
 export const Forsidevisning: Story = {
@@ -59,19 +72,6 @@ export const Forsidevisning: Story = {
                 />
             </VStack>
         </VStack>
-    ),
-};
-
-export const Ubesvart: Story = {
-    name: 'Ubesvart',
-    argTypes: { årsak: årsakArgType, kilde: kildeArgType },
-    args: { årsak: BostedsvilkårIkkeOppfyltÅrsak.ANNET, kilde: BostedsavklaringKildeType.ANNET },
-    parameters: { controls: { include: ['årsak', 'kilde'] } },
-    render: ({ årsak, kilde }) => (
-        <BostedVilkårOpphørOppgavePanel
-            oppgave={lagOpphørOppgaveMedÅrsak(mockBostedVilkårOpphørAKT, årsak, kilde)}
-            navn="SNODIG VAFFEL"
-        />
     ),
 };
 

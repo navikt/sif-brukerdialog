@@ -19,6 +19,7 @@ export const RapporterInntektUbesvart = ({ oppgave, navn, periode, måned, setKv
             <GuidePanel>
                 <VStack gap="space-16">
                     <RapporterInntektOppgavetekst
+                        ytelse={oppgave.ytelsetype}
                         navn={navn}
                         periode={periode}
                         svarfrist={oppgave.frist}
