@@ -214,9 +214,22 @@ describe('parseOppgaver - registeret ruter hver oppgavetype til riktig parser', 
         });
     });
 
-    it.each(ikkeStøttedeOppgavetyper)('%s kaster feil fordi oppgavetypen ikke er støttet i frontend', (oppgavetype) => {
-        expect(() =>
-            parseOppgaver([{ ...baseOppgave, oppgavetype, oppgavetypeData: { type: 'IKKE_RELEVANT' } as never }]),
-        ).toThrow();
+    it('filtrerer oppgavetyper som ikke er støttet uten å miste støttede oppgaver', () => {
+        const støttetOppgave = registryTestCases[0];
+        const result = parseOppgaver([
+            ...ikkeStøttedeOppgavetyper.map((oppgavetype) => ({
+                ...baseOppgave,
+                oppgavetype,
+                oppgavetypeData: { type: 'IKKE_RELEVANT' } as never,
+            })),
+            {
+                ...baseOppgave,
+                oppgavetype: støttetOppgave.oppgavetype,
+                oppgavetypeData: støttetOppgave.oppgavetypeData,
+            },
+        ]);
+
+        expect(result).toHaveLength(1);
+        expect(result[0].parsedOppgavetype).toBe(støttetOppgave.forventetParsedOppgavetype);
     });
 });

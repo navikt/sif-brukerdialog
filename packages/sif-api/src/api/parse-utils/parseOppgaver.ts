@@ -9,13 +9,11 @@ import { parseEndretSluttdatoOppgave, parseEndretStartdatoOppgave } from './oppg
 import { parseAvvikRegisterinntektOppgave, parseRapporterInntektOppgave } from './oppgaver/parseInntektOppgaver';
 import { parseOpphørVedMaksdatoOppgave, parseSøkYtelseOppgave } from './oppgaver/parseSokYtelseOgMaksdatoOppgave';
 
-const ikkeStøttetOppgavetype: OppgaveParser = (oppgave) => {
-    throw new Error(`Oppgavetypen er ikke støttet i frontend: ${oppgave.oppgavetype}`);
-};
+const ikkeStøttedeOppgavetyper = new Set<OppgaveType>([OppgaveType.BEKREFT_BISTAND, OppgaveType.BEKREFT_AKTIVITET]);
 
 /**
- * `satisfies Record<OppgaveType, OppgaveParser>` gjør at en ny oppgavetype fra backend
- * blir en kompileringsfeil her, i stedet for en runtime-feil hos bruker.
+ * `satisfies Record<OppgaveType, OppgaveParser | undefined>` krever at alle oppgavetyper fra backend
+ * registreres eksplisitt. Typer uten parser registreres med `undefined` og filtreres bort.
  */
 const oppgaveParsers = {
     [OppgaveType.BEKREFT_BOSTED]: parseBostedOppgave,
@@ -27,15 +25,17 @@ const oppgaveParsers = {
     [OppgaveType.RAPPORTER_INNTEKT]: parseRapporterInntektOppgave,
     [OppgaveType.SØK_YTELSE]: parseSøkYtelseOppgave,
     [OppgaveType.BEKREFT_OPPHOR_VED_MAKSDATO]: parseOpphørVedMaksdatoOppgave,
-    [OppgaveType.BEKREFT_BISTAND]: ikkeStøttetOppgavetype,
-    [OppgaveType.BEKREFT_AKTIVITET]: ikkeStøttetOppgavetype,
-} satisfies Record<OppgaveType, OppgaveParser>;
+    [OppgaveType.BEKREFT_BISTAND]: undefined,
+    [OppgaveType.BEKREFT_AKTIVITET]: undefined,
+} satisfies Record<OppgaveType, OppgaveParser | undefined>;
 
 export const parseOppgaver = (oppgaver: BrukerdialogOppgaveDto[]): Oppgave[] =>
-    oppgaver.map((oppgave) => {
-        const parseOppgave: OppgaveParser | undefined = oppgaveParsers[oppgave.oppgavetype];
-        if (!parseOppgave) {
-            throw new Error(`Ukjent oppgavetype: ${oppgave.oppgavetype}`);
-        }
-        return parseOppgave(oppgave);
-    });
+    oppgaver
+        .filter(({ oppgavetype }) => !ikkeStøttedeOppgavetyper.has(oppgavetype))
+        .map((oppgave) => {
+            const parseOppgave: OppgaveParser | undefined = oppgaveParsers[oppgave.oppgavetype];
+            if (!parseOppgave) {
+                throw new Error(`Ukjent oppgavetype: ${oppgave.oppgavetype}`);
+            }
+            return parseOppgave(oppgave);
+        });
