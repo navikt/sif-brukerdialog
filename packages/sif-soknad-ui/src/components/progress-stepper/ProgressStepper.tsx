@@ -3,7 +3,7 @@ import './progressStepper.css';
 import { ArrowLeftIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box, FormProgress, Heading, Link, VStack } from '@navikt/ds-react';
 import { StepperStepProps } from '@navikt/ds-react/Stepper';
-import { ReactNode, useEffect, useRef } from 'react';
+import { MouseEvent, ReactNode, useEffect, useRef } from 'react';
 
 import { useSifSoknadUiIntl } from '../../i18n';
 
@@ -43,7 +43,8 @@ export const ProgressStepper = ({
         }
     };
 
-    const handleBackClick = () => {
+    const handleBackClick = (evt: MouseEvent) => {
+        evt.preventDefault();
         if (onStepSelect) {
             onStepSelect(steps[currentStepIndex - 1]);
         }
