@@ -16,10 +16,7 @@ const App = () => (
                     <Heading level="1" size="large">
                         Sif brukerdialog
                     </Heading>
-                    <BodyLong>
-                        Demoer og storybooks som publiseres fra monorepoet. Demoene kjører med mockede data og sender
-                        ingen kall til ekte tjenester.
-                    </BodyLong>
+                    <BodyLong>Demoer og storybooks som publiseres fra monorepoet.</BodyLong>
                 </VStack>
 
                 {seksjoner.map(({ type, tittel }) => {
