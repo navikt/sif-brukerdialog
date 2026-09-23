@@ -102,7 +102,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     },
                 };
             case SøknadContextActionKeys.SET_SØKNAD_LOVBESTEMT_FERIE: {
-                return {
+                const newState = {
                     ...state,
                     søknadsdata: {
                         ...state.søknadsdata,
@@ -110,6 +110,16 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                             ...action.payload,
                         },
                     },
+                };
+                const søknadSteps = getSøknadSteps(
+                    state.valgteEndringer,
+                    state.sak.harArbeidsgivereIkkeISak,
+                    newState.søknadsdata,
+                );
+
+                return {
+                    ...newState,
+                    søknadSteps,
                 };
             }
             case SøknadContextActionKeys.SET_SØKNAD_TILSYNSORDNING: {
