@@ -3,7 +3,7 @@ import React, { forwardRef } from 'react';
 
 import { TestProps } from '../../../types';
 
-const SkjemagruppeQuestion = forwardRef(function SkjemagruppeQuestion(
+const SkjemagruppeQuestion = forwardRef(function SkjemagruppeQuestionFunc(
     props: FieldsetProps & TestProps,
     ref: React.Ref<any>,
 ) {

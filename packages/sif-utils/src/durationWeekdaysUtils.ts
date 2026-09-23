@@ -14,8 +14,15 @@ import {
     isValidDuration,
     summarizeDurations,
 } from './durationUtils';
-import { Duration, DurationWeekdays, NumberDuration } from './types';
-import { DateDurationMap, DateRange, ISODurationWeekdays, Weekday } from './types';
+import {
+    DateDurationMap,
+    DateRange,
+    Duration,
+    DurationWeekdays,
+    ISODurationWeekdays,
+    NumberDuration,
+    Weekday,
+} from './types';
 
 dayjs.extend(isoWeek);
 

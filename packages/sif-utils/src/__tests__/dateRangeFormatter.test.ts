@@ -21,7 +21,7 @@ describe('dateRangeFormatter', () => {
             });
             expect(result).toEqual('lørdag 1. januar 2022 - søndag 2. januar 2022');
         });
-        it('returns correct string; compact: false, includeDayNames: true', () => {
+        it('returns correct string; compact: false, includeDayNames: true - 2', () => {
             const result = dateRangeFormatter.getDateRangeText(dateRange, 'nb', { includeDayName: true });
             expect(result).toEqual('lørdag 01.01.2022 - søndag 02.01.2022');
         });
@@ -45,7 +45,7 @@ describe('dateRangeFormatter', () => {
             });
             expect(result).toEqual('lørdag 1. januar 2022');
         });
-        it('returns correct string; compact: false, includeDayNames: true', () => {
+        it('returns correct string; compact: false, includeDayNames: true - 2', () => {
             const result = dateRangeFormatter.getDateRangeText(dateRangeLocal, 'nb', { includeDayName: true });
             expect(result).toEqual('lørdag 01.01.2022');
         });

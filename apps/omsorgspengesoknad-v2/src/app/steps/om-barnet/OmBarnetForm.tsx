@@ -15,8 +15,7 @@ import {
 } from '@navikt/sif-validation';
 import { useInnvilgedeVedtakForRegistrerteBarn } from '@sif/api/k9-sak-innsyn-api';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
-import { SøknadStepForm } from '@sif/soknad-app';
-import { useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
+import { SøknadStepForm, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { VelgRegistrertBarnPanel } from '@sif/soknad-forms';
 import { AriaLiveRegion, FormContentLoader, FormLayout, SifInfoCard } from '@sif/soknad-ui/components';
 import { dateFormatter, getDateToday } from '@sif/utils';

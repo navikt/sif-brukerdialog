@@ -42,5 +42,5 @@ export const AppIntlProvider = (props: Props) => {
     if (!props.config) {
         return <>{props.children}</>;
     }
-    return <Renderer config={props.config} children={props.children} />;
+    return <Renderer config={props.config}>{props.children}</Renderer>;
 };

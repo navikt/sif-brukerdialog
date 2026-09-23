@@ -33,7 +33,7 @@ export const setupMockRoutes = async (
         });
     });
     await page.route('**/mellomlagring/PLEIEPENGER_SYKT_BARN**', async (route, request) => {
-        let body: any = {};
+        let body: any;
 
         if (request.method() === 'GET') {
             body = props?.mellomlagring || {};
