@@ -4444,6 +4444,9 @@ importers:
         specifier: 4.6.5
         version: 4.6.5
     devDependencies:
+      '@sif/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config-sif
       eslint:
         specifier: 10.10.0
         version: 10.10.0(jiti@2.7.0)
