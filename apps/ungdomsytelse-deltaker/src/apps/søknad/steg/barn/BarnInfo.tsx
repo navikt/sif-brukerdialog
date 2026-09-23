@@ -1,9 +1,8 @@
 import { BodyShort } from '@navikt/ds-react';
-
 import { AppText } from '@shared/i18n';
+import { RegistrertBarn } from '@sif/api/k9-prosessering';
 
 import BarnList from './BarnList';
-import { RegistrertBarn } from '@sif/api/k9-prosessering';
 
 interface Props {
     barn: RegistrertBarn[];

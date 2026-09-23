@@ -1,6 +1,6 @@
 import { Box, Heading } from '@navikt/ds-react';
-import { SifGuidePanel } from '@sif/soknad-ui';
 import DefaultPageLayout from '@shared/pages/layout/DefaultPageLayout';
+import { SifGuidePanel } from '@sif/soknad-ui';
 
 const AppErrorFallback = () => (
     <DefaultPageLayout documentTitle="Din ungdomsprogramytelse">
