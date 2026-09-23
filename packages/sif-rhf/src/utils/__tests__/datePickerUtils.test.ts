@@ -1,7 +1,7 @@
+import { dateToISODate, ISODate, ISODateToDate } from '@sif/utils';
 import { describe, expect, it } from 'vitest';
 
 import { datePickerUtils } from '../datePickerUtils';
-import { dateToISODate, ISODate, ISODateToDate } from '@sif/utils';
 
 const { parseDatePickerValue, getDisabledDates } = datePickerUtils;
 

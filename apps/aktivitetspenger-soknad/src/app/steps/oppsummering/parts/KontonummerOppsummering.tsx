@@ -1,11 +1,10 @@
+import { AppText } from '@app/i18n';
+import { SøknadStepId } from '@app/types/SoknadStepId';
 import { FormSummary } from '@navikt/ds-react';
 import type { aktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
 import { HarKontonummerEnum, UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
-import { JaNeiSvar } from '@sif/soknad-ui';
 import { useStepNavigation } from '@sif/soknad-app';
-
-import { AppText } from '@app/i18n';
-import { SøknadStepId } from '@app/types/SoknadStepId';
+import { JaNeiSvar } from '@sif/soknad-ui';
 
 interface Props {
     kontonummerInfo: aktivitetspenger.KontonummerInfo;

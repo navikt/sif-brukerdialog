@@ -1,8 +1,9 @@
 import { AppText } from '@app/i18n';
-import { FormLayout } from '@sif/soknad-ui';
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { ArbeidUtlandFormData, ArbeidUtlandListAndDialog } from '@sif/soknad-forms';
+import { FormLayout } from '@sif/soknad-ui';
 import { ISODate } from '@sif/utils';
+
 import { MedlemskapFormFields } from '../types';
 
 interface Props {

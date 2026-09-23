@@ -1,7 +1,7 @@
 import { BodyLong, VStack } from '@navikt/ds-react';
-
 import { AndreLivsoppholdsytelserIkkeOppfyltÅrsak } from '@navikt/ung-brukerdialog-api';
 import { AndreLivsoppholdsytelserOppgave } from '@sif/api/ung-brukerdialog';
+
 import Fritekst from '../../../components/fritekst/Fritekst';
 
 type Props = AndreLivsoppholdsytelserOppgave['oppgavetypeData'];

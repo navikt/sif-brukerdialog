@@ -1,8 +1,8 @@
 import { StepDefinition } from '@sif/soknad-app';
 
 import { BarnSammeAdresse } from '../types/BarnSammeAdresse';
-import { SøknadStepId } from '../types/SoknadStepId';
 import { Søknadsdata } from '../types/Soknadsdata';
+import { SøknadStepId } from '../types/SoknadStepId';
 
 export const søknadStepConfig: Record<SøknadStepId, StepDefinition> = {
     [SøknadStepId.OM_BARNET]: {

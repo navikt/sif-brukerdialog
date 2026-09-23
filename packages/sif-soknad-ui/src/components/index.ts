@@ -11,7 +11,6 @@ export { Kvittering } from './kvittering/Kvittering';
 export { JaNeiSvar } from './oppsummering-svar/JaNeiSvar';
 export { PictureScanningGuide } from './picture-scanning-guide/PictureScanningGuide';
 export { ProgressStepper } from './progress-stepper/ProgressStepper';
-export { Todo } from './todo/Todo';
 export { type ProgressStep } from './progress-stepper/ProgressStepper';
 export { RegistrerteBarnListe } from './registrerte-barn-liste/RegistrerteBarnListe';
 export {
@@ -22,5 +21,6 @@ export {
 export { SifGuidePanel } from './sif-guide-panel/SifGuidePanel';
 export { type SifGuidePanelProps } from './sif-guide-panel/SifGuidePanel';
 export { SifInfoCard } from './sif-info-card/SifInfoCard';
+export { Todo } from './todo/Todo';
 export type { SummaryVedlegg } from './vedlegg-summary-list';
 export { VedleggSummaryList } from './vedlegg-summary-list';

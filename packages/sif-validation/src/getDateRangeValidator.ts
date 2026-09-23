@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 
-import { getDateValidator, DateValidationOptions, DateValidationResult } from './getDateValidator';
+import { DateValidationOptions, DateValidationResult,getDateValidator } from './getDateValidator';
 import { ValidationFunction } from './types';
 import { validationUtils } from './validationUtils';
 

@@ -1,4 +1,5 @@
 export type { CreateSifLenkeUtilsParams, SifLenkeUtils } from './createSifLenkeUtils';
+export { createSifLenkeUtils } from './createSifLenkeUtils';
 export type {
     SifLenkeKey,
     SifLenker as SifLenker,
@@ -15,4 +16,3 @@ export {
     sifLenkerProdBokmal,
     sifLenkerProdNynorsk,
 } from './sifLenker';
-export { createSifLenkeUtils } from './createSifLenkeUtils';

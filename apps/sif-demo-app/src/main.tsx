@@ -1,5 +1,5 @@
-import { initApm } from '@sif/apm';
 import { getMaybeEnv } from '@navikt/sif-common-env';
+import { initApm } from '@sif/apm';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 

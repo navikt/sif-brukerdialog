@@ -1,8 +1,8 @@
 import { AppText, useAppIntl } from '@app/i18n';
-import { BodyLong, Heading, Link, List, VStack } from '@navikt/ds-react';
-import { SøknadKvitteringPage } from '@sif/soknad-ui';
 import getLenker from '@app/lenker';
 import { getAppEnv } from '@app/setup/appEnv';
+import { BodyLong, Heading, Link, List, VStack } from '@navikt/ds-react';
+import { SøknadKvitteringPage } from '@sif/soknad-ui';
 
 export const Kvittering = () => {
     const { text } = useAppIntl();

@@ -5,6 +5,7 @@ import { usePrevious } from '@navikt/sif-common-hooks';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
+import { useSkyraReloader } from '@sif/surveys';
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,7 +14,6 @@ import { useSendSøknad } from '../../../hooks/useSendSøknad';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
 import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
-import { useSkyraReloader } from '@sif/surveys';
 import { useSøknadContext } from '../../../søknad/context/hooks/useSøknadContext';
 import SøknadStep from '../../../søknad/SøknadStep';
 import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';

@@ -1,4 +1,5 @@
 import { datepickerUtils, DateRange, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { appLogger } from '@sif/apm';
 /* eslint-disable no-console */
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
@@ -6,7 +7,6 @@ import minMax from 'dayjs/plugin/minMax';
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';
 import { ArbeidFrilansSøknadsdata } from '../../../../types/søknadsdata/ArbeidFrilansSøknadsdata';
 import { FrilansFormData } from './ArbeidssituasjonFrilans';
-import { appLogger } from '@sif/apm';
 
 dayjs.extend(minMax);
 

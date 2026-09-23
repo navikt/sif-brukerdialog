@@ -1,7 +1,6 @@
 import { Box } from '@navikt/ds-react';
-import { InnsynPageBoundary } from '@sif/ung-innsyn/components';
-
 import { useDocumentTitle } from '@navikt/sif-common-hooks';
+import { InnsynPageBoundary } from '@sif/ung-innsyn/components';
 import { ReactNode, useEffect } from 'react';
 
 import { useUngInnsynIntl } from '../i18n';

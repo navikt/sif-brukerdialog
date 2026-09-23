@@ -1,5 +1,5 @@
-import { dateFormatter } from '@sif/utils';
 import { AvvikRegisterinntektOppgave } from '@sif/api/ung-brukerdialog';
+import { dateFormatter } from '@sif/utils';
 
 import { UngInnsynText } from '../../../i18n';
 import { Oppgavebekreftelse } from '../../oppgavebekreftelse/Oppgavebekreftelse';

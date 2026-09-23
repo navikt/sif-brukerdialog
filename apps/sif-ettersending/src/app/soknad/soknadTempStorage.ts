@@ -2,6 +2,8 @@ import { Søker } from '@navikt/sif-common-api';
 import persistence, { PersistenceInterface } from '@navikt/sif-common-core-ds/src/utils/persistence/persistence';
 import { jsonSort } from '@navikt/sif-common-utils';
 import { AxiosResponse } from 'axios';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 import hash from 'object-hash';
 
 import { axiosJsonConfig } from '../api/api';
@@ -11,8 +13,6 @@ import { SoknadFormData } from '../types/SoknadFormData';
 import { Søknadstype } from '../types/Søknadstype';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { StepID } from './soknadStepsConfig';
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
 
 dayjs.extend(utc);
 

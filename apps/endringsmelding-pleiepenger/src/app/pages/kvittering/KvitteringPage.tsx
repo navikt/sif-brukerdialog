@@ -2,9 +2,9 @@ import { AppText, useAppIntl } from '@app/i18n';
 import { BodyShort, Link, VStack } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { Kvittering } from '@navikt/sif-common-soknad-ds';
+import { Skyra, SkyraSlug } from '@sif/surveys';
 import { useEffect } from 'react';
 
-import { Skyra, SkyraSlug } from '@sif/surveys';
 import { Feature, isFeatureEnabled } from '../../utils';
 import { appEnv } from '../../utils/appEnv';
 

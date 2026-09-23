@@ -1,7 +1,7 @@
 import { Alert, Heading, VStack } from '@navikt/ds-react';
 import { usePrevious } from '@navikt/sif-common-hooks';
-import { dateFormatter, DateRange } from '@sif/utils';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { dateFormatter, DateRange } from '@sif/utils';
 import { useEffect, useRef, useState } from 'react';
 
 import { ForsideLenkeButton, OppgaveStatusInfo, OppgaveStatusTag } from '../../../../components';

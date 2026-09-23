@@ -30,6 +30,6 @@ export const fetchStatus = async (
             team?.message ? team.message[0] : undefined,
         );
     } catch (err) {
-        throw new Error(`Could not load appStatus [${err}]`);
+        throw new Error(`Could not load appStatus [${err}]`, { cause: err });
     }
 };

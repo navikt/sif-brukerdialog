@@ -1,9 +1,8 @@
-import { FormSummary } from '@navikt/ds-react';
-import { JaNeiSvar } from '@sif/soknad-ui';
-import { useStepNavigation } from '@sif/soknad-app';
-
-import { SøknadStepId } from '@app/types/SoknadStepId';
 import { AppText } from '@app/i18n';
+import { SøknadStepId } from '@app/types/SoknadStepId';
+import { FormSummary } from '@navikt/ds-react';
+import { useStepNavigation } from '@sif/soknad-app';
+import { JaNeiSvar } from '@sif/soknad-ui';
 
 interface Props {
     erBosattITrondheim: boolean;

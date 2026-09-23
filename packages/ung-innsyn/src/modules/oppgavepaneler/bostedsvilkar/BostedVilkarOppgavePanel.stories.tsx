@@ -7,9 +7,9 @@ import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { BostedVilkårOppgavePanel } from './BostedVilkarOppgavePanel';
 import {
+    BOSTED_ÅRSAK_SCENARIO_OPTIONS,
     BOSTED_KILDE_SCENARIO_OPTIONS,
     BOSTED_VARIANT_SCENARIO_OPTIONS,
-    BOSTED_ÅRSAK_SCENARIO_OPTIONS,
     BostedVarselVariant,
     lagOppgaveMedÅrsak,
     mockBostedVilkårAKT,

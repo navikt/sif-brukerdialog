@@ -8,12 +8,12 @@ import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { ApiErrorAlert } from '@sif/api';
 import { useSendOppgavebekreftelse } from '@sif/api/k9-prosessering';
 import { createSifFormComponents, SifForm, useSifValidate, YesOrNo } from '@sif/rhf';
+import { ReactNode } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { UngInnsynText, useUngInnsynIntl } from '../../../i18n';
 import { useOppgavePage } from '../../../pages/hooks/useOppgavePage';
 import { UttalelseSvaralternativer } from '../../../types';
-import { ReactNode } from 'react';
 
 export interface UtalelseFormProps {
     oppgaveYtelsetype: OppgaveYtelsetype;
