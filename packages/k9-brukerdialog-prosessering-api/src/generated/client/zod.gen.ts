@@ -342,11 +342,6 @@ export const zOrganisasjonDto = z.object({
     organisasjonsnummer: z.string(),
 });
 
-export const zPdfConfig = z.object({
-    harInnholdsfortegnelse: z.boolean(),
-    språk: z.string(),
-});
-
 export const zPeriode = z.object({
     fraOgMed: z.iso.date(),
     tilOgMed: z.iso.date(),
@@ -636,21 +631,6 @@ export const zUttak = z.object({
 
 export const zVarigEndring = z.object({
     dato: z.iso.date(),
-});
-
-export const zVerdilisteElement = z.object({
-    alternativer: z.string().nullish(),
-    label: z.string(),
-    verdi: z.string().nullish(),
-    verdiliste: z.array(z.lazy((): any => zVerdilisteElement)).nullish(),
-    visningsVariant: z.string().nullish(),
-});
-
-export const zFamiliePdfPostRequest = z.object({
-    label: z.string(),
-    pdfConfig: zPdfConfig,
-    skjemanummer: z.string().nullish(),
-    verdiliste: z.array(zVerdilisteElement),
 });
 
 export const zVirksomhet = z.object({
@@ -1163,13 +1143,6 @@ export const zHentBarnResponse = zBarnOppslagListe;
  * OK
  */
 export const zHentSøkerResponse = zSøker;
-
-export const zLagPdfBody = zFamiliePdfPostRequest;
-
-/**
- * OK
- */
-export const zLagPdfResponse = z.string();
 
 export const zInnsendingPleiepengerILivetsSluttfaseSøknadBody = zPleiepengerILivetsSluttfaseSøknadWritable;
 
