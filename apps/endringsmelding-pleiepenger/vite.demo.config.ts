@@ -7,6 +7,7 @@ import checker from 'vite-plugin-checker';
 
 import { getDemoAppSettings } from './mock/demoAppSettings.ts';
 import { getBuildBranch } from './mock/getBuildBranch.ts';
+import { toHtmlSafeJson } from './mock/htmlSafeJson.ts';
 
 export default defineConfig({
     mode: 'msw',
@@ -25,9 +26,8 @@ export default defineConfig({
         {
             name: 'html-transform',
             transformIndexHtml: (html) => {
-                return html.replace(
-                    '{{{APP_SETTINGS}}}',
-                    JSON.stringify({ ...getDemoAppSettings(), GITHUB_REF_NAME: getBuildBranch() }),
+                return html.replace('{{{APP_SETTINGS}}}', () =>
+                    toHtmlSafeJson({ ...getDemoAppSettings(), GITHUB_REF_NAME: getBuildBranch() }),
                 );
             },
         },
