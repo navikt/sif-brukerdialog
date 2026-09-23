@@ -1,4 +1,5 @@
 import { YesOrNo } from '@sif/rhf';
+import { dateToISODate, ISODate } from '@sif/utils';
 import { describe, expect, it } from 'vitest';
 
 import { Næringstype, Virksomhet } from '../types';
@@ -9,7 +10,6 @@ import {
     VirksomhetFormValues,
     virksomhetToFormValues,
 } from '../virksomhetUtils';
-import { dateToISODate, ISODate } from '@sif/utils';
 
 const nyoppstartetFom = dateToISODate(new Date());
 const gammelFom = '2015-01-01' as ISODate;

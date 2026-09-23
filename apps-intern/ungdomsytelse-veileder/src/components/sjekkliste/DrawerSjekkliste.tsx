@@ -1,4 +1,5 @@
 import { VStack } from '@navikt/ds-react';
+
 import Sjekkliste from './Sjekkliste';
 
 const SjekklisteDrawer = () => {

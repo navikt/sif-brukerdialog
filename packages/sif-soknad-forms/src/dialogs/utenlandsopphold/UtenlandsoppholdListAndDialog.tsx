@@ -1,3 +1,4 @@
+import { ISODate } from '@sif/utils';
 import { ReactNode } from 'react';
 
 import { ModalFormAndList } from '../../components';
@@ -5,7 +6,6 @@ import { Utenlandsopphold } from './types';
 import { UtenlandsoppholdFormDialog } from './UtenlandsoppholdDialog';
 import { UtenlandsoppholdDialogFormConfig } from './UtenlandsoppholdDialogForm';
 import { UtenlandsoppholdList } from './UtenlandsoppholdList';
-import { ISODate } from '@sif/utils';
 
 interface Props extends UtenlandsoppholdDialogFormConfig {
     opphold?: Utenlandsopphold[];

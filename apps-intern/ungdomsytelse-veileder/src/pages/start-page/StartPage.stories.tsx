@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { BrowserRouter } from 'react-router-dom';
 import { http, HttpResponse } from 'msw';
+import { BrowserRouter } from 'react-router-dom';
+
 import { nyDeltakerScenario } from '../../../mock/scenarioer/nyDeltaker';
 import { withDarkBg } from '../../../storybook/decorators/withDarkBg';
 import { withIntl } from '../../../storybook/decorators/withIntl';

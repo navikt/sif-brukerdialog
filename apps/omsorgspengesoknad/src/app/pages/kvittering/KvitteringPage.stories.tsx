@@ -1,6 +1,7 @@
 import { Box, Tabs } from '@navikt/ds-react';
-import { Meta, StoryFn } from '@storybook/react-vite';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
+import { Meta, StoryFn } from '@storybook/react-vite';
+
 import { withAnalyticsProvider } from '../../../storybook/decorators/withAnalyticsProvider';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withRouterProvider } from '../../../storybook/decorators/withRouter';

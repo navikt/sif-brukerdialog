@@ -1,10 +1,10 @@
+import { ISODate } from '@sif/utils';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 
 import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { ArbeidUtlandList } from './ArbeidUtlandList';
 import type { ArbeidUtlandFormData } from './index';
-import { ISODate } from '@sif/utils';
 
 type StoryProps = {
     arbeidssteder: ArbeidUtlandFormData[];

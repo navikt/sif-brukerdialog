@@ -1,9 +1,9 @@
 import { Button, Dialog } from '@navikt/ds-react';
+import { ISODate } from '@sif/utils';
 
 import { SifSoknadFormsText } from '../../i18n';
 import { OpptjeningUtlandDialogForm } from './OpptjeningUtlandDialogForm';
 import { OpptjeningUtland } from './types';
-import { ISODate } from '@sif/utils';
 
 interface Props {
     opptjening?: OpptjeningUtland;

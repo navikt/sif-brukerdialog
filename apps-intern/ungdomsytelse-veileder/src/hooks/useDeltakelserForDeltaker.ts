@@ -1,5 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
 import { ApiError } from '@sif/api';
+import { useQuery } from '@tanstack/react-query';
+
 import { getDeltakelserForDeltaker } from '../api/deltakelse/getDeltakelserForDeltaker';
 import { queryKeys } from '../queries/queryKeys';
 import { Deltakelse } from '../types/Deltakelse';

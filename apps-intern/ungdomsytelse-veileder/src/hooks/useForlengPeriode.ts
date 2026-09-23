@@ -1,8 +1,9 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiError } from '@sif/api';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import { forlengPeriode } from '../api/deltakelse/forlengPeriode';
 import { queryKeys } from '../queries/queryKeys';
 import { Deltakelse } from '../types/Deltakelse';
-import { forlengPeriode } from '../api/deltakelse/forlengPeriode';
 
 export const useForlengPeriode = ({ deltakelseId, deltakerId }: { deltakelseId: string; deltakerId: string }) => {
     const queryClient = useQueryClient();

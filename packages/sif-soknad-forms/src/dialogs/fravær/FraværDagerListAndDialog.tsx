@@ -1,3 +1,4 @@
+import { ISODate } from '@sif/utils';
 import { ReactNode } from 'react';
 
 import { ModalFormAndList } from '../../components';
@@ -5,7 +6,6 @@ import { FraværDagDialogFormConfig } from './FraværDagDialogForm';
 import { FraværDagFormDialog } from './FraværDialog';
 import { FraværDagerList } from './FraværList';
 import { FraværDag } from './types';
-import { ISODate } from '@sif/utils';
 
 interface Props extends FraværDagDialogFormConfig {
     fraværDager?: FraværDag[];

@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { useSøknadContext } from '../søknad/context/hooks/useSøknadContext';
 import { lagreSøknadState } from '../utils/lagreSøknadState';

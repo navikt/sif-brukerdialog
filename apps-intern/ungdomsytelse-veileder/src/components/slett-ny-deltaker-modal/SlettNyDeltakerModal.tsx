@@ -2,8 +2,9 @@ import { Alert, Box, Button, Heading, Modal } from '@navikt/ds-react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Deltaker } from '../../types/Deltaker';
+
 import SlettNyDeltakerForm from '../../forms/slett-ny-deltaker-form/SlettNyDeltakerForm';
+import { Deltaker } from '../../types/Deltaker';
 
 interface Props {
     deltaker: Deltaker;

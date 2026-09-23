@@ -1,9 +1,10 @@
-import { initApm } from '@sif/apm';
+import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
 import { getMaybeEnv } from '@navikt/sif-common-env';
+import { initApm } from '@sif/apm';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
+
 import { enableMocking } from '../../mock/msw/enableMocking';
 import App from './App';
 

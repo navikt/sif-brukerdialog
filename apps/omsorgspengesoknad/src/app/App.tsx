@@ -1,4 +1,5 @@
-import { Navigate, Route } from 'react-router-dom';
+import './app.css';
+
 import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
 import { isProd } from '@navikt/sif-common-env';
 import {
@@ -7,11 +8,12 @@ import {
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import { Navigate, Route } from 'react-router-dom';
+
 import { applicationIntlMessages, type AppMessageKeys } from './i18n';
 import Søknad from './søknad/Søknad';
 import { SøknadRoutes } from './types/SøknadRoutes';
 import { appEnv } from './utils/appEnv';
-import './app.css';
 
 const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID, SIF_PUBLIC_USE_ANALYTICS } = appEnv;
 

@@ -1,3 +1,4 @@
+import { dateToISODate } from '@sif/utils';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 import { useState } from 'react';
@@ -6,7 +7,6 @@ import { SifSoknadFormsText } from '../../i18n';
 import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { BostedUtlandListAndDialog } from './BostedUtlandListAndDialog';
 import type { BostedUtland } from './index';
-import { dateToISODate } from '@sif/utils';
 
 type StoryProps = {
     bosteder?: BostedUtland[];

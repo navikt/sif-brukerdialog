@@ -1,4 +1,5 @@
 import { Box, Page } from '@navikt/ds-react';
+
 import { useDeltakelserForDeltaker } from '../../../hooks/useDeltakelserForDeltaker';
 import { Deltaker } from '../../../types/Deltaker';
 import ErrorPageContent from '../../error-page/ErrorPageContent';

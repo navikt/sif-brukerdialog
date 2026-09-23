@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test';
 
+import { rootUrl } from '../utils/routeUtils';
 import { setupMockRoutes } from '../utils/setupMockRoutes';
 import { testAccessibility } from '../utils/testAccessibility';
-import { rootUrl } from '../utils/routeUtils';
 
 test('Søker har ikke tilgang', async ({ page }) => {
     await setupMockRoutes(page);

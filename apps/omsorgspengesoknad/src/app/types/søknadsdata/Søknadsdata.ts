@@ -4,8 +4,8 @@ import { LegeerklæringSøknadsdata } from './LegeerklæringSøknadsdata';
 import { OmBarnetSøknadsdata } from './OmBarnetSøknadsdata';
 
 export * from './DeltBostedSøknadsdata';
-export * from './OmBarnetSøknadsdata';
 export * from './LegeerklæringSøknadsdata';
+export * from './OmBarnetSøknadsdata';
 
 export interface Søknadsdata {
     id?: string;

@@ -1,5 +1,6 @@
 import { HStack } from '@navikt/ds-react';
 import { ApiError } from '@sif/api';
+
 import AppPage from '../../components/app-page/AppPage';
 import ErrorPageContent from './ErrorPageContent';
 

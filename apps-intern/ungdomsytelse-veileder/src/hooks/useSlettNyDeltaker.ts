@@ -1,5 +1,6 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiError } from '@sif/api';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { slettDeltaker } from '../api/deltaker/slettDeltaker';
 import { queryKeys } from '../queries/queryKeys';
 

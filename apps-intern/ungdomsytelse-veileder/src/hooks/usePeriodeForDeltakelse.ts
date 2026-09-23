@@ -1,13 +1,14 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ApiError } from '@sif/api';
+import { ISODate } from '@navikt/sif-common-utils';
 import { Avslutningsårsak } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { ApiError } from '@sif/api';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { endreSluttdatoForDeltakelse } from '../api/deltakelse/endreSluttdatoForDeltakelse';
 import { endreStartdatoForDeltakelse } from '../api/deltakelse/endreStartdatoForDeltakelse';
 import { meldUtDeltaker } from '../api/deltakelse/meldUtDeltaker';
 import { queryKeys } from '../queries/queryKeys';
 import { Deltakelse } from '../types/Deltakelse';
 import { EndrePeriodeVariant } from '../types/EndrePeriodeVariant';
-import { ISODate } from '@navikt/sif-common-utils';
 export type EndrePeriodeForDeltakelseData = {
     dato: ISODate;
     avslutningsårsak?: Avslutningsårsak;

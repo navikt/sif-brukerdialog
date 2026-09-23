@@ -1,9 +1,10 @@
-import { useIntl } from 'react-intl';
 import { FormikFileUpload, getVedleggValidator, useVedleggHelper } from '@navikt/sif-common-core-ds';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
+import { useIntl } from 'react-intl';
+
 import { AppText, useAppIntl } from '../../../i18n';
 import { getLenker } from '../../../lenker';
 

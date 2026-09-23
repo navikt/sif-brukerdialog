@@ -1,3 +1,4 @@
+import { ISODate } from '@sif/utils';
 import { ReactNode } from 'react';
 
 import { ModalFormAndList } from '../../components';
@@ -5,7 +6,6 @@ import { FerieuttakFormDialog } from './FerieuttakDialog';
 import { FerieuttakDialogFormConfig } from './FerieuttakDialogForm';
 import { FerieuttakList } from './FerieuttakList';
 import { Ferieuttak } from './types';
-import { ISODate } from '@sif/utils';
 
 interface Props extends FerieuttakDialogFormConfig {
     ferieuttak?: Ferieuttak[];

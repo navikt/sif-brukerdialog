@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import { registrertDeltakerScenario } from '../../../mock/scenarioer/registrertDeltaker';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withQueryClientProvider } from '../../../storybook/decorators/withQueryClientProvider';

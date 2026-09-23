@@ -1,4 +1,5 @@
 import { Alert, Box, Button, Heading, Modal } from '@navikt/ds-react';
+
 import EndreSluttdatoForm from '../../forms/endre-periode-forms/EndreSluttdatoForm';
 import EndreStartdatoForm from '../../forms/endre-periode-forms/EndreStartdatoForm';
 import { Deltakelse } from '../../types/Deltakelse';

@@ -1,6 +1,5 @@
 import { Alert, Heading } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { getDate3YearsAgo, getDate4YearsAgo, getDateToday } from '@sif/utils';
 import {
     getISODateRangeValidator,
     getISODateValidator,
@@ -11,6 +10,7 @@ import {
     getYesOrNoValidator,
 } from '@navikt/sif-validation';
 import { createSifFormComponents, datePickerUtils, useSifValidate, YesOrNo } from '@sif/rhf';
+import { getDate3YearsAgo, getDate4YearsAgo, getDateToday } from '@sif/utils';
 import { useEffect } from 'react';
 import { FormProvider, useForm, useWatch } from 'react-hook-form';
 

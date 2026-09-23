@@ -1,5 +1,6 @@
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import axios, { AxiosError, AxiosRequestConfig, RawAxiosRequestHeaders } from 'axios';
+
 import { appEnv } from '../utils/appEnv';
 import { relocateToLoginPage, relocateToNoAccessPage } from '../utils/navigationUtils';
 

@@ -1,8 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { VStack } from '@navikt/ds-react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { http, HttpResponse } from 'msw';
-import { registrertDeltakerScenario } from '../../../../mock/scenarioer/registrertDeltaker';
+
 import { mockUtils } from '../../../../mock/msw/mockUtils';
+import { registrertDeltakerScenario } from '../../../../mock/scenarioer/registrertDeltaker';
 import { withDarkBg } from '../../../../storybook/decorators/withDarkBg';
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withPageWidth } from '../../../../storybook/decorators/withPageWidth';

@@ -1,9 +1,9 @@
 import { Button, Dialog } from '@navikt/ds-react';
+import { ISODate } from '@sif/utils';
 
 import { SifSoknadFormsText } from '../../i18n';
 import { FerieuttakDialogForm, FerieuttakDialogFormConfig } from './FerieuttakDialogForm';
 import { Ferieuttak } from './types';
-import { ISODate } from '@sif/utils';
 
 interface Props extends FerieuttakDialogFormConfig {
     ferieuttak?: Ferieuttak;

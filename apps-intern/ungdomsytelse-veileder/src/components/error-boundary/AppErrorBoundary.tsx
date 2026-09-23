@@ -1,6 +1,7 @@
 import { Box, Button, Heading } from '@navikt/ds-react';
-import React from 'react';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
+import React from 'react';
+
 import AppPage from '../app-page/AppPage';
 
 interface State {

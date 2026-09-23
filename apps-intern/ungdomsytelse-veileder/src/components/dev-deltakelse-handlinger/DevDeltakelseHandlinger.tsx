@@ -1,7 +1,8 @@
-import { Deltakelse } from '../../types/Deltakelse';
 import { HGrid, ReadMore } from '@navikt/ds-react';
-import { getDeltakelseHandlinger, HandlingsResultat } from '../../utils/deltakelseUtils';
+
+import { Deltakelse } from '../../types/Deltakelse';
 import { appEnv } from '../../utils/appEnv';
+import { getDeltakelseHandlinger, HandlingsResultat } from '../../utils/deltakelseUtils';
 
 interface Props {
     deltakelse: Deltakelse;

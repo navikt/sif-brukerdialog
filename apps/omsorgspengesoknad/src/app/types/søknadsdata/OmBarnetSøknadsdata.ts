@@ -1,4 +1,5 @@
 import { RegistrertBarn } from '@navikt/sif-common-api';
+
 import { BarnSammeAdresse } from '../BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '../SøkersRelasjonTilBarnet';
 

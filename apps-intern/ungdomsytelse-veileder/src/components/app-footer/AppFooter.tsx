@@ -1,4 +1,5 @@
 import { BodyShort, Box, Link, Page, VStack } from '@navikt/ds-react';
+
 import VeilederDemoInformasjon from '../../demo/VeilederDemoInformasjon';
 
 const AppFooter = () => {

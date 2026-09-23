@@ -1,5 +1,4 @@
 import { Alert, Bleed, VStack } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
 import {
     FormikYesOrNoQuestion,
     getIntlFormErrorHandler,
@@ -7,13 +6,15 @@ import {
     ValidationError,
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
+import { QuestionBleedTop } from '@navikt/sif-common-ui';
+import { formatName } from '@navikt/sif-common-utils';
 import { getCheckedValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { useIntl } from 'react-intl';
+
+import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
+import { useForlengPeriode } from '../../hooks/useForlengPeriode';
 import { Deltakelse } from '../../types/Deltakelse';
 import { Deltaker } from '../../types/Deltaker';
-import { formatName } from '@navikt/sif-common-utils';
-import { useForlengPeriode } from '../../hooks/useForlengPeriode';
-import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
-import { QuestionBleedTop } from '@navikt/sif-common-ui';
 
 enum FieldNames {
     vedtaksbrevErSendt = 'vedtaksbrevErSendt',

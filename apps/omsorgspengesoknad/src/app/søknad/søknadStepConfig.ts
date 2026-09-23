@@ -1,9 +1,10 @@
 import { SoknadApplicationType, SoknadStepsConfig, soknadStepUtils, StepConfig } from '@navikt/sif-common-soknad-ds';
-import { StepId } from '../types/StepId';
+
+import { BarnSammeAdresse } from '../types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '../types/SøkersRelasjonTilBarnet';
 import { OmBarnetSøknadsdata, Søknadsdata } from '../types/søknadsdata/Søknadsdata';
+import { StepId } from '../types/StepId';
 import { getSøknadStepRoute } from '../utils/søknadRoutesUtils';
-import { BarnSammeAdresse } from '../types/BarnSammeAdresse';
 
 export const includeDeltBostedStep = (omBarnet?: OmBarnetSøknadsdata): boolean => {
     if (!omBarnet) {

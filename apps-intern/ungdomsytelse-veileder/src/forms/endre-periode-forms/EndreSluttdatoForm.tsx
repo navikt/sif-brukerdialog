@@ -1,5 +1,4 @@
 import { Alert, Bleed, BodyLong, ReadMore, VStack } from '@navikt/ds-react';
-import { FormattedMessage, useIntl } from 'react-intl';
 import {
     FormikSelect,
     FormikYesOrNoQuestion,
@@ -10,6 +9,10 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { dateFormatter, dateToISODate } from '@navikt/sif-common-utils';
 import { getCheckedValidator, getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { Avslutningsårsak } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import dayjs from 'dayjs';
+import { FormattedMessage, useIntl } from 'react-intl';
+
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import { usePeriodeForDeltakelse } from '../../hooks/usePeriodeForDeltakelse';
 import { Deltakelse } from '../../types/Deltakelse';
@@ -17,10 +20,8 @@ import { Deltaker } from '../../types/Deltaker';
 import { EndrePeriodeVariant } from '../../types/EndrePeriodeVariant';
 import { AppHendelse } from '../../utils/analytics';
 import { useAppEventLogger } from '../../utils/analyticsHelper';
-import { getPeriodeDatoValidator } from '../../utils/getPeriodeDatoValidator';
-import dayjs from 'dayjs';
 import { getDeltakelseHandlinger } from '../../utils/deltakelseUtils';
-import { Avslutningsårsak } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { getPeriodeDatoValidator } from '../../utils/getPeriodeDatoValidator';
 
 enum FieldNames {
     sluttdato = 'sluttdato',

@@ -1,4 +1,5 @@
 import { Page } from '@playwright/test';
+
 import { barnMock } from '../mock-data/barnMock';
 import { søkerMock } from '../mock-data/søkerMock';
 

@@ -1,3 +1,4 @@
+import { ISODate } from '@sif/utils';
 import { ReactNode } from 'react';
 
 import { ModalFormAndList } from '../../components';
@@ -5,7 +6,6 @@ import { AnnetBarnDialog } from './AnnetBarnDialog';
 import { AnnetBarnDialogFormConfig } from './AnnetBarnDialogForm';
 import { AnnetBarnList } from './AnnetBarnList';
 import { AnnetBarn } from './index';
-import { ISODate } from '@sif/utils';
 
 interface Props extends AnnetBarnDialogFormConfig {
     annetBarn?: AnnetBarn[];
