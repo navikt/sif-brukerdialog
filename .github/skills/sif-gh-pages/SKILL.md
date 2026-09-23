@@ -1,88 +1,108 @@
 ---
 name: sif-gh-pages
 type: action
-description: Legg til en v2-app i gh-pages demo-deploy — vite.demo.config.ts, gh-pages-scripts og workflow-steg.
+description: Legg til en app i gh-pages demo-deploy — vite.demo.config.ts, HashRouter, MSW-oppsett, scripts og workflow-steg.
 ---
 
 # sif-gh-pages
 
 ## Bruk når
 
-- En v2-app skal legges til i gh-pages-deployet.
+- En app skal legges til i gh-pages-deployet (demo med MSW).
 - Demo-buildet mangler eller er ikke koblet til workflow.
 
-## Leveranse
+## Referanseimplementasjoner
 
-- `apps/<app>/vite.demo.config.ts` — Vite-config for demo-build
-- `apps/<app>/mock/enableMocking.ts` — oppdatert med gh-pages MSW-url
-- `apps/<app>/package.json` — scripts: `demo:build`, `gh-pages:rebuild`, `gh-pages:clean`, `gh-pages:copy`
-- `.github/workflows/build-gh-pages.yml` — build- og kopi-steg
+| App                                       | Type              | Merk                                                                                     |
+| ----------------------------------------- | ----------------- | ---------------------------------------------------------------------------------------- |
+| `apps/endringsmelding-pleiepenger`        | v1 (Formik)       | Gjenbruker `index.html` + `html-transform` — anbefalt mønster                            |
+| `apps/opplaringspenger-soknad`            | v1 (Formik)       | Egen `demo/index.html` med hardkodede appSettings + `demo:copy-app-files` — eldre mønster |
+| `apps/ungdomsytelse-deltaker`             | v2                | HashRouter via `navigate()` ved scenariobytte                                              |
 
-## Sjekkliste
+Les diffen i endringsmelding-pleiepenger først — den er den minste komplette.
 
-### 1. `vite.demo.config.ts`
+## Prosess
+
+### 1. Kartlegg appen
+
+Sjekk før du begynner:
+
+- Hvilken router brukes? (`SoknadApplication` med `useHashRouter`, eller egen `BrowserRouter`)
+- Hvor ligger `mockServiceWorker.js`? (approt eller `public/`)
+- Har appen `mock/devAppSettings.ts` og `{{{APP_SETTINGS}}}` i `index.html`?
+- Finnes en scenariovelger, og hvordan navigerer den etter bytte?
+
+### 2. `mock/demoAppSettings.ts`
+
+Arv fra appens egen `getDevAppSettings()` og overstyr kun:
+
+- `PUBLIC_PATH` → `/sif-brukerdialog/<app-navn>`
+- eksterne URL-er (`SIF_PUBLIC_LOGIN_URL`, `SIF_PUBLIC_DEKORATOR_URL`, `SIF_PUBLIC_MINSIDE_URL` …) → `#`
+- `SIF_PUBLIC_USE_ANALYTICS` → `'false'`
+- `*_FRONTEND_PATH` → under ny `PUBLIC_PATH`
+
+**Ikke** kopier appSettings fra en annen app — nøkler og env-schema varierer per app.
+
+### 3. `vite.demo.config.ts`
+
+Kopier appens egen `vite.dev.config.ts` (ikke en annen apps demo-config) og endre:
+
+- `base: '/sif-brukerdialog/<app-navn>/'`
+- `define`: `__IS_GITHUB_PAGES__: true` og skru av dekoratør-injeksjon
+- `html-transform` bruker `getDemoAppSettings()`
+- `build.outDir: './dist-demo'`, `emptyOutDir: true`, `sourcemap: true`
+- `copy-msw`-plugin i `writeBundle` hvis `mockServiceWorker.js` ligger i approt (ikke nødvendig fra `public/`)
+
+Behold alle `resolve.alias` fra dev-configen — demo-buildet bruker samme kildekode.
+
+### 4. `vite-env.d.ts`
+
+`declare const __IS_GITHUB_PAGES__: boolean;`
+
+Flagget defineres kun i demo-configen. Les det derfor alltid gjennom en guard:
 
 ```ts
-export default defineConfig({
-    mode: 'msw',
-    // ... plugins (kopier fra vite.dev.config.ts)
-    base: '/sif-brukerdialog/<app-navn>/',
-    define: {
-        __IS_DEMO__: true,
-        __IS_GITHUB_PAGES__: true,
-        __INJECT_DECORATOR_CLIENT_SIDE__: false,
-        __USE_FIXED_MOCKED_DATE__: false,
-    },
-    build: {
-        sourcemap: true,
-        outDir: './dist-demo',
-        emptyOutDir: true,
-    },
-});
+export const isGitHubPages = (): boolean => typeof __IS_GITHUB_PAGES__ !== 'undefined' && __IS_GITHUB_PAGES__;
 ```
 
-- Bruk `getDevAppSettings()` fra `./mock/devAppSettings` for `html-transform`-pluginen.
-- Bruk `<app-navn>` konsekvent i `base` — dette bestemmer URL på gh-pages.
+Uten `typeof`-guarden krasjer øvrige builds på `ReferenceError`. Alternativet — å definere `false` i alle andre vite-/vitest-/storybook-configer — er mer å vedlikeholde.
 
-### 2. `mock/enableMocking.ts`
+### 5. MSW
 
-MSW registrerer service worker på feil URL når `base` ikke er `/`. Sett riktig URL eksplisitt:
+Service worker registreres på origin-roten som standard. Sett URL eksplisitt når `__IS_GITHUB_PAGES__`:
+`serviceWorker.url = import.meta.env.BASE_URL + 'mockServiceWorker.js'`.
 
-```ts
-export async function enableMocking() {
-    if (import.meta.env.MODE !== 'msw') {
-        return;
-    }
-    const { worker } = await import('./msw/browser');
-    if (__IS_GITHUB_PAGES__) {
-        return worker.start({
-            serviceWorker: {
-                url: import.meta.env.BASE_URL + 'mockServiceWorker.js',
-            },
-        });
-    }
-    return worker.start();
-}
-```
+Ikke bruk `enableMockingBase` fra `@sif/api/mock-utils` — den krever `ENV === 'development'`.
 
-Ikke bruk `enableMockingBase` fra `@sif/api/mock-utils` her — den krever `ENV === 'development'` og støtter ikke gh-pages-URL.
+### 6. Routing
 
-### 3. `package.json` — scripts
+gh-pages har ingen server som kan rute på path → **HashRouter kreves**.
 
-Legg til under `scripts`:
+- `SoknadApplication`: sett `useHashRouter={erGitHubPages}`
+- Hopp over `ensureBaseNameForReactRouter(PUBLIC_PATH)` når hash-router er aktiv
+- Gå gjennom **all** hard navigasjon (`window.location.assign`, `relocateToWelcomePage`, scenariobytte, reset): disse ignorerer routeren og må gi hash-URL på gh-pages, f.eks. `${import.meta.env.BASE_URL}#${route}`. Dette er den vanligste glippen.
+
+### 7. Demo-markering (valgfritt, men anbefalt)
+
+`DemoInfo`-banner + `.demoMode`-vannmerke, begge bak `erGitHubPages`. Kopier fra
+`apps/endringsmelding-pleiepenger/src/app/components/demo/`. Hent tittelen fra
+`@navikt/sif-app-register` — ikke dikt opp ny tekst.
+
+### 8. `package.json` — scripts
 
 ```json
 "demo:build": "vite build --config vite.demo.config.ts",
-"gh-pages:rebuild": "pnpm demo:build && pnpm gh-pages:clean && pnpm gh-pages:copy",
+"demo:start": "vite preview --base /sif-brukerdialog/<app-navn>/ --config vite.demo.config.ts",
 "gh-pages:clean": "rm -rf ../../docs/<app-navn>",
-"gh-pages:copy": "cp -r ./dist-demo ../../docs/<app-navn>"
+"gh-pages:copy": "cp -r ./dist-demo ../../docs/<app-navn>",
+"gh-pages:rebuild": "pnpm demo:build && pnpm gh-pages:clean && pnpm gh-pages:copy"
 ```
 
-> Apper med `mockServiceWorker.js` i `public/` trenger ikke eget kopi-steg for den filen — Vite håndterer det automatisk under bygg.
+Legg `dist-demo` til i `clean`-scriptet og i `.gitignore`.
 
-### 4. `build-gh-pages.yml`
+### 9. `.github/workflows/build-gh-pages.yml`
 
-Legg til to steg rett før `Upload artifact`-steget:
+To steg før `Upload artifact`:
 
 ```yaml
 - name: Build <app-navn>
@@ -95,11 +115,20 @@ Legg til to steg rett før `Upload artifact`-steget:
       mv apps/<app-navn>/dist-demo/* deployment/<app-navn>/
 ```
 
+## Verifisering
+
+1. `pnpm demo:build` — grønn
+2. `pnpm build` og `pnpm lint:tsc` — bekrefter at `__IS_GITHUB_PAGES__`-guarden ikke brøt ordinært build
+3. Sjekk `dist-demo/index.html`: `PUBLIC_PATH` og `src="/sif-brukerdialog/<app-navn>/assets/…"` er riktige, og `mockServiceWorker.js` ligger i `dist-demo/`
+4. Deploy trigges av `workflow_dispatch` eller commit-melding som inneholder `[gh-pages]`
+
 ## Vanlige feil
 
-| Problem                                              | Årsak                                                                                | Fix                                                                                                     |
-| ---------------------------------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
-| MSW klager i konsollen / service worker ikke funnet  | Feil URL ved registrering                                                            | Sett `serviceWorker.url` i `enableMocking.ts`                                                           |
-| Blank side eller 404 på gh-pages                     | `base` i Vite-config stemmer ikke med URL                                            | Sjekk at `base` i `vite.demo.config.ts` = `/sif-brukerdialog/<app-navn>/`                               |
-| ScenarioHeader / scenariovelger vises ikke i demo    | `import.meta.env.PROD` er `true` i prod-build — skjuler komponenten selv på gh-pages | Bruk `__IS_GITHUB_PAGES__ \|\| __IS_DEMO__` som guard i stedet for `import.meta.env.PROD`               |
-| Scenariobytte sender bruker til feil URL (uten hash) | `location.assign(PUBLIC_PATH)` ignorerer `HashRouter` og navigerer absolutt          | Bruk `navigate(PUBLIC_PATH)` + `globalThis.location.reload()` i stedet — samme mønster som ung-deltaker |
+| Problem                                             | Årsak                                                       | Fix                                                             |
+| --------------------------------------------------- | ----------------------------------------------------------- | --------------------------------------------------------------- |
+| `ReferenceError: __IS_GITHUB_PAGES__ is not defined` | Flagget defineres kun i demo-configen                       | Bruk `typeof`-guard (punkt 4)                                   |
+| MSW-feil / service worker ikke funnet               | Registrert på origin-roten                                  | Sett `serviceWorker.url` (punkt 5)                              |
+| Blank side eller 404                                 | `base` matcher ikke URL                                     | `base` = `/sif-brukerdialog/<app-navn>/`                        |
+| 404 ved scenariobytte, reset eller «tilbake»         | Hard navigasjon bygger path-URL og omgår HashRouter         | Hash-URL på gh-pages (punkt 6)                                  |
+| `mockServiceWorker.js` mangler i `dist-demo`         | Filen ligger i approt, ikke i `public/`                     | `copy-msw`-plugin i `writeBundle`                               |
+| Scenariovelger vises ikke                            | Guard bruker `import.meta.env.PROD`, som er `true` i builds | Guard på `__IS_GITHUB_PAGES__` / `VELG_SCENARIO` i stedet       |
