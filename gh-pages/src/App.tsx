@@ -1,4 +1,4 @@
-import { BodyLong, Box, Heading, HGrid, Page, VStack } from '@navikt/ds-react';
+import { BodyLong, Box, Heading, HGrid, Link, Page, VStack } from '@navikt/ds-react';
 
 import SideKort from './SideKort';
 import { sider, SideType } from './sider';
@@ -41,15 +41,15 @@ const App = () => (
                     );
                 })}
 
-                <Box.New paddingBlock="space-16 space-0">
+                <Box paddingBlock="space-16 space-0">
                     <BodyLong size="small" textColor="subtle">
                         Kildekode og dokumentasjon finnes i{' '}
-                        <a href="https://github.com/navikt/sif-brukerdialog" rel="noopener noreferrer">
+                        <Link href="https://github.com/navikt/sif-brukerdialog" rel="noopener noreferrer">
                             navikt/sif-brukerdialog
-                        </a>
+                        </Link>
                         .
                     </BodyLong>
-                </Box.New>
+                </Box>
             </VStack>
         </Page.Block>
     </Page>
