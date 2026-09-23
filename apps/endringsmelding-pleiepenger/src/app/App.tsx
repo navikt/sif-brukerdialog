@@ -15,14 +15,18 @@ import { applicationIntlMessages } from './i18n';
 import { SøknadRoutes } from './søknad/config/SøknadRoutes';
 import Søknad from './søknad/Søknad';
 import { appEnv } from './utils/appEnv';
+import { isGitHubPages } from './utils/isGitHubPages';
 
 dayjs.extend(isoWeek);
 
 const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID } = appEnv;
 
 const isE2E = getMaybeEnv('E2E_TEST') === 'true';
+const erGitHubPages = isGitHubPages();
 
-ensureBaseNameForReactRouter(PUBLIC_PATH);
+if (!erGitHubPages) {
+    ensureBaseNameForReactRouter(PUBLIC_PATH);
+}
 
 const App = () => (
     <Theme>
@@ -32,6 +36,7 @@ const App = () => (
             appTitle={EndringsmeldingPsbApp.tittel.nb}
             intlMessages={applicationIntlMessages}
             useAnalytics={!isE2E}
+            useHashRouter={erGitHubPages}
             appStatus={{
                 sanityConfig: {
                     projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,

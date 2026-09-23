@@ -7,5 +7,13 @@ export async function enableMocking() {
         return;
     }
     const { worker } = await import('./browser');
+    if (typeof __IS_GITHUB_PAGES__ !== 'undefined' && __IS_GITHUB_PAGES__) {
+        /** Service worker ligger under base-pathen på GitHub Pages, ikke på roten */
+        return worker.start({
+            serviceWorker: {
+                url: `${import.meta.env.BASE_URL}mockServiceWorker.js`,
+            },
+        });
+    }
     return worker.start();
 }
