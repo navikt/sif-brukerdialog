@@ -1,3 +1,4 @@
+/* eslint-disable vitest/no-conditional-expect */
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { ISODateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 

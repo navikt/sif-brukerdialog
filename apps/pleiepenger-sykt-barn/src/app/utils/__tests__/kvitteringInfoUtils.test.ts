@@ -1,3 +1,4 @@
+/* eslint-disable vitest/no-conditional-expect */
 import { decimalDurationToISODuration } from '@navikt/sif-common-utils';
 
 import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
