@@ -18,7 +18,6 @@
         "clean-all": "turbo clean && rm -rf node_modules",
         "codegen:dev": "turbo run codegen:dev",
         "codegen:prod": "turbo run codegen:prod",
-        "deploy-gh-pages": "gh-pages -d gh-pages",
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
         "lint": "turbo lint",
         "lint:eslint": "turbo lint:eslint",

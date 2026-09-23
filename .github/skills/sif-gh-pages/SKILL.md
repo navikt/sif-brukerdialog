@@ -114,16 +114,18 @@ gh-pages har ingen server som kan rute på path → **HashRouter kreves**.
 ```json
 "demo:build": "vite build --config vite.demo.config.ts",
 "demo:start": "vite preview --base /sif-brukerdialog/<app-navn>/ --config vite.demo.config.ts",
-"gh-pages:clean": "rm -rf ../../docs/<app-navn>",
-"gh-pages:copy": "cp -r ./dist-demo ../../docs/<app-navn>",
-"gh-pages:rebuild": "pnpm demo:build && pnpm gh-pages:clean && pnpm gh-pages:copy"
+"gh-pages:rebuild": "pnpm demo:build"
 ```
+
+`gh-pages:rebuild` er navnet workflowen kaller. Den bygger kun til `dist-demo` — workflowen flytter
+selv innholdet til `deployment/`. Ikke kopier byggefiler til `docs/`: Pages serveres fra
+`actions/deploy-pages`, ikke fra `docs/`-mappen, så en slik kopi blir aldri lest.
 
 Legg `dist-demo` til i `clean`-scriptet og i `.gitignore`.
 
 ### 9. `.github/workflows/build-gh-pages.yml`
 
-To steg før `Upload artifact`:
+To steg før stegene som bygger forsiden (`Build gh-pages-forside`):
 
 ```yaml
 - name: Build <app-navn>
@@ -136,13 +138,28 @@ To steg før `Upload artifact`:
       mv apps/<app-navn>/dist-demo/* deployment/<app-navn>/
 ```
 
+### 10. `gh-pages/src/sider.ts` — forsiden
+
+Forsiden på roten av GitHub Pages ligger i workspacet `gh-pages/` og har sin egen liste over
+publiserte sider. **Den avledes ikke fra workflowen** — legg derfor inn en ny oppføring der også:
+
+```ts
+{
+    path: '<app-navn>',          // må matche mappenavnet i deployment/
+    type: 'demo',                // eller 'storybook'
+    tittel: '…',
+    beskrivelse: '…',
+    workspace: 'apps/<app-navn>',
+}
+```
+
 ## Verifisering
 
 1. `pnpm demo:build` — grønn
 2. `pnpm build` og `pnpm lint:tsc` — bekrefter at `__IS_GITHUB_PAGES__`-guarden ikke brøt ordinært build
 3. Sjekk `dist-demo/index.html`: `PUBLIC_PATH` og `src="/sif-brukerdialog/<app-navn>/assets/…"` er riktige, og `mockServiceWorker.js` ligger i `dist-demo/`
 4. Grep i `src/` etter hver nøkkel du overstyret i `demoAppSettings` — bekreft at den faktisk leses
-5. Deploy trigges av `workflow_dispatch` eller commit-melding som inneholder `[gh-pages]`
+5. Deploy kjøres kun manuelt: Actions → «Build and deploy gh-pages» → «Run workflow», med branch du vil bygge fra
 
 ## Vanlige feil
 
