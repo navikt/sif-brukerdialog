@@ -20,18 +20,12 @@ const DeltakerPage = () => {
 
     useDocumentTitle('Deltaker - Deltakerregistrering - ungdomsprogrammet');
 
-    const deltakerIdErGyldig = !!deltakerId && validate(deltakerId);
-
-    const {
-        data: deltaker,
-        isLoading: deltakerPending,
-        error,
-    } = useRegistrertDeltaker(deltakerId || '', deltakerIdErGyldig);
-
     /** Forenklet feilhåndtering */
-    if (!deltakerIdErGyldig) {
+    if (!deltakerId || deltakerId === '' || !validate(deltakerId)) {
         return <ErrorPage error="Deltakerident er ikke gyldig" />;
     }
+
+    const { data: deltaker, isLoading: deltakerPending, error } = useRegistrertDeltaker(deltakerId || '');
 
     return (
         <AppPage>
