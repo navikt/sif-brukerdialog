@@ -1,3 +1,4 @@
+/* eslint-disable vitest/no-conditional-expect */
 import { dateToISODate, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 
 import { getPeriodeForArbeidsgiverOppslag } from '../initialDataUtils';

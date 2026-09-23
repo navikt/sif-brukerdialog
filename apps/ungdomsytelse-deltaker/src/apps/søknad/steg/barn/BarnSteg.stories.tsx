@@ -1,10 +1,10 @@
+import { ISODate } from '@sif/utils';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { withRouter } from '../../../../../storybook/decorators/withRouter';
 import { withSøknadContext } from '../../../../../storybook/decorators/withSøknadContext';
 import BarnSteg from './BarnSteg';
-import { ISODate } from '@sif/utils';
 
 const meta: Meta = {
     title: 'Søknad/Steg/Barn',

@@ -1,25 +1,24 @@
 import { AppText } from '@app/i18n';
-import { SøknadStepId } from '@app/types/SoknadStepId';
-import { SøknadStepForm } from '@sif/soknad-app';
 import { MedlemskapSøknadsdata } from '@app/types/Soknadsdata';
-import { dateToISODate, getDateToday } from '@sif/utils';
+import { SøknadStepId } from '@app/types/SoknadStepId';
+import { BodyLong, VStack } from '@navikt/ds-react';
 import { getListValidator } from '@navikt/sif-validation';
 import { useSifValidate } from '@sif/rhf';
-import { SøknadStep, useMellomlagring, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
+import { SøknadStep, SøknadStepForm, useMellomlagring, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { FormLayout, SifGuidePanel } from '@sif/soknad-ui';
+import { dateToISODate, getDateToday } from '@sif/utils';
+import dayjs from 'dayjs';
 import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { getMedlemskapSynlighet, yesOrNoToBoolean } from './medlemskapSynlighet';
 import { toMedlemskapStegFormValues, toMedlemskapStegSøknadsdata } from './medlemskapStegUtils';
-import { MedlemskapFormFields, MedlemskapFormValues } from './types';
-import dayjs from 'dayjs';
-import { HarBoddINorgeSporsmal } from './sporsmal/HarBoddINorgeSporsmal';
-import { BostederUtlandSporsmal } from './sporsmal/BostederUtlandSporsmal';
-import { HarJobbetUtenforNorgeSporsmal } from './sporsmal/HarJobbetUtenforNorgeSporsmal';
+import { getMedlemskapSynlighet, yesOrNoToBoolean } from './medlemskapSynlighet';
 import { ArbeidsstederUtlandSporsmal } from './sporsmal/ArbeidsstederUtlandSporsmal';
+import { BostederUtlandSporsmal } from './sporsmal/BostederUtlandSporsmal';
+import { HarBoddINorgeSporsmal } from './sporsmal/HarBoddINorgeSporsmal';
 import { HarJobbetINorgeSporsmal } from './sporsmal/HarJobbetINorgeSporsmal';
-import { BodyLong, VStack } from '@navikt/ds-react';
+import { HarJobbetUtenforNorgeSporsmal } from './sporsmal/HarJobbetUtenforNorgeSporsmal';
+import { MedlemskapFormFields, MedlemskapFormValues } from './types';
 
 const stepId = SøknadStepId.MEDLEMSKAP;
 

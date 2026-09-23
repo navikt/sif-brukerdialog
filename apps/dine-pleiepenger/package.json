@@ -53,6 +53,7 @@
         "@navikt/ds-css": "8.16.2",
         "@navikt/ds-react": "8.16.2",
         "@navikt/ds-tailwind": "8.16.2",
+        "@next/eslint-plugin-next": "16.3.5",
         "@playwright/test": "1.63.0",
         "@sif/eslint-config": "workspace:*",
         "@storybook/nextjs": "10.6.0",

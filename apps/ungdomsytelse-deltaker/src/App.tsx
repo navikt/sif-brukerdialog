@@ -5,12 +5,12 @@ import { SanityConfig } from '@navikt/appstatus-react-ds';
 import { BodyShort } from '@navikt/ds-react';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
-import { UxSignalsLoaderProvider } from '@sif/surveys';
 import AppStatusWrapper from '@navikt/sif-common-core-ds/src/components/app-status-wrapper/AppStatusWrapper';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
 import { EnvKey } from '@navikt/sif-common-env';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import DevBranchInfo from '@navikt/sif-common-soknad-ds/src/components/dev-branch-info/DevBranchInfo';
+import { UxSignalsLoaderProvider } from '@sif/surveys';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import MockDate from 'mockdate';
 

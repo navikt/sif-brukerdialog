@@ -2,13 +2,14 @@ import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { ApiError } from '@sif/api';
 import { useSøker } from '@sif/api/k9-prosessering';
 import { ParsedOppgavetype, useOppgaver } from '@sif/api/ung-brukerdialog';
+import { appLogger } from '@sif/apm';
+import { SkyraSlug, SkyraTestPage } from '@sif/surveys';
 import { Navigate, Route, Routes, useParams } from 'react-router-dom';
 
 import { ApiErrorKey, ApplikasjonHendelse, useAnalyticsInstance } from '../../analytics/analytics';
 import { useDeltakelsePerioder } from '../../api/hooks/useDeltakelsePerioder';
 import AppRouter from '../../AppRouter';
 import InnsynApp from '../../apps/innsyn/InnsynApp';
-import { SkyraSlug, SkyraTestPage } from '@sif/surveys';
 import SøknadApp from '../../apps/søknad/SøknadApp';
 import { DeltakerContextProvider } from '../../context/DeltakerContext';
 import FlereDeltakelserPage from '../../pages/FlereDeltakelserPage';
@@ -16,7 +17,6 @@ import HentDeltakerErrorPage from '../../pages/HentDeltakerErrorPage';
 import IngenDeltakelsePage from '../../pages/IngenDeltakelsePage';
 import UngLoadingPage from '../../pages/UngLoadingPage';
 import { AppRoutes } from '../../utils/AppRoutes';
-import { appLogger } from '@sif/apm';
 
 const getErrorInfoToLog = (error: ApiError | null) => {
     if (!error || error === null) {

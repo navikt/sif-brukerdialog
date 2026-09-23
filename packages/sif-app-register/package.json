@@ -12,6 +12,7 @@
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
         "copyfiles": "2.4.1",
+        "eslint": "10.10.0",
         "typescript": "6.0.3"
     }
 }

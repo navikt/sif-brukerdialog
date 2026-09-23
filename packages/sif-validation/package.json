@@ -23,6 +23,7 @@
         "@navikt/sif-common-env": "workspace:*",
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
+        "eslint": "10.10.0",
         "postcss": ">=8.5.28",
         "typescript": "6.0.3",
         "vitest": "5.0.1"

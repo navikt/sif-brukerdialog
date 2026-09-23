@@ -29,7 +29,7 @@
         "gen-types:pleiepenger-sykt-barn-endringsmelding": "openapi-ts --file configs/openapi-ts.config-pleiepenger-sykt-barn-endringsmelding.ts",
         "gen-types:pleiepenger-sykt-barn-soknad": "openapi-ts --file configs/openapi-ts.config-pleiepenger-sykt-barn-soknad.ts",
         "gen-types:ungdomsytelse": "openapi-ts --file configs/openapi-ts.config-ungdomsytelse.ts",
-        "lint:eslint": "eslint './src/*/*.gen.ts'",
+        "lint:eslint": "eslint './src/generated/*/*.gen.ts'",
         "lint:fix": "eslint --quiet --fix './src/generated/*/*.gen.ts'",
         "lint:tsc": "tsc --noEmit"
     },

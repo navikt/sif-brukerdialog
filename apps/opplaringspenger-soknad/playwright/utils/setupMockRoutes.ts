@@ -36,7 +36,7 @@ export const setupMockRoutes = async (
         await route.fulfill({ status: 200 });
     });
     await page.route('**/mellomlagring/OPPLARINGSPENGER', async (route, request) => {
-        let body: any = {};
+        let body: any;
         if (request.method() === 'GET') {
             body = props?.mellomlagring || {};
             if (props?.lastStep) {

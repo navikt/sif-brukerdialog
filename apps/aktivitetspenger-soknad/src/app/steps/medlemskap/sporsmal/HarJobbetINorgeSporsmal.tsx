@@ -1,14 +1,13 @@
-import { createSifFormComponents, useSifValidate } from '@sif/rhf';
-import { MedlemskapFormFields, MedlemskapFormValues } from '../types';
 import { AppText, useAppIntl } from '@app/i18n';
-import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { BodyLong, ReadMore, VStack } from '@navikt/ds-react';
+import { getYesOrNoValidator } from '@navikt/sif-validation';
+import { createSifFormComponents, useSifValidate } from '@sif/rhf';
+
+import { MedlemskapFormFields, MedlemskapFormValues } from '../types';
 
 const { YesOrNoQuestion } = createSifFormComponents<MedlemskapFormValues>();
 
-interface Props {}
-
-export const HarJobbetINorgeSporsmal = ({}: Props) => {
+export const HarJobbetINorgeSporsmal = () => {
     const { text } = useAppIntl();
     const { validateField } = useSifValidate('medlemskapForm');
     return (

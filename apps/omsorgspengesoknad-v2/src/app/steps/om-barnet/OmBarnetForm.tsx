@@ -1,13 +1,11 @@
-import { AppText, useAppIntl } from '@app/i18n';
 import { useAppContext } from '@app/context/AppContext';
-import { SøknadStepId } from '@app/types/SoknadStepId';
-import { SøknadStepForm } from '@sif/soknad-app';
-import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
+import { AppText, useAppIntl } from '@app/i18n';
 import { BarnSammeAdresse } from '@app/types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '@app/types/SøkersRelasjonTilBarnet';
+import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
+import { SøknadStepId } from '@app/types/SoknadStepId';
 import { Heading, ReadMore } from '@navikt/ds-react';
 import { isDevMode } from '@navikt/sif-common-env';
-import { dateFormatter, getDateToday } from '@sif/utils';
 import {
     getFødselsnummerValidator,
     getISODateValidator,
@@ -17,9 +15,10 @@ import {
 } from '@navikt/sif-validation';
 import { useInnvilgedeVedtakForRegistrerteBarn } from '@sif/api/k9-sak-innsyn-api';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
+import { SøknadStepForm, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { VelgRegistrertBarnPanel } from '@sif/soknad-forms';
 import { AriaLiveRegion, FormContentLoader, FormLayout, SifInfoCard } from '@sif/soknad-ui/components';
-import { useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
+import { dateFormatter, getDateToday } from '@sif/utils';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
