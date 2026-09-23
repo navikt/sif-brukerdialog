@@ -3,7 +3,7 @@ import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 
 import { Box, Theme } from '@navikt/ds-react';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
-import { getMaybeEnv } from '@navikt/sif-common-env';
+import { getMaybeEnv, isProd } from '@navikt/sif-common-env';
 import { ensureBaseNameForReactRouter, SoknadApplication } from '@navikt/sif-common-soknad-ds';
 import { SkyraHandler } from '@sif/surveys';
 import dayjs from 'dayjs';
@@ -20,10 +20,12 @@ import { isGitHubPages } from './utils/isGitHubPages';
 
 dayjs.extend(isoWeek);
 
-const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID } = appEnv;
+const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID, SIF_PUBLIC_USE_ANALYTICS } =
+    appEnv;
 
 const isE2E = getMaybeEnv('E2E_TEST') === 'true';
 const erGitHubPages = isGitHubPages();
+const useAnalytics = !isE2E && (SIF_PUBLIC_USE_ANALYTICS ? SIF_PUBLIC_USE_ANALYTICS === 'true' : isProd());
 
 if (!erGitHubPages) {
     ensureBaseNameForReactRouter(PUBLIC_PATH);
@@ -42,7 +44,7 @@ const App = () => (
                 appName={EndringsmeldingPsbApp.navn}
                 appTitle={EndringsmeldingPsbApp.tittel.nb}
                 intlMessages={applicationIntlMessages}
-                useAnalytics={!isE2E}
+                useAnalytics={useAnalytics}
                 useHashRouter={erGitHubPages}
                 appStatus={{
                     sanityConfig: {

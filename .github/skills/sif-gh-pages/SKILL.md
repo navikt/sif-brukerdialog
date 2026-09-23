@@ -43,6 +43,21 @@ Arv fra appens egen `getDevAppSettings()` og overstyr kun:
 
 **Ikke** kopier appSettings fra en annen app — nøkler og env-schema varierer per app.
 
+**Verifiser at hver overstyrte nøkkel faktisk leses.** At en verdi finnes i env-schemaet betyr ikke
+at appen bruker den, og en ubrukt nøkkel gir ingen kompileringsfeil. Grep etter nøkkelen i `src/`
+og følg den fram til bruksstedet.
+
+Kjent tilfelle: `SIF_PUBLIC_USE_ANALYTICS` ble satt i appSettings, men `SoknadApplication` fikk
+`useAnalytics={!isE2E}` — demoen sendte analytics likevel. Riktig uttrykk (se
+`apps/endringsmelding-pleiepenger/src/app/App.tsx` og `apps/opplaringspenger-soknad/src/app/App.tsx`):
+
+```ts
+const useAnalytics = !isE2E && (SIF_PUBLIC_USE_ANALYTICS ? SIF_PUBLIC_USE_ANALYTICS === 'true' : isProd());
+```
+
+Sjekk `nais/dev-gcp.json` og `nais/prod-gcp.json` før du endrer et slikt uttrykk — hvis flagget er
+satt der, er endringen oppførselsbevarende i drift.
+
 ### 3. `vite.demo.config.ts`
 
 Kopier appens egen `vite.dev.config.ts` (ikke en annen apps demo-config) og endre:
@@ -120,7 +135,8 @@ To steg før `Upload artifact`:
 1. `pnpm demo:build` — grønn
 2. `pnpm build` og `pnpm lint:tsc` — bekrefter at `__IS_GITHUB_PAGES__`-guarden ikke brøt ordinært build
 3. Sjekk `dist-demo/index.html`: `PUBLIC_PATH` og `src="/sif-brukerdialog/<app-navn>/assets/…"` er riktige, og `mockServiceWorker.js` ligger i `dist-demo/`
-4. Deploy trigges av `workflow_dispatch` eller commit-melding som inneholder `[gh-pages]`
+4. Grep i `src/` etter hver nøkkel du overstyret i `demoAppSettings` — bekreft at den faktisk leses
+5. Deploy trigges av `workflow_dispatch` eller commit-melding som inneholder `[gh-pages]`
 
 ## Vanlige feil
 
@@ -128,6 +144,7 @@ To steg før `Upload artifact`:
 | --------------------------------------------------- | ----------------------------------------------------------- | --------------------------------------------------------------- |
 | `ReferenceError: __IS_GITHUB_PAGES__ is not defined` | Flagget defineres kun i demo-configen                       | Bruk `typeof`-guard (punkt 4)                                   |
 | MSW-feil / service worker ikke funnet               | Registrert på origin-roten                                  | Sett `serviceWorker.url` (punkt 5)                              |
+| Analytics sendes fra den offentlige demoen           | `useAnalytics` ignorerer `SIF_PUBLIC_USE_ANALYTICS`         | Les flagget i uttrykket (punkt 2)                               |
 | Blank side eller 404                                 | `base` matcher ikke URL                                     | `base` = `/sif-brukerdialog/<app-navn>/`                        |
 | 404 ved scenariobytte, reset eller «tilbake»         | Hard navigasjon bygger path-URL og omgår HashRouter         | Hash-URL på gh-pages (punkt 6)                                  |
 | `mockServiceWorker.js` mangler i `dist-demo`         | Filen ligger i approt, ikke i `public/`                     | `copy-msw`-plugin i `writeBundle`                               |
