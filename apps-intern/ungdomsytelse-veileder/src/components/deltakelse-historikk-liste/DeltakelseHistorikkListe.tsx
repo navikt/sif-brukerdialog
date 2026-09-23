@@ -1,9 +1,10 @@
+import { PlusIcon } from '@navikt/aksel-icons';
 import { Box, Button, HStack, Table, VStack } from '@navikt/ds-react';
-import { useEffect, useMemo, useRef, useState } from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { Endringstype } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { useEffect, useMemo, useRef, useState } from 'react';
+
 import { DeltakelseHistorikkInnslag } from '../../types';
-import { PlusIcon } from '@navikt/aksel-icons';
 import { Features } from '../../types/Features';
 
 interface Props {

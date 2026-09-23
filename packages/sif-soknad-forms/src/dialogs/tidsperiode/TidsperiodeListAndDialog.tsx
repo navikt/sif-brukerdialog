@@ -1,10 +1,10 @@
+import { ISODate } from '@sif/utils';
 import { ReactNode } from 'react';
 
 import { ModalFormAndList } from '../../components';
 import { TidsperiodeFormDialog } from './TidsperiodeDialog';
 import { TidsperiodeList } from './TidsperiodeList';
 import { DateTidsperiode } from './types';
-import { ISODate } from '@sif/utils';
 
 interface Props {
     tidsperioder?: DateTidsperiode[];

@@ -1,8 +1,9 @@
+import { RecycleIcon } from '@navikt/aksel-icons';
 import { BodyLong, Button, CopyButton, ExpansionCard, Heading, HStack, VStack } from '@navikt/ds-react';
+
+import { mockUtils } from '../../mock/msw/mockUtils';
 import { alleScenarioer, MockScenario } from '../../mock/scenarioer';
 import { appEnv } from '../utils/appEnv';
-import { RecycleIcon } from '@navikt/aksel-icons';
-import { mockUtils } from '../../mock/msw/mockUtils';
 
 const ScenarioListe = ({ scenarioer }: { scenarioer: MockScenario[] }) => (
     <VStack gap="space-8">

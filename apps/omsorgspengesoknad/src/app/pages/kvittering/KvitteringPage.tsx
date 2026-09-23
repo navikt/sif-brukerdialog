@@ -1,10 +1,11 @@
 import { Link, VStack } from '@navikt/ds-react';
-import { Skyra, SkyraSlug } from '@sif/surveys';
-import { useIntl } from 'react-intl';
 import Infolist from '@navikt/sif-common-core-ds/src/components/lists/infolist/Infolist';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { Kvittering } from '@navikt/sif-common-soknad-ds/src';
+import { Skyra, SkyraSlug } from '@sif/surveys';
+import { useIntl } from 'react-intl';
+
 import { AppText, useAppIntl } from '../../i18n';
 import { getLenker } from '../../lenker';
 import actionsCreator from '../../søknad/context/action/actionCreator';

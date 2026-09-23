@@ -1,9 +1,10 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiError } from '@sif/api';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import { slettSluttdato } from '../api/deltaker/slettSluttdato';
 import { queryKeys } from '../queries/queryKeys';
 import { AppHendelse } from '../utils/analytics';
 import { useAppEventLogger } from '../utils/analyticsHelper';
-import { slettSluttdato } from '../api/deltaker/slettSluttdato';
 
 export const useSlettSluttdato = (deltakerId: string, deltakelseId: string) => {
     const queryClient = useQueryClient();

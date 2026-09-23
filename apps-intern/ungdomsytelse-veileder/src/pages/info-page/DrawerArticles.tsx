@@ -1,7 +1,8 @@
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { BodyLong, ExpansionCard, Heading, Link, List, VStack } from '@navikt/ds-react';
+
 import Article from './components/Article';
 import { articleList } from './InfoInnhold';
-import { ExternalLinkIcon } from '@navikt/aksel-icons';
 
 const INFORMER_OM_DEMO = true;
 

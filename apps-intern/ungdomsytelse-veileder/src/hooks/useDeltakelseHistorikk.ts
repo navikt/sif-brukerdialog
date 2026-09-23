@@ -1,6 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
-import { ApiError } from '@sif/api';
 import { DeltakelseHistorikkDto } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { ApiError } from '@sif/api';
+import { useQuery } from '@tanstack/react-query';
+
 import { getDeltakelseHistorikk } from '../api/deltakelse/deltakelseHistorikk';
 import { queryKeys } from '../queries/queryKeys';
 

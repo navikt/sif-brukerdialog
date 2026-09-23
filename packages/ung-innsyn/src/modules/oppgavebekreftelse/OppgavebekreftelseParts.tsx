@@ -2,19 +2,18 @@ import { Alert, Box, FormSummary, Heading, VStack } from '@navikt/ds-react';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { TextareaSvar } from '@navikt/sif-common-ui';
 import { OppgaveResponsDto, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
-import { ReactNode, useEffect, useRef } from 'react';
 import { SifGuidePanel } from '@sif/soknad-ui';
+import { ReactNode, useEffect, useRef } from 'react';
 
 import { ForsideLenkeButton, OppgaveStatusInfo } from '../../components';
-
+import { RegelverkOgInnsynReadMore } from '../../components/readmore/RegelverkOgInnsynReadMore';
 import { UngInnsynText, useUngInnsynIntl } from '../../i18n';
 import { useOppgavePage } from '../../pages/hooks/useOppgavePage';
 import { UttalelseSvaralternativer } from '../../types';
 import { getSvaralternativer, getTilbakemeldingFritekstLabel, getTilbakemeldingSpørsmål } from '../../utils/textUtils';
 import { UtalelseForm } from '../forms/uttalelse-form/UtalelseForm';
-import { useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
-import { RegelverkOgInnsynReadMore } from '../../components/readmore/RegelverkOgInnsynReadMore';
 import { getLovLenker } from '../oppgavepaneler/oppgaveLovverk';
+import { useOppgavebekreftelse } from './hooks/useOppgavebekreftelse';
 
 interface OppgaveOgTilbakemeldingProps {
     beskjedFraNav: ReactNode;

@@ -1,11 +1,10 @@
-import { BodyShort, FormSummary, List } from '@navikt/ds-react';
-import { RegistrertBarn } from '@sif/api/k9-prosessering';
-import { formatName } from '@sif/utils';
-import { JaNeiSvar } from '@sif/soknad-ui';
-import { useStepNavigation } from '@sif/soknad-app';
-
 import { AppText } from '@app/i18n';
 import { SøknadStepId } from '@app/types/SoknadStepId';
+import { BodyShort, FormSummary, List } from '@navikt/ds-react';
+import { RegistrertBarn } from '@sif/api/k9-prosessering';
+import { useStepNavigation } from '@sif/soknad-app';
+import { JaNeiSvar } from '@sif/soknad-ui';
+import { formatName } from '@sif/utils';
 
 interface Props {
     barnErRiktig: boolean;

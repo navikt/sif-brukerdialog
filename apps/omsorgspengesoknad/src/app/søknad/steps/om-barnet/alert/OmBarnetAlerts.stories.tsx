@@ -1,14 +1,15 @@
-import { StoryFn } from '@storybook/react-vite';
-import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { VStack } from '@navikt/ds-react';
-import IkkeSammeAdresseAlert from './IkkeSammeAdresseAlert';
+import MessagesList from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesList';
+import { StoryFn } from '@storybook/react-vite';
+
+import AlertStoryWrapper from '../../../../../storybook/components/AlertStoryWrapper';
+import ShadowBox from '../../../../../storybook/components/ShadowBox';
+import { withIntl } from '../../../../../storybook/decorators/withIntl';
+import { storybookIntlUtils } from '../../../../../storybook/utils/intlUtils';
 import IkkeHøyereRisikoForFraværAlert from './IkkeHøyereRisikoForFraværAlert';
 import IkkeKroniskEllerFunksjonshemningAlert from './IkkeKroniskEllerFuksjonshemningAlert';
+import IkkeSammeAdresseAlert from './IkkeSammeAdresseAlert';
 import TrengerIkkeSøkeForBarnAlert from './TrengerIkkeSøkeForBarnAlert';
-import AlertStoryWrapper from '../../../../../storybook/components/AlertStoryWrapper';
-import { storybookIntlUtils } from '../../../../../storybook/utils/intlUtils';
-import MessagesList from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesList';
-import ShadowBox from '../../../../../storybook/components/ShadowBox';
 
 export default {
     title: 'Steps/OmBarnet/Alerts',

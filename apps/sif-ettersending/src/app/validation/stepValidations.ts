@@ -11,7 +11,7 @@ export const beskrivelseStepIsValid = (values: SoknadFormData) =>
 
 export const dokumentTypeStepIsValid = (values: SoknadFormData) => {
     const { registrertBarnAktørId, barnetsFødselsnummer } = values;
-    let isValid = false;
+    let isValid: boolean;
 
     const gjelderEtAnnetBarn = values[SoknadFormField.registrertBarnAktørId] === VelgBarn_AnnetBarnValue;
 

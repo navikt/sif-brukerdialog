@@ -1,7 +1,7 @@
-import { initApm } from '@sif/apm';
-import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
+import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
 import { getMaybeEnv } from '@navikt/sif-common-env';
+import { initApm } from '@sif/apm';
 import MockDate from 'mockdate';
 import { createRoot } from 'react-dom/client';
 

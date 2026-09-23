@@ -1,3 +1,4 @@
+import { dateToISODate } from '@sif/utils';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 import { useState } from 'react';
@@ -5,7 +6,6 @@ import { useState } from 'react';
 import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { ArbeidUtlandFormDialog } from './ArbeidUtlandDialog';
 import type { ArbeidUtlandFormData, ArbeidUtlandVariant } from './index';
-import { dateToISODate } from '@sif/utils';
 
 type StoryProps = {
     arbeidssted?: ArbeidUtlandFormData;

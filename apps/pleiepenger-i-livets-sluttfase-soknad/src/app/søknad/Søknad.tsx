@@ -1,5 +1,6 @@
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
+import { SkyraHandler, SkyraSlug, SkyraTestPage } from '@sif/surveys';
 
 import useSøknadInitialData from '../api/useSøknadInitialData';
 import ResetMellomagringButton from '../components/reset-mellomlagring-button/ResetMellomlagringButton';
@@ -9,7 +10,6 @@ import { relocateToNoAccessPage } from '../utils/navigationUtils';
 import { SøknadContextProvider } from './context/SøknadContext';
 import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import SøknadRouter from './SøknadRouter';
-import { SkyraHandler, SkyraSlug, SkyraTestPage } from '@sif/surveys';
 
 const Søknad = () => {
     const initialData = useSøknadInitialData();

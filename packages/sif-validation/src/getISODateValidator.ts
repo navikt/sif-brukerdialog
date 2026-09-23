@@ -3,9 +3,9 @@ import isoWeek from 'dayjs/plugin/isoWeek';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 
+import { DateValidationResult, ValidateDateError } from './getDateValidator';
 import { ValidationFunction } from './types';
 import { validationUtils } from './validationUtils';
-import { DateValidationResult, ValidateDateError } from './getDateValidator';
 
 dayjs.extend(isSameOrAfter);
 dayjs.extend(isSameOrBefore);

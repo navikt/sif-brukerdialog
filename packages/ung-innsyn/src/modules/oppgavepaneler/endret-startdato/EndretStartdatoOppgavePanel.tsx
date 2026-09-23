@@ -1,5 +1,5 @@
-import { dateFormatter } from '@sif/utils';
 import { EndretStartdatoOppgave } from '@sif/api/ung-brukerdialog';
+import { dateFormatter } from '@sif/utils';
 import { ReactNode } from 'react';
 
 import { UngInnsynText } from '../../../i18n';

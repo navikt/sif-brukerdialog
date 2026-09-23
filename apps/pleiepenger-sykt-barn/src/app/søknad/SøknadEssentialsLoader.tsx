@@ -2,6 +2,7 @@ import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-comm
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import * as apiUtils from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { LoadingPage, NoAccessPage } from '@navikt/sif-common-soknad-ds';
+import { appLogger } from '@sif/apm';
 import { AxiosError, AxiosResponse } from 'axios';
 import React from 'react';
 
@@ -15,7 +16,6 @@ import { initialValues, SøknadFormField, SøknadFormValues } from '../types/sø
 import { MellomlagringMetadata, SøknadTempStorageData } from '../types/SøknadTempStorageData';
 import { getFeatureToggles } from '../utils/featureToggleUtils';
 import { relocateToLoginPage } from '../utils/navigationUtils';
-import { appLogger } from '@sif/apm';
 
 interface Props {
     onUgyldigMellomlagring: () => void;

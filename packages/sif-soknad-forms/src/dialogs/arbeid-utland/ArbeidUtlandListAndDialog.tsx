@@ -1,10 +1,10 @@
+import { ISODate } from '@sif/utils';
 import { ReactNode } from 'react';
 
 import { ModalFormAndList } from '../../components';
 import { ArbeidUtlandFormData, ArbeidUtlandVariant } from '.';
 import { ArbeidUtlandFormDialog } from './ArbeidUtlandDialog';
 import { ArbeidUtlandList } from './ArbeidUtlandList';
-import { ISODate } from '@sif/utils';
 
 interface Props {
     minDate?: ISODate;

@@ -1,5 +1,6 @@
-import { getDateValidator, ValidateDateError, ValidateDateErrorKeys } from '@navikt/sif-validation';
 import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
+import { getDateValidator, ValidateDateError, ValidateDateErrorKeys } from '@navikt/sif-validation';
+
 import { useAppIntl } from '../../../../i18n';
 import { omBarnetFormComponents } from '../omBarnetFormComponents';
 import { OmBarnetFormFields } from '../OmBarnetStep';

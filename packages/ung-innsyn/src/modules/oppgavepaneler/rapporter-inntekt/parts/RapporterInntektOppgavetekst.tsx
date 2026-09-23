@@ -1,11 +1,11 @@
 import { Bleed, BodyLong, Box, Heading, List, ReadMore, VStack } from '@navikt/ds-react';
+import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { dateFormatter, DateRange, ISODate } from '@sif/utils';
 import { ReactNode } from 'react';
 
 import { ExternalLink } from '../../../../components/external-link/ExternalLink';
 import { UngInnsynText, useUngInnsynIntl } from '../../../../i18n';
 import { ungInnsynLenker } from '../../../../utils/lenker';
-import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 
 interface Props {
     navn: string;

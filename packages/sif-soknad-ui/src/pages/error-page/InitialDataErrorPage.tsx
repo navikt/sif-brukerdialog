@@ -1,5 +1,5 @@
-import { ErrorPage } from './ErrorPage';
 import { InitialDataErrorContent } from './content/InitialDataErrorContent';
+import { ErrorPage } from './ErrorPage';
 
 interface Props {
     applicationTitle: string;

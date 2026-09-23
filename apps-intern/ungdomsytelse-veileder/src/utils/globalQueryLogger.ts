@@ -1,7 +1,7 @@
+import { isDevMode } from '@navikt/sif-common-env';
 import { appLogger } from '@sif/apm';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
-import { isDevMode } from '@navikt/sif-common-env';
 
 export const GlobalQueryLogger = () => {
     const queryClient = useQueryClient();

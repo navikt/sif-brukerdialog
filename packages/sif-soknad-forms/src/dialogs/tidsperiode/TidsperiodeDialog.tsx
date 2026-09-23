@@ -1,9 +1,9 @@
 import { Button, Dialog } from '@navikt/ds-react';
+import { ISODate } from '@sif/utils';
 
 import { SifSoknadFormsText } from '../../i18n';
 import { TidsperiodeDialogForm } from './TidsperiodeDialogForm';
 import { DateTidsperiode } from './types';
-import { ISODate } from '@sif/utils';
 
 interface Props {
     tidsperiode?: DateTidsperiode;

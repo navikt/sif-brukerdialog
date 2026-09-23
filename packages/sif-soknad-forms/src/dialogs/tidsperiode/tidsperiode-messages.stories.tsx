@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { I18nMessagesPreview } from '@sif/soknad-ui/components';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { tidsperiodeMessages_nb } from './i18n/nb';
 import { tidsperiodeMessages_nn } from './i18n/nn';

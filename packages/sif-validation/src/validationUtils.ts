@@ -1,4 +1,4 @@
-import { ISODateToDate, isISODateString } from '@navikt/sif-common-utils';
+import { isISODateString,ISODateToDate } from '@navikt/sif-common-utils';
 
 const ISOStringToDate = (dateString = ''): Date | undefined => getDateFromDateString(dateString);
 

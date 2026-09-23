@@ -1,10 +1,10 @@
+import { ISODate } from '@sif/utils';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 
 import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { BostedUtlandList } from './BostedUtlandList';
 import type { BostedUtland } from './index';
-import { ISODate } from '@sif/utils';
 
 type StoryProps = {
     bosteder: BostedUtland[];

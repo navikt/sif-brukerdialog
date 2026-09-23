@@ -1,8 +1,9 @@
-import { Bleed, BodyShort, Box, Button, HGrid, HStack, Show, Tag, VStack } from '@navikt/ds-react';
-import Skeleton from 'react-loading-skeleton';
 import { XMarkIcon } from '@navikt/aksel-icons';
+import { Bleed, BodyShort, Box, Button, HGrid, HStack, Show, Tag, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import Skeleton from 'react-loading-skeleton';
+
 import Fødselsnummer from '../../atoms/Fødselsnummer';
 import PersonNøytral from '../../atoms/PersonNøytral';
 import { Deltaker, UregistrertDeltaker } from '../../types/Deltaker';

@@ -2,13 +2,13 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { useEffect, useState } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 
+import { SøknadAppContext, SøknadAppContextValue } from '../../context/SøknadAppContext';
+import { useMellomlagring } from '../../hooks/useMellomlagring';
+import { createSøknadAppStore } from '../../store/createSøknadAppStore';
 import {
     SøknadStepFormProvider,
     useSøknadStepFormContext,
 } from '../SøknadStepFormContext';
-import { SøknadAppContext, SøknadAppContextValue } from '../../context/SøknadAppContext';
-import { useMellomlagring } from '../../hooks/useMellomlagring';
-import { createSøknadAppStore } from '../../store/createSøknadAppStore';
 
 const createContextValue = (
     store: ReturnType<typeof createSøknadAppStore>,

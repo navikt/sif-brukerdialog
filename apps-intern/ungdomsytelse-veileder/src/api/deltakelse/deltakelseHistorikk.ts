@@ -1,5 +1,5 @@
-import { handleApiError } from '@sif/api';
 import { DeltakelseHistorikkDto, Veileder } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { handleApiError } from '@sif/api';
 
 /**
  * Henter historikk for en deltakelse

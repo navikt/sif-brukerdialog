@@ -1,18 +1,18 @@
-import { AppText, useAppIntl } from '@app/i18n';
 import { useAppContext } from '@app/context/AppContext';
-import { SøknadStepId } from '@app/types/SoknadStepId';
+import { AppText, useAppIntl } from '@app/i18n';
 import { Søknadsdata } from '@app/types/Soknadsdata';
+import { SøknadStepId } from '@app/types/SoknadStepId';
 import { FormSummary, InlineMessage, LocalAlert } from '@navikt/ds-react';
-import { dateFormatter, formatName, ISODate } from '@sif/utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { Søker } from '@sif/api/k9-prosessering';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
+import { SøknadStep, SøknadStepForm, useSøknadsdata } from '@sif/soknad-app';
 import { PersistedVedlegg } from '@sif/soknad-forms';
 import { FormLayout, VedleggSummaryList } from '@sif/soknad-ui/components';
-import { SøknadStep, SøknadStepForm, useSøknadsdata } from '@sif/soknad-app';
+import { useSkyraReloader } from '@sif/surveys';
+import { dateFormatter, formatName, ISODate } from '@sif/utils';
 import { useForm } from 'react-hook-form';
 
-import { useSkyraReloader } from '@sif/surveys';
 import { useSendSøknad } from '../../hooks/useSendSoknad';
 import { BarnSammeAdresse } from '../../types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '../../types/SøkersRelasjonTilBarnet';

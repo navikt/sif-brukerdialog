@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+import { ExternalLinkIcon, RecycleIcon } from '@navikt/aksel-icons';
 import {
     Alert,
     BodyLong,
@@ -14,9 +14,9 @@ import {
 } from '@navikt/ds-react';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { ReactNode, useEffect, useState } from 'react';
-import { getSjekklisteStatus, JaNei, SjekklisteValues, spørsmål } from './sjekklisteUtils';
+
 import ExternalLink from '../external-link/ExternalLink';
-import { ExternalLinkIcon, RecycleIcon } from '@navikt/aksel-icons';
+import { getSjekklisteStatus, JaNei, SjekklisteValues, spørsmål } from './sjekklisteUtils';
 
 interface SpørsmålInnhold {
     legend: string;

@@ -4,8 +4,8 @@ import { UxSignalsLoaderProvider } from '@sif/surveys';
 import { PropsWithChildren } from 'react';
 
 import { AnalyticsProvider } from '../analytics/analytics';
-import { AppIntlConfig, AppIntlProvider } from './AppIntlProvider';
 import { AppErrorBoundary } from './AppErrorBoundary';
+import { AppIntlConfig, AppIntlProvider } from './AppIntlProvider';
 import { SifQueryClientProvider } from './SifQueryClientProvider';
 
 export type { SanityConfig };

@@ -1,17 +1,17 @@
+import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '@app/setup/constants';
 import { søknadStepConfig, søknadStepOrder } from '@app/setup/soknadStepConfig';
 import { SøknadStepId } from '@app/types/SoknadStepId';
-import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '@app/setup/constants';
 import { formValuesToSøknadsdata } from '@app/utils/formValuesToSøknadsdata';
 import { SøknadRouter, SøknadStepGuard } from '@sif/soknad-app';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { LoadingPage } from '@sif/soknad-ui';
 import { lazy, Suspense } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { useAppIntl } from './i18n';
 import { Kvittering } from './content/kvittering/Kvittering';
 import { Velkommen } from './content/velkommen/Velkommen';
-import { BarnForm, BostedForm, MedlemskapForm, KontonummerForm, OppsummeringSteg } from './steps';
-import { LoadingPage } from '@sif/soknad-ui';
+import { useAppIntl } from './i18n';
 import { getAppEnv } from './setup/appEnv';
+import { BarnForm, BostedForm, KontonummerForm, MedlemskapForm, OppsummeringSteg } from './steps';
 
 const ApmTestPage = lazy(() => import('./content/apm-test/ApmTestPage'));
 

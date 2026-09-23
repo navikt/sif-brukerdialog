@@ -1,6 +1,7 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { ReactNode } from 'react';
 import MessagesList from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesList';
+import { ReactNode } from 'react';
+
 import { storybookIntlUtils } from '../utils/intlUtils';
 import ShadowBox from './ShadowBox';
 

@@ -1,9 +1,10 @@
+import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { getRequiredFieldValidator, ValidateRequiredFieldError } from '@navikt/sif-validation';
+
 import { useAppIntl } from '../../../../i18n';
 import { BarnSammeAdresse } from '../../../../types/BarnSammeAdresse';
-import { OmBarnetFormFields } from '../OmBarnetStep';
 import { omBarnetFormComponents } from '../omBarnetFormComponents';
-import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
+import { OmBarnetFormFields } from '../OmBarnetStep';
 
 const { RadioGroup } = omBarnetFormComponents;
 

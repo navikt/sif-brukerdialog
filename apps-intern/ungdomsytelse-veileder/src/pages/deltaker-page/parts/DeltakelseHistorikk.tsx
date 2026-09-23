@@ -1,4 +1,5 @@
 import { Alert, Heading, Skeleton, VStack } from '@navikt/ds-react';
+
 import DeltakelseHistorikkListe from '../../../components/deltakelse-historikk-liste/DeltakelseHistorikkListe';
 import { useDeltakelserHistorikk } from '../../../hooks/useDeltakelseHistorikk';
 import { getDeltakelseHistorikkTilInnslag } from '../../../utils/deltakelseUtils';

@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
+import { useEffect, useState } from 'react';
+
 import innvilgetVedtakEndpoint from '../api/endpoints/innvilgetVedtakEndpoint';
 import { HentSisteGyldigeVedtakResponseDto } from '../types/innvilgetVedtakApiData/HentSisteGyldigeVedtakResponseDto';
 

@@ -1,8 +1,8 @@
 import { Heading, HeadingProps, HelpText, HStack, VStack } from '@navikt/ds-react';
-import { dateFormatter, formatName } from '@sif/utils';
 import { RegistrertBarn } from '@sif/api/k9-prosessering';
 import { SifRadioGroup, SifRadioProp } from '@sif/rhf';
 import { SifInfoCard } from '@sif/soknad-ui';
+import { dateFormatter, formatName } from '@sif/utils';
 import { useMemo } from 'react';
 import { FieldValues, Path } from 'react-hook-form';
 

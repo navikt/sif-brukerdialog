@@ -1,9 +1,9 @@
 import { Button, Dialog } from '@navikt/ds-react';
+import { ISODate } from '@sif/utils';
 
 import { SifSoknadFormsText } from '../../i18n';
 import { BostedUtland } from '.';
 import { BostedUtlandDialogForm } from './BostedUtlandDialogForm';
-import { ISODate } from '@sif/utils';
 
 interface Props {
     minDate?: ISODate;

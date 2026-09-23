@@ -1,4 +1,5 @@
 import { SamtykkeFormValues } from '@navikt/sif-common-soknad-ds';
+
 import { DeltBostedFormValues } from '../søknad/steps/delt-bosted/DeltBostedForm';
 import { LegeerklæringFormValues } from '../søknad/steps/legeerklæring/LegeerklæringForm';
 import { OmBarnetFormValues } from '../søknad/steps/om-barnet/OmBarnetStep';

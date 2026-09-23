@@ -6,10 +6,10 @@ import useSWR from 'swr';
 import { PleietrengendeMedSak, SakMedInntektsmeldinger } from '../types';
 import { inntektsmeldingClientSchema } from '../types/client-schemas/inntektsmeldingClientSchema';
 import { sakClientSchema } from '../types/client-schemas/sakClientSchema';
+import { logApiError } from '../utils/apiErrorLogger';
 import { browserEnv } from '../utils/env';
 import { safeParseArray } from '../utils/safeParseArray';
 import { sortBehandlingerNyesteFørst } from '../utils/sakUtils';
-import { logApiError } from '../utils/apiErrorLogger';
 import { swrBaseConfig } from '../utils/swrBaseConfig';
 import { useInnsynsdataContext } from './useInnsynsdataContext';
 

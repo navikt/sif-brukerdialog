@@ -1,3 +1,4 @@
+import { dateToISODate } from '@sif/utils';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import dayjs from 'dayjs';
 import { useState } from 'react';
@@ -7,7 +8,6 @@ import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { FraværDagerListAndDialog } from './FraværDagerListAndDialog';
 import { FraværPeriodeListAndDialog } from './FraværPeriodeListAndDialog';
 import type { FraværDag, FraværPeriode } from './index';
-import { dateToISODate } from '@sif/utils';
 
 const today = dayjs();
 

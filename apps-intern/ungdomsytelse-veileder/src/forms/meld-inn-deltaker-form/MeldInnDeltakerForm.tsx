@@ -1,6 +1,5 @@
-import { Alert, BodyLong, BodyShort, Box, Button, Heading, HStack, Link, VStack } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
 import { PaperplaneIcon, TasklistStartIcon } from '@navikt/aksel-icons';
+import { Alert, BodyLong, BodyShort, Box, Button, Heading, HStack, Link, VStack } from '@navikt/ds-react';
 import {
     FormikConfirmationCheckbox,
     FormikDatepicker,
@@ -14,15 +13,17 @@ import { dateFormatter } from '@navikt/sif-common-utils';
 import { getCheckedValidator, getDateValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { ApiErrorType } from '@sif/api';
 import dayjs from 'dayjs';
+import { useIntl } from 'react-intl';
+
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
+import { DrawerWidth, useDrawer } from '../../components/drawer/DrawerContext';
+import SjekklisteDrawer from '../../components/sjekkliste/DrawerSjekkliste';
 import { useMeldInnDeltaker } from '../../hooks/useMeldInnDeltaker';
 import { Deltakelse } from '../../types/Deltakelse';
 import { Deltaker, UregistrertDeltaker } from '../../types/Deltaker';
 import { AppHendelse } from '../../utils/analytics';
 import { useAppEventLogger } from '../../utils/analyticsHelper';
 import { getGyldigStartdatoRange } from '../../utils/deltakelseUtils';
-import { DrawerWidth, useDrawer } from '../../components/drawer/DrawerContext';
-import SjekklisteDrawer from '../../components/sjekkliste/DrawerSjekkliste';
 
 interface Props {
     deltaker: UregistrertDeltaker | Deltaker;

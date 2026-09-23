@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { Box, Heading, Table, ToggleGroup } from '@navikt/ds-react';
+import { useState } from 'react';
 
 export interface I18nMessagesPreviewProps {
     nb: Record<string, string>;

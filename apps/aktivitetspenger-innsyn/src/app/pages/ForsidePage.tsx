@@ -1,15 +1,15 @@
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { Søker } from '@sif/api/k9-prosessering';
+import { Oppgave } from '@sif/api/ung-brukerdialog';
 import { InnsynForsideHeader, OppgaverList } from '@sif/ung-innsyn/components';
 import { UngInnsynPage } from '@sif/ung-innsyn/pages';
+import { formatName, sortDateTimes } from '@sif/utils';
 
+import { InnsynFooter } from '../components/innsyn-footer/InnsynFooter';
+import { SøknadMottattInfo } from '../components/soknad-mottatt-info/SoknadMottattInfo';
 import { useInnsynBreadcrumbs } from '../hooks/useInnsynBreadcrumbs';
 import { AppText, useAppIntl } from '../i18n';
-import { formatName, sortDateTimes } from '@sif/utils';
-import { Oppgave } from '@sif/api/ung-brukerdialog';
-import { Søker } from '@sif/api/k9-prosessering';
-import { SøknadMottattInfo } from '../components/soknad-mottatt-info/SoknadMottattInfo';
-import { InnsynFooter } from '../components/innsyn-footer/InnsynFooter';
 
 interface Props {
     oppgaver: Oppgave[];

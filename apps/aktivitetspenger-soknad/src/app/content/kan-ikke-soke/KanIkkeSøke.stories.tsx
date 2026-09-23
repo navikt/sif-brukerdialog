@@ -59,7 +59,6 @@ export const UtenforSøknadsvindu: Story = {
 };
 
 export const Annet: Story = {
-    name: 'Annet',
     render: () => (
         <KanIkkeSøkePage
             søker={mockSøker}

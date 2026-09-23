@@ -1,10 +1,10 @@
-import { describe, expect, it } from 'vitest';
 import { AxiosError, InternalAxiosRequestConfig } from 'axios';
+import { describe, expect, it } from 'vitest';
 import { ZodError, ZodIssue } from 'zod';
 
 import { ApiErrorType, getFeltOgMeldingFraZodError, handleApiError, isProblemDetail } from '../errorHandlers';
 
-const issue = (path: (string | number)[]): ZodIssue =>
+const issue = (path: Array<string | number>): ZodIssue =>
     ({
         code: 'invalid_type',
         expected: 'boolean',

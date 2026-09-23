@@ -1,9 +1,9 @@
+import { TilgjengeligSøknadResponse } from '@navikt/ung-brukerdialog-api';
 import { useQuery } from '@tanstack/react-query';
 
+import { tilgjengeligAktivitetspengerSoknad } from '../api/aktivitetspenger/tilgjengeligAktivitetspengerSoknad';
 import { sifApiQueryKeys } from '../queryKeys';
 import { ApiError } from '../utils/errorHandlers';
-import { tilgjengeligAktivitetspengerSoknad } from '../api/aktivitetspenger/tilgjengeligAktivitetspengerSoknad';
-import { TilgjengeligSøknadResponse } from '@navikt/ung-brukerdialog-api';
 
 /**
  * Hook for å hente informasjon om tilgjengelig aktivitetspenger-søknad

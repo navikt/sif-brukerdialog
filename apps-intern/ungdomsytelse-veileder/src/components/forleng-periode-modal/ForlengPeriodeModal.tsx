@@ -1,7 +1,8 @@
 import { Heading, Modal } from '@navikt/ds-react';
+
+import ForlengPeriodeForm from '../../forms/forleng-periode-form/ForlengPeriodeForm';
 import { Deltakelse } from '../../types/Deltakelse';
 import { Deltaker } from '../../types/Deltaker';
-import ForlengPeriodeForm from '../../forms/forleng-periode-form/ForlengPeriodeForm';
 
 interface Props {
     deltaker: Deltaker;

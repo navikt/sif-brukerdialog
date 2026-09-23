@@ -1,18 +1,19 @@
 import { Alert, BodyLong, Box, Button, Heading, HStack, VStack } from '@navikt/ds-react';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { Deltaker } from '../../types/Deltaker';
-import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
+import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { dateFormatter } from '@navikt/sif-common-utils';
+import { getCheckedValidator, getRequiredFieldValidator, getStringValidator } from '@navikt/sif-validation';
+import { useState } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
+
 import BorderBox from '../../atoms/BorderBox';
 import Fødselsnummer from '../../atoms/Fødselsnummer';
-import { dateFormatter } from '@navikt/sif-common-utils';
-import { Deltakelse } from '../../types/Deltakelse';
-import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { getCheckedValidator, getRequiredFieldValidator, getStringValidator } from '@navikt/sif-validation';
-import { FormattedMessage, useIntl } from 'react-intl';
-import { useState } from 'react';
+import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import ConfirmDialog from '../../components/confirm-dialog/ConfirmDialog';
-import { SlettDeltakerÅrsak, SlettDeltakerÅrsakList } from '../../types/SlettDeltakerÅrsaker';
 import { useSlettAktivDeltaker } from '../../hooks/useSlettAktivDeltaker';
+import { Deltakelse } from '../../types/Deltakelse';
+import { Deltaker } from '../../types/Deltaker';
+import { SlettDeltakerÅrsak, SlettDeltakerÅrsakList } from '../../types/SlettDeltakerÅrsaker';
 
 interface Props {
     deltaker: Deltaker;

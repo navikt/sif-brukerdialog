@@ -1,8 +1,9 @@
 import { Alert, Bleed, BodyLong, Box, Heading, HStack, Page, VStack } from '@navikt/ds-react';
+import { useDocumentTitle } from '@navikt/sif-common-hooks';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDocumentTitle } from '@navikt/sif-common-hooks';
+
 import BorderBox from '../../atoms/BorderBox';
 import AppPage from '../../components/app-page/AppPage';
 import FinnDeltakerForm from '../../forms/finn-deltaker-form/FinnDeltakerForm';

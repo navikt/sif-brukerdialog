@@ -1,11 +1,11 @@
+import { VStack } from '@navikt/ds-react';
 import { BostedVilkårOppgave } from '@sif/api/ung-brukerdialog';
 
 import { UngInnsynText } from '../../../i18n';
 import { Oppgavebekreftelse } from '../../oppgavebekreftelse/Oppgavebekreftelse';
-import { BostedVilkarOppgavetekst } from './BostedVilkarOppgavetekst';
-import { OppgavebekreftelseTilbakemeldingInfo } from '../felles/OppgavebekreftelseTilbakemeldingInfo';
-import { VStack } from '@navikt/ds-react';
 import { BostedKilde } from '../felles/BostedKilde';
+import { OppgavebekreftelseTilbakemeldingInfo } from '../felles/OppgavebekreftelseTilbakemeldingInfo';
+import { BostedVilkarOppgavetekst } from './BostedVilkarOppgavetekst';
 
 interface Props {
     navn: string;

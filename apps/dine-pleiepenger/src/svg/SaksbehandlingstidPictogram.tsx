@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { SVGProps } from 'react';
 
 const SaksbehandlingstidPictogram = (props: SVGProps<SVGSVGElement>) => (

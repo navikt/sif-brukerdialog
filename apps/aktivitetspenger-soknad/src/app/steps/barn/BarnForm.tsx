@@ -1,12 +1,12 @@
-import { AppText, useAppIntl } from '@app/i18n';
-import { SøknadStepId } from '@app/types/SoknadStepId';
-import { SøknadStepForm } from '@sif/soknad-app';
-import { BarnSøknadsdata } from '@app/types/Soknadsdata';
 import { useAppContext } from '@app/context/AppContext';
+import { AppText, useAppIntl } from '@app/i18n';
+import getLenker from '@app/lenker';
+import { BarnSøknadsdata } from '@app/types/Soknadsdata';
+import { SøknadStepId } from '@app/types/SoknadStepId';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
-import { SøknadStep, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
+import { SøknadStep, SøknadStepForm, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import {
     AriaLiveRegion,
     ExternalLink,
@@ -17,7 +17,6 @@ import {
 } from '@sif/soknad-ui/components';
 import { useForm } from 'react-hook-form';
 
-import getLenker from '@app/lenker';
 import { toBarnFormValues, toBarnSøknadsdata } from './barnStegUtils';
 import { BarnFormFields, BarnFormValues } from './types';
 

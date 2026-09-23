@@ -11,9 +11,9 @@ import { OppgavePageDecorator } from '../../../storybook/OppgavePageDecorator';
 import { StorybookDecorator } from '../../../storybook/StorybookDecorator';
 import { AndreLivsoppholdsytelserOppgavePanel } from './AndreLivsoppholdsytelserOppgavePanel';
 import {
+    ANDRE_LIVSOPPHOLDSYTELSER_ÅRSAK_SCENARIO_OPTIONS,
     ANDRE_LIVSOPPHOLDSYTELSER_KILDE_SCENARIO_OPTIONS,
     ANDRE_LIVSOPPHOLDSYTELSER_VARIANT_SCENARIO_OPTIONS,
-    ANDRE_LIVSOPPHOLDSYTELSER_ÅRSAK_SCENARIO_OPTIONS,
     AndreLivsoppholdsytelserVarselVariant,
     lagOppgaveMedÅrsak,
     mockAndreLivsoppholdsytelserAKT,

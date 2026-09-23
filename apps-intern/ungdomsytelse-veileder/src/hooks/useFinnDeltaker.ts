@@ -1,7 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
-import { useEffect } from 'react';
 import { ApiError } from '@sif/api';
+import { useQuery } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
+import { useEffect } from 'react';
+
 import { findDeltakerByIdent } from '../api/deltaker/findDeltaker';
 import { queryKeys } from '../queries/queryKeys';
 import { Deltaker, UregistrertDeltaker } from '../types/Deltaker';

@@ -2,8 +2,8 @@ import 'dayjs/locale/nb';
 import 'dayjs/locale/nn';
 
 import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
 
 import { capsFirstCharacter, getValidLocale, ISODate, ISODateToDate } from '.';
 

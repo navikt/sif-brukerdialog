@@ -1,3 +1,4 @@
+import { ISODate } from '@sif/utils';
 import { ReactNode } from 'react';
 
 import { ModalFormAndList } from '../../components';
@@ -5,7 +6,6 @@ import { EnkeltdatoFormDialog } from './EnkeltdatoDialog';
 import { EnkeltdatoDialogFormConfig } from './EnkeltdatoDialogForm';
 import { EnkeltdatoList } from './EnkeltdatoList';
 import { Enkeltdato } from './types';
-import { ISODate } from '@sif/utils';
 
 interface Props extends EnkeltdatoDialogFormConfig {
     enkeltdatoer?: Enkeltdato[];

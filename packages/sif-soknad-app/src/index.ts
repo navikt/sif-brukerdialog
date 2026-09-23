@@ -26,12 +26,11 @@ export { useAvbryt } from './hooks/useAvbryt';
 export { useCheckConsistency } from './hooks/useCheckConsistency';
 export { useMellomlagring } from './hooks/useMellomlagring';
 export { useSaveSøknadFormValues } from './hooks/useSaveSøknadFormValues';
+export { useSøknadsdata } from './hooks/useSøknadsdata';
 export { useSøknadSendt } from './hooks/useSøknadSendt';
 export { useStartSøknad } from './hooks/useStartSøknad';
 export { useStepData } from './hooks/useStepData';
 export { useStepNavigation } from './hooks/useStepNavigation';
-
-export { useSøknadsdata } from './hooks/useSøknadsdata';
 
 // Ruting — stien eies av SøknadRouter
 export { KVITTERING_PATH } from './utils/routeUtils';

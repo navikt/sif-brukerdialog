@@ -1,6 +1,7 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ApiError } from '@sif/api';
 import { DeltakelseInnmeldingDto } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { ApiError } from '@sif/api';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { meldInnDeltaker } from '../api/deltakelse/meldInnDeltaker';
 import { queryKeys } from '../queries/queryKeys';
 import { Deltakelse } from '../types/Deltakelse';

@@ -1,6 +1,5 @@
-import { type ReactNode } from 'react';
-
 import { ApplicationPage } from '@sif/soknad-ui/pages';
+import { type ReactNode } from 'react';
 
 import { useSifSoknadUiIntl } from '../../i18n';
 

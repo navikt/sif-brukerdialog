@@ -1,10 +1,10 @@
+import { ISODate } from '@sif/utils';
 import { ReactNode } from 'react';
 
 import { ModalFormAndList } from '../../components';
 import { OpptjeningUtlandFormDialog } from './OpptjeningUtlandDialog';
 import { OpptjeningUtlandList } from './OpptjeningUtlandList';
 import { OpptjeningUtland } from './types';
-import { ISODate } from '@sif/utils';
 
 interface Props {
     opptjeninger?: OpptjeningUtland[];

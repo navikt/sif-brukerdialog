@@ -1,6 +1,7 @@
 import { Alert, BodyShort, Box } from '@navikt/ds-react';
 import { ApiError } from '@sif/api';
 import { isAxiosError } from 'axios';
+
 import FødselsnummerInline from '../../atoms/FødselsnummerInline';
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import { fødselsnummerFormatter } from '../../utils/formaterFødselsnummer';

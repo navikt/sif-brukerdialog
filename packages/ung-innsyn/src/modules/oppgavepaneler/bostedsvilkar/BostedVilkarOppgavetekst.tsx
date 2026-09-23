@@ -1,7 +1,7 @@
 import { BodyLong, VStack } from '@navikt/ds-react';
-
 import { BostedsvilkårIkkeOppfyltÅrsak } from '@navikt/ung-brukerdialog-api';
 import { BostedVilkårOppgave } from '@sif/api/ung-brukerdialog';
+
 import Fritekst from '../../../components/fritekst/Fritekst';
 
 type Props = BostedVilkårOppgave['oppgavetypeData'];
