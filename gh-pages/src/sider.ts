@@ -26,7 +26,7 @@ export const sider: GhPagesSide[] = [
         type: 'demo',
         tittel: 'Veilederapplikasjon for ungdomsprogramytelsen',
         beskrivelse: 'Demo av veilederapplikasjonen for ungdomsprogramytelsen, med mockede data.',
-        workspace: 'apps/ungdomsytelse-deltaker',
+        workspace: 'apps-intern/ungdomsytelse-veileder',
         disabled: true,
     },
     {
