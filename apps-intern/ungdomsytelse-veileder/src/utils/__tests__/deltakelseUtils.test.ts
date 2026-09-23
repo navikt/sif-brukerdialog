@@ -1,4 +1,4 @@
-import { ISODateToDate, dateToISODate } from '@navikt/sif-common-utils';
+import { dateToISODate, ISODateToDate } from '@navikt/sif-common-utils';
 
 vi.mock('../../types/Features', () => ({
     Features: {
@@ -18,20 +18,20 @@ vi.mock('@navikt/sif-common-env', () => ({
     },
 }));
 
+import { Deltakelse } from '../../types/Deltakelse';
+import { Features } from '../../types/Features';
 import {
+    addUkedagerToDate,
+    deltakelseKanSlettes,
+    deltakelseSluttdatoErIDagEllerFremover,
     getDeltakelseHandlinger,
     getGyldigStartdatoRange,
     kanEndreStartdato,
     kanSetteEllerEndreSluttdato,
     kanSletteSluttdato,
-    deltakelseKanSlettes,
     periodeKanForlenges,
-    deltakelseSluttdatoErIDagEllerFremover,
-    addUkedagerToDate,
     PeriodeKanForlengesÅrsak,
 } from '../deltakelseUtils';
-import { Deltakelse } from '../../types/Deltakelse';
-import { Features } from '../../types/Features';
 
 type DeltakelseOverrides = Partial<Omit<Deltakelse, 'status'>>;
 
@@ -362,24 +362,27 @@ describe('deltakelseUtils', () => {
     });
 
     describe('getGyldigStartdatoRange', () => {
+        /** Smalner typen slik at testene kan asserte uvilkårlig på datoperioden */
+        const somDateRange = (result: ReturnType<typeof getGyldigStartdatoRange>) => {
+            if (result === 'fomFørTom') {
+                throw new Error('Forventet en gyldig datoperiode, men fikk "fomFørTom"');
+            }
+            return result;
+        };
+
         const deltaker = {
             førsteMuligeInnmeldingsdato: ISODateToDate('2025-08-11'),
             sisteMuligeInnmeldingsdato: ISODateToDate('2027-06-01'),
         };
 
         it('begrenser fra-dato til maks 10 mnd tilbake, begrenset av førsteMuligeInnmeldingsdato', () => {
-            const result = getGyldigStartdatoRange(deltaker, TODAY);
-            expect(result).not.toBe('fomFørTom');
-            if (result !== 'fomFørTom') {
-                expect(dateToISODate(result.from)).toBe('2025-08-11');
-            }
+            const result = somDateRange(getGyldigStartdatoRange(deltaker, TODAY));
+            expect(dateToISODate(result.from)).toBe('2025-08-11');
         });
 
         it('begrenser til-dato til maks 10 mnd frem når det er før sisteMulige', () => {
-            const result = getGyldigStartdatoRange(deltaker, TODAY);
-            if (result !== 'fomFørTom') {
-                expect(dateToISODate(result.to)).toBe('2027-03-07');
-            }
+            const result = somDateRange(getGyldigStartdatoRange(deltaker, TODAY));
+            expect(dateToISODate(result.to)).toBe('2027-03-07');
         });
 
         it('returnerer fomFørTom når deltaker ikke kan meldes inn', () => {
@@ -392,29 +395,29 @@ describe('deltakelseUtils', () => {
         });
 
         it('TIDLIGSTE_STARTDATO er bindende nedre grense når førsteMulige er tidligere', () => {
-            const result = getGyldigStartdatoRange(
-                {
-                    førsteMuligeInnmeldingsdato: ISODateToDate('2025-01-01'),
-                    sisteMuligeInnmeldingsdato: ISODateToDate('2027-06-01'),
-                },
-                TODAY,
+            const result = somDateRange(
+                getGyldigStartdatoRange(
+                    {
+                        førsteMuligeInnmeldingsdato: ISODateToDate('2025-01-01'),
+                        sisteMuligeInnmeldingsdato: ISODateToDate('2027-06-01'),
+                    },
+                    TODAY,
+                ),
             );
-            if (result !== 'fomFørTom') {
-                expect(dateToISODate(result.from)).toBe('2025-08-01');
-            }
+            expect(dateToISODate(result.from)).toBe('2025-08-01');
         });
 
         it('sisteMuligeInnmeldingsdato er bindende øvre grense når den er tidligere enn 10 mnd frem', () => {
-            const result = getGyldigStartdatoRange(
-                {
-                    førsteMuligeInnmeldingsdato: ISODateToDate('2025-08-11'),
-                    sisteMuligeInnmeldingsdato: ISODateToDate('2026-08-01'),
-                },
-                TODAY,
+            const result = somDateRange(
+                getGyldigStartdatoRange(
+                    {
+                        førsteMuligeInnmeldingsdato: ISODateToDate('2025-08-11'),
+                        sisteMuligeInnmeldingsdato: ISODateToDate('2026-08-01'),
+                    },
+                    TODAY,
+                ),
             );
-            if (result !== 'fomFørTom') {
-                expect(dateToISODate(result.to)).toBe('2026-08-01');
-            }
+            expect(dateToISODate(result.to)).toBe('2026-08-01');
         });
     });
 

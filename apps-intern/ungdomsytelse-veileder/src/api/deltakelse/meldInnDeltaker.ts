@@ -1,9 +1,10 @@
-import { handleApiError } from '@sif/api';
 import {
     DeltakelseInnmeldingDto,
     Veileder,
     zDeltakelseInnmeldingDto,
 } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { handleApiError } from '@sif/api';
+
 import { Deltakelse, deltakelseSchema } from '../../types/Deltakelse';
 
 /**

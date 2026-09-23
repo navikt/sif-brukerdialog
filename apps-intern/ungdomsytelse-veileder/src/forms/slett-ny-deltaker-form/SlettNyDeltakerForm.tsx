@@ -1,9 +1,10 @@
 import { BodyLong, Button, ConfirmationPanel, HStack, List, VStack } from '@navikt/ds-react';
-import { useState } from 'react';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
+import { useState } from 'react';
+
+import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import { useSlettNyDeltaker } from '../../hooks/useSlettNyDeltaker';
 import { Deltaker } from '../../types/Deltaker';
-import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 
 interface Props {
     deltaker: Deltaker;

@@ -1,7 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { MemoryRouter } from 'react-router-dom';
 import { getRequiredEnv } from '@navikt/sif-common-env';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { http, HttpResponse } from 'msw';
+import { MemoryRouter } from 'react-router-dom';
+
 import { registrertDeltakerScenario } from '../../../mock/scenarioer/registrertDeltaker';
 import { withDarkBg } from '../../../storybook/decorators/withDarkBg';
 import { withIntl } from '../../../storybook/decorators/withIntl';

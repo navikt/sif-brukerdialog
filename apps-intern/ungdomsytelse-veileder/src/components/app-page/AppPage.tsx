@@ -1,4 +1,5 @@
 import { Page } from '@navikt/ds-react';
+
 import AppFooter from '../app-footer/AppFooter';
 
 const AppPage = ({ children }) => {

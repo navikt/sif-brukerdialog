@@ -1,5 +1,6 @@
-import { handleApiError } from '@sif/api';
 import { EndrePeriodeDatoDto, Veileder, zEndrePeriodeDatoDto } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { handleApiError } from '@sif/api';
+
 import { Deltakelse, deltakelseSchema } from '../../types/Deltakelse';
 
 /**

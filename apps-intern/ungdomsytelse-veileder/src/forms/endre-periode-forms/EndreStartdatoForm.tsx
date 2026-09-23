@@ -1,9 +1,10 @@
 import { Alert, Bleed, VStack } from '@navikt/ds-react';
-import { useIntl } from 'react-intl';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import dayjs from 'dayjs';
+import { useIntl } from 'react-intl';
+
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
 import { usePeriodeForDeltakelse } from '../../hooks/usePeriodeForDeltakelse';
 import StartdatoInfo from '../../pages/deltaker-page/StartdatoInfo';

@@ -1,4 +1,5 @@
 import { Alert, Box, HStack, LocalAlert, VStack } from '@navikt/ds-react';
+
 import { Deltakelse } from '../../../types/Deltakelse';
 import { Deltaker } from '../../../types/Deltaker';
 import DeltakelseHistorikk from './DeltakelseHistorikk';

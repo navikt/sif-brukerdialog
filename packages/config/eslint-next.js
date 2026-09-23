@@ -28,7 +28,8 @@ module.exports = {
     plugins: ['jsx-a11y', 'react-hooks'],
     settings: {
         react: {
-            version: 'detect',
+            // Eksplisitt versjon: 'detect' krever context.getFilename(), som er fjernet i ESLint 10
+            version: '19.3',
         },
     },
     ignorePatterns: ['node_modules', 'dist', 'lib', '.turbo'],

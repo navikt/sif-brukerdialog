@@ -1,7 +1,8 @@
 import { Box, Page, Skeleton } from '@navikt/ds-react';
-import { useNavigate, useParams } from 'react-router-dom';
 import { useDocumentTitle } from '@navikt/sif-common-hooks';
+import { useNavigate, useParams } from 'react-router-dom';
 import { validate } from 'uuid';
+
 import AppPage from '../../components/app-page/AppPage';
 import DeltakerHeader from '../../components/deltaker-header/DeltakerHeader';
 import { useRegistrertDeltaker } from '../../hooks/useRegistrertDeltaker';
@@ -19,12 +20,18 @@ const DeltakerPage = () => {
 
     useDocumentTitle('Deltaker - Deltakerregistrering - ungdomsprogrammet');
 
+    const deltakerIdErGyldig = !!deltakerId && validate(deltakerId);
+
+    const {
+        data: deltaker,
+        isLoading: deltakerPending,
+        error,
+    } = useRegistrertDeltaker(deltakerId || '', deltakerIdErGyldig);
+
     /** Forenklet feilhåndtering */
-    if (!deltakerId || deltakerId === '' || !validate(deltakerId)) {
+    if (!deltakerIdErGyldig) {
         return <ErrorPage error="Deltakerident er ikke gyldig" />;
     }
-
-    const { data: deltaker, isLoading: deltakerPending, error } = useRegistrertDeltaker(deltakerId || '');
 
     return (
         <AppPage>

@@ -1,8 +1,9 @@
 import { BodyLong, Box, Button, Heading, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
-import { Deltaker } from '../../../types/Deltaker';
-import { Deltakelse } from '../../../types/Deltakelse';
+
 import SlettSluttdatoModal from '../../../components/slett-sluttdato-modal/SlettSluttdatoModal';
+import { Deltakelse } from '../../../types/Deltakelse';
+import { Deltaker } from '../../../types/Deltaker';
 
 interface Props {
     deltaker: Deltaker;

@@ -1,6 +1,7 @@
+import { XMarkIcon } from '@navikt/aksel-icons';
 import { Button, Heading, HGrid, Page, VStack } from '@navikt/ds-react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import { XMarkIcon } from '@navikt/aksel-icons';
+
 import InfoInnhold from './InfoInnhold';
 
 const InfoPage = () => {
