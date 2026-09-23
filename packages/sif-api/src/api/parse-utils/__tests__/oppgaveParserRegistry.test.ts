@@ -1,4 +1,6 @@
 import {
+    AndreLivsoppholdsytelserAvklaringKildeType,
+    AndreLivsoppholdsytelserIkkeOppfyltÅrsak,
     BostedsavklaringKildeType,
     BostedsvilkårIkkeOppfyltÅrsak,
     BrukerdialogOppgaveDto,
@@ -176,7 +178,23 @@ const registryTestCases: RegistryTestCase[] = [
         },
         forventetParsedOppgavetype: ParsedOppgavetype.BEKREFT_OPPHOR_VED_MAKSDATO,
     },
+    {
+        navn: 'BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER',
+        oppgavetype: OppgaveType.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+        oppgavetypeData: {
+            type: 'ANDRE_LIVSOPPHOLDSYTELSER',
+            ikkeOppfyltÅrsak: AndreLivsoppholdsytelserIkkeOppfyltÅrsak.MOTTAR_ARBEIDSAVKLARINGSPENGER,
+            fom: '2026-01-01',
+            tom: '2026-03-31',
+            kilde: AndreLivsoppholdsytelserAvklaringKildeType.NAV,
+            varseltekst: 'mock',
+        },
+        forventetParsedOppgavetype: ParsedOppgavetype.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+    },
 ];
+
+/** Disse oppgavetypene finnes i backend, men er bevisst ikke støttet i frontend ennå. */
+const ikkeStøttedeOppgavetyper: OppgaveType[] = [OppgaveType.BEKREFT_BISTAND, OppgaveType.BEKREFT_AKTIVITET];
 
 describe('parseOppgaver - registeret ruter hver oppgavetype til riktig parser', () => {
     it.each(registryTestCases)('$navn', ({ oppgavetype, oppgavetypeData, forventetParsedOppgavetype }) => {
@@ -186,10 +204,19 @@ describe('parseOppgaver - registeret ruter hver oppgavetype til riktig parser', 
     });
 
     it('har minst én testrad for hver oppgavetype som er registrert i oppgaveParsers', () => {
-        const testedeTyper = new Set(registryTestCases.map((testCase) => testCase.oppgavetype));
+        const testedeTyper = new Set([
+            ...registryTestCases.map((testCase) => testCase.oppgavetype),
+            ...ikkeStøttedeOppgavetyper,
+        ]);
 
         Object.values(OppgaveType).forEach((oppgavetype) => {
             expect(testedeTyper.has(oppgavetype)).toBe(true);
         });
+    });
+
+    it.each(ikkeStøttedeOppgavetyper)('%s kaster feil fordi oppgavetypen ikke er støttet i frontend', (oppgavetype) => {
+        expect(() =>
+            parseOppgaver([{ ...baseOppgave, oppgavetype, oppgavetypeData: { type: 'IKKE_RELEVANT' } as never }]),
+        ).toThrow();
     });
 });
