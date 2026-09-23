@@ -1,5 +1,4 @@
-import { EyeSlashIcon } from '@navikt/aksel-icons';
-import { BodyLong, Box, Heading, HGrid, InfoCard, Link, Page, VStack } from '@navikt/ds-react';
+import { BodyLong, Box, Heading, HGrid, Link, Page, VStack } from '@navikt/ds-react';
 
 import SideKort from './SideKort';
 import { sider, SideType } from './sider';
@@ -42,12 +41,7 @@ const App = () => (
                                     <SideKort key={side.path} side={side} />
                                 ))}
                                 {disabledSideriSeksjon.map((side) => (
-                                    <InfoCard key={side.path} title={side.tittel}>
-                                        <InfoCard.Message icon={<EyeSlashIcon aria-hidden />} data-color="neutral">
-                                            <InfoCard.Title>{side.tittel}</InfoCard.Title>
-                                            <BodyLong>{side.beskrivelse}</BodyLong>
-                                        </InfoCard.Message>
-                                    </InfoCard>
+                                    <SideKort key={side.path} side={side} />
                                 ))}
                             </HGrid>
                         </VStack>
