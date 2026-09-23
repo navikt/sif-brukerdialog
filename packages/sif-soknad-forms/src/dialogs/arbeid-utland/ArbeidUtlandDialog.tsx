@@ -1,9 +1,9 @@
-import { BodyLong, Button, Dialog, Box } from '@navikt/ds-react';
+import { BodyLong, Box,Button, Dialog } from '@navikt/ds-react';
+import { ISODate } from '@sif/utils';
 
 import { SifSoknadFormsText } from '../../i18n';
 import { ArbeidUtlandFormData, ArbeidUtlandVariant } from '.';
 import { ArbeidUtlandDialogForm } from './ArbeidUtlandDialogForm';
-import { ISODate } from '@sif/utils';
 
 interface Props {
     minDate?: ISODate;

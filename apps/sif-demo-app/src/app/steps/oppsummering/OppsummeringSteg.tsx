@@ -1,16 +1,16 @@
-import { AppText, useAppIntl } from '@app/i18n';
-import { SøknadStepId } from '@app/types/SoknadStepId';
-import { Søknadsdata } from '@app/types/Soknadsdata';
 import { useAppContext } from '@app/context/AppContext';
-import { SøknadStepForm } from '@sif/soknad-app';
+import { AppText, useAppIntl } from '@app/i18n';
+import { Søknadsdata } from '@app/types/Soknadsdata';
+import { SøknadStepId } from '@app/types/SoknadStepId';
 import { FormSummary, InlineMessage } from '@navikt/ds-react';
-import { dateFormatter, formatName } from '@sif/utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
+import { SøknadStepForm } from '@sif/soknad-app';
 import { SøknadStep, useSøknadsdata } from '@sif/soknad-app';
-import { FormLayout } from '@sif/soknad-ui';
 import { PersistedVedlegg } from '@sif/soknad-forms';
+import { FormLayout } from '@sif/soknad-ui';
 import { VedleggSummaryList } from '@sif/soknad-ui/components';
+import { dateFormatter, formatName } from '@sif/utils';
 import { useForm } from 'react-hook-form';
 
 import { useSendSøknad } from '../../hooks/useSendSoknad';

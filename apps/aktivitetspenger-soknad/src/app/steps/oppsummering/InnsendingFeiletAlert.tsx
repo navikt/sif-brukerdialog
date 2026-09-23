@@ -1,8 +1,7 @@
+import { AppText, useAppIntl } from '@app/i18n';
 import { BodyLong, List, LocalAlert, ReadMore, VStack } from '@navikt/ds-react';
 import { ApiError, ApiErrorType, getInvalidParametersFromApiError } from '@sif/api';
 import { useEffect, useRef } from 'react';
-
-import { AppText, useAppIntl } from '@app/i18n';
 
 interface Props {
     error: ApiError;

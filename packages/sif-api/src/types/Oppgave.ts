@@ -1,4 +1,3 @@
-import { DateRange, ISODate, OpenDateRange } from '@sif/utils';
 import {
     BekreftAndreLivsoppholdsytelserOppgavetypeDataDto,
     BekreftBostedOppgavetypeDataDto,
@@ -8,6 +7,7 @@ import {
     RegisterinntektDto,
     SvarPåVarselDto,
 } from '@navikt/ung-brukerdialog-api';
+import { DateRange, ISODate, OpenDateRange } from '@sif/utils';
 
 export enum ParsedOppgavetype {
     BEKREFT_BOSTED = 'BEKREFT_BOSTED',

@@ -23,6 +23,7 @@ import {
     getMonthDateRange,
     getMonthsInDateRange,
     getNumberOfDaysInDateRange,
+    getNumberOfWeekdaysInDateRange,
     getWeekDateRange,
     getWeeksInDateRange,
     getYearsInDateRanges,
@@ -44,7 +45,6 @@ import {
     sortDateRange,
     sortDateRangeByToDate,
     trimDateRangeToWeekdays,
-    getNumberOfWeekdaysInDateRange,
 } from '..';
 
 describe('dateRangeUtils', () => {

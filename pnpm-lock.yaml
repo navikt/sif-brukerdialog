@@ -756,6 +756,9 @@ importers:
       '@navikt/ds-tailwind':
         specifier: 8.16.2
         version: 8.16.2
+      '@next/eslint-plugin-next':
+        specifier: 16.3.5
+        version: 16.3.5(eslint@10.10.0(jiti@2.7.0))
       '@playwright/test':
         specifier: 1.63.0
         version: 1.63.0
@@ -3766,6 +3769,9 @@ importers:
       copyfiles:
         specifier: 2.4.1
         version: 2.4.1
+      eslint:
+        specifier: 10.10.0
+        version: 10.10.0(jiti@2.7.0)
       postcss:
         specifier: '>=8.5.28'
         version: 8.5.28
@@ -4091,6 +4097,9 @@ importers:
       '@types/react':
         specifier: 19.3.0
         version: 19.3.0
+      eslint:
+        specifier: 10.10.0
+        version: 10.10.0(jiti@2.7.0)
       react:
         specifier: 19.3.0
         version: 19.3.0
@@ -4125,6 +4134,9 @@ importers:
       config:
         specifier: workspace:*
         version: link:../config
+      eslint:
+        specifier: 10.10.0
+        version: 10.10.0(jiti@2.7.0)
       typescript:
         specifier: 6.0.3
         version: 6.0.3
@@ -4140,6 +4152,9 @@ importers:
       copyfiles:
         specifier: 2.4.1
         version: 2.4.1
+      eslint:
+        specifier: 10.10.0
+        version: 10.10.0(jiti@2.7.0)
       typescript:
         specifier: 6.0.3
         version: 6.0.3
@@ -4165,6 +4180,9 @@ importers:
       config:
         specifier: workspace:*
         version: link:../config
+      eslint:
+        specifier: 10.10.0
+        version: 10.10.0(jiti@2.7.0)
       react:
         specifier: 19.3.0
         version: 19.3.0
@@ -4235,6 +4253,9 @@ importers:
       copyfiles:
         specifier: 2.4.1
         version: 2.4.1
+      eslint:
+        specifier: 10.10.0
+        version: 10.10.0(jiti@2.7.0)
       globals:
         specifier: 17.12.0
         version: 17.12.0
@@ -4423,6 +4444,9 @@ importers:
         specifier: 4.6.5
         version: 4.6.5
     devDependencies:
+      eslint:
+        specifier: 10.10.0
+        version: 10.10.0(jiti@2.7.0)
       typescript:
         specifier: 6.0.3
         version: 6.0.3
@@ -4708,6 +4732,9 @@ importers:
       copyfiles:
         specifier: 2.4.1
         version: 2.4.1
+      eslint:
+        specifier: 10.10.0
+        version: 10.10.0(jiti@2.7.0)
 
   packages/sif-common-soknad-ds:
     dependencies:
@@ -5035,6 +5062,9 @@ importers:
       config:
         specifier: workspace:*
         version: link:../config
+      eslint:
+        specifier: 10.10.0
+        version: 10.10.0(jiti@2.7.0)
       globals:
         specifier: 17.12.0
         version: 17.12.0
@@ -5145,6 +5175,9 @@ importers:
       '@types/react-dom':
         specifier: 19.3.0
         version: 19.3.0(@types/react@19.3.0)
+      eslint:
+        specifier: 10.10.0
+        version: 10.10.0(jiti@2.7.0)
       react:
         specifier: 19.3.0
         version: 19.3.0
@@ -5224,6 +5257,9 @@ importers:
       '@types/react-dom':
         specifier: 19.3.0
         version: 19.3.0(@types/react@19.3.0)
+      eslint:
+        specifier: 10.10.0
+        version: 10.10.0(jiti@2.7.0)
       react:
         specifier: 19.3.0
         version: 19.3.0
@@ -5300,6 +5336,9 @@ importers:
       dayjs:
         specifier: 1.11.23
         version: 1.11.23
+      eslint:
+        specifier: 10.10.0
+        version: 10.10.0(jiti@2.7.0)
       react:
         specifier: 19.3.0
         version: 19.3.0
@@ -5425,6 +5464,9 @@ importers:
       '@types/react':
         specifier: 19.3.0
         version: 19.3.0
+      eslint:
+        specifier: 10.10.0
+        version: 10.10.0(jiti@2.7.0)
 
   packages/sif-utils:
     dependencies:
@@ -5459,6 +5501,9 @@ importers:
       config:
         specifier: workspace:*
         version: link:../config
+      eslint:
+        specifier: 10.10.0
+        version: 10.10.0(jiti@2.7.0)
       globals:
         specifier: 17.12.0
         version: 17.12.0
@@ -5508,6 +5553,9 @@ importers:
       config:
         specifier: workspace:*
         version: link:../config
+      eslint:
+        specifier: 10.10.0
+        version: 10.10.0(jiti@2.7.0)
       postcss:
         specifier: '>=8.5.28'
         version: 8.5.28
@@ -7045,6 +7093,12 @@ packages:
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
 
+  '@eslint-community/eslint-utils@4.9.1':
+    resolution: {integrity: sha512-phrYmNiYppR7znFEdqgfWHXR6NCkZEK7hwWDHZUjit/2/U0r6XvkDl0SYnoM51Hq7FhCGdLDT6zxCCOY1hexsQ==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    peerDependencies:
+      eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
+
   '@eslint-community/regexpp@4.12.2':
     resolution: {integrity: sha512-EriSTlt5OC9/7SXkRSCAhfSxxoSUgBm33OH+IkwbdpgoqsSsUg7y3uh+IICI/Qg4BBWr3U2i39RpmycbxMq4ew==}
     engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
@@ -8082,6 +8136,9 @@ packages:
 
   '@next/env@16.3.5':
     resolution: {integrity: sha512-NWEXVDMqoEo0ktmU6u0sE2Vg0LOcsD7NnOTJNo3/fEaTfsg+F1bMIxuDmQbda4e3yTIQwVdUREF2yIuMOusKtg==}
+
+  '@next/eslint-plugin-next@16.3.5':
+    resolution: {integrity: sha512-PGfSeItHJ12DH8t+6sEbuMe59NE5rAhCfgk06QKTH2ne9VUL1JlaXdYXY3B8RaiF2SO50rDYvd39TulP6A6xZQ==}
 
   '@next/swc-darwin-arm64@16.3.5':
     resolution: {integrity: sha512-pMmGgETfKvElucLHtVaeiMRbp2zUbvKx7b1yGko0liBz3cw1mKSggWN/Rp/wPz8z+E1O82u3r4L1Co+ZS5hokQ==}
@@ -12411,6 +12468,10 @@ packages:
 
   fast-fifo@1.3.2:
     resolution: {integrity: sha512-/d9sfos4yxzpwkDkuN7k2SqFKtYNmCTzgfEpz82x34IM9/zc8KGxQoXg1liNC/izpRM/MBdt44Nmx41ZWqk+FQ==}
+
+  fast-glob@3.3.1:
+    resolution: {integrity: sha512-kNFPyjhh5cKjrUltxs+wFx+ZkbRaxxmZ+X0ZU31SOsxCEtP9VPgtq2teZw1DebupL5GmDaNQ6yKMMVcM41iqDg==}
+    engines: {node: '>=8.6.0'}
 
   fast-glob@3.3.3:
     resolution: {integrity: sha512-7MptL8U0cqcFdzIzwOTHoilX9x5BrNqye7Z/LuC7kCMRio1EMSyqRK3BEAUD7sXRq4iT4AzTVuZdhgQ2TCvYLg==}
@@ -18705,6 +18766,11 @@ snapshots:
       eslint: 10.10.0(jiti@2.7.0)
       eslint-visitor-keys: 3.4.3
 
+  '@eslint-community/eslint-utils@4.9.1(eslint@10.10.0(jiti@2.7.0))':
+    dependencies:
+      eslint: 10.10.0(jiti@2.7.0)
+      eslint-visitor-keys: 3.4.3
+
   '@eslint-community/regexpp@4.12.2': {}
 
   '@eslint-react/ast@5.18.6(eslint@10.10.0(jiti@2.7.0))(typescript@6.0.3)':
@@ -19886,6 +19952,13 @@ snapshots:
   '@navikt/texas@4.2.2': {}
 
   '@next/env@16.3.5': {}
+
+  '@next/eslint-plugin-next@16.3.5(eslint@10.10.0(jiti@2.7.0))':
+    dependencies:
+      '@eslint-community/eslint-utils': 4.9.1(eslint@10.10.0(jiti@2.7.0))
+      fast-glob: 3.3.1
+    transitivePeerDependencies:
+      - eslint
 
   '@next/swc-darwin-arm64@16.3.5':
     optional: true
@@ -24922,6 +24995,14 @@ snapshots:
   fast-diff@1.3.0: {}
 
   fast-fifo@1.3.2: {}
+
+  fast-glob@3.3.1:
+    dependencies:
+      '@nodelib/fs.stat': 2.0.5
+      '@nodelib/fs.walk': 1.2.8
+      glob-parent: 5.1.2
+      merge2: 1.4.1
+      micromatch: 4.0.8
 
   fast-glob@3.3.3:
     dependencies:

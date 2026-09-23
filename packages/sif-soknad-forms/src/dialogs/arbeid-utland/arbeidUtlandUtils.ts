@@ -1,7 +1,8 @@
 import { datePickerUtils } from '@sif/rhf';
+import { countryIsMemberOfEøsOrEfta, dateToISODate, getCountryName, getYesOrNoFromBoolean, YesOrNo } from '@sif/utils';
+
 import { ArbeidUtlandFormData, ArbeidUtlandVariant } from '.';
 import { ArbeidUtlandFormValues } from './ArbeidUtlandDialogForm';
-import { countryIsMemberOfEøsOrEfta, dateToISODate, getCountryName, getYesOrNoFromBoolean, YesOrNo } from '@sif/utils';
 
 const formValuesToArbeidUtland = (
     values: ArbeidUtlandFormValues,

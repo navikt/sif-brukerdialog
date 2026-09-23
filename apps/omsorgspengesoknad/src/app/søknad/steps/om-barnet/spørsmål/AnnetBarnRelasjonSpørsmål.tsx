@@ -1,8 +1,9 @@
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
+
 import { AppText, useAppIntl } from '../../../../i18n';
 import { SøkersRelasjonTilBarnet } from '../../../../types/SøkersRelasjonTilBarnet';
-import { OmBarnetFormFields } from '../OmBarnetStep';
 import { omBarnetFormComponents } from '../omBarnetFormComponents';
+import { OmBarnetFormFields } from '../OmBarnetStep';
 
 const { Select } = omBarnetFormComponents;
 

@@ -22,6 +22,7 @@
         "@sif/eslint-config": "workspace:*",
         "@types/node": "26.6.1",
         "config": "workspace:*",
+        "eslint": "10.10.0",
         "typescript": "6.0.3",
         "vitest": "5.0.1"
     }

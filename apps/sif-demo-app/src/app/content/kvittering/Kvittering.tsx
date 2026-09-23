@@ -1,5 +1,6 @@
 import { useAppIntl } from '@app/i18n';
 import { SøknadKvitteringPage } from '@sif/soknad-ui';
+
 import { getAppEnv } from '../../setup/appEnv';
 
 export const Kvittering = () => {

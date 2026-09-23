@@ -47,7 +47,7 @@ export const App = () => {
 
     return (
         <SøknadAppProvider
-            applicationKey={'sif-demo-app'}
+            applicationKey="sif-demo-app"
             useAnalytics={false}
             intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
             <BrowserRouter basename={env.PUBLIC_PATH}>

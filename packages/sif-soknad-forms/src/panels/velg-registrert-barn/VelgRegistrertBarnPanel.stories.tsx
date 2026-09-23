@@ -1,10 +1,10 @@
 import type { RegistrertBarn } from '@sif/api/k9-prosessering';
+import { ISODate } from '@sif/utils';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { withRHFForm } from '../../storybook/decorators/withRHFForm';
 import { VelgRegistrertBarnPanel } from './VelgRegistrertBarnPanel';
-import { ISODate } from '@sif/utils';
 
 type FormValues = {
     barn: string;

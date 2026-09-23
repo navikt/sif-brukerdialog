@@ -24,7 +24,7 @@ export const StateLabel = ({ children }: { children: ReactNode }) => (
 
 export const StoryBox = ({ children, title }: { children: ReactNode; title: string }) => (
     // <Bleed marginInline="space-32">
-    <VStack gap="space-8" paddingBlock={'space-12 space-0'}>
+    <VStack gap="space-8" paddingBlock="space-12 space-0">
         <StateLabel>{title}</StateLabel>
         <Box
             paddingInline="space-32"
@@ -34,7 +34,7 @@ export const StoryBox = ({ children, title }: { children: ReactNode; title: stri
             style={{ borderStyle: 'dashed' }}>
             <Box
                 padding="space-32"
-                maxWidth={'48rem'}
+                maxWidth="48rem"
                 style={{
                     background: 'var(--ax-bg-info-soft)',
                     border: '1px solid var(--a-border-subtle)',

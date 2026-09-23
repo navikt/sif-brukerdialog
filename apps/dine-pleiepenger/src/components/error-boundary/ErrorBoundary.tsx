@@ -1,6 +1,6 @@
-import { appLogger } from '@sif/apm';
 import { Page } from '@navikt/ds-react';
 import { createChildLogger } from '@navikt/next-logger';
+import { appLogger } from '@sif/apm';
 import { Component, ErrorInfo, PropsWithChildren, ReactNode } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 

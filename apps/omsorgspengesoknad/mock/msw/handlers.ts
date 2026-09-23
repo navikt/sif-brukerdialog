@@ -1,4 +1,5 @@
 import { http, HttpResponse } from 'msw';
+
 import barnMock from '../data/søker1/barn-mock.json';
 import søkerMock from '../data/søker1/søker-mock.json';
 import { getMellomlagringHandlers } from '../state/mellomlagringHandlers';

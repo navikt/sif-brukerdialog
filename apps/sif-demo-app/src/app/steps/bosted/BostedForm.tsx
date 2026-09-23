@@ -1,6 +1,6 @@
 import { useAppIntl } from '@app/i18n';
-import { SøknadStepId } from '@app/types/SoknadStepId';
 import { BostedSøknadsdata } from '@app/types/Soknadsdata';
+import { SøknadStepId } from '@app/types/SoknadStepId';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { SøknadStep, SøknadStepForm, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';

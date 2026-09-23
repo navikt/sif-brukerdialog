@@ -1,9 +1,10 @@
-import { appLogger } from '@sif/apm';
 import { Box, Button, Heading } from '@navikt/ds-react';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-panel/SifGuidePanel';
-import SoknadHeader from '../soknad-header/SoknadHeader';
+import { appLogger } from '@sif/apm';
 import React from 'react';
+
+import SoknadHeader from '../soknad-header/SoknadHeader';
 
 interface State {
     eventId: string | null;

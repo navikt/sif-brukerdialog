@@ -1,9 +1,9 @@
 import { RegistrertBarn } from '@sif/api/k9-prosessering';
 import { PersistedVedlegg } from '@sif/soknad-forms';
 
-import { SøknadStepId } from './SoknadStepId';
 import { BarnSammeAdresse } from './BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from './SøkersRelasjonTilBarnet';
+import { SøknadStepId } from './SoknadStepId';
 
 interface OmBarnetSøknadsdata_RegistrertBarn {
     type: 'registrertBarn';

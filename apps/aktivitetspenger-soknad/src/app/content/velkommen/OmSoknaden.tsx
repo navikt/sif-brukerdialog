@@ -1,9 +1,9 @@
+import { TodoFlag } from '@app/components/Todo';
 import { AppText } from '@app/i18n';
 import { Accordion, Box, Heading, List, VStack } from '@navikt/ds-react';
 
 import BehandlingAvPersonopplysningerContent from './BehandlingAvPersonopplysningerContent';
 import ReglerOgAutomatiskSaksbehandlingContent from './ReglerOgAutomatiskSaksbehandlingContent';
-import { TodoFlag } from '@app/components/Todo';
 
 const OmSøknaden = () => {
     return (

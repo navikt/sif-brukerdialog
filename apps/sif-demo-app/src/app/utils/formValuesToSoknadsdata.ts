@@ -4,8 +4,8 @@ import { toBarnSøknadsdata } from '../steps/barn/barnStegUtils';
 import { BarnFormValues } from '../steps/barn/types';
 import { toBostedSøknadsdata } from '../steps/bosted/bostedStegUtils';
 import { BostedFormValues } from '../steps/bosted/types';
-import { toVedleggSøknadsdata } from '../steps/vedlegg/vedleggStegUtils';
 import { VedleggFormValues } from '../steps/vedlegg/types';
+import { toVedleggSøknadsdata } from '../steps/vedlegg/vedleggStegUtils';
 
 export const formValuesToSøknadsdata = (
     stepId: string,

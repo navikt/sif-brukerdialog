@@ -1,8 +1,8 @@
+import { ISODate } from '@sif/utils';
 import { describe, expect, it } from 'vitest';
 
 import { annetBarnToFormValues, formValuesToAnnetBarn, isAnnetBarn } from '../annetBarnUtils';
 import { AnnetBarn, AnnetBarnFormValues } from '../index';
-import { ISODate } from '@sif/utils';
 
 const id = '123';
 const fnr = '234';

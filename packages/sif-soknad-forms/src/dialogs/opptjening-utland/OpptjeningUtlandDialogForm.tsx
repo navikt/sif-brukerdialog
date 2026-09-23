@@ -1,11 +1,11 @@
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getISODateRangeValidator, getRequiredFieldValidator, getStringValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, datePickerUtils, useSifValidate } from '@sif/rhf';
+import { ISODate } from '@sif/utils';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
 import { OpptjeningAktivitet, OpptjeningUtland } from './types';
-import { ISODate } from '@sif/utils';
 
 interface Props {
     formId: string;

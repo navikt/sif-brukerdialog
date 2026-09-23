@@ -1,7 +1,6 @@
+import { SøknadApiData } from '@app/types/SoknadApiData';
 import { aktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
 import { commonRequestHeader, handleApiError } from '@sif/api';
-
-import { SøknadApiData } from '@app/types/SoknadApiData';
 
 export const sendSøknad = async (data: SøknadApiData): Promise<any> => {
     try {

@@ -1,8 +1,8 @@
 import { Button } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { countryIsMemberOfEøsOrEfta, DateRange, getCountryName, ISODate } from '@sif/utils';
 import { getISODateRangeValidator, getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, datePickerUtils, SifInputGroup, useSifValidate, YesOrNo } from '@sif/rhf';
+import { countryIsMemberOfEøsOrEfta, DateRange, getCountryName, ISODate } from '@sif/utils';
 import { useEffect, useState } from 'react';
 import { FormProvider, useFieldArray, useForm, useWatch } from 'react-hook-form';
 

@@ -1,11 +1,11 @@
+import { VStack } from '@navikt/ds-react';
 import { AndreLivsoppholdsytelserOppgave } from '@sif/api/ung-brukerdialog';
 
 import { UngInnsynText } from '../../../i18n';
 import { Oppgavebekreftelse } from '../../oppgavebekreftelse/Oppgavebekreftelse';
-import { AndreLivsoppholdsytelserOppgavetekst } from './AndreLivsoppholdsytelserOppgavetekst';
-import { OppgavebekreftelseTilbakemeldingInfo } from '../felles/OppgavebekreftelseTilbakemeldingInfo';
-import { VStack } from '@navikt/ds-react';
 import { AndreLivsoppholdsytelserKilde } from '../felles/AndreLivsoppholdsytelserKilde';
+import { OppgavebekreftelseTilbakemeldingInfo } from '../felles/OppgavebekreftelseTilbakemeldingInfo';
+import { AndreLivsoppholdsytelserOppgavetekst } from './AndreLivsoppholdsytelserOppgavetekst';
 
 interface Props {
     navn: string;

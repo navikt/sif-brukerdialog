@@ -3,10 +3,10 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import { annetBarnMessages_nb } from '../dialogs/annet-barn/i18n/nb';
 import { annetBarnMessages_nn } from '../dialogs/annet-barn/i18n/nn';
-import { bostedUtlandMessages_nb } from '../dialogs/bosted-utland/i18n/nb';
-import { bostedUtlandMessages_nn } from '../dialogs/bosted-utland/i18n/nn';
 import { arbeidUtlandMessages_nb } from '../dialogs/arbeid-utland/i18n/nb';
 import { arbeidUtlandMessages_nn } from '../dialogs/arbeid-utland/i18n/nn';
+import { bostedUtlandMessages_nb } from '../dialogs/bosted-utland/i18n/nb';
+import { bostedUtlandMessages_nn } from '../dialogs/bosted-utland/i18n/nn';
 import { enkeltdatoMessages_nb } from '../dialogs/enkeltdatoer/i18n/nb';
 import { enkeltdatoMessages_nn } from '../dialogs/enkeltdatoer/i18n/nn';
 import { ferieuttakMessages_nb } from '../dialogs/ferieuttak/i18n/nb';

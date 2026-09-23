@@ -1,5 +1,5 @@
-import { dateFormatter } from '@sif/utils';
 import { AvvikRegisterinntektOppgave } from '@sif/api/ung-brukerdialog';
+import { dateFormatter } from '@sif/utils';
 
 import { InntektTable } from '../../../../components';
 import { UngInnsynText, useUngInnsynIntl } from '../../../../i18n';

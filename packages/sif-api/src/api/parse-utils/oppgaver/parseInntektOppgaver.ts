@@ -1,9 +1,9 @@
-import { ISODate } from '@sif/utils';
 import {
     BrukerdialogOppgaveDto,
     InntektsrapporteringOppgavetypeDataDto,
     KontrollerRegisterinntektOppgavetypeDataDto,
 } from '@navikt/ung-brukerdialog-api';
+import { ISODate } from '@sif/utils';
 
 import { AvvikRegisterinntektOppgave, ParsedOppgavetype, RapporterInntektOppgave } from '../../../types/Oppgave';
 import { getOppgaveBaseProps } from './oppgaveBase';

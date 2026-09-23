@@ -1,24 +1,24 @@
-import { AppText, useAppIntl } from '@app/i18n';
-import { SøknadStepId } from '@app/types/SoknadStepId';
-import { SøknadStepForm } from '@sif/soknad-app';
 import { useAppContext } from '@app/context/AppContext';
+import { useSendSøknad } from '@app/hooks/useSendSoknad';
+import { AppText, useAppIntl } from '@app/i18n';
 import { Søknadsdata } from '@app/types/Soknadsdata';
+import { SøknadStepId } from '@app/types/SoknadStepId';
+import { søknadsdataToSøknadDTO } from '@app/utils/soknadsdataToSoknadDTO';
 import { InfoCard } from '@navikt/ds-react';
-import { dateToISODate, getDateToday, ISODate } from '@sif/utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
+import { SøknadStepForm } from '@sif/soknad-app';
 import { SøknadStep, useSøknadsdata } from '@sif/soknad-app';
 import { FormLayout } from '@sif/soknad-ui';
+import { dateToISODate, getDateToday, ISODate } from '@sif/utils';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { useSendSøknad } from '@app/hooks/useSendSoknad';
-import { søknadsdataToSøknadDTO } from '@app/utils/soknadsdataToSoknadDTO';
+import { InnsendingFeiletAlert } from './InnsendingFeiletAlert';
 import { BarnOppsummering } from './parts/BarnOppsummering';
 import { BostedOppsummering } from './parts/BostedOppsummering';
-import { MedlemskapOppsummering } from './parts/MedlemskapOppsummering';
 import { KontonummerOppsummering } from './parts/KontonummerOppsummering';
-import { InnsendingFeiletAlert } from './InnsendingFeiletAlert';
-import { useState } from 'react';
+import { MedlemskapOppsummering } from './parts/MedlemskapOppsummering';
 import { StartdatoSpørsmål } from './parts/StartdatoSpørsmål';
 
 enum FormFields {
@@ -71,8 +71,7 @@ export const OppsummeringSteg = () => {
                 isPending={isPending}
                 isFinalSubmit={true}
                 submitDisabled={!dto || !startdato}>
-                {
-                    <StartdatoSpørsmål
+                <StartdatoSpørsmål
                         value={startdato}
                         onDateChange={(dato) => {
                             if (dato) {
@@ -80,7 +79,6 @@ export const OppsummeringSteg = () => {
                             }
                         }}
                     />
-                }
                 {startdato && (
                     <>
                         {!dto && (

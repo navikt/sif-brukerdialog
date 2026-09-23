@@ -1,6 +1,7 @@
 import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { appLogger } from '@sif/apm';
 import { isObjectLike } from 'lodash';
 import { useState } from 'react';
 
@@ -9,7 +10,6 @@ import { RequestStatus } from '../types/RequestStatus';
 import { Søknadstype } from '../types/Søknadstype';
 import { SoknadTempStorageData } from '../types/SoknadTempStorageData';
 import { navigateToLoginPage } from '../utils/navigationUtils';
-import { appLogger } from '@sif/apm';
 
 export type SoknadEssentials = { søker: Søker; barn?: RegistrertBarn[]; mellomlagring?: SoknadTempStorageData };
 

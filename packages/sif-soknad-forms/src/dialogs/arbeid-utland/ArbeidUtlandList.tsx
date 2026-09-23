@@ -1,11 +1,10 @@
 import { BodyShort, VStack } from '@navikt/ds-react';
 import { ActionLink, ItemListDarkside, useUiIntl } from '@navikt/sif-common-ui';
 import { dateRangeFormatter, getCountryName, Locale } from '@sif/utils';
-
 import { ReactNode } from 'react';
 
-import { ArbeidUtlandFormData, ArbeidUtlandVariant } from '.';
 import { SifSoknadFormsText } from '../../i18n';
+import { ArbeidUtlandFormData, ArbeidUtlandVariant } from '.';
 
 interface Props {
     arbeidssteder: ArbeidUtlandFormData[];

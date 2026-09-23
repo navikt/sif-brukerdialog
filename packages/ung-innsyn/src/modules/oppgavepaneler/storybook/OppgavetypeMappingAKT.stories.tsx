@@ -2,10 +2,16 @@ import { Bleed, BodyShort, Box, Heading, Link, List, Table, VStack } from '@navi
 import { OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { ReactNode } from 'react';
 
 import { useUngInnsynIntl } from '../../../i18n';
+import { IntlDecorator } from '../../../storybook/IntlDecorator';
 import { PanelPreviewWrapper, renderOppgaveStandardStater } from '../../../storybook/storyUtils';
-import { Lovlenke, OPPGAVE_LOVVERK } from '../oppgaveLovverk';
+import { AndreLivsoppholdsytelserOppgavePanel } from '../andre-livsoppholdsytelser/AndreLivsoppholdsytelserOppgavePanel';
+import {
+    mockAndreLivsoppholdsytelserAKT,
+    mockAndreLivsoppholdsytelserBesvartAKT,
+} from '../andre-livsoppholdsytelser/AndreLivsoppholdsytelserOppgavePanel.mockData';
 import { AvvikRegisterinntektOppgavePanel } from '../avvik-registerinntekt/AvvikRegisterinntektOppgavePanel';
 import {
     inntektArbeidsgiver1,
@@ -15,19 +21,13 @@ import {
 } from '../avvik-registerinntekt/AvvikRegisterinntektOppgavePanel.mockData';
 import { BostedVilkårOppgavePanel } from '../bostedsvilkar/BostedVilkarOppgavePanel';
 import { mockBostedVilkårAKT, mockBostedVilkårBesvartAKT } from '../bostedsvilkar/BostedVilkarOppgavePanel.mockData';
-import { AndreLivsoppholdsytelserOppgavePanel } from '../andre-livsoppholdsytelser/AndreLivsoppholdsytelserOppgavePanel';
-import {
-    mockAndreLivsoppholdsytelserAKT,
-    mockAndreLivsoppholdsytelserBesvartAKT,
-} from '../andre-livsoppholdsytelser/AndreLivsoppholdsytelserOppgavePanel.mockData';
+import { Lovlenke, OPPGAVE_LOVVERK } from '../oppgaveLovverk';
 import { RapporterInntektOppgavePanel } from '../rapporter-inntekt/RapporterInntektOppgavePanel';
 import {
     lagRapporterInntektBesvartOppgave,
     lagRapporterInntektOppgave,
     lagRapporterInntektOppgaveMedScenario,
 } from '../rapporter-inntekt/RapporterInntektOppgavePanel.mockData';
-import { IntlDecorator } from '../../../storybook/IntlDecorator';
-import { ReactNode } from 'react';
 
 const meta: Meta = {
     title: 'Oppgaver/Oversikt/Aktivitetspenger',
@@ -40,7 +40,7 @@ const { AKTIVITETSPENGER } = OppgaveYtelsetype;
 
 type Rad = {
     parsedType: ParsedOppgavetype;
-    kilder: { backendType: OppgaveType; betingelse?: string }[];
+    kilder: Array<{ backendType: OppgaveType; betingelse?: string }>;
     preview: ReactNode;
 };
 

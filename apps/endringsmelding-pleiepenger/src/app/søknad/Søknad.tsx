@@ -1,20 +1,20 @@
 import { RequestStatus } from '@app/types';
-import { appLogger } from '@sif/apm';
 import { Alert } from '@navikt/ds-react';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
+import { appLogger } from '@sif/apm';
+import { SkyraSlug, SkyraTestPage } from '@sif/surveys';
 import { isAxiosError } from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { SkyraSlug, SkyraTestPage } from '@sif/surveys';
 import DevFooter from '../dev/DevFooter';
 import useSøknadInitialData from '../hooks/useSøknadInitialData';
 import IngenTilgangPage from '../pages/ingen-tilgang/IngenTilgangPage';
 import { SøknadRoutes } from './config/SøknadRoutes';
-import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import { SøknadContextProvider } from './context/SøknadContext';
+import { StepFormValuesContextProvider } from './context/StepFormValuesContext';
 import SøknadRouter from './SøknadRouter';
 
 const Søknad = () => {

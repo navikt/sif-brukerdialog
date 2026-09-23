@@ -1,12 +1,12 @@
 import { ApplikasjonHendelse, useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { TypedFormikWrapper } from '@navikt/sif-common-formik-ds';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
+import { SkyraSlug, SkyraTestPage } from '@sif/surveys';
 
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';
 import SøknadContent from './SøknadContent';
 import SøknadEssentialsLoader from './SøknadEssentialsLoader';
 import SøknadsdataWrapper from './SøknadsdataWrapper';
-import { SkyraSlug, SkyraTestPage } from '@sif/surveys';
 
 const Søknad = () => {
     const { logHendelse } = useAnalyticsInstance();

@@ -1,4 +1,5 @@
 import { getVedleggApiData, Locale } from '@navikt/sif-common-core-ds';
+
 import { includeDeltBostedStep } from '../../søknad/søknadStepConfig';
 import { SøknadApiData } from '../../types/søknadApiData/SøknadApiData';
 import { Søknadsdata } from '../../types/søknadsdata/Søknadsdata';

@@ -1,10 +1,10 @@
 import { VStack } from '@navikt/ds-react';
+import { ReactNode } from 'react';
 
 import { ProgressStep, ProgressStepper } from '../../components';
 import { useSifSoknadUiIntl } from '../../i18n';
 import { ApplicationPage } from '../application-page/ApplicationPage';
 import { StepFooter } from './StepFooter';
-import { ReactNode } from 'react';
 
 interface Props {
     documentTitle: string;

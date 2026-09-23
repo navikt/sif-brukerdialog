@@ -1,9 +1,9 @@
 import { Button, Dialog } from '@navikt/ds-react';
+import { ISODate } from '@sif/utils';
 
 import { SifSoknadFormsText } from '../../i18n';
 import { AnnetBarnDialogForm, AnnetBarnDialogFormConfig } from './AnnetBarnDialogForm';
 import { AnnetBarn } from './index';
-import { ISODate } from '@sif/utils';
 
 interface Props extends AnnetBarnDialogFormConfig {
     annetBarn?: Partial<AnnetBarn>;

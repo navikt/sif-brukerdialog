@@ -1,6 +1,7 @@
 import { BodyLong, Heading, Link, VStack } from '@navikt/ds-react';
 import { InnsynInfoBox } from '@sif/ung-innsyn/components';
 import { ReactNode } from 'react';
+
 import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
 

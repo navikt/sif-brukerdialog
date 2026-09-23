@@ -1,5 +1,5 @@
-import { ISODate } from '@sif/utils';
 import { BrukerdialogOppgaveDto, EndretPeriodeDataDto, PeriodeEndringType } from '@navikt/ung-brukerdialog-api';
+import { ISODate } from '@sif/utils';
 
 import {
     EndretStartOgSluttdatoOppgave,

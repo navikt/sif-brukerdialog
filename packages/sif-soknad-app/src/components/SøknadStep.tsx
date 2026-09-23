@@ -4,10 +4,10 @@ import { StepPage } from '@sif/soknad-ui/pages';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 
+import { ApplikasjonHendelse,useAnalyticsInstance } from '../analytics/analytics';
 import { InconsistentFormValuesMessage } from '../consistency/InconsistentFormValuesMessage';
 import { useSøknadStepFormContext } from '../consistency/SøknadStepFormContext';
 import { useSøknadAppContext } from '../context/SøknadAppContext';
-import { useAnalyticsInstance, ApplikasjonHendelse } from '../analytics/analytics';
 import { useCheckConsistency } from '../hooks/useCheckConsistency';
 import { useMellomlagring } from '../hooks/useMellomlagring';
 import { SøknadStepProps } from '../types';
