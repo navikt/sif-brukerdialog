@@ -40,7 +40,7 @@ export default defineConfig({
         },
     },
     define: {
-        INJECT_DECORATOR: true,
+        'import.meta.env.INJECT_DECORATOR': true,
     },
     server: {
         port: 8080,

@@ -70,6 +70,12 @@ Kopier appens egen `vite.dev.config.ts` (ikke en annen apps demo-config) og endr
 
 Behold alle `resolve.alias` fra dev-configen — demo-buildet bruker samme kildekode.
 
+**`define`-nøkkelen må matche uttrykket koden leser, tegn for tegn.** Vite gjør tekstlig erstatning:
+`INJECT_DECORATOR: false` treffer ikke `import.meta.env.INJECT_DECORATOR` — da blir define-et dødt,
+uttrykket `undefined`, og kallet blir stående i bundlet i stedet for å elimineres. Grep etter
+flagget i `src/` og kopier uttrykket derfra. Merk at appens `vite.dev.config.ts` kan ha samme feil —
+ikke arv den ukritisk.
+
 ### 4. `vite-env.d.ts`
 
 `declare const __IS_GITHUB_PAGES__: boolean;`
@@ -149,3 +155,4 @@ To steg før `Upload artifact`:
 | 404 ved scenariobytte, reset eller «tilbake»         | Hard navigasjon bygger path-URL og omgår HashRouter         | Hash-URL på gh-pages (punkt 6)                                  |
 | `mockServiceWorker.js` mangler i `dist-demo`         | Filen ligger i approt, ikke i `public/`                     | `copy-msw`-plugin i `writeBundle`                               |
 | Scenariovelger vises ikke                            | Guard bruker `import.meta.env.PROD`, som er `true` i builds | Guard på `__IS_GITHUB_PAGES__` / `VELG_SCENARIO` i stedet       |
+| `define` har ingen effekt                            | Nøkkelen matcher ikke uttrykket i koden                     | Bruk nøyaktig uttrykk, f.eks. `'import.meta.env.X'` (punkt 3)   |
