@@ -1,4 +1,5 @@
-import { BodyLong, Box, Heading, HGrid, Link, Page, VStack } from '@navikt/ds-react';
+import { EyeSlashIcon } from '@navikt/aksel-icons';
+import { BodyLong, Box, Heading, HGrid, InfoCard, Link, Page, VStack } from '@navikt/ds-react';
 
 import SideKort from './SideKort';
 import { sider, SideType } from './sider';
@@ -26,8 +27,9 @@ const App = () => (
                 </VStack>
 
                 {seksjoner.map(({ type, tittel }) => {
-                    const sideriSeksjon = sider.filter((side) => side.type === type);
-                    if (sideriSeksjon.length === 0) {
+                    const sideriSeksjon = sider.filter((side) => side.type === type && !side.disabled);
+                    const disabledSideriSeksjon = sider.filter((side) => side.type === type && side.disabled);
+                    if (sideriSeksjon.length + disabledSideriSeksjon.length === 0) {
                         return null;
                     }
                     return (
@@ -38,6 +40,14 @@ const App = () => (
                             <HGrid gap="space-16" columns={{ xs: 1, md: 2 }}>
                                 {sideriSeksjon.map((side) => (
                                     <SideKort key={side.path} side={side} />
+                                ))}
+                                {disabledSideriSeksjon.map((side) => (
+                                    <InfoCard key={side.path} title={side.tittel}>
+                                        <InfoCard.Message icon={<EyeSlashIcon aria-hidden />} data-color="neutral">
+                                            <InfoCard.Title>{side.tittel}</InfoCard.Title>
+                                            <BodyLong>{side.beskrivelse}</BodyLong>
+                                        </InfoCard.Message>
+                                    </InfoCard>
                                 ))}
                             </HGrid>
                         </VStack>
