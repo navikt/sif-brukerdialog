@@ -8,7 +8,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
         const unparsed = req.query.unparsed === 'true';
         return res.send(await fetchSøker(req, unparsed));
-    } catch (err) {
+    } catch {
         getLogger(req).error('Hent søker feilet');
         return res.status(500).json({ error: 'Kunne ikke hente søker' });
     }

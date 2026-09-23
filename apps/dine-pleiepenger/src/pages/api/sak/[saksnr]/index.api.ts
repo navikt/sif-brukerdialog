@@ -59,7 +59,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         }
 
         return res.json({ sak, inntektsmeldinger });
-    } catch (err) {
+    } catch {
         logger.error('Hent saksdetaljer feilet');
         return res.status(500).json({ error: 'Kunne ikke hente saksdetaljer' });
     } finally {
