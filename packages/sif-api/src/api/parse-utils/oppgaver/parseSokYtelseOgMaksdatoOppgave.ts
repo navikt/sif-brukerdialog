@@ -1,9 +1,9 @@
-import { ISODate } from '@sif/utils';
 import {
     BekreftOpphorVedMaksdatoOppgavetypeDataDto,
     BrukerdialogOppgaveDto,
     SøkYtelseOppgavetypeDataDto,
 } from '@navikt/ung-brukerdialog-api';
+import { ISODate } from '@sif/utils';
 
 import { OpphorVedMaksdatoOppgave, ParsedOppgavetype, SøkYtelseOppgave } from '../../../types/Oppgave';
 import { getOppgaveBaseProps } from './oppgaveBase';

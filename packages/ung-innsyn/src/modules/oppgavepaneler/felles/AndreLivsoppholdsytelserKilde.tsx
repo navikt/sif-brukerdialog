@@ -1,7 +1,8 @@
-import { AndreLivsoppholdsytelserAvklaringKildeType } from '@navikt/ung-brukerdialog-api';
 import { ReadMore } from '@navikt/ds-react';
-import { UngInnsynText, useUngInnsynIntl } from '../../../i18n';
+import { AndreLivsoppholdsytelserAvklaringKildeType } from '@navikt/ung-brukerdialog-api';
+
 import Fritekst from '../../../components/fritekst/Fritekst';
+import { UngInnsynText, useUngInnsynIntl } from '../../../i18n';
 
 interface Props {
     kilde: AndreLivsoppholdsytelserAvklaringKildeType;

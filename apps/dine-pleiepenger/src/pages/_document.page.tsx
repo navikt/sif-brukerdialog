@@ -1,8 +1,8 @@
 // This is imported to allow the Output File Tracing feature of Next.js to work correctly with the log patcher
 import 'next-logger';
 
-import { DecoratorComponentsReact, fetchDecoratorReact } from '@navikt/nav-dekoratoren-moduler/ssr';
 import { NaisMetaTags } from '@nais/apm/react';
+import { DecoratorComponentsReact, fetchDecoratorReact } from '@navikt/nav-dekoratoren-moduler/ssr';
 import Document, { DocumentContext, DocumentInitialProps, Head, Html, Main, NextScript } from 'next/document';
 import { ReactElement } from 'react';
 

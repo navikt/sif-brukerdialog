@@ -1,7 +1,7 @@
-import { initApm } from '@sif/apm';
-import { OmsorgspengerutbetalingArbeidstakerApp } from '@navikt/sif-app-register';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
+import { OmsorgspengerutbetalingArbeidstakerApp } from '@navikt/sif-app-register';
 import { getMaybeEnv } from '@navikt/sif-common-env';
+import { initApm } from '@sif/apm';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 

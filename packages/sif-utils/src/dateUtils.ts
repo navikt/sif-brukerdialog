@@ -1,8 +1,8 @@
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 
-import { DateRange, ISODate } from './types';
 import { getDatesInDateRange, getMonthDateRange, getWeeksInDateRange } from './dateRangeUtils';
+import { DateRange, ISODate } from './types';
 
 dayjs.extend(isoWeek);
 

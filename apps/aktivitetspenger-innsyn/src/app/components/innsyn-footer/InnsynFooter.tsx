@@ -1,8 +1,9 @@
 import { Bleed, BodyLong, Box, Heading, Link, VStack } from '@navikt/ds-react';
+import { InnsynPageBoundary } from '@sif/ung-innsyn/components';
 import { ReactNode } from 'react';
+
 import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
-import { InnsynPageBoundary } from '@sif/ung-innsyn/components';
 
 export const InnsynFooter = () => {
     return (

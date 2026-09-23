@@ -2,10 +2,10 @@ import './oppgaveLinkCard.css';
 
 import { Box, LinkCard, Show, VStack } from '@navikt/ds-react';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { ReactNode } from 'react';
 
 import { OppgaveStatusIkon } from '../oppgave-status-ikon/OppgaveStatusIkon';
 import { OppgaveStatusTag, OppgaveStatusTagVariant } from '../oppgave-status-tag/OppgaveStatusTag';
-import { ReactNode } from 'react';
 
 export interface OppgaveLinkCardProps {
     tittel: ReactNode;

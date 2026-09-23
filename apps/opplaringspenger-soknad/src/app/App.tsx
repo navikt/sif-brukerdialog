@@ -2,7 +2,6 @@ import './app.css';
 
 import { Box, Theme } from '@navikt/ds-react';
 import { OpplæringspengerApp } from '@navikt/sif-app-register';
-import { UxSignalsLoaderProvider } from '@sif/surveys';
 import { isProd } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
@@ -10,6 +9,7 @@ import {
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import { UxSignalsLoaderProvider } from '@sif/surveys';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Navigate, Route } from 'react-router-dom';
 

@@ -1,5 +1,5 @@
-import { AppText, useAppIntl } from '@app/i18n';
 import { useAppContext } from '@app/context/AppContext';
+import { AppText, useAppIntl } from '@app/i18n';
 import { BodyLong, VStack } from '@navikt/ds-react';
 import { SøknadVelkommenPage } from '@sif/soknad-app';
 

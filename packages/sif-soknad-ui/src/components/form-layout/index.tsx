@@ -1,6 +1,5 @@
 import { ArrowLeftIcon, ArrowRightIcon, PaperplaneIcon } from '@navikt/aksel-icons';
 import { Bleed, Box, BoxNewProps, Button, Heading, HeadingProps, HStack, VStack, VStackProps } from '@navikt/ds-react';
-
 import { type HTMLAttributes, type ReactNode } from 'react';
 
 import { SifSoknadUiText } from '../../i18n';

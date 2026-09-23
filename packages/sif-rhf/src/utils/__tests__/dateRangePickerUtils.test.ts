@@ -1,6 +1,7 @@
-import { describe, expect, it } from 'vitest';
-import { getDateRangeMaxDate, getDateRangeMinDate } from '../dateRangePickerUtils';
 import { ISODate } from '@sif/utils';
+import { describe, expect, it } from 'vitest';
+
+import { getDateRangeMaxDate, getDateRangeMinDate } from '../dateRangePickerUtils';
 
 describe('getDateRangeMaxDate', () => {
     it('returns undefined when both arguments are undefined', () => {

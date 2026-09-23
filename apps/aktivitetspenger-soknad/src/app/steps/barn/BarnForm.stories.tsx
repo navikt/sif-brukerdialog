@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import { mockRegistrerteBarn } from '@sif/api/mock-data';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withRouter } from '../../../../storybook/decorators/withRouter';

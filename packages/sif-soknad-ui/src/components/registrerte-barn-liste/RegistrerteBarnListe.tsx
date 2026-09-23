@@ -1,11 +1,11 @@
 import { InformationSquareIcon } from '@navikt/aksel-icons';
 import { Box, Heading, HeadingProps, HelpText, HStack, InfoCard, VStack } from '@navikt/ds-react';
+import { RegistrertBarn } from '@sif/api/k9-prosessering';
 import { dateFormatter, dateToISODate, formatName } from '@sif/utils';
+import { ReactNode } from 'react';
 
 import { SifSoknadUiText, useSifSoknadUiIntl } from '../../i18n';
 import ItemListDarkside from '../item-list-darkside/ItemListDarkside';
-import { RegistrertBarn } from '@sif/api/k9-prosessering';
-import { ReactNode } from 'react';
 
 interface Props {
     listetittel: string;

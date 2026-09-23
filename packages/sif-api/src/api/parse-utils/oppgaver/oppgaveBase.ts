@@ -1,5 +1,5 @@
-import { dateToISODate, ISODate, TidenesEnde } from '@sif/utils';
 import { BrukerdialogOppgaveDto, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { dateToISODate, ISODate, TidenesEnde } from '@sif/utils';
 import dayjs from 'dayjs';
 
 import { Oppgave, ParsedOppgaveBase } from '../../../types/Oppgave';

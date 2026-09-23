@@ -1,6 +1,5 @@
-import { YesOrNo } from '@sif/rhf';
-
 import { KontonummerSøknadsdata } from '@app/types/Soknadsdata';
+import { YesOrNo } from '@sif/rhf';
 
 import { toKontonummerFormValues, toKontonummerSøknadsdata } from '../kontonummerStegUtils';
 

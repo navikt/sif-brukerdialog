@@ -1,7 +1,7 @@
 import { YesOrNo } from '@sif/rhf';
 
 import { BostedSøknadsdata } from '../../types/Soknadsdata';
-import { BostedFormValues, BostedFormFields } from './types';
+import { BostedFormFields,BostedFormValues } from './types';
 
 export const toBostedFormValues = (søknadsdata: BostedSøknadsdata | undefined): Partial<BostedFormValues> => {
     if (søknadsdata?.erBosattITrondheim === undefined) {

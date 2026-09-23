@@ -1,5 +1,6 @@
 import './itemListDarkside.scss';
 
+import { List } from '@navikt/ds-react';
 import { guid } from '@navikt/sif-common-utils';
 import classNames from 'classnames';
 import React from 'react';
@@ -7,7 +8,6 @@ import React from 'react';
 import ActionLink from '../../atoms/action-link/ActionLink';
 import DeleteButton from '../../atoms/delete-button/DeleteButton';
 import bemUtils from '../../utils/bemUtils';
-import { List } from '@navikt/ds-react';
 
 interface Props<T> {
     items: T[];

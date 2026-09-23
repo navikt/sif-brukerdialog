@@ -1,20 +1,20 @@
+import { BodyLong, Heading, Link, VStack } from '@navikt/ds-react';
+import { getMaybeEnv } from '@navikt/sif-common-env';
+import { TilgjengeligSøknadResponse } from '@navikt/ung-brukerdialog-api';
 import { Søker } from '@sif/api/k9-prosessering';
 import { Oppgave } from '@sif/api/ung-brukerdialog';
+import { SifGuidePanel } from '@sif/soknad-ui';
+import { InnsynForsideHeader } from '@sif/ung-innsyn/components';
+import { UngInnsynPage } from '@sif/ung-innsyn/pages';
+import { formatName } from '@sif/utils';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
+import { SøknadMottattInfo } from './components/soknad-mottatt-info/SoknadMottattInfo';
 import { InnsynContextProvider } from './context/InnsynContext';
+import { AppText, useAppIntl } from './i18n';
+import getLenker from './lenker';
 import { ForsidePage } from './pages/ForsidePage';
 import OppgavePage from './pages/OppgavePage';
-import { TilgjengeligSøknadResponse } from '@navikt/ung-brukerdialog-api';
-import { UngInnsynPage } from '@sif/ung-innsyn/pages';
-import { BodyLong, Heading, Link, VStack } from '@navikt/ds-react';
-import { InnsynForsideHeader } from '@sif/ung-innsyn/components';
-import { SifGuidePanel } from '@sif/soknad-ui';
-import { getMaybeEnv } from '@navikt/sif-common-env';
-import { AppText, useAppIntl } from './i18n';
-import { formatName } from '@sif/utils';
-import { SøknadMottattInfo } from './components/soknad-mottatt-info/SoknadMottattInfo';
-import getLenker from './lenker';
 
 interface Props {
     søker: Søker;

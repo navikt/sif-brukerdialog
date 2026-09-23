@@ -1,8 +1,8 @@
 import { BodyShort, Box, Tag } from '@navikt/ds-react';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { ReactNode } from 'react';
 
 import { OppgaveStatusIkon } from '../oppgave-status-ikon/OppgaveStatusIkon';
-import { ReactNode } from 'react';
 
 interface Props {
     oppgaveStatus: OppgaveStatus;

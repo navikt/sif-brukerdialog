@@ -1,5 +1,5 @@
-import { appLogger } from '@sif/apm';
 import { Alert, BodyShort, Box, Button, Heading, HStack, Page, VStack } from '@navikt/ds-react';
+import { appLogger } from '@sif/apm';
 import { useState } from 'react';
 
 import { AppText, useAppIntl } from '../../i18n';

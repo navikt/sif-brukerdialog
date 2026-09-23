@@ -1,9 +1,9 @@
 import { RegistrertBarn, Søker } from '@sif/api/k9-prosessering';
 import { dateToISODate, formatName } from '@sif/utils';
 
-import { SøknadStepId } from '../types/SoknadStepId';
 import { SøknadApiData } from '../types/SoknadApiData';
 import { Søknadsdata } from '../types/Soknadsdata';
+import { SøknadStepId } from '../types/SoknadStepId';
 
 export const getSøknadApiDataFromSøknad = ({
     søker,

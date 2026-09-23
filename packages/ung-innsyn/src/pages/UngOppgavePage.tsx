@@ -1,20 +1,20 @@
 import { Oppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 
 import { useUngInnsynIntl } from '../i18n';
-import { AvvikRegisterinntektOppgavePanel } from '../modules/oppgavepaneler/avvik-registerinntekt/AvvikRegisterinntektOppgavePanel';
 import { AndreLivsoppholdsytelserOppgavePanel } from '../modules/oppgavepaneler/andre-livsoppholdsytelser/AndreLivsoppholdsytelserOppgavePanel';
+import { AvvikRegisterinntektOppgavePanel } from '../modules/oppgavepaneler/avvik-registerinntekt/AvvikRegisterinntektOppgavePanel';
 import { BostedVilkårOppgavePanel } from '../modules/oppgavepaneler/bostedsvilkar/BostedVilkarOppgavePanel';
 import { EndretSluttdatoOppgavePanel } from '../modules/oppgavepaneler/endret-sluttdato/EndretSluttdatoOppgavePanel';
 import { EndretStartOgSluttdatoOppgavePanel } from '../modules/oppgavepaneler/endret-start-og-sluttdato/EndretStartOgSluttdatoOppgavePanel';
 import { EndretStartdatoOppgavePanel } from '../modules/oppgavepaneler/endret-startdato/EndretStartdatoOppgavePanel';
 import { FjernetPeriodeOppgavePanel } from '../modules/oppgavepaneler/fjernet-periode/FjernetPeriodeOppgavePanel';
 import { MeldtUtOppgavePanel } from '../modules/oppgavepaneler/meldt-ut/MeldtUtOppgavePanel';
+import { OpphorVedMaksdatoOppgavePanel } from '../modules/oppgavepaneler/opphor-ved-maksdato/OpphorVedMaksdatoOppgavePanel';
 import { RapporterInntektOppgavePanel } from '../modules/oppgavepaneler/rapporter-inntekt/RapporterInntektOppgavePanel';
 import { SøkYtelseOppgavePanel } from '../modules/oppgavepaneler/sok-ytelse/SokYtelseOppgavePanel';
 import { getOppgaveDokumentTittel } from '../utils/textUtils';
 import { OppgavePageContext } from './hooks/useOppgavePage';
 import { UngInnsynPage } from './UngInnsynPage';
-import { OpphorVedMaksdatoOppgavePanel } from '../modules/oppgavepaneler/opphor-ved-maksdato/OpphorVedMaksdatoOppgavePanel';
 
 const getOppgavePageComponent = (navn: string, oppgave: Oppgave, dokumentarkivUrl: string): React.JSX.Element => {
     switch (oppgave.parsedOppgavetype) {

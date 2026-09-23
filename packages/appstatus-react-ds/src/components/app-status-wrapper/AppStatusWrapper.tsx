@@ -1,10 +1,10 @@
+import { Loader } from '@navikt/ds-react';
 import React from 'react';
 
-import { SanityConfig, Status } from '../../types';
 import useAppStatus from '../../hooks/useAppStatus';
+import { SanityConfig, Status } from '../../types';
 import { sanityConfigIsValid } from '../../utils';
 import StatusMessage from '../status-message/StatusMessage';
-import { Loader } from '@navikt/ds-react';
 
 interface Props {
     applicationKey: string;
