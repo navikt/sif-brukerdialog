@@ -1,5 +1,6 @@
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import { appEnv } from './appEnv';
+import { isGitHubPages } from './isGitHubPages';
 
 const { SIF_PUBLIC_DOMAIN_URL, PUBLIC_PATH, SIF_PUBLIC_INNSYN_URL, SIF_PUBLIC_MINSIDE_URL, SIF_PUBLIC_LOGIN_URL } =
     appEnv;
@@ -10,6 +11,10 @@ const relocateTo = (url: string): void => {
 };
 
 const getSøknadRouteURL = (route: SøknadRoutes) => {
+    /** Demo på GitHub Pages bruker HashRouter, og har ingen server som kan rute på path */
+    if (isGitHubPages()) {
+        return `${import.meta.env.BASE_URL}#${route}`;
+    }
     return `${SIF_PUBLIC_DOMAIN_URL}${PUBLIC_PATH}${route}`;
 };
 

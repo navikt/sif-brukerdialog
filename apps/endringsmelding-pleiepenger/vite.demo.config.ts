@@ -5,10 +5,10 @@ import * as path from 'path';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 
-import { getDevAppSettings } from './mock/devAppSettings.ts';
+import { getDemoAppSettings } from './mock/demoAppSettings.ts';
 
 export default defineConfig({
-    mode: 'playwright',
+    mode: 'msw',
     plugins: [
         tailwindcss(),
         react({
@@ -24,18 +24,19 @@ export default defineConfig({
         {
             name: 'html-transform',
             transformIndexHtml: (html) => {
-                return html.replace('{{{APP_SETTINGS}}}', JSON.stringify(getDevAppSettings(true)));
+                return html.replace('{{{APP_SETTINGS}}}', JSON.stringify(getDemoAppSettings()));
             },
         },
         {
             name: 'copy-msw',
             writeBundle() {
-                copyFileSync('./mockServiceWorker.js', './dist-playwright/mockServiceWorker.js');
+                copyFileSync('./mockServiceWorker.js', './dist-demo/mockServiceWorker.js');
             },
         },
     ],
     resolve: {
         alias: {
+            '@app': path.resolve(import.meta.dirname, './src/app'),
             '@app/utils': path.resolve(import.meta.dirname, './src/app/utils'),
             '@app/types': path.resolve(import.meta.dirname, './src/app/types'),
             '@app/hooks': path.resolve(import.meta.dirname, './src/app/hooks'),
@@ -44,9 +45,9 @@ export default defineConfig({
             '@app/i18n': path.resolve(import.meta.dirname, './src/app/i18n'),
         },
     },
-
     define: {
         'import.meta.env.INJECT_DECORATOR': false,
+        __IS_GITHUB_PAGES__: true,
     },
     server: {
         port: 8080,
@@ -54,15 +55,13 @@ export default defineConfig({
     preview: {
         port: 8080,
     },
-    base: '/',
+    base: '/sif-brukerdialog/endringsmelding-pleiepenger/',
     build: {
         sourcemap: true,
         rollupOptions: {
             input: './index.html',
         },
-        outDir: './dist-playwright',
+        outDir: './dist-demo',
         emptyOutDir: true,
-        copyPublicDir: false,
     },
-    publicDir: false,
 });
