@@ -7,8 +7,7 @@ import { søknadsdataToSøknadDTO } from '@app/utils/soknadsdataToSoknadDTO';
 import { InfoCard } from '@navikt/ds-react';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
-import { SøknadStepForm } from '@sif/soknad-app';
-import { SøknadStep, useSøknadsdata } from '@sif/soknad-app';
+import { SøknadStep, SøknadStepForm, useSøknadsdata } from '@sif/soknad-app';
 import { FormLayout } from '@sif/soknad-ui';
 import { dateToISODate, getDateToday, ISODate } from '@sif/utils';
 import { useState } from 'react';
@@ -72,13 +71,13 @@ export const OppsummeringSteg = () => {
                 isFinalSubmit={true}
                 submitDisabled={!dto || !startdato}>
                 <StartdatoSpørsmål
-                        value={startdato}
-                        onDateChange={(dato) => {
-                            if (dato) {
-                                setStartdato(dateToISODate(dato));
-                            }
-                        }}
-                    />
+                    value={startdato}
+                    onDateChange={(dato) => {
+                        if (dato) {
+                            setStartdato(dateToISODate(dato));
+                        }
+                    }}
+                />
                 {startdato && (
                     <>
                         {!dto && (

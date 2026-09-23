@@ -7,9 +7,7 @@ import { MedlemskapFormFields, MedlemskapFormValues } from '../types';
 
 const { YesOrNoQuestion } = createSifFormComponents<MedlemskapFormValues>();
 
-interface Props {}
-
-export const HarBoddINorgeSporsmal = ({}: Props) => {
+export const HarBoddINorgeSporsmal = () => {
     const { text } = useAppIntl();
     const { validateField } = useSifValidate('medlemskapForm');
     return (

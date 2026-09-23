@@ -6,8 +6,7 @@ import { SøknadStepId } from '@app/types/SoknadStepId';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
-import { SøknadStepForm } from '@sif/soknad-app';
-import { SøknadStep, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
+import { SøknadStep, SøknadStepForm, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import {
     AriaLiveRegion,
     ExternalLink,
