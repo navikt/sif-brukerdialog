@@ -8,11 +8,6 @@ const ikon = {
     storybook: PaletteIcon,
 };
 
-const etikett = {
-    demo: 'Demo',
-    storybook: 'Storybook',
-};
-
 interface Props {
     side: GhPagesSide;
 }
@@ -28,14 +23,6 @@ const SideKort = ({ side }: Props) => {
                 <LinkCard.Anchor href={`./${side.path}/`}>{side.tittel}</LinkCard.Anchor>
             </LinkCard.Title>
             <LinkCard.Description>{side.beskrivelse}</LinkCard.Description>
-            {/* <LinkCard.Footer>
-                <Tag variant={side.type === 'demo' ? 'alt1' : 'alt3'} size="small">
-                    {etikett[side.type]}
-                </Tag>
-                <BodyShort size="small" textColor="subtle">
-                    {side.workspace}
-                </BodyShort>
-            </LinkCard.Footer> */}
         </LinkCard>
     );
 };
