@@ -1,16 +1,17 @@
 import { BodyLong, Box, Button, HStack, VStack } from '@navikt/ds-react';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { Deltaker } from '../../types/Deltaker';
-import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
-import { dateFormatter } from '@navikt/sif-common-utils';
-import { Deltakelse } from '../../types/Deltakelse';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
+import { dateFormatter } from '@navikt/sif-common-utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
-import { useIntl } from 'react-intl';
 import { useState } from 'react';
-import { useSlettSluttdato } from '../../hooks/useSlettSluttdato';
-import ConfirmDialog from '../../components/confirm-dialog/ConfirmDialog';
+import { useIntl } from 'react-intl';
+
 import BorderBox from '../../atoms/BorderBox';
+import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';
+import ConfirmDialog from '../../components/confirm-dialog/ConfirmDialog';
+import { useSlettSluttdato } from '../../hooks/useSlettSluttdato';
+import { Deltakelse } from '../../types/Deltakelse';
+import { Deltaker } from '../../types/Deltaker';
 
 interface Props {
     deltaker: Deltaker;

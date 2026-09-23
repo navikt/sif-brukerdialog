@@ -52,8 +52,6 @@ export const avvikRegisterinntektMessages_nb = {
     '@ungInnsyn.regelverkOgInnsyn.readMore.aktivitetspenger': 'Se regelverket for aktivitetspenger:',
     '@ungInnsyn.regelverkOgInnsyn.readMore.ungdomsytelse': 'Se regelverket for ungdomsprogramytelsen:',
     '@ungInnsyn.regelverkOgInnsyn.readMore.paragraf': '§ 13 fjerde ledd i Arbeidsmarkedsloven (lovdata.no)',
-    '@ungInnsyn.regelverkOgInnsyn.readMore.forskrift':
-        '§ 11 i Forskrift om forsøk med ungdomsprogram og ungdomsprogramytelse (gjelder fra 1. august 2025) (lovdata.no)',
     '@ungInnsyn.regelverkOgInnsyn.readMore.dokumenter':
         'Du har rett til å se dokumentene i saken din. <link>Les mer om innsyn på nav.no</link>.',
 };

@@ -1,7 +1,7 @@
 import InnsynInfoBox from '@innsyn/components/innsyn-info-box/InnsynInfoBox';
 import { BodyLong } from '@navikt/ds-react';
-import { dateFormatter, ISODate } from '@sif/utils';
 import { AppText } from '@shared/i18n';
+import { dateFormatter, ISODate } from '@sif/utils';
 
 interface Props {
     fraOgMed: ISODate;

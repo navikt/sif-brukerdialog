@@ -22,7 +22,7 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     ...kvitteringPageMessages_nn,
     ...scenarioHeaderMessages_nn,
     'application.title': 'Søknad om aktivitetspengar',
-    'kvittering.documentTitle': 'Søknad om aktivitetspengar teken imot',
+    'kvittering.documentTitle': 'Søknad om aktivitetspengar er mottatt',
     'kvittering.title': 'Søknaden er sendt',
     'kvittering.message': 'Me har fått søknaden din om aktivitetspengar.',
     'step.startdato.title': 'Startdato',

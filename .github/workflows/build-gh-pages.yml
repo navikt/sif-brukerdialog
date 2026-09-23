@@ -2,31 +2,26 @@ name: Build and deploy gh-pages
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - "**"
 
 permissions: {}
 
 jobs:
   build-and-deploy-gh-pages-content:
     name: Build and Deploy storybook and demo apps to GitHub Pages
-    if: github.event_name == 'workflow_dispatch' ||
-      contains(github.event.head_commit.message, '[gh-pages]')
     runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
       # Sjekk ut koden
       - name: Checkout repository
-        uses: actions/checkout@v7.0.1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       # Sett opp pnpm
       - name: Setup pnpm
-        uses: pnpm/action-setup@v6
+        uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6
       # Sett opp Node.js
       - name: Setup Node.js
-        uses: actions/setup-node@v7.0.0
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 24
           cache: "pnpm"
@@ -81,6 +76,17 @@ jobs:
           mkdir -p deployment/opplaringspenger-soknad
           mv apps/opplaringspenger-soknad/dist-demo/* deployment/opplaringspenger-soknad/
 
+      # Bygg endringsmelding-pleiepenger demo-app med gh-pages:rebuild
+      - name: Build endringsmelding-pleiepenger
+        run: pnpm gh-pages:rebuild
+        working-directory: apps/endringsmelding-pleiepenger
+
+      # Flytt endringsmelding-pleiepenger-output til en subfolder
+      - name: Kopier endringsmelding-pleiepenger til gh-pages
+        run: |
+          mkdir -p deployment/endringsmelding-pleiepenger
+          mv apps/endringsmelding-pleiepenger/dist-demo/* deployment/endringsmelding-pleiepenger/
+
       # Bygg aktivitetspenger-innsyn demo-app med gh-pages:rebuild
       - name: Build aktivitetspenger-innsyn
         run: pnpm gh-pages:rebuild
@@ -125,9 +131,20 @@ jobs:
           mkdir -p deployment/ung-innsyn-storybook
           mv packages/ung-innsyn/storybook-static/* deployment/ung-innsyn-storybook/
 
+      # Bygg forsiden som lenker til alle demoer og storybooks
+      - name: Build gh-pages-forside
+        run: pnpm build
+        working-directory: gh-pages
+
+      # Legg forsiden på roten av gh-pages
+      - name: Kopier forside til gh-pages
+        run: |
+          mkdir -p deployment
+          cp -r gh-pages/dist/* deployment/
+
       # Last opp bygget som en artefakt
       - name: Upload artifact for GitHub Pages
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
         with:
           path: deployment
 
@@ -142,4 +159,4 @@ jobs:
       name: github-pages
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

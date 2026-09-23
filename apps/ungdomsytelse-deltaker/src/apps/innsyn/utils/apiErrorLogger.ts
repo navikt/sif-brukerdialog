@@ -1,5 +1,5 @@
-import { appLogger } from '@sif/apm';
 import { ApiError, isApiAxiosError } from '@sif/api';
+import { appLogger } from '@sif/apm';
 
 export const logApiErrorFaro = (hookName: string, error: ApiError): void => {
     const axiosError = isApiAxiosError(error) ? error.originalError : undefined;

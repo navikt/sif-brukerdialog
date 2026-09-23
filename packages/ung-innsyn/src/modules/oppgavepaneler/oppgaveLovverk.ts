@@ -24,12 +24,19 @@ export const LENKEKATALOG = {
 
 const ufyFelles = [LENKEKATALOG.arbeidsmarkedsloven_13_fjerde_ledd, LENKEKATALOG.forskriftUpy_11];
 
+type UstøttetOppgaveType = OppgaveType.BEKREFT_BISTAND | OppgaveType.BEKREFT_AKTIVITET;
+type OppgaveLovverk = Record<
+    Exclude<OppgaveType, UstøttetOppgaveType>,
+    Partial<Record<OppgaveYtelsetype, Lovlenke[]>>
+> &
+    Partial<Record<UstøttetOppgaveType, Partial<Record<OppgaveYtelsetype, Lovlenke[]>>>>;
+
 /**
  * Deklarativ tabell over hvilke lovhenvisninger som gjelder per oppgavetype og ytelse.
- * `satisfies Record<OppgaveType, ...>` sørger for at TypeScript varsler ved kompilering
- * dersom en ny OppgaveType legges til uten at tabellen oppdateres.
+ * TypeScript varsler dersom en ny støttet OppgaveType legges til uten at tabellen oppdateres.
+ * BISTAND og AKTIVITET er eksplisitt unntatt til de får panelstøtte.
  */
-export const OPPGAVE_LOVVERK = {
+export const OPPGAVE_LOVVERK: OppgaveLovverk = {
     BEKREFT_ENDRET_STARTDATO: { UNGDOMSYTELSE: ufyFelles },
     BEKREFT_ENDRET_SLUTTDATO: { UNGDOMSYTELSE: ufyFelles },
     BEKREFT_ENDRET_PERIODE: { UNGDOMSYTELSE: ufyFelles },
@@ -40,7 +47,8 @@ export const OPPGAVE_LOVVERK = {
     RAPPORTER_INNTEKT: { UNGDOMSYTELSE: ufyFelles },
     SØK_YTELSE: { UNGDOMSYTELSE: ufyFelles },
     BEKREFT_BOSTED: {},
-} satisfies Record<OppgaveType, Partial<Record<OppgaveYtelsetype, Lovlenke[]>>>;
+    BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER: {},
+};
 
 export const getLovLenker = (oppgave: { oppgavetype: OppgaveType; ytelsetype: OppgaveYtelsetype }): Lovlenke[] =>
     OPPGAVE_LOVVERK[oppgave.oppgavetype]?.[oppgave.ytelsetype] ?? [];
@@ -58,7 +66,7 @@ export const OPPGAVE_LOVVERK_PARSED = {
     RAPPORTER_INNTEKT: { UNGDOMSYTELSE: ufyFelles },
     SØK_YTELSE: { UNGDOMSYTELSE: ufyFelles },
     BEKREFT_BOSTED: {},
-    BEKREFT_BOSTED_OPPHØR: {},
+    BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER: {},
 } satisfies Record<ParsedOppgavetype, Partial<Record<OppgaveYtelsetype, Lovlenke[]>>>;
 
 export const getLovLenkerForParsedType = (oppgave: {

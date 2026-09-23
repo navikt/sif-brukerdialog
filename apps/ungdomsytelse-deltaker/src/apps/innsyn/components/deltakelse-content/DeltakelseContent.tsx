@@ -1,11 +1,11 @@
 import { erDeltakelseAvsluttet, erDeltakelseStartet } from '@innsyn/utils/deltakelseUtils';
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
-import { sortDateTimes } from '@sif/utils';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { AppText } from '@shared/i18n';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 import { Oppgave } from '@sif/api/ung-brukerdialog';
 import { OppgaverList } from '@sif/ung-innsyn/components';
+import { sortDateTimes } from '@sif/utils';
 
 import DeltakelseAvsluttetInfo from './parts/DeltakelseAvsluttetInfo';
 import DeltakelseIkkeStartetInfo from './parts/DeltakelseIkkeStartetInfo';

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
+import { nyligRegistrertScenario } from '../../../mock/scenarioer/nyligRegistrert';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withModalWrapper } from '../../../storybook/decorators/withModalWrapper';
 import { withQueryClientProvider } from '../../../storybook/decorators/withQueryClientProvider';
@@ -7,7 +8,6 @@ import { withVeilederContext } from '../../../storybook/decorators/withVeilederC
 import { deltakelseSchema } from '../../types/Deltakelse';
 import { registrertDeltakerSchema } from '../../types/Deltaker';
 import EndreStartdatoForm from './EndreStartdatoForm';
-import { nyligRegistrertScenario } from '../../../mock/scenarioer/nyligRegistrert';
 
 const meta: Meta<typeof EndreStartdatoForm> = {
     component: EndreStartdatoForm,

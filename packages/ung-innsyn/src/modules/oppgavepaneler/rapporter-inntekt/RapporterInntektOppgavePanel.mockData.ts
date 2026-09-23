@@ -19,8 +19,7 @@ const delerAvMånedOppgavetypeData = {
     gjelderDelerAvMåned: true,
 };
 
-const lagRapporterInntektOppgave = (ytelsetype: OppgaveYtelsetype): RapporterInntektOppgave => ({
-    oppgaveYtelsetype: ytelsetype,
+export const lagRapporterInntektOppgave = (ytelsetype: OppgaveYtelsetype): RapporterInntektOppgave => ({
     oppgaveReferanse: '3d3e98b5-48e7-42c6-9fc1-e0f78022307f',
     oppgavetype: OppgaveType.RAPPORTER_INNTEKT,
     parsedOppgavetype: ParsedOppgavetype.RAPPORTER_INNTEKT,
@@ -31,20 +30,8 @@ const lagRapporterInntektOppgave = (ytelsetype: OppgaveYtelsetype): RapporterInn
     ytelsetype,
 });
 
-export const lagRapporterInntektOppgaveMedScenario = (
-    base: RapporterInntektOppgave,
-    scenario: RapporterInntektScenario,
-): RapporterInntektOppgave => ({
-    ...base,
-    oppgavetypeData: scenario === 'Deler av måned' ? delerAvMånedOppgavetypeData : helMånedOppgavetypeData,
-});
-
-export const mockRapporterInntektUPY: RapporterInntektOppgave = lagRapporterInntektOppgave(
-    OppgaveYtelsetype.UNGDOMSYTELSE,
-);
-
-export const mockRapporterInntektBesvartUPY: RapporterInntektOppgave = {
-    ...mockRapporterInntektUPY,
+export const lagRapporterInntektBesvartOppgave = (ytelsetype: OppgaveYtelsetype): RapporterInntektOppgave => ({
+    ...lagRapporterInntektOppgave(ytelsetype),
     respons: {
         type: 'RAPPORTERT_INNTEKT',
         fraOgMed: '2025-05-01' as ISODate,
@@ -53,14 +40,12 @@ export const mockRapporterInntektBesvartUPY: RapporterInntektOppgave = {
     },
     status: OppgaveStatus.LØST,
     løstDato: dayjs().subtract(1, 'days').toDate(),
-};
+});
 
-export const mockRapporterInntektAKT: RapporterInntektOppgave = lagRapporterInntektOppgave(
-    OppgaveYtelsetype.AKTIVITETSPENGER,
-);
-
-export const mockRapporterInntektBesvartAKT: RapporterInntektOppgave = {
-    ...mockRapporterInntektBesvartUPY,
-    oppgaveYtelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
-    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
-};
+export const lagRapporterInntektOppgaveMedScenario = (
+    base: RapporterInntektOppgave,
+    scenario: RapporterInntektScenario,
+): RapporterInntektOppgave => ({
+    ...base,
+    oppgavetypeData: scenario === 'Deler av måned' ? delerAvMånedOppgavetypeData : helMånedOppgavetypeData,
+});

@@ -1,8 +1,8 @@
 import { VStack } from '@navikt/ds-react';
 import { HashRouter } from 'react-router-dom';
 
-import { DemoScenarioHeader } from './DemoScenarioHeader';
 import { DemoInformasjon } from './DemoInformasjon';
+import { DemoScenarioHeader } from './DemoScenarioHeader';
 
 const DemoAppRouter = ({ children }: { children: React.ReactNode }) => {
     return (

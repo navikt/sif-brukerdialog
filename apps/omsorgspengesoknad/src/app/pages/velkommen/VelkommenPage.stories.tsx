@@ -1,12 +1,13 @@
+import { Box, Tabs } from '@navikt/ds-react';
+import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
 import { Meta, StoryFn } from '@storybook/react-vite';
-import VelkommenPage from './VelkommenPage';
+
+import { withAnalyticsProvider } from '../../../storybook/decorators/withAnalyticsProvider';
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withRouterProvider } from '../../../storybook/decorators/withRouter';
-import { withAnalyticsProvider } from '../../../storybook/decorators/withAnalyticsProvider';
 import { withSøknadContextProvider } from '../../../storybook/decorators/withSøknadContext';
+import VelkommenPage from './VelkommenPage';
 import { velkommenPageMessages } from './velkommenPageMessages';
-import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
-import { Box, Tabs } from '@navikt/ds-react';
 
 export default {
     title: 'Pages/Velkommen',

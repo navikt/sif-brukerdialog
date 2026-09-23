@@ -1,9 +1,9 @@
+import { useFormValuesToSøknadsdata } from '@app/hooks/useFormValuesToSøknadsdata';
+import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '@app/setup/constants';
 import { søknadStepConfig, søknadStepOrder } from '@app/setup/soknadStepConfig';
 import { SøknadStepId } from '@app/types/SoknadStepId';
-import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '@app/setup/constants';
-import { useFormValuesToSøknadsdata } from '@app/hooks/useFormValuesToSøknadsdata';
-import { SkyraHandler, SkyraTestPage, SkyraSlug } from '@sif/surveys';
 import { SøknadRouter, SøknadStepGuard } from '@sif/soknad-app';
+import { SkyraHandler, SkyraSlug,SkyraTestPage } from '@sif/surveys';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 import { useAppIntl } from './i18n';

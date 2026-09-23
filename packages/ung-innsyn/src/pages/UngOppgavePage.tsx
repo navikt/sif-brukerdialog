@@ -1,20 +1,20 @@
 import { Oppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 
 import { useUngInnsynIntl } from '../i18n';
+import { AndreLivsoppholdsytelserOppgavePanel } from '../modules/oppgavepaneler/andre-livsoppholdsytelser/AndreLivsoppholdsytelserOppgavePanel';
 import { AvvikRegisterinntektOppgavePanel } from '../modules/oppgavepaneler/avvik-registerinntekt/AvvikRegisterinntektOppgavePanel';
-import { BostedVilkårOppgavePanel } from '../modules/oppgavepaneler/bostedsvilkar-periode/BostedVilkarOppgavePanel';
-import { BostedVilkårOpphørOppgavePanel } from '../modules/oppgavepaneler/bostedsvilkar-opphor/BostedVilkarOpphorOppgavePanel';
+import { BostedVilkårOppgavePanel } from '../modules/oppgavepaneler/bostedsvilkar/BostedVilkarOppgavePanel';
 import { EndretSluttdatoOppgavePanel } from '../modules/oppgavepaneler/endret-sluttdato/EndretSluttdatoOppgavePanel';
 import { EndretStartOgSluttdatoOppgavePanel } from '../modules/oppgavepaneler/endret-start-og-sluttdato/EndretStartOgSluttdatoOppgavePanel';
 import { EndretStartdatoOppgavePanel } from '../modules/oppgavepaneler/endret-startdato/EndretStartdatoOppgavePanel';
 import { FjernetPeriodeOppgavePanel } from '../modules/oppgavepaneler/fjernet-periode/FjernetPeriodeOppgavePanel';
 import { MeldtUtOppgavePanel } from '../modules/oppgavepaneler/meldt-ut/MeldtUtOppgavePanel';
+import { OpphorVedMaksdatoOppgavePanel } from '../modules/oppgavepaneler/opphor-ved-maksdato/OpphorVedMaksdatoOppgavePanel';
 import { RapporterInntektOppgavePanel } from '../modules/oppgavepaneler/rapporter-inntekt/RapporterInntektOppgavePanel';
 import { SøkYtelseOppgavePanel } from '../modules/oppgavepaneler/sok-ytelse/SokYtelseOppgavePanel';
 import { getOppgaveDokumentTittel } from '../utils/textUtils';
 import { OppgavePageContext } from './hooks/useOppgavePage';
 import { UngInnsynPage } from './UngInnsynPage';
-import { OpphorVedMaksdatoOppgavePanel } from '../modules/oppgavepaneler/opphor-ved-maksdato/OpphorVedMaksdatoOppgavePanel';
 
 const getOppgavePageComponent = (navn: string, oppgave: Oppgave, dokumentarkivUrl: string): React.JSX.Element => {
     switch (oppgave.parsedOppgavetype) {
@@ -22,8 +22,8 @@ const getOppgavePageComponent = (navn: string, oppgave: Oppgave, dokumentarkivUr
             return <AvvikRegisterinntektOppgavePanel oppgave={oppgave} navn={navn} />;
         case ParsedOppgavetype.BEKREFT_BOSTED:
             return <BostedVilkårOppgavePanel navn={navn} oppgave={oppgave} />;
-        case ParsedOppgavetype.BEKREFT_BOSTED_OPPHØR:
-            return <BostedVilkårOpphørOppgavePanel navn={navn} oppgave={oppgave} />;
+        case ParsedOppgavetype.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER:
+            return <AndreLivsoppholdsytelserOppgavePanel navn={navn} oppgave={oppgave} />;
         case ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO:
             return <EndretStartdatoOppgavePanel navn={navn} oppgave={oppgave} />;
         case ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO:

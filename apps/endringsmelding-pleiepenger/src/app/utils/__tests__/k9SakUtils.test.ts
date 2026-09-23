@@ -1,3 +1,4 @@
+/* eslint-disable vitest/no-conditional-expect */
 import { K9Sak } from '@app/types';
 import { DateRange, dateToISODate, ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils';
 

@@ -1,9 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
     ValidateRequiredFieldError,
     ValidateRequiredFieldErrorKeys,
     ValidateYesOrNoErrorKeys,
 } from '@navikt/sif-validation';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import { SpørsmålWrapper } from '../../../../../storybook/components/SpørsmålWrapper';
 import { withIntl } from '../../../../../storybook/decorators/withIntl';
 import { RegistrerteBarnMock } from '../../../../../storybook/mock-data';

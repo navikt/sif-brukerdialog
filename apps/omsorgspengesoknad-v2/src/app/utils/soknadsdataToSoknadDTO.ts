@@ -1,10 +1,10 @@
-import { dateToISODate } from '@sif/utils';
 import { Søker } from '@sif/api/k9-prosessering';
+import { dateToISODate } from '@sif/utils';
 
-import { SøknadStepId } from '../types/SoknadStepId';
 import { BarnSammeAdresse } from '../types/BarnSammeAdresse';
 import { SøknadApiData } from '../types/SoknadApiData';
 import { Søknadsdata } from '../types/Soknadsdata';
+import { SøknadStepId } from '../types/SoknadStepId';
 
 interface Params {
     søker: Søker;

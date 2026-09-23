@@ -1,11 +1,14 @@
 import '@navikt/ds-css';
+import './app.css';
+
 import { UngdomsytelseVeilederApp } from '@navikt/sif-app-register';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { IntlProvider } from 'react-intl';
-import './app.css';
+
 import AppRouter from './AppRouter';
 import AppRoutes from './AppRoutes';
 import AppHeader from './components/app-header/AppHeader';
+import { DevBranchInfo } from './components/dev-branch-info/DevBranchInfo';
 import { DrawerProvider } from './components/drawer/DrawerContext';
 import AppErrorFallback from './components/error-boundary/AppErrorFallback';
 import ErrorBoundary from './components/error-boundary/ErrorBoundary';
@@ -17,7 +20,6 @@ import { AnalyticsProvider, registerAnalytics } from './utils/analytics';
 import { getAppEnv } from './utils/appEnv';
 import { GlobalQueryLogger } from './utils/globalQueryLogger';
 import { initApiClients } from './utils/initApiClients';
-import { DevBranchInfo } from './components/dev-branch-info/DevBranchInfo';
 
 const queryClient = new QueryClient();
 

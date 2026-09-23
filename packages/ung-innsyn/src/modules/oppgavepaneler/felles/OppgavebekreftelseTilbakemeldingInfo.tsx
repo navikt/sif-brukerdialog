@@ -1,6 +1,7 @@
 import { BodyLong, List, VStack } from '@navikt/ds-react';
-import { UngInnsynText } from '../../../i18n';
 import { dateFormatter, ISODate } from '@sif/utils';
+
+import { UngInnsynText } from '../../../i18n';
 
 interface Props {
     frist: ISODate;

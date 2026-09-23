@@ -1,6 +1,6 @@
+import { ExpandIcon, ShrinkIcon } from '@navikt/aksel-icons';
 import { Bleed, Button, Heading, HStack, Modal } from '@navikt/ds-react';
 import { createContext, ReactNode, useContext, useState } from 'react';
-import { ExpandIcon, ShrinkIcon } from '@navikt/aksel-icons';
 
 type DrawerOptions = {
     title?: string;

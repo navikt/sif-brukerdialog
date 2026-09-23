@@ -9,12 +9,18 @@ import { OpphorVedMaksdatoOppgavePanel } from './OpphorVedMaksdatoOppgavePanel';
 import { mockOpphorVedMaksdatoBesvartUPY, mockOpphorVedMaksdatoUPY } from './OpphorVedMaksdatoOppgavePanel.mockData';
 
 const meta: Meta = {
-    title: 'Oppgaver/Ungdomsprogramytelsen/Opphør ved maksdato',
+    title: 'Oppgaver/3. Ungdomsprogramytelsen/Opphør ved maksdato',
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
 export default meta;
 
 type Story = StoryObj<{ variant?: string }>;
+
+export const Ubesvart: Story = {
+    name: 'Ubesvart',
+    parameters: { controls: { disable: true } },
+    render: () => <OpphorVedMaksdatoOppgavePanel oppgave={mockOpphorVedMaksdatoUPY} navn="SNODIG VAFFEL" />,
+};
 
 export const Forsidevisning: Story = {
     name: 'Forsidevisning',
@@ -43,12 +49,6 @@ export const Forsidevisning: Story = {
             </VStack>
         </VStack>
     ),
-};
-
-export const Ubesvart: Story = {
-    name: 'Ubesvart',
-    parameters: { controls: { disable: true } },
-    render: () => <OpphorVedMaksdatoOppgavePanel oppgave={mockOpphorVedMaksdatoUPY} navn="SNODIG VAFFEL" />,
 };
 
 export const Kvittering: Story = {

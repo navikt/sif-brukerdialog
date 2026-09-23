@@ -1,5 +1,6 @@
-import { handleApiError } from '@sif/api';
 import { Veileder } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { handleApiError } from '@sif/api';
+
 import { Deltakelse, deltakelserSchema } from '../../types/Deltakelse';
 
 /**

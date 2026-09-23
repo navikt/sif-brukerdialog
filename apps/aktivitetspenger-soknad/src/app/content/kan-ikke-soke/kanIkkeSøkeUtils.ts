@@ -1,6 +1,7 @@
 export enum KanIkkeSøkeÅrsak {
-    IKKE_INNSYN_UBEHANDLET_SØKNAD = 'IKKE_INNSYN_UBEHANDLET_SØKNAD',
-    INNSYN_UBEHANDLET_SØKNAD = 'INNSYN_UBEHANDLET_SØKNAD',
+    UBEHANDLET_FØRSTEGANGSSØKNAD = 'UBEHANDLET_FØRSTEGANGSSØKNAD',
+    UBEHANDLET_ANDREGANGSSØKNAD = 'UBEHANDLET_ANDREGANGSSØKNAD',
+    UTENFOR_SØKNADSVINDU = 'UTENFOR_SØKNADSVINDU',
     ANNET = 'ANNET',
 }
 
@@ -9,10 +10,13 @@ export const getKanIkkeSøkeÅrsak = (
     harUbehandletSøknad: boolean | undefined,
 ): KanIkkeSøkeÅrsak => {
     if (harUbehandletSøknad && !harInnsyn) {
-        return KanIkkeSøkeÅrsak.IKKE_INNSYN_UBEHANDLET_SØKNAD;
+        return KanIkkeSøkeÅrsak.UBEHANDLET_FØRSTEGANGSSØKNAD;
+    }
+    if (harUbehandletSøknad && harInnsyn) {
+        return KanIkkeSøkeÅrsak.UBEHANDLET_ANDREGANGSSØKNAD;
     }
     if (!harUbehandletSøknad && harInnsyn) {
-        return KanIkkeSøkeÅrsak.INNSYN_UBEHANDLET_SØKNAD;
+        return KanIkkeSøkeÅrsak.UTENFOR_SØKNADSVINDU;
     }
     return KanIkkeSøkeÅrsak.ANNET;
 };

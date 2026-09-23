@@ -1,8 +1,8 @@
 import { YesOrNo } from '@sif/rhf';
+import { dateToISODate } from '@sif/utils';
 import dayjs from 'dayjs';
 
 import { Næringstype, Virksomhet } from './index';
-import { dateToISODate } from '@sif/utils';
 
 const today = dayjs();
 

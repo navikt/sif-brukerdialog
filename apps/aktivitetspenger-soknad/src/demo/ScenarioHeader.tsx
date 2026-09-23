@@ -1,9 +1,9 @@
+import { useAppIntl } from '@app/i18n';
 import { getRequiredEnv } from '@navikt/sif-common-env';
 import { ScenarioSelectorHeader, type ScenarioSelectorHeaderGroup } from '@sif/soknad-ui';
 
 import { ScenarioType } from '../../mock/scenarios/types';
 import { store } from '../../mock/state/store';
-import { useAppIntl } from '@app/i18n';
 
 export const ScenarioHeader = () => {
     const { text } = useAppIntl();
@@ -20,16 +20,20 @@ export const ScenarioHeader = () => {
                     label: text('scenarioHeader.førstegangssøknad'),
                 },
                 {
-                    value: ScenarioType.nyPeriodeSøknad,
-                    label: text('scenarioHeader.annengangssøknad'),
-                },
-                {
                     value: ScenarioType.ubehandletFørstegangssøknad,
                     label: text('scenarioHeader.sperretUbehandletFørstegangssøknad'),
                 },
                 {
-                    value: ScenarioType.kanIkkeSøke,
+                    value: ScenarioType.ubehandletAndregangssøknad,
+                    label: text('scenarioHeader.sperretUbehandletAndregangssøknad'),
+                },
+                {
+                    value: ScenarioType.harAktivitetspengerMenUtenforSøknadsvindu,
                     label: text('scenarioHeader.sperretUtenforSøkevindu'),
+                },
+                {
+                    value: ScenarioType.sperretAnnet,
+                    label: text('scenarioHeader.sperretAnnet'),
                 },
             ],
         },

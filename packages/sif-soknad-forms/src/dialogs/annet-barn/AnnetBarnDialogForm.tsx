@@ -1,17 +1,17 @@
 import { FormLayout } from '@navikt/sif-common-ui';
 import {
-    getISODateValidator,
     getFødselsnummerValidator,
+    getISODateValidator,
     getRequiredFieldValidator,
     getStringValidator,
 } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
+import { ISODate } from '@sif/utils';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';
 import { annetBarnToFormValues, formValuesToAnnetBarn } from './annetBarnUtils';
 import { AnnetBarn, AnnetBarnFormValues, BarnType } from './index';
-import { ISODate } from '@sif/utils';
 
 export interface AnnetBarnDialogFormConfig {
     disallowedFødselsnumre?: string[];

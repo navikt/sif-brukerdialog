@@ -1,4 +1,5 @@
 import { Page } from '@playwright/test';
+
 import { SøknadRoutes } from '../../src/app/types/SøknadRoutes';
 
 export const rootUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/omsorgspenger/';

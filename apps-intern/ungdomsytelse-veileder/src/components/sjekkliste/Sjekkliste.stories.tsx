@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { withIntl } from '../../../storybook/decorators/withIntl';
+import { withPageWidth } from '../../../storybook/decorators/withPageWidth';
 import { withVeilederContext } from '../../../storybook/decorators/withVeilederContext';
 import Sjekkliste from './Sjekkliste';
-import { withPageWidth } from '../../../storybook/decorators/withPageWidth';
 
 const meta: Meta<typeof Sjekkliste> = {
     component: Sjekkliste,

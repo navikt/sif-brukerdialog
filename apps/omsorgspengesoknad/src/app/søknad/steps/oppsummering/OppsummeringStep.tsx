@@ -1,16 +1,17 @@
 import { ErrorSummary, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
-import { useEffect, useRef } from 'react';
-import { useSkyraReloader } from '@sif/surveys';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { useEffectOnce, usePrevious } from '@navikt/sif-common-hooks';
 import { ErrorPage, getInvalidParametersFromAxiosError } from '@navikt/sif-common-soknad-ds';
 import { getCheckedValidator } from '@navikt/sif-validation';
+import { useSkyraReloader } from '@sif/surveys';
+import { useEffect, useRef } from 'react';
+
 import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';
 import { useSendSøknad } from '../../../hooks/useSendSøknad';
-import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { useSøknadsdataStatus } from '../../../hooks/useSøknadsdataStatus';
+import { useStepNavigation } from '../../../hooks/useStepNavigation';
 import { AppText, useAppIntl } from '../../../i18n';
 import { StepId } from '../../../types/StepId';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';

@@ -1,4 +1,5 @@
 import { Bleed, BodyLong, Box, Heading, List, ReadMore, VStack } from '@navikt/ds-react';
+import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { dateFormatter, DateRange, ISODate } from '@sif/utils';
 import { ReactNode } from 'react';
 
@@ -10,10 +11,11 @@ interface Props {
     navn: string;
     periode: DateRange;
     svarfrist: ISODate;
+    ytelse: OppgaveYtelsetype;
     gjelderDelerAvMåned?: boolean;
 }
 
-export const RapporterInntektOppgavetekst = ({ navn, svarfrist, periode, gjelderDelerAvMåned }: Props) => {
+export const RapporterInntektOppgavetekst = ({ navn, svarfrist, periode, ytelse, gjelderDelerAvMåned }: Props) => {
     const frist = dateFormatter.full(svarfrist);
     const måned = dateFormatter.month(periode.from);
 
@@ -37,7 +39,7 @@ export const RapporterInntektOppgavetekst = ({ navn, svarfrist, periode, gjelder
                     {gjelderDelerAvMåned && (
                         <BodyLong>
                             <UngInnsynText
-                                id="@ungInnsyn.rapporterInntektOppgavetekst.intro.delerAvMåned"
+                                id={`@ungInnsyn.rapporterInntektOppgavetekst.intro.delerAvMåned.${ytelse}`}
                                 values={{
                                     måned,
                                 }}

@@ -1,12 +1,12 @@
 import { Status, StatusMessage, useAppStatus } from '@navikt/appstatus-react-ds';
 import { Box } from '@navikt/ds-react';
+import { InnsynPsbApp } from '@navikt/sif-app-register';
 import { ReactNode } from 'react';
 
 import { maxPageWidth } from '../../constants';
 import UnavailablePage from '../../pages/unavailable.page';
 import { browserEnv } from '../../utils/env';
 import { Feature } from '../../utils/features';
-import { InnsynPsbApp } from '@navikt/sif-app-register';
 
 interface Props {
     children: ReactNode;

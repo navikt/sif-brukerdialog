@@ -9,12 +9,12 @@ import {
     ensureDuration,
     ensureNumberDuration,
     getPositiveNumberValue,
+    ISODate,
+    ISODuration,
     ISODurationToMaybeDuration,
     ISODurationToNumberDuration,
     isValidDuration,
     numberDurationAsDuration,
-    ISODate,
-    ISODuration,
 } from '..';
 import {
     durationIsGreatherThanZero,

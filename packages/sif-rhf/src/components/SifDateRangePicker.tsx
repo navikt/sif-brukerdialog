@@ -1,12 +1,12 @@
 import { HStack } from '@navikt/ds-react';
+import { ISODate } from '@sif/utils';
 import { ReactNode, useEffect, useRef } from 'react';
 import { FieldValues, Path, useFormContext } from 'react-hook-form';
 
 import { datePickerUtils } from '../utils';
+import { getDateRangeMaxDate, getDateRangeMinDate } from '../utils/dateRangePickerUtils';
 import { DatepickerLimitations, SifDatepicker } from './SifDatepicker';
 import { SifInputGroup } from './SifInputGroup';
-import { ISODate } from '@sif/utils';
-import { getDateRangeMaxDate, getDateRangeMinDate } from '../utils/dateRangePickerUtils';
 
 type DatepickerFieldProps<T extends FieldValues> = DatepickerLimitations & {
     name: Path<T>;

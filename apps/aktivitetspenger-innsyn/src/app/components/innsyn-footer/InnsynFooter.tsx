@@ -1,12 +1,13 @@
 import { Bleed, BodyLong, Box, Heading, Link, VStack } from '@navikt/ds-react';
+import { InnsynPageBoundary } from '@sif/ung-innsyn/components';
 import { ReactNode } from 'react';
+
 import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
-import { InnsynPageBoundary } from '@sif/ung-innsyn/components';
 
 export const InnsynFooter = () => {
     return (
-        <footer>
+        <aside>
             <Bleed marginInline="full" asChild>
                 <Box background="brand-blue-softA" paddingBlock="space-24 space-48">
                     <InnsynPageBoundary>
@@ -33,6 +34,6 @@ export const InnsynFooter = () => {
                     </InnsynPageBoundary>
                 </Box>
             </Bleed>
-        </footer>
+        </aside>
     );
 };

@@ -1,5 +1,3 @@
-import { ActionMenu, InternalHeader, Spacer } from '@navikt/ds-react';
-import { useNavigate } from 'react-router-dom';
 import {
     InformationSquareIcon,
     MenuGridIcon,
@@ -8,14 +6,17 @@ import {
     SunFillIcon,
     TasklistIcon,
 } from '@navikt/aksel-icons';
+import { ActionMenu, InternalHeader, Spacer } from '@navikt/ds-react';
+import { useNavigate } from 'react-router-dom';
+
 import { useThemeContext } from '../../context/ThemeContext';
 import { useVeileder } from '../../context/VeilederContext';
+import VeilederDemoInformasjon from '../../demo/VeilederDemoInformasjon';
 import DrawerArticles from '../../pages/info-page/DrawerArticles';
 import { AppHendelse } from '../../utils/analytics';
 import { useAppEventLogger } from '../../utils/analyticsHelper';
 import { DrawerWidth, useDrawer } from '../drawer/DrawerContext';
 import SjekklisteDrawer from '../sjekkliste/DrawerSjekkliste';
-import VeilederDemoInformasjon from '../../demo/VeilederDemoInformasjon';
 
 interface Props {
     visActionsMenu?: boolean;

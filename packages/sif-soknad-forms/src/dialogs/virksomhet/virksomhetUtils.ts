@@ -1,5 +1,5 @@
-import { dateToISODate, getDate4YearsAgo, ISODate } from '@sif/utils';
 import { datePickerUtils, YesOrNo } from '@sif/rhf';
+import { dateToISODate, getDate4YearsAgo, ISODate } from '@sif/utils';
 import dayjs from 'dayjs';
 
 import { Næringstype, Virksomhet } from './types';

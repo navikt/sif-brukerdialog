@@ -1,7 +1,7 @@
-import { RegistrerteBarnMock } from '.';
 import { BarnSammeAdresse } from '../../app/types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '../../app/types/SøkersRelasjonTilBarnet';
 import { Søknadsdata } from '../../app/types/søknadsdata/Søknadsdata';
+import { RegistrerteBarnMock } from '.';
 
 const registrertBarn = RegistrerteBarnMock[0];
 

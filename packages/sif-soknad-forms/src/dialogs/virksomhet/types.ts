@@ -1,5 +1,5 @@
-import { ISODate } from '@sif/utils';
 import { YesOrNo } from '@sif/rhf';
+import { ISODate } from '@sif/utils';
 
 export enum Næringstype {
     'FISKE' = 'FISKE',

@@ -1,11 +1,12 @@
 import { HGrid, Switch, VStack } from '@navikt/ds-react';
+import { useState } from 'react';
+
 import { Deltakelse } from '../../../types/Deltakelse';
 import { Deltaker } from '../../../types/Deltaker';
 import { Features } from '../../../types/Features';
-import SlettAktivDeltakerInfo from './SlettAktivDeltakerInfo';
-import { useState } from 'react';
-import SlettSluttdatoPanel from './SlettSluttdatoPanel';
 import { getDeltakelseHandlinger } from '../../../utils/deltakelseUtils';
+import SlettAktivDeltakerInfo from './SlettAktivDeltakerInfo';
+import SlettSluttdatoPanel from './SlettSluttdatoPanel';
 
 interface Props {
     deltakelse: Deltakelse;

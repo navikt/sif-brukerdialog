@@ -1,24 +1,24 @@
-import { BostedVilkårOpphørOppgave } from '@sif/api/ung-brukerdialog';
+import { VStack } from '@navikt/ds-react';
+import { BostedVilkårOppgave } from '@sif/api/ung-brukerdialog';
 
 import { UngInnsynText } from '../../../i18n';
 import { Oppgavebekreftelse } from '../../oppgavebekreftelse/Oppgavebekreftelse';
-import { VStack } from '@navikt/ds-react';
-import { OppgavebekreftelseTilbakemeldingInfo } from '../felles/OppgavebekreftelseTilbakemeldingInfo';
 import { BostedKilde } from '../felles/BostedKilde';
-import { BostedVilkarOpphorOppgavetekst } from './BostedVilkarOpphorOppgavetekst';
+import { OppgavebekreftelseTilbakemeldingInfo } from '../felles/OppgavebekreftelseTilbakemeldingInfo';
+import { BostedVilkarOppgavetekst } from './BostedVilkarOppgavetekst';
 
 interface Props {
     navn: string;
-    oppgave: BostedVilkårOpphørOppgave;
+    oppgave: BostedVilkårOppgave;
     initialVisKvittering?: boolean;
 }
 
-export const BostedVilkårOpphørOppgavePanel = ({ navn, oppgave, initialVisKvittering }: Props) => {
+export const BostedVilkårOppgavePanel = ({ navn, oppgave, initialVisKvittering }: Props) => {
     return (
         <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
             <Oppgavebekreftelse.Ubesvart>
                 <VStack gap="space-16">
-                    <BostedVilkarOpphorOppgavetekst {...oppgave.oppgavetypeData} />
+                    <BostedVilkarOppgavetekst {...oppgave.oppgavetypeData} />
                     <BostedKilde
                         kilde={oppgave.oppgavetypeData.kilde}
                         kildeFritekst={oppgave.oppgavetypeData.kildeFritekst}
@@ -34,13 +34,11 @@ export const BostedVilkårOpphørOppgavePanel = ({ navn, oppgave, initialVisKvit
                         kildeFritekst={oppgave.oppgavetypeData.kildeFritekst}
                     />
                 }>
-                <VStack gap="space-20">
-                    <BostedVilkarOpphorOppgavetekst {...oppgave.oppgavetypeData} />
-                </VStack>
+                <BostedVilkarOppgavetekst {...oppgave.oppgavetypeData} />
             </Oppgavebekreftelse.Besvart>
 
             <Oppgavebekreftelse.Kvittering>
-                <UngInnsynText id="@ungInnsyn.oppgavetype.BEKREFT_BOSTED_OPPHØR.kvitteringTekst" />
+                <UngInnsynText id="@ungInnsyn.oppgavetype.BEKREFT_BOSTED.kvitteringTekst" />
             </Oppgavebekreftelse.Kvittering>
         </Oppgavebekreftelse>
     );

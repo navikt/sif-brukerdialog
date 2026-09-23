@@ -2,38 +2,35 @@ import { Bleed, BodyShort, Box, Heading, Link, List, Table, VStack } from '@navi
 import { OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { ReactNode } from 'react';
 
 import { useUngInnsynIntl } from '../../../i18n';
+import { IntlDecorator } from '../../../storybook/IntlDecorator';
 import { PanelPreviewWrapper, renderOppgaveStandardStater } from '../../../storybook/storyUtils';
-import { Lovlenke, OPPGAVE_LOVVERK } from '../oppgaveLovverk';
+import { AndreLivsoppholdsytelserOppgavePanel } from '../andre-livsoppholdsytelser/AndreLivsoppholdsytelserOppgavePanel';
+import {
+    mockAndreLivsoppholdsytelserAKT,
+    mockAndreLivsoppholdsytelserBesvartAKT,
+} from '../andre-livsoppholdsytelser/AndreLivsoppholdsytelserOppgavePanel.mockData';
 import { AvvikRegisterinntektOppgavePanel } from '../avvik-registerinntekt/AvvikRegisterinntektOppgavePanel';
 import {
     inntektArbeidsgiver1,
+    lagAvvikRegisterinntektBesvartOppgave,
+    lagAvvikRegisterinntektOppgave,
     lagOppgaveMedInntekt,
-    mockAvvikRegisterinntektAKT,
-    mockAvvikRegisterinntektBesvartAKT,
 } from '../avvik-registerinntekt/AvvikRegisterinntektOppgavePanel.mockData';
-import { BostedVilkårOpphørOppgavePanel } from '../bostedsvilkar-opphor/BostedVilkarOpphorOppgavePanel';
-import {
-    mockBostedVilkårOpphørAKT,
-    mockBostedVilkårOpphørBesvartAKT,
-} from '../bostedsvilkar-opphor/BostedVilkarOpphorOppgavePanel.mockData';
-import { BostedVilkårOppgavePanel } from '../bostedsvilkar-periode/BostedVilkarOppgavePanel';
-import {
-    mockBostedVilkårAKT,
-    mockBostedVilkårBesvartAKT,
-} from '../bostedsvilkar-periode/BostedVilkarOppgavePanel.mockData';
+import { BostedVilkårOppgavePanel } from '../bostedsvilkar/BostedVilkarOppgavePanel';
+import { mockBostedVilkårAKT, mockBostedVilkårBesvartAKT } from '../bostedsvilkar/BostedVilkarOppgavePanel.mockData';
+import { Lovlenke, OPPGAVE_LOVVERK } from '../oppgaveLovverk';
 import { RapporterInntektOppgavePanel } from '../rapporter-inntekt/RapporterInntektOppgavePanel';
 import {
+    lagRapporterInntektBesvartOppgave,
+    lagRapporterInntektOppgave,
     lagRapporterInntektOppgaveMedScenario,
-    mockRapporterInntektAKT,
-    mockRapporterInntektBesvartAKT,
 } from '../rapporter-inntekt/RapporterInntektOppgavePanel.mockData';
-import { IntlDecorator } from '../../../storybook/IntlDecorator';
-import { ReactNode } from 'react';
 
 const meta: Meta = {
-    title: 'Oppgaver/1. Oversikt/Aktivitetspenger',
+    title: 'Oppgaver/Oversikt/Aktivitetspenger',
     decorators: [IntlDecorator],
 };
 export default meta;
@@ -43,7 +40,7 @@ const { AKTIVITETSPENGER } = OppgaveYtelsetype;
 
 type Rad = {
     parsedType: ParsedOppgavetype;
-    kilder: { backendType: OppgaveType; betingelse?: string }[];
+    kilder: Array<{ backendType: OppgaveType; betingelse?: string }>;
     preview: ReactNode;
 };
 
@@ -54,8 +51,8 @@ const rader: Rad[] = [
         preview: (
             <PanelPreviewWrapper>
                 {renderOppgaveStandardStater(
-                    mockAvvikRegisterinntektAKT,
-                    mockAvvikRegisterinntektBesvartAKT,
+                    lagAvvikRegisterinntektOppgave(AKTIVITETSPENGER),
+                    lagAvvikRegisterinntektBesvartOppgave(AKTIVITETSPENGER),
                     (oppgave, opts) => (
                         <AvvikRegisterinntektOppgavePanel
                             oppgave={lagOppgaveMedInntekt(oppgave, [inntektArbeidsgiver1])}
@@ -69,7 +66,10 @@ const rader: Rad[] = [
     },
     {
         parsedType: ParsedOppgavetype.BEKREFT_BOSTED,
-        kilder: [{ backendType: OppgaveType.BEKREFT_BOSTED, betingelse: 'oppgavetypeData.type = BOSTED' }],
+        kilder: [
+            { backendType: OppgaveType.BEKREFT_BOSTED, betingelse: 'oppgavetypeData.type = BOSTED' },
+            { backendType: OppgaveType.BEKREFT_BOSTED, betingelse: 'oppgavetypeData.type = BOSTED_OPPHØR' },
+        ],
         preview: (
             <PanelPreviewWrapper>
                 {renderOppgaveStandardStater(mockBostedVilkårAKT, mockBostedVilkårBesvartAKT, (oppgave, opts) => (
@@ -78,16 +78,26 @@ const rader: Rad[] = [
             </PanelPreviewWrapper>
         ),
     },
+
     {
-        parsedType: ParsedOppgavetype.BEKREFT_BOSTED_OPPHØR,
-        kilder: [{ backendType: OppgaveType.BEKREFT_BOSTED, betingelse: 'oppgavetypeData.type = BOSTED_OPPHØR' }],
+        parsedType: ParsedOppgavetype.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+        kilder: [
+            {
+                backendType: OppgaveType.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+                betingelse: 'oppgavetypeData.type = ANDRE_LIVSOPPHOLDSYTELSER',
+            },
+            {
+                backendType: OppgaveType.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+                betingelse: 'oppgavetypeData.type = ANDRE_LIVSOPPHOLDSYTELSER_OPPHØR',
+            },
+        ],
         preview: (
             <PanelPreviewWrapper>
                 {renderOppgaveStandardStater(
-                    mockBostedVilkårOpphørAKT,
-                    mockBostedVilkårOpphørBesvartAKT,
+                    mockAndreLivsoppholdsytelserAKT,
+                    mockAndreLivsoppholdsytelserBesvartAKT,
                     (oppgave, opts) => (
-                        <BostedVilkårOpphørOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />
+                        <AndreLivsoppholdsytelserOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />
                     ),
                 )}
             </PanelPreviewWrapper>
@@ -99,8 +109,8 @@ const rader: Rad[] = [
         preview: (
             <PanelPreviewWrapper>
                 {renderOppgaveStandardStater(
-                    mockRapporterInntektAKT,
-                    mockRapporterInntektBesvartAKT,
+                    lagRapporterInntektOppgave(AKTIVITETSPENGER),
+                    lagRapporterInntektBesvartOppgave(AKTIVITETSPENGER),
                     (oppgave, opts) => (
                         <RapporterInntektOppgavePanel
                             oppgave={lagRapporterInntektOppgaveMedScenario(oppgave, 'Hel måned')}

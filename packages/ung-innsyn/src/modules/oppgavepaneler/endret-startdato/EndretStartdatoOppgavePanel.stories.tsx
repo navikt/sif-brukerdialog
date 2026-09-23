@@ -9,12 +9,18 @@ import { EndretStartdatoOppgavePanel } from './EndretStartdatoOppgavePanel';
 import { mockEndretStartdatoBesvartUPY, mockEndretStartdatoUPY } from './EndretStartdatoOppgavePanel.mockData';
 
 const meta: Meta = {
-    title: 'Oppgaver/Ungdomsprogramytelsen/Endret startdato',
+    title: 'Oppgaver/3. Ungdomsprogramytelsen/Endret startdato',
     decorators: [StorybookDecorator, OppgavePageDecorator],
 };
 export default meta;
 
 type Story = StoryObj<{ variant?: string }>;
+
+export const Ubesvart: Story = {
+    name: 'Ubesvart',
+    parameters: { controls: { disable: true } },
+    render: () => <EndretStartdatoOppgavePanel oppgave={mockEndretStartdatoUPY} navn="SNODIG VAFFEL" />,
+};
 
 export const Forsidevisning: Story = {
     name: 'Forsidevisning',
@@ -43,12 +49,6 @@ export const Forsidevisning: Story = {
             </VStack>
         </VStack>
     ),
-};
-
-export const Ubesvart: Story = {
-    name: 'Ubesvart',
-    parameters: { controls: { disable: true } },
-    render: () => <EndretStartdatoOppgavePanel oppgave={mockEndretStartdatoUPY} navn="SNODIG VAFFEL" />,
 };
 
 export const Kvittering: Story = {

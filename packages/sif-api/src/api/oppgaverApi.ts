@@ -7,7 +7,7 @@ import { parseOppgaver } from './parse-utils/parseOppgaver';
 export const hentOppgaver = async (ytelsetype: OppgaveYtelsetype): Promise<Oppgave[]> => {
     try {
         const { data } = await BrukerdialogOppgave.hentAlleOppgaver({ query: { ytelsetype } });
-        return parseOppgaver(ytelsetype, data);
+        return parseOppgaver(data);
     } catch (e) {
         throw handleApiError(e, `hentOppgaver-${ytelsetype}`);
     }

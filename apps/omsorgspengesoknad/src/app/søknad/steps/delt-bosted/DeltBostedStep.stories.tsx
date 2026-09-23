@@ -1,18 +1,19 @@
 import { Box, Tabs } from '@navikt/ds-react';
-import { Meta, StoryFn } from '@storybook/react-vite';
 import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messages-preview/MessagesPreview';
-import { SøknadContextProvider } from '../../context/SøknadContext';
-import { deltBostedMessages } from './deltBostedMessages';
-import DeltBostedStep from './DeltBostedStep';
-import { SøknadContextState } from '../../../types/SøknadContextState';
-import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { Meta, StoryFn } from '@storybook/react-vite';
+
 import { withAnalyticsProvider } from '../../../../storybook/decorators/withAnalyticsProvider';
 import { withEnvSettings } from '../../../../storybook/decorators/withEnvSettings';
 import { withIntl } from '../../../../storybook/decorators/withIntl';
 import { withRouterProvider } from '../../../../storybook/decorators/withRouter';
-import { withStepFormValuesContext } from '../../../../storybook/decorators/withStepFormValuesContext';
 import { mockInitialSøknadContextState } from '../../../../storybook/decorators/withSøknadContext';
+import { withStepFormValuesContext } from '../../../../storybook/decorators/withStepFormValuesContext';
 import { søknadsdataMocks } from '../../../../storybook/mock-data/søknadsdataMocks';
+import { SøknadContextState } from '../../../types/SøknadContextState';
+import { Søknadsdata } from '../../../types/søknadsdata/Søknadsdata';
+import { SøknadContextProvider } from '../../context/SøknadContext';
+import { deltBostedMessages } from './deltBostedMessages';
+import DeltBostedStep from './DeltBostedStep';
 
 export default {
     title: 'Steps/DeltBosted/Step',

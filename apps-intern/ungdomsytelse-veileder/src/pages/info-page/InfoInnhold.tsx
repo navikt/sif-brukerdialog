@@ -1,6 +1,7 @@
+import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { Box, Heading, HGrid, Link } from '@navikt/ds-react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import { ChevronRightIcon } from '@navikt/aksel-icons';
+
 import { MarkdownArticle } from '../../types/MarkdownArticle';
 import ArticleContentFromUrl from './components/ArticleContentFromUrl';
 
@@ -15,7 +16,6 @@ const rawArticleList: MarkdownArticle[] = Object.keys(articles).map((path): Mark
 
     let title = '';
     let ingress: string | undefined = undefined;
-    let content = '';
 
     // Finn tittel
     const tittelIndex = lines.findIndex((l) => l.trim().toLowerCase() === 'tittel');
@@ -37,7 +37,7 @@ const rawArticleList: MarkdownArticle[] = Object.keys(articles).map((path): Mark
     };
 
     const contentStart = getContentStartIndex();
-    content = lines.slice(contentStart).join('\n').trim();
+    const content = lines.slice(contentStart).join('\n').trim();
 
     return { id, title, ingress, content };
 });

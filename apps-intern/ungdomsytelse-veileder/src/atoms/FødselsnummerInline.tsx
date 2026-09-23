@@ -1,4 +1,5 @@
 import { BodyShort, BodyShortProps } from '@navikt/ds-react';
+
 import { fødselsnummerFormatter } from '../utils/formaterFødselsnummer';
 
 interface Props extends Omit<BodyShortProps, 'children'> {

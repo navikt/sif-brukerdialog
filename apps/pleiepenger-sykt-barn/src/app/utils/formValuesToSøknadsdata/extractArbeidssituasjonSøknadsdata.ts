@@ -1,5 +1,5 @@
-import { appLogger } from '@sif/apm';
 import { DateRange } from '@navikt/sif-common-utils';
+import { appLogger } from '@sif/apm';
 
 import { SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
 import { ArbeidssituasjonSøknadsdata } from '../../types/søknadsdata/ArbeidssituasjonSøknadsdata';

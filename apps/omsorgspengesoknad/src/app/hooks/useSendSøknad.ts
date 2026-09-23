@@ -1,13 +1,14 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { AxiosError } from 'axios';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import søknadEndpoint from '../api/endpoints/søknadEndpoint';
-import { useMellomlagring } from './useMellomlagring';
 import { useAppIntl } from '../i18n';
 import { SøknadApiData } from '../types/søknadApiData/SøknadApiData';
 import { SøknadRoutes } from '../types/SøknadRoutes';
+import { useMellomlagring } from './useMellomlagring';
 
 export const useSendSøknad = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);

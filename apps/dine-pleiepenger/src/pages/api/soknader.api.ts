@@ -24,7 +24,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             // Returner alle
             return res.send(response);
         }
-    } catch (err) {
+    } catch {
         getLogger(req).error('Hent søknader feilet');
         return res.status(500).json({ error: 'Kunne ikke hente søknader' });
     }

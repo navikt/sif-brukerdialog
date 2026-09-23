@@ -1,5 +1,14 @@
 # @navikt/sif-ettersending
 
+## 3.50.1
+
+### Patch Changes
+
+- Updated dependencies
+    - @sif/apm@0.2.1
+    - @navikt/sif-common-soknad-ds@26.2.1
+    - @navikt/sif-common-forms-ds@21.0.61
+
 ## 3.50.0
 
 ### Minor Changes

@@ -31,13 +31,13 @@ const getUtenlandsoppholdFromMedlemskap = (
 export const søknadsdataToSøknadDTO = ({
     søker,
     søknadsdata,
-    språk = 'nb',
+    språk,
     kontoInfo,
     startdato,
 }: {
     søknadsdata: Søknadsdata;
     søker: Søker;
-    språk?: 'nb' | 'nn';
+    språk: 'nb' | 'nn';
     kontoInfo: aktivitetspenger.KontonummerInfo;
     startdato?: ISODate;
 }): Omit<SøknadApiData, 'harBekreftetOpplysninger'> | undefined => {

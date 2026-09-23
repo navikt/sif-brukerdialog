@@ -1,5 +1,6 @@
-import { handleApiError } from '@sif/api';
 import { Oppslag } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { handleApiError } from '@sif/api';
+
 import { registrertDeltakerSchema } from '../../types/Deltaker';
 
 export const getDeltakerById = async (deltakerId: string) => {

@@ -1,5 +1,6 @@
 import { Alert, FormSummary } from '@navikt/ds-react';
 import { getVedleggInLocationArray, VedleggSummaryList } from '@navikt/sif-common-core-ds';
+
 import { AppText } from '../../../../i18n';
 import { SøknadApiData } from '../../../../types/søknadApiData/SøknadApiData';
 import { DeltBostedSøknadsdata } from '../../../../types/søknadsdata/DeltBostedSøknadsdata';

@@ -1,9 +1,8 @@
-import { BodyLong, Box, GuidePanel, Heading, InfoCard, Link, VStack } from '@navikt/ds-react';
 import { AppText, useAppIntl } from '@app/i18n';
-import { Søker } from '@sif/api/k9-prosessering';
-import { TilgjengeligSøknadResponse, TilgjengeligSøknadType } from '@navikt/ung-brukerdialog-api';
-import { Todo } from '@app/components/Todo';
 import getLenker from '@app/lenker';
+import { BodyLong, Box, GuidePanel, Heading, Link, VStack } from '@navikt/ds-react';
+import { TilgjengeligSøknadResponse } from '@navikt/ung-brukerdialog-api';
+import { Søker } from '@sif/api/k9-prosessering';
 import { ApplicationPage, SifSoknadUiText } from '@sif/soknad-ui';
 
 import { getKanIkkeSøkeÅrsak, KanIkkeSøkeÅrsak } from './kanIkkeSøkeUtils';
@@ -15,62 +14,78 @@ interface Props {
 
 export const KanIkkeSøkePage = ({ søker, tilgjengelig }: Props) => {
     const { text } = useAppIntl();
-    const { harInnsyn, harUbehandletSøknad, type } = tilgjengelig;
-
-    const innsynLenke = harInnsyn ? (
-        <BodyLong>
-            <AppText
-                id="page.kanIkkeSøke.innsynLenke"
-                values={{
-                    InnsynLenke: (children) => <Link href={getLenker().aktivitetspengerInnsyn}>{children}</Link>,
-                }}
-            />
-        </BodyLong>
-    ) : null;
+    const { harInnsyn, harUbehandletSøknad } = tilgjengelig;
 
     const renderContent = () => {
-        if (type === TilgjengeligSøknadType.NY_PERIODE_SØKNAD) {
-            return (
-                <VStack gap="space-20">
-                    <Todo>[type === {TilgjengeligSøknadType.NY_PERIODE_SØKNAD}]</Todo>
-                    <BodyLong>
-                        <AppText id="page.kanIkkeSøke.nyPeriode" />
-                    </BodyLong>
-                    {innsynLenke}
-                </VStack>
-            );
-        }
-        switch (getKanIkkeSøkeÅrsak(harInnsyn, harUbehandletSøknad)) {
-            case KanIkkeSøkeÅrsak.IKKE_INNSYN_UBEHANDLET_SØKNAD:
+        const årsak = getKanIkkeSøkeÅrsak(harInnsyn, harUbehandletSøknad);
+        switch (årsak) {
+            case KanIkkeSøkeÅrsak.UBEHANDLET_FØRSTEGANGSSØKNAD:
+            case KanIkkeSøkeÅrsak.UBEHANDLET_ANDREGANGSSØKNAD:
                 return (
                     <VStack gap="space-20">
-                        <Todo>[harUbehandletSøknad && !harInnsyn]</Todo>
                         <BodyLong>
-                            <AppText id="page.kanIkkeSøke.ubehandletSøknad" />
+                            <AppText id="page.kanIkkeSøke.ubehandletSøknad.1" />
                         </BodyLong>
                         <BodyLong>
-                            <AppText id="page.kanIkkeSøke.ubehandletSøknad.videre" />
+                            <AppText id="page.kanIkkeSøke.ubehandletSøknad.2" />
                         </BodyLong>
+                        <BodyLong>
+                            <AppText
+                                id="page.kanIkkeSøke.ubehandletSøknad.sendBeskjed"
+                                values={{
+                                    Lenke: (children) => <Link href={getLenker().sendBeskjed}>{children}</Link>,
+                                }}
+                            />
+                        </BodyLong>
+                        {harInnsyn && (
+                            <BodyLong>
+                                <AppText
+                                    id="page.kanIkkeSøke.innsynLenke"
+                                    values={{
+                                        Lenke: (children) => (
+                                            <Link href={getLenker().aktivitetspengerInnsyn}>{children}</Link>
+                                        ),
+                                    }}
+                                />
+                            </BodyLong>
+                        )}
                     </VStack>
                 );
-            case KanIkkeSøkeÅrsak.INNSYN_UBEHANDLET_SØKNAD:
+            case KanIkkeSøkeÅrsak.UTENFOR_SØKNADSVINDU:
                 return (
                     <VStack gap="space-20">
-                        <Todo>[!harUbehandletSøknad && harInnsyn]</Todo>
                         <BodyLong>
-                            <AppText id="page.kanIkkeSøke.harInnsyn" />
+                            <AppText id="page.kanIkkeSøke.utenforSøknadsvindu.1" />
                         </BodyLong>
-                        {innsynLenke}
+                        <BodyLong>
+                            <AppText id="page.kanIkkeSøke.utenforSøknadsvindu.2" />
+                        </BodyLong>
+                        <BodyLong>
+                            <AppText
+                                id="page.kanIkkeSøke.innsynLenke"
+                                values={{
+                                    Lenke: (children) => (
+                                        <Link href={getLenker().aktivitetspengerInnsyn}>{children}</Link>
+                                    ),
+                                }}
+                            />
+                        </BodyLong>
+                        <BodyLong>
+                            <AppText
+                                id="page.kanIkkeSøke.utenforSøknadsvindu.sendBeskjed"
+                                values={{
+                                    Lenke: (children) => <Link href={getLenker().sendBeskjed}>{children}</Link>,
+                                }}
+                            />
+                        </BodyLong>
                     </VStack>
                 );
             case KanIkkeSøkeÅrsak.ANNET:
                 return (
                     <VStack gap="space-20">
-                        <Todo>[annet]</Todo>
                         <BodyLong>
                             <AppText id="page.kanIkkeSøke.annet" />
                         </BodyLong>
-                        {innsynLenke}
                     </VStack>
                 );
         }
@@ -86,33 +101,9 @@ export const KanIkkeSøkePage = ({ søker, tilgjengelig }: Props) => {
                                 values={{ navn: søker.fornavn }}
                             />
                         </Heading>
-                        <BodyLong as="div">
-                            <BodyLong spacing>
-                                <AppText id="page.velkommen.guide.info.2" />
-                            </BodyLong>
-                            <BodyLong spacing>
-                                <AppText id="page.velkommen.guide.info.3" />
-                            </BodyLong>
-                            <BodyLong spacing>
-                                <AppText
-                                    id="page.velkommen.guide.info.4"
-                                    values={{
-                                        Lenke: (children) => <Link href={getLenker().navForside}>{children}</Link>,
-                                    }}
-                                />
-                            </BodyLong>
-                        </BodyLong>
+                        {renderContent()}
                     </Box>
                 </GuidePanel>
-
-                <InfoCard data-color="info">
-                    <InfoCard.Header>
-                        <InfoCard.Title>
-                            <AppText id="page.kanIkkeSøke.tittel" />
-                        </InfoCard.Title>
-                    </InfoCard.Header>
-                    <InfoCard.Content>{renderContent()}</InfoCard.Content>
-                </InfoCard>
             </VStack>
         </ApplicationPage>
     );

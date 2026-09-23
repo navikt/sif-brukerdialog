@@ -1,13 +1,13 @@
 import DeltakelseContent from '@innsyn/components/deltakelse-content/DeltakelseContent';
 import { useInnsynBreadcrumbs } from '@innsyn/hooks/useInnsynBreadcrumbs';
 import { VStack } from '@navikt/ds-react';
-import { dateFormatter } from '@sif/utils';
 import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
 import { useAppIntl } from '@shared/i18n';
+import { UngInnsynPage } from '@sif/ung-innsyn';
 import { InnsynForsideHeader } from '@sif/ung-innsyn/components';
+import { dateFormatter } from '@sif/utils';
 
 import UXRapportertInntekt from '../ux-signals/UXRapportertInntekt';
-import { UngInnsynPage } from '@sif/ung-innsyn';
 import ForsidePageFooter from './parts/ForsidePageFooter';
 
 const ForsidePage = () => {

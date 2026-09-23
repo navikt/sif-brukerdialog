@@ -8,7 +8,7 @@ RUN apk fix \
     && apk add --no-cache --update libc6-compat \
     && rm -rf /var/cache/apk/*
 
-RUN npm install -g turbo
+RUN npm install -g turbo@2.10.13
 RUN npm install -g pnpm@10.33.4
 
 #########################################
@@ -19,7 +19,7 @@ FROM base AS prune
 WORKDIR /app
 COPY . .
 # Prune med app og server
-RUN turbo prune --scope=${SCOPE} --scope=@navikt/sif-server --docker
+RUN turbo prune ${SCOPE} @navikt/sif-server --docker
 
 #########################################
 # INSTALLER - Installer pakker og kopier kildekode

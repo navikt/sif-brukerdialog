@@ -1,8 +1,7 @@
+import { hentYtelseMellomlagring } from '@sif/api/k9-prosessering';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-
-import { hentYtelseMellomlagring } from '@sif/api/k9-prosessering';
 
 import { useSøknadSendt } from '../../hooks/useSøknadSendt';
 import { KVITTERING_PATH } from '../../utils/routeUtils';

@@ -22,6 +22,16 @@ test('ukjent arbeidsforhold med kun ferie valgt', async ({ page }) => {
     await page.getByTestId('ukjentArbeidsforhold_a_947064643').getByLabel('Nei').check();
     await page.getByTestId('typedFormikForm-submitButton').click();
 
+    /** Ferie */
+    await expect(page).toHaveTitle('Ferie i pleiepengeperioden - Endringsmelding for pleiepenger sykt barn');
+    await page.getByTestId('leggTilFerieKnapp').click();
+    await page.getByLabel('Fra og med').click();
+    await page.getByLabel('Fra og med').fill('19.01.2023');
+    await page.getByLabel('Til og med').click();
+    await page.getByLabel('Til og med').fill('19.01.2023');
+    await page.getByRole('button', { name: 'Ok' }).click();
+    await page.getByTestId('typedFormikForm-submitButton').click();
+
     /** Arbeidstid (trigget av Ja-svar på ukjent arbeidsforhold) */
     await page.getByTestId('REDUSERT').check();
     await page.getByRole('button', { name: 'Vis flere uker' }).click();
@@ -39,16 +49,6 @@ test('ukjent arbeidsforhold med kun ferie valgt', async ({ page }) => {
     await page.getByTestId('toggle-timer').click();
     await page.getByTestId('timer-verdi').click();
     await page.getByTestId('timer-verdi').fill('5');
-    await page.getByRole('button', { name: 'Ok' }).click();
-    await page.getByTestId('typedFormikForm-submitButton').click();
-
-    /** Ferie */
-    await expect(page).toHaveTitle('Ferie i pleiepengeperioden - Endringsmelding for pleiepenger sykt barn');
-    await page.getByTestId('leggTilFerieKnapp').click();
-    await page.getByLabel('Fra og med').click();
-    await page.getByLabel('Fra og med').fill('19.01.2023');
-    await page.getByLabel('Til og med').click();
-    await page.getByLabel('Til og med').fill('19.01.2023');
     await page.getByRole('button', { name: 'Ok' }).click();
     await page.getByTestId('typedFormikForm-submitButton').click();
 

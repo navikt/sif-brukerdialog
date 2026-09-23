@@ -17,6 +17,7 @@ export default meta;
 type Story = StoryObj;
 
 export const UbehandletFørstegangssøknad: Story = {
+    name: 'Har ubehandlet førstegangssøknad',
     render: () => (
         <KanIkkeSøkePage
             søker={mockSøker}
@@ -30,6 +31,21 @@ export const UbehandletFørstegangssøknad: Story = {
 };
 
 export const UbehandletAndregangssøknad: Story = {
+    name: 'Har ubehandlet andregangssøknad',
+    render: () => (
+        <KanIkkeSøkePage
+            søker={mockSøker}
+            tilgjengelig={{
+                harInnsyn: true,
+                harUbehandletSøknad: true,
+                type: TilgjengeligSøknadType.INGEN,
+            }}
+        />
+    ),
+};
+
+export const UtenforSøknadsvindu: Story = {
+    name: 'Utenfor søknadsvindu',
     render: () => (
         <KanIkkeSøkePage
             søker={mockSøker}
@@ -42,14 +58,14 @@ export const UbehandletAndregangssøknad: Story = {
     ),
 };
 
-export const NyPeriodeSøknad: Story = {
+export const Annet: Story = {
     render: () => (
         <KanIkkeSøkePage
             søker={mockSøker}
             tilgjengelig={{
-                harInnsyn: true,
+                harInnsyn: false,
                 harUbehandletSøknad: false,
-                type: TilgjengeligSøknadType.NY_PERIODE_SØKNAD,
+                type: TilgjengeligSøknadType.INGEN,
             }}
         />
     ),

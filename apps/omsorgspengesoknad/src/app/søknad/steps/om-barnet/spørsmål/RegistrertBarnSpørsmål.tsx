@@ -2,6 +2,7 @@ import { Heading, VStack } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { VelgBarnFormPart } from '@navikt/sif-common-forms-ds';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
+
 import { useAppIntl } from '../../../../i18n';
 import { OmBarnetFormFields } from '../OmBarnetStep';
 

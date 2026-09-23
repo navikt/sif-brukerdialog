@@ -6,7 +6,7 @@ type LinkButtonProps = Omit<ButtonProps, 'variant' | 'className' | 'type' | 'ico
     direction: 'left' | 'right' | 'external';
 };
 
-const LinkButton = React.forwardRef<HTMLButtonElement, LinkButtonProps>(function LinkButton(
+const LinkButton = React.forwardRef<HTMLButtonElement, LinkButtonProps>(function LinkButtonFunc(
     { direction, children, ...rest },
     ref,
 ) {

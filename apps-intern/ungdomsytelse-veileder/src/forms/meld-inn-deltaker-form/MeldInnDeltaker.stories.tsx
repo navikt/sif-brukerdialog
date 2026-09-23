@@ -1,12 +1,12 @@
+import { ISODateToDate } from '@navikt/sif-common-utils';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { withIntl } from '../../../storybook/decorators/withIntl';
-import { withVeilederContext } from '../../../storybook/decorators/withVeilederContext';
-import MeldInnDeltakerForm from './MeldInnDeltakerForm';
-import { Deltaker } from '../../types/Deltaker';
-import { ISODateToDate } from '@navikt/sif-common-utils';
-import { withQueryClientProvider } from '../../../storybook/decorators/withQueryClientProvider';
 import { withDrawerContext } from '../../../storybook/decorators/withDrawerContext';
+import { withIntl } from '../../../storybook/decorators/withIntl';
+import { withQueryClientProvider } from '../../../storybook/decorators/withQueryClientProvider';
+import { withVeilederContext } from '../../../storybook/decorators/withVeilederContext';
+import { Deltaker } from '../../types/Deltaker';
+import MeldInnDeltakerForm from './MeldInnDeltakerForm';
 
 const meta: Meta<typeof MeldInnDeltakerForm> = {
     component: MeldInnDeltakerForm,

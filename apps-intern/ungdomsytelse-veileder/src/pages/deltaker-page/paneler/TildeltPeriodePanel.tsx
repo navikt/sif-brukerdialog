@@ -1,9 +1,10 @@
 import { Bleed, BodyLong, BodyShort, Box, Button, ReadMore, VStack } from '@navikt/ds-react';
+import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
+import { useState } from 'react';
+
+import ForlengPeriodeModal from '../../../components/forleng-periode-modal/ForlengPeriodeModal';
 import { Deltakelse } from '../../../types/Deltakelse';
 import { Deltaker } from '../../../types/Deltaker';
-import { useState } from 'react';
-import ForlengPeriodeModal from '../../../components/forleng-periode-modal/ForlengPeriodeModal';
-import { dateFormatter, getDateToday } from '@navikt/sif-common-utils';
 import {
     erInnenforSisteMånederFørPeriodeslutt,
     getDeltakelseHandlinger,

@@ -1,3 +1,4 @@
+import { ArrowRightIcon } from '@navikt/aksel-icons';
 import {
     BodyLong,
     Box,
@@ -14,7 +15,6 @@ import { ReactNode, SubmitEvent, useRef, useState } from 'react';
 
 import { SifSoknadUiText, useSifSoknadUiIntl } from '../../i18n';
 import { ApplicationPage } from '../application-page/ApplicationPage';
-import { ArrowRightIcon } from '@navikt/aksel-icons';
 
 interface Props {
     /** Tittel på søknad/app */

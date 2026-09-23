@@ -1,13 +1,13 @@
 import { useAppIntl } from '@app/i18n';
-import { SøknadStepId } from '@app/types/SoknadStepId';
 import { VedleggSøknadsdata } from '@app/types/Soknadsdata';
+import { SøknadStepId } from '@app/types/SoknadStepId';
 import { UploadedFile } from '@sif/rhf';
 import { SøknadStep, SøknadStepForm, useMellomlagring, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { VedleggPanel } from '@sif/soknad-forms';
 import { useForm } from 'react-hook-form';
 
-import { toVedleggFormValues, toVedleggSøknadsdata } from './vedleggStegUtils';
 import { VedleggFormFields, VedleggFormValues } from './types';
+import { toVedleggFormValues, toVedleggSøknadsdata } from './vedleggStegUtils';
 
 const stepId = SøknadStepId.VEDLEGG;
 

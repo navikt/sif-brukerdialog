@@ -1,6 +1,6 @@
 import { BodyLong, Box, List, VStack } from '@navikt/ds-react';
-import { dateFormatter, dateToISODate, ISODate } from '@sif/utils';
 import { AvvikRegisterinntektOppgave } from '@sif/api/ung-brukerdialog';
+import { dateFormatter, dateToISODate, ISODate } from '@sif/utils';
 import dayjs from 'dayjs';
 import { ReactNode } from 'react';
 
@@ -113,7 +113,7 @@ export const AvvikRegisterinntektOppgavetekst = ({ oppgave }: Props) => {
                 <BodyLong weight="semibold">
                     <UngInnsynText id="@ungInnsyn.avvikRegisterinntektOppgavetekst.5" />
                 </BodyLong>
-                <BodyLong spacing>
+                <BodyLong spacing weight="semibold">
                     <UngInnsynText id="@ungInnsyn.avvikRegisterinntektOppgavetekst.6" values={{ formatertFrist }} />
                 </BodyLong>
                 <BodyLong>

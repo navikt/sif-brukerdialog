@@ -1,16 +1,17 @@
 import { BodyShort, Heading, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
+
+import InfoBox from '../../../atoms/InfoBox';
+import { DevDeltakelseHandlinger } from '../../../components/dev-deltakelse-handlinger/DevDeltakelseHandlinger';
+import EndrePeriodeModal from '../../../components/endre-periode-modal/EndrePeriodeModal';
 import { Deltakelse } from '../../../types/Deltakelse';
 import { Deltaker } from '../../../types/Deltaker';
 import { EndrePeriodeVariant } from '../../../types/EndrePeriodeVariant';
+import { Features } from '../../../types/Features';
 import { getDeltakelseHandlinger } from '../../../utils/deltakelseUtils';
 import SluttdatoPanel from '../paneler/SluttdatoPanel';
 import StartdatoPanel from '../paneler/StartdatoPanel';
 import TildeltPeriodePanel from '../paneler/TildeltPeriodePanel';
-import EndrePeriodeModal from '../../../components/endre-periode-modal/EndrePeriodeModal';
-import InfoBox from '../../../atoms/InfoBox';
-import { Features } from '../../../types/Features';
-import { DevDeltakelseHandlinger } from '../../../components/dev-deltakelse-handlinger/DevDeltakelseHandlinger';
 
 interface Props {
     deltaker: Deltaker;

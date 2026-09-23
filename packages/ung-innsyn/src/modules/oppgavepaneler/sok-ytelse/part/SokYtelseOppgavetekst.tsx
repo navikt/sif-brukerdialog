@@ -1,14 +1,14 @@
 import { Alert, FormSummary, Heading, Link, VStack } from '@navikt/ds-react';
-import { dateFormatter } from '@sif/utils';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
+import { dateFormatter } from '@sif/utils';
+import { ReactNode } from 'react';
 
 import { ForsideLenkeButton, OppgaveStatusTag } from '../../../../components';
 import { RegelverkOgInnsynReadMore } from '../../../../components/readmore/RegelverkOgInnsynReadMore';
-import { getLovLenker } from '../../oppgaveLovverk';
 import { UngInnsynText } from '../../../../i18n';
 import { getOppgaveStatusText } from '../../../../utils/textUtils';
-import { ReactNode } from 'react';
+import { getLovLenker } from '../../oppgaveLovverk';
 
 interface Props {
     oppgave: SøkYtelseOppgave;

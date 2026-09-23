@@ -1,9 +1,9 @@
 import { Button, Dialog } from '@navikt/ds-react';
+import { ISODate } from '@sif/utils';
 
 import { SifSoknadFormsText } from '../../i18n';
 import { Utenlandsopphold } from './types';
 import { UtenlandsoppholdDialogForm, UtenlandsoppholdDialogFormConfig } from './UtenlandsoppholdDialogForm';
-import { ISODate } from '@sif/utils';
 
 interface Props extends UtenlandsoppholdDialogFormConfig {
     opphold?: Utenlandsopphold;

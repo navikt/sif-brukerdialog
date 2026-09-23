@@ -6,9 +6,10 @@ import { z } from 'zod';
 export enum ScenarioType {
     default = 'default',
     kanSøkeFørstegang = 'kanSøkeFørstegang',
-    nyPeriodeSøknad = 'nyPeriodeSøknad',
     ubehandletFørstegangssøknad = 'ubehandletFørstegangssøknad',
-    kanIkkeSøke = 'kanIkkeSøke',
+    ubehandletAndregangssøknad = 'ubehandletAndregangssøknad',
+    harAktivitetspengerMenUtenforSøknadsvindu = 'harAktivitetspengerMenUtenforSøknadsvindu',
+    sperretAnnet = 'sperretAnnet',
     medKontonummer = 'medKontonummer',
     ingenRegistrerteBarn = 'ingenRegistrerteBarn',
     utenKontonummer = 'utenKontonummer',

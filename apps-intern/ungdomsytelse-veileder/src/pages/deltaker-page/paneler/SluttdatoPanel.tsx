@@ -1,9 +1,10 @@
 import { Alert, BodyLong, BodyShort, Box, Button, VStack } from '@navikt/ds-react';
 import { dateFormatter } from '@navikt/sif-common-utils';
+import { FormattedMessage } from 'react-intl';
+
+import { PeriodeInfoPanel } from '../../../components/periode-info-panel/PeriodeInfoPanel';
 import { Deltakelse } from '../../../types/Deltakelse';
 import { DeltakelseHandlinger, deltakelsePeriodeErUtløpt } from '../../../utils/deltakelseUtils';
-import { PeriodeInfoPanel } from '../../../components/periode-info-panel/PeriodeInfoPanel';
-import { FormattedMessage } from 'react-intl';
 
 interface Props {
     deltakelse: Deltakelse;

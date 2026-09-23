@@ -1,10 +1,9 @@
 import { AppText, useAppIntl } from '@app/i18n';
-import { SøknadStepId } from '@app/types/SoknadStepId';
-import { SøknadStepForm } from '@sif/soknad-app';
 import { BostedSøknadsdata } from '@app/types/Soknadsdata';
+import { SøknadStepId } from '@app/types/SoknadStepId';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
-import { SøknadStep, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
+import { SøknadStep, SøknadStepForm, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { SifInfoCard } from '@sif/soknad-ui';
 import { FormLayout, SifGuidePanel } from '@sif/soknad-ui/components';
 import { useForm } from 'react-hook-form';

@@ -1,18 +1,17 @@
-import { AppText, useAppIntl } from '@app/i18n';
-import { SøknadStepId } from '@app/types/SoknadStepId';
-import { SøknadStepForm } from '@sif/soknad-app';
-import { KontonummerSøknadsdata } from '@app/types/Soknadsdata';
 import { useAppContext } from '@app/context/AppContext';
+import { AppText, useAppIntl } from '@app/i18n';
+import getLenker from '@app/lenker';
+import { KontonummerSøknadsdata } from '@app/types/Soknadsdata';
+import { SøknadStepId } from '@app/types/SoknadStepId';
 import { BodyLong, BodyShort, Heading } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { HarKontonummerEnum } from '@sif/api/ung-deltaker';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
-import { SøknadStep, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
+import { SøknadStep, SøknadStepForm, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { FormLayout } from '@sif/soknad-ui';
 import { AriaLiveRegion, ExternalLink, SifGuidePanel, SifInfoCard } from '@sif/soknad-ui/components';
 import { useForm } from 'react-hook-form';
 
-import getLenker from '@app/lenker';
 import { toKontonummerFormValues, toKontonummerSøknadsdata } from './kontonummerStegUtils';
 import { KontonummerFormFields, KontonummerFormValues } from './types';
 

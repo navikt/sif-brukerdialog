@@ -2,8 +2,8 @@ import { GuidePanel, VStack } from '@navikt/ds-react';
 import { DateRange } from '@sif/utils';
 
 import { RegelverkOgInnsynReadMore } from '../../../../components/readmore/RegelverkOgInnsynReadMore';
-import { getLovLenker } from '../../oppgaveLovverk';
 import { RapporterInntektForm } from '../../../forms/rapporter-inntekt-form/RapporterInntektForm';
+import { getLovLenker } from '../../oppgaveLovverk';
 import { RapporterInntektKvitteringData, RapporterInntektOppgaveProps } from '../RapporterInntektOppgavePanel';
 import { RapporterInntektOppgavetekst } from './RapporterInntektOppgavetekst';
 
@@ -19,6 +19,7 @@ export const RapporterInntektUbesvart = ({ oppgave, navn, periode, måned, setKv
             <GuidePanel>
                 <VStack gap="space-16">
                     <RapporterInntektOppgavetekst
+                        ytelse={oppgave.ytelsetype}
                         navn={navn}
                         periode={periode}
                         svarfrist={oppgave.frist}
@@ -28,7 +29,7 @@ export const RapporterInntektUbesvart = ({ oppgave, navn, periode, måned, setKv
                 </VStack>
             </GuidePanel>
             <RapporterInntektForm
-                oppgaveYtelsetype={oppgave.oppgaveYtelsetype}
+                oppgaveYtelsetype={oppgave.ytelsetype}
                 måned={måned}
                 oppgaveReferanse={oppgave.oppgaveReferanse}
                 onSuccess={(harRapportertInntekt) => setKvitteringData({ harHattInntektOver0: harRapportertInntekt })}

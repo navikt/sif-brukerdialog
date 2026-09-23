@@ -1,8 +1,8 @@
 import { getRequiredEnv } from '@navikt/sif-common-env';
+import { ReactNode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 import DemoAppRouter from '../demo/DemoAppRouter';
-import { ReactNode } from 'react';
 
 const AppRouter = ({ children }: { children: ReactNode }) => {
     const publicPath = getRequiredEnv('PUBLIC_PATH');

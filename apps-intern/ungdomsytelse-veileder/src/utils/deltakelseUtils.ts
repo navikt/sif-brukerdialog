@@ -2,10 +2,11 @@ import { getRequiredEnv } from '@navikt/sif-common-env';
 import { DateRange, dateRangeUtils, getDateToday, ISODateToDate } from '@navikt/sif-common-utils';
 import { DeltakelseHistorikkDto, Endringstype } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+
 import { DeltakelseHistorikkInnslag } from '../types';
 import { Deltakelse } from '../types/Deltakelse';
 import { Features } from '../types/Features';
-import utc from 'dayjs/plugin/utc';
 
 dayjs.extend(utc);
 

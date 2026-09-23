@@ -1,25 +1,25 @@
-import { BostedVilkårPeriodeOppgave } from '@sif/api/ung-brukerdialog';
+import { VStack } from '@navikt/ds-react';
+import { AndreLivsoppholdsytelserOppgave } from '@sif/api/ung-brukerdialog';
 
 import { UngInnsynText } from '../../../i18n';
 import { Oppgavebekreftelse } from '../../oppgavebekreftelse/Oppgavebekreftelse';
-import { BostedVilkarPeriodeOppgavetekst } from './BostedVilkarPeriodeOppgavetekst';
+import { AndreLivsoppholdsytelserKilde } from '../felles/AndreLivsoppholdsytelserKilde';
 import { OppgavebekreftelseTilbakemeldingInfo } from '../felles/OppgavebekreftelseTilbakemeldingInfo';
-import { VStack } from '@navikt/ds-react';
-import { BostedKilde } from '../felles/BostedKilde';
+import { AndreLivsoppholdsytelserOppgavetekst } from './AndreLivsoppholdsytelserOppgavetekst';
 
 interface Props {
     navn: string;
-    oppgave: BostedVilkårPeriodeOppgave;
+    oppgave: AndreLivsoppholdsytelserOppgave;
     initialVisKvittering?: boolean;
 }
 
-export const BostedVilkårOppgavePanel = ({ navn, oppgave, initialVisKvittering }: Props) => {
+export const AndreLivsoppholdsytelserOppgavePanel = ({ navn, oppgave, initialVisKvittering }: Props) => {
     return (
         <Oppgavebekreftelse oppgave={oppgave} navn={navn} initialVisKvittering={initialVisKvittering}>
             <Oppgavebekreftelse.Ubesvart>
                 <VStack gap="space-16">
-                    <BostedVilkarPeriodeOppgavetekst {...oppgave.oppgavetypeData} />
-                    <BostedKilde
+                    <AndreLivsoppholdsytelserOppgavetekst {...oppgave.oppgavetypeData} />
+                    <AndreLivsoppholdsytelserKilde
                         kilde={oppgave.oppgavetypeData.kilde}
                         kildeFritekst={oppgave.oppgavetypeData.kildeFritekst}
                     />
@@ -29,16 +29,16 @@ export const BostedVilkårOppgavePanel = ({ navn, oppgave, initialVisKvittering 
 
             <Oppgavebekreftelse.Besvart
                 beskjedFooter={
-                    <BostedKilde
+                    <AndreLivsoppholdsytelserKilde
                         kilde={oppgave.oppgavetypeData.kilde}
                         kildeFritekst={oppgave.oppgavetypeData.kildeFritekst}
                     />
                 }>
-                <BostedVilkarPeriodeOppgavetekst {...oppgave.oppgavetypeData} />
+                <AndreLivsoppholdsytelserOppgavetekst {...oppgave.oppgavetypeData} />
             </Oppgavebekreftelse.Besvart>
 
             <Oppgavebekreftelse.Kvittering>
-                <UngInnsynText id="@ungInnsyn.oppgavetype.BEKREFT_BOSTED.kvitteringTekst" />
+                <UngInnsynText id="@ungInnsyn.oppgavetype.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER.kvitteringTekst" />
             </Oppgavebekreftelse.Kvittering>
         </Oppgavebekreftelse>
     );

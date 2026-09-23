@@ -1,26 +1,26 @@
 import { BodyLong, VStack } from '@navikt/ds-react';
+import { AndreLivsoppholdsytelserIkkeOppfyltÅrsak } from '@navikt/ung-brukerdialog-api';
+import { AndreLivsoppholdsytelserOppgave } from '@sif/api/ung-brukerdialog';
 
-import { BostedsvilkårIkkeOppfyltÅrsak } from '@navikt/ung-brukerdialog-api';
-import { BostedVilkårOpphørOppgave } from '@sif/api/ung-brukerdialog';
 import Fritekst from '../../../components/fritekst/Fritekst';
 
-type Props = BostedVilkårOpphørOppgave['oppgavetypeData'];
+type Props = AndreLivsoppholdsytelserOppgave['oppgavetypeData'];
 
-export const BostedVilkarOpphorOppgavetekst = ({
+export const AndreLivsoppholdsytelserOppgavetekst = ({
     ikkeOppfyltÅrsak,
     ikkeOppfyltÅrsakFritekstbeskrivelse,
     varseltekst,
 }: Props) => {
-    return varseltekst ? (
+    return (
         <VStack gap="space-20">
             <BodyLong>
                 <Fritekst text={varseltekst} />
             </BodyLong>
-            {ikkeOppfyltÅrsak === BostedsvilkårIkkeOppfyltÅrsak.ANNET && (
+            {ikkeOppfyltÅrsak === AndreLivsoppholdsytelserIkkeOppfyltÅrsak.MOTTAR_ANNEN_YTELSE && (
                 <BodyLong>
                     <Fritekst text={ikkeOppfyltÅrsakFritekstbeskrivelse} />
                 </BodyLong>
             )}
         </VStack>
-    ) : null;
+    );
 };

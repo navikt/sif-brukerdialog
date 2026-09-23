@@ -1,6 +1,6 @@
 {
     "name": "@sif/soknad-app",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "private": true,
     "repository": {
         "type": "git",
@@ -30,11 +30,11 @@
         "@sif/soknad-ui": "workspace:*",
         "@sif/surveys": "workspace:*",
         "@sif/utils": "workspace:*",
-        "@tanstack/react-query": "5.102.8",
+        "@tanstack/react-query": "5.103.1",
         "js-cookie": "3.0.8",
         "react-hook-form": "7.88.0",
-        "react-intl": "10.2.2",
-        "react-router-dom": "7.18.3",
+        "react-intl": "12.1.0",
+        "react-router-dom": "7.18.4",
         "zustand": "5.0.15"
     },
     "devDependencies": {
@@ -42,10 +42,11 @@
         "@testing-library/react": "16.3.3",
         "@types/react": "19.3.0",
         "@types/react-dom": "19.3.0",
+        "eslint": "10.10.0",
         "react": "19.3.0",
         "react-dom": "19.3.0",
         "typescript": "6.0.3",
-        "vitest": "5.0.0"
+        "vitest": "5.0.1"
     },
     "peerDependencies": {
         "react": ">=19",

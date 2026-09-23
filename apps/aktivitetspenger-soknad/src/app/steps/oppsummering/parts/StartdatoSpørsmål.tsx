@@ -1,8 +1,7 @@
+import { AppText, useAppIntl } from '@app/i18n';
 import { Bleed, Box, DatePicker, Tag, useDatepicker, VStack } from '@navikt/ds-react';
 import { ISODate, ISODateToDate } from '@sif/utils';
 import dayjs from 'dayjs';
-
-import { AppText, useAppIntl } from '@app/i18n';
 
 interface Props {
     onDateChange: (date: Date | undefined) => void;

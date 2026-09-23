@@ -6,7 +6,7 @@ export const apmTestPageMessages_nb = {
     'page.apmTest.appLogger.logInfo': 'logInfo',
     'page.apmTest.appLogger.logError': 'logError',
     'page.apmTest.appLogger.logException': 'logException',
-    'page.apmTest.autoInstrumentering.tittel': 'Auto-instrumentering (ukfangede feil)',
+    'page.apmTest.autoInstrumentering.tittel': 'Auto-instrumentering (ufangede feil)',
     'page.apmTest.autoInstrumentering.uncaughtException': 'uncaught exception (krasjer siden)',
     'page.apmTest.autoInstrumentering.uncaughtPromiseRejection': 'uncaught promise rejection',
     'page.apmTest.logg.tittel': 'Logg',

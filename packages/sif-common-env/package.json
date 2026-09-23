@@ -11,9 +11,10 @@
         "lint:tsc": "tsc --noEmit"
     },
     "dependencies": {
-        "zod": "4.6.4"
+        "zod": "4.6.5"
     },
     "devDependencies": {
+        "eslint": "10.10.0",
         "typescript": "6.0.3"
     }
 }

@@ -2,10 +2,22 @@
 
 export { BrukerdialogOppgave, BrukerdialogSøknad, type Options } from './sdk.gen';
 export {
+    AktivitetsavklaringKildeType,
+    AktivitetsvilkåretIkkeOppfyltÅrsak,
+    AndreLivsoppholdsytelserAvklaringKildeType,
+    AndreLivsoppholdsytelserIkkeOppfyltÅrsak,
     type ArbeidOgFrilansRegisterInntektDto,
+    type BekreftAktivitetOppgavetypeDataDto,
+    type BekreftAktivitetOpphørOppgavetypeDataDto,
+    type BekreftAndreLivsoppholdsytelserOppgavetypeDataDto,
+    type BekreftAndreLivsoppholdsytelserOpphørOppgavetypeDataDto,
+    type BekreftBistandOppgavetypeDataDto,
+    type BekreftBistandOpphørOppgavetypeDataDto,
     type BekreftBostedOppgavetypeDataDto,
     type BekreftBostedOpphørOppgavetypeDataDto,
     type BekreftOpphorVedMaksdatoOppgavetypeDataDto,
+    BistandsavklaringKildeType,
+    BistandsvilkårIkkeOppfyltÅrsak,
     BostedsavklaringKildeType,
     BostedsvilkårIkkeOppfyltÅrsak,
     type BrukerdialogOppgaveDto,

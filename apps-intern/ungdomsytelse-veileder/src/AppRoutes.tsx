@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+
 import DeltakerPage from './pages/deltaker-page/DeltakerPage';
 import InfoPage from './pages/info-page/InfoPage';
 import NotFoundPage from './pages/page-not-found/PageNotFound';

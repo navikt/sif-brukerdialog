@@ -14,6 +14,8 @@ import { isInvalidParameterErrorResponse } from '@navikt/sif-common-soknad-ds/sr
 import { FormLayout } from '@navikt/sif-common-ui';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { getCheckedValidator } from '@navikt/sif-validation';
+import { appLogger } from '@sif/apm';
+import { useSkyraReloader } from '@sif/surveys';
 import { isAxiosError } from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -45,8 +47,6 @@ import NattevågOgBeredskapSummary from './nattevåk-og-beredskap-summary/Nattev
 import OmsorgstilbudSummary from './omsorgstilbud-summary/OmsorgstilbudSummary';
 import PeriodeSummary from './periode-summary/PeriodeSummary';
 import SøkerSummary from './søker-summary/SøkerSummary';
-import { useSkyraReloader } from '@sif/surveys';
-import { appLogger } from '@sif/apm';
 
 interface Props {
     values: SøknadFormValues;

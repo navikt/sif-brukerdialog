@@ -1,7 +1,8 @@
-import api, { ApiEndpoint } from '../api';
-import { OmsorgsdagerKronsinskSyktBarnRequestDto } from '../../types/innvilgetVedtakApiData/HentSisteGyldigeVedtakRequestDto';
 import { AxiosResponse } from 'axios';
+
+import { OmsorgsdagerKronsinskSyktBarnRequestDto } from '../../types/innvilgetVedtakApiData/HentSisteGyldigeVedtakRequestDto';
 import { HentSisteGyldigeVedtakResponseDto } from '../../types/innvilgetVedtakApiData/HentSisteGyldigeVedtakResponseDto';
+import api, { ApiEndpoint } from '../api';
 
 const innvilgetVedtakEndpoint: {
     send: (

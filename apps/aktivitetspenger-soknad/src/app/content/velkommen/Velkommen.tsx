@@ -1,10 +1,10 @@
 import { useAppContext } from '@app/context/AppContext';
 import { AppText, useAppIntl } from '@app/i18n';
+import { getLenker } from '@app/lenker';
+import { BodyLong, Link } from '@navikt/ds-react';
 import { SøknadVelkommenPage } from '@sif/soknad-app';
 
 import OmSøknaden from './OmSoknaden';
-import { BodyLong, Link } from '@navikt/ds-react';
-import { getLenker } from '@app/lenker';
 
 export const Velkommen = () => {
     const { text } = useAppIntl();

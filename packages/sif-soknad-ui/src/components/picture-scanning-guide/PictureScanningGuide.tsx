@@ -1,9 +1,9 @@
 import { CheckmarkCircleFillIcon, ExternalLinkIcon, XMarkOctagonFillIcon } from '@navikt/aksel-icons';
 import { BodyLong, Box, Heading, HGrid, HStack, Link, List, ReadMore, VStack } from '@navikt/ds-react';
+import { ReactNode } from 'react';
 
 import { useSifSoknadUiIntl } from '../../i18n';
 import ScanningIcon from './ScanningIcon';
-import { ReactNode } from 'react';
 
 type HeadingLevel = '2' | '3' | '4' | '5';
 

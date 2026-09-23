@@ -1,3 +1,4 @@
+/* eslint-disable vitest/no-conditional-expect */
 import dayjs from 'dayjs';
 
 import {
@@ -23,6 +24,7 @@ import {
     getMonthDateRange,
     getMonthsInDateRange,
     getNumberOfDaysInDateRange,
+    getNumberOfWeekdaysInDateRange,
     getWeekDateRange,
     getWeeksInDateRange,
     getYearsInDateRanges,
@@ -44,7 +46,6 @@ import {
     sortDateRange,
     sortDateRangeByToDate,
     trimDateRangeToWeekdays,
-    getNumberOfWeekdaysInDateRange,
 } from '..';
 
 describe('dateRangeUtils', () => {

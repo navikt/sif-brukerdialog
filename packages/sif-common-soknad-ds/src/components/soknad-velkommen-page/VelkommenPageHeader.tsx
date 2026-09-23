@@ -1,6 +1,6 @@
 import { Heading, Show, Stack, VStack } from '@navikt/ds-react';
-import { ApplicationPictogram } from '../application-pictogram/ApplicationPictogram';
 
+import { ApplicationPictogram } from '../application-pictogram/ApplicationPictogram';
 import SoknadHeader from '../soknad-header/SoknadHeader';
 
 interface Props {
