@@ -46,7 +46,8 @@ export default [
         ],
         settings: {
             react: {
-                version: 'detect',
+                // Eksplisitt versjon: 'detect' krever context.getFilename(), som er fjernet i ESLint 10
+                version: '19.3',
             },
         },
         plugins: {
