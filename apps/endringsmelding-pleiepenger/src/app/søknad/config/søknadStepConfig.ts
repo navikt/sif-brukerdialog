@@ -32,12 +32,12 @@ export const getSøknadSteps = (
         steps.push(StepId.UKJENT_ARBEIDSFOHOLD);
     }
 
-    if (visArbeidstidSteg) {
-        steps.push(StepId.ARBEIDSTID);
-    }
-
     if (valgteEndringer.lovbestemtFerie) {
         steps.push(StepId.LOVBESTEMT_FERIE);
+    }
+
+    if (visArbeidstidSteg) {
+        steps.push(StepId.ARBEIDSTID);
     }
 
     if (valgteEndringer.tilsynsordning) {
