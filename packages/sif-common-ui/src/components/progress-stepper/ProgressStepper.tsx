@@ -43,7 +43,8 @@ const ProgressStepper = ({
         }
     };
 
-    const handleBackClick = () => {
+    const handleBackClick = (evt: React.MouseEvent) => {
+        evt.preventDefault();
         if (onStepSelect) {
             onStepSelect(steps[currentStepIndex - 1]);
         }
