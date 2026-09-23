@@ -1,0 +1,32 @@
+{
+    "name": "@navikt/sif-gh-pages-forside",
+    "version": "0.1.0",
+    "private": true,
+    "description": "Forside for demoer og storybooks publisert på GitHub Pages",
+    "type": "module",
+    "scripts": {
+        "build": "vite build",
+        "clean": "rm -rf node_modules dist",
+        "dev": "vite",
+        "lint:eslint": "eslint src",
+        "lint:fix": "eslint src --fix",
+        "lint:tsc": "tsc --noEmit",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "@navikt/aksel-icons": "8.16.2",
+        "@navikt/ds-css": "8.16.2",
+        "@navikt/ds-react": "8.16.2",
+        "react": "19.3.0",
+        "react-dom": "19.3.0"
+    },
+    "devDependencies": {
+        "@sif/eslint-config": "workspace:*",
+        "@types/react": "19.3.0",
+        "@types/react-dom": "19.3.0",
+        "@vitejs/plugin-react": "6.1.1",
+        "eslint": "10.10.0",
+        "typescript": "6.0.3",
+        "vite": "8.3.0"
+    }
+}

@@ -123,7 +123,7 @@ Legg `dist-demo` til i `clean`-scriptet og i `.gitignore`.
 
 ### 9. `.github/workflows/build-gh-pages.yml`
 
-To steg før `Upload artifact`:
+To steg før stegene som bygger forsiden (`Build gh-pages-forside`):
 
 ```yaml
 - name: Build <app-navn>
@@ -134,6 +134,21 @@ To steg før `Upload artifact`:
   run: |
       mkdir -p deployment/<app-navn>
       mv apps/<app-navn>/dist-demo/* deployment/<app-navn>/
+```
+
+### 10. `gh-pages/src/sider.ts` — forsiden
+
+Forsiden på roten av GitHub Pages ligger i workspacet `gh-pages/` og har sin egen liste over
+publiserte sider. **Den avledes ikke fra workflowen** — legg derfor inn en ny oppføring der også:
+
+```ts
+{
+    path: '<app-navn>',          // må matche mappenavnet i deployment/
+    type: 'demo',                // eller 'storybook'
+    tittel: '…',
+    beskrivelse: '…',
+    workspace: 'apps/<app-navn>',
+}
 ```
 
 ## Verifisering
