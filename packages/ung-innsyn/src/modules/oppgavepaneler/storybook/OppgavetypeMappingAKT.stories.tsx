@@ -15,6 +15,11 @@ import {
 } from '../avvik-registerinntekt/AvvikRegisterinntektOppgavePanel.mockData';
 import { BostedVilkårOppgavePanel } from '../bostedsvilkar/BostedVilkarOppgavePanel';
 import { mockBostedVilkårAKT, mockBostedVilkårBesvartAKT } from '../bostedsvilkar/BostedVilkarOppgavePanel.mockData';
+import { AndreLivsoppholdsytelserOppgavePanel } from '../andre-livsoppholdsytelser/AndreLivsoppholdsytelserOppgavePanel';
+import {
+    mockAndreLivsoppholdsytelserAKT,
+    mockAndreLivsoppholdsytelserBesvartAKT,
+} from '../andre-livsoppholdsytelser/AndreLivsoppholdsytelserOppgavePanel.mockData';
 import { RapporterInntektOppgavePanel } from '../rapporter-inntekt/RapporterInntektOppgavePanel';
 import {
     lagRapporterInntektBesvartOppgave,
@@ -74,6 +79,30 @@ const rader: Rad[] = [
         ),
     },
 
+    {
+        parsedType: ParsedOppgavetype.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+        kilder: [
+            {
+                backendType: OppgaveType.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+                betingelse: 'oppgavetypeData.type = ANDRE_LIVSOPPHOLDSYTELSER',
+            },
+            {
+                backendType: OppgaveType.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+                betingelse: 'oppgavetypeData.type = ANDRE_LIVSOPPHOLDSYTELSER_OPPHØR',
+            },
+        ],
+        preview: (
+            <PanelPreviewWrapper>
+                {renderOppgaveStandardStater(
+                    mockAndreLivsoppholdsytelserAKT,
+                    mockAndreLivsoppholdsytelserBesvartAKT,
+                    (oppgave, opts) => (
+                        <AndreLivsoppholdsytelserOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />
+                    ),
+                )}
+            </PanelPreviewWrapper>
+        ),
+    },
     {
         parsedType: ParsedOppgavetype.RAPPORTER_INNTEKT,
         kilder: [{ backendType: OppgaveType.RAPPORTER_INNTEKT }],

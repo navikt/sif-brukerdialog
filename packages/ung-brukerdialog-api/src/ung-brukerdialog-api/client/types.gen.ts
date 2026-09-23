@@ -4,10 +4,155 @@ export type ClientOptions = {
     baseURL: `${string}://${string}/ung/brukerdialog` | (string & {});
 };
 
+export enum AktivitetsavklaringKildeType {
+    /**
+     * BRUKER
+     */
+    BRUKER = 'BRUKER',
+    /**
+     * NAV
+     */
+    NAV = 'NAV',
+    /**
+     * ANNET
+     */
+    ANNET = 'ANNET',
+}
+
+export enum AktivitetsvilkåretIkkeOppfyltÅrsak {
+    /**
+     * ANNET
+     */
+    ANNET = 'ANNET',
+    /**
+     * UDEFINERT
+     */
+    UDEFINERT = 'UDEFINERT',
+}
+
+export enum AndreLivsoppholdsytelserAvklaringKildeType {
+    /**
+     * BRUKER
+     */
+    BRUKER = 'BRUKER',
+    /**
+     * NAV
+     */
+    NAV = 'NAV',
+    /**
+     * ANNET
+     */
+    ANNET = 'ANNET',
+}
+
+export enum AndreLivsoppholdsytelserIkkeOppfyltÅrsak {
+    /**
+     * MOTTAR_ARBEIDSAVKLARINGSPENGER
+     */
+    MOTTAR_ARBEIDSAVKLARINGSPENGER = 'MOTTAR_ARBEIDSAVKLARINGSPENGER',
+    /**
+     * MOTTAR_TILTAKSPENGER
+     */
+    MOTTAR_TILTAKSPENGER = 'MOTTAR_TILTAKSPENGER',
+    /**
+     * MOTTAR_KVALIFISERINGSSTØNAD
+     */
+    MOTTAR_KVALIFISERINGSSTØNAD = 'MOTTAR_KVALIFISERINGSSTØNAD',
+    /**
+     * MOTTAR_DAGPENGER
+     */
+    MOTTAR_DAGPENGER = 'MOTTAR_DAGPENGER',
+    /**
+     * MOTTAR_FORELDREPENGER
+     */
+    MOTTAR_FORELDREPENGER = 'MOTTAR_FORELDREPENGER',
+    /**
+     * MOTTAR_SVANGERSKAPSPENGER
+     */
+    MOTTAR_SVANGERSKAPSPENGER = 'MOTTAR_SVANGERSKAPSPENGER',
+    /**
+     * MOTTAR_UFØRETRYGD
+     */
+    MOTTAR_UFØRETRYGD = 'MOTTAR_UFØRETRYGD',
+    /**
+     * MOTTAR_INTRODUKSJONSSTØNAD
+     */
+    MOTTAR_INTRODUKSJONSSTØNAD = 'MOTTAR_INTRODUKSJONSSTØNAD',
+    /**
+     * MOTTAR_BARNEPENSJON
+     */
+    MOTTAR_BARNEPENSJON = 'MOTTAR_BARNEPENSJON',
+    /**
+     * MOTTAR_ANNEN_YTELSE
+     */
+    MOTTAR_ANNEN_YTELSE = 'MOTTAR_ANNEN_YTELSE',
+    /**
+     * UDEFINERT
+     */
+    UDEFINERT = 'UDEFINERT',
+}
+
 export type ArbeidOgFrilansRegisterInntektDto = {
     arbeidsgiverIdentifikator: string;
     arbeidsgiverNavn?: string;
     inntekt: number;
+};
+
+export type BekreftAktivitetOppgavetypeDataDto = {
+    fom: string;
+    ikkeOppfyltÅrsak: AktivitetsvilkåretIkkeOppfyltÅrsak;
+    ikkeOppfyltÅrsakFritekstbeskrivelse?: string;
+    kilde: AktivitetsavklaringKildeType;
+    kildeFritekst?: string;
+    tom: string;
+    varseltekst?: string;
+};
+
+export type BekreftAktivitetOpphørOppgavetypeDataDto = {
+    fom: string;
+    ikkeOppfyltÅrsak: AktivitetsvilkåretIkkeOppfyltÅrsak;
+    ikkeOppfyltÅrsakFritekstbeskrivelse?: string;
+    kilde: AktivitetsavklaringKildeType;
+    kildeFritekst?: string;
+    varseltekst?: string;
+};
+
+export type BekreftAndreLivsoppholdsytelserOppgavetypeDataDto = {
+    fom: string;
+    ikkeOppfyltÅrsak: AndreLivsoppholdsytelserIkkeOppfyltÅrsak;
+    ikkeOppfyltÅrsakFritekstbeskrivelse?: string;
+    kilde: AndreLivsoppholdsytelserAvklaringKildeType;
+    kildeFritekst?: string;
+    tom: string;
+    varseltekst?: string;
+};
+
+export type BekreftAndreLivsoppholdsytelserOpphørOppgavetypeDataDto = {
+    fom: string;
+    ikkeOppfyltÅrsak: AndreLivsoppholdsytelserIkkeOppfyltÅrsak;
+    ikkeOppfyltÅrsakFritekstbeskrivelse?: string;
+    kilde: AndreLivsoppholdsytelserAvklaringKildeType;
+    kildeFritekst?: string;
+    varseltekst?: string;
+};
+
+export type BekreftBistandOppgavetypeDataDto = {
+    fom: string;
+    ikkeOppfyltÅrsak: BistandsvilkårIkkeOppfyltÅrsak;
+    ikkeOppfyltÅrsakFritekstbeskrivelse?: string;
+    kilde: BistandsavklaringKildeType;
+    kildeFritekst?: string;
+    tom: string;
+    varseltekst?: string;
+};
+
+export type BekreftBistandOpphørOppgavetypeDataDto = {
+    fom: string;
+    ikkeOppfyltÅrsak: BistandsvilkårIkkeOppfyltÅrsak;
+    ikkeOppfyltÅrsakFritekstbeskrivelse?: string;
+    kilde: BistandsavklaringKildeType;
+    kildeFritekst?: string;
+    varseltekst?: string;
 };
 
 export type BekreftBostedOppgavetypeDataDto = {
@@ -36,6 +181,44 @@ export type BekreftOpphorVedMaksdatoOppgavetypeDataDto = {
     sluttdato: string;
     varseltekst?: string;
 };
+
+export enum BistandsavklaringKildeType {
+    /**
+     * BRUKER
+     */
+    BRUKER = 'BRUKER',
+    /**
+     * NAV
+     */
+    NAV = 'NAV',
+    /**
+     * ANNET
+     */
+    ANNET = 'ANNET',
+}
+
+export enum BistandsvilkårIkkeOppfyltÅrsak {
+    /**
+     * IKKE_14A_VEDTAK
+     */
+    IKKE_14A_VEDTAK = 'IKKE_14A_VEDTAK',
+    /**
+     * KOMMET_I_UTDANNING
+     */
+    KOMMET_I_UTDANNING = 'KOMMET_I_UTDANNING',
+    /**
+     * KOMMET_I_ARBEID
+     */
+    KOMMET_I_ARBEID = 'KOMMET_I_ARBEID',
+    /**
+     * ANNET
+     */
+    ANNET = 'ANNET',
+    /**
+     * UDEFINERT
+     */
+    UDEFINERT = 'UDEFINERT',
+}
 
 export enum BostedsavklaringKildeType {
     /**
@@ -185,6 +368,18 @@ export enum OppgaveType {
      */
     BEKREFT_BOSTED = 'BEKREFT_BOSTED',
     /**
+     * BEKREFT_BISTAND
+     */
+    BEKREFT_BISTAND = 'BEKREFT_BISTAND',
+    /**
+     * BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER
+     */
+    BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER = 'BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER',
+    /**
+     * BEKREFT_AKTIVITET
+     */
+    BEKREFT_AKTIVITET = 'BEKREFT_AKTIVITET',
+    /**
      * BEKREFT_OPPHOR_VED_MAKSDATO
      */
     BEKREFT_OPPHOR_VED_MAKSDATO = 'BEKREFT_OPPHOR_VED_MAKSDATO',
@@ -202,6 +397,18 @@ export enum OppgaveYtelsetype {
 }
 
 export type OppgavetypeDataDto = (
+    | ({
+          type: 'AKTIVITET';
+      } & BekreftAktivitetOppgavetypeDataDto)
+    | ({
+          type: 'AKTIVITET_OPPHØR';
+      } & BekreftAktivitetOpphørOppgavetypeDataDto)
+    | ({
+          type: 'BISTAND';
+      } & BekreftBistandOppgavetypeDataDto)
+    | ({
+          type: 'BISTAND_OPPHØR';
+      } & BekreftBistandOpphørOppgavetypeDataDto)
     | ({
           type: 'BOSTED';
       } & BekreftBostedOppgavetypeDataDto)
@@ -223,6 +430,12 @@ export type OppgavetypeDataDto = (
     | ({
           type: 'KONTROLLER_REGISTERINNTEKT';
       } & KontrollerRegisterinntektOppgavetypeDataDto)
+    | ({
+          type: 'ANDRE_LIVSOPPHOLDSYTELSER';
+      } & BekreftAndreLivsoppholdsytelserOppgavetypeDataDto)
+    | ({
+          type: 'ANDRE_LIVSOPPHOLDSYTELSER_OPPHØR';
+      } & BekreftAndreLivsoppholdsytelserOpphørOppgavetypeDataDto)
     | ({
           type: 'OPPHOR_VED_MAKSDATO';
       } & BekreftOpphorVedMaksdatoOppgavetypeDataDto)

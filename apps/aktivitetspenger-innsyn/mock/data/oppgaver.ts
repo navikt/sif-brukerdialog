@@ -1,4 +1,6 @@
 import {
+    AndreLivsoppholdsytelserAvklaringKildeType,
+    AndreLivsoppholdsytelserIkkeOppfyltÅrsak,
     BostedsavklaringKildeType,
     BostedsvilkårIkkeOppfyltÅrsak,
     BrukerdialogOppgaveDto,
@@ -256,6 +258,46 @@ const getBekreftBostedOpphørOppgaveDto = (): BrukerdialogOppgaveDto => ({
     ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 });
 
+const getBekreftAndreLivsoppholdsytelserOppgaveDto = (): BrukerdialogOppgaveDto => ({
+    oppgaveReferanse: '5deff1eb-6b64-4e7f-a0aa-3f741b2b8d8d',
+    oppgavetype: OppgaveType.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+    oppgavetypeData: {
+        type: 'ANDRE_LIVSOPPHOLDSYTELSER',
+        ikkeOppfyltÅrsak: AndreLivsoppholdsytelserIkkeOppfyltÅrsak.MOTTAR_ARBEIDSAVKLARINGSPENGER,
+        kilde: AndreLivsoppholdsytelserAvklaringKildeType.NAV,
+        fom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
+        tom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month')),
+        varseltekst: mockVarseltekster.getAndreLivsoppholdsytelserOppgaveVarseltekst(
+            {
+                from: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
+                to: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month')),
+            },
+        ),
+    },
+    status: OppgaveStatus.ULØST,
+    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
+    frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
+});
+
+const getBekreftAndreLivsoppholdsytelserOpphørOppgaveDto = (): BrukerdialogOppgaveDto => ({
+    oppgaveReferanse: '0eac3b70-d1c7-4a3f-a5de-6b3d5b2b42a0',
+    oppgavetype: OppgaveType.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+    oppgavetypeData: {
+        type: 'ANDRE_LIVSOPPHOLDSYTELSER_OPPHØR',
+        ikkeOppfyltÅrsak: AndreLivsoppholdsytelserIkkeOppfyltÅrsak.MOTTAR_ARBEIDSAVKLARINGSPENGER,
+        kilde: AndreLivsoppholdsytelserAvklaringKildeType.NAV,
+        fom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
+        varseltekst: mockVarseltekster.getAndreLivsoppholdsytelserOpphørOppgaveVarseltekst(
+            dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
+        ),
+    },
+    status: OppgaveStatus.ULØST,
+    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
+    frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
+});
+
 export const getMockOppgaver = () => ({
     rapporterInntektOppgave: getRapporterInntektOppgaveDto(),
     rapporterInntektOppgaveLøst: getRapporterInntektOppgaveDtoLøst(),
@@ -267,4 +309,6 @@ export const getMockOppgaver = () => ({
     bekreftBostedOppgave: getBekreftBostedOppgaveDto(),
     bekreftBostedOppgaveLøst: getBekreftBostedOppgaveDtoLøst(),
     bekreftBostedOpphørOppgave: getBekreftBostedOpphørOppgaveDto(),
+    bekreftAndreLivsoppholdsytelserOppgave: getBekreftAndreLivsoppholdsytelserOppgaveDto(),
+    bekreftAndreLivsoppholdsytelserOpphørOppgave: getBekreftAndreLivsoppholdsytelserOpphørOppgaveDto(),
 });

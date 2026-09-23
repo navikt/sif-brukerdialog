@@ -1,7 +1,7 @@
 import { BrukerdialogOppgaveDto } from '@navikt/ung-brukerdialog-api';
 
 /**
- * Bosted (m.fl.) har identisk struktur i backend – de skiller seg
+ * Bosted, andre livsoppholdsytelser (m.fl.) har identisk struktur i backend – de skiller seg
  * kun på hvilke enum-typer `ikkeOppfyltÅrsak` og `kilde` har. Generikken bevarer disse typene.
  */
 export interface VilkårOppgavetypeDataDto<TÅrsak extends string, TKilde extends string> {

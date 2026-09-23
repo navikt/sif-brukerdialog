@@ -13,6 +13,8 @@ export enum ScenarioType {
     avvikInntekt = 'avvikInntekt',
     avvikInntektDelerAvMåned = 'avvikInntektDelerAvMåned',
     bekreftBosted = 'bekreftBosted',
+    bekreftAndreLivsoppholdsytelser = 'bekreftAndreLivsoppholdsytelser',
+    bekreftAndreLivsoppholdsytelserOpphør = 'bekreftAndreLivsoppholdsytelserOpphør',
 }
 
 export interface ScenarioData {

@@ -1,4 +1,5 @@
 import { oppgavebekreftelse_nb } from '../modules/oppgavebekreftelse/i18n/nb';
+import { andreLivsoppholdsytelserMessages_nb } from '../modules/oppgavepaneler/andre-livsoppholdsytelser/i18n/nb';
 import { avvikRegisterinntektMessages_nb } from '../modules/oppgavepaneler/avvik-registerinntekt/i18n/nb';
 import { bostedVilkårMessages_nb } from '../modules/oppgavepaneler/bostedsvilkar/i18n/nb';
 import { endretSluttdatoMessages_nb } from '../modules/oppgavepaneler/endret-sluttdato/i18n/nb';
@@ -21,6 +22,7 @@ export const ungInnsyn_messages_nb = {
     ...søkYtelseOppgaveMessages_nb,
     ...oppgavebekreftelse_nb,
     ...bostedVilkårMessages_nb,
+    ...andreLivsoppholdsytelserMessages_nb,
     ...opphorVedMaksdatoMessages_nb,
 
     '@ungInnsyn.Ja': 'Ja',
@@ -71,6 +73,12 @@ export const ungInnsyn_messages_nb = {
     '@ungInnsyn.bostedKilde.BRUKER': 'Fra deg.',
     '@ungInnsyn.bostedKilde.FOLKEREGISTER': 'Folkeregisteret.',
     '@ungInnsyn.bostedKilde.FRITEKST_FALLBACK': 'Informasjon om kilde mangler',
+
+    /** AndreLivsoppholdsytelserKilde */
+    '@ungInnsyn.andreLivsoppholdsytelserKilde.header': 'Hvor har vi fått opplysningene fra?',
+    '@ungInnsyn.andreLivsoppholdsytelserKilde.BRUKER': 'Fra deg.',
+    '@ungInnsyn.andreLivsoppholdsytelserKilde.NAV': 'Nav.',
+    '@ungInnsyn.andreLivsoppholdsytelserKilde.FRITEKST_FALLBACK': 'Informasjon om kilde mangler',
 
     /** InntektForm */
     '@ungInnsyn.inntektForm.validation.harInntekt.yesOrNoIsUnanswered': 'Du må svare på om du hadde inntekt.',

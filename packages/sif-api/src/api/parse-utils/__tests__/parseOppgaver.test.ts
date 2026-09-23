@@ -1,4 +1,6 @@
 import {
+    AndreLivsoppholdsytelserAvklaringKildeType,
+    AndreLivsoppholdsytelserIkkeOppfyltÅrsak,
     BostedsavklaringKildeType,
     BostedsvilkårIkkeOppfyltÅrsak,
     OppgaveStatus,
@@ -7,7 +9,12 @@ import {
 } from '@navikt/ung-brukerdialog-api';
 import { describe, expect, it } from 'vitest';
 
-import { BostedVilkårOppgave, OpphorVedMaksdatoOppgave, ParsedOppgavetype } from '../../../types/Oppgave';
+import {
+    AndreLivsoppholdsytelserOppgave,
+    BostedVilkårOppgave,
+    OpphorVedMaksdatoOppgave,
+    ParsedOppgavetype,
+} from '../../../types/Oppgave';
 import { parseOppgaver } from '../parseOppgaver';
 
 const baseOppgave = {
@@ -248,5 +255,157 @@ describe('parseOppgaver - BEKREFT_BOSTED (opphørsvarianten)', () => {
         expect((result as BostedVilkårOppgave).oppgavetypeData.ikkeOppfyltÅrsak).toBe(
             BostedsvilkårIkkeOppfyltÅrsak.IKKE_BOSATTADRESSE_I_TRONDHEIM,
         );
+    });
+});
+
+const baseAndreLivsoppholdsytelserData = {
+    ikkeOppfyltÅrsak: AndreLivsoppholdsytelserIkkeOppfyltÅrsak.MOTTAR_ARBEIDSAVKLARINGSPENGER,
+    fom: '2026-01-01',
+    kilde: AndreLivsoppholdsytelserAvklaringKildeType.NAV,
+    varseltekst: 'mock',
+};
+
+const baseAndreLivsoppholdsytelserOppgavetypeData = {
+    type: 'ANDRE_LIVSOPPHOLDSYTELSER' as const,
+    ...baseAndreLivsoppholdsytelserData,
+    tom: '2026-03-31',
+};
+const baseAndreLivsoppholdsytelserOpphørOppgavetypeData = {
+    type: 'ANDRE_LIVSOPPHOLDSYTELSER_OPPHØR' as const,
+    ...baseAndreLivsoppholdsytelserData,
+};
+
+describe('parseOppgaver - BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER', () => {
+    it('setter parsedOppgavetype til BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER når data har tom', () => {
+        const [result] = parseOppgaver([
+            {
+                ...baseOppgave,
+                oppgavetype: OppgaveType.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+                oppgavetypeData: baseAndreLivsoppholdsytelserOppgavetypeData,
+            },
+        ]);
+
+        expect((result as AndreLivsoppholdsytelserOppgave).parsedOppgavetype).toBe(
+            ParsedOppgavetype.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+        );
+    });
+
+    it('tar ikke med datoene fra backend', () => {
+        const [result] = parseOppgaver([
+            {
+                ...baseOppgave,
+                oppgavetype: OppgaveType.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+                oppgavetypeData: baseAndreLivsoppholdsytelserOppgavetypeData,
+            },
+        ]);
+
+        const oppgave = result as AndreLivsoppholdsytelserOppgave;
+        expect(oppgave.oppgavetypeData).not.toHaveProperty('periode');
+        expect(oppgave.oppgavetypeData).not.toHaveProperty('fom');
+        expect(oppgave.oppgavetypeData).not.toHaveProperty('tom');
+    });
+
+    it('bevarer ikkeOppfyltÅrsak og kilde', () => {
+        const [result] = parseOppgaver([
+            {
+                ...baseOppgave,
+                oppgavetype: OppgaveType.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+                oppgavetypeData: baseAndreLivsoppholdsytelserOppgavetypeData,
+            },
+        ]);
+
+        const oppgave = result as AndreLivsoppholdsytelserOppgave;
+        expect(oppgave.oppgavetypeData.ikkeOppfyltÅrsak).toBe(
+            AndreLivsoppholdsytelserIkkeOppfyltÅrsak.MOTTAR_ARBEIDSAVKLARINGSPENGER,
+        );
+        expect(oppgave.oppgavetypeData.kilde).toBe(AndreLivsoppholdsytelserAvklaringKildeType.NAV);
+    });
+
+    it('setter frist til dagen før oppgavens frist', () => {
+        const [result] = parseOppgaver([
+            {
+                ...baseOppgave,
+                frist: '2026-05-15T07:00:00.000Z',
+                oppgavetype: OppgaveType.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+                oppgavetypeData: baseAndreLivsoppholdsytelserOppgavetypeData,
+            },
+        ]);
+
+        expect((result as AndreLivsoppholdsytelserOppgave).frist).toBe('2026-05-14');
+    });
+
+    it('parser VARSEL_SVAR-respons korrekt', () => {
+        const [result] = parseOppgaver([
+            {
+                ...baseOppgave,
+                oppgavetype: OppgaveType.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+                oppgavetypeData: baseAndreLivsoppholdsytelserOppgavetypeData,
+                respons: { type: 'VARSEL_SVAR', harUttalelse: true, uttalelseFraBruker: 'Ok' },
+                status: OppgaveStatus.LØST,
+                løstDato: '2026-05-10T12:00:00.000Z',
+            },
+        ]);
+
+        const oppgave = result as AndreLivsoppholdsytelserOppgave;
+        expect(oppgave.respons).toEqual({ type: 'VARSEL_SVAR', harUttalelse: true, uttalelseFraBruker: 'Ok' });
+    });
+
+    it('setter respons til undefined når ingen respons er oppgitt', () => {
+        const [result] = parseOppgaver([
+            {
+                ...baseOppgave,
+                oppgavetype: OppgaveType.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+                oppgavetypeData: baseAndreLivsoppholdsytelserOppgavetypeData,
+            },
+        ]);
+
+        expect((result as AndreLivsoppholdsytelserOppgave).respons).toBeUndefined();
+    });
+});
+
+describe('parseOppgaver - BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER (opphørsvarianten)', () => {
+    it('gir samme parsedOppgavetype som periodevarianten', () => {
+        const [result] = parseOppgaver([
+            {
+                ...baseOppgave,
+                oppgavetype: OppgaveType.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+                oppgavetypeData: baseAndreLivsoppholdsytelserOpphørOppgavetypeData,
+            },
+        ]);
+
+        expect((result as AndreLivsoppholdsytelserOppgave).parsedOppgavetype).toBe(
+            ParsedOppgavetype.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+        );
+    });
+
+    it('tar ikke med datoene fra backend', () => {
+        const [result] = parseOppgaver([
+            {
+                ...baseOppgave,
+                oppgavetype: OppgaveType.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+                oppgavetypeData: baseAndreLivsoppholdsytelserOpphørOppgavetypeData,
+            },
+        ]);
+
+        const oppgave = result as AndreLivsoppholdsytelserOppgave;
+        expect(oppgave.oppgavetypeData).not.toHaveProperty('fom');
+        expect(oppgave.oppgavetypeData).not.toHaveProperty('tom');
+        expect(oppgave.oppgavetypeData).not.toHaveProperty('periode');
+    });
+
+    it('bevarer ikkeOppfyltÅrsak og kilde', () => {
+        const [result] = parseOppgaver([
+            {
+                ...baseOppgave,
+                oppgavetype: OppgaveType.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
+                oppgavetypeData: baseAndreLivsoppholdsytelserOpphørOppgavetypeData,
+            },
+        ]);
+
+        const oppgave = result as AndreLivsoppholdsytelserOppgave;
+        expect(oppgave.oppgavetypeData.ikkeOppfyltÅrsak).toBe(
+            AndreLivsoppholdsytelserIkkeOppfyltÅrsak.MOTTAR_ARBEIDSAVKLARINGSPENGER,
+        );
+        expect(oppgave.oppgavetypeData.kilde).toBe(AndreLivsoppholdsytelserAvklaringKildeType.NAV);
     });
 });

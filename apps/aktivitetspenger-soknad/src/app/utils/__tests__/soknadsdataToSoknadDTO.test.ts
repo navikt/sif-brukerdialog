@@ -49,6 +49,7 @@ const komplettSøknadsdata: Søknadsdata = {
 
 const baseArgs = {
     søker,
+    språk: 'nb' as const,
     kontoInfo: { harKontonummer: 'JA' as const },
     startdato: '2024-01-01' as ISODate,
 };

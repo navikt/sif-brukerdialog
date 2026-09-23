@@ -91,7 +91,7 @@ export const ÅRSAK_SCENARIO_OPTIONS = Object.keys(oppgaveTekster) as EnumType[]
 export const KILDE_SCENARIO_OPTIONS = Object.values(KildeEnumType); // hvis alle kildeverdier alltid skal vises
 ```
 
-Da blir det umulig for arrayet og enumet å komme ut av synk. Brukt i `BostedVilkar*`-mockData.
+Da blir det umulig for arrayet og enumet å komme ut av synk. Brukt i `AndreLivsoppholdsytelser*` og `BostedVilkar*`-mockData.
 
 ---
 
@@ -142,23 +142,23 @@ Ved oppgaver med periode og opphør skal mockene ha separate DTO-er:
 
 `BEKREFT_ENDRET_STARTDATO` og `BEKREFT_ENDRET_SLUTTDATO` finnes nå som **egne backend-`OppgaveType`** i tillegg til å kunne komme fra `BEKREFT_ENDRET_PERIODE`. `BEKREFT_ENDRET_PERIODE` parses fortsatt til fem parsed-typer basert på `endringer`-feltet:
 
-| ParsedOppgavetype                    | Backend-kilde(r)                                                                                                                        |
-| ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `BEKREFT_ENDRET_STARTDATO`           | `BEKREFT_ENDRET_STARTDATO` direkte, eller `BEKREFT_ENDRET_PERIODE` med `endringer=[ENDRET_STARTDATO]`                                   |
-| `BEKREFT_ENDRET_SLUTTDATO`           | `BEKREFT_ENDRET_SLUTTDATO` (forrigeSluttdato satt), eller `BEKREFT_ENDRET_PERIODE` med `endringer=[ENDRET_SLUTTDATO]` + forrige finnes  |
-| `BEKREFT_MELDT_UT`                   | `BEKREFT_ENDRET_SLUTTDATO` (forrigeSluttdato mangler), eller `BEKREFT_ENDRET_PERIODE` med `endringer=[ENDRET_SLUTTDATO]`, ingen forrige |
-| `BEKREFT_FJERNET_PERIODE`            | `BEKREFT_ENDRET_PERIODE` med `endringer=[FJERNET_PERIODE]`                                                                              |
-| `BEKREFT_ENDRET_START_OG_SLUTTDATO`  | `BEKREFT_ENDRET_PERIODE` med `endringer=[ENDRET_STARTDATO, ENDRET_SLUTTDATO]`                                                           |
-| `BEKREFT_OPPHOR_VED_MAKSDATO`        | `BEKREFT_OPPHOR_VED_MAKSDATO` direkte                                                                                                   |
-| `BEKREFT_AVVIK_REGISTERINNTEKT`      | `BEKREFT_AVVIK_REGISTERINNTEKT` direkte                                                                                                 |
-| `RAPPORTER_INNTEKT`                  | `RAPPORTER_INNTEKT` direkte                                                                                                             |
-| `SØK_YTELSE`                         | `SØK_YTELSE` direkte                                                                                                                    |
-| `BEKREFT_BOSTED`                     | `BEKREFT_BOSTED`, både `oppgavetypeData.type = 'BOSTED'` og `'BOSTED_OPPHØR'`                                                           |
+| ParsedOppgavetype                   | Backend-kilde(r)                                                                                                                        |
+| ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `BEKREFT_ENDRET_STARTDATO`          | `BEKREFT_ENDRET_STARTDATO` direkte, eller `BEKREFT_ENDRET_PERIODE` med `endringer=[ENDRET_STARTDATO]`                                   |
+| `BEKREFT_ENDRET_SLUTTDATO`          | `BEKREFT_ENDRET_SLUTTDATO` (forrigeSluttdato satt), eller `BEKREFT_ENDRET_PERIODE` med `endringer=[ENDRET_SLUTTDATO]` + forrige finnes  |
+| `BEKREFT_MELDT_UT`                  | `BEKREFT_ENDRET_SLUTTDATO` (forrigeSluttdato mangler), eller `BEKREFT_ENDRET_PERIODE` med `endringer=[ENDRET_SLUTTDATO]`, ingen forrige |
+| `BEKREFT_FJERNET_PERIODE`           | `BEKREFT_ENDRET_PERIODE` med `endringer=[FJERNET_PERIODE]`                                                                              |
+| `BEKREFT_ENDRET_START_OG_SLUTTDATO` | `BEKREFT_ENDRET_PERIODE` med `endringer=[ENDRET_STARTDATO, ENDRET_SLUTTDATO]`                                                           |
+| `BEKREFT_OPPHOR_VED_MAKSDATO`       | `BEKREFT_OPPHOR_VED_MAKSDATO` direkte                                                                                                   |
+| `BEKREFT_AVVIK_REGISTERINNTEKT`     | `BEKREFT_AVVIK_REGISTERINNTEKT` direkte                                                                                                 |
+| `RAPPORTER_INNTEKT`                 | `RAPPORTER_INNTEKT` direkte                                                                                                             |
+| `SØK_YTELSE`                        | `SØK_YTELSE` direkte                                                                                                                    |
+| `BEKREFT_BOSTED`                    | `BEKREFT_BOSTED`, både `oppgavetypeData.type = 'BOSTED'` og `'BOSTED_OPPHØR'`                                                           |
+| `BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER` | `BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER`, både `'ANDRE_LIVSOPPHOLDSYTELSER'` og `'ANDRE_LIVSOPPHOLDSYTELSER_OPPHØR'`                         |
 
 **Vilkårsoppgavene (bosted, andre livsoppholdsytelser)** har én `ParsedOppgavetype` hver, selv om backend
 skiller mellom avslag i en periode og opphør fra en dato. Grunnen er at datoene er innbakt i `varseltekst`
-fra backend og utelates som egne felter i parseren — dermed har de to variantene samme parsede struktur
-(samme interface og felter), men ulikt innhold i `varseltekst` (periode med fom/tom vs. opphør med kun fom).
+fra backend og utelates i parseren — dermed har de to variantene samme parsede struktur (samme interface og felter), men ulikt innhold i `varseltekst` (periode med fom/tom vs. opphør med kun fom).
 Varianten er derfor kun synlig som ulik `varseltekst`, og dekkes i Storybook via en `varselvariant`-kontroll.
 
 ---

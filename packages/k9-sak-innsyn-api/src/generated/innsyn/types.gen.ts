@@ -28,8 +28,8 @@ export enum AktivitetFravær {
 
 export type Aktivitetspenger = Omit<Ytelse, 'type'> & {
     erBosattITrondheim?: boolean;
-    forutgåendeBosteder: Bosteder;
     inntekter?: OppgittInntekt;
+    medlemskap: Medlemskap;
     søknadsperiodeFom?: string;
     type: 'Aktivitetspenger';
 };
@@ -153,6 +153,9 @@ export type BostedPeriodeInfo = {
 
 export type Bosteder = {
     perioder?: {
+        [key: string]: BostedPeriodeInfo;
+    };
+    perioderSomSkalSlettes?: {
         [key: string]: BostedPeriodeInfo;
     };
 };
@@ -325,6 +328,13 @@ export type LovbestemtFerie = {
 
 export type LovbestemtFeriePeriodeInfo = {
     skalHaFerie?: boolean;
+};
+
+export type Medlemskap = {
+    harBoddINorge: boolean;
+    harJobbetINorge?: boolean;
+    harJobbetUtenforNorge?: boolean;
+    utenlandsopphold?: Utenlandsopphold;
 };
 
 export type Nattevåk = {
@@ -696,21 +706,13 @@ export type Utenlandsopphold = {
     perioder?: {
         [key: string]: UtenlandsoppholdPeriodeInfo;
     };
-    perioderSomSkalSlettes?: {
-        [key: string]: UtenlandsoppholdPeriodeInfo;
-    };
 };
 
 export type UtenlandsoppholdPeriodeInfo = {
-    erSammenMedBarnet?: boolean;
+    jobbetIPerioden: boolean;
     land: string;
-    årsak?: UtenlandsoppholdÅrsak;
+    utenlandskNasjonalId?: string;
 };
-
-export enum UtenlandsoppholdÅrsak {
-    BARNET_INNLAGT_I_HELSEINSTITUSJON_FOR_NORSK_OFFENTLIG_REGNING = 'barnetInnlagtIHelseinstitusjonForNorskOffentligRegning',
-    BARNET_INNLAGT_I_HELSEINSTITUSJON_DEKKET_ETTER_AVTALE_MED_ET_ANNET_LAND_OM_TRYGD = 'barnetInnlagtIHelseinstitusjonDekketEtterAvtaleMedEtAnnetLandOmTrygd',
-}
 
 export type UtledetStatus = {
     aksjonspunkter: AksjonspunktDto[];

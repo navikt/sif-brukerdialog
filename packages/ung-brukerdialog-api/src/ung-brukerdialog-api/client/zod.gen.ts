@@ -2,6 +2,26 @@
 
 import * as z from 'zod';
 
+export const zAktivitetsavklaringKildeType = z.enum(['BRUKER', 'NAV', 'ANNET']);
+
+export const zAktivitetsvilkåretIkkeOppfyltÅrsak = z.enum(['ANNET', 'UDEFINERT']);
+
+export const zAndreLivsoppholdsytelserAvklaringKildeType = z.enum(['BRUKER', 'NAV', 'ANNET']);
+
+export const zAndreLivsoppholdsytelserIkkeOppfyltÅrsak = z.enum([
+    'MOTTAR_ARBEIDSAVKLARINGSPENGER',
+    'MOTTAR_TILTAKSPENGER',
+    'MOTTAR_KVALIFISERINGSSTØNAD',
+    'MOTTAR_DAGPENGER',
+    'MOTTAR_FORELDREPENGER',
+    'MOTTAR_SVANGERSKAPSPENGER',
+    'MOTTAR_UFØRETRYGD',
+    'MOTTAR_INTRODUKSJONSSTØNAD',
+    'MOTTAR_BARNEPENSJON',
+    'MOTTAR_ANNEN_YTELSE',
+    'UDEFINERT',
+]);
+
 export const zArbeidOgFrilansRegisterInntektDto = z.object({
     arbeidsgiverIdentifikator: z.string(),
     arbeidsgiverNavn: z.string().optional(),
@@ -11,9 +31,136 @@ export const zArbeidOgFrilansRegisterInntektDto = z.object({
         .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' }),
 });
 
+export const zBekreftAktivitetOppgavetypeDataDto = z.object({
+    fom: z.iso.date(),
+    ikkeOppfyltÅrsak: zAktivitetsvilkåretIkkeOppfyltÅrsak,
+    ikkeOppfyltÅrsakFritekstbeskrivelse: z
+        .string()
+        .min(0)
+        .max(4000)
+
+        .optional(),
+    kilde: zAktivitetsavklaringKildeType,
+    kildeFritekst: z
+        .string()
+        .min(0)
+        .max(1000)
+
+        .optional(),
+    tom: z.iso.date(),
+    varseltekst: z.string().optional(),
+});
+
+export const zBekreftAktivitetOpphørOppgavetypeDataDto = z.object({
+    fom: z.iso.date(),
+    ikkeOppfyltÅrsak: zAktivitetsvilkåretIkkeOppfyltÅrsak,
+    ikkeOppfyltÅrsakFritekstbeskrivelse: z
+        .string()
+        .min(0)
+        .max(4000)
+
+        .optional(),
+    kilde: zAktivitetsavklaringKildeType,
+    kildeFritekst: z
+        .string()
+        .min(0)
+        .max(1000)
+
+        .optional(),
+    varseltekst: z.string().optional(),
+});
+
+export const zBekreftAndreLivsoppholdsytelserOppgavetypeDataDto = z.object({
+    fom: z.iso.date(),
+    ikkeOppfyltÅrsak: zAndreLivsoppholdsytelserIkkeOppfyltÅrsak,
+    ikkeOppfyltÅrsakFritekstbeskrivelse: z
+        .string()
+        .min(0)
+        .max(4000)
+
+        .optional(),
+    kilde: zAndreLivsoppholdsytelserAvklaringKildeType,
+    kildeFritekst: z
+        .string()
+        .min(0)
+        .max(1000)
+
+        .optional(),
+    tom: z.iso.date(),
+    varseltekst: z.string().optional(),
+});
+
+export const zBekreftAndreLivsoppholdsytelserOpphørOppgavetypeDataDto = z.object({
+    fom: z.iso.date(),
+    ikkeOppfyltÅrsak: zAndreLivsoppholdsytelserIkkeOppfyltÅrsak,
+    ikkeOppfyltÅrsakFritekstbeskrivelse: z
+        .string()
+        .min(0)
+        .max(4000)
+
+        .optional(),
+    kilde: zAndreLivsoppholdsytelserAvklaringKildeType,
+    kildeFritekst: z
+        .string()
+        .min(0)
+        .max(1000)
+
+        .optional(),
+    varseltekst: z.string().optional(),
+});
+
 export const zBekreftOpphorVedMaksdatoOppgavetypeDataDto = z.object({
     maxDato: z.iso.date(),
     sluttdato: z.iso.date(),
+    varseltekst: z.string().optional(),
+});
+
+export const zBistandsavklaringKildeType = z.enum(['BRUKER', 'NAV', 'ANNET']);
+
+export const zBistandsvilkårIkkeOppfyltÅrsak = z.enum([
+    'IKKE_14A_VEDTAK',
+    'KOMMET_I_UTDANNING',
+    'KOMMET_I_ARBEID',
+    'ANNET',
+    'UDEFINERT',
+]);
+
+export const zBekreftBistandOppgavetypeDataDto = z.object({
+    fom: z.iso.date(),
+    ikkeOppfyltÅrsak: zBistandsvilkårIkkeOppfyltÅrsak,
+    ikkeOppfyltÅrsakFritekstbeskrivelse: z
+        .string()
+        .min(0)
+        .max(4000)
+
+        .optional(),
+    kilde: zBistandsavklaringKildeType,
+    kildeFritekst: z
+        .string()
+        .min(0)
+        .max(1000)
+
+        .optional(),
+    tom: z.iso.date(),
+    varseltekst: z.string().optional(),
+});
+
+export const zBekreftBistandOpphørOppgavetypeDataDto = z.object({
+    fom: z.iso.date(),
+    ikkeOppfyltÅrsak: zBistandsvilkårIkkeOppfyltÅrsak,
+    ikkeOppfyltÅrsakFritekstbeskrivelse: z
+        .string()
+        .min(0)
+        .max(4000)
+
+        .optional(),
+    kilde: zBistandsavklaringKildeType,
+    kildeFritekst: z
+        .string()
+        .min(0)
+        .max(1000)
+
+        .optional(),
     varseltekst: z.string().optional(),
 });
 
@@ -97,6 +244,9 @@ export const zOppgaveType = z.enum([
     'RAPPORTER_INNTEKT',
     'SØK_YTELSE',
     'BEKREFT_BOSTED',
+    'BEKREFT_BISTAND',
+    'BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER',
+    'BEKREFT_AKTIVITET',
     'BEKREFT_OPPHOR_VED_MAKSDATO',
 ]);
 
@@ -225,6 +375,26 @@ export const zOppgavetypeDataDto = z.intersection(
     z.union([
         z
             .object({
+                type: z.literal('AKTIVITET'),
+            })
+            .and(zBekreftAktivitetOppgavetypeDataDto),
+        z
+            .object({
+                type: z.literal('AKTIVITET_OPPHØR'),
+            })
+            .and(zBekreftAktivitetOpphørOppgavetypeDataDto),
+        z
+            .object({
+                type: z.literal('BISTAND'),
+            })
+            .and(zBekreftBistandOppgavetypeDataDto),
+        z
+            .object({
+                type: z.literal('BISTAND_OPPHØR'),
+            })
+            .and(zBekreftBistandOpphørOppgavetypeDataDto),
+        z
+            .object({
                 type: z.literal('BOSTED'),
             })
             .and(zBekreftBostedOppgavetypeDataDto),
@@ -258,6 +428,16 @@ export const zOppgavetypeDataDto = z.intersection(
                 type: z.literal('KONTROLLER_REGISTERINNTEKT'),
             })
             .and(zKontrollerRegisterinntektOppgavetypeDataDto),
+        z
+            .object({
+                type: z.literal('ANDRE_LIVSOPPHOLDSYTELSER'),
+            })
+            .and(zBekreftAndreLivsoppholdsytelserOppgavetypeDataDto),
+        z
+            .object({
+                type: z.literal('ANDRE_LIVSOPPHOLDSYTELSER_OPPHØR'),
+            })
+            .and(zBekreftAndreLivsoppholdsytelserOpphørOppgavetypeDataDto),
         z
             .object({
                 type: z.literal('OPPHOR_VED_MAKSDATO'),
