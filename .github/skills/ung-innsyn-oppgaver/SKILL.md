@@ -31,22 +31,22 @@ sif-api (ung-brukerdialog-api)
 
 ### Viktige filer
 
-| Fil | Formål |
-|-----|--------|
-| `@navikt/ung-brukerdialog-api` (npm) | Kilde til `OppgaveType`, `OppgaveYtelsetype`, `OppgaveStatus` |
-| `packages/sif-api/src/api/parse-utils/parseOppgaver.ts` | Registry som kobler backendens `OppgaveType` til riktig parser |
-| `packages/sif-api/src/api/parse-utils/oppgaver/` | Én parser per oppgavetype, pluss felles base-, respons- og vilkårshjelpere |
-| `packages/sif-api/src/types/Oppgave.ts` | `ParsedOppgavetype`-enum og alle oppgave-interfaces |
-| `src/modules/oppgavepaneler/oppgaveLovverk.ts` | Tabeller over lovverk per `OppgaveType` og `ParsedOppgavetype` |
-| `src/modules/oppgavepaneler/<type>/<Panel>.mockData.ts` | Mock-objekter (uløst + besvart) per ytelsetype |
-| `src/modules/oppgavepaneler/<type>/<Panel>.stories.tsx` | Individuelle Storybook-stories under `/Aktivitetspenger` eller `/Ungdomsprogramytelsen` |
-| `src/modules/oppgavepaneler/storybook/OppgavetypeMappingUPY.stories.tsx` | Oversiktstabell for UPY med ekspandert panelpreview |
-| `src/modules/oppgavepaneler/storybook/OppgavetypeMappingAKT.stories.tsx` | Oversiktstabell for AKT med ekspandert panelpreview |
-| `src/storybook/storyUtils.tsx` | `StoryBox`, `StateLabel`, `PanelPreviewWrapper`, `renderOppgaveStandardStater` |
-| `apps/<ytelse>-innsyn/mock/data/oppgaver.ts` | DTO-mocker for demoappens oppgavescenarioer |
-| `apps/<ytelse>-innsyn/mock/data/varseltekster.ts` | Varseltekster brukt av DTO-mockene |
-| `apps/<ytelse>-innsyn/mock/scenarios/{types,scenarioer}.ts` | Scenariotype og registrering av demo-scenario |
-| `apps/<ytelse>-innsyn/src/demo/ScenarioHeader.tsx` | Eksponerer scenarioet i demoappens scenario-velger |
+| Fil                                                                      | Formål                                                                                  |
+| ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
+| `@navikt/ung-brukerdialog-api` (npm)                                     | Kilde til `OppgaveType`, `OppgaveYtelsetype`, `OppgaveStatus`                           |
+| `packages/sif-api/src/api/parse-utils/parseOppgaver.ts`                  | Registry som kobler backendens `OppgaveType` til riktig parser                          |
+| `packages/sif-api/src/api/parse-utils/oppgaver/`                         | Én parser per oppgavetype, pluss felles base-, respons- og vilkårshjelpere              |
+| `packages/sif-api/src/types/Oppgave.ts`                                  | `ParsedOppgavetype`-enum og alle oppgave-interfaces                                     |
+| `src/modules/oppgavepaneler/oppgaveLovverk.ts`                           | Tabeller over lovverk per `OppgaveType` og `ParsedOppgavetype`                          |
+| `src/modules/oppgavepaneler/<type>/<Panel>.mockData.ts`                  | Mock-objekter (uløst + besvart) per ytelsetype                                          |
+| `src/modules/oppgavepaneler/<type>/<Panel>.stories.tsx`                  | Individuelle Storybook-stories under `/Aktivitetspenger` eller `/Ungdomsprogramytelsen` |
+| `src/modules/oppgavepaneler/storybook/OppgavetypeMappingUPY.stories.tsx` | Oversiktstabell for UPY med ekspandert panelpreview                                     |
+| `src/modules/oppgavepaneler/storybook/OppgavetypeMappingAKT.stories.tsx` | Oversiktstabell for AKT med ekspandert panelpreview                                     |
+| `src/storybook/storyUtils.tsx`                                           | `StoryBox`, `StateLabel`, `PanelPreviewWrapper`, `renderOppgaveStandardStater`          |
+| `apps/<ytelse>-innsyn/mock/data/oppgaver.ts`                             | DTO-mocker for demoappens oppgavescenarioer                                             |
+| `apps/<ytelse>-innsyn/mock/data/varseltekster.ts`                        | Varseltekster brukt av DTO-mockene                                                      |
+| `apps/<ytelse>-innsyn/mock/scenarios/{types,scenarioer}.ts`              | Scenariotype og registrering av demo-scenario                                           |
+| `apps/<ytelse>-innsyn/src/demo/ScenarioHeader.tsx`                       | Eksponerer scenarioet i demoappens scenario-velger                                      |
 
 ---
 
@@ -131,10 +131,10 @@ Storybook-mocker alene gjør ikke oppgaven tilgjengelig i appens demo. Når oppg
 
 Ved oppgaver med periode og opphør skal mockene ha separate DTO-er:
 
-| Variant | `oppgavetypeData.type` | Datoer |
-|---|---|---|
+| Variant | `oppgavetypeData.type`  | Datoer         |
+| ------- | ----------------------- | -------------- |
 | Periode | Variantens periodeverdi | `fom` og `tom` |
-| Opphør | Variantens opphørsverdi | Kun `fom` |
+| Opphør  | Variantens opphørsverdi | Kun `fom`      |
 
 ---
 
@@ -142,23 +142,23 @@ Ved oppgaver med periode og opphør skal mockene ha separate DTO-er:
 
 `BEKREFT_ENDRET_STARTDATO` og `BEKREFT_ENDRET_SLUTTDATO` finnes nå som **egne backend-`OppgaveType`** i tillegg til å kunne komme fra `BEKREFT_ENDRET_PERIODE`. `BEKREFT_ENDRET_PERIODE` parses fortsatt til fem parsed-typer basert på `endringer`-feltet:
 
-| ParsedOppgavetype | Backend-kilde(r) |
-|---|---|
-| `BEKREFT_ENDRET_STARTDATO` | `BEKREFT_ENDRET_STARTDATO` direkte, eller `BEKREFT_ENDRET_PERIODE` med `endringer=[ENDRET_STARTDATO]` |
-| `BEKREFT_ENDRET_SLUTTDATO` | `BEKREFT_ENDRET_SLUTTDATO` (forrigeSluttdato satt), eller `BEKREFT_ENDRET_PERIODE` med `endringer=[ENDRET_SLUTTDATO]` + forrige finnes |
-| `BEKREFT_MELDT_UT` | `BEKREFT_ENDRET_SLUTTDATO` (forrigeSluttdato mangler), eller `BEKREFT_ENDRET_PERIODE` med `endringer=[ENDRET_SLUTTDATO]`, ingen forrige |
-| `BEKREFT_FJERNET_PERIODE` | `BEKREFT_ENDRET_PERIODE` med `endringer=[FJERNET_PERIODE]` |
-| `BEKREFT_ENDRET_START_OG_SLUTTDATO` | `BEKREFT_ENDRET_PERIODE` med `endringer=[ENDRET_STARTDATO, ENDRET_SLUTTDATO]` |
-| `BEKREFT_OPPHOR_VED_MAKSDATO` | `BEKREFT_OPPHOR_VED_MAKSDATO` direkte |
-| `BEKREFT_AVVIK_REGISTERINNTEKT` | `BEKREFT_AVVIK_REGISTERINNTEKT` direkte |
-| `RAPPORTER_INNTEKT` | `RAPPORTER_INNTEKT` direkte |
-| `SØK_YTELSE` | `SØK_YTELSE` direkte |
-| `BEKREFT_BOSTED` | `BEKREFT_BOSTED`, både `oppgavetypeData.type = 'BOSTED'` og `'BOSTED_OPPHØR'` |
-| `BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER` | `BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER`, både `'ANDRE_LIVSOPPHOLDSYTELSER'` og `'ANDRE_LIVSOPPHOLDSYTELSER_OPPHØR'` |
+| ParsedOppgavetype                   | Backend-kilde(r)                                                                                                                        |
+| ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `BEKREFT_ENDRET_STARTDATO`          | `BEKREFT_ENDRET_STARTDATO` direkte, eller `BEKREFT_ENDRET_PERIODE` med `endringer=[ENDRET_STARTDATO]`                                   |
+| `BEKREFT_ENDRET_SLUTTDATO`          | `BEKREFT_ENDRET_SLUTTDATO` (forrigeSluttdato satt), eller `BEKREFT_ENDRET_PERIODE` med `endringer=[ENDRET_SLUTTDATO]` + forrige finnes  |
+| `BEKREFT_MELDT_UT`                  | `BEKREFT_ENDRET_SLUTTDATO` (forrigeSluttdato mangler), eller `BEKREFT_ENDRET_PERIODE` med `endringer=[ENDRET_SLUTTDATO]`, ingen forrige |
+| `BEKREFT_FJERNET_PERIODE`           | `BEKREFT_ENDRET_PERIODE` med `endringer=[FJERNET_PERIODE]`                                                                              |
+| `BEKREFT_ENDRET_START_OG_SLUTTDATO` | `BEKREFT_ENDRET_PERIODE` med `endringer=[ENDRET_STARTDATO, ENDRET_SLUTTDATO]`                                                           |
+| `BEKREFT_OPPHOR_VED_MAKSDATO`       | `BEKREFT_OPPHOR_VED_MAKSDATO` direkte                                                                                                   |
+| `BEKREFT_AVVIK_REGISTERINNTEKT`     | `BEKREFT_AVVIK_REGISTERINNTEKT` direkte                                                                                                 |
+| `RAPPORTER_INNTEKT`                 | `RAPPORTER_INNTEKT` direkte                                                                                                             |
+| `SØK_YTELSE`                        | `SØK_YTELSE` direkte                                                                                                                    |
+| `BEKREFT_BOSTED`                    | `BEKREFT_BOSTED`, både `oppgavetypeData.type = 'BOSTED'` og `'BOSTED_OPPHØR'`                                                           |
+| `BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER` | `BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER`, både `'ANDRE_LIVSOPPHOLDSYTELSER'` og `'ANDRE_LIVSOPPHOLDSYTELSER_OPPHØR'`                         |
 
 **Vilkårsoppgavene (bosted, andre livsoppholdsytelser)** har én `ParsedOppgavetype` hver, selv om backend
 skiller mellom avslag i en periode og opphør fra en dato. Grunnen er at datoene er innbakt i `varseltekst`
-fra backend og utelates i parseren — dermed er dataene og tekstene identiske for de to variantene.
+fra backend og utelates i parseren — dermed har de to variantene samme parsede struktur (samme interface og felter), men ulikt innhold i `varseltekst` (periode med fom/tom vs. opphør med kun fom).
 Varianten er derfor kun synlig som ulik `varseltekst`, og dekkes i Storybook via en `varselvariant`-kontroll.
 
 ---
