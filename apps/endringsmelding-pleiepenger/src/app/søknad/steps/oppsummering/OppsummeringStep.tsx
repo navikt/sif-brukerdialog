@@ -1,6 +1,7 @@
 import { useSendSøknad, useSøknadContext, useSøknadsdataStatus } from '@app/hooks';
 import { useStepConfig } from '@app/hooks/useStepConfig';
 import { AppText, useAppIntl } from '@app/i18n';
+import { getSøknadStepRoute } from '@app/søknad/config/SøknadRoutes';
 import { StepId } from '@app/søknad/config/StepId';
 import SøknadStep from '@app/søknad/SøknadStep';
 import { getApiDataFromSøknadsdata, harUkjentArbeidsforholdMenHarIkkeBesvartArbeidstid } from '@app/utils';
@@ -15,6 +16,8 @@ import { useSkyraReloader } from '@sif/surveys';
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import EditButton from '../../../components/buttons/EditButton';
+import actionsCreator from '../../context/action/actionCreator';
 import ArbeidstidOppsummering from './arbeidstid/ArbeidstidOppsummering';
 import LovbestemtFerieOppsummering from './lovbestemt-ferie/LovbestemtFerieOppsummering';
 import NyttArbeidsforholdSummary from './nytt-arbeidsforhold/NyttArbeidsforholdSummary';
@@ -40,6 +43,7 @@ const OppsummeringStep = () => {
     const navigate = useNavigate();
     const { text, intl, locale } = useAppIntl();
     const {
+        dispatch,
         state: { søknadsdata, sak, arbeidsgivere, valgteEndringer, søker },
     } = useSøknadContext();
 
@@ -103,45 +107,73 @@ const OppsummeringStep = () => {
                     />
                 )}
 
-                {(valgteEndringer.arbeidstid || (arbeidstid && arbeidstidErEndret)) && (
-                    <ArbeidstidOppsummering
-                        arbeidstid={arbeidstid}
-                        arbeidsgivere={[...arbeidsgivere, ...sak.arbeidsgivereIkkeISak]}
-                        arbeidstidErEndret={arbeidstidErEndret}
-                        harGyldigArbeidstid={harGyldigArbeidstid}
-                    />
-                )}
-                {valgteEndringer.lovbestemtFerie && (
-                    <VStack gap="space-16">
-                        <Heading level="2" size="medium">
-                            <AppText id="oppsummeringStep.ferie.tittel" />
-                        </Heading>
-                        {lovbestemtFerie !== undefined && lovbestemtFerieErEndret ? (
-                            <LovbestemtFerieOppsummering lovbestemtFerie={lovbestemtFerie} />
-                        ) : (
-                            <Alert variant="info">
-                                <AppText id="oppsummeringStep.ferie.ingenEndringer" />
-                            </Alert>
-                        )}
-                    </VStack>
-                )}
-                {valgteEndringer.tilsynsordning && (
-                    <VStack gap="space-16">
-                        <Heading level="2" size="medium">
-                            <AppText id="oppsummeringStep.tilsynsordning.tittel" />
-                        </Heading>
-                        {tilsynsordning !== undefined && tilsynsordningErEndret ? (
-                            <TilsynsordningOppsummering
-                                tilsynsordning={tilsynsordning}
-                                tidOpprinnelig={sak.tilsynsordning.tilsynsdagerMap}
-                            />
-                        ) : (
-                            <Alert variant="info">
-                                <AppText id="oppsummeringStep.tilsynsordning.ingenEndringer" />
-                            </Alert>
-                        )}
-                    </VStack>
-                )}
+                <ArbeidstidOppsummering
+                    arbeidstid={arbeidstid}
+                    arbeidsgivere={[...arbeidsgivere, ...sak.arbeidsgivereIkkeISak]}
+                    arbeidstidErEndret={arbeidstidErEndret}
+                    harGyldigArbeidstid={harGyldigArbeidstid}
+                    onEdit={() => {
+                        if (valgteEndringer.arbeidstid === false) {
+                            dispatch(actionsCreator.leggTilValgtEndring(StepId.ARBEIDSTID));
+                        }
+                        navigate(getSøknadStepRoute(StepId.ARBEIDSTID));
+                    }}
+                />
+
+                <VStack gap="space-16">
+                    <Heading level="2" size="medium">
+                        <AppText id="oppsummeringStep.ferie.tittel" />
+                    </Heading>
+                    {lovbestemtFerie !== undefined && lovbestemtFerieErEndret ? (
+                        <LovbestemtFerieOppsummering lovbestemtFerie={lovbestemtFerie} />
+                    ) : (
+                        <Alert variant="info">
+                            <AppText id="oppsummeringStep.ferie.ingenEndringer" />
+                        </Alert>
+                    )}
+                    <div>
+                        <EditButton
+                            icon={null}
+                            variant="secondary"
+                            onClick={() => {
+                                if (valgteEndringer.lovbestemtFerie === false) {
+                                    dispatch(actionsCreator.leggTilValgtEndring(StepId.LOVBESTEMT_FERIE));
+                                }
+                                navigate(getSøknadStepRoute(StepId.LOVBESTEMT_FERIE));
+                            }}>
+                            <AppText id="oppsummeringStep.endre.ferie" />
+                        </EditButton>
+                    </div>
+                </VStack>
+
+                <VStack gap="space-16">
+                    <Heading level="2" size="medium">
+                        <AppText id="oppsummeringStep.tilsynsordning.tittel" />
+                    </Heading>
+                    {tilsynsordning !== undefined && tilsynsordningErEndret ? (
+                        <TilsynsordningOppsummering
+                            tilsynsordning={tilsynsordning}
+                            tidOpprinnelig={sak.tilsynsordning.tilsynsdagerMap}
+                        />
+                    ) : (
+                        <Alert variant="info">
+                            <AppText id="oppsummeringStep.tilsynsordning.ingenEndringer" />
+                        </Alert>
+                    )}
+                    <div>
+                        <EditButton
+                            icon={null}
+                            variant="secondary"
+                            onClick={() => {
+                                if (valgteEndringer.tilsynsordning === false) {
+                                    dispatch(actionsCreator.leggTilValgtEndring(StepId.TILSYNSORDNING));
+                                }
+                                navigate(getSøknadStepRoute(StepId.TILSYNSORDNING));
+                            }}>
+                            <AppText id="oppsummeringStep.endre.tilsynsordning" />
+                        </EditButton>
+                    </div>{' '}
+                </VStack>
 
                 {harFeilPgaManglendeArbeidstidInfo && (
                     <Alert variant="error">

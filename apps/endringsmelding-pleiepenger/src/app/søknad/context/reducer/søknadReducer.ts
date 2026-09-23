@@ -4,6 +4,7 @@ import { EndringType, SøknadContextState, Søknadsdata, ValgteEndringer } from 
 import { getFeriedagerMeta } from '@app/utils';
 import { guid } from '@navikt/sif-common-utils';
 
+import { StepId } from '../../config/StepId';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
 
 const initialSøknadsdata: Søknadsdata = {
@@ -119,6 +120,32 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
 
                 return {
                     ...newState,
+                    søknadSteps,
+                };
+            }
+            case SøknadContextActionKeys.LEGG_TIL_VALGT_ENDRING: {
+                const { steg } = action.payload;
+                const oppdatertValgtEndring: ValgteEndringer = {
+                    arbeidstid: steg === StepId.ARBEIDSTID || state.valgteEndringer.arbeidstid,
+                    lovbestemtFerie: steg === StepId.LOVBESTEMT_FERIE || state.valgteEndringer.lovbestemtFerie,
+                    tilsynsordning: steg === StepId.TILSYNSORDNING || state.valgteEndringer.tilsynsordning,
+                };
+
+                const newState: SøknadContextState = {
+                    ...state,
+                    valgteEndringer: {
+                        ...oppdatertValgtEndring,
+                    },
+                };
+                const søknadSteps = getSøknadSteps(
+                    newState.valgteEndringer,
+                    state.sak.harArbeidsgivereIkkeISak,
+                    newState.søknadsdata,
+                );
+
+                return {
+                    ...newState,
+                    søknadRoute: getSøknadStepRoute(steg),
                     søknadSteps,
                 };
             }

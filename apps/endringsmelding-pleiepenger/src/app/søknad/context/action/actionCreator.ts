@@ -30,11 +30,16 @@ export enum SøknadContextActionKeys {
     SET_UNSUBMITTED_STEP_FORM_VALUES = 'setUnsubmittedStepFormValues',
     CLEAR_STEP_SØKNADSDATA = 'clearStepSøknadsdata',
     SET_INPUT_PREFERANSER = 'setInputPreferanser',
+    LEGG_TIL_VALGT_ENDRING = 'leggTilValgtEndring',
 }
 
 interface SetSak {
     type: SøknadContextActionKeys.SET_SAK;
     payload: { sak: Sak };
+}
+interface leggTilValgtEndring {
+    type: SøknadContextActionKeys.LEGG_TIL_VALGT_ENDRING;
+    payload: { steg: StepId };
 }
 interface ResetSøknad {
     type: SøknadContextActionKeys.RESET_SØKNAD;
@@ -99,6 +104,11 @@ interface SetInputPreferanser {
 const setSak = (sak: Sak): SetSak => ({
     type: SøknadContextActionKeys.SET_SAK,
     payload: { sak },
+});
+
+const leggTilValgtEndring = (steg: StepId): leggTilValgtEndring => ({
+    type: SøknadContextActionKeys.LEGG_TIL_VALGT_ENDRING,
+    payload: { steg },
 });
 
 const resetSøknad = (): ResetSøknad => ({
@@ -177,6 +187,7 @@ export type SøknadContextAction =
     | SetSak
     | AvbrytSøknad
     | ClearStepSøknadsdata
+    | leggTilValgtEndring
     | FortsettSøknadSenere
     | RequestLagreSøknad
     | ResetSøknad
@@ -207,6 +218,7 @@ const actionsCreator = {
     setSøknadRoute,
     setEndringsmeldingSendt,
     startSøknad,
+    leggTilValgtEndring,
     setInputPreferanser,
 };
 
