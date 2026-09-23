@@ -1,4 +1,4 @@
-import { BodyLong, Box,Button, Dialog } from '@navikt/ds-react';
+import { BodyLong, Box, Button, Dialog } from '@navikt/ds-react';
 import { ISODate } from '@sif/utils';
 
 import { SifSoknadFormsText } from '../../i18n';

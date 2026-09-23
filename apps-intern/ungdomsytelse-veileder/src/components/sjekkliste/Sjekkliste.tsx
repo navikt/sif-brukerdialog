@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { ExternalLinkIcon, RecycleIcon } from '@navikt/aksel-icons';
 import {
     Alert,
