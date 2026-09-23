@@ -8,6 +8,12 @@ const seksjoner: Array<{ type: SideType; tittel: string }> = [
     { type: 'storybook', tittel: 'Storybooks' },
 ];
 
+const byggetidspunkt = new Intl.DateTimeFormat('nb-NO', {
+    dateStyle: 'short',
+    timeStyle: 'short',
+    timeZone: 'Europe/Oslo',
+}).format(new Date(__BUILD_TIME__));
+
 const App = () => (
     <Page>
         <Page.Block as="main" width="lg" gutters>
@@ -45,6 +51,21 @@ const App = () => (
                             navikt/sif-brukerdialog
                         </Link>
                         .
+                    </BodyLong>
+                    <BodyLong size="small" textColor="subtle">
+                        Bygget fra{' '}
+                        <Link
+                            href={`https://github.com/navikt/sif-brukerdialog/tree/${__BRANCH__}`}
+                            rel="noopener noreferrer">
+                            {__BRANCH__}
+                        </Link>{' '}
+                        (
+                        <Link
+                            href={`https://github.com/navikt/sif-brukerdialog/commit/${__COMMIT__}`}
+                            rel="noopener noreferrer">
+                            {__COMMIT__}
+                        </Link>
+                        ) <time dateTime={__BUILD_TIME__}>{byggetidspunkt}</time>.
                     </BodyLong>
                 </Box>
             </VStack>
