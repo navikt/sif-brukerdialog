@@ -100,6 +100,7 @@ const OppsummeringStep = () => {
             </FormLayout.Guide>
 
             <VStack gap="space-48">
+                {/* Nytt arbeidsforhold */}
                 {sak.harArbeidsgivereIkkeISak && ukjenteArbeidsforhold && (
                     <NyttArbeidsforholdSummary
                         arbeidsgivereIkkeISak={sak.arbeidsgivereIkkeISak}
@@ -107,19 +108,7 @@ const OppsummeringStep = () => {
                     />
                 )}
 
-                <ArbeidstidOppsummering
-                    arbeidstid={arbeidstid}
-                    arbeidsgivere={[...arbeidsgivere, ...sak.arbeidsgivereIkkeISak]}
-                    arbeidstidErEndret={arbeidstidErEndret}
-                    harGyldigArbeidstid={harGyldigArbeidstid}
-                    onEdit={() => {
-                        if (valgteEndringer.arbeidstid === false) {
-                            dispatch(actionsCreator.leggTilValgtEndring(StepId.ARBEIDSTID));
-                        }
-                        navigate(getSøknadStepRoute(StepId.ARBEIDSTID));
-                    }}
-                />
-
+                {/* Ferie */}
                 <VStack gap="space-16">
                     <Heading level="2" size="medium">
                         <AppText id="oppsummeringStep.ferie.tittel" />
@@ -146,6 +135,21 @@ const OppsummeringStep = () => {
                     </div>
                 </VStack>
 
+                {/* Arbeidstid */}
+                <ArbeidstidOppsummering
+                    arbeidstid={arbeidstid}
+                    arbeidsgivere={[...arbeidsgivere, ...sak.arbeidsgivereIkkeISak]}
+                    arbeidstidErEndret={arbeidstidErEndret}
+                    harGyldigArbeidstid={harGyldigArbeidstid}
+                    onEdit={() => {
+                        if (valgteEndringer.arbeidstid === false) {
+                            dispatch(actionsCreator.leggTilValgtEndring(StepId.ARBEIDSTID));
+                        }
+                        navigate(getSøknadStepRoute(StepId.ARBEIDSTID));
+                    }}
+                />
+
+                {/* Tilsynsordning */}
                 <VStack gap="space-16">
                     <Heading level="2" size="medium">
                         <AppText id="oppsummeringStep.tilsynsordning.tittel" />
