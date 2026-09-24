@@ -1,13 +1,12 @@
-import { IngenTilgangÅrsak } from '@app/types';
 import { fetchSøker, Søker } from '@navikt/sif-common-api';
 import { DateRange } from '@navikt/sif-common-utils';
 
-import { getPeriodeForArbeidsgiverOppslag } from '../../utils/initialDataUtils';
 import { arbeidsgivereEndpoint } from '../endpoints/arbeidsgivereEndpoint';
 import { sakerEndpoint } from '../endpoints/sakerEndpoint';
 import { hentGyldigLagretSøknadState } from './hentGyldigLagretSøknadState';
-import { IngenTilgangError, mapInitialDataError } from './initialDataError';
-import { assertHarTilgang, loggIngenSaker, validerK9Saker } from './initialDataValidering';
+import { mapInitialDataError } from './initialDataError';
+import { loggIngenSaker } from './initialDataValidering';
+import { getTilgangKontroll } from './tilgangKontroll';
 import { InitialData } from './types';
 
 /**
@@ -27,20 +26,14 @@ export const fetchInitialData = async (tillattEndringsperiode: DateRange): Promi
         const { k9Saker: sakerInnenforEndringsperiode, eldreSaker: sakerFørEndringsperiode } = sakerResult;
         loggIngenSaker(sakerInnenforEndringsperiode, sakerFørEndringsperiode);
 
-        const { k9saker, samletPeriode } = validerK9Saker(
+        const { sak, arbeidsgivere } = await getTilgangKontroll()(
             sakerInnenforEndringsperiode,
             sakerFørEndringsperiode,
             tillattEndringsperiode,
+            arbeidsgivereEndpoint.fetch,
         );
 
-        const periodeForArbeidsgiveroppslag = getPeriodeForArbeidsgiverOppslag(samletPeriode, tillattEndringsperiode);
-        if (!periodeForArbeidsgiveroppslag) {
-            throw new IngenTilgangError([IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode]);
-        }
-
-        const arbeidsgivere = await arbeidsgivereEndpoint.fetch(periodeForArbeidsgiveroppslag);
-
-        assertHarTilgang(k9saker, tillattEndringsperiode, arbeidsgivere);
+        const k9saker = [sak];
 
         const lagretSøknadState = await hentGyldigLagretSøknadState({
             søker,

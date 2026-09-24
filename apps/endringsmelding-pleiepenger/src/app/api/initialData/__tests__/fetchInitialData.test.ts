@@ -2,12 +2,13 @@ import { IngenTilgangÅrsak, K9Sak, RequestStatus } from '@app/types';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { AxiosError } from 'axios';
 
-vi.hoisted(() => {
+const { featureToggles } = vi.hoisted(() => {
     const appSettings = new Proxy({}, { get: () => 'test' });
     (globalThis as any).appSettings = appSettings;
     if (typeof window !== 'undefined') {
         (window as any).appSettings = appSettings;
     }
+    return { featureToggles: {} as Record<string, boolean> };
 });
 
 vi.mock('@navikt/sif-common-api', () => ({
@@ -36,8 +37,14 @@ vi.mock('../../../utils/tilgangskontroll', () => ({
     tilgangskontroll: vi.fn(() => ({ kanBrukeSøknad: true })),
 }));
 
+vi.mock('../../../utils/featureToggleUtils', async (importOriginal) => ({
+    ...(await importOriginal<typeof import('../../../utils/featureToggleUtils')>()),
+    isFeatureEnabled: (feature: string) => featureToggles[feature] === true,
+}));
+
 import { fetchSøker } from '@navikt/sif-common-api';
 
+import { Feature } from '../../../utils/featureToggleUtils';
 import { arbeidsgivereEndpoint } from '../../endpoints/arbeidsgivereEndpoint';
 import { sakerEndpoint } from '../../endpoints/sakerEndpoint';
 import { søknadStateEndpoint } from '../../endpoints/søknadStateEndpoint';
@@ -53,14 +60,24 @@ const søker = { fornavn: 'Ola', etternavn: 'Nordmann', fødselsnummer: '1234567
 const gyldigSak = {
     ytelse: {
         søknadsperioder: [{ from: ISODateToDate('2024-02-01'), to: ISODateToDate('2024-03-01') }],
+        arbeidstid: {},
     },
 } as unknown as K9Sak;
 
 const httpError = (status: number) =>
     new AxiosError('feil', 'ERR_BAD_RESPONSE', {} as any, {}, { status, data: {} } as any);
 
-describe('fetchInitialData feilhåndtering', () => {
+/**
+ * Kjøres mot begge implementasjonene av tilgangskontrollen. Feilhåndteringen skal
+ * være uavhengig av hvilken som er aktiv, og suiten er dermed også beviset på at
+ * v1 og v2 er utbyttbare i praksis, ikke bare i typesystemet.
+ */
+describe.each([
+    ['v1', false],
+    ['v2', true],
+])('fetchInitialData feilhåndtering (tilgangskontroll %s)', (_navn, nyTilgangskontroll) => {
     beforeEach(() => {
+        featureToggles[Feature.SIF_PUBLIC_NY_TILGANGSKONTROLL] = nyTilgangskontroll;
         vi.mocked(fetchSøker).mockResolvedValue(søker);
         vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ k9Saker: [gyldigSak], eldreSaker: [] });
         vi.mocked(arbeidsgivereEndpoint.fetch).mockResolvedValue([]);
