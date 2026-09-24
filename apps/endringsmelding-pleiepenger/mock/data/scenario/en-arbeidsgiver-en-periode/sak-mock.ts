@@ -45,6 +45,9 @@ export default [
                             skalHaFerie: true,
                         },
                         '2023-01-12/2023-01-15': {
+                            skalHaFerie: true,
+                        },
+                        '2023-01-23/2023-01-23': {
                             skalHaFerie: false,
                         },
                     },
