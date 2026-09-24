@@ -13,6 +13,10 @@ test('endringsmelding om ferie og arbeid', async ({ page }) => {
 
     /** Ferie */
     await expect(page).toHaveTitle('Ferie i pleiepengeperioden - Endringsmelding for pleiepenger sykt barn');
+    // Sjekk at ferie som er skalHaFerie false i sak ikke er kommet med
+    expect(page.getByLabel('Fjern ferie torsdag 23.01.')).not.toBeVisible();
+
+    // Endre
     await page.getByLabel('Endre ferie søndag 01.01.2023').click();
     await page.getByRole('button', { name: 'Åpne datovelger' }).first().click();
     await page.getByRole('button', { name: 'tirsdag 3', exact: true }).click();
