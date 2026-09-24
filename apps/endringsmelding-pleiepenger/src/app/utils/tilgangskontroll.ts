@@ -1,19 +1,25 @@
 import {
-    Arbeidsgiver,
+    ArbeidsgiverMedAnsettelseperioder,
     IngenTilgangÅrsak,
     IngenTilgangMeta,
     K9Sak,
     K9SakArbeidstaker,
-    K9SakArbeidstid,
-    K9SakArbeidstidInfo,
 } from '@app/types';
-import { DateRange, durationToDecimalDuration } from '@navikt/sif-common-utils';
+import {
+    DateRange,
+    dateRangeUtils,
+    ensureDateRange,
+    sortDateRange,
+} from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import isoWeek from 'dayjs/plugin/isoWeek';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 
+import { getIngenTilgangMeta } from '../tilgang/ingenTilgangMeta';
 import { finnesArbeidsgiverIK9Sak, getSamletDateRangeForK9Saker } from './k9SakUtils';
 
 dayjs.extend(isSameOrAfter);
+dayjs.extend(isoWeek);
 
 type TilgangNektet = {
     kanBrukeSøknad: false;
@@ -27,7 +33,11 @@ type TilgangTillatt = {
 
 export type TilgangKontrollResultat = TilgangNektet | TilgangTillatt;
 
-export const tilgangskontroll = (saker: K9Sak[], tillattEndringsperiode: DateRange): TilgangKontrollResultat => {
+export const tilgangskontroll = (
+    saker: K9Sak[],
+    tillattEndringsperiode: DateRange,
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
+): TilgangKontrollResultat => {
     /** Har ingen saker */
     if (saker.length === 0) {
         return {
@@ -58,6 +68,22 @@ export const tilgangskontroll = (saker: K9Sak[], tillattEndringsperiode: DateRan
         ingenTilgangÅrsak.push(IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende);
     }
 
+    /** Bruker har ansettelsperioder hos samme arbeidsgiver som starter og stopper samme uke, med opphold mellom */
+    if (harAnsettelsesforholdSomStarterOgSlutterSammeUkeMedOpphold(sak, tillattEndringsperiode, arbeidsgivere)) {
+        ingenTilgangÅrsak.push(IngenTilgangÅrsak.enArbeidsgiverToAnsettelserSammeUkeMedOpphold);
+    }
+
+    /** Bruker har flere ansettelsperioder hos ukjent arbeidsgiver */
+    if (
+        harFlereAnsettelsesforholdHosUkjentArbeidsgiver(
+            arbeidsgivere,
+            sak.ytelse.arbeidstid.arbeidstakerList,
+            dateRangeUtils.getDateRangesWithinDateRange(sak.ytelse.søknadsperioder, tillattEndringsperiode),
+        )
+    ) {
+        ingenTilgangÅrsak.push(IngenTilgangÅrsak.harFlereAnsettelsesforholdHosUkjentArbeidsgiver);
+    }
+
     if (ingenTilgangÅrsak.length > 0) {
         return {
             kanBrukeSøknad: false,
@@ -71,33 +97,28 @@ export const tilgangskontroll = (saker: K9Sak[], tillattEndringsperiode: DateRan
     };
 };
 
-const harArbeidstidPerioder = (arbeidstidInfo?: K9SakArbeidstidInfo): boolean => {
-    return (
-        arbeidstidInfo !== undefined &&
-        Object.keys(arbeidstidInfo.perioder).length > 0 &&
-        Object.keys(arbeidstidInfo.perioder)
-            .map((key) => durationToDecimalDuration(arbeidstidInfo.perioder[key].jobberNormaltTimerPerDag))
-            .some((decimalDuration) => {
-                return decimalDuration > 0;
-            })
-    );
-};
-
-const getIngenTilgangMeta = (arbeidstid: K9SakArbeidstid): IngenTilgangMeta => {
-    const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } = arbeidstid;
-    return {
-        erArbeidstaker: arbeidstakerList?.some((a) => harArbeidstidPerioder(a.arbeidstidInfo)),
-        erFrilanser: harArbeidstidPerioder(frilanserArbeidstidInfo),
-        erSN: harArbeidstidPerioder(selvstendigNæringsdrivendeArbeidstidInfo),
-    };
-};
-
-const harArbeidsgiverUtenArbeidsaktivitet = (
-    arbeidsgivere: Arbeidsgiver[],
+const harFlereAnsettelsesforholdHosUkjentArbeidsgiver = (
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
     k9SakArbeidstaker: K9SakArbeidstaker[] = [],
+    søknadsperioder?: DateRange[],
 ): boolean => {
     return arbeidsgivere.some((arbeidsgiver) => {
-        return finnesArbeidsgiverIK9Sak(arbeidsgiver, k9SakArbeidstaker) === false;
+        const erUkjentArbeidsgiver = finnesArbeidsgiverIK9Sak(arbeidsgiver, k9SakArbeidstaker) === false;
+        if (!erUkjentArbeidsgiver) {
+            return false;
+        }
+        return (
+            arbeidsgiver.ansettelsesperioder.filter(
+                (ansettelsesperiode) =>
+                    søknadsperioder === undefined ||
+                    søknadsperioder.some((søknadsperiode) =>
+                        dateRangeUtils.dateRangesCollide([
+                            ensureDateRange(ansettelsesperiode, søknadsperiode),
+                            søknadsperiode,
+                        ]),
+                    ),
+            ).length > 1
+        );
     });
 };
 
@@ -115,8 +136,56 @@ const harSøknadsperiodeInnenforTillattEndringsperiode = (
         : false;
 };
 
+const harAnsettelsesforholdSomStarterOgSlutterSammeUkeMedOpphold = (
+    sak: K9Sak,
+    tillattEndringsperiode: DateRange,
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
+): boolean => {
+    const orgnrISak = (sak.ytelse.arbeidstid.arbeidstakerList || []).map((a) => a.organisasjonsnummer);
+    return arbeidsgivere
+        .filter((a) => orgnrISak.includes(a.organisasjonsnummer))
+        .some((arbeidsgiver) => {
+            const ansettelserInnenforEndringsperiode = arbeidsgiver.ansettelsesperioder.map((d) =>
+                ensureDateRange(d, tillattEndringsperiode),
+            );
+            return perioderSlutterOgStarterSammeUkeMedOpphold(ansettelserInnenforEndringsperiode);
+        });
+};
+
+/**
+ * Går gjennom array for å se om det er perioder som slutter og starter innenfor samme
+ * uke, og hvor det er opphold på en dag mellom periodene.
+ *
+ * Perioder kan overlappe hverandre, og et opphold mellom to påfølgende perioder kan
+ * være dekket av en tidligere periode. Derfor sammenlignes hver periode mot den
+ * seneste sluttdatoen som er dekket så langt, ikke bare mot forrige periode.
+ * @param ansettelsesperioder DateRange
+ * @returns boolean
+ */
+const perioderSlutterOgStarterSammeUkeMedOpphold = (ansettelsesperioder: DateRange[]) => {
+    const sortertePerioder = [...ansettelsesperioder].sort(sortDateRange);
+
+    let dekketTilOgMed: Date | undefined;
+
+    for (const periode of sortertePerioder) {
+        if (dekketTilOgMed !== undefined) {
+            const harOpphold = dayjs(periode.from).diff(dekketTilOgMed, 'day') > 1;
+            const sammeUke = dayjs(periode.from).isSame(dekketTilOgMed, 'isoWeek');
+            if (harOpphold && sammeUke) {
+                return true;
+            }
+        }
+        if (dekketTilOgMed === undefined || dayjs(periode.to).isAfter(dekketTilOgMed, 'day')) {
+            dekketTilOgMed = periode.to;
+        }
+    }
+
+    return false;
+};
+
 export const tilgangskontrollUtils = {
     getIngenTilgangMeta,
-    harArbeidsgiverUtenArbeidsaktivitet,
     harSøknadsperiodeInnenforTillattEndringsperiode,
+    harFlereAnsettelsesforholdHosUkjentArbeidsgiver,
+    perioderSlutterOgStarterSammeUkeMedOpphold,
 };

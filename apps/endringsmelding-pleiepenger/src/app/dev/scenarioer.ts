@@ -4,13 +4,16 @@ export type ScenarioType =
     | 'arbeidsgiver-og-frilanser'
     | 'arbeidsgivere-og-frilanser'
     | 'arbeidsgiver-ikke-i-sak'
-    | 'flere-saker-kun-en-aktiv'
+    | 'arbeidsgiver-ikke-i-sak-flere-ansettelser'
     | 'debug'
     | 'selvstendig-næringsdrivende'
     | 'flere-saker'
+    | 'flere-saker-kun-en-aktiv'
     | 'ingen-sak'
     | 'arbeidsaktivitet-uten-arbeidsgiver'
-    | 'ugyldig-k9-format';
+    | 'ugyldig-k9-format'
+    | 'en-arbeidsgiver-to-ansettelser-samme-uke-med-opphold'
+    | 'en-arbeidsgiver-to-ansettelser-samme-uke-uten-opphold';
 
 export interface Scenario {
     name: string;
@@ -46,9 +49,9 @@ export const scenarioer: Scenario[] = [
         harTilgang: true,
     },
     {
-        name: 'Flere saker, kun én aktiv',
-        value: 'flere-saker-kun-en-aktiv',
-        harTilgang: true,
+        name: 'Arbeidsgiver som ikke er i sak med flere ansettelser',
+        value: 'arbeidsgiver-ikke-i-sak-flere-ansettelser',
+        harTilgang: false,
     },
     {
         name: 'Selvstendig næringsdrivende',
@@ -58,6 +61,11 @@ export const scenarioer: Scenario[] = [
     {
         name: 'Saker for flere barn',
         value: 'flere-saker',
+        harTilgang: false,
+    },
+    {
+        name: 'Saker for flere barn, kun én innenfor endringsperioden',
+        value: 'flere-saker-kun-en-aktiv',
         harTilgang: false,
     },
     {
@@ -79,6 +87,16 @@ export const scenarioer: Scenario[] = [
         name: 'Ugyldig k9format',
         value: 'ugyldig-k9-format',
         harTilgang: false,
+    },
+    {
+        name: 'Arbeidsgiver med to ansettelser samme uke med opphold',
+        value: 'en-arbeidsgiver-to-ansettelser-samme-uke-med-opphold',
+        harTilgang: false,
+    },
+    {
+        name: 'Arbeidsgiver med to ansettelser samme uke uten opphold',
+        value: 'en-arbeidsgiver-to-ansettelser-samme-uke-uten-opphold',
+        harTilgang: true,
     },
 ];
 

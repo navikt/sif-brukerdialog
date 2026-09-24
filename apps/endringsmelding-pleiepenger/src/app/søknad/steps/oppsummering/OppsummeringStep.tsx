@@ -40,7 +40,7 @@ const OppsummeringStep = () => {
     const navigate = useNavigate();
     const { text, intl, locale } = useAppIntl();
     const {
-        state: { søknadsdata, sak, arbeidsgivere, valgteEndringer, søker },
+        state: { søknadsdata, sak, arbeidsgivere, valgteEndringer, søker, tillattEndringsperiode },
     } = useSøknadContext();
 
     const { goBack, stepConfig } = useStepConfig(stepId);
@@ -62,6 +62,7 @@ const OppsummeringStep = () => {
         valgteEndringer,
         arbeidsgivere,
         locale,
+        tillattEndringsperiode,
     );
 
     if (!apiData) {

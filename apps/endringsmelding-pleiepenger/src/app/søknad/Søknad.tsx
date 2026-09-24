@@ -7,7 +7,7 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import { appLogger } from '@sif/apm';
 import { SkyraSlug, SkyraTestPage } from '@sif/surveys';
 import { isAxiosError } from 'axios';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 
 import DevFooter from '../dev/DevFooter';
 import useSøknadInitialData from '../hooks/useSøknadInitialData';
@@ -19,7 +19,6 @@ import SøknadRouter from './SøknadRouter';
 
 const Søknad = () => {
     const location = useLocation();
-    const navigate = useNavigate();
 
     const initialData = useSøknadInitialData();
     const { status } = initialData;
@@ -73,10 +72,7 @@ const Søknad = () => {
                 />
             );
         }
-        setTimeout(() => {
-            navigate(SøknadRoutes.IKKE_TILGANG);
-        });
-        return null;
+        return <Navigate to={SøknadRoutes.IKKE_TILGANG} replace={true} />;
     }
     return (
         <SøknadContextProvider initialData={initialData.data}>

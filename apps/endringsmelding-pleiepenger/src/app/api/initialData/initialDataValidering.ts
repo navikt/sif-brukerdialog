@@ -1,4 +1,11 @@
-import { IngenTilgangÅrsak, isK9Sak, isUgyldigK9SakFormat, K9Sak, UgyldigK9SakFormat } from '@app/types';
+import {
+    ArbeidsgiverMedAnsettelseperioder,
+    IngenTilgangÅrsak,
+    isK9Sak,
+    isUgyldigK9SakFormat,
+    K9Sak,
+    UgyldigK9SakFormat,
+} from '@app/types';
 import { DateRange, dateRangeUtils } from '@navikt/sif-common-utils';
 import { appLogger } from '@sif/apm';
 
@@ -53,8 +60,12 @@ export const validerK9Saker = (
  * Kjører den fulle tilgangskontrollen (antall saker, arbeidsforhold, periode).
  * Har egne tester i utils/__tests__/tilgangskontroll.test.ts.
  */
-export const assertHarTilgang = (k9saker: K9Sak[], tillattEndringsperiode: DateRange): void => {
-    const resultat = tilgangskontroll(k9saker, tillattEndringsperiode);
+export const assertHarTilgang = (
+    k9saker: K9Sak[],
+    tillattEndringsperiode: DateRange,
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
+): void => {
+    const resultat = tilgangskontroll(k9saker, tillattEndringsperiode, arbeidsgivere);
     if (resultat.kanBrukeSøknad === false) {
         throw new IngenTilgangError(resultat.årsak, resultat.ingenTilgangMeta);
     }

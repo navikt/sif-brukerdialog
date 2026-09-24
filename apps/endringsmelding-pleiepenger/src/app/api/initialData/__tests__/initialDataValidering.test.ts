@@ -1,4 +1,4 @@
-import { IngenTilgangÅrsak, K9Sak, UgyldigK9SakFormat } from '@app/types';
+import { ArbeidsgiverMedAnsettelseperioder, IngenTilgangÅrsak, K9Sak, UgyldigK9SakFormat } from '@app/types';
 import { ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils';
 
 vi.mock('@sif/apm', () => ({
@@ -17,6 +17,14 @@ import { IngenTilgangError } from '../initialDataError';
 import { assertHarTilgang, loggIngenSaker, validerK9Saker } from '../initialDataValidering';
 
 const tillattEndringsperiode = ISODateRangeToDateRange('2024-01-01/2024-12-31');
+const arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[] = [
+    {
+        key: 'a_123',
+        navn: 'a',
+        organisasjonsnummer: '123',
+        ansettelsesperioder: [{ from: ISODateToDate('2022-04-01'), to: ISODateToDate('2024-12-31') }],
+    },
+];
 
 const sakMedPeriode = (fom: string, tom: string) =>
     ({
@@ -108,7 +116,7 @@ describe('assertHarTilgang', () => {
     it('slipper gjennom når tilgangskontrollen godkjenner', () => {
         vi.mocked(tilgangskontroll).mockReturnValue({ kanBrukeSøknad: true });
 
-        expect(() => assertHarTilgang([], tillattEndringsperiode)).not.toThrow();
+        expect(() => assertHarTilgang([], tillattEndringsperiode, arbeidsgivere)).not.toThrow();
     });
 
     it('kaster IngenTilgangError med årsak og meta fra tilgangskontrollen', () => {
@@ -118,7 +126,7 @@ describe('assertHarTilgang', () => {
             ingenTilgangMeta: { erArbeidstaker: true },
         });
 
-        expect(() => assertHarTilgang([], tillattEndringsperiode)).toThrowError(
+        expect(() => assertHarTilgang([], tillattEndringsperiode, arbeidsgivere)).toThrowError(
             expect.objectContaining({
                 årsak: [IngenTilgangÅrsak.harMerEnnEnSak],
                 ingenTilgangMeta: { erArbeidstaker: true },
@@ -132,7 +140,7 @@ describe('assertHarTilgang', () => {
             årsak: [IngenTilgangÅrsak.harMerEnnEnSak],
         });
 
-        expect(() => assertHarTilgang([], tillattEndringsperiode)).toThrow(IngenTilgangError);
+        expect(() => assertHarTilgang([], tillattEndringsperiode, arbeidsgivere)).toThrow(IngenTilgangError);
     });
 });
 

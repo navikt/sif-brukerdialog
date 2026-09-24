@@ -4,6 +4,7 @@ export const getPlaywrightAppSettings = (): AppEnv & any => ({
     VELG_SCENARIO: 'on',
     SIF_PUBLIC_ENDRE_OMSORGSTILBUD: 'on',
     SIF_PUBLIC_SJEKK_OM_ARBEIDSTID_ER_GYLDIG: 'on',
+    SIF_PUBLIC_NY_TILGANGSKONTROLL: 'on',
     NOW: '2023-01-05T12:00:00Z',
     APP_VERSION: 'dev',
     ENV: 'dev',

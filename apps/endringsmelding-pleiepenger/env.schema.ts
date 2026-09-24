@@ -7,6 +7,7 @@ export const appEnvSchema = commonEnvSchema.merge(sifInnsynEnvSchema).extend({
     VELG_SCENARIO: z.enum(['on', 'off']).optional(),
     SIF_PUBLIC_ENDRE_OMSORGSTILBUD: z.enum(['on', 'off']).optional(),
     SIF_PUBLIC_SJEKK_OM_ARBEIDSTID_ER_GYLDIG: z.enum(['on', 'off']).optional(),
+    SIF_PUBLIC_NY_TILGANGSKONTROLL: z.enum(['on', 'off']).optional(),
 });
 
 export const appDevEnvSchema = appEnvSchema.extend({

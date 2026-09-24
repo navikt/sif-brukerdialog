@@ -1,5 +1,5 @@
 import { StepId } from '@app/søknad/config/StepId';
-import { Arbeidsgiver, K9Sak, Søknadsdata, ValgteEndringer } from '@app/types';
+import { ArbeidsgiverMedAnsettelseperioder, K9Sak, Søknadsdata, ValgteEndringer } from '@app/types';
 import { Søker } from '@navikt/sif-common-api';
 import persistence, { PersistenceInterface } from '@navikt/sif-common-core-ds/src/utils/persistence/persistence';
 import { DateRange, jsonSort } from '@navikt/sif-common-utils';
@@ -75,7 +75,7 @@ const isHashValid = (søknadState: SøknadStatePersistence, info: SøknadStateHa
 const harGyldigeArbeidstidsendringer = (
     søknadState: SøknadStatePersistence,
     k9sak: K9Sak,
-    arbeidsgivere: Arbeidsgiver[],
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
     tillattEndringsperiode: DateRange,
 ): boolean => {
     const arbeidstid = søknadState.søknadsdata[StepId.ARBEIDSTID];
@@ -92,7 +92,7 @@ export const isPersistedSøknadStateValid = (
     søknadState: SøknadStatePersistence,
     info: SøknadStateHashInfo,
     k9saker: K9Sak[],
-    arbeidsgivere: Arbeidsgiver[],
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
     tillattEndringsperiode: DateRange,
 ): boolean => {
     const k9sak = k9saker.find((sak) => sak.barn.aktørId === søknadState.barnAktørId);

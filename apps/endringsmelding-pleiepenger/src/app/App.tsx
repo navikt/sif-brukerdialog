@@ -20,8 +20,7 @@ import { isGitHubPages } from './utils/isGitHubPages';
 
 dayjs.extend(isoWeek);
 
-const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID, SIF_PUBLIC_USE_ANALYTICS } =
-    appEnv;
+const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID, SIF_PUBLIC_USE_ANALYTICS } = appEnv;
 
 const isE2E = getMaybeEnv('E2E_TEST') === 'true';
 const erGitHubPages = isGitHubPages();

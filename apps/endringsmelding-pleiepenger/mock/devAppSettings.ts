@@ -29,6 +29,7 @@ export const getDevAppSettings = (isTest?: boolean) => {
 
         SIF_PUBLIC_ENDRE_OMSORGSTILBUD: 'on', //isTest ? 'off' : 'on',
         SIF_PUBLIC_SJEKK_OM_ARBEIDSTID_ER_GYLDIG: 'on',
+        SIF_PUBLIC_NY_TILGANGSKONTROLL: 'on',
 
         VELG_SCENARIO: isTest ? 'on' : 'on',
         MSW: isTest ? 'off' : 'on',

@@ -34,6 +34,9 @@ For targeted work, run commands from the affected workspace where possible.
 - Prefer minimal, focused changes.
 - Run relevant workspace tests before broad test runs.
 - Reuse existing lint and typecheck scripts.
+- Verifiser hvilken funksjon som faktisk kalles før du beskriver en regel- eller atferdsendring. Nesten like funksjonsnavn i samme fil kan skjule at den ene er i bruk og den andre kun brukes til logging.
+- Tester skrevet ut fra en antakelse om dagens oppførsel bekrefter antakelsen i stedet for å etterprøve den. Les implementasjonen og kallstedene før du skriver tester som skal låse oppførsel.
+- Kommenter beslutninger og regler, ikke mekanikk. En «hvorfor står denne linja her»-kommentar er bare berettiget når linja avviker fra konvensjonen i kodebasen — følger den et etablert mønster, forsvarer kommentaren noe som ikke er under angrep.
 
 ## Boundaries
 
