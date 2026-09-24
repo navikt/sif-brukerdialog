@@ -4,13 +4,10 @@ import {
     IngenTilgangMeta,
     K9Sak,
     K9SakArbeidstaker,
-    K9SakArbeidstid,
-    K9SakArbeidstidInfo,
 } from '@app/types';
 import {
     DateRange,
     dateRangeUtils,
-    durationToDecimalDuration,
     ensureDateRange,
     sortDateRange,
 } from '@navikt/sif-common-utils';
@@ -18,6 +15,7 @@ import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 
+import { getIngenTilgangMeta } from '../tilgang/ingenTilgangMeta';
 import { finnesArbeidsgiverIK9Sak, getSamletDateRangeForK9Saker } from './k9SakUtils';
 
 dayjs.extend(isSameOrAfter);
@@ -96,27 +94,6 @@ export const tilgangskontroll = (
 
     return {
         kanBrukeSøknad: true,
-    };
-};
-
-const harArbeidstidPerioder = (arbeidstidInfo?: K9SakArbeidstidInfo): boolean => {
-    return (
-        arbeidstidInfo !== undefined &&
-        Object.keys(arbeidstidInfo.perioder).length > 0 &&
-        Object.keys(arbeidstidInfo.perioder)
-            .map((key) => durationToDecimalDuration(arbeidstidInfo.perioder[key].jobberNormaltTimerPerDag))
-            .some((decimalDuration) => {
-                return decimalDuration > 0;
-            })
-    );
-};
-
-const getIngenTilgangMeta = (arbeidstid: K9SakArbeidstid): IngenTilgangMeta => {
-    const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } = arbeidstid;
-    return {
-        erArbeidstaker: arbeidstakerList?.some((a) => harArbeidstidPerioder(a.arbeidstidInfo)),
-        erFrilanser: harArbeidstidPerioder(frilanserArbeidstidInfo),
-        erSN: harArbeidstidPerioder(selvstendigNæringsdrivendeArbeidstidInfo),
     };
 };
 

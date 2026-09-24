@@ -2,6 +2,7 @@ import { ArbeidsgiverMedAnsettelseperioder, IngenTilgangÅrsak, K9Sak } from '@a
 import { DateRange } from '@navikt/sif-common-utils';
 
 import { vurderArbeidsforhold, vurderSaker } from '../../tilgang';
+import { getIngenTilgangMeta } from '../../tilgang/ingenTilgangMeta';
 import { Feature, isFeatureEnabled } from '../../utils/featureToggleUtils';
 import { getPeriodeForArbeidsgiverOppslag } from '../../utils/initialDataUtils';
 import { K9SakResult } from '../endpoints/sakerEndpoint';
@@ -9,9 +10,8 @@ import { IngenTilgangError } from './initialDataError';
 import { assertHarTilgang, validerK9Saker } from './initialDataValidering';
 
 /**
- * Henter arbeidsgivere for en gitt periode. Injiseres fordi oppslaget må skje
- * mellom de to fasene i tilgangskontrollen, samtidig som periodene regnes ut
- * ulikt i v1 og v2.
+ * Henter arbeidsgivere for perioden fase 1 kom fram til. Injiseres fordi oppslaget
+ * må skje mellom de to fasene, og reglene ikke skal gjøre nettverkskall selv.
  */
 export type HentArbeidsgivere = (periode: DateRange) => Promise<ArbeidsgiverMedAnsettelseperioder[]>;
 
@@ -73,7 +73,14 @@ export const tilgangKontrollV2: TilgangKontroll = async (
 
     const arbeidsforholdVurdering = vurderArbeidsforhold(sakVurdering.sak, arbeidsgivere, tillattEndringsperiode);
     if (arbeidsforholdVurdering.kanBruke === false) {
-        throw new IngenTilgangError(arbeidsforholdVurdering.årsak);
+        /**
+         * Meta festes kun på avslag fra arbeidsforholdene, ikke fra sakene. Et
+         * sak-avslag betyr at vi ikke har én entydig sak å lese arbeidstid fra.
+         */
+        throw new IngenTilgangError(
+            arbeidsforholdVurdering.årsak,
+            getIngenTilgangMeta(sakVurdering.sak.ytelse.arbeidstid),
+        );
     }
 
     return { sak: sakVurdering.sak, arbeidsgivere };
