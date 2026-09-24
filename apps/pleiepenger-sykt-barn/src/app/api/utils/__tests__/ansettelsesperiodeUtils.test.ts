@@ -2,7 +2,11 @@ import { describe, expect, it } from 'vitest';
 
 import { AAregOrganisasjon, slåSammenAnsettelsesperioder } from '../ansettelsesperiodeUtils';
 
-const organisasjon = (organisasjonsnummer: string, ansattFom?: string, ansattTom?: string): AAregOrganisasjon => ({
+const organisasjon = (
+    organisasjonsnummer: string,
+    ansattFom?: string | null,
+    ansattTom?: string | null,
+): AAregOrganisasjon => ({
     organisasjonsnummer,
     navn: `Org ${organisasjonsnummer}`,
     ansattFom,
@@ -31,6 +35,52 @@ describe('slåSammenAnsettelsesperioder', () => {
 
         expect(organisasjoner).toHaveLength(1);
         expect(organisasjoner[0].ansattTom).toBe('2024-01-31');
+    });
+
+    it('slår sammen overlappende perioder', () => {
+        const { organisasjoner, harDuplikater } = slåSammenAnsettelsesperioder([
+            organisasjon('1', '2024-01-01', '2024-01-20'),
+            organisasjon('1', '2024-01-15', '2024-02-10'),
+        ]);
+
+        expect(organisasjoner).toHaveLength(1);
+        expect(organisasjoner[0].ansattFom).toBe('2024-01-01');
+        expect(organisasjoner[0].ansattTom).toBe('2024-02-10');
+        expect(harDuplikater).toBe(false);
+    });
+
+    it('beholder seneste sluttdato når en periode ligger inni en annen', () => {
+        const { organisasjoner, harDuplikater } = slåSammenAnsettelsesperioder([
+            organisasjon('1', '2024-01-01', '2024-12-31'),
+            organisasjon('1', '2024-03-01', '2024-03-31'),
+        ]);
+
+        expect(organisasjoner).toHaveLength(1);
+        expect(organisasjoner[0].ansattTom).toBe('2024-12-31');
+        expect(harDuplikater).toBe(false);
+    });
+
+    it('lar løpende periode uten ansattTom dekke senere perioder', () => {
+        const { organisasjoner, harDuplikater } = slåSammenAnsettelsesperioder([
+            organisasjon('1', '2024-01-01', null),
+            organisasjon('1', '2024-06-01', '2024-06-30'),
+        ]);
+
+        expect(organisasjoner).toHaveLength(1);
+        expect(organisasjoner[0].ansattFom).toBe('2024-01-01');
+        expect(organisasjoner[0].ansattTom).toBeUndefined();
+        expect(harDuplikater).toBe(false);
+    });
+
+    it('beholder åpen slutt når neste sammenhengende periode er løpende', () => {
+        const { organisasjoner } = slåSammenAnsettelsesperioder([
+            organisasjon('1', '2023-01-01', '2023-12-31'),
+            organisasjon('1', '2024-01-01', null),
+        ]);
+
+        expect(organisasjoner).toHaveLength(1);
+        expect(organisasjoner[0].ansattFom).toBe('2023-01-01');
+        expect(organisasjoner[0].ansattTom).toBeUndefined();
     });
 
     it('bruker første periode og melder om duplikat når det er opphold mellom periodene', () => {

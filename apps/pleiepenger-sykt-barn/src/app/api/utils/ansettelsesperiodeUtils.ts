@@ -5,24 +5,35 @@ import { groupBy } from 'lodash';
 export type AAregOrganisasjon = {
     organisasjonsnummer: string;
     navn: string;
-    ansattFom?: ISODate;
-    ansattTom?: ISODate;
+    ansattFom?: ISODate | null;
+    ansattTom?: ISODate | null;
 };
 
 const sorterPåAnsattFom = (a: AAregOrganisasjon, b: AAregOrganisasjon): number =>
     (a.ansattFom ?? '').localeCompare(b.ansattFom ?? '');
 
+const dagenEtter = (dato: ISODate): string => dayjs(dato).add(1, 'day').format('YYYY-MM-DD');
+
+/** Manglende ansattFom/ansattTom betyr åpen start/slutt, og dekker alt før/etter seg. */
 const erSammenhengende = (periode: AAregOrganisasjon, nestePeriode: AAregOrganisasjon): boolean =>
-    periode.ansattTom !== undefined &&
-    nestePeriode.ansattFom !== undefined &&
-    dayjs(periode.ansattTom).add(1, 'day').format('YYYY-MM-DD') === nestePeriode.ansattFom;
+    !periode.ansattTom || !nestePeriode.ansattFom || nestePeriode.ansattFom <= dagenEtter(periode.ansattTom);
+
+const senesteSluttdato = (
+    ansattTom: ISODate | null | undefined,
+    annenAnsattTom: ISODate | null | undefined,
+): ISODate | undefined => {
+    if (!ansattTom || !annenAnsattTom) {
+        return undefined;
+    }
+    return ansattTom > annenAnsattTom ? ansattTom : annenAnsattTom;
+};
 
 const slåSammenSammenhengendePerioder = (perioder: AAregOrganisasjon[]): AAregOrganisasjon[] => {
     const resultat: AAregOrganisasjon[] = [];
     [...perioder].sort(sorterPåAnsattFom).forEach((periode) => {
         const forrigePeriode = resultat.at(-1);
         if (forrigePeriode && erSammenhengende(forrigePeriode, periode)) {
-            forrigePeriode.ansattTom = periode.ansattTom;
+            forrigePeriode.ansattTom = senesteSluttdato(forrigePeriode.ansattTom, periode.ansattTom);
         } else {
             resultat.push({ ...periode });
         }
