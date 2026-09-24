@@ -52,7 +52,8 @@
         "SIF_INNSYN_API_SCOPE": "dev-gcp:dusseldorf:sif-innsyn-api",
         "VELG_SCENARIO": "on",
         "SIF_PUBLIC_ENDRE_OMSORGSTILBUD": "on",
-        "SIF_PUBLIC_SJEKK_OM_ARBEIDSTID_ER_GYLDIG": "on"
+        "SIF_PUBLIC_SJEKK_OM_ARBEIDSTID_ER_GYLDIG": "on",
+        "SIF_PUBLIC_NY_TILGANGSKONTROLL": "on"
     },
     "faro": true
 }
