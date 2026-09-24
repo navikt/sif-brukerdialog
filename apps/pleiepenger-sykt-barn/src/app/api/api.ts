@@ -39,9 +39,13 @@ export const rehydrate = () =>
     });
 export const purge = () => axios.delete(ResourceType.MELLOMLAGRING, { ...axiosConfigPsb, data: {} });
 
-export const getArbeidsgiver = (fom: string, tom: string): Promise<AxiosResponse<AAregArbeidsgiverRemoteData>> => {
+export const getArbeidsgiver = (
+    fom: string,
+    tom: string,
+    inkluderAlleAnsettelsesperioder?: boolean,
+): Promise<AxiosResponse<AAregArbeidsgiverRemoteData>> => {
     return axios.get(
-        `${ResourceType.ARBEIDSGIVER}?fra_og_med=${fom}&til_og_med=${tom}&frilansoppdrag=true`,
+        `${ResourceType.ARBEIDSGIVER}?fra_og_med=${fom}&til_og_med=${tom}&frilansoppdrag=true&inkluderAlleAnsettelsesperioder=${inkluderAlleAnsettelsesperioder}`,
         axiosJsonConfig,
     );
 };

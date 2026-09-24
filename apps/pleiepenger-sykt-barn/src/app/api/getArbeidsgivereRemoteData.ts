@@ -68,7 +68,7 @@ const mapAAregArbeidsgiverRemoteDataToArbeidsgiver = (
 
 export async function getArbeidsgivereRemoteData(periode: DateRange): Promise<Arbeidsgiver[]> {
     try {
-        const response = await getArbeidsgiver(dateToISODate(periode.from), dateToISODate(periode.to));
+        const response = await getArbeidsgiver(dateToISODate(periode.from), dateToISODate(periode.to), true);
         const { arbeidsgivere, harDuplikater } = mapAAregArbeidsgiverRemoteDataToArbeidsgiver(response.data);
         if (harDuplikater) {
             appLogger.logInfo('getArbeidsgivere: Organisasjon med flere ansettelsesperioder med opphold mellom seg');
