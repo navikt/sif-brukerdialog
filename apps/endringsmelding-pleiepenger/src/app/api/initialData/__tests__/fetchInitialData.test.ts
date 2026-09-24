@@ -33,11 +33,8 @@ vi.mock('../../endpoints/søknadStateEndpoint', () => ({
 }));
 
 /**
- * v1-grenen kjører fase 2 gjennom denne modulen. Den er mocket her fordi suiten
- * tester fetchInitialData sin feilhåndtering, ikke reglene. Merk at v1 og v2
- * dermed ikke er symmetriske i denne filen — paritet mellom dem bevises i
- * api/initialData/__tests__/tilgangKontroll.test.ts.
- * Reglene har egne tester i utils/__tests__/tilgangskontroll.test.ts og tilgang/__tests__.
+ * Reglene er mocket her — suiten tester fetchInitialData sin feilhåndtering.
+ * Paritet mellom v1 og v2 bevises i __tests__/tilgangKontroll.test.ts.
  */
 vi.mock('../../../utils/tilgangskontroll', () => ({
     tilgangskontroll: vi.fn(() => ({ kanBrukeSøknad: true })),

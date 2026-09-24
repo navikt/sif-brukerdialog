@@ -7,10 +7,6 @@ import type { K9SakResult } from '../api/endpoints/sakerEndpoint';
 import { getSamletDateRangeForK9Saker } from '../utils/k9SakUtils';
 import { SakVurdering } from './types';
 
-/**
- * minMax deklareres her selv om den også lastes transitivt via andre moduler.
- * Uten den er dayjs.max/dayjs.min udefinert, og oppslagsperioden kan ikke regnes ut.
- */
 dayjs.extend(minMax);
 
 /**

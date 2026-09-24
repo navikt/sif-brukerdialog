@@ -6,11 +6,6 @@ import isoWeek from 'dayjs/plugin/isoWeek';
 import { finnesArbeidsgiverIK9Sak } from '../utils/k9SakUtils';
 import { TilgangResultat } from './types';
 
-/**
- * isoWeek deklareres her selv om den også lastes transitivt via sif-common-utils.
- * Uten den feiler dayjs.isSame(x, 'isoWeek') stille — startOf med ukjent enhet
- * returnerer en klone i stedet for å kaste — og regelen ville alltid gitt false.
- */
 dayjs.extend(isoWeek);
 
 /**

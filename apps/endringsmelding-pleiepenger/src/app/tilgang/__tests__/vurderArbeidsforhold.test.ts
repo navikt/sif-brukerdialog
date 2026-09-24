@@ -147,8 +147,7 @@ describe('vurderArbeidsforhold', () => {
 
 /**
  * Utfallene av regel 7 dekkes gjennom vurderArbeidsforhold over. Her testes kun
- * det kallstedet ikke kan vise: at funksjonen sorterer selv, og at den ikke
- * muterer listen den får inn.
+ * at funksjonen sorterer selv, og at den ikke muterer listen den får inn.
  */
 describe('perioderSlutterOgStarterSammeUkeMedOpphold', () => {
     /** Uke 2 er 06.01-12.01, uke 3 er 13.01-19.01 og uke 4 er 20.01-26.01 i 2025. */

@@ -130,10 +130,7 @@ describe('harSakSøknadsperiodeInnenforTillattEndringsperiode', () => {
     });
 });
 
-/**
- * getIngenTilgangMeta testes i tilgang/__tests__/ingenTilgangMeta.test.ts.
- * v1 re-eksporterer den samme funksjonen, så egne tester her ville vært duplikat.
- */
+/** getIngenTilgangMeta testes i tilgang/__tests__/ingenTilgangMeta.test.ts. */
 
 describe('slutterOgStarterHosArbeidsgiverSammeUke', () => {
     const uke2: DateRange = ISODateRangeToDateRange('2025-01-06/2025-01-12');
