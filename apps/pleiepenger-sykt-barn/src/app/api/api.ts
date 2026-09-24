@@ -42,7 +42,7 @@ export const purge = () => axios.delete(ResourceType.MELLOMLAGRING, { ...axiosCo
 export const getArbeidsgiver = (
     fom: string,
     tom: string,
-    inkluderAlleAnsettelsesperioder?: boolean,
+    inkluderAlleAnsettelsesperioder = false,
 ): Promise<AxiosResponse<AAregArbeidsgiverRemoteData>> => {
     return axios.get(
         `${ResourceType.ARBEIDSGIVER}?fra_og_med=${fom}&til_og_med=${tom}&frilansoppdrag=true&inkluderAlleAnsettelsesperioder=${inkluderAlleAnsettelsesperioder}`,
