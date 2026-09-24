@@ -15,11 +15,13 @@ import {
     sortDateRange,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
+import isoWeek from 'dayjs/plugin/isoWeek';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 
 import { finnesArbeidsgiverIK9Sak, getSamletDateRangeForK9Saker } from './k9SakUtils';
 
 dayjs.extend(isSameOrAfter);
+dayjs.extend(isoWeek);
 
 type TilgangNektet = {
     kanBrukeSøknad: false;
