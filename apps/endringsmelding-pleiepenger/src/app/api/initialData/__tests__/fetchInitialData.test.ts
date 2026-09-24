@@ -32,7 +32,13 @@ vi.mock('../../endpoints/søknadStateEndpoint', () => ({
     isPersistedSøknadStateValid: vi.fn(() => true),
 }));
 
-/** Har egne tester i utils/__tests__/tilgangskontroll.test.ts */
+/**
+ * v1-grenen kjører fase 2 gjennom denne modulen. Den er mocket her fordi suiten
+ * tester fetchInitialData sin feilhåndtering, ikke reglene. Merk at v1 og v2
+ * dermed ikke er symmetriske i denne filen — paritet mellom dem bevises i
+ * api/initialData/__tests__/tilgangKontroll.test.ts.
+ * Reglene har egne tester i utils/__tests__/tilgangskontroll.test.ts og tilgang/__tests__.
+ */
 vi.mock('../../../utils/tilgangskontroll', () => ({
     tilgangskontroll: vi.fn(() => ({ kanBrukeSøknad: true })),
 }));
@@ -67,25 +73,26 @@ const gyldigSak = {
 const httpError = (status: number) =>
     new AxiosError('feil', 'ERR_BAD_RESPONSE', {} as any, {}, { status, data: {} } as any);
 
-/**
- * Kjøres mot begge implementasjonene av tilgangskontrollen. Feilhåndteringen skal
- * være uavhengig av hvilken som er aktiv, og suiten er dermed også beviset på at
- * v1 og v2 er utbyttbare i praksis, ikke bare i typesystemet.
- */
-describe.each([
-    ['v1', false],
-    ['v2', true],
-])('fetchInitialData feilhåndtering (tilgangskontroll %s)', (_navn, nyTilgangskontroll) => {
-    beforeEach(() => {
-        featureToggles[Feature.SIF_PUBLIC_NY_TILGANGSKONTROLL] = nyTilgangskontroll;
-        vi.mocked(fetchSøker).mockResolvedValue(søker);
-        vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ k9Saker: [gyldigSak], eldreSaker: [] });
-        vi.mocked(arbeidsgivereEndpoint.fetch).mockResolvedValue([]);
-        vi.mocked(søknadStateEndpoint.fetch).mockResolvedValue(undefined);
-    });
+const settOppLykkeligSti = (nyTilgangskontroll: boolean): void => {
+    featureToggles[Feature.SIF_PUBLIC_NY_TILGANGSKONTROLL] = nyTilgangskontroll;
+    vi.mocked(fetchSøker).mockResolvedValue(søker);
+    vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ k9Saker: [gyldigSak], eldreSaker: [] });
+    vi.mocked(arbeidsgivereEndpoint.fetch).mockResolvedValue([]);
+    vi.mocked(søknadStateEndpoint.fetch).mockResolvedValue(undefined);
+};
 
-    afterEach(() => {
-        vi.clearAllMocks();
+afterEach(() => {
+    vi.clearAllMocks();
+});
+
+/**
+ * Feilene oppstår i selve kallene, før noen tilgangsregel er kjørt. Utfallet er
+ * derfor uavhengig av hvilken tilgangskontroll som er aktiv, og suiten kjøres
+ * kun mot den nye.
+ */
+describe('fetchInitialData feilhåndtering', () => {
+    beforeEach(() => {
+        settOppLykkeligSti(true);
     });
 
     describe('feil fra oppstartskallene', () => {
@@ -156,16 +163,27 @@ describe.each([
             });
         });
     });
+});
 
-    describe('domenefeil', () => {
-        it('beholder årsak og beriker med søker når bruker ikke har sak', async () => {
-            vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ k9Saker: [], eldreSaker: [] });
-            await expect(fetchInitialData(tillattEndringsperiode)).rejects.toMatchObject({
-                status: RequestStatus.success,
-                kanBrukeSøknad: false,
-                årsak: [IngenTilgangÅrsak.harIngenSak],
-                søker,
-            });
+/**
+ * Disse går gjennom tilgangskontrollen, og kjøres derfor mot begge
+ * implementasjonene så lenge toggelen lever.
+ */
+describe.each([
+    ['v1', false],
+    ['v2', true],
+])('fetchInitialData tilgangskontroll %s', (_navn, nyTilgangskontroll) => {
+    beforeEach(() => {
+        settOppLykkeligSti(nyTilgangskontroll);
+    });
+
+    it('beholder årsak og beriker med søker når bruker ikke har sak', async () => {
+        vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ k9Saker: [], eldreSaker: [] });
+        await expect(fetchInitialData(tillattEndringsperiode)).rejects.toMatchObject({
+            status: RequestStatus.success,
+            kanBrukeSøknad: false,
+            årsak: [IngenTilgangÅrsak.harIngenSak],
+            søker,
         });
     });
 

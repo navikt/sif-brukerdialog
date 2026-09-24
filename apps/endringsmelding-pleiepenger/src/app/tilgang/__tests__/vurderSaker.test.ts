@@ -118,18 +118,9 @@ describe('vurderSaker', () => {
 });
 
 describe('getOppslagsperiode', () => {
+    /** De øvrige utfallene dekkes gjennom vurderSaker, som er kalleren. */
     it('begrenser sakens periode til den tillatte endringsperioden', () => {
         const resultat = getOppslagsperiode(periode('2023-06-01/2025-06-30'), tillattEndringsperiode);
         expect(resultat).toEqual(ISODateRangeToDateRange('2024-01-01/2024-12-31'));
-    });
-
-    it('bruker sakens periode når den ligger helt innenfor endringsperioden', () => {
-        const resultat = getOppslagsperiode(periode('2024-03-01/2024-04-30'), tillattEndringsperiode);
-        expect(resultat).toEqual(ISODateRangeToDateRange('2024-03-01/2024-04-30'));
-    });
-
-    it('returnerer undefined når periodene ikke overlapper', () => {
-        const resultat = getOppslagsperiode(periode('2026-01-01/2026-01-31'), tillattEndringsperiode);
-        expect(resultat).toBeUndefined();
     });
 });

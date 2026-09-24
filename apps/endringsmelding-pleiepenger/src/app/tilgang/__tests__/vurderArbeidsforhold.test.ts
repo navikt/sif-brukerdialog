@@ -1,8 +1,8 @@
 import { ArbeidsgiverMedAnsettelseperioder, IngenTilgangÅrsak, K9Sak } from '@app/types';
 import { describe, expect, it } from 'vitest';
 
-import { vurderArbeidsforhold } from '../vurderArbeidsforhold';
-import { lagArbeidsgiver, lagArbeidstaker, lagSak, periode } from './testdata';
+import { perioderSlutterOgStarterSammeUkeMedOpphold,vurderArbeidsforhold } from '../vurderArbeidsforhold';
+import { lagArbeidsgiver, lagArbeidstaker, lagSak, periode, perioder } from './testdata';
 
 /**
  * Spesifikasjon for fase 2 av tilgangskontrollen.
@@ -142,5 +142,30 @@ describe('vurderArbeidsforhold', () => {
     it.each(tilgangCases)('gir tilgang: $beskrivelse', ({ sak, arbeidsgivere }) => {
         const resultat = vurderArbeidsforhold(sak, arbeidsgivere, tillattEndringsperiode);
         expect(resultat).toEqual({ kanBruke: true });
+    });
+});
+
+/**
+ * Utfallene av regel 7 dekkes gjennom vurderArbeidsforhold over. Her testes kun
+ * det kallstedet ikke kan vise: at funksjonen sorterer selv, og at den ikke
+ * muterer listen den får inn.
+ */
+describe('perioderSlutterOgStarterSammeUkeMedOpphold', () => {
+    /** Uke 2 er 06.01-12.01, uke 3 er 13.01-19.01 og uke 4 er 20.01-26.01 i 2025. */
+    const usortertMedOppholdSammeUke = perioder(
+        '2025-01-20/2025-01-26',
+        '2025-01-06/2025-01-12',
+        '2025-01-13/2025-01-15',
+        '2025-01-17/2025-01-19',
+    );
+
+    it('finner oppholdet selv om periodene kommer usortert', () => {
+        expect(perioderSlutterOgStarterSammeUkeMedOpphold(usortertMedOppholdSammeUke)).toBe(true);
+    });
+
+    it('muterer ikke listen som sendes inn', () => {
+        const input = [...usortertMedOppholdSammeUke];
+        perioderSlutterOgStarterSammeUkeMedOpphold(input);
+        expect(input).toEqual(usortertMedOppholdSammeUke);
     });
 });

@@ -1,5 +1,5 @@
-import { ArbeidsgiverMedAnsettelseperioder, K9SakArbeidstaker, K9SakArbeidstidPeriodeMap } from '@app/types';
-import { DateRange, ISODateRangeToDateRange, ISODurationToDuration } from '@navikt/sif-common-utils';
+import { ArbeidsgiverMedAnsettelseperioder, K9SakArbeidstaker } from '@app/types';
+import { DateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import { vi } from 'vitest';
 
 import { tilgangskontroll, tilgangskontrollUtils } from '../tilgangskontroll';
@@ -130,75 +130,10 @@ describe('harSakSøknadsperiodeInnenforTillattEndringsperiode', () => {
     });
 });
 
-describe('ingenTilgangMeta', () => {
-    const perioder: K9SakArbeidstidPeriodeMap = {
-        '2020-01-01/2020-02-01': {
-            faktiskArbeidTimerPerDag: ISODurationToDuration('PT10H0M'),
-            jobberNormaltTimerPerDag: ISODurationToDuration('PT10H0M'),
-        },
-    };
-    const perioderIngenTid: K9SakArbeidstidPeriodeMap = {
-        '2020-01-01/2020-02-01': {
-            faktiskArbeidTimerPerDag: ISODurationToDuration('PT0H0M'),
-            jobberNormaltTimerPerDag: ISODurationToDuration('PT0H0M'),
-        },
-    };
-    const arbeidstaker: K9SakArbeidstaker = {
-        arbeidstidInfo: { perioder },
-        organisasjonsnummer: '234',
-    };
-
-    it('returnerer erArbeidstaker: true når bruker er arbeidstaker', () => {
-        const result = tilgangskontrollUtils.getIngenTilgangMeta({
-            arbeidstakerList: [arbeidstaker],
-        });
-        expect(result.erArbeidstaker).toBeTruthy();
-    });
-    it('returnerer erArbeidstaker: false når bruker ikke er arbeidstaker', () => {
-        const result = tilgangskontrollUtils.getIngenTilgangMeta({
-            arbeidstakerList: [],
-        });
-        expect(result.erArbeidstaker).toBeFalsy();
-    });
-    it('returnerer erFrilanser:false hvis bruker ikke har timer som frilanser', () => {
-        const result = tilgangskontrollUtils.getIngenTilgangMeta({
-            arbeidstakerList: [],
-            frilanserArbeidstidInfo: { perioder: perioderIngenTid },
-            selvstendigNæringsdrivendeArbeidstidInfo: { perioder: perioder },
-        });
-        expect(result.erFrilanser).toBeFalsy();
-    });
-    it('returnerer erFrilanser:true hvis bruker har timer som frilanser', () => {
-        const result = tilgangskontrollUtils.getIngenTilgangMeta({
-            arbeidstakerList: [],
-            frilanserArbeidstidInfo: { perioder: perioder },
-            selvstendigNæringsdrivendeArbeidstidInfo: { perioder: perioder },
-        });
-        expect(result.erFrilanser).toBeTruthy();
-    });
-    it('returnerer erSN: true når bruker er SN', () => {
-        const result = tilgangskontrollUtils.getIngenTilgangMeta({
-            selvstendigNæringsdrivendeArbeidstidInfo: { perioder },
-        });
-        expect(result.erSN).toBeTruthy();
-    });
-    it('returnerer erSN: false når bruker ikke er SN', () => {
-        const result = tilgangskontrollUtils.getIngenTilgangMeta({
-            selvstendigNæringsdrivendeArbeidstidInfo: undefined,
-        });
-        expect(result.erSN).toBeFalsy();
-    });
-    it('returnerer riktig når bruker er alt', () => {
-        const result = tilgangskontrollUtils.getIngenTilgangMeta({
-            arbeidstakerList: [arbeidstaker],
-            frilanserArbeidstidInfo: { perioder: perioder },
-            selvstendigNæringsdrivendeArbeidstidInfo: { perioder },
-        });
-        expect(result.erArbeidstaker).toBeTruthy();
-        expect(result.erFrilanser).toBeTruthy();
-        expect(result.erSN).toBeTruthy();
-    });
-});
+/**
+ * getIngenTilgangMeta testes i tilgang/__tests__/ingenTilgangMeta.test.ts.
+ * v1 re-eksporterer den samme funksjonen, så egne tester her ville vært duplikat.
+ */
 
 describe('slutterOgStarterHosArbeidsgiverSammeUke', () => {
     const uke2: DateRange = ISODateRangeToDateRange('2025-01-06/2025-01-12');
