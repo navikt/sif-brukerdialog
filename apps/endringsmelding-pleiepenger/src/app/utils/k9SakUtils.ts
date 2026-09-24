@@ -1,9 +1,5 @@
 import { ArbeidsgiverMedAnsettelseperioder, K9Sak, K9SakArbeidstaker } from '@app/types';
 import { DateRange, dateRangeUtils, getDateRangeFromDateRanges } from '@navikt/sif-common-utils';
-import dayjs from 'dayjs';
-import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
-
-dayjs.extend(isSameOrAfter);
 
 export const getSamletDateRangeForK9Saker = (saker: K9Sak[]): DateRange | undefined => {
     const sakerDateRanges = saker
@@ -26,10 +22,4 @@ export const finnesArbeidsgiverIK9Sak = (
 export const getSisteSøknadsperiodeIK9Sak = (sak: K9Sak): DateRange => {
     const perioder = sak.ytelse.søknadsperioder.sort(dateRangeUtils.sortDateRangeByToDate);
     return perioder[perioder.length - 1];
-};
-
-export const isK9SakErInnenforGyldigEndringsperiode = (sak: K9Sak, endringsperiode: DateRange): boolean => {
-    return sak.ytelse.søknadsperioder.length === 0
-        ? false
-        : dayjs(getSisteSøknadsperiodeIK9Sak(sak).to).isSameOrAfter(endringsperiode.from, 'day');
 };

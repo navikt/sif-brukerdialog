@@ -3,7 +3,7 @@ import { DateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 
-import { K9SakResult } from '../api/endpoints/sakerEndpoint';
+import type { K9SakResult } from '../api/endpoints/sakerEndpoint';
 import { getSamletDateRangeForK9Saker } from '../utils/k9SakUtils';
 import { SakVurdering } from './types';
 
