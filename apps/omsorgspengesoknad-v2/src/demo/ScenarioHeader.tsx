@@ -20,6 +20,10 @@ const scenarioGroups: Array<ScenarioSelectorHeaderGroup<ScenarioType>> = [
                 value: ScenarioType.toBarnMedVedtak,
                 label: 'To barn — ett med vedtak',
             },
+            {
+                value: ScenarioType.barnMedTidsavgrensetVedtak,
+                label: 'To barn — ett med tidsavgrenset vedtak',
+            },
         ],
     },
 ];

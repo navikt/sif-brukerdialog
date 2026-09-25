@@ -3,6 +3,7 @@ import { BarnSammeAdresse } from '@app/types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '@app/types/SøkersRelasjonTilBarnet';
 import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
 import { RegistrertBarn } from '@sif/api/k9-prosessering';
+import { InnvilgedeVedtak } from '@sif/api/k9-sak-innsyn-api';
 import { YesOrNo } from '@sif/rhf';
 import { getYearFromISODate, isISODate, ISODate } from '@sif/utils';
 import { afterAll, describe, expect, it, test, vi } from 'vitest';
@@ -12,6 +13,7 @@ import {
     isBarnOver18år,
     toOmBarnetFormValues,
     toOmBarnetSøknadsdata,
+    utledVedtakInfoForBarn,
 } from '../omBarnetStegUtils';
 import { ANNET_BARN } from '../types';
 
@@ -237,4 +239,62 @@ describe('getMinDatoForBarnetsFødselsdato', () => {
     });
 
     afterAll(() => vi.useRealTimers());
+});
+
+describe('utledVedtakInfoForBarn', () => {
+    it('returnerer undefined når barnet ikke er valgt', () => {
+        expect(utledVedtakInfoForBarn(undefined, {})).toBeUndefined();
+    });
+
+    it('returnerer undefined når barnet ikke har vedtak', () => {
+        expect(utledVedtakInfoForBarn(registrertBarn, {})).toBeUndefined();
+    });
+
+    it('returnerer undefined når barnet ikke har innvilgede behandlinger', () => {
+        const innvilgedeVedtak: InnvilgedeVedtak = {
+            [registrertBarn.aktørId]: {
+                harInnvilgedeBehandlinger: false,
+                saksnummer: null,
+                vedtaksdato: null,
+                førsteMuligeSøknadsdato: null,
+                vedtakTomDato: null,
+            },
+        };
+
+        expect(utledVedtakInfoForBarn(registrertBarn, innvilgedeVedtak)).toBeUndefined();
+    });
+
+    it('returnerer tidsbegrenset vedtaksinfo når begge datofeltene finnes', () => {
+        const innvilgedeVedtak: InnvilgedeVedtak = {
+            [registrertBarn.aktørId]: {
+                harInnvilgedeBehandlinger: true,
+                saksnummer: 'ABC123',
+                vedtaksdato: '2026-01-01' as ISODate,
+                førsteMuligeSøknadsdato: '2026-02-01' as ISODate,
+                vedtakTomDato: '2026-12-31' as ISODate,
+            },
+        };
+
+        expect(utledVedtakInfoForBarn(registrertBarn, innvilgedeVedtak)).toEqual({
+            erTidsbegrenset: true,
+            førsteMuligeSøknadsdato: '2026-02-01',
+            vedtakTomDato: '2026-12-31',
+        });
+    });
+
+    it('returnerer ikke-tidsbegrenset vedtaksinfo når datofeltene mangler', () => {
+        const innvilgedeVedtak: InnvilgedeVedtak = {
+            [registrertBarn.aktørId]: {
+                harInnvilgedeBehandlinger: true,
+                saksnummer: 'ABC123',
+                vedtaksdato: '2026-01-01' as ISODate,
+                førsteMuligeSøknadsdato: null,
+                vedtakTomDato: null,
+            },
+        };
+
+        expect(utledVedtakInfoForBarn(registrertBarn, innvilgedeVedtak)).toEqual({
+            erTidsbegrenset: false,
+        });
+    });
 });

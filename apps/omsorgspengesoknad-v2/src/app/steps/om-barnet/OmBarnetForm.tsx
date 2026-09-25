@@ -4,7 +4,7 @@ import { BarnSammeAdresse } from '@app/types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '@app/types/SøkersRelasjonTilBarnet';
 import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
 import { SøknadStepId } from '@app/types/SoknadStepId';
-import { Heading, ReadMore } from '@navikt/ds-react';
+import { Box, Heading, ReadMore, Tag } from '@navikt/ds-react';
 import { isDevMode } from '@navikt/sif-common-env';
 import {
     getFødselsnummerValidator,
@@ -16,10 +16,10 @@ import {
 import { useInnvilgedeVedtakForRegistrerteBarn } from '@sif/api/k9-sak-innsyn-api';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { SøknadStepForm, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
-import { VelgRegistrertBarnPanel } from '@sif/soknad-forms';
+import { VelgBarnEkstrainfo, VelgRegistrertBarnPanel } from '@sif/soknad-forms';
 import { AriaLiveRegion, FormContentLoader, FormLayout, SifInfoCard } from '@sif/soknad-ui/components';
 import { dateFormatter, getDateToday } from '@sif/utils';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 
 import {
@@ -27,9 +27,10 @@ import {
     isBarnOver18år,
     toOmBarnetFormValues,
     toOmBarnetSøknadsdata,
+    utledVedtakInfoForBarn,
 } from './omBarnetStegUtils';
-import { TrengerIkkeSøkeForBarnAlert } from './TrengerIkkeSøkeForBarnAlert';
 import { ANNET_BARN, OmBarnetFormFields, OmBarnetFormValues } from './types';
+import { VedtakForBarnInfo } from './VedtakForBarnInfo';
 
 const { RadioGroup, TextField, Datepicker, Textarea, YesOrNoQuestion } = createSifFormComponents<OmBarnetFormValues>();
 
@@ -60,8 +61,29 @@ export const OmBarnetForm = () => {
         harRegistrerteBarn && barnetSøknadenGjelder && barnetSøknadenGjelder !== ANNET_BARN
             ? registrerteBarn.find((b) => b.aktørId === barnetSøknadenGjelder)
             : undefined;
-    const harInnvilgetVedtakForValgtBarn =
-        valgtBarn !== undefined && vedtak[valgtBarn.aktørId]?.harInnvilgedeBehandlinger === true;
+
+    const vedtakForValgtBarn = utledVedtakInfoForBarn(valgtBarn, vedtak);
+
+    const registrerteBarnEkstrainfo = useMemo<VelgBarnEkstrainfo>(() => {
+        const ekstrainfo: VelgBarnEkstrainfo = {};
+        Object.entries(vedtak).forEach(([aktørId, barnetsVedtak]) => {
+            if (!barnetsVedtak?.harInnvilgedeBehandlinger) {
+                return;
+            }
+            ekstrainfo[aktørId] = (
+                <Box marginBlock="space-4 space-2">
+                    <Tag data-color="brand-blue" size="small">
+                        {barnetsVedtak.vedtakTomDato
+                            ? text('omBarnetSteg.harVedtak.tidsbegrenset', {
+                                  dato: dateFormatter.compact(barnetsVedtak.vedtakTomDato),
+                              })
+                            : text('omBarnetSteg.harVedtak.utenTidsbegrensning')}
+                    </Tag>
+                </Box>
+            );
+        });
+        return ekstrainfo;
+    }, [vedtak, text]);
 
     const sammeAdresse = watch(OmBarnetFormFields.sammeAdresse);
     const kroniskEllerFunksjonshemming = watch(OmBarnetFormFields.kroniskEllerFunksjonshemming);
@@ -106,7 +128,7 @@ export const OmBarnetForm = () => {
             methods={methods}
             onSubmit={onSubmit}
             isPending={false}
-            submitDisabled={harInnvilgetVedtakForValgtBarn}>
+            submitDisabled={vedtakForValgtBarn !== undefined}>
             <FormLayout.Content>
                 <FormLayout.Questions>
                     <Heading size="medium" level="2">
@@ -117,6 +139,7 @@ export const OmBarnetForm = () => {
                         <VelgRegistrertBarnPanel<OmBarnetFormValues>
                             name={OmBarnetFormFields.barnetSøknadenGjelder}
                             registrerteBarn={registrerteBarn}
+                            registrerteBarnEkstrainfo={registrerteBarnEkstrainfo}
                             inkluderAnnetBarn={true}
                             annetBarnLabel={text('omBarnetSteg.valgAnnetBarn')}
                             validate={validateField(
@@ -126,13 +149,17 @@ export const OmBarnetForm = () => {
                         />
                     )}
 
-                    {harInnvilgetVedtakForValgtBarn && valgtBarn && (
+                    <AriaLiveRegion
+                        politeness="polite"
+                        visible={valgtBarn !== undefined && vedtakForValgtBarn !== undefined}>
                         <FormLayout.QuestionRelatedMessage>
-                            <TrengerIkkeSøkeForBarnAlert barnetsFornavn={valgtBarn.fornavn} />
+                            {valgtBarn && vedtakForValgtBarn && (
+                                <VedtakForBarnInfo barnetsFornavn={valgtBarn.fornavn} vedtak={vedtakForValgtBarn} />
+                            )}
                         </FormLayout.QuestionRelatedMessage>
-                    )}
+                    </AriaLiveRegion>
 
-                    {!harInnvilgetVedtakForValgtBarn && (søknadenGjelderAnnetBarn || !harRegistrerteBarn) && (
+                    {!vedtakForValgtBarn && (søknadenGjelderAnnetBarn || !harRegistrerteBarn) && (
                         <FormLayout.Section title={text('omBarnetSteg.annetBarn.tittel')}>
                             <FormLayout.Questions>
                                 <Datepicker
@@ -212,7 +239,7 @@ export const OmBarnetForm = () => {
                         </FormLayout.Section>
                     )}
 
-                    {!harInnvilgetVedtakForValgtBarn && (harValgtBarn || !harRegistrerteBarn) && (
+                    {!vedtakForValgtBarn && (harValgtBarn || !harRegistrerteBarn) && (
                         <>
                             <RadioGroup
                                 name={OmBarnetFormFields.sammeAdresse}

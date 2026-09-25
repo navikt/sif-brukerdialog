@@ -5,6 +5,7 @@ export enum ScenarioType {
     default = 'default',
     ingenRegistrerteBarn = 'ingenRegistrerteBarn',
     toBarnMedVedtak = 'toBarnMedVedtak',
+    barnMedTidsavgrensetVedtak = 'barnMedTidsavgrensetVedtak',
     innsendingFeiler = 'innsendingFeiler',
     innsendingFeilerMedUgyldigeParametre = 'innsendingFeilerMedUgyldigeParametre',
 }
@@ -19,5 +20,14 @@ export interface ScenarioData {
     barn: { barn: Array<z.infer<typeof zBarnOppslag>> };
     mellomlagring?: Record<string, unknown>;
     innsendingResponse?: InnsendingResponse;
-    vedtakPerAktørId?: Record<string, { harInnvilgedeBehandlinger: boolean; saksnummer: string | null; vedtaksdato: string | null }>;
+    vedtakPerAktørId?: Record<
+        string,
+        {
+            harInnvilgedeBehandlinger: boolean;
+            saksnummer: string | null;
+            vedtaksdato: string | null;
+            førsteMuligeSøknadsdato?: string | null;
+            vedtakTomDato?: string | null;
+        }
+    >;
 }
