@@ -34,7 +34,7 @@ const VedtakForBarnInfo = ({ barnetsFornavn, vedtak }: Props) => {
         );
     }
     return (
-        <InfoCard data-color="info">
+        <InfoCard data-color="warning">
             <InfoCard.Message icon={<InformationSquareIcon aria-hidden />}>
                 <Heading level="3" size="small" spacing>
                     <AppText id="steg.omBarnet.alert.tidsbegrensetVedtak.tittel" values={{ barnetsFornavn }} />
