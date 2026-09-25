@@ -5,14 +5,10 @@ import { appLogger } from '@sif/apm';
 import { Arbeidsgiver, ArbeidsgiverType } from '../types/Arbeidsgiver';
 import { relocateToLoginPage } from '../utils/navigationUtils';
 import { getArbeidsgiver } from './api';
+import { AAregOrganisasjon, slåSammenAnsettelsesperioder } from './utils/ansettelsesperiodeUtils';
 
 export type AAregArbeidsgiverRemoteData = {
-    organisasjoner?: Array<{
-        organisasjonsnummer: string;
-        navn: string;
-        ansattFom?: ISODate;
-        ansattTom?: ISODate;
-    }>;
+    organisasjoner?: AAregOrganisasjon[];
     privatarbeidsgiver?: Array<{
         offentligIdent: string;
         navn: string;
@@ -29,18 +25,19 @@ export type AAregArbeidsgiverRemoteData = {
     }>;
 };
 
-const mapAAregArbeidsgiverRemoteDataToArbeidsgiver = (data: AAregArbeidsgiverRemoteData): Arbeidsgiver[] => {
-    const arbeidsgivere: Arbeidsgiver[] = [];
-    data.organisasjoner?.forEach((a) => {
-        arbeidsgivere.push({
-            type: ArbeidsgiverType.ORGANISASJON,
-            id: a.organisasjonsnummer,
-            organisasjonsnummer: a.organisasjonsnummer,
-            navn: a.navn || a.organisasjonsnummer,
-            ansattFom: a.ansattFom ? ISODateToDate(a.ansattFom) : undefined,
-            ansattTom: a.ansattTom ? ISODateToDate(a.ansattTom) : undefined,
-        });
-    });
+const mapAAregArbeidsgiverRemoteDataToArbeidsgiver = (
+    data: AAregArbeidsgiverRemoteData,
+): { arbeidsgivere: Arbeidsgiver[]; harDuplikater: boolean } => {
+    const { organisasjoner, harDuplikater } = slåSammenAnsettelsesperioder(data.organisasjoner ?? []);
+    const arbeidsgivere: Arbeidsgiver[] = organisasjoner.map((a) => ({
+        type: ArbeidsgiverType.ORGANISASJON,
+        id: a.organisasjonsnummer,
+        organisasjonsnummer: a.organisasjonsnummer,
+        navn: a.navn || a.organisasjonsnummer,
+        ansattFom: a.ansattFom ? ISODateToDate(a.ansattFom) : undefined,
+        ansattTom: a.ansattTom ? ISODateToDate(a.ansattTom) : undefined,
+    }));
+
     /*
         Privat arbeidsgiver er ikke tatt i bruk, og returnerers ikke fra backend
         data.privatarbeidsgiver?.forEach((a) => {
@@ -54,6 +51,7 @@ const mapAAregArbeidsgiverRemoteDataToArbeidsgiver = (data: AAregArbeidsgiverRem
             });
         });
     */
+
     data.frilansoppdrag?.forEach((a) => {
         arbeidsgivere.push({
             type: ArbeidsgiverType.FRILANSOPPDRAG,
@@ -65,13 +63,16 @@ const mapAAregArbeidsgiverRemoteDataToArbeidsgiver = (data: AAregArbeidsgiverRem
             ansattTom: a.ansattTom ? ISODateToDate(a.ansattTom) : undefined,
         });
     });
-    return arbeidsgivere;
+    return { arbeidsgivere, harDuplikater };
 };
 
 export async function getArbeidsgivereRemoteData(periode: DateRange): Promise<Arbeidsgiver[]> {
     try {
-        const response = await getArbeidsgiver(dateToISODate(periode.from), dateToISODate(periode.to));
-        const arbeidsgivere = mapAAregArbeidsgiverRemoteDataToArbeidsgiver(response.data);
+        const response = await getArbeidsgiver(dateToISODate(periode.from), dateToISODate(periode.to), true);
+        const { arbeidsgivere, harDuplikater } = mapAAregArbeidsgiverRemoteDataToArbeidsgiver(response.data);
+        if (harDuplikater) {
+            appLogger.logInfo('getArbeidsgivere: Organisasjon med flere ansettelsesperioder med opphold mellom seg');
+        }
         return Promise.resolve(arbeidsgivere);
     } catch (error: any) {
         if (apiUtils.isUnauthorized(error)) {
