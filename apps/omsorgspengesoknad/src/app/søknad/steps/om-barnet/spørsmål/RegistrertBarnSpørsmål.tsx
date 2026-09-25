@@ -1,17 +1,40 @@
-import { Heading, VStack } from '@navikt/ds-react';
+import { Heading, Tag, VStack } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
-import { VelgBarnFormPart } from '@navikt/sif-common-forms-ds';
+import { VelgBarnEkstrainfo, VelgBarnFormPart } from '@navikt/sif-common-forms-ds';
+import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
 import { getRequiredFieldValidator } from '@navikt/sif-validation';
 
+import { InnvilgedeVedtak } from '../../../../hooks/useInnvilgedeVedtakForRegistrerteBarn';
 import { useAppIntl } from '../../../../i18n';
 import { OmBarnetFormFields } from '../OmBarnetStep';
 
 interface Props {
     registrerteBarn: RegistrertBarn[];
+    innvilgedeVedtak?: InnvilgedeVedtak;
 }
 
-const RegistrertBarnSpørsmål = ({ registrerteBarn }: Props) => {
+const RegistrertBarnSpørsmål = ({ registrerteBarn, innvilgedeVedtak }: Props) => {
     const { text } = useAppIntl();
+
+    const ekstrainfo: VelgBarnEkstrainfo = {};
+
+    if (innvilgedeVedtak) {
+        Object.keys(innvilgedeVedtak).forEach((key) => {
+            const vedtak = { ...innvilgedeVedtak[key] };
+            if (!vedtak.harInnvilgedeBehandlinger) {
+                return;
+            }
+            ekstrainfo[key] = (
+                <Tag data-color="brand-blue" size="small">
+                    {vedtak.vedtakTomDato
+                        ? text('steg.omBarnet.harVedtak.tidsbegrenset', {
+                              dato: dateFormatter.compact(ISODateToDate(vedtak.vedtakTomDato)),
+                          })
+                        : text('steg.omBarnet.harVedtak.utenTidsbegrensning')}
+                </Tag>
+            );
+        });
+    }
 
     return (
         <VStack gap="space-16">
@@ -22,6 +45,7 @@ const RegistrertBarnSpørsmål = ({ registrerteBarn }: Props) => {
                 <VelgBarnFormPart
                     name={OmBarnetFormFields.barnetSøknadenGjelder}
                     registrerteBarn={registrerteBarn}
+                    registrerteBarnEkstrainfo={ekstrainfo}
                     inkluderAnnetBarn={true}
                     validate={getRequiredFieldValidator()}
                 />

@@ -7,6 +7,9 @@ const nb = {
     'steg.omBarnet.spm.barnetSøknadenGjelder.født': 'Født {dato}',
     'steg.omBarnet.spm.gjelderAnnetBarn.label': 'Søknaden gjelder et annet barn',
     'steg.omBarnet.annetBarn.tittel': 'Annet barn',
+    'steg.omBarnet.harVedtak.tidsbegrenset': 'Har vedtak til og med {dato}',
+    'steg.omBarnet.harVedtak.utenTidsbegrensning': 'Har vedtak',
+
     'steg.omBarnet.spm.barnetsFødselsnummer.label': 'Barnets fødselsnummer/D-nummer',
     'steg.omBarnet.spm.fødselsdato.label': 'Barnets fødselsdato',
     'steg.omBarnet.spm.fødselsdato.info': 'Barnet må være født etter {minFødselsdato}',
@@ -93,6 +96,9 @@ const nn: Record<OmBarnetMessageKeys, string> = {
     'steg.omBarnet.spm.barnetSøknadenGjelder.født': 'Fødd {dato}',
     'steg.omBarnet.spm.gjelderAnnetBarn.label': 'Søknaden gjeld eit anna barn',
     'steg.omBarnet.annetBarn.tittel': 'Anna barn',
+    'steg.omBarnet.harVedtak.tidsbegrenset': 'Har vedtak til og med {dato}',
+    'steg.omBarnet.harVedtak.utenTidsbegrensning': 'Har vedtak',
+
     'steg.omBarnet.spm.barnetsFødselsnummer.label': 'Barnet sitt fødselsnummer/D-nummer',
     'steg.omBarnet.spm.fødselsdato.label': 'Barnet sin fødselsdato',
     'steg.omBarnet.spm.fødselsdato.info': 'Barnet må vera fødd etter {minFødselsdato}',

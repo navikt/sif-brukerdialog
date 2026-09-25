@@ -69,7 +69,7 @@ const OmBarnetForm = ({ isSubmitting, registrerteBarn, values, innvilgedeVedtak,
             <FormLayout.Questions>
                 {harIkkeBarn === false && (
                     <VStack gap="space-16">
-                        <RegistrertBarnSpørsmål registrerteBarn={registrerteBarn} />
+                        <RegistrertBarnSpørsmål registrerteBarn={registrerteBarn} innvilgedeVedtak={innvilgedeVedtak} />
                         <div aria-live="polite">
                             {valgtBarn && vedtakForValgtBarn && (
                                 <VedtakForBarnInfo barnetsFornavn={valgtBarn.fornavn} vedtak={vedtakForValgtBarn} />
