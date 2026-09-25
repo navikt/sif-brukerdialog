@@ -1,3 +1,4 @@
+import { VStack } from '@navikt/ds-react';
 import { RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { isDevMode } from '@navikt/sif-common-env';
 import { getIntlFormErrorHandler, YesOrNo } from '@navikt/sif-common-formik-ds';
@@ -11,9 +12,10 @@ import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarne
 import IkkeHøyereRisikoForFraværAlert from './alert/IkkeHøyereRisikoForFraværAlert';
 import IkkeKroniskEllerFunksjonshemningAlert from './alert/IkkeKroniskEllerFuksjonshemningAlert';
 import IkkeSammeAdresseAlert from './alert/IkkeSammeAdresseAlert';
-import TrengerIkkeSøkeForBarnAlert from './alert/TrengerIkkeSøkeForBarnAlert';
+import VedtakForBarnInfo from './alert/VedtakForBarnInfo';
 import { omBarnetFormComponents } from './omBarnetFormComponents';
 import { OmBarnetFormFields, OmBarnetFormValues } from './OmBarnetStep';
+import { utledVedtakInfoForBarn } from './omBarnetStepUtils';
 import AnnetBarnFnrSpørsmål from './spørsmål/AnnetBarnFnrSpørsmål';
 import AnnetBarnFødselsdatoSpørsmål from './spørsmål/AnnetBarnFødselsdatoSpørsmål';
 import AnnetBarnNavnSpørsmål from './spørsmål/AnnetBarnNavnSpørsmål';
@@ -47,8 +49,8 @@ const OmBarnetForm = ({ isSubmitting, registrerteBarn, values, innvilgedeVedtak,
     } = values;
 
     const valgtBarn = registrerteBarn.find((barn) => barn.aktørId === barnetSøknadenGjelder);
-    const vedtakForValgtBarn = innvilgedeVedtak[barnetSøknadenGjelder || ''];
-    const harInnvilgetVedtakForValgtBarn = valgtBarn && vedtakForValgtBarn?.harInnvilgedeBehandlinger;
+
+    const vedtakForValgtBarn = utledVedtakInfoForBarn(valgtBarn, innvilgedeVedtak);
 
     const visIkkeSammeAdresseAlert =
         sammeAdresse === BarnSammeAdresse.NEI && søkersRelasjonTilBarnet !== SøkersRelasjonTilBarnet.FOSTERFORELDER;
@@ -63,19 +65,19 @@ const OmBarnetForm = ({ isSubmitting, registrerteBarn, values, innvilgedeVedtak,
             submitPending={isSubmitting}
             onBack={onBack}
             runDelayedFormValidation={true}
-            submitDisabled={harInnvilgetVedtakForValgtBarn}>
+            submitDisabled={vedtakForValgtBarn !== undefined}>
             <FormLayout.Questions>
                 {harIkkeBarn === false && (
-                    <>
-                        <RegistrertBarnSpørsmål registrerteBarn={registrerteBarn} />
-                        {harInnvilgetVedtakForValgtBarn && (
-                            <FormLayout.QuestionRelatedMessage>
-                                <TrengerIkkeSøkeForBarnAlert barnetsFornavn={valgtBarn.fornavn} />
-                            </FormLayout.QuestionRelatedMessage>
-                        )}
-                    </>
+                    <VStack gap="space-16">
+                        <RegistrertBarnSpørsmål registrerteBarn={registrerteBarn} innvilgedeVedtak={innvilgedeVedtak} />
+                        <div aria-live="polite">
+                            {valgtBarn && vedtakForValgtBarn && (
+                                <VedtakForBarnInfo barnetsFornavn={valgtBarn.fornavn} vedtak={vedtakForValgtBarn} />
+                            )}
+                        </div>
+                    </VStack>
                 )}
-                {harInnvilgetVedtakForValgtBarn !== true && (
+                {!vedtakForValgtBarn && (
                     <>
                         {(søknadenGjelderEtAnnetBarn || harIkkeBarn) && (
                             <FormLayout.Section title={text('steg.omBarnet.annetBarn.tittel')}>

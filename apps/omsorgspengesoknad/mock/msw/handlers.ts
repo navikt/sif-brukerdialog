@@ -13,10 +13,19 @@ export const getHandlers = () => [
             headers: { Location: '/vedlegg/123', 'access-control-expose-headers': 'Location' },
         });
     }),
-    http.post('**/har-gyldig-vedtak', async () => {
-        return HttpResponse.json({
-            harInnvilgedeBehandlinger: false,
-        });
+    http.post('**/har-gyldig-vedtak', async ({ request }) => {
+        const data = await request.text();
+        const { pleietrengendeAktørId } = JSON.parse(data);
+
+        return HttpResponse.json(
+            pleietrengendeAktørId === '2811762539343'
+                ? {
+                      harInnvilgedeBehandlinger: true,
+                      førsteMuligeSøknadsdato: '2026-10-01',
+                      vedtakTomDato: '2026-09-21',
+                  }
+                : { harInnvilgedeBehandlinger: false },
+        );
     }),
     http.post('**/omsorgspenger-utvidet-rett/innsending', async () => {
         return HttpResponse.json(

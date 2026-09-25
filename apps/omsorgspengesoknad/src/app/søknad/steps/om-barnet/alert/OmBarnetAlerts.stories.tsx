@@ -9,7 +9,7 @@ import { storybookIntlUtils } from '../../../../../storybook/utils/intlUtils';
 import IkkeHøyereRisikoForFraværAlert from './IkkeHøyereRisikoForFraværAlert';
 import IkkeKroniskEllerFunksjonshemningAlert from './IkkeKroniskEllerFuksjonshemningAlert';
 import IkkeSammeAdresseAlert from './IkkeSammeAdresseAlert';
-import TrengerIkkeSøkeForBarnAlert from './TrengerIkkeSøkeForBarnAlert';
+import VedtakForBarnInfo from './VedtakForBarnInfo';
 
 export default {
     title: 'Steps/OmBarnet/Alerts',
@@ -30,7 +30,7 @@ const Template: StoryFn = () => {
                 <IkkeSammeAdresseAlert />
             </AlertStoryWrapper>
             <AlertStoryWrapper title="Trenger ikke søke for barn">
-                <TrengerIkkeSøkeForBarnAlert barnetsFornavn="Per" />
+                <VedtakForBarnInfo barnetsFornavn="Per" vedtak={{ erTidsbegrenset: false }} />
             </AlertStoryWrapper>
             <ShadowBox>
                 <MessagesList messages={messages} />

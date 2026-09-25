@@ -6,6 +6,8 @@ export const omBarnetStegMessages_nb = {
     'omBarnetSteg.valgAnnetBarn': 'Søknaden gjelder et annet barn',
 
     'omBarnetSteg.annetBarn.tittel': 'Annet barn',
+    'omBarnetSteg.harVedtak.tidsbegrenset': 'Har vedtak til og med {dato}',
+    'omBarnetSteg.harVedtak.utenTidsbegrensning': 'Har vedtak',
     'omBarnetSteg.spørsmål.barnetsFødselsdato': 'Barnets fødselsdato',
     'omBarnetSteg.spørsmål.barnetsFødselsdato.info': 'Barnet må være født etter {minFødselsdato}',
     'omBarnetSteg.spørsmål.barnetsFødselsnummer': 'Barnets fødselsnummer/D-nummer',
@@ -26,6 +28,11 @@ export const omBarnetStegMessages_nb = {
     'omBarnetSteg.alert.trengerIkkeSøke.tittel': 'Du trenger ikke søke for {barnetsFornavn}',
     'omBarnetSteg.alert.trengerIkkeSøke.tekst':
         'Du har allerede et gyldig vedtak som gjelder til og med det kalenderåret {barnetsFornavn} fyller 18 år. Du trenger derfor ikke å søke på nytt. Du kan finne melding og dokumentasjon om vedtaket på <Lenke>Min side</Lenke>.',
+    'omBarnetSteg.alert.tidsbegrensetVedtak.tittel': 'Du kan ikke søke for {barnetsFornavn} enda',
+    'omBarnetSteg.alert.tidsbegrensetVedtak.tekst.1':
+        'Du kan ikke søke på nytt for {barnetsFornavn} enda fordi du har et gyldig vedtak som gjelder til og med {vedtakTomDato}. Første dag du kan sende inn ny søknad er {førsteMuligeSøknadsdato}.',
+    'omBarnetSteg.alert.tidsbegrensetVedtak.tekst.2':
+        'Du kan finne melding og dokumentasjon om vedtaket på <Lenke>Min side</Lenke>.',
 
     'omBarnetSteg.alert.ikkeSammeAdresse':
         'Det er kun foreldre som bor sammen med barnet som kan få ekstra omsorgsdager fra Nav. Forelderen som bor sammen med barnet kan i noen tilfeller dele sine omsorgsdager.',

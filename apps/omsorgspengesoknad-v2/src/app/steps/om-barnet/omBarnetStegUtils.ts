@@ -1,5 +1,6 @@
 import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
 import { RegistrertBarn } from '@sif/api/k9-prosessering';
+import { InnvilgedeVedtak } from '@sif/api/k9-sak-innsyn-api';
 import { YesOrNo } from '@sif/rhf';
 import { dateToISODate, ISODate } from '@sif/utils';
 import dayjs from 'dayjs';
@@ -97,4 +98,39 @@ export const isBarnOver18år = (fødselsdato: ISODate): boolean => {
     const frist = dato18år.add(1, 'year').set('month', 3).set('date', 1);
 
     return dayjs().isSame(frist) || dayjs().isAfter(frist);
+};
+
+type IkkeTidsbegrensetVedtakInfo = {
+    erTidsbegrenset: false;
+};
+
+type TidsbegrensetVedtakInfo = {
+    erTidsbegrenset: true;
+    førsteMuligeSøknadsdato: ISODate;
+    vedtakTomDato: ISODate;
+};
+
+export type UtledetVedtakInfo = IkkeTidsbegrensetVedtakInfo | TidsbegrensetVedtakInfo;
+
+export const utledVedtakInfoForBarn = (
+    barn?: RegistrertBarn,
+    innvilgedeVedtak?: InnvilgedeVedtak,
+): UtledetVedtakInfo | undefined => {
+    const vedtakForValgtBarn = barn ? innvilgedeVedtak?.[barn.aktørId] : undefined;
+
+    if (!vedtakForValgtBarn || vedtakForValgtBarn.harInnvilgedeBehandlinger === false) {
+        return undefined;
+    }
+
+    if (vedtakForValgtBarn.førsteMuligeSøknadsdato && vedtakForValgtBarn.vedtakTomDato) {
+        return {
+            erTidsbegrenset: true,
+            førsteMuligeSøknadsdato: vedtakForValgtBarn.førsteMuligeSøknadsdato,
+            vedtakTomDato: vedtakForValgtBarn.vedtakTomDato,
+        };
+    }
+
+    return {
+        erTidsbegrenset: false,
+    };
 };

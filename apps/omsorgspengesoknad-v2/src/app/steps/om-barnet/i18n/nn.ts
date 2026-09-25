@@ -8,6 +8,8 @@ export const omBarnetStegMessages_nn: Record<keyof typeof omBarnetStegMessages_n
     'omBarnetSteg.valgAnnetBarn': 'Søknaden gjeld eit anna barn',
 
     'omBarnetSteg.annetBarn.tittel': 'Anna barn',
+    'omBarnetSteg.harVedtak.tidsbegrenset': 'Har vedtak til og med {dato}',
+    'omBarnetSteg.harVedtak.utenTidsbegrensning': 'Har vedtak',
     'omBarnetSteg.spørsmål.barnetsFødselsdato': 'Barnet sin fødselsdato',
     'omBarnetSteg.spørsmål.barnetsFødselsdato.info': 'Barnet må vera fødd etter {minFødselsdato}',
     'omBarnetSteg.spørsmål.barnetsFødselsnummer': 'Barnet sitt fødselsnummer/D-nummer',
@@ -28,6 +30,11 @@ export const omBarnetStegMessages_nn: Record<keyof typeof omBarnetStegMessages_n
     'omBarnetSteg.alert.trengerIkkeSøke.tittel': 'Du treng ikkje søkje for {barnetsFornavn}',
     'omBarnetSteg.alert.trengerIkkeSøke.tekst':
         'Du har allereie eit gyldig vedtak som gjeld til og med det kalenderåret {barnetsFornavn} fyller 18 år. Du treng derfor ikkje å søkja på nytt. Du kan finna melding og dokumentasjon om vedtaket på <Lenke>Mi side</Lenke>.',
+    'omBarnetSteg.alert.tidsbegrensetVedtak.tittel': 'Du kan ikkje søke for {barnetsFornavn} endå',
+    'omBarnetSteg.alert.tidsbegrensetVedtak.tekst.1':
+        'Du kan ikkje søkja på nytt for {barnetsFornavn} endå fordi du har eit gyldig vedtak som gjeld til og med {vedtakTomDato}. Første dag du kan sende inn ny søknad er {førsteMuligeSøknadsdato}.',
+    'omBarnetSteg.alert.tidsbegrensetVedtak.tekst.2':
+        'Du kan finne melding og dokumentasjon om vedtaket på <Lenke>Mi side</Lenke>.',
 
     'omBarnetSteg.alert.ikkeSammeAdresse':
         'Det er berre foreldre som bur saman med barnet som kan få ekstra omsorgsdagar frå Nav. Forelderen som bur saman med barnet kan i nokre tilfelle dela sine omsorgsdagar.',

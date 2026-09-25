@@ -5,8 +5,10 @@ export type ClientOptions = {
 };
 
 export type HentSisteGyldigeVedtakForAktorIdResponse = {
+    førsteMuligeSøknadsdato?: string;
     harInnvilgedeBehandlinger: boolean;
     saksnummer?: string;
+    vedtakTomDato?: string;
     vedtaksdato?: string;
 };
 

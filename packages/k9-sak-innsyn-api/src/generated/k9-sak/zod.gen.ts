@@ -3,8 +3,10 @@
 import * as z from 'zod';
 
 export const zHentSisteGyldigeVedtakForAktorIdResponse = z.object({
+    førsteMuligeSøknadsdato: z.iso.date().nullish(),
     harInnvilgedeBehandlinger: z.boolean(),
     saksnummer: z.string().nullish(),
+    vedtakTomDato: z.iso.date().nullish(),
     vedtaksdato: z.iso.date().nullish(),
 });
 

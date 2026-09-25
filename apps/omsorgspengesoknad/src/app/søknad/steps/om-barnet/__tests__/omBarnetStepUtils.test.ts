@@ -1,9 +1,72 @@
+import { RegistrertBarn } from '@navikt/sif-common-api';
 import { vi } from 'vitest';
 
-import { getMinDatoForBarnetsFødselsdato, isBarnOver18år } from '../omBarnetStepUtils';
+import { InnvilgedeVedtak } from '../../../../hooks/useInnvilgedeVedtakForRegistrerteBarn';
+import { getMinDatoForBarnetsFødselsdato, isBarnOver18år, utledVedtakInfoForBarn } from '../omBarnetStepUtils';
 
 vi.mock('@navikt/sif-common-env', () => {
     return { getRequiredEnv: () => '', getCommonEnv: () => ({}), getMaybeEnv: () => '' };
+});
+
+describe('utledVedtakInfoForBarn', () => {
+    const barn: RegistrertBarn = {
+        aktørId: '123',
+        etternavn: 'Barnesen',
+        fornavn: 'Barn',
+        fødselsdato: new Date('2020-01-01'),
+    };
+
+    it('returnerer undefined når barnet ikke har vedtak', () => {
+        expect(utledVedtakInfoForBarn(barn, {})).toBeUndefined();
+    });
+
+    it('returnerer undefined når barnet ikke har innvilgede behandlinger', () => {
+        const innvilgedeVedtak: InnvilgedeVedtak = {
+            [barn.aktørId]: {
+                harInnvilgedeBehandlinger: false,
+                saksnummer: null,
+                vedtaksdato: null,
+                førsteMuligeSøknadsdato: null,
+                vedtakTomDato: null,
+            },
+        };
+
+        expect(utledVedtakInfoForBarn(barn, innvilgedeVedtak)).toBeUndefined();
+    });
+
+    it('returnerer tidsbegrenset vedtaksinfo når begge datofeltene finnes', () => {
+        const innvilgedeVedtak: InnvilgedeVedtak = {
+            [barn.aktørId]: {
+                harInnvilgedeBehandlinger: true,
+                saksnummer: 'ABC123',
+                vedtaksdato: '2026-01-01',
+                førsteMuligeSøknadsdato: '2026-02-01',
+                vedtakTomDato: '2026-12-31',
+            },
+        };
+
+        expect(utledVedtakInfoForBarn(barn, innvilgedeVedtak)).toEqual({
+            erTidsbegrenset: true,
+            førsteMuligeSøknadsdato: '2026-02-01',
+            vedtakTomDato: '2026-12-31',
+        });
+    });
+
+    it('returnerer ikke-tidsbegrenset vedtaksinfo når datofeltene mangler', () => {
+        const innvilgedeVedtak: InnvilgedeVedtak = {
+            [barn.aktørId]: {
+                harInnvilgedeBehandlinger: true,
+                saksnummer: 'ABC123',
+                vedtaksdato: '2026-01-01',
+                førsteMuligeSøknadsdato: null,
+                vedtakTomDato: null,
+            },
+        };
+
+        expect(utledVedtakInfoForBarn(barn, innvilgedeVedtak)).toEqual({
+            erTidsbegrenset: false,
+        });
+    });
 });
 
 describe('isBarnOver18år', () => {
