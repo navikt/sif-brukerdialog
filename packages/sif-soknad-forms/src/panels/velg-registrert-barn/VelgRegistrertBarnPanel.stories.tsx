@@ -1,6 +1,8 @@
+import { Tag } from '@navikt/ds-react';
 import type { RegistrertBarn } from '@sif/api/k9-prosessering';
 import { ISODate } from '@sif/utils';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { JSX } from 'react/jsx-runtime';
 
 import { StoryFrame } from '../../storybook/components/StoryFrame';
 import { withRHFForm } from '../../storybook/decorators/withRHFForm';
@@ -13,6 +15,7 @@ type FormValues = {
 type StoryProps = {
     registrerteBarn: RegistrertBarn[];
     label?: string;
+    registrerteBarnEkstrainfo?: Record<string, JSX.Element>;
     inkluderAnnetBarn?: boolean;
     annetBarnLabel?: string;
 };
@@ -75,6 +78,19 @@ export const Standard: Story = {};
 
 export const MedAnnetBarn: Story = {
     args: {
+        inkluderAnnetBarn: true,
+        annetBarnLabel: 'Søknaden gjelder et barn som ikke er registrert på deg',
+    },
+};
+export const MedEkstrainfo: Story = {
+    args: {
+        registrerteBarnEkstrainfo: {
+            '123': (
+                <Tag size="small" data-color="brand-blue">
+                    Har vedtak
+                </Tag>
+            ),
+        },
         inkluderAnnetBarn: true,
         annetBarnLabel: 'Søknaden gjelder et barn som ikke er registrert på deg',
     },
