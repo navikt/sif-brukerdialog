@@ -1,4 +1,4 @@
-import { Heading, Tag, VStack } from '@navikt/ds-react';
+import { Box, Heading, Tag, VStack } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { VelgBarnEkstrainfo, VelgBarnFormPart } from '@navikt/sif-common-forms-ds';
 import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
@@ -25,13 +25,15 @@ const RegistrertBarnSpørsmål = ({ registrerteBarn, innvilgedeVedtak }: Props) 
                 return;
             }
             ekstrainfo[key] = (
-                <Tag data-color="brand-blue" size="small">
-                    {vedtak.vedtakTomDato
-                        ? text('steg.omBarnet.harVedtak.tidsbegrenset', {
-                              dato: dateFormatter.compact(ISODateToDate(vedtak.vedtakTomDato)),
-                          })
-                        : text('steg.omBarnet.harVedtak.utenTidsbegrensning')}
-                </Tag>
+                <Box marginBlock="space-4 space-2">
+                    <Tag data-color="brand-blue" size="small">
+                        {vedtak.vedtakTomDato
+                            ? text('steg.omBarnet.harVedtak.tidsbegrenset', {
+                                  dato: dateFormatter.compact(ISODateToDate(vedtak.vedtakTomDato)),
+                              })
+                            : text('steg.omBarnet.harVedtak.utenTidsbegrensning')}
+                    </Tag>
+                </Box>
             );
         });
     }
