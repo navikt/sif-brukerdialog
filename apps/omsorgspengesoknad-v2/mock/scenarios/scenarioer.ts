@@ -23,6 +23,23 @@ const toBarnMedVedtakScenarioData: ScenarioData = {
     },
 };
 
+const barnMedTidsavgrensetVedtakScenarioData: ScenarioData = {
+    ...standardProfil,
+    barn: {
+        barn: [alfaTestesen, betaTestesen],
+    },
+    vedtakPerAktørId: {
+        [alfaTestesen.aktørId]: {
+            harInnvilgedeBehandlinger: true,
+            saksnummer: 'SAK-002',
+            vedtaksdato: '2024-01-15',
+            vedtakTomDato: '2026-09-21',
+            førsteMuligeSøknadsdato: '2026-10-01',
+        },
+        [betaTestesen.aktørId]: { harInnvilgedeBehandlinger: false, saksnummer: null, vedtaksdato: null },
+    },
+};
+
 const innsendingFeilerScenarioData: ScenarioData = {
     ...defaultScenarioData,
     innsendingResponse: {
@@ -49,6 +66,7 @@ const scenarioData: Record<ScenarioType, ScenarioData> = {
     [ScenarioType.default]: defaultScenarioData,
     [ScenarioType.ingenRegistrerteBarn]: ingenRegistrerteBarnScenarioData,
     [ScenarioType.toBarnMedVedtak]: toBarnMedVedtakScenarioData,
+    [ScenarioType.barnMedTidsavgrensetVedtak]: barnMedTidsavgrensetVedtakScenarioData,
     [ScenarioType.innsendingFeiler]: innsendingFeilerScenarioData,
     [ScenarioType.innsendingFeilerMedUgyldigeParametre]: innsendingFeilerMedUgyldigeParametreScenarioData,
 };
