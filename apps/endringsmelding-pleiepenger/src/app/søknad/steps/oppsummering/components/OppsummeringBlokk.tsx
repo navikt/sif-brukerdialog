@@ -1,21 +1,30 @@
-import { Button, Heading, VStack } from '@navikt/ds-react';
+import { AppMessageKeys, AppText } from '@app/i18n';
+import { Alert, Button, Heading, VStack } from '@navikt/ds-react';
 import { ReactNode } from 'react';
 
 interface Props {
-    tittel: ReactNode;
-    children: ReactNode;
+    tittelId: AppMessageKeys;
+    ingenEndringerId: AppMessageKeys;
+    harEndringer: boolean;
     endre?: {
-        label: ReactNode;
+        label: string;
         onClick: () => void;
     };
+    children: ReactNode;
 }
 
-const OppsummeringBlokk = ({ tittel, children, endre }: Props) => (
+const OppsummeringBlokk = ({ tittelId, ingenEndringerId, harEndringer, endre, children }: Props) => (
     <VStack gap="space-16">
         <Heading level="2" size="medium">
-            {tittel}
+            <AppText id={tittelId} />
         </Heading>
-        {children}
+        {harEndringer ? (
+            children
+        ) : (
+            <Alert variant="info">
+                <AppText id={ingenEndringerId} />
+            </Alert>
+        )}
         {endre && (
             <div>
                 <Button type="button" variant="secondary" size="small" onClick={endre.onClick}>

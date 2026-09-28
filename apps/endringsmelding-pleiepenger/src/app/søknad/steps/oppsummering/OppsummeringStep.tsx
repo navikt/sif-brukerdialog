@@ -1,7 +1,7 @@
 import { useSendSøknad, useSøknadContext, useSøknadsdataStatus } from '@app/hooks';
 import { useEndreFraOppsummering } from '@app/hooks/useEndreFraOppsummering';
 import { useStepConfig } from '@app/hooks/useStepConfig';
-import { AppMessageKeys, AppText, useAppIntl } from '@app/i18n';
+import { AppText, useAppIntl } from '@app/i18n';
 import { EndringStepId, StepId } from '@app/søknad/config/StepId';
 import SøknadStep from '@app/søknad/SøknadStep';
 import {
@@ -97,13 +97,15 @@ const OppsummeringStep = () => {
 
     const kanVelgeEndringerFraOppsummering = isFeatureEnabled(Feature.SIF_PUBLIC_VELG_ENDRE_FRA_OPPSUMMERING);
 
-    /** Uten feature-toggle vises bare blokker for steg som er med i søknaden */
+    /** Uten feature-toggle vises bare blokker for steg som er med i flyten */
     const visBlokk = (steg: EndringStepId) => kanVelgeEndringerFraOppsummering || søknadSteps.includes(steg);
 
-    const getEndre = (steg: EndringStepId, labelId: AppMessageKeys) =>
-        kanVelgeEndringerFraOppsummering
-            ? { label: <AppText id={labelId} />, onClick: () => endre(steg) }
-            : undefined;
+    const getEndre = (steg: EndringStepId, label: string) => {
+        if (!kanVelgeEndringerFraOppsummering) {
+            return undefined;
+        }
+        return { label, onClick: () => endre(steg) };
+    };
 
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
@@ -123,49 +125,41 @@ const OppsummeringStep = () => {
 
                 {visBlokk(StepId.LOVBESTEMT_FERIE) && (
                     <OppsummeringBlokk
-                        tittel={<AppText id="oppsummeringStep.ferie.tittel" />}
-                        endre={getEndre(StepId.LOVBESTEMT_FERIE, 'oppsummeringStep.endre.ferie')}>
-                        {lovbestemtFerie !== undefined && lovbestemtFerieErEndret ? (
-                            <LovbestemtFerieOppsummering lovbestemtFerie={lovbestemtFerie} />
-                        ) : (
-                            <Alert variant="info">
-                                <AppText id="oppsummeringStep.ferie.ingenEndringer" />
-                            </Alert>
-                        )}
+                        tittelId="oppsummeringStep.ferie.tittel"
+                        ingenEndringerId="oppsummeringStep.ferie.ingenEndringer"
+                        harEndringer={lovbestemtFerieErEndret}
+                        endre={getEndre(StepId.LOVBESTEMT_FERIE, text('oppsummeringStep.endre.ferie'))}>
+                        {lovbestemtFerie && <LovbestemtFerieOppsummering lovbestemtFerie={lovbestemtFerie} />}
                     </OppsummeringBlokk>
                 )}
 
                 {visBlokk(StepId.ARBEIDSTID) && (
                     <OppsummeringBlokk
-                        tittel={<AppText id="oppsummeringStep.arbeidstid.tittel" />}
-                        endre={getEndre(StepId.ARBEIDSTID, 'oppsummeringStep.endre.arbeidstid')}>
-                        {arbeidstid !== undefined && arbeidstidErEndret ? (
+                        tittelId="oppsummeringStep.arbeidstid.tittel"
+                        ingenEndringerId="oppsummeringStep.arbeidstid.ingenEndringer"
+                        harEndringer={arbeidstidErEndret}
+                        endre={getEndre(StepId.ARBEIDSTID, text('oppsummeringStep.endre.arbeidstid'))}>
+                        {arbeidstid && (
                             <ArbeidstidOppsummering
                                 arbeidstid={arbeidstid}
                                 arbeidsgivere={[...arbeidsgivere, ...sak.arbeidsgivereIkkeISak]}
                                 harGyldigArbeidstid={harGyldigArbeidstid}
                             />
-                        ) : (
-                            <Alert variant="info">
-                                <AppText id="oppsummeringStep.arbeidstid.ingenEndringer" />
-                            </Alert>
                         )}
                     </OppsummeringBlokk>
                 )}
 
                 {visBlokk(StepId.TILSYNSORDNING) && (
                     <OppsummeringBlokk
-                        tittel={<AppText id="oppsummeringStep.tilsynsordning.tittel" />}
-                        endre={getEndre(StepId.TILSYNSORDNING, 'oppsummeringStep.endre.tilsynsordning')}>
-                        {tilsynsordning !== undefined && tilsynsordningErEndret ? (
+                        tittelId="oppsummeringStep.tilsynsordning.tittel"
+                        ingenEndringerId="oppsummeringStep.tilsynsordning.ingenEndringer"
+                        harEndringer={tilsynsordningErEndret}
+                        endre={getEndre(StepId.TILSYNSORDNING, text('oppsummeringStep.endre.tilsynsordning'))}>
+                        {tilsynsordning && (
                             <TilsynsordningOppsummering
                                 tilsynsordning={tilsynsordning}
                                 tidOpprinnelig={sak.tilsynsordning.tilsynsdagerMap}
                             />
-                        ) : (
-                            <Alert variant="info">
-                                <AppText id="oppsummeringStep.tilsynsordning.ingenEndringer" />
-                            </Alert>
                         )}
                     </OppsummeringBlokk>
                 )}
