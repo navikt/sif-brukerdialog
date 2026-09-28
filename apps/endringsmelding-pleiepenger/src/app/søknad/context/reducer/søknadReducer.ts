@@ -4,7 +4,14 @@ import { EndringType, SøknadContextState, Søknadsdata, ValgteEndringer } from 
 import { getFeriedagerMeta } from '@app/utils';
 import { guid } from '@navikt/sif-common-utils';
 
+import { EndringStepId, StepId } from '../../config/StepId';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
+
+const valgtEndringForSteg: Record<EndringStepId, keyof ValgteEndringer> = {
+    [StepId.ARBEIDSTID]: 'arbeidstid',
+    [StepId.LOVBESTEMT_FERIE]: 'lovbestemtFerie',
+    [StepId.TILSYNSORDNING]: 'tilsynsordning',
+};
 
 const initialSøknadsdata: Søknadsdata = {
     id: undefined,
@@ -120,6 +127,25 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                 return {
                     ...newState,
                     søknadSteps,
+                };
+            }
+            case SøknadContextActionKeys.LEGG_TIL_VALGT_ENDRING: {
+                const { steg } = action.payload;
+                const valgteEndringer: ValgteEndringer = {
+                    ...state.valgteEndringer,
+                    [valgtEndringForSteg[steg]]: true,
+                };
+                const søknadSteps = getSøknadSteps(
+                    valgteEndringer,
+                    state.sak.harArbeidsgivereIkkeISak,
+                    state.søknadsdata,
+                );
+
+                return {
+                    ...state,
+                    valgteEndringer,
+                    søknadSteps,
+                    søknadRoute: getSøknadStepRoute(steg),
                 };
             }
             case SøknadContextActionKeys.SET_SØKNAD_TILSYNSORDNING: {

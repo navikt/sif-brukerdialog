@@ -5,15 +5,19 @@ import { FormikRadioGroup, FormikRadioProp } from '@navikt/sif-common-formik-ds'
 import { FormikRadioGroupProps } from '@navikt/sif-common-formik-ds/src/components/formik-radio-group/FormikRadioGroup';
 import { RegistrerteBarnListeHeading } from '@navikt/sif-common-ui';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { useMemo } from 'react';
+import { JSX, useMemo } from 'react';
 
 import { FormsText, useFormsIntl } from '../../i18n/forms.messages';
 
 export const VelgBarn_AnnetBarnValue = 'annetBarn';
 
+export type VelgBarnEkstrainfo = {
+    [key: string]: JSX.Element;
+};
 interface Props extends Omit<FormikRadioGroupProps<any, any>, 'legend' | 'radios'> {
     legend?: string;
     registrerteBarn: RegistrertBarn[];
+    registrerteBarnEkstrainfo?: VelgBarnEkstrainfo;
     inkluderAnnetBarn?: boolean;
     annetBarnOptions?: FormikRadioProp;
     headerLevel?: '2' | '3';
@@ -23,6 +27,7 @@ export const VelgBarnFormPart = ({
     legend,
     inkluderAnnetBarn,
     registrerteBarn,
+    registrerteBarnEkstrainfo,
     annetBarnOptions,
     headerLevel = '3',
     ...restProps
@@ -30,7 +35,9 @@ export const VelgBarnFormPart = ({
     const { text } = useFormsIntl();
 
     const radios = useMemo(() => {
-        const options: FormikRadioProp[] = registrerteBarn.map((barn) => mapBarnTilRadioProps(barn));
+        const options: FormikRadioProp[] = registrerteBarn.map((barn) =>
+            mapBarnTilRadioProps(barn, registrerteBarnEkstrainfo),
+        );
         if (inkluderAnnetBarn) {
             options.push(
                 annetBarnOptions || {
@@ -40,7 +47,7 @@ export const VelgBarnFormPart = ({
             );
         }
         return options;
-    }, [registrerteBarn]);
+    }, [registrerteBarn, registrerteBarnEkstrainfo]);
 
     return (
         <Box>
@@ -57,9 +64,13 @@ export const VelgBarnFormPart = ({
     );
 };
 
-const mapBarnTilRadioProps = (barn: RegistrertBarn): FormikRadioProp => {
+const mapBarnTilRadioProps = (
+    barn: RegistrertBarn,
+    registrerteBarnEkstrainfo?: VelgBarnEkstrainfo,
+): FormikRadioProp => {
     const { fornavn, mellomnavn, etternavn, fødselsdato, aktørId } = barn;
     const barnetsNavn = formatName(fornavn, etternavn, mellomnavn);
+    const ekstrainfo = registrerteBarnEkstrainfo?.[aktørId];
     return {
         value: aktørId,
         label: (
@@ -71,6 +82,7 @@ const mapBarnTilRadioProps = (barn: RegistrertBarn): FormikRadioProp => {
                         values={{ dato: dateFormatter.compact(fødselsdato) }}
                     />
                 </div>
+                {ekstrainfo && <div>{ekstrainfo}</div>}
             </>
         ),
     };
