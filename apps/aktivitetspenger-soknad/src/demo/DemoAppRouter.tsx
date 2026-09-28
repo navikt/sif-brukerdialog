@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { HashRouter } from 'react-router-dom';
 
+import './demo.css';
 import DemoInfo from './DemoInfo';
 
 /**

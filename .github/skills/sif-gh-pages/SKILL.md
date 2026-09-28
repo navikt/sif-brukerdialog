@@ -103,11 +103,24 @@ gh-pages har ingen server som kan rute på path → **HashRouter kreves**.
 - Hopp over `ensureBaseNameForReactRouter(PUBLIC_PATH)` når hash-router er aktiv
 - Gå gjennom **all** hard navigasjon (`window.location.assign`, `relocateToWelcomePage`, scenariobytte, reset): disse ignorerer routeren og må gi hash-URL på gh-pages, f.eks. `${import.meta.env.BASE_URL}#${route}`. Dette er den vanligste glippen.
 
-### 7. Demo-markering (valgfritt, men anbefalt)
+### 7. Demo-markering (obligatorisk — glemmes lett, sjekk eksplisitt før du er ferdig)
 
-`DemoInfo`-banner + `.demoMode`-vannmerke, begge bak `erGitHubPages`. Kopier fra
-`apps/endringsmelding-pleiepenger/src/app/components/demo/`. Hent tittelen fra
-`@navikt/sif-app-register` — ikke dikt opp ny tekst.
+To ting kreves sammen, begge bak `erGitHubPages`/`isGitHubPages()`:
+
+1. **`DemoInfo`-banner** — synlig GlobalAlert-boks. Hent tittelen fra `@navikt/sif-app-register`
+   (f.eks. `<AppNavn>App.tittel.nb`) — ikke dikt opp ny tekst.
+2. **`.demoMode`-vannmerke** — CSS-en alene er ikke nok. Tre ting må stemme samtidig:
+   - `demo.css` kopiert til appen (fra `apps/endringsmelding-pleiepenger/src/app/components/demo/demo.css`
+     eller en annen demo-app som allerede har den)
+   - CSS-filen faktisk **importert** et sted i demo-treet (`import './demo.css'` i router-/wrapper-komponenten)
+   - `className="demoMode"` faktisk **satt på et element** i samme tre
+
+   Rekkefølgen over er den vanligste glippen: filen kopieres, men importen eller
+   `className` glemmes, og vannmerket vises aldri uten at build eller lint feiler — ingenting
+   varsler om feilen. **Verifiser derfor visuelt** (`demo:build` + `demo:start`, se i nettleser)
+   at DEMO-vannmerket faktisk vises diagonalt over hele siden, ikke bare at `demo.css` finnes som fil.
+
+Se `apps/aktivitetspenger-soknad/src/demo/DemoAppRouter.tsx` for et komplett eksempel på alle tre delene.
 
 ### 8. `package.json` — scripts
 
@@ -159,7 +172,9 @@ publiserte sider. **Den avledes ikke fra workflowen** — legg derfor inn en ny 
 2. `pnpm build` og `pnpm lint:tsc` — bekrefter at `__IS_GITHUB_PAGES__`-guarden ikke brøt ordinært build
 3. Sjekk `dist-demo/index.html`: `PUBLIC_PATH` og `src="/sif-brukerdialog/<app-navn>/assets/…"` er riktige, og `mockServiceWorker.js` ligger i `dist-demo/`
 4. Grep i `src/` etter hver nøkkel du overstyret i `demoAppSettings` — bekreft at den faktisk leses
-5. Deploy kjøres kun manuelt: Actions → «Build and deploy gh-pages» → «Run workflow», med branch du vil bygge fra
+5. **`className="demoMode"` og `import './demo.css'` finnes begge** i demo-router-treet (grep etter
+   `demoMode` i `src/` — treff kun i `.css`-filen betyr at importen eller klassen mangler)
+6. Deploy kjøres kun manuelt: Actions → «Build and deploy gh-pages» → «Run workflow», med branch du vil bygge fra
 
 ## Vanlige feil
 
@@ -173,3 +188,4 @@ publiserte sider. **Den avledes ikke fra workflowen** — legg derfor inn en ny 
 | `mockServiceWorker.js` mangler i `dist-demo`         | Filen ligger i approt, ikke i `public/`                     | `copy-msw`-plugin i `writeBundle`                               |
 | Scenariovelger vises ikke                            | Guard bruker `import.meta.env.PROD`, som er `true` i builds | Guard på `__IS_GITHUB_PAGES__` / `VELG_SCENARIO` i stedet       |
 | `define` har ingen effekt                            | Nøkkelen matcher ikke uttrykket i koden                     | Bruk nøyaktig uttrykk, f.eks. `'import.meta.env.X'` (punkt 3)   |
+| DEMO-vannmerke vises ikke                             | `demo.css` kopiert, men ikke importert, eller `className="demoMode"` mangler | Sjekk begge deler er satt i samme komponenttre (punkt 7), verifiser visuelt |
