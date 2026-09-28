@@ -7,3 +7,6 @@ export enum StepId {
     'OPPSUMMERING' = 'oppsummering',
     'MELDING_SENDT' = 'melding_sendt',
 }
+
+/** Steg som tilsvarer en endring bruker kan velge */
+export type EndringStepId = StepId.ARBEIDSTID | StepId.LOVBESTEMT_FERIE | StepId.TILSYNSORDNING;

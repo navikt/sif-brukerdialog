@@ -66,7 +66,8 @@ test('test', async ({ page }) => {
         '2 t. 0 m.Endret fra 15 t. 0 m.',
     );
     await testAccessibility(page);
-    await expect(page.getByText('Det er ikke registrert noen')).toBeVisible();
+    await expect(page.getByText('Det er ikke registrert noen endringer i ferie')).toBeVisible();
+    await expect(page.getByText('Det er ikke registrert noen endringer i omsorgstilbud')).toBeVisible();
     await page.getByText('Jeg bekrefter at').click();
     await page.getByTestId('typedFormikForm-submitButton').click();
     await expect(page.getByRole('heading', { name: 'Melding om endring er lagt til saken din' })).toBeVisible();

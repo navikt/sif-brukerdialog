@@ -8,7 +8,6 @@ import { SamtykkeFormPart } from '@navikt/sif-common-soknad-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getListValidator } from '@navikt/sif-validation';
 
-import { Feature, isFeatureEnabled } from '../../utils';
 import OmSøknaden from './OmSøknaden';
 
 export enum VelkommenFormFields {
@@ -86,15 +85,11 @@ const VelkommenPage = () => {
                                             label: text('velkommenPage.endre.ferie'),
                                             value: EndringType.lovbestemtFerie,
                                         },
-                                        ...(isFeatureEnabled(Feature.SIF_PUBLIC_ENDRE_OMSORGSTILBUD)
-                                            ? [
-                                                  {
-                                                      'data-testid': 'endreOmsorgstilbud',
-                                                      label: text('velkommenPage.endre.tilsynsordning'),
-                                                      value: EndringType.tilsynsordning,
-                                                  },
-                                              ]
-                                            : []),
+                                        {
+                                            'data-testid': 'endreOmsorgstilbud',
+                                            label: text('velkommenPage.endre.tilsynsordning'),
+                                            value: EndringType.tilsynsordning,
+                                        },
                                     ]}
                                 />
 
