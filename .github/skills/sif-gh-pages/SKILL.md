@@ -95,6 +95,25 @@ Service worker registreres på origin-roten som standard. Sett URL eksplisitt n�
 
 Ikke bruk `enableMockingBase` fra `@sif/api/mock-utils` — den krever `ENV === 'development'`.
 
+**Catch-all-handlere (`http.get('*', ...)`, `http.all('*', ...)`) fanger også cross-origin-kall.**
+`*` i msw matcher enhver URL, ikke bare samme origin — inkludert `https://cdn.nav.no/...`, som
+Aksel/dekoratøren bruker til fonter (`SourceSans3-normal.woff2` m.fl.). Uten en egen `passthrough()`-
+handler foran catch-all'en svarer mocken med falsk JSON i stedet for fontfilen, og teksten faller
+tilbake til systemfont i hele demoen — helt uten feilmelding i konsoll eller build.
+
+Legg alltid til, **før** catch-all-handlerne, én per faktisk brukt cross-origin-host:
+
+```ts
+import { passthrough } from 'msw';
+
+http.all('https://cdn.nav.no/*', () => passthrough()),
+```
+
+Sjekk `index.html`/`app.css` for `cdn.nav.no`-referanser (fonter, dekoratør-CSS) og andre eksterne
+hosts (se `apps/opplaringspenger-soknad/mock/msw/handlers.ts` for et tredjepartseksempel med
+`widget.uxsignals.com`). **Verifiser visuelt** i `demo:start` at teksten faktisk vises med Aksel sin
+font, ikke systemets standardfont — det er den eneste pålitelige sjekken her.
+
 ### 6. Routing
 
 gh-pages har ingen server som kan rute på path → **HashRouter kreves**.
@@ -189,3 +208,4 @@ publiserte sider. **Den avledes ikke fra workflowen** — legg derfor inn en ny 
 | Scenariovelger vises ikke                            | Guard bruker `import.meta.env.PROD`, som er `true` i builds | Guard på `__IS_GITHUB_PAGES__` / `VELG_SCENARIO` i stedet       |
 | `define` har ingen effekt                            | Nøkkelen matcher ikke uttrykket i koden                     | Bruk nøyaktig uttrykk, f.eks. `'import.meta.env.X'` (punkt 3)   |
 | DEMO-vannmerke vises ikke                             | `demo.css` kopiert, men ikke importert, eller `className="demoMode"` mangler | Sjekk begge deler er satt i samme komponenttre (punkt 7), verifiser visuelt |
+| Tekst vises med feil/systemfont i demoen               | Catch-all-handler (`*`) fanger cross-origin-kall til `cdn.nav.no` og returnerer falsk JSON i stedet for fonten | `passthrough()` for `cdn.nav.no` før catch-all (punkt 5) |

@@ -1,4 +1,4 @@
-import { delay, http, HttpResponse } from 'msw';
+import { delay, http, HttpResponse, passthrough } from 'msw';
 
 import { getScenarioMockData } from '../scenarios/scenarioer';
 import { ScenarioData, ScenarioType } from '../scenarios/types';
@@ -14,6 +14,10 @@ if (!storedScenarioData.tilgjengeligSøknad) {
 }
 
 export const handlers = [
+    // cdn.nav.no leverer bl.a. fonter (SourceSans3-normal.woff2) - catch-all-handlerne under
+    // ville ellers matchet disse cross-origin-kallene og svart med falsk JSON i stedet for fonten.
+    http.all('https://cdn.nav.no/*', () => passthrough()),
+
     http.get(`**/oppslag/soker`, () => HttpResponse.json(store.get().søker)),
 
     http.get(`**/oppslag/barn`, () => {
