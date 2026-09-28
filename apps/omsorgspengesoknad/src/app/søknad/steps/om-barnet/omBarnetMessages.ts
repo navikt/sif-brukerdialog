@@ -92,7 +92,7 @@ const nn: Record<OmBarnetMessageKeys, string> = {
     'steg.omBarnet.spm.barnetSøknadenGjelder.label': 'Kva barn gjeld søknaden?',
     'steg.omBarnet.spm.barnetSøknadenGjelder.registrerteBarn.label': 'Barn registrert på deg',
     'steg.omBarnet.spm.barnetSøknadenGjelder.info':
-        'Viss du skal søkja for fleire barn, må du senda éin søknad for kvart barn.',
+        'Viss du skal søkje for fleire barn, må du senda éin søknad for kvart barn.',
     'steg.omBarnet.spm.barnetSøknadenGjelder.født': 'Fødd {dato}',
     'steg.omBarnet.spm.gjelderAnnetBarn.label': 'Søknaden gjeld eit anna barn',
     'steg.omBarnet.annetBarn.tittel': 'Anna barn',
@@ -165,9 +165,9 @@ const nn: Record<OmBarnetMessageKeys, string> = {
     'steg.omBarnet.alert.trengerIkkeSøke.tittel': 'Du treng ikkje søkja for {barnetsFornavn}',
     'steg.omBarnet.alert.trengerIkkeSøke.tekst':
         'Du har allereie eit gyldig vedtak som gjeld til og med det kalenderåret {barnetsFornavn} fyller 18 år. Du treng derfor ikkje å søkja på nytt. Du kan finna melding og dokumentasjon om vedtaket på <Lenke>Mi side</Lenke>.',
-    'steg.omBarnet.alert.tidsbegrensetVedtak.tittel': 'Du kan ikkje søke for {barnetsFornavn} endå',
+    'steg.omBarnet.alert.tidsbegrensetVedtak.tittel': 'Du kan ikkje søkje for {barnetsFornavn} endå',
     'steg.omBarnet.alert.tidsbegrensetVedtak.tekst.1':
-        'Du kan ikkje søkja på nytt for {barnetsFornavn} nå, fordi du allereie har ekstra omsorgsdaga som gjeld fram til {vedtakTomDato}. Første dag du kan sende inn ny søknad er {førsteMuligeSøknadsdato}.',
+        'Du kan ikkje søkje på nytt for {barnetsFornavn} nå, fordi du allereie har ekstra omsorgsdaga som gjeld fram til {vedtakTomDato}. Første dag du kan sende inn ny søknad er {førsteMuligeSøknadsdato}.',
     'steg.omBarnet.alert.tidsbegrensetVedtak.tekst.2':
         'Du kan finne melding og dokumentasjon om vedtaket på <Lenke>Mi side</Lenke>.',
 };

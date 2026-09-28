@@ -30,9 +30,9 @@ export const omBarnetStegMessages_nn: Record<keyof typeof omBarnetStegMessages_n
     'omBarnetSteg.alert.trengerIkkeSøke.tittel': 'Du treng ikkje søkje for {barnetsFornavn}',
     'omBarnetSteg.alert.trengerIkkeSøke.tekst':
         'Du har allereie eit gyldig vedtak som gjeld til og med det kalenderåret {barnetsFornavn} fyller 18 år. Du treng derfor ikkje å søkja på nytt. Du kan finna melding og dokumentasjon om vedtaket på <Lenke>Mi side</Lenke>.',
-    'omBarnetSteg.alert.tidsbegrensetVedtak.tittel': 'Du kan ikkje søke for {barnetsFornavn} endå',
+    'omBarnetSteg.alert.tidsbegrensetVedtak.tittel': 'Du kan ikkje søkje for {barnetsFornavn} endå',
     'omBarnetSteg.alert.tidsbegrensetVedtak.tekst.1':
-        'Du kan ikkje søkja på nytt for {barnetsFornavn} nå, fordi du allereie har ekstra omsorgsdagar som gjeld fram til {vedtakTomDato}. Første dag du kan sende inn ny søknad er {førsteMuligeSøknadsdato}.',
+        'Du kan ikkje søkje på nytt for {barnetsFornavn} nå, fordi du allereie har ekstra omsorgsdagar som gjeld fram til {vedtakTomDato}. Første dag du kan sende inn ny søknad er {førsteMuligeSøknadsdato}.',
     'omBarnetSteg.alert.tidsbegrensetVedtak.tekst.2':
         'Du kan finne melding og dokumentasjon om vedtaket på <Lenke>Mi side</Lenke>.',
 
