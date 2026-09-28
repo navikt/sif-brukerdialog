@@ -167,7 +167,7 @@ const nn: Record<OmBarnetMessageKeys, string> = {
         'Du har allereie eit gyldig vedtak som gjeld til og med det kalenderåret {barnetsFornavn} fyller 18 år. Du treng derfor ikkje å søkja på nytt. Du kan finna melding og dokumentasjon om vedtaket på <Lenke>Mi side</Lenke>.',
     'steg.omBarnet.alert.tidsbegrensetVedtak.tittel': 'Du kan ikkje søke for {barnetsFornavn} endå',
     'steg.omBarnet.alert.tidsbegrensetVedtak.tekst.1':
-        'Du kan ikkje søkja på nytt for {barnetsFornavn} nå, fordi du har allereie eit gyldig vedtak som gjeld til og med {vedtakTomDato}. Første dag du kan sende inn ny søknad er {førsteMuligeSøknadsdato}.',
+        'Du kan ikkje søkja på nytt for {barnetsFornavn} nå, fordi du allereie har ekstra omsorgsdaga som gjeld fram til {vedtakTomDato}. Første dag du kan sende inn ny søknad er {førsteMuligeSøknadsdato}.',
     'steg.omBarnet.alert.tidsbegrensetVedtak.tekst.2':
         'Du kan finne melding og dokumentasjon om vedtaket på <Lenke>Mi side</Lenke>.',
 };
