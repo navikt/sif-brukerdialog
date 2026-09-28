@@ -1,17 +1,23 @@
+import './demo.css';
+
 import { ReactNode } from 'react';
 import { HashRouter } from 'react-router-dom';
 
-import './demo.css';
 import DemoInfo from './DemoInfo';
+import { ScenarioHeader } from './ScenarioHeader';
 
 /**
  * gh-pages har ingen server som kan rute på path, så demoen må bruke HashRouter
  * uten basename (i motsetning til BrowserRouter i AppRouter, som ruter på PUBLIC_PATH).
+ *
+ * Rekkefølge (header før banner) matcher de andre gh-pages-demoene, se
+ * apps/ungdomsytelse-deltaker/src/demo/DemoAppRouter.tsx.
  */
 const DemoAppRouter = ({ children }: { children: ReactNode }) => {
     return (
         <HashRouter>
             <div className="demoMode">
+                <ScenarioHeader />
                 <DemoInfo />
                 {children}
             </div>

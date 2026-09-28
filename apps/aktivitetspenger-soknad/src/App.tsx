@@ -12,7 +12,6 @@ import { AppContextProvider } from './app/context/AppContext';
 import { applicationIntlMessages, useAppIntl } from './app/i18n';
 import { getAppEnv } from './app/setup/appEnv';
 import { Søknad } from './app/Soknad';
-import { ScenarioHeader } from './demo/ScenarioHeader';
 import { useInitialData } from './useInitialData';
 
 initApiClients();
@@ -61,7 +60,6 @@ export const App = () => {
             useAnalytics={env.SIF_PUBLIC_USE_ANALYTICS === 'true'}
             intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
             <AppRouter>
-                {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
                 <SøknadDataWrapper />
             </AppRouter>
         </SøknadAppProvider>
