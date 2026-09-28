@@ -39,7 +39,17 @@ Arv fra appens egen `getDevAppSettings()` og overstyr kun:
 - `PUBLIC_PATH` → `/sif-brukerdialog/<app-navn>`
 - eksterne URL-er (`SIF_PUBLIC_LOGIN_URL`, `SIF_PUBLIC_DEKORATOR_URL`, `SIF_PUBLIC_MINSIDE_URL` …) → `#`
 - `SIF_PUBLIC_USE_ANALYTICS` → `'false'`
-- `*_FRONTEND_PATH` → under ny `PUBLIC_PATH`
+- **`*_FRONTEND_PATH` → under ny `PUBLIC_PATH`, ikke bare "et sted"**
+
+Grunnen til at `*_FRONTEND_PATH` må flyttes er konkret, ikke kosmetisk: MSW-workeren
+registreres på `BASE_URL` (`/sif-brukerdialog/<app-navn>/`), og en service worker fanger **kun**
+opp requests innenfor sitt eget scope. Rot-relative verdier som appen typisk har i dev
+(`/api/brukerdialog`, `/api/ung-brukerdialog-api` …) ligger utenfor det scopet — de kallene går
+da forbi MSW og treffer selve gh-pages-hostingen (404), i stedet for mock-handlerne. Løsningen er
+å prefikse **alle** `*_FRONTEND_PATH`-verdiene med samme path som `base`/`PUBLIC_PATH`, f.eks.
+`/sif-brukerdialog/<app-navn>/api/brukerdialog`. Dette er lett å overse fordi build og typesjekk
+er grønne uansett — feilen viser seg først som mislykkede API-kall i nettleserkonsollen i den
+deployede demoen.
 
 **Ikke** kopier appSettings fra en annen app — nøkler og env-schema varierer per app.
 
@@ -209,3 +219,4 @@ publiserte sider. **Den avledes ikke fra workflowen** — legg derfor inn en ny 
 | `define` har ingen effekt                            | Nøkkelen matcher ikke uttrykket i koden                     | Bruk nøyaktig uttrykk, f.eks. `'import.meta.env.X'` (punkt 3)   |
 | DEMO-vannmerke vises ikke                             | `demo.css` kopiert, men ikke importert, eller `className="demoMode"` mangler | Sjekk begge deler er satt i samme komponenttre (punkt 7), verifiser visuelt |
 | Tekst vises med feil/systemfont i demoen               | Catch-all-handler (`*`) fanger cross-origin-kall til `cdn.nav.no` og returnerer falsk JSON i stedet for fonten | `passthrough()` for `cdn.nav.no` før catch-all (punkt 5) |
+| API-kall 404 i deployet demo, men fungerer i `demo:start` lokalt | `*_FRONTEND_PATH` er rot-relativ og faller utenfor MSW-workerens scope (`BASE_URL`) | Prefiks alle `*_FRONTEND_PATH` med `PUBLIC_PATH` (punkt 2) |

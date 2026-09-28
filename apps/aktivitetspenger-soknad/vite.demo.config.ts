@@ -8,6 +8,11 @@ import { getBuildBranch } from './mock/getBuildBranch.ts';
 import { getDevAppSettings } from './mock/devAppSettings.ts';
 import { toHtmlSafeJson } from './mock/htmlSafeJson.ts';
 
+// Må matche `base` under - MSW-workeren registreres på BASE_URL og får dermed
+// dette som sitt scope. Rot-relative *_FRONTEND_PATH-verdier (f.eks. "/api/brukerdialog")
+// havner utenfor scopet og treffer gh-pages i stedet for mock-handlerne.
+const DEMO_PUBLIC_PATH = '/sif-brukerdialog/aktivitetspenger-soknad';
+
 export default defineConfig({
     mode: 'msw',
     plugins: [
@@ -33,6 +38,11 @@ export default defineConfig({
                         SIF_PUBLIC_USE_ANALYTICS: 'false',
                         SIF_PUBLIC_AKTIVITETSPENGER_INNSYN_URL: '#',
                         SIF_PUBLIC_SEND_BESKJED: '#',
+                        // Må ligge under MSW-workerens scope, se DEMO_PUBLIC_PATH over.
+                        PUBLIC_PATH: DEMO_PUBLIC_PATH,
+                        K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: `${DEMO_PUBLIC_PATH}/api/brukerdialog`,
+                        UNG_BRUKERDIALOG_API_FRONTEND_PATH: `${DEMO_PUBLIC_PATH}/api/ung-brukerdialog-api`,
+                        UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH: `${DEMO_PUBLIC_PATH}/api/ung-deltakelse-opplyser`,
                     }),
                 );
             },
@@ -43,7 +53,7 @@ export default defineConfig({
             '@app': resolve(import.meta.dirname, './src/app'),
         },
     },
-    base: '/sif-brukerdialog/aktivitetspenger-soknad/',
+    base: `${DEMO_PUBLIC_PATH}/`,
     define: {
         __IS_GITHUB_PAGES__: true,
         __SCENARIO_HEADER__: true,
