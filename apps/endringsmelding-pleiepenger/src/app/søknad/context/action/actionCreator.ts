@@ -1,5 +1,5 @@
 import { SøknadRoutes } from '@app/søknad/config/SøknadRoutes';
-import { StepId } from '@app/søknad/config/StepId';
+import { EndringStepId, StepId } from '@app/søknad/config/StepId';
 import {
     ArbeidstidSøknadsdata,
     EndringType,
@@ -37,9 +37,9 @@ interface SetSak {
     type: SøknadContextActionKeys.SET_SAK;
     payload: { sak: Sak };
 }
-interface leggTilValgtEndring {
+interface LeggTilValgtEndring {
     type: SøknadContextActionKeys.LEGG_TIL_VALGT_ENDRING;
-    payload: { steg: StepId };
+    payload: { steg: EndringStepId };
 }
 interface ResetSøknad {
     type: SøknadContextActionKeys.RESET_SØKNAD;
@@ -106,7 +106,7 @@ const setSak = (sak: Sak): SetSak => ({
     payload: { sak },
 });
 
-const leggTilValgtEndring = (steg: StepId): leggTilValgtEndring => ({
+const leggTilValgtEndring = (steg: EndringStepId): LeggTilValgtEndring => ({
     type: SøknadContextActionKeys.LEGG_TIL_VALGT_ENDRING,
     payload: { steg },
 });
@@ -187,7 +187,7 @@ export type SøknadContextAction =
     | SetSak
     | AvbrytSøknad
     | ClearStepSøknadsdata
-    | leggTilValgtEndring
+    | LeggTilValgtEndring
     | FortsettSøknadSenere
     | RequestLagreSøknad
     | ResetSøknad

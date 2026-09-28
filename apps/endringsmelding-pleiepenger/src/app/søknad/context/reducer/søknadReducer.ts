@@ -4,8 +4,14 @@ import { EndringType, SøknadContextState, Søknadsdata, ValgteEndringer } from 
 import { getFeriedagerMeta } from '@app/utils';
 import { guid } from '@navikt/sif-common-utils';
 
-import { StepId } from '../../config/StepId';
+import { EndringStepId, StepId } from '../../config/StepId';
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
+
+const valgtEndringForSteg: Record<EndringStepId, keyof ValgteEndringer> = {
+    [StepId.ARBEIDSTID]: 'arbeidstid',
+    [StepId.LOVBESTEMT_FERIE]: 'lovbestemtFerie',
+    [StepId.TILSYNSORDNING]: 'tilsynsordning',
+};
 
 const initialSøknadsdata: Søknadsdata = {
     id: undefined,
@@ -125,28 +131,21 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
             }
             case SøknadContextActionKeys.LEGG_TIL_VALGT_ENDRING: {
                 const { steg } = action.payload;
-                const oppdatertValgtEndring: ValgteEndringer = {
-                    arbeidstid: steg === StepId.ARBEIDSTID || state.valgteEndringer.arbeidstid,
-                    lovbestemtFerie: steg === StepId.LOVBESTEMT_FERIE || state.valgteEndringer.lovbestemtFerie,
-                    tilsynsordning: steg === StepId.TILSYNSORDNING || state.valgteEndringer.tilsynsordning,
-                };
-
-                const newState: SøknadContextState = {
-                    ...state,
-                    valgteEndringer: {
-                        ...oppdatertValgtEndring,
-                    },
+                const valgteEndringer: ValgteEndringer = {
+                    ...state.valgteEndringer,
+                    [valgtEndringForSteg[steg]]: true,
                 };
                 const søknadSteps = getSøknadSteps(
-                    newState.valgteEndringer,
+                    valgteEndringer,
                     state.sak.harArbeidsgivereIkkeISak,
-                    newState.søknadsdata,
+                    state.søknadsdata,
                 );
 
                 return {
-                    ...newState,
-                    søknadRoute: getSøknadStepRoute(steg),
+                    ...state,
+                    valgteEndringer,
                     søknadSteps,
+                    søknadRoute: getSøknadStepRoute(steg),
                 };
             }
             case SøknadContextActionKeys.SET_SØKNAD_TILSYNSORDNING: {
