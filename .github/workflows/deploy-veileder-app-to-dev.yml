@@ -63,7 +63,7 @@ jobs:
           build_secrets: |
             NPM_TOKEN=${{ secrets.READER_TOKEN }}
       - name: Deploy to dev
-        uses: nais/deploy/actions/deploy@v2
+        uses: nais/deploy/actions/deploy@v3
         env:
           CLUSTER: dev-gcp
           RESOURCE: apps-intern/${{ env.APP_NAME }}/nais/nais.yml
