@@ -104,7 +104,7 @@ const OppsummeringStep = () => {
         if (!kanVelgeEndringerFraOppsummering) {
             return undefined;
         }
-        return { label, onClick: () => endre(steg) };
+        return { label, onClick: () => endre(steg), disabled: isSubmitting };
     };
 
     return (

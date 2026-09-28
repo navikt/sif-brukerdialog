@@ -9,6 +9,7 @@ interface Props {
     endre?: {
         label: string;
         onClick: () => void;
+        disabled?: boolean;
     };
     children: ReactNode;
 }
@@ -27,7 +28,12 @@ const OppsummeringBlokk = ({ tittelId, ingenEndringerId, harEndringer, endre, ch
         )}
         {endre && (
             <div>
-                <Button type="button" variant="secondary" size="small" onClick={endre.onClick}>
+                <Button
+                    type="button"
+                    variant="secondary"
+                    size="small"
+                    disabled={endre.disabled}
+                    onClick={endre.onClick}>
                     {endre.label}
                 </Button>
             </div>
