@@ -282,6 +282,34 @@ describe('utledVedtakInfoForBarn', () => {
         });
     });
 
+    it('returnerer ikke-tidsbegrenset vedtaksinfo når bare sluttdato finnes', () => {
+        const innvilgedeVedtak: InnvilgedeVedtak = {
+            [registrertBarn.aktørId]: {
+                harInnvilgedeBehandlinger: true,
+                saksnummer: 'ABC123',
+                vedtaksdato: null,
+                førsteMuligeSøknadsdato: null,
+                vedtakTomDato: '2026-12-31' as ISODate,
+            },
+        };
+
+        expect(utledVedtakInfoForBarn(registrertBarn, innvilgedeVedtak)).toEqual({ erTidsbegrenset: false });
+    });
+
+    it('returnerer ikke-tidsbegrenset vedtaksinfo når bare første mulige søknadsdato finnes', () => {
+        const innvilgedeVedtak: InnvilgedeVedtak = {
+            [registrertBarn.aktørId]: {
+                harInnvilgedeBehandlinger: true,
+                saksnummer: 'ABC123',
+                vedtaksdato: null,
+                førsteMuligeSøknadsdato: '2026-02-01' as ISODate,
+                vedtakTomDato: null,
+            },
+        };
+
+        expect(utledVedtakInfoForBarn(registrertBarn, innvilgedeVedtak)).toEqual({ erTidsbegrenset: false });
+    });
+
     it('returnerer ikke-tidsbegrenset vedtaksinfo når datofeltene mangler', () => {
         const innvilgedeVedtak: InnvilgedeVedtak = {
             [registrertBarn.aktørId]: {

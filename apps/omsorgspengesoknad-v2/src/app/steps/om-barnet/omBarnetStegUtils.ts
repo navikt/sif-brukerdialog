@@ -122,6 +122,7 @@ export const utledVedtakInfoForBarn = (
         return undefined;
     }
 
+    /** Hvis én av dem mangler så behandles vedtaket som ikke tidsbegrenset */
     if (vedtakForValgtBarn.førsteMuligeSøknadsdato && vedtakForValgtBarn.vedtakTomDato) {
         return {
             erTidsbegrenset: true,

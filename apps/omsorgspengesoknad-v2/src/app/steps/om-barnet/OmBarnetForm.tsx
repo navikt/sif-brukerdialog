@@ -73,7 +73,7 @@ export const OmBarnetForm = () => {
             ekstrainfo[aktørId] = (
                 <Box marginBlock="space-4 space-2">
                     <Tag data-color="brand-blue" size="small">
-                        {barnetsVedtak.vedtakTomDato
+                        {barnetsVedtak.vedtakTomDato && barnetsVedtak.førsteMuligeSøknadsdato
                             ? text('omBarnetSteg.harVedtak.tidsbegrenset', {
                                   dato: dateFormatter.compact(barnetsVedtak.vedtakTomDato),
                               })
