@@ -30,7 +30,7 @@ export const omBarnetStegMessages_nb = {
         'Du har allerede et gyldig vedtak som gjelder til og med det kalenderåret {barnetsFornavn} fyller 18 år. Du trenger derfor ikke å søke på nytt. Du kan finne melding og dokumentasjon om vedtaket på <Lenke>Min side</Lenke>.',
     'omBarnetSteg.alert.tidsbegrensetVedtak.tittel': 'Du kan ikke søke for {barnetsFornavn} enda',
     'omBarnetSteg.alert.tidsbegrensetVedtak.tekst.1':
-        'Du kan ikke søke på nytt for {barnetsFornavn} enda fordi du har et gyldig vedtak som gjelder til og med {vedtakTomDato}. Første dag du kan sende inn ny søknad er {førsteMuligeSøknadsdato}.',
+        'Du kan ikke søke på nytt for {barnetsFornavn} nå, fordi du allerede har ekstra omsorgsdager som gjelder frem til {vedtakTomDato}. Første dag du kan sende inn ny søknad er {førsteMuligeSøknadsdato}.',
     'omBarnetSteg.alert.tidsbegrensetVedtak.tekst.2':
         'Du kan finne melding og dokumentasjon om vedtaket på <Lenke>Min side</Lenke>.',
 
