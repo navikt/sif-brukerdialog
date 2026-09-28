@@ -39,7 +39,17 @@ Arv fra appens egen `getDevAppSettings()` og overstyr kun:
 - `PUBLIC_PATH` → `/sif-brukerdialog/<app-navn>`
 - eksterne URL-er (`SIF_PUBLIC_LOGIN_URL`, `SIF_PUBLIC_DEKORATOR_URL`, `SIF_PUBLIC_MINSIDE_URL` …) → `#`
 - `SIF_PUBLIC_USE_ANALYTICS` → `'false'`
-- `*_FRONTEND_PATH` → under ny `PUBLIC_PATH`
+- **`*_FRONTEND_PATH` → under ny `PUBLIC_PATH`, ikke bare "et sted"**
+
+Grunnen til at `*_FRONTEND_PATH` må flyttes er konkret, ikke kosmetisk: MSW-workeren
+registreres på `BASE_URL` (`/sif-brukerdialog/<app-navn>/`), og en service worker fanger **kun**
+opp requests innenfor sitt eget scope. Rot-relative verdier som appen typisk har i dev
+(`/api/brukerdialog`, `/api/ung-brukerdialog-api` …) ligger utenfor det scopet — de kallene går
+da forbi MSW og treffer selve gh-pages-hostingen (404), i stedet for mock-handlerne. Løsningen er
+å prefikse **alle** `*_FRONTEND_PATH`-verdiene med samme path som `base`/`PUBLIC_PATH`, f.eks.
+`/sif-brukerdialog/<app-navn>/api/brukerdialog`. Dette er lett å overse fordi build og typesjekk
+er grønne uansett — feilen viser seg først som mislykkede API-kall i nettleserkonsollen i den
+deployede demoen.
 
 **Ikke** kopier appSettings fra en annen app — nøkler og env-schema varierer per app.
 
@@ -95,6 +105,25 @@ Service worker registreres på origin-roten som standard. Sett URL eksplisitt n�
 
 Ikke bruk `enableMockingBase` fra `@sif/api/mock-utils` — den krever `ENV === 'development'`.
 
+**Catch-all-handlere (`http.get('*', ...)`, `http.all('*', ...)`) fanger også cross-origin-kall.**
+`*` i msw matcher enhver URL, ikke bare samme origin — inkludert `https://cdn.nav.no/...`, som
+Aksel/dekoratøren bruker til fonter (`SourceSans3-normal.woff2` m.fl.). Uten en egen `passthrough()`-
+handler foran catch-all'en svarer mocken med falsk JSON i stedet for fontfilen, og teksten faller
+tilbake til systemfont i hele demoen — helt uten feilmelding i konsoll eller build.
+
+Legg alltid til, **før** catch-all-handlerne, én per faktisk brukt cross-origin-host:
+
+```ts
+import { passthrough } from 'msw';
+
+http.all('https://cdn.nav.no/*', () => passthrough()),
+```
+
+Sjekk `index.html`/`app.css` for `cdn.nav.no`-referanser (fonter, dekoratør-CSS) og andre eksterne
+hosts (se `apps/opplaringspenger-soknad/mock/msw/handlers.ts` for et tredjepartseksempel med
+`widget.uxsignals.com`). **Verifiser visuelt** i `demo:start` at teksten faktisk vises med Aksel sin
+font, ikke systemets standardfont — det er den eneste pålitelige sjekken her.
+
 ### 6. Routing
 
 gh-pages har ingen server som kan rute på path → **HashRouter kreves**.
@@ -103,11 +132,24 @@ gh-pages har ingen server som kan rute på path → **HashRouter kreves**.
 - Hopp over `ensureBaseNameForReactRouter(PUBLIC_PATH)` når hash-router er aktiv
 - Gå gjennom **all** hard navigasjon (`window.location.assign`, `relocateToWelcomePage`, scenariobytte, reset): disse ignorerer routeren og må gi hash-URL på gh-pages, f.eks. `${import.meta.env.BASE_URL}#${route}`. Dette er den vanligste glippen.
 
-### 7. Demo-markering (valgfritt, men anbefalt)
+### 7. Demo-markering (obligatorisk — glemmes lett, sjekk eksplisitt før du er ferdig)
 
-`DemoInfo`-banner + `.demoMode`-vannmerke, begge bak `erGitHubPages`. Kopier fra
-`apps/endringsmelding-pleiepenger/src/app/components/demo/`. Hent tittelen fra
-`@navikt/sif-app-register` — ikke dikt opp ny tekst.
+To ting kreves sammen, begge bak `erGitHubPages`/`isGitHubPages()`:
+
+1. **`DemoInfo`-banner** — synlig GlobalAlert-boks. Hent tittelen fra `@navikt/sif-app-register`
+   (f.eks. `<AppNavn>App.tittel.nb`) — ikke dikt opp ny tekst.
+2. **`.demoMode`-vannmerke** — CSS-en alene er ikke nok. Tre ting må stemme samtidig:
+   - `demo.css` kopiert til appen (fra `apps/endringsmelding-pleiepenger/src/app/components/demo/demo.css`
+     eller en annen demo-app som allerede har den)
+   - CSS-filen faktisk **importert** et sted i demo-treet (`import './demo.css'` i router-/wrapper-komponenten)
+   - `className="demoMode"` faktisk **satt på et element** i samme tre
+
+   Rekkefølgen over er den vanligste glippen: filen kopieres, men importen eller
+   `className` glemmes, og vannmerket vises aldri uten at build eller lint feiler — ingenting
+   varsler om feilen. **Verifiser derfor visuelt** (`demo:build` + `demo:start`, se i nettleser)
+   at DEMO-vannmerket faktisk vises diagonalt over hele siden, ikke bare at `demo.css` finnes som fil.
+
+Se `apps/aktivitetspenger-soknad/src/demo/DemoAppRouter.tsx` for et komplett eksempel på alle tre delene.
 
 ### 8. `package.json` — scripts
 
@@ -159,7 +201,9 @@ publiserte sider. **Den avledes ikke fra workflowen** — legg derfor inn en ny 
 2. `pnpm build` og `pnpm lint:tsc` — bekrefter at `__IS_GITHUB_PAGES__`-guarden ikke brøt ordinært build
 3. Sjekk `dist-demo/index.html`: `PUBLIC_PATH` og `src="/sif-brukerdialog/<app-navn>/assets/…"` er riktige, og `mockServiceWorker.js` ligger i `dist-demo/`
 4. Grep i `src/` etter hver nøkkel du overstyret i `demoAppSettings` — bekreft at den faktisk leses
-5. Deploy kjøres kun manuelt: Actions → «Build and deploy gh-pages» → «Run workflow», med branch du vil bygge fra
+5. **`className="demoMode"` og `import './demo.css'` finnes begge** i demo-router-treet (grep etter
+   `demoMode` i `src/` — treff kun i `.css`-filen betyr at importen eller klassen mangler)
+6. Deploy kjøres kun manuelt: Actions → «Build and deploy gh-pages» → «Run workflow», med branch du vil bygge fra
 
 ## Vanlige feil
 
@@ -173,3 +217,6 @@ publiserte sider. **Den avledes ikke fra workflowen** — legg derfor inn en ny 
 | `mockServiceWorker.js` mangler i `dist-demo`         | Filen ligger i approt, ikke i `public/`                     | `copy-msw`-plugin i `writeBundle`                               |
 | Scenariovelger vises ikke                            | Guard bruker `import.meta.env.PROD`, som er `true` i builds | Guard på `__IS_GITHUB_PAGES__` / `VELG_SCENARIO` i stedet       |
 | `define` har ingen effekt                            | Nøkkelen matcher ikke uttrykket i koden                     | Bruk nøyaktig uttrykk, f.eks. `'import.meta.env.X'` (punkt 3)   |
+| DEMO-vannmerke vises ikke                             | `demo.css` kopiert, men ikke importert, eller `className="demoMode"` mangler | Sjekk begge deler er satt i samme komponenttre (punkt 7), verifiser visuelt |
+| Tekst vises med feil/systemfont i demoen               | Catch-all-handler (`*`) fanger cross-origin-kall til `cdn.nav.no` og returnerer falsk JSON i stedet for fonten | `passthrough()` for `cdn.nav.no` før catch-all (punkt 5) |
+| API-kall 404 i deployet demo, men fungerer i `demo:start` lokalt | `*_FRONTEND_PATH` er rot-relativ og faller utenfor MSW-workerens scope (`BASE_URL`) | Prefiks alle `*_FRONTEND_PATH` med `PUBLIC_PATH` (punkt 2) |
