@@ -22,6 +22,7 @@ const {
     getArbeidsukeFromEnkeltdagerIUken,
     getArbeidsukerFromEnkeltdager,
     erArbeidsgiverInnenforSøknadsperioder,
+    getFeriedagerFromLovbestemtFerie,
 } = _getSakFromK9Sak;
 
 const faktiskISODuration: ISODuration = 'PT2H0M';
@@ -369,6 +370,30 @@ describe('getSakFromK9Sak', () => {
                     ),
                 ).toBeFalsy();
             });
+        });
+    });
+
+    describe('getFeriedagerFromLovbestemtFerie', () => {
+        it('tar med alle dager i perioder hvor skalHaFerie er true', () => {
+            const feriedager = getFeriedagerFromLovbestemtFerie([
+                { ...ISODateRangeToDateRange('2026-09-14/2026-09-16'), skalHaFerie: true },
+            ]);
+            expect(Object.keys(feriedager)).toEqual(['2026-09-14', '2026-09-15', '2026-09-16']);
+            expect(feriedager['2026-09-14'].skalHaFerie).toBe(true);
+            expect(feriedager['2026-09-14'].liggerISak).toBe(true);
+        });
+        it('tar ikke med perioder hvor skalHaFerie er false', () => {
+            const feriedager = getFeriedagerFromLovbestemtFerie([
+                { ...ISODateRangeToDateRange('2026-09-14/2026-09-17'), skalHaFerie: false },
+            ]);
+            expect(Object.keys(feriedager)).toEqual([]);
+        });
+        it('tar kun med perioder hvor skalHaFerie er true når saken har begge deler', () => {
+            const feriedager = getFeriedagerFromLovbestemtFerie([
+                { ...ISODateRangeToDateRange('2026-09-14/2026-09-15'), skalHaFerie: false },
+                { ...ISODateRangeToDateRange('2026-09-16/2026-09-17'), skalHaFerie: true },
+            ]);
+            expect(Object.keys(feriedager)).toEqual(['2026-09-16', '2026-09-17']);
         });
     });
 });
