@@ -17,13 +17,13 @@
     },
     "dependencies": {
         "@navikt/sif-common-utils": "workspace:*",
-        "react-intl": "12.1.0"
+        "react-intl": "12.1.3"
     },
     "devDependencies": {
         "@navikt/sif-common-env": "workspace:*",
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
-        "eslint": "10.10.0",
+        "eslint": "10.11.0",
         "postcss": ">=8.5.28",
         "typescript": "6.0.3",
         "vitest": "5.0.1"
