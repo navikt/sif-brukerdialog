@@ -43,7 +43,7 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
 
     return (
         <SøknadFormStep stepId={StepID.NATTEVÅK_OG_BEREDSKAP} onValidFormSubmit={onValidSubmit}>
-            <FormLayout.Guide compact={true}>
+            <FormLayout.Guide>
                 <AppText id="steg.nattevåkOgBeredskap.veileder" />
                 <Box paddingBlock="space-16 space-0">
                     <ExpandableInfo title={text('steg.nattevåkOgBeredskap.nattevåk.spm.description.flereBarn.tittel')}>
