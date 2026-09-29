@@ -31,7 +31,7 @@ const AppHeader = ({ visActionsMenu = false }: Props) => {
 
     return (
         <>
-            {__IS_VEILEDER_DEMO__ && <VeilederDemoInformasjon variant="compact" />}
+            {__IS_DEMO__ && <VeilederDemoInformasjon variant="compact" />}
 
             <InternalHeader>
                 {__IS_GITHUB_PAGES__ && (
@@ -42,7 +42,7 @@ const AppHeader = ({ visActionsMenu = false }: Props) => {
                 )}
                 <InternalHeader.Title href="/">Deltakerregistrering - ungdomsprogrammet</InternalHeader.Title>
                 <Spacer />
-                {__IS_VEILEDER_DEMO__ === false && (
+                {__IS_DEMO__ === false && (
                     <InternalHeader.Button
                         aria-label="Bytt mellom lys og mørk modus"
                         onClick={async (e) => {

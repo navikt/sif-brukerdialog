@@ -1,10 +1,9 @@
 import { getMaybeEnv } from '@navikt/sif-common-env';
 import { enableMocking as enableMockingBase } from '@sif/api/mock-utils';
 
-import { isGitHubPages } from '../src/app/utils/isGitHubPages';
 
 export async function enableMocking() {
-    if (isGitHubPages()) {
+    if (__IS_GITHUB_PAGES__) {
         // MSW registreres på origin-roten som standard - må settes eksplisitt under gh-pages sin base-path.
         if (getMaybeEnv('ENV') !== 'development') {
             return;

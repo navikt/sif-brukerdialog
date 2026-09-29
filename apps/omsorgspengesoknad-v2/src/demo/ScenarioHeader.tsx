@@ -1,3 +1,4 @@
+import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
 import { getRequiredEnv } from '@navikt/sif-common-env';
 import { ScenarioSelectorHeader, type ScenarioSelectorHeaderGroup } from '@sif/soknad-ui';
 
@@ -29,10 +30,6 @@ const scenarioGroups: Array<ScenarioSelectorHeaderGroup<ScenarioType>> = [
 ];
 
 export const ScenarioHeader = () => {
-    if (import.meta.env.PROD) {
-        return null;
-    }
-
     const setScenario = (scenario: ScenarioType) => {
         store.setScenario(scenario);
         globalThis.location.assign(getRequiredEnv('PUBLIC_PATH'));
@@ -41,7 +38,7 @@ export const ScenarioHeader = () => {
 
     return (
         <ScenarioSelectorHeader
-            title="Demo av omsorgspengesøknad"
+            appTitle={OmsorgsdagerKroniskApp.tittel.nb}
             groups={scenarioGroups}
             activeScenario={store.getScenario()}
             onSelectScenario={setScenario}

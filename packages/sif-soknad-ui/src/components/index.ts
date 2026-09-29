@@ -1,6 +1,7 @@
 export { AppHeader } from './app-header/AppHeader';
 export { ApplicationPictogram } from './app-header/ApplicationPictogram';
 export { AriaLiveRegion } from './aria-live-region/AriaLiveRegion';
+export { DemoInfoAlert } from './demo-info-alert/DemoInfoAlert';
 export { DevBranchInfo } from './dev-branch-info/DevBranchInfo';
 export { ExternalLink } from './external-link/ExternalLink';
 export { FormContentLoader } from './form-content-loader/FormContentLoader';

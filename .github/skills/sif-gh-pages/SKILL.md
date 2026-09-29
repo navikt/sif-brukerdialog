@@ -73,7 +73,7 @@ satt der, er endringen oppførselsbevarende i drift.
 Kopier appens egen `vite.dev.config.ts` (ikke en annen apps demo-config) og endre:
 
 - `base: '/sif-brukerdialog/<app-navn>/'`
-- `define`: `__IS_GITHUB_PAGES__: true` og skru av dekoratør-injeksjon
+- `define`: `__IS_GITHUB_PAGES__: true`, `__IS_DEMO__: true` og skru av dekoratør-injeksjon
 - `html-transform` bruker `getDemoAppSettings()`
 - `build.outDir: './dist-demo'`, `emptyOutDir: true`, `sourcemap: true`
 - `copy-msw`-plugin i `writeBundle` hvis `mockServiceWorker.js` ligger i approt (ikke nødvendig fra `public/`)
@@ -86,17 +86,20 @@ uttrykket `undefined`, og kallet blir stående i bundlet i stedet for å elimine
 flagget i `src/` og kopier uttrykket derfra. Merk at appens `vite.dev.config.ts` kan ha samme feil —
 ikke arv den ukritisk.
 
-### 4. `vite-env.d.ts`
+### 4. `vite-env.d.ts` og flagg
 
-`declare const __IS_GITHUB_PAGES__: boolean;`
-
-Flagget defineres kun i demo-configen. Les det derfor alltid gjennom en guard:
+To flagg med fast betydning i alle apper:
 
 ```ts
-export const isGitHubPages = (): boolean => typeof __IS_GITHUB_PAGES__ !== 'undefined' && __IS_GITHUB_PAGES__;
+/** Bygget hostes på GitHub Pages: HashRouter, BASE_URL-navigasjon, SIF-lenke. Impliserer normalt __IS_DEMO__. */
+declare const __IS_GITHUB_PAGES__: boolean;
+/** Demo-UI og mock-scenarioer (f.eks. ScenarioHeader, DemoInfoAlert, .demoMode). Kun true på GitHub Pages og lokalt i dev – aldri i prod, e2e eller test. */
+declare const __IS_DEMO__: boolean;
 ```
 
-Uten `typeof`-guarden krasjer øvrige builds på `ReferenceError`. Alternativet — å definere `false` i alle andre vite-/vitest-/storybook-configer — er mer å vedlikeholde.
+- `__IS_GITHUB_PAGES__` styrer **hosting**: router, hard navigasjon, MSW-sti.
+- `__IS_DEMO__` styrer **demo-UI**: `ScenarioHeader`, `DemoInfoAlert`, `.demoMode`, mock-scenarioer.
+- Definer begge i **alle** vite- og vitest-configer (også som `false`) og les konstantene direkte — ingen `typeof`-guard eller `isGitHubPages()`-wrapper. Storybook (`@storybook/react-vite`) arver `define` fra `vite.config.ts`.
 
 ### 5. MSW
 
@@ -128,18 +131,19 @@ font, ikke systemets standardfont — det er den eneste pålitelige sjekken her.
 
 gh-pages har ingen server som kan rute på path → **HashRouter kreves**.
 
-- `SoknadApplication`: sett `useHashRouter={erGitHubPages}`
+- `SoknadApplication`: sett `useHashRouter={__IS_GITHUB_PAGES__}`
 - Hopp over `ensureBaseNameForReactRouter(PUBLIC_PATH)` når hash-router er aktiv
 - Gå gjennom **all** hard navigasjon (`window.location.assign`, `relocateToWelcomePage`, scenariobytte, reset): disse ignorerer routeren og må gi hash-URL på gh-pages, f.eks. `${import.meta.env.BASE_URL}#${route}`. Dette er den vanligste glippen.
 
 ### 7. Demo-markering (obligatorisk — glemmes lett, sjekk eksplisitt før du er ferdig)
 
-To ting kreves sammen, begge bak `erGitHubPages`/`isGitHubPages()`:
+To ting kreves sammen, begge bak `__IS_DEMO__`:
 
-1. **`DemoInfo`-banner** — synlig GlobalAlert-boks. Hent tittelen fra `@navikt/sif-app-register`
-   (f.eks. `<AppNavn>App.tittel.nb`) — ikke dikt opp ny tekst.
+1. **`ScenarioHeader` + `DemoInfoAlert`** fra `@sif/soknad-ui` — header og GlobalAlert-boks med
+   felles standardtekst. Send inn `appTitle={<AppNavn>App.tittel.nb}` fra `@navikt/sif-app-register`
+   — ikke dikt opp ny tekst. Legg appens `ScenarioHeader` i `src/demo/ScenarioHeader.tsx` (named export).
 2. **`.demoMode`-vannmerke** — CSS-en alene er ikke nok. Tre ting må stemme samtidig:
-   - `demo.css` kopiert til appen (fra `apps/endringsmelding-pleiepenger/src/app/components/demo/demo.css`
+   - `demo.css` kopiert til appen (fra `apps/endringsmelding-pleiepenger/src/demo/demo.css`
      eller en annen demo-app som allerede har den)
    - CSS-filen faktisk **importert** et sted i demo-treet (`import './demo.css'` i router-/wrapper-komponenten)
    - `className="demoMode"` faktisk **satt på et element** i samme tre

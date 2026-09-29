@@ -13,7 +13,8 @@ export interface ScenarioSelectorHeaderGroup<T extends string = string> {
 }
 
 interface BaseProps {
-    title: string;
+    /** Vises som «Demo – {appTitle}». */
+    appTitle: string;
     isGitHubPages?: boolean;
 }
 
@@ -33,24 +34,18 @@ interface SelectableProps<T extends string> extends BaseProps {
 
 type Props<T extends string = string> = TitleOnlyProps | SelectableProps<T>;
 
-export const ScenarioSelectorHeader = <T extends string = string>(props: Props<T>) => {
-    const { title, isGitHubPages } = props;
-
-    return (
-        <InternalHeader>
-            {isGitHubPages && (
-                <InternalHeader.Button
-                    onClick={() => (window.location.href = 'https://navikt.github.io/sif-brukerdialog/')}>
-                    SIF
-                </InternalHeader.Button>
-            )}
-            <InternalHeader.Title>{title}</InternalHeader.Title>
-            <Spacer />
-
-            {props.groups !== undefined && <ScenarioMenu {...props} />}
-        </InternalHeader>
-    );
-};
+export const ScenarioSelectorHeader = <T extends string = string>(props: Props<T>) => (
+    <InternalHeader>
+        {props.isGitHubPages && (
+            <InternalHeader.Button as="a" href="https://navikt.github.io/sif-brukerdialog/">
+                SIF
+            </InternalHeader.Button>
+        )}
+        <InternalHeader.Title>Demo – {props.appTitle}</InternalHeader.Title>
+        <Spacer />
+        {props.groups !== undefined && <ScenarioMenu {...props} />}
+    </InternalHeader>
+);
 
 const ScenarioMenu = <T extends string>({
     buttonLabel = 'Velg scenario',
@@ -64,7 +59,7 @@ const ScenarioMenu = <T extends string>({
         return null;
     }
 
-    const activeLabel = groups.flatMap((g) => g.options).find((o) => o.value === activeScenario)?.label;
+    const activeLabel = visibleGroups.flatMap((g) => g.options).find((o) => o.value === activeScenario)?.label;
 
     return (
         <ActionMenu>
@@ -75,26 +70,19 @@ const ScenarioMenu = <T extends string>({
                 </InternalHeader.Button>
             </ActionMenu.Trigger>
             <ActionMenu.Content>
-                {visibleGroups.map((group, groupIndex) => (
-                    <Fragment key={group.label ?? `group-${groupIndex}`}>
-                        {group.label ? (
-                            <ActionMenu.Group label={group.label}>
-                                {group.options.map((option) => (
-                                    <ActionMenu.Item key={option.value} onSelect={() => onSelectScenario(option.value)}>
-                                        {option.label}
-                                    </ActionMenu.Item>
-                                ))}
-                            </ActionMenu.Group>
-                        ) : (
-                            group.options.map((option) => (
-                                <ActionMenu.Item key={option.value} onSelect={() => onSelectScenario(option.value)}>
-                                    {option.label}
-                                </ActionMenu.Item>
-                            ))
-                        )}
-                        {groupIndex < visibleGroups.length - 1 ? <ActionMenu.Divider /> : null}
-                    </Fragment>
-                ))}
+                {visibleGroups.map((group, groupIndex) => {
+                    const items = group.options.map((option) => (
+                        <ActionMenu.Item key={option.value} onSelect={() => onSelectScenario(option.value)}>
+                            {option.label}
+                        </ActionMenu.Item>
+                    ));
+                    return (
+                        <Fragment key={group.label ?? `group-${groupIndex}`}>
+                            {group.label ? <ActionMenu.Group label={group.label}>{items}</ActionMenu.Group> : items}
+                            {groupIndex < visibleGroups.length - 1 && <ActionMenu.Divider />}
+                        </Fragment>
+                    );
+                })}
             </ActionMenu.Content>
         </ActionMenu>
     );

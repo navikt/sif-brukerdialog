@@ -22,7 +22,7 @@ export const ThemeProvider = ({ children }) => {
                     localStorage.setItem(StorageKey, useDarkMode ? 'dark' : 'light');
                 },
             }}>
-            <Theme theme={darkMode ? 'dark' : 'light'} hasBackground={__IS_VEILEDER_DEMO__ === false}>
+            <Theme theme={darkMode ? 'dark' : 'light'} hasBackground={__IS_DEMO__ === false}>
                 {children}
             </Theme>
         </ThemeContext.Provider>

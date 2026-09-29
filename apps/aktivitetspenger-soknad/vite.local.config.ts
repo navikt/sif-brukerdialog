@@ -64,10 +64,10 @@ export default defineConfig(({ mode }) => {
         define: isE2E
             ? {
                   __IS_GITHUB_PAGES__: false,
-                  __SCENARIO_HEADER__: false,
+                  __IS_DEMO__: false,
               }
             : {
-                  __SCENARIO_HEADER__: true,
+                  __IS_DEMO__: true,
                   __IS_GITHUB_PAGES__: false,
               },
     };

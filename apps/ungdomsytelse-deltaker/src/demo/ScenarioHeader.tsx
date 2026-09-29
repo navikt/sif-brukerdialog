@@ -1,3 +1,4 @@
+import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
 import { getRequiredEnv } from '@navikt/sif-common-env';
 import { ScenarioSelectorHeader, type ScenarioSelectorHeaderGroup } from '@sif/soknad-ui';
 import { useNavigate } from 'react-router-dom';
@@ -66,7 +67,7 @@ export const ScenarioHeader = () => {
     return (
         <ScenarioSelectorHeader
             isGitHubPages={__IS_GITHUB_PAGES__}
-            title="Demo av deltakersider - ungdomsprogramytelsen"
+            appTitle={UngdomsytelseDeltakerApp.tittel.nb}
             buttonLabel="Velg deltakerscenario"
             groups={scenarioGroups}
             activeScenario={store.getScenario()}

@@ -9,12 +9,13 @@ import {
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import { DemoInfoAlert } from '@sif/soknad-ui';
 import { UxSignalsLoaderProvider } from '@sif/surveys';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Navigate, Route } from 'react-router-dom';
 
+import { ScenarioHeader } from '../demo/ScenarioHeader';
 import { mellomlagringService } from './api/mellomlagringService';
-import ScenarioHeader from './components/demo/ScenarioHeader';
 import { applicationIntlMessages, type AppMessageKeys } from './i18n';
 import getLenker from './lenker';
 import Søknad from './søknad/Søknad';
@@ -27,22 +28,25 @@ const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_
 ensureBaseNameForReactRouter(PUBLIC_PATH);
 const queryClient = new QueryClient();
 
-const isGitHubPages = typeof __IS_GITHUB_PAGES__ !== 'undefined' && __IS_GITHUB_PAGES__;
-
 const App = () => {
     return (
         <Theme>
-            {__IS_GITHUB_PAGES__ && <ScenarioHeader />}
+            {__IS_DEMO__ && (
+                <>
+                    <ScenarioHeader />
+                    <DemoInfoAlert appTitle={OpplæringspengerApp.tittel.nb} />
+                </>
+            )}
             <QueryClientProvider client={queryClient}>
                 <UxSignalsLoaderProvider>
-                    <div className={__IS_GITHUB_PAGES__ ? 'demoMode' : undefined}>
+                    <div className={__IS_DEMO__ ? 'demoMode' : undefined}>
                         <SoknadApplication
                             appKey={OpplæringspengerApp.key}
                             appName={OpplæringspengerApp.navn}
                             appTitle={OpplæringspengerApp.tittel.nb}
                             intlMessages={applicationIntlMessages}
                             useLanguageSelector={appEnv.SIF_PUBLIC_FEATURE_NYNORSK === 'on'}
-                            useHashRouter={isGitHubPages}
+                            useHashRouter={__IS_GITHUB_PAGES__}
                             appStatus={{
                                 sanityConfig: {
                                     projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
