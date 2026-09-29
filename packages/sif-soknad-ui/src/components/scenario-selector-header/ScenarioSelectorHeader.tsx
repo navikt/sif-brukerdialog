@@ -12,28 +12,29 @@ export interface ScenarioSelectorHeaderGroup<T extends string = string> {
     options: Array<ScenarioSelectorHeaderOption<T>>;
 }
 
-interface Props<T extends string = string> {
+interface BaseProps {
     title: string;
-    buttonLabel?: string;
-    activeScenario?: T;
-    groups?: Array<ScenarioSelectorHeaderGroup<T>>;
     isGitHubPages?: boolean;
-    onSelectScenario?: (value: T) => void;
 }
 
-export const ScenarioSelectorHeader = <T extends string = string>({
-    title,
-    buttonLabel = 'Velg scenario',
-    activeScenario,
-    groups = [],
-    isGitHubPages,
-    onSelectScenario,
-}: Props<T>) => {
-    const visibleGroups = groups.filter((group) => group.options.length > 0);
+interface TitleOnlyProps extends BaseProps {
+    buttonLabel?: never;
+    activeScenario?: never;
+    groups?: never;
+    onSelectScenario?: never;
+}
 
-    const activeLabel = activeScenario
-        ? groups.flatMap((g) => g.options).find((o) => o.value === activeScenario)?.label
-        : undefined;
+interface SelectableProps<T extends string> extends BaseProps {
+    buttonLabel?: string;
+    activeScenario: T;
+    groups: Array<ScenarioSelectorHeaderGroup<T>>;
+    onSelectScenario: (value: T) => void;
+}
+
+type Props<T extends string = string> = TitleOnlyProps | SelectableProps<T>;
+
+export const ScenarioSelectorHeader = <T extends string = string>(props: Props<T>) => {
+    const { title, isGitHubPages } = props;
 
     return (
         <InternalHeader>
@@ -46,42 +47,55 @@ export const ScenarioSelectorHeader = <T extends string = string>({
             <InternalHeader.Title>{title}</InternalHeader.Title>
             <Spacer />
 
-            {visibleGroups.length > 0 && (
-                <ActionMenu>
-                    <ActionMenu.Trigger>
-                        <InternalHeader.Button>
-                            <PersonCircleIcon fontSize="1.5rem" aria-hidden={true} />
-                            {buttonLabel} ({activeLabel})
-                        </InternalHeader.Button>
-                    </ActionMenu.Trigger>
-                    <ActionMenu.Content>
-                        {visibleGroups.map((group, groupIndex) => (
-                            <Fragment key={group.label ?? `group-${groupIndex}`}>
-                                {group.label ? (
-                                    <ActionMenu.Group label={group.label}>
-                                        {group.options.map((option) => (
-                                            <ActionMenu.Item
-                                                key={option.value}
-                                                onSelect={() => onSelectScenario?.(option.value)}>
-                                                {option.label}
-                                            </ActionMenu.Item>
-                                        ))}
-                                    </ActionMenu.Group>
-                                ) : (
-                                    group.options.map((option) => (
-                                        <ActionMenu.Item
-                                            key={option.value}
-                                            onSelect={() => onSelectScenario?.(option.value)}>
-                                            {option.label}
-                                        </ActionMenu.Item>
-                                    ))
-                                )}
-                                {groupIndex < visibleGroups.length - 1 ? <ActionMenu.Divider /> : null}
-                            </Fragment>
-                        ))}
-                    </ActionMenu.Content>
-                </ActionMenu>
-            )}
+            {props.groups !== undefined && <ScenarioMenu {...props} />}
         </InternalHeader>
+    );
+};
+
+const ScenarioMenu = <T extends string>({
+    buttonLabel = 'Velg scenario',
+    activeScenario,
+    groups,
+    onSelectScenario,
+}: SelectableProps<T>) => {
+    const visibleGroups = groups.filter((group) => group.options.length > 0);
+
+    if (visibleGroups.length === 0) {
+        return null;
+    }
+
+    const activeLabel = groups.flatMap((g) => g.options).find((o) => o.value === activeScenario)?.label;
+
+    return (
+        <ActionMenu>
+            <ActionMenu.Trigger>
+                <InternalHeader.Button>
+                    <PersonCircleIcon fontSize="1.5rem" aria-hidden={true} />
+                    {buttonLabel} ({activeLabel})
+                </InternalHeader.Button>
+            </ActionMenu.Trigger>
+            <ActionMenu.Content>
+                {visibleGroups.map((group, groupIndex) => (
+                    <Fragment key={group.label ?? `group-${groupIndex}`}>
+                        {group.label ? (
+                            <ActionMenu.Group label={group.label}>
+                                {group.options.map((option) => (
+                                    <ActionMenu.Item key={option.value} onSelect={() => onSelectScenario(option.value)}>
+                                        {option.label}
+                                    </ActionMenu.Item>
+                                ))}
+                            </ActionMenu.Group>
+                        ) : (
+                            group.options.map((option) => (
+                                <ActionMenu.Item key={option.value} onSelect={() => onSelectScenario(option.value)}>
+                                    {option.label}
+                                </ActionMenu.Item>
+                            ))
+                        )}
+                        {groupIndex < visibleGroups.length - 1 ? <ActionMenu.Divider /> : null}
+                    </Fragment>
+                ))}
+            </ActionMenu.Content>
+        </ActionMenu>
     );
 };
