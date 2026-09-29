@@ -32,10 +32,6 @@ const SøknadDataWrapper = () => {
             }
             return <InitialDataErrorPage applicationTitle={text('application.title')} />;
         case 'success': {
-            const env = getAppEnv();
-            if (env.SIF_PUBLIC_IS_OPEN !== 'true') {
-                return <IkkeÅpenPage />;
-            }
             if (result.data.tilgjengeligSøknad.type === TilgjengeligSøknadType.INGEN) {
                 return <KanIkkeSøkePage søker={result.data.søker} tilgjengelig={result.data.tilgjengeligSøknad} />;
             }
@@ -58,6 +54,10 @@ export const App = () => {
     if (globalThis.location.pathname === '/') {
         globalThis.location.pathname = env.PUBLIC_PATH;
         return null;
+    }
+
+    if (env.SIF_PUBLIC_IS_OPEN !== 'true') {
+        return <IkkeÅpenPage />;
     }
 
     return (
