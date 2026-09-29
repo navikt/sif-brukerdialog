@@ -64,6 +64,12 @@ export const App = () => {
         <SøknadAppProvider
             applicationKey={AktivitetspengerSoknadApp.key}
             useAnalytics={env.SIF_PUBLIC_USE_ANALYTICS === 'true'}
+            appStatusConfig={{
+                sanityConfig: {
+                    projectId: env.SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+                    dataset: env.SIF_PUBLIC_APPSTATUS_DATASET,
+                },
+            }}
             intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
             <AppRouter>
                 <SøknadDataWrapper />
