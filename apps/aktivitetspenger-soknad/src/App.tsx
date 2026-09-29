@@ -7,6 +7,7 @@ import { InitialDataErrorPage, LoadingPage } from '@sif/soknad-ui';
 
 import { initApiClients } from './app/api/initApiClients';
 import AppRouter from './app/AppRouter';
+import { IkkeÅpenPage } from './app/content/ikke-apen/IkkeApenPage';
 import { KanIkkeSøkePage } from './app/content/kan-ikke-soke/KanIkkeSøke';
 import { AppContextProvider } from './app/context/AppContext';
 import { applicationIntlMessages, useAppIntl } from './app/i18n';
@@ -30,7 +31,11 @@ const SøknadDataWrapper = () => {
                 );
             }
             return <InitialDataErrorPage applicationTitle={text('application.title')} />;
-        case 'success':
+        case 'success': {
+            const env = getAppEnv();
+            if (env.SIF_PUBLIC_IS_OPEN !== 'true') {
+                return <IkkeÅpenPage />;
+            }
             if (result.data.tilgjengeligSøknad.type === TilgjengeligSøknadType.INGEN) {
                 return <KanIkkeSøkePage søker={result.data.søker} tilgjengelig={result.data.tilgjengeligSøknad} />;
             }
@@ -44,6 +49,7 @@ const SøknadDataWrapper = () => {
                     <Søknad />
                 </AppContextProvider>
             );
+        }
     }
 };
 

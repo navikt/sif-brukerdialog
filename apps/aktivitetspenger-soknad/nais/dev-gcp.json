@@ -56,6 +56,8 @@
         "SIF_PUBLIC_SEND_BESKJED": "https://innboks.intern.dev.nav.no/s/beskjed-til-oss?category=Aktivitetspenger",
         "SIF_PUBLIC_URL_DOKUMENTARKIV": "https://www.ansatt.dev.nav.no/dokumentarkiv/tema/UNG",
 
+        "SIF_PUBLIC_IS_OPEN": "true",
+
         "REQUIRED_PROXY_SERVICES": "K9_BRUKERDIALOG_PROSESSERING,UNG_DELTAKELSE_OPPLYSER,UNG_BRUKERDIALOG_API",
 
         "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/aktivitetspenger/soknad/api/brukerdialog",

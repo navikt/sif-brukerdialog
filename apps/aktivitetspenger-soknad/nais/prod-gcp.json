@@ -34,6 +34,9 @@
         "SIF_PUBLIC_DEKORATOR_URL   ": "https://www.nav.no/dekoratoren/?simple=false&chatbot=false&logoutUrl=https://www.nav.no/aktivitetspenger/soknad/oauth2/logout",
         "SIF_PUBLIC_FULL_DEKORATOR": "on",
         "SIF_PUBLIC_FEATURE_NYNORSK": "on",
+
+        "SIF_PUBLIC_IS_OPEN": "false",
+
         "REQUIRED_PROXY_SERVICES": "K9_BRUKERDIALOG_PROSESSERING,UNG_DELTAKELSE_OPPLYSER",
         "K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH": "/aktivitetspenger/soknad/api/brukerdialog",
         "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "prod-gcp:dusseldorf:k9-brukerdialog-prosessering",
