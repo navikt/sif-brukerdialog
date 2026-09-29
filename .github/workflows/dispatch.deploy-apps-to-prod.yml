@@ -15,6 +15,7 @@ on:
                 required: true
                 type: choice
                 options:
+                    - aktivitetspenger-soknad
                     - dine-pleiepenger
                     - ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
                     - endringsmelding-pleiepenger
@@ -92,7 +93,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'dine-pleiepenger' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'dine-pleiepenger'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -107,7 +108,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -121,7 +122,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'endringsmelding-pleiepenger' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'endringsmelding-pleiepenger'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -136,7 +137,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgsdager-aleneomsorg-dialog' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgsdager-aleneomsorg-dialog'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -150,7 +151,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgsdager-kalkulator' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgsdager-kalkulator'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -164,7 +165,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgspengerutbetaling-arbeidstaker-soknad' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgspengerutbetaling-arbeidstaker-soknad'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -178,7 +179,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgspengerutbetaling-soknad' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgspengerutbetaling-soknad'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -192,7 +193,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgspengesoknad' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgspengesoknad'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -206,7 +207,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'opplaringspenger-soknad' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'opplaringspenger-soknad'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -220,7 +221,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'pleiepenger-i-livets-sluttfase-soknad' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'pleiepenger-i-livets-sluttfase-soknad'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -234,7 +235,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'pleiepenger-sykt-barn' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'pleiepenger-sykt-barn'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -249,7 +250,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'sif-ettersending' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'sif-ettersending'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -263,7 +264,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'ungdomsytelse-deltaker' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'ungdomsytelse-deltaker'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
