@@ -1,6 +1,6 @@
 import './app.css';
 
-import { Box, Theme } from '@navikt/ds-react';
+import { Theme } from '@navikt/ds-react';
 import { OpplæringspengerApp } from '@navikt/sif-app-register';
 import { isProd } from '@navikt/sif-common-env';
 import {
@@ -14,7 +14,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Navigate, Route } from 'react-router-dom';
 
 import { mellomlagringService } from './api/mellomlagringService';
-import DemoInfo from './components/demo/DemoInfo';
+import ScenarioHeader from './components/demo/ScenarioHeader';
 import { applicationIntlMessages, type AppMessageKeys } from './i18n';
 import getLenker from './lenker';
 import Søknad from './søknad/Søknad';
@@ -32,11 +32,7 @@ const isGitHubPages = typeof __IS_GITHUB_PAGES__ !== 'undefined' && __IS_GITHUB_
 const App = () => {
     return (
         <Theme>
-            {__IS_GITHUB_PAGES__ && (
-                <Box marginBlock="space-0 space-48">
-                    <DemoInfo />
-                </Box>
-            )}
+            {__IS_GITHUB_PAGES__ && <ScenarioHeader />}
             <QueryClientProvider client={queryClient}>
                 <UxSignalsLoaderProvider>
                     <div className={__IS_GITHUB_PAGES__ ? 'demoMode' : undefined}>
@@ -80,11 +76,6 @@ const App = () => {
                     </div>
                 </UxSignalsLoaderProvider>
             </QueryClientProvider>
-            {__IS_GITHUB_PAGES__ && (
-                <Box marginBlock="space-48 space-24">
-                    <DemoInfo />
-                </Box>
-            )}
         </Theme>
     );
 };

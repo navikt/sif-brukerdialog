@@ -1,7 +1,7 @@
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 
-import { Box, Theme } from '@navikt/ds-react';
+import { Theme } from '@navikt/ds-react';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
 import { getMaybeEnv, isProd } from '@navikt/sif-common-env';
 import { ensureBaseNameForReactRouter, SoknadApplication } from '@navikt/sif-common-soknad-ds';
@@ -10,7 +10,7 @@ import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import DemoInfo from './components/demo/DemoInfo';
+import ScenarioHeader from './components/demo/ScenarioHeader';
 import DevPage from './dev/DevPage';
 import { applicationIntlMessages } from './i18n';
 import { SøknadRoutes } from './søknad/config/SøknadRoutes';
@@ -33,11 +33,7 @@ if (!erGitHubPages) {
 
 const App = () => (
     <Theme>
-        {erGitHubPages && (
-            <Box marginBlock="space-0 space-48">
-                <DemoInfo />
-            </Box>
-        )}
+        {erGitHubPages && <ScenarioHeader />}
         <div className={erGitHubPages ? 'demoMode' : undefined}>
             <SoknadApplication
                 appKey={EndringsmeldingPsbApp.key}
@@ -66,11 +62,6 @@ const App = () => (
                 </Routes>
             </SoknadApplication>
         </div>
-        {erGitHubPages && (
-            <Box marginBlock="space-48 space-24">
-                <DemoInfo />
-            </Box>
-        )}
     </Theme>
 );
 

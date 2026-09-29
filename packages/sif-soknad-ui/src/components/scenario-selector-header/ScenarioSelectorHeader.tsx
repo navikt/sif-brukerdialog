@@ -15,17 +15,17 @@ export interface ScenarioSelectorHeaderGroup<T extends string = string> {
 interface Props<T extends string = string> {
     title: string;
     buttonLabel?: string;
-    activeScenario: T;
-    groups: Array<ScenarioSelectorHeaderGroup<T>>;
+    activeScenario?: T;
+    groups?: Array<ScenarioSelectorHeaderGroup<T>>;
     isGitHubPages?: boolean;
-    onSelectScenario: (value: T) => void;
+    onSelectScenario?: (value: T) => void;
 }
 
 export const ScenarioSelectorHeader = <T extends string = string>({
     title,
     buttonLabel = 'Velg scenario',
     activeScenario,
-    groups,
+    groups = [],
     isGitHubPages,
     onSelectScenario,
 }: Props<T>) => {
@@ -46,38 +46,42 @@ export const ScenarioSelectorHeader = <T extends string = string>({
             <InternalHeader.Title>{title}</InternalHeader.Title>
             <Spacer />
 
-            <ActionMenu>
-                <ActionMenu.Trigger>
-                    <InternalHeader.Button>
-                        <PersonCircleIcon fontSize="1.5rem" aria-hidden={true} />
-                        {buttonLabel} ({activeLabel})
-                    </InternalHeader.Button>
-                </ActionMenu.Trigger>
-                <ActionMenu.Content>
-                    {visibleGroups.map((group, groupIndex) => (
-                        <Fragment key={group.label ?? `group-${groupIndex}`}>
-                            {group.label ? (
-                                <ActionMenu.Group label={group.label}>
-                                    {group.options.map((option) => (
+            {visibleGroups.length > 0 && (
+                <ActionMenu>
+                    <ActionMenu.Trigger>
+                        <InternalHeader.Button>
+                            <PersonCircleIcon fontSize="1.5rem" aria-hidden={true} />
+                            {buttonLabel} ({activeLabel})
+                        </InternalHeader.Button>
+                    </ActionMenu.Trigger>
+                    <ActionMenu.Content>
+                        {visibleGroups.map((group, groupIndex) => (
+                            <Fragment key={group.label ?? `group-${groupIndex}`}>
+                                {group.label ? (
+                                    <ActionMenu.Group label={group.label}>
+                                        {group.options.map((option) => (
+                                            <ActionMenu.Item
+                                                key={option.value}
+                                                onSelect={() => onSelectScenario?.(option.value)}>
+                                                {option.label}
+                                            </ActionMenu.Item>
+                                        ))}
+                                    </ActionMenu.Group>
+                                ) : (
+                                    group.options.map((option) => (
                                         <ActionMenu.Item
                                             key={option.value}
-                                            onSelect={() => onSelectScenario(option.value)}>
+                                            onSelect={() => onSelectScenario?.(option.value)}>
                                             {option.label}
                                         </ActionMenu.Item>
-                                    ))}
-                                </ActionMenu.Group>
-                            ) : (
-                                group.options.map((option) => (
-                                    <ActionMenu.Item key={option.value} onSelect={() => onSelectScenario(option.value)}>
-                                        {option.label}
-                                    </ActionMenu.Item>
-                                ))
-                            )}
-                            {groupIndex < visibleGroups.length - 1 ? <ActionMenu.Divider /> : null}
-                        </Fragment>
-                    ))}
-                </ActionMenu.Content>
-            </ActionMenu>
+                                    ))
+                                )}
+                                {groupIndex < visibleGroups.length - 1 ? <ActionMenu.Divider /> : null}
+                            </Fragment>
+                        ))}
+                    </ActionMenu.Content>
+                </ActionMenu>
+            )}
         </InternalHeader>
     );
 };
