@@ -86,6 +86,7 @@ const ScenarioHeader = () => {
 
     return (
         <ScenarioSelectorHeader
+            isGitHubPages={__IS_GITHUB_PAGES__}
             title='Demo av "Dine aktivitetspenger"'
             groups={groups}
             activeScenario={store.getScenario()}

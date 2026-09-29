@@ -71,6 +71,7 @@ export const ScenarioHeader = () => {
 
     return (
         <ScenarioSelectorHeader
+            isGitHubPages={isGitHubPages()}
             title={text('scenarioHeader.tittel')}
             groups={scenarioGroups}
             activeScenario={store.getScenario()}

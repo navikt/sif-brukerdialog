@@ -34,6 +34,12 @@ const AppHeader = ({ visActionsMenu = false }: Props) => {
             {__IS_VEILEDER_DEMO__ && <VeilederDemoInformasjon variant="compact" />}
 
             <InternalHeader>
+                {__IS_GITHUB_PAGES__ && (
+                    <InternalHeader.Button
+                        onClick={() => (window.location.href = 'https://navikt.github.io/sif-brukerdialog/')}>
+                        SIF
+                    </InternalHeader.Button>
+                )}
                 <InternalHeader.Title href="/">Deltakerregistrering - ungdomsprogrammet</InternalHeader.Title>
                 <Spacer />
                 {__IS_VEILEDER_DEMO__ === false && (

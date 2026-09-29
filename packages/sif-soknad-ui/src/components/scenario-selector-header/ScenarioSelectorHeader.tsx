@@ -17,6 +17,7 @@ interface Props<T extends string = string> {
     buttonLabel?: string;
     activeScenario: T;
     groups: Array<ScenarioSelectorHeaderGroup<T>>;
+    isGitHubPages?: boolean;
     onSelectScenario: (value: T) => void;
 }
 
@@ -25,6 +26,7 @@ export const ScenarioSelectorHeader = <T extends string = string>({
     buttonLabel = 'Velg scenario',
     activeScenario,
     groups,
+    isGitHubPages,
     onSelectScenario,
 }: Props<T>) => {
     const visibleGroups = groups.filter((group) => group.options.length > 0);
@@ -35,6 +37,12 @@ export const ScenarioSelectorHeader = <T extends string = string>({
 
     return (
         <InternalHeader>
+            {isGitHubPages && (
+                <InternalHeader.Button
+                    onClick={() => (window.location.href = 'https://navikt.github.io/sif-brukerdialog/')}>
+                    SIF
+                </InternalHeader.Button>
+            )}
             <InternalHeader.Title>{title}</InternalHeader.Title>
             <Spacer />
 
