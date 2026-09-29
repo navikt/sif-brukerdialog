@@ -25,9 +25,9 @@ export const nb = {
     'snarveier.endringsmelding.tittel': 'Meld fra om endring i arbeidstid, ferie eller tid i omsorgstilbud',
     'snarveier.endringsmelding.tekst':
         'Ved endringer i arbeidstid, ferie eller tid i omsorgstilbud i din pleiepengeperiode.',
-    'snarveier.endringsmelding.tekst.nyFunksjonalitet': 'Ny funksjonalitet: endre tid i omsorgstilbud',
     'snarveier.beskjed.tittel': 'Meld fra om andre endringer',
-    'snarveier.beskjed.tekst': 'Ved endringer om annet enn jobb og ferie kan du sende oss en beskjed her.',
+    'snarveier.beskjed.tekst':
+        'Ved endringer om annet enn jobb, ferie og tid i omsorgstilbud, kan du sende oss en beskjed her.',
     'snarveier.ettersend.tittel': 'Ettersend dokumenter',
     'snarveier.ettersend.tekst': 'Ettersend legeerklæring eller andre dokumenter til din sak.',
     'snarveier.skrivTilOss.tittel': 'Still oss spørsmål om saken din her',
