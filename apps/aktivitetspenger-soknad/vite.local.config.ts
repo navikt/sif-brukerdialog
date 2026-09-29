@@ -63,14 +63,12 @@ export default defineConfig(({ mode }) => {
         },
         define: isE2E
             ? {
-                  __IS_DEMO__: false,
-                  __INJECT_DECORATOR_CLIENT_SIDE__: false,
-                  __USE_FIXED_MOCKED_DATE__: true,
                   __IS_GITHUB_PAGES__: false,
                   __SCENARIO_HEADER__: false,
               }
             : {
                   __SCENARIO_HEADER__: true,
+                  __IS_GITHUB_PAGES__: false,
               },
     };
 });
