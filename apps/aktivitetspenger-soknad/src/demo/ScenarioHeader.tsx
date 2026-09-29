@@ -4,12 +4,10 @@ import { ScenarioSelectorHeader, type ScenarioSelectorHeaderGroup } from '@sif/s
 
 import { ScenarioType } from '../../mock/scenarios/types';
 import { store } from '../../mock/state/store';
+import { isGitHubPages } from '../app/utils/isGitHubPages';
 
 export const ScenarioHeader = () => {
     const { text } = useAppIntl();
-    if (import.meta.env.PROD) {
-        return null;
-    }
 
     const scenarioGroups: Array<ScenarioSelectorHeaderGroup<ScenarioType>> = [
         {
@@ -62,7 +60,13 @@ export const ScenarioHeader = () => {
 
     const setScenario = (scenario: ScenarioType) => {
         store.setScenario(scenario);
-        globalThis.location.assign(`${getRequiredEnv('PUBLIC_PATH')}/`);
+        if (isGitHubPages()) {
+            // HashRouter: en full navigasjon til path-basert PUBLIC_PATH fungerer ikke på gh-pages.
+            globalThis.location.assign(`${import.meta.env.BASE_URL}#/`);
+            globalThis.location.reload();
+        } else {
+            globalThis.location.assign(`${getRequiredEnv('PUBLIC_PATH')}/`);
+        }
     };
 
     return (

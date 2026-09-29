@@ -1,11 +1,14 @@
 import { AppText, useAppIntl } from '@app/i18n';
 import getLenker from '@app/lenker';
 import { getAppEnv } from '@app/setup/appEnv';
+import { isGitHubPages } from '@app/utils/isGitHubPages';
 import { BodyLong, Heading, Link, List, VStack } from '@navikt/ds-react';
 import { SøknadKvitteringPage } from '@sif/soknad-ui';
 
 export const Kvittering = () => {
     const { text } = useAppIntl();
+    // HashRouter på gh-pages: en path-basert appRootUrl (PUBLIC_PATH) fungerer ikke der.
+    const appRootUrl = isGitHubPages() ? `${import.meta.env.BASE_URL}#/` : getAppEnv().PUBLIC_PATH;
 
     return (
         <SøknadKvitteringPage
@@ -13,7 +16,7 @@ export const Kvittering = () => {
             applicationTitle={text('application.title')}
             infoTittel={text('kvittering.title')}
             infoMelding={text('kvittering.message')}
-            appRootUrl={getAppEnv().PUBLIC_PATH}>
+            appRootUrl={appRootUrl}>
             <VStack gap="space-32">
                 <div>
                     <Heading level="2" size="small" spacing>

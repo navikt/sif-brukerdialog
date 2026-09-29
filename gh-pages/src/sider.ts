@@ -54,6 +54,14 @@ export const sider: GhPagesSide[] = [
         disabled: false,
     },
     {
+        path: 'aktivitetspenger-soknad',
+        type: 'demo',
+        tittel: 'Søknad om aktivitetspenger',
+        beskrivelse: 'Demo av søknad om aktivitetspenger, med mockede data.',
+        workspace: 'apps/aktivitetspenger-soknad',
+        disabled: false,
+    },
+    {
         path: 'storybook',
         type: 'storybook',
         tittel: 'Felles storybook',

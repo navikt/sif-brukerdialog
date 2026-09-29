@@ -4,15 +4,14 @@ import { AktivitetspengerSoknadApp } from '@navikt/sif-app-register';
 import { TilgjengeligSøknadType } from '@navikt/ung-brukerdialog-api';
 import { SøknadAppProvider } from '@sif/soknad-app';
 import { InitialDataErrorPage, LoadingPage } from '@sif/soknad-ui';
-import { BrowserRouter } from 'react-router-dom';
 
 import { initApiClients } from './app/api/initApiClients';
+import AppRouter from './app/AppRouter';
 import { KanIkkeSøkePage } from './app/content/kan-ikke-soke/KanIkkeSøke';
 import { AppContextProvider } from './app/context/AppContext';
 import { applicationIntlMessages, useAppIntl } from './app/i18n';
 import { getAppEnv } from './app/setup/appEnv';
 import { Søknad } from './app/Soknad';
-import { ScenarioHeader } from './demo/ScenarioHeader';
 import { useInitialData } from './useInitialData';
 
 initApiClients();
@@ -60,10 +59,9 @@ export const App = () => {
             applicationKey={AktivitetspengerSoknadApp.key}
             useAnalytics={env.SIF_PUBLIC_USE_ANALYTICS === 'true'}
             intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
-            <BrowserRouter basename={env.PUBLIC_PATH}>
-                {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
+            <AppRouter>
                 <SøknadDataWrapper />
-            </BrowserRouter>
+            </AppRouter>
         </SøknadAppProvider>
     );
 };

@@ -1,8 +1,11 @@
+import { RegistrertBarn } from '@navikt/sif-common-api';
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
+import { ISODate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 
+import { InnvilgedeVedtak } from '../../../hooks/useInnvilgedeVedtakForRegistrerteBarn';
 import { AppMessageKeys } from '../../../i18n';
 import { SøkersRelasjonTilBarnet } from '../../../types/SøkersRelasjonTilBarnet';
 import { SøknadContextState } from '../../../types/SøknadContextState';
@@ -144,4 +147,33 @@ export const getRelasjonTilBarnetIntlKey = (relasjonTilBarnet: SøkersRelasjonTi
         case SøkersRelasjonTilBarnet.ADOPTIVFORELDER:
             return 'steg.omBarnet.relasjonTilBarnet.adoptivforelder';
     }
+};
+
+type IkkeTidsbegrensetVedtakInfo = {
+    erTidsbegrenset: false;
+};
+type TidsbegrensetVedtakInfo = {
+    erTidsbegrenset: true;
+    førsteMuligeSøknadsdato: ISODate;
+    vedtakTomDato: ISODate;
+};
+export type UtledetVedtakInfo = IkkeTidsbegrensetVedtakInfo | TidsbegrensetVedtakInfo;
+export const utledVedtakInfoForBarn = (
+    barn?: RegistrertBarn,
+    innvilgedeVedtak?: InnvilgedeVedtak,
+): UtledetVedtakInfo | undefined => {
+    const vedtakForValgtBarn = barn ? innvilgedeVedtak?.[barn.aktørId] : undefined;
+    if (!vedtakForValgtBarn || vedtakForValgtBarn.harInnvilgedeBehandlinger === false) {
+        return undefined;
+    }
+    if (vedtakForValgtBarn.førsteMuligeSøknadsdato && vedtakForValgtBarn.vedtakTomDato) {
+        return {
+            erTidsbegrenset: true,
+            førsteMuligeSøknadsdato: vedtakForValgtBarn.førsteMuligeSøknadsdato,
+            vedtakTomDato: vedtakForValgtBarn.vedtakTomDato,
+        };
+    }
+    return {
+        erTidsbegrenset: false,
+    };
 };

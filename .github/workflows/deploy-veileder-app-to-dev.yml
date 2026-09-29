@@ -40,7 +40,7 @@ jobs:
         run: pnpm turbo run build --filter=@navikt/${{ env.APP_NAME }}
 
       - name: Upload assets to CDN
-        uses: nais/deploy/actions/cdn-upload/v2@027a91857992525139798892f2804b0ca21f4af6 # master per 2026-08-27
+        uses: nais/deploy/actions/cdn-upload/v2@1de80da70ad26556ecdc5964a8b7ec3bbed98120 # master per 2026-08-27
         with:
           team: dusseldorf
           source: apps-intern/${{ env.APP_NAME }}/dist
@@ -63,7 +63,7 @@ jobs:
           build_secrets: |
             NPM_TOKEN=${{ secrets.READER_TOKEN }}
       - name: Deploy to dev
-        uses: nais/deploy/actions/deploy@v2
+        uses: nais/deploy/actions/deploy@9850be311389ca754d9a9f2280615419d738c891 # v3
         env:
           CLUSTER: dev-gcp
           RESOURCE: apps-intern/${{ env.APP_NAME }}/nais/nais.yml
