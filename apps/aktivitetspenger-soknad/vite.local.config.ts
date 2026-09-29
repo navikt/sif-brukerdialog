@@ -67,8 +67,8 @@ export default defineConfig(({ mode }) => {
                   __IS_DEMO__: false,
               }
             : {
-                  __SCENARIO_HEADER__: true,
                   __IS_GITHUB_PAGES__: false,
+                  __IS_DEMO__: true,
               },
     };
 });
