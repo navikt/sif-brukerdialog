@@ -9,7 +9,7 @@ import {
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
-import { DemoInfoAlert } from '@sif/soknad-ui';
+import { DemoInfoAlert, DemoWatermark } from '@sif/soknad-ui';
 import { UxSignalsLoaderProvider } from '@sif/surveys';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Navigate, Route } from 'react-router-dom';
@@ -25,7 +25,9 @@ import { relocateToWelcomePage } from './utils/navigationUtils';
 
 const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID, SIF_PUBLIC_USE_ANALYTICS } = appEnv;
 
-ensureBaseNameForReactRouter(PUBLIC_PATH);
+if (!__IS_GITHUB_PAGES__) {
+    ensureBaseNameForReactRouter(PUBLIC_PATH);
+}
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -39,7 +41,7 @@ const App = () => {
             )}
             <QueryClientProvider client={queryClient}>
                 <UxSignalsLoaderProvider>
-                    <div className={__IS_DEMO__ ? 'demoMode' : undefined}>
+                    <DemoWatermark enabled={__IS_DEMO__}>
                         <SoknadApplication
                             appKey={OpplæringspengerApp.key}
                             appName={OpplæringspengerApp.navn}
@@ -77,7 +79,7 @@ const App = () => {
                                 ]}
                             />
                         </SoknadApplication>
-                    </div>
+                    </DemoWatermark>
                 </UxSignalsLoaderProvider>
             </QueryClientProvider>
         </Theme>

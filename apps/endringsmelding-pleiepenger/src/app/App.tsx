@@ -1,12 +1,11 @@
 import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
-import '../demo/demo.css';
 
 import { Theme } from '@navikt/ds-react';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
 import { getMaybeEnv, isProd } from '@navikt/sif-common-env';
 import { ensureBaseNameForReactRouter, SoknadApplication } from '@navikt/sif-common-soknad-ds';
-import { DemoInfoAlert } from '@sif/soknad-ui';
+import { DemoInfoAlert, DemoWatermark } from '@sif/soknad-ui';
 import { SkyraHandler } from '@sif/surveys';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
@@ -39,7 +38,7 @@ const App = () => (
                 <DemoInfoAlert appTitle={EndringsmeldingPsbApp.tittel.nb} />
             </>
         )}
-        <div className={__IS_DEMO__ ? 'demoMode' : undefined}>
+        <DemoWatermark enabled={__IS_DEMO__}>
             <SoknadApplication
                 appKey={EndringsmeldingPsbApp.key}
                 appName={EndringsmeldingPsbApp.navn}
@@ -66,7 +65,7 @@ const App = () => (
                     <Route path={SøknadRoutes.INNLOGGET_ROOT} key="soknad" element={<Søknad />} />,
                 </Routes>
             </SoknadApplication>
-        </div>
+        </DemoWatermark>
     </Theme>
 );
 
