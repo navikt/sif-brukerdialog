@@ -9,6 +9,7 @@
         "check:types": "tsc --noemit",
         "clean": "rm -rf node_modules dist dist-demo",
         "demo:build": "vite build --config vite.demo.config.ts",
+        "demo:start": "vite preview --base /sif-brukerdialog/aktivitetspenger-innsyn/ --config vite.demo.config.ts",
         "dev": "vite --config vite.dev.config.ts",
         "e2e:build": "pnpm pw:build",
         "gh-pages:rebuild": "pnpm demo:build",

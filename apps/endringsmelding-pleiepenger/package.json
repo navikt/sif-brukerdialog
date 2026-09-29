@@ -57,6 +57,7 @@
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@sif/apm": "workspace:*",
+        "@sif/soknad-ui": "workspace:*",
         "@sif/surveys": "workspace:*",
         "axios": "1.20.0",
         "classnames": "2.5.1",

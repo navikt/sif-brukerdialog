@@ -369,7 +369,7 @@ export const App = () => {
             useAnalytics={env.SIF_PUBLIC_USE_ANALYTICS === 'true'}
             intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
             <BrowserRouter basename={env.PUBLIC_PATH}>
-                {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
+                {__IS_DEMO__ ? <ScenarioHeader /> : null}
                 <SøknadDataWrapper />
             </BrowserRouter>
         </SøknadAppProvider>

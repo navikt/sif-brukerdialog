@@ -49,6 +49,7 @@ export default defineConfig({
         sourcemap: true,
     },
     define: {
-        __SCENARIO_HEADER__: true,
+        __IS_GITHUB_PAGES__: false,
+        __IS_DEMO__: true,
     },
 });

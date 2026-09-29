@@ -56,7 +56,7 @@ export default defineConfig({
     base: `${DEMO_PUBLIC_PATH}/`,
     define: {
         __IS_GITHUB_PAGES__: true,
-        __SCENARIO_HEADER__: true,
+        __IS_DEMO__: true,
     },
     build: {
         sourcemap: true,

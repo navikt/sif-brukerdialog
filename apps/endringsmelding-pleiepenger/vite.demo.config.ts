@@ -52,6 +52,7 @@ export default defineConfig({
     define: {
         'import.meta.env.INJECT_DECORATOR': false,
         __IS_GITHUB_PAGES__: true,
+        __IS_DEMO__: true,
     },
     server: {
         port: 8080,
