@@ -17,7 +17,7 @@ const OppdatereSakLenker = () => {
                     href={browserEnv.NEXT_PUBLIC_SKJEMA_ENDRINGSMELDING_URL}
                     icon={<PencilWritingIcon role="presentation" aria-hidden={true} width="1.5rem" height="1.5rem" />}
                     title={text('snarveier.endringsmelding.tittel')}
-                    description={<VStack>{text('snarveier.endringsmelding.tekst')}</VStack>}
+                    description={text('snarveier.endringsmelding.tekst')}
                 />
                 <SnarveiLinkCard
                     href={browserEnv.NEXT_PUBLIC_BESKJED_URL}
