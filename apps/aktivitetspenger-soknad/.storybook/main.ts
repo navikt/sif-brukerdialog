@@ -13,7 +13,7 @@ const config: StorybookConfig = {
     addons: [getAbsolutePath('@storybook/addon-a11y')],
     framework: getAbsolutePath('@storybook/react-vite'),
     typescript: {
-        reactDocgen: 'react-docgen-typescript',
+        reactDocgen: false,
     },
 };
 export default config;
