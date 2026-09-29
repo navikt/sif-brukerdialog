@@ -7,6 +7,13 @@
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
     "type": "module",
+    "sideEffects": [
+        "**/*.css",
+        "./src/components/progress-stepper/ProgressStepper.tsx",
+        "./src/components/item-list-darkside/ItemListDarkside.tsx",
+        "./src/components/info-list/InfoList.tsx",
+        "./src/components/demo-watermark/DemoWatermark.tsx"
+    ],
     "exports": {
         ".": "./src/index.ts",
         "./components": "./src/components/index.ts",

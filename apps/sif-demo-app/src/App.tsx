@@ -51,7 +51,7 @@ export const App = () => {
             useAnalytics={false}
             intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
             <BrowserRouter basename={env.PUBLIC_PATH}>
-                {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
+                {__IS_DEMO__ ? <ScenarioHeader /> : null}
                 <SøknadDataWrapper />
             </BrowserRouter>
         </SøknadAppProvider>

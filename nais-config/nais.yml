@@ -35,10 +35,12 @@ spec:
             {{/each}}
              - application: nav-dekoratoren
                namespace: personbruker
+            {{#if externalHosts}}
             external:
             {{#each externalHosts as |host|}}
             - host: {{host}}
             {{/each}}
+            {{/if}}
     ingresses:
       {{#each ingresses as |url|}}
       - {{url}}

@@ -1,4 +1,3 @@
-import { scenarioHeaderMessages_nb } from '../../demo/i18n/nb';
 import { apmTestPageMessages_nb } from '../content/apm-test/i18n/nb';
 import { kanIkkeSøkePageMessages_nb } from '../content/kan-ikke-soke/i18n/nb';
 import { kvitteringPageMessages_nb } from '../content/kvittering/i18n/nb';
@@ -19,7 +18,6 @@ export const appMessages_nb = {
     ...oppsummeringStegMessages_nb,
     ...velkommenPageMessages_nb,
     ...kvitteringPageMessages_nb,
-    ...scenarioHeaderMessages_nb,
     'application.title': 'Søknad om aktivitetspenger',
     'kvittering.documentTitle': 'Søknad om aktivitetspenger mottatt',
     'kvittering.title': 'Søknaden er sendt',

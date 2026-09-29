@@ -3,7 +3,7 @@ import './app.css';
 
 import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
 import { SøknadAppProvider } from '@sif/soknad-app';
-import { InitialDataErrorPage, LoadingPage } from '@sif/soknad-ui';
+import { DemoInfoAlert, InitialDataErrorPage, LoadingPage } from '@sif/soknad-ui';
 import { BrowserRouter } from 'react-router-dom';
 
 import { initApiClients } from './app/api/initApiClients';
@@ -52,7 +52,12 @@ export const App = () => {
             useAnalytics={env.SIF_PUBLIC_USE_ANALYTICS === 'true'}
             intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
             <BrowserRouter basename={env.PUBLIC_PATH}>
-                {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
+                {__IS_DEMO__ ? (
+                    <>
+                        <ScenarioHeader />
+                        <DemoInfoAlert appTitle={OmsorgsdagerKroniskApp.tittel.nb} />
+                    </>
+                ) : null}
                 <SøknadDataWrapper />
             </BrowserRouter>
         </SøknadAppProvider>

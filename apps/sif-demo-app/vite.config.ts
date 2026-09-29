@@ -36,7 +36,8 @@ export default defineConfig(({ mode }) => {
             minify: mode === 'production',
         },
         define: {
-            __SCENARIO_HEADER__: false,
+            __IS_GITHUB_PAGES__: false,
+            __IS_DEMO__: false,
         },
     };
 });

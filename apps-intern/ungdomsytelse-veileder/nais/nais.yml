@@ -33,10 +33,12 @@ spec:
              - application: {{rule.application}}
                namespace: {{rule.namespace}}
             {{/each}}
+            {{#if externalHosts}}
             external:
             {{#each externalHosts as |host|}}
             - host: {{host}}
             {{/each}}
+            {{/if}}
     ingresses:
       {{#each ingresses as |url|}}
        - {{url}}

@@ -1,6 +1,6 @@
 import './app.css';
 
-import { Box, Theme } from '@navikt/ds-react';
+import { Theme } from '@navikt/ds-react';
 import { OpplæringspengerApp } from '@navikt/sif-app-register';
 import { isProd } from '@navikt/sif-common-env';
 import {
@@ -9,12 +9,13 @@ import {
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import { DemoInfoAlert, DemoWatermark } from '@sif/soknad-ui';
 import { UxSignalsLoaderProvider } from '@sif/surveys';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Navigate, Route } from 'react-router-dom';
 
+import { ScenarioHeader } from '../demo/ScenarioHeader';
 import { mellomlagringService } from './api/mellomlagringService';
-import DemoInfo from './components/demo/DemoInfo';
 import { applicationIntlMessages, type AppMessageKeys } from './i18n';
 import getLenker from './lenker';
 import Søknad from './søknad/Søknad';
@@ -24,29 +25,30 @@ import { relocateToWelcomePage } from './utils/navigationUtils';
 
 const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID, SIF_PUBLIC_USE_ANALYTICS } = appEnv;
 
-ensureBaseNameForReactRouter(PUBLIC_PATH);
+if (!__IS_GITHUB_PAGES__) {
+    ensureBaseNameForReactRouter(PUBLIC_PATH);
+}
 const queryClient = new QueryClient();
-
-const isGitHubPages = typeof __IS_GITHUB_PAGES__ !== 'undefined' && __IS_GITHUB_PAGES__;
 
 const App = () => {
     return (
         <Theme>
-            {__IS_GITHUB_PAGES__ && (
-                <Box marginBlock="space-0 space-48">
-                    <DemoInfo />
-                </Box>
+            {__IS_DEMO__ && (
+                <>
+                    <ScenarioHeader />
+                    <DemoInfoAlert appTitle={OpplæringspengerApp.tittel.nb} />
+                </>
             )}
             <QueryClientProvider client={queryClient}>
                 <UxSignalsLoaderProvider>
-                    <div className={__IS_GITHUB_PAGES__ ? 'demoMode' : undefined}>
+                    <DemoWatermark enabled={__IS_DEMO__}>
                         <SoknadApplication
                             appKey={OpplæringspengerApp.key}
                             appName={OpplæringspengerApp.navn}
                             appTitle={OpplæringspengerApp.tittel.nb}
                             intlMessages={applicationIntlMessages}
                             useLanguageSelector={appEnv.SIF_PUBLIC_FEATURE_NYNORSK === 'on'}
-                            useHashRouter={isGitHubPages}
+                            useHashRouter={__IS_GITHUB_PAGES__}
                             appStatus={{
                                 sanityConfig: {
                                     projectId: SIF_PUBLIC_APPSTATUS_PROJECT_ID,
@@ -77,14 +79,9 @@ const App = () => {
                                 ]}
                             />
                         </SoknadApplication>
-                    </div>
+                    </DemoWatermark>
                 </UxSignalsLoaderProvider>
             </QueryClientProvider>
-            {__IS_GITHUB_PAGES__ && (
-                <Box marginBlock="space-48 space-24">
-                    <DemoInfo />
-                </Box>
-            )}
         </Theme>
     );
 };

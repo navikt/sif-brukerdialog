@@ -11,7 +11,7 @@
         "demo:build": "pnpm demo:build-app && pnpm demo:copy-app-files",
         "demo:build-app": "vite build --config vite.demo.config.ts",
         "demo:copy-app-files": "cp ./dist-demo/demo/index.html ./dist-demo/index.html && rm -rf ./dist-demo/demo && cp ./mockServiceWorker.js ./dist-demo/",
-        "demo:start": "vite preview --base /ungdomsprogrammet/ytelsen/ --config vite.demo.config.ts",
+        "demo:start": "vite preview --base /sif-brukerdialog/ungdomsytelse-deltaker/ --config vite.demo.config.ts",
         "dev": "pnpm dev:vite",
         "dev:debug": "vite --debug",
         "dev:vite": "vite --config vite.dev.config.ts",
