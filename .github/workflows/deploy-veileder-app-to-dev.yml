@@ -40,7 +40,7 @@ jobs:
         run: pnpm turbo run build --filter=@navikt/${{ env.APP_NAME }}
 
       - name: Upload assets to CDN
-        uses: nais/deploy/actions/cdn-upload/v2@9850be311389ca754d9a9f2280615419d738c891 # master per 2026-08-27
+        uses: nais/deploy/actions/cdn-upload/v2@9850be311389ca754d9a9f2280615419d738c891 # v3
         with:
           team: dusseldorf
           source: apps-intern/${{ env.APP_NAME }}/dist
