@@ -50,7 +50,7 @@
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
         "SIF_PUBLIC_DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=false&chatbot=false&logoutUrl=https://www.nav.no/aktivitetspenger/innsyn/oauth2/logout",
         "SIF_PUBLIC_FULL_DEKORATOR": "on",
-        "SIF_PUBLIC_IS_OPEN": "false",
+        "SIF_PUBLIC_IS_OPEN": "true",
         "SIF_PUBLIC_LOGIN_URL": "https://www.nav.no/aktivitetspenger/innsyn/oauth2/login?redirect=/aktivitetspenger/innsyn",
         "SIF_PUBLIC_MINSIDE_URL": "https://www.nav.no/minside",
         "SIF_PUBLIC_URL_AKTIVITETSPENGER": "https://www.nav.no/aktivitetspenger",
