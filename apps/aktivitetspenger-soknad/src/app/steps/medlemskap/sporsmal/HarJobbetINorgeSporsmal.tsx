@@ -15,18 +15,16 @@ export const HarJobbetINorgeSporsmal = () => {
             name={MedlemskapFormFields.harJobbetINorge}
             legend={text('medlemskapSteg.spørsmål.harJobbetINorge')}
             description={
-                <>
-                    <ReadMore header={text('medlemskapSteg.spørsmål.harJobbetINorge.readmore.title')}>
-                        <VStack gap="space-12">
-                            <BodyLong>
-                                <AppText id="medlemskapSteg.spørsmål.harJobbetINorge.readmore.text.1" />
-                            </BodyLong>
-                            <BodyLong>
-                                <AppText id="medlemskapSteg.spørsmål.harJobbetINorge.readmore.text.2" />
-                            </BodyLong>
-                        </VStack>
+                <VStack gap="space-12">
+                    <BodyLong>
+                        <AppText id="medlemskapSteg.spørsmål.harJobbetINorge.text.1" />
+                    </BodyLong>
+                    <ReadMore header={text('medlemskapSteg.spørsmål.harJobbetINorge.readmore.header')}>
+                        <BodyLong>
+                            <AppText id="medlemskapSteg.spørsmål.harJobbetINorge.readmore.text.2" />
+                        </BodyLong>
                     </ReadMore>
-                </>
+                </VStack>
             }
             validate={validateField(MedlemskapFormFields.harJobbetINorge, getYesOrNoValidator())}
         />
