@@ -15,6 +15,7 @@ import { getAppEnv } from './app/appEnv';
 import AppRouter from './app/AppRouter';
 import { applicationIntlMessages } from './app/i18n';
 import { InitialDataLoader } from './app/initial-data/InitialDataLoader';
+import { IkkeÅpenPage } from './app/pages/IkkeApenPage';
 import { AppErrorBoundary } from './app/setup/wrappers/AppErrorBoundary';
 import { SifQueryClientProvider } from './app/setup/wrappers/SifQueryClientProvider';
 
@@ -49,6 +50,14 @@ export const App = () => {
             document.body.classList.remove('innsynAppBody');
         };
     }, []);
+
+    if (appEnv.SIF_PUBLIC_IS_OPEN !== 'true') {
+        return (
+            <Theme hasBackground={false}>
+                <IkkeÅpenPage />
+            </Theme>
+        );
+    }
 
     return (
         <Theme hasBackground={false}>
