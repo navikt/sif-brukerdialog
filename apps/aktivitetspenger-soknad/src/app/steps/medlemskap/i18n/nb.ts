@@ -21,8 +21,9 @@ export const medlemskapStegMessages_nb = {
 
     // Har jobbet i Norge
     'medlemskapSteg.spørsmål.harJobbetINorge': 'Har du jobbet sammenhengende i Norge de siste 5 årene? ',
-    'medlemskapSteg.spørsmål.harJobbetINorge.readmore.text.1':
+    'medlemskapSteg.spørsmål.harJobbetINorge.text.1':
         'Å ha «jobbet sammenhengende» betyr at du har hatt en jobb med inntekt i Norge mesteparten av tiden i hvert av de siste 5 årene.',
+    'medlemskapSteg.spørsmål.harJobbetINorge.readmore.header': 'Hva betyr dette?',
     'medlemskapSteg.spørsmål.harJobbetINorge.readmore.text.2':
         'Hvis du har mottatt ytelser fra norske myndigheter som skal erstatte inntekt, for eksempel dagpenger, sykepenger og foreldrepenger, svarer du «Ja» siden det også regnes som jobb.',
 
