@@ -13,4 +13,5 @@ export const getAppEnv = (): AppEnv => ({
     ...getUngBrukerdialogApiBrowserEnv(),
     SIF_PUBLIC_URL_AKTIVITETSPENGER: getRequiredEnv('SIF_PUBLIC_URL_AKTIVITETSPENGER'),
     SIF_PUBLIC_URL_SAKSBEHANDLINGSTIDER: getRequiredEnv('SIF_PUBLIC_URL_SAKSBEHANDLINGSTIDER'),
+    SIF_PUBLIC_IS_OPEN: getRequiredEnv('SIF_PUBLIC_IS_OPEN'),
 });

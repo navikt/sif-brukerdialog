@@ -14,6 +14,7 @@ export const getDevAppSettings = (): AppEnv => ({
     SIF_PUBLIC_URL_AKTIVITETSPENGER: 'https://www.dev.nav.no/aktivitetspenger',
     SIF_PUBLIC_URL_SAKSBEHANDLINGSTIDER: 'https://www.ansatt.dev.nav.no/saksbehandlingstider#aktivitetspenger',
     SIF_PUBLIC_USE_ANALYTICS: 'true',
+    SIF_PUBLIC_IS_OPEN: 'true',
 
     K9_BRUKERDIALOG_PROSESSERING_API_URL: '#',
     K9_BRUKERDIALOG_PROSESSERING_API_SCOPE: 'dev-gcp:dusseldorf:k9-brukerdialog-prosessering',
