@@ -49,7 +49,7 @@
         "SIF_PUBLIC_AKTIVITETSPENGER_INNSYN_URL": "https://www.nav.no/aktivitetspenger/innsyn",
         "SIF_PUBLIC_APPSTATUS_DATASET": "production",
         "SIF_PUBLIC_APPSTATUS_PROJECT_ID": "ryujtq87",
-        "SIF_PUBLIC_DEKORATOR_URL   ": "https://www.nav.no/dekoratoren/?simple=false&chatbot=false&logoutUrl=https://www.nav.no/aktivitetspenger/soknad/oauth2/logout",
+        "SIF_PUBLIC_DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=false&chatbot=false&logoutUrl=https://www.nav.no/aktivitetspenger/soknad/oauth2/logout",
         "SIF_PUBLIC_FEATURE_NYNORSK": "on",
         "SIF_PUBLIC_FULL_DEKORATOR": "on",
         "SIF_PUBLIC_IS_OPEN": "false",
