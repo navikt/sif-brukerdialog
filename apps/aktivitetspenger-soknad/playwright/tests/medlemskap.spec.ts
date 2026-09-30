@@ -5,9 +5,9 @@ import { mellomlagringTilMedlemskap } from '../mock-data/mellomlagring';
 import { setScenario, setScenarioWithMellomlagring } from '../utils/scenario';
 import { testAccessibility } from '../utils/testAccessibility';
 
-const harBoddINorge = 'Har du bodd sammenhengende i Norge de fem siste årene?';
-const harJobbetINorge = 'Har du jobbet sammenhengende i Norge de siste fem årene?';
-const harJobbetUtenforNorge = 'Har du jobbet utenfor Norge de fem siste årene?';
+const harBoddINorge = 'Har du bodd sammenhengende i Norge de 5 siste årene?';
+const harJobbetINorge = 'Har du jobbet sammenhengende i Norge de siste 5 årene?';
+const harJobbetUtenforNorge = 'Har du jobbet utenfor Norge de 5 siste årene?';
 
 const svar = async (page: Page, spørsmål: string | RegExp, s: 'Ja' | 'Nei') => {
     await page.getByRole('radiogroup', { name: spørsmål }).getByLabel(s, { exact: true }).check();

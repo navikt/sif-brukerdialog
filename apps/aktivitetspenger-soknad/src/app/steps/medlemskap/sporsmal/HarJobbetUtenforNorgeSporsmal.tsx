@@ -1,15 +1,11 @@
-import { useAppIntl } from '@app/i18n';
-import { ReadMore, VStack } from '@navikt/ds-react';
+import { AppText, useAppIntl } from '@app/i18n';
+import { BodyLong } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 
 import { MedlemskapFormFields, MedlemskapFormValues } from '../types';
 
 const { YesOrNoQuestion } = createSifFormComponents<MedlemskapFormValues>();
-
-// interface Props {
-//     harJobbetINorge?: boolean;
-// }
 
 export const HarJobbetUtenforNorgeSporsmal = () => {
     const { text } = useAppIntl();
@@ -19,11 +15,9 @@ export const HarJobbetUtenforNorgeSporsmal = () => {
             name={MedlemskapFormFields.harJobbetUtenforNorge}
             legend={text('medlemskapSteg.spørsmål.harJobbetUtenforNorge')}
             description={
-                <VStack gap="space-8">
-                    <ReadMore header={text('medlemskapSteg.spørsmål.harJobbetUtenforNorge.readmore.title')}>
-                        {text('medlemskapSteg.spørsmål.harJobbetUtenforNorge.readmore.text')}
-                    </ReadMore>
-                </VStack>
+                <BodyLong>
+                    <AppText id="medlemskapSteg.spørsmål.harJobbetUtenforNorge.readmore.text" />
+                </BodyLong>
             }
             validate={validateField(MedlemskapFormFields.harJobbetUtenforNorge, getYesOrNoValidator())}
         />
