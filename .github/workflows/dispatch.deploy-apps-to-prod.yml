@@ -15,6 +15,8 @@ on:
                 required: true
                 type: choice
                 options:
+                    - aktivitetspenger-innsyn
+                    - aktivitetspenger-soknad
                     - dine-pleiepenger
                     - ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
                     - endringsmelding-pleiepenger
@@ -47,6 +49,14 @@ jobs:
               id: filter
               with:
                   filters: |
+                      aktivitetspenger-innsyn:
+                        - 'apps/aktivitetspenger-innsyn/**'
+                        - 'packages/ung-innsyn/**'
+                        - 'server/**'
+                      aktivitetspenger-soknad:
+                        - 'apps/aktivitetspenger-soknad/**'
+                        - 'packages/sif-soknad-app/**'
+                        - 'server/**'
                       dine-pleiepenger:
                         - 'apps/dine-pleiepenger/**'
                         - 'server/**'
@@ -92,7 +102,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'dine-pleiepenger' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'dine-pleiepenger'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -107,7 +117,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'ekstra-omsorgsdager-andre-forelder-ikke-tilsyn'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -121,7 +131,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'endringsmelding-pleiepenger' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'endringsmelding-pleiepenger'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -136,7 +146,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgsdager-aleneomsorg-dialog' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgsdager-aleneomsorg-dialog'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -150,7 +160,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgsdager-kalkulator' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgsdager-kalkulator'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -164,7 +174,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgspengerutbetaling-arbeidstaker-soknad' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgspengerutbetaling-arbeidstaker-soknad'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -178,7 +188,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgspengerutbetaling-soknad' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgspengerutbetaling-soknad'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -192,7 +202,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'omsorgspengesoknad' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'omsorgspengesoknad'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -206,7 +216,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'opplaringspenger-soknad' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'opplaringspenger-soknad'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -220,7 +230,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'pleiepenger-i-livets-sluttfase-soknad' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'pleiepenger-i-livets-sluttfase-soknad'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -234,7 +244,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'pleiepenger-sykt-barn' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'pleiepenger-sykt-barn'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -249,7 +259,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'sif-ettersending' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'sif-ettersending'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -263,7 +273,7 @@ jobs:
             always() &&
             (github.event_name == 'workflow_dispatch' && inputs.app == 'ungdomsytelse-deltaker' ||
              github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'ungdomsytelse-deltaker'))
-        needs: [ detect-changes ]
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-prod.yml
         secrets: inherit
         with:
@@ -271,6 +281,38 @@ jobs:
             working-directory: "apps/ungdomsytelse-deltaker"
             use-cdn: true
             package-name: "@navikt/ungdomsytelse-deltaker"
+            use-turbo-test: true
+            e2e-build-command: "e2e:build"
+            run-sonar: true
+    deploy-aktivitetspenger-soknad:
+        if: |
+            always() &&
+            (github.event_name == 'workflow_dispatch' && inputs.app == 'aktivitetspenger-soknad' ||
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'aktivitetspenger-soknad'))
+        needs: [detect-changes]
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "aktivitetspenger-soknad"
+            working-directory: "apps/aktivitetspenger-soknad"
+            use-cdn: true
+            package-name: "@navikt/aktivitetspenger-soknad"
+            use-turbo-test: true
+            e2e-build-command: "e2e:build"
+            run-sonar: true
+    deploy-aktivitetspenger-innsyn:
+        if: |
+            always() &&
+            (github.event_name == 'workflow_dispatch' && inputs.app == 'aktivitetspenger-innsyn' ||
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'aktivitetspenger-innsyn'))
+        needs: [detect-changes]
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "aktivitetspenger-innsyn"
+            working-directory: "apps/aktivitetspenger-innsyn"
+            use-cdn: true
+            package-name: "@navikt/aktivitetspenger-innsyn"
             use-turbo-test: true
             e2e-build-command: "e2e:build"
             run-sonar: true

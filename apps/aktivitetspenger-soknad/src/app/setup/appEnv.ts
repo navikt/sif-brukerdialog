@@ -13,4 +13,5 @@ export const getAppEnv = (): AppEnv => ({
     ...getUngDeltakelseOpplyserBrowserEnv(),
     SIF_PUBLIC_AKTIVITETSPENGER_INNSYN_URL: getRequiredEnv('SIF_PUBLIC_AKTIVITETSPENGER_INNSYN_URL'),
     SIF_PUBLIC_SEND_BESKJED: getRequiredEnv('SIF_PUBLIC_SEND_BESKJED'),
+    SIF_PUBLIC_IS_OPEN: getRequiredEnv('SIF_PUBLIC_IS_OPEN'),
 });
