@@ -32,7 +32,7 @@
         "PUBLIC_PATH": "/aktivitetspenger/soknad",
         "NPM_CONFIG_CACHE": "/tmp",
 
-        "REQUIRED_PROXY_SERVICES": "K9_BRUKERDIALOG_PROSESSERING,UNG_DELTAKELSE_OPPLYSER",
+        "REQUIRED_PROXY_SERVICES": "K9_BRUKERDIALOG_PROSESSERING,UNG_DELTAKELSE_OPPLYSER,UNG_BRUKERDIALOG_API",
 
         "K9_BRUKERDIALOG_PROSESSERING_API_SCOPE": "prod-gcp:dusseldorf:k9-brukerdialog-prosessering",
         "K9_BRUKERDIALOG_PROSESSERING_API_URL": "http://k9-brukerdialog-prosessering",
