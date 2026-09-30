@@ -1,18 +1,17 @@
-import { Todo } from '@app/components/Todo';
 import { AppText } from '@app/i18n';
 import { BodyLong } from '@navikt/ds-react';
+
+import { TodoFlag } from '../../components/Todo';
 
 const ReglerOgAutomatiskSaksbehandlingContent = () => {
     return (
         <>
-            <Todo>
-                <AppText id="page.velkommen.regler.todo" />
-            </Todo>
             <BodyLong spacing>
                 <AppText id="page.velkommen.regler.tekst.1" />
             </BodyLong>
             <BodyLong spacing>
                 <AppText id="page.velkommen.regler.tekst.2" />
+                <TodoFlag />
             </BodyLong>
             <BodyLong spacing>
                 <AppText id="page.velkommen.regler.tekst.3" />
