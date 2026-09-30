@@ -48,6 +48,9 @@ jobs:
               id: filter
               with:
                   filters: |
+                      aktivitetspenger-soknad:
+                        - 'apps/aktivitetspenger-soknad/**'
+                        - 'server/**'
                       dine-pleiepenger:
                         - 'apps/dine-pleiepenger/**'
                         - 'server/**'
@@ -272,6 +275,22 @@ jobs:
             working-directory: "apps/ungdomsytelse-deltaker"
             use-cdn: true
             package-name: "@navikt/ungdomsytelse-deltaker"
+            use-turbo-test: true
+            e2e-build-command: "e2e:build"
+            run-sonar: true
+    deploy-aktivitetspenger-soknad:
+        if: |
+            always() &&
+            (github.event_name == 'workflow_dispatch' && inputs.app == 'aktivitetspenger-soknad' ||
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'aktivitetspenger-soknad'))
+        needs: [detect-changes]
+        uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+        secrets: inherit
+        with:
+            app-name: "aktivitetspenger-soknad"
+            working-directory: "apps/aktivitetspenger-soknad"
+            use-cdn: true
+            package-name: "@navikt/aktivitetspenger-soknad"
             use-turbo-test: true
             e2e-build-command: "e2e:build"
             run-sonar: true
