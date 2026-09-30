@@ -3,7 +3,7 @@ import { medlemskapStegMessages_nb } from './nb';
 export const medlemskapStegMessages_nn: Record<keyof typeof medlemskapStegMessages_nb, string> = {
     'medlemskapSteg.veileder.tekst.1': 'Her treng me å vite om du har budd eller jobba i utlandet dei siste 5 åra.',
     'medlemskapSteg.veileder.tekst.2':
-        'Det er for at me skal kunne vurdere om du oppfyller krava til medlemskap i folketrygda. Viss du bur eller jobbar i Noreg, er du vanlegvis medlem  ',
+        'Det er for at me skal kunne vurdere om du oppfyller krava til 5 års medlemskap i folketrygda.',
     'medlemskapSteg.readMore.ytelserINorge.tittel': 'Blir ytingar frå norske styresmakter rekna som jobb?',
     'medlemskapSteg.readMore.ytelserINorge.tekst':
         'Offentlege ytingar som du har fått som erstatning for inntekt, til dømes dagpengar, sjukepengar og foreldrepengar, reknar me òg som jobb.',
