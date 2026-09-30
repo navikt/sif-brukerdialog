@@ -49,53 +49,53 @@ jobs:
               id: filter
               with:
                   filters: |
-                      aktivitetspenger-innsyn:
-                        - 'apps/aktivitetspenger-innsyn/**'
-                        - 'packages/ung-innsyn/**'
-                        - 'server/**'
-                      aktivitetspenger-soknad:
-                        - 'apps/aktivitetspenger-soknad/**'
-                        - 'packages/sif-soknad-app/**'
-                        - 'server/**'
-                      dine-pleiepenger:
-                        - 'apps/dine-pleiepenger/**'
-                        - 'server/**'
-                      ekstra-omsorgsdager-andre-forelder-ikke-tilsyn:
-                        - 'apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/**'
-                        - 'server/**'
-                      endringsmelding-pleiepenger:
-                        - 'apps/endringsmelding-pleiepenger/**'
-                        - 'server/**'
-                      omsorgsdager-aleneomsorg-dialog:
-                        - 'apps/omsorgsdager-aleneomsorg-dialog/**'
-                        - 'server/**'
-                      omsorgsdager-kalkulator:
-                        - 'apps/omsorgsdager-kalkulator/**'
-                        - 'server/**'
-                      omsorgspengerutbetaling-arbeidstaker-soknad:
-                        - 'apps/omsorgspengerutbetaling-arbeidstaker-soknad/**'
-                        - 'server/**'
-                      omsorgspengerutbetaling-soknad:
-                        - 'apps/omsorgspengerutbetaling-soknad/**'
-                        - 'server/**'
-                      omsorgspengesoknad:
-                        - 'apps/omsorgspengesoknad/**'
-                        - 'server/**'
-                      opplaringspenger-soknad:
-                        - 'apps/opplaringspenger-soknad/**'
-                        - 'server/**'
-                      pleiepenger-i-livets-sluttfase-soknad:
-                        - 'apps/pleiepenger-i-livets-sluttfase-soknad/**'
-                        - 'server/**'
-                      pleiepenger-sykt-barn:
-                        - 'apps/pleiepenger-sykt-barn/**'
-                        - 'server/**'
-                      sif-ettersending:
-                        - 'apps/sif-ettersending/**'
-                        - 'server/**'
-                      ungdomsytelse-deltaker:
-                        - 'apps/ungdomsytelse-deltaker/**'
-                        - 'server/**'
+                      #   aktivitetspenger-innsyn:
+                      #     - 'apps/aktivitetspenger-innsyn/**'
+                      #     - 'packages/ung-innsyn/**'
+                      #     - 'server/**'
+                      #   aktivitetspenger-soknad:
+                      #     - 'apps/aktivitetspenger-soknad/**'
+                      #     - 'packages/sif-soknad-app/**'
+                      #     - 'server/**'
+                        dine-pleiepenger:
+                          - 'apps/dine-pleiepenger/**'
+                          - 'server/**'
+                        ekstra-omsorgsdager-andre-forelder-ikke-tilsyn:
+                          - 'apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/**'
+                          - 'server/**'
+                        endringsmelding-pleiepenger:
+                          - 'apps/endringsmelding-pleiepenger/**'
+                          - 'server/**'
+                        omsorgsdager-aleneomsorg-dialog:
+                          - 'apps/omsorgsdager-aleneomsorg-dialog/**'
+                          - 'server/**'
+                        omsorgsdager-kalkulator:
+                          - 'apps/omsorgsdager-kalkulator/**'
+                          - 'server/**'
+                        omsorgspengerutbetaling-arbeidstaker-soknad:
+                          - 'apps/omsorgspengerutbetaling-arbeidstaker-soknad/**'
+                          - 'server/**'
+                        omsorgspengerutbetaling-soknad:
+                          - 'apps/omsorgspengerutbetaling-soknad/**'
+                          - 'server/**'
+                        omsorgspengesoknad:
+                          - 'apps/omsorgspengesoknad/**'
+                          - 'server/**'
+                        opplaringspenger-soknad:
+                          - 'apps/opplaringspenger-soknad/**'
+                          - 'server/**'
+                        pleiepenger-i-livets-sluttfase-soknad:
+                          - 'apps/pleiepenger-i-livets-sluttfase-soknad/**'
+                          - 'server/**'
+                        pleiepenger-sykt-barn:
+                          - 'apps/pleiepenger-sykt-barn/**'
+                          - 'server/**'
+                        sif-ettersending:
+                          - 'apps/sif-ettersending/**'
+                          - 'server/**'
+                        ungdomsytelse-deltaker:
+                          - 'apps/ungdomsytelse-deltaker/**'
+                          - 'server/**'
 
     deploy-dine-pleiepenger:
         if: |
