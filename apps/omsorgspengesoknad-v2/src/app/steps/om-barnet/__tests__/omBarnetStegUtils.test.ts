@@ -372,13 +372,13 @@ describe('utledVedtakInfoForBarn', () => {
         describe('rundt norsk midnatt, uavhengig av brukerens nettlesertidssone', () => {
             const opprinneligTZ = process.env.TZ;
 
-afterEach(() => {
-    if (opprinneligTZ === undefined) {
-        delete process.env.TZ;
-    } else {
-        process.env.TZ = opprinneligTZ;
-    }
-});
+            afterEach(() => {
+                if (opprinneligTZ === undefined) {
+                    delete process.env.TZ;
+                } else {
+                    process.env.TZ = opprinneligTZ;
+                }
+            });
 
             it('er true for en bruker vest for Norge selv om det lokalt fortsatt er dagen før', () => {
                 // Oslo går over til 2026-02-01 kl. 23:00:00Z (00:00 norsk vintertid).

@@ -109,7 +109,11 @@ describe('utledVedtakInfoForBarn', () => {
             const opprinneligTZ = process.env.TZ;
 
             afterEach(() => {
-                process.env.TZ = opprinneligTZ;
+                if (opprinneligTZ === undefined) {
+                    delete process.env.TZ;
+                } else {
+                    process.env.TZ = opprinneligTZ;
+                }
             });
 
             it('er true for en bruker vest for Norge selv om det lokalt fortsatt er dagen før', () => {
