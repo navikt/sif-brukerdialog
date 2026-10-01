@@ -2,7 +2,7 @@ import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
 import { RegistrertBarn } from '@sif/api/k9-prosessering';
 import { InnvilgedeVedtak } from '@sif/api/k9-sak-innsyn-api';
 import { YesOrNo } from '@sif/rhf';
-import { dateToISODate, ISODate } from '@sif/utils';
+import { dateToISODate, getDagensDatoIOslo, ISODate } from '@sif/utils';
 import dayjs from 'dayjs';
 
 import { ANNET_BARN, OmBarnetFormValues } from './types';
@@ -102,12 +102,14 @@ export const isBarnOver18år = (fødselsdato: ISODate): boolean => {
 
 type IkkeTidsbegrensetVedtakInfo = {
     erTidsbegrenset: false;
+    kanSøke: false;
 };
 
 type TidsbegrensetVedtakInfo = {
     erTidsbegrenset: true;
     førsteMuligeSøknadsdato: ISODate;
     vedtakTomDato: ISODate;
+    kanSøke: boolean;
 };
 
 export type UtledetVedtakInfo = IkkeTidsbegrensetVedtakInfo | TidsbegrensetVedtakInfo;
@@ -128,10 +130,12 @@ export const utledVedtakInfoForBarn = (
             erTidsbegrenset: true,
             førsteMuligeSøknadsdato: vedtakForValgtBarn.førsteMuligeSøknadsdato,
             vedtakTomDato: vedtakForValgtBarn.vedtakTomDato,
+            kanSøke: vedtakForValgtBarn.førsteMuligeSøknadsdato <= getDagensDatoIOslo(),
         };
     }
 
     return {
         erTidsbegrenset: false,
+        kanSøke: false,
     };
 };
