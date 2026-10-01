@@ -131,7 +131,7 @@ CSR-fallback. Bruk kun hvis SSR ikke er mulig i arkitekturen.
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 
 injectDecoratorClientSide({
-    env: 'dev',
+    env: 'prod',
     params: { simple: true, chatbot: true },
 });
 ```
