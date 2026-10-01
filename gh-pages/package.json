@@ -14,9 +14,9 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "8.16.2",
-        "@navikt/ds-css": "8.16.2",
-        "@navikt/ds-react": "8.16.2",
+        "@navikt/aksel-icons": "8.17.2",
+        "@navikt/ds-css": "8.17.2",
+        "@navikt/ds-react": "8.17.2",
         "react": "19.3.0",
         "react-dom": "19.3.0"
     },
