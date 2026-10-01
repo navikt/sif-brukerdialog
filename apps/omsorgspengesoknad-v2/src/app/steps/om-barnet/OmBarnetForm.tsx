@@ -128,7 +128,7 @@ export const OmBarnetForm = () => {
             methods={methods}
             onSubmit={onSubmit}
             isPending={false}
-            submitDisabled={vedtakForValgtBarn !== undefined}>
+            submitDisabled={vedtakForValgtBarn?.kanSøke === false}>
             <FormLayout.Content>
                 <FormLayout.Questions>
                     <Heading size="medium" level="2">
@@ -159,7 +159,8 @@ export const OmBarnetForm = () => {
                         </FormLayout.QuestionRelatedMessage>
                     </AriaLiveRegion>
 
-                    {!vedtakForValgtBarn && (søknadenGjelderAnnetBarn || !harRegistrerteBarn) && (
+                    {(!vedtakForValgtBarn || vedtakForValgtBarn.kanSøke === true) &&
+                        (søknadenGjelderAnnetBarn || !harRegistrerteBarn) && (
                         <FormLayout.Section title={text('omBarnetSteg.annetBarn.tittel')}>
                             <FormLayout.Questions>
                                 <Datepicker
@@ -239,7 +240,8 @@ export const OmBarnetForm = () => {
                         </FormLayout.Section>
                     )}
 
-                    {!vedtakForValgtBarn && (harValgtBarn || !harRegistrerteBarn) && (
+                    {(!vedtakForValgtBarn || vedtakForValgtBarn.kanSøke === true) &&
+                        (harValgtBarn || !harRegistrerteBarn) && (
                         <>
                             <RadioGroup
                                 name={OmBarnetFormFields.sammeAdresse}

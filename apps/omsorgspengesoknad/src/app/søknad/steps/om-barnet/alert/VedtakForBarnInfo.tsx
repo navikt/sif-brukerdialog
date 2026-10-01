@@ -33,6 +33,9 @@ const VedtakForBarnInfo = ({ barnetsFornavn, vedtak }: Props) => {
             </InfoCard>
         );
     }
+    if (vedtak.erTidsbegrenset === true && vedtak.kanSøke === true) {
+        return null;
+    }
     return (
         <InfoCard data-color="warning">
             <InfoCard.Message icon={<InformationSquareIcon aria-hidden />}>

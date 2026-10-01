@@ -42,6 +42,10 @@ export const VedtakForBarnInfo = ({ barnetsFornavn, vedtak }: Props) => {
         );
     }
 
+    if (vedtak.erTidsbegrenset === true && vedtak.kanSøke === true) {
+        return null;
+    }
+
     return (
         <SifInfoCard variant="warning">
             <VStack gap="space-8">
