@@ -1,5 +1,5 @@
 import { AppText, useAppIntl } from '@app/i18n';
-import { BodyLong } from '@navikt/ds-react';
+import { BodyLong, ReadMore, VStack } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 
@@ -15,9 +15,16 @@ export const HarJobbetUtenforNorgeSporsmal = () => {
             name={MedlemskapFormFields.harJobbetUtenforNorge}
             legend={text('medlemskapSteg.spørsmål.harJobbetUtenforNorge')}
             description={
-                <BodyLong>
-                    <AppText id="medlemskapSteg.spørsmål.harJobbetUtenforNorge.readmore.text" />
-                </BodyLong>
+                <VStack gap="space-12">
+                    <BodyLong>
+                        <AppText id="medlemskapSteg.spørsmål.harJobbetUtenforNorge.readmore.text" />
+                    </BodyLong>
+                    <ReadMore header={text('medlemskapSteg.spørsmål.ytelserSomJobb.readmore.header')}>
+                        <BodyLong>
+                            <AppText id="medlemskapSteg.spørsmål.ytelserSomJobb.readmore.text.2" />
+                        </BodyLong>
+                    </ReadMore>
+                </VStack>
             }
             validate={validateField(MedlemskapFormFields.harJobbetUtenforNorge, getYesOrNoValidator())}
         />

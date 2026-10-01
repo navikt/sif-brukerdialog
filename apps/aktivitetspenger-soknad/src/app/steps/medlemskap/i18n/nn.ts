@@ -17,8 +17,8 @@ export const medlemskapStegMessages_nn: Record<keyof typeof medlemskapStegMessag
     'medlemskapSteg.spørsmål.harJobbetINorge': 'Har du jobba samanhengande i Noreg dei siste 5 åra? ',
     'medlemskapSteg.spørsmål.harJobbetINorge.text.1':
         'Å ha «jobba samanhengande» tyder at du har hatt ein jobb med inntekt i Noreg mesteparten av tida i kvart av dei siste 5 åra.',
-    'medlemskapSteg.spørsmål.harJobbetINorge.readmore.header': 'Kva tyder dette?',
-    'medlemskapSteg.spørsmål.harJobbetINorge.readmore.text.2':
+    'medlemskapSteg.spørsmål.ytelserSomJobb.readmore.header': 'Kva tyder dette?',
+    'medlemskapSteg.spørsmål.ytelserSomJobb.readmore.text.2':
         'Viss du har fått ytingar frå norske styresmakter som skal erstatte inntekt, til dømes dagpengar, sjukepengar og foreldrepengar, svarer du «Ja» sidan det òg blir rekna som jobb.',
     'medlemskapSteg.spørsmål.harJobbetUtenforNorge': 'Har du jobba utanfor Noreg dei 5 siste åra?',
     'medlemskapSteg.spørsmål.harJobbetUtenforNorge.readmore.text':
