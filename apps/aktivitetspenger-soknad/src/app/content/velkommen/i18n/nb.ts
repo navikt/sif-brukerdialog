@@ -42,7 +42,7 @@ export const velkommenPageMessages_nb = {
     'page.velkommen.regler.tekst.1':
         'Når Nav behandler søknaden din og vurderer om du har rett til aktivitetspenger, så er det disse rettsreglene som gjelder: folketrygdloven § 25-13 tredje ledd og forskrift om forsøk med aktivitetspenger for unge (forsøket Et enklere Nav), Trondheim kommune, Trøndelag §§ 1-14 og § 18.',
     'page.velkommen.regler.tekst.2':
-        'Etter at du har sendt inn søknaden, blir det gjennomført en delautomatisk behandling, og som regel får du svar på søknaden innen XX.',
+        'Etter at du har sendt inn søknaden, blir det gjennomført en delautomatisk behandling, og som regel får du svar på søknaden innen to uker.',
     'page.velkommen.regler.tekst.3':
         'Dersom du ønsker å motsette deg automatisk behandling, så må du ikke sende inn denne søknaden. Da må du ta kontakt med veileder i Nav for å informere om dette.',
 

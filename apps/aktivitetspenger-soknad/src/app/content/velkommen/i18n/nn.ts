@@ -37,7 +37,7 @@ export const velkommenPageMessages_nn: Record<keyof typeof velkommenPageMessages
     'page.velkommen.regler.tekst.1':
         'Når Nav handsamar søknaden din og vurderer om du har rett til aktivitetspengar, så er det desse rettsreglane som gjeld: folketrygdloven § 25-13 tredje ledd og forskrift om forsøk med aktivitetspenger for unge (forsøket Et enklere Nav), Trondheim kommune, Trøndelag §§ 1-14 og § 18.',
     'page.velkommen.regler.tekst.2':
-        'Etter at du har sendt inn søknaden, blir det gjennomført ei delautomatisk handsaming, og som regel får du svar på søknaden innan XX.',
+        'Etter at du har sendt inn søknaden, blir det gjennomført ei delautomatisk handsaming, og som regel får du svar på søknaden innan to veker.',
     'page.velkommen.regler.tekst.3':
         'Dersom du ønskjer å motsetje deg automatisk handsaming, må du ikkje sende inn denne søknaden. Då må du ta kontakt med ein rettleiar i Nav for å informere om dette.',
     'page.velkommen.harForståttRettigheterOgPlikter.notChecked':
