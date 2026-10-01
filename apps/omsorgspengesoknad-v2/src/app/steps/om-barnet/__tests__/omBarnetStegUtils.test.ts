@@ -6,7 +6,7 @@ import { RegistrertBarn } from '@sif/api/k9-prosessering';
 import { InnvilgedeVedtak } from '@sif/api/k9-sak-innsyn-api';
 import { YesOrNo } from '@sif/rhf';
 import { getYearFromISODate, isISODate, ISODate } from '@sif/utils';
-import { afterAll, describe, expect, it, test, vi } from 'vitest';
+import { afterAll, afterEach, describe, expect, it, test, vi } from 'vitest';
 
 import {
     getMinDatoForBarnetsFødselsdato,
@@ -265,6 +265,8 @@ describe('utledVedtakInfoForBarn', () => {
     });
 
     it('returnerer tidsbegrenset vedtaksinfo når begge datofeltene finnes', () => {
+        vi.useFakeTimers().setSystemTime(new Date('2026-01-31'));
+
         const innvilgedeVedtak: InnvilgedeVedtak = {
             [registrertBarn.aktørId]: {
                 harInnvilgedeBehandlinger: true,
@@ -279,7 +281,10 @@ describe('utledVedtakInfoForBarn', () => {
             erTidsbegrenset: true,
             førsteMuligeSøknadsdato: '2026-02-01',
             vedtakTomDato: '2026-12-31',
+            kanSøke: false,
         });
+
+        vi.useRealTimers();
     });
 
     it('returnerer ikke-tidsbegrenset vedtaksinfo når bare sluttdato finnes', () => {
@@ -293,7 +298,10 @@ describe('utledVedtakInfoForBarn', () => {
             },
         };
 
-        expect(utledVedtakInfoForBarn(registrertBarn, innvilgedeVedtak)).toEqual({ erTidsbegrenset: false });
+        expect(utledVedtakInfoForBarn(registrertBarn, innvilgedeVedtak)).toEqual({
+            erTidsbegrenset: false,
+            kanSøke: false,
+        });
     });
 
     it('returnerer ikke-tidsbegrenset vedtaksinfo når bare første mulige søknadsdato finnes', () => {
@@ -307,7 +315,10 @@ describe('utledVedtakInfoForBarn', () => {
             },
         };
 
-        expect(utledVedtakInfoForBarn(registrertBarn, innvilgedeVedtak)).toEqual({ erTidsbegrenset: false });
+        expect(utledVedtakInfoForBarn(registrertBarn, innvilgedeVedtak)).toEqual({
+            erTidsbegrenset: false,
+            kanSøke: false,
+        });
     });
 
     it('returnerer ikke-tidsbegrenset vedtaksinfo når datofeltene mangler', () => {
@@ -323,6 +334,39 @@ describe('utledVedtakInfoForBarn', () => {
 
         expect(utledVedtakInfoForBarn(registrertBarn, innvilgedeVedtak)).toEqual({
             erTidsbegrenset: false,
+            kanSøke: false,
+        });
+    });
+
+    describe('kanSøke', () => {
+        const innvilgedeVedtak: InnvilgedeVedtak = {
+            [registrertBarn.aktørId]: {
+                harInnvilgedeBehandlinger: true,
+                saksnummer: 'ABC123',
+                vedtaksdato: '2026-01-01' as ISODate,
+                førsteMuligeSøknadsdato: '2026-02-01' as ISODate,
+                vedtakTomDato: '2026-12-31' as ISODate,
+            },
+        };
+
+        afterEach(() => vi.useRealTimers());
+
+        it('er false når dagens dato er før førsteMuligeSøknadsdato', () => {
+            vi.useFakeTimers().setSystemTime(new Date('2026-01-31'));
+            const result = utledVedtakInfoForBarn(registrertBarn, innvilgedeVedtak);
+            expect(result).toMatchObject({ kanSøke: false });
+        });
+
+        it('er true når dagens dato er lik førsteMuligeSøknadsdato', () => {
+            vi.useFakeTimers().setSystemTime(new Date('2026-02-01'));
+            const result = utledVedtakInfoForBarn(registrertBarn, innvilgedeVedtak);
+            expect(result).toMatchObject({ kanSøke: true });
+        });
+
+        it('er true når dagens dato er etter førsteMuligeSøknadsdato', () => {
+            vi.useFakeTimers().setSystemTime(new Date('2026-02-02'));
+            const result = utledVedtakInfoForBarn(registrertBarn, innvilgedeVedtak);
+            expect(result).toMatchObject({ kanSøke: true });
         });
     });
 });
