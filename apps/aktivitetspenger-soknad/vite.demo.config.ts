@@ -4,8 +4,8 @@ import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 
-import { getBuildBranch } from './mock/getBuildBranch.ts';
 import { getDevAppSettings } from './mock/devAppSettings.ts';
+import { getBuildBranch } from './mock/getBuildBranch.ts';
 import { toHtmlSafeJson } from './mock/htmlSafeJson.ts';
 
 // Må matche `base` under - MSW-workeren registreres på BASE_URL og får dermed
@@ -38,6 +38,8 @@ export default defineConfig({
                         SIF_PUBLIC_USE_ANALYTICS: 'false',
                         SIF_PUBLIC_AKTIVITETSPENGER_INNSYN_URL: '#',
                         SIF_PUBLIC_SEND_BESKJED: '#',
+                        SIF_PUBLIC_IS_OPEN: 'true',
+                        SIF_PUBLIC_SUBMIT_ENABLED: 'true',
                         // Må ligge under MSW-workerens scope, se DEMO_PUBLIC_PATH over.
                         PUBLIC_PATH: DEMO_PUBLIC_PATH,
                         K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: `${DEMO_PUBLIC_PATH}/api/brukerdialog`,

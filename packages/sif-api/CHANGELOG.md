@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.3
+
+### Patch Changes
+
+- Pakkeoppdateringer, nav-dekoratoren-moduler@4.5.0
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.19
+    - @navikt/k9-sak-innsyn-api@0.2.21
+    - @navikt/ung-brukerdialog-api@0.0.9
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.22
+    - @sif/utils@0.1.1
+
 ## 0.1.2
 
 ### Patch Changes

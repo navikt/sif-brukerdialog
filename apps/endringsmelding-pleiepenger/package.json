@@ -1,6 +1,6 @@
 {
     "name": "@navikt/endringsmelding-pleiepenger",
-    "version": "3.1.1",
+    "version": "3.1.2",
     "private": true,
     "description": "Endringsmelding - pleiepenger sykt barn",
     "repository": "https://github.com/navikt/sif-brukerdialog",
@@ -40,9 +40,9 @@
     },
     "dependencies": {
         "@nais/apm": "0.7.2",
-        "@navikt/aksel-icons": "8.16.2",
-        "@navikt/ds-css": "8.16.2",
-        "@navikt/ds-react": "8.16.2",
+        "@navikt/aksel-icons": "8.17.2",
+        "@navikt/ds-css": "8.17.2",
+        "@navikt/ds-react": "8.17.2",
         "@navikt/fnrvalidator": "2.2.1",
         "@navikt/sif-app-register": "workspace:*",
         "@navikt/sif-common-analytics": "workspace:*",
@@ -67,7 +67,7 @@
         "formik": "2.4.9",
         "html-react-parser": "6.1.8",
         "intl": "1.2.5",
-        "jsdom": "30.1.1",
+        "jsdom": "^30.1.1",
         "lodash": "4.18.1",
         "object-hash": "3.0.0",
         "react": "19.3.0",
@@ -80,8 +80,8 @@
     },
     "devDependencies": {
         "@axe-core/playwright": "4.13.0",
-        "@navikt/ds-tailwind": "8.16.2",
-        "@navikt/nav-dekoratoren-moduler": "4.3.0",
+        "@navikt/ds-tailwind": "8.17.2",
+        "@navikt/nav-dekoratoren-moduler": "4.5.0",
         "@playwright/test": "1.63.0",
         "@sif/eslint-config": "workspace:*",
         "@storybook/react": "10.6.0",
@@ -93,7 +93,7 @@
         "@types/flat": "5.0.5",
         "@types/intl": "1.2.2",
         "@types/js-cookie": "3.0.6",
-        "@types/node": "26.6.2",
+        "@types/node": "26.6.3",
         "@types/object-hash": "3.0.6",
         "@types/react": "19.3.0",
         "@types/react-document-title": "2.0.10",
@@ -116,7 +116,7 @@
         "typescript": "6.0.3",
         "vite": "8.3.1",
         "vite-plugin-checker": "0.14.5",
-        "vitest": "5.0.1"
+        "vitest": "5.0.2"
     },
     "msw": {
         "workerDirectory": [

@@ -30,7 +30,7 @@ const Template: StoryFn = () => {
                 <IkkeSammeAdresseAlert />
             </AlertStoryWrapper>
             <AlertStoryWrapper title="Trenger ikke søke for barn">
-                <VedtakForBarnInfo barnetsFornavn="Per" vedtak={{ erTidsbegrenset: false }} />
+                <VedtakForBarnInfo barnetsFornavn="Per" vedtak={{ erTidsbegrenset: false, kanSøke: false }} />
             </AlertStoryWrapper>
             <ShadowBox>
                 <MessagesList messages={messages} />

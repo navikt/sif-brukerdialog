@@ -1,6 +1,6 @@
 {
     "name": "@sif/sif-innsyn-api",
-    "version": "0.3.22",
+    "version": "0.3.23",
     "private": true,
     "repository": {
         "type": "git",
@@ -33,7 +33,7 @@
         "postcss": ">=8.5.28",
         "prettier": "3.9.9",
         "typescript": "6.0.3",
-        "vitest": "5.0.1",
+        "vitest": "5.0.2",
         "zod": "4.6.5"
     },
     "peerDependencies": {

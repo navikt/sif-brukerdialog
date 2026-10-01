@@ -1,6 +1,6 @@
 {
     "name": "@sif/apm",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "private": true,
     "description": "APM-logging for Sykdom i familien — wrapper rundt @nais/apm",
     "author": "navikt",
@@ -20,10 +20,10 @@
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "26.6.2",
+        "@types/node": "26.6.3",
         "config": "workspace:*",
         "eslint": "10.11.0",
         "typescript": "6.0.3",
-        "vitest": "5.0.1"
+        "vitest": "5.0.2"
     }
 }

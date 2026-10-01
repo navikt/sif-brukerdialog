@@ -3,6 +3,7 @@ import './app.css';
 
 import { Theme } from '@navikt/ds-react';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
+import { AktivitetspengerInnsynApp } from '@navikt/sif-app-register';
 import { EnvKey } from '@navikt/sif-common-env';
 import { DevBranchInfo } from '@sif/soknad-ui';
 import MockDate from 'mockdate';
@@ -15,6 +16,7 @@ import { getAppEnv } from './app/appEnv';
 import AppRouter from './app/AppRouter';
 import { applicationIntlMessages } from './app/i18n';
 import { InitialDataLoader } from './app/initial-data/InitialDataLoader';
+import { IkkeÅpenPage } from './app/pages/IkkeApenPage';
 import { AppErrorBoundary } from './app/setup/wrappers/AppErrorBoundary';
 import { SifQueryClientProvider } from './app/setup/wrappers/SifQueryClientProvider';
 
@@ -31,6 +33,8 @@ if (__INJECT_DECORATOR_CLIENT_SIDE__) {
     injectDecoratorClientSide({
         env: 'dev',
         params: {
+            context: 'privatperson',
+            teamName: `${AktivitetspengerInnsynApp.key}.dusseldorf`,
             simple: false,
             chatbot: true,
         },
@@ -49,6 +53,14 @@ export const App = () => {
             document.body.classList.remove('innsynAppBody');
         };
     }, []);
+
+    if (appEnv.SIF_PUBLIC_IS_OPEN !== 'true') {
+        return (
+            <Theme hasBackground={false}>
+                <IkkeÅpenPage />
+            </Theme>
+        );
+    }
 
     return (
         <Theme hasBackground={false}>

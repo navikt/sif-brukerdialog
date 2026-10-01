@@ -1,5 +1,5 @@
 import { AppStatusWrapper, SanityConfig } from '@navikt/appstatus-react-ds';
-import { ApplicationUnavailableContent, DevBranchInfo } from '@sif/soknad-ui';
+import { ApplicationPage, ApplicationUnavailableContent, DevBranchInfo } from '@sif/soknad-ui';
 import { UxSignalsLoaderProvider } from '@sif/surveys';
 import { PropsWithChildren } from 'react';
 
@@ -54,7 +54,11 @@ export const SøknadAppProvider = ({
                                     applicationKey={applicationKey}
                                     sanityConfig={appStatusConfig.sanityConfig}
                                     contentRenderer={() => children}
-                                    unavailableContentRenderer={() => <ApplicationUnavailableContent />}
+                                    unavailableContentRenderer={() => (
+                                        <ApplicationPage applicationTitle="Tjeneste ikke tilgjengelig" headerLevel="1">
+                                            <ApplicationUnavailableContent />
+                                        </ApplicationPage>
+                                    )}
                                 />
                             ) : (
                                 <>{children}</>

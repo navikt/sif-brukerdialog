@@ -1,5 +1,15 @@
 # @navikt/sif-common-core-ds
 
+## 10.4.1
+
+### Patch Changes
+
+- Pakkeoppdateringer, nav-dekoratoren-moduler@4.5.0
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.20.75
+    - @navikt/sif-common-api@0.5.1
+    - @navikt/sif-common-utils@3.49.62
+
 ## 10.4.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
     "name": "@navikt/k9-sak-innsyn-k9-sak-api",
-    "version": "0.2.15",
+    "version": "0.2.16",
     "private": true,
     "repository": {
         "type": "git",
@@ -28,7 +28,7 @@
         "postcss": ">=8.5.28",
         "prettier": "3.9.9",
         "typescript": "6.0.3",
-        "vitest": "5.0.1",
+        "vitest": "5.0.2",
         "zod": "4.6.5"
     },
     "peerDependencies": {

@@ -1,5 +1,13 @@
 # @sif/sif-innsyn-api
 
+## 0.3.23
+
+### Patch Changes
+
+- Pakkeoppdateringer, nav-dekoratoren-moduler@4.5.0
+- Updated dependencies
+    - @navikt/sif-common-api@0.5.1
+
 ## 0.3.22
 
 ### Patch Changes

@@ -4,6 +4,7 @@ import { AppText, useAppIntl } from '@app/i18n';
 import { Søknadsdata } from '@app/types/Soknadsdata';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { søknadsdataToSøknadDTO } from '@app/utils/soknadsdataToSoknadDTO';
+import { InformationSquareIcon } from '@navikt/aksel-icons';
 import { InfoCard } from '@navikt/ds-react';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
@@ -13,6 +14,7 @@ import { dateToISODate, getDateToday, ISODate } from '@sif/utils';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { getAppEnv } from '../../setup/appEnv';
 import { InnsendingFeiletAlert } from './InnsendingFeiletAlert';
 import { BarnOppsummering } from './parts/BarnOppsummering';
 import { BostedOppsummering } from './parts/BostedOppsummering';
@@ -61,6 +63,8 @@ export const OppsummeringSteg = () => {
         sendSøknad({ ...dto, harBekreftetOpplysninger });
     };
 
+    const submitEnabled = getAppEnv().SIF_PUBLIC_SUBMIT_ENABLED === 'true';
+
     return (
         <SøknadStep stepId={stepId}>
             <SøknadStepForm
@@ -69,7 +73,14 @@ export const OppsummeringSteg = () => {
                 onSubmit={onSubmit}
                 isPending={isPending}
                 isFinalSubmit={true}
-                submitDisabled={!dto || !startdato}>
+                submitDisabled={!dto || !startdato || submitEnabled === false}>
+                {submitEnabled === false && (
+                    <InfoCard data-color="warning">
+                        <InfoCard.Message icon={<InformationSquareIcon />}>
+                            Innsending av søknad er ikke tilgjengelig fordi denne ikke er lansert enda.
+                        </InfoCard.Message>
+                    </InfoCard>
+                )}
                 <StartdatoSpørsmål
                     value={startdato}
                     onDateChange={(dato) => {

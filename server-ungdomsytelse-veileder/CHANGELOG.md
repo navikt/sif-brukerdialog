@@ -1,5 +1,11 @@
 # @navikt/sif-server
 
+## 0.0.59
+
+### Patch Changes
+
+- Pakkeoppdateringer, nav-dekoratoren-moduler@4.5.0
+
 ## 0.0.58
 
 ### Patch Changes
