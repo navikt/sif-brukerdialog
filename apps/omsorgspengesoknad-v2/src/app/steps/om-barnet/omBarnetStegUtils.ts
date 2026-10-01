@@ -2,11 +2,8 @@ import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
 import { RegistrertBarn } from '@sif/api/k9-prosessering';
 import { InnvilgedeVedtak } from '@sif/api/k9-sak-innsyn-api';
 import { YesOrNo } from '@sif/rhf';
-import { dateToISODate, ISODate } from '@sif/utils';
+import { dateToISODate, getDagensDatoIOslo, ISODate } from '@sif/utils';
 import dayjs from 'dayjs';
-import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
-
-dayjs.extend(isSameOrBefore);
 
 import { ANNET_BARN, OmBarnetFormValues } from './types';
 
@@ -133,7 +130,7 @@ export const utledVedtakInfoForBarn = (
             erTidsbegrenset: true,
             førsteMuligeSøknadsdato: vedtakForValgtBarn.førsteMuligeSøknadsdato,
             vedtakTomDato: vedtakForValgtBarn.vedtakTomDato,
-            kanSøke: dayjs(vedtakForValgtBarn.førsteMuligeSøknadsdato).isSameOrBefore(dayjs()),
+            kanSøke: vedtakForValgtBarn.førsteMuligeSøknadsdato <= getDagensDatoIOslo(),
         };
     }
 

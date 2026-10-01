@@ -2,11 +2,8 @@ import { RegistrertBarn } from '@navikt/sif-common-api';
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
-import { ISODate, ISODateToDate } from '@navikt/sif-common-utils';
+import { getDagensDatoIOslo, ISODate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
-
-dayjs.extend(isSameOrBefore);
 
 import { InnvilgedeVedtak } from '../../../hooks/useInnvilgedeVedtakForRegistrerteBarn';
 import { AppMessageKeys } from '../../../i18n';
@@ -163,6 +160,7 @@ type TidsbegrensetVedtakInfo = {
     kanSøke: boolean;
 };
 export type UtledetVedtakInfo = IkkeTidsbegrensetVedtakInfo | TidsbegrensetVedtakInfo;
+
 export const utledVedtakInfoForBarn = (
     barn?: RegistrertBarn,
     innvilgedeVedtak?: InnvilgedeVedtak,
@@ -176,7 +174,7 @@ export const utledVedtakInfoForBarn = (
             erTidsbegrenset: true,
             førsteMuligeSøknadsdato: vedtakForValgtBarn.førsteMuligeSøknadsdato,
             vedtakTomDato: vedtakForValgtBarn.vedtakTomDato,
-            kanSøke: dayjs(ISODateToDate(vedtakForValgtBarn.førsteMuligeSøknadsdato)).isSameOrBefore(dayjs()),
+            kanSøke: vedtakForValgtBarn.førsteMuligeSøknadsdato <= getDagensDatoIOslo(),
         };
     }
     return {

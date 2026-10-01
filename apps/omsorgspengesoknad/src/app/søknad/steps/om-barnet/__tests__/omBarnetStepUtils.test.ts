@@ -104,6 +104,34 @@ describe('utledVedtakInfoForBarn', () => {
             const result = utledVedtakInfoForBarn(barn, innvilgedeVedtak);
             expect(result).toMatchObject({ kanSøke: true });
         });
+
+        describe('rundt norsk midnatt, uavhengig av brukerens nettlesertidssone', () => {
+            const opprinneligTZ = process.env.TZ;
+
+            afterEach(() => {
+                process.env.TZ = opprinneligTZ;
+            });
+
+            it('er true for en bruker vest for Norge selv om det lokalt fortsatt er dagen før', () => {
+                // Oslo går over til 2026-02-01 kl. 23:00:00Z (00:00 norsk vintertid).
+                // 30 min senere er Oslo-datoen 1. februar, men i Honolulu (UTC-10) er det fortsatt 31. januar lokalt.
+                process.env.TZ = 'Pacific/Honolulu';
+                vi.useFakeTimers().setSystemTime(new Date('2026-01-31T23:30:00.000Z'));
+
+                const result = utledVedtakInfoForBarn(barn, innvilgedeVedtak);
+                expect(result).toMatchObject({ kanSøke: true });
+            });
+
+            it('er false for en bruker øst for Norge selv om det lokalt allerede er riktig dato', () => {
+                // 3 timer før Oslo går over til 1. februar er Oslo-datoen fortsatt 31. januar,
+                // men i Auckland (UTC+13 pga sommertid) er lokal dato allerede 1. februar.
+                process.env.TZ = 'Pacific/Auckland';
+                vi.useFakeTimers().setSystemTime(new Date('2026-01-31T20:00:00.000Z'));
+
+                const result = utledVedtakInfoForBarn(barn, innvilgedeVedtak);
+                expect(result).toMatchObject({ kanSøke: false });
+            });
+        });
     });
 });
 
