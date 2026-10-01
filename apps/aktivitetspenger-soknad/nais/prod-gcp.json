@@ -52,7 +52,7 @@
         "SIF_PUBLIC_DEKORATOR_URL": "https://www.nav.no/dekoratoren/?simple=false&chatbot=false&logoutUrl=https://www.nav.no/aktivitetspenger/soknad/oauth2/logout",
         "SIF_PUBLIC_FEATURE_NYNORSK": "on",
         "SIF_PUBLIC_FULL_DEKORATOR": "on",
-        "SIF_PUBLIC_IS_OPEN": "true",
+        "SIF_PUBLIC_IS_OPEN": "false",
         "SIF_PUBLIC_SUBMIT_ENABLED": "false",
         "SIF_PUBLIC_LOGIN_URL": "https://www.nav.no/aktivitetspenger/soknad/oauth2/login?redirect=/aktivitetspenger/soknad",
         "SIF_PUBLIC_MINSIDE_URL": "https://www.nav.no/minside",
