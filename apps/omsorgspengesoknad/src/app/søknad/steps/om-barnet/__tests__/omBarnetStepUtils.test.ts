@@ -35,6 +35,8 @@ describe('utledVedtakInfoForBarn', () => {
     });
 
     it('returnerer tidsbegrenset vedtaksinfo når begge datofeltene finnes', () => {
+        vi.useFakeTimers().setSystemTime(new Date('2026-01-31'));
+
         const innvilgedeVedtak: InnvilgedeVedtak = {
             [barn.aktørId]: {
                 harInnvilgedeBehandlinger: true,
@@ -49,7 +51,10 @@ describe('utledVedtakInfoForBarn', () => {
             erTidsbegrenset: true,
             førsteMuligeSøknadsdato: '2026-02-01',
             vedtakTomDato: '2026-12-31',
+            kanSøke: false,
         });
+
+        vi.useRealTimers();
     });
 
     it('returnerer ikke-tidsbegrenset vedtaksinfo når datofeltene mangler', () => {
@@ -65,6 +70,39 @@ describe('utledVedtakInfoForBarn', () => {
 
         expect(utledVedtakInfoForBarn(barn, innvilgedeVedtak)).toEqual({
             erTidsbegrenset: false,
+            kanSøke: false,
+        });
+    });
+
+    describe('kanSøke', () => {
+        const innvilgedeVedtak: InnvilgedeVedtak = {
+            [barn.aktørId]: {
+                harInnvilgedeBehandlinger: true,
+                saksnummer: 'ABC123',
+                vedtaksdato: '2026-01-01',
+                førsteMuligeSøknadsdato: '2026-02-01',
+                vedtakTomDato: '2026-12-31',
+            },
+        };
+
+        afterEach(() => vi.useRealTimers());
+
+        it('er false når dagens dato er før førsteMuligeSøknadsdato', () => {
+            vi.useFakeTimers().setSystemTime(new Date('2026-01-31'));
+            const result = utledVedtakInfoForBarn(barn, innvilgedeVedtak);
+            expect(result).toMatchObject({ kanSøke: false });
+        });
+
+        it('er true når dagens dato er lik førsteMuligeSøknadsdato', () => {
+            vi.useFakeTimers().setSystemTime(new Date('2026-02-01'));
+            const result = utledVedtakInfoForBarn(barn, innvilgedeVedtak);
+            expect(result).toMatchObject({ kanSøke: true });
+        });
+
+        it('er true når dagens dato er etter førsteMuligeSøknadsdato', () => {
+            vi.useFakeTimers().setSystemTime(new Date('2026-02-02'));
+            const result = utledVedtakInfoForBarn(barn, innvilgedeVedtak);
+            expect(result).toMatchObject({ kanSøke: true });
         });
     });
 });
