@@ -1,5 +1,14 @@
 # @sif/soknad-ui
 
+## 0.2.1
+
+### Patch Changes
+
+- Pakkeoppdateringer, nav-dekoratoren-moduler@4.5.0
+- Updated dependencies
+    - @sif/api@0.1.3
+    - @sif/utils@0.1.1
+
 ## 0.2.0
 
 ### Minor Changes

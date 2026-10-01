@@ -3,6 +3,7 @@ import './app.css';
 
 import { Theme } from '@navikt/ds-react';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
+import { AktivitetspengerInnsynApp } from '@navikt/sif-app-register';
 import { EnvKey } from '@navikt/sif-common-env';
 import { DevBranchInfo } from '@sif/soknad-ui';
 import MockDate from 'mockdate';
@@ -32,6 +33,8 @@ if (__INJECT_DECORATOR_CLIENT_SIDE__) {
     injectDecoratorClientSide({
         env: 'dev',
         params: {
+            context: 'privatperson',
+            teamName: `${AktivitetspengerInnsynApp.key}.dusseldorf`,
             simple: false,
             chatbot: true,
         },

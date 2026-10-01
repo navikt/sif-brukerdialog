@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 2.20.75
+
+### Patch Changes
+
+- Pakkeoppdateringer, nav-dekoratoren-moduler@4.5.0
+
 ## 2.20.74
 
 ### Patch Changes
