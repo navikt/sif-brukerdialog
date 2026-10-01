@@ -22,7 +22,7 @@
         "@nais/apm": "0.7.2",
         "@navikt/appstatus-react-ds": "workspace:*",
         "@navikt/ds-react": "8.17.2",
-        "@navikt/nav-dekoratoren-moduler": "4.3.0",
+        "@navikt/nav-dekoratoren-moduler": "4.5.0",
         "@navikt/sif-common-ui": "workspace:*",
         "@sif/api": "workspace:*",
         "@sif/apm": "workspace:*",

@@ -19,7 +19,7 @@
         "@navikt/ds-css": "8.17.2",
         "@navikt/ds-react": "8.17.2",
         "@navikt/ds-tailwind": "8.17.2",
-        "@navikt/nav-dekoratoren-moduler": "4.3.0",
+        "@navikt/nav-dekoratoren-moduler": "4.5.0",
         "classnames": "2.5.1",
         "csp-header": "6.4.0",
         "dayjs": "1.11.23",

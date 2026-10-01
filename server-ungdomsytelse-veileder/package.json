@@ -8,7 +8,7 @@
     },
     "dependencies": {
         "@nais/apm": "0.7.2",
-        "@navikt/nav-dekoratoren-moduler": "4.3.0",
+        "@navikt/nav-dekoratoren-moduler": "4.5.0",
         "@navikt/oasis": "4.2.2",
         "@navikt/sif-common-env": "workspace:*",
         "csp-header": "6.4.0",

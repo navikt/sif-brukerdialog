@@ -32,6 +32,8 @@ if (__INJECT_DECORATOR_CLIENT_SIDE__) {
     injectDecoratorClientSide({
         env: 'dev',
         params: {
+            context: 'privatperson',
+            teamName: 'dusseldorf',
             simple: false,
             chatbot: true,
         },

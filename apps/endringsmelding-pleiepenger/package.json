@@ -81,7 +81,7 @@
     "devDependencies": {
         "@axe-core/playwright": "4.13.0",
         "@navikt/ds-tailwind": "8.17.2",
-        "@navikt/nav-dekoratoren-moduler": "4.3.0",
+        "@navikt/nav-dekoratoren-moduler": "4.5.0",
         "@playwright/test": "1.63.0",
         "@sif/eslint-config": "workspace:*",
         "@storybook/react": "10.6.0",

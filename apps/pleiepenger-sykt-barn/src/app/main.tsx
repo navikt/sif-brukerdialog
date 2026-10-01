@@ -18,6 +18,8 @@ if (import.meta.env.INJECT_DECORATOR) {
     injectDecoratorClientSide({
         env: 'dev',
         params: {
+            context: 'privatperson',
+            teamName: 'dusseldorf',
             simple: true,
             chatbot: false,
         },

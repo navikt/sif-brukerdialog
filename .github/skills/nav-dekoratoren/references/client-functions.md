@@ -9,14 +9,14 @@ Setter brødsmulestien dynamisk. Bruk `handleInApp: true` for SPA-routing.
 personopplysninger.
 
 ```ts
-import { setBreadcrumbs } from "@navikt/nav-dekoratoren-moduler";
+import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 
 setBreadcrumbs([
-    { title: "Ditt Nav", url: "https://www.nav.no/person/dittnav" },
+    { title: 'Ditt Nav', url: 'https://www.nav.no/person/dittnav' },
     {
-        title: "Opplysninger for Ola Nordmann",
-        analyticsTitle: "Opplysninger for <Navn>", // ingen personopplysninger
-        url: "https://www.nav.no/min-side",
+        title: 'Opplysninger for Ola Nordmann',
+        analyticsTitle: 'Opplysninger for <Navn>', // ingen personopplysninger
+        url: 'https://www.nav.no/min-side',
         handleInApp: true,
     },
 ]);
@@ -29,7 +29,7 @@ Bruk rammeverkets router: `router.push(url)` i Next.js, `navigate(url)` i React 
 tilsvarende i andre SPA-rammeverk.
 
 ```ts
-import { onBreadcrumbClick } from "@navikt/nav-dekoratoren-moduler";
+import { onBreadcrumbClick } from '@navikt/nav-dekoratoren-moduler';
 
 onBreadcrumbClick((breadcrumb) => {
     navigateTo(breadcrumb.url);
@@ -41,13 +41,13 @@ onBreadcrumbClick((breadcrumb) => {
 Oppdaterer språkvelgeren. URL må være på `nav.no` eller underdomene.
 
 ```ts
-import { setAvailableLanguages } from "@navikt/nav-dekoratoren-moduler";
+import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
 setAvailableLanguages([
-    { locale: "nb", url: "https://www.nav.no/kontakt-oss/nb" },
+    { locale: 'nb', url: 'https://www.nav.no/kontakt-oss/nb' },
     {
-        locale: "en",
-        url: "https://www.nav.no/kontakt-oss/en",
+        locale: 'en',
+        url: 'https://www.nav.no/kontakt-oss/en',
         handleInApp: true,
     },
 ]);
@@ -59,7 +59,7 @@ Kalles ved språkvalg med `handleInApp: true`.
 Bruk samme router-funksjon som for breadcrumbs.
 
 ```ts
-import { onLanguageSelect } from "@navikt/nav-dekoratoren-moduler";
+import { onLanguageSelect } from '@navikt/nav-dekoratoren-moduler';
 
 onLanguageSelect((language) => {
     navigateTo(language.url);
@@ -73,19 +73,15 @@ Oppgi `origin` når logger-instansen opprettes for å identifisere appens egne h
 samme verdien som `origin` i dekoratørparameterne for automatiske `besøk`-hendelser.
 
 ```ts
-import {
-    getAnalyticsInstance,
-    Events,
-    isValidEventName,
-} from "@navikt/nav-dekoratoren-moduler";
+import { getAnalyticsInstance, Events, isValidEventName } from '@navikt/nav-dekoratoren-moduler';
 
-const logger = getAnalyticsInstance("min-app");
+const logger = getAnalyticsInstance('min-app');
 
 // Taksonomi-event – strengt typet fra @navikt/analytics-types
-logger(Events.SKJEMA_STARTET, { skjemaId: "1234", skjemanavn: "aap" });
+logger(Events.SKJEMA_STARTET, { skjemaId: '1234', skjemanavn: 'aap' });
 
 // Custom event
-logger.custom("feedback åpnet", { komponent: "feedback-widget", steg: 2 });
+logger.custom('feedback åpnet', { komponent: 'feedback-widget', steg: 2 });
 
 // Dynamisk valg av event-type
 if (isValidEventName(eventName)) {
@@ -98,10 +94,7 @@ if (isValidEventName(eventName)) {
 Importer event-typer direkte:
 
 ```ts
-import type {
-    NavigereEvent,
-    SkjemaStartetEvent,
-} from "@navikt/nav-dekoratoren-moduler";
+import type { NavigereEvent, SkjemaStartetEvent } from '@navikt/nav-dekoratoren-moduler';
 ```
 
 > ⚠️ `getAmplitudeInstance()` er fjernet i v4+. Bruk `getAnalyticsInstance()`.
@@ -111,7 +104,7 @@ import type {
 Oppdater eller les alle parametre dynamisk.
 
 ```ts
-import { setParams, getParams } from "@navikt/nav-dekoratoren-moduler";
+import { setParams, getParams } from '@navikt/nav-dekoratoren-moduler';
 
 // Oppdater parametre
 setParams({ simple: true, chatbot: false });
@@ -125,7 +118,7 @@ const current = getParams();
 Åpner Chatbot Frida og setter `chatbotVisible=true`.
 
 ```ts
-import { openChatbot } from "@navikt/nav-dekoratoren-moduler";
+import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 
 openChatbot();
 ```
@@ -135,10 +128,10 @@ openChatbot();
 CSR-fallback. Bruk kun hvis SSR ikke er mulig i arkitekturen.
 
 ```ts
-import { injectDecoratorClientSide } from "@navikt/nav-dekoratoren-moduler";
+import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 
 injectDecoratorClientSide({
-    env: "prod",
+    env: 'dev',
     params: { simple: true, chatbot: true },
 });
 ```
