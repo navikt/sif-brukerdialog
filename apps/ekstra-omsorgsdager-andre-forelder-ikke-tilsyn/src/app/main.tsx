@@ -19,7 +19,7 @@ if (import.meta.env.INJECT_DECORATOR) {
         env: 'dev',
         params: {
             context: 'privatperson',
-            teamName: `dusseldorf.${OmsorgsdagerAnnenForelderIkkeTilsynApp.key}`,
+            teamName: `${OmsorgsdagerAnnenForelderIkkeTilsynApp.key}.dusseldorf`,
             simple: true,
             chatbot: false,
         },

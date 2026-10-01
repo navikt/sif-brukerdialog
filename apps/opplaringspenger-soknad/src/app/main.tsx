@@ -15,7 +15,7 @@ if (import.meta.env.INJECT_DECORATOR) {
         env: 'dev',
         params: {
             context: 'privatperson',
-            teamName: `dusseldorf.${OpplæringspengerApp.key}`,
+            teamName: `${OpplæringspengerApp.key}.dusseldorf`,
             simple: true,
             chatbot: false,
         },

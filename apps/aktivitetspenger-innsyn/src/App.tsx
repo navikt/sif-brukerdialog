@@ -34,7 +34,7 @@ if (__INJECT_DECORATOR_CLIENT_SIDE__) {
         env: 'dev',
         params: {
             context: 'privatperson',
-            teamName: `dusseldorf.${AktivitetspengerInnsynApp.key}`,
+            teamName: `${AktivitetspengerInnsynApp.key}.dusseldorf`,
             simple: false,
             chatbot: true,
         },

@@ -19,7 +19,7 @@ if (import.meta.env.INJECT_DECORATOR) {
         env: 'dev',
         params: {
             context: 'privatperson',
-            teamName: `dusseldorf.${OmsorgspengerutbetalingSNFriApp.key}`,
+            teamName: `${OmsorgspengerutbetalingSNFriApp.key}.dusseldorf`,
             simple: true,
             chatbot: false,
         },
