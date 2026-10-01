@@ -1,5 +1,18 @@
 # @sif/soknad-forms
 
+## 0.1.3
+
+### Patch Changes
+
+- Pakkeoppdateringer, nav-dekoratoren-moduler@4.5.0
+- Updated dependencies
+    - @navikt/sif-common-ui@0.12.1
+    - @navikt/sif-validation@1.0.23
+    - @sif/api@0.1.3
+    - @sif/rhf@0.1.1
+    - @sif/soknad-ui@0.2.1
+    - @sif/utils@0.1.1
+
 ## 0.1.2
 
 ### Patch Changes

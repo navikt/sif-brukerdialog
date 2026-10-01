@@ -1,6 +1,6 @@
 {
     "name": "@navikt/omsorgsdager-kalkulator",
-    "version": "3.14.7",
+    "version": "3.14.8",
     "private": true,
     "description": "En kalkulator for beregning av omsorgsdager.",
     "license": "MIT",

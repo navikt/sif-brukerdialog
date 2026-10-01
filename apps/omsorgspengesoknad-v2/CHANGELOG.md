@@ -1,5 +1,23 @@
 # @navikt/omsorgspengesoknad-v2
 
+## 0.1.2
+
+### Patch Changes
+
+- Pakkeoppdateringer, nav-dekoratoren-moduler@4.5.0
+- Updated dependencies
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.19
+    - @navikt/k9-sak-innsyn-api@0.2.21
+    - @navikt/sif-validation@1.0.23
+    - @sif/api@0.1.3
+    - @sif/apm@0.2.2
+    - @sif/rhf@0.1.1
+    - @sif/soknad-app@0.2.2
+    - @sif/soknad-forms@0.1.3
+    - @sif/soknad-ui@0.2.1
+    - @sif/surveys@0.0.2
+    - @sif/utils@0.1.1
+
 ## 0.1.1
 
 ### Patch Changes

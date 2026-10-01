@@ -1,5 +1,11 @@
 # @navikt/sif-common-analytics
 
+## 0.1.1
+
+### Patch Changes
+
+- Pakkeoppdateringer, nav-dekoratoren-moduler@4.5.0
+
 ## 0.1.0
 
 ### Minor Changes

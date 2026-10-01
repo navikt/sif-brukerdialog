@@ -1,5 +1,11 @@
 # @navikt/ung-brukerdialog-api
 
+## 0.0.9
+
+### Patch Changes
+
+- Pakkeoppdateringer, nav-dekoratoren-moduler@4.5.0
+
 ## 0.0.8
 
 ### Patch Changes

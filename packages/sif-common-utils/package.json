@@ -1,6 +1,6 @@
 {
     "name": "@navikt/sif-common-utils",
-    "version": "3.49.61",
+    "version": "3.49.62",
     "private": true,
     "description": "Diverse utils for Sykdom i familien teamet",
     "author": "navikt",

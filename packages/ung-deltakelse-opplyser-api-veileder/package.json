@@ -1,6 +1,6 @@
 {
     "name": "@navikt/ung-deltakelse-opplyser-api-veileder",
-    "version": "0.3.14",
+    "version": "0.3.15",
     "private": true,
     "repository": {
         "type": "git",

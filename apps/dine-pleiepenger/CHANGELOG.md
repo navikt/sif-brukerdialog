@@ -1,5 +1,18 @@
 # @navikt/dine-pleiepenger
 
+## 2.3.2
+
+### Patch Changes
+
+- Pakkeoppdateringer, nav-dekoratoren-moduler@4.5.0
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.20.75
+    - @navikt/k9-sak-innsyn-api@0.2.21
+    - @navikt/sif-common-analytics@0.1.1
+    - @navikt/sif-common-core-ds@10.4.1
+    - @navikt/sif-common-utils@3.49.62
+    - @sif/apm@0.2.2
+
 ## 2.3.1
 
 ### Patch Changes

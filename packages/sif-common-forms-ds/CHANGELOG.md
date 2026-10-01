@@ -1,5 +1,19 @@
 # @navikt/sif-common-forms-ds
 
+## 21.0.62
+
+### Patch Changes
+
+- Pakkeoppdateringer, nav-dekoratoren-moduler@4.5.0
+- Updated dependencies
+    - @navikt/sif-common-api@0.5.1
+    - @navikt/sif-common-core-ds@10.4.1
+    - @navikt/sif-common-formik-ds@2.6.1
+    - @navikt/sif-common-soknad-ds@26.2.2
+    - @navikt/sif-common-ui@0.12.1
+    - @navikt/sif-common-utils@3.49.62
+    - @navikt/sif-validation@1.0.23
+
 ## 21.0.61
 
 ### Patch Changes

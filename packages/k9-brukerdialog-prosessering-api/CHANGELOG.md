@@ -1,5 +1,11 @@
 # @navikt/k9-brukerdialog-prosessering-api
 
+## 0.3.19
+
+### Patch Changes
+
+- Pakkeoppdateringer, nav-dekoratoren-moduler@4.5.0
+
 ## 0.3.18
 
 ### Patch Changes

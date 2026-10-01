@@ -1,6 +1,6 @@
 {
     "name": "@navikt/appstatus-react-ds",
-    "version": "2.20.74",
+    "version": "2.20.75",
     "private": true,
     "description": "Sanity utils for sykdom i familien",
     "license": "MIT",
