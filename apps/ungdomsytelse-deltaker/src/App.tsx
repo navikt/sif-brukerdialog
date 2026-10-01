@@ -30,7 +30,7 @@ if (__INJECT_DECORATOR_CLIENT_SIDE__) {
         env: 'dev',
         params: {
             context: 'privatperson',
-            teamName: 'dusseldorf',
+            teamName: `dusseldorf.${UngdomsytelseDeltakerApp.key}`,
             simple: false,
             chatbot: true,
         },
