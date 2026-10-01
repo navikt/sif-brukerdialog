@@ -4,21 +4,17 @@ export const medlemskapStegMessages_nn: Record<keyof typeof medlemskapStegMessag
     'medlemskapSteg.veileder.tekst.1': 'Her treng me å vite om du har budd eller jobba i utlandet dei siste 5 åra.',
     'medlemskapSteg.veileder.tekst.2':
         'Det er for at me skal kunne vurdere om du oppfyller krava til 5 års forutgåeade medlemskap i folketrygda.',
-    'medlemskapSteg.readMore.ytelserINorge.tittel': 'Blir ytingar frå norske styresmakter rekna som jobb?',
-    'medlemskapSteg.readMore.ytelserINorge.tekst':
-        'Offentlege ytingar som du har fått som erstatning for inntekt, til dømes dagpengar, sjukepengar og foreldrepengar, reknar me òg som jobb.',
-    'medlemskapSteg.readMore.ytelserIUtlandet.tittel':
-        'Blir ytingar frå utanlandske styresmakter rekna som jobb i utlandet?',
+    'medlemskapSteg.readMore.ytelserIUtlandet.tittel': 'Ytingar som òg blir rekna som jobb',
     'medlemskapSteg.readMore.ytelserIUtlandet.tekst':
-        'Viss du har fått ytingar (til dømes dagpengar, sjukepengar og foreldrepengar) frå utanlandske styresmakter, blir dette rekna som jobb utanfor Noreg.',
+        'Viss du har fått ytingar frå utanlandske styresmakter som skal erstatte inntekt, for eksempel dagpengar, sjukepengar og foreldrepengar, blir dette rekna som jobb utanfor Noreg.',
     'medlemskapSteg.spørsmål.harBoddINorge': 'Har du budd samanhengande i Noreg dei 5 siste åra?',
     'medlemskapSteg.spørsmål.harBoddINorge.readMore.tekst':
         'Å ha «budd samanhengande» tyder at du har budd i Noreg mesteparten av tida i kvart av dei siste 5 åra. ',
     'medlemskapSteg.spørsmål.harJobbetINorge': 'Har du jobba samanhengande i Noreg dei siste 5 åra? ',
     'medlemskapSteg.spørsmål.harJobbetINorge.text.1':
         'Å ha «jobba samanhengande» tyder at du har hatt ein jobb med inntekt i Noreg mesteparten av tida i kvart av dei siste 5 åra.',
-    'medlemskapSteg.spørsmål.harJobbetINorge.readmore.header': 'Kva tyder dette?',
-    'medlemskapSteg.spørsmål.harJobbetINorge.readmore.text.2':
+    'medlemskapSteg.spørsmål.ytelserINorge.header': 'Ytingar som òg blir rekna som jobb',
+    'medlemskapSteg.spørsmål.ytelserINorge.text':
         'Viss du har fått ytingar frå norske styresmakter som skal erstatte inntekt, til dømes dagpengar, sjukepengar og foreldrepengar, svarer du «Ja» sidan det òg blir rekna som jobb.',
     'medlemskapSteg.spørsmål.harJobbetUtenforNorge': 'Har du jobba utanfor Noreg dei 5 siste åra?',
     'medlemskapSteg.spørsmål.harJobbetUtenforNorge.readmore.text':
