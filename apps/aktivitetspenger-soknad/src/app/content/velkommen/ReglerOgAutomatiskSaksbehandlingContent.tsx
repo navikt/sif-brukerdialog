@@ -1,8 +1,6 @@
 import { AppText } from '@app/i18n';
 import { BodyLong } from '@navikt/ds-react';
 
-import { TodoFlag } from '../../components/Todo';
-
 const ReglerOgAutomatiskSaksbehandlingContent = () => {
     return (
         <>
@@ -11,7 +9,6 @@ const ReglerOgAutomatiskSaksbehandlingContent = () => {
             </BodyLong>
             <BodyLong spacing>
                 <AppText id="page.velkommen.regler.tekst.2" />
-                <TodoFlag />
             </BodyLong>
             <BodyLong spacing>
                 <AppText id="page.velkommen.regler.tekst.3" />

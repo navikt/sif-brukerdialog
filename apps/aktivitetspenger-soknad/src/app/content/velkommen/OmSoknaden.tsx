@@ -1,4 +1,3 @@
-import { TodoFlag } from '@app/components/Todo';
 import { AppText } from '@app/i18n';
 import { Accordion, Box, Heading, List, VStack } from '@navikt/ds-react';
 
@@ -36,7 +35,6 @@ const OmSøknaden = () => {
                 <Accordion.Item>
                     <Accordion.Header>
                         <AppText id="page.velkommen.regler.tittel" />
-                        <TodoFlag />
                     </Accordion.Header>
                     <Accordion.Content>
                         <ReglerOgAutomatiskSaksbehandlingContent />
