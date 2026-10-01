@@ -19,9 +19,9 @@ export const HarJobbetUtenforNorgeSporsmal = () => {
                     <BodyLong>
                         <AppText id="medlemskapSteg.spørsmål.harJobbetUtenforNorge.readmore.text" />
                     </BodyLong>
-                    <ReadMore header={text('medlemskapSteg.spørsmål.ytelserSomJobb.readmore.header')}>
+                    <ReadMore header={text('medlemskapSteg.readMore.ytelserIUtlandet.tittel')}>
                         <BodyLong>
-                            <AppText id="medlemskapSteg.spørsmål.ytelserSomJobb.readmore.text.2" />
+                            <AppText id="medlemskapSteg.readMore.ytelserIUtlandet.tekst" />
                         </BodyLong>
                     </ReadMore>
                 </VStack>

@@ -3,16 +3,15 @@ export const medlemskapStegMessages_nb = {
     'medlemskapSteg.veileder.tekst.2':
         'Det er for at vi skal kunne vurdere om du oppfyller kravene til 5 års forutgående medlemskap i folketrygden.',
 
-    // Read more - ytelser i Norge
-    'medlemskapSteg.readMore.ytelserINorge.tittel': 'Regnes ytelser fra norske myndigheter som jobb?',
-    'medlemskapSteg.readMore.ytelserINorge.tekst':
-        'Offentlige ytelser som du har fått som erstatning for inntekt, for eksempel dagpenger, sykepenger og foreldrepenger, regner vi også som jobb.',
-
     // Read more - ytelser i utlandet
-    'medlemskapSteg.readMore.ytelserIUtlandet.tittel':
-        'Regnes ytelser fra utenlandske myndigheter som jobb i utlandet?',
+    'medlemskapSteg.readMore.ytelserIUtlandet.tittel': 'Ytelser som også regnes som jobb',
     'medlemskapSteg.readMore.ytelserIUtlandet.tekst':
-        'Hvis du har mottatt ytelser (for eksempel dagpenger, sykepenger og foreldrepenger) fra utenlandske myndigheter, regnes dette som jobb utenfor Norge.',
+        'Hvis du har mottatt ytelser fra utenlandske myndigheter som skal erstatte inntekt, for eksempel dagpenger, sykepenger og foreldrepenger, regnes dette som jobb utenfor Norge.',
+
+    // Read more - ytelser i Norge
+    'medlemskapSteg.spørsmål.ytelserINorge.header': 'Ytelser som også regnes som jobb',
+    'medlemskapSteg.spørsmål.ytelserINorge.text':
+        'Hvis du har mottatt ytelser fra norske myndigheter som skal erstatte inntekt, for eksempel dagpenger, sykepenger og foreldrepenger, svarer du «Ja» siden det også regnes som jobb.',
 
     // Har bodd i Norge
     'medlemskapSteg.spørsmål.harBoddINorge': 'Har du bodd sammenhengende i Norge de 5 siste årene?',
@@ -23,9 +22,6 @@ export const medlemskapStegMessages_nb = {
     'medlemskapSteg.spørsmål.harJobbetINorge': 'Har du jobbet sammenhengende i Norge de siste 5 årene? ',
     'medlemskapSteg.spørsmål.harJobbetINorge.text.1':
         'Å ha «jobbet sammenhengende» betyr at du har hatt en jobb med inntekt i Norge mesteparten av tiden i hvert av de siste 5 årene.',
-    'medlemskapSteg.spørsmål.ytelserSomJobb.readmore.header': 'Hva betyr dette?',
-    'medlemskapSteg.spørsmål.ytelserSomJobb.readmore.text.2':
-        'Hvis du har mottatt ytelser fra norske myndigheter som skal erstatte inntekt, for eksempel dagpenger, sykepenger og foreldrepenger, svarer du «Ja» siden det også regnes som jobb.',
 
     // Har jobbet i utlandet
     'medlemskapSteg.spørsmål.harJobbetUtenforNorge': 'Har du jobbet utenfor Norge de 5 siste årene?',
