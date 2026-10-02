@@ -40,6 +40,8 @@ const mapAAregArbeidsgiverRemoteDataToArbeidsgiver = (
         id: org.organisasjonsnummer,
         organisasjonsnummer: org.organisasjonsnummer,
         navn: org.navn || org.organisasjonsnummer,
+        ansattFom: org.ansattFom ? ISODateToDate(org.ansattFom) : undefined,
+        ansattTom: org.ansattTom ? ISODateToDate(org.ansattTom) : undefined,
         ansettelsesperioder: org.ansettelsesperioder ?? undefined,
     }));
 
