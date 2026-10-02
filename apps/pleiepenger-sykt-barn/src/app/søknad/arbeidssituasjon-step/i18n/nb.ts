@@ -209,4 +209,9 @@ export const arbeidssituasjonMessages_nb = {
     'steg.arbeidssituasjon.frilansoppdragListe.tittel': 'Frilansoppdrag registrert på deg:',
     'steg.arbeidssituasjon.frilansoppdragListe.tekst':
         'Dette er informasjon hentet fra AA-registeret. Det kan være jobb som frilanser, eller andre oppdrag som regnes som frilansoppdrag: honorar, fosterhjemsgodtgjørelse eller omsorgsstønad fra kommunen.',
+
+    'steg.arbeidssituasjon.ansettelsesperioder.tittel': 'Ansettelsesperioder',
+    'steg.arbeidssituasjon.ansettelsesperioder.ansattFomTom': 'Ansatt: {fom} - {tom}.',
+    'steg.arbeidssituasjon.ansettelsesperioder.ansattFom': 'Ansatt: {dato} - pågående',
+    'steg.arbeidssituasjon.ansettelsesperioder.ansattTom': ' Sluttdato: {dato}.',
 };

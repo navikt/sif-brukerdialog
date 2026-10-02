@@ -6,27 +6,27 @@ import { ArbeidsforholdFormValues } from '../../../../types/søknad-form-values/
 import { syncAnsattArbeidsforhold } from '../arbeidsgivereUtils';
 
 const organisasjoner: Arbeidsgiver[] = [
-    { type: ArbeidsgiverType.ORGANISASJON, navn: 'Org1', id: '1' },
-    { type: ArbeidsgiverType.ORGANISASJON, navn: 'Org2', id: '2' },
+    { type: ArbeidsgiverType.ORGANISASJON, navn: 'Org1', id: '1', ansettelsesperioder: [] },
+    { type: ArbeidsgiverType.ORGANISASJON, navn: 'Org2', id: '2', ansettelsesperioder: [] },
 ];
 
 const arbeidsforholdOrganisasjoner: ArbeidsforholdFormValues[] = [
     {
-        arbeidsgiver: { type: ArbeidsgiverType.ORGANISASJON, navn: 'Org1', id: '1' },
+        arbeidsgiver: { type: ArbeidsgiverType.ORGANISASJON, navn: 'Org1', id: '1', ansettelsesperioder: [] },
     },
     {
-        arbeidsgiver: { type: ArbeidsgiverType.ORGANISASJON, navn: 'Org2', id: '2' },
+        arbeidsgiver: { type: ArbeidsgiverType.ORGANISASJON, navn: 'Org2', id: '2', ansettelsesperioder: [] },
     },
 ];
 
 const organisasjonerPartiallyEqual: Arbeidsgiver[] = [
-    { type: ArbeidsgiverType.ORGANISASJON, navn: 'Org3', id: '3' },
-    { type: ArbeidsgiverType.ORGANISASJON, navn: 'NewOrg', id: 'new' },
+    { type: ArbeidsgiverType.ORGANISASJON, navn: 'Org3', id: '3', ansettelsesperioder: [] },
+    { type: ArbeidsgiverType.ORGANISASJON, navn: 'NewOrg', id: 'new', ansettelsesperioder: [] },
 ];
 
 const organisasjonerEqual: Arbeidsgiver[] = [
-    { type: ArbeidsgiverType.ORGANISASJON, navn: 'Org3', id: '3' },
-    { type: ArbeidsgiverType.ORGANISASJON, navn: 'Org4', id: '4' },
+    { type: ArbeidsgiverType.ORGANISASJON, navn: 'Org3', id: '3', ansettelsesperioder: [] },
+    { type: ArbeidsgiverType.ORGANISASJON, navn: 'Org4', id: '4', ansettelsesperioder: [] },
 ];
 
 const arbeidsforholdErAnsatt: ArbeidsforholdFormValues = {
@@ -34,6 +34,7 @@ const arbeidsforholdErAnsatt: ArbeidsforholdFormValues = {
         type: ArbeidsgiverType.ORGANISASJON,
         navn: 'Org3',
         id: '3',
+        ansettelsesperioder: [],
     },
     erAnsatt: YesOrNo.YES,
     normalarbeidstid: {
@@ -46,6 +47,7 @@ const arbeidsforholdUbesvart: ArbeidsforholdFormValues = {
         type: ArbeidsgiverType.ORGANISASJON,
         navn: 'Org4',
         id: '4',
+        ansettelsesperioder: [],
     },
     erAnsatt: YesOrNo.UNANSWERED,
     normalarbeidstid: {

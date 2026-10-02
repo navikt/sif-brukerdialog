@@ -8,6 +8,11 @@ import { relocateToLoginPage } from '../utils/navigationUtils';
 import { getArbeidsgiver } from './api';
 import { AAregOrganisasjon, slåSammenAnsettelsesperioder } from './utils/ansettelsesperiodeUtils';
 
+export type Ansettelsesperiode = {
+    from?: Date;
+    to?: Date;
+};
+
 export type AAregArbeidsgiverRemoteData = {
     organisasjoner?: AAregOrganisasjon[];
     privatarbeidsgiver?: Array<{
@@ -30,13 +35,12 @@ const mapAAregArbeidsgiverRemoteDataToArbeidsgiver = (
     data: AAregArbeidsgiverRemoteData,
 ): { arbeidsgivere: Arbeidsgiver[]; harDuplikater: boolean } => {
     const { organisasjoner, harDuplikater } = slåSammenAnsettelsesperioder(data.organisasjoner ?? []);
-    const arbeidsgivere: Arbeidsgiver[] = organisasjoner.map((a) => ({
+    const arbeidsgivere: Arbeidsgiver[] = organisasjoner.map((org) => ({
         type: ArbeidsgiverType.ORGANISASJON,
-        id: a.organisasjonsnummer,
-        organisasjonsnummer: a.organisasjonsnummer,
-        navn: a.navn || a.organisasjonsnummer,
-        ansattFom: a.ansattFom ? ISODateToDate(a.ansattFom) : undefined,
-        ansattTom: a.ansattTom ? ISODateToDate(a.ansattTom) : undefined,
+        id: org.organisasjonsnummer,
+        organisasjonsnummer: org.organisasjonsnummer,
+        navn: org.navn || org.organisasjonsnummer,
+        ansettelsesperioder: org.ansettelsesperioder ?? undefined,
     }));
 
     /*

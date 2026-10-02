@@ -1,4 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
+import { ISODateToDate } from '@navikt/sif-common-utils';
 
 import { ArbeidIPeriodeType } from '../../app/types/ArbeidIPeriodeType';
 import { ArbeidsgiverType } from '../../app/types/Arbeidsgiver';
@@ -24,6 +25,11 @@ const arbeidssituasjonAnsatt: ArbeidssituasjonAnsattSøknadsdata = {
         organisasjonsnummer: '947064649',
         navn: 'SJOKKERENDE ELEKTRIKER',
         ansattFom: new Date('2002-04-20T00:00:00.000Z'),
+        ansettelsesperioder: [
+            {
+                from: ISODateToDate('2002-04-20'),
+            },
+        ],
     },
     periodeSomAnsattISøknadsperiode: {
         from: new Date('2024-05-01T00:00:00.000Z'),

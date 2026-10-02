@@ -1,16 +1,19 @@
+import { ISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import { describe, expect, it } from 'vitest';
 
 import { AAregOrganisasjon, slåSammenAnsettelsesperioder } from '../ansettelsesperiodeUtils';
 
-const organisasjon = (
-    organisasjonsnummer: string,
-    ansattFom?: string | null,
-    ansattTom?: string | null,
-): AAregOrganisasjon => ({
+const organisasjon = (organisasjonsnummer: string, ansattFom?: ISODate, ansattTom?: ISODate): AAregOrganisasjon => ({
     organisasjonsnummer,
     navn: `Org ${organisasjonsnummer}`,
     ansattFom,
     ansattTom,
+    ansettelsesperioder: [
+        {
+            from: ansattFom ? ISODateToDate(ansattFom) : undefined,
+            to: ansattTom ? ISODateToDate(ansattTom) : undefined,
+        },
+    ],
 });
 
 describe('slåSammenAnsettelsesperioder', () => {
@@ -62,7 +65,7 @@ describe('slåSammenAnsettelsesperioder', () => {
 
     it('lar løpende periode uten ansattTom dekke senere perioder', () => {
         const { organisasjoner, harDuplikater } = slåSammenAnsettelsesperioder([
-            organisasjon('1', '2024-01-01', null),
+            organisasjon('1', '2024-01-01', undefined),
             organisasjon('1', '2024-06-01', '2024-06-30'),
         ]);
 
@@ -75,7 +78,7 @@ describe('slåSammenAnsettelsesperioder', () => {
     it('beholder åpen slutt når neste sammenhengende periode er løpende', () => {
         const { organisasjoner } = slåSammenAnsettelsesperioder([
             organisasjon('1', '2023-01-01', '2023-12-31'),
-            organisasjon('1', '2024-01-01', null),
+            organisasjon('1', '2024-01-01', undefined),
         ]);
 
         expect(organisasjoner).toHaveLength(1);
@@ -93,6 +96,19 @@ describe('slåSammenAnsettelsesperioder', () => {
         expect(organisasjoner[0].ansattFom).toBe('2024-01-01');
         expect(organisasjoner[0].ansattTom).toBe('2024-01-09');
         expect(harDuplikater).toBe(true);
+    });
+
+    it('beholder alle sammenslåtte perioder når det er opphold mellom dem', () => {
+        const { organisasjoner } = slåSammenAnsettelsesperioder([
+            organisasjon('1', '2024-02-01', '2024-02-10'),
+            organisasjon('1', '2024-01-10', '2024-01-20'),
+            organisasjon('1', '2024-01-01', '2024-01-09'),
+        ]);
+
+        expect(organisasjoner[0].ansettelsesperioder).toEqual([
+            { from: ISODateToDate('2024-01-01'), to: ISODateToDate('2024-01-20') },
+            { from: ISODateToDate('2024-02-01'), to: ISODateToDate('2024-02-10') },
+        ]);
     });
 
     it('beholder én oppføring per organisasjon', () => {

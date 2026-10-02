@@ -1,4 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types';
+import { ISODateToDate } from '@navikt/sif-common-utils';
 
 import { ArbeiderIPeriodenSvar } from '../../app/local-sif-common-pleiepenger';
 import { ArbeidsgiverType, TimerEllerProsent } from '../../app/types';
@@ -25,6 +26,11 @@ export const formikValues: SøknadFormValues = {
                 organisasjonsnummer: '947064649',
                 navn: 'SJOKKERENDE ELEKTRIKER',
                 ansattFom: new Date('2002-04-20T00:00:00.000Z'),
+                ansettelsesperioder: [
+                    {
+                        from: ISODateToDate('2002-04-20'),
+                    },
+                ],
             },
             erAnsatt: YesOrNo.YES,
             normalarbeidstid: {

@@ -1,7 +1,9 @@
+import { Ansettelsesperiode } from '../api/getArbeidsgivereRemoteData';
+
 export enum ArbeidsgiverType {
-    'PRIVATPERSON' = 'PRIVAT',
-    'ORGANISASJON' = 'ORGANISASJON',
-    'FRILANSOPPDRAG' = 'FRILANSOPPDRAG',
+    PRIVATPERSON = 'PRIVAT',
+    ORGANISASJON = 'ORGANISASJON',
+    FRILANSOPPDRAG = 'FRILANSOPPDRAG',
 }
 export interface Arbeidsgiver {
     /** Organisasjonsnummer eller fødselsnummer */
@@ -12,4 +14,5 @@ export interface Arbeidsgiver {
     navn: string;
     ansattFom?: Date;
     ansattTom?: Date;
+    ansettelsesperioder?: Ansettelsesperiode[];
 }
