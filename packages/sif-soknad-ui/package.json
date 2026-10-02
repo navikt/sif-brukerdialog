@@ -1,12 +1,19 @@
 {
     "name": "@sif/soknad-ui",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "private": true,
     "repository": {
         "type": "git",
         "url": "git+https://github.com/navikt/sif-brukerdialog.git"
     },
     "type": "module",
+    "sideEffects": [
+        "**/*.css",
+        "./src/components/progress-stepper/ProgressStepper.tsx",
+        "./src/components/item-list-darkside/ItemListDarkside.tsx",
+        "./src/components/info-list/InfoList.tsx",
+        "./src/components/demo-watermark/DemoWatermark.tsx"
+    ],
     "exports": {
         ".": "./src/index.ts",
         "./components": "./src/components/index.ts",
@@ -28,9 +35,9 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "8.16.2",
-        "@navikt/ds-react": "8.16.2",
-        "@navikt/nav-dekoratoren-moduler": "4.3.0",
+        "@navikt/aksel-icons": "8.17.2",
+        "@navikt/ds-react": "8.17.2",
+        "@navikt/nav-dekoratoren-moduler": "4.5.0",
         "@navikt/sif-common-env": "workspace:*",
         "@navikt/sif-common-hooks": "workspace:*",
         "@sif/api": "workspace:*",
@@ -40,7 +47,7 @@
         "react-responsive": "10.0.1"
     },
     "devDependencies": {
-        "@navikt/ds-css": "8.16.2",
+        "@navikt/ds-css": "8.17.2",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-a11y": "10.6.0",
         "@storybook/addon-docs": "10.6.0",
@@ -53,7 +60,7 @@
         "storybook": "10.6.0",
         "typescript": "6.0.3",
         "vite": "8.3.1",
-        "vitest": "5.0.1"
+        "vitest": "5.0.2"
     },
     "peerDependencies": {
         "react": ">=19",

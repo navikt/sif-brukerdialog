@@ -6,6 +6,10 @@ import { defineConfig } from 'vitest/config';
 import { createAliasConfig } from './vite.shared.ts';
 
 export default defineConfig({
+    define: {
+        __IS_GITHUB_PAGES__: false,
+        __IS_DEMO__: false,
+    },
     resolve: {
         alias: createAliasConfig(),
     },

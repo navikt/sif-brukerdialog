@@ -3,7 +3,7 @@ import { BodyShort, Box, Link, Page, VStack } from '@navikt/ds-react';
 import VeilederDemoInformasjon from '../../demo/VeilederDemoInformasjon';
 
 const AppFooter = () => {
-    if (__IS_VEILEDER_DEMO__) {
+    if (__IS_DEMO__) {
         return <VeilederDemoInformasjon variant="default" />;
     }
     return (

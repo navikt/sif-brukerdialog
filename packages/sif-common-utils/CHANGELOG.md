@@ -1,5 +1,11 @@
 # @navikt/sif-common-utils
 
+## 3.49.62
+
+### Patch Changes
+
+- Pakkeoppdateringer, nav-dekoratoren-moduler@4.5.0
+
 ## 3.49.61
 
 ### Patch Changes

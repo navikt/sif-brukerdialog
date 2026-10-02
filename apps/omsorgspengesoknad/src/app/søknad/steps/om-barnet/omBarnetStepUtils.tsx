@@ -2,7 +2,7 @@ import { RegistrertBarn } from '@navikt/sif-common-api';
 import { getYesOrNoFromBoolean } from '@navikt/sif-common-core-ds/src/utils/yesOrNoUtils';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
-import { ISODate } from '@navikt/sif-common-utils';
+import { getDagensDatoIOslo, ISODate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 
 import { InnvilgedeVedtak } from '../../../hooks/useInnvilgedeVedtakForRegistrerteBarn';
@@ -151,13 +151,16 @@ export const getRelasjonTilBarnetIntlKey = (relasjonTilBarnet: SøkersRelasjonTi
 
 type IkkeTidsbegrensetVedtakInfo = {
     erTidsbegrenset: false;
+    kanSøke: false;
 };
 type TidsbegrensetVedtakInfo = {
     erTidsbegrenset: true;
     førsteMuligeSøknadsdato: ISODate;
     vedtakTomDato: ISODate;
+    kanSøke: boolean;
 };
 export type UtledetVedtakInfo = IkkeTidsbegrensetVedtakInfo | TidsbegrensetVedtakInfo;
+
 export const utledVedtakInfoForBarn = (
     barn?: RegistrertBarn,
     innvilgedeVedtak?: InnvilgedeVedtak,
@@ -171,9 +174,11 @@ export const utledVedtakInfoForBarn = (
             erTidsbegrenset: true,
             førsteMuligeSøknadsdato: vedtakForValgtBarn.førsteMuligeSøknadsdato,
             vedtakTomDato: vedtakForValgtBarn.vedtakTomDato,
+            kanSøke: vedtakForValgtBarn.førsteMuligeSøknadsdato <= getDagensDatoIOslo(),
         };
     }
     return {
         erTidsbegrenset: false,
+        kanSøke: false,
     };
 };

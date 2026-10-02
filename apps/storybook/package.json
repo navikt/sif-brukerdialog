@@ -1,6 +1,6 @@
 {
     "name": "sif-storybook",
-    "version": "0.0.103",
+    "version": "0.0.104",
     "private": true,
     "description": "Storybook som viser noen av komponentene som brukes på tvers av sif universet",
     "type": "module",
@@ -10,9 +10,9 @@
         "storybook": "storybook dev -p 6006"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "8.16.2",
-        "@navikt/ds-css": "8.16.2",
-        "@navikt/ds-react": "8.16.2",
+        "@navikt/aksel-icons": "8.17.2",
+        "@navikt/ds-css": "8.17.2",
+        "@navikt/ds-react": "8.17.2",
         "@navikt/fnrvalidator": "2.2.1",
         "@navikt/sif-common-core-ds": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",

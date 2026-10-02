@@ -25,6 +25,8 @@ export default defineConfig(({ mode }) => ({
     define: {
         /** Dekoratøren injiseres server-side i drift */
         'import.meta.env.INJECT_DECORATOR': false,
+        __IS_GITHUB_PAGES__: false,
+        __IS_DEMO__: false,
     },
     base: mode === 'production' ? 'https://cdn.nav.no/dusseldorf/endringsmelding-pleiepenger/dist/' : '/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/',
     build: {

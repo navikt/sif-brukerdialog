@@ -1,18 +1,19 @@
 import './app.css';
 
 import { AktivitetspengerSoknadApp } from '@navikt/sif-app-register';
+import { isProd } from '@navikt/sif-common-env';
 import { TilgjengeligSøknadType } from '@navikt/ung-brukerdialog-api';
 import { SøknadAppProvider } from '@sif/soknad-app';
 import { InitialDataErrorPage, LoadingPage } from '@sif/soknad-ui';
-import { BrowserRouter } from 'react-router-dom';
 
 import { initApiClients } from './app/api/initApiClients';
+import AppRouter from './app/AppRouter';
+import { IkkeÅpenPage } from './app/content/ikke-apen/IkkeApenPage';
 import { KanIkkeSøkePage } from './app/content/kan-ikke-soke/KanIkkeSøke';
 import { AppContextProvider } from './app/context/AppContext';
 import { applicationIntlMessages, useAppIntl } from './app/i18n';
 import { getAppEnv } from './app/setup/appEnv';
 import { Søknad } from './app/Soknad';
-import { ScenarioHeader } from './demo/ScenarioHeader';
 import { useInitialData } from './useInitialData';
 
 initApiClients();
@@ -31,7 +32,7 @@ const SøknadDataWrapper = () => {
                 );
             }
             return <InitialDataErrorPage applicationTitle={text('application.title')} />;
-        case 'success':
+        case 'success': {
             if (result.data.tilgjengeligSøknad.type === TilgjengeligSøknadType.INGEN) {
                 return <KanIkkeSøkePage søker={result.data.søker} tilgjengelig={result.data.tilgjengeligSøknad} />;
             }
@@ -45,6 +46,7 @@ const SøknadDataWrapper = () => {
                     <Søknad />
                 </AppContextProvider>
             );
+        }
     }
 };
 
@@ -55,15 +57,28 @@ export const App = () => {
         return null;
     }
 
+    if (env.SIF_PUBLIC_IS_OPEN !== 'true') {
+        return <IkkeÅpenPage />;
+    }
+
     return (
         <SøknadAppProvider
             applicationKey={AktivitetspengerSoknadApp.key}
             useAnalytics={env.SIF_PUBLIC_USE_ANALYTICS === 'true'}
+            appStatusConfig={
+                isProd()
+                    ? {
+                          sanityConfig: {
+                              projectId: env.SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+                              dataset: env.SIF_PUBLIC_APPSTATUS_DATASET,
+                          },
+                      }
+                    : undefined
+            }
             intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
-            <BrowserRouter basename={env.PUBLIC_PATH}>
-                {__SCENARIO_HEADER__ ? <ScenarioHeader /> : null}
+            <AppRouter>
                 <SøknadDataWrapper />
-            </BrowserRouter>
+            </AppRouter>
         </SøknadAppProvider>
     );
 };

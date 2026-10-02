@@ -1,5 +1,30 @@
 # @navikt/ungdomsytelse-deltaker
 
+## 1.6.2
+
+### Patch Changes
+
+- Pakkeoppdateringer, nav-dekoratoren-moduler@4.5.0
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.20.75
+    - @navikt/k9-brukerdialog-prosessering-api@0.3.19
+    - @navikt/k9-sak-innsyn-api@0.2.21
+    - @navikt/sif-common-analytics@0.1.1
+    - @navikt/sif-common-core-ds@10.4.1
+    - @navikt/sif-common-formik-ds@2.6.1
+    - @navikt/sif-common-forms-ds@21.0.62
+    - @navikt/sif-common-soknad-ds@26.2.2
+    - @navikt/sif-common-ui@0.12.1
+    - @navikt/sif-validation@1.0.23
+    - @navikt/ung-brukerdialog-api@0.0.9
+    - @navikt/ung-deltakelse-opplyser-api-deltaker@0.3.22
+    - @sif/api@0.1.3
+    - @sif/apm@0.2.2
+    - @sif/soknad-ui@0.2.1
+    - @sif/surveys@0.0.2
+    - @sif/ung-innsyn@0.2.1
+    - @sif/utils@0.1.1
+
 ## 1.6.1
 
 ### Patch Changes

@@ -117,17 +117,14 @@ export const MedlemskapForm = () => {
                         </VStack>
                     </SifGuidePanel>
                     <FormLayout.Questions>
+                        {/* Bodd i Norge */}
                         <HarBoddINorgeSporsmal />
 
                         {/* Jobbet i Norge */}
                         {synlig.harJobbetINorge && <HarJobbetINorgeSporsmal />}
 
                         {/* Jobbet utenfor Norge */}
-                        {synlig.harJobbetUtenforNorge && (
-                            <HarJobbetUtenforNorgeSporsmal
-                            // harJobbetINorge={harJobbetINorgeSvar === true}
-                            />
-                        )}
+                        {synlig.harJobbetUtenforNorge && <HarJobbetUtenforNorgeSporsmal />}
 
                         {/* Bosteder utenfor Norge */}
                         {synlig.bostederUtenforNorge && (

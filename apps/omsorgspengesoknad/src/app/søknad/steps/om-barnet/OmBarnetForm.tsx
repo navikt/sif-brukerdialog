@@ -65,7 +65,7 @@ const OmBarnetForm = ({ isSubmitting, registrerteBarn, values, innvilgedeVedtak,
             submitPending={isSubmitting}
             onBack={onBack}
             runDelayedFormValidation={true}
-            submitDisabled={vedtakForValgtBarn !== undefined}>
+            submitDisabled={vedtakForValgtBarn?.kanSøke === false}>
             <FormLayout.Questions>
                 {harIkkeBarn === false && (
                     <VStack gap="space-16">
@@ -77,7 +77,7 @@ const OmBarnetForm = ({ isSubmitting, registrerteBarn, values, innvilgedeVedtak,
                         </div>
                     </VStack>
                 )}
-                {!vedtakForValgtBarn && (
+                {(!vedtakForValgtBarn || vedtakForValgtBarn?.kanSøke === true) && (
                     <>
                         {(søknadenGjelderEtAnnetBarn || harIkkeBarn) && (
                             <FormLayout.Section title={text('steg.omBarnet.annetBarn.tittel')}>

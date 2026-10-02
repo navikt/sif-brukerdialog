@@ -42,6 +42,7 @@ export default defineConfig({
     ],
     define: {
         __IS_GITHUB_PAGES__: true,
+        __IS_DEMO__: true,
         'import.meta.env.INJECT_DECORATOR': false,
     },
     server: {

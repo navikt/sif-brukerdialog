@@ -1,18 +1,19 @@
 import { VStack } from '@navikt/ds-react';
+import { AktivitetspengerInnsynApp } from '@navikt/sif-app-register';
+import { DemoInfoAlert, DemoWatermark } from '@sif/soknad-ui';
 import { ReactNode } from 'react';
 import { HashRouter } from 'react-router-dom';
 
-import ScenarioHeader from './ScenarioHeader';
+import { ScenarioHeader } from './ScenarioHeader';
 
 const DemoAppRouter = ({ children }: { children: ReactNode }) => {
     return (
         <HashRouter>
-            <div className="demoMode">
-                <VStack gap="space-40">
-                    <ScenarioHeader />
-                </VStack>
+            <DemoWatermark>
+                <ScenarioHeader />
+                <DemoInfoAlert appTitle={AktivitetspengerInnsynApp.tittel.nb} />
                 <VStack marginBlock="space-0 space-128">{children}</VStack>
-            </div>
+            </DemoWatermark>
         </HashRouter>
     );
 };

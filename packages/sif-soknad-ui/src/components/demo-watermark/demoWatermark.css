@@ -1,8 +1,8 @@
-.demoMode {
+.demoWatermark {
     position: relative;
 }
 
-.demoMode::before {
+.demoWatermark::before {
     content: '';
     position: fixed;
     top: 0;

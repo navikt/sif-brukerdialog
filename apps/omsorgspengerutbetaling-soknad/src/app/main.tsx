@@ -8,12 +8,18 @@ import { createRoot } from 'react-dom/client';
 import { enableMocking } from '../../mock/msw/enableMocking';
 import App from './App';
 
-void initApm({ app: OmsorgspengerutbetalingSNFriApp.key, namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
+void initApm({
+    app: OmsorgspengerutbetalingSNFriApp.key,
+    namespace: 'dusseldorf',
+    version: getMaybeEnv('APP_VERSION'),
+});
 
 if (import.meta.env.INJECT_DECORATOR) {
     injectDecoratorClientSide({
         env: 'dev',
         params: {
+            context: 'privatperson',
+            teamName: `${OmsorgspengerutbetalingSNFriApp.key}.dusseldorf`,
             simple: true,
             chatbot: false,
         },

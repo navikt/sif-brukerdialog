@@ -13,13 +13,15 @@ description: Legg til en app i gh-pages demo-deploy — vite.demo.config.ts, Has
 
 ## Referanseimplementasjoner
 
-| App                                       | Type              | Merk                                                                                     |
-| ----------------------------------------- | ----------------- | ---------------------------------------------------------------------------------------- |
-| `apps/endringsmelding-pleiepenger`        | v1 (Formik)       | Gjenbruker `index.html` + `html-transform` — anbefalt mønster                            |
-| `apps/opplaringspenger-soknad`            | v1 (Formik)       | Egen `demo/index.html` med hardkodede appSettings + `demo:copy-app-files` — eldre mønster |
-| `apps/ungdomsytelse-deltaker`             | v2                | HashRouter via `navigate()` ved scenariobytte                                              |
+| App                                | Type        | Merk                                                                                      |
+| ---------------------------------- | ----------- | ----------------------------------------------------------------------------------------- |
+| `apps/endringsmelding-pleiepenger` | v1 (Formik) | Gjenbruker `index.html` + `html-transform` — anbefalt mønster                             |
+| `apps/opplaringspenger-soknad`     | v1 (Formik) | Egen `demo/index.html` med hardkodede appSettings + `demo:copy-app-files` — eldre mønster |
+| `apps/ungdomsytelse-deltaker`      | v2          | HashRouter via `navigate()` ved scenariobytte                                             |
+| `apps/aktivitetspenger-soknad`     | v2          | `DemoAppRouter` med HashRouter + all demo-UI — anbefalt v2-mønster                        |
+| `apps/aktivitetspenger-innsyn`     | v2          | `DemoAppRouter`, som aktivitetspenger-soknad                                              |
 
-Les diffen i endringsmelding-pleiepenger først — den er den minste komplette.
+Les diffen i endringsmelding-pleiepenger først — den er den minste komplette (v1). For v2, se `apps/aktivitetspenger-soknad/src/demo/DemoAppRouter.tsx`.
 
 ## Prosess
 
@@ -39,7 +41,17 @@ Arv fra appens egen `getDevAppSettings()` og overstyr kun:
 - `PUBLIC_PATH` → `/sif-brukerdialog/<app-navn>`
 - eksterne URL-er (`SIF_PUBLIC_LOGIN_URL`, `SIF_PUBLIC_DEKORATOR_URL`, `SIF_PUBLIC_MINSIDE_URL` …) → `#`
 - `SIF_PUBLIC_USE_ANALYTICS` → `'false'`
-- `*_FRONTEND_PATH` → under ny `PUBLIC_PATH`
+- **`*_FRONTEND_PATH` → under ny `PUBLIC_PATH`, ikke bare "et sted"**
+
+Grunnen til at `*_FRONTEND_PATH` må flyttes er konkret, ikke kosmetisk: MSW-workeren
+registreres på `BASE_URL` (`/sif-brukerdialog/<app-navn>/`), og en service worker fanger **kun**
+opp requests innenfor sitt eget scope. Rot-relative verdier som appen typisk har i dev
+(`/api/brukerdialog`, `/api/ung-brukerdialog-api` …) ligger utenfor det scopet — de kallene går
+da forbi MSW og treffer selve gh-pages-hostingen (404), i stedet for mock-handlerne. Løsningen er
+å prefikse **alle** `*_FRONTEND_PATH`-verdiene med samme path som `base`/`PUBLIC_PATH`, f.eks.
+`/sif-brukerdialog/<app-navn>/api/brukerdialog`. Dette er lett å overse fordi build og typesjekk
+er grønne uansett — feilen viser seg først som mislykkede API-kall i nettleserkonsollen i den
+deployede demoen.
 
 **Ikke** kopier appSettings fra en annen app — nøkler og env-schema varierer per app.
 
@@ -63,7 +75,7 @@ satt der, er endringen oppførselsbevarende i drift.
 Kopier appens egen `vite.dev.config.ts` (ikke en annen apps demo-config) og endre:
 
 - `base: '/sif-brukerdialog/<app-navn>/'`
-- `define`: `__IS_GITHUB_PAGES__: true` og skru av dekoratør-injeksjon
+- `define`: `__IS_GITHUB_PAGES__: true`, `__IS_DEMO__: true` og skru av dekoratør-injeksjon
 - `html-transform` bruker `getDemoAppSettings()`
 - `build.outDir: './dist-demo'`, `emptyOutDir: true`, `sourcemap: true`
 - `copy-msw`-plugin i `writeBundle` hvis `mockServiceWorker.js` ligger i approt (ikke nødvendig fra `public/`)
@@ -76,17 +88,21 @@ uttrykket `undefined`, og kallet blir stående i bundlet i stedet for å elimine
 flagget i `src/` og kopier uttrykket derfra. Merk at appens `vite.dev.config.ts` kan ha samme feil —
 ikke arv den ukritisk.
 
-### 4. `vite-env.d.ts`
+### 4. `vite-env.d.ts` og flagg
 
-`declare const __IS_GITHUB_PAGES__: boolean;`
-
-Flagget defineres kun i demo-configen. Les det derfor alltid gjennom en guard:
+To flagg med fast betydning i alle apper:
 
 ```ts
-export const isGitHubPages = (): boolean => typeof __IS_GITHUB_PAGES__ !== 'undefined' && __IS_GITHUB_PAGES__;
+/** Bygget hostes på GitHub Pages: HashRouter, BASE_URL-navigasjon, SIF-lenke. Impliserer normalt __IS_DEMO__. */
+declare const __IS_GITHUB_PAGES__: boolean;
+/** Demo-UI og mock-scenarioer (f.eks. ScenarioHeader, DemoInfoAlert, .demoMode). Kun true på GitHub Pages og lokalt i dev – aldri i prod, e2e eller test. */
+declare const __IS_DEMO__: boolean;
 ```
 
-Uten `typeof`-guarden krasjer øvrige builds på `ReferenceError`. Alternativet — å definere `false` i alle andre vite-/vitest-/storybook-configer — er mer å vedlikeholde.
+- `__IS_GITHUB_PAGES__` styrer **hosting**: router, hard navigasjon, MSW-sti.
+- `__IS_DEMO__` styrer **demo-UI**: `ScenarioHeader`, `DemoInfoAlert`, `.demoMode`, mock-scenarioer.
+- Definer begge i **alle** vite- og vitest-configer (også som `false`) og les konstantene direkte — ingen `typeof`-guard eller `isGitHubPages()`-wrapper. Storybook (`@storybook/react-vite`) arver `define` fra `vite.config.ts`.
+- Unntak: `ungdomsytelse-deltaker` kjører Playwright med `__IS_GITHUB_PAGES__: true` og `__IS_DEMO__: false`, derfor sjekker `AppRouter` der `__IS_GITHUB_PAGES__ || __IS_DEMO__`. Ikke kopier dette til nye apper.
 
 ### 5. MSW
 
@@ -95,19 +111,52 @@ Service worker registreres på origin-roten som standard. Sett URL eksplisitt n�
 
 Ikke bruk `enableMockingBase` fra `@sif/api/mock-utils` — den krever `ENV === 'development'`.
 
+**Catch-all-handlere (`http.get('*', ...)`, `http.all('*', ...)`) fanger også cross-origin-kall.**
+`*` i msw matcher enhver URL, ikke bare samme origin — inkludert `https://cdn.nav.no/...`, som
+Aksel/dekoratøren bruker til fonter (`SourceSans3-normal.woff2` m.fl.). Uten en egen `passthrough()`-
+handler foran catch-all'en svarer mocken med falsk JSON i stedet for fontfilen, og teksten faller
+tilbake til systemfont i hele demoen — helt uten feilmelding i konsoll eller build.
+
+Legg alltid til, **før** catch-all-handlerne, én per faktisk brukt cross-origin-host:
+
+```ts
+import { passthrough } from 'msw';
+
+http.all('https://cdn.nav.no/*', () => passthrough()),
+```
+
+Sjekk `index.html`/`app.css` for `cdn.nav.no`-referanser (fonter, dekoratør-CSS) og andre eksterne
+hosts (se `apps/opplaringspenger-soknad/mock/msw/handlers.ts` for et tredjepartseksempel med
+`widget.uxsignals.com`). **Verifiser visuelt** i `demo:start` at teksten faktisk vises med Aksel sin
+font, ikke systemets standardfont — det er den eneste pålitelige sjekken her.
+
 ### 6. Routing
 
 gh-pages har ingen server som kan rute på path → **HashRouter kreves**.
 
-- `SoknadApplication`: sett `useHashRouter={erGitHubPages}`
+- `SoknadApplication`: sett `useHashRouter={__IS_GITHUB_PAGES__}`
 - Hopp over `ensureBaseNameForReactRouter(PUBLIC_PATH)` når hash-router er aktiv
 - Gå gjennom **all** hard navigasjon (`window.location.assign`, `relocateToWelcomePage`, scenariobytte, reset): disse ignorerer routeren og må gi hash-URL på gh-pages, f.eks. `${import.meta.env.BASE_URL}#${route}`. Dette er den vanligste glippen.
 
-### 7. Demo-markering (valgfritt, men anbefalt)
+### 7. Demo-markering (obligatorisk — glemmes lett, sjekk eksplisitt før du er ferdig)
 
-`DemoInfo`-banner + `.demoMode`-vannmerke, begge bak `erGitHubPages`. Kopier fra
-`apps/endringsmelding-pleiepenger/src/app/components/demo/`. Hent tittelen fra
-`@navikt/sif-app-register` — ikke dikt opp ny tekst.
+Alt fra `@sif/soknad-ui`, vist når `__IS_DEMO__` er true:
+
+1. **`ScenarioHeader`** — appens egen i `src/demo/ScenarioHeader.tsx` (named export), som bruker
+   `ScenarioSelectorHeader` med `isGitHubPages={__IS_GITHUB_PAGES__}` og `appTitle={<AppNavn>App.tittel.nb}`
+   fra `@navikt/sif-app-register` — ikke dikt opp ny tekst.
+2. **`DemoInfoAlert`** — GlobalAlert med felles standardtekst om fiktive data. Samme `appTitle`.
+3. **`DemoWatermark`** — wrapper som legger DEMO-vannmerket bak innholdet. CSS-en følger med komponenten;
+   ingen egen `demo.css` eller `className="demoMode"` i appen.
+
+To monteringsmønstre:
+
+- **v1 (`SoknadApplication`)**: i `App.tsx` — `{__IS_DEMO__ && <>…header + alert…</>}` og
+  `<DemoWatermark enabled={__IS_DEMO__}>` rundt `SoknadApplication`. Se `apps/endringsmelding-pleiepenger/src/app/App.tsx`.
+- **v2 (egen router)**: `src/demo/DemoAppRouter.tsx` med `HashRouter` + `DemoWatermark` + header + alert,
+  valgt i `AppRouter` med `__IS_GITHUB_PAGES__`. Se `apps/aktivitetspenger-soknad/src/demo/DemoAppRouter.tsx`.
+
+**Verifiser visuelt** (`demo:build` + `demo:start`) at header, infoboks og vannmerke vises.
 
 ### 8. `package.json` — scripts
 
@@ -156,20 +205,24 @@ publiserte sider. **Den avledes ikke fra workflowen** — legg derfor inn en ny 
 ## Verifisering
 
 1. `pnpm demo:build` — grønn
-2. `pnpm build` og `pnpm lint:tsc` — bekrefter at `__IS_GITHUB_PAGES__`-guarden ikke brøt ordinært build
+2. `pnpm build`, `pnpm lint:tsc` og `pnpm test` — bekrefter at `__IS_GITHUB_PAGES__`/`__IS_DEMO__` er definert i alle configer
 3. Sjekk `dist-demo/index.html`: `PUBLIC_PATH` og `src="/sif-brukerdialog/<app-navn>/assets/…"` er riktige, og `mockServiceWorker.js` ligger i `dist-demo/`
 4. Grep i `src/` etter hver nøkkel du overstyret i `demoAppSettings` — bekreft at den faktisk leses
-5. Deploy kjøres kun manuelt: Actions → «Build and deploy gh-pages» → «Run workflow», med branch du vil bygge fra
+5. `ScenarioHeader`, `DemoInfoAlert` og `DemoWatermark` er montert bak `__IS_DEMO__` (punkt 7)
+6. Deploy kjøres kun manuelt: Actions → «Build and deploy gh-pages» → «Run workflow», med branch du vil bygge fra
 
 ## Vanlige feil
 
-| Problem                                             | Årsak                                                       | Fix                                                             |
-| --------------------------------------------------- | ----------------------------------------------------------- | --------------------------------------------------------------- |
-| `ReferenceError: __IS_GITHUB_PAGES__ is not defined` | Flagget defineres kun i demo-configen                       | Bruk `typeof`-guard (punkt 4)                                   |
-| MSW-feil / service worker ikke funnet               | Registrert på origin-roten                                  | Sett `serviceWorker.url` (punkt 5)                              |
-| Analytics sendes fra den offentlige demoen           | `useAnalytics` ignorerer `SIF_PUBLIC_USE_ANALYTICS`         | Les flagget i uttrykket (punkt 2)                               |
-| Blank side eller 404                                 | `base` matcher ikke URL                                     | `base` = `/sif-brukerdialog/<app-navn>/`                        |
-| 404 ved scenariobytte, reset eller «tilbake»         | Hard navigasjon bygger path-URL og omgår HashRouter         | Hash-URL på gh-pages (punkt 6)                                  |
-| `mockServiceWorker.js` mangler i `dist-demo`         | Filen ligger i approt, ikke i `public/`                     | `copy-msw`-plugin i `writeBundle`                               |
-| Scenariovelger vises ikke                            | Guard bruker `import.meta.env.PROD`, som er `true` i builds | Guard på `__IS_GITHUB_PAGES__` / `VELG_SCENARIO` i stedet       |
-| `define` har ingen effekt                            | Nøkkelen matcher ikke uttrykket i koden                     | Bruk nøyaktig uttrykk, f.eks. `'import.meta.env.X'` (punkt 3)   |
+| Problem                                                          | Årsak                                                                                                          | Fix                                                                    |
+| ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `ReferenceError: __IS_GITHUB_PAGES__/__IS_DEMO__ is not defined` | Flagget mangler i en config                                                                                    | Definer begge flagg (`false`) i manglende Vite/Vitest-config (punkt 4) |
+| MSW-feil / service worker ikke funnet                            | Registrert på origin-roten                                                                                     | Sett `serviceWorker.url` (punkt 5)                                     |
+| Analytics sendes fra den offentlige demoen                       | `useAnalytics` ignorerer `SIF_PUBLIC_USE_ANALYTICS`                                                            | Les flagget i uttrykket (punkt 2)                                      |
+| Blank side eller 404                                             | `base` matcher ikke URL                                                                                        | `base` = `/sif-brukerdialog/<app-navn>/`                               |
+| 404 ved scenariobytte, reset eller «tilbake»                     | Hard navigasjon bygger path-URL og omgår HashRouter                                                            | Hash-URL på gh-pages (punkt 6)                                         |
+| `mockServiceWorker.js` mangler i `dist-demo`                     | Filen ligger i approt, ikke i `public/`                                                                        | `copy-msw`-plugin i `writeBundle`                                      |
+| Scenariovelger vises ikke                                        | Guard bruker `import.meta.env.PROD`, som er `true` i builds                                                    | Monter bak `__IS_DEMO__` (punkt 7)                                     |
+| `define` har ingen effekt                                        | Nøkkelen matcher ikke uttrykket i koden                                                                        | Bruk nøyaktig uttrykk, f.eks. `'import.meta.env.X'` (punkt 3)          |
+| DEMO-vannmerke vises ikke                                        | `DemoWatermark` mangler rundt innholdet                                                                        | Pakk innholdet i `<DemoWatermark>` (punkt 7)                           |
+| Tekst vises med feil/systemfont i demoen                         | Catch-all-handler (`*`) fanger cross-origin-kall til `cdn.nav.no` og returnerer falsk JSON i stedet for fonten | `passthrough()` for `cdn.nav.no` før catch-all (punkt 5)               |
+| API-kall 404 i deployet demo, men fungerer i `demo:start` lokalt | `*_FRONTEND_PATH` er rot-relativ og faller utenfor MSW-workerens scope (`BASE_URL`)                            | Prefiks alle `*_FRONTEND_PATH` med `PUBLIC_PATH` (punkt 2)             |
