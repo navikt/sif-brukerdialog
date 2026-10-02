@@ -47,7 +47,7 @@ const OppsummeringStep = () => {
     const navigate = useNavigate();
     const { text, intl, locale } = useAppIntl();
     const {
-        state: { søknadsdata, sak, arbeidsgivere, valgteEndringer, søker, søknadSteps },
+        state: { søknadsdata, sak, arbeidsgivere, valgteEndringer, søker, tillattEndringsperiode, søknadSteps },
     } = useSøknadContext();
     const { endre } = useEndreFraOppsummering();
 
@@ -70,6 +70,7 @@ const OppsummeringStep = () => {
         valgteEndringer,
         arbeidsgivere,
         locale,
+        tillattEndringsperiode,
     );
 
     if (!apiData) {

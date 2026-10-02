@@ -1,5 +1,5 @@
 import { useAppIntl } from '@app/i18n';
-import { Arbeidsgiver, ArbeidstidApiData } from '@app/types';
+import { ArbeidsgiverMedAnsettelseperioder, ArbeidstidApiData } from '@app/types';
 
 import ArbeidstidArbeidstakerOppsummering from './ArbeidstidArbeidstakerOppsummering';
 import ArbeidstidEndringerAnswer from './ArbeidstidEndringerAnswer';
@@ -7,7 +7,7 @@ import ArbeidstidFormSummary from './ArbeidstidFormSummary';
 
 interface Props {
     arbeidstid: ArbeidstidApiData;
-    arbeidsgivere: Arbeidsgiver[];
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[];
 }
 
 const ArbeidstidArbeidsforholdOppsummering = ({ arbeidstid, arbeidsgivere }: Props) => {

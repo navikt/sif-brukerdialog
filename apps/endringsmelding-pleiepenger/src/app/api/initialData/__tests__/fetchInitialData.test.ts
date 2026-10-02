@@ -31,12 +31,8 @@ vi.mock('../../endpoints/søknadStateEndpoint', () => ({
     isPersistedSøknadStateValid: vi.fn(() => true),
 }));
 
-/** Har egne tester i utils/__tests__/tilgangskontroll.test.ts */
-vi.mock('../../../utils/tilgangskontroll', () => ({
-    tilgangskontroll: vi.fn(() => ({ kanBrukeSøknad: true })),
-}));
-
 import { fetchSøker } from '@navikt/sif-common-api';
+import { appLogger } from '@sif/apm';
 
 import { arbeidsgivereEndpoint } from '../../endpoints/arbeidsgivereEndpoint';
 import { sakerEndpoint } from '../../endpoints/sakerEndpoint';
@@ -53,22 +49,28 @@ const søker = { fornavn: 'Ola', etternavn: 'Nordmann', fødselsnummer: '1234567
 const gyldigSak = {
     ytelse: {
         søknadsperioder: [{ from: ISODateToDate('2024-02-01'), to: ISODateToDate('2024-03-01') }],
+        arbeidstid: {},
     },
 } as unknown as K9Sak;
 
 const httpError = (status: number) =>
     new AxiosError('feil', 'ERR_BAD_RESPONSE', {} as any, {}, { status, data: {} } as any);
 
+const settOppLykkeligSti = (): void => {
+    vi.mocked(fetchSøker).mockResolvedValue(søker);
+    vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ k9Saker: [gyldigSak], eldreSaker: [] });
+    vi.mocked(arbeidsgivereEndpoint.fetch).mockResolvedValue([]);
+    vi.mocked(søknadStateEndpoint.fetch).mockResolvedValue(undefined);
+};
+
+afterEach(() => {
+    vi.clearAllMocks();
+});
+
+/** Feilene oppstår i selve kallene, før noen tilgangsregel er kjørt. */
 describe('fetchInitialData feilhåndtering', () => {
     beforeEach(() => {
-        vi.mocked(fetchSøker).mockResolvedValue(søker);
-        vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ k9Saker: [gyldigSak], eldreSaker: [] });
-        vi.mocked(arbeidsgivereEndpoint.fetch).mockResolvedValue([]);
-        vi.mocked(søknadStateEndpoint.fetch).mockResolvedValue(undefined);
-    });
-
-    afterEach(() => {
-        vi.clearAllMocks();
+        settOppLykkeligSti();
     });
 
     describe('feil fra oppstartskallene', () => {
@@ -139,16 +141,20 @@ describe('fetchInitialData feilhåndtering', () => {
             });
         });
     });
+});
 
-    describe('domenefeil', () => {
-        it('beholder årsak og beriker med søker når bruker ikke har sak', async () => {
-            vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ k9Saker: [], eldreSaker: [] });
-            await expect(fetchInitialData(tillattEndringsperiode)).rejects.toMatchObject({
-                status: RequestStatus.success,
-                kanBrukeSøknad: false,
-                årsak: [IngenTilgangÅrsak.harIngenSak],
-                søker,
-            });
+describe('fetchInitialData tilgangskontroll', () => {
+    beforeEach(() => {
+        settOppLykkeligSti();
+    });
+
+    it('beholder årsak og beriker med søker når bruker ikke har sak', async () => {
+        vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ k9Saker: [], eldreSaker: [] });
+        await expect(fetchInitialData(tillattEndringsperiode)).rejects.toMatchObject({
+            status: RequestStatus.success,
+            kanBrukeSøknad: false,
+            årsak: [IngenTilgangÅrsak.harIngenSak],
+            søker,
         });
     });
 
@@ -159,5 +165,23 @@ describe('fetchInitialData feilhåndtering', () => {
             arbeidsgivere: [],
             antallSakerFørEndringsperiode: 0,
         });
+    });
+});
+
+describe('fetchInitialData loggIngenSaker', () => {
+    beforeEach(() => {
+        settOppLykkeligSti();
+    });
+
+    it('logger når bruker verken har saker i eller før endringsperioden', async () => {
+        vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ k9Saker: [], eldreSaker: [] });
+        await fetchInitialData(tillattEndringsperiode).catch(() => undefined);
+        expect(appLogger.logInfo).toHaveBeenCalledWith('fetchInitialData.ingenSaker');
+    });
+
+    it('logger ikke når bruker har en eldre sak', async () => {
+        vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ k9Saker: [], eldreSaker: [gyldigSak] });
+        await fetchInitialData(tillattEndringsperiode).catch(() => undefined);
+        expect(appLogger.logInfo).not.toHaveBeenCalledWith('fetchInitialData.ingenSaker');
     });
 });

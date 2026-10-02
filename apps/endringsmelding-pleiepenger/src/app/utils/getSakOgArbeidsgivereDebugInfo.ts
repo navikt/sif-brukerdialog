@@ -1,4 +1,4 @@
-import { Arbeidsgiver, K9Sak, K9SakArbeidstaker, Sak } from '@app/types';
+import { ArbeidsgiverMedAnsettelseperioder, K9Sak, K9SakArbeidstaker, Sak } from '@app/types';
 import { DateRange } from '@navikt/sif-common-utils';
 
 import { maskString } from './maskString';
@@ -10,7 +10,7 @@ const maskK9Arbeidstaker = (k9Arbeidstaker: K9SakArbeidstaker) => {
     };
 };
 
-export const maskK9Sak = (sak: K9Sak) => {
+const maskK9Sak = (sak: K9Sak) => {
     const { ytelse } = sak;
     const { søknadsperioder, arbeidstid } = ytelse;
     const { arbeidstakerList } = arbeidstid;
@@ -40,10 +40,9 @@ const maskSak = (sak: Sak) => {
     };
 };
 
-const maskArbeidsgivere = (arbeidsgivere: Arbeidsgiver[]) => {
+const maskArbeidsgivere = (arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[]) => {
     return arbeidsgivere.map((a) => ({
-        ansattFom: a.ansattFom,
-        ansattTom: a.ansattTom,
+        ansettelsesperioder: a.ansettelsesperioder,
         a: maskString(a.key),
     }));
 };
@@ -51,7 +50,7 @@ const maskArbeidsgivere = (arbeidsgivere: Arbeidsgiver[]) => {
 export const getSakOgArbeidsgivereDebugInfo = (
     k9sak: K9Sak,
     sak: Sak,
-    arbeidsgivere: Arbeidsgiver[],
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[],
     endringsperiode: DateRange,
 ) => {
     return {
