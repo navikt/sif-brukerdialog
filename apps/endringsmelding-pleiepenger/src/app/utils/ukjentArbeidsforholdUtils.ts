@@ -13,6 +13,7 @@ import {
 import {
     DateRange,
     dateRangeToISODateRange,
+    dateRangeUtils,
     dateToISODate,
     Duration,
     ensureDateRange,
@@ -33,9 +34,7 @@ export const getSøknadsperioderForUkjentArbeidsforhold = (
 ): DateRange[] => {
     const alleSøknadsperioder: DateRange = getDateRangeFromDateRanges(søknadsperioder);
     /**
-     * Ukjent arbeidsgiver kan kun ha én ansettelsesperiode her - tilgangskontroll()
-     * (se harFlereAnsettelsesforholdHosUkjentArbeidsgiver) sperrer søknaden allerede
-     * i fetchInitialData før Sak bygges, hvis en ukjent arbeidsgiver har flere.
+     * Ukjent arbeidsgiver kan kun ha én relevant ansettelsesperiode her.
      */
     const ansettelsesperiode = {
         from: ansattFom || alleSøknadsperioder.from,
@@ -114,10 +113,15 @@ export const getArbeidsaktivitetForUkjentArbeidsforhold = (
     arbeiderIPerioden?: ArbeiderIPeriodenSvar,
 ): Arbeidsaktivitet => {
     const faktiskArbeidstid = getFaktiskArbeidstidPerUkeForUkjentArbeidsforhold(arbeidsforhold, arbeiderIPerioden);
-    if (arbeidsgiver.ansettelsesperioder.length !== 1) {
+    const relevanteAnsettelsesperioder = arbeidsgiver.ansettelsesperioder.filter((ansettelsesperiode) =>
+        søknadsperioder.some((søknadsperiode) =>
+            dateRangeUtils.dateRangesCollide([ensureDateRange(ansettelsesperiode, søknadsperiode), søknadsperiode]),
+        ),
+    );
+    if (relevanteAnsettelsesperioder.length !== 1) {
         throw new Error('Ukjent arbeidsforhold kan kun ha en ansettelsesperiode');
     }
-    const ansettelsesperiode = ensureDateRange(arbeidsgiver.ansettelsesperioder[0], endringsperiode);
+    const ansettelsesperiode = ensureDateRange(relevanteAnsettelsesperioder[0], endringsperiode);
 
     const aktivitet: Arbeidsaktivitet = {
         key: arbeidsgiver.key,
