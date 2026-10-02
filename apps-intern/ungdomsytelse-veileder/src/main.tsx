@@ -13,7 +13,7 @@ void initApm({ app: UngdomsytelseVeilederApp.key, namespace: 'dusseldorf', versi
 export { demoMockDate };
 
 /** Overstyr Date objektet i siden */
-if (__IS_VEILEDER_DEMO__) {
+if (__IS_DEMO__) {
     MockDate.set(demoMockDate);
 }
 

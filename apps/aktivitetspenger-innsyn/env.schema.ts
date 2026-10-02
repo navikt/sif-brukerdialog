@@ -1,4 +1,4 @@
-import { commonEnvSchema, ungBrukerdialogApiEnvSchema, ungDeltakelseOpplyserEnvSchema } from '@navikt/sif-common-env';
+import { commonEnvSchema, ungBrukerdialogApiEnvSchema } from '@navikt/sif-common-env';
 import * as z from 'zod';
 
 /**
@@ -10,15 +10,16 @@ import * as z from 'zod';
 export enum AppEnvKey {
     SIF_PUBLIC_URL_AKTIVITETSPENGER = 'SIF_PUBLIC_URL_AKTIVITETSPENGER',
     SIF_PUBLIC_URL_SAKSBEHANDLINGSTIDER = 'SIF_PUBLIC_URL_SAKSBEHANDLINGSTIDER',
+    SIF_PUBLIC_IS_OPEN = 'SIF_PUBLIC_IS_OPEN',
 }
 
 export const appEnvSchema = z
     .object({
         SIF_PUBLIC_URL_AKTIVITETSPENGER: z.url(),
         SIF_PUBLIC_URL_SAKSBEHANDLINGSTIDER: z.url(),
+        SIF_PUBLIC_IS_OPEN: z.string(),
     })
     .extend(commonEnvSchema.shape)
-    .extend(ungDeltakelseOpplyserEnvSchema.shape)
     .extend(ungBrukerdialogApiEnvSchema.shape);
 
 export type AppEnv = z.infer<typeof appEnvSchema>;

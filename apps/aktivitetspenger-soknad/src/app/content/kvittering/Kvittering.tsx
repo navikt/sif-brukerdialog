@@ -6,6 +6,8 @@ import { SøknadKvitteringPage } from '@sif/soknad-ui';
 
 export const Kvittering = () => {
     const { text } = useAppIntl();
+    // HashRouter på gh-pages: en path-basert appRootUrl (PUBLIC_PATH) fungerer ikke der.
+    const appRootUrl = __IS_GITHUB_PAGES__ ? `${import.meta.env.BASE_URL}#/` : getAppEnv().PUBLIC_PATH;
 
     return (
         <SøknadKvitteringPage
@@ -13,7 +15,7 @@ export const Kvittering = () => {
             applicationTitle={text('application.title')}
             infoTittel={text('kvittering.title')}
             infoMelding={text('kvittering.message')}
-            appRootUrl={getAppEnv().PUBLIC_PATH}>
+            appRootUrl={appRootUrl}>
             <VStack gap="space-32">
                 <div>
                     <Heading level="2" size="small" spacing>

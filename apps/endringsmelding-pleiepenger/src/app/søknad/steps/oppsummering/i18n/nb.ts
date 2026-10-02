@@ -25,6 +25,10 @@ export const oppsummeringStepMessages_nb = {
     'oppsummeringStep.ferie.lagtTil': 'Ferie som er lagt til',
     'oppsummeringStep.ferie.fjernet': 'Ferie som er fjernet',
 
+    'oppsummeringStep.endre.arbeidstid': 'Endre arbeidstid',
+    'oppsummeringStep.endre.ferie': 'Endre ferie',
+    'oppsummeringStep.endre.tilsynsordning': 'Endre tid i omsorgstilbud',
+
     'oppsummeringStep.tilsynsordning.tittel': 'Endringer i omsorgstilbud',
     'oppsummeringStep.tilsynsordning.ingenEndringer': 'Det er ikke registrert noen endringer i omsorgstilbud',
     'oppsummeringStep.tilsynsordning.dagerEndret': ' - {antall} {antall, plural, one {dag} other {dager}} endret',

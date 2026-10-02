@@ -710,12 +710,14 @@ const erAnsattPeriodeInnenforSøknadsperioder = (
 };
 
 /**
- * Henter ut
+ * Henter ut feriedager som ligger i sak.
+ * Perioder hvor skalHaFerie er false er ikke ferie i saken, og tas ikke med.
  * @param lovbestemtFerie
- * @returns
+ * @returns FeriedagMap med dager som har ferie i sak
  */
 const getFeriedagerFromLovbestemtFerie = (lovbestemtFerie: K9SakLovbestemtFerie[]): FeriedagMap => {
-    return getFeriedagerMapFromPerioder(lovbestemtFerie, true, true);
+    const perioderMedFerie = lovbestemtFerie.filter((periode) => periode.skalHaFerie === true);
+    return getFeriedagerMapFromPerioder(perioderMedFerie, true, true);
 };
 
 /**
@@ -751,6 +753,7 @@ export const _getSakFromK9Sak = {
     getArbeidsukerMapFromArbeidsuker,
     getArbeidstidEnkeltdagMapFromPerioder,
     getEndringsperiodeForArbeidsgiver,
+    getFeriedagerFromLovbestemtFerie,
     getArbeidsukerFromEnkeltdager,
     getPerioderMedArbeidstid,
     getArbeidsukeFromEnkeltdagerIUken,

@@ -1,11 +1,17 @@
 import { useSendSøknad, useSøknadContext, useSøknadsdataStatus } from '@app/hooks';
+import { useEndreFraOppsummering } from '@app/hooks/useEndreFraOppsummering';
 import { useStepConfig } from '@app/hooks/useStepConfig';
 import { AppText, useAppIntl } from '@app/i18n';
-import { StepId } from '@app/søknad/config/StepId';
+import { EndringStepId, StepId } from '@app/søknad/config/StepId';
 import SøknadStep from '@app/søknad/SøknadStep';
-import { getApiDataFromSøknadsdata, harUkjentArbeidsforholdMenHarIkkeBesvartArbeidstid } from '@app/utils';
+import {
+    Feature,
+    getApiDataFromSøknadsdata,
+    harUkjentArbeidsforholdMenHarIkkeBesvartArbeidstid,
+    isFeatureEnabled,
+} from '@app/utils';
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
-import { Alert, BodyLong, Button, ErrorSummary, Heading, Link, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, Button, ErrorSummary, Link, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@navikt/sif-common-hooks';
@@ -16,6 +22,7 @@ import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import ArbeidstidOppsummering from './arbeidstid/ArbeidstidOppsummering';
+import OppsummeringBlokk from './components/OppsummeringBlokk';
 import LovbestemtFerieOppsummering from './lovbestemt-ferie/LovbestemtFerieOppsummering';
 import NyttArbeidsforholdSummary from './nytt-arbeidsforhold/NyttArbeidsforholdSummary';
 import { getOppsummeringStepInitialValues, oppsummeringStepUtils } from './oppsummeringStepUtils';
@@ -40,8 +47,9 @@ const OppsummeringStep = () => {
     const navigate = useNavigate();
     const { text, intl, locale } = useAppIntl();
     const {
-        state: { søknadsdata, sak, arbeidsgivere, valgteEndringer, søker, tillattEndringsperiode },
+        state: { søknadsdata, sak, arbeidsgivere, valgteEndringer, søker, tillattEndringsperiode, søknadSteps },
     } = useSøknadContext();
+    const { endre } = useEndreFraOppsummering();
 
     const { goBack, stepConfig } = useStepConfig(stepId);
     const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig, arbeidsgivere);
@@ -88,6 +96,18 @@ const OppsummeringStep = () => {
 
     const harFeilPgaManglendeArbeidstidInfo = harUkjentArbeidsforholdMenHarIkkeBesvartArbeidstid(sak, apiData);
 
+    const kanVelgeEndringerFraOppsummering = isFeatureEnabled(Feature.SIF_PUBLIC_VELG_ENDRE_FRA_OPPSUMMERING);
+
+    /** Uten feature-toggle vises bare blokker for steg som er med i flyten */
+    const visBlokk = (steg: EndringStepId) => kanVelgeEndringerFraOppsummering || søknadSteps.includes(steg);
+
+    const getEndre = (steg: EndringStepId, label: string) => {
+        if (!kanVelgeEndringerFraOppsummering) {
+            return undefined;
+        }
+        return { label, onClick: () => endre(steg), disabled: isSubmitting };
+    };
+
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig}>
             <FormLayout.Guide>
@@ -104,44 +124,45 @@ const OppsummeringStep = () => {
                     />
                 )}
 
-                {(valgteEndringer.arbeidstid || (arbeidstid && arbeidstidErEndret)) && (
-                    <ArbeidstidOppsummering
-                        arbeidstid={arbeidstid}
-                        arbeidsgivere={[...arbeidsgivere, ...sak.arbeidsgivereIkkeISak]}
-                        arbeidstidErEndret={arbeidstidErEndret}
-                        harGyldigArbeidstid={harGyldigArbeidstid}
-                    />
+                {visBlokk(StepId.LOVBESTEMT_FERIE) && (
+                    <OppsummeringBlokk
+                        tittelId="oppsummeringStep.ferie.tittel"
+                        ingenEndringerId="oppsummeringStep.ferie.ingenEndringer"
+                        harEndringer={lovbestemtFerieErEndret}
+                        endre={getEndre(StepId.LOVBESTEMT_FERIE, text('oppsummeringStep.endre.ferie'))}>
+                        {lovbestemtFerie && <LovbestemtFerieOppsummering lovbestemtFerie={lovbestemtFerie} />}
+                    </OppsummeringBlokk>
                 )}
-                {valgteEndringer.lovbestemtFerie && (
-                    <VStack gap="space-16">
-                        <Heading level="2" size="medium">
-                            <AppText id="oppsummeringStep.ferie.tittel" />
-                        </Heading>
-                        {lovbestemtFerie !== undefined && lovbestemtFerieErEndret ? (
-                            <LovbestemtFerieOppsummering lovbestemtFerie={lovbestemtFerie} />
-                        ) : (
-                            <Alert variant="info">
-                                <AppText id="oppsummeringStep.ferie.ingenEndringer" />
-                            </Alert>
+
+                {visBlokk(StepId.ARBEIDSTID) && (
+                    <OppsummeringBlokk
+                        tittelId="oppsummeringStep.arbeidstid.tittel"
+                        ingenEndringerId="oppsummeringStep.arbeidstid.ingenEndringer"
+                        harEndringer={arbeidstidErEndret}
+                        endre={getEndre(StepId.ARBEIDSTID, text('oppsummeringStep.endre.arbeidstid'))}>
+                        {arbeidstid && (
+                            <ArbeidstidOppsummering
+                                arbeidstid={arbeidstid}
+                                arbeidsgivere={[...arbeidsgivere, ...sak.arbeidsgivereIkkeISak]}
+                                harGyldigArbeidstid={harGyldigArbeidstid}
+                            />
                         )}
-                    </VStack>
+                    </OppsummeringBlokk>
                 )}
-                {valgteEndringer.tilsynsordning && (
-                    <VStack gap="space-16">
-                        <Heading level="2" size="medium">
-                            <AppText id="oppsummeringStep.tilsynsordning.tittel" />
-                        </Heading>
-                        {tilsynsordning !== undefined && tilsynsordningErEndret ? (
+
+                {visBlokk(StepId.TILSYNSORDNING) && (
+                    <OppsummeringBlokk
+                        tittelId="oppsummeringStep.tilsynsordning.tittel"
+                        ingenEndringerId="oppsummeringStep.tilsynsordning.ingenEndringer"
+                        harEndringer={tilsynsordningErEndret}
+                        endre={getEndre(StepId.TILSYNSORDNING, text('oppsummeringStep.endre.tilsynsordning'))}>
+                        {tilsynsordning && (
                             <TilsynsordningOppsummering
                                 tilsynsordning={tilsynsordning}
                                 tidOpprinnelig={sak.tilsynsordning.tilsynsdagerMap}
                             />
-                        ) : (
-                            <Alert variant="info">
-                                <AppText id="oppsummeringStep.tilsynsordning.ingenEndringer" />
-                            </Alert>
                         )}
-                    </VStack>
+                    </OppsummeringBlokk>
                 )}
 
                 {harFeilPgaManglendeArbeidstidInfo && (

@@ -1,4 +1,3 @@
-import { scenarioHeaderMessages_nn } from '../../demo/i18n/nn';
 import { apmTestPageMessages_nn } from '../content/apm-test/i18n/nn';
 import { kanIkkeSøkePageMessages_nn } from '../content/kan-ikke-soke/i18n/nn';
 import { kvitteringPageMessages_nn } from '../content/kvittering/i18n/nn';
@@ -20,7 +19,6 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     ...oppsummeringStegMessages_nn,
     ...velkommenPageMessages_nn,
     ...kvitteringPageMessages_nn,
-    ...scenarioHeaderMessages_nn,
     'application.title': 'Søknad om aktivitetspengar',
     'kvittering.documentTitle': 'Søknad om aktivitetspengar er mottatt',
     'kvittering.title': 'Søknaden er sendt',

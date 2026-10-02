@@ -1,6 +1,5 @@
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import { appEnv } from './appEnv';
-import { isGitHubPages } from './isGitHubPages';
 
 const { SIF_PUBLIC_DOMAIN_URL, PUBLIC_PATH, SIF_PUBLIC_INNSYN_URL, SIF_PUBLIC_MINSIDE_URL, SIF_PUBLIC_LOGIN_URL } =
     appEnv;
@@ -16,7 +15,7 @@ const relocateToSøknadRoute = (route: SøknadRoutes): void => {
      * En navigasjon som kun endrer hash laster ikke siden på nytt, så her må vi tvinge
      * en reload for at appen faktisk skal starte med ny tilstand.
      */
-    if (isGitHubPages()) {
+    if (__IS_GITHUB_PAGES__) {
         window.location.hash = route;
         window.location.reload();
         return;

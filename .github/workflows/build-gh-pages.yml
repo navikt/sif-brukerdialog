@@ -98,6 +98,17 @@ jobs:
           mkdir -p deployment/aktivitetspenger-innsyn
           mv apps/aktivitetspenger-innsyn/dist-demo/* deployment/aktivitetspenger-innsyn/
 
+      # Bygg aktivitetspenger-soknad demo-app med gh-pages:rebuild
+      - name: Build aktivitetspenger-soknad
+        run: pnpm gh-pages:rebuild
+        working-directory: apps/aktivitetspenger-soknad
+
+      # Flytt aktivitetspenger-soknad-output til en subfolder
+      - name: Kopier aktivitetspenger-soknad til gh-pages
+        run: |
+          mkdir -p deployment/aktivitetspenger-soknad
+          mv apps/aktivitetspenger-soknad/dist-demo/* deployment/aktivitetspenger-soknad/
+
       # Bygg aktivitetspenger-soknad-storybook
       - name: Build aktivitetspenger-soknad-storybook
         run: pnpm build-storybook
@@ -144,7 +155,7 @@ jobs:
 
       # Last opp bygget som en artefakt
       - name: Upload artifact for GitHub Pages
-        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: deployment
 
@@ -159,4 +170,4 @@ jobs:
       name: github-pages
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

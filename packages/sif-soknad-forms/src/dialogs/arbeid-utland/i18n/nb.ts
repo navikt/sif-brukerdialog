@@ -5,7 +5,7 @@ export const arbeidUtlandMessages_nb = {
     '@sifSoknadForms.arbeidUtland.dialog.generell.beskrivelse.2': 'Ta med alle perioder siden du var 16 år.',
     '@sifSoknadForms.arbeidUtland.dialog.tittel.periodeMedJobb': 'Periode med jobb utenfor Norge',
     '@sifSoknadForms.arbeidUtland.dialog.periodeMedJobb.beskrivelse.1':
-        'Oppgi land og periode du har jobbet utenfor Norge de fem siste årene.',
+        'Oppgi land og periode du har jobbet utenfor Norge de 5 siste årene.',
     '@sifSoknadForms.arbeidUtland.dialog.periodeMedJobb.beskrivelse.2': 'Ta med alle perioder siden du var 16 år.',
     '@sifSoknadForms.arbeidUtland.dialog.avbrytKnapp': 'Avbryt',
     '@sifSoknadForms.arbeidUtland.dialog.leggTilKnapp': 'Legg til',

@@ -3,16 +3,20 @@ import { RegistrertBarn } from '@sif/api/k9-prosessering';
 import { SifRadioGroup, SifRadioProp } from '@sif/rhf';
 import { SifInfoCard } from '@sif/soknad-ui';
 import { dateFormatter, formatName } from '@sif/utils';
-import { useMemo } from 'react';
+import { JSX, useMemo } from 'react';
 import { FieldValues, Path } from 'react-hook-form';
 
 import { SifSoknadFormsText, useSifSoknadFormsIntl } from '../../i18n';
 
 export const ANNET_BARN = 'annetBarn';
+export type VelgBarnEkstrainfo = {
+    [key: string]: JSX.Element;
+};
 
 interface Props<T extends FieldValues> {
     name: Path<T>;
     registrerteBarn: RegistrertBarn[];
+    registrerteBarnEkstrainfo?: VelgBarnEkstrainfo;
     label?: string;
     headingProps?: Pick<HeadingProps, 'size' | 'level'>;
     inkluderAnnetBarn?: boolean;
@@ -23,6 +27,7 @@ interface Props<T extends FieldValues> {
 export function VelgRegistrertBarnPanel<T extends FieldValues>({
     name,
     registrerteBarn,
+    registrerteBarnEkstrainfo,
     label,
     headingProps = { level: '3', size: 'xsmall' },
     inkluderAnnetBarn,
@@ -32,20 +37,25 @@ export function VelgRegistrertBarnPanel<T extends FieldValues>({
     const { text } = useSifSoknadFormsIntl();
 
     const radios = useMemo<SifRadioProp[]>(() => {
-        const options: SifRadioProp[] = registrerteBarn.map((barn) => ({
-            value: barn.aktørId,
-            label: (
-                <VStack gap="space-4">
-                    <span>{formatName(barn.fornavn, barn.etternavn, barn.mellomnavn)}</span>
-                    <span>
-                        <SifSoknadFormsText
-                            id="@sifSoknadForms.velgRegistrertBarn.født"
-                            values={{ dato: dateFormatter.compact(barn.fødselsdato) }}
-                        />
-                    </span>
-                </VStack>
-            ),
-        }));
+        const options: SifRadioProp[] = registrerteBarn.map((barn) => {
+            const ekstrainfo = registrerteBarnEkstrainfo?.[barn.aktørId];
+
+            return {
+                value: barn.aktørId,
+                label: (
+                    <VStack gap="space-4">
+                        <span>{formatName(barn.fornavn, barn.etternavn, barn.mellomnavn)}</span>
+                        <span>
+                            <SifSoknadFormsText
+                                id="@sifSoknadForms.velgRegistrertBarn.født"
+                                values={{ dato: dateFormatter.compact(barn.fødselsdato) }}
+                            />
+                        </span>
+                        {ekstrainfo && <div>{ekstrainfo}</div>}
+                    </VStack>
+                ),
+            };
+        });
 
         if (inkluderAnnetBarn) {
             options.push({
@@ -55,7 +65,7 @@ export function VelgRegistrertBarnPanel<T extends FieldValues>({
         }
 
         return options;
-    }, [registrerteBarn, inkluderAnnetBarn, annetBarnLabel, text]);
+    }, [registrerteBarn, registrerteBarnEkstrainfo, inkluderAnnetBarn, annetBarnLabel, text]);
 
     const legend = (
         <HStack gap="space-8">

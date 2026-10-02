@@ -53,7 +53,8 @@
         "VELG_SCENARIO": "on",
         "SIF_PUBLIC_ENDRE_OMSORGSTILBUD": "on",
         "SIF_PUBLIC_SJEKK_OM_ARBEIDSTID_ER_GYLDIG": "on",
-        "SIF_PUBLIC_NY_TILGANGSKONTROLL": "on"
+        "SIF_PUBLIC_NY_TILGANGSKONTROLL": "on",
+        "SIF_PUBLIC_VELG_ENDRE_FRA_OPPSUMMERING": "on"
     },
     "faro": true
 }

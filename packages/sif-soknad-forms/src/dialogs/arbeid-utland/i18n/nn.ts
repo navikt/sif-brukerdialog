@@ -7,7 +7,7 @@ export const arbeidUtlandMessages_nn: Record<keyof typeof arbeidUtlandMessages_n
     '@sifSoknadForms.arbeidUtland.dialog.generell.beskrivelse.2': 'Ta med alle periodar sidan du var 16 år.',
     '@sifSoknadForms.arbeidUtland.dialog.tittel.periodeMedJobb': 'Periode med jobb utanfor Noreg',
     '@sifSoknadForms.arbeidUtland.dialog.periodeMedJobb.beskrivelse.1':
-        'Oppgi land og periode du har jobba utanfor Noreg dei fem siste åra.',
+        'Oppgi land og periode du har jobba utanfor Noreg dei 5 siste åra.',
     '@sifSoknadForms.arbeidUtland.dialog.periodeMedJobb.beskrivelse.2': 'Ta med alle periodar sidan du var 16 år.',
     '@sifSoknadForms.arbeidUtland.dialog.avbrytKnapp': 'Avbryt',
     '@sifSoknadForms.arbeidUtland.dialog.leggTilKnapp': 'Legg til',

@@ -1,5 +1,13 @@
 # @navikt/sif-validation
 
+## 1.0.23
+
+### Patch Changes
+
+- Pakkeoppdateringer, nav-dekoratoren-moduler@4.5.0
+- Updated dependencies
+    - @navikt/sif-common-utils@3.49.62
+
 ## 1.0.22
 
 ### Patch Changes

@@ -1,9 +1,142 @@
+import { RegistrertBarn } from '@navikt/sif-common-api';
 import { vi } from 'vitest';
 
-import { getMinDatoForBarnetsFødselsdato, isBarnOver18år } from '../omBarnetStepUtils';
+import { InnvilgedeVedtak } from '../../../../hooks/useInnvilgedeVedtakForRegistrerteBarn';
+import { getMinDatoForBarnetsFødselsdato, isBarnOver18år, utledVedtakInfoForBarn } from '../omBarnetStepUtils';
 
 vi.mock('@navikt/sif-common-env', () => {
     return { getRequiredEnv: () => '', getCommonEnv: () => ({}), getMaybeEnv: () => '' };
+});
+
+describe('utledVedtakInfoForBarn', () => {
+    const barn: RegistrertBarn = {
+        aktørId: '123',
+        etternavn: 'Barnesen',
+        fornavn: 'Barn',
+        fødselsdato: new Date('2020-01-01'),
+    };
+
+    it('returnerer undefined når barnet ikke har vedtak', () => {
+        expect(utledVedtakInfoForBarn(barn, {})).toBeUndefined();
+    });
+
+    it('returnerer undefined når barnet ikke har innvilgede behandlinger', () => {
+        const innvilgedeVedtak: InnvilgedeVedtak = {
+            [barn.aktørId]: {
+                harInnvilgedeBehandlinger: false,
+                saksnummer: null,
+                vedtaksdato: null,
+                førsteMuligeSøknadsdato: null,
+                vedtakTomDato: null,
+            },
+        };
+
+        expect(utledVedtakInfoForBarn(barn, innvilgedeVedtak)).toBeUndefined();
+    });
+
+    it('returnerer tidsbegrenset vedtaksinfo når begge datofeltene finnes', () => {
+        vi.useFakeTimers().setSystemTime(new Date('2026-01-31'));
+
+        const innvilgedeVedtak: InnvilgedeVedtak = {
+            [barn.aktørId]: {
+                harInnvilgedeBehandlinger: true,
+                saksnummer: 'ABC123',
+                vedtaksdato: '2026-01-01',
+                førsteMuligeSøknadsdato: '2026-02-01',
+                vedtakTomDato: '2026-12-31',
+            },
+        };
+
+        expect(utledVedtakInfoForBarn(barn, innvilgedeVedtak)).toEqual({
+            erTidsbegrenset: true,
+            førsteMuligeSøknadsdato: '2026-02-01',
+            vedtakTomDato: '2026-12-31',
+            kanSøke: false,
+        });
+
+        vi.useRealTimers();
+    });
+
+    it('returnerer ikke-tidsbegrenset vedtaksinfo når datofeltene mangler', () => {
+        const innvilgedeVedtak: InnvilgedeVedtak = {
+            [barn.aktørId]: {
+                harInnvilgedeBehandlinger: true,
+                saksnummer: 'ABC123',
+                vedtaksdato: '2026-01-01',
+                førsteMuligeSøknadsdato: null,
+                vedtakTomDato: null,
+            },
+        };
+
+        expect(utledVedtakInfoForBarn(barn, innvilgedeVedtak)).toEqual({
+            erTidsbegrenset: false,
+            kanSøke: false,
+        });
+    });
+
+    describe('kanSøke', () => {
+        const innvilgedeVedtak: InnvilgedeVedtak = {
+            [barn.aktørId]: {
+                harInnvilgedeBehandlinger: true,
+                saksnummer: 'ABC123',
+                vedtaksdato: '2026-01-01',
+                førsteMuligeSøknadsdato: '2026-02-01',
+                vedtakTomDato: '2026-12-31',
+            },
+        };
+
+        afterEach(() => vi.useRealTimers());
+
+        it('er false når dagens dato er før førsteMuligeSøknadsdato', () => {
+            vi.useFakeTimers().setSystemTime(new Date('2026-01-31'));
+            const result = utledVedtakInfoForBarn(barn, innvilgedeVedtak);
+            expect(result).toMatchObject({ kanSøke: false });
+        });
+
+        it('er true når dagens dato er lik førsteMuligeSøknadsdato', () => {
+            vi.useFakeTimers().setSystemTime(new Date('2026-02-01'));
+            const result = utledVedtakInfoForBarn(barn, innvilgedeVedtak);
+            expect(result).toMatchObject({ kanSøke: true });
+        });
+
+        it('er true når dagens dato er etter førsteMuligeSøknadsdato', () => {
+            vi.useFakeTimers().setSystemTime(new Date('2026-02-02'));
+            const result = utledVedtakInfoForBarn(barn, innvilgedeVedtak);
+            expect(result).toMatchObject({ kanSøke: true });
+        });
+
+        describe('rundt norsk midnatt, uavhengig av brukerens nettlesertidssone', () => {
+            const opprinneligTZ = process.env.TZ;
+
+            afterEach(() => {
+                if (opprinneligTZ === undefined) {
+                    delete process.env.TZ;
+                } else {
+                    process.env.TZ = opprinneligTZ;
+                }
+            });
+
+            it('er true for en bruker vest for Norge selv om det lokalt fortsatt er dagen før', () => {
+                // Oslo går over til 2026-02-01 kl. 23:00:00Z (00:00 norsk vintertid).
+                // 30 min senere er Oslo-datoen 1. februar, men i Honolulu (UTC-10) er det fortsatt 31. januar lokalt.
+                process.env.TZ = 'Pacific/Honolulu';
+                vi.useFakeTimers().setSystemTime(new Date('2026-01-31T23:30:00.000Z'));
+
+                const result = utledVedtakInfoForBarn(barn, innvilgedeVedtak);
+                expect(result).toMatchObject({ kanSøke: true });
+            });
+
+            it('er false for en bruker øst for Norge selv om det lokalt allerede er riktig dato', () => {
+                // 3 timer før Oslo går over til 1. februar er Oslo-datoen fortsatt 31. januar,
+                // men i Auckland (UTC+13 pga sommertid) er lokal dato allerede 1. februar.
+                process.env.TZ = 'Pacific/Auckland';
+                vi.useFakeTimers().setSystemTime(new Date('2026-01-31T20:00:00.000Z'));
+
+                const result = utledVedtakInfoForBarn(barn, innvilgedeVedtak);
+                expect(result).toMatchObject({ kanSøke: false });
+            });
+        });
+    });
 });
 
 describe('isBarnOver18år', () => {

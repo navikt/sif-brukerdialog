@@ -1,11 +1,13 @@
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
+import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 
 import { getDatesInDateRange, getMonthDateRange, getWeeksInDateRange } from './dateRangeUtils';
 import { DateRange, ISODate } from './types';
 
 dayjs.extend(utc);
+dayjs.extend(timezone);
 dayjs.extend(isoWeek);
 
 const ISODateFormat = 'YYYY-MM-DD';
@@ -20,6 +22,13 @@ export const getDate1YearFromNow = () => dayjs().add(1, 'year').endOf('day').toD
 export const getDate99YearsFromNow = () => dayjs().subtract(99, 'year').startOf('day').toDate();
 
 export const dateToISODate = (date: Date): ISODate => dayjs(date).format(ISODateFormat);
+
+/**
+ * Dagens dato som ISODate (YYYY-MM-DD), utledet eksplisitt i norsk tid (Europe/Oslo).
+ * Bruk denne i stedet for `dayjs()`/`new Date()` når "i dag" skal sammenlignes mot en ISODate,
+ * slik at resultatet er uavhengig av brukerens nettlesertidssone (unngår feil rundt norsk midnatt).
+ */
+export const getDagensDatoIOslo = (): ISODate => dayjs().tz('Europe/Oslo').format(ISODateFormat);
 
 export const isISODateString = (value: unknown): value is ISODate => {
     return typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value);

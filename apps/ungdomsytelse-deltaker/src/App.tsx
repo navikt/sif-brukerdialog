@@ -29,6 +29,8 @@ if (__INJECT_DECORATOR_CLIENT_SIDE__) {
     injectDecoratorClientSide({
         env: 'dev',
         params: {
+            context: 'privatperson',
+            teamName: `${UngdomsytelseDeltakerApp.key}.dusseldorf`,
             simple: false,
             chatbot: true,
         },
@@ -66,13 +68,13 @@ function App() {
                         applicationKey={UngdomsytelseDeltakerApp.key}
                         sanityConfig={sanityConfig}
                         contentRenderer={() => (
-                                <AnalyticsProvider
-                                    applicationKey={UngdomsytelseDeltakerApp.key}
-                                    isActive={analyticsIsActive}>
-                                    <QueryClientProvider client={queryClient}>
-                                        <DeltakerInfoLoader />
-                                    </QueryClientProvider>
-                                </AnalyticsProvider>
+                            <AnalyticsProvider
+                                applicationKey={UngdomsytelseDeltakerApp.key}
+                                isActive={analyticsIsActive}>
+                                <QueryClientProvider client={queryClient}>
+                                    <DeltakerInfoLoader />
+                                </QueryClientProvider>
+                            </AnalyticsProvider>
                         )}
                         unavailableContentRenderer={() => (
                             <ErrorPage

@@ -1,5 +1,5 @@
-import { LaptopIcon, PaletteIcon } from '@navikt/aksel-icons';
-import { LinkCard } from '@navikt/ds-react';
+import { EyeSlashIcon, LaptopIcon, PaletteIcon } from '@navikt/aksel-icons';
+import { BodyLong, Heading, InfoCard, LinkCard } from '@navikt/ds-react';
 
 import { GhPagesSide } from './sider';
 
@@ -14,6 +14,18 @@ interface Props {
 
 const SideKort = ({ side }: Props) => {
     const Ikon = ikon[side.type];
+    if (side.disabled) {
+        return (
+            <InfoCard key={side.path} title={side.tittel}>
+                <InfoCard.Message icon={<EyeSlashIcon aria-hidden />} data-color="neutral">
+                    <Heading level="3" size="small">
+                        {side.tittel}
+                    </Heading>
+                    <BodyLong>{side.beskrivelse}</BodyLong>
+                </InfoCard.Message>
+            </InfoCard>
+        );
+    }
     return (
         <LinkCard>
             <LinkCard.Icon>

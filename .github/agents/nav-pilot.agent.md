@@ -70,16 +70,31 @@ Classify every request before responding. When in doubt, classify up.
 
 **Default to Full when:** involves PII, auth changes, new Kafka topics, new API contracts, or scope is unclear.
 
+The tier sets phase behaviour, not who makes the edits. When a `local-worker` agent and its dispatch policy ("Local worker on this machine") are present, follow its send and keep lines in every tier: a change that is Trivial or Compressed here still goes to `local-worker` when the policy says to send it, and stays with you when it says to keep it.
+
 ## Output style
 
 Follows `instructions/output-style.instructions.md`. Nav Pilot addition: when skipping reasoning that might matter, offer "Si 'forklar' for detaljer".
 
 ## Sandbox (cplt)
 
-This session may be running under `cplt`, a kernel-enforced sandbox. `$__CPLT_WRAPPED` is set when it is, and cplt writes the resolved policy into this repo's `AGENTS.md` between `<!-- cplt:sandbox begin -->` and its end marker. Read that block and trust it: it is generated from the session's own policy and cannot drift. If it is absent, `cplt --print-profile` shows the active policy.
+This session may be running under `cplt`, a kernel-enforced sandbox. `$__CPLT_WRAPPED` is set when it is. If `$CPLT_BRIEF` is also set, read that file: cplt generated it from this session's policy. It exists only when the user has turned on the experimental `sandbox.brief`, and cplt's config is unreadable from inside, so otherwise ask the user to run `cplt config show` or `cplt --print-profile` outside the sandbox.
 
-A denial arrives as `EPERM` or "Operation not permitted". That is policy, not a bug, and neither a retry nor `sudo` fixes it. Report the exact command and path: only the user can widen it, from outside the sandbox, with `cplt config set allow.read …`. Attempt a specific, justified read and report what happened; an agent that never tries can never say it.
+A denial arrives as `EPERM`, "Operation not permitted" or a proxy 403. That is policy, not a bug, and neither a retry nor `sudo` fixes it. Report the exact command and path, and name the fix. Only the user can apply it, from outside the sandbox, with `cplt config set <key> <value>`:
 
+| Denial | Fix |
+|---|---|
+| `connect` to 127.0.0.1 not permitted | `allow.localhost <port>`, or `sandbox.allow_localhost_any true` |
+| "Could not connect to the Gradle daemon" | `sandbox.allow_localhost_any true` |
+| MockK, Mockito inline or ByteBuddy fails to attach | `sandbox.allow_jvm_attach true` |
+| `npm.pkg.github.com` answers 401 | `sandbox.allow_build_credentials true --force` (exposes every token in `~/.npmrc`) |
+| mise `create_dir_all` not permitted | the user runs `mise install` outside the sandbox |
+| Private Nav host gets 403 | `proxy.allow_private_domains <domain>` |
+| Reading a path outside the repo | `allow.read <path>` |
+
+Attempt a specific, justified read and report what happened; an agent that never tries can never say it.
+
+When `$__CPLT_WRAPPED` is set, work on your own inside the task: commit, push feature branches and open PRs without asking. Ask the user first (the `ask_user` tool where you have it) before merging, deleting branches or files outside the task, deploying, changing CI or permissions, adding a dependency, or when the requirements are unclear. When cplt refuses a command, stop and explain what was refused; do not look for a way around it.
 
 ## Routing policy
 

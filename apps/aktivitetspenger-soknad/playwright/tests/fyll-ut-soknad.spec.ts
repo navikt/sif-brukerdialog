@@ -41,12 +41,12 @@ test('fyller ut og sender inn søknaden', async ({ page }) => {
     await testAccessibility(page);
     await gåTilNesteSteg(page, 'medlemskap');
 
-    const boddINorgeSpørsmål = 'Har du bodd sammenhengende i Norge de fem siste årene?';
+    const boddINorgeSpørsmål = 'Har du bodd sammenhengende i Norge de 5 siste årene?';
     await expect(page.getByRole('radiogroup', { name: boddINorgeSpørsmål })).toBeVisible();
     await testAccessibility(page);
     await svarJa(page, boddINorgeSpørsmål);
 
-    const jobbetUtenforNorgeSpørsmål = 'Har du jobbet utenfor Norge de fem siste årene?';
+    const jobbetUtenforNorgeSpørsmål = 'Har du jobbet utenfor Norge de 5 siste årene?';
     await expect(page.getByRole('radiogroup', { name: jobbetUtenforNorgeSpørsmål })).toBeVisible();
     await svarNei(page, jobbetUtenforNorgeSpørsmål);
     await gåTilNesteSteg(page, 'barn');

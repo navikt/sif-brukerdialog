@@ -1,6 +1,6 @@
 {
     "name": "@sif/soknad-app",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "private": true,
     "repository": {
         "type": "git",
@@ -19,10 +19,10 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@nais/apm": "0.6.3",
+        "@nais/apm": "0.7.2",
         "@navikt/appstatus-react-ds": "workspace:*",
-        "@navikt/ds-react": "8.16.2",
-        "@navikt/nav-dekoratoren-moduler": "4.3.0",
+        "@navikt/ds-react": "8.17.2",
+        "@navikt/nav-dekoratoren-moduler": "4.5.0",
         "@navikt/sif-common-ui": "workspace:*",
         "@sif/api": "workspace:*",
         "@sif/apm": "workspace:*",
@@ -30,10 +30,10 @@
         "@sif/soknad-ui": "workspace:*",
         "@sif/surveys": "workspace:*",
         "@sif/utils": "workspace:*",
-        "@tanstack/react-query": "5.103.1",
+        "@tanstack/react-query": "5.104.0",
         "js-cookie": "3.0.8",
-        "react-hook-form": "7.88.0",
-        "react-intl": "12.1.0",
+        "react-hook-form": "7.89.0",
+        "react-intl": "12.1.3",
         "react-router-dom": "7.18.4",
         "zustand": "5.0.15"
     },
@@ -42,11 +42,11 @@
         "@testing-library/react": "16.3.3",
         "@types/react": "19.3.0",
         "@types/react-dom": "19.3.0",
-        "eslint": "10.10.0",
+        "eslint": "10.11.0",
         "react": "19.3.0",
         "react-dom": "19.3.0",
         "typescript": "6.0.3",
-        "vitest": "5.0.1"
+        "vitest": "5.0.2"
     },
     "peerDependencies": {
         "react": ">=19",

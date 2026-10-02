@@ -1,5 +1,11 @@
 # @navikt/k9-sak-innsyn-k9-sak-api
 
+## 0.2.16
+
+### Patch Changes
+
+- Pakkeoppdateringer, nav-dekoratoren-moduler@4.5.0
+
 ## 0.2.15
 
 ### Patch Changes

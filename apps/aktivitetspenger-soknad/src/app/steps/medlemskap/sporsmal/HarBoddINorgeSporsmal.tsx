@@ -1,5 +1,5 @@
 import { AppText, useAppIntl } from '@app/i18n';
-import { ReadMore } from '@navikt/ds-react';
+import { BodyLong } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 
@@ -16,11 +16,9 @@ export const HarBoddINorgeSporsmal = () => {
             legend={text('medlemskapSteg.spørsmål.harBoddINorge')}
             validate={validateField(MedlemskapFormFields.harBoddINorge, getYesOrNoValidator())}
             description={
-                <>
-                    <ReadMore header={text('medlemskapSteg.spørsmål.harBoddINorge.readMore.tittel')}>
-                        <AppText id="medlemskapSteg.spørsmål.harBoddINorge.readMore.tekst" />
-                    </ReadMore>
-                </>
+                <BodyLong>
+                    <AppText id="medlemskapSteg.spørsmål.harBoddINorge.readMore.tekst" />
+                </BodyLong>
             }
         />
     );

@@ -32,7 +32,7 @@ const ConfirmationPage = ({ kvitteringInfo, onUnmount }: Props) => {
             <VStack gap="space-24">
                 <Kvittering tittel={text('page.confirmation.tittel.1')}>
                     {kvitteringInfo?.arbeidsgivere && (
-                        <Alert variant="warning">
+                        <Alert variant="info">
                             <AppText id="page.confirmation.tittel.advarsel.list.tittel" />
                             <List style={{ marginTop: '0rem', marginBottom: '0rem' }}>
                                 <List.Item>

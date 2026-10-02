@@ -1,5 +1,24 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.12.2
+
+### Patch Changes
+
+- Pakkeoppdateringer, nav-dekoratoren-moduler@4.5.0
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.20.75
+    - @navikt/sif-common-analytics@0.1.1
+    - @navikt/sif-common-api@0.5.1
+    - @navikt/sif-common-core-ds@10.4.1
+    - @navikt/sif-common-formik-ds@2.6.1
+    - @navikt/sif-common-forms-ds@21.0.62
+    - @navikt/sif-common-soknad-ds@26.2.2
+    - @navikt/sif-common-ui@0.12.1
+    - @navikt/sif-common-utils@3.49.62
+    - @navikt/sif-validation@1.0.23
+    - @sif/apm@0.2.2
+    - @sif/surveys@0.0.2
+
 ## 4.12.1
 
 ### Patch Changes

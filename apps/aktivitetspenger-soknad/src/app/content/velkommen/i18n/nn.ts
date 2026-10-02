@@ -35,13 +35,11 @@ export const velkommenPageMessages_nn: Record<keyof typeof velkommenPageMessages
         'Du har rett til innsyn i saka di. Vil du vite meir om korleis Nav handsamar personopplysningar? Sjå <Lenke>nav.no/personvern</Lenke>.',
     'page.velkommen.regler.tittel': 'Rettsreglar og automatisk sakshandsaming',
     'page.velkommen.regler.tekst.1':
-        'Når Nav handsamar søknaden din og vurderer om du har rett til aktivitetspengar, så er det desse rettsreglane som gjeld: LOVER OG FORSKRIFTER.',
+        'Når Nav handsamar søknaden din og vurderer om du har rett til aktivitetspengar, så er det desse rettsreglane som gjeld: folketrygdloven § 25-13 tredje ledd og forskrift om forsøk med aktivitetspenger for unge (forsøket Et enklere Nav), Trondheim kommune, Trøndelag §§ 1-14 og § 18.',
     'page.velkommen.regler.tekst.2':
-        'Etter at du har sendt inn søknaden, blir det gjennomført ei delautomatisk handsaming, og som regel får du svar på søknaden innan XX.',
+        'Etter at du har sendt inn søknaden, blir det gjennomført ei delautomatisk handsaming, og som regel får du svar på søknaden innan to veker.',
     'page.velkommen.regler.tekst.3':
         'Dersom du ønskjer å motsetje deg automatisk handsaming, må du ikkje sende inn denne søknaden. Då må du ta kontakt med ein rettleiar i Nav for å informere om dette.',
-    'page.velkommen.regler.todo': 'Tekstane er ikkje ferdige',
-    'page.velkommen.rettsregler.todo': 'Tekstane under rettsreglar er ikkje ferdige',
     'page.velkommen.harForståttRettigheterOgPlikter.notChecked':
         'Du må velje at du har forstått ansvaret ditt som søkjar',
 };

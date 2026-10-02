@@ -147,3 +147,27 @@ jobs:
             use-turbo-test: true
             e2e-build-command: "e2e:build"
             run-sonar: true
+
+    # deploy-aktivitetspenger-soknad:
+    #     uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+    #     secrets: inherit
+    #     with:
+    #         app-name: "aktivitetspenger-soknad"
+    #         working-directory: "apps/aktivitetspenger-soknad"
+    #         use-cdn: true
+    #         package-name: "@navikt/aktivitetspenger-soknad"
+    #         use-turbo-test: true
+    #         e2e-build-command: "e2e:build"
+    #         run-sonar: true
+
+    # deploy-aktivitetspenger-innsyn:
+    #     uses: ./.github/workflows/.test-and-deploy-to-prod.yml
+    #     secrets: inherit
+    #     with:
+    #         app-name: "aktivitetspenger-innsyn"
+    #         working-directory: "apps/aktivitetspenger-innsyn"
+    #         use-cdn: true
+    #         package-name: "@navikt/aktivitetspenger-innsyn"
+    #         use-turbo-test: true
+    #         e2e-build-command: "e2e:build"
+    #         run-sonar: true
