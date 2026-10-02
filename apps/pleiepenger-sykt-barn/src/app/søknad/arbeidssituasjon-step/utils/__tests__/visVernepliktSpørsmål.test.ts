@@ -10,6 +10,7 @@ const defaultAnsattArbeidsforhold: ArbeidsforholdFormValues = {
         id: '123',
         navn: 'abc',
         type: ArbeidsgiverType.ORGANISASJON,
+        ansettelsesperioder: [],
     },
     normalarbeidstid: {},
 };

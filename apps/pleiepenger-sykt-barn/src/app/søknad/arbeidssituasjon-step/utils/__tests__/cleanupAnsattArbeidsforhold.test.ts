@@ -14,6 +14,11 @@ const ansattArbeidsforhold: ArbeidsforholdFormValues = {
         id: '123',
         navn: 'Arbeidsgiver',
         ansattFom: ISODateToDate('2010-01-01'),
+        ansettelsesperioder: [
+            {
+                from: ISODateToDate('2010-01-01'),
+            },
+        ],
     },
     arbeidIPeriode: {
         arbeiderIPerioden: ArbeiderIPeriodenSvar.redusert,

@@ -3,9 +3,15 @@ import { DateRange, dateToISODate, ISODate, ISODateToDate } from '@navikt/sif-co
 import { appLogger } from '@sif/apm';
 
 import { Arbeidsgiver, ArbeidsgiverType } from '../types/Arbeidsgiver';
+import { getFeatureToggles } from '../utils/featureToggleUtils';
 import { relocateToLoginPage } from '../utils/navigationUtils';
 import { getArbeidsgiver } from './api';
 import { AAregOrganisasjon, slåSammenAnsettelsesperioder } from './utils/ansettelsesperiodeUtils';
+
+export type Ansettelsesperiode = {
+    from?: Date;
+    to?: Date;
+};
 
 export type AAregArbeidsgiverRemoteData = {
     organisasjoner?: AAregOrganisasjon[];
@@ -29,13 +35,14 @@ const mapAAregArbeidsgiverRemoteDataToArbeidsgiver = (
     data: AAregArbeidsgiverRemoteData,
 ): { arbeidsgivere: Arbeidsgiver[]; harDuplikater: boolean } => {
     const { organisasjoner, harDuplikater } = slåSammenAnsettelsesperioder(data.organisasjoner ?? []);
-    const arbeidsgivere: Arbeidsgiver[] = organisasjoner.map((a) => ({
+    const arbeidsgivere: Arbeidsgiver[] = organisasjoner.map((org) => ({
         type: ArbeidsgiverType.ORGANISASJON,
-        id: a.organisasjonsnummer,
-        organisasjonsnummer: a.organisasjonsnummer,
-        navn: a.navn || a.organisasjonsnummer,
-        ansattFom: a.ansattFom ? ISODateToDate(a.ansattFom) : undefined,
-        ansattTom: a.ansattTom ? ISODateToDate(a.ansattTom) : undefined,
+        id: org.organisasjonsnummer,
+        organisasjonsnummer: org.organisasjonsnummer,
+        navn: org.navn || org.organisasjonsnummer,
+        ansattFom: org.ansattFom ? ISODateToDate(org.ansattFom) : undefined,
+        ansattTom: org.ansattTom ? ISODateToDate(org.ansattTom) : undefined,
+        ansettelsesperioder: org.ansettelsesperioder ?? undefined,
     }));
 
     /*
@@ -67,8 +74,13 @@ const mapAAregArbeidsgiverRemoteDataToArbeidsgiver = (
 };
 
 export async function getArbeidsgivereRemoteData(periode: DateRange): Promise<Arbeidsgiver[]> {
+    const hentFlereAnsettelsesperioder = getFeatureToggles().hentFlereAnsettelsesperioder;
     try {
-        const response = await getArbeidsgiver(dateToISODate(periode.from), dateToISODate(periode.to), true);
+        const response = await getArbeidsgiver(
+            dateToISODate(periode.from),
+            dateToISODate(periode.to),
+            hentFlereAnsettelsesperioder,
+        );
         const { arbeidsgivere, harDuplikater } = mapAAregArbeidsgiverRemoteDataToArbeidsgiver(response.data);
         if (harDuplikater) {
             appLogger.logInfo('getArbeidsgivere: Organisasjon med flere ansettelsesperioder med opphold mellom seg');

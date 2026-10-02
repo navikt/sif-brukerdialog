@@ -3,6 +3,7 @@ import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
 
+import AnsettelsesperioderInfo from '../../../components/ansettelsesperioder-info/AnsettelsesperioderInfo';
 import ArbeidsperiodeTekst from '../../../components/arbeidsperiode-tekst/ArbeidsperiodeTekst';
 import OfficeIconSvg from '../../../components/office-icon/OfficeIconSvg';
 import { AppText } from '../../../i18n';
@@ -38,11 +39,17 @@ const ArbeidssituasjonAnsatt = ({ arbeidsforhold, parentFieldName, søknadsperio
                 title={arbeidsforhold.arbeidsgiver.navn}
                 titleIcon={<OfficeIconSvg />}
                 description={
-                    arbeidsforhold.arbeidsgiver.ansattFom && (
-                        <ArbeidsperiodeTekst
-                            from={arbeidsforhold.arbeidsgiver.ansattFom}
-                            to={arbeidsforhold.arbeidsgiver.ansattTom}
+                    arbeidsforhold.arbeidsgiver.ansettelsesperioder ? (
+                        <AnsettelsesperioderInfo
+                            ansettelsesperioder={arbeidsforhold.arbeidsgiver.ansettelsesperioder}
                         />
+                    ) : (
+                        arbeidsforhold.arbeidsgiver.ansattFom && (
+                            <ArbeidsperiodeTekst
+                                from={arbeidsforhold.arbeidsgiver.ansattFom}
+                                to={arbeidsforhold.arbeidsgiver.ansattTom}
+                            />
+                        )
                     )
                 }>
                 <FormLayout.Questions>

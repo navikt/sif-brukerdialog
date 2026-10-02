@@ -1,12 +1,15 @@
-import { ISODate } from '@navikt/sif-common-utils';
+import { ISODate, ISODateToDate } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
+
+import { Ansettelsesperiode } from '../getArbeidsgivereRemoteData';
 
 export type AAregOrganisasjon = {
     organisasjonsnummer: string;
     navn: string;
     ansattFom?: ISODate | null;
     ansattTom?: ISODate | null;
+    ansettelsesperioder: Ansettelsesperiode[];
 };
 
 const sorterPåAnsattFom = (a: AAregOrganisasjon, b: AAregOrganisasjon): number =>
@@ -41,6 +44,12 @@ const slåSammenSammenhengendePerioder = (perioder: AAregOrganisasjon[]): AAregO
     return resultat;
 };
 
+const tilAnsettelsesperioder = (perioder: AAregOrganisasjon[]): Ansettelsesperiode[] =>
+    perioder.map(({ ansattFom, ansattTom }) => ({
+        from: ansattFom ? ISODateToDate(ansattFom) : undefined,
+        to: ansattTom ? ISODateToDate(ansattTom) : undefined,
+    }));
+
 /**
  * AAreg returnerer én oppføring per ansettelsesperiode. Perioder uten opphold mellom seg
  * slås sammen til én. Er det fortsatt flere perioder igjen for en organisasjon, har bruker
@@ -55,7 +64,10 @@ export const slåSammenAnsettelsesperioder = (
 
     return {
         /** Sett første periode for hver organisasjon */
-        organisasjoner: perioderPerOrganisasjon.map((perioder) => perioder[0]),
+        organisasjoner: perioderPerOrganisasjon.map((perioder) => ({
+            ...perioder[0],
+            ansettelsesperioder: tilAnsettelsesperioder(perioder),
+        })),
         /** Har bruker flere perioder for noen organisasjoner? */
         harDuplikater: perioderPerOrganisasjon.some((perioder) => perioder.length > 1),
     };
