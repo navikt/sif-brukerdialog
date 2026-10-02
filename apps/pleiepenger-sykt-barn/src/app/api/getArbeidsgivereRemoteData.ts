@@ -3,6 +3,7 @@ import { DateRange, dateToISODate, ISODate, ISODateToDate } from '@navikt/sif-co
 import { appLogger } from '@sif/apm';
 
 import { Arbeidsgiver, ArbeidsgiverType } from '../types/Arbeidsgiver';
+import { getFeatureToggles } from '../utils/featureToggleUtils';
 import { relocateToLoginPage } from '../utils/navigationUtils';
 import { getArbeidsgiver } from './api';
 import { AAregOrganisasjon, slåSammenAnsettelsesperioder } from './utils/ansettelsesperiodeUtils';
@@ -67,8 +68,13 @@ const mapAAregArbeidsgiverRemoteDataToArbeidsgiver = (
 };
 
 export async function getArbeidsgivereRemoteData(periode: DateRange): Promise<Arbeidsgiver[]> {
+    const hentFlereAnsettelsesperioder = getFeatureToggles().hentFlereAnsettelsesperioder;
     try {
-        const response = await getArbeidsgiver(dateToISODate(periode.from), dateToISODate(periode.to), true);
+        const response = await getArbeidsgiver(
+            dateToISODate(periode.from),
+            dateToISODate(periode.to),
+            hentFlereAnsettelsesperioder,
+        );
         const { arbeidsgivere, harDuplikater } = mapAAregArbeidsgiverRemoteDataToArbeidsgiver(response.data);
         if (harDuplikater) {
             appLogger.logInfo('getArbeidsgivere: Organisasjon med flere ansettelsesperioder med opphold mellom seg');

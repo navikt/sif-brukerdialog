@@ -16,6 +16,7 @@ export const getDevAppSettings = (): AppEnv => ({
     SIF_PUBLIC_USE_ANALYTICS: 'true',
     SIF_PUBLIC_FEATURE_NYNORSK: 'on' as any,
     SIF_PUBLIC_FEATURE_VIS_SPM_SLUTTET_I_PERIODE: 'off' as any,
+    SIF_PUBLIC_FEATURE_HENT_FLERE_ANSETTELSESPERIODER: 'on' as any,
     SIF_PUBLIC_FEATURE_NORMALARBEIDST_IKKE_FRILANSER: 'on' as any,
 
     K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: '/familie/sykdom-i-familien/soknad/pleiepenger/api/k9-brukerdialog',
