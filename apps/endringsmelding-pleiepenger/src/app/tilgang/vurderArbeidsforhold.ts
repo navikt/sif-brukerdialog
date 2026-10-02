@@ -11,8 +11,7 @@ dayjs.extend(isoWeek);
 /**
  * Fase 2 av tilgangskontrollen — vurderer arbeidsforholdene.
  *
- * Samler alle årsaker som slår til, i motsetning til fase 1. Bruker skal få se
- * alt som står i veien, ikke bare det første.
+ * Samler alle årsaker som slår til.
  *
  * Regelrekkefølge (bestemmer rekkefølgen i årsak-listen):
  *  6. Selvstendig næringsdrivende              -> harArbeidstidSomSelvstendigNæringsdrivende
