@@ -1,7 +1,7 @@
 import './arbeidsaktivitetBlockHeader.scss';
 
 import { AppText } from '@app/i18n';
-import { ArbeidsaktivitetType,ArbeidsgiverMedAnsettelseperioder } from '@app/types';
+import { ArbeidsaktivitetType, ArbeidsgiverMedAnsettelseperioder } from '@app/types';
 import { Buildings3Icon } from '@navikt/aksel-icons';
 import { BodyLong, Box, Heading, VStack } from '@navikt/ds-react';
 
@@ -18,9 +18,17 @@ interface Props {
     endret?: {
         tekst: string;
     };
+    inkluderAnsettelsesperioder?: boolean;
 }
 
-const ArbeidsaktivitetBlockHeader = ({ type, arbeidsgiver, navn, endret, erUkjentAktivitet }: Props) => {
+const ArbeidsaktivitetBlockHeader = ({
+    type,
+    arbeidsgiver,
+    navn,
+    endret,
+    erUkjentAktivitet,
+    inkluderAnsettelsesperioder,
+}: Props) => {
     return (
         <Box>
             <div className="arbeidsaktivitetBlockHeader">
@@ -40,7 +48,9 @@ const ArbeidsaktivitetBlockHeader = ({ type, arbeidsgiver, navn, endret, erUkjen
                                         values={{ orgnr: arbeidsgiver.organisasjonsnummer }}
                                     />
                                 </Box>
-                                <AnsettelsesperioderInfo ansettelsesperioder={arbeidsgiver.ansettelsesperioder} />
+                                {inkluderAnsettelsesperioder && (
+                                    <AnsettelsesperioderInfo ansettelsesperioder={arbeidsgiver.ansettelsesperioder} />
+                                )}
                             </BodyLong>
                         ) : undefined}
                         {(endret || erUkjentAktivitet) && (

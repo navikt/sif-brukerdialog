@@ -1,8 +1,8 @@
 export default {
-    aktørId: '2912771641580',
-    etternavn: 'FJORD',
-    fornavn: 'TØFF',
-    fødselsdato: '1983-05-26',
-    fødselsnummer: '26458341337',
+    aktørId: '2870453157308',
+    etternavn: 'MUÑECO',
+    fornavn: 'FRUKTBAR',
+    fødselsdato: '1996-07-23',
+    fødselsnummer: '23479647747',
     mellomnavn: null,
 };
