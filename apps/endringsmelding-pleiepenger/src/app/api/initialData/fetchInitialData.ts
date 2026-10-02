@@ -1,13 +1,20 @@
 import { fetchSøker, Søker } from '@navikt/sif-common-api';
 import { DateRange } from '@navikt/sif-common-utils';
+import { appLogger } from '@sif/apm';
 
 import { arbeidsgivereEndpoint } from '../endpoints/arbeidsgivereEndpoint';
-import { sakerEndpoint } from '../endpoints/sakerEndpoint';
+import { K9SakResult, sakerEndpoint } from '../endpoints/sakerEndpoint';
 import { hentGyldigLagretSøknadState } from './hentGyldigLagretSøknadState';
 import { mapInitialDataError } from './initialDataError';
-import { loggIngenSaker } from './initialDataValidering';
-import { getTilgangKontroll } from './tilgangKontroll';
+import { tilgangKontroll } from './tilgangKontroll';
 import { InitialData } from './types';
+
+/** Logges for å følge med på hvor mange som møter søknaden uten noen sak i innsyn. */
+const loggIngenSaker = (sakerInnenforEndringsperiode: K9SakResult[], sakerFørEndringsperiode: K9SakResult[]) => {
+    if (sakerInnenforEndringsperiode.length === 0 && sakerFørEndringsperiode.length === 0) {
+        appLogger.logInfo('fetchInitialData.ingenSaker');
+    }
+};
 
 /**
  * Henter alt appen trenger for å starte en endringsmelding.
@@ -26,7 +33,7 @@ export const fetchInitialData = async (tillattEndringsperiode: DateRange): Promi
         const { k9Saker: sakerInnenforEndringsperiode, eldreSaker: sakerFørEndringsperiode } = sakerResult;
         loggIngenSaker(sakerInnenforEndringsperiode, sakerFørEndringsperiode);
 
-        const { sak, arbeidsgivere } = await getTilgangKontroll()(
+        const { sak, arbeidsgivere } = await tilgangKontroll(
             sakerInnenforEndringsperiode,
             sakerFørEndringsperiode,
             tillattEndringsperiode,

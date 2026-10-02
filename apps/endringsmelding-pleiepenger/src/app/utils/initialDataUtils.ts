@@ -1,23 +1,8 @@
-import { DateRange, ISODateToDate, MaybeDateRange } from '@navikt/sif-common-utils';
-import dayjs from 'dayjs';
+import { ISODateToDate, MaybeDateRange } from '@navikt/sif-common-utils';
 
 import { AARegArbeidsgiverOrganisasjon } from '../api/endpoints/arbeidsgivereEndpoint';
 import { ArbeidsgiverMedAnsettelseperioder } from '../types';
 import { getArbeidsgiverKey } from './arbeidsgiverUtils';
-
-export const getPeriodeForArbeidsgiverOppslag = (
-    dateRangeAlleSaker: DateRange,
-    tillattEndringsperiode: DateRange,
-): DateRange | undefined => {
-    const dateRange = {
-        from: dayjs.max(dayjs(dateRangeAlleSaker.from), dayjs(tillattEndringsperiode.from))!.toDate(),
-        to: dayjs.min(dayjs(dateRangeAlleSaker.to), dayjs(tillattEndringsperiode.to))!.toDate(),
-    };
-    if (dayjs(dateRange.to).isBefore(dateRange.from)) {
-        return undefined;
-    }
-    return dateRange;
-};
 
 export const getArbeidsgivereFromArbeidsgiverOrganisasjoner = (
     organisasjoner: AARegArbeidsgiverOrganisasjon[],

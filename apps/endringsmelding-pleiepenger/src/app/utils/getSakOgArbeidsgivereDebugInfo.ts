@@ -10,7 +10,7 @@ const maskK9Arbeidstaker = (k9Arbeidstaker: K9SakArbeidstaker) => {
     };
 };
 
-export const maskK9Sak = (sak: K9Sak) => {
+const maskK9Sak = (sak: K9Sak) => {
     const { ytelse } = sak;
     const { søknadsperioder, arbeidstid } = ytelse;
     const { arbeidstakerList } = arbeidstid;

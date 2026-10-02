@@ -2,13 +2,12 @@ import { IngenTilgangÅrsak, K9Sak, RequestStatus } from '@app/types';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { AxiosError } from 'axios';
 
-const { featureToggles } = vi.hoisted(() => {
+vi.hoisted(() => {
     const appSettings = new Proxy({}, { get: () => 'test' });
     (globalThis as any).appSettings = appSettings;
     if (typeof window !== 'undefined') {
         (window as any).appSettings = appSettings;
     }
-    return { featureToggles: {} as Record<string, boolean> };
 });
 
 vi.mock('@navikt/sif-common-api', () => ({
@@ -32,22 +31,9 @@ vi.mock('../../endpoints/søknadStateEndpoint', () => ({
     isPersistedSøknadStateValid: vi.fn(() => true),
 }));
 
-/**
- * Reglene er mocket her — suiten tester fetchInitialData sin feilhåndtering.
- * Paritet mellom v1 og v2 bevises i __tests__/tilgangKontroll.test.ts.
- */
-vi.mock('../../../utils/tilgangskontroll', () => ({
-    tilgangskontroll: vi.fn(() => ({ kanBrukeSøknad: true })),
-}));
-
-vi.mock('../../../utils/featureToggleUtils', async (importOriginal) => ({
-    ...(await importOriginal<typeof import('../../../utils/featureToggleUtils')>()),
-    isFeatureEnabled: (feature: string) => featureToggles[feature] === true,
-}));
-
 import { fetchSøker } from '@navikt/sif-common-api';
+import { appLogger } from '@sif/apm';
 
-import { Feature } from '../../../utils/featureToggleUtils';
 import { arbeidsgivereEndpoint } from '../../endpoints/arbeidsgivereEndpoint';
 import { sakerEndpoint } from '../../endpoints/sakerEndpoint';
 import { søknadStateEndpoint } from '../../endpoints/søknadStateEndpoint';
@@ -70,8 +56,7 @@ const gyldigSak = {
 const httpError = (status: number) =>
     new AxiosError('feil', 'ERR_BAD_RESPONSE', {} as any, {}, { status, data: {} } as any);
 
-const settOppLykkeligSti = (nyTilgangskontroll: boolean): void => {
-    featureToggles[Feature.SIF_PUBLIC_NY_TILGANGSKONTROLL] = nyTilgangskontroll;
+const settOppLykkeligSti = (): void => {
     vi.mocked(fetchSøker).mockResolvedValue(søker);
     vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ k9Saker: [gyldigSak], eldreSaker: [] });
     vi.mocked(arbeidsgivereEndpoint.fetch).mockResolvedValue([]);
@@ -82,14 +67,10 @@ afterEach(() => {
     vi.clearAllMocks();
 });
 
-/**
- * Feilene oppstår i selve kallene, før noen tilgangsregel er kjørt. Utfallet er
- * derfor uavhengig av hvilken tilgangskontroll som er aktiv, og suiten kjøres
- * kun mot den nye.
- */
+/** Feilene oppstår i selve kallene, før noen tilgangsregel er kjørt. */
 describe('fetchInitialData feilhåndtering', () => {
     beforeEach(() => {
-        settOppLykkeligSti(true);
+        settOppLykkeligSti();
     });
 
     describe('feil fra oppstartskallene', () => {
@@ -162,16 +143,9 @@ describe('fetchInitialData feilhåndtering', () => {
     });
 });
 
-/**
- * Disse går gjennom tilgangskontrollen, og kjøres derfor mot begge
- * implementasjonene så lenge toggelen lever.
- */
-describe.each([
-    ['v1', false],
-    ['v2', true],
-])('fetchInitialData tilgangskontroll %s', (_navn, nyTilgangskontroll) => {
+describe('fetchInitialData tilgangskontroll', () => {
     beforeEach(() => {
-        settOppLykkeligSti(nyTilgangskontroll);
+        settOppLykkeligSti();
     });
 
     it('beholder årsak og beriker med søker når bruker ikke har sak', async () => {
@@ -191,5 +165,23 @@ describe.each([
             arbeidsgivere: [],
             antallSakerFørEndringsperiode: 0,
         });
+    });
+});
+
+describe('fetchInitialData loggIngenSaker', () => {
+    beforeEach(() => {
+        settOppLykkeligSti();
+    });
+
+    it('logger når bruker verken har saker i eller før endringsperioden', async () => {
+        vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ k9Saker: [], eldreSaker: [] });
+        await fetchInitialData(tillattEndringsperiode).catch(() => undefined);
+        expect(appLogger.logInfo).toHaveBeenCalledWith('fetchInitialData.ingenSaker');
+    });
+
+    it('logger ikke når bruker har en eldre sak', async () => {
+        vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ k9Saker: [], eldreSaker: [gyldigSak] });
+        await fetchInitialData(tillattEndringsperiode).catch(() => undefined);
+        expect(appLogger.logInfo).not.toHaveBeenCalledWith('fetchInitialData.ingenSaker');
     });
 });

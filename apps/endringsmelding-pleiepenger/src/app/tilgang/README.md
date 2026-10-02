@@ -3,7 +3,7 @@
 Spesifikasjon for reglene som avgjør om en bruker kan bruke endringsmeldingen.
 Implementasjonen i denne mappen er fasit, og skal kunne flyttes til backend.
 
-Kjøres i dag i frontend bak feature-toggelen `SIF_PUBLIC_NY_TILGANGSKONTROLL`.
+Kjøres i dag i frontend.
 
 ## Inn og ut
 

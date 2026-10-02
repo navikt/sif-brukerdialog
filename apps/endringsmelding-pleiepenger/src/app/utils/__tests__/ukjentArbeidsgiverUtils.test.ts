@@ -1,6 +1,6 @@
+import { ArbeidsforholdAktivt,ArbeidsgiverMedAnsettelseperioder } from '@app/types';
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { dateToISODate, ISODate, ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils';
-import { ArbeidsgiverMedAnsettelseperioder, ArbeidsforholdAktivt } from '@app/types';
 
 import {
     getArbeidsaktivitetForUkjentArbeidsforhold,

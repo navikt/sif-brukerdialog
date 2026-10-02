@@ -3,7 +3,6 @@ import { getMaybeEnv } from '@navikt/sif-common-env';
 export enum Feature {
     SIF_PUBLIC_VELG_ENDRE_FRA_OPPSUMMERING = 'SIF_PUBLIC_VELG_ENDRE_FRA_OPPSUMMERING',
     SIF_PUBLIC_SJEKK_OM_ARBEIDSTID_ER_GYLDIG = 'SIF_PUBLIC_SJEKK_OM_ARBEIDSTID_ER_GYLDIG',
-    SIF_PUBLIC_NY_TILGANGSKONTROLL = 'SIF_PUBLIC_NY_TILGANGSKONTROLL',
 }
 
 export const isFeatureEnabled = (feature: Feature) => {
