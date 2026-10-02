@@ -32,8 +32,8 @@ describe('api', () => {
         it('should call axios.get with correct URL and axios config', () => {
             const date1 = 'some date';
             const date2 = 'some other date';
-            getArbeidsgiver(date1, date2);
-            const url = `${ResourceType.ARBEIDSGIVER}?fra_og_med=${date1}&til_og_med=${date2}&frilansoppdrag=true`;
+            getArbeidsgiver(date1, date2, true);
+            const url = `${ResourceType.ARBEIDSGIVER}?fra_og_med=${date1}&til_og_med=${date2}&frilansoppdrag=true&inkluderAlleAnsettelsesperioder=true`;
             expect(axios.get).toHaveBeenCalledWith(url, axiosJsonConfig);
         });
     });
