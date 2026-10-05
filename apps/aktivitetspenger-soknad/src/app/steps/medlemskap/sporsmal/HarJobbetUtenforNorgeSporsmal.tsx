@@ -7,13 +7,20 @@ import { MedlemskapFormFields, MedlemskapFormValues } from '../types';
 
 const { YesOrNoQuestion } = createSifFormComponents<MedlemskapFormValues>();
 
-export const HarJobbetUtenforNorgeSporsmal = () => {
+interface Props {
+    harJobbetINorge?: boolean;
+}
+export const HarJobbetUtenforNorgeSporsmal = ({ harJobbetINorge }: Props) => {
     const { text } = useAppIntl();
     const { validateField } = useSifValidate('medlemskapForm');
     return (
         <YesOrNoQuestion
             name={MedlemskapFormFields.harJobbetUtenforNorge}
-            legend={text('medlemskapSteg.spørsmål.harJobbetUtenforNorge')}
+            legend={
+                harJobbetINorge
+                    ? text('medlemskapSteg.spørsmål.jobbetINorge.harJobbetUtenforNorge')
+                    : text('medlemskapSteg.spørsmål.harJobbetUtenforNorge')
+            }
             description={
                 <VStack gap="space-12">
                     <BodyLong>
