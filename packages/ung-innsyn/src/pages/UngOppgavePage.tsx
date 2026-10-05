@@ -57,14 +57,14 @@ interface Props {
 export const UngOppgavePage = (props: Props) => {
     const { navn, oppgave, applikasjonTittel, onCancel, onSuccess, dokumentarkivUrl } = props;
     const intl = useUngInnsynIntl();
-    const { logOppgaveVist, logOppgaveBesvart, logOppgaveKansellert } = useOppgaveAnalytics();
+    const { logOppgaveVist, logOppgaveBesvart, logOppgaveAvbrutt } = useOppgaveAnalytics();
 
     useEffect(() => {
         logOppgaveVist(oppgave.parsedOppgavetype, oppgave.status);
     }, [oppgave.oppgaveReferanse]);
 
     const handleCancel = () => {
-        logOppgaveKansellert(oppgave.parsedOppgavetype);
+        logOppgaveAvbrutt(oppgave.parsedOppgavetype);
         onCancel();
     };
 

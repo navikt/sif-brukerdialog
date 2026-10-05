@@ -2,11 +2,14 @@ import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { useAnalyticsInstance } from '@sif/analytics';
 import { ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 
-/** Felles hendelsesnavn for oppgaver. Brukes i Metabase – oppdater spørringene der ved endring. */
+/**
+ * Egne hendelser for oppgaver. Nav-taksonomiens skjema-hendelser brukes ikke, siden en oppgave ikke er et skjemaforløp
+ * og hendelsene ellers ville blandes med søknadens skjema-hendelser. Brukes i Metabase – oppdater spørringene ved endring.
+ */
 export enum OppgaveAnalyticsEvent {
-    vist = 'skjema åpnet',
-    besvart = 'skjema fullført',
-    kansellert = 'oppgave kansellert',
+    vist = 'oppgave vist',
+    besvart = 'oppgave besvart',
+    avbrutt = 'oppgave avbrutt',
 }
 
 export const useOppgaveAnalytics = () => {
@@ -21,7 +24,6 @@ export const useOppgaveAnalytics = () => {
         logOppgaveVist: (oppgavetype: ParsedOppgavetype, oppgavestatus: OppgaveStatus) =>
             logOppgave(OppgaveAnalyticsEvent.vist, oppgavetype, { oppgavestatus }),
         logOppgaveBesvart: (oppgavetype: ParsedOppgavetype) => logOppgave(OppgaveAnalyticsEvent.besvart, oppgavetype),
-        logOppgaveKansellert: (oppgavetype: ParsedOppgavetype) =>
-            logOppgave(OppgaveAnalyticsEvent.kansellert, oppgavetype),
+        logOppgaveAvbrutt: (oppgavetype: ParsedOppgavetype) => logOppgave(OppgaveAnalyticsEvent.avbrutt, oppgavetype),
     };
 };

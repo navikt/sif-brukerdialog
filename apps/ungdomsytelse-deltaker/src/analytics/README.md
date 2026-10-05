@@ -60,10 +60,12 @@ Denne mappen inneholder analytics-funksjonalitet for ungdomsytelse-deltaker appe
 
 Logges av `UngOppgavePage` via `@sif/analytics` (v2-provider i `apps/innsyn/InnsynApp.tsx`). Felles for alle apper som bruker `@sif/ung-innsyn`. Hendelsesnavnene er definert i `packages/ung-innsyn/src/analytics/oppgaveAnalytics.ts`.
 
-- `skjema åpnet` – oppgaven vises
-- `skjema fullført` – oppgaven besvares
-- `oppgave kansellert` – bruker avbryter oppgaven
-- **Data**: `oppgavetype` (`ParsedOppgavetype`). `skjema åpnet` sender i tillegg `oppgavestatus` (`OppgaveStatus`), slik at visninger av allerede besvarte oppgaver kan filtreres bort.
+Egne hendelser, ikke Nav-taksonomiens skjema-hendelser, slik at de ikke blandes med søknadens `skjema fullført`.
+
+- `oppgave vist` – oppgaven vises
+- `oppgave besvart` – oppgaven besvares
+- `oppgave avbrutt` – bruker avbryter å svare på oppgaven
+- **Data**: `oppgavetype` (`ParsedOppgavetype`). `oppgave vist` sender i tillegg `oppgavestatus` (`OppgaveStatus`), slik at visninger av allerede besvarte oppgaver kan filtreres bort.
 
 ## Metadata som logges
 
