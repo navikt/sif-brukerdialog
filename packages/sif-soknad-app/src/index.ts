@@ -4,7 +4,7 @@ export {
     ApplikasjonHendelse,
     CustomAnalyticsEvents,
     useAnalyticsInstance,
-} from './analytics/analytics';
+} from '@sif/analytics';
 
 // Komponenter
 export { AppErrorBoundary } from './components/AppErrorBoundary';

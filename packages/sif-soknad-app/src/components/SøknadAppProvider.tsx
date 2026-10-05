@@ -1,9 +1,9 @@
 import { AppStatusWrapper, SanityConfig } from '@navikt/appstatus-react-ds';
+import { AnalyticsProvider } from '@sif/analytics';
 import { ApplicationPage, ApplicationUnavailableContent, DevBranchInfo } from '@sif/soknad-ui';
 import { UxSignalsLoaderProvider } from '@sif/surveys';
 import { PropsWithChildren } from 'react';
 
-import { AnalyticsProvider } from '../analytics/analytics';
 import { AppErrorBoundary } from './AppErrorBoundary';
 import { AppIntlConfig, AppIntlProvider } from './AppIntlProvider';
 import { SifQueryClientProvider } from './SifQueryClientProvider';

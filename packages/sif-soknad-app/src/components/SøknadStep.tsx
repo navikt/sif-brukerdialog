@@ -1,10 +1,10 @@
 import { Box } from '@navikt/ds-react';
 import { ProgressStep } from '@navikt/sif-common-ui';
+import { ApplikasjonHendelse,useAnalyticsInstance } from '@sif/analytics';
 import { StepPage } from '@sif/soknad-ui/pages';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 
-import { ApplikasjonHendelse,useAnalyticsInstance } from '../analytics/analytics';
 import { InconsistentFormValuesMessage } from '../consistency/InconsistentFormValuesMessage';
 import { useSøknadStepFormContext } from '../consistency/SøknadStepFormContext';
 import { useSøknadAppContext } from '../context/SøknadAppContext';

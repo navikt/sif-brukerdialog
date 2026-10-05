@@ -5,6 +5,7 @@ import { Theme } from '@navikt/ds-react';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 import { AktivitetspengerInnsynApp } from '@navikt/sif-app-register';
 import { EnvKey } from '@navikt/sif-common-env';
+import { AnalyticsProvider } from '@sif/analytics';
 import { DevBranchInfo } from '@sif/soknad-ui';
 import MockDate from 'mockdate';
 import { useEffect } from 'react';
@@ -65,13 +66,17 @@ export const App = () => {
     return (
         <Theme hasBackground={false}>
             <AppErrorBoundary>
-                <SifQueryClientProvider>
-                    <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
-                        <AppRouter>
-                            <InitialDataLoader />
-                        </AppRouter>
-                    </IntlProvider>
-                </SifQueryClientProvider>
+                <AnalyticsProvider
+                    applicationKey={AktivitetspengerInnsynApp.key}
+                    isActive={appEnv[EnvKey.SIF_PUBLIC_USE_ANALYTICS] === 'true'}>
+                    <SifQueryClientProvider>
+                        <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
+                            <AppRouter>
+                                <InitialDataLoader />
+                            </AppRouter>
+                        </IntlProvider>
+                    </SifQueryClientProvider>
+                </AnalyticsProvider>
             </AppErrorBoundary>
             <DevBranchInfo />
         </Theme>

@@ -1,7 +1,7 @@
+import { ApplikasjonHendelse, useAnalyticsInstance } from '@sif/analytics';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ApplikasjonHendelse, useAnalyticsInstance } from '../analytics/analytics';
 import { useSøknadStepFormContext } from '../consistency/SøknadStepFormContext';
 import { useSøknadAppContext } from '../context/SøknadAppContext';
 
