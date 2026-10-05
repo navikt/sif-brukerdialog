@@ -1,7 +1,7 @@
 ---
 name: sif-surveys
 type: referanse
-description: Bruk denne skillen når en utvikler skal sette opp eller feilsøke Skyra-undersøkelser (skyra-survey) i en app via @sif/surveys.
+description: Bruk denne skillen når en utvikler skal sette opp eller feilsøke Skyra-undersøkelser eller UX Signals-paneler i en app via @sif/surveys.
 ---
 
 # sif-surveys
@@ -11,20 +11,22 @@ description: Bruk denne skillen når en utvikler skal sette opp eller feilsøke 
 - En utvikler vil legge til Skyra i en app (typisk kvittering/oppsummering).
 - En utvikler feilsøker hvorfor Skyra ikke vises eller ikke reloader.
 - En ny slug skal registreres.
+- En utvikler vil legge til eller feilsøke et UX Signals-panel.
 
 ## Hurtigtrigger
 
 - `skyra`, `skyra-survey`, `SkyraHandler`, `useSkyraReloader`
 - `SkyraSlug`, `SkyraTestPage`, `slug`, `survey`
+- `uxsignals`, `UX Signals`, `UxSignalsPanel`, `UxSignalsLoaderProvider`, `panelId`
 
 ## Avgrensning
 
-- Fokus: frontend-oppsett for visning av Skyra via `@sif/surveys`.
-- Ikke fokus: administrasjon av undersøkelser i Skyra-plattformen.
+- Fokus: frontend-oppsett for visning av Skyra og UX Signals via `@sif/surveys`.
+- Ikke fokus: administrasjon av undersøkelser i Skyra- eller UX Signals-plattformen.
 
 ## Pakken `@sif/surveys`
 
-Alt Skyra-relatert ligger i `packages/sif-surveys`. Apper importerer direkte — ingen lokale re-eksporter.
+Alt Skyra- og UX Signals-relatert ligger i `packages/sif-surveys`. Apper importerer direkte — ingen lokale re-eksporter.
 
 ### Eksporter
 
@@ -35,6 +37,9 @@ Alt Skyra-relatert ligger i `packages/sif-surveys`. Apper importerer direkte —
 | `SkyraHandler`     | `src/skyra/SkyraHandler.tsx`    | Kaller `globalThis.skyra.reload()` ved route-endring.                   |
 | `SkyraTestPage`    | `src/skyra/SkyraTestPage.tsx`   | Testside som rendrer én eller flere surveys. Prop `slugs: SkyraSlug[]`. |
 | `useSkyraReloader` | `src/skyra/useSkyraReloader.ts` | Forsinket reload (2 s) ved mount.                                       |
+| `UxSignalsLoaderProvider` | `src/ux-signals/UxSignalsLoaderContext.tsx` | Laster UX Signals-scriptet én gang. |
+| `useUxSignalsLoader` | `src/ux-signals/UxSignalsLoaderContext.tsx` | Laster UX Signals-scriptet ved behov. |
+| `UxSignalsPanel` | `src/ux-signals/UxSignalsPanel.tsx` | Rendrer et UX Signals-panel. Prop `panelId: string`. |
 
 ### `SkyraSlug` — sentral enum
 
@@ -76,6 +81,28 @@ Nye slugs legges til her. Spør utvikleren om slug-verdi først (format: `organi
     ```
 8. Bruk `useSkyraReloader()` i steg der survey ikke dukker opp uten forsinket reload.
 
+### UX Signals i en app
+
+1. Avklar panel-ID fra UX Signals; ikke bruk placeholder eller gjenbruk ID-er.
+2. Monter `<UxSignalsLoaderProvider>` nær app-roten. `SøknadAppProvider` inneholder den allerede.
+3. Lag en lokal panelkomponent:
+    ```tsx
+    import { useUxSignalsLoader, UxSignalsPanel } from '@sif/surveys';
+
+    const UxSignalsKvittering = () => {
+        useUxSignalsLoader(true);
+        return <UxSignalsPanel panelId="din-panel-id" />;
+    };
+    ```
+4. Render komponenten på kvitteringssiden.
+5. Med MSW-wildcard, slipp gjennom scriptet:
+    ```tsx
+    import { http, passthrough } from 'msw';
+
+    http.all('https://widget.uxsignals.com/*', () => passthrough());
+    ```
+6. Skjul panelet med `import.meta.env.IS_PLAYWRIGHT` i Playwright-bygg.
+
 ### Verifisering (kun på forespørsel)
 
 1. Skyra-script er lastet — `globalThis.skyra` er tilgjengelig.
@@ -83,12 +110,16 @@ Nye slugs legges til her. Spør utvikleren om slug-verdi først (format: `organi
 3. `<Skyra slug={...} />` rendres på riktig side.
 4. `useSkyraReloader` brukes der nødvendig.
 5. Testsiden fungerer via `/skyra/test`.
+6. UX Signals-panelet vises med riktig panel-ID.
+7. Provider er montert, eller appen bruker `SøknadAppProvider`.
 
 ## Referanseimplementasjon (opplaringspenger)
 
 - `apps/opplaringspenger-soknad/src/app/søknad/Søknad.tsx` — `SkyraHandler`, `SkyraTestPage`
 - `apps/opplaringspenger-soknad/src/app/pages/kvittering/KvitteringPage.tsx` — `<Skyra slug={SkyraSlug.opplaringspenger} />`
 - `apps/opplaringspenger-soknad/src/app/søknad/steps/oppsummering/OppsummeringStep.tsx` — `useSkyraReloader()`
+- `apps/opplaringspenger-soknad/src/app/uxsignals/UXArbeidstidTilFravær.tsx` — UX Signals-panel med Playwright-avgrensning
+- `apps/endringsmelding-pleiepenger/src/app/uxsignals/UXEndringsmelding.tsx` — UX Signals-panel på kvitteringssiden
 
 ## Vanlige feil
 
@@ -96,3 +127,5 @@ Nye slugs legges til her. Spør utvikleren om slug-verdi først (format: `organi
 2. Script ikke lastet — `globalThis.skyra` er `undefined`.
 3. Slug ikke registrert i `SkyraSlug` — kompileringsfeil.
 4. Komponent lagt til uten reloader på steg med asynkron rendering.
+5. `useUxSignalsLoader` brukes utenfor `UxSignalsLoaderProvider` — appen feiler ved rendering.
+6. UX Signals lastes i Playwright — tredjepartsinnhold kan gjøre e2e-tester ustabile.

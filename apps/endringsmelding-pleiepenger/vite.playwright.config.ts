@@ -47,6 +47,7 @@ export default defineConfig({
 
     define: {
         'import.meta.env.INJECT_DECORATOR': false,
+        'import.meta.env.IS_PLAYWRIGHT': true,
         __IS_GITHUB_PAGES__: false,
         __IS_DEMO__: false,
     },
