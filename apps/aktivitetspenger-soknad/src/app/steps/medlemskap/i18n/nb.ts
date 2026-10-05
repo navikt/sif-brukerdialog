@@ -26,7 +26,7 @@ export const medlemskapStegMessages_nb = {
     // Har jobbet i utlandet
     'medlemskapSteg.spørsmål.harJobbetUtenforNorge': 'Har du jobbet utenfor Norge de 5 siste årene?',
     'medlemskapSteg.spørsmål.jobbetINorge.harJobbetUtenforNorge':
-        'Har du i tillegg til jobb i Norge, også jobbet utenfor Norge de 5 siste årene?',
+        'Har du i tillegg til jobb i Norge også jobbet utenfor Norge de 5 siste årene?',
     'medlemskapSteg.spørsmål.harJobbetUtenforNorge.readmore.text':
         'Å ha «jobbet utenfor Norge» betyr at du har hatt en jobb med en inntekt i et annet land eller mottatt ytelser fra myndighetene i et annet land som skal erstatte inntekt.',
 
