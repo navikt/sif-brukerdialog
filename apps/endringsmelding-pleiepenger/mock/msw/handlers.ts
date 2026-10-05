@@ -1,5 +1,5 @@
 import { getScenarioFromLocalStorage } from '@app/dev/scenarioer';
-import { delay, http, HttpResponse } from 'msw';
+import { delay, http, HttpResponse, passthrough } from 'msw';
 
 import { getScenarioMockData } from '../data/scenario';
 
@@ -12,6 +12,7 @@ export const getHandlers = () => {
     const { sak, arbeidsgiver, søker } = getScenarioMockData(scenario.value);
 
     const handlers = [
+        http.all('https://widget.uxsignals.com/*', () => passthrough()),
         http.get(`${baseUrl}/oppslag/soker`, () => {
             return new HttpResponse(JSON.stringify(søker), { status: 200 });
         }),
