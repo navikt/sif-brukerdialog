@@ -1,7 +1,7 @@
 import { useUxSignalsLoader, UxSignalsPanel } from '@sif/surveys';
 
 const UXEndringsmelding = () => {
-    useUxSignalsLoader(true);
+    useUxSignalsLoader(!import.meta.env.IS_PLAYWRIGHT);
 
     if (import.meta.env.IS_PLAYWRIGHT) {
         return null;

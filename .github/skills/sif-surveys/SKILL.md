@@ -85,12 +85,18 @@ Nye slugs legges til her. Spør utvikleren om slug-verdi først (format: `organi
 
 1. Avklar panel-ID fra UX Signals; ikke bruk placeholder eller gjenbruk ID-er.
 2. Monter `<UxSignalsLoaderProvider>` nær app-roten. `SøknadAppProvider` inneholder den allerede.
-3. Lag en lokal panelkomponent:
+3. Lag en lokal panelkomponent. Styr autoload og rendering med **samme** betingelse, ellers lastes scriptet i Playwright selv om panelet skjules:
     ```tsx
     import { useUxSignalsLoader, UxSignalsPanel } from '@sif/surveys';
 
     const UxSignalsKvittering = () => {
-        useUxSignalsLoader(true);
+        const skalLastes = !import.meta.env.IS_PLAYWRIGHT;
+        useUxSignalsLoader(skalLastes);
+
+        if (!skalLastes) {
+            return null;
+        }
+
         return <UxSignalsPanel panelId="din-panel-id" />;
     };
     ```
@@ -101,7 +107,7 @@ Nye slugs legges til her. Spør utvikleren om slug-verdi først (format: `organi
 
     http.all('https://widget.uxsignals.com/*', () => passthrough());
     ```
-6. Skjul panelet med `import.meta.env.IS_PLAYWRIGHT` i Playwright-bygg.
+6. Skjul panelet **og** autoload med `import.meta.env.IS_PLAYWRIGHT` i Playwright-bygg (se punkt 3).
 
 ### Verifisering (kun på forespørsel)
 
@@ -128,4 +134,4 @@ Nye slugs legges til her. Spør utvikleren om slug-verdi først (format: `organi
 3. Slug ikke registrert i `SkyraSlug` — kompileringsfeil.
 4. Komponent lagt til uten reloader på steg med asynkron rendering.
 5. `useUxSignalsLoader` brukes utenfor `UxSignalsLoaderProvider` — appen feiler ved rendering.
-6. UX Signals lastes i Playwright — tredjepartsinnhold kan gjøre e2e-tester ustabile.
+6. `useUxSignalsLoader(true)` kalles ubetinget mens rendering skjules med `IS_PLAYWRIGHT` — scriptet lastes likevel i Playwright. Begge må styres av samme betingelse.
