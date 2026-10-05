@@ -24,6 +24,7 @@
         "@navikt/ds-react": "8.17.2",
         "@navikt/nav-dekoratoren-moduler": "4.5.0",
         "@navikt/sif-common-ui": "workspace:*",
+        "@sif/analytics": "workspace:*",
         "@sif/api": "workspace:*",
         "@sif/apm": "workspace:*",
         "@sif/rhf": "workspace:*",

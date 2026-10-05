@@ -40,6 +40,7 @@
         "@navikt/sif-common-hooks": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@navikt/ung-brukerdialog-api": "workspace:*",
+        "@sif/analytics": "workspace:*",
         "@sif/api": "workspace:*",
         "@sif/apm": "workspace:*",
         "@sif/rhf": "workspace:*",

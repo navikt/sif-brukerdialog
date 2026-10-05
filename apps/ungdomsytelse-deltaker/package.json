@@ -50,6 +50,7 @@
         "@navikt/sif-validation": "workspace:*",
         "@navikt/ung-brukerdialog-api": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
+        "@sif/analytics": "workspace:*",
         "@sif/api": "workspace:*",
         "@sif/apm": "workspace:*",
         "@sif/soknad-ui": "workspace:*",

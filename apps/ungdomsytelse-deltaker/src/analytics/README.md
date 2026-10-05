@@ -56,6 +56,15 @@ Denne mappen inneholder analytics-funksjonalitet for ungdomsytelse-deltaker appe
 - **Hvor**: `DeltakerInfoLoader.tsx`
 - **Data**: `ApiError.oppstartsinfo` med feildetaljer
 
+### Oppgavehendelser (fra `@sif/ung-innsyn`)
+
+Logges av `UngOppgavePage` via `@sif/analytics` (v2-provider i `App.tsx`). Felles for alle apper som bruker `@sif/ung-innsyn`. Hendelsesnavnene er definert i `packages/ung-innsyn/src/analytics/oppgaveAnalytics.ts`.
+
+- `skjema åpnet` – oppgaven vises
+- `skjema fullført` – oppgaven besvares
+- `oppgave kansellert` – bruker avbryter oppgaven
+- **Data**: `oppgavetype` (`ParsedOppgavetype`). `skjema åpnet` sender i tillegg `oppgavestatus` (`OppgaveStatus`), slik at visninger av allerede besvarte oppgaver kan filtreres bort.
+
 ## Metadata som logges
 
 ### Søknadsinnsending (logUtils.getSøknadInnsendingMeta)
