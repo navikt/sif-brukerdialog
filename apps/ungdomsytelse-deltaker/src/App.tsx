@@ -10,7 +10,6 @@ import SifGuidePanel from '@navikt/sif-common-core-ds/src/components/sif-guide-p
 import { EnvKey } from '@navikt/sif-common-env';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import DevBranchInfo from '@navikt/sif-common-soknad-ds/src/components/dev-branch-info/DevBranchInfo';
-import { AnalyticsProvider as SifAnalyticsProvider } from '@sif/analytics';
 import { UxSignalsLoaderProvider } from '@sif/surveys';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import MockDate from 'mockdate';
@@ -72,14 +71,9 @@ function App() {
                             <AnalyticsProvider
                                 applicationKey={UngdomsytelseDeltakerApp.key}
                                 isActive={analyticsIsActive}>
-                                {/* v2-analytics for @sif/ung-innsyn (oppgavelogging). Erstatter v1-provideren over ved migrering. */}
-                                <SifAnalyticsProvider
-                                    applicationKey={UngdomsytelseDeltakerApp.key}
-                                    isActive={analyticsIsActive}>
-                                    <QueryClientProvider client={queryClient}>
-                                        <DeltakerInfoLoader />
-                                    </QueryClientProvider>
-                                </SifAnalyticsProvider>
+                                <QueryClientProvider client={queryClient}>
+                                    <DeltakerInfoLoader />
+                                </QueryClientProvider>
                             </AnalyticsProvider>
                         )}
                         unavailableContentRenderer={() => (

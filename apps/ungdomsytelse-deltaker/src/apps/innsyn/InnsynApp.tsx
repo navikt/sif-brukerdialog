@@ -1,7 +1,11 @@
 import { Theme } from '@navikt/ds-react';
+import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
+import { EnvKey } from '@navikt/sif-common-env';
 import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
 import { applicationIntlMessages } from '@shared/i18n';
+import { getAppEnv } from '@shared/utils/appEnv';
 import { AppRoutes } from '@shared/utils/AppRoutes';
+import { AnalyticsProvider } from '@sif/analytics';
 import { useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
@@ -30,7 +34,12 @@ const InnsynApp = () => {
         <Theme hasBackground={false}>
             <div className="innsynApp">
                 <IntlProvider messages={applicationIntlMessages.nb} locale="nb">
-                    <InnsynRouter />
+                    {/* v2-analytics for @sif/ung-innsyn (oppgavelogging) */}
+                    <AnalyticsProvider
+                        applicationKey={UngdomsytelseDeltakerApp.key}
+                        isActive={getAppEnv()[EnvKey.SIF_PUBLIC_USE_ANALYTICS] === 'true'}>
+                        <InnsynRouter />
+                    </AnalyticsProvider>
                 </IntlProvider>
             </div>
         </Theme>

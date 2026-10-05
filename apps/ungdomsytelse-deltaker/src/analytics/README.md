@@ -58,7 +58,7 @@ Denne mappen inneholder analytics-funksjonalitet for ungdomsytelse-deltaker appe
 
 ### Oppgavehendelser (fra `@sif/ung-innsyn`)
 
-Logges av `UngOppgavePage` via `@sif/analytics` (v2-provider i `App.tsx`). Felles for alle apper som bruker `@sif/ung-innsyn`. Hendelsesnavnene er definert i `packages/ung-innsyn/src/analytics/oppgaveAnalytics.ts`.
+Logges av `UngOppgavePage` via `@sif/analytics` (v2-provider i `apps/innsyn/InnsynApp.tsx`). Felles for alle apper som bruker `@sif/ung-innsyn`. Hendelsesnavnene er definert i `packages/ung-innsyn/src/analytics/oppgaveAnalytics.ts`.
 
 - `skjema åpnet` – oppgaven vises
 - `skjema fullført` – oppgaven besvares
