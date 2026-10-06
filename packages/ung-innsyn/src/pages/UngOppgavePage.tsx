@@ -1,7 +1,7 @@
 import { Oppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import { useEffect } from 'react';
 
-import { useOppgaveAnalytics } from '../analytics/oppgaveAnalytics';
+import { OppgaveBesvartMetadata, useOppgaveAnalytics } from '../analytics/oppgaveAnalytics';
 import { useUngInnsynIntl } from '../i18n';
 import { AndreLivsoppholdsytelserOppgavePanel } from '../modules/oppgavepaneler/andre-livsoppholdsytelser/AndreLivsoppholdsytelserOppgavePanel';
 import { AvvikRegisterinntektOppgavePanel } from '../modules/oppgavepaneler/avvik-registerinntekt/AvvikRegisterinntektOppgavePanel';
@@ -68,8 +68,8 @@ export const UngOppgavePage = (props: Props) => {
         onCancel();
     };
 
-    const handleSuccess = () => {
-        logOppgaveBesvart(oppgave.parsedOppgavetype);
+    const handleSuccess = (metadata?: OppgaveBesvartMetadata) => {
+        logOppgaveBesvart(oppgave.parsedOppgavetype, metadata);
         onSuccess?.();
     };
 

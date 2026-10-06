@@ -115,8 +115,8 @@ const Ubesvart = ({ children }: UbesvartProps) => {
                     spørsmål={getTilbakemeldingSpørsmål(oppgave, intl)}
                     uttalelseLabel={getTilbakemeldingFritekstLabel(oppgave, intl)}
                     oppgaveReferanse={oppgave.oppgaveReferanse}
-                    onSuccess={() => {
-                        onSuccess?.();
+                    onSuccess={(uttalelse) => {
+                        onSuccess?.({ harUttalelse: uttalelse.harUttalelse });
                         setVisKvittering(true);
                     }}
                 />
