@@ -12,6 +12,11 @@ export enum OppgaveAnalyticsEvent {
     avbrutt = 'oppgave avbrutt',
 }
 
+/** Ekstra metadata ved besvart oppgave. Logg aldri fritekst fra bruker. */
+export type OppgaveBesvartMetadata = {
+    harUttalelse?: boolean;
+};
+
 export const useOppgaveAnalytics = () => {
     const { logCustom } = useAnalyticsInstance();
     const logOppgave = (
@@ -23,7 +28,8 @@ export const useOppgaveAnalytics = () => {
     return {
         logOppgaveVist: (oppgavetype: ParsedOppgavetype, oppgavestatus: OppgaveStatus) =>
             logOppgave(OppgaveAnalyticsEvent.vist, oppgavetype, { oppgavestatus }),
-        logOppgaveBesvart: (oppgavetype: ParsedOppgavetype) => logOppgave(OppgaveAnalyticsEvent.besvart, oppgavetype),
+        logOppgaveBesvart: (oppgavetype: ParsedOppgavetype, metadata?: OppgaveBesvartMetadata) =>
+            logOppgave(OppgaveAnalyticsEvent.besvart, oppgavetype, metadata),
         logOppgaveAvbrutt: (oppgavetype: ParsedOppgavetype) => logOppgave(OppgaveAnalyticsEvent.avbrutt, oppgavetype),
     };
 };
