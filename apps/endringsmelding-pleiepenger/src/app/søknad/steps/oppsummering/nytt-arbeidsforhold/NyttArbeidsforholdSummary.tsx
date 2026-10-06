@@ -1,4 +1,4 @@
-import { FormSummary, Heading, VStack } from '@navikt/ds-react';
+import { Button, FormSummary, Heading, VStack } from '@navikt/ds-react';
 import { DurationText, JaNeiSvar } from '@navikt/sif-common-ui';
 import { ISODurationToDuration } from '@navikt/sif-common-utils';
 
@@ -9,12 +9,17 @@ import { ArbeidsgiverMedAnsettelseperioder, UkjentArbeidsforholdApiData } from '
 interface Props {
     arbeidsgivereIkkeISak: ArbeidsgiverMedAnsettelseperioder[];
     ukjenteArbeidsforhold: UkjentArbeidsforholdApiData[];
+    endre?: {
+        label: string;
+        onClick: () => void;
+        disabled?: boolean;
+    };
 }
 
 const getTestKey = (arbeidsgiver: ArbeidsgiverMedAnsettelseperioder, key: string) =>
     `ukjentArbeidsforhold_${arbeidsgiver.key}_${key}`;
 
-const NyttArbeidsforholdSummary = ({ arbeidsgivereIkkeISak, ukjenteArbeidsforhold }: Props) => {
+const NyttArbeidsforholdSummary = ({ arbeidsgivereIkkeISak, ukjenteArbeidsforhold, endre }: Props) => {
     const nyeArbeidsforhold = arbeidsgivereIkkeISak
         .map((arbeidsgiver) => {
             const arbeidsforhold = ukjenteArbeidsforhold.find(
@@ -81,6 +86,18 @@ const NyttArbeidsforholdSummary = ({ arbeidsgivereIkkeISak, ukjenteArbeidsforhol
                     </FormSummary.Answers>
                 </FormSummary>
             ))}
+            {endre && (
+                <div>
+                    <Button
+                        type="button"
+                        variant="secondary"
+                        size="small"
+                        disabled={endre.disabled}
+                        onClick={endre.onClick}>
+                        {endre.label}
+                    </Button>
+                </div>
+            )}
         </VStack>
     );
 };

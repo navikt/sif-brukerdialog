@@ -21,6 +21,7 @@ import { useSkyraReloader } from '@sif/surveys';
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { getSøknadStepRoute } from '../../config/SøknadRoutes';
 import ArbeidstidOppsummering from './arbeidstid/ArbeidstidOppsummering';
 import OppsummeringBlokk from './components/OppsummeringBlokk';
 import LovbestemtFerieOppsummering from './lovbestemt-ferie/LovbestemtFerieOppsummering';
@@ -101,9 +102,18 @@ const OppsummeringStep = () => {
     /** Uten feature-toggle vises bare blokker for steg som er med i flyten */
     const visBlokk = (steg: EndringStepId) => kanVelgeEndringerFraOppsummering || søknadSteps.includes(steg);
 
-    const getEndre = (steg: EndringStepId, label: string) => {
+    const getEndre = (steg: EndringStepId | StepId.UKJENT_ARBEIDSFOHOLD, label: string) => {
         if (!kanVelgeEndringerFraOppsummering) {
             return undefined;
+        }
+        if (steg === StepId.UKJENT_ARBEIDSFOHOLD) {
+            return {
+                label,
+                onClick: () => {
+                    navigate(getSøknadStepRoute(steg));
+                },
+                disabled: isSubmitting,
+            };
         }
         return { label, onClick: () => endre(steg), disabled: isSubmitting };
     };
@@ -121,6 +131,10 @@ const OppsummeringStep = () => {
                     <NyttArbeidsforholdSummary
                         arbeidsgivereIkkeISak={sak.arbeidsgivereIkkeISak}
                         ukjenteArbeidsforhold={ukjenteArbeidsforhold}
+                        endre={getEndre(
+                            StepId.UKJENT_ARBEIDSFOHOLD,
+                            text('oppsummeringStep.endre.ukjentArbeidsforhold'),
+                        )}
                     />
                 )}
 
