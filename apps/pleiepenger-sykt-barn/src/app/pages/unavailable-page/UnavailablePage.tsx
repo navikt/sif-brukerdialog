@@ -10,7 +10,7 @@ import { AppText } from '../../i18n';
 
 const bem = bemUtils('introPage');
 
-const link = 'https://www.nav.no/soknader/nb/person/familie/pleiepenger-og-opplaringspenger';
+const link = 'https://www.nav.no/start/soknad-pleiepenger';
 
 const UnavailablePage = () => {
     const { text } = useAppIntl();

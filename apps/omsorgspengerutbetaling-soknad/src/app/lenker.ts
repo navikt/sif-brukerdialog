@@ -1,7 +1,8 @@
 import { SifCommonLenker, sifCommonLenkerBokmål, sifCommonLenkerNynorsk } from '@navikt/sif-common-soknad-ds';
 
 const lenkerBokmål = {
-    papirskjemaPrivat: 'https://www.nav.no/soknader/nb/person/familie/omsorgspenger/NAV%2009-06.05/brev',
+    papirskjemaPrivat:
+        'https://www.nav.no/start/soknad-om-utbetaling-av-omsorgspenger-for-selvstendig-naeringsdrivende-og-frilansere',
     vilkårOmsorgspenger: 'https://www.nav.no/omsorgspenger',
     søkeEkstraDager: 'https://www.nav.no/omsorgspenger#ekstra-dager',
     ettersending: 'https://www.nav.no/start/ettersend-soknad-omsorgspenger-selvstendig-frilansere',

@@ -23,14 +23,11 @@ export const sifLenkerProdBokmal = {
         'https://www.nav.no/start/ettersend-soknad-omsorgspenger-selvstendig-frilansere',
     omsorgspengerSoknadEkstraOmsorgsdagerAndreForelder:
         'https://www.nav.no/start/soknad-ekstra-omsorgsdager-andre-forelder',
-    omsorgspengerBrevskjema: 'https://www.nav.no/soknader/nb/person/familie/omsorgspenger/NAV%2009-06.05/brev',
     pleiepengerBarnInfo: 'https://www.nav.no/pleiepenger-barn',
     pleiepengerSoknad: 'https://www.nav.no/familie/sykdom-i-familien/soknad/pleiepenger',
     pleiepengerInnsyn: 'https://www.nav.no/familie/sykdom-i-familien/soknad/innsyn',
-    pleiepengerBrevskjema:
-        'https://www.nav.no/soknader/nb/person/familie/pleiepenger-og-opplaringspenger/NAV%2009-11.05/brev',
-    pleiepengerEttersending:
-        'https://www.nav.no/soknader/nb/person/familie/pleiepenger-og-opplaringspenger/NAV%2009-11.05/ettersendelse',
+    pleiepengerBrevskjema: 'https://www.nav.no/start/soknad-pleiepenger',
+    pleiepengerEttersending: 'https://www.nav.no/start/ettersend-soknad-pleiepenger',
     navUngdomsprogrammet: 'https://www.nav.no/ungdomsprogrammet',
     navDokumentarkivOmsorgspenger: 'https://www.nav.no/dokumentarkiv/tema/OMS',
     navDokumentarkivUngdomsytelse: 'https://www.nav.no/dokumentarkiv/tema/UNG',
