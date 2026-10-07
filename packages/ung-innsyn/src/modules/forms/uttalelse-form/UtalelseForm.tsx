@@ -1,8 +1,5 @@
 import { BodyLong, Button, HStack, VStack } from '@navikt/ds-react';
-import {
-    UngdomsytelseOppgavebekreftelse,
-    UngdomsytelseOppgaveUttalelseDto,
-} from '@navikt/k9-brukerdialog-prosessering-api';
+import type { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { ApiErrorAlert } from '@sif/api';
@@ -22,7 +19,7 @@ export interface UtalelseFormProps {
     uttalelseLabel: string;
     uttalelseDescription?: ReactNode;
     oppgaveReferanse: string;
-    onSuccess: (utalelse: UngdomsytelseOppgaveUttalelseDto) => void;
+    onSuccess: (utalelse: ungdomsytelse.UngdomsytelseOppgaveUttalelseDto) => void;
 }
 
 enum FormFields {
@@ -64,7 +61,7 @@ export const UtalelseForm = ({
 
     const handleSubmit = async (values: FormValues) => {
         const harUttalelse = values[FormFields.harUttalelse] === YesOrNo.YES;
-        const dto: UngdomsytelseOppgavebekreftelse = {
+        const dto: ungdomsytelse.UngdomsytelseOppgavebekreftelse = {
             oppgave: {
                 oppgaveReferanse: oppgaveReferanse,
                 uttalelse: {

@@ -1,4 +1,4 @@
-import { UngdomsytelseInntektsrapportering } from '@navikt/k9-brukerdialog-prosessering-api';
+import type { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { BrukerdialogOppgaveDto, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { RapporterInntektOppgave } from '@sif/api/ung-brukerdialog';
 
@@ -33,7 +33,7 @@ export const mockUtils = {
         });
     },
 
-    setRapportertInntekt: (ref: string, data: UngdomsytelseInntektsrapportering) => {
+    setRapportertInntekt: (ref: string, data: ungdomsytelse.UngdomsytelseInntektsrapportering) => {
         const getOppdatertData = (oppgave: RapporterInntektOppgave): Partial<BrukerdialogOppgaveDto> => {
             const oppdatertOppgave: Partial<BrukerdialogOppgaveDto> = {
                 oppgavetypeData: {

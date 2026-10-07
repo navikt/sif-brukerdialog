@@ -50,30 +50,23 @@ export async function fetchAndNormalizeSpec(url, outputPath) {
  *
  * Kjente kollisjoner løses i den felles listen i scripts/codegen/schemaNameOverrides.js (FQN -> kort navn).
  * Feiler hardt ved kollisjoner som ikke er håndtert, fordi hey-api ellers stille beholder FQN for den ene av dem.
+ *
+ * Kollisjonssjekken skjer når hey-api kaller funksjonen. Den kjøres etter `parser.filters`, så bare
+ * skjemaer som faktisk blir med i output, sjekkes. Kort navn avhenger kun av FQN, ikke av rekkefølge.
  */
-export function createSchemaNameResolver(specPath) {
-    const spec = JSON.parse(readFileSync(specPath, 'utf8'));
-    const fqns = Object.keys(spec.components?.schemas ?? {});
-    const resolve = (fqn) => schemaNameOverrides[fqn] ?? fqn.split('.').pop();
-
+export function createSchemaNameResolver(specLabel) {
     const resolvedBy = new Map();
-    const collisions = [];
-    for (const fqn of fqns) {
-        const name = resolve(fqn);
+    return (fqn) => {
+        const name = schemaNameOverrides[fqn] ?? fqn.split('.').pop();
         const existing = resolvedBy.get(name);
-        if (existing) {
-            collisions.push(`  ${name}: ${existing} | ${fqn}`);
-        } else {
-            resolvedBy.set(name, fqn);
+        if (existing && existing !== fqn) {
+            throw new Error(
+                `Navnekollisjon i ${specLabel}: "${name}" brukes av ${existing} og ${fqn} – legg til i scripts/codegen/schemaNameOverrides.js`,
+            );
         }
-    }
-    if (collisions.length > 0) {
-        throw new Error(
-            `Navnekollisjoner i ${specPath} – legg til i scripts/codegen/schemaNameOverrides.js:\n${collisions.join('\n')}`,
-        );
-    }
-
-    return resolve;
+        resolvedBy.set(name, fqn);
+        return name;
+    };
 }
 
 const PATTERNS = {

@@ -1,6 +1,6 @@
-import { OmsorgspengerKroniskSyktBarnSøknad } from '@navikt/k9-brukerdialog-prosessering-api';
+import type { omsorgspenger } from '@navikt/k9-brukerdialog-prosessering-api';
 
-export type BarnSammeAdresse = OmsorgspengerKroniskSyktBarnSøknad['sammeAdresse'];
+export type BarnSammeAdresse = omsorgspenger.OmsorgspengerKroniskSyktBarnSøknad['sammeAdresse'];
 
 export const BarnSammeAdresse = {
     JA: 'JA' as BarnSammeAdresse,

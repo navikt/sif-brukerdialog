@@ -1,6 +1,6 @@
-import { OmsorgspengerKroniskSyktBarnSøknad } from '@navikt/k9-brukerdialog-prosessering-api';
+import type { omsorgspenger } from '@navikt/k9-brukerdialog-prosessering-api';
 
-export type SøkersRelasjonTilBarnet = NonNullable<OmsorgspengerKroniskSyktBarnSøknad['relasjonTilBarnet']>;
+export type SøkersRelasjonTilBarnet = NonNullable<omsorgspenger.OmsorgspengerKroniskSyktBarnSøknad['relasjonTilBarnet']>;
 
 export const SøkersRelasjonTilBarnet = {
     MOR: 'MOR' as SøkersRelasjonTilBarnet,

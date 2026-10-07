@@ -62,7 +62,7 @@ Backend publiserer skjemanavn med fullt kvalifisert Java-klassenavn (f.eks. `no.
 
 - Bruker siste ledd i navnet (`…Utenlandsopphold.UtenlandsoppholdPeriodeInfo` → `UtenlandsoppholdPeriodeInfo`). Indre klasser skilles med `.`.
 - Kjente kollisjoner løses i den **felles** listen `scripts/codegen/schemaNameOverrides.js` (FQN → kort navn). Listen gjelder alle pakker. Nøklene er FQN, så de treffer bare riktig klasse.
-- **Feiler hardt** ved kollisjoner som ikke er løst (sjekkes per spec). Den innebygde kollisjonshåndteringen i hey-api beholder stille FQN for den ene, avhengig av rekkefølgen i specen. Derfor må sjekken gjøres på forhånd.
+- **Feiler hardt** ved kollisjoner som ikke er løst. Den innebygde kollisjonshåndteringen i hey-api beholder stille FQN for den ene, avhengig av rekkefølgen i specen. Sjekken skjer når hey-api kaller funksjonen, altså etter `parser.filters`. Bare skjemaer som faktisk blir med i output, sjekkes, så en filtrert spec kan inneholde kollisjoner uten at genereringen stopper. Resultatet avhenger ikke av rekkefølgen.
 
 Oppsett i en config (spec-stien er relativ til pakkeroten, der `openapi-ts` kjøres):
 
@@ -98,7 +98,16 @@ Referanse: `packages/k9-sak-innsyn-api` (alle tre configs).
     - ingen typenavn fjernet: `comm -23` på eksporterte navn i `HEAD:…/types.gen.ts` mot ny fil
     - `pnpm lint:tsc` i pakken og alle konsumenter (`grep -l '"@navikt/<pakke>"' apps/*/package.json …`)
 
-Status: `parser.transforms.schemaName` er lagt inn i alle codegen-configs. Funksjonen endrer ikke navn uten punktum, så den gjør ingenting før backend publiserer fulle klassenavn. Fulle klassenavn er så langt tatt i bruk i `k9-sak-innsyn-api`. I de andre pakkene gjenstår trinn 1–3 og 5 når backend publiserer fulle klassenavn.
+Status: `parser.transforms.schemaName` er lagt inn i alle codegen-configs. Funksjonen endrer ikke navn uten punktum, så den gjør ingenting før backend publiserer fulle klassenavn. Fulle klassenavn er tatt i bruk i `k9-sak-innsyn-api` og `k9-brukerdialog-prosessering-api`.
+
+#### Felles typer på tvers av definisjoner (`k9-brukerdialog-prosessering-api`)
+
+Hele API-et (`default.json`) har mange kollisjoner mellom ytelsene, så det genereres ikke lenger i sin helhet. Felles endepunkter (`/oppslag/**`, `/vedlegg/**`, `/mellomlagring/**`, `/valider/**`) genereres i stedet til `src/generated/felles` med `configs/openapi-ts.config-felles.ts`. Den bruker `includeOperations` (hey-api `parser.filters.operations.include`) og hey-api fjerner skjemaer som ingen operasjon bruker. Bare felles typer blir dermed med, for eksempel `ProblemDetail`, `Søker`, `BarnOppslag` og `ArbeidsgivereDto`.
+
+- `felles` eksporteres flatt fra pakkeroten (`import { zProblemDetail, BarnController } from '@navikt/k9-brukerdialog-prosessering-api'`) og har sin egen `client`, som initialiseres i `initK9BrukerdialogProsesseringApiClients`.
+- Ytelsestyper hentes alltid via navnerommet for ytelsen: `ungdomsytelse.KontonummerInfo`, `omsorgspenger.OmsorgspengerKroniskSyktBarnSøknad`.
+- Et nytt felles endepunkt legges til i `includeOperations`.
+- På sikt bør backend lage en egen definisjon, `oppslag`/`felles`, som erstatter filteret.
 
 ### Generert filstruktur
 

@@ -7,6 +7,8 @@ interface ConfigOptions {
     apiDocsPath: string;
     /** Output path relative to package root, e.g. './src/generated/ettersendelse' */
     outputPath: string;
+    /** Begrens til operasjoner som matcher (hey-api filter, f.eks. 'GET /foo' eller '/^GET \\/foo/') */
+    includeOperations?: string[];
 }
 
 export const createOpenApiConfig = (options: ConfigOptions): UserConfig => {
@@ -15,6 +17,9 @@ export const createOpenApiConfig = (options: ConfigOptions): UserConfig => {
     return {
         input: `./specs/${specFile}`,
         parser: {
+            ...(options.includeOperations && {
+                filters: { operations: { include: options.includeOperations } },
+            }),
             transforms: {
                 schemaName: createSchemaNameResolver(`./specs/${specFile}`),
             },
