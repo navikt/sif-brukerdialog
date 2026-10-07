@@ -14,6 +14,7 @@ export type YtelseOppgavebekreftelse =
 export const useSendOppgavebekreftelse = () => {
     return useMutation<void, ApiError, YtelseOppgavebekreftelse>({
         mutationFn: (bekreftelse) => {
+            const ytelse = bekreftelse.ytelse;
             switch (bekreftelse.ytelse) {
                 case OppgaveYtelsetype.AKTIVITETSPENGER:
                     return sendOppgavebekreftelseAktivitetspenger(bekreftelse.data);
@@ -21,7 +22,8 @@ export const useSendOppgavebekreftelse = () => {
                     return sendOppgavebekreftelseUngdomsytelse(bekreftelse.data);
                 default: {
                     const _exhaustive: never = bekreftelse;
-                    throw new Error(`Ukjent OppgaveYtelsetype: ${JSON.stringify(_exhaustive)}`);
+                    void _exhaustive;
+                    throw new Error(`Ukjent OppgaveYtelsetype: ${String(ytelse)}`);
                 }
             }
         },

@@ -14,6 +14,7 @@ export type YtelseInntektsrapportering =
 export const useRapporterInntekt = () => {
     return useMutation<void, ApiError, YtelseInntektsrapportering>({
         mutationFn: (rapportering) => {
+            const ytelse = rapportering.ytelse;
             switch (rapportering.ytelse) {
                 case OppgaveYtelsetype.AKTIVITETSPENGER:
                     return rapporterInntektAktivitetspenger(rapportering.data);
@@ -21,7 +22,8 @@ export const useRapporterInntekt = () => {
                     return rapporterInntektUngdomsytelse(rapportering.data);
                 default: {
                     const _exhaustive: never = rapportering;
-                    throw new Error(`Ukjent OppgaveYtelsetype: ${JSON.stringify(_exhaustive)}`);
+                    void _exhaustive;
+                    throw new Error(`Ukjent OppgaveYtelsetype: ${String(ytelse)}`);
                 }
             }
         },
