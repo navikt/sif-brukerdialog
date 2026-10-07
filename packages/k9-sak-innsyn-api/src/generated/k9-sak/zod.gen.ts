@@ -2,11 +2,6 @@
 
 import * as z from 'zod';
 
-export const zPeriode = z.object({
-    fom: z.iso.date(),
-    tom: z.iso.date(),
-});
-
 export const zHentSisteGyldigeVedtakForAktorIdResponse = z.object({
     førsteMuligeSøknadsdato: z.iso.date().nullish(),
     harInnvilgedeBehandlinger: z.boolean(),
@@ -17,6 +12,11 @@ export const zHentSisteGyldigeVedtakForAktorIdResponse = z.object({
 
 export const zOmsorgsdagerKronsinskSuktBarnRequestDto = z.object({
     pleietrengendeAktørId: z.string(),
+});
+
+export const zPeriode = z.object({
+    fom: z.iso.date(),
+    tom: z.iso.date(),
 });
 
 export const zOpplæringsinstitusjon = z.object({
