@@ -16,6 +16,9 @@ const ArbeidssituasjonStepVeileder: React.FunctionComponent = () => (
         <p>
             <AppText id="steg.arbeidssituasjon.veileder.3" />
         </p>
+        <p>
+            <AppText id="steg.arbeidssituasjon.veileder.4" />
+        </p>
     </>
 );
 

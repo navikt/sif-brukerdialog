@@ -5,7 +5,7 @@ import { useStepConfig } from '@app/hooks/useStepConfig';
 import { AppText } from '@app/i18n';
 import { StepId } from '@app/søknad/config/StepId';
 import SøknadStep from '@app/søknad/SøknadStep';
-import { Alert, Heading, List, VStack } from '@navikt/ds-react';
+import { Alert, Heading, InlineMessage, List, VStack } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 
 import ArbeidstidForm from './ArbeidstidForm';
@@ -29,17 +29,24 @@ const ArbeidstidStep = () => {
                 <Heading level="2" size="xsmall" spacing={true}>
                     <AppText id="arbeidstidStep.title" />
                 </Heading>
-                <List>
-                    <List.Item>
-                        <AppText id="arbeidstidStep.info.1" />
-                    </List.Item>
-                    <List.Item>
-                        <AppText id="arbeidstidStep.info.2" />
-                    </List.Item>
-                    <List.Item>
-                        <AppText id="arbeidstidStep.info.3" />
-                    </List.Item>
-                </List>
+                <VStack gap="space-24">
+                    <List>
+                        <List.Item>
+                            <AppText id="arbeidstidStep.info.1" />
+                        </List.Item>
+                        <List.Item>
+                            <AppText id="arbeidstidStep.info.2" />
+                        </List.Item>
+                        <List.Item>
+                            <AppText id="arbeidstidStep.info.3" />
+                        </List.Item>
+                    </List>
+                    <InlineMessage status="info">
+                        <VStack gap="space-12">
+                            <AppText id="arbeidstidStep.info.4" />
+                        </VStack>
+                    </InlineMessage>
+                </VStack>
             </FormLayout.Guide>
             <VStack gap="space-32">
                 {harFjernetFerie && (
