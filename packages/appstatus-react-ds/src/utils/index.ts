@@ -44,11 +44,14 @@ export const getLocaleBlockContent = (
 export const getMessage = (messages?: SanityStatusMessage[]): SanityStatusMessage | undefined =>
     messages && messages.length === 1 ? messages[0] : undefined;
 
+export const APPSTATUS_DISABLED_DATASET = 'off';
+
 export const sanityConfigIsValid = (config: any) => {
     const sanityConfigPropIsValid = (prop: any) => prop !== undefined && typeof prop === 'string' && prop.length > 5;
     try {
         return (
             config !== undefined &&
+            config['dataset'] !== APPSTATUS_DISABLED_DATASET &&
             sanityConfigPropIsValid(config['projectId']) &&
             sanityConfigPropIsValid(config['dataset'])
         );

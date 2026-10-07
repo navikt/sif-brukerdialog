@@ -7,7 +7,7 @@ export const getPlaywrightAppSettings = (): AppEnv => ({
     GITHUB_REF_NAME: 'dev',
 
     SIF_PUBLIC_USE_ANALYTICS: 'true',
-    SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
+    SIF_PUBLIC_APPSTATUS_DATASET: 'off',
     SIF_PUBLIC_DEKORATOR_URL: 'https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
     SIF_PUBLIC_FEATURE_NYNORSK: 'on',

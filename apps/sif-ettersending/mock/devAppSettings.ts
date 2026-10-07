@@ -5,7 +5,7 @@ export const getDevAppSettings = () => ({
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/ettersending',
     GITHUB_REF_NAME: 'branch-name',
 
-    SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
+    SIF_PUBLIC_APPSTATUS_DATASET: 'off',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
     SIF_PUBLIC_DEKORATOR_URL:
         'https://www.nav.no/dekoratoren/?simple=true&chatbot=false&logoutUrl=https://www.nav.no/familie/sykdom-i-familien/soknad/ettersending/oauth2/logout',

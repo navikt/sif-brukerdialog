@@ -13,13 +13,15 @@
         "deploy": "sanity deploy",
         "deploy-graphql": "sanity graphql deploy",
         "dev": "sanity dev",
+        "lint:eslint": "eslint .",
+        "lint:fix": "eslint --quiet --fix .",
+        "lint:tsc": "tsc --noEmit",
         "start": "sanity start"
     },
     "prettier": {
         "arrowParens": "always",
         "bracketSameLine": true,
         "bracketSpacing": true,
-        "ordered-imports": false,
         "printWidth": 120,
         "singleQuote": true,
         "tabWidth": 4,
@@ -32,7 +34,7 @@
         "sanity": "6.17.0"
     },
     "devDependencies": {
-        "@sanity/eslint-config-studio": "7.0.0",
+        "@sif/eslint-config": "workspace:*",
         "@types/react": "19.3.0",
         "dayjs": "1.11.23",
         "eslint": "10.12.0",

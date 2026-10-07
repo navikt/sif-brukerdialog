@@ -1,9 +1,20 @@
-# Sanity Clean Content Studio
+# appstatus-sanity-config
 
-Congratulations, you have now installed the Sanity Content Studio, an open source real-time content editing environment connected to the Sanity backend.
+Sanity Studio for appstatus, som brukes til driftsmeldinger og status for søknadsdialogene i Sykdom i familien. Innholdet leses av `@navikt/appstatus-react-ds`.
 
-Now you can do the following things:
+Studioet bruker datasettet `production` i prosjektet `ryujtq87`. Det finnes ikke noe testdatasett, så alt som publiseres fra Studio, også lokalt, går rett ut i produksjon.
 
-- [Read “getting started” in the docs](https://www.sanity.io/docs/introduction/getting-started?utm_source=readme)
-- [Join the community Slack](https://slack.sanity.io/?utm_source=readme)
-- [Extend and build plugins](https://www.sanity.io/docs/content-studio/extending?utm_source=readme)
+## Kommandoer
+
+```bash
+pnpm dev                 # Starter Studio lokalt
+pnpm build               # Bygger Studio til dist/
+pnpm run deploy          # Deployer Studio til https://nav-appstatus.sanity.studio
+pnpm run deploy-graphql  # Deployer GraphQL-API
+pnpm lint:eslint
+pnpm lint:tsc
+```
+
+Bruk `pnpm run deploy`, ikke `pnpm deploy`. `pnpm deploy` er en innebygd pnpm-kommando.
+
+Skjemaene ligger i `schemas/`. Endrer du feltnavn eller typer, må eksisterende innhold migreres og `appstatus-react-ds` oppdateres.

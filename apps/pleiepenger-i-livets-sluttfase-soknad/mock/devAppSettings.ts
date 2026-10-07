@@ -4,7 +4,7 @@ export const getDevAppSettings = () => ({
     PUBLIC_PATH: '/familie/sykdom-i-familien/soknad/pleiepenger-i-livets-sluttfase',
     GITHUB_REF_NAME: 'main',
 
-    SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
+    SIF_PUBLIC_APPSTATUS_DATASET: 'off',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
     SIF_PUBLIC_FEATURE_NYNORSK: 'on',
     SIF_PUBLIC_FEATURE_SOKE_TIDLIGERE: 'on',
