@@ -17,6 +17,7 @@ export const handlers = [
     // cdn.nav.no leverer bl.a. fonter (SourceSans3-normal.woff2) - catch-all-handlerne under
     // ville ellers matchet disse cross-origin-kallene og svart med falsk JSON i stedet for fonten.
     http.all('https://cdn.nav.no/*', () => passthrough()),
+    http.all('https://*.api.sanity.io/*', () => passthrough()),
 
     http.get(`**/oppslag/soker`, () => HttpResponse.json(store.get().søker)),
 
