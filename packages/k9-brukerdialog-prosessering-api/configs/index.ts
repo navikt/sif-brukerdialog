@@ -1,5 +1,7 @@
 import { defineConfig, type UserConfig } from '@hey-api/openapi-ts';
 
+import { createSchemaNameResolver } from '../../../scripts/codegen/codegenUtils.js';
+
 interface ConfigOptions {
     /** API docs path segment, e.g. 'ettersendelse' or '' for root */
     apiDocsPath: string;
@@ -12,6 +14,11 @@ export const createOpenApiConfig = (options: ConfigOptions): UserConfig => {
 
     return {
         input: `./specs/${specFile}`,
+        parser: {
+            transforms: {
+                schemaName: createSchemaNameResolver(`./specs/${specFile}`),
+            },
+        },
         output: {
             postProcess: ['prettier'],
             path: options.outputPath,

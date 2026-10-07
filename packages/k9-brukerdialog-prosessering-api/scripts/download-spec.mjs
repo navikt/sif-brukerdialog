@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { fetchAndNormalizeSpec, getNavBaseUrl, parseCodegenEnv } from '../../../codegenUtils.js';
+import { fetchAndNormalizeSpec, getNavBaseUrl, parseCodegenEnv } from '../../../scripts/codegen/codegenUtils.js';
 
 const env = parseCodegenEnv();
 const service = `k9-brukerdialog-prosessering.${getNavBaseUrl(env)}`;
