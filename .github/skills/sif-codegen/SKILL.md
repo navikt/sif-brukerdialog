@@ -93,7 +93,7 @@ Referanse: `packages/k9-sak-innsyn-api` (alle tre configs).
     ```
 3. Sjekk hvilken variant dagens `types.gen.ts` (i git) tilsvarer, ved å sammenligne feltene. Den varianten beholder det korte navnet.
 4. Legg inn `parser.transforms.schemaName` i config (for pakker med felles `createOpenApiConfig` i `configs/index.ts`: legg det inn der, med `input`-stien som `specPath`). Nye kollisjoner legges i `scripts/codegen/schemaNameOverrides.js`; sjekk først om klassen allerede står der.
-5. `pnpm gen-types:all:fixed` (trenger ikke nett) → verifiser:
+5. Kjør pakkens genereringsscript (`pnpm gen-types:all:fixed` eller `pnpm gen-types:fixed`) → verifiser:
     - ingen `NoNav`/`no.nav` i `*.gen.ts`
     - ingen typenavn fjernet: `comm -23` på eksporterte navn i `HEAD:…/types.gen.ts` mot ny fil
     - `pnpm lint:tsc` i pakken og alle konsumenter (`grep -l '"@navikt/<pakke>"' apps/*/package.json …`)
@@ -131,6 +131,6 @@ export const initApiClients = () => {
 
 - `scripts/codegen/codegenUtils.js` — delt post-prosesseringslogikk og `createSchemaNameResolver` for alle pakker
 - `scripts/codegen/schemaNameOverrides.js` — felles overrides for navnekollisjoner (FQN → kort navn)
-- `packages/*/scripts/fix-generated-regex.mjs` — kaller `fixAndFormatGeneratedCode` fra root
+- `packages/*/scripts/fix-generated-regex.mjs` — kaller `fixAndFormatGeneratedCode` fra `scripts/codegen/codegenUtils.js`
 - `packages/*/configs/openapi-ts.config*.ts` eller `packages/*/openapi-ts.config.ts` — codegen-konfig per API/miljø
 - `packages/*/scripts/download-spec.mjs` — spec-nedlasting (bruker `CODEGEN_ENV`)
