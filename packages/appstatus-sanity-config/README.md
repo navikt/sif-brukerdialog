@@ -7,12 +7,14 @@ Studioet bruker datasettet `production` i prosjektet `ryujtq87`. Det finnes ikke
 ## Kommandoer
 
 ```bash
-pnpm dev              # Starter Studio lokalt
-pnpm build            # Bygger Studio til dist/
-pnpm deploy           # Deployer Studio til Sanity
-pnpm deploy-graphql   # Deployer GraphQL-API
+pnpm dev                 # Starter Studio lokalt
+pnpm build               # Bygger Studio til dist/
+pnpm run deploy          # Deployer Studio til https://nav-appstatus.sanity.studio
+pnpm run deploy-graphql  # Deployer GraphQL-API
 pnpm lint:eslint
 pnpm lint:tsc
 ```
+
+Bruk `pnpm run deploy`, ikke `pnpm deploy`. `pnpm deploy` er en innebygd pnpm-kommando.
 
 Skjemaene ligger i `schemas/`. Endrer du feltnavn eller typer, må eksisterende innhold migreres og `appstatus-react-ds` oppdateres.
