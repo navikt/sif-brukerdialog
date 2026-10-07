@@ -1,15 +1,15 @@
+import { defineField, defineType } from 'sanity';
+
 import { MESSAGE_TYPE } from '../../types';
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { localeContentValidation } from '../../utils/contentValidation';
+import { validateLocaleString } from '../../utils/contentValidation';
 import { getLocaleContent } from '../../utils/getLocaleContent';
 import { shortenText, toPlainText } from '../../utils/previewUtils';
 import { defaultLocale } from '../locales';
 
-const Message = {
+const SystemMessage = defineType({
     title: 'System message',
     name: 'systemMessage',
     type: 'document',
-    id: 'systemMessage',
     fieldsets: [
         {
             name: 'internal',
@@ -27,14 +27,14 @@ const Message = {
         },
     ],
     fields: [
-        {
+        defineField({
             title: 'Name',
             name: 'name',
             type: 'string',
-            validation: (Rule: { required: () => any }) => Rule.required(),
+            validation: (rule) => rule.required(),
             fieldset: 'internal',
-        },
-        {
+        }),
+        defineField({
             title: 'Message type',
             name: 'messageType',
             type: 'string',
@@ -47,56 +47,55 @@ const Message = {
                     { title: 'Error', value: MESSAGE_TYPE.error },
                 ],
             },
-            validation: (Rule: { required: () => any }) => Rule.required(),
-        },
-        {
+            validation: (rule) => rule.required(),
+        }),
+        defineField({
             title: 'Where to include the message?',
             name: 'application',
             type: 'array',
             fieldset: 'internal',
             of: [{ type: 'reference', to: [{ type: 'application' }] }],
-        },
-        {
+        }),
+        defineField({
             title: 'Show in all applications',
             name: 'isGlobal',
             type: 'boolean',
             fieldset: 'internal',
-        },
-        {
+        }),
+        defineField({
             title: 'Visible from',
             name: 'starts',
             type: 'datetime',
             fieldset: 'internal',
-            validation: (Rule: { required: () => any }) => Rule.required(),
-        },
-        {
+            validation: (rule) => rule.required(),
+        }),
+        defineField({
             title: 'Visible until',
             name: 'stops',
             type: 'datetime',
             fieldset: 'internal',
-        },
-        {
+        }),
+        defineField({
             title: 'Message',
             name: 'content',
             type: 'localeRichText',
-            validation: localeContentValidation,
-        },
+            validation: (rule) => rule.custom((value) => validateLocaleString(value as Record<string, unknown>)),
+        }),
     ],
     preview: {
         select: {
             name: 'name',
-            style: 'style',
+            messageType: 'messageType',
             content: 'content',
         },
-        prepare(props: { name: any; content: any; style: any }) {
-            const title = `${props.name}`;
-            const subtitle = toPlainText(getLocaleContent(props.content, defaultLocale));
-
+        prepare({ name, messageType, content }) {
+            const subtitle = toPlainText(getLocaleContent(content, defaultLocale));
             return {
-                title,
-                subtitle: `[${props.style}] ${shortenText(subtitle) || 'No tittel'}`,
+                title: `${name}`,
+                subtitle: `[${messageType}] ${shortenText(subtitle) || 'No tittel'}`,
             };
         },
     },
-};
-export default Message;
+});
+
+export default SystemMessage;

@@ -1,6 +1,8 @@
+import { defineArrayMember, defineField, defineType } from 'sanity';
+
 import supportedLocales from '../locales';
 
-const LocaleRichText = {
+const LocaleRichText = defineType({
     name: 'localeRichText',
     type: 'object',
     fieldsets: [
@@ -10,39 +12,26 @@ const LocaleRichText = {
             options: { collapsible: true },
         },
     ],
-    fields: supportedLocales.map((lang) => ({
-        title: lang.title,
-        name: lang.id,
-        type: 'array',
-        of: [
-            {
-                type: 'block',
-                styles: [
-                    {
-                        title: 'Normal',
-                        value: 'normal',
-                    },
-                    {
-                        title: 'Tittel',
-                        value: 'title',
-                    },
-                    {
-                        title: 'Ingress',
-                        value: 'ingress',
-                    },
-                    {
-                        title: 'Checklist',
-                        value: 'checklist',
-                    },
-                    {
-                        title: 'Knapp',
-                        value: 'button',
-                    },
-                ],
-            },
-        ],
-        fieldset: lang.isDefault ? null : 'translations',
-    })),
-};
+    fields: supportedLocales.map((lang) =>
+        defineField({
+            title: lang.title,
+            name: lang.id,
+            type: 'array',
+            of: [
+                defineArrayMember({
+                    type: 'block',
+                    styles: [
+                        { title: 'Normal', value: 'normal' },
+                        { title: 'Tittel', value: 'title' },
+                        { title: 'Ingress', value: 'ingress' },
+                        { title: 'Checklist', value: 'checklist' },
+                        { title: 'Knapp', value: 'button' },
+                    ],
+                }),
+            ],
+            fieldset: lang.isDefault ? undefined : 'translations',
+        }),
+    ),
+});
 
 export default LocaleRichText;

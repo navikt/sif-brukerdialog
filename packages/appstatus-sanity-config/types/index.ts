@@ -2,7 +2,7 @@ export const MESSAGE_TYPE = {
     info: 'info',
     warning: 'warning',
     error: 'error',
-};
+} as const;
 
 export enum APPLICATION_STATUS {
     team = 'team' /** Inherit status from team */,
