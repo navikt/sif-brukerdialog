@@ -1,16 +1,15 @@
 import { BodyLong, Button, HStack, VStack } from '@navikt/ds-react';
-import type { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { ApiErrorAlert } from '@sif/api';
-import { useSendOppgavebekreftelse } from '@sif/api/k9-prosessering';
+import { useSendOppgavebekreftelse, YtelseOppgavebekreftelse } from '@sif/api/k9-prosessering';
 import { createSifFormComponents, SifForm, useSifValidate, YesOrNo } from '@sif/rhf';
 import { ReactNode } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { UngInnsynText, useUngInnsynIntl } from '../../../i18n';
 import { useOppgavePage } from '../../../pages/hooks/useOppgavePage';
-import { UttalelseSvaralternativer } from '../../../types';
+import { Uttalelse, UttalelseSvaralternativer } from '../../../types';
 
 export interface UtalelseFormProps {
     oppgaveYtelsetype: OppgaveYtelsetype;
@@ -19,8 +18,21 @@ export interface UtalelseFormProps {
     uttalelseLabel: string;
     uttalelseDescription?: ReactNode;
     oppgaveReferanse: string;
-    onSuccess: (utalelse: ungdomsytelse.UngdomsytelseOppgaveUttalelseDto) => void;
+    onSuccess: (uttalelse: Uttalelse) => void;
 }
+
+const getOppgavebekreftelse = (
+    ytelse: OppgaveYtelsetype,
+    oppgaveReferanse: string,
+    uttalelse: Uttalelse,
+): YtelseOppgavebekreftelse => {
+    switch (ytelse) {
+        case OppgaveYtelsetype.AKTIVITETSPENGER:
+            return { ytelse, data: { oppgave: { oppgaveReferanse, uttalelse } } };
+        case OppgaveYtelsetype.UNGDOMSYTELSE:
+            return { ytelse, data: { oppgave: { oppgaveReferanse, uttalelse } } };
+    }
+};
 
 enum FormFields {
     harUttalelse = 'harUttalelse',
@@ -46,7 +58,7 @@ export const UtalelseForm = ({
     oppgaveYtelsetype,
     onSuccess,
 }: UtalelseFormProps) => {
-    const { mutateAsync, error, isPending } = useSendOppgavebekreftelse(oppgaveYtelsetype);
+    const { mutateAsync, error, isPending } = useSendOppgavebekreftelse();
     const { intl, text } = useUngInnsynIntl();
     const { validateField } = useSifValidate('@ungInnsyn.uttalelseForm');
     const { onCancel } = useOppgavePage();
@@ -61,18 +73,13 @@ export const UtalelseForm = ({
 
     const handleSubmit = async (values: FormValues) => {
         const harUttalelse = values[FormFields.harUttalelse] === YesOrNo.YES;
-        const dto: ungdomsytelse.UngdomsytelseOppgavebekreftelse = {
-            oppgave: {
-                oppgaveReferanse: oppgaveReferanse,
-                uttalelse: {
-                    harUttalelse,
-                    uttalelseFraDeltaker: harUttalelse ? values[FormFields.uttalelse] : undefined,
-                },
-            },
+        const uttalelse: Uttalelse = {
+            harUttalelse,
+            uttalelseFraDeltaker: harUttalelse ? values[FormFields.uttalelse] : undefined,
         };
         try {
-            await mutateAsync(dto);
-            onSuccess(dto.oppgave.uttalelse);
+            await mutateAsync(getOppgavebekreftelse(oppgaveYtelsetype, oppgaveReferanse, uttalelse));
+            onSuccess(uttalelse);
         } catch {
             // error is tracked by mutation hook
         }

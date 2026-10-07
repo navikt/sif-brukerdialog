@@ -1,4 +1,4 @@
-import type { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
+import type { aktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
 import { http, HttpResponse } from 'msw';
 
 import { ScenarioType } from '../scenarios/types';
@@ -20,7 +20,7 @@ export const handlers = [
     http.post('**/aktivitetspenger/oppgavebekreftelse/innsending', async ({ request }) => {
         const text = await request.text();
         try {
-            const parsed: ungdomsytelse.UngdomsytelseOppgavebekreftelse = JSON.parse(text);
+            const parsed: aktivitetspenger.AktivitetspengerOppgavebekreftelse = JSON.parse(text);
             mockUtils.setOppgavebekreftelse(parsed.oppgave.oppgaveReferanse, parsed);
         } catch (e) {
             // eslint-disable-next-line no-console

@@ -1,4 +1,4 @@
-import { aktivitetspenger, ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
+import type { aktivitetspenger, ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { useMutation } from '@tanstack/react-query';
 
@@ -6,17 +6,23 @@ import { rapporterInntektAktivitetspenger } from '../api/aktivitetspenger/rappor
 import { rapporterInntektUngdomsytelse } from '../api/ungdomsytelse/rapporterInntektUngdomsytelse';
 import { ApiError } from '../utils/errorHandlers';
 
-export type InntektsrapporteringDto =
-    aktivitetspenger.AktivitetspengerInntektsrapportering | ungdomsytelse.UngdomsytelseInntektsrapportering;
+/** Inntektsrapportering knyttet til ytelsen sin, slik at hver ytelse sender sin egen DTO. */
+export type YtelseInntektsrapportering =
+    | { ytelse: OppgaveYtelsetype.AKTIVITETSPENGER; data: aktivitetspenger.AktivitetspengerInntektsrapportering }
+    | { ytelse: OppgaveYtelsetype.UNGDOMSYTELSE; data: ungdomsytelse.UngdomsytelseInntektsrapportering };
 
-export const useRapporterInntekt = (ytelse: OppgaveYtelsetype) => {
-    return useMutation<void, ApiError, InntektsrapporteringDto>({
-        mutationFn: (data) => {
-            switch (ytelse) {
+export const useRapporterInntekt = () => {
+    return useMutation<void, ApiError, YtelseInntektsrapportering>({
+        mutationFn: (rapportering) => {
+            switch (rapportering.ytelse) {
                 case OppgaveYtelsetype.AKTIVITETSPENGER:
-                    return rapporterInntektAktivitetspenger(data);
+                    return rapporterInntektAktivitetspenger(rapportering.data);
                 case OppgaveYtelsetype.UNGDOMSYTELSE:
-                    return rapporterInntektUngdomsytelse(data);
+                    return rapporterInntektUngdomsytelse(rapportering.data);
+                default: {
+                    const _exhaustive: never = rapportering;
+                    throw new Error(`Ukjent OppgaveYtelsetype: ${JSON.stringify(_exhaustive)}`);
+                }
             }
         },
     });
