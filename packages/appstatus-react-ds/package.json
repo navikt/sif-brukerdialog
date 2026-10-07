@@ -20,7 +20,6 @@
         "@navikt/aksel-icons": "8.18.0"
     },
     "devDependencies": {
-        "@navikt/aksel-icons": "8.18.0",
         "@navikt/ds-css": "8.18.0",
         "@navikt/ds-react": "8.18.0",
         "@sif/eslint-config": "workspace:*",
