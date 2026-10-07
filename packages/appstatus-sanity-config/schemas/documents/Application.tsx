@@ -62,6 +62,14 @@ const Application = defineType({
             of: [{ type: 'statusMessage' }],
             validation: (rule) => rule.max(1),
         }),
+        defineField({
+            title: 'Notice',
+            description: 'Predefined message shown to the user',
+            name: 'notice',
+            type: 'array',
+            of: [{ type: 'plannedDowntimeNotice' }],
+            validation: (rule) => rule.max(1),
+        }),
     ],
     preview: {
         select: {

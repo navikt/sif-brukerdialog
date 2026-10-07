@@ -3787,6 +3787,9 @@ importers:
 
   packages/appstatus-react-ds:
     dependencies:
+      '@navikt/aksel-icons':
+        specifier: 8.18.0
+        version: 8.18.0
       '@navikt/sif-common-hooks':
         specifier: workspace:*
         version: link:../sif-common-hooks
@@ -3796,10 +3799,10 @@ importers:
       '@sanity/client':
         specifier: 8.9.0
         version: 8.9.0(vitest@5.0.3)
+      '@sif/utils':
+        specifier: workspace:*
+        version: link:../sif-utils
     devDependencies:
-      '@navikt/aksel-icons':
-        specifier: 8.18.0
-        version: 8.18.0
       '@navikt/ds-css':
         specifier: 8.18.0
         version: 8.18.0

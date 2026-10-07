@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { ApplicationInheritTeamStatus, ApplicationStatus, SanityConfig, SanityError, Status } from '../types';
-import { SanityStatusMessage } from '../types/sanityObjects';
+import { SanityNotice, SanityStatusMessage } from '../types/sanityObjects';
 import { sanityConfigIsValid } from '../utils';
 import useGetApplicationStatus from './useGetApplicationStatus';
 import useGetTeamStatus from './useGetTeamStatus';
@@ -9,6 +9,7 @@ import useGetTeamStatus from './useGetTeamStatus';
 interface State {
     status: Status;
     message?: SanityStatusMessage;
+    notice?: SanityNotice;
     error?: SanityError;
 }
 
@@ -46,6 +47,7 @@ function useAppStatus(applicationKey: string, sanityConfig: SanityConfig): State
     const {
         status: appStatus,
         message: appMessage,
+        notice: appNotice,
         team: appTeam,
         isLoading: appIsLoading,
         error: appError,
@@ -67,8 +69,11 @@ function useAppStatus(applicationKey: string, sanityConfig: SanityConfig): State
             return;
         }
         setIsLoading(appIsLoading || teamIsLoading);
-        setState(getStateForApplication(appStatus, appMessage, teamStatus, teamMessage));
-    }, [appStatus, appMessage, appTeam, teamMessage, teamStatus, appIsLoading, teamIsLoading, config]);
+        setState({
+            ...getStateForApplication(appStatus, appMessage, teamStatus, teamMessage),
+            notice: appNotice,
+        });
+    }, [appStatus, appMessage, appNotice, appTeam, teamMessage, teamStatus, appIsLoading, teamIsLoading, config]);
 
     useEffect(() => {
         setError(appError || teamError);

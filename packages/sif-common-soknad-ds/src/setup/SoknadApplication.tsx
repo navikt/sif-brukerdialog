@@ -4,6 +4,7 @@ import '@formatjs/intl-pluralrules/polyfill.js';
 import 'dayjs/locale/nb';
 import 'dayjs/locale/nn';
 
+import { NoticeRenderers } from '@navikt/appstatus-react-ds';
 import { SanityConfig } from '@navikt/appstatus-react-ds/src/types';
 import { AnalyticsProvider } from '@navikt/sif-common-analytics';
 import AppStatusWrapper from '@navikt/sif-common-core-ds/src/components/app-status-wrapper/AppStatusWrapper';
@@ -45,6 +46,8 @@ interface Props {
     /** Config for connecting to the appStatus sanity project */
     appStatus: {
         sanityConfig: SanityConfig;
+        /** Overstyrer standardtekster for forhåndsdefinerte meldinger */
+        noticeRenderers?: NoticeRenderers;
     };
     /** The content */
     children: React.ReactNode;
@@ -90,6 +93,7 @@ const SoknadApplication = ({
                             <AppStatusWrapper
                                 applicationKey={appKey}
                                 sanityConfig={appStatus.sanityConfig}
+                                noticeRenderers={appStatus.noticeRenderers}
                                 contentRenderer={() => <>{children}</>}
                                 unavailableContentRenderer={() => (
                                     <ErrorPage

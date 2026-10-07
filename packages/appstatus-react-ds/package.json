@@ -15,7 +15,9 @@
     "dependencies": {
         "@navikt/sif-common-hooks": "workspace:*",
         "@portabletext/react": "8.0.1",
-        "@sanity/client": "8.9.0"
+        "@sanity/client": "8.9.0",
+        "@sif/utils": "workspace:*",
+        "@navikt/aksel-icons": "8.18.0"
     },
     "devDependencies": {
         "@navikt/aksel-icons": "8.18.0",
