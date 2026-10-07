@@ -32,7 +32,7 @@ export const getValidNotice = (notices: unknown): SanityNotice | undefined => {
     switch (notice._type) {
         case 'plannedDowntimeNotice': {
             const { date, from, to } = notice;
-            if (isValidDate(date) && isValidTime(from) && isValidTime(to)) {
+            if (isValidDate(date) && isValidTime(from) && isValidTime(to) && to > from) {
                 return { _type: 'plannedDowntimeNotice', date, from, to };
             }
             return undefined;

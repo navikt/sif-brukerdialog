@@ -37,7 +37,7 @@ export const AppStatusNotice = ({ notice, renderers }: Props) => {
             const info: PlannedDowntimeInfo = { date: notice.date, from: notice.from, to: notice.to };
             return (
                 <InfoCard>
-                    <InfoCard.Message icon={<InformationSquareIcon />}>
+                    <InfoCard.Message icon={<InformationSquareIcon aria-hidden />}>
                         {renderers?.plannedDowntime ? (
                             renderers.plannedDowntime(info)
                         ) : (
