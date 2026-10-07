@@ -42,6 +42,9 @@ const Team = defineType({
             name: 'message',
             type: 'array',
             of: [{ type: 'statusMessage' }],
+            deprecated: {
+                reason: 'Message is no longer shown in the applications. Use "Notice" on the application instead.',
+            },
             validation: (rule) => rule.max(1),
         }),
     ],

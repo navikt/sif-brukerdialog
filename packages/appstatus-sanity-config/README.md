@@ -10,7 +10,6 @@ Studioet bruker datasettet `production` i prosjektet `ryujtq87`. Det finnes ikke
 pnpm dev                 # Starter Studio lokalt
 pnpm build               # Bygger Studio til dist/
 pnpm run deploy          # Deployer Studio til https://nav-appstatus.sanity.studio
-pnpm run deploy-graphql  # Deployer GraphQL-API
 pnpm lint:eslint
 pnpm lint:tsc
 ```
