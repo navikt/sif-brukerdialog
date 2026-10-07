@@ -5,7 +5,6 @@ import useAppStatus from '../../hooks/useAppStatus';
 import { SanityConfig, Status } from '../../types';
 import { sanityConfigIsValid } from '../../utils';
 import { AppStatusNotice, NoticeRenderers } from '../app-status-notice/AppStatusNotice';
-import StatusMessage from '../status-message/StatusMessage';
 
 interface Props {
     applicationKey: string;
@@ -22,7 +21,7 @@ export const AppStatusWrapper = ({
     unavailableContentRenderer,
     noticeRenderers,
 }: Props) => {
-    const { status, message, notice, isLoading } = useAppStatus(applicationKey, sanityConfig);
+    const { status, notice, isLoading } = useAppStatus(applicationKey, sanityConfig);
 
     const renderContent = () => {
         if (status === Status.unavailable && unavailableContentRenderer !== undefined) {
@@ -48,11 +47,6 @@ export const AppStatusWrapper = ({
         </div>
     ) : (
         <>
-            {message !== undefined && (
-                <div style={{ maxWidth: '704px', margin: '1rem auto' }}>
-                    <StatusMessage message={message} />
-                </div>
-            )}
             {notice !== undefined && (
                 <div style={{ maxWidth: '704px', margin: '1rem auto' }}>
                     <AppStatusNotice notice={notice} renderers={noticeRenderers} />

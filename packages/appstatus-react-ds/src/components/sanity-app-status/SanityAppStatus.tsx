@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SanityConfig, sanityConfigIsValid, Status, StatusMessage, useAppStatus } from '../../index';
+import { SanityConfig, sanityConfigIsValid, Status, useAppStatus } from '../../index';
 import { AppStatusNotice, NoticeRenderers } from '../app-status-notice/AppStatusNotice';
 import { LoadingSpinner } from './LoadingSpinner';
 
@@ -22,7 +22,7 @@ export const SanityAppStatus = ({
     unavailableContentRenderer,
     noticeRenderers,
 }: SanityAppStatusProps) => {
-    const { status, message, notice, isLoading } = useAppStatus(applicationKey, sanityConfig);
+    const { status, notice, isLoading } = useAppStatus(applicationKey, sanityConfig);
 
     const renderContent = () => {
         if (status === Status.unavailable) {
@@ -39,11 +39,6 @@ export const SanityAppStatus = ({
         <LoadingSpinner size="3xlarge" style="block" />
     ) : (
         <>
-            {message !== undefined && (
-                <div style={{ maxWidth: '704px', margin: '1rem auto' }}>
-                    <StatusMessage message={message} />
-                </div>
-            )}
             {notice !== undefined && (
                 <div style={{ maxWidth: '704px', margin: '1rem auto' }}>
                     <AppStatusNotice notice={notice} renderers={noticeRenderers} />
