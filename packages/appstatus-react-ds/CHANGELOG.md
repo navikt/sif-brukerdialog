@@ -1,5 +1,11 @@
 # @navikt/appstatus-react-ds
 
+## 2.21.1
+
+### Patch Changes
+
+- Legge til ny innholdstype for oppdateringsmeldinger fra sanity
+
 ## 2.20.75
 
 ### Patch Changes

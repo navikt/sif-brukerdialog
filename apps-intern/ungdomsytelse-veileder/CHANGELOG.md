@@ -1,5 +1,12 @@
 # @navikt/ungdomsytelse-veileder
 
+## 0.10.3
+
+### Patch Changes
+
+- @navikt/sif-common-core-ds@10.4.2
+    - @navikt/sif-common-ui@0.12.2
+
 ## 0.10.2
 
 ### Patch Changes

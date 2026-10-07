@@ -1,5 +1,11 @@
 # @sif/soknad-forms
 
+## 0.1.4
+
+### Patch Changes
+
+- @navikt/sif-common-ui@0.12.2
+
 ## 0.1.3
 
 ### Patch Changes
