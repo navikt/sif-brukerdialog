@@ -8,6 +8,9 @@ const StatusMessage = defineType({
     title: 'Status message',
     name: 'statusMessage',
     type: 'object',
+    deprecated: {
+        reason: 'Replaced by plannedDowntimeNotice.',
+    },
     fields: [
         defineField({
             title: 'Message content',
