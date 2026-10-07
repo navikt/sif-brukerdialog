@@ -2,6 +2,10 @@ import { defineField, defineType } from 'sanity';
 
 const TIME_REGEX = /^([01]\d|2[0-3]):[0-5]\d$/;
 
+/**
+ * Denne typen legges til og fjernes manuelt i sanity. Automatisk skjuling og visning håndteres ikke.
+ * Bevisst valg fordi en planlagt nedetid kan variere og ikke alltid kan forutses.
+ */
 export const PlannedDowntimeNotice = defineType({
     title: 'Planned downtime',
     name: 'plannedDowntimeNotice',
