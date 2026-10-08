@@ -8,7 +8,6 @@ import { syncArbeidstidMedDagerMedPleie } from '../../steps/arbeidstid/arbeidsti
 import { SøknadContextAction, SøknadContextActionKeys } from '../action/actionCreator';
 
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
-    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
     switch (action.type) {
         case SøknadContextActionKeys.START_SØKNAD:
             return {

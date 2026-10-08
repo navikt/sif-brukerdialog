@@ -54,8 +54,6 @@ const StatusTag = ({ status, venteårsak }: BehandlingsstatusISak) => {
                     <AppText id="statusTag.status.ferdigBehandlet" />
                 </Tag>
             );
-        default:
-            return null;
     }
 };
 

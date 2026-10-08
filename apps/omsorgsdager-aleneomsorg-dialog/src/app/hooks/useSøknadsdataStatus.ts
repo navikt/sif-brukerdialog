@@ -35,9 +35,8 @@ const getStepSøknadsdataFromStepFormValues = (
             );
         case StepId.TIDSPUNKT_FOR_ALENEOMSORG:
             return getTidspunktForAleneomsorgSøknadsdataFromFormValues(formValues as TidspunktForAleneomsorgFormValues);
-        default:
-            return undefined;
     }
+    return undefined;
 };
 
 export const isStepFormValuesAndStepSøknadsdataValid = (

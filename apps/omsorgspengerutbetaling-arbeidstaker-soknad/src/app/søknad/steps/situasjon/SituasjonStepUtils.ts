@@ -41,7 +41,6 @@ const getForholdSøknadsdata = (forhold: Arbeidsforhold): ArbeidforholdSøknadsd
                 arbeidsgiverHarUtbetaltLønn: YesOrNo.YES,
             };
         } else {
-            // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
             switch (utbetalingsårsak) {
                 case Utbetalingsårsak.arbeidsgiverKonkurs:
                     return {

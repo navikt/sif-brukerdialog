@@ -55,7 +55,5 @@ export const getFrilansApiDataFromSøknadsdata = (
                     ),
                 },
             };
-        default:
-            return undefined;
     }
 };

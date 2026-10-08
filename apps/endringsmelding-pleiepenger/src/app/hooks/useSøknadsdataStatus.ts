@@ -35,9 +35,8 @@ const getStepSøknadsdataFromStepFormValues = (
             return getArbeidstidSøknadsdataFromFormValues(formValues as any);
         case StepId.TILSYNSORDNING:
             return getTilsynsordningSøknadsdataFromFormValues(formValues as any);
-        default:
-            return undefined;
     }
+    return undefined;
 };
 
 const isStepFormValuesAndStepSøknadsdataValid = (

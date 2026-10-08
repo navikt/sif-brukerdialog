@@ -40,7 +40,6 @@ export const isAvailable = (path: StepID | RouteConfig, values: SøknadFormValue
             return oppsummeringStepAvailable(values);
         case RouteConfig.SØKNAD_SENDT_ROUTE:
             return søknadHasBeenSent === true;
-        default:
-            return false;
     }
+    return false;
 };

@@ -28,7 +28,6 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
             }}
         />
     );
-     
     switch (årsak) {
         case IngenTilgangÅrsak.harUgyldigK9FormatSak:
             return (

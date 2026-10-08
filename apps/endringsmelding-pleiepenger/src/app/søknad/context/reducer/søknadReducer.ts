@@ -24,7 +24,6 @@ const getValgteEndringer = (endringer: EndringType[]): ValgteEndringer => ({
 });
 
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
-     
     switch (action.type) {
         case SøknadContextActionKeys.START_SØKNAD: {
             const { sak, valgtHvaSkalEndres } = action.payload;

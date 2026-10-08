@@ -36,9 +36,8 @@ const getStepSøknadsdataFromStepFormValues = (
             return getLegeerklæringSøknadsdataFromFormValues(formValues as LegeerklæringFormValues);
         case StepId.DELT_BOSTED:
             return getDeltBostedSøknadsdataFromFormValues(formValues as DeltBostedFormValues);
-        default:
-            return undefined;
     }
+    return undefined;
 };
 
 export const isStepFormValuesAndStepSøknadsdataValid = (

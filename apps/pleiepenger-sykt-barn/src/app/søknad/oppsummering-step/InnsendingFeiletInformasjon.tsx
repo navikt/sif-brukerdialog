@@ -35,7 +35,6 @@ const renderFeilmelding = (invalidParameter: InvalidParameterViolation) => {
     if (reason.includes('tillatt pattern')) {
         const felt = getFeltFraValideringsfeil(invalidParameter);
         const tegn = invalidParameter.reason.split('matcher')[0];
-        // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
         switch (felt) {
             case HåndterteFeilFelter.REGNSKAPSFØRER_TLF:
                 return (
