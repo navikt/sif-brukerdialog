@@ -95,7 +95,7 @@ export default [
             },
         },
         rules: {
-            '@typescript-eslint/switch-exhaustiveness-check': [ERROR, { considerDefaultExhaustiveForUnions: true }],
+            '@typescript-eslint/switch-exhaustiveness-check': [ERROR, { considerDefaultExhaustiveForUnions: false }],
         },
     },
     {

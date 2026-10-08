@@ -18,6 +18,7 @@ const defaultGetLocale = (locale?: string): SifLenkerLocale => {
         case 'nn':
         case 'no-NN':
             return 'nn';
+        case undefined:
         default:
             return 'nb';
     }

@@ -28,7 +28,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
             }}
         />
     );
-    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
+     
     switch (årsak) {
         case IngenTilgangÅrsak.harUgyldigK9FormatSak:
             return (

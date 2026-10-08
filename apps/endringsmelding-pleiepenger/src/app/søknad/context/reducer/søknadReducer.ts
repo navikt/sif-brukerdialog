@@ -24,7 +24,7 @@ const getValgteEndringer = (endringer: EndringType[]): ValgteEndringer => ({
 });
 
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
-    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
+     
     switch (action.type) {
         case SøknadContextActionKeys.START_SØKNAD: {
             const { sak, valgtHvaSkalEndres } = action.payload;

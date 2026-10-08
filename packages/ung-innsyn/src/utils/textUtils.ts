@@ -10,6 +10,7 @@ const renderDatoOgKlokkeslett = (dato?: Date) => {
 };
 
 export const getOppgaveTittel = (oppgave: Oppgave | BekreftelseOppgave, { text }: UngInnsynIntlShape): string => {
+    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
     switch (oppgave.parsedOppgavetype) {
         case ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return text(`@ungInnsyn.oppgavetype.${oppgave.parsedOppgavetype}.oppgavetittel`, {
@@ -29,6 +30,7 @@ export const getOppgaveTittel = (oppgave: Oppgave | BekreftelseOppgave, { text }
 };
 
 export const getOppgavePanelTittel = (oppgave: Oppgave | BekreftelseOppgave, { text }: UngInnsynIntlShape): string => {
+    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
     switch (oppgave.parsedOppgavetype) {
         case ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return text('@ungInnsyn.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.paneltittel', {
@@ -47,6 +49,7 @@ export const getOppgavePanelTittel = (oppgave: Oppgave | BekreftelseOppgave, { t
 };
 
 export const getOppgaveInfo = (oppgave: Oppgave, { text }: UngInnsynIntlShape): string => {
+    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
     switch (oppgave.parsedOppgavetype) {
         case ParsedOppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT:
             return text('@ungInnsyn.oppgavetype.BEKREFT_AVVIK_REGISTERINNTEKT.info', {
