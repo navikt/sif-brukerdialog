@@ -14,10 +14,6 @@ const ERROR = 2;
 
 export default [
     {
-        ignores: ['**/storybook/**', '**/*.stories.tsx', '**/next-env.d.ts', '**/next.config.ts'],
-    },
-    {
-        files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
         ignores: [
             '**/node_modules/**',
             '**/dist/**',
@@ -25,28 +21,19 @@ export default [
             '**/.*/**',
             '**/coverage/**',
             '**/public/**',
-            '**/.next/**',
             '**/out/**',
             '**/*.min.js',
             '**/*.bundle.js',
-            '**/*.log',
-            '**/*.tsbuildinfo',
+            '**/storybook/**',
             '**/storybook-static/**',
-            '**/.turbo/**',
-            '**/.vscode/**',
-            '**/.idea/**',
-            '**/.sanity/**',
-            '**/.scannerwork/**',
-            '**/*.local',
-            '**/.env',
-            '**/.cache',
-            '**/*.zip',
-            '**/index-decorated.html',
-            '**/public/dist/**',
-            '**/server/dist/**',
-            '**/packages/**/*/coverage',
+            '**/*.stories.tsx',
+            '**/next-env.d.ts',
+            '**/next.config.ts',
             '**/packages/**/*/lib',
         ],
+    },
+    {
+        files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
         settings: {
             react: {
                 // Eksplisitt versjon: 'detect' krever context.getFilename(), som er fjernet i ESLint 10
@@ -66,39 +53,30 @@ export default [
     { ...jsxA11y.flatConfigs.recommended, files: ['**/*.{jsx,tsx}'] },
     eslintConfigPrettier,
     {
+        files: ['**/*.{test,spec}.{ts,tsx}'],
+        rules: vitest.configs.recommended.rules,
+    },
+    {
         rules: {
-            ...vitest.configs.recommended.rules,
-
             'max-len': [ERROR, 300],
             'no-console': WARNING,
             'no-debugger': WARNING,
             'no-duplicate-imports': ERROR,
             'no-shadow': OFF,
             'no-unused-vars': OFF,
-            'no-use-before-define': OFF, // Note: you must disable the base rule as it can report incorrect errors
-
-            'jsx-quotes': ['error', 'prefer-double'],
+            'no-use-before-define': OFF,
 
             'simple-import-sort/exports': ERROR,
             'simple-import-sort/imports': ERROR,
 
-            'react-hooks/rules-of-hooks': 'error',
+            'react-hooks/rules-of-hooks': ERROR,
 
             '@typescript-eslint/array-type': [ERROR, { default: 'array-simple' }],
             '@typescript-eslint/ban-ts-comment': OFF,
             '@typescript-eslint/no-explicit-any': OFF,
-            '@typescript-eslint/no-shadow': [ERROR],
-            '@typescript-eslint/no-unused-vars': [ERROR],
-            '@typescript-eslint/no-use-before-define': [OFF],
-            '@typescript-eslint/no-unused-expressions': [
-                'error', // Fix for TypeScript ESLint no-unused-expressions rule
-                {
-                    allowShortCircuit: false,
-                    allowTernary: false,
-                    allowTaggedTemplates: false,
-                    enforceForJSX: false,
-                },
-            ],
+            '@typescript-eslint/no-shadow': ERROR,
+            '@typescript-eslint/no-unused-vars': ERROR,
+            '@typescript-eslint/no-use-before-define': OFF,
         },
     },
     {
@@ -128,14 +106,8 @@ export default [
             'react/display-name': OFF,
             'react/prop-types': OFF,
             'react/react-in-jsx-scope': OFF,
-            'react/function-component-definition': [
-                OFF,
-                {
-                    namedComponents: 'arrow-function',
-                    unnamedComponents: 'arrow-function',
-                },
-            ],
-            'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
+            'react/function-component-definition': OFF,
+            'react/jsx-curly-brace-presence': [ERROR, { props: 'never', children: 'never' }],
         },
     },
 ];
