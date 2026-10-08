@@ -1,4 +1,4 @@
-import { UngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api/src/generated/ungdomsytelse';
+import type { aktivitetspenger, ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { useMutation } from '@tanstack/react-query';
 
@@ -6,17 +6,24 @@ import { sendOppgavebekreftelseAktivitetspenger } from '../api/aktivitetspenger/
 import { sendOppgavebekreftelseUngdomsytelse } from '../api/ungdomsytelse/sendOppgavebekreftelseUngdomsytelse';
 import { ApiError } from '../utils/errorHandlers';
 
-export const useSendOppgavebekreftelse = (ytelse: OppgaveYtelsetype) => {
-    return useMutation<void, ApiError, UngdomsytelseOppgavebekreftelse>({
-        mutationFn: (data) => {
-            switch (ytelse) {
+/** Oppgavebekreftelse knyttet til ytelsen sin, slik at hver ytelse sender sin egen DTO. */
+export type YtelseOppgavebekreftelse =
+    | { ytelse: OppgaveYtelsetype.AKTIVITETSPENGER; data: aktivitetspenger.AktivitetspengerOppgavebekreftelse }
+    | { ytelse: OppgaveYtelsetype.UNGDOMSYTELSE; data: ungdomsytelse.UngdomsytelseOppgavebekreftelse };
+
+export const useSendOppgavebekreftelse = () => {
+    return useMutation<void, ApiError, YtelseOppgavebekreftelse>({
+        mutationFn: (bekreftelse) => {
+            const ytelse = bekreftelse.ytelse;
+            switch (bekreftelse.ytelse) {
                 case OppgaveYtelsetype.AKTIVITETSPENGER:
-                    return sendOppgavebekreftelseAktivitetspenger(data);
+                    return sendOppgavebekreftelseAktivitetspenger(bekreftelse.data);
                 case OppgaveYtelsetype.UNGDOMSYTELSE:
-                    return sendOppgavebekreftelseUngdomsytelse(data);
+                    return sendOppgavebekreftelseUngdomsytelse(bekreftelse.data);
                 default: {
-                    const _exhaustive: never = ytelse;
-                    throw new Error(`Ukjent OppgaveYtelsetype: ${_exhaustive}`);
+                    const _exhaustive: never = bekreftelse;
+                    void _exhaustive;
+                    throw new Error(`Ukjent OppgaveYtelsetype: ${String(ytelse)}`);
                 }
             }
         },

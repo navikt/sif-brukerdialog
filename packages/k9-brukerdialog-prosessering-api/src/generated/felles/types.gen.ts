@@ -55,32 +55,8 @@ export type Søker = {
     mellomnavn?: string;
 };
 
-export type Barn = {
-    aktørId?: string;
-    fødselsdato?: string;
-    navn: string;
-    norskIdentifikator?: string;
-};
-
-export type AnnenForelder = {
-    fnr: string;
-    navn: string;
-    periodeFraOgMed: string;
-    periodeOver6Måneder?: boolean;
-    periodeTilOgMed?: string;
-    situasjon: 'INNLAGT_I_HELSEINSTITUSJON' | 'UTØVER_VERNEPLIKT' | 'FENGSEL' | 'SYKDOM' | 'ANNET';
-    situasjonBeskrivelse?: string;
-};
-
-export type OmsorgspengerMidlertidigAleneSøknad = {
-    annenForelder: AnnenForelder;
-    barn: Barn[];
-    dataBruktTilUtledningAnnetData?: string;
-    harBekreftetOpplysninger: boolean;
-    harForståttRettigheterOgPlikter: boolean;
-    id: string;
-    språk: string;
-    søkerNorskIdent?: string;
+export type Friteksfelt = {
+    verdi: string;
 };
 
 export type ProblemDetail = {
@@ -248,45 +224,6 @@ export type UpdateMellomlagringResponses = {
     200: unknown;
 };
 
-export type InnsendingOmsorgspengerMidlertidigAleneSøknadData = {
-    body: OmsorgspengerMidlertidigAleneSøknad;
-    headers: {
-        'X-Brukerdialog-Git-Sha': string;
-    };
-    path?: never;
-    query?: never;
-    url: '/omsorgspenger-midlertidig-alene/innsending';
-};
-
-export type InnsendingOmsorgspengerMidlertidigAleneSøknadErrors = {
-    /**
-     * Bad Request
-     */
-    400: ProblemDetail;
-    /**
-     * Unauthorized
-     */
-    401: ProblemDetail;
-    /**
-     * Forbidden
-     */
-    403: ProblemDetail;
-    /**
-     * Internal Server Error
-     */
-    500: ProblemDetail;
-};
-
-export type InnsendingOmsorgspengerMidlertidigAleneSøknadError =
-    InnsendingOmsorgspengerMidlertidigAleneSøknadErrors[keyof InnsendingOmsorgspengerMidlertidigAleneSøknadErrors];
-
-export type InnsendingOmsorgspengerMidlertidigAleneSøknadResponses = {
-    /**
-     * Accepted
-     */
-    202: unknown;
-};
-
 export type HentArbeidsgivereData = {
     body?: never;
     path?: never;
@@ -403,6 +340,41 @@ export type HentSøkerResponses = {
 };
 
 export type HentSøkerResponse = HentSøkerResponses[keyof HentSøkerResponses];
+
+export type ValiderFriteksfeltData = {
+    body: Friteksfelt;
+    path?: never;
+    query?: never;
+    url: '/valider/friteksfelt';
+};
+
+export type ValiderFriteksfeltErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetail;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type ValiderFriteksfeltError = ValiderFriteksfeltErrors[keyof ValiderFriteksfeltErrors];
+
+export type ValiderFriteksfeltResponses = {
+    /**
+     * OK
+     */
+    200: unknown;
+};
 
 export type LagreVedleggData = {
     body?: {

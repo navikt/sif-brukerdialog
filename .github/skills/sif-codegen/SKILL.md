@@ -38,7 +38,7 @@ codegen:dev / codegen:prod
       └─ fix-generated*.mjs   → kjører fixAndFormatGeneratedCode() fra codegenUtils.js
 ```
 
-### Post-prosessering (`codegenUtils.js` i root)
+### Post-prosessering (`scripts/codegen/codegenUtils.js`)
 
 `fixAndFormatGeneratedCode()` kjøres etter codegen og transformerer de genererte filene med regex-patterns:
 
@@ -53,6 +53,61 @@ codegen:dev / codegen:prod
 | `fixVedleggBlobType`       | Fikser `vedlegg: z.string()` → `z.instanceof(Blob)`                                                             |
 
 Etter regex-fixes kjøres `prettier` + `eslint --fix` på alle genererte filer.
+
+### Skjemanavn: fullt kvalifiserte klassenavn (FQN) → korte navn
+
+Backend publiserer skjemanavn med fullt kvalifisert Java-klassenavn (f.eks. `no.nav.k9.søknad.felles.personopplysninger.Utenlandsopphold`). Ellers slår springdoc sammen klasser med samme navn uten å si fra, og vi får feil typer. Vi gjør navnene korte igjen i frontend med `parser.transforms.schemaName` i hey-api, som døper om skjemaet og oppdaterer alle `$ref`.
+
+`createSchemaNameResolver(specPath)` i `codegenUtils.js`:
+
+- Bruker siste ledd i navnet (`…Utenlandsopphold.UtenlandsoppholdPeriodeInfo` → `UtenlandsoppholdPeriodeInfo`). Indre klasser skilles med `.`.
+- Kjente kollisjoner løses i den **felles** listen `scripts/codegen/schemaNameOverrides.js` (FQN → kort navn). Listen gjelder alle pakker. Nøklene er FQN, så de treffer bare riktig klasse.
+- **Feiler hardt** ved kollisjoner som ikke er løst. Den innebygde kollisjonshåndteringen i hey-api beholder stille FQN for den ene, avhengig av rekkefølgen i specen. Sjekken skjer når hey-api kaller funksjonen, altså etter `parser.filters`. Bare skjemaer som faktisk blir med i output, sjekkes, så en filtrert spec kan inneholde kollisjoner uten at genereringen stopper. Resultatet avhenger ikke av rekkefølgen.
+
+Oppsett i en config (spec-stien er relativ til pakkeroten, der `openapi-ts` kjøres):
+
+```ts
+import { createSchemaNameResolver } from '../../../scripts/codegen/codegenUtils.js';
+
+export const createConfig = (): UserConfig => ({
+    input: './specs/innsyn.json',
+    parser: {
+        transforms: {
+            schemaName: createSchemaNameResolver('./specs/innsyn.json'),
+        },
+    },
+    // output, plugins …
+});
+```
+
+Ved navnevalg i `scripts/codegen/schemaNameOverrides.js` skal varianten som allerede var i bruk, beholde det korte navnet, slik at konsumentkoden fortsatt kompilerer. Den andre får et prefiks (`Felles…`, `Psb…`, `K9…`). Samme klasse kan dukke opp i flere specer (f.eks. `no.nav.k9.søknad.*`), og da får den samme navn overalt.
+
+Referanse: `packages/k9-sak-innsyn-api` (alle tre configs).
+
+#### Innføre i en ny pakke
+
+1. Backend publiserer FQN. Kjør `pnpm codegen:dev` (spec-nedlasting må gjøres av utvikler; den er blokkert i sandkassen).
+2. Kartlegg navn og kollisjoner direkte fra `specs/*.json` (gitignored, men lesbar fra disk):
+    ```bash
+    node -e 'const n=Object.keys(require("./specs/X.json").components?.schemas??{});const g={};n.forEach(x=>{const k=x.split(".").pop();(g[k]??=[]).push(x)});Object.entries(g).filter(([,v])=>v.length>1).forEach(([k,v])=>console.log(k,"=>",v.join(" | ")))'
+    ```
+3. Sjekk hvilken variant dagens `types.gen.ts` (i git) tilsvarer, ved å sammenligne feltene. Den varianten beholder det korte navnet.
+4. Legg inn `parser.transforms.schemaName` i config (for pakker med felles `createOpenApiConfig` i `configs/index.ts`: legg det inn der, med `input`-stien som `specPath`). Nye kollisjoner legges i `scripts/codegen/schemaNameOverrides.js`; sjekk først om klassen allerede står der.
+5. Kjør pakkens genereringsscript (`pnpm gen-types:all:fixed` eller `pnpm gen-types:fixed`) → verifiser:
+    - ingen `NoNav`/`no.nav` i `*.gen.ts`
+    - ingen typenavn fjernet: `comm -23` på eksporterte navn i `HEAD:…/types.gen.ts` mot ny fil
+    - `pnpm lint:tsc` i pakken og alle konsumenter (`grep -l '"@navikt/<pakke>"' apps/*/package.json …`)
+
+Status: `parser.transforms.schemaName` er lagt inn i alle codegen-configs. Funksjonen endrer ikke navn uten punktum, så den gjør ingenting før backend publiserer fulle klassenavn. Fulle klassenavn er tatt i bruk i `k9-sak-innsyn-api` og `k9-brukerdialog-prosessering-api`.
+
+#### Felles typer på tvers av definisjoner (`k9-brukerdialog-prosessering-api`)
+
+Hele API-et (`default.json`) har mange kollisjoner mellom ytelsene, så det genereres ikke lenger i sin helhet. Felles endepunkter (`/oppslag/**`, `/vedlegg/**`, `/mellomlagring/**`, `/valider/**`) genereres i stedet til `src/generated/felles` med `configs/openapi-ts.config-felles.ts`. Den bruker `includeOperations` (hey-api `parser.filters.operations.include`) og hey-api fjerner skjemaer som ingen operasjon bruker. Bare felles typer blir dermed med, for eksempel `ProblemDetail`, `Søker`, `BarnOppslag` og `ArbeidsgivereDto`.
+
+- `felles` eksporteres flatt fra pakkeroten (`import { zProblemDetail, BarnController } from '@navikt/k9-brukerdialog-prosessering-api'`) og har sin egen `client`, som initialiseres i `initK9BrukerdialogProsesseringApiClients`.
+- Ytelsestyper hentes alltid via navnerommet for ytelsen: `ungdomsytelse.KontonummerInfo`, `omsorgspenger.OmsorgspengerKroniskSyktBarnSøknad`.
+- Et nytt felles endepunkt legges til i `includeOperations`.
+- På sikt bør backend lage en egen definisjon, `oppslag`/`felles`, som erstatter filteret.
 
 ### Generert filstruktur
 
@@ -83,7 +138,8 @@ export const initApiClients = () => {
 
 ## Viktige filer
 
-- `codegenUtils.js` (root) — delt post-prosesseringslogikk for alle pakker
-- `packages/*/scripts/fix-generated-regex.mjs` — kaller `fixAndFormatGeneratedCode` fra root
+- `scripts/codegen/codegenUtils.js` — delt post-prosesseringslogikk og `createSchemaNameResolver` for alle pakker
+- `scripts/codegen/schemaNameOverrides.js` — felles overrides for navnekollisjoner (FQN → kort navn)
+- `packages/*/scripts/fix-generated-regex.mjs` — kaller `fixAndFormatGeneratedCode` fra `scripts/codegen/codegenUtils.js`
 - `packages/*/configs/openapi-ts.config*.ts` eller `packages/*/openapi-ts.config.ts` — codegen-konfig per API/miljø
 - `packages/*/scripts/download-spec.mjs` — spec-nedlasting (bruker `CODEGEN_ENV`)

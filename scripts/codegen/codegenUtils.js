@@ -4,6 +4,8 @@ import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { glob } from 'glob';
 import path from 'path';
 
+import { schemaNameOverrides } from './schemaNameOverrides.js';
+
 function sortKeysDeep(obj) {
     if (Array.isArray(obj)) {
         return obj.map(sortKeysDeep);
@@ -40,6 +42,31 @@ export async function fetchAndNormalizeSpec(url, outputPath) {
     mkdirSync(path.dirname(outputPath), { recursive: true });
     writeFileSync(outputPath, JSON.stringify(sorted, null, 2) + '\n');
     return true;
+}
+
+/**
+ * Lager en navnefunksjon til hey-api `parser.transforms.schemaName` som gjør fullt kvalifiserte
+ * Java-klassenavn (f.eks. `no.nav.k9.søknad.Søknad`) om til korte navn (`Søknad`).
+ *
+ * Kjente kollisjoner løses i den felles listen i scripts/codegen/schemaNameOverrides.js (FQN -> kort navn).
+ * Feiler hardt ved kollisjoner som ikke er håndtert, fordi hey-api ellers stille beholder FQN for den ene av dem.
+ *
+ * Kollisjonssjekken skjer når hey-api kaller funksjonen. Den kjøres etter `parser.filters`, så bare
+ * skjemaer som faktisk blir med i output, sjekkes. Kort navn avhenger kun av FQN, ikke av rekkefølge.
+ */
+export function createSchemaNameResolver(specLabel) {
+    const resolvedBy = new Map();
+    return (fqn) => {
+        const name = schemaNameOverrides[fqn] ?? fqn.split('.').pop();
+        const existing = resolvedBy.get(name);
+        if (existing && existing !== fqn) {
+            throw new Error(
+                `Navnekollisjon i ${specLabel}: "${name}" brukes av ${existing} og ${fqn} – legg til i scripts/codegen/schemaNameOverrides.js`,
+            );
+        }
+        resolvedBy.set(name, fqn);
+        return name;
+    };
 }
 
 const PATTERNS = {

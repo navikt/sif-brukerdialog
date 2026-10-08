@@ -3,7 +3,7 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { ApiErrorAlert } from '@sif/api';
-import { InntektsrapporteringDto, useRapporterInntekt } from '@sif/api/k9-prosessering';
+import { useRapporterInntekt, YtelseInntektsrapportering } from '@sif/api/k9-prosessering';
 import { createSifFormComponents, SifForm, useSifValidate, YesOrNo } from '@sif/rhf';
 import { getNumberFromNumberInputValue } from '@sif/rhf/utils';
 import { useState } from 'react';
@@ -26,6 +26,19 @@ export interface InntektFormValues {
 
 const { YesOrNoQuestion, NumberInput } = createSifFormComponents<InntektFormValues>();
 
+const getInntektsrapportering = (
+    ytelse: OppgaveYtelsetype,
+    oppgaveReferanse: string,
+    arbeidstakerOgFrilansInntekt: number | undefined,
+): YtelseInntektsrapportering => {
+    switch (ytelse) {
+        case OppgaveYtelsetype.AKTIVITETSPENGER:
+            return { ytelse, data: { oppgaveReferanse, oppgittInntekt: { arbeidstakerOgFrilansInntekt } } };
+        case OppgaveYtelsetype.UNGDOMSYTELSE:
+            return { ytelse, data: { oppgaveReferanse, oppgittInntekt: { arbeidstakerOgFrilansInntekt } } };
+    }
+};
+
 export interface RapporterInntektFormProps {
     oppgaveYtelsetype: OppgaveYtelsetype;
     oppgaveReferanse: string;
@@ -40,7 +53,7 @@ export const RapporterInntektForm = ({
     onSuccess,
 }: RapporterInntektFormProps) => {
     const { text } = useUngInnsynIntl();
-    const { error, isPending, mutateAsync } = useRapporterInntekt(oppgaveYtelsetype);
+    const { error, isPending, mutateAsync } = useRapporterInntekt();
     const { validateField } = useSifValidate('@ungInnsyn.inntektForm');
     const { onCancel, onSuccess: onPageSuccess } = useOppgavePage();
     const [dtoError, setDtoError] = useState<string | undefined>(undefined);
@@ -65,14 +78,10 @@ export const RapporterInntektForm = ({
             return;
         }
 
-        const data: InntektsrapporteringDto = {
-            oppgittInntekt: {
-                arbeidstakerOgFrilansInntekt,
-            },
-            oppgaveReferanse,
-        };
         try {
-            await mutateAsync(data);
+            await mutateAsync(
+                getInntektsrapportering(oppgaveYtelsetype, oppgaveReferanse, arbeidstakerOgFrilansInntekt),
+            );
             onPageSuccess?.();
             onSuccess(harInntekt);
         } catch {

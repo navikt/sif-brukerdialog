@@ -53,27 +53,8 @@ export const zSøker = z.object({
     mellomnavn: z.string().nullish(),
 });
 
-export const zBarn = z.object({
-    aktørId: z.string().nullish(),
-    fødselsdato: z.iso.date().nullish(),
-    navn: z.string().min(1),
-    norskIdentifikator: z.string().length(11).nullish(),
-});
-
-export const zOmsorgspengerKroniskSyktBarnSøknad = z.object({
-    barn: zBarn,
-    dataBruktTilUtledningAnnetData: z.string().nullish(),
-    harBekreftetOpplysninger: z.boolean(),
-    harForståttRettigheterOgPlikter: z.boolean(),
-    høyereRisikoForFravær: z.boolean().nullish(),
-    høyereRisikoForFraværBeskrivelse: z.string().min(1).max(1000).nullish(),
-    kroniskEllerFunksjonshemming: z.boolean(),
-    legeerklæring: z.array(z.string()),
-    relasjonTilBarnet: z.enum(['MOR', 'FAR', 'FOSTERFORELDER', 'ADOPTIVFORELDER']).optional(),
-    sammeAdresse: z.enum(['JA', 'JA_DELT_BOSTED', 'NEI']),
-    samværsavtale: z.array(z.string()).nullish(),
-    språk: z.string(),
-    søkerNorskIdent: z.string().nullish(),
+export const zFriteksfelt = z.object({
+    verdi: z.string(),
 });
 
 export const zProblemDetail = z.object({
@@ -114,12 +95,6 @@ export const zUpdateMellomlagringPath = z.object({
     ytelse: z.string(),
 });
 
-export const zInnsendingOmsorgspengerKroniskSyktBarnSøknadBody = zOmsorgspengerKroniskSyktBarnSøknad;
-
-export const zInnsendingOmsorgspengerKroniskSyktBarnSøknadHeaders = z.object({
-    'X-Brukerdialog-Git-Sha': z.string(),
-});
-
 export const zHentArbeidsgivereQuery = z.object({
     fra_og_med: z.string(),
     til_og_med: z.string(),
@@ -142,6 +117,8 @@ export const zHentBarnResponse = zBarnOppslagListe;
  * OK
  */
 export const zHentSøkerResponse = zSøker;
+
+export const zValiderFriteksfeltBody = zFriteksfelt;
 
 export const zLagreVedleggBody = z.object({
     vedlegg: z.instanceof(Blob),

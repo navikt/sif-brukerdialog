@@ -4,22 +4,12 @@ export type ClientOptions = {
     baseURL: string & {};
 };
 
+export type JsonNode = unknown;
+
 export type ArbeidsgivereDto = {
     frilansoppdrag?: FrilansoppdragDto[];
     organisasjoner: OrganisasjonDto[];
     privateArbeidsgivere?: PrivatArbeidsgiverDto[];
-};
-
-export type BarnOppslag = {
-    aktørId: string;
-    etternavn: string;
-    fornavn: string;
-    fødselsdato: string;
-    mellomnavn?: string;
-};
-
-export type BarnOppslagListe = {
-    barn: BarnOppslag[];
 };
 
 export type FrilansoppdragDto = {
@@ -30,8 +20,6 @@ export type FrilansoppdragDto = {
     organisasjonsnummer?: string;
     type: string;
 };
-
-export type JsonNode = unknown;
 
 export type OrganisasjonDto = {
     ansattFom?: string;
@@ -46,15 +34,16 @@ export type PrivatArbeidsgiverDto = {
     offentligIdent: string;
 };
 
-export type ProblemDetail = {
-    detail?: string;
-    instance?: string;
-    properties?: {
-        [key: string]: unknown;
-    };
-    status?: number;
-    title?: string;
-    type?: string;
+export type BarnOppslagListe = {
+    barn: BarnOppslag[];
+};
+
+export type BarnOppslag = {
+    aktørId: string;
+    etternavn: string;
+    fornavn: string;
+    fødselsdato: string;
+    mellomnavn?: string;
 };
 
 export type Søker = {
@@ -64,6 +53,17 @@ export type Søker = {
     fødselsdato: string;
     fødselsnummer: string;
     mellomnavn?: string;
+};
+
+export type ProblemDetail = {
+    detail?: string;
+    instance?: string;
+    properties?: {
+        [key: string]: unknown;
+    };
+    status?: number;
+    title?: string;
+    type?: string;
 };
 
 export type DeleteMellomlagringData = {

@@ -4,32 +4,12 @@ export type ClientOptions = {
     baseURL: string & {};
 };
 
+export type JsonNode = unknown;
+
 export type ArbeidsgivereDto = {
     frilansoppdrag?: FrilansoppdragDto[];
     organisasjoner: OrganisasjonDto[];
     privateArbeidsgivere?: PrivatArbeidsgiverDto[];
-};
-
-export type Barn = {
-    aktørId?: string;
-    dato?: string;
-    fødselsdato?: string;
-    identitetsnummer?: string;
-    navn: string;
-    tidspunktForAleneomsorg: 'SISTE_2_ÅRENE' | 'TIDLIGERE';
-    type: 'FRA_OPPSLAG' | 'FOSTERBARN' | 'ANNET';
-};
-
-export type BarnOppslag = {
-    aktørId: string;
-    etternavn: string;
-    fornavn: string;
-    fødselsdato: string;
-    mellomnavn?: string;
-};
-
-export type BarnOppslagListe = {
-    barn: BarnOppslag[];
 };
 
 export type FrilansoppdragDto = {
@@ -39,17 +19,6 @@ export type FrilansoppdragDto = {
     offentligIdent?: string;
     organisasjonsnummer?: string;
     type: string;
-};
-
-export type JsonNode = unknown;
-
-export type OmsorgsdagerAleneOmOmsorgenSøknad = {
-    barn: Barn[];
-    dataBruktTilUtledningAnnetData?: string;
-    harBekreftetOpplysninger: boolean;
-    harForståttRettigheterOgPlikter: boolean;
-    språk: string;
-    søkerNorskIdent?: string;
 };
 
 export type OrganisasjonDto = {
@@ -65,15 +34,16 @@ export type PrivatArbeidsgiverDto = {
     offentligIdent: string;
 };
 
-export type ProblemDetail = {
-    detail?: string;
-    instance?: string;
-    properties?: {
-        [key: string]: unknown;
-    };
-    status?: number;
-    title?: string;
-    type?: string;
+export type BarnOppslagListe = {
+    barn: BarnOppslag[];
+};
+
+export type BarnOppslag = {
+    aktørId: string;
+    etternavn: string;
+    fornavn: string;
+    fødselsdato: string;
+    mellomnavn?: string;
 };
 
 export type Søker = {
@@ -83,6 +53,36 @@ export type Søker = {
     fødselsdato: string;
     fødselsnummer: string;
     mellomnavn?: string;
+};
+
+export type Barn = {
+    aktørId?: string;
+    dato?: string;
+    fødselsdato?: string;
+    identitetsnummer?: string;
+    navn: string;
+    tidspunktForAleneomsorg: 'SISTE_2_ÅRENE' | 'TIDLIGERE';
+    type: 'FRA_OPPSLAG' | 'FOSTERBARN' | 'ANNET';
+};
+
+export type OmsorgsdagerAleneOmOmsorgenSøknad = {
+    barn: Barn[];
+    dataBruktTilUtledningAnnetData?: string;
+    harBekreftetOpplysninger: boolean;
+    harForståttRettigheterOgPlikter: boolean;
+    språk: string;
+    søkerNorskIdent?: string;
+};
+
+export type ProblemDetail = {
+    detail?: string;
+    instance?: string;
+    properties?: {
+        [key: string]: unknown;
+    };
+    status?: number;
+    title?: string;
+    type?: string;
 };
 
 export type DeleteMellomlagringData = {

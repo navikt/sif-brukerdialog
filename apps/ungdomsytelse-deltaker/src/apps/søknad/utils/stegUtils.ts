@@ -1,4 +1,4 @@
-import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
+import type { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 
 import { HarKontonummerEnum } from '../steg/oppsummering/oppsummeringUtils';
 import { SøknadSvar, Spørsmål, Steg } from '../types';
@@ -16,7 +16,7 @@ export const getStegFraPath = (path: string): Steg | undefined => {
     }
 };
 
-export const getTilgjengeligeSteg = (svar: SøknadSvar, kontonummerInfo: KontonummerInfo): Steg[] => {
+export const getTilgjengeligeSteg = (svar: SøknadSvar, kontonummerInfo: ungdomsytelse.KontonummerInfo): Steg[] => {
     const tilgjengeligeSteg: Steg[] = [];
 
     const velkommenOk: boolean = svar[Spørsmål.FORSTÅR_PLIKTER] === true;
@@ -37,6 +37,6 @@ export const getTilgjengeligeSteg = (svar: SøknadSvar, kontonummerInfo: Kontonu
     return tilgjengeligeSteg;
 };
 
-export const erStegTilgjengelig = (steg: Steg, svar: SøknadSvar, kontonummerInfo: KontonummerInfo): boolean => {
+export const erStegTilgjengelig = (steg: Steg, svar: SøknadSvar, kontonummerInfo: ungdomsytelse.KontonummerInfo): boolean => {
     return getTilgjengeligeSteg(svar, kontonummerInfo).some((s) => s === steg);
 };

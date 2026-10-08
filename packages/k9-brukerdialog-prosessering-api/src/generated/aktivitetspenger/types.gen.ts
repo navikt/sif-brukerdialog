@@ -4,9 +4,64 @@ export type ClientOptions = {
     baseURL: string & {};
 };
 
+export type JsonNode = unknown;
+
+export type ArbeidsgivereDto = {
+    frilansoppdrag?: FrilansoppdragDto[];
+    organisasjoner: OrganisasjonDto[];
+    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
+};
+
+export type FrilansoppdragDto = {
+    ansattFom?: string;
+    ansattTom?: string;
+    navn?: string;
+    offentligIdent?: string;
+    organisasjonsnummer?: string;
+    type: string;
+};
+
+export type OrganisasjonDto = {
+    ansattFom?: string;
+    ansattTom?: string;
+    navn?: string;
+    organisasjonsnummer: string;
+};
+
+export type PrivatArbeidsgiverDto = {
+    ansattFom?: string;
+    ansattTom?: string;
+    offentligIdent: string;
+};
+
+export type BarnOppslagListe = {
+    barn: BarnOppslag[];
+};
+
+export type BarnOppslag = {
+    aktørId: string;
+    etternavn: string;
+    fornavn: string;
+    fødselsdato: string;
+    mellomnavn?: string;
+};
+
+export type Søker = {
+    aktørId: string;
+    etternavn?: string;
+    fornavn?: string;
+    fødselsdato: string;
+    fødselsnummer: string;
+    mellomnavn?: string;
+};
+
 export type AktivitetspengerInntektsrapportering = {
     oppgaveReferanse: string;
     oppgittInntekt: OppgittInntekt;
+};
+
+export type OppgittInntekt = {
+    arbeidstakerOgFrilansInntekt?: number;
 };
 
 export type AktivitetspengerOppgaveDto = {
@@ -35,44 +90,10 @@ export type Aktivitetspengersøknad = {
     søkerNorskIdent: string;
 };
 
-export type ArbeidsgivereDto = {
-    frilansoppdrag?: FrilansoppdragDto[];
-    organisasjoner: OrganisasjonDto[];
-    privateArbeidsgivere?: PrivatArbeidsgiverDto[];
-};
-
-export type BarnOppslag = {
-    aktørId: string;
-    etternavn: string;
-    fornavn: string;
-    fødselsdato: string;
-    mellomnavn?: string;
-};
-
-export type BarnOppslagListe = {
-    barn: BarnOppslag[];
-};
-
-export type FrilansoppdragDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
-    offentligIdent?: string;
-    organisasjonsnummer?: string;
-    type: string;
-};
-
-export type JsonNode = unknown;
-
 export type KontonummerInfo = {
     harKontonummer: 'JA' | 'NEI' | 'UVISST';
     kontonummerErRiktig?: boolean;
     kontonummerFraRegister?: string;
-};
-
-export type Land = {
-    landkode: string;
-    landnavn: string;
 };
 
 export type MedlemskapAktivitetspenger = {
@@ -82,21 +103,17 @@ export type MedlemskapAktivitetspenger = {
     utenlandsopphold: UtenlandsoppholdAktivitetspenger[];
 };
 
-export type OppgittInntekt = {
-    arbeidstakerOgFrilansInntekt?: number;
+export type UtenlandsoppholdAktivitetspenger = {
+    fraOgMed: string;
+    jobbetIPerioden: boolean;
+    land: Land;
+    tilOgMed: string;
+    utenlandskNasjonalId?: string;
 };
 
-export type OrganisasjonDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
-    organisasjonsnummer: string;
-};
-
-export type PrivatArbeidsgiverDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    offentligIdent: string;
+export type Land = {
+    landkode: string;
+    landnavn: string;
 };
 
 export type ProblemDetail = {
@@ -108,23 +125,6 @@ export type ProblemDetail = {
     status?: number;
     title?: string;
     type?: string;
-};
-
-export type Søker = {
-    aktørId: string;
-    etternavn?: string;
-    fornavn?: string;
-    fødselsdato: string;
-    fødselsnummer: string;
-    mellomnavn?: string;
-};
-
-export type UtenlandsoppholdAktivitetspenger = {
-    fraOgMed: string;
-    jobbetIPerioden: boolean;
-    land: Land;
-    tilOgMed: string;
-    utenlandskNasjonalId?: string;
 };
 
 export type InntektrapporteringData = {

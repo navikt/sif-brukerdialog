@@ -14,6 +14,7 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
     - Codegen generelt: `codegen`, `codegen:dev`, `codegen:prod`, `openapi-ts`, `hey-api`, `@hey-api/openapi-ts`, `genererte klienter`, `client.gen.ts`, `types.gen.ts`, `sdk.gen.ts`.
     - Post-prosessering: `codegenUtils`, `fix-generated`, `fixAndFormatGeneratedCode`, `PATTERNS`, `replaceClientBaseUrl`, `removeNullUnion`.
     - Spec-nedlasting: `download-spec`, `openapi-spec.json`, `CODEGEN_ENV`.
+    - Skjemanavn: `schemaName`, `createSchemaNameResolver`, `schemaNameOverrides`, `FQN`, `fullt kvalifisert`, `navnekollisjon`, `duplikate typenavn`, `strippe klassenavn`.
 - `sif-gh-pages`:
     - Deploy til demo: `gh-pages`, `demo-deploy`, `legg til i gh-pages`, `gh-pages:rebuild`, `vite.demo.config`, `dist-demo`.
     - MSW på gh-pages: `msw klager`, `service worker feil`, `mockServiceWorker gh-pages`.

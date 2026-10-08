@@ -1,7 +1,14 @@
 import { defineConfig, type UserConfig } from '@hey-api/openapi-ts';
 
+import { createSchemaNameResolver } from '../../../scripts/codegen/codegenUtils.js';
+
 export const createConfig = (): UserConfig => ({
     input: './specs/k9-sak.json',
+    parser: {
+        transforms: {
+            schemaName: createSchemaNameResolver('./specs/k9-sak.json'),
+        },
+    },
     output: {
         postProcess: ['prettier'],
         path: './src/generated/client',
