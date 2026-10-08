@@ -24,7 +24,6 @@ export default [
             '**/out/**',
             '**/*.min.js',
             '**/*.bundle.js',
-            '**/storybook/**',
             '**/storybook-static/**',
             '**/next-env.d.ts',
             '**/next.config.ts',
@@ -52,7 +51,7 @@ export default [
     { ...jsxA11y.flatConfigs.recommended, files: ['**/*.{jsx,tsx}'] },
     eslintConfigPrettier,
     {
-        files: ['**/*.{test,spec}.{ts,tsx}'],
+        files: ['**/*.{test,tests,spec}.{ts,tsx}'],
         rules: vitest.configs.recommended.rules,
     },
     {
@@ -85,6 +84,9 @@ export default [
             '**/*.test.tsx',
             '**/*.spec.ts',
             '**/*.spec.tsx',
+            '**/*.tests.ts',
+            '**/*.tests.tsx',
+            '**/storybook/**',
             '**/*.stories.ts',
             '**/*.stories.tsx',
             '**/__tests__/**',
