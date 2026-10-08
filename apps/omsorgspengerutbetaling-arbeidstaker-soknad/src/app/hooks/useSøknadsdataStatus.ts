@@ -38,8 +38,9 @@ const getStepSøknadsdataFromStepFormValues = (step: StepId, stepFormValues: Ste
             return getLegeerklæringSøknadsdataFromFormValues(formValues as LegeerklæringFormValues);
         case StepId.MEDLEMSKAP:
             return getMedlemskapSøknadsdataFromFormValues(formValues as MedlemskapFormValues);
+        default:
+            return undefined;
     }
-    return undefined;
 };
 
 export const isStepFormValuesAndStepSøknadsdataValid = (

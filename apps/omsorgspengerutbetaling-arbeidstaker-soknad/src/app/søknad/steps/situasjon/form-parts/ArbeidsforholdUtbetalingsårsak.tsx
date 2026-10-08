@@ -100,8 +100,9 @@ const ArbeidsforholdUtbetalingsårsak = ({ arbeidsforhold, parentFieldName, andr
                                         values: { min: 5, maks: 2000 },
                                         keepKeyUnaltered: true,
                                     };
+                                default:
+                                    return error;
                             }
-                            return error;
                         }}
                         maxLength={2000}
                         label={text(

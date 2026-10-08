@@ -33,8 +33,9 @@ const getStepSøknadsdataFromStepFormValues = (step: StepId, stepFormValues: Ste
             );
         case StepId.OM_BARNA:
             return getOmBarnaSøknadsdataFromFormValues(formValues as OmBarnaFormValues);
+        default:
+            return undefined;
     }
-    return undefined;
 };
 
 export const isStepFormValuesAndStepSøknadsdataValid = (

@@ -28,8 +28,9 @@ const getSøknadstypeFromUrlParam = (param?: string): Søknadstype | undefined =
             return Søknadstype.pleiepengerLivetsSluttfase;
         case 'opplaringspenger':
             return Søknadstype.opplaringspenger;
+        default:
+            return undefined;
     }
-    return undefined;
 };
 
 const SoknadRemoteDataFetcher = (): ReactElement => {

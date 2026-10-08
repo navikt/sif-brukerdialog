@@ -10,6 +10,8 @@ export const getYesOrNoFromBoolean = (bool?: boolean): YesOrNo => {
             return YesOrNo.YES;
         case false:
             return YesOrNo.NO;
+        case undefined:
+            return YesOrNo.UNANSWERED;
         default:
             return YesOrNo.UNANSWERED;
     }

@@ -11,6 +11,7 @@ export const initialSøknadsdata: Søknadsdata = {
 } as any;
 
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
+    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
     switch (action.type) {
         case SøknadContextActionKeys.START_SØKNAD:
             return {
@@ -114,8 +115,8 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     isReloadingApp: true,
                 };
             default:
-                
                 appLogger.logError(`Missing handler for ${action.type}`);
+                return state;
         }
     }
     return state;

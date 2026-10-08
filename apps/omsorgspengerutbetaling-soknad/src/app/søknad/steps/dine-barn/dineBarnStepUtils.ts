@@ -62,6 +62,8 @@ export const getDineBarnSøknadsdataFromFormValues = (
                 andreBarn,
                 harDekketTiFørsteDagerSelv: harUtvidetRett && values.harDekketTiFørsteDagerSelv === YesOrNo.YES,
             };
+        default:
+            return undefined;
     }
 };
 

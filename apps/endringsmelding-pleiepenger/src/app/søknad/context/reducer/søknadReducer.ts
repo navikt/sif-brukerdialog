@@ -24,6 +24,7 @@ const getValgteEndringer = (endringer: EndringType[]): ValgteEndringer => ({
 });
 
 export const søknadReducer = (state: SøknadContextState, action: SøknadContextAction): SøknadContextState => {
+    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
     switch (action.type) {
         case SøknadContextActionKeys.START_SØKNAD: {
             const { sak, valgtHvaSkalEndres } = action.payload;
@@ -49,15 +50,6 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
             };
         }
         case SøknadContextActionKeys.AVBRYT_SØKNAD:
-            return {
-                ...state,
-                søknadsdata: initialSøknadsdata,
-                søknadRoute: undefined,
-                /**
-                 * Alle typer legges inn for å unngå at dynamiske steg fjernes når søknadsdata tømmes
-                 * Verdien settes på nytt når søker starter ny meldning
-                 */
-            };
     }
 
     if (state.søknadsdata) {

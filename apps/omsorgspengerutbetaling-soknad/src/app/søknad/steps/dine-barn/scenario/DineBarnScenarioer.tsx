@@ -38,6 +38,8 @@ const DineBarnScenarioer = ({ registrerteBarn, formValues }: Props) => {
                     harUtvidetRett={harUtvidetRett}
                 />
             );
+        default:
+            return null;
     }
 };
 

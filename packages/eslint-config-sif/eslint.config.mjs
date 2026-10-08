@@ -14,6 +14,9 @@ const ERROR = 2;
 
 export default [
     {
+        ignores: ['**/storybook/**', '**/*.stories.tsx', '**/next-env.d.ts', '**/next.config.ts'],
+    },
+    {
         files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
         ignores: [
             '**/node_modules/**',
@@ -96,6 +99,26 @@ export default [
                     enforceForJSX: false,
                 },
             ],
+        },
+    },
+    {
+        files: ['**/*.{ts,tsx}'],
+        ignores: [
+            '**/*.test.ts',
+            '**/*.test.tsx',
+            '**/*.spec.ts',
+            '**/*.spec.tsx',
+            '**/*.stories.ts',
+            '**/*.stories.tsx',
+            '**/__tests__/**',
+        ],
+        languageOptions: {
+            parserOptions: {
+                projectService: true,
+            },
+        },
+        rules: {
+            '@typescript-eslint/switch-exhaustiveness-check': [ERROR, { considerDefaultExhaustiveForUnions: true }],
         },
     },
     {
