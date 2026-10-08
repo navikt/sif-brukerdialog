@@ -25,6 +25,9 @@ export const getStatusIconStatusFromApplicationStatus = (status?: APPLICATION_ST
     switch (status) {
         case APPLICATION_STATUS.unavailable:
             return 'feil';
+        case APPLICATION_STATUS.team:
+        case APPLICATION_STATUS.normal:
+        case undefined:
         default:
             return 'suksess';
     }
@@ -34,6 +37,9 @@ export const getStatusSubTitleFromApplicationStatus = (status?: APPLICATION_STAT
     switch (status) {
         case APPLICATION_STATUS.unavailable:
             return 'Unavailable';
+        case APPLICATION_STATUS.team:
+        case APPLICATION_STATUS.normal:
+        case undefined:
         default:
             return 'All good';
     }

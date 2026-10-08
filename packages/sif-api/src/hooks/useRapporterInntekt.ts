@@ -21,8 +21,6 @@ export const useRapporterInntekt = () => {
                 case OppgaveYtelsetype.UNGDOMSYTELSE:
                     return rapporterInntektUngdomsytelse(rapportering.data);
                 default: {
-                    const _exhaustive: never = rapportering;
-                    void _exhaustive;
                     throw new Error(`Ukjent OppgaveYtelsetype: ${String(ytelse)}`);
                 }
             }

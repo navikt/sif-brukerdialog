@@ -71,15 +71,15 @@ export const getNumberDurationForWeekday = (
     weekday: Weekday,
 ): NumberDuration | undefined => {
     switch (weekday) {
-        case 'monday':
+        case Weekday.monday:
             return getNumberDurationOrUndefined(durationWeekdays.monday);
-        case 'tuesday':
+        case Weekday.tuesday:
             return getNumberDurationOrUndefined(durationWeekdays.tuesday);
-        case 'wednesday':
+        case Weekday.wednesday:
             return getNumberDurationOrUndefined(durationWeekdays.wednesday);
-        case 'thursday':
+        case Weekday.thursday:
             return getNumberDurationOrUndefined(durationWeekdays.thursday);
-        case 'friday':
+        case Weekday.friday:
             return getNumberDurationOrUndefined(durationWeekdays.friday);
         default:
             return undefined;

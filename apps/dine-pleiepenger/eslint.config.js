@@ -11,4 +11,8 @@ export default [
             ...pluginNext.configs.recommended.rules,
         },
     },
+    {
+        // Legacy: fjern når appen er migrert til v2
+        rules: { '@typescript-eslint/switch-exhaustiveness-check': 'off' },
+    },
 ];

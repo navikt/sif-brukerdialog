@@ -9,4 +9,8 @@ export default [
             },
         },
     },
+    {
+        // Legacy: fjern når appen er migrert til v2
+        rules: { '@typescript-eslint/switch-exhaustiveness-check': 'off' },
+    },
 ];

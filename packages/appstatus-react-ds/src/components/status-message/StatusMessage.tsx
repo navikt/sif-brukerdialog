@@ -21,6 +21,8 @@ const getAlertStripeTypeFromMessageType = (type?: SanityMessageType): 'info' | '
             return 'warning';
         case SanityMessageType.error:
             return 'error';
+        case undefined:
+            return 'info';
         default:
             return 'info';
     }
