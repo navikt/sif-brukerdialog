@@ -1,10 +1,12 @@
 import type { omsorgspenger } from '@navikt/k9-brukerdialog-prosessering-api';
 
-export type SøkersRelasjonTilBarnet = NonNullable<omsorgspenger.OmsorgspengerKroniskSyktBarnSøknad['relasjonTilBarnet']>;
+export type SøkersRelasjonTilBarnet = NonNullable<
+    omsorgspenger.OmsorgspengerKroniskSyktBarnSøknad['relasjonTilBarnet']
+>;
 
 export const SøkersRelasjonTilBarnet = {
-    MOR: 'MOR' as SøkersRelasjonTilBarnet,
-    FAR: 'FAR' as SøkersRelasjonTilBarnet,
-    ADOPTIVFORELDER: 'ADOPTIVFORELDER' as SøkersRelasjonTilBarnet,
-    FOSTERFORELDER: 'FOSTERFORELDER' as SøkersRelasjonTilBarnet,
-} as const;
+    MOR: 'MOR',
+    FAR: 'FAR',
+    ADOPTIVFORELDER: 'ADOPTIVFORELDER',
+    FOSTERFORELDER: 'FOSTERFORELDER',
+} as const satisfies Record<SøkersRelasjonTilBarnet, SøkersRelasjonTilBarnet>;
