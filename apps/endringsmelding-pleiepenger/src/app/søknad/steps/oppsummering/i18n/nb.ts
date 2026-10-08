@@ -27,6 +27,7 @@ export const oppsummeringStepMessages_nb = {
 
     'oppsummeringStep.endre.arbeidstid': 'Endre arbeidstid',
     'oppsummeringStep.endre.ferie': 'Endre ferie',
+    'oppsummeringStep.endre.ukjentArbeidsforhold': 'Endre nytt arbeidsforhold',
     'oppsummeringStep.endre.tilsynsordning': 'Endre tid i omsorgstilbud',
 
     'oppsummeringStep.tilsynsordning.tittel': 'Endringer i omsorgstilbud',

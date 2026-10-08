@@ -20,8 +20,7 @@ import { appEnv } from './utils/appEnv';
 
 dayjs.extend(isoWeek);
 
-const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID, SIF_PUBLIC_USE_ANALYTICS } =
-    appEnv;
+const { PUBLIC_PATH, SIF_PUBLIC_APPSTATUS_DATASET, SIF_PUBLIC_APPSTATUS_PROJECT_ID, SIF_PUBLIC_USE_ANALYTICS } = appEnv;
 
 const isE2E = getMaybeEnv('E2E_TEST') === 'true';
 const useAnalytics = !isE2E && (SIF_PUBLIC_USE_ANALYTICS ? SIF_PUBLIC_USE_ANALYTICS === 'true' : isProd());
