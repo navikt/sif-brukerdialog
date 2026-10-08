@@ -26,7 +26,6 @@ export default [
             '**/*.bundle.js',
             '**/storybook/**',
             '**/storybook-static/**',
-            '**/*.stories.tsx',
             '**/next-env.d.ts',
             '**/next.config.ts',
             '**/packages/**/*/lib',
