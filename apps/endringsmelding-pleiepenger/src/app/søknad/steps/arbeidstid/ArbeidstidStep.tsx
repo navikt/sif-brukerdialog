@@ -42,9 +42,7 @@ const ArbeidstidStep = () => {
                         </List.Item>
                     </List>
                     <InlineMessage status="info">
-                        <VStack gap="space-12">
-                            <AppText id="arbeidstidStep.info.4" />
-                        </VStack>
+                        <AppText id="arbeidstidStep.info.4" />
                     </InlineMessage>
                 </VStack>
             </FormLayout.Guide>
