@@ -64,7 +64,7 @@ export default [
             'no-shadow': OFF,
             'no-unused-vars': OFF,
 'no-use-before-define': OFF,
-            'jsx-quotes': [ERROR, 'prefer-double']
+            'jsx-quotes': [ERROR, 'prefer-double'],
 
             'simple-import-sort/exports': ERROR,
             'simple-import-sort/imports': ERROR,
