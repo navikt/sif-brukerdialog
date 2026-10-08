@@ -11,31 +11,32 @@
     "scripts": {
         "build": "sanity build",
         "deploy": "sanity deploy",
-        "deploy-graphql": "sanity graphql deploy",
         "dev": "sanity dev",
+        "lint:eslint": "eslint .",
+        "lint:fix": "eslint --quiet --fix .",
+        "lint:tsc": "tsc --noEmit",
         "start": "sanity start"
     },
     "prettier": {
         "arrowParens": "always",
         "bracketSameLine": true,
         "bracketSpacing": true,
-        "ordered-imports": false,
         "printWidth": 120,
         "singleQuote": true,
         "tabWidth": 4,
         "useTabs": false
     },
     "dependencies": {
-        "@sanity/vision": "6.16.0",
+        "@sanity/vision": "6.17.0",
         "react": "19.3.0",
         "react-dom": "19.3.0",
-        "sanity": "6.16.0"
+        "sanity": "6.17.0"
     },
     "devDependencies": {
-        "@sanity/eslint-config-studio": "7.0.0",
+        "@sif/eslint-config": "workspace:*",
         "@types/react": "19.3.0",
         "dayjs": "1.11.23",
-        "eslint": "10.11.0",
+        "eslint": "10.12.0",
         "postcss": ">=8.5.28",
         "prettier": "3.9.9",
         "react-is": "19.3.0",

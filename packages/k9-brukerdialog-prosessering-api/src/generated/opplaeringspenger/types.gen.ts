@@ -4,25 +4,90 @@ export type ClientOptions = {
     baseURL: string & {};
 };
 
-export type ArbeidIPeriode = {
-    enkeltdager: Enkeltdag[];
-    enkeltdagerFravær: Enkeltdag[];
-    jobberIPerioden: 'SOM_VANLIG' | 'REDUSERT' | 'HELT_FRAVÆR';
-};
-
-export type ArbeidsforholdOlp = {
-    arbeidIPeriode: ArbeidIPeriode;
-    jobberNormaltTimer: number;
-};
-
-export type ArbeidsgiverOlp = {
-    [key: string]: unknown;
-};
+export type JsonNode = unknown;
 
 export type ArbeidsgivereDto = {
     frilansoppdrag?: FrilansoppdragDto[];
     organisasjoner: OrganisasjonDto[];
     privateArbeidsgivere?: PrivatArbeidsgiverDto[];
+};
+
+export type FrilansoppdragDto = {
+    ansattFom?: string;
+    ansattTom?: string;
+    navn?: string;
+    offentligIdent?: string;
+    organisasjonsnummer?: string;
+    type: string;
+};
+
+export type OrganisasjonDto = {
+    ansattFom?: string;
+    ansattTom?: string;
+    navn?: string;
+    organisasjonsnummer: string;
+};
+
+export type PrivatArbeidsgiverDto = {
+    ansattFom?: string;
+    ansattTom?: string;
+    offentligIdent: string;
+};
+
+export type BarnOppslagListe = {
+    barn: BarnOppslag[];
+};
+
+export type BarnOppslag = {
+    aktørId: string;
+    etternavn: string;
+    fornavn: string;
+    fødselsdato: string;
+    mellomnavn?: string;
+};
+
+export type Søker = {
+    aktørId: string;
+    etternavn?: string;
+    fornavn?: string;
+    fødselsdato: string;
+    fødselsnummer: string;
+    mellomnavn?: string;
+};
+
+export type Land = {
+    landkode: string;
+    landnavn: string;
+};
+
+export type Regnskapsfører = {
+    navn?: string;
+    telefon?: string;
+};
+
+export type VarigEndring = {
+    dato: string;
+};
+
+export type Virksomhet = {
+    erNyoppstartet: boolean;
+    fiskerErPåBladB?: boolean;
+    fraOgMed: string;
+    harFlereAktiveVirksomheter: boolean;
+    navnPåVirksomheten: string;
+    næringsinntekt?: number;
+    næringstype: 'FISKE' | 'JORDBRUK_SKOGBRUK' | 'DAGMAMMA' | 'ANNEN';
+    organisasjonsnummer?: string;
+    registrertINorge: boolean;
+    registrertIUtlandet?: Land;
+    regnskapsfører?: null;
+    tilOgMed?: string;
+    varigEndring?: VarigEndring;
+    yrkesaktivSisteTreFerdigliknedeÅrene?: null;
+};
+
+export type YrkesaktivSisteTreFerdigliknedeArene = {
+    oppstartsdato?: string;
 };
 
 export type BarnDetaljer = {
@@ -36,28 +101,11 @@ export type BarnDetaljer = {
     årsakManglerIdentitetsnummer?: 'NYFØDT' | 'BARNET_BOR_I_UTLANDET' | 'ANNET';
 };
 
-export type BarnOppslag = {
-    aktørId: string;
-    etternavn: string;
-    fornavn: string;
-    fødselsdato: string;
-    mellomnavn?: string;
-};
-
-export type BarnOppslagListe = {
-    barn: BarnOppslag[];
-};
-
 export type Bosted = {
     fraOgMed: string;
     landkode: string;
     landnavn: string;
     tilOgMed: string;
-};
-
-export type Enkeltdag = {
-    dato: string;
-    tid: string;
 };
 
 export type EttersendingAvVedlegg = {
@@ -76,25 +124,6 @@ export type FerieuttakIPerioden = {
     skalTaUtFerieIPerioden: boolean;
 };
 
-export type FrilansOlp = {
-    arbeidsforhold?: ArbeidsforholdOlp;
-    harHattInntektSomFrilanser: boolean;
-    jobberFortsattSomFrilans: boolean;
-    sluttdato?: string;
-    startdato: string;
-};
-
-export type FrilansoppdragDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
-    offentligIdent?: string;
-    organisasjonsnummer?: string;
-    type: string;
-};
-
-export type JsonNode = unknown;
-
 export type Kurs = {
     enkeltdagEllerPeriode: 'ENKELTDAG' | 'PERIODE';
     kursdager?: KursDag[];
@@ -112,11 +141,6 @@ export type KursDag = {
 export type Kursholder = {
     navn: string;
     uuid?: string;
-};
-
-export type Land = {
-    landkode: string;
-    landnavn: string;
 };
 
 export type Medlemskap = {
@@ -160,59 +184,16 @@ export type OpptjeningIUtlandet = {
     tilOgMed: string;
 };
 
-export type OrganisasjonDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
-    organisasjonsnummer: string;
-};
-
-export type PrivatArbeidsgiverDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    offentligIdent: string;
-};
-
-export type ProblemDetail = {
-    detail?: string;
-    instance?: string;
-    properties?: {
-        [key: string]: unknown;
-    };
-    status?: number;
-    title?: string;
-    type?: string;
-};
-
-export type Regnskapsfører = {
-    navn?: string;
-    telefon?: string;
-};
-
 export type Reise = {
     reisedager?: string[];
     reisedagerBeskrivelse?: string;
     reiserUtenforKursdager: boolean;
 };
 
-export type SelvstendigNæringsdrivendeOlp = {
-    arbeidsforhold: ArbeidsforholdOlp;
-    virksomhet: Virksomhet;
-};
-
 export type StønadGodtgjørelse = {
     mottarStønadGodtgjørelse?: boolean;
     sluttdato?: string;
     startdato?: string;
-};
-
-export type Søker = {
-    aktørId: string;
-    etternavn?: string;
-    fornavn?: string;
-    fødselsdato: string;
-    fødselsnummer: string;
-    mellomnavn?: string;
 };
 
 export type UtenlandskNæring = {
@@ -237,11 +218,57 @@ export type UtenlandsoppholdIPerioden = {
     skalOppholdeSegIUtlandetIPerioden: boolean;
 };
 
-export type VarigEndring = {
-    dato: string;
+export type ArbeidIPeriode = {
+    enkeltdager: Enkeltdag[];
+    enkeltdagerFravær: Enkeltdag[];
+    jobberIPerioden: 'SOM_VANLIG' | 'REDUSERT' | 'HELT_FRAVÆR';
 };
 
-export type Virksomhet = {
+export type ArbeidsforholdOlp = {
+    arbeidIPeriode: ArbeidIPeriode;
+    jobberNormaltTimer: number;
+};
+
+export type ArbeidsgiverOlp = {
+    [key: string]: unknown;
+};
+
+export type Enkeltdag = {
+    dato: string;
+    tid: string;
+};
+
+export type FrilansOlp = {
+    arbeidsforhold?: ArbeidsforholdOlp;
+    harHattInntektSomFrilanser: boolean;
+    jobberFortsattSomFrilans: boolean;
+    sluttdato?: string;
+    startdato: string;
+};
+
+export type SelvstendigNæringsdrivendeOlp = {
+    arbeidsforhold: ArbeidsforholdOlp;
+    virksomhet: Virksomhet;
+};
+
+export type ProblemDetail = {
+    detail?: string;
+    instance?: string;
+    properties?: {
+        [key: string]: unknown;
+    };
+    status?: number;
+    title?: string;
+    type?: string;
+};
+
+export type VarigEndringWritable = {
+    dato: string;
+    forklaring?: string;
+    inntektEtterEndring?: number;
+};
+
+export type VirksomhetWritable = {
     erNyoppstartet: boolean;
     fiskerErPåBladB?: boolean;
     fraOgMed: string;
@@ -252,21 +279,10 @@ export type Virksomhet = {
     organisasjonsnummer?: string;
     registrertINorge: boolean;
     registrertIUtlandet?: Land;
-    regnskapsfører?: null;
+    regnskapsfører?: Regnskapsfører;
     tilOgMed?: string;
-    varigEndring?: VarigEndring;
-    yrkesaktivSisteTreFerdigliknedeÅrene?: null;
-};
-
-export type YrkesaktivSisteTreFerdigliknedeArene = {
-    oppstartsdato?: string;
-};
-
-export type ArbeidsgiverOlpWritable = {
-    arbeidsforhold?: ArbeidsforholdOlp;
-    erAnsatt?: boolean;
-    navn?: string;
-    organisasjonsnummer?: string;
+    varigEndring?: VarigEndringWritable;
+    yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
 };
 
 export type OpplæringspengerSøknadWritable = {
@@ -295,32 +311,16 @@ export type OpplæringspengerSøknadWritable = {
     vedlegg: string[];
 };
 
+export type ArbeidsgiverOlpWritable = {
+    arbeidsforhold?: ArbeidsforholdOlp;
+    erAnsatt?: boolean;
+    navn?: string;
+    organisasjonsnummer?: string;
+};
+
 export type SelvstendigNæringsdrivendeOlpWritable = {
     arbeidsforhold: ArbeidsforholdOlp;
     virksomhet: VirksomhetWritable;
-};
-
-export type VarigEndringWritable = {
-    dato: string;
-    forklaring?: string;
-    inntektEtterEndring?: number;
-};
-
-export type VirksomhetWritable = {
-    erNyoppstartet: boolean;
-    fiskerErPåBladB?: boolean;
-    fraOgMed: string;
-    harFlereAktiveVirksomheter: boolean;
-    navnPåVirksomheten: string;
-    næringsinntekt?: number;
-    næringstype: 'FISKE' | 'JORDBRUK_SKOGBRUK' | 'DAGMAMMA' | 'ANNEN';
-    organisasjonsnummer?: string;
-    registrertINorge: boolean;
-    registrertIUtlandet?: Land;
-    regnskapsfører?: Regnskapsfører;
-    tilOgMed?: string;
-    varigEndring?: VarigEndringWritable;
-    yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
 };
 
 export type DeleteMellomlagringData = {

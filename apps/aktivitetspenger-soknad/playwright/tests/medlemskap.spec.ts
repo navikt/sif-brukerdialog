@@ -8,6 +8,8 @@ import { testAccessibility } from '../utils/testAccessibility';
 const harBoddINorge = 'Har du bodd sammenhengende i Norge de 5 siste årene?';
 const harJobbetINorge = 'Har du jobbet sammenhengende i Norge de siste 5 årene?';
 const harJobbetUtenforNorge = 'Har du jobbet utenfor Norge de 5 siste årene?';
+const jobberINorgeHarJobbetUtenforNorge =
+    'Har du i tillegg til jobb i Norge også jobbet utenfor Norge de 5 siste årene?';
 
 const svar = async (page: Page, spørsmål: string | RegExp, s: 'Ja' | 'Nei') => {
     await page.getByRole('radiogroup', { name: spørsmål }).getByLabel(s, { exact: true }).check();
@@ -70,7 +72,7 @@ test('legger til og fjerner arbeidsperioder og viser den gjenværende perioden i
     await startSøknadTilMedlemskap(page);
     await svar(page, harBoddINorge, 'Nei');
     await svar(page, harJobbetINorge, 'Ja');
-    await svar(page, harJobbetUtenforNorge, 'Ja');
+    await svar(page, jobberINorgeHarJobbetUtenforNorge, 'Ja');
 
     await leggTilArbeidsperiode(page, 'Sverige', '01.01.2024', '31.01.2024');
     await expect(page.getByRole('button', { name: /Fjern.*Sverige/ })).toBeVisible();

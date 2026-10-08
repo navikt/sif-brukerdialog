@@ -17,7 +17,7 @@ Each configuration file corresponds to a specific API endpoint:
 - `openapi-ts.config-pleiepenger-livets-sluttfase.ts` - Pleiepenger livets sluttfase
 - `openapi-ts.config-pleiepenger-sykt-barn-endringsmelding.ts` - Pleiepenger sykt barn endringsmelding
 - `openapi-ts.config-pleiepenger-sykt-barn-soknad.ts` - Pleiepenger sykt barn søknad
-- `openapi-ts.config.ts` - Legacy configuration (full API)
+- `openapi-ts.config-felles.ts` - Felles endepunkter (oppslag, vedlegg, mellomlagring, validering), filtrert fra hele API-et (`default.json`). Eksporteres flatt fra pakkeroten, med egen `client`.
 
 ## Usage
 

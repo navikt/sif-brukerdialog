@@ -6,7 +6,7 @@ import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
 import { getMaybeEnv, isProd } from '@navikt/sif-common-env';
 import { ensureBaseNameForReactRouter, SoknadApplication } from '@navikt/sif-common-soknad-ds';
 import { DemoInfoAlert, DemoWatermark } from '@sif/soknad-ui';
-import { SkyraHandler } from '@sif/surveys';
+import { SkyraHandler, UxSignalsLoaderProvider } from '@sif/surveys';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import { Navigate, Route, Routes } from 'react-router-dom';
@@ -52,17 +52,19 @@ const App = () => (
                     },
                 }}
                 publicPath={PUBLIC_PATH}>
-                <SkyraHandler />
-                <Routes>
-                    <Route key="dev" path="/dev" element={<DevPage />} />,
-                    <Route
-                        key="root"
-                        index={true}
-                        path={SøknadRoutes.APP_ROOT}
-                        element={<Navigate to={SøknadRoutes.VELKOMMEN} replace={true} />}
-                    />
-                    <Route path={SøknadRoutes.INNLOGGET_ROOT} key="soknad" element={<Søknad />} />,
-                </Routes>
+                <UxSignalsLoaderProvider>
+                    <SkyraHandler />
+                    <Routes>
+                        <Route key="dev" path="/dev" element={<DevPage />} />,
+                        <Route
+                            key="root"
+                            index={true}
+                            path={SøknadRoutes.APP_ROOT}
+                            element={<Navigate to={SøknadRoutes.VELKOMMEN} replace={true} />}
+                        />
+                        <Route path={SøknadRoutes.INNLOGGET_ROOT} key="soknad" element={<Søknad />} />,
+                    </Routes>
+                </UxSignalsLoaderProvider>
             </SoknadApplication>
         </DemoWatermark>
     </Theme>

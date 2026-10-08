@@ -6,6 +6,7 @@ import { Skyra, SkyraSlug } from '@sif/surveys';
 import { useEffect } from 'react';
 
 import { appEnv } from '../../utils/appEnv';
+import UXEndringsmelding from '../../uxsignals/UXEndringsmelding';
 
 interface Props {
     onUnmount: () => void;
@@ -32,6 +33,7 @@ const KvitteringPage = ({ onUnmount }: Props) => {
                     </BodyShort>
                 </Kvittering>
                 <Skyra slug={SkyraSlug.endringsmelding_pleiepenger} />
+                <UXEndringsmelding />
             </VStack>
         </Page>
     );

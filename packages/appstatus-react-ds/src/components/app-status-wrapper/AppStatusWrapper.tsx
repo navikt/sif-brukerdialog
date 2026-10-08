@@ -4,13 +4,14 @@ import React from 'react';
 import useAppStatus from '../../hooks/useAppStatus';
 import { SanityConfig, Status } from '../../types';
 import { sanityConfigIsValid } from '../../utils';
-import StatusMessage from '../status-message/StatusMessage';
+import { AppStatusNotice, NoticeRenderers } from '../app-status-notice/AppStatusNotice';
 
 interface Props {
     applicationKey: string;
     sanityConfig: SanityConfig;
     contentRenderer: () => React.ReactNode;
     unavailableContentRenderer?: () => React.ReactNode;
+    noticeRenderers?: NoticeRenderers;
 }
 
 export const AppStatusWrapper = ({
@@ -18,8 +19,9 @@ export const AppStatusWrapper = ({
     contentRenderer,
     sanityConfig,
     unavailableContentRenderer,
+    noticeRenderers,
 }: Props) => {
-    const { status, message, isLoading } = useAppStatus(applicationKey, sanityConfig);
+    const { status, notice, isLoading } = useAppStatus(applicationKey, sanityConfig);
 
     const renderContent = () => {
         if (status === Status.unavailable && unavailableContentRenderer !== undefined) {
@@ -45,9 +47,9 @@ export const AppStatusWrapper = ({
         </div>
     ) : (
         <>
-            {message !== undefined && (
+            {notice !== undefined && (
                 <div style={{ maxWidth: '704px', margin: '1rem auto' }}>
-                    <StatusMessage message={message} />
+                    <AppStatusNotice notice={notice} renderers={noticeRenderers} />
                 </div>
             )}
             {renderContent()}

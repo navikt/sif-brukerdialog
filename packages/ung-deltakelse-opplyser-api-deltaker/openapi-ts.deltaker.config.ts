@@ -1,7 +1,14 @@
 import { defineConfig, type UserConfig } from '@hey-api/openapi-ts';
 
+import { createSchemaNameResolver } from '../../scripts/codegen/codegenUtils.js';
+
 export const createConfig = (): UserConfig => ({
     input: './openapi-spec.json',
+    parser: {
+        transforms: {
+            schemaName: createSchemaNameResolver('./openapi-spec.json'),
+        },
+    },
     output: {
         postProcess: ['prettier'],
         path: './src/deltaker/client',

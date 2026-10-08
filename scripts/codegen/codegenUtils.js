@@ -1,0 +1,226 @@
+/* eslint-disable no-undef */
+import { execSync } from 'child_process';
+import { mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { glob } from 'glob';
+import path from 'path';
+
+import { schemaNameOverrides } from './schemaNameOverrides.js';
+
+function sortKeysDeep(obj) {
+    if (Array.isArray(obj)) {
+        return obj.map(sortKeysDeep);
+    }
+    if (obj !== null && typeof obj === 'object') {
+        return Object.keys(obj)
+            .sort()
+            .reduce((acc, key) => {
+                acc[key] = sortKeysDeep(obj[key]);
+                return acc;
+            }, Object.create(null));
+    }
+    return obj;
+}
+
+export function parseCodegenEnv() {
+    const value = process.env.CODEGEN_ENV;
+    if (value === 'prod') return 'prod';
+    if (value === 'dev' || value === undefined) return 'dev';
+    throw new Error(`Invalid CODEGEN_ENV: '${value}'. Must be 'dev' or 'prod'.`);
+}
+
+export function getNavBaseUrl(env) {
+    return env === 'dev' ? 'intern.dev.nav.no' : 'intern.nav.no';
+}
+
+export async function fetchAndNormalizeSpec(url, outputPath) {
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`Failed to fetch spec ${url}: ${response.status} ${response.statusText}`);
+    }
+    const spec = await response.json();
+    const sorted = sortKeysDeep(spec);
+    mkdirSync(path.dirname(outputPath), { recursive: true });
+    writeFileSync(outputPath, JSON.stringify(sorted, null, 2) + '\n');
+    return true;
+}
+
+/**
+ * Lager en navnefunksjon til hey-api `parser.transforms.schemaName` som gjør fullt kvalifiserte
+ * Java-klassenavn (f.eks. `no.nav.k9.søknad.Søknad`) om til korte navn (`Søknad`).
+ *
+ * Kjente kollisjoner løses i den felles listen i scripts/codegen/schemaNameOverrides.js (FQN -> kort navn).
+ * Feiler hardt ved kollisjoner som ikke er håndtert, fordi hey-api ellers stille beholder FQN for den ene av dem.
+ *
+ * Kollisjonssjekken skjer når hey-api kaller funksjonen. Den kjøres etter `parser.filters`, så bare
+ * skjemaer som faktisk blir med i output, sjekkes. Kort navn avhenger kun av FQN, ikke av rekkefølge.
+ */
+export function createSchemaNameResolver(specLabel) {
+    const resolvedBy = new Map();
+    return (fqn) => {
+        const name = schemaNameOverrides[fqn] ?? fqn.split('.').pop();
+        const existing = resolvedBy.get(name);
+        if (existing && existing !== fqn) {
+            throw new Error(
+                `Navnekollisjon i ${specLabel}: "${name}" brukes av ${existing} og ${fqn} – legg til i scripts/codegen/schemaNameOverrides.js`,
+            );
+        }
+        resolvedBy.set(name, fqn);
+        return name;
+    };
+}
+
+const PATTERNS = {
+    removeZodRegex: {
+        pattern: /\.regex\([^)]*\)/g,
+        replacement: '',
+        description: 'regex patterns removed',
+    },
+
+    /**
+     * Fjerner " | null" fra genererte typedefinisjoner (kun types.gen.ts).
+     * null konverteres til undefined av convertNullToUndefined-interceptoren i initApiClient,
+     * så konsumentkode mottar aldri null. Zod-schemas beholder .nullish() for å
+     * akseptere null fra rå API-respons (f.eks. dine-pleiepenger server-side).
+     */
+    removeNullUnion: {
+        pattern: / \| null\b/g,
+        replacement: '',
+        filePattern: /types\.gen\.ts$/,
+        description: '| null removed from types (null handled by convertNullToUndefined interceptor)',
+    },
+
+    /** Fjerner hardkodet URL fra baseURL-typen, beholder kun (string & {}) */
+    removeBaseUrlLiteral: {
+        pattern: /baseURL: '[^']+' \| \(string & \{\}\);/g,
+        replacement: 'baseURL: string & {};',
+        description: 'baseURL URL literal removed',
+    },
+
+    /**
+     * Erstatter hardkodet baseURL i createConfig()-kallet i client.gen.ts med en placeholder.
+     * Den faktiske baseURL settes av initApiClient ved oppstart av appen.
+     */
+    replaceClientBaseUrl: {
+        pattern: /baseURL: '[^']+'/g,
+        replacement: "baseURL: 'SET_BY_INIT_API_CLIENT'",
+        filePattern: /client\.gen\.ts$/,
+        description: 'hardcoded baseURL in createConfig replaced with SET_BY_INIT_API_CLIENT placeholder',
+    },
+
+    /** Erstatter @ts-expect-error med @ts-ignore */
+    fixTsExpectError: {
+        pattern: /\/\/\s*@ts-expect-error/g,
+        replacement: '// @ts-ignore',
+        description: '@ts-expect-error replaced with @ts-ignore',
+    },
+
+    /** Utvider z.iso.datetime() til å støtte local fordi vi ikke alltid får dette fra backend */
+    fixIsoDateTimeAllowLocal: {
+        pattern: /z\.iso\.datetime\(\)/g,
+        replacement: 'z.iso.datetime({ local: true })',
+        description: 'z.iso.datetime() expanded to allow local',
+    },
+
+    /** Fjerner @ts-expect-error som står rett etter en asynkron arrow function
+     * Denne har ingen effekt hvis fixTsExpectError også kjøres
+     */
+    fixTsExpectErrorAfterArrowFunction: {
+        pattern: /(\s*const\s+\w+\s*:\s*[^=]+=\s*async\s*\([^)]*\)\s*=>\s*{\s*)\n\s*\/\/ @ts-expect-error\s*\n/g,
+        replacement: '$1\n',
+        description: '@ts-expect-error after arrow function removed',
+    },
+
+    /** Fikser feil Zod-type for vedlegg-felter: format: binary genereres som z.string()
+     * men skal være z.instanceof(Blob) for å ikke feile synkront ved filopplasting
+     */
+    fixVedleggBlobType: {
+        pattern: /vedlegg: z\.string\(\)/g,
+        replacement: 'vedlegg: z.instanceof(Blob)',
+        description: 'vedlegg z.string() fixed to z.instanceof(Blob)',
+    },
+};
+
+export function fixGeneratedCode(globPath, extraPatterns = {}) {
+    const cwd = process.cwd();
+    const patterns = { ...PATTERNS, ...extraPatterns };
+
+    const globPattern = `${globPath}/**/*.gen.ts`;
+    const allFiles = glob.sync(globPattern, { cwd });
+
+    let totalFilesProcessed = 0;
+    const patternStats = {};
+
+    Object.keys(patterns).forEach((key) => {
+        patternStats[key] = 0;
+    });
+
+    allFiles.forEach((file) => {
+        const filePath = path.resolve(cwd, file);
+        let content = readFileSync(filePath, 'utf8');
+        let hasChanges = false;
+
+        Object.entries(patterns).forEach(([patternKey, config]) => {
+            const { pattern, replacement, filePattern } = config;
+
+            if (filePattern && !filePattern.test(file)) {
+                return;
+            }
+
+            const matches = content.match(pattern);
+
+            if (matches) {
+                content = content.replace(pattern, replacement);
+                const count = matches.length;
+                patternStats[patternKey] += count;
+                hasChanges = true;
+            }
+        });
+
+        if (hasChanges) {
+            writeFileSync(filePath, content);
+            totalFilesProcessed++;
+        }
+    });
+
+    const summaryParts = [];
+    Object.entries(patternStats).forEach(([key, count]) => {
+        if (count > 0) {
+            summaryParts.push(`${count} ${patterns[key].description}`);
+        }
+    });
+
+    const summary = {
+        totalFilesProcessed,
+        patternStats,
+        summaryParts,
+    };
+
+    return summary;
+}
+
+export function formatGeneratedFiles(globPath) {
+    const cwd = process.cwd();
+
+    const globPattern = `${globPath}/**/*.ts`;
+    const files = glob.sync(globPattern, { cwd });
+
+    if (files.length === 0) {
+        return;
+    }
+
+    execSync(`npx prettier --write ${files.map((f) => `"${f}"`).join(' ')}`, {
+        stdio: 'pipe',
+        cwd,
+    });
+
+    execSync(`pnpm lint:fix`, {
+        stdio: 'pipe',
+        cwd,
+    });
+}
+
+export function fixAndFormatGeneratedCode(globPath, { patterns: extraPatterns = {} } = {}) {
+    const summary = fixGeneratedCode(globPath, extraPatterns);
+    formatGeneratedFiles(globPath);
+    return summary;
+}

@@ -2,6 +2,36 @@
 
 import * as z from 'zod';
 
+export const zJsonNode = z.unknown();
+
+export const zFrilansoppdragDto = z.object({
+    ansattFom: z.iso.date().nullish(),
+    ansattTom: z.iso.date().nullish(),
+    navn: z.string().nullish(),
+    offentligIdent: z.string().nullish(),
+    organisasjonsnummer: z.string().nullish(),
+    type: z.string(),
+});
+
+export const zOrganisasjonDto = z.object({
+    ansattFom: z.iso.date().nullish(),
+    ansattTom: z.iso.date().nullish(),
+    navn: z.string().nullish(),
+    organisasjonsnummer: z.string(),
+});
+
+export const zPrivatArbeidsgiverDto = z.object({
+    ansattFom: z.iso.date().nullish(),
+    ansattTom: z.iso.date().nullish(),
+    offentligIdent: z.string(),
+});
+
+export const zArbeidsgivereDto = z.object({
+    frilansoppdrag: z.array(zFrilansoppdragDto).nullish(),
+    organisasjoner: z.array(zOrganisasjonDto),
+    privateArbeidsgivere: z.array(zPrivatArbeidsgiverDto).nullish(),
+});
+
 export const zBarnOppslag = z.object({
     aktørId: z.string(),
     etternavn: z.string(),
@@ -14,22 +44,13 @@ export const zBarnOppslagListe = z.object({
     barn: z.array(zBarnOppslag),
 });
 
-export const zFrilansoppdragDto = z.object({
-    ansattFom: z.iso.date().nullish(),
-    ansattTom: z.iso.date().nullish(),
-    navn: z.string().nullish(),
-    offentligIdent: z.string().nullish(),
-    organisasjonsnummer: z.string().nullish(),
-    type: z.string(),
-});
-
-export const zJsonNode = z.unknown();
-
-export const zOrganisasjonDto = z.object({
-    ansattFom: z.iso.date().nullish(),
-    ansattTom: z.iso.date().nullish(),
-    navn: z.string().nullish(),
-    organisasjonsnummer: z.string(),
+export const zSøker = z.object({
+    aktørId: z.string(),
+    etternavn: z.string().nullish(),
+    fornavn: z.string().nullish(),
+    fødselsdato: z.iso.date(),
+    fødselsnummer: z.string(),
+    mellomnavn: z.string().nullish(),
 });
 
 export const zPleietrengende = z.object({
@@ -60,18 +81,6 @@ export const zEttersendelse = z.object({
     vedlegg: z.array(z.string()).min(1),
 });
 
-export const zPrivatArbeidsgiverDto = z.object({
-    ansattFom: z.iso.date().nullish(),
-    ansattTom: z.iso.date().nullish(),
-    offentligIdent: z.string(),
-});
-
-export const zArbeidsgivereDto = z.object({
-    frilansoppdrag: z.array(zFrilansoppdragDto).nullish(),
-    organisasjoner: z.array(zOrganisasjonDto),
-    privateArbeidsgivere: z.array(zPrivatArbeidsgiverDto).nullish(),
-});
-
 export const zProblemDetail = z.object({
     detail: z.string().optional(),
     instance: z.url().optional(),
@@ -83,15 +92,6 @@ export const zProblemDetail = z.object({
         .optional(),
     title: z.string().optional(),
     type: z.url().optional(),
-});
-
-export const zSøker = z.object({
-    aktørId: z.string(),
-    etternavn: z.string().nullish(),
-    fornavn: z.string().nullish(),
-    fødselsdato: z.iso.date(),
-    fødselsnummer: z.string(),
-    mellomnavn: z.string().nullish(),
 });
 
 export const zInnsendingEttersendelseBody = zEttersendelse;

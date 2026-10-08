@@ -1,7 +1,6 @@
 import './app.css';
 
 import { AktivitetspengerSoknadApp } from '@navikt/sif-app-register';
-import { isProd } from '@navikt/sif-common-env';
 import { TilgjengeligSøknadType } from '@navikt/ung-brukerdialog-api';
 import { SøknadAppProvider } from '@sif/soknad-app';
 import { InitialDataErrorPage, LoadingPage } from '@sif/soknad-ui';
@@ -65,16 +64,12 @@ export const App = () => {
         <SøknadAppProvider
             applicationKey={AktivitetspengerSoknadApp.key}
             useAnalytics={env.SIF_PUBLIC_USE_ANALYTICS === 'true'}
-            appStatusConfig={
-                isProd()
-                    ? {
-                          sanityConfig: {
-                              projectId: env.SIF_PUBLIC_APPSTATUS_PROJECT_ID,
-                              dataset: env.SIF_PUBLIC_APPSTATUS_DATASET,
-                          },
-                      }
-                    : undefined
-            }
+            appStatusConfig={{
+                sanityConfig: {
+                    projectId: env.SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+                    dataset: env.SIF_PUBLIC_APPSTATUS_DATASET,
+                },
+            }}
             intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
             <AppRouter>
                 <SøknadDataWrapper />

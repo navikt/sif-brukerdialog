@@ -9,4 +9,8 @@ export default [
             },
         },
     },
+    {
+        // Legacy: fjern når pakken er migrert til v2
+        rules: { '@typescript-eslint/switch-exhaustiveness-check': 'off' },
+    },
 ];

@@ -1,9 +1,9 @@
-import { AppStatusWrapper, SanityConfig } from '@navikt/appstatus-react-ds';
+import { AppStatusWrapper, NoticeRenderers, SanityConfig } from '@navikt/appstatus-react-ds';
+import { AnalyticsProvider } from '@sif/analytics';
 import { ApplicationPage, ApplicationUnavailableContent, DevBranchInfo } from '@sif/soknad-ui';
 import { UxSignalsLoaderProvider } from '@sif/surveys';
 import { PropsWithChildren } from 'react';
 
-import { AnalyticsProvider } from '../analytics/analytics';
 import { AppErrorBoundary } from './AppErrorBoundary';
 import { AppIntlConfig, AppIntlProvider } from './AppIntlProvider';
 import { SifQueryClientProvider } from './SifQueryClientProvider';
@@ -12,6 +12,8 @@ export type { SanityConfig };
 
 interface AppStatusConfig {
     sanityConfig: SanityConfig;
+    /** Overstyrer standardtekster for forhåndsdefinerte meldinger */
+    noticeRenderers?: NoticeRenderers;
 }
 
 /**
@@ -53,6 +55,7 @@ export const SøknadAppProvider = ({
                                 <AppStatusWrapper
                                     applicationKey={applicationKey}
                                     sanityConfig={appStatusConfig.sanityConfig}
+                                    noticeRenderers={appStatusConfig.noticeRenderers}
                                     contentRenderer={() => children}
                                     unavailableContentRenderer={() => (
                                         <ApplicationPage applicationTitle="Tjeneste ikke tilgjengelig" headerLevel="1">

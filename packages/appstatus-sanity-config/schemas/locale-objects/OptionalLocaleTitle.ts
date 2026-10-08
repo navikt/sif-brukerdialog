@@ -1,6 +1,8 @@
+import { defineField, defineType } from 'sanity';
+
 import supportedLocales from '../locales';
 
-const OptionalLocaleTitle = {
+const OptionalLocaleTitle = defineType({
     name: 'optionalLocaleTitle',
     type: 'object',
     fieldsets: [
@@ -10,12 +12,14 @@ const OptionalLocaleTitle = {
             options: { collapsible: true },
         },
     ],
-    fields: supportedLocales.map((lang) => ({
-        title: lang.title,
-        name: lang.id,
-        type: 'string',
-        fieldset: 'translations',
-    })),
-};
+    fields: supportedLocales.map((lang) =>
+        defineField({
+            title: lang.title,
+            name: lang.id,
+            type: 'string',
+            fieldset: 'translations',
+        }),
+    ),
+});
 
 export default OptionalLocaleTitle;

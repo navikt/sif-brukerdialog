@@ -1,5 +1,3 @@
-import React from 'react';
-
 export type StatusIconStatusKey = 'suksess' | 'advarsel' | 'feil';
 
 export interface OwnProps {
@@ -63,7 +61,7 @@ const OkSirkelFyll = (props: Props) => {
     );
 };
 
-const StatusIkon: React.StatelessComponent<Props> = (props: Props) => {
+const StatusIkon = (props: Props) => {
     const { size = 24 } = props;
     switch (props.status) {
         case 'suksess':

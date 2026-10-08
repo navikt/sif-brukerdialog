@@ -1,15 +1,14 @@
 import { SifCommonLenker, sifCommonLenkerBokmål, sifCommonLenkerNynorsk } from '@navikt/sif-common-soknad-ds';
 
 const lenkerBokmål = {
-    ettersend:
-        'https://www.nav.no/soknader/nb/person/familie/pleiepenger-og-opplaringspenger/NAV%2009-11.05/ettersendelse',
-    søknadPåPapir: 'https://www.nav.no/soknader#pleiepenger-i-livets-sluttfase',
+    ettersend: 'https://www.nav.no/start/ettersend-soknad-pleiepenger-sluttfase',
+    søknadPåPapir: 'https://www.nav.no/start/soknad-pleiepenger-sluttfase',
 };
 
 type Lenker = typeof lenkerBokmål;
 
 const lenkerNynorsk: Partial<Lenker> = {
-    søknadPåPapir: 'https://www.nav.no/soknader/nn#pleiepengar-i-livets-sluttfase',
+    søknadPåPapir: 'https://www.nav.no/start/soknad-pleiepenger-sluttfase/nn',
 };
 
 const getLenker = (locale?: string): Lenker & SifCommonLenker => {

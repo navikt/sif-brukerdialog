@@ -1,5 +1,12 @@
 # @navikt/omsorgspengesoknad-v2
 
+## 0.1.3
+
+### Patch Changes
+
+- @sif/soknad-app@0.2.3
+    - @sif/soknad-forms@0.1.4
+
 ## 0.1.2
 
 ### Patch Changes

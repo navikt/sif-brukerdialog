@@ -1,4 +1,4 @@
-import { UngdomsytelseOppgavebekreftelse } from '@navikt/k9-brukerdialog-prosessering-api';
+import type { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { delay, http, HttpResponse } from 'msw';
 
 import { ScenarioType } from '../scenarios/types';
@@ -58,7 +58,7 @@ export const handlers = [
         await delay(2500);
         const text = await request.text();
         try {
-            const parsed: UngdomsytelseOppgavebekreftelse = JSON.parse(text);
+            const parsed: ungdomsytelse.UngdomsytelseOppgavebekreftelse = JSON.parse(text);
             mockUtils.setOppgavebekreftelse(parsed.oppgave.oppgaveReferanse, parsed);
         } catch (e) {
             // eslint-disable-next-line no-console

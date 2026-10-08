@@ -1,6 +1,8 @@
+import { defineField, defineType } from 'sanity';
+
 import supportedLocales from '../locales';
 
-const LocaleSimpleText = {
+const LocaleSimpleText = defineType({
     name: 'localeSimpleText',
     title: 'Locale simple text',
     type: 'object',
@@ -11,13 +13,15 @@ const LocaleSimpleText = {
             options: { collapsible: true },
         },
     ],
-    fields: supportedLocales.map((lang) => ({
-        title: lang.title,
-        name: lang.id,
-        type: 'text',
-        rows: 5,
-        fieldset: lang.isDefault ? null : 'translations',
-    })),
-};
+    fields: supportedLocales.map((lang) =>
+        defineField({
+            title: lang.title,
+            name: lang.id,
+            type: 'text',
+            rows: 5,
+            fieldset: lang.isDefault ? undefined : 'translations',
+        }),
+    ),
+});
 
 export default LocaleSimpleText;

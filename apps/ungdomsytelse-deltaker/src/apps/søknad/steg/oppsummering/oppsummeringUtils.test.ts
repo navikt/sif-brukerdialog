@@ -1,4 +1,4 @@
-import { KontonummerInfo } from '@navikt/k9-brukerdialog-prosessering-api';
+import type { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 import { ISODate } from '@sif/utils';
@@ -89,7 +89,7 @@ describe('buildSøknadFromSvar', () => {
             kontonummerInfo,
         });
 
-        const kontonummerApiInfo: KontonummerInfo = {
+        const kontonummerApiInfo: ungdomsytelse.KontonummerInfo = {
             harKontonummer: HarKontonummerEnum.JA,
             kontonummerErRiktig: true,
             kontonummerFraRegister: '12345678901',

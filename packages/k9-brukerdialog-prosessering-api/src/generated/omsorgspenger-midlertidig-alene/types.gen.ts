@@ -4,39 +4,12 @@ export type ClientOptions = {
     baseURL: string & {};
 };
 
-export type AnnenForelder = {
-    fnr: string;
-    navn: string;
-    periodeFraOgMed: string;
-    periodeOver6Måneder?: boolean;
-    periodeTilOgMed?: string;
-    situasjon: 'INNLAGT_I_HELSEINSTITUSJON' | 'UTØVER_VERNEPLIKT' | 'FENGSEL' | 'SYKDOM' | 'ANNET';
-    situasjonBeskrivelse?: string;
-};
+export type JsonNode = unknown;
 
 export type ArbeidsgivereDto = {
     frilansoppdrag?: FrilansoppdragDto[];
     organisasjoner: OrganisasjonDto[];
     privateArbeidsgivere?: PrivatArbeidsgiverDto[];
-};
-
-export type Barn = {
-    aktørId?: string;
-    fødselsdato?: string;
-    navn: string;
-    norskIdentifikator?: string;
-};
-
-export type BarnOppslag = {
-    aktørId: string;
-    etternavn: string;
-    fornavn: string;
-    fødselsdato: string;
-    mellomnavn?: string;
-};
-
-export type BarnOppslagListe = {
-    barn: BarnOppslag[];
 };
 
 export type FrilansoppdragDto = {
@@ -46,19 +19,6 @@ export type FrilansoppdragDto = {
     offentligIdent?: string;
     organisasjonsnummer?: string;
     type: string;
-};
-
-export type JsonNode = unknown;
-
-export type OmsorgspengerMidlertidigAleneSøknad = {
-    annenForelder: AnnenForelder;
-    barn: Barn[];
-    dataBruktTilUtledningAnnetData?: string;
-    harBekreftetOpplysninger: boolean;
-    harForståttRettigheterOgPlikter: boolean;
-    id: string;
-    språk: string;
-    søkerNorskIdent?: string;
 };
 
 export type OrganisasjonDto = {
@@ -74,15 +34,16 @@ export type PrivatArbeidsgiverDto = {
     offentligIdent: string;
 };
 
-export type ProblemDetail = {
-    detail?: string;
-    instance?: string;
-    properties?: {
-        [key: string]: unknown;
-    };
-    status?: number;
-    title?: string;
-    type?: string;
+export type BarnOppslagListe = {
+    barn: BarnOppslag[];
+};
+
+export type BarnOppslag = {
+    aktørId: string;
+    etternavn: string;
+    fornavn: string;
+    fødselsdato: string;
+    mellomnavn?: string;
 };
 
 export type Søker = {
@@ -92,6 +53,45 @@ export type Søker = {
     fødselsdato: string;
     fødselsnummer: string;
     mellomnavn?: string;
+};
+
+export type Barn = {
+    aktørId?: string;
+    fødselsdato?: string;
+    navn: string;
+    norskIdentifikator?: string;
+};
+
+export type AnnenForelder = {
+    fnr: string;
+    navn: string;
+    periodeFraOgMed: string;
+    periodeOver6Måneder?: boolean;
+    periodeTilOgMed?: string;
+    situasjon: 'INNLAGT_I_HELSEINSTITUSJON' | 'UTØVER_VERNEPLIKT' | 'FENGSEL' | 'SYKDOM' | 'ANNET';
+    situasjonBeskrivelse?: string;
+};
+
+export type OmsorgspengerMidlertidigAleneSøknad = {
+    annenForelder: AnnenForelder;
+    barn: Barn[];
+    dataBruktTilUtledningAnnetData?: string;
+    harBekreftetOpplysninger: boolean;
+    harForståttRettigheterOgPlikter: boolean;
+    id: string;
+    språk: string;
+    søkerNorskIdent?: string;
+};
+
+export type ProblemDetail = {
+    detail?: string;
+    instance?: string;
+    properties?: {
+        [key: string]: unknown;
+    };
+    status?: number;
+    title?: string;
+    type?: string;
 };
 
 export type DeleteMellomlagringData = {

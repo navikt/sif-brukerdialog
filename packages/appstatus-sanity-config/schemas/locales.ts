@@ -1,6 +1,12 @@
 export const defaultLocale = 'nb';
 
-const supportedLocales = [
+interface SupportedLocale {
+    id: string;
+    title: string;
+    isDefault?: boolean;
+}
+
+const supportedLocales: SupportedLocale[] = [
     { id: 'nb', title: 'Bokmål', isDefault: true },
     { id: 'nn', title: 'Nynorsk' },
 ];

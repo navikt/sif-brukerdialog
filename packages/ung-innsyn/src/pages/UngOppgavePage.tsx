@@ -1,5 +1,7 @@
 import { Oppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
+import { useEffect } from 'react';
 
+import { OppgaveBesvartMetadata, useOppgaveAnalytics } from '../analytics/oppgaveAnalytics';
 import { useUngInnsynIntl } from '../i18n';
 import { AndreLivsoppholdsytelserOppgavePanel } from '../modules/oppgavepaneler/andre-livsoppholdsytelser/AndreLivsoppholdsytelserOppgavePanel';
 import { AvvikRegisterinntektOppgavePanel } from '../modules/oppgavepaneler/avvik-registerinntekt/AvvikRegisterinntektOppgavePanel';
@@ -55,8 +57,24 @@ interface Props {
 export const UngOppgavePage = (props: Props) => {
     const { navn, oppgave, applikasjonTittel, onCancel, onSuccess, dokumentarkivUrl } = props;
     const intl = useUngInnsynIntl();
+    const { logOppgaveVist, logOppgaveBesvart, logOppgaveAvbrutt } = useOppgaveAnalytics();
+
+    useEffect(() => {
+        logOppgaveVist(oppgave.parsedOppgavetype, oppgave.status);
+    }, [oppgave.oppgaveReferanse]);
+
+    const handleCancel = () => {
+        logOppgaveAvbrutt(oppgave.parsedOppgavetype);
+        onCancel();
+    };
+
+    const handleSuccess = (metadata?: OppgaveBesvartMetadata) => {
+        logOppgaveBesvart(oppgave.parsedOppgavetype, metadata);
+        onSuccess?.();
+    };
+
     return (
-        <OppgavePageContext.Provider value={{ onCancel, onSuccess }}>
+        <OppgavePageContext.Provider value={{ onCancel: handleCancel, onSuccess: handleSuccess }}>
             <UngInnsynPage documentTitle={getOppgaveDokumentTittel(applikasjonTittel, oppgave, intl)}>
                 {getOppgavePageComponent(navn, oppgave, dokumentarkivUrl)}
             </UngInnsynPage>

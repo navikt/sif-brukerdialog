@@ -17,6 +17,8 @@ export const medlemskapStegMessages_nn: Record<keyof typeof medlemskapStegMessag
     'medlemskapSteg.spørsmål.ytelserINorge.text':
         'Viss du har fått ytingar frå norske styresmakter som skal erstatte inntekt, til dømes dagpengar, sjukepengar og foreldrepengar, svarer du «Ja» sidan det òg blir rekna som jobb.',
     'medlemskapSteg.spørsmål.harJobbetUtenforNorge': 'Har du jobba utanfor Noreg dei 5 siste åra?',
+    'medlemskapSteg.spørsmål.jobbetINorge.harJobbetUtenforNorge':
+        'Har du i tillegg til jobb i Noreg også jobba utanfor Noreg dei 5 siste åra?',
     'medlemskapSteg.spørsmål.harJobbetUtenforNorge.readmore.text':
         'Å ha «jobba utanfor Noreg» tyder at du har hatt ein jobb med inntekt i eit anna land eller fått ytingar frå styresmaktene i eit anna land som skal erstatte inntekt.',
     'medlemskapSteg.bosteder.tittel': 'Utanlandsopphald dei siste 5 åra',

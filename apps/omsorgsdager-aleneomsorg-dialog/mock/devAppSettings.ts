@@ -6,7 +6,7 @@ export const getDevAppSettings = () => ({
     GITHUB_REF_NAME: 'main',
     NAIS_FRONTEND_TELEMETRY_COLLECTOR_URL: '',
 
-    SIF_PUBLIC_APPSTATUS_DATASET: 'staging',
+    SIF_PUBLIC_APPSTATUS_DATASET: 'off',
     SIF_PUBLIC_APPSTATUS_PROJECT_ID: 'ryujtq87',
     SIF_PUBLIC_DEKORATOR_URL:
         'https://dekoratoren.ekstern.dev.nav.no/?simple=true&chatbot=false&urlLookupTable=false&logoutUrl=https://omsorgsdager-aleneomsorg-dialog.intern.dev.nav.no/oauth2/logout&redirectToApp=true',

@@ -4,35 +4,7 @@ export type ClientOptions = {
     baseURL: string & {};
 };
 
-export type ArbeidIPeriode = {
-    redusertArbeid?: ArbeidsRedusert;
-    type: 'ARBEIDER_VANLIG' | 'ARBEIDER_REDUSERT' | 'ARBEIDER_IKKE' | 'IKKE_BESVART';
-};
-
-export type ArbeidsRedusert = {
-    arbeidsuker?: ArbeidsUke[];
-    prosentAvNormalt?: number;
-    timerPerUke?: string;
-    type: 'PROSENT_AV_NORMALT' | 'TIMER_I_SNITT_PER_UKE' | 'ULIKE_UKER_TIMER';
-};
-
-export type ArbeidsUke = {
-    periode: Periode;
-    timer: string;
-};
-
-export type Arbeidsforhold = {
-    arbeidIPeriode: ArbeidIPeriode;
-    normalarbeidstid: NormalArbeidstid;
-};
-
-export type Arbeidsgiver = {
-    arbeidsforhold?: Arbeidsforhold;
-    erAnsatt: boolean;
-    navn: string;
-    organisasjonsnummer: string;
-    sluttetFørSøknadsperiode?: boolean;
-};
+export type JsonNode = unknown;
 
 export type ArbeidsgivereDto = {
     frilansoppdrag?: FrilansoppdragDto[];
@@ -40,12 +12,30 @@ export type ArbeidsgivereDto = {
     privateArbeidsgivere?: PrivatArbeidsgiverDto[];
 };
 
-export type BarnDetaljer = {
-    aktørId?: string;
-    fødselsdato?: string;
-    fødselsnummer?: string;
-    navn: string;
-    årsakManglerIdentitetsnummer?: 'NYFØDT' | 'BARNET_BOR_I_UTLANDET' | 'ANNET';
+export type FrilansoppdragDto = {
+    ansattFom?: string;
+    ansattTom?: string;
+    navn?: string;
+    offentligIdent?: string;
+    organisasjonsnummer?: string;
+    type: string;
+};
+
+export type OrganisasjonDto = {
+    ansattFom?: string;
+    ansattTom?: string;
+    navn?: string;
+    organisasjonsnummer: string;
+};
+
+export type PrivatArbeidsgiverDto = {
+    ansattFom?: string;
+    ansattTom?: string;
+    offentligIdent: string;
+};
+
+export type BarnOppslagListe = {
+    barn: BarnOppslag[];
 };
 
 export type BarnOppslag = {
@@ -56,8 +46,64 @@ export type BarnOppslag = {
     mellomnavn?: string;
 };
 
-export type BarnOppslagListe = {
-    barn: BarnOppslag[];
+export type Søker = {
+    aktørId: string;
+    etternavn?: string;
+    fornavn?: string;
+    fødselsdato: string;
+    fødselsnummer: string;
+    mellomnavn?: string;
+};
+
+export type Land = {
+    landkode: string;
+    landnavn: string;
+};
+
+export type Regnskapsfører = {
+    navn?: string;
+    telefon?: string;
+};
+
+export type VarigEndring = {
+    dato: string;
+};
+
+export type Virksomhet = {
+    erNyoppstartet: boolean;
+    fiskerErPåBladB?: boolean;
+    fraOgMed: string;
+    harFlereAktiveVirksomheter: boolean;
+    navnPåVirksomheten: string;
+    næringsinntekt?: number;
+    næringstype: 'FISKE' | 'JORDBRUK_SKOGBRUK' | 'DAGMAMMA' | 'ANNEN';
+    organisasjonsnummer?: string;
+    registrertINorge: boolean;
+    registrertIUtlandet?: Land;
+    regnskapsfører?: null;
+    tilOgMed?: string;
+    varigEndring?: VarigEndring;
+    yrkesaktivSisteTreFerdigliknedeÅrene?: null;
+};
+
+export type YrkesaktivSisteTreFerdigliknedeArene = {
+    oppstartsdato?: string;
+};
+
+export type Arbeidsgiver = {
+    arbeidsforhold?: Arbeidsforhold;
+    erAnsatt: boolean;
+    navn: string;
+    organisasjonsnummer: string;
+    sluttetFørSøknadsperiode?: boolean;
+};
+
+export type BarnDetaljer = {
+    aktørId?: string;
+    fødselsdato?: string;
+    fødselsnummer?: string;
+    navn: string;
+    årsakManglerIdentitetsnummer?: 'NYFØDT' | 'BARNET_BOR_I_UTLANDET' | 'ANNET';
 };
 
 export type Beredskap = {
@@ -87,28 +133,6 @@ export type FerieuttakIPerioden = {
     skalTaUtFerieIPerioden: boolean;
 };
 
-export type Fosterhjemgodtgjørelse = {
-    mottarFosterhjemsgodtgjørelse: boolean;
-    type: 'MOTTAR_IKKE' | 'MOTTAR_FRIKJØPT' | 'MOTTAR_I_DELER_AV_PERIODEN' | 'MOTTAR_I_HELE_PERIODEN';
-};
-
-export type FosterhjemsgodtgjørelseFrikjøpt = Omit<Fosterhjemgodtgjørelse, 'type'> & {
-    erFrikjøptFraJobb: boolean;
-    frikjøptBeskrivelse: string;
-    type: 'FosterhjemsgodtgjørelseFrikjøpt';
-};
-
-export type FosterhjemsgodtgjørelseIkkeFrikjøpt = Omit<Fosterhjemgodtgjørelse, 'type'> & {
-    erFrikjøptFraJobb: boolean;
-    sluttdato?: string;
-    startdato?: string;
-    type: 'FosterhjemsgodtgjørelseIkkeFrikjøpt';
-};
-
-export type FosterhjemsgodtgjørelseMottarIkke = Omit<Fosterhjemgodtgjørelse, 'type'> & {
-    type: 'FosterhjemsgodtgjørelseMottarIkke';
-};
-
 export type Frilans = {
     arbeidsforhold?: Arbeidsforhold;
     harInntektSomFrilanser: boolean;
@@ -118,22 +142,6 @@ export type Frilans = {
     startdato?: string;
     startetFørSisteTreHeleMåneder?: boolean;
     type?: 'FRILANS' | 'FRILANS_HONORAR' | 'HONORAR';
-};
-
-export type FrilansoppdragDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
-    offentligIdent?: string;
-    organisasjonsnummer?: string;
-    type: string;
-};
-
-export type JsonNode = unknown;
-
-export type Land = {
-    landkode: string;
-    landnavn: string;
 };
 
 export type Medlemskap = {
@@ -146,31 +154,6 @@ export type Medlemskap = {
 export type Nattevåk = {
     harNattevåk: boolean;
     tilleggsinformasjon?: string;
-};
-
-export type NormalArbeidstid = {
-    timerPerUkeISnitt: string;
-};
-
-export type Omsorgsstønad = {
-    mottarOmsorgsstønad: boolean;
-    type: 'MOTTAR_IKKE' | 'MOTTAR_I_DELER_AV_PERIODEN' | 'MOTTAR_I_HELE_PERIODEN';
-};
-
-export type OmsorgsstønadMottarDelerAvPerioden = Omit<Omsorgsstønad, 'type'> & {
-    antallTimerIUken: string;
-    sluttdato?: string;
-    startdato?: string;
-    type: 'OmsorgsstønadMottarDelerAvPerioden';
-};
-
-export type OmsorgsstønadMottarHelePerioden = Omit<Omsorgsstønad, 'type'> & {
-    antallTimerIUken: string;
-    type: 'OmsorgsstønadMottarHelePerioden';
-};
-
-export type OmsorgsstønadMottarIkke = Omit<Omsorgsstønad, 'type'> & {
-    type: 'OmsorgsstønadMottarIkke';
 };
 
 export type Omsorgstilbud = {
@@ -187,13 +170,6 @@ export type OpptjeningIUtlandet = {
     navn: string;
     opptjeningType: 'ARBEIDSTAKER' | 'FRILANSER';
     tilOgMed: string;
-};
-
-export type OrganisasjonDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
-    organisasjonsnummer: string;
 };
 
 export type Periode = {
@@ -247,28 +223,6 @@ export type PleiepengerSyktBarnSøknad = {
     vedlegg: string[];
 };
 
-export type PrivatArbeidsgiverDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    offentligIdent: string;
-};
-
-export type ProblemDetail = {
-    detail?: string;
-    instance?: string;
-    properties?: {
-        [key: string]: unknown;
-    };
-    status?: number;
-    title?: string;
-    type?: string;
-};
-
-export type Regnskapsfører = {
-    navn?: string;
-    telefon?: string;
-};
-
 export type SelvstendigNæringsdrivende = {
     arbeidsforhold?: Arbeidsforhold;
     harInntektSomSelvstendig: boolean;
@@ -279,15 +233,6 @@ export type StønadGodtgjørelse = {
     mottarStønadGodtgjørelse?: boolean;
     sluttdato?: string;
     startdato?: string;
-};
-
-export type Søker = {
-    aktørId: string;
-    etternavn?: string;
-    fornavn?: string;
-    fødselsdato: string;
-    fødselsnummer: string;
-    mellomnavn?: string;
 };
 
 export type UtenlandskNæring = {
@@ -319,11 +264,93 @@ export type UtenlandsoppholdIPerioden = {
     skalOppholdeSegIUtlandetIPerioden?: boolean;
 };
 
-export type VarigEndring = {
-    dato: string;
+export type ArbeidIPeriode = {
+    redusertArbeid?: ArbeidsRedusert;
+    type: 'ARBEIDER_VANLIG' | 'ARBEIDER_REDUSERT' | 'ARBEIDER_IKKE' | 'IKKE_BESVART';
 };
 
-export type Virksomhet = {
+export type ArbeidsRedusert = {
+    arbeidsuker?: ArbeidsUke[];
+    prosentAvNormalt?: number;
+    timerPerUke?: string;
+    type: 'PROSENT_AV_NORMALT' | 'TIMER_I_SNITT_PER_UKE' | 'ULIKE_UKER_TIMER';
+};
+
+export type ArbeidsUke = {
+    periode: Periode;
+    timer: string;
+};
+
+export type Arbeidsforhold = {
+    arbeidIPeriode: ArbeidIPeriode;
+    normalarbeidstid: NormalArbeidstid;
+};
+
+export type NormalArbeidstid = {
+    timerPerUkeISnitt: string;
+};
+
+export type Fosterhjemgodtgjørelse = {
+    mottarFosterhjemsgodtgjørelse: boolean;
+    type: 'MOTTAR_IKKE' | 'MOTTAR_FRIKJØPT' | 'MOTTAR_I_DELER_AV_PERIODEN' | 'MOTTAR_I_HELE_PERIODEN';
+};
+
+export type FosterhjemsgodtgjørelseFrikjøpt = Omit<Fosterhjemgodtgjørelse, 'type'> & {
+    erFrikjøptFraJobb: boolean;
+    frikjøptBeskrivelse: string;
+    type: 'FosterhjemsgodtgjørelseFrikjøpt';
+};
+
+export type FosterhjemsgodtgjørelseIkkeFrikjøpt = Omit<Fosterhjemgodtgjørelse, 'type'> & {
+    erFrikjøptFraJobb: boolean;
+    sluttdato?: string;
+    startdato?: string;
+    type: 'FosterhjemsgodtgjørelseIkkeFrikjøpt';
+};
+
+export type FosterhjemsgodtgjørelseMottarIkke = Omit<Fosterhjemgodtgjørelse, 'type'> & {
+    type: 'FosterhjemsgodtgjørelseMottarIkke';
+};
+
+export type Omsorgsstønad = {
+    mottarOmsorgsstønad: boolean;
+    type: 'MOTTAR_IKKE' | 'MOTTAR_I_DELER_AV_PERIODEN' | 'MOTTAR_I_HELE_PERIODEN';
+};
+
+export type OmsorgsstønadMottarDelerAvPerioden = Omit<Omsorgsstønad, 'type'> & {
+    antallTimerIUken: string;
+    sluttdato?: string;
+    startdato?: string;
+    type: 'OmsorgsstønadMottarDelerAvPerioden';
+};
+
+export type OmsorgsstønadMottarHelePerioden = Omit<Omsorgsstønad, 'type'> & {
+    antallTimerIUken: string;
+    type: 'OmsorgsstønadMottarHelePerioden';
+};
+
+export type OmsorgsstønadMottarIkke = Omit<Omsorgsstønad, 'type'> & {
+    type: 'OmsorgsstønadMottarIkke';
+};
+
+export type ProblemDetail = {
+    detail?: string;
+    instance?: string;
+    properties?: {
+        [key: string]: unknown;
+    };
+    status?: number;
+    title?: string;
+    type?: string;
+};
+
+export type VarigEndringWritable = {
+    dato: string;
+    forklaring?: string;
+    inntektEtterEndring?: number;
+};
+
+export type VirksomhetWritable = {
     erNyoppstartet: boolean;
     fiskerErPåBladB?: boolean;
     fraOgMed: string;
@@ -334,14 +361,10 @@ export type Virksomhet = {
     organisasjonsnummer?: string;
     registrertINorge: boolean;
     registrertIUtlandet?: Land;
-    regnskapsfører?: null;
+    regnskapsfører?: Regnskapsfører;
     tilOgMed?: string;
-    varigEndring?: VarigEndring;
-    yrkesaktivSisteTreFerdigliknedeÅrene?: null;
-};
-
-export type YrkesaktivSisteTreFerdigliknedeArene = {
-    oppstartsdato?: string;
+    varigEndring?: VarigEndringWritable;
+    yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
 };
 
 export type PleiepengerSyktBarnSøknadWritable = {
@@ -386,29 +409,6 @@ export type SelvstendigNæringsdrivendeWritable = {
     arbeidsforhold?: Arbeidsforhold;
     harInntektSomSelvstendig: boolean;
     virksomhet?: VirksomhetWritable;
-};
-
-export type VarigEndringWritable = {
-    dato: string;
-    forklaring?: string;
-    inntektEtterEndring?: number;
-};
-
-export type VirksomhetWritable = {
-    erNyoppstartet: boolean;
-    fiskerErPåBladB?: boolean;
-    fraOgMed: string;
-    harFlereAktiveVirksomheter: boolean;
-    navnPåVirksomheten: string;
-    næringsinntekt?: number;
-    næringstype: 'FISKE' | 'JORDBRUK_SKOGBRUK' | 'DAGMAMMA' | 'ANNEN';
-    organisasjonsnummer?: string;
-    registrertINorge: boolean;
-    registrertIUtlandet?: Land;
-    regnskapsfører?: Regnskapsfører;
-    tilOgMed?: string;
-    varigEndring?: VarigEndringWritable;
-    yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
 };
 
 export type DeleteMellomlagringData = {

@@ -1,6 +1,6 @@
+import { useAnalyticsInstance } from '@sif/analytics';
 import { useCallback } from 'react';
 
-import { useAnalyticsInstance } from '../analytics/analytics';
 import { useSøknadAppContext } from '../context/SøknadAppContext';
 
 /**

@@ -7,6 +7,7 @@ interface Props {
     oppgaveStatus: OppgaveStatus;
 }
 
+/** Returnerer informasjon hvis oppgaven er utløpt eller avbrutt */
 export const OppgaveStatusInfo = ({ oppgaveStatus }: Props) => {
     switch (oppgaveStatus) {
         case OppgaveStatus.UTLØPT:
@@ -20,7 +21,8 @@ export const OppgaveStatusInfo = ({ oppgaveStatus }: Props) => {
                     </Box>
                 </Alert>
             );
-        default:
+        case OppgaveStatus.LØST:
+        case OppgaveStatus.ULØST:
             return null;
     }
 };

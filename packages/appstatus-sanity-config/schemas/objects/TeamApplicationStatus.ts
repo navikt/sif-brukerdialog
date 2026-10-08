@@ -1,11 +1,13 @@
+import { defineField, defineType } from 'sanity';
+
 import { APPLICATION_STATUS } from '../../types';
 
-const TeamApplicationStatus = {
+const TeamApplicationStatus = defineType({
     title: 'TeamApplicationStatus',
     name: 'teamApplicationStatus',
     type: 'object',
     fields: [
-        {
+        defineField({
             title: 'Status',
             name: 'status',
             type: 'string',
@@ -16,8 +18,8 @@ const TeamApplicationStatus = {
                     { title: 'Unavailable', value: APPLICATION_STATUS.unavailable },
                 ],
             },
-        },
+        }),
     ],
-};
+});
 
 export default TeamApplicationStatus;

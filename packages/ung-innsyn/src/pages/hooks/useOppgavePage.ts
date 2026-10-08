@@ -1,8 +1,10 @@
 import { createContext, useContext } from 'react';
 
+import { OppgaveBesvartMetadata } from '../../analytics/oppgaveAnalytics';
+
 interface OppgavePageContextType {
     onCancel: () => void;
-    onSuccess?: () => void;
+    onSuccess?: (metadata?: OppgaveBesvartMetadata) => void;
 }
 
 export const OppgavePageContext = createContext<OppgavePageContextType | null>(null);

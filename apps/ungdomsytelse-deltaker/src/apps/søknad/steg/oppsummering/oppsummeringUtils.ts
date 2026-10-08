@@ -1,6 +1,6 @@
-import { KontonummerInfo, ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
+import { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
+import { HarKontonummerEnum as HarKontonummerApiEnum, UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
 import { appLogger } from '@sif/apm';
 import { dateToISODate, ISODate } from '@sif/utils';
 
@@ -23,13 +23,13 @@ export type SøknadApiData = Omit<ungdomsytelse.Ungdomsytelsesøknad, 'harBekref
 export const getKontonummerApiInfo = (
     kontonummerInfo: UtvidetKontonummerInfo,
     kontonummerErRiktigSvar?: YesOrNo,
-): KontonummerInfo | undefined => {
+): ungdomsytelse.KontonummerInfo | undefined => {
     switch (kontonummerInfo.harKontonummer) {
-        case 'UVISST':
+        case HarKontonummerApiEnum.UVISST:
             return {
                 harKontonummer: 'UVISST',
             };
-        case 'JA':
+        case HarKontonummerApiEnum.JA:
             if (!isYesOrNoAnswered(kontonummerErRiktigSvar)) {
                 return undefined;
             }
@@ -38,7 +38,7 @@ export const getKontonummerApiInfo = (
                 kontonummerFraRegister: kontonummerInfo.kontonummerFraRegister,
                 kontonummerErRiktig: kontonummerErRiktigSvar === YesOrNo.YES,
             };
-        case 'NEI':
+        case HarKontonummerApiEnum.NEI:
             return {
                 harKontonummer: 'NEI',
             };

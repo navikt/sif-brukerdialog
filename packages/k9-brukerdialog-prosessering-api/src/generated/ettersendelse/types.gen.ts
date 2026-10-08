@@ -4,10 +4,38 @@ export type ClientOptions = {
     baseURL: string & {};
 };
 
+export type JsonNode = unknown;
+
 export type ArbeidsgivereDto = {
     frilansoppdrag?: FrilansoppdragDto[];
     organisasjoner: OrganisasjonDto[];
     privateArbeidsgivere?: PrivatArbeidsgiverDto[];
+};
+
+export type FrilansoppdragDto = {
+    ansattFom?: string;
+    ansattTom?: string;
+    navn?: string;
+    offentligIdent?: string;
+    organisasjonsnummer?: string;
+    type: string;
+};
+
+export type OrganisasjonDto = {
+    ansattFom?: string;
+    ansattTom?: string;
+    navn?: string;
+    organisasjonsnummer: string;
+};
+
+export type PrivatArbeidsgiverDto = {
+    ansattFom?: string;
+    ansattTom?: string;
+    offentligIdent: string;
+};
+
+export type BarnOppslagListe = {
+    barn: BarnOppslag[];
 };
 
 export type BarnOppslag = {
@@ -18,8 +46,13 @@ export type BarnOppslag = {
     mellomnavn?: string;
 };
 
-export type BarnOppslagListe = {
-    barn: BarnOppslag[];
+export type Søker = {
+    aktørId: string;
+    etternavn?: string;
+    fornavn?: string;
+    fødselsdato: string;
+    fødselsnummer: string;
+    mellomnavn?: string;
 };
 
 export type Ettersendelse = {
@@ -42,35 +75,11 @@ export type Ettersendelse = {
     vedlegg: string[];
 };
 
-export type FrilansoppdragDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
-    offentligIdent?: string;
-    organisasjonsnummer?: string;
-    type: string;
-};
-
-export type JsonNode = unknown;
-
-export type OrganisasjonDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
-    organisasjonsnummer: string;
-};
-
 export type Pleietrengende = {
     aktørId?: string;
     fødselsdato?: string;
     navn?: string;
     norskIdentitetsnummer?: string;
-};
-
-export type PrivatArbeidsgiverDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    offentligIdent: string;
 };
 
 export type ProblemDetail = {
@@ -82,15 +91,6 @@ export type ProblemDetail = {
     status?: number;
     title?: string;
     type?: string;
-};
-
-export type Søker = {
-    aktørId: string;
-    etternavn?: string;
-    fornavn?: string;
-    fødselsdato: string;
-    fødselsnummer: string;
-    mellomnavn?: string;
 };
 
 export type InnsendingEttersendelseData = {

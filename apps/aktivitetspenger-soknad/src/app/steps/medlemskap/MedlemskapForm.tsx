@@ -124,7 +124,9 @@ export const MedlemskapForm = () => {
                         {synlig.harJobbetINorge && <HarJobbetINorgeSporsmal />}
 
                         {/* Jobbet utenfor Norge */}
-                        {synlig.harJobbetUtenforNorge && <HarJobbetUtenforNorgeSporsmal />}
+                        {synlig.harJobbetUtenforNorge && (
+                            <HarJobbetUtenforNorgeSporsmal harJobbetINorge={harJobbetINorgeSvar} />
+                        )}
 
                         {/* Bosteder utenfor Norge */}
                         {synlig.bostederUtenforNorge && (

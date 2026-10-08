@@ -115,7 +115,6 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                 };
 
             default:
-                
                 appLogger.logError(`Missing handler for ${action.type}`);
         }
     }

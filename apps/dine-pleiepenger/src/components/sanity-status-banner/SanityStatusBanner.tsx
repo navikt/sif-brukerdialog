@@ -1,4 +1,4 @@
-import { Status, StatusMessage, useAppStatus } from '@navikt/appstatus-react-ds';
+import { AppStatusNotice, Status, useAppStatus } from '@navikt/appstatus-react-ds';
 import { Box } from '@navikt/ds-react';
 import { InnsynPsbApp } from '@navikt/sif-app-register';
 import { ReactNode } from 'react';
@@ -13,16 +13,16 @@ interface Props {
 }
 
 const SanityStatusBannerInner = ({ children }: Props) => {
-    const { status, message } = useAppStatus(InnsynPsbApp.key, {
+    const { status, notice } = useAppStatus(InnsynPsbApp.key, {
         projectId: browserEnv.NEXT_PUBLIC_APPSTATUS_PROJECT_ID,
         dataset: browserEnv.NEXT_PUBLIC_APPSTATUS_DATASET,
     });
 
     return (
         <>
-            {message && (
+            {notice && (
                 <Box maxWidth={maxPageWidth} marginInline="auto" marginBlock="space-48">
-                    <StatusMessage message={message} />
+                    <AppStatusNotice notice={notice} />
                 </Box>
             )}
             {status === Status.unavailable ? <UnavailablePage /> : children}

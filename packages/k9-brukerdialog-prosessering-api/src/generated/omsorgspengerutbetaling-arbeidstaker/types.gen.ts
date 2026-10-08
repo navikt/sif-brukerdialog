@@ -4,45 +4,12 @@ export type ClientOptions = {
     baseURL: string & {};
 };
 
-export type Arbeidsgiver = {
-    [key: string]: unknown;
-};
+export type JsonNode = unknown;
 
 export type ArbeidsgivereDto = {
     frilansoppdrag?: FrilansoppdragDto[];
     organisasjoner: OrganisasjonDto[];
     privateArbeidsgivere?: PrivatArbeidsgiverDto[];
-};
-
-export type Barn = {
-    fødselsdato: string;
-};
-
-export type BarnOppslag = {
-    aktørId: string;
-    etternavn: string;
-    fornavn: string;
-    fødselsdato: string;
-    mellomnavn?: string;
-};
-
-export type BarnOppslagListe = {
-    barn: BarnOppslag[];
-};
-
-export type Bekreftelser = {
-    harBekreftetOpplysninger: boolean;
-    harForståttRettigheterOgPlikter: boolean;
-};
-
-export type Bosted = {
-    fraOgMed: string;
-    tilOgMed: string;
-};
-
-export type DineBarn = {
-    barn: Barn[];
-    harDeltBosted: boolean;
 };
 
 export type FrilansoppdragDto = {
@@ -52,16 +19,6 @@ export type FrilansoppdragDto = {
     offentligIdent?: string;
     organisasjonsnummer?: string;
     type: string;
-};
-
-export type JsonNode = unknown;
-
-export type OmsorgspengerutbetalingArbeidstakerSøknad = {
-    bosteder: Bosted[];
-    opphold: Bosted[];
-    språk: string;
-    søkerNorskIdent?: string;
-    vedlegg: string[];
 };
 
 export type OrganisasjonDto = {
@@ -77,15 +34,16 @@ export type PrivatArbeidsgiverDto = {
     offentligIdent: string;
 };
 
-export type ProblemDetail = {
-    detail?: string;
-    instance?: string;
-    properties?: {
-        [key: string]: unknown;
-    };
-    status?: number;
-    title?: string;
-    type?: string;
+export type BarnOppslagListe = {
+    barn: BarnOppslag[];
+};
+
+export type BarnOppslag = {
+    aktørId: string;
+    etternavn: string;
+    fornavn: string;
+    fødselsdato: string;
+    mellomnavn?: string;
 };
 
 export type Søker = {
@@ -97,9 +55,68 @@ export type Søker = {
     mellomnavn?: string;
 };
 
+export type Bekreftelser = {
+    harBekreftetOpplysninger: boolean;
+    harForståttRettigheterOgPlikter: boolean;
+};
+
+export type Bosted = {
+    fraOgMed: string;
+    tilOgMed: string;
+};
+
 export type Utbetalingsperiode = {
     fraOgMed: string;
     tilOgMed: string;
+};
+
+export type Arbeidsgiver = {
+    [key: string]: unknown;
+};
+
+export type Barn = {
+    fødselsdato: string;
+};
+
+export type DineBarn = {
+    barn: Barn[];
+    harDeltBosted: boolean;
+};
+
+export type OmsorgspengerutbetalingArbeidstakerSøknad = {
+    bosteder: Bosted[];
+    opphold: Bosted[];
+    språk: string;
+    søkerNorskIdent?: string;
+    vedlegg: string[];
+};
+
+export type ProblemDetail = {
+    detail?: string;
+    instance?: string;
+    properties?: {
+        [key: string]: unknown;
+    };
+    status?: number;
+    title?: string;
+    type?: string;
+};
+
+export type BostedWritable = {
+    erEØSLand?: boolean;
+    fraOgMed: string;
+    landkode?: string;
+    landnavn?: string;
+    tilOgMed: string;
+};
+
+export type UtbetalingsperiodeWritable = {
+    aktivitetFravær?: Array<'ARBEIDSTAKER' | 'FRILANSER' | 'SELVSTENDIG_VIRKSOMHET'>;
+    antallTimerBorte?: string;
+    antallTimerPlanlagt?: string;
+    fraOgMed: string;
+    tilOgMed: string;
+    årsak?: 'STENGT_SKOLE_ELLER_BARNEHAGE' | 'SMITTEVERNHENSYN' | 'ORDINÆRT_FRAVÆR';
 };
 
 export type ArbeidsgiverWritable = {
@@ -128,14 +145,6 @@ export type BarnWritable = {
     type?: 'FRA_OPPSLAG' | 'FOSTERBARN' | 'ANNET';
 };
 
-export type BostedWritable = {
-    erEØSLand?: boolean;
-    fraOgMed: string;
-    landkode?: string;
-    landnavn?: string;
-    tilOgMed: string;
-};
-
 export type DineBarnWritable = {
     barn: BarnWritable[];
     harDeltBosted: boolean;
@@ -153,15 +162,6 @@ export type OmsorgspengerutbetalingArbeidstakerSøknadWritable = {
     språk: string;
     søkerNorskIdent?: string;
     vedlegg: string[];
-};
-
-export type UtbetalingsperiodeWritable = {
-    aktivitetFravær?: Array<'ARBEIDSTAKER' | 'FRILANSER' | 'SELVSTENDIG_VIRKSOMHET'>;
-    antallTimerBorte?: string;
-    antallTimerPlanlagt?: string;
-    fraOgMed: string;
-    tilOgMed: string;
-    årsak?: 'STENGT_SKOLE_ELLER_BARNEHAGE' | 'SMITTEVERNHENSYN' | 'ORDINÆRT_FRAVÆR';
 };
 
 export type DeleteMellomlagringData = {

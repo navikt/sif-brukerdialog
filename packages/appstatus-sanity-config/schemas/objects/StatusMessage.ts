@@ -1,20 +1,24 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { defineField, defineType } from 'sanity';
+
 import { MESSAGE_TYPE } from '../../types';
 import { getLocaleContent } from '../../utils/getLocaleContent';
 import { shortenText, toPlainText } from '../../utils/previewUtils';
 
-const Message = {
+const StatusMessage = defineType({
     title: 'Status message',
     name: 'statusMessage',
     type: 'object',
+    deprecated: {
+        reason: 'Replaced by plannedDowntimeNotice.',
+    },
     fields: [
-        {
+        defineField({
             title: 'Message content',
             name: 'message',
             type: 'localeRichText',
-            validation: (Rule: { required: () => any }) => Rule.required(),
-        },
-        {
+            validation: (rule) => rule.required(),
+        }),
+        defineField({
             title: 'Message type',
             name: 'messageType',
             type: 'string',
@@ -26,22 +30,20 @@ const Message = {
                     { title: 'Error', value: MESSAGE_TYPE.error },
                 ],
             },
-        },
+        }),
     ],
     preview: {
         select: {
             message: 'message',
             messageType: 'messageType',
         },
-        prepare(props: any) {
-            const title = shortenText(toPlainText(getLocaleContent(props.message)));
-            const subtitle = `Message type: ${props.messageType}`;
+        prepare({ message, messageType }) {
             return {
-                title,
-                subtitle,
+                title: shortenText(toPlainText(getLocaleContent(message))),
+                subtitle: `Message type: ${messageType}`,
             };
         },
     },
-};
+});
 
-export default Message;
+export default StatusMessage;

@@ -1,9 +1,5 @@
-// Legacy export (for bakoverkompatibilitet)
-export * from './generated/client';
-export * from './generated/client/client.gen';
-export * from './generated/client/sdk.gen';
-export * from './generated/client/types.gen';
-export * from './generated/client/zod.gen';
+// Felles endepunkter og typer (oppslag, vedlegg, mellomlagring, validering) – se configs/openapi-ts.config-felles.ts
+export * from './generated/felles';
 
 // Aktivitetspenger API
 export * as aktivitetspenger from './generated/aktivitetspenger';

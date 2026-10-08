@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { fixAndFormatGeneratedCode } from '../../../codegenUtils.js';
+import { fixAndFormatGeneratedCode } from '../../../scripts/codegen/codegenUtils.js';
 
 fixAndFormatGeneratedCode('src/deltaker');

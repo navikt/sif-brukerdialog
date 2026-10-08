@@ -7,6 +7,7 @@ declare const __IS_DEMO__: boolean;
 
 interface ImportMetaEnv {
     readonly INJECT_DECORATOR: boolean;
+    readonly IS_PLAYWRIGHT: boolean | undefined;
 }
 
 interface ImportMeta {
