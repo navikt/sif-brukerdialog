@@ -11,6 +11,8 @@ export const arbeidssituasjonMessages_nb = {
         'Det er normalarbeidstiden din <strong>før</strong> du starter med pleiepenger som vi er ute etter her, uavhengig av om du søker for første gang, eller om du søker forlengelse.',
     'steg.arbeidssituasjon.veileder.3':
         'Hvis du mottar ytelse fra Nav (for eksempel foreldrepenger eller sykepenger) opplyser du om det som var din normale arbeidstid før du startet å motta ytelsen.',
+    'steg.arbeidssituasjon.veileder.4':
+        'Fra 1. januar 2027 vil vurderingen av tapt arbeidstid vurderes ut fra den arbeidstiden du vanligvis jobbet da du startet perioden med pleiepenger.',
     'steg.arbeidssituasjon.veileder.medArbeidsgiver':
         'Nedenfor ser du {antall, plural, one {arbeidsgiveren} other {arbeidsgivere}} du er registrert ansatt hos i AA-registeret i perioden du søker om pleiepenger. For at vi skal være sikre på at opplysningene er riktige må du bekrefte om du er, eller har vært, ansatt der.',
     'steg.arbeidssituasjon.veileder.ingenArbeidsgiverFunnet':

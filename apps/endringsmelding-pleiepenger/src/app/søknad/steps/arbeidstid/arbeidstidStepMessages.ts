@@ -4,6 +4,8 @@ const nb = {
     'arbeidstidStep.info.2': 'Du kan endre flere uker samtidig, eller én og én uke.',
     'arbeidstidStep.info.3':
         'Hvis du har endring som gjelder kun enkeltdager, skal du fremdeles oppgi hvor mye du jobber samlet for hele uken.',
+    'arbeidstidStep.info.4':
+        'Fra 1. januar 2027 vil vurderingen av tapt arbeidstid vurderes ut fra den arbeidstiden du vanligvis jobbet da du startet perioden med pleiepenger.',
     'arbeidstidStep.fjernetFerie.melding':
         'Du har fjernet dager med ferie. Skal du jobbe disse dagene, se over at jobb i perioden er riktig.',
     'arbeidstidStep.arbeiderIPeriodenSpm.heltFravær': 'Jeg jobber ikke og har fullt fravær her',
