@@ -50,6 +50,15 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
             };
         }
         case SøknadContextActionKeys.AVBRYT_SØKNAD:
+            return {
+                ...state,
+                søknadsdata: initialSøknadsdata,
+                søknadRoute: undefined,
+                /**
+                 * Alle typer legges inn for å unngå at dynamiske steg fjernes når søknadsdata tømmes
+                 * Verdien settes på nytt når søker starter ny meldning
+                 */
+            };
     }
 
     if (state.søknadsdata) {
