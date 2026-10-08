@@ -74,6 +74,7 @@
             "postcss": ">=8.5.28",
             "proxy-addr": ">=2.0.8",
             "sharp": ">=0.35.0",
+            "shell-quote": "1.11.0",
             "smol-toml": ">=1.6.1",
             "undici@^6": "^6.27.0",
             "undici@^7": "^7.29.0",
