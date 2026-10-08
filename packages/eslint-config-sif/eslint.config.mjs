@@ -51,7 +51,7 @@ export default [
     { ...jsxA11y.flatConfigs.recommended, files: ['**/*.{jsx,tsx}'] },
     eslintConfigPrettier,
     {
-        files: ['**/*.{test,tests,spec}.{ts,tsx}'],
+        files: ['**/*.{test,tests,spec}.{ts,tsx}', '**/__tests__/**/*.{ts,tsx}'],
         rules: vitest.configs.recommended.rules,
     },
     {
@@ -62,7 +62,7 @@ export default [
             'no-duplicate-imports': ERROR,
             'no-shadow': OFF,
             'no-unused-vars': OFF,
-'no-use-before-define': OFF,
+            'no-use-before-define': OFF,
             'jsx-quotes': [ERROR, 'prefer-double'],
 
             'simple-import-sort/exports': ERROR,
