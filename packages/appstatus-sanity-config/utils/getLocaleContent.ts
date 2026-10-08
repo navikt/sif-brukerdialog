@@ -1,16 +1,17 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { defaultLocale } from '../schemas/locales';
 
-export const getLocaleContent = (node: any, locale?: string) => {
-    if (hasLocaleValue(node, locale || defaultLocale)) {
-        return node[locale || defaultLocale];
-    }
-    if (hasLocaleValue(node, defaultLocale)) {
-        return node[defaultLocale];
-    }
-    return undefined;
+type LocaleContent<T> = Record<string, T | undefined> | undefined;
+
+export const hasLocaleValue = <T>(node: LocaleContent<T>, locale: string): boolean => {
+    return node !== undefined && node[locale] !== undefined && node[locale] !== '';
 };
 
-export const hasLocaleValue = (node: any, locale: string) => {
-    return node !== undefined && node[locale] !== undefined && node[locale] !== '';
+export const getLocaleContent = <T>(node: LocaleContent<T>, locale?: string): T | undefined => {
+    if (hasLocaleValue(node, locale || defaultLocale)) {
+        return node?.[locale || defaultLocale];
+    }
+    if (hasLocaleValue(node, defaultLocale)) {
+        return node?.[defaultLocale];
+    }
+    return undefined;
 };

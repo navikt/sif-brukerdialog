@@ -1,7 +1,14 @@
 import { defineConfig, type UserConfig } from '@hey-api/openapi-ts';
 
+import { createSchemaNameResolver } from '../../../scripts/codegen/codegenUtils.js';
+
 export const createConfig = (): UserConfig => ({
     input: './specs/innsyn.json',
+    parser: {
+        transforms: {
+            schemaName: createSchemaNameResolver('./specs/innsyn.json'),
+        },
+    },
     output: {
         postProcess: ['prettier'],
         path: './src/generated/innsyn', // Separat mappe

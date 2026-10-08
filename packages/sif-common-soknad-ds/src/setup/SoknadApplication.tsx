@@ -4,6 +4,7 @@ import '@formatjs/intl-pluralrules/polyfill.js';
 import 'dayjs/locale/nb';
 import 'dayjs/locale/nn';
 
+import { NoticeRenderers } from '@navikt/appstatus-react-ds';
 import { SanityConfig } from '@navikt/appstatus-react-ds/src/types';
 import { AnalyticsProvider } from '@navikt/sif-common-analytics';
 import AppStatusWrapper from '@navikt/sif-common-core-ds/src/components/app-status-wrapper/AppStatusWrapper';
@@ -45,6 +46,8 @@ interface Props {
     /** Config for connecting to the appStatus sanity project */
     appStatus: {
         sanityConfig: SanityConfig;
+        /** Overstyrer standardtekster for forhåndsdefinerte meldinger */
+        noticeRenderers?: NoticeRenderers;
     };
     /** The content */
     children: React.ReactNode;
@@ -87,21 +90,17 @@ const SoknadApplication = ({
                         locale={locale === 'nb' ? getBokmålLocale() : getNynorskLocale()}
                         messages={localeMessages}>
                         <Router basename={useHashRouter ? undefined : publicPath}>
-                            {/* Staging-datasettet er slettet på grunn av økonomi */}
-                            {appStatus.sanityConfig.dataset === 'staging' ? (
-                                children
-                            ) : (
-                                <AppStatusWrapper
-                                    applicationKey={appKey}
-                                    sanityConfig={appStatus.sanityConfig}
-                                    contentRenderer={() => <>{children}</>}
-                                    unavailableContentRenderer={() => (
-                                        <ErrorPage
-                                            contentRenderer={() => <SoknadErrorMessages.ApplicationUnavailable />}
-                                        />
-                                    )}
-                                />
-                            )}
+                            <AppStatusWrapper
+                                applicationKey={appKey}
+                                sanityConfig={appStatus.sanityConfig}
+                                noticeRenderers={appStatus.noticeRenderers}
+                                contentRenderer={() => <>{children}</>}
+                                unavailableContentRenderer={() => (
+                                    <ErrorPage
+                                        contentRenderer={() => <SoknadErrorMessages.ApplicationUnavailable />}
+                                    />
+                                )}
+                            />
                             <DevBranchInfo />
                         </Router>
                     </IntlProvider>

@@ -29,6 +29,9 @@ const getFinnDeltakerFeilmelding = (fnr: string, error: ApiError): React.ReactNo
                 return `Kunne ikke finne personen med fødselsnummer ${formattedFnr}.`;
             case 500:
                 return `En intern serverfeil oppstod ved henting av deltaker med fnr ${formattedFnr}. Vennligst prøv igjen senere.`;
+            case undefined:
+            default:
+                return `Det oppstod en feil ved henting av deltaker med fnr ${formattedFnr}. Vennligst prøv igjen senere.`;
         }
     }
     return `Det oppstod en feil ved henting av deltaker med fnr ${formattedFnr}. Vennligst prøv igjen senere.`;

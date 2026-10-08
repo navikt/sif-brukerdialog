@@ -1,5 +1,11 @@
 # @sif/ung-innsyn
 
+## 0.2.2
+
+### Patch Changes
+
+- @navikt/sif-common-ui@0.12.2
+
 ## 0.2.1
 
 ### Patch Changes

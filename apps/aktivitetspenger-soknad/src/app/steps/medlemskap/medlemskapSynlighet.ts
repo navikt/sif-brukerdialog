@@ -13,7 +13,8 @@ export const yesOrNoToBoolean = (svar?: YesOrNo): boolean | undefined => {
             return true;
         case YesOrNo.NO:
             return false;
-        default:
+        case undefined:
+        case YesOrNo.UNANSWERED:
             return undefined;
     }
 };
@@ -23,11 +24,7 @@ export const yesOrNoToBoolean = (svar?: YesOrNo): boolean | undefined => {
  * Brukes av skjemaet (hva som vises og valideres), av mappingen til søknadsdata
  * (hvilke svar som lagres) og av oppsummeringen (hva som vises).
  */
-export const getMedlemskapSynlighet = ({
-    harBoddINorge,
-    harJobbetINorge,
-    harJobbetUtenforNorge,
-}: MedlemskapSvar) => ({
+export const getMedlemskapSynlighet = ({ harBoddINorge, harJobbetINorge, harJobbetUtenforNorge }: MedlemskapSvar) => ({
     harJobbetINorge: harBoddINorge === false,
 
     harJobbetUtenforNorge: harBoddINorge === true || (harBoddINorge === false && harJobbetINorge === true),

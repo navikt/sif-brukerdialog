@@ -5,9 +5,9 @@ import { CoreIntlShape } from '../../i18n/common.messages';
 import { PersistedFile } from '../../types';
 
 export enum FileUploadErrorReason {
-    'ECONNABORTED' = 'ECONNABORTED',
-    'BAD_REQUEST' = 'BAD_REQUEST',
-    'UNKNOWN' = 'UNKNOWN',
+    ECONNABORTED = 'ECONNABORTED',
+    BAD_REQUEST = 'BAD_REQUEST',
+    UNKNOWN = 'UNKNOWN',
 }
 
 export const getRejectedFileError = (
@@ -34,9 +34,8 @@ export const getRejectedFileError = (
 
 export const getFileUploadErrorReason = (e: unknown): string => {
     if (isAxiosError(e)) {
-        switch (e.code) {
-            case 'ECONNABORTED':
-                return FileUploadErrorReason.ECONNABORTED;
+        if (e.code === 'ECONNABORTED') {
+            return FileUploadErrorReason.ECONNABORTED;
         }
         if (e.status === 400) {
             return FileUploadErrorReason.BAD_REQUEST;

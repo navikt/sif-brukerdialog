@@ -1,12 +1,13 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { defineField, defineType } from 'sanity';
+
 import { APPLICATION_STATUS } from '../../types';
 
-const ApplicationStatus = {
+const ApplicationStatus = defineType({
     title: 'ApplicationStatus',
     name: 'applicationStatus',
     type: 'object',
     fields: [
-        {
+        defineField({
             title: 'Status',
             name: 'status',
             type: 'string',
@@ -18,9 +19,9 @@ const ApplicationStatus = {
                     { title: 'Unavailable', value: APPLICATION_STATUS.unavailable },
                 ],
             },
-            validation: (Rule: { required: () => any }) => Rule.required(),
-        },
+            validation: (rule) => rule.required(),
+        }),
     ],
-};
+});
 
 export default ApplicationStatus;

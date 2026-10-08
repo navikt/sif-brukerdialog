@@ -4,45 +4,12 @@ export type ClientOptions = {
     baseURL: string & {};
 };
 
+export type JsonNode = unknown;
+
 export type ArbeidsgivereDto = {
     frilansoppdrag?: FrilansoppdragDto[];
     organisasjoner: OrganisasjonDto[];
     privateArbeidsgivere?: PrivatArbeidsgiverDto[];
-};
-
-export type Barn = {
-    aktørId?: string;
-    fødselsdato?: string;
-    identitetsnummer?: string;
-    navn?: string;
-    type?: 'FOSTERBARN' | 'ANNET' | 'FRA_OPPSLAG';
-};
-
-export type BarnOppslag = {
-    aktørId: string;
-    etternavn: string;
-    fornavn: string;
-    fødselsdato: string;
-    mellomnavn?: string;
-};
-
-export type BarnOppslagListe = {
-    barn: BarnOppslag[];
-};
-
-export type Bekreftelser = {
-    harBekreftetOpplysninger: boolean;
-    harForståttRettigheterOgPlikter: boolean;
-};
-
-export type Bosted = {
-    fraOgMed: string;
-    tilOgMed: string;
-};
-
-export type Frilans = {
-    sluttdato?: string;
-    startdato: string;
 };
 
 export type FrilansoppdragDto = {
@@ -52,32 +19,6 @@ export type FrilansoppdragDto = {
     offentligIdent?: string;
     organisasjonsnummer?: string;
     type: string;
-};
-
-export type JsonNode = unknown;
-
-export type Land = {
-    landkode: string;
-    landnavn: string;
-};
-
-export type OmsorgspengerutbetalingSnfSøknad = {
-    barn: unknown[];
-    bekreftelser: Bekreftelser;
-    bosteder: Bosted[];
-    dataBruktTilUtledningAnnetData?: string;
-    erArbeidstakerOgså: boolean;
-    frilans?: Frilans;
-    harAleneomsorg?: boolean;
-    harDekketTiFørsteDagerSelv?: boolean;
-    harSyktBarn?: boolean;
-    opphold: Bosted[];
-    selvstendigNæringsdrivende?: Virksomhet;
-    språk: string;
-    spørsmål: SpørsmålOgSvar[];
-    søkerNorskIdent?: string;
-    utbetalingsperioder: Utbetalingsperiode[];
-    vedlegg: string[];
 };
 
 export type OrganisasjonDto = {
@@ -93,25 +34,16 @@ export type PrivatArbeidsgiverDto = {
     offentligIdent: string;
 };
 
-export type ProblemDetail = {
-    detail?: string;
-    instance?: string;
-    properties?: {
-        [key: string]: unknown;
-    };
-    status?: number;
-    title?: string;
-    type?: string;
+export type BarnOppslagListe = {
+    barn: BarnOppslag[];
 };
 
-export type Regnskapsfører = {
-    navn?: string;
-    telefon?: string;
-};
-
-export type SpørsmålOgSvar = {
-    spørsmål: string;
-    svar: boolean;
+export type BarnOppslag = {
+    aktørId: string;
+    etternavn: string;
+    fornavn: string;
+    fødselsdato: string;
+    mellomnavn?: string;
 };
 
 export type Søker = {
@@ -121,6 +53,26 @@ export type Søker = {
     fødselsdato: string;
     fødselsnummer: string;
     mellomnavn?: string;
+};
+
+export type Bekreftelser = {
+    harBekreftetOpplysninger: boolean;
+    harForståttRettigheterOgPlikter: boolean;
+};
+
+export type Bosted = {
+    fraOgMed: string;
+    tilOgMed: string;
+};
+
+export type Land = {
+    landkode: string;
+    landnavn: string;
+};
+
+export type Regnskapsfører = {
+    navn?: string;
+    telefon?: string;
 };
 
 export type Utbetalingsperiode = {
@@ -153,37 +105,60 @@ export type YrkesaktivSisteTreFerdigliknedeArene = {
     oppstartsdato?: string;
 };
 
+export type Barn = {
+    aktørId?: string;
+    fødselsdato?: string;
+    identitetsnummer?: string;
+    navn?: string;
+    type?: 'FOSTERBARN' | 'ANNET' | 'FRA_OPPSLAG';
+};
+
+export type Frilans = {
+    sluttdato?: string;
+    startdato: string;
+};
+
+export type OmsorgspengerutbetalingSnfSøknad = {
+    barn: unknown[];
+    bekreftelser: Bekreftelser;
+    bosteder: Bosted[];
+    dataBruktTilUtledningAnnetData?: string;
+    erArbeidstakerOgså: boolean;
+    frilans?: Frilans;
+    harAleneomsorg?: boolean;
+    harDekketTiFørsteDagerSelv?: boolean;
+    harSyktBarn?: boolean;
+    opphold: Bosted[];
+    selvstendigNæringsdrivende?: Virksomhet;
+    språk: string;
+    spørsmål: SpørsmålOgSvar[];
+    søkerNorskIdent?: string;
+    utbetalingsperioder: Utbetalingsperiode[];
+    vedlegg: string[];
+};
+
+export type SpørsmålOgSvar = {
+    spørsmål: string;
+    svar: boolean;
+};
+
+export type ProblemDetail = {
+    detail?: string;
+    instance?: string;
+    properties?: {
+        [key: string]: unknown;
+    };
+    status?: number;
+    title?: string;
+    type?: string;
+};
+
 export type BostedWritable = {
     erEØSLand?: boolean;
     fraOgMed: string;
     landkode?: string;
     landnavn?: string;
     tilOgMed: string;
-};
-
-export type FrilansWritable = {
-    jobberFortsattSomFrilans?: boolean;
-    sluttdato?: string;
-    startdato: string;
-};
-
-export type OmsorgspengerutbetalingSnfSøknadWritable = {
-    barn: Barn[];
-    bekreftelser: Bekreftelser;
-    bosteder: BostedWritable[];
-    dataBruktTilUtledningAnnetData?: string;
-    erArbeidstakerOgså: boolean;
-    frilans?: FrilansWritable;
-    harAleneomsorg?: boolean;
-    harDekketTiFørsteDagerSelv?: boolean;
-    harSyktBarn?: boolean;
-    opphold: BostedWritable[];
-    selvstendigNæringsdrivende?: VirksomhetWritable;
-    språk: string;
-    spørsmål: SpørsmålOgSvar[];
-    søkerNorskIdent?: string;
-    utbetalingsperioder: UtbetalingsperiodeWritable[];
-    vedlegg: string[];
 };
 
 export type UtbetalingsperiodeWritable = {
@@ -216,6 +191,31 @@ export type VirksomhetWritable = {
     tilOgMed?: string;
     varigEndring?: VarigEndringWritable;
     yrkesaktivSisteTreFerdigliknedeÅrene?: YrkesaktivSisteTreFerdigliknedeArene;
+};
+
+export type FrilansWritable = {
+    jobberFortsattSomFrilans?: boolean;
+    sluttdato?: string;
+    startdato: string;
+};
+
+export type OmsorgspengerutbetalingSnfSøknadWritable = {
+    barn: Barn[];
+    bekreftelser: Bekreftelser;
+    bosteder: BostedWritable[];
+    dataBruktTilUtledningAnnetData?: string;
+    erArbeidstakerOgså: boolean;
+    frilans?: FrilansWritable;
+    harAleneomsorg?: boolean;
+    harDekketTiFørsteDagerSelv?: boolean;
+    harSyktBarn?: boolean;
+    opphold: BostedWritable[];
+    selvstendigNæringsdrivende?: VirksomhetWritable;
+    språk: string;
+    spørsmål: SpørsmålOgSvar[];
+    søkerNorskIdent?: string;
+    utbetalingsperioder: UtbetalingsperiodeWritable[];
+    vedlegg: string[];
 };
 
 export type DeleteMellomlagringData = {

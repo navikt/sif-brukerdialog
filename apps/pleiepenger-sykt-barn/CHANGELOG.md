@@ -1,10 +1,21 @@
 # @navikt/pleiepenger-sykt-barn
 
-## 4.12.3
+## 4.12.4
 
 ### Patch Changes
 
 - Legge til tekst om endringer i vurdering om vurdering av tapt arbeidstid og normalarbeidstid fra 1. jan 2027
+
+## 4.12.3
+
+### Patch Changes
+
+- Updated dependencies
+    - @navikt/appstatus-react-ds@2.21.1
+    - @navikt/sif-common-core-ds@10.4.2
+    - @navikt/sif-common-soknad-ds@26.2.3
+    - @navikt/sif-common-forms-ds@21.0.63
+    - @navikt/sif-common-ui@0.12.2
 
 ## 4.12.2
 

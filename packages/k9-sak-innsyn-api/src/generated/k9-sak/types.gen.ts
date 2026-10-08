@@ -4,6 +4,11 @@ export type ClientOptions = {
     baseURL: string & {};
 };
 
+export type Periode = {
+    fom: string;
+    tom: string;
+};
+
 export type HentSisteGyldigeVedtakForAktorIdResponse = {
     førsteMuligeSøknadsdato?: string;
     harInnvilgedeBehandlinger: boolean;
@@ -20,11 +25,6 @@ export type Opplæringsinstitusjon = {
     navn: string;
     perioder: Periode[];
     uuid: string;
-};
-
-export type Periode = {
-    fom: string;
-    tom: string;
 };
 
 export type ProblemDetail = {

@@ -1,8 +1,8 @@
 // Hooks
 export { useArbeidsgivere } from '../hooks/useArbeidsgivere';
-export { type InntektsrapporteringDto, useRapporterInntekt } from '../hooks/useRapporterInntekt';
+export { useRapporterInntekt, type YtelseInntektsrapportering } from '../hooks/useRapporterInntekt';
 export { useRegistrerteBarn } from '../hooks/useRegistrerteBarn';
-export { useSendOppgavebekreftelse } from '../hooks/useSendOppgavebekreftelse';
+export { useSendOppgavebekreftelse, type YtelseOppgavebekreftelse } from '../hooks/useSendOppgavebekreftelse';
 export { useSøker } from '../hooks/useSoker';
 export { useValiderFritekst } from '../hooks/useValiderFritekst';
 export { useLagreVedlegg, useSlettVedlegg } from '../hooks/useVedlegg';

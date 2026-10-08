@@ -2,6 +2,7 @@ import { SanityConfig } from '../';
 import { getStateForApplication } from '../hooks/useAppStatus';
 import { ApplicationState, getApplicationDocumentStatusQuery } from '../hooks/useGetApplicationStatus';
 import { getTeamStatusQuery } from '../hooks/useGetTeamStatus';
+import { getValidNotice } from './noticeUtils';
 import { getAppSanityClient } from './sanityClient';
 
 export const fetchStatus = async (
@@ -23,12 +24,15 @@ export const fetchStatus = async (
             return undefined;
         }
 
-        return getStateForApplication(
-            app.applicationStatus.status,
-            app.message ? app.message[0] : undefined,
-            team?.teamApplicationStatus.status,
-            team?.message ? team.message[0] : undefined,
-        );
+        return {
+            ...getStateForApplication(
+                app.applicationStatus.status,
+                app.message ? app.message[0] : undefined,
+                team?.teamApplicationStatus.status,
+                team?.message ? team.message[0] : undefined,
+            ),
+            notice: getValidNotice(app.notice),
+        };
     } catch (err) {
         throw new Error(`Could not load appStatus [${err}]`, { cause: err });
     }

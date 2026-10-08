@@ -4,15 +4,267 @@ export type ClientOptions = {
     baseURL: string & {};
 };
 
-export type AnnenAktivitet = {
-    annenAktivitetType: 'MILITÆR_ELLER_SIVILTJENESTE' | '-';
-    periode: string;
-};
+export type JsonNode = unknown;
 
 export type ArbeidsgivereDto = {
     frilansoppdrag?: FrilansoppdragDto[];
     organisasjoner: OrganisasjonDto[];
     privateArbeidsgivere?: PrivatArbeidsgiverDto[];
+};
+
+export type FrilansoppdragDto = {
+    ansattFom?: string;
+    ansattTom?: string;
+    navn?: string;
+    offentligIdent?: string;
+    organisasjonsnummer?: string;
+    type: string;
+};
+
+export type OrganisasjonDto = {
+    ansattFom?: string;
+    ansattTom?: string;
+    navn?: string;
+    organisasjonsnummer: string;
+};
+
+export type PrivatArbeidsgiverDto = {
+    ansattFom?: string;
+    ansattTom?: string;
+    offentligIdent: string;
+};
+
+export type BarnOppslagListe = {
+    barn: BarnOppslag[];
+};
+
+export type BarnOppslag = {
+    aktørId: string;
+    etternavn: string;
+    fornavn: string;
+    fødselsdato: string;
+    mellomnavn?: string;
+};
+
+export type Søker = {
+    aktørId: string;
+    etternavn?: string;
+    fornavn?: string;
+    fødselsdato: string;
+    fødselsnummer: string;
+    mellomnavn?: string;
+};
+
+export type Endringsmelding = {
+    gyldigeEndringsPerioder?: string[];
+    harBekreftetOpplysninger: boolean;
+    harForståttRettigheterOgPlikter: boolean;
+    pleietrengendeNavn?: string;
+    språk: string;
+    søkerNorskIdent?: string;
+    ytelse: PleiepengerSyktBarn;
+};
+
+export type AnnenAktivitet = {
+    annenAktivitetType: 'MILITÆR_ELLER_SIVILTJENESTE' | '-';
+    periode: string;
+};
+
+export type Frilanser = {
+    sluttdato?: string;
+    startdato: string;
+};
+
+export type OpptjeningAktivitet = {
+    andreAktiviteter: AnnenAktivitet[];
+    frilanser?: Frilanser;
+    selvstendigNæringsdrivende: SelvstendigNæringsdrivende[];
+    utenlandskeArbeidsforhold: UtenlandskArbeidsforhold[];
+};
+
+export type SelvstendigNæringsdrivende = {
+    organisasjonsnummer?: string;
+    perioder: {
+        [key: string]: SelvstendigNæringsdrivendePeriodeInfo;
+    };
+    virksomhetNavn?: string;
+};
+
+export type SelvstendigNæringsdrivendePeriodeInfo = {
+    bruttoInntekt?: number;
+    endringBegrunnelse?: string;
+    endringDato?: string;
+    erFiskerPåBladB?: boolean;
+    erNyIArbeidslivet?: boolean;
+    erNyoppstartet?: boolean;
+    erVarigEndring?: boolean;
+    landkode?: string;
+    registrertIUtlandet?: boolean;
+    regnskapsførerNavn?: string;
+    regnskapsførerTlf?: string;
+    virksomhetstyper: Array<'DAGMAMMA' | 'FISKE' | 'JORDBRUK_SKOGBRUK' | 'ANNEN' | '-'>;
+};
+
+export type UtenlandskArbeidsforhold = {
+    ansettelsePeriode: string;
+    arbeidsgiversnavn: string;
+    land: string;
+};
+
+export type Barn = {
+    fødselsdato?: string;
+    norskIdentitetsnummer: string;
+};
+
+export type Bosteder = {
+    perioder?: {
+        [key: string]: BostedPeriodeInfo;
+    };
+    perioderSomSkalSlettes?: {
+        [key: string]: BostedPeriodeInfo;
+    };
+};
+
+export type BostedPeriodeInfo = {
+    land: string;
+};
+
+export type FellesUtenlandsopphold = {
+    perioder?: {
+        [key: string]: FellesUtenlandsoppholdPeriodeInfo;
+    };
+    perioderSomSkalSlettes?: {
+        [key: string]: FellesUtenlandsoppholdPeriodeInfo;
+    };
+};
+
+export type FellesUtenlandsoppholdPeriodeInfo = {
+    erSammenMedBarnet?: boolean;
+    land: string;
+    årsak?:
+        | 'barnetInnlagtIHelseinstitusjonForNorskOffentligRegning'
+        | 'barnetInnlagtIHelseinstitusjonDekketEtterAvtaleMedEtAnnetLandOmTrygd';
+};
+
+export type DataBruktTilUtledning = {
+    annetData?: string;
+    harBekreftetOpplysninger: boolean;
+    harForståttRettigheterOgPlikter: boolean;
+    soknadDialogCommitSha?: string;
+};
+
+export type Beredskap = {
+    perioder: {
+        [key: string]: BeredskapPeriodeInfo;
+    };
+    perioderSomSkalSlettes?: {
+        [key: string]: BeredskapPeriodeInfo;
+    };
+};
+
+export type BeredskapPeriodeInfo = {
+    tilleggsinformasjon: string;
+};
+
+export type PsbDataBruktTilUtledning = {
+    bekrefterPeriodeOver8Uker?: boolean;
+    /**
+     * @deprecated
+     */
+    harBekreftetOpplysninger?: boolean;
+    /**
+     * @deprecated
+     */
+    harForståttRettigheterOgPlikter?: boolean;
+    harMedsøker?: boolean;
+    samtidigHjemme?: boolean;
+    /**
+     * @deprecated
+     */
+    soknadDialogCommitSha?: string;
+    ukjenteArbeidsforhold?: UkjentArbeidsforhold[];
+};
+
+export type InfoFraPunsj = {
+    inneholderMedisinskeOpplysninger?: boolean;
+    søknadenInneholderInfomasjonSomIkkeKanPunsjes?: boolean;
+};
+
+export type LovbestemtFerie = {
+    perioder: {
+        [key: string]: LovbestemtFeriePeriodeInfo;
+    };
+};
+
+export type LovbestemtFeriePeriodeInfo = {
+    skalHaFerie?: boolean;
+};
+
+export type Nattevåk = {
+    perioder: {
+        [key: string]: NattevåkPeriodeInfo;
+    };
+    perioderSomSkalSlettes: {
+        [key: string]: NattevåkPeriodeInfo;
+    };
+};
+
+export type NattevåkPeriodeInfo = {
+    tilleggsinformasjon: string;
+};
+
+export type NormalArbeidstid = {
+    timerPerUke: string;
+};
+
+export type Omsorg = {
+    beskrivelseAvOmsorgsrollen?: string;
+    relasjonTilBarnet?: 'MOR' | 'MEDMOR' | 'FAR' | 'FOSTERFORELDER' | 'ANNET';
+};
+
+export type PleiepengerSyktBarn = {
+    annetDataBruktTilUtledning?: DataBruktTilUtledning;
+    arbeidstid: Arbeidstid;
+    barn: Barn;
+    beredskap: Beredskap;
+    bosteder: Bosteder;
+    dataBruktTilUtledning?: PsbDataBruktTilUtledning;
+    /**
+     * @deprecated
+     */
+    endringsperiode: string[];
+    erSammenMedBarnet?: boolean;
+    /**
+     * @deprecated
+     */
+    infoFraPunsj?: InfoFraPunsj;
+    lovbestemtFerie: LovbestemtFerie;
+    nattevåk: Nattevåk;
+    omsorg: Omsorg;
+    opptjeningAktivitet?: OpptjeningAktivitet;
+    søknadsperiode: string[];
+    tilsynsordning: Tilsynsordning;
+    trekkKravPerioder: string[];
+    utenlandsopphold: FellesUtenlandsopphold;
+    uttak: Uttak;
+};
+
+export type UkjentArbeidsforhold = {
+    arbeiderIPerioden?: 'SOM_VANLIG' | 'REDUSERT' | 'HELT_FRAVÆR';
+    erAnsatt: boolean;
+    normalarbeidstid?: NormalArbeidstid;
+    organisasjonsnavn?: string;
+    organisasjonsnummer: string;
+};
+
+export type Uttak = {
+    perioder: {
+        [key: string]: UttakPeriodeInfo;
+    };
+};
+
+export type UttakPeriodeInfo = {
+    timerPleieAvBarnetPerDag: string;
 };
 
 export type Arbeidstaker = {
@@ -39,160 +291,14 @@ export type ArbeidstidPeriodeInfo = {
     jobberNormaltTimerPerDag: string;
 };
 
-export type Barn = {
-    fødselsdato?: string;
-    norskIdentitetsnummer: string;
+export type TilsynPeriodeInfo = {
+    etablertTilsynTimerPerDag: string;
 };
 
-export type BarnOppslag = {
-    aktørId: string;
-    etternavn: string;
-    fornavn: string;
-    fødselsdato: string;
-    mellomnavn?: string;
-};
-
-export type BarnOppslagListe = {
-    barn: BarnOppslag[];
-};
-
-export type Beredskap = {
+export type Tilsynsordning = {
     perioder: {
-        [key: string]: BeredskapPeriodeInfo;
+        [key: string]: TilsynPeriodeInfo;
     };
-    perioderSomSkalSlettes?: {
-        [key: string]: BeredskapPeriodeInfo;
-    };
-};
-
-export type BeredskapPeriodeInfo = {
-    tilleggsinformasjon: string;
-};
-
-export type BostedPeriodeInfo = {
-    land: string;
-};
-
-export type Bosteder = {
-    perioder?: {
-        [key: string]: BostedPeriodeInfo;
-    };
-    perioderSomSkalSlettes?: {
-        [key: string]: BostedPeriodeInfo;
-    };
-};
-
-export type DataBruktTilUtledning = {
-    annetData?: string;
-    harBekreftetOpplysninger: boolean;
-    harForståttRettigheterOgPlikter: boolean;
-    soknadDialogCommitSha?: string;
-};
-
-export type Endringsmelding = {
-    gyldigeEndringsPerioder?: string[];
-    harBekreftetOpplysninger: boolean;
-    harForståttRettigheterOgPlikter: boolean;
-    pleietrengendeNavn?: string;
-    språk: string;
-    søkerNorskIdent?: string;
-    ytelse: PleiepengerSyktBarn;
-};
-
-export type Frilanser = {
-    sluttdato?: string;
-    startdato: string;
-};
-
-export type FrilansoppdragDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
-    offentligIdent?: string;
-    organisasjonsnummer?: string;
-    type: string;
-};
-
-export type InfoFraPunsj = {
-    inneholderMedisinskeOpplysninger?: boolean;
-    søknadenInneholderInfomasjonSomIkkeKanPunsjes?: boolean;
-};
-
-export type JsonNode = unknown;
-
-export type LovbestemtFerie = {
-    perioder: {
-        [key: string]: LovbestemtFeriePeriodeInfo;
-    };
-};
-
-export type LovbestemtFeriePeriodeInfo = {
-    skalHaFerie?: boolean;
-};
-
-export type Nattevåk = {
-    perioder: {
-        [key: string]: NattevåkPeriodeInfo;
-    };
-    perioderSomSkalSlettes: {
-        [key: string]: NattevåkPeriodeInfo;
-    };
-};
-
-export type NattevåkPeriodeInfo = {
-    tilleggsinformasjon: string;
-};
-
-export type Omsorg = {
-    beskrivelseAvOmsorgsrollen?: string;
-    relasjonTilBarnet?: 'MOR' | 'MEDMOR' | 'FAR' | 'FOSTERFORELDER' | 'ANNET';
-};
-
-export type OpptjeningAktivitet = {
-    andreAktiviteter: AnnenAktivitet[];
-    frilanser?: Frilanser;
-    selvstendigNæringsdrivende: SelvstendigNæringsdrivende[];
-    utenlandskeArbeidsforhold: UtenlandskArbeidsforhold[];
-};
-
-export type OrganisasjonDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
-    organisasjonsnummer: string;
-};
-
-export type PleiepengerSyktBarn = {
-    annetDataBruktTilUtledning?: DataBruktTilUtledning;
-    arbeidstid: Arbeidstid;
-    barn: Barn;
-    beredskap: Beredskap;
-    bosteder: Bosteder;
-    dataBruktTilUtledning?: DataBruktTilUtledning;
-    /**
-     * @deprecated
-     */
-    endringsperiode: string[];
-    erSammenMedBarnet?: boolean;
-    /**
-     * @deprecated
-     */
-    infoFraPunsj?: InfoFraPunsj;
-    lovbestemtFerie: LovbestemtFerie;
-    nattevåk: Nattevåk;
-    omsorg: Omsorg;
-    opptjeningAktivitet?: OpptjeningAktivitet;
-    søknadsperiode: string[];
-    tilsynsordning: Tilsynsordning;
-    trekkKravPerioder: string[];
-    utenlandsopphold: Utenlandsopphold;
-    uttak: Uttak;
-};
-
-export type PrivatArbeidsgiverDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    offentligIdent: string;
 };
 
 export type ProblemDetail = {
@@ -204,81 +310,6 @@ export type ProblemDetail = {
     status?: number;
     title?: string;
     type?: string;
-};
-
-export type SelvstendigNæringsdrivende = {
-    organisasjonsnummer?: string;
-    perioder: {
-        [key: string]: SelvstendigNæringsdrivendePeriodeInfo;
-    };
-    virksomhetNavn?: string;
-};
-
-export type SelvstendigNæringsdrivendePeriodeInfo = {
-    bruttoInntekt?: number;
-    endringBegrunnelse?: string;
-    endringDato?: string;
-    erFiskerPåBladB?: boolean;
-    erNyIArbeidslivet?: boolean;
-    erNyoppstartet?: boolean;
-    erVarigEndring?: boolean;
-    landkode?: string;
-    registrertIUtlandet?: boolean;
-    regnskapsførerNavn?: string;
-    regnskapsførerTlf?: string;
-    virksomhetstyper: Array<'DAGMAMMA' | 'FISKE' | 'JORDBRUK_SKOGBRUK' | 'ANNEN' | '-'>;
-};
-
-export type Søker = {
-    aktørId: string;
-    etternavn?: string;
-    fornavn?: string;
-    fødselsdato: string;
-    fødselsnummer: string;
-    mellomnavn?: string;
-};
-
-export type TilsynPeriodeInfo = {
-    etablertTilsynTimerPerDag: string;
-};
-
-export type Tilsynsordning = {
-    perioder: {
-        [key: string]: TilsynPeriodeInfo;
-    };
-};
-
-export type UtenlandskArbeidsforhold = {
-    ansettelsePeriode: string;
-    arbeidsgiversnavn: string;
-    land: string;
-};
-
-export type Utenlandsopphold = {
-    perioder?: {
-        [key: string]: UtenlandsoppholdPeriodeInfo;
-    };
-    perioderSomSkalSlettes?: {
-        [key: string]: UtenlandsoppholdPeriodeInfo;
-    };
-};
-
-export type UtenlandsoppholdPeriodeInfo = {
-    erSammenMedBarnet?: boolean;
-    land: string;
-    årsak?:
-        | 'barnetInnlagtIHelseinstitusjonForNorskOffentligRegning'
-        | 'barnetInnlagtIHelseinstitusjonDekketEtterAvtaleMedEtAnnetLandOmTrygd';
-};
-
-export type Uttak = {
-    perioder: {
-        [key: string]: UttakPeriodeInfo;
-    };
-};
-
-export type UttakPeriodeInfo = {
-    timerPleieAvBarnetPerDag: string;
 };
 
 export type DeleteMellomlagringData = {

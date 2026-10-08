@@ -1,10 +1,19 @@
 # @navikt/endringsmelding-pleiepenger
 
-## 3.1.3
+## 3.1.4
 
 ### Patch Changes
 
 - Legge til tekst om endringer i vurdering om vurdering av tapt arbeidstid og normalarbeidstid fra 1. jan 2027
+
+## 3.1.3
+
+### Patch Changes
+
+- @navikt/sif-common-core-ds@10.4.2
+    - @navikt/sif-common-soknad-ds@26.2.3
+    - @navikt/sif-common-forms-ds@21.0.63
+    - @navikt/sif-common-ui@0.12.2
 
 ## 3.1.2
 

@@ -2,8 +2,9 @@ import { usePrevious } from '@navikt/sif-common-hooks';
 import { useEffect, useRef, useState } from 'react';
 
 import { ApplicationStatus, SanityConfig, SanityError, Status } from '../types';
-import { SanityStatusMessage } from '../types/sanityObjects';
+import { SanityNotice, SanityStatusMessage } from '../types/sanityObjects';
 import { getMessage, sanityConfigIsValid } from '../utils';
+import { getValidNotice } from '../utils/noticeUtils';
 import { getAppSanityClient } from '../utils/sanityClient';
 
 export const getApplicationDocumentStatusQuery = (key: string, team?: string): string => {
@@ -12,6 +13,7 @@ export const getApplicationDocumentStatusQuery = (key: string, team?: string): s
         key,
         applicationStatus,
         message,
+        notice,
         liveUpdate,
         name,
         team->{key}
@@ -27,6 +29,8 @@ export interface ApplicationSanityQueryResult {
     };
     liveUpdate?: boolean;
     message: SanityStatusMessage[];
+    /** Valideres med getValidNotice før bruk */
+    notice?: unknown;
     team?: {
         key: string;
     };
@@ -35,17 +39,20 @@ export interface ApplicationSanityQueryResult {
 export interface ApplicationState {
     status: ApplicationStatus;
     message?: SanityStatusMessage;
+    notice?: SanityNotice;
 }
 
 const defaultState: ApplicationState = {
     status: Status.normal,
     message: undefined,
+    notice: undefined,
 };
 
 export interface AppStatus {
     team?: string;
     isLoading: boolean;
     message?: SanityStatusMessage;
+    notice?: SanityNotice;
     status: ApplicationStatus;
     error?: SanityError;
 }
@@ -140,6 +147,7 @@ function useGetApplicationStatus(applicationKey: string, sanityConfig: SanityCon
             setState({
                 status: application.applicationStatus.status,
                 message: getMessage(application.message),
+                notice: getValidNotice(application.notice),
             });
         }
     }, [application]);

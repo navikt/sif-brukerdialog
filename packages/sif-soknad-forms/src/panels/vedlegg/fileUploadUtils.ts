@@ -21,6 +21,8 @@ export const getRejectedFileError = (
             return text('@sifSoknadForms.vedlegg.error.timeout');
         case FileUploadErrorReason.BAD_REQUEST:
             return text('@sifSoknadForms.vedlegg.error.badRequest');
+        case FileUploadErrorReason.UNKNOWN:
+        case undefined:
         default:
             return text('@sifSoknadForms.vedlegg.error.unknown');
     }

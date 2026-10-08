@@ -1,12 +1,12 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import React from 'react';
+import { defineField, defineType } from 'sanity';
+
 import StatusIcon from '../../components/status-icon/StatusIcon';
 import {
     getStatusIconStatusFromApplicationStatus,
     getStatusSubTitleFromApplicationStatus,
 } from '../../utils/previewUtils';
 
-const Team = {
+const Team = defineType({
     title: 'Team',
     name: 'team',
     type: 'document',
@@ -17,48 +17,50 @@ const Team = {
         },
     ],
     fields: [
-        {
+        defineField({
             title: 'Navn',
             name: 'name',
             type: 'string',
-        },
-        {
+        }),
+        defineField({
             title: 'ID',
             name: 'key',
             type: 'string',
-        },
-        {
+        }),
+        defineField({
             title: "Global status for teams' applications",
             name: 'teamApplicationStatus',
             type: 'teamApplicationStatus',
-        },
-        {
+        }),
+        defineField({
             title: 'Listen for sanity changes',
             name: 'liveUpdate',
             type: 'boolean',
-        },
-
-        {
+        }),
+        defineField({
             title: 'Message',
             name: 'message',
             type: 'array',
             of: [{ type: 'statusMessage' }],
-            validation: (Rule: { max: (num: number) => any }) => Rule.max(1),
-        },
+            deprecated: {
+                reason: 'Message is no longer shown in the applications. Use "Notice" on the application instead.',
+            },
+            validation: (rule) => rule.max(1),
+        }),
     ],
     preview: {
         select: {
             title: 'name',
             applicationStatus: 'teamApplicationStatus',
         },
-        prepare(props: any): any {
+        prepare({ title, applicationStatus }) {
             return {
-                title: props.title,
-                subtitle: getStatusSubTitleFromApplicationStatus(props.applicationStatus.status),
-                media: <StatusIcon status={getStatusIconStatusFromApplicationStatus(props.applicationStatus.status)} />,
+                title,
+                subtitle: getStatusSubTitleFromApplicationStatus(applicationStatus?.status),
+                media: <StatusIcon status={getStatusIconStatusFromApplicationStatus(applicationStatus?.status)} />,
             };
         },
     },
-};
+});
 
 export default Team;

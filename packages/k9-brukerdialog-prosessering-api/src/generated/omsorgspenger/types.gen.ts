@@ -4,29 +4,12 @@ export type ClientOptions = {
     baseURL: string & {};
 };
 
+export type JsonNode = unknown;
+
 export type ArbeidsgivereDto = {
     frilansoppdrag?: FrilansoppdragDto[];
     organisasjoner: OrganisasjonDto[];
     privateArbeidsgivere?: PrivatArbeidsgiverDto[];
-};
-
-export type Barn = {
-    aktørId?: string;
-    fødselsdato?: string;
-    navn: string;
-    norskIdentifikator?: string;
-};
-
-export type BarnOppslag = {
-    aktørId: string;
-    etternavn: string;
-    fornavn: string;
-    fødselsdato: string;
-    mellomnavn?: string;
-};
-
-export type BarnOppslagListe = {
-    barn: BarnOppslag[];
 };
 
 export type FrilansoppdragDto = {
@@ -38,7 +21,46 @@ export type FrilansoppdragDto = {
     type: string;
 };
 
-export type JsonNode = unknown;
+export type OrganisasjonDto = {
+    ansattFom?: string;
+    ansattTom?: string;
+    navn?: string;
+    organisasjonsnummer: string;
+};
+
+export type PrivatArbeidsgiverDto = {
+    ansattFom?: string;
+    ansattTom?: string;
+    offentligIdent: string;
+};
+
+export type BarnOppslagListe = {
+    barn: BarnOppslag[];
+};
+
+export type BarnOppslag = {
+    aktørId: string;
+    etternavn: string;
+    fornavn: string;
+    fødselsdato: string;
+    mellomnavn?: string;
+};
+
+export type Søker = {
+    aktørId: string;
+    etternavn?: string;
+    fornavn?: string;
+    fødselsdato: string;
+    fødselsnummer: string;
+    mellomnavn?: string;
+};
+
+export type Barn = {
+    aktørId?: string;
+    fødselsdato?: string;
+    navn: string;
+    norskIdentifikator?: string;
+};
 
 export type OmsorgspengerKroniskSyktBarnSøknad = {
     barn: Barn;
@@ -56,19 +78,6 @@ export type OmsorgspengerKroniskSyktBarnSøknad = {
     søkerNorskIdent?: string;
 };
 
-export type OrganisasjonDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    navn?: string;
-    organisasjonsnummer: string;
-};
-
-export type PrivatArbeidsgiverDto = {
-    ansattFom?: string;
-    ansattTom?: string;
-    offentligIdent: string;
-};
-
 export type ProblemDetail = {
     detail?: string;
     instance?: string;
@@ -78,15 +87,6 @@ export type ProblemDetail = {
     status?: number;
     title?: string;
     type?: string;
-};
-
-export type Søker = {
-    aktørId: string;
-    etternavn?: string;
-    fornavn?: string;
-    fødselsdato: string;
-    fødselsnummer: string;
-    mellomnavn?: string;
 };
 
 export type DeleteMellomlagringData = {

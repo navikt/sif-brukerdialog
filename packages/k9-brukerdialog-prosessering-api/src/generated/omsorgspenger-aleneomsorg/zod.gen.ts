@@ -2,27 +2,7 @@
 
 import * as z from 'zod';
 
-export const zBarn = z.object({
-    aktørId: z.string().nullish(),
-    dato: z.iso.date().nullish(),
-    fødselsdato: z.iso.date().nullish(),
-    identitetsnummer: z.string().length(11).nullish(),
-    navn: z.string().min(0).max(100),
-    tidspunktForAleneomsorg: z.enum(['SISTE_2_ÅRENE', 'TIDLIGERE']),
-    type: z.enum(['FRA_OPPSLAG', 'FOSTERBARN', 'ANNET']),
-});
-
-export const zBarnOppslag = z.object({
-    aktørId: z.string(),
-    etternavn: z.string(),
-    fornavn: z.string(),
-    fødselsdato: z.iso.date(),
-    mellomnavn: z.string().nullish(),
-});
-
-export const zBarnOppslagListe = z.object({
-    barn: z.array(zBarnOppslag),
-});
+export const zJsonNode = z.unknown();
 
 export const zFrilansoppdragDto = z.object({
     ansattFom: z.iso.date().nullish(),
@@ -31,17 +11,6 @@ export const zFrilansoppdragDto = z.object({
     offentligIdent: z.string().nullish(),
     organisasjonsnummer: z.string().nullish(),
     type: z.string(),
-});
-
-export const zJsonNode = z.unknown();
-
-export const zOmsorgsdagerAleneOmOmsorgenSøknad = z.object({
-    barn: z.array(zBarn).min(1),
-    dataBruktTilUtledningAnnetData: z.string().nullish(),
-    harBekreftetOpplysninger: z.boolean(),
-    harForståttRettigheterOgPlikter: z.boolean(),
-    språk: z.string(),
-    søkerNorskIdent: z.string().nullish(),
 });
 
 export const zOrganisasjonDto = z.object({
@@ -63,6 +32,46 @@ export const zArbeidsgivereDto = z.object({
     privateArbeidsgivere: z.array(zPrivatArbeidsgiverDto).nullish(),
 });
 
+export const zBarnOppslag = z.object({
+    aktørId: z.string(),
+    etternavn: z.string(),
+    fornavn: z.string(),
+    fødselsdato: z.iso.date(),
+    mellomnavn: z.string().nullish(),
+});
+
+export const zBarnOppslagListe = z.object({
+    barn: z.array(zBarnOppslag),
+});
+
+export const zSøker = z.object({
+    aktørId: z.string(),
+    etternavn: z.string().nullish(),
+    fornavn: z.string().nullish(),
+    fødselsdato: z.iso.date(),
+    fødselsnummer: z.string(),
+    mellomnavn: z.string().nullish(),
+});
+
+export const zBarn = z.object({
+    aktørId: z.string().nullish(),
+    dato: z.iso.date().nullish(),
+    fødselsdato: z.iso.date().nullish(),
+    identitetsnummer: z.string().length(11).nullish(),
+    navn: z.string().min(0).max(100),
+    tidspunktForAleneomsorg: z.enum(['SISTE_2_ÅRENE', 'TIDLIGERE']),
+    type: z.enum(['FRA_OPPSLAG', 'FOSTERBARN', 'ANNET']),
+});
+
+export const zOmsorgsdagerAleneOmOmsorgenSøknad = z.object({
+    barn: z.array(zBarn).min(1),
+    dataBruktTilUtledningAnnetData: z.string().nullish(),
+    harBekreftetOpplysninger: z.boolean(),
+    harForståttRettigheterOgPlikter: z.boolean(),
+    språk: z.string(),
+    søkerNorskIdent: z.string().nullish(),
+});
+
 export const zProblemDetail = z.object({
     detail: z.string().optional(),
     instance: z.url().optional(),
@@ -74,15 +83,6 @@ export const zProblemDetail = z.object({
         .optional(),
     title: z.string().optional(),
     type: z.url().optional(),
-});
-
-export const zSøker = z.object({
-    aktørId: z.string(),
-    etternavn: z.string().nullish(),
-    fornavn: z.string().nullish(),
-    fødselsdato: z.iso.date(),
-    fødselsnummer: z.string(),
-    mellomnavn: z.string().nullish(),
 });
 
 export const zDeleteMellomlagringPath = z.object({

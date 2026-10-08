@@ -23,7 +23,8 @@ export const SifInfoCard = ({ children, ...props }: Props) => {
                     </InfoCard.Message>
                 </InfoCard>
             );
-        default:
+        case 'info':
+        case undefined:
             return (
                 <InfoCard data-color="info" {...props}>
                     <InfoCard.Message

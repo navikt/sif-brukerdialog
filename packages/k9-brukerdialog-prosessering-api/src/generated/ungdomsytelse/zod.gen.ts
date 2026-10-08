@@ -2,17 +2,7 @@
 
 import * as z from 'zod';
 
-export const zBarnOppslag = z.object({
-    aktørId: z.string(),
-    etternavn: z.string(),
-    fornavn: z.string(),
-    fødselsdato: z.iso.date(),
-    mellomnavn: z.string().nullish(),
-});
-
-export const zBarnOppslagListe = z.object({
-    barn: z.array(zBarnOppslag),
-});
+export const zJsonNode = z.unknown();
 
 export const zFrilansoppdragDto = z.object({
     ansattFom: z.iso.date().nullish(),
@@ -21,22 +11,6 @@ export const zFrilansoppdragDto = z.object({
     offentligIdent: z.string().nullish(),
     organisasjonsnummer: z.string().nullish(),
     type: z.string(),
-});
-
-export const zJsonNode = z.unknown();
-
-export const zKontonummerInfo = z.object({
-    harKontonummer: z.enum(['JA', 'NEI', 'UVISST']),
-    kontonummerErRiktig: z.boolean().nullish(),
-    kontonummerFraRegister: z.string().nullish(),
-});
-
-export const zOppgittInntekt = z.object({
-    arbeidstakerOgFrilansInntekt: z
-        .int()
-        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
-        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
-        .nullish(),
 });
 
 export const zOrganisasjonDto = z.object({
@@ -58,17 +32,16 @@ export const zArbeidsgivereDto = z.object({
     privateArbeidsgivere: z.array(zPrivatArbeidsgiverDto).nullish(),
 });
 
-export const zProblemDetail = z.object({
-    detail: z.string().optional(),
-    instance: z.url().optional(),
-    properties: z.record(z.string(), z.unknown()).optional(),
-    status: z
-        .int()
-        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
-        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
-        .optional(),
-    title: z.string().optional(),
-    type: z.url().optional(),
+export const zBarnOppslag = z.object({
+    aktørId: z.string(),
+    etternavn: z.string(),
+    fornavn: z.string(),
+    fødselsdato: z.iso.date(),
+    mellomnavn: z.string().nullish(),
+});
+
+export const zBarnOppslagListe = z.object({
+    barn: z.array(zBarnOppslag),
 });
 
 export const zSøker = z.object({
@@ -78,6 +51,14 @@ export const zSøker = z.object({
     fødselsdato: z.iso.date(),
     fødselsnummer: z.string(),
     mellomnavn: z.string().nullish(),
+});
+
+export const zOppgittInntekt = z.object({
+    arbeidstakerOgFrilansInntekt: z
+        .int()
+        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
+        .nullish(),
 });
 
 export const zUngdomsytelseInntektsrapportering = z.object({
@@ -102,6 +83,12 @@ export const zUngdomsytelseOppgavebekreftelse = z.object({
     oppgave: zUngdomsytelseOppgaveDto,
 });
 
+export const zKontonummerInfo = z.object({
+    harKontonummer: z.enum(['JA', 'NEI', 'UVISST']),
+    kontonummerErRiktig: z.boolean().nullish(),
+    kontonummerFraRegister: z.string().nullish(),
+});
+
 export const zUngdomsytelsesøknad = z.object({
     barnErRiktig: z.boolean(),
     deltakelseId: z.string(),
@@ -112,6 +99,19 @@ export const zUngdomsytelsesøknad = z.object({
     språk: z.string(),
     startdato: z.iso.date(),
     søkerNorskIdent: z.string(),
+});
+
+export const zProblemDetail = z.object({
+    detail: z.string().optional(),
+    instance: z.url().optional(),
+    properties: z.record(z.string(), z.unknown()).optional(),
+    status: z
+        .int()
+        .min(-2147483648, { error: 'Invalid value: Expected int32 to be >= -2147483648' })
+        .max(2147483647, { error: 'Invalid value: Expected int32 to be <= 2147483647' })
+        .optional(),
+    title: z.string().optional(),
+    type: z.url().optional(),
 });
 
 export const zDeleteMellomlagringPath = z.object({
