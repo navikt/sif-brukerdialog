@@ -1,5 +1,11 @@
 # @navikt/pleiepenger-sykt-barn
 
+## 4.12.3
+
+### Patch Changes
+
+- Legge til tekst om endringer i vurdering om vurdering av tapt arbeidstid og normalarbeidstid fra 1. jan 2027
+
 ## 4.12.2
 
 ### Patch Changes

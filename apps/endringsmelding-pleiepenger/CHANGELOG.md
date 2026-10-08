@@ -1,5 +1,11 @@
 # @navikt/endringsmelding-pleiepenger
 
+## 3.1.3
+
+### Patch Changes
+
+- Legge til tekst om endringer i vurdering om vurdering av tapt arbeidstid og normalarbeidstid fra 1. jan 2027
+
 ## 3.1.2
 
 ### Patch Changes
