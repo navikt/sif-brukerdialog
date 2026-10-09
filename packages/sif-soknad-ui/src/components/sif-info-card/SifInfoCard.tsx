@@ -1,14 +1,37 @@
-import { ExclamationmarkTriangleFillIcon, InformationSquareFillIcon } from '@navikt/aksel-icons';
+import {
+    CheckmarkCircleFillIcon,
+    XMarkOctagonFillIcon,
+    InformationSquareFillIcon,
+    ExclamationmarkTriangleFillIcon,
+} from '@navikt/aksel-icons';
 import { InfoCard, InfoCardProps } from '@navikt/ds-react';
 import { ReactNode } from 'react';
 
 interface Props extends InfoCardProps {
     children: ReactNode;
-    variant?: 'info' | 'warning';
+    variant?: 'info' | 'warning' | 'error' | 'success';
 }
 
 export const SifInfoCard = ({ children, ...props }: Props) => {
     switch (props.variant) {
+        case 'success':
+            return (
+                <InfoCard data-color="success" {...props}>
+                    <InfoCard.Message
+                        icon={<CheckmarkCircleFillIcon style={{ color: 'var(--ax-bg-success-strong)' }} aria-hidden />}>
+                        {children}
+                    </InfoCard.Message>
+                </InfoCard>
+            );
+        case 'error':
+            return (
+                <InfoCard data-color="danger" {...props}>
+                    <InfoCard.Message
+                        icon={<XMarkOctagonFillIcon style={{ color: 'var(--ax-bg-danger-strong)' }} aria-hidden />}>
+                        {children}
+                    </InfoCard.Message>
+                </InfoCard>
+            );
         case 'warning':
             return (
                 <InfoCard data-color="warning" {...props}>
