@@ -21,10 +21,10 @@
         "eslint-plugin-storybook": "10.6.1",
         "globals": "17.13.0",
         "typescript": "6.0.3",
-        "typescript-eslint": "8.71.0"
+        "typescript-eslint": "8.71.1"
     },
     "devDependencies": {
-        "postcss": ">=8.5.28",
+        "postcss": "8.5.29",
         "prettier": "3.9.9",
         "storybook": "10.6.1"
     }
