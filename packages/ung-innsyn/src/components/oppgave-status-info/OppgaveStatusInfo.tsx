@@ -1,5 +1,6 @@
-import { Alert, BodyLong, Box } from '@navikt/ds-react';
+import { BodyLong, Box } from '@navikt/ds-react';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { SifInfoCard } from '@sif/soknad-ui';
 
 import { UngInnsynText } from '../../i18n';
 
@@ -13,13 +14,13 @@ export const OppgaveStatusInfo = ({ oppgaveStatus }: Props) => {
         case OppgaveStatus.UTLØPT:
         case OppgaveStatus.AVBRUTT:
             return (
-                <Alert variant="info">
+                <SifInfoCard variant="info">
                     <Box>
                         <BodyLong>
                             <UngInnsynText id="@ungInnsyn.oppgaveStatusInfo.utløptEllerAvbrutt" />
                         </BodyLong>
                     </Box>
-                </Alert>
+                </SifInfoCard>
             );
         case OppgaveStatus.LØST:
         case OppgaveStatus.ULØST:

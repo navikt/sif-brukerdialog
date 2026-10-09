@@ -1,6 +1,7 @@
-import { Alert, Heading, VStack } from '@navikt/ds-react';
+import { Heading, VStack } from '@navikt/ds-react';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { SifInfoCard } from '@sif/soknad-ui';
 import { dateFormatter, DateRange } from '@sif/utils';
 import { useEffect, useRef, useState } from 'react';
 
@@ -54,9 +55,9 @@ export const RapporterInntektOppgavePart = ({ navn, oppgave, initialKvitteringDa
                     <VStack gap="space-24">
                         {arbeidstakerOgFrilansInntekt === undefined ? (
                             /** Oppgaven er akkurat besvart og informasjonen er ikke kommet på oppgaven som er lastet inn */
-                            <Alert variant="info">
+                            <SifInfoCard>
                                 <UngInnsynText id="@ungInnsyn.rapporterInntektOppgavePart.løst.utenInfo" />
-                            </Alert>
+                            </SifInfoCard>
                         ) : (
                             <RapportertInntektOppsummering måned={måned} inntekt={arbeidstakerOgFrilansInntekt} />
                         )}
