@@ -40,7 +40,6 @@
         "@vitejs/plugin-react": "6.1.2",
         "axios": "1.20.0",
         "config": "workspace:*",
-        "copyfiles": "2.4.1",
         "dayjs": "1.11.23",
         "eslint": "10.12.0",
         "eslint-plugin-storybook": "10.6.1",
