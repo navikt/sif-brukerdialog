@@ -28,6 +28,8 @@ const getEndringstypeTekst = (type: Endringstype): string => {
             return 'Deltakelse slettet';
         case Endringstype.SLUTTDATO_SLETTET:
             return 'Sluttdato slettet';
+        case Endringstype.OPPHØRSVEDTAK_FATTET:
+            return 'Vedtak om opphør';
         case Endringstype.UKJENT:
             return 'Ukjent endringstype';
     }
