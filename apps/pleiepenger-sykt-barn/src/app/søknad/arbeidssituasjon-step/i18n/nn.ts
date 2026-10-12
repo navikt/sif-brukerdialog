@@ -14,7 +14,7 @@ export const arbeidssituasjonMessages_nn: Record<keyof typeof arbeidssituasjonMe
     'steg.arbeidssituasjon.veileder.3':
         'Viss du mottar yting frå Nav (til dømes foreldrepengar eller sjukepengar) opplyser du om det som var din normale arbeidstid før du starta å motta ytinga.',
     'steg.arbeidssituasjon.veileder.4':
-        'Frå 1. januar 2027 vil vurdering av tapt arbeidstid bli gjort ut frå den arbeidstida du vanlegvis jobba då du starta perioden med pleiepengar.',
+        'Frå 1. januar 2027 vil vurdering av tapt arbeidstid bli gjort ut frå den arbeidstida du vanlegvis jobba då du starta perioden med pleiepengar. Endringa vil berre påverke saka di viss du søkjer forlenging av perioden med pleiepengar, og i tillegg har endra stillingsprosent hos arbeidsgjevar etter at du starta med pleiepengar.',
     'steg.arbeidssituasjon.veileder.medArbeidsgiver':
         'Nedanfor ser du {antall, plural, one {arbeidsgjevaren} other {arbeidsgjevarar}} du er registrert tilsett hos i AA-registeret i perioden du søkjer om pleiepengar. For at me skal vere sikre på at opplysningane er riktige, må du stadfeste om du er, eller har vore, tilsett der.',
     'steg.arbeidssituasjon.veileder.ingenArbeidsgiverFunnet':
