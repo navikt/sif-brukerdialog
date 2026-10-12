@@ -16,7 +16,7 @@ import { BostederUtlandSporsmal } from './sporsmal/BostederUtlandSporsmal';
 import { HarBoddINorgeSporsmal } from './sporsmal/HarBoddINorgeSporsmal';
 import { HarJobbetINorgeSporsmal } from './sporsmal/HarJobbetINorgeSporsmal';
 import { HarJobbetUtenforNorgeSporsmal } from './sporsmal/HarJobbetUtenforNorgeSporsmal';
-import { MedlemskapFormFields, MedlemskapFormValues } from './types';
+import { MedlemskapFormValues } from './types';
 
 const stepId = SøknadStepId.MEDLEMSKAP;
 
@@ -37,9 +37,9 @@ export const MedlemskapForm = () => {
     const minDate = useMemo(() => getMinDate(), []);
     const maxDate = useMemo(() => getDateToday(), []);
 
-    const harBoddINorge = methods.watch(MedlemskapFormFields.harBoddINorge);
-    const harJobbetINorge = methods.watch(MedlemskapFormFields.harJobbetINorge);
-    const harJobbetUtenforNorge = methods.watch(MedlemskapFormFields.harJobbetUtenforNorge);
+    const harBoddINorge = methods.watch('harBoddINorge');
+    const harJobbetINorge = methods.watch('harJobbetINorge');
+    const harJobbetUtenforNorge = methods.watch('harJobbetUtenforNorge');
 
     const harJobbetINorgeSvar = yesOrNoToBoolean(harJobbetINorge);
 

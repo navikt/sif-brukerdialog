@@ -22,12 +22,8 @@ import { KontonummerOppsummering } from './parts/KontonummerOppsummering';
 import { MedlemskapOppsummering } from './parts/MedlemskapOppsummering';
 import { StartdatoSpørsmål } from './parts/StartdatoSpørsmål';
 
-enum FormFields {
-    bekrefterOpplysninger = 'bekrefterOpplysninger',
-}
-
 type FormValues = {
-    [FormFields.bekrefterOpplysninger]: boolean;
+    bekrefterOpplysninger: boolean;
 };
 
 const { Checkbox } = createSifFormComponents<FormValues>();
@@ -54,7 +50,7 @@ export const OppsummeringSteg = () => {
         startdato,
     });
 
-    const harBekreftetOpplysninger = methods.watch(FormFields.bekrefterOpplysninger);
+    const harBekreftetOpplysninger = methods.watch('bekrefterOpplysninger');
 
     const onSubmit = () => {
         if (dto === undefined) {
@@ -117,8 +113,8 @@ export const OppsummeringSteg = () => {
                         )}
                         <FormLayout.Questions>
                             <Checkbox
-                                name={FormFields.bekrefterOpplysninger}
-                                validate={validateField(FormFields.bekrefterOpplysninger, getCheckedValidator())}>
+                                name="bekrefterOpplysninger"
+                                validate={validateField('bekrefterOpplysninger', getCheckedValidator())}>
                                 <AppText id="oppsummeringSteg.bekrefterOpplysninger.label" />
                             </Checkbox>
                         </FormLayout.Questions>

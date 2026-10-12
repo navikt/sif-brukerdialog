@@ -8,7 +8,7 @@ import { FormLayout } from '@sif/soknad-ui';
 import { ISODate } from '@sif/utils';
 import { useController } from 'react-hook-form';
 
-import { MedlemskapFormFields, MedlemskapFormValues } from '../types';
+import { MedlemskapFormValues } from '../types';
 
 interface Props {
     minDate: ISODate;
@@ -18,13 +18,10 @@ interface Props {
 export const BostederUtlandSporsmal = ({ minDate, maxDate }: Props) => {
     const { validateField } = useSifValidate('medlemskapForm');
     const { lagre } = useMellomlagring();
-    const { field } = useController<MedlemskapFormValues, MedlemskapFormFields.bostederUtenforNorge>({
-        name: MedlemskapFormFields.bostederUtenforNorge,
+    const { field } = useController<MedlemskapFormValues, 'bostederUtenforNorge'>({
+        name: 'bostederUtenforNorge',
         rules: {
-            validate: validateField(
-                MedlemskapFormFields.bostederUtenforNorge,
-                getListValidator({ minItems: 1, required: true }),
-            ),
+            validate: validateField('bostederUtenforNorge', getListValidator({ minItems: 1, required: true })),
         },
     });
 
@@ -47,7 +44,7 @@ export const BostederUtlandSporsmal = ({ minDate, maxDate }: Props) => {
                     maxDate={maxDate}
                     variant="generell"
                     arbeidssteder={field.value ?? []}
-                    addButtonId={MedlemskapFormFields.bostederUtenforNorge}
+                    addButtonId="bostederUtenforNorge"
                     addButtonLabel={<AppText id="medlemskapSteg.bosteder.leggTil" />}
                     onChange={onChange}
                 />

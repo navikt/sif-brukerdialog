@@ -18,7 +18,7 @@ import {
 import { useForm } from 'react-hook-form';
 
 import { toBarnFormValues, toBarnSøknadsdata } from './barnStegUtils';
-import { BarnFormFields, BarnFormValues } from './types';
+import { BarnFormValues } from './types';
 
 const { YesOrNoQuestion } = createSifFormComponents<BarnFormValues>();
 
@@ -35,7 +35,7 @@ export const BarnForm = () => {
 
     const onSubmit = (data: BarnFormValues) => commit(toBarnSøknadsdata(data));
 
-    const infoStemmer = methods.watch(BarnFormFields.informasjonStemmer);
+    const infoStemmer = methods.watch('informasjonStemmer');
 
     return (
         <SøknadStep stepId={stepId}>
@@ -53,7 +53,7 @@ export const BarnForm = () => {
                             />
                         )}
                         <YesOrNoQuestion
-                            name={BarnFormFields.informasjonStemmer}
+                            name="informasjonStemmer"
                             legend={text(
                                 registrerteBarn.length === 0
                                     ? 'barnSteg.spørsmål.ingenBarn'
@@ -62,7 +62,7 @@ export const BarnForm = () => {
                                     antallBarn: registrerteBarn.length,
                                 },
                             )}
-                            validate={validateField(BarnFormFields.informasjonStemmer, getYesOrNoValidator())}
+                            validate={validateField('informasjonStemmer', getYesOrNoValidator())}
                         />
                         <AriaLiveRegion visible={infoStemmer === YesOrNo.NO}>
                             <FormLayout.QuestionRelatedMessage>

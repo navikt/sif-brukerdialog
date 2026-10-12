@@ -9,7 +9,7 @@ import { FormLayout, SifGuidePanel } from '@sif/soknad-ui/components';
 import { useForm } from 'react-hook-form';
 
 import { toBostedFormValues, toBostedSøknadsdata } from './bostedStegUtils';
-import { BostedFormFields, BostedFormValues } from './types';
+import { BostedFormValues } from './types';
 
 const { YesOrNoQuestion } = createSifFormComponents<BostedFormValues>();
 
@@ -25,7 +25,7 @@ export const BostedForm = () => {
 
     const onSubmit = (data: BostedFormValues) => commit(toBostedSøknadsdata(data));
 
-    const erBosattITrondheim = methods.watch(BostedFormFields.erBosattITrondheim);
+    const erBosattITrondheim = methods.watch('erBosattITrondheim');
 
     return (
         <SøknadStep stepId={stepId}>
@@ -36,9 +36,9 @@ export const BostedForm = () => {
                     </SifGuidePanel>
                     <FormLayout.Questions>
                         <YesOrNoQuestion
-                            name={BostedFormFields.erBosattITrondheim}
+                            name="erBosattITrondheim"
                             legend={text('bostedSteg.spørsmål.erBosattITrondheim')}
-                            validate={validateField(BostedFormFields.erBosattITrondheim, getYesOrNoValidator())}
+                            validate={validateField('erBosattITrondheim', getYesOrNoValidator())}
                         />
                         {erBosattITrondheim === YesOrNo.NO && (
                             <SifInfoCard variant="warning">
