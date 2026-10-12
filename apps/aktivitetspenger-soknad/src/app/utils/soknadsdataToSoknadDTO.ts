@@ -46,14 +46,7 @@ export const søknadsdataToSøknadDTO = (
 ): Omit<SøknadApiData, 'harBekreftetOpplysninger'> | undefined => {
     const { barn, harForståttRettigheterOgPlikter, medlemskap, kontonummer, bosted } = søknadsdata;
 
-    if (
-        !barn ||
-        !harForståttRettigheterOgPlikter ||
-        !bosted ||
-        !kontonummer ||
-        !medlemskap ||
-        (inkluderStartdato && !startdato)
-    ) {
+    if (!barn || !harForståttRettigheterOgPlikter || !bosted || !kontonummer || !medlemskap) {
         // eslint-disable-next-line no-console
         console.error('Manglende data i søknadsdata');
         return undefined;

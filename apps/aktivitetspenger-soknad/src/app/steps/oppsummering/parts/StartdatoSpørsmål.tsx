@@ -5,13 +5,13 @@ import dayjs from 'dayjs';
 
 interface Props {
     onDateChange: (date: Date | undefined) => void;
-    value: ISODate;
+    value: ISODate | undefined;
 }
 export const StartdatoSpørsmål = ({ onDateChange, value }: Props) => {
     const { text } = useAppIntl();
     const { datepickerProps, inputProps } = useDatepicker({
         disableWeekends: false,
-        defaultSelected: ISODateToDate(value),
+        defaultSelected: value ? ISODateToDate(value) : undefined,
         fromDate: dayjs().subtract(4, 'year').toDate(),
         toDate: dayjs().add(4, 'years').toDate(),
         onDateChange: onDateChange,
@@ -26,10 +26,7 @@ export const StartdatoSpørsmål = ({ onDateChange, value }: Props) => {
                     </Tag>
                 </Bleed>
                 <DatePicker {...datepickerProps}>
-                    <DatePicker.Input
-                        {...inputProps}
-                        label={text('oppsummeringSteg.startdato.velgStartdato')}
-                    />
+                    <DatePicker.Input {...inputProps} label={text('oppsummeringSteg.startdato.velgStartdato')} />
                 </DatePicker>
             </VStack>
         </Box>

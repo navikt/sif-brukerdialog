@@ -11,7 +11,7 @@ import { getCheckedValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { SøknadStep, SøknadStepForm, useSøknadsdata } from '@sif/soknad-app';
 import { FormLayout } from '@sif/soknad-ui';
-import { dateToISODate, getDateToday, ISODate } from '@sif/utils';
+import { dateToISODate, ISODate } from '@sif/utils';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -34,7 +34,7 @@ export const OppsummeringSteg = () => {
     const { locale } = useAppIntl();
 
     const { validateField } = useSifValidate('oppsummeringForm');
-    const [startdato, setStartdato] = useState<ISODate>(dateToISODate(getDateToday()));
+    const [startdato, setStartdato] = useState<ISODate | undefined>();
     const inkluderStartdatoSpørsmål = isProd() ? false : true;
 
     const { søker, kontoInfo, registrerteBarn } = useAppContext();
