@@ -103,6 +103,19 @@ describe('SøknadProvider — mellomlagringGrunnlag', () => {
         expect(screen.getByTestId('location').textContent).toBe('/');
     });
 
+    it('forkaster og sletter mellomlagring med hash når appen ikke lenger sender grunnlag', async () => {
+        vi.mocked(hentYtelseMellomlagring).mockResolvedValue({
+            versjon: 1,
+            resumeStepId: 'start',
+            søknadsdata: {},
+            grunnlagHash: await createGrunnlagHash({ antallBarn: 1 }),
+        });
+        renderMedGrunnlag();
+
+        await waitFor(() => expect(slettYtelseMellomlagring).toHaveBeenCalled());
+        expect(screen.getByTestId('location').textContent).toBe('/');
+    });
+
     it('forkaster mellomlagring uten hash når appen sender grunnlag', async () => {
         vi.mocked(hentYtelseMellomlagring).mockResolvedValue({ versjon: 1, resumeStepId: 'start', søknadsdata: {} });
         renderMedGrunnlag({ antallBarn: 1 });

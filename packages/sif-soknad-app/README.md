@@ -128,7 +128,7 @@ Knappetekster («Neste steg», «Forrige steg»), avbryt- og fortsett-senere-dia
 | Komponent                       | Formål                                                                                   |
 | ------------------------------- | ---------------------------------------------------------------------------------------- |
 | `SøknadAppProvider`             | App-rot: error boundary, react-query, analytics, UxSignals, i18n og appstatus (Sanity)   |
-| `SøknadProvider`                  | Hoved-inngang: store, mellomlagring, gjenopptaking, kvitteringsrute                      |
+| `SøknadProvider`                | Hoved-inngang: store, mellomlagring, gjenopptaking, kvitteringsrute                      |
 | `SøknadStepGuard`               | Routing-guard på layout-ruten for steg                                                   |
 | `SøknadStep`                    | Wrapper for ett steg: tittel, progress-stepper, avbryt, fortsett senere, konsistenssjekk |
 | `SøknadStepForm`                | RHF-skjema for ett steg: submit-/forrige-knapp, deaktivering ved inkonsistens            |
@@ -138,7 +138,7 @@ Knappetekster («Neste steg», «Forrige steg»), avbryt- og fortsett-senere-dia
 | `AppErrorBoundary`              | Feilgrense rundt appen                                                                   |
 | `AnalyticsProvider`             | Innblikk-logging                                                                         |
 | `InconsistentFormValuesMessage` | Varsel ved ulagrede endringer i tidligere steg (rendres av `SøknadStep`)                 |
-| `SøknadStepFormProvider`        | In-session skjemaverdier. Rendres av `SøknadProvider` — eksportert for tester/Storybook    |
+| `SøknadStepFormProvider`        | In-session skjemaverdier. Rendres av `SøknadProvider` — eksportert for tester/Storybook  |
 
 ### `SøknadProvider`-props
 
@@ -202,7 +202,9 @@ Knappetekster («Neste steg», «Forrige steg»), avbryt- og fortsett-senere-dia
 3. `grunnlagHash` er ulik hashen av `mellomlagringGrunnlag` — da slettes den også i backend
 4. `validateMellomlagring` returnerer `null`
 
-`mellomlagringGrunnlag` er valgfri. Uten den lagres ingen hash, og sjekken slår ikke ut. Grunnlaget må være lastet før `SøknadProvider` mountes, og hashen beregnes med `createGrunnlagHash` fra `@sif/utils`. Playwright-fixturer importerer den fra `@sif/utils/grunnlagHash` for å unngå JSON-importer i Node.
+`mellomlagringGrunnlag` er valgfri. Uten den lagres ingen hash. Hvis mellomlagringen inneholder en hash fra før, forkastes og slettes den når prop-en fjernes. Tilsvarende forkastes og slettes mellomlagring uten hash når prop-en legges til. Mellomlagring uten hash kan gjenopptas når prop-en også mangler.
+
+Grunnlaget må være lastet før `SøknadProvider` mountes, og hashen beregnes med `createGrunnlagHash` fra `@sif/utils`. Playwright-fixturer importerer den fra `@sif/utils/grunnlagHash` for å unngå JSON-importer i Node.
 
 ### `resumeStepId`
 
@@ -226,17 +228,17 @@ Midlertidige skjemaverdier (ikke submittet) finnes på tre steder med ulik levet
 
 ### Navigasjonsansvar
 
-| Beslutning                         | Eier                                          |
-| ---------------------------------- | --------------------------------------------- |
+| Beslutning                         | Eier                                            |
+| ---------------------------------- | ----------------------------------------------- |
 | Resume fra mellomlagring ved mount | `SøknadProvider`                                |
-| Start søknad → første steg         | `useStartSøknad`                              |
-| Neste steg etter submit            | `useStepData.commit`                          |
-| Forrige steg / hopp til steg       | `useStepNavigation`                           |
-| Klikk i progress-stepper           | `SøknadStep`                                  |
-| Avbryt → forsiden                  | `SøknadStep` / `useAvbryt`                    |
-| Fortsett senere                    | `SøknadStep`                                  |
+| Start søknad → første steg         | `useStartSøknad`                                |
+| Neste steg etter submit            | `useStepData.commit`                            |
+| Forrige steg / hopp til steg       | `useStepNavigation`                             |
+| Klikk i progress-stepper           | `SøknadStep`                                    |
+| Avbryt → forsiden                  | `SøknadStep` / `useAvbryt`                      |
+| Fortsett senere                    | `SøknadStep`                                    |
 | Kvittering etter innsending        | `SøknadProvider` (synker URL mot `søknadSendt`) |
-| URL-guard / redirect               | `SøknadStepGuard`                             |
+| URL-guard / redirect               | `SøknadStepGuard`                               |
 
 ### Konsistenssjekk (browser back/forward)
 
