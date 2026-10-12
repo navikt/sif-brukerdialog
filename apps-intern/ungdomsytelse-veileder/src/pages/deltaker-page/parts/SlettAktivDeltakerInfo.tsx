@@ -1,4 +1,4 @@
-import { BodyLong, Box, Button, Heading, VStack } from '@navikt/ds-react';
+import { Box, Button, Heading, VStack } from '@navikt/ds-react';
 import { useState } from 'react';
 
 import SlettAktivDeltakerModal from '../../../components/slett-aktiv-deltaker-modal/SlettAktivDeltakerModal';
@@ -20,10 +20,6 @@ const SlettAktivDeltakerInfo = ({ deltaker, deltakelse }: Props) => {
                     <Heading level="3" size="xsmall" spacing>
                         Registrer slettet deltakelse i ungdomsprogrammet
                     </Heading>
-                    <BodyLong spacing>
-                        Hvis en deltaker ikke starter opp i programmet likevel, kan du registrere slettet deltakelse
-                        her.
-                    </BodyLong>
                     <div>
                         <Button variant="secondary" size="small" onClick={() => setVisDialog(true)}>
                             Åpne skjema
