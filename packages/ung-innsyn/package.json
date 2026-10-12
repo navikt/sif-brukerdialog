@@ -27,9 +27,9 @@
     },
     "dependencies": {
         "@nais/apm": "0.7.3",
-        "@navikt/aksel-icons": "8.18.0",
-        "@navikt/ds-css": "8.18.0",
-        "@navikt/ds-react": "8.18.0",
+        "@navikt/aksel-icons": "8.19.0",
+        "@navikt/ds-css": "8.19.0",
+        "@navikt/ds-react": "8.19.0",
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
         "@navikt/sif-common-hooks": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
@@ -64,7 +64,7 @@
         "storybook": "10.6.1",
         "typescript": "6.0.3",
         "uuid": "^14.0.2",
-        "vite": "8.3.3",
+        "vite": "8.3.4",
         "vitest": "5.0.3"
     },
     "peerDependencies": {

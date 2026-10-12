@@ -13,9 +13,9 @@
         "storybook": "storybook dev -p 6006"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "8.18.0",
-        "@navikt/ds-css": "8.18.0",
-        "@navikt/ds-react": "8.18.0",
+        "@navikt/aksel-icons": "8.19.0",
+        "@navikt/ds-css": "8.19.0",
+        "@navikt/ds-react": "8.19.0",
         "@navikt/fnrvalidator": "2.2.1",
         "@navikt/sif-common-env": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
@@ -37,7 +37,7 @@
         "globals": "17.13.0",
         "intl": "1.2.5",
         "less": "4.9.1",
-        "postcss": "8.5.29",
+        "postcss": ">=8.5.28",
         "react": "19.3.0",
         "react-dom": "19.3.0",
         "react-intl": "12.1.4",

@@ -10,7 +10,7 @@
         "lint:tsc": "tsc --noEmit"
     },
     "dependencies": {
-        "@navikt/ds-react": "8.18.0",
+        "@navikt/ds-react": "8.19.0",
         "@navikt/sif-common-hooks": "workspace:*",
         "react": "19.3.0",
         "react-router-dom": "7.18.4",

@@ -27,17 +27,17 @@
         "useTabs": false
     },
     "dependencies": {
-        "@sanity/vision": "6.17.0",
+        "@sanity/vision": "6.18.0",
         "react": "19.3.0",
         "react-dom": "19.3.0",
-        "sanity": "6.17.0"
+        "sanity": "6.18.0"
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
         "@types/react": "19.3.0",
         "dayjs": "1.11.23",
         "eslint": "10.12.0",
-        "postcss": "8.5.29",
+        "postcss": ">=8.5.28",
         "prettier": "3.9.9",
         "react-is": "19.3.0",
         "styled-components": "6.5.3",
