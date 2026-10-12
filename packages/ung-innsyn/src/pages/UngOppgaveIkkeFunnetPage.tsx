@@ -1,4 +1,5 @@
-import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
+import { BodyShort, Heading, VStack } from '@navikt/ds-react';
+import { SifInfoCard } from '@sif/soknad-ui';
 
 import { useUngInnsynIntl } from '../i18n';
 import { UngInnsynPage } from '../pages';
@@ -17,13 +18,13 @@ export const UngOppgaveIkkeFunnetPage = ({ applikasjonTittel, oppgaveReferanse }
                 <Heading size="large" level="1">
                     {text('@ungInnsyn.oppgaveIkkeFunnetPage.tittel')}
                 </Heading>
-                <Alert variant="error">
+                <SifInfoCard variant="error">
                     {oppgaveReferanse ? (
                         <BodyShort>{text('@ungInnsyn.oppgaveIkkeFunnetPage.medId', { oppgaveReferanse })}</BodyShort>
                     ) : (
                         <BodyShort>{text('@ungInnsyn.oppgaveIkkeFunnetPage.utenId')}</BodyShort>
                     )}
-                </Alert>
+                </SifInfoCard>
             </VStack>
         </UngInnsynPage>
     );

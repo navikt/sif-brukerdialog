@@ -1,4 +1,4 @@
-import { Alert, BodyLong, Button, HStack, ReadMore, VStack } from '@navikt/ds-react';
+import { BodyLong, Button, HStack, ReadMore, VStack } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
@@ -6,6 +6,7 @@ import { ApiErrorAlert } from '@sif/api';
 import { useRapporterInntekt, YtelseInntektsrapportering } from '@sif/api/k9-prosessering';
 import { createSifFormComponents, SifForm, useSifValidate, YesOrNo } from '@sif/rhf';
 import { getNumberFromNumberInputValue } from '@sif/rhf/utils';
+import { SifInfoCard } from '@sif/soknad-ui';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -155,7 +156,7 @@ export const RapporterInntektForm = ({
                     ) : null}
                 </FormLayout.Questions>
                 {error ? <ApiErrorAlert error={error} /> : null}
-                {dtoError ? <Alert variant="error">{dtoError}</Alert> : null}
+                {dtoError ? <SifInfoCard variant="error">{dtoError}</SifInfoCard> : null}
             </VStack>
         </SifForm>
     );

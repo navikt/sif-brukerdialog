@@ -1,6 +1,7 @@
-import { Alert, FormSummary, Heading, Link, VStack } from '@navikt/ds-react';
+import { FormSummary, Heading, Link, VStack } from '@navikt/ds-react';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
+import { SifInfoCard } from '@sif/soknad-ui';
 import { dateFormatter } from '@sif/utils';
 import { ReactNode } from 'react';
 
@@ -22,9 +23,9 @@ export const SøkYtelseOppgavetekst = ({ oppgave, dokumentarkivUrl }: Props) => 
                 <Heading level="1" size="large">
                     <UngInnsynText id={`@ungInnsyn.oppgavetype.SØK_YTELSE.${oppgave.ytelsetype}.oppgavetittel`} />
                 </Heading>
-                <Alert variant="info">
+                <SifInfoCard>
                     <UngInnsynText id={`@ungInnsyn.søkYtelseOppgave.${oppgave.ytelsetype}.uløst.info`} />
-                </Alert>
+                </SifInfoCard>
                 <RegelverkOgInnsynReadMore ytelsetype={oppgave.ytelsetype} lenker={getLovLenker(oppgave)} />
                 <div>
                     <ForsideLenkeButton />

@@ -1,4 +1,5 @@
-import { Alert, BodyLong, Heading, VStack } from '@navikt/ds-react';
+import { BodyLong, Heading, VStack } from '@navikt/ds-react';
+import { SifInfoCard } from '@sif/soknad-ui';
 import { forwardRef } from 'react';
 
 import { ForsideLenkeButton } from '../../../../components';
@@ -12,7 +13,7 @@ interface Props {
 export const RapporterInntektKvittering = forwardRef<HTMLDivElement, Props>(({ kvitteringData }, ref) => {
     return (
         <VStack gap="space-32">
-            <Alert variant="success" ref={ref} tabIndex={-1}>
+            <SifInfoCard variant="success" ref={ref} tabIndex={-1}>
                 <Heading level="2" size="small" spacing>
                     <UngInnsynText id="@ungInnsyn.rapporterInntektKvittering.tittel" />
                 </Heading>
@@ -25,7 +26,7 @@ export const RapporterInntektKvittering = forwardRef<HTMLDivElement, Props>(({ k
                         <UngInnsynText id="@ungInnsyn.rapporterInntektKvittering.harIkkeHattInntekt" />
                     </BodyLong>
                 )}
-            </Alert>
+            </SifInfoCard>
             <div>
                 <ForsideLenkeButton />
             </div>

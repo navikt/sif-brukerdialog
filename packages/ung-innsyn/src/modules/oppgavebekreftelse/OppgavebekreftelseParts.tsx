@@ -1,8 +1,8 @@
-import { Alert, Box, FormSummary, Heading, VStack } from '@navikt/ds-react';
+import { Box, FormSummary, Heading, VStack } from '@navikt/ds-react';
 import { usePrevious } from '@navikt/sif-common-hooks';
 import { TextareaSvar } from '@navikt/sif-common-ui';
 import { OppgaveResponsDto, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
-import { SifGuidePanel } from '@sif/soknad-ui';
+import { SifGuidePanel, SifInfoCard } from '@sif/soknad-ui';
 import { ReactNode, useEffect, useRef } from 'react';
 
 import { ForsideLenkeButton, OppgaveStatusInfo } from '../../components';
@@ -145,12 +145,12 @@ const Kvittering = ({ children }: KvitteringProps) => {
 
     return (
         <>
-            <Alert variant="success" tabIndex={-1} ref={alertRef}>
+            <SifInfoCard variant="success" tabIndex={-1} ref={alertRef}>
                 <Heading level="2" size="small" spacing>
                     <UngInnsynText id="@ungInnsyn.oppgavebekreftelse.kvittering.tittel" />
                 </Heading>
                 {children}
-            </Alert>
+            </SifInfoCard>
             <div>
                 <ForsideLenkeButton />
             </div>
@@ -184,9 +184,9 @@ const Besvart = ({ children, beskjedFooter }: BesvartProps) => {
         // Hvis ingen bekreftelse er tilgjengelig
         if (oppgave.status === OppgaveStatus.LØST && !oppgave.respons) {
             return (
-                <Alert variant="info">
+                <SifInfoCard>
                     <UngInnsynText id="@ungInnsyn.oppgavebekreftelse.besvart.svarMangler" />
-                </Alert>
+                </SifInfoCard>
             );
         }
 

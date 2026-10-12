@@ -1,4 +1,5 @@
-import { Alert, BodyShort, Box, Button, Heading, HStack, Page, VStack } from '@navikt/ds-react';
+import { InformationSquareFillIcon } from '@navikt/aksel-icons';
+import { BodyShort, Box, Button, Heading, HStack, InfoCard, Page, VStack } from '@navikt/ds-react';
 import { appLogger } from '@sif/apm';
 import { useState } from 'react';
 
@@ -49,9 +50,11 @@ const ApmTestPage = () => {
         <Page>
             <Page.Block as="main" width="text" gutters>
                 <VStack gap="space-8" paddingBlock="space-8">
-                    <Alert variant="warning">
-                        <AppText id="page.apmTest.advarsel" />
-                    </Alert>
+                    <InfoCard>
+                        <InfoCard.Message icon={<InformationSquareFillIcon aria-hidden />}>
+                            <AppText id="page.apmTest.advarsel" />
+                        </InfoCard.Message>
+                    </InfoCard>
 
                     <Heading size="large">
                         <AppText id="page.apmTest.tittel" />
