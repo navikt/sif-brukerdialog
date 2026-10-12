@@ -83,6 +83,7 @@ export const Søknad = () => (
         stepOrder={søknadStepOrder}
         ytelse={APP_YTELSE}
         versjon={MELLOMLAGRING_VERSJON}
+        mellomlagringGrunnlag={{ antallBarn: barn.length }}
         applicationTitle={text('application.title')}
         formValuesToSøknadsdata={formValuesToSøknadsdata}
         kvitteringElement={<Kvittering />}
@@ -173,7 +174,7 @@ Knappetekster («Neste steg», «Forrige steg»), avbryt- og fortsett-senere-dia
 
 ### Typer og konstanter
 
-`StepDefinition`, `IncludedStep`, `StepFormValues`, `MellomlagringBlob`, `SøknadRouterProps`, `SøknadStepProps`, `AppIntlConfig`, `SanityConfig`, `ApplikasjonHendelse`, `CustomAnalyticsEvents`, `KVITTERING_PATH`.
+`StepDefinition`, `IncludedStep`, `StepFormValues`, `MellomlagringBlob`, `SøknadRouterProps`, `SøknadStepProps`, `AppIntlConfig`, `IntlMessageObjectFormat`, `SanityConfig`, `ApplikasjonHendelse`, `CustomAnalyticsEvents`, `KVITTERING_PATH`.
 
 `SøknadAppContext`, `useSøknadAppContext` og `createSøknadAppStore` er eksportert for avansert bruk — typisk Storybook-dekoratører og tester som trenger kontekst uten en full `SøknadRouter`.
 
@@ -191,6 +192,17 @@ Knappetekster («Neste steg», «Forrige steg»), avbryt- og fortsett-senere-dia
 ```
 
 `SøknadRouter` venter på mellomlagring-hentingen før den viser `children`, slik at velkomstsiden ikke blinker før en eventuell resume-navigering.
+
+### Mellomlagring ved oppstart
+
+`SøknadRouter` henter mellomlagringen én gang ved mount og forkaster den hvis:
+
+1. `versjon` er ulik
+2. `resumeStepId` ikke finnes i `stepOrder`
+3. `grunnlagHash` er ulik hashen av `mellomlagringGrunnlag` — da slettes den også i backend
+4. `validateMellomlagring` returnerer `null`
+
+`mellomlagringGrunnlag` er valgfri. Uten den lagres ingen hash, og sjekken slår ikke ut. Grunnlaget må være lastet før `SøknadRouter` mountes, og hashen beregnes med `createGrunnlagHash` fra `@sif/utils`. Playwright-fixturer importerer den fra `@sif/utils/grunnlagHash` for å unngå JSON-importer i Node.
 
 ### `resumeStepId`
 
