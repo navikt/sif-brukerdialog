@@ -10,7 +10,7 @@ interface Props<T extends FieldValues> {
     stepId: string;
     methods: UseFormReturn<T>;
     onSubmit: SubmitHandler<T>;
-    isPending: boolean;
+    isPending?: boolean;
     isFinalSubmit?: boolean;
     submitLabel?: string;
     submitDisabled?: boolean;

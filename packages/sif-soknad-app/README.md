@@ -260,7 +260,7 @@ export const MyStep = () => {
 
     return (
         <SøknadStep stepId={stepId}>
-            <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
+            <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit}>
                 <FormLayout.Content>
                     <FormLayout.Questions>{/* skjemafelter her */}</FormLayout.Questions>
                 </FormLayout.Content>

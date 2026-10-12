@@ -16,3 +16,14 @@ export const getYesOrNoFromBoolean = (bool?: boolean): YesOrNo => {
             return YesOrNo.UNANSWERED;
     }
 };
+export const yesOrNoToBoolean = (svar?: YesOrNo): boolean | undefined => {
+    switch (svar) {
+        case YesOrNo.YES:
+            return true;
+        case YesOrNo.NO:
+            return false;
+        case undefined:
+        case YesOrNo.UNANSWERED:
+            return undefined;
+    }
+};

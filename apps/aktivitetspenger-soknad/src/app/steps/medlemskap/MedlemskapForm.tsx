@@ -4,13 +4,13 @@ import { SøknadStepId } from '@app/types/SoknadStepId';
 import { BodyLong, VStack } from '@navikt/ds-react';
 import { SøknadStep, SøknadStepForm, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { FormLayout, SifGuidePanel } from '@sif/soknad-ui';
-import { dateToISODate, getDateToday } from '@sif/utils';
+import { dateToISODate, getDateToday, yesOrNoToBoolean } from '@sif/utils';
 import dayjs from 'dayjs';
 import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { toMedlemskapStegFormValues, toMedlemskapStegSøknadsdata } from './medlemskapStegUtils';
-import { getMedlemskapSynlighet, yesOrNoToBoolean } from './medlemskapSynlighet';
+import { getMedlemskapSynlighet } from './medlemskapSynlighet';
 import { ArbeidsstederUtlandSporsmal } from './sporsmal/ArbeidsstederUtlandSporsmal';
 import { BostederUtlandSporsmal } from './sporsmal/BostederUtlandSporsmal';
 import { HarBoddINorgeSporsmal } from './sporsmal/HarBoddINorgeSporsmal';
@@ -51,7 +51,7 @@ export const MedlemskapForm = () => {
 
     return (
         <SøknadStep stepId={stepId}>
-            <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
+            <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit}>
                 <FormLayout.Content>
                     <SifGuidePanel>
                         <VStack gap="space-16">
@@ -76,9 +76,7 @@ export const MedlemskapForm = () => {
                         )}
 
                         {/* Bosteder utenfor Norge */}
-                        {synlig.bostederUtenforNorge && (
-                            <BostederUtlandSporsmal minDate={minDate} maxDate={maxDate} />
-                        )}
+                        {synlig.bostederUtenforNorge && <BostederUtlandSporsmal minDate={minDate} maxDate={maxDate} />}
 
                         {/* Arbeidssteder utenfor Norge */}
                         {synlig.arbeidsstederUtenforNorge && (

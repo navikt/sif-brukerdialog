@@ -36,7 +36,7 @@ export const KontonummerForm = () => {
 
     return (
         <SøknadStep stepId={stepId}>
-            <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
+            <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit}>
                 <FormLayout.Content>
                     <SifGuidePanel>
                         <AppText id="kontonummerSteg.veileder.tekst" />
