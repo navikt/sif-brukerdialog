@@ -1,12 +1,13 @@
-import { appEnv } from '@app/setup/env/appEnv';
-import { createSifLenkeUtils, SifLenkeKey, SifLenker } from '@sif/soknad-ui/lenker';
+import { decoratorLocaleUtils } from '@sif/soknad-ui';
+import { getSifLenker, SifLenker } from '@sif/soknad-ui/lenker';
 
-const getEnvironment = () => (appEnv.ENV === 'dev' ? 'dev' : 'prod');
+import { getAppEnv } from './setup/env/appEnv';
 
-export const { getLenker, getLenke } = createSifLenkeUtils({
-    getEnvironment,
+const getEnvironment = () => (getAppEnv().ENV === 'dev' ? 'dev' : 'prod');
+
+const getLenker = (): SifLenker => ({
+    ...getSifLenker(decoratorLocaleUtils.getLocaleFromSessionStorage(), getEnvironment()),
 });
 
-export type { SifLenkeKey, SifLenker };
-
-export default getLenker;
+export { getLenker };
+export type { SifLenker };
