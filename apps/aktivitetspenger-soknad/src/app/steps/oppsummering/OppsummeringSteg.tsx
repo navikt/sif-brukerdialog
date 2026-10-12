@@ -74,7 +74,7 @@ export const OppsummeringSteg = () => {
                 onSubmit={onSubmit}
                 isPending={isPending}
                 isFinalSubmit={true}
-                submitDisabled={!dto || (inkluderStartdatoSpørsmål && !startdato) || submitEnabled === false}>
+                submitDisabled={!dto || submitEnabled === false}>
                 {submitEnabled === false && (
                     <InfoCard data-color="warning">
                         <InfoCard.Message icon={<InformationSquareIcon />}>

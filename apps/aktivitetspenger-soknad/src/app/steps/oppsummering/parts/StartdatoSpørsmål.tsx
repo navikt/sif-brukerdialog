@@ -29,7 +29,7 @@ export const StartdatoSpørsmål = ({ onDateChange, value }: Props) => {
                     <DatePicker.Input
                         {...inputProps}
                         label={text('oppsummeringSteg.startdato.velgStartdato')}
-                        description={text('oppsummeringSteg.startdato.description')}
+                        description={text('oppsummeringSteg.startdato.tekst')}
                     />
                 </DatePicker>
             </VStack>
