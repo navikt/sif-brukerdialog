@@ -11,6 +11,12 @@ describe('createGrunnlagHash', () => {
         expect(await createGrunnlagHash({ antallBarn: 0 })).not.toBe(await createGrunnlagHash({ antallBarn: 1 }));
     });
 
+    it('bevarer rekkefølgen i lister', async () => {
+        expect(await createGrunnlagHash({ liste: ['a', 'b'] })).not.toBe(
+            await createGrunnlagHash({ liste: ['b', 'a'] }),
+        );
+    });
+
     it('endrer ikke rekkefølgen i input', async () => {
         const grunnlag = { liste: ['b', 'a'] };
         await createGrunnlagHash(grunnlag);
