@@ -1,5 +1,3 @@
-import { useIntl } from 'react-intl';
-
 import { getSifLenke, getSifLenker, SifLenkeKey, SifLenker, SifLenkerEnvironment, SifLenkerLocale } from './sifLenker';
 
 interface CreateSifLenkeUtilsParams {
@@ -10,7 +8,6 @@ interface CreateSifLenkeUtilsParams {
 interface SifLenkeUtils {
     getLenker: (locale?: string) => SifLenker;
     getLenke: (key: SifLenkeKey, locale?: string) => string;
-    useLenker: () => SifLenker;
 }
 
 const defaultGetLocale = (locale?: string): SifLenkerLocale => {
@@ -33,16 +30,9 @@ export const createSifLenkeUtils = ({
     const getLenke = (key: SifLenkeKey, locale?: string): string =>
         getSifLenke(key, getLocale(locale), getEnvironment());
 
-    const useLenker = (): SifLenker => {
-        const intl = useIntl();
-
-        return getLenker(intl.locale);
-    };
-
     return {
         getLenke,
         getLenker,
-        useLenker,
     };
 };
 

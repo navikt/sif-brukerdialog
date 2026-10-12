@@ -1,5 +1,5 @@
 import { AppText, useAppIntl } from '@app/i18n';
-import { useLenker } from '@app/lenker';
+import { getLenker } from '@app/lenker';
 import { Link, VStack } from '@navikt/ds-react';
 import { InfoList, Kvittering } from '@sif/soknad-ui/components';
 import { ApplicationPage } from '@sif/soknad-ui/pages';
@@ -7,7 +7,7 @@ import { Skyra, SkyraSlug } from '@sif/surveys';
 
 export const KvitteringPage = () => {
     const { text } = useAppIntl();
-    const lenker = useLenker();
+    const lenker = getLenker();
 
     return (
         <ApplicationPage

@@ -2,7 +2,7 @@ import { SøknadApiData } from '@app/types/SoknadApiData';
 import { aktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
 import { commonRequestHeader, handleApiError } from '@sif/api';
 
-export const sendSøknad = async (data: SøknadApiData): Promise<any> => {
+export const sendSøknad = async (data: SøknadApiData): Promise<void> => {
     try {
         await aktivitetspenger.AktivitetspengerController.innsendingAktivitetspengersøknad({
             body: data,

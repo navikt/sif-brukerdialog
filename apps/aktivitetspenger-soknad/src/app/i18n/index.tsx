@@ -2,6 +2,7 @@ import { IntlMessageObjectFormat } from '@sif/soknad-app';
 import { sifSoknadFormsMessages } from '@sif/soknad-forms';
 import { sifSoknadUiMessages } from '@sif/soknad-ui/i18n';
 import { typedIntlHelper } from '@sif/utils';
+import { ComponentProps } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { appMessages_nb } from './nb';
@@ -39,7 +40,7 @@ export type AppIntlShape = ReturnType<typeof useAppIntl>;
 
 interface AppTextProps {
     id: AppMessageKeys;
-    values?: any;
+    values?: ComponentProps<typeof FormattedMessage>['values'];
 }
 
 export const AppText = (props: AppTextProps) => {

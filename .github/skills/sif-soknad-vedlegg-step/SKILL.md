@@ -90,7 +90,7 @@ Hjelperne gjør følgende:
 
 ```tsx
 import { useAppIntl } from '@app/i18n';
-import { useLenker } from '@app/lenker';
+import { getLenker } from '@app/lenker';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { <Prefix>Søknadsdata } from '@app/types/Soknadsdata';
 import { UploadedFile } from '@sif/rhf';
@@ -105,7 +105,7 @@ const stepId = SøknadStepId.<STEP_ID>;
 
 export const <Prefix>Form = () => {
     const { text } = useAppIntl();
-    const lenker = useLenker();
+    const lenker = getLenker();
 
     const { lagretData, commit, draftFormValues } = useStepData<<Prefix>Søknadsdata, <Prefix>FormValues>(stepId);
     const initialVedlegg = (draftFormValues ?? to<Prefix>FormValues(lagretData))[<Prefix>FormFields.vedlegg];
@@ -142,7 +142,7 @@ export const <Prefix>Form = () => {
 
 - Bruk `lagre()` fra `useMellomlagring()` i `onVedleggEndret` — lagrer alle live formverdier inkl. vedlegg.
 - `initialFiles` skal være den initielle listen, ikke `watch(...)`-verdien.
-- `uploadLaterURL` hentes fra delt lenkekilde via `useLenker()`.
+- `uploadLaterURL` hentes fra delt lenkekilde via `getLenker()`.
 
 ## 5. Wire opp mapping
 

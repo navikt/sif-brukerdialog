@@ -3,7 +3,7 @@ import { createSifLenkeUtils, SifLenkeKey, SifLenker } from '@sif/soknad-ui/lenk
 
 const getEnvironment = () => (appEnv.ENV === 'dev' ? 'dev' : 'prod');
 
-export const { getLenker, getLenke, useLenker } = createSifLenkeUtils({
+export const { getLenker, getLenke } = createSifLenkeUtils({
     getEnvironment,
 });
 
