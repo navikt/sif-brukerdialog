@@ -4,7 +4,7 @@ import { isProd } from '@navikt/sif-common-env';
 import { commonRequestHeader, handleApiError } from '@sif/api';
 
 export const sendSøknad = async (data: SøknadApiData): Promise<void> => {
-    // Stardato brukes i test, så denne fjernes i produksjon
+    // Startdato brukes i dev/test, så denne fjernes i produksjon
     const body: aktivitetspenger.Aktivitetspengersøknad = {
         ...data,
         ...(isProd() ? { startdato: undefined } : {}),
