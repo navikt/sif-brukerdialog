@@ -1,6 +1,6 @@
 import { Box } from '@navikt/ds-react';
 import { ProgressStep } from '@navikt/sif-common-ui';
-import { ApplikasjonHendelse,useAnalyticsInstance } from '@sif/analytics';
+import { ApplikasjonHendelse, useAnalyticsInstance } from '@sif/analytics';
 import { StepPage } from '@sif/soknad-ui/pages';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
@@ -29,14 +29,7 @@ import { SøknadStepContext } from './SøknadStepContext';
 export const SøknadStep = ({ stepId, children }: SøknadStepProps) => {
     const intl = useIntl();
     const navigate = useNavigate();
-    const {
-        store,
-        config,
-        basePath,
-        applicationTitle,
-        resumeLaterUrl,
-        slettMellomlagring,
-    } = useSøknadAppContext();
+    const { store, config, basePath, applicationTitle, resumeLaterUrl, slettMellomlagring } = useSøknadAppContext();
 
     const includedSteps = store((s) => s.includedSteps);
     const reset = store((s) => s.reset);

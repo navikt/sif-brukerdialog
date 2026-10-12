@@ -4,6 +4,7 @@ import {
     oppdaterYtelseMellomlagring,
     slettYtelseMellomlagring,
 } from '@sif/api/k9-prosessering';
+import { createGrunnlagHash } from '@sif/utils';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
@@ -44,6 +45,7 @@ export const SøknadRouter = ({
     applicationTitle,
     basePath = '/soknad',
     validateMellomlagring,
+    mellomlagringGrunnlag,
     resumeLaterUrl = DEFAULT_RESUME_LATER_URL,
     loadingElement,
     kvitteringElement,
@@ -56,6 +58,13 @@ export const SøknadRouter = ({
         storeRef.current = createSøknadAppStore({ config, stepOrder });
     }
     const store = storeRef.current;
+    // Grunnlaget er lastet før mount og endres ikke i økten — hashes én gang
+    const grunnlagHashRef = useRef<Promise<string | undefined>>(null);
+    if (!grunnlagHashRef.current) {
+        grunnlagHashRef.current = mellomlagringGrunnlag
+            ? createGrunnlagHash(mellomlagringGrunnlag)
+            : Promise.resolve(undefined);
+    }
     const søknadSendt = store((s) => s.søknadSendt);
     const isInitialized = store((s) => s.isInitialized);
     const resumeStepId = store((s) => s.resumeStepId);
@@ -75,6 +84,9 @@ export const SøknadRouter = ({
                         blob = null;
                     } else if (!stepOrder.includes(payload.resumeStepId)) {
                         blob = null;
+                    } else if (payload.grunnlagHash !== (await grunnlagHashRef.current)) {
+                        blob = null;
+                        void slettYtelseMellomlagring(ytelse as MellomlagringYtelse).catch(() => {});
                     } else {
                         blob = validateMellomlagring ? validateMellomlagring(payload) : payload;
                     }
@@ -122,9 +134,13 @@ export const SøknadRouter = ({
 
     const lagreMellomlagring = useCallback(
         async (blobData: MellomlagringBlob): Promise<void> => {
+            const grunnlagHash = await grunnlagHashRef.current;
             await oppdaterYtelseMellomlagring(
                 ytelse as MellomlagringYtelse,
-                blobData as unknown as Record<string, unknown>,
+                {
+                    ...blobData,
+                    grunnlagHash,
+                } as unknown as Record<string, unknown>,
             ).catch(() => {});
         },
         [ytelse],

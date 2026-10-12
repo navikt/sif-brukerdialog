@@ -9,6 +9,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { Kvittering } from './content/kvittering/Kvittering';
 import { Velkommen } from './content/velkommen/Velkommen';
+import { useAppContext } from './context/AppContext';
 import { useAppIntl } from './i18n';
 import { getAppEnv } from './setup/appEnv';
 import { BarnForm, BostedForm, KontonummerForm, MedlemskapForm, OppsummeringSteg } from './steps';
@@ -18,6 +19,7 @@ const ApmTestPage = lazy(() => import('./content/apm-test/ApmTestPage'));
 export const Søknad = () => {
     const env = getAppEnv();
     const { text } = useAppIntl();
+    const { registrerteBarn, kontoInfo } = useAppContext();
 
     return (
         <SøknadRouter
@@ -25,6 +27,10 @@ export const Søknad = () => {
             stepOrder={søknadStepOrder}
             ytelse={APP_YTELSE}
             versjon={MELLOMLAGRING_VERSJON}
+            mellomlagringGrunnlag={{
+                antallBarn: registrerteBarn.length,
+                harKontonummer: kontoInfo.harKontonummer,
+            }}
             applicationTitle={text('application.title')}
             formValuesToSøknadsdata={formValuesToSøknadsdata}
             kvitteringElement={<Kvittering />}

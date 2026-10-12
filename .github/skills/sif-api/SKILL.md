@@ -1,7 +1,7 @@
 ---
 name: sif-api
 type: referanse
-description: Bruk denne skillen når en utvikler trenger å hente informasjon fra ett av API-ene i appen via @sif/api (f.eks. kontonummer, søker, barn, arbeidsgivere, mellomlagring).
+description: Bruk denne skillen når en utvikler trenger å hente informasjon fra ett av API-ene i appen via @sif/api (f.eks. kontonummer, søker, barn, arbeidsgivere).
 ---
 
 # sif-api
@@ -25,7 +25,7 @@ I første respons skal agenten kun gi generell veiledning og et minimalt bruksek
 Bruk denne skillen umiddelbart hvis oppgaven nevner ett eller flere av disse signalene:
 
 - API-henting i frontend: `trenger data`, `hente informasjon om`, `hente fra api`, `api-kall`, `fetch`, `query`, `preutfyll fra api`, `last inn data`.
-- Query/hook-integrasjon: `@sif/api`, `useQuery`, `queryKey`, `queryFn`, `useSøker`, `useRegistrerteBarn`, `useKontonummer`, `useYtelseMellomlagring`.
+- Query/hook-integrasjon: `@sif/api`, `useQuery`, `queryKey`, `queryFn`, `useSøker`, `useRegistrerteBarn`, `useKontonummer`.
 - API-klient/oppsett: `env.schema.ts`, `initApiClients`, `*_API_URL`, `*_API_SCOPE`, `*_FRONTEND_PATH`, API-klient-init.
 
 Merk: Rene domeneord alene (f.eks. `barn`, `søker`) er ikke nok trigger uten tydelig API-hentekontekst.
@@ -91,7 +91,6 @@ Ved verifisering av API-ruter (for eksempel ved MSW-oppsett):
 | `useValiderFritekst(enabled?)`                                         | Valideringsresultat                         | —                                  |
 | `useLagreVedlegg()`                                                    | Mutation for opplasting                     | Invaliderer vedlegg-cache          |
 | `useSlettVedlegg()`                                                    | Mutation for sletting                       | Fjerner fra cache                  |
-| `useYtelseMellomlagring<State, MetaData>(ytelse, metadata?, options?)` | `State \| null` + `opprett`/`lagre`/`slett` | staleTime: Infinity, gcTime: 5 min |
 | `useRapporterInntekt()`                                                | Mutation for inntektsrapportering           | —                                  |
 | `useSendOppgavebekreftelse()`                                          | Mutation for oppgavebekreftelse             | —                                  |
 
@@ -130,7 +129,7 @@ Hver hook avhenger av en spesifikk API-klient som må være initialisert, og til
 
 ### `@sif/api/k9-prosessering` — k9-brukerdialog-prosessering-api
 
-**Hooks:** `useSøker`, `useRegistrerteBarn`, `useYtelseMellomlagring`, `useLagreVedlegg`, `useSlettVedlegg`, `useArbeidsgivere`, `useValiderFritekst`, `useRapporterInntekt`, `useSendOppgavebekreftelse`
+**Hooks:** `useSøker`, `useRegistrerteBarn`, `useLagreVedlegg`, `useSlettVedlegg`, `useArbeidsgivere`, `useValiderFritekst`, `useRapporterInntekt`, `useSendOppgavebekreftelse`
 
 | Element       | Verdi                                                                                                                          |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------ |
@@ -298,40 +297,11 @@ const invalidParameters = getInvalidParametersFromApiError(apiError);
 
 ---
 
-## Mellomlagring (spesialtilfelle)
+## Mellomlagring
 
-Denne seksjonen er kun relevant når oppgaven faktisk gjelder mellomlagring. `useYtelseMellomlagring` har et annet bruksmønster enn de enkle hookene.
+Mellomlagring i v2-apper håndteres av `SøknadRouter` i `@sif/soknad-app` (henting, lagring, sletting og grunnlagssjekk via `mellomlagringGrunnlag`). Appen skal ikke kalle mellomlagrings-API-et selv. Se `sif-soknad-setup` → «Mellomlagring».
 
-### Konsept
-
-- Lagrer søknadsdata midlertidig i backend med metadata-hash-validering.
-- Hvis metadata (søker, barn, versjon) endres, slettes gammel mellomlagring automatisk.
-- Hooken eksponerer to separate lagre-operasjoner: `opprett` (POST, brukes første gang søknaden startes) og `lagre` (PUT, brukes ved alle påfølgende lagringer).
-
-### Bruksmønster
-
-```typescript
-import { useYtelseMellomlagring, MellomlagringYtelse } from '@sif/api/k9-prosessering';
-
-const metadata = useMemo(
-    () => ({
-        MELLOMLAGRING_VERSJON: '0.0.1',
-        søker: søker.data,
-        barn: registrerteBarn.data,
-    }),
-    [søker.data, registrerteBarn.data],
-);
-
-const mellomlagring = useYtelseMellomlagring<SøknadState, MellomlagringMetaData>(
-    MellomlagringYtelse.AKTIVITETSPENGER,
-    metadata,
-);
-
-// Lese: mellomlagring.data
-// Opprette (POST, ved søknadsstart): await mellomlagring.opprett(state)
-// Lagre (PUT, ved navigering): await mellomlagring.lagre(state)
-// Slette: await mellomlagring.slett()
-```
+`@sif/api/k9-prosessering` eksporterer de rå funksjonene (`hentYtelseMellomlagring`, `opprettYtelseMellomlagring`, `oppdaterYtelseMellomlagring`, `slettYtelseMellomlagring`) som rammeverket bruker.
 
 ### MellomlagringYtelse
 

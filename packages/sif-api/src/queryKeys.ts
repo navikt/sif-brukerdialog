@@ -6,7 +6,6 @@ export const sifApiQueryKeys = {
     arbeidsgivere: ['arbeidsgivere'] as const,
     validerFritekst: ['validerFritekst'] as const,
     vedlegg: ['vedlegg'] as const,
-    mellomlagring: ['mellomlagring'] as const,
     oppgaver: ['oppgaver'] as const,
     sisteGyldigeVedtakForAktørId: (aktørId: string) => ['sisteGyldigeVedtakForAktørId', aktørId] as const,
 } as const;

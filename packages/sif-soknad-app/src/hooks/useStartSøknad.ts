@@ -52,7 +52,17 @@ export function useStartSøknad() {
                 navigate(buildStepPath(basePath, firstRoute));
             }
         },
-        [store, stepOrder, config, basePath, versjon, lagreMellomlagring, clearAllFormValues, navigate, logSkjemaStartet],
+        [
+            store,
+            stepOrder,
+            config,
+            basePath,
+            versjon,
+            lagreMellomlagring,
+            clearAllFormValues,
+            navigate,
+            logSkjemaStartet,
+        ],
     );
 
     return { startSøknad };

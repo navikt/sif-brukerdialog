@@ -1,10 +1,5 @@
 // Analytics
-export {
-    AnalyticsProvider,
-    ApplikasjonHendelse,
-    CustomAnalyticsEvents,
-    useAnalyticsInstance,
-} from '@sif/analytics';
+export { AnalyticsProvider, ApplikasjonHendelse, CustomAnalyticsEvents, useAnalyticsInstance } from '@sif/analytics';
 
 // Komponenter
 export { AppErrorBoundary } from './components/AppErrorBoundary';

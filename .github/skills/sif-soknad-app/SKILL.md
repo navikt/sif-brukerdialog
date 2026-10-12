@@ -156,7 +156,7 @@ Fullfører innsendingen etter vellykket POST: sletter mellomlagring, logger `skj
 
 #### Mønster: `useSendSøknad` eier innsendingsflyten
 
-Appens `useSendSøknad` eier POST, opprydding og feillogging, og eksponerer domenenavn utad — ikke mutasjonsobjektet. Samme konvensjon som `useYtelseMellomlagring` i `@sif/api` (`lagre`, `opprett`, `slett`) og som v1-appene (`sendSøknad`, `sendSøknadError`).
+Appens `useSendSøknad` eier POST, opprydding og feillogging, og eksponerer domenenavn utad — ikke mutasjonsobjektet. Samme konvensjon som v1-appene (`sendSøknad`, `sendSøknadError`).
 
 ```ts
 // apps/<app>/src/app/hooks/useSendSoknad.ts
@@ -297,10 +297,13 @@ interface MellomlagringBlob {
     resumeStepId: string; // gjenopptakingspunkt
     søknadsdata: Record<string, unknown>;
     persistedFormValues?: Record<string, Record<string, unknown>>; // persisterte skjemaverdier
+    grunnlagHash?: string; // hash av mellomlagringGrunnlag, settes automatisk av SøknadRouter
 }
 ```
 
 `isMellomlagringBlob` i `SøknadRouter` validerer at `resumeStepId` er en string. Gammel mellomlagring med feltet `currentStepId` vil feile validering og forkastes (brukere starter forfra — OK siden mellomlagring er transient).
+
+Ved oppstart forkastes blob-en også hvis `versjon` er ulik, `resumeStepId` ikke finnes i `stepOrder`, `grunnlagHash` ikke matcher `mellomlagringGrunnlag` (da slettes den også i backend), eller `validateMellomlagring` returnerer `null`.
 
 ---
 
@@ -335,6 +338,10 @@ resumeLaterUrl?: string;
 
 // Valgfri tilleggsvalidering av mellomlagret blob — returner null for å forkaste
 validateMellomlagring?: (blob: MellomlagringBlob) => MellomlagringBlob | null;
+
+// Ikke-sensitive grunnlagsverdier (f.eks. { antallBarn, harKontonummer }). Kun SHA-256-hash lagres i blob.
+// Avvikende hash ved oppstart → mellomlagring forkastes og slettes. Må være lastet før mount.
+mellomlagringGrunnlag?: Record<string, unknown>;
 ```
 
 `formValuesToSøknadsdata` er opt-in — uten den er konsistenssjekken deaktivert.

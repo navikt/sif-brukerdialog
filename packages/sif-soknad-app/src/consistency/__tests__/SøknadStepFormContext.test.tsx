@@ -5,10 +5,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { SøknadAppContext, SøknadAppContextValue } from '../../context/SøknadAppContext';
 import { useMellomlagring } from '../../hooks/useMellomlagring';
 import { createSøknadAppStore } from '../../store/createSøknadAppStore';
-import {
-    SøknadStepFormProvider,
-    useSøknadStepFormContext,
-} from '../SøknadStepFormContext';
+import { SøknadStepFormProvider, useSøknadStepFormContext } from '../SøknadStepFormContext';
 
 const createContextValue = (
     store: ReturnType<typeof createSøknadAppStore>,

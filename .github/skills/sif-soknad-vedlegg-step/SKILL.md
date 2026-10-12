@@ -120,7 +120,6 @@ export const <Prefix>Form = () => {
                 stepId={stepId}
                 methods={methods}
                 onSubmit={onSubmit}
-                isPending={false}
                 submitDisabled={hasPendingUploads}>
                 <VedleggPanel<<Prefix>FormValues>
                     name="vedlegg"

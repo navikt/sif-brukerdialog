@@ -1,3 +1,4 @@
+import { useAppContext } from '@app/context/AppContext';
 import { useFormValuesToSøknadsdata } from '@app/hooks/useFormValuesToSøknadsdata';
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '@app/setup/constants';
 import { søknadStepConfig, søknadStepOrder } from '@app/setup/soknadStepConfig';
@@ -13,6 +14,7 @@ import { DeltBostedSteg, LegeerklæringSteg, OmBarnetSteg, OppsummeringSteg } fr
 
 export const Søknad = () => {
     const { text } = useAppIntl();
+    const { barn } = useAppContext();
     const formValuesToSøknadsdata = useFormValuesToSøknadsdata();
     const location = useLocation();
 
@@ -26,6 +28,7 @@ export const Søknad = () => {
             stepOrder={søknadStepOrder}
             ytelse={APP_YTELSE}
             versjon={MELLOMLAGRING_VERSJON}
+            mellomlagringGrunnlag={{ antallBarn: barn.length }}
             applicationTitle={text('application.title')}
             formValuesToSøknadsdata={formValuesToSøknadsdata}
             kvitteringElement={<KvitteringPage />}>

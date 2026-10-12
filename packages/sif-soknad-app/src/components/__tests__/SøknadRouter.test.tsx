@@ -1,4 +1,5 @@
-import { hentYtelseMellomlagring } from '@sif/api/k9-prosessering';
+import { hentYtelseMellomlagring, slettYtelseMellomlagring } from '@sif/api/k9-prosessering';
+import { createGrunnlagHash } from '@sif/utils';
 import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
@@ -47,5 +48,66 @@ describe('SøknadRouter', () => {
         renderRouter('/');
 
         await waitFor(() => expect(screen.getByTestId('location').textContent).toBe('/soknad/start'));
+    });
+});
+
+describe('SøknadRouter — mellomlagringGrunnlag', () => {
+    const renderMedGrunnlag = (grunnlag?: Record<string, unknown>) =>
+        render(
+            <MemoryRouter initialEntries={['/']}>
+                <SøknadRouter
+                    config={{ start: { route: 'start' } }}
+                    stepOrder={['start']}
+                    ytelse="PLEIEPENGER_SYKT_BARN"
+                    versjon={1}
+                    applicationTitle="Test"
+                    mellomlagringGrunnlag={grunnlag}
+                    kvitteringElement={<div>Kvittering</div>}>
+                    <Routes>
+                        <Route path="/" element={<LocationDisplay />} />
+                        <Route path="/soknad/start" element={<LocationDisplay />} />
+                    </Routes>
+                </SøknadRouter>
+            </MemoryRouter>,
+        );
+
+    beforeEach(() => {
+        vi.mocked(slettYtelseMellomlagring)
+            .mockReset()
+            .mockResolvedValue(undefined as never);
+    });
+
+    it('gjenopptar når grunnlaget er uendret', async () => {
+        vi.mocked(hentYtelseMellomlagring).mockResolvedValue({
+            versjon: 1,
+            resumeStepId: 'start',
+            søknadsdata: {},
+            grunnlagHash: await createGrunnlagHash({ antallBarn: 1 }),
+        });
+        renderMedGrunnlag({ antallBarn: 1 });
+
+        await waitFor(() => expect(screen.getByTestId('location').textContent).toBe('/soknad/start'));
+        expect(slettYtelseMellomlagring).not.toHaveBeenCalled();
+    });
+
+    it('forkaster og sletter mellomlagring når grunnlaget er endret', async () => {
+        vi.mocked(hentYtelseMellomlagring).mockResolvedValue({
+            versjon: 1,
+            resumeStepId: 'start',
+            søknadsdata: {},
+            grunnlagHash: await createGrunnlagHash({ antallBarn: 0 }),
+        });
+        renderMedGrunnlag({ antallBarn: 1 });
+
+        await waitFor(() => expect(slettYtelseMellomlagring).toHaveBeenCalled());
+        expect(screen.getByTestId('location').textContent).toBe('/');
+    });
+
+    it('forkaster mellomlagring uten hash når appen sender grunnlag', async () => {
+        vi.mocked(hentYtelseMellomlagring).mockResolvedValue({ versjon: 1, resumeStepId: 'start', søknadsdata: {} });
+        renderMedGrunnlag({ antallBarn: 1 });
+
+        await waitFor(() => expect(slettYtelseMellomlagring).toHaveBeenCalled());
+        expect(screen.getByTestId('location').textContent).toBe('/');
     });
 });

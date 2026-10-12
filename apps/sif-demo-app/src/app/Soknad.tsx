@@ -1,3 +1,4 @@
+import { useAppContext } from '@app/context/AppContext';
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '@app/setup/constants';
 import { søknadStepConfig, søknadStepOrder } from '@app/setup/soknadStepConfig';
 import { SøknadStepId } from '@app/types/SoknadStepId';
@@ -13,6 +14,7 @@ import { BarnForm, BostedForm, OppsummeringSteg, VedleggForm } from './steps';
 
 export const Søknad = () => {
     const { text } = useAppIntl();
+    const { barn } = useAppContext();
 
     return (
         <SøknadRouter
@@ -20,6 +22,7 @@ export const Søknad = () => {
             stepOrder={søknadStepOrder}
             ytelse={APP_YTELSE}
             versjon={MELLOMLAGRING_VERSJON}
+            mellomlagringGrunnlag={{ antallBarn: barn.length }}
             applicationTitle={text('application.title')}
             formValuesToSøknadsdata={formValuesToSøknadsdata}
             kvitteringElement={<Kvittering />}

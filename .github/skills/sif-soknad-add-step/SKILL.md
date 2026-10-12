@@ -224,7 +224,7 @@ export const <Prefix>Form = () => {
 
     return (
         <SøknadStep stepId={stepId}>
-            <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
+            <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit}>
                 <YesOrNoQuestion
                     name="<felt>"
                     legend={text('<prefix>Steg.spørsmål.<felt>')}

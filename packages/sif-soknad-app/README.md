@@ -151,6 +151,7 @@ Knappetekster («Neste steg», «Forrige steg»), avbryt- og fortsett-senere-dia
 | `kvitteringElement`       | ✅      | Vises på `/kvittering` etter innsending                                                                        |
 | `basePath`                |         | Basepath for steg. Default `/soknad`. Må matche `<Route path>` og `SøknadStepGuard`                            |
 | `validateMellomlagring`   |         | Egen validering av lagret blob. Returner `null` for å forkaste                                                 |
+| `mellomlagringGrunnlag`   |         | Ikke-sensitive grunnlagsverdier. Kun hash lagres; avvik ved oppstart forkaster og sletter mellomlagringen      |
 | `resumeLaterUrl`          |         | URL ved «fortsett senere». Default Nav Min side                                                                |
 | `loadingElement`          |         | Vises mens mellomlagring hentes                                                                                |
 | `formValuesToSøknadsdata` |         | Aktiverer konsistenssjekk. Uten denne er sjekken stille deaktivert                                             |

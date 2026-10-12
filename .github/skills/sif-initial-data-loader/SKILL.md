@@ -8,7 +8,7 @@ description: Mønster for å kombinere flere API-hooks til én asynkron laster (
 
 ## Bruk når
 
-- Du oppretter en ny søknadsapp og trenger å bootstrappe initial data (søker, barn, mellomlagring, kontonummer).
+- Du oppretter en ny søknadsapp og trenger å bootstrappe initial data (søker, barn, kontonummer).
 - Du legger til en ny datakilde i initial-dataflyten (ny hook i `useInitialData`).
 - Du feilsøker hvorfor appen er stuck i loading eller viser feilside.
 
@@ -25,7 +25,7 @@ description: Mønster for å kombinere flere API-hooks til én asynkron laster (
 
 `useInitialData.ts` legges i `src/` (rot for appen), ikke i `src/app/`. Dette er et entrypoint-nivå-concern — det kjøres før `AppContext` og `Soknad` initialiseres.
 
-> **Merk:** Mellomlagring håndteres av `SøknadRouter` fra `@sif/soknad-app`. Ikke hent den i `useInitialData`.
+> **Merk:** Mellomlagring håndteres av `SøknadRouter` fra `@sif/soknad-app`. Ikke hent den i `useInitialData`. Skal mellomlagringen forkastes når oppstartsdata endres, send ikke-sensitive verdier fra initial data inn som `mellomlagringGrunnlag` (se `sif-soknad-setup` → «Mellomlagring»).
 
 ---
 

@@ -475,7 +475,24 @@ Gjelder kun enum for **feltnavn**. Enum for **verdier** (f.eks. `YesOrNo`, svara
 
 ### Mellomlagring
 
-`SøknadRouter` henter og håndterer mellomlagring automatisk. Ingen `Mellomlagring.ts`-type trengs i appen.
+`SøknadRouter` henter og håndterer mellomlagring automatisk. Ingen `Mellomlagring.ts`-type trengs i appen. Ikke bruk egne mellomlagringshooks eller `hentYtelseMellomlagring` i appen.
+
+**Grunnlagssjekk (valgfri):** Hvis mellomlagringen skal forkastes når oppstartsdata endres (f.eks. at barn er registrert siden sist), send inn `mellomlagringGrunnlag`. Bare en SHA-256-hash lagres. Avvik ved oppstart → mellomlagringen slettes og søknaden starter på nytt.
+
+```tsx
+const { registrerteBarn, kontoInfo } = useAppContext();
+
+<SøknadRouter
+    …
+    mellomlagringGrunnlag={{
+        antallBarn: registrerteBarn.length,
+        harKontonummer: kontoInfo.harKontonummer,
+    }}>
+```
+
+- Bruk kun ikke-sensitive, grove verdier (antall, ja/nei). Hash av f.eks. fødselsnummer kan reverseres med brute force.
+- Verdiene må være lastet før `SøknadRouter` mountes (hentes i `useInitialData`).
+- Utelatt prop = ingen grunnlagssjekk. Å legge til eller endre grunnlaget i en lansert app forkaster alle eksisterende mellomlagringer én gang.
 
 ### `SøknadVelkommenPage`
 
