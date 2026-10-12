@@ -33,13 +33,13 @@
         "tailwindcss": "4.3.3"
     },
     "devDependencies": {
-        "@navikt/aksel-icons": "8.18.0",
-        "@navikt/ds-css": "8.18.0",
-        "@navikt/ds-react": "8.18.0",
-        "@navikt/ds-tailwind": "8.18.0",
+        "@navikt/aksel-icons": "8.19.0",
+        "@navikt/ds-css": "8.19.0",
+        "@navikt/ds-react": "8.19.0",
+        "@navikt/ds-tailwind": "8.19.0",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
-        "@playwright/test": "1.63.0",
+        "@playwright/test": "1.64.0",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-a11y": "10.6.1",
         "@storybook/builder-vite": "10.6.1",
@@ -55,7 +55,7 @@
         "formik": "2.4.9",
         "msw": "2.15.0",
         "msw-storybook-addon": "3.0.3",
-        "postcss": "8.5.29",
+        "postcss": ">=8.5.28",
         "prop-types": "15.8.1",
         "react": "19.3.0",
         "react-dom": "19.3.0",
@@ -65,7 +65,7 @@
         "storybook": "10.6.1",
         "typescript": "6.0.3",
         "uuid": "^14.0.2",
-        "vite": "8.3.3",
+        "vite": "8.3.4",
         "vite-plugin-checker": "0.14.5",
         "vitest": "5.0.3"
     }

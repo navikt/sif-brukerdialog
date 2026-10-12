@@ -21,8 +21,8 @@
     "dependencies": {
         "@nais/apm": "0.7.3",
         "@navikt/appstatus-react-ds": "workspace:*",
-        "@navikt/ds-react": "8.18.0",
-        "@navikt/nav-dekoratoren-moduler": "4.5.0",
+        "@navikt/ds-react": "8.19.0",
+        "@navikt/nav-dekoratoren-moduler": "4.5.1",
         "@navikt/sif-common-ui": "workspace:*",
         "@sif/analytics": "workspace:*",
         "@sif/api": "workspace:*",
