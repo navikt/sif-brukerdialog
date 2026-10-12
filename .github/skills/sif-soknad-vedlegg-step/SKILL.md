@@ -47,12 +47,8 @@ export interface <Prefix>Søknadsdata {
 ## 2. Bruk `UploadedFile[]` i formen
 
 ```ts
-export enum <Prefix>FormFields {
-    vedlegg = 'vedlegg',
-}
-
 export interface <Prefix>FormValues extends StepFormValues {
-    [<Prefix>FormFields.vedlegg]: UploadedFile[];
+    vedlegg: UploadedFile[];
 }
 ```
 
@@ -65,16 +61,16 @@ import { <Prefix>Søknadsdata } from '@app/types/Soknadsdata';
 import { getVedleggApiUrl } from '@sif/api/k9-prosessering';
 import { isUploadedVedlegg, toPersistedVedlegg, toUploadedFile } from '@sif/soknad-forms';
 
-import { <Prefix>FormFields, <Prefix>FormValues } from './types';
+import { <Prefix>FormValues } from './types';
 
 export const to<Prefix>FormValues = (
     søknadsdata: <Prefix>Søknadsdata | undefined,
 ): <Prefix>FormValues => ({
-    [<Prefix>FormFields.vedlegg]: søknadsdata?.vedlegg.map(toUploadedFile) ?? [],
+    vedlegg: søknadsdata?.vedlegg.map(toUploadedFile) ?? [],
 });
 
 export const toSøknadsdata = (values: <Prefix>FormValues): <Prefix>Søknadsdata => ({
-    vedlegg: (values[<Prefix>FormFields.vedlegg] ?? [])
+    vedlegg: (values.vedlegg ?? [])
         .filter(isUploadedVedlegg)
         .map((file) => toPersistedVedlegg(file, getVedleggApiUrl(file.info.id))),
 });
@@ -99,7 +95,7 @@ import { VedleggPanel } from '@sif/soknad-forms';
 import { useForm } from 'react-hook-form';
 
 import { to<Prefix>FormValues, to<Prefix>Søknadsdata } from './<prefix>StegUtils';
-import { <Prefix>FormFields, <Prefix>FormValues } from './types';
+import { <Prefix>FormValues } from './types';
 
 const stepId = SøknadStepId.<STEP_ID>;
 
@@ -108,12 +104,12 @@ export const <Prefix>Form = () => {
     const lenker = getLenker();
 
     const { lagretData, commit, draftFormValues } = useStepData<<Prefix>Søknadsdata, <Prefix>FormValues>(stepId);
-    const initialVedlegg = (draftFormValues ?? to<Prefix>FormValues(lagretData))[<Prefix>FormFields.vedlegg];
+    const initialVedlegg = (draftFormValues ?? to<Prefix>FormValues(lagretData)).vedlegg;
     const methods = useForm<<Prefix>FormValues>({ defaultValues: draftFormValues ?? to<Prefix>FormValues(lagretData) });
     useSaveSøknadFormValues(stepId, methods.getValues);
 
     const { lagre } = useMellomlagring();
-    const vedlegg: UploadedFile[] = methods.watch(<Prefix>FormFields.vedlegg) ?? [];
+    const vedlegg: UploadedFile[] = methods.watch('vedlegg') ?? [];
     const hasPendingUploads = vedlegg.some((file) => file.pending);
 
     const onSubmit = (data: <Prefix>FormValues) => commit(to<Prefix>Søknadsdata(data));
@@ -127,7 +123,7 @@ export const <Prefix>Form = () => {
                 isPending={false}
                 submitDisabled={hasPendingUploads}>
                 <VedleggPanel<<Prefix>FormValues>
-                    name={<Prefix>FormFields.vedlegg}
+                    name="vedlegg"
                     initialFiles={initialVedlegg}
                     onVedleggEndret={() => lagre()}
                     label={text('<prefix>Steg.vedlegg.label')}

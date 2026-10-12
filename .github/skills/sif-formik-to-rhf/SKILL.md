@@ -22,7 +22,7 @@ description: Migrer et skjema fra @navikt/sif-common-formik-ds (Formik) til @sif
 
 - Skillen gjelder **ett skjema om gangen**. Gjenta for hvert skjema.
 - **Rør IKKE:**
-    - `FormFields`-enum (behold eksisterende feltnavn)
+    - Feltnavnene (strengverdiene) — i18n-nøkler og mellomlagring avhenger av dem
     - `handleSubmit`-logikk utover try/catch-wrapping (se fallgruver)
     - API-kall, DTOer, onSuccess-callbacks
     - Layout/JSX-struktur inni felter (labels, descriptions, betinget visning)
@@ -94,7 +94,9 @@ Skriv hele komponenten på nytt basert på analysen, **ikke** basert på Formik-
 - `methods.watch()` for betinget visning
 - `try/catch` rundt async submit
 
-Behold: `FormFields`-enum, filnavn, mappestruktur, layout/JSX inni felter.
+Behold: feltnavn, filnavn, mappestruktur, layout/JSX inni felter.
+
+**`FormFields`-enum:** i v2-apper (som bruker `@sif/soknad-app`) fjernes enumen og feltnavn skrives som streng-literaler — se `sif-soknad-setup` → «Feltnavn uten `FormFields`-enum». I delte pakker (f.eks. dialoger i `sif-soknad-forms`) følges pakkens eksisterende konvensjon.
 
 **Fase 3 — Verifiser**
 
@@ -185,7 +187,7 @@ Bruk tredje argument til `validateField` — en callback som mottar feilkoden og
 
 ```ts
 validate={validateField(
-    FormFields.feltNavn,
+    'feltNavn',
     getStringValidator({ required: true, minLength: 5, maxLength: 2000 }),
     (errorCode) => {
         if (errorCode === 'stringIsTooShort') return { min: 5 };
@@ -197,7 +199,7 @@ validate={validateField(
 For statiske verdier som ikke avhenger av feilkoden kan du sende et vanlig objekt:
 
 ```ts
-validate={validateField(FormFields.feltNavn, validator, { min: 5, maks: 2000 })}
+validate={validateField('feltNavn', validator, { min: 5, maks: 2000 })}
 ```
 
 **Ikke bruk `intl.formatMessage` direkte** — `validateField` bygger i18n-nøkkelen og gjør oppslaget for deg.
@@ -249,7 +251,7 @@ const harSamtykket = values.harSamtykket; // ← ingen cast nødvendig
 ```ts
 // Før: values[FormFields.felt] === YesOrNo.YES  (fra renderForm callback)
 // Etter:
-const feltValue = methods.watch(FormFields.felt);
+const feltValue = methods.watch('felt');
 // I JSX:
 {feltValue === YesOrNo.YES ? <Textarea ... /> : null}
 ```
@@ -307,7 +309,7 @@ Når felter skjules (unmountes) beholdes feilmeldinger i RHF's form state (RHF b
 // Enkel verdi som dependency
 useEffect(() => {
     if (triggerFelt !== YesOrNo.YES) {
-        methods.clearErrors([FormFields.betingetFelt]);
+        methods.clearErrors(['betingetFelt']);
     }
 }, [triggerFelt]);
 
@@ -316,7 +318,7 @@ const feltErSynlig = betingelse1 && betingelse2;
 
 useEffect(() => {
     if (!feltErSynlig) {
-        methods.clearErrors([FormFields.betingetFelt]);
+        methods.clearErrors(['betingetFelt']);
     }
 }, [feltErSynlig]);
 ```
@@ -347,7 +349,7 @@ Finn alle koder i `packages/sif-validation/src/get*Validator.ts` via `enum Valid
 'uttalelseForm.validation.harUttalelse.yesOrNoIsUnanswered': '...'
 ```
 
-Hvis eksisterende nøkler bruker et annet feltnavn enn `FormFields`-enum, oppdater nøklene til å matche enum-verdien.
+Hvis eksisterende nøkler bruker et annet feltnavn enn skjemafeltet, oppdater nøklene til å matche feltnavnet.
 
 ## package.json
 
@@ -505,7 +507,7 @@ i18n-nøkler for cross-field-feilen bruker gruppens navn som felt: `scope.valida
 - [ ] Betingede felter som skjules får `clearErrors` i `useEffect`
 - [ ] `useSifValidate` brukes når key-strukturen følger standardmønsteret, med `values` ved behov
 - [ ] i18n-nøkler bruker eksakte feilkoder fra `@navikt/sif-validation` (sjekk `enum Validate*Error`)
-- [ ] `FormFields`-enum er uendret
+- [ ] Feltnavnene (strengverdiene) er uendret, og `FormFields`-enum er fjernet i v2-apper
 - [ ] `@sif/rhf: workspace:*` finnes i `package.json`
 - [ ] `DateRange`-importer er oppdatert (hvis aktuelt)
 - [ ] Filen kompilerer uten feil

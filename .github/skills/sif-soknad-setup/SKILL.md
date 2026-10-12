@@ -437,7 +437,36 @@ Knappetekster, avbryt- og fortsett-senere-dialogene eies av `@sif/soknad-ui` und
 
 ### `FormValues` i `types.ts`
 
-Definer alltid `FormFields` og `FormValues` i `steps/<steg>/types.ts`, ikke i komponentfilen. Unngår sirkulær avhengighet via `formValuesToSøknadsdata`.
+Definer alltid `FormValues` i `steps/<steg>/types.ts`, ikke i komponentfilen. Unngår sirkulær avhengighet via `formValuesToSøknadsdata`.
+
+### Feltnavn uten `FormFields`-enum
+
+I v2-apper brukes **ikke** `enum <Prefix>FormFields` for feltnavn. Det er et Formik-mønster: der var `name` en vanlig `string`, og enumen ga typesikkerhet. I RHF er `name` typet som `Path<FormValues>`, så kompilatoren sjekker feltnavnet direkte.
+
+```ts
+// ❌ Gammelt mønster
+export enum BostedFormFields {
+    erBosattITrondheim = 'erBosattITrondheim',
+}
+export interface BostedFormValues {
+    [BostedFormFields.erBosattITrondheim]?: YesOrNo;
+}
+<YesOrNoQuestion name={BostedFormFields.erBosattITrondheim} … />
+
+// ✅ v2
+export interface BostedFormValues {
+    erBosattITrondheim?: YesOrNo;
+}
+<YesOrNoQuestion name="erBosattITrondheim" validate={validateField('erBosattITrondheim', …)} />
+methods.watch('erBosattITrondheim');
+useController<BostedFormValues, 'erBosattITrondheim'>({ name: 'erBosattITrondheim' });
+```
+
+Hvorfor: feltnavnet skrives én gang i stedet for tre, `enum` er ikke «erasable syntax» (se `erasableSyntaxOnly` i TypeScript 5.8), og strenger kan brukes direkte i tester og mock-data.
+
+**Når du endrer et eksisterende v2-steg som fortsatt har `FormFields`-enum:** fjern enumen for steget og bytt referansene til streng-literaler. Strengverdiene skal være uendret, ellers brytes i18n-nøkler (`<scope>.validation.<felt>.<feilkode>`), DOM-id-er og mellomlagrede `draftFormValues`.
+
+Gjelder kun enum for **feltnavn**. Enum for **verdier** (f.eks. `YesOrNo`, svaralternativer som lagres) er en egen beslutning og endres ikke som del av dette.
 
 ### `AppContext` vs `SøknadRouter`
 
