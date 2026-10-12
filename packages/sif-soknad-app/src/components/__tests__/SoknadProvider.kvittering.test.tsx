@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { useSøknadSendt } from '../../hooks/useSøknadSendt';
 import { KVITTERING_PATH } from '../../utils/routeUtils';
-import { SøknadRouter } from '../SøknadRouter';
+import { SøknadProvider } from '../SoknadProvider';
 import { SøknadStepGuard } from '../SøknadStepGuard';
 
 vi.mock('@sif/api/k9-prosessering', () => ({
@@ -41,7 +41,7 @@ const OppsummeringMock = () => {
 const renderApp = (initialPath: string) =>
     render(
         <MemoryRouter initialEntries={[initialPath]}>
-            <SøknadRouter
+            <SøknadProvider
                 config={{ start: { route: 'start' } }}
                 stepOrder={['start']}
                 ytelse="PLEIEPENGER_SYKT_BARN"
@@ -60,7 +60,7 @@ const renderApp = (initialPath: string) =>
                         <Route path="start" element={<OppsummeringMock />} />
                     </Route>
                 </Routes>
-            </SøknadRouter>
+            </SøknadProvider>
         </MemoryRouter>,
     );
 

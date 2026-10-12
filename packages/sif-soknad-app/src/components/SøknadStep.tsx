@@ -47,7 +47,7 @@ export const SøknadStep = ({ stepId, children }: SøknadStepProps) => {
 
     // Konsistenssjekken beregnes én gang her og deles ned til SøknadStepForm
     // via SøknadStepContext. undefined betyr ingen inkonsistens (eller at
-    // formValuesToSøknadsdata ikke er satt på SøknadRouter).
+    // formValuesToSøknadsdata ikke er satt på SøknadProvider).
     const inconsistentStepId = useCheckConsistency(stepId);
     const { logHendelse } = useAnalyticsInstance();
 

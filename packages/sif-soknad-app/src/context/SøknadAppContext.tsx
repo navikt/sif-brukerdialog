@@ -27,7 +27,7 @@ export const SøknadAppContext = createContext<SøknadAppContextValue | null>(nu
 export const useSøknadAppContext = (): SøknadAppContextValue => {
     const ctx = useContext(SøknadAppContext);
     if (!ctx) {
-        throw new Error('useSøknadAppContext må brukes innenfor SøknadRouter');
+        throw new Error('useSøknadAppContext må brukes innenfor SøknadProvider');
     }
     return ctx;
 };

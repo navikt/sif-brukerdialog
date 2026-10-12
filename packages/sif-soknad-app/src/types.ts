@@ -17,7 +17,7 @@ export interface MellomlagringBlob {
     søknadsdata: Record<string, unknown>;
     /** Persisterte skjemaverdier (ikke submittet) — brukes som defaultValues etter reload */
     persistedFormValues?: Record<string, Record<string, unknown>>;
-    /** Hash av appens mellomlagringsgrunnlag da blob-en ble lagret. Se SøknadRouterProps.mellomlagringGrunnlag */
+    /** Hash av appens mellomlagringsgrunnlag da blob-en ble lagret. Se SøknadProviderProps.mellomlagringGrunnlag */
     grunnlagHash?: string;
 }
 
@@ -43,9 +43,9 @@ export interface IncludedStep {
 }
 
 /**
- * Props til SøknadRouter — hoved-inngangskomponenten for søknadsrammeverket.
+ * Props til SøknadProvider — hoved-inngangskomponenten for søknadsrammeverket.
  */
-export interface SøknadRouterProps {
+export interface SøknadProviderProps {
     /** Steg-konfigurasjon: route, isCompleted, isIncluded per steg-ID */
     config: Record<string, StepDefinition>;
     /** Rekkefølge av steg-ID-er */
@@ -64,14 +64,14 @@ export interface SøknadRouterProps {
      * Grunndata som må være uendret for at mellomlagringen kan gjenopptas (f.eks. registrerte barn).
      * Rammeverket lagrer kun en SHA-256-hash av verdiene. Ved ulik hash forkastes og slettes mellomlagringen.
      * Appen velger verdiene — ikke send inn sensitive opplysninger.
-     * Må være lastet før SøknadRouter monteres, og skal ikke endre seg i løpet av økten.
+     * Må være lastet før SøknadProvider monteres, og skal ikke endre seg i løpet av økten.
      */
     mellomlagringGrunnlag?: Record<string, unknown>;
     /** URL det navigeres til ved "fortsett senere". Default: NAV Min side */
     resumeLaterUrl?: string;
     /** Element som vises mens en routeren initialiseres; typisk LoadingPage komponent. */
     loadingElement?: ReactNode;
-    /** Kvitteringssiden. Vises av SøknadRouter på KVITTERING_PATH etter innsending. */
+    /** Kvitteringssiden. Vises av SøknadProvider på KVITTERING_PATH etter innsending. */
     kvitteringElement: ReactNode;
     /**
      * Konverterer RHF-skjemaverdier for et steg til søknadsdata-format.

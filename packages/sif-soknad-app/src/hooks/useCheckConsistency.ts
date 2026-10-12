@@ -9,7 +9,7 @@ import { useSøknadAppContext } from '../context/SøknadAppContext';
  * Returnerer stepId for første inkonsistente steg, eller undefined.
  *
  * Returnerer alltid undefined hvis appen ikke har satt `formValuesToSøknadsdata`
- * på SøknadRouter (consistency-sjekk er opt-in).
+ * på SøknadProvider (consistency-sjekk er opt-in).
  */
 export function useCheckConsistency(currentStepId: string): string | undefined {
     const { store, stepOrder, formValuesToSøknadsdata } = useSøknadAppContext();

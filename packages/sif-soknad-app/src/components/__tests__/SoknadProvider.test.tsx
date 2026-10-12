@@ -4,7 +4,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { SøknadRouter } from '../SøknadRouter';
+import { SøknadProvider } from '../SoknadProvider';
 
 vi.mock('@sif/api/k9-prosessering', () => ({
     hentYtelseMellomlagring: vi.fn(),
@@ -20,7 +20,7 @@ const LocationDisplay = () => {
 const renderRouter = (initialPath: string) =>
     render(
         <MemoryRouter initialEntries={[initialPath]}>
-            <SøknadRouter
+            <SøknadProvider
                 config={{ start: { route: 'start' } }}
                 stepOrder={['start']}
                 ytelse="PLEIEPENGER_SYKT_BARN"
@@ -31,11 +31,11 @@ const renderRouter = (initialPath: string) =>
                     <Route path="/" element={<LocationDisplay />} />
                     <Route path="/soknad/start" element={<LocationDisplay />} />
                 </Routes>
-            </SøknadRouter>
+            </SøknadProvider>
         </MemoryRouter>,
     );
 
-describe('SøknadRouter', () => {
+describe('SøknadProvider', () => {
     beforeEach(() => {
         vi.mocked(hentYtelseMellomlagring).mockResolvedValue({
             versjon: 1,
@@ -51,11 +51,11 @@ describe('SøknadRouter', () => {
     });
 });
 
-describe('SøknadRouter — mellomlagringGrunnlag', () => {
+describe('SøknadProvider — mellomlagringGrunnlag', () => {
     const renderMedGrunnlag = (grunnlag?: Record<string, unknown>) =>
         render(
             <MemoryRouter initialEntries={['/']}>
-                <SøknadRouter
+                <SøknadProvider
                     config={{ start: { route: 'start' } }}
                     stepOrder={['start']}
                     ytelse="PLEIEPENGER_SYKT_BARN"
@@ -67,7 +67,7 @@ describe('SøknadRouter — mellomlagringGrunnlag', () => {
                         <Route path="/" element={<LocationDisplay />} />
                         <Route path="/soknad/start" element={<LocationDisplay />} />
                     </Routes>
-                </SøknadRouter>
+                </SøknadProvider>
             </MemoryRouter>,
         );
 

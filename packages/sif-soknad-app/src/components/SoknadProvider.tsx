@@ -11,7 +11,7 @@ import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { SøknadStepFormProvider } from '../consistency/SøknadStepFormContext';
 import { SøknadAppContext, SøknadAppContextValue } from '../context/SøknadAppContext';
 import { createSøknadAppStore } from '../store/createSøknadAppStore';
-import { MellomlagringBlob, SøknadRouterProps } from '../types';
+import { MellomlagringBlob, SøknadProviderProps } from '../types';
 import { buildStepPath, KVITTERING_PATH } from '../utils/routeUtils';
 const isMellomlagringBlob = (value: unknown): value is MellomlagringBlob => {
     if (typeof value !== 'object' || value === null) return false;
@@ -37,7 +37,7 @@ const DEFAULT_RESUME_LATER_URL = 'https://www.nav.no/minside';
  *
  * Se README for navigasjonsansvar og oppsett i app.
  */
-export const SøknadRouter = ({
+export const SøknadProvider = ({
     config,
     stepOrder,
     ytelse,
@@ -51,8 +51,8 @@ export const SøknadRouter = ({
     kvitteringElement,
     formValuesToSøknadsdata,
     children,
-}: SøknadRouterProps) => {
-    // Én stabil store-instans per SøknadRouter-mount
+}: SøknadProviderProps) => {
+    // Én stabil store-instans per SøknadProvider-mount
     const storeRef = useRef<ReturnType<typeof createSøknadAppStore>>(null);
     if (!storeRef.current) {
         storeRef.current = createSøknadAppStore({ config, stepOrder });

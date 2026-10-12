@@ -299,7 +299,7 @@ const invalidParameters = getInvalidParametersFromApiError(apiError);
 
 ## Mellomlagring
 
-Mellomlagring i v2-apper håndteres av `SøknadRouter` i `@sif/soknad-app` (henting, lagring, sletting og grunnlagssjekk via `mellomlagringGrunnlag`). Appen skal ikke kalle mellomlagrings-API-et selv. Se `sif-soknad-setup` → «Mellomlagring».
+Mellomlagring i v2-apper håndteres av `SøknadProvider` i `@sif/soknad-app` (henting, lagring, sletting og grunnlagssjekk via `mellomlagringGrunnlag`). Appen skal ikke kalle mellomlagrings-API-et selv. Se `sif-soknad-setup` → «Mellomlagring».
 
 `@sif/api/k9-prosessering` eksporterer de rå funksjonene (`hentYtelseMellomlagring`, `opprettYtelseMellomlagring`, `oppdaterYtelseMellomlagring`, `slettYtelseMellomlagring`) som rammeverket bruker.
 

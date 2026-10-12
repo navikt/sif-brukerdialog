@@ -2,7 +2,7 @@ import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '@app/setup/constants';
 import { søknadStepConfig, søknadStepOrder } from '@app/setup/soknadStepConfig';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { formValuesToSøknadsdata } from '@app/utils/formValuesToSøknadsdata';
-import { SøknadRouter, SøknadStepGuard } from '@sif/soknad-app';
+import { SøknadProvider, SøknadStepGuard } from '@sif/soknad-app';
 import { LoadingPage } from '@sif/soknad-ui';
 import { lazy, Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
@@ -22,7 +22,7 @@ export const Søknad = () => {
     const { registrerteBarn, kontoInfo } = useAppContext();
 
     return (
-        <SøknadRouter
+        <SøknadProvider
             config={søknadStepConfig}
             stepOrder={søknadStepOrder}
             ytelse={APP_YTELSE}
@@ -57,6 +57,6 @@ export const Søknad = () => {
                 </Route>
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
-        </SøknadRouter>
+        </SøknadProvider>
     );
 };

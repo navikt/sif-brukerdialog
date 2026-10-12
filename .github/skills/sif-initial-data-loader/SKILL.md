@@ -25,7 +25,7 @@ description: Mønster for å kombinere flere API-hooks til én asynkron laster (
 
 `useInitialData.ts` legges i `src/` (rot for appen), ikke i `src/app/`. Dette er et entrypoint-nivå-concern — det kjøres før `AppContext` og `Soknad` initialiseres.
 
-> **Merk:** Mellomlagring håndteres av `SøknadRouter` fra `@sif/soknad-app`. Ikke hent den i `useInitialData`. Skal mellomlagringen forkastes når oppstartsdata endres, send ikke-sensitive verdier fra initial data inn som `mellomlagringGrunnlag` (se `sif-soknad-setup` → «Mellomlagring»).
+> **Merk:** Mellomlagring håndteres av `SøknadProvider` fra `@sif/soknad-app`. Ikke hent den i `useInitialData`. Skal mellomlagringen forkastes når oppstartsdata endres, send ikke-sensitive verdier fra initial data inn som `mellomlagringGrunnlag` (se `sif-soknad-setup` → «Mellomlagring»).
 
 ---
 
@@ -37,7 +37,7 @@ src/
     useInitialData.ts          ← bootstrap-queries
     app/
         context/AppContext.tsx ← app-spesifikk datakontekst
-        Soknad.tsx             ← SøknadRouter (håndterer mellomlagring selv)
+        Soknad.tsx             ← SøknadProvider (håndterer mellomlagring selv)
 ```
 
 `SøknadDataWrapper` i `App.tsx` kaller `useInitialData()` og switcher på status:
@@ -57,7 +57,7 @@ src/
 - Kombinerer loading/error-tilstander til én `InitialDataResult`.
 - Returnerer typet `data`-objekt ved suksess.
 
-**Ikke** hent mellomlagring her; det håndteres av `SøknadRouter`.
+**Ikke** hent mellomlagring her; det håndteres av `SøknadProvider`.
 
 ### Returtype-mønster
 

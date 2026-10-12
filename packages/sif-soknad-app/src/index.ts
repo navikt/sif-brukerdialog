@@ -8,7 +8,7 @@ export { AppIntlProvider } from './components/AppIntlProvider';
 export { SifQueryClientProvider } from './components/SifQueryClientProvider';
 export type { SanityConfig } from './components/SøknadAppProvider';
 export { SøknadAppProvider } from './components/SøknadAppProvider';
-export { SøknadRouter } from './components/SøknadRouter';
+export { SøknadProvider } from './components/SoknadProvider';
 export { SøknadStep } from './components/SøknadStep';
 export { SøknadStepForm } from './components/SøknadStepForm';
 export { SøknadStepGuard } from './components/SøknadStepGuard';
@@ -27,7 +27,7 @@ export { useStartSøknad } from './hooks/useStartSøknad';
 export { useStepData } from './hooks/useStepData';
 export { useStepNavigation } from './hooks/useStepNavigation';
 
-// Ruting — stien eies av SøknadRouter
+// Ruting — stien eies av SøknadProvider
 export { KVITTERING_PATH } from './utils/routeUtils';
 
 // Intern kontekst — eksportert for avansert bruk (f.eks. storybook-dekoratører)
@@ -39,7 +39,7 @@ export { createSøknadAppStore } from './store/createSøknadAppStore';
 export type {
     IncludedStep,
     MellomlagringBlob,
-    SøknadRouterProps,
+    SøknadProviderProps,
     SøknadStepProps,
     StepDefinition,
     StepFormValues,
