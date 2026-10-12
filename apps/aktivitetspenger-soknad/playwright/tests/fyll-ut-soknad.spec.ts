@@ -57,7 +57,7 @@ test('fyller ut og sender inn søknaden', async ({ page }) => {
     await svarJa(page, barnSpørsmål);
     await gåTilNesteSteg(page, 'oppsummering');
 
-    await expect(page.getByLabel('Overstyr startdato som skal gjelde for denne søknaden')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Oppsummering' })).toBeVisible();
     await testAccessibility(page);
     await page.getByLabel('Jeg bekrefter at opplysningene jeg har gitt er riktige').check();
     await page.getByRole('button', { name: 'Send inn' }).click();

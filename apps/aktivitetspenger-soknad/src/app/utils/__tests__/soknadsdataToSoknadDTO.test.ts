@@ -145,7 +145,7 @@ describe('søknadsdataToSøknadDTO', () => {
         expect(result?.startdato).toBeUndefined();
     });
 
-    it('skal returnere undefined når inkludert startdato mangler', () => {
+    it('skal tillate manglende startdato når den er inkludert', () => {
         const result = søknadsdataToSøknadDTO(
             {
                 ...baseArgs,
@@ -155,6 +155,7 @@ describe('søknadsdataToSøknadDTO', () => {
             true,
         );
 
-        expect(result).toBeUndefined();
+        expect(result).toBeDefined();
+        expect(result?.startdato).toBeUndefined();
     });
 });
