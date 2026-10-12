@@ -2,13 +2,11 @@ import { AppText } from '@app/i18n';
 import { MedlemskapSøknadsdata } from '@app/types/Soknadsdata';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { BodyLong, VStack } from '@navikt/ds-react';
-import { getListValidator } from '@navikt/sif-validation';
-import { useSifValidate } from '@sif/rhf';
-import { SøknadStep, SøknadStepForm, useMellomlagring, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
+import { SøknadStep, SøknadStepForm, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { FormLayout, SifGuidePanel } from '@sif/soknad-ui';
 import { dateToISODate, getDateToday } from '@sif/utils';
 import dayjs from 'dayjs';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { toMedlemskapStegFormValues, toMedlemskapStegSøknadsdata } from './medlemskapStegUtils';
@@ -27,27 +25,21 @@ const getMinDate = () => {
 };
 
 export const MedlemskapForm = () => {
-    const { validateField } = useSifValidate('medlemskapForm');
-
     const { lagretData, commit, draftFormValues } = useStepData<MedlemskapSøknadsdata, MedlemskapFormValues>(stepId);
     const methods = useForm<MedlemskapFormValues>({
         defaultValues: draftFormValues ?? toMedlemskapStegFormValues(lagretData),
         shouldUnregister: true,
     });
     useSaveSøknadFormValues(stepId, methods.getValues);
-    const { lagre } = useMellomlagring();
 
     const onSubmit = (data: MedlemskapFormValues) => commit(toMedlemskapStegSøknadsdata(data));
 
     const minDate = useMemo(() => getMinDate(), []);
     const maxDate = useMemo(() => getDateToday(), []);
-    const { unregister } = methods;
 
     const harBoddINorge = methods.watch(MedlemskapFormFields.harBoddINorge);
     const harJobbetINorge = methods.watch(MedlemskapFormFields.harJobbetINorge);
     const harJobbetUtenforNorge = methods.watch(MedlemskapFormFields.harJobbetUtenforNorge);
-    const bostederUtenforNorge = methods.watch(MedlemskapFormFields.bostederUtenforNorge);
-    const arbeidsstederUtenforNorge = methods.watch(MedlemskapFormFields.arbeidsstederUtenforNorge);
 
     const harJobbetINorgeSvar = yesOrNoToBoolean(harJobbetINorge);
 
@@ -56,51 +48,6 @@ export const MedlemskapForm = () => {
         harJobbetINorge: harJobbetINorgeSvar,
         harJobbetUtenforNorge: yesOrNoToBoolean(harJobbetUtenforNorge),
     });
-
-    const visBostederUtenforNorge = synlig.bostederUtenforNorge;
-    const visArbeidsstederUtenforNorge = synlig.arbeidsstederUtenforNorge;
-
-    if (visBostederUtenforNorge) {
-        methods.register(MedlemskapFormFields.bostederUtenforNorge, {
-            validate: validateField(
-                MedlemskapFormFields.bostederUtenforNorge,
-                getListValidator({ minItems: 1, required: true }),
-            ),
-        });
-    }
-    if (visArbeidsstederUtenforNorge) {
-        methods.register(MedlemskapFormFields.arbeidsstederUtenforNorge, {
-            validate: validateField(
-                MedlemskapFormFields.arbeidsstederUtenforNorge,
-                getListValidator({ minItems: 1, required: true }),
-            ),
-        });
-    }
-
-    useEffect(() => {
-        if (!visBostederUtenforNorge) {
-            unregister(MedlemskapFormFields.bostederUtenforNorge);
-        }
-        if (!visArbeidsstederUtenforNorge) {
-            unregister(MedlemskapFormFields.arbeidsstederUtenforNorge);
-        }
-    }, [unregister, visArbeidsstederUtenforNorge, visBostederUtenforNorge]);
-
-    const oppdaterBosteder = (
-        oppdaterteBosteder: MedlemskapFormValues[typeof MedlemskapFormFields.bostederUtenforNorge],
-    ) => {
-        methods.setValue(MedlemskapFormFields.bostederUtenforNorge, oppdaterteBosteder);
-        methods.trigger(MedlemskapFormFields.bostederUtenforNorge);
-        void lagre();
-    };
-
-    const oppdaterArbeidssteder = (
-        oppdaterteArbeidssteder: MedlemskapFormValues[typeof MedlemskapFormFields.arbeidsstederUtenforNorge],
-    ) => {
-        methods.setValue(MedlemskapFormFields.arbeidsstederUtenforNorge, oppdaterteArbeidssteder);
-        methods.trigger(MedlemskapFormFields.arbeidsstederUtenforNorge);
-        void lagre();
-    };
 
     return (
         <SøknadStep stepId={stepId}>
@@ -130,22 +77,12 @@ export const MedlemskapForm = () => {
 
                         {/* Bosteder utenfor Norge */}
                         {synlig.bostederUtenforNorge && (
-                            <BostederUtlandSporsmal
-                                minDate={minDate}
-                                maxDate={maxDate}
-                                utenlandsopphold={bostederUtenforNorge}
-                                onChange={oppdaterBosteder}
-                            />
+                            <BostederUtlandSporsmal minDate={minDate} maxDate={maxDate} />
                         )}
 
                         {/* Arbeidssteder utenfor Norge */}
                         {synlig.arbeidsstederUtenforNorge && (
-                            <ArbeidsstederUtlandSporsmal
-                                minDate={minDate}
-                                maxDate={maxDate}
-                                arbeidsstederUtenforNorge={arbeidsstederUtenforNorge}
-                                onChange={oppdaterArbeidssteder}
-                            />
+                            <ArbeidsstederUtlandSporsmal minDate={minDate} maxDate={maxDate} />
                         )}
                     </FormLayout.Questions>
                 </FormLayout.Content>

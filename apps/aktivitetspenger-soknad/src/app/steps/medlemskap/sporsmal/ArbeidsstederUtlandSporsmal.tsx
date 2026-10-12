@@ -1,19 +1,38 @@
 import { AppText } from '@app/i18n';
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
+import { getListValidator } from '@navikt/sif-validation';
+import { useSifValidate } from '@sif/rhf';
+import { useMellomlagring } from '@sif/soknad-app';
 import { ArbeidUtlandFormData, ArbeidUtlandListAndDialog } from '@sif/soknad-forms';
 import { FormLayout } from '@sif/soknad-ui';
 import { ISODate } from '@sif/utils';
+import { useController } from 'react-hook-form';
 
-import { MedlemskapFormFields } from '../types';
+import { MedlemskapFormFields, MedlemskapFormValues } from '../types';
 
 interface Props {
     minDate: ISODate;
     maxDate: ISODate;
-    arbeidsstederUtenforNorge?: ArbeidUtlandFormData[];
-    onChange: (arbeidssteder: ArbeidUtlandFormData[]) => void;
 }
 
-export const ArbeidsstederUtlandSporsmal = ({ minDate, maxDate, arbeidsstederUtenforNorge = [], onChange }: Props) => {
+export const ArbeidsstederUtlandSporsmal = ({ minDate, maxDate }: Props) => {
+    const { validateField } = useSifValidate('medlemskapForm');
+    const { lagre } = useMellomlagring();
+    const { field } = useController<MedlemskapFormValues, MedlemskapFormFields.arbeidsstederUtenforNorge>({
+        name: MedlemskapFormFields.arbeidsstederUtenforNorge,
+        rules: {
+            validate: validateField(
+                MedlemskapFormFields.arbeidsstederUtenforNorge,
+                getListValidator({ minItems: 1, required: true }),
+            ),
+        },
+    });
+
+    const onChange = (arbeidssteder: ArbeidUtlandFormData[]) => {
+        field.onChange(arbeidssteder);
+        void lagre();
+    };
+
     return (
         <FormLayout.Panel bleedTop={true}>
             <VStack gap="space-16">
@@ -27,7 +46,7 @@ export const ArbeidsstederUtlandSporsmal = ({ minDate, maxDate, arbeidsstederUte
                     minDate={minDate}
                     maxDate={maxDate}
                     variant="periodeMedJobb"
-                    arbeidssteder={arbeidsstederUtenforNorge}
+                    arbeidssteder={field.value ?? []}
                     addButtonId={MedlemskapFormFields.arbeidsstederUtenforNorge}
                     addButtonLabel={<AppText id="medlemskapSteg.arbeidsstederUtenforNorge.leggTil" />}
                     onChange={onChange}
