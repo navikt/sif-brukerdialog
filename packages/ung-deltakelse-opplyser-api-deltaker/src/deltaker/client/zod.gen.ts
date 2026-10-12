@@ -42,6 +42,7 @@ export const zDeltakelseDto = z.object({
 });
 
 export const zDeltakelseKomposittDto = z.object({
+    avslutningsårsak: zAvslutningsårsak.nullish(),
     deltaker: zDeltakerDto,
     erSlettet: z.boolean(),
     forlengetPeriodeMaksDato: z.iso.date(),

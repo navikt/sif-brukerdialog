@@ -66,6 +66,7 @@ export const zEndringstype = z.enum([
     'DELTAKER_HAR_SØKT_YTELSE',
     'DELTAKELSE_FJERNET',
     'FORLENGET_PERIODE',
+    'OPPHØRSVEDTAK_FATTET',
     'UKJENT',
 ]);
 
