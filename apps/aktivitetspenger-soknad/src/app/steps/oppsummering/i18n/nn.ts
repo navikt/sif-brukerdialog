@@ -26,6 +26,7 @@ export const oppsummeringStegMessages_nn: Record<keyof typeof oppsummeringStegMe
     'oppsummeringSteg.barn.tittel': 'Barn',
     'oppsummeringSteg.startdato.testing': 'Berre for testing i Q',
     'oppsummeringSteg.startdato.velgStartdato': 'Vel startdato som skal gjelde for denne søknaden',
+    'oppsummeringSteg.startdato.description': 'Ingen dato betyr at dagens dato vert brukt.',
     'oppsummeringSteg.bosted.tittel': 'Bustad',
     'oppsummeringSteg.bosted.erBosattITrondheim': 'Er du busett i Trondheim kommune?',
     'oppsummeringSteg.medlemskap.bostederUtenforNorge': 'Bustadar utanfor Noreg siste 5 år',

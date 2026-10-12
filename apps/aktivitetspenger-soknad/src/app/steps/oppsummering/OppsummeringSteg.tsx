@@ -82,6 +82,7 @@ export const OppsummeringSteg = () => {
                         </InfoCard.Message>
                     </InfoCard>
                 )}
+
                 {inkluderStartdatoSpørsmål && (
                     <StartdatoSpørsmål
                         value={startdato}
@@ -92,32 +93,31 @@ export const OppsummeringSteg = () => {
                         }}
                     />
                 )}
-                {(!inkluderStartdatoSpørsmål || startdato) && (
-                    <>
-                        {!dto && (
-                            <InfoCard data-color="warning">
-                                <InfoCard.Header>
-                                    <InfoCard.Title>
-                                        <AppText id="oppsummeringSteg.feil.tittel" />
-                                    </InfoCard.Title>
-                                </InfoCard.Header>
-                                <InfoCard.Content>
-                                    <AppText id="oppsummeringSteg.feil.innhold" />
-                                </InfoCard.Content>
-                            </InfoCard>
-                        )}
 
-                        {dto && (
-                            <FormLayout.Summary>
-                                <KontonummerOppsummering
-                                    kontonummerInfo={dto.kontonummerInfo}
-                                    kontoOppslagInfo={kontoInfo}
-                                />
-                                <BostedOppsummering erBosattITrondheim={dto.erBosattITrondheim} />
-                                <MedlemskapOppsummering medlemskap={dto.medlemskap} />
-                                <BarnOppsummering barn={registrerteBarn} barnErRiktig={dto.barnErRiktig} />
-                            </FormLayout.Summary>
-                        )}
+                {!dto && (
+                    <InfoCard data-color="warning">
+                        <InfoCard.Header>
+                            <InfoCard.Title>
+                                <AppText id="oppsummeringSteg.feil.tittel" />
+                            </InfoCard.Title>
+                        </InfoCard.Header>
+                        <InfoCard.Content>
+                            <AppText id="oppsummeringSteg.feil.innhold" />
+                        </InfoCard.Content>
+                    </InfoCard>
+                )}
+
+                {dto && (
+                    <>
+                        <FormLayout.Summary>
+                            <KontonummerOppsummering
+                                kontonummerInfo={dto.kontonummerInfo}
+                                kontoOppslagInfo={kontoInfo}
+                            />
+                            <BostedOppsummering erBosattITrondheim={dto.erBosattITrondheim} />
+                            <MedlemskapOppsummering medlemskap={dto.medlemskap} />
+                            <BarnOppsummering barn={registrerteBarn} barnErRiktig={dto.barnErRiktig} />
+                        </FormLayout.Summary>
                         <FormLayout.Questions>
                             <Checkbox
                                 name="bekrefterOpplysninger"
