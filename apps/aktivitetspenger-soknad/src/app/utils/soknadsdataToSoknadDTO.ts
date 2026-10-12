@@ -28,22 +28,32 @@ const getUtenlandsoppholdFromMedlemskap = (
     return utenlandsopphold;
 };
 
-export const søknadsdataToSøknadDTO = ({
-    søker,
-    søknadsdata,
-    språk,
-    kontoInfo,
-    startdato,
-}: {
-    søknadsdata: Søknadsdata;
-    søker: Søker;
-    språk: 'nb' | 'nn';
-    kontoInfo: aktivitetspenger.KontonummerInfo;
-    startdato?: ISODate;
-}): Omit<SøknadApiData, 'harBekreftetOpplysninger'> | undefined => {
+export const søknadsdataToSøknadDTO = (
+    {
+        søker,
+        søknadsdata,
+        språk,
+        kontoInfo,
+        startdato,
+    }: {
+        søknadsdata: Søknadsdata;
+        søker: Søker;
+        språk: 'nb' | 'nn';
+        kontoInfo: aktivitetspenger.KontonummerInfo;
+        startdato?: ISODate;
+    },
+    inkluderStartdato?: boolean,
+): Omit<SøknadApiData, 'harBekreftetOpplysninger'> | undefined => {
     const { barn, harForståttRettigheterOgPlikter, medlemskap, kontonummer, bosted } = søknadsdata;
 
-    if (!barn || !harForståttRettigheterOgPlikter || !bosted || !kontonummer || !medlemskap || !startdato) {
+    if (
+        !barn ||
+        !harForståttRettigheterOgPlikter ||
+        !bosted ||
+        !kontonummer ||
+        !medlemskap ||
+        (inkluderStartdato && !startdato)
+    ) {
         // eslint-disable-next-line no-console
         console.error('Manglende data i søknadsdata');
         return undefined;
@@ -64,7 +74,7 @@ export const søknadsdataToSøknadDTO = ({
             utenlandsopphold: getUtenlandsoppholdFromMedlemskap(medlemskap),
         },
         erBosattITrondheim: bosted.erBosattITrondheim,
-        startdato: startdato,
+        startdato: inkluderStartdato ? startdato : undefined,
         harForståttRettigheterOgPlikter,
     };
 };

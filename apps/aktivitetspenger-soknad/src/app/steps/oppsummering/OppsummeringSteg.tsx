@@ -6,6 +6,7 @@ import { SøknadStepId } from '@app/types/SoknadStepId';
 import { søknadsdataToSøknadDTO } from '@app/utils/soknadsdataToSoknadDTO';
 import { InformationSquareIcon } from '@navikt/aksel-icons';
 import { InfoCard } from '@navikt/ds-react';
+import { isProd } from '@navikt/sif-common-env';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { SøknadStep, SøknadStepForm, useSøknadsdata } from '@sif/soknad-app';
@@ -34,6 +35,7 @@ export const OppsummeringSteg = () => {
 
     const { validateField } = useSifValidate('oppsummeringForm');
     const [startdato, setStartdato] = useState<ISODate>(dateToISODate(getDateToday()));
+    const inkluderStartdatoSpørsmål = isProd() ? false : true;
 
     const { søker, kontoInfo, registrerteBarn } = useAppContext();
     const søknadsdata = useSøknadsdata<Søknadsdata>();
@@ -42,13 +44,16 @@ export const OppsummeringSteg = () => {
 
     const { sendSøknad, isPending, sendSøknadError } = useSendSøknad();
 
-    const dto = søknadsdataToSøknadDTO({
-        søker,
-        kontoInfo,
-        søknadsdata,
-        språk: locale,
-        startdato,
-    });
+    const dto = søknadsdataToSøknadDTO(
+        {
+            søker,
+            kontoInfo,
+            søknadsdata,
+            språk: locale,
+            startdato,
+        },
+        inkluderStartdatoSpørsmål,
+    );
 
     const harBekreftetOpplysninger = methods.watch('bekrefterOpplysninger');
 
@@ -69,7 +74,7 @@ export const OppsummeringSteg = () => {
                 onSubmit={onSubmit}
                 isPending={isPending}
                 isFinalSubmit={true}
-                submitDisabled={!dto || !startdato || submitEnabled === false}>
+                submitDisabled={!dto || (inkluderStartdatoSpørsmål && !startdato) || submitEnabled === false}>
                 {submitEnabled === false && (
                     <InfoCard data-color="warning">
                         <InfoCard.Message icon={<InformationSquareIcon />}>
@@ -77,15 +82,17 @@ export const OppsummeringSteg = () => {
                         </InfoCard.Message>
                     </InfoCard>
                 )}
-                <StartdatoSpørsmål
-                    value={startdato}
-                    onDateChange={(dato) => {
-                        if (dato) {
-                            setStartdato(dateToISODate(dato));
-                        }
-                    }}
-                />
-                {startdato && (
+                {inkluderStartdatoSpørsmål && (
+                    <StartdatoSpørsmål
+                        value={startdato}
+                        onDateChange={(dato) => {
+                            if (dato) {
+                                setStartdato(dateToISODate(dato));
+                            }
+                        }}
+                    />
+                )}
+                {(!inkluderStartdatoSpørsmål || startdato) && (
                     <>
                         {!dto && (
                             <InfoCard data-color="warning">
