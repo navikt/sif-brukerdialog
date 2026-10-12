@@ -17,24 +17,28 @@ export const nattevåkOgBeredskapMessages_nb = {
         'Du skal svare «ja» hvis minst ett av barnas sykdom gjør at du må være våken om natten eller i beredskap, og derfor ikke kan gå på jobb.»',
     'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.spm':
         'Nå trenger vi en beskrivelse av hvordan barnets sykdom gir et pleie- eller tilsynsbehov om nettene.',
-    'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.tittel': 'Vi trenger detaljert informasjon om:',
+
+    'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.tittel': 'Svar på disse spørsmålene:',
     'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.1':
-        'Hvilke pleie- eller tilsynsoppgaver må du gjøre på natten på grunn av barnets sykdom?',
-    'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.2': 'Hvor ofte/lenge må du være våken om nettene?',
+        'Hvilke pleie- eller tilsynsoppgaver må du gjøre om natten på grunn av barnets sykdom?',
+    'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.2':
+        'Hva er grunnen til at barnet våkner eller blir vekket om natten?',
     'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.3':
-        'Må du være våken de fleste nettene i perioden du søker om pleiepenger, eller er det kun i deler av perioden?',
+        'Hvor mange ganger og hvor lenge må du vanligvis være våken i løpet av en natt?',
+    'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.4': 'Hvor mange netter per uke må du vanligvis være våken?',
 
     'steg.nattevåkOgBeredskap.beredskap.veileder':
-        'I noen tilfeller kan barnets sykdom gjøre at du må være i beredskap eller være tilgjengelig, selv om barnet er i et omsorgstilbud. Det kan for eksempel være hvis barnet trenger at du er til stede i omsorgstilbudet, eller at du må være tilgjengelig til å dra dit på kort varsel, slik at du ikke kan jobbe.',
+        'I noen tilfeller kan barnets sykdom gjøre at du må være i beredskap eller være tilgjengelig i de timene der barnet er i et omsorgstilbud. Det kan for eksempel være hvis barnet trenger at du er til stede i omsorgstilbudet, eller at du må være tilgjengelig til å dra dit på kort varsel, slik at du ikke kan jobbe.',
     'steg.nattevåkOgBeredskap.beredskap.spm':
         'Gjør barnets sykdom at du må være i beredskap, slik at du må være borte fra jobb?',
     'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.spm':
         'Nå trenger vi en beskrivelse av hvordan barnets sykdom gjør at du må være i beredskap.',
-    'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.tittel': 'Vi trenger detaljert informasjon om:',
+    'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.tittel': 'Svar på disse spørsmålene:',
+
     'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.1':
-        'Hvilke situasjoner gir behov for at du må være sammen med barnet eller i beredskap?',
+        'Hvilke situasjoner knyttet til barnets sykdom gjør at du må være i beredskap?',
     'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.2':
-        'Hvis du må være tilgjengelig på kort varsel: Hvor ofte må du dra dit barnet er?',
+        'Hvis du må være tilgjengelig på kort varsel: Hvor ofte blir du kontaktet, og hvor ofte må du dra dit barnet er?',
     'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.3':
         'Må du være i beredskap i hele perioden du søker om pleiepenger, eller er det kun i deler av perioden?',
 

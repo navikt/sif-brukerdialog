@@ -25,18 +25,20 @@ export const nattevåkOgBeredskapMessages_nn: Record<keyof typeof nattevåkOgBer
     'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.spm':
         'No treng me ei skildring av korleis barnet sin sjukdom gjev eit pleie- eller tilsynsbehov om nettene.',
 
-    'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.tittel': 'Me treng detaljert informasjon om:',
+    'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.tittel': 'Svar på desse spørsmåla:',
 
     'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.1':
         'Kva pleie- eller tilsynsoppgåver må du gjere om natta på grunn av barnet sin sjukdom?',
 
-    'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.2': 'Kor ofte/lenge må du vere vaken om nettene?',
+    'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.2':
+        'Kva er grunnen til at barnet vaknar eller blir vekt om natta?',
 
     'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.3':
-        'Må du vere vaken dei fleste nettene i perioden du søker om pleiepengar, eller er det berre i delar av perioden?',
+        'Kor mange gongar og kor lenge må du vanlegvis vere vaken i løpet av ei natt?',
+    'steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.4': 'Kor mange netter per veke må du vanlegvis vere vaken?',
 
     'steg.nattevåkOgBeredskap.beredskap.veileder':
-        'I nokre tilfelle kan barnet sin sjukdom gjere at du må vere i beredskap eller vere tilgjengeleg, sjølv om barnet er i eit omsorgstilbod. Det kan til dømes vere om barnet treng at du er til stades i omsorgstilbodet, eller at du må vere tilgjengeleg for å dra dit på kort varsel, slik at du ikkje kan jobbe.',
+        'I nokre tilfelle kan barnet sin sjukdom gjere at du må vere i beredskap eller vere tilgjengeleg i dei timane der barnet er i eit omsorgstilbod. Det kan til dømes vere om barnet treng at du er til stades i omsorgstilbodet, eller at du må vere tilgjengeleg for å dra dit på kort varsel, slik at du ikkje kan jobbe.',
 
     'steg.nattevåkOgBeredskap.beredskap.spm':
         'Gjer barnet sin sjukdom at du må vere i beredskap, slik at du må vere borte frå jobb?',
@@ -44,13 +46,13 @@ export const nattevåkOgBeredskapMessages_nn: Record<keyof typeof nattevåkOgBer
     'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.spm':
         'No treng me ei skildring av korleis barnet sin sjukdom gjer at du må vere i beredskap.',
 
-    'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.tittel': 'Me treng detaljert informasjon om:',
+    'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.tittel': 'Svar på desse spørsmåla:',
 
     'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.1':
-        'Kva situasjonar gir behov for at du må vere saman med barnet eller i beredskap?',
+        'Kva slags situasjonar som er knytte til barnet sin sjukdom gjer at du må vere i beredskap?',
 
     'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.2':
-        'Om du må vere tilgjengeleg på kort varsel: Kor ofte må du dra dit barnet er?',
+        'Om du må vere tilgjengeleg på kort varsel: Kor ofte blir du kontakta, og kor ofte må du dra dit barnet er?',
 
     'steg.nattevåkOgBeredskap.beredskap.tilleggsinfo.liste.3':
         'Må du vere i beredskap i heile perioden du søker om pleiepengar, eller er det berre i delar av perioden?',
