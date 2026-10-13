@@ -86,7 +86,10 @@ export type Aktivitetspengersøknad = {
     kontonummerInfo: KontonummerInfo;
     medlemskap: MedlemskapAktivitetspenger;
     språk: string;
-    startdato: string;
+    /**
+     * Kun tillatt i dev.
+     */
+    startdato?: string;
     søkerNorskIdent: string;
 };
 

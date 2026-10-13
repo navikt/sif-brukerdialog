@@ -52,6 +52,7 @@ export type DeltakelseDto = {
 };
 
 export type DeltakelseKomposittDto = {
+    avslutningsårsak?: Avslutningsårsak;
     deltaker: DeltakerDto;
     erSlettet: boolean;
     /**
