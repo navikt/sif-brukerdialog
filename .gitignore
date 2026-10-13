@@ -37,6 +37,7 @@ dist-playwright
 .cplt.toml
 
 .github/copilot
+.pnpm-store
 
 # next.js
 /.next/
