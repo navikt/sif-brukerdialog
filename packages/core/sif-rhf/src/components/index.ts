@@ -17,6 +17,8 @@ export { useFileUploader } from './SifFileUpload/useFileUploader';
 export { SifForm } from './SifForm';
 export { SifInputGroup } from './SifInputGroup';
 export { SifNumberInput } from './SifNumberInput';
+export type { SifRadioCardProp } from './SifRadioCardGroup';
+export { SifRadioCardGroup } from './SifRadioCardGroup';
 export type { SifRadioProp } from './SifRadioGroup';
 export { SifRadioGroup } from './SifRadioGroup';
 export { SifSelect } from './SifSelect';

@@ -8,6 +8,7 @@ import { SifDatepicker } from './SifDatepicker';
 import { SifDateRangePicker } from './SifDateRangePicker';
 import { SifInputGroup } from './SifInputGroup';
 import { SifNumberInput } from './SifNumberInput';
+import { SifRadioCardGroup } from './SifRadioCardGroup';
 import { SifRadioGroup } from './SifRadioGroup';
 import { SifSelect } from './SifSelect';
 import { SifTextarea } from './SifTextarea';
@@ -17,19 +18,20 @@ import { SifYesOrNoQuestion } from './SifYesOrNoQuestion';
 
 export function createSifFormComponents<T extends FieldValues>() {
     return {
-        TextField: SifTextField<T>,
-        Textarea: SifTextarea<T>,
-        NumberInput: SifNumberInput<T>,
-        Select: SifSelect<T>,
-        CountrySelect: SifCountrySelect<T>,
-        TimeInput: SifTimeInput<T>,
-        RadioGroup: SifRadioGroup<T>,
         Checkbox: SifCheckbox<T>,
         CheckboxGroup: SifCheckboxGroup<T>,
-        YesOrNoQuestion: SifYesOrNoQuestion<T>,
-        InputGroup: SifInputGroup<T>,
+        Combobox: SifCombobox<T>,
+        CountrySelect: SifCountrySelect<T>,
         Datepicker: SifDatepicker<T>,
         DateRangePicker: SifDateRangePicker<T>,
-        Combobox: SifCombobox<T>,
+        InputGroup: SifInputGroup<T>,
+        NumberInput: SifNumberInput<T>,
+        RadioGroup: SifRadioGroup<T>,
+        RadioCardGroup: SifRadioCardGroup<T>,
+        Select: SifSelect<T>,
+        Textarea: SifTextarea<T>,
+        TextField: SifTextField<T>,
+        TimeInput: SifTimeInput<T>,
+        YesOrNoQuestion: SifYesOrNoQuestion<T>,
     };
 }
