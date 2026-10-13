@@ -1,5 +1,5 @@
 module.exports = {
-    content: ['src/**/*.{tsx,ts}', '../../packages/legacy/sif-common-core-ds/**/*.{tsx, ts}'],
+    content: ['src/**/*.{tsx,ts}', '../../packages/legacy/sif-common-core-ds/**/*.{tsx,ts}'],
     theme: {
         extend: {},
     },

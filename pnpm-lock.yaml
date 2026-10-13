@@ -3479,6 +3479,15 @@ importers:
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-formik-ds
+      '@navikt/sif-common-forms-ds':
+        specifier: workspace:*
+        version: link:../../packages/legacy/sif-common-forms-ds
+      '@navikt/sif-common-soknad-ds':
+        specifier: workspace:*
+        version: link:../../packages/legacy/sif-common-soknad-ds
+      '@navikt/sif-common-ui':
+        specifier: workspace:*
+        version: link:../../packages/legacy/sif-common-ui
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-utils

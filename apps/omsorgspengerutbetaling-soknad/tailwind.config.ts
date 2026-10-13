@@ -2,7 +2,7 @@ import dsTailwind from '@navikt/ds-tailwind';
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
-    content: ['src/**/*.{tsx,ts}', '../../packages/legacy/sif-common-core-ds/**/*.{tsx, ts}'],
+    content: ['src/**/*.{tsx,ts}', '../../packages/legacy/sif-common-core-ds/**/*.{tsx,ts}'],
     theme: {
         extend: {},
     },

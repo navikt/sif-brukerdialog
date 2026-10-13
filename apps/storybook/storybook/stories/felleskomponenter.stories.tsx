@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
-import { commonMessages } from '../../../../packages/legacy/sif-common-core-ds/src/i18n/common.messages';
-import { formsMessages } from '../../../../packages/legacy/sif-common-forms-ds/src/i18n/forms.messages';
-import { soknadMessages } from '../../../../packages/legacy/sif-common-soknad-ds/src/i18n/soknad.messages';
-import { uiMessages } from '../../../../packages/legacy/sif-common-ui/src/i18n/ui.messages';
+import { commonMessages } from '@navikt/sif-common-core-ds/src/i18n/common.messages';
+import { formsMessages } from '@navikt/sif-common-forms-ds/src/i18n/forms.messages';
+import { soknadMessages } from '@navikt/sif-common-soknad-ds/src/i18n/soknad.messages';
+import { uiMessages } from '@navikt/sif-common-ui/src/i18n/ui.messages';
 
 import MessagesPreview, {
     MessagesPreviewProps,

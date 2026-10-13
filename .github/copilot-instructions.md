@@ -27,7 +27,7 @@ This repository is a pnpm + Turborepo monorepo.
 ## Existing Test Setup
 
 - Vitest is already configured across multiple apps/packages.
-- Workspace aggregation is defined in `vitest.workspace.ts`.
+- Each workspace has its own Vitest config; `pnpm test` runs them via Turbo.
 - Do not add duplicate root test configs unless explicitly needed.
 
 ## Coding Style

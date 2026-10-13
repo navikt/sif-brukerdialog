@@ -31,7 +31,7 @@ This repository uses a workspace-specific setup for linting and testing.
 ## Testing
 
 - Vitest is already configured across multiple apps/packages.
-- `vitest.workspace.ts` is an aggregator, not a replacement for local test config.
+- Each workspace has its own Vitest config; `pnpm test` runs them via Turbo.
 - Prefer running tests in changed workspaces first, then `pnpm test` for broad checks.
 
 ### Test quality
