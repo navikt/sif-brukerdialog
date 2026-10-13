@@ -1,9 +1,9 @@
 import { HGrid, RadioGroupProps, RadioProps } from '@navikt/ds-react';
 import { RadioCard, RadioCardGroup } from '@navikt/ds-react/PREVIEW';
 import { ReactNode } from 'react';
-import { Controller, FieldValues, Path, useFormContext } from 'react-hook-form';
+import { Controller, ControllerRenderProps, FieldValues, Path, useFormContext } from 'react-hook-form';
 
-export type SifRadioCardProp = Omit<RadioProps, 'children' | 'name'> & {
+export type SifRadioCardProp = Omit<RadioProps, 'children' | 'name' | 'onChange'> & {
     label: ReactNode;
 };
 
@@ -17,15 +17,19 @@ type Props<T extends FieldValues> = Omit<RadioGroupProps, 'name' | 'onChange' | 
 export function SifRadioCardGroup<T extends FieldValues>({ name, radios, validate, horizontal, ...rest }: Props<T>) {
     const { control } = useFormContext<T>();
 
-    const renderRadios = (field) =>
-        radios.map(({ label, value, ...radioRest }) => (
+    const renderRadios = (field: ControllerRenderProps<T, Path<T>>) =>
+        radios.map(({ label, value, onBlur, ...radioRest }) => (
             <RadioCard
                 data-color="info"
                 key={value as string}
                 {...radioRest}
                 value={value}
                 name={field.name}
-                onChange={(evt) => field.onChange(evt.target.value)}>
+                onChange={(evt) => field.onChange(evt.target.value)}
+                onBlur={(evt) => {
+                    field.onBlur();
+                    onBlur?.(evt);
+                }}>
                 {label}
             </RadioCard>
         ));

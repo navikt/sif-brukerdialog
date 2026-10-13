@@ -2,7 +2,7 @@ import { Radio, RadioGroup, RadioGroupProps, RadioProps } from '@navikt/ds-react
 import { ReactNode } from 'react';
 import { Controller, FieldValues, Path, useFormContext } from 'react-hook-form';
 
-export type SifRadioProp = Omit<RadioProps, 'children' | 'name'> & {
+export type SifRadioProp = Omit<RadioProps, 'children' | 'name' | 'onChange'> & {
     label: ReactNode;
 };
 
@@ -27,13 +27,17 @@ export function SifRadioGroup<T extends FieldValues>({ name, radios, validate, .
                     id={name}
                     value={field.value || ''}
                     error={fieldState.error?.message}>
-                    {radios.map(({ label, value, ...radioRest }) => (
+                    {radios.map(({ label, value, onBlur, ...radioRest }) => (
                         <Radio
                             key={value as string}
                             {...radioRest}
                             value={value}
                             name={field.name}
-                            onChange={(evt) => field.onChange(evt.target.value)}>
+                            onChange={(evt) => field.onChange(evt.target.value)}
+                            onBlur={(evt) => {
+                                field.onBlur();
+                                onBlur?.(evt);
+                            }}>
                             {label}
                         </Radio>
                     ))}
