@@ -164,7 +164,7 @@ export const ArbeidUtlandDialogForm = ({
                                     maxLength: 20,
                                     minLength: 5,
                                 }),
-                                { min: 5, max: 20 },
+                                { min: 5, maks: 20 },
                             )}
                         />
                     )}
