@@ -161,10 +161,10 @@ export const ArbeidUtlandDialogForm = ({
                                 ArbeidUtlandFormFields.utenlandskNasjonalId,
                                 getStringValidator({
                                     disallowInvalidBackendCharacters: true,
-                                    maxLength: 40,
+                                    maxLength: 20,
                                     minLength: 5,
                                 }),
-                                { min: 5, max: 40 },
+                                { min: 5, max: 20 },
                             )}
                         />
                     )}
