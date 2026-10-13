@@ -1,4 +1,4 @@
-export type { SifCheckboxProp, SifRadioProp, TextFieldFormatter } from './components';
+export type { SifCheckboxProp, SifRadioCardProp, SifRadioProp, TextFieldFormatter } from './components';
 export type { InputTime } from './components';
 export {
     createSifFormComponents,
