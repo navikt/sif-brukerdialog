@@ -159,7 +159,12 @@ export const ArbeidUtlandDialogForm = ({
                             label={sifIntl.text('@sifSoknadForms.arbeidUtland.form.utenlandskNasjonalId.label')}
                             validate={validateField(
                                 ArbeidUtlandFormFields.utenlandskNasjonalId,
-                                getStringValidator({ disallowUnicodeCharacters: true }),
+                                getStringValidator({
+                                    disallowInvalidBackendCharacters: true,
+                                    maxLength: 40,
+                                    minLength: 5,
+                                }),
+                                { min: 5, max: 40 },
                             )}
                         />
                     )}

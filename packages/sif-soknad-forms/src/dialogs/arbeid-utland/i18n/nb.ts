@@ -41,6 +41,14 @@ export const arbeidUtlandMessages_nb = {
         'Jobbet i perioden: {jobbetIPerioden, select, true {Ja} other {Nei}}. {idInfo}',
     '@sifSoknadForms.arbeidUtlandForm.validation.tom.toDateIsBeforeFromDate':
         'Datoen perioden med jobb ble avsluttet kan ikke være før datoen det ble startet. Skriv inn eller velg sluttdato fra datovelgeren.',
+
+    '@sifSoknadForms.arbeidUtlandForm.validation.utenlandskNasjonalId.stringIsTooLong':
+        'Utanlandsk ID-nummer/personnummer kan ikke inneholde flere enn {maks} tegn.',
+    '@sifSoknadForms.arbeidUtlandForm.validation.utenlandskNasjonalId.stringIsTooShort':
+        'Utanlandsk ID-nummer/personnummer må inneholde minst {min} tegn.',
+    '@sifSoknadForms.arbeidUtlandForm.validation.utenlandskNasjonalId.stringHasInvalidCharacters':
+        'Feltet inneholder ugyldige tegn. Dette kan blant annet oppstå dersom tekst kopieres fra andre steder. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
+
     '@sifSoknadForms.arbeidUtlandForm.validation.landkode.noValue': 'Du må velge land',
     '@sifSoknadForms.arbeidUtlandForm.validation.jobbetIPerioden.yesOrNoIsUnanswered':
         'Du må svare på om du jobbet i dette landet i denne perioden',
