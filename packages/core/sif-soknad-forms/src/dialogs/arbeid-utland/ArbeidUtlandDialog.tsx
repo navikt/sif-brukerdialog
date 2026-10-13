@@ -1,0 +1,103 @@
+import { BodyLong, Box, Button, Dialog } from '@navikt/ds-react';
+import { ISODate } from '@sif/utils';
+
+import { SifSoknadFormsText } from '../../i18n';
+import { ArbeidUtlandFormData, ArbeidUtlandVariant } from '.';
+import { ArbeidUtlandDialogForm } from './ArbeidUtlandDialogForm';
+
+interface Props {
+    minDate?: ISODate;
+    maxDate?: ISODate;
+    arbeidssted?: ArbeidUtlandFormData;
+    alleArbeider?: ArbeidUtlandFormData[];
+    isOpen?: boolean;
+    variant: ArbeidUtlandVariant;
+    onCancel: () => void;
+    onValidSubmit: (arbeidssted: ArbeidUtlandFormData) => void;
+}
+
+export const ArbeidUtlandFormDialog = ({
+    isOpen,
+    minDate,
+    maxDate,
+    arbeidssted,
+    alleArbeider,
+    variant,
+    onValidSubmit,
+    onCancel,
+}: Props) => {
+    const formId = 'arbeidUtlandForm';
+
+    if (!isOpen) {
+        return null;
+    }
+
+    return (
+        <Dialog
+            open={isOpen}
+            onOpenChange={(open) => {
+                if (!open) onCancel();
+            }}>
+            <Dialog.Popup closeOnOutsideClick={false}>
+                {variant === 'generell' ? (
+                    <Dialog.Header>
+                        <Dialog.Title>
+                            <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.tittel.generell" />
+                        </Dialog.Title>
+                        <Dialog.Description>
+                            <Box marginBlock="space-12" as="span">
+                                <BodyLong as="span">
+                                    <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.generell.beskrivelse.1" />
+                                    <br />
+                                    <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.generell.beskrivelse.2" />
+                                </BodyLong>
+                            </Box>
+                        </Dialog.Description>
+                    </Dialog.Header>
+                ) : (
+                    <Dialog.Header>
+                        <Dialog.Title>
+                            <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.tittel.periodeMedJobb" />
+                        </Dialog.Title>
+                        <Dialog.Description>
+                            <Box marginBlock="space-12" as="span">
+                                <BodyLong as="span">
+                                    <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.periodeMedJobb.beskrivelse.1" />
+                                    <br />
+                                    <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.periodeMedJobb.beskrivelse.2" />
+                                </BodyLong>
+                            </Box>
+                        </Dialog.Description>
+                    </Dialog.Header>
+                )}
+
+                <Dialog.Body>
+                    <ArbeidUtlandDialogForm
+                        alleArbeider={alleArbeider}
+                        formId={formId}
+                        minDate={minDate}
+                        maxDate={maxDate}
+                        arbeidssted={arbeidssted}
+                        onValidSubmit={onValidSubmit}
+                        variant={variant}
+                    />
+                </Dialog.Body>
+
+                <Dialog.Footer>
+                    <Dialog.CloseTrigger>
+                        <Button type="button" variant="secondary">
+                            <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.avbrytKnapp" />
+                        </Button>
+                    </Dialog.CloseTrigger>
+                    <Button form={formId} type="submit">
+                        {arbeidssted ? (
+                            <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.oppdaterKnapp" />
+                        ) : (
+                            <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.leggTilKnapp" />
+                        )}
+                    </Button>
+                </Dialog.Footer>
+            </Dialog.Popup>
+        </Dialog>
+    );
+};

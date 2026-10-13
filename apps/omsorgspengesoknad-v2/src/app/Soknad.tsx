@@ -1,8 +1,9 @@
+import { useAppContext } from '@app/context/AppContext';
 import { useFormValuesToSøknadsdata } from '@app/hooks/useFormValuesToSøknadsdata';
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '@app/setup/constants';
 import { søknadStepConfig, søknadStepOrder } from '@app/setup/soknadStepConfig';
 import { SøknadStepId } from '@app/types/SoknadStepId';
-import { SøknadRouter, SøknadStepGuard } from '@sif/soknad-app';
+import { SøknadProvider, SøknadStepGuard } from '@sif/soknad-app';
 import { SkyraHandler, SkyraSlug,SkyraTestPage } from '@sif/surveys';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
@@ -13,6 +14,7 @@ import { DeltBostedSteg, LegeerklæringSteg, OmBarnetSteg, OppsummeringSteg } fr
 
 export const Søknad = () => {
     const { text } = useAppIntl();
+    const { barn } = useAppContext();
     const formValuesToSøknadsdata = useFormValuesToSøknadsdata();
     const location = useLocation();
 
@@ -21,11 +23,12 @@ export const Søknad = () => {
     }
 
     return (
-        <SøknadRouter
+        <SøknadProvider
             config={søknadStepConfig}
             stepOrder={søknadStepOrder}
             ytelse={APP_YTELSE}
             versjon={MELLOMLAGRING_VERSJON}
+            mellomlagringGrunnlag={{ antallBarn: barn.length }}
             applicationTitle={text('application.title')}
             formValuesToSøknadsdata={formValuesToSøknadsdata}
             kvitteringElement={<KvitteringPage />}>
@@ -41,6 +44,6 @@ export const Søknad = () => {
                 </Route>
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
-        </SøknadRouter>
+        </SøknadProvider>
     );
 };

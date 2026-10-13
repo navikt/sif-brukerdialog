@@ -1,4 +1,4 @@
-import { commonEnvSchema, ungBrukerdialogApiEnvSchema } from '@navikt/sif-common-env';
+import { commonEnvSchema, ungBrukerdialogApiEnvSchema } from '@sif/env';
 import * as z from 'zod';
 
 /**

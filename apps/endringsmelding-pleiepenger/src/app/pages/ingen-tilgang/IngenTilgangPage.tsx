@@ -5,9 +5,9 @@ import { BodyLong, Heading } from '@navikt/ds-react';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { Søker } from '@navikt/sif-common-api';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import { getMaybeEnv } from '@navikt/sif-common-env';
 import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { FormLayout } from '@navikt/sif-common-ui';
+import { getMaybeEnv } from '@sif/env';
 
 import DevFooter from '../../dev/DevFooter';
 import { SendBeskjedLink, SkrivTilOssLink } from '../../lenker';

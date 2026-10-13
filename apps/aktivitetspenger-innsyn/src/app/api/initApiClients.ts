@@ -1,6 +1,6 @@
 import { initK9BrukerdialogProsesseringApiClients } from '@navikt/k9-brukerdialog-prosessering-api';
-import { EnvKey, getRequiredEnv } from '@navikt/sif-common-env';
 import { initUngBrukerdialogApiClient } from '@navikt/ung-brukerdialog-api';
+import { EnvKey, getRequiredEnv } from '@sif/env';
 
 export const initApiClients = () => {
     initUngBrukerdialogApiClient({

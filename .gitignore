@@ -36,6 +36,8 @@ dist-playwright
 # cplt config
 .cplt.toml
 
+.github/copilot
+
 # next.js
 /.next/
 /out/

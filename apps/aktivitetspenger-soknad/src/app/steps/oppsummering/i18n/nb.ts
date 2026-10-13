@@ -24,7 +24,9 @@ export const oppsummeringStegMessages_nb = {
     'oppsummeringSteg.barn.tittel': 'Barn',
 
     'oppsummeringSteg.startdato.testing': 'Kun for testing i Q',
-    'oppsummeringSteg.startdato.velgStartdato': 'Velg startdato som skal gjelde for denne søknaden',
+    'oppsummeringSteg.startdato.velgStartdato': 'Startdato',
+    'oppsummeringSteg.startdato.tekst':
+        'La feltet stå tomt for å bruke samme oppførsel som i produksjon, som bruker dagens dato som startdato.',
     'oppsummeringSteg.bosted.tittel': 'Bosted',
     'oppsummeringSteg.bosted.erBosattITrondheim': 'Er du bosatt i Trondheim kommune?',
     'oppsummeringSteg.medlemskap.bostederUtenforNorge': 'Bosteder utenfor Norge siste 5 år',

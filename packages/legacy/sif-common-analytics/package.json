@@ -1,0 +1,26 @@
+{
+    "name": "@navikt/sif-common-analytics",
+    "version": "0.1.1",
+    "description": "Analytics log util used in SIF",
+    "type": "module",
+    "main": "src/index.ts",
+    "scripts": {
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@navikt/nav-dekoratoren-moduler": "4.5.1",
+        "constate": "4.0.0"
+    },
+    "devDependencies": {
+        "@sif/eslint-config": "workspace:*",
+        "@types/node": "26.6.4",
+        "@types/react": "19.3.0",
+        "config": "workspace:*",
+        "eslint": "10.12.0",
+        "react": "19.3.0",
+        "rimraf": "6.1.3",
+        "typescript": "6.0.3"
+    }
+}

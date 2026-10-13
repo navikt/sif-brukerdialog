@@ -56,7 +56,7 @@ const baseArgs = {
 
 describe('søknadsdataToSøknadDTO', () => {
     it('skal mappe komplett søknadsdata til en gyldig DTO', () => {
-        const result = søknadsdataToSøknadDTO({ ...baseArgs, søknadsdata: komplettSøknadsdata });
+        const result = søknadsdataToSøknadDTO({ ...baseArgs, søknadsdata: komplettSøknadsdata }, true);
 
         expect(result).toBeDefined();
         expect(result?.søkerNorskIdent).toBe(søker.fødselsnummer);
@@ -133,13 +133,29 @@ describe('søknadsdataToSøknadDTO', () => {
         expect(result).toBeUndefined();
     });
 
-    it('skal returnere undefined når startdato mangler', () => {
+    it('skal tillate manglende startdato når den ikke er inkludert', () => {
         const result = søknadsdataToSøknadDTO({
-            ...baseArgs,
+            søker,
+            språk: baseArgs.språk,
+            kontoInfo: baseArgs.kontoInfo,
             søknadsdata: komplettSøknadsdata,
-            startdato: undefined,
         });
 
-        expect(result).toBeUndefined();
+        expect(result).toBeDefined();
+        expect(result?.startdato).toBeUndefined();
+    });
+
+    it('skal tillate manglende startdato når den er inkludert', () => {
+        const result = søknadsdataToSøknadDTO(
+            {
+                ...baseArgs,
+                søknadsdata: komplettSøknadsdata,
+                startdato: undefined,
+            },
+            true,
+        );
+
+        expect(result).toBeDefined();
+        expect(result?.startdato).toBeUndefined();
     });
 });

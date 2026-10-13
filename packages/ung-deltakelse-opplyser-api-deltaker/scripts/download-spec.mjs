@@ -1,7 +1,0 @@
-#!/usr/bin/env node
-
-import { fetchAndNormalizeSpec, parseCodegenEnv, getNavBaseUrl } from '../../../scripts/codegen/codegenUtils.js';
-
-const base = getNavBaseUrl(parseCodegenEnv());
-
-await fetchAndNormalizeSpec(`https://ung-deltakelse-opplyser.${base}/v3/api-docs/deltaker`, './openapi-spec.json');

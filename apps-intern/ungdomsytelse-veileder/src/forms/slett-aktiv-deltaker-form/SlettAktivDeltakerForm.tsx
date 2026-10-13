@@ -74,11 +74,11 @@ const SlettAktivDeltakerForm = ({ deltaker, deltakelse, onCancel, onDeltakelseSl
                                     </Heading>
                                     <VStack gap="space-16">
                                         <BodyLong>
-                                            Ungdomsprogramytelsen skal ikke utbetales likevel, og deltakeren får et
-                                            vedtaksbrev om dette.
+                                            Ungdomsprogramytelsen skal ikke utbetales, og deltakeren får et vedtaksbrev
+                                            om dette.
                                         </BodyLong>
                                         <BodyLong>
-                                            Hvis deltakeren allerede har fått utbetalt ytelsen, blir det opprettet en
+                                            Hvis deltakeren allerede har fått utbetalt ytelsen, vil det bli opprettet en
                                             tilbakekrevingssak.
                                         </BodyLong>
                                     </VStack>

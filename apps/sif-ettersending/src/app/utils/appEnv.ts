@@ -1,4 +1,4 @@
-import { getCommonEnv, getRequiredEnv } from '@navikt/sif-common-env';
+import { getCommonEnv, getRequiredEnv } from '@sif/env';
 
 export const getAppEnv = () => ({
     ...getCommonEnv(),

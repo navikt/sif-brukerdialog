@@ -14,13 +14,13 @@ function getAbsolutePath(value) {
     return dirname(require.resolve(join(value, 'package.json')));
 }
 
-/** @type { import('@storybook/nextjs').StorybookConfig } */
+/** @type { import('@storybook/nextjs-vite').StorybookConfig } */
 const config = {
     stories: ['../src/**/*.stories.@(ts|tsx)'],
     addons: [],
 
     framework: {
-        name: getAbsolutePath('@storybook/nextjs'),
+        name: getAbsolutePath('@storybook/nextjs-vite'),
         options: {},
     },
 
@@ -57,14 +57,16 @@ const config = {
         NEXT_PUBLIC_FEATURE_INNTEKTSMELDING: 'on',
     }),
 
-    webpackFinal: async (config) => {
-        config.resolve = config.resolve || {};
-        config.resolve.alias = {
-            ...config.resolve.alias,
-            // Mock @navikt/oasis for å unngå Node.js-moduler (prom-client, cluster, v8, etc.)
-            '@navikt/oasis': resolve(__dirname, '../src/storybook/mocks/oasis.mock.ts'),
-        };
-        return config;
+    viteFinal: async (config) => {
+        const { mergeConfig } = await import('vite');
+        return mergeConfig(config, {
+            resolve: {
+                alias: {
+                    // Mock @navikt/oasis for å unngå Node.js-moduler (prom-client, cluster, v8, etc.)
+                    '@navikt/oasis': resolve(__dirname, '../src/storybook/mocks/oasis.mock.ts'),
+                },
+            },
+        });
     },
 };
 export default config;

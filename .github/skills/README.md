@@ -19,7 +19,7 @@ Bruk denne indeksen for rask routing til riktig skill.
 
 - `sif-soknad-app`
     - Når: endre eller feilsøke selve søknadsrammeverket, inkludert steg-navigering, mellomlagring og gjenopptak.
-    - Triggerord: `@sif/soknad-app`, `SøknadRouter`, `SøknadStep`, `SøknadStepGuard`, `useStepData`, `useMellomlagring`, `resumeStepId`.
+    - Triggerord: `@sif/soknad-app`, `SøknadProvider`, `SøknadStep`, `SøknadStepGuard`, `useStepData`, `useMellomlagring`, `resumeStepId`.
     - Fil: `.github/skills/sif-soknad-app/SKILL.md`
 
 - `aksel-spacing`
@@ -74,7 +74,7 @@ Bruk denne indeksen for rask routing til riktig skill.
 
 - `sif-codegen`
     - Når: codegen med `@hey-api/openapi-ts`, genererte API-klienter eller post-prosessering.
-    - Triggerord: `codegen`, `@hey-api/openapi-ts`, `openapi-ts`, `genererte klienter`, `client.gen.ts`, `types.gen.ts`, `sdk.gen.ts`, `download-spec`, `codegenUtils`, `fix-generated`.
+    - Triggerord: `codegen`, `@hey-api/openapi-ts`, `openapi-ts`, `genererte klienter`, `client.gen.ts`, `types.gen.ts`, `sdk.gen.ts`, `download-spec`, `codegenUtils`, `@sif/codegen`, `fix-generated`.
     - Fil: `.github/skills/sif-codegen/SKILL.md`
 
 - `sif-dialog-migration`

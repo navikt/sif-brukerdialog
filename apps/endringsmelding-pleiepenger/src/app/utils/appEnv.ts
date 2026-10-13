@@ -1,4 +1,4 @@
-import { getCommonEnv, getRequiredEnv, getSifInnsynBrowserEnv } from '@navikt/sif-common-env';
+import { getCommonEnv, getRequiredEnv, getSifInnsynBrowserEnv } from '@sif/env';
 
 import { AppEnv } from '../../../env.schema';
 

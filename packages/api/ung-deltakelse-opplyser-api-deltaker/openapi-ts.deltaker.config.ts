@@ -1,0 +1,27 @@
+import { defineConfig, type UserConfig } from '@hey-api/openapi-ts';
+
+import { createSchemaNameResolver } from '@sif/codegen';
+
+export const createConfig = (): UserConfig => ({
+    input: './openapi-spec.json',
+    parser: {
+        transforms: {
+            schemaName: createSchemaNameResolver('./openapi-spec.json'),
+        },
+    },
+    output: {
+        postProcess: ['prettier'],
+        path: './src/deltaker/client',
+    },
+    plugins: [
+        'zod',
+        { operations: { strategy: 'byTags' }, name: '@hey-api/sdk', validator: true },
+        { name: '@hey-api/client-axios', throwOnError: true },
+        {
+            enums: 'typescript', // default
+            name: '@hey-api/typescript',
+        },
+    ],
+});
+
+export default defineConfig(createConfig());

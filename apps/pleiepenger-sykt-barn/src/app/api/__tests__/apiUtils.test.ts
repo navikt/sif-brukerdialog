@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 
 import { multipartConfig, sendMultipartPostRequest } from '../utils/apiUtils';
 
-vi.mock('@navikt/sif-common-env', () => {
+vi.mock('@sif/env', () => {
     return {
         getRequiredEnv: () => 'mockedApiUrl',
         getMaybeEnv: () => 'mockedApiUrl',

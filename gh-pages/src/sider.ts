@@ -90,7 +90,7 @@ export const sider: GhPagesSide[] = [
         type: 'storybook',
         tittel: 'Varsler og oppgaver (ung-innsyn)',
         beskrivelse: 'Storybook for komponentene i ung-innsyn (varsler).',
-        workspace: 'packages/ung-innsyn',
+        workspace: 'packages/core/ung-innsyn',
         disabled: false,
     },
 ];

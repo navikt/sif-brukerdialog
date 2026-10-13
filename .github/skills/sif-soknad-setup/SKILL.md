@@ -1,7 +1,7 @@
 ---
 name: sif-soknad-setup
 type: action
-description: Veiledning for oppsett av en ny søknadsapp med @sif/soknad-app — SøknadRouter, SøknadAppProvider, AppContext og routing shell.
+description: Veiledning for oppsett av en ny søknadsapp med @sif/soknad-app — SøknadProvider, SøknadAppProvider, AppContext og routing shell.
 ---
 
 # sif-soknad-setup
@@ -20,7 +20,7 @@ description: Veiledning for oppsett av en ny søknadsapp med @sif/soknad-app —
 
 - `src/App.tsx` — `SøknadAppProvider` + `useInitialData` + `AppContextProvider`
 - `src/useInitialData.ts` — bootstrap-queries
-- `src/app/Soknad.tsx` — `SøknadRouter` + `SøknadStepGuard` + `Routes`
+- `src/app/Soknad.tsx` — `SøknadProvider` + `SøknadStepGuard` + `Routes`
 - `src/app/context/AppContext.tsx` — app-spesifikk datakontekst
 - `src/app/setup/soknadStepConfig.ts` — `StepDefinition`-konfig + steg-rekkefølge
 - `src/app/setup/constants.ts` — `APP_YTELSE`, `MELLOMLAGRING_VERSJON`
@@ -243,7 +243,7 @@ import { søknadStepConfig, søknadStepOrder } from '@app/setup/soknadStepConfig
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '@app/setup/constants';
 import { formValuesToSøknadsdata } from '@app/utils/formValuesToSøknadsdata';
-import { SøknadRouter, SøknadStepGuard } from '@sif/soknad-app';
+import { SøknadProvider, SøknadStepGuard } from '@sif/soknad-app';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAppIntl } from './i18n';
 import { LoadingPage } from '@sif/soknad-ui';
@@ -254,7 +254,7 @@ import { OppsummeringSteg } from './steps';
 export const Søknad = () => {
     const { text } = useAppIntl();
     return (
-        <SøknadRouter
+        <SøknadProvider
             config={søknadStepConfig}
             stepOrder={søknadStepOrder}
             ytelse={APP_YTELSE}
@@ -271,7 +271,7 @@ export const Søknad = () => {
                 </Route>
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
-        </SøknadRouter>
+        </SøknadProvider>
     );
 };
 ```
@@ -386,7 +386,7 @@ APM initialiseres her — utenfor React-treet — slik at telemetri er aktiv fra
 ```tsx
 import { initApm } from '@sif/apm';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
-import { getMaybeEnv } from '@navikt/sif-common-env';
+import { getMaybeEnv } from '@sif/env';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
@@ -406,7 +406,7 @@ enableMocking().then(() => {
 
 ### 14. `src/useInitialData.ts`
 
-Se `sif-initial-data-loader` for fullt mønster. Mellomlagring håndteres av `SøknadRouter` — ikke i `useInitialData`.
+Se `sif-initial-data-loader` for fullt mønster. Mellomlagring håndteres av `SøknadProvider` — ikke i `useInitialData`.
 
 ## Tilpasningspunkter per app
 
@@ -437,16 +437,62 @@ Knappetekster, avbryt- og fortsett-senere-dialogene eies av `@sif/soknad-ui` und
 
 ### `FormValues` i `types.ts`
 
-Definer alltid `FormFields` og `FormValues` i `steps/<steg>/types.ts`, ikke i komponentfilen. Unngår sirkulær avhengighet via `formValuesToSøknadsdata`.
+Definer alltid `FormValues` i `steps/<steg>/types.ts`, ikke i komponentfilen. Unngår sirkulær avhengighet via `formValuesToSøknadsdata`.
 
-### `AppContext` vs `SøknadRouter`
+### Feltnavn uten `FormFields`-enum
+
+I v2-apper brukes **ikke** `enum <Prefix>FormFields` for feltnavn. Det er et Formik-mønster: der var `name` en vanlig `string`, og enumen ga typesikkerhet. I RHF er `name` typet som `Path<FormValues>`, så kompilatoren sjekker feltnavnet direkte.
+
+```ts
+// ❌ Gammelt mønster
+export enum BostedFormFields {
+    erBosattITrondheim = 'erBosattITrondheim',
+}
+export interface BostedFormValues {
+    [BostedFormFields.erBosattITrondheim]?: YesOrNo;
+}
+<YesOrNoQuestion name={BostedFormFields.erBosattITrondheim} … />
+
+// ✅ v2
+export interface BostedFormValues {
+    erBosattITrondheim?: YesOrNo;
+}
+<YesOrNoQuestion name="erBosattITrondheim" validate={validateField('erBosattITrondheim', …)} />
+methods.watch('erBosattITrondheim');
+useController<BostedFormValues, 'erBosattITrondheim'>({ name: 'erBosattITrondheim' });
+```
+
+Hvorfor: feltnavnet skrives én gang i stedet for tre, `enum` er ikke «erasable syntax» (se `erasableSyntaxOnly` i TypeScript 5.8), og strenger kan brukes direkte i tester og mock-data.
+
+**Når du endrer et eksisterende v2-steg som fortsatt har `FormFields`-enum:** fjern enumen for steget og bytt referansene til streng-literaler. Strengverdiene skal være uendret, ellers brytes i18n-nøkler (`<scope>.validation.<felt>.<feilkode>`), DOM-id-er og mellomlagrede `draftFormValues`.
+
+Gjelder kun enum for **feltnavn**. Enum for **verdier** (f.eks. `YesOrNo`, svaralternativer som lagres) er en egen beslutning og endres ikke som del av dette.
+
+### `AppContext` vs `SøknadProvider`
 
 - Data som hentes ved oppstart (søker, barn, kontonummer): legges i `AppContext`
-- Mellomlagring og søknadsdata: håndteres av `SøknadRouter` / Zustand-store
+- Mellomlagring og søknadsdata: håndteres av `SøknadProvider` / Zustand-store
 
 ### Mellomlagring
 
-`SøknadRouter` henter og håndterer mellomlagring automatisk. Ingen `Mellomlagring.ts`-type trengs i appen.
+`SøknadProvider` henter og håndterer mellomlagring automatisk. Ingen `Mellomlagring.ts`-type trengs i appen. Ikke bruk egne mellomlagringshooks eller `hentYtelseMellomlagring` i appen.
+
+**Grunnlagssjekk (valgfri):** Hvis mellomlagringen skal forkastes når oppstartsdata endres (f.eks. at barn er registrert siden sist), send inn `mellomlagringGrunnlag`. Bare en SHA-256-hash lagres. Avvik ved oppstart → mellomlagringen slettes og søknaden starter på nytt.
+
+```tsx
+const { registrerteBarn, kontoInfo } = useAppContext();
+
+<SøknadProvider
+    …
+    mellomlagringGrunnlag={{
+        antallBarn: registrerteBarn.length,
+        harKontonummer: kontoInfo.harKontonummer,
+    }}>
+```
+
+- Bruk kun ikke-sensitive, grove verdier (antall, ja/nei). Hash av f.eks. fødselsnummer kan reverseres med brute force.
+- Verdiene må være lastet før `SøknadProvider` mountes (hentes i `useInitialData`).
+- Utelatt prop = ingen grunnlagssjekk. Å legge til eller endre grunnlaget i en lansert app forkaster alle eksisterende mellomlagringer én gang.
 
 ### `SøknadVelkommenPage`
 
@@ -464,6 +510,6 @@ Kaller `useStartSøknad` internt. Ingen manuell navigering eller `lagreSøknad()
 - [ ] `i18n/index.tsx` med `applicationIntlMessages`
 - [ ] `content/velkommen/Velkommen.tsx` med `SøknadVelkommenPage`
 - [ ] `content/kvittering/Kvittering.tsx` med `SøknadKvitteringPage`
-- [ ] `app/Soknad.tsx` med `SøknadRouter` og `SøknadStepGuard`
+- [ ] `app/Soknad.tsx` med `SøknadProvider` og `SøknadStepGuard`
 - [ ] `App.tsx` med `SøknadAppProvider` og `SøknadDataWrapper`
 - [ ] `pnpm check:types` passerer

@@ -1,10 +1,16 @@
 import { AppText, useAppIntl } from '@app/i18n';
-import { useLenker } from '@app/lenker';
+import { getLenker } from '@app/lenker';
 import { LegeerklæringSøknadsdata, Søknadsdata } from '@app/types/Soknadsdata';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { getVedleggValidator } from '@navikt/sif-validation';
-import { UploadedFile,useSifValidate } from '@sif/rhf';
-import { SøknadStepForm, useMellomlagring, useSaveSøknadFormValues, useSøknadsdata, useStepData } from '@sif/soknad-app';
+import { UploadedFile, useSifValidate } from '@sif/rhf';
+import {
+    SøknadStepForm,
+    useMellomlagring,
+    useSaveSøknadFormValues,
+    useSøknadsdata,
+    useStepData,
+} from '@sif/soknad-app';
 import { toUploadedFile, VedleggPanel } from '@sif/soknad-forms';
 import { FormLayout, SifGuidePanel } from '@sif/soknad-ui/components';
 import { useForm } from 'react-hook-form';
@@ -15,14 +21,16 @@ import { LegeerklæringFormFields, LegeerklæringFormValues } from './types';
 const stepId = SøknadStepId.LEGEERKLÆRING;
 
 export const LegeerklæringForm = () => {
-    const lenker = useLenker();
+    const lenker = getLenker();
     const { text } = useAppIntl();
     const { validateField } = useSifValidate('legeerklæringForm');
 
     const søknadsdata = useSøknadsdata<Søknadsdata>();
     const samværsavtaleFiles = (søknadsdata[SøknadStepId.DELT_BOSTED]?.samværsavtale ?? []).map(toUploadedFile);
 
-    const { lagretData, draftFormValues, commit } = useStepData<LegeerklæringSøknadsdata, LegeerklæringFormValues>(stepId);
+    const { lagretData, draftFormValues, commit } = useStepData<LegeerklæringSøknadsdata, LegeerklæringFormValues>(
+        stepId,
+    );
     const defaultValues = draftFormValues ?? toLegeerklæringFormValues(lagretData);
     const methods = useForm<LegeerklæringFormValues>({ defaultValues });
     useSaveSøknadFormValues(stepId, methods.getValues);

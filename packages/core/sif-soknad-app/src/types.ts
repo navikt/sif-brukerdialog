@@ -1,0 +1,94 @@
+import { ReactNode } from 'react';
+
+/**
+ * Basetype for skjema-verdier i ett steg.
+ * Bruker object i stedet for Record<string, unknown> så stegspesifikke interfaces
+ * ikke trenger en index-signatur.
+ */
+export type StepFormValues = object;
+
+/**
+ * Mellomlagring-blob som rammeverket lagrer og henter som opak struktur.
+ */
+export interface MellomlagringBlob {
+    versjon: number;
+    /** Gjenopptakingspunkt — steget brukeren skal landes på ved reload. */
+    resumeStepId: string;
+    søknadsdata: Record<string, unknown>;
+    /** Persisterte skjemaverdier (ikke submittet) — brukes som defaultValues etter reload */
+    persistedFormValues?: Record<string, Record<string, unknown>>;
+    /** Hash av appens mellomlagringsgrunnlag da blob-en ble lagret. Se SøknadProviderProps.mellomlagringGrunnlag */
+    grunnlagHash?: string;
+}
+
+/**
+ * Definisjon av ett steg i søknadsflyten.
+ */
+export interface StepDefinition {
+    /** URL-segment, uten ledende/trailende slash, f.eks. 'startdato' */
+    route: string;
+    /** Returnerer true hvis steget er ferdig utfylt */
+    isCompleted?: (søknadsdata: Record<string, unknown>) => boolean;
+    /** Returnerer true hvis steget skal vises. Default: alltid synlig */
+    isIncluded?: (søknadsdata: Record<string, unknown>) => boolean;
+}
+
+/**
+ * Info om ett inkludert steg i søknadsflyten.
+ */
+export interface IncludedStep {
+    stepId: string;
+    stepRoute: string;
+    completed: boolean;
+}
+
+/**
+ * Props til SøknadProvider — hoved-inngangskomponenten for søknadsrammeverket.
+ */
+export interface SøknadProviderProps {
+    /** Steg-konfigurasjon: route, isCompleted, isIncluded per steg-ID */
+    config: Record<string, StepDefinition>;
+    /** Rekkefølge av steg-ID-er */
+    stepOrder: string[];
+    /** Ytelse-identifikator, brukt for mellomlagring */
+    ytelse: string;
+    /** Mellomlagrings-versjon — brukes til å forkaste utdatert mellomlagring */
+    versjon: number;
+    /** Applikasjonstittel, vises i hvert steg */
+    applicationTitle: string;
+    /** Basepath for søknadssteg, default '/soknad' */
+    basePath?: string;
+    /** Valgfri validering av mellomlagret blob. Returner null for å forkaste. */
+    validateMellomlagring?: (blob: MellomlagringBlob) => MellomlagringBlob | null;
+    /**
+     * Grunndata som må være uendret for at mellomlagringen kan gjenopptas (f.eks. registrerte barn).
+     * Rammeverket lagrer kun en SHA-256-hash av verdiene. Ved ulik hash forkastes og slettes mellomlagringen.
+     * Appen velger verdiene — ikke send inn sensitive opplysninger.
+     * Må være lastet før SøknadProvider monteres, og skal ikke endre seg i løpet av økten.
+     */
+    mellomlagringGrunnlag?: Record<string, unknown>;
+    /** URL det navigeres til ved "fortsett senere". Default: NAV Min side */
+    resumeLaterUrl?: string;
+    /** Element som vises mens en routeren initialiseres; typisk LoadingPage komponent. */
+    loadingElement?: ReactNode;
+    /** Kvitteringssiden. Vises av SøknadProvider på KVITTERING_PATH etter innsending. */
+    kvitteringElement: ReactNode;
+    /**
+     * Konverterer RHF-skjemaverdier for et steg til søknadsdata-format.
+     * Nødvendig for å aktivere konsistenssjekk (browser back/forward-advarsel).
+     * Uten denne prop-en er konsistenssjekken deaktivert.
+     */
+    formValuesToSøknadsdata?: (
+        stepId: string,
+        formValues: Record<string, unknown>,
+    ) => Record<string, unknown> | undefined;
+    children: ReactNode;
+}
+
+/**
+ * Props til SøknadStep — wrapper-komponent for ett steg i søknaden.
+ */
+export interface SøknadStepProps {
+    stepId: string;
+    children: ReactNode;
+}

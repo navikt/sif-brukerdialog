@@ -27,7 +27,7 @@ const ansattArbeidsforhold: ArbeidsforholdFormValues = {
     sluttetFørSøknadsperiode: YesOrNo.NO,
 };
 
-vi.mock('@navikt/sif-common-env', () => {
+vi.mock('@sif/env', () => {
     return { getRequiredEnv: () => '', getCommonEnv: () => ({}), getMaybeEnv: () => '' };
 });
 

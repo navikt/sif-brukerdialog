@@ -1,4 +1,4 @@
-import { getMaybeEnv } from '@navikt/sif-common-env';
+import { getMaybeEnv } from '@sif/env';
 
 export async function enableMocking() {
     const isE2E = getMaybeEnv('E2E_TEST') === 'true';

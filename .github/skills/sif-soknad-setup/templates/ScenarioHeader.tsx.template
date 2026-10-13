@@ -2,7 +2,7 @@
 // Tilpass: scenarioGroups, appTitle (fra @navikt/sif-app-register), import-paths
 // Monter i App.tsx inne i BrowserRouter: {__IS_DEMO__ ? <ScenarioHeader /> : null}
 import { MinApp } from '@navikt/sif-app-register';
-import { getRequiredEnv } from '@navikt/sif-common-env';
+import { getRequiredEnv } from '@sif/env';
 import { ScenarioSelectorHeader, type ScenarioSelectorHeaderGroup } from '@sif/soknad-ui';
 
 import { ScenarioType } from '../../mock/scenarios/types';

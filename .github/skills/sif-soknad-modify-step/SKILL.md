@@ -14,7 +14,7 @@ description: Legg til nye spørsmål/felter i et eksisterende steg i en søknads
 
 ## Leveranse
 
-- Oppdatert `types.ts` — nye felter i `FormFields` og `FormValues`
+- Oppdatert `types.ts` — nye felter i `FormValues` (og fjernet `FormFields`-enum hvis steget fortsatt har det, se under)
 - Oppdatert `<Prefix>Form.tsx` — nye skjemakomponenter med validering
 - Oppdatert `<prefix>StegUtils.ts` — mapping for nye felter
 - Oppdatert `i18n/nb.ts` og `nn.ts` — labels og valideringsmeldinger
@@ -41,6 +41,8 @@ description: Legg til nye spørsmål/felter i et eksisterende steg i en søknads
 
 Ikke les andre steg eller utforsk mappestruktur utover dette.
 
+Hvis `types.ts` har en `FormFields`-enum, skal den fjernes som del av endringen (se steg 2).
+
 ---
 
 ## Paneler fra @sif/soknad-forms
@@ -61,10 +63,10 @@ Bruksmønster:
 import { ANNET_BARN, VelgRegistrertBarnPanel } from '@sif/soknad-forms';
 
 <VelgRegistrertBarnPanel<MyFormValues>
-    name={MyFormFields.barnetSøknadenGjelder}
+    name="barnetSøknadenGjelder"
     registrerteBarn={registrerteBarn}
     inkluderAnnetBarn={true}
-    validate={validateField(MyFormFields.barnetSøknadenGjelder, getRequiredFieldValidator())}
+    validate={validateField('barnetSøknadenGjelder', getRequiredFieldValidator())}
 />;
 ```
 
@@ -113,7 +115,7 @@ Eksempler på error-koder fra `@navikt/sif-validation`:
 | `getDateValidator`          | `dateHasNoValue`, `dateHasInvalidFormat`, `dateIsBeforeMin`, `dateIsAfterMax`                                      |
 | `getFødselsnummerValidator` | `fødselsnummerHasNoValue`, `fødselsnummerIsNot11Chars`, `fødselsnummerIsInvalid`, `fødselsnummerAsHnrIsNotAllowed` |
 
-**Viktig:** Bruk alltid de eksakte feilkodene fra validatorens enum — ikke dikk opp egne. Feil kode → valideringsmelding vises aldri. Du finner alle koder i `packages/sif-validation/src/get*Validator.ts` via `enum Validate*Error`.
+**Viktig:** Bruk alltid de eksakte feilkodene fra validatorens enum — ikke dikk opp egne. Feil kode → valideringsmelding vises aldri. Du finner alle koder i `packages/core/sif-validation/src/get*Validator.ts` via `enum Validate*Error`.
 
 ### DateRangePicker-validering
 
@@ -127,9 +129,9 @@ For `DateRangePicker` brukes `getDateValidator` per felt — **ikke** `getDateRa
         if (fromDate && toDate && fromDate > toDate) return 'fromDateIsAfterToDate';
     })}
     fromInputProps={{
-        name: FormFields.fom,
+        name: 'fom',
         validate: validateField(
-            FormFields.fom,
+            'fom',
             getDateValidator({ required: true, min: minDate, max: maxDate }),
             (errorCode) => {
                 if (errorCode === 'dateIsBeforeMin' && minDate) return { dato: sifIntl.date(minDate, 'compact') };
@@ -138,9 +140,9 @@ For `DateRangePicker` brukes `getDateValidator` per felt — **ikke** `getDateRa
         ),
     }}
     toInputProps={{
-        name: FormFields.tom,
+        name: 'tom',
         validate: validateField(
-            FormFields.tom,
+            'tom',
             getDateValidator({ required: true, min: minDate, max: maxDate }),
             (errorCode) => {
                 if (errorCode === 'dateIsBeforeMin' && minDate) return { dato: sifIntl.date(minDate, 'compact') };
@@ -184,21 +186,21 @@ export enum <EnumNavn> {
 }
 ```
 
-#### Utvid FormFields-enum
+#### Fjern `FormFields`-enum hvis steget fortsatt har den
 
-```ts
-export enum <Prefix>FormFields {
-    eksisterendeFelt = 'eksisterendeFelt',
-    nyttFelt = 'nyttFelt',  // ← legg til
-}
-```
+Hvis `types.ts` har `export enum <Prefix>FormFields`, migrer steget først (se `sif-soknad-setup` → «Feltnavn uten `FormFields`-enum»):
+
+1. Bytt `[<Prefix>FormFields.felt]?: …` til `felt?: …` i `FormValues`.
+2. Bytt alle `<Prefix>FormFields.felt` i steget til `'felt'` (`name="felt"` i JSX).
+3. Slett enumen og importene av den. Søk etter `<Prefix>FormFields` i hele appen, også stories, tester og `mock/`.
+4. Strengverdiene skal være uendret — i18n-nøkler og mellomlagrede verdier avhenger av dem.
 
 #### Utvid FormValues-interface
 
 ```ts
 export interface <Prefix>FormValues extends StepFormValues {
-    [<Prefix>FormFields.eksisterendeFelt]?: YesOrNo;
-    [<Prefix>FormFields.nyttFelt]?: <EnumNavn>[];  // ← legg til
+    eksisterendeFelt?: YesOrNo;
+    nyttFelt?: <EnumNavn>[]; // ← legg til
 }
 ```
 
@@ -298,7 +300,7 @@ Skjemaet settes opp med `useForm` + `useStepData` som ellers — det finnes inge
 ```ts
 const { lagretData, commit, draftFormValues } = useStepData<<Prefix>Søknadsdata, <Prefix>FormValues>(stepId);
 const methods = useForm<<Prefix>FormValues>({ defaultValues: draftFormValues ?? to<Prefix>FormValues(lagretData) });
-const triggerFelt = methods.watch(<Prefix>FormFields.eksisterendeFelt);
+const triggerFelt = methods.watch('eksisterendeFelt');
 ```
 
 #### d) Legg til komponent i JSX
@@ -310,10 +312,10 @@ For betinget visning, wrap i en betingelse:
     <YesOrNoQuestion ... />
     {triggerFelt === YesOrNo.YES && (
         <CheckboxGroup
-            name={<Prefix>FormFields.nyttFelt}
+            name="nyttFelt"
             legend={text('<prefix>Steg.spørsmål.<felt>')}
             validate={validateField(
-                <Prefix>FormFields.nyttFelt,
+                'nyttFelt',
                 getListValidator({ required: true }),
             )}
             checkboxes={[
@@ -336,7 +338,7 @@ Kjør `pnpm --filter <app> lint:tsc` (eller `check:types` der det finnes) i app-
 Bruk `methods.watch()` for å observere et annet felt, og vis det nye feltet betinget med vanlig `&&`-rendering:
 
 ```tsx
-const feltVerdi = methods.watch(<Prefix>FormFields.triggerFelt);
+const feltVerdi = methods.watch('triggerFelt');
 
 // I JSX — ett felt:
 {feltVerdi === YesOrNo.YES && (
@@ -367,7 +369,7 @@ Når felter skjules (unmountes) beholdes feilmeldinger i RHF sin form state. Ryd
 ```tsx
 useEffect(() => {
     if (feltVerdi !== YesOrNo.YES) {
-        methods.clearErrors([<Prefix>FormFields.nyttFelt]);
+        methods.clearErrors(['nyttFelt']);
     }
 }, [feltVerdi]);
 ```
@@ -405,7 +407,7 @@ steps/oppsummering/alert/UgyldigSøknadAlert.tsx               → LocalAlert st
 
 ## Sjekkliste
 
-- [ ] `types.ts` — evt. ny enum, nytt felt i FormFields og FormValues
+- [ ] `types.ts` — evt. verdienum, nytt felt i `FormValues`, ingen `FormFields`-enum igjen
 - [ ] `i18n/nb.ts` — spørsmålstekst, alternativ-labels, valideringsmelding
 - [ ] `i18n/nn.ts` — opprettet eller oppdatert med nynorsk (typed mot `nb`)
 - [ ] `Soknadsdata.ts` — nytt felt i søknadsdatatype

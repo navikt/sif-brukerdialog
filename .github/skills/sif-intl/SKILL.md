@@ -220,10 +220,11 @@ export const applicationIntlMessages = {
 
 ### Regler for copy og tekstendringer
 
-- AI skal ikke finne på, skrive om eller forbedre brukervendte tekster på egen hånd.
+- AI skal ikke finne på, skrive om eller forbedre brukervendte tekster uten bestilling.
 - Når oppgaven er å flytte, trekke ut eller strukturere tekster, skal tekstinnholdet beholdes uendret.
-- Nye tekster skal bare legges inn når teksten er eksplisitt oppgitt av bruker, finnes i eksisterende kildefil, eller kommer fra etablert copy.
-- Hvis nødvendig tekstgrunnlag mangler, stopp og be om teksten i stedet for å dikte den.
+- Nye tekster kan brukes når utvikleren oppgir dem, også direkte i PR-diffen, eller når de finnes i en eksisterende kildefil eller etablert copy.
+- Ikke krev en separat kilde for tekst utvikleren selv har lagt inn i PR-diffen. Manglende kilde er ikke alene grunnlag for en review-kommentar.
+- Hvis utvikleren ber AI skrive ny tekst uten å oppgi ordlyd eller tekstgrunnlag, be om dette før teksten legges inn.
 - Ved migrering eller refaktorering er hovedregelen at eksisterende tekster skal være identiske før og etter endringen.
 - Storybook-tekster, demo-tekster og labels i `preview.js` eller stories er også brukervendte tekster og skal holde korrekt norsk rettskrivning.
 - Ikke erstatt norske tegn med ASCII-varianter i tekster. Bruk `æ`, `ø` og `å` når teksten er norsk, med mindre teksten eksplisitt kommer fra en kilde som allerede mangler disse tegnene.
@@ -564,5 +565,5 @@ MENINGSAVVIK
 - App-meldinger: `apps/aktivitetspenger-soknad/src/app/i18n/nb.ts`
 - Side-meldinger: `apps/aktivitetspenger-soknad/src/app/pages/velkommen/i18n/nb.ts` / `nn.ts`
 - Steg-meldinger: `apps/aktivitetspenger-soknad/src/app/steps/barn/i18n/nb.ts`
-- Pakke: `packages/sif-soknad-ui/src/i18n/index.tsx`
-- Pakke-meldinger: `packages/sif-soknad-ui/src/pages/step-page/i18n/nb.ts`
+- Pakke: `packages/core/sif-soknad-ui/src/i18n/index.tsx`
+- Pakke-meldinger: `packages/core/sif-soknad-ui/src/pages/step-page/i18n/nb.ts`

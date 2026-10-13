@@ -1,8 +1,8 @@
 import { BodyLong, Heading, Link, VStack } from '@navikt/ds-react';
-import { getMaybeEnv } from '@navikt/sif-common-env';
 import { TilgjengeligSøknadResponse } from '@navikt/ung-brukerdialog-api';
 import { Søker } from '@sif/api/k9-prosessering';
 import { Oppgave } from '@sif/api/ung-brukerdialog';
+import { getMaybeEnv } from '@sif/env';
 import { SifGuidePanel } from '@sif/soknad-ui';
 import { InnsynForsideHeader } from '@sif/ung-innsyn/components';
 import { UngInnsynPage } from '@sif/ung-innsyn/pages';

@@ -4,7 +4,7 @@ import { vi } from 'vitest';
 import { InnvilgedeVedtak } from '../../../../hooks/useInnvilgedeVedtakForRegistrerteBarn';
 import { getMinDatoForBarnetsFødselsdato, isBarnOver18år, utledVedtakInfoForBarn } from '../omBarnetStepUtils';
 
-vi.mock('@navikt/sif-common-env', () => {
+vi.mock('@sif/env', () => {
     return { getRequiredEnv: () => '', getCommonEnv: () => ({}), getMaybeEnv: () => '' };
 });
 

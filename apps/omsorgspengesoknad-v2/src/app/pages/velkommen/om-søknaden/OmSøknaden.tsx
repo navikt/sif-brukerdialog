@@ -1,10 +1,10 @@
-import { useLenker } from '@app/lenker';
+import { getLenker } from '@app/lenker';
 import { Accordion, Box, Heading, Link, List, VStack } from '@navikt/ds-react';
 
 import { AppText } from '../../../i18n';
 
 const OmSøknaden = () => {
-    const lenker = useLenker();
+    const lenker = getLenker();
 
     return (
         <VStack gap="space-32">

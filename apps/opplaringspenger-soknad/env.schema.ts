@@ -1,4 +1,4 @@
-import { commonEnvSchema, k9SakInnsynEnvSchema } from '@navikt/sif-common-env';
+import { commonEnvSchema, k9SakInnsynEnvSchema } from '@sif/env';
 import * as z from 'zod';
 
 const localSchema = z.object({});

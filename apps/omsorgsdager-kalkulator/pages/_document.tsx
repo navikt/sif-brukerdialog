@@ -1,7 +1,6 @@
 import { ReactElement } from 'react';
 import { DecoratorComponentsReact, DecoratorEnvProps, fetchDecoratorReact } from '@navikt/nav-dekoratoren-moduler/ssr';
 import Document, { DocumentContext, DocumentInitialProps, Head, Html, Main, NextScript } from 'next/document';
-import 'node-fetch';
 
 const decoratorEnv = (process.env.NEXT_PUBLIC_DEKORATOR_ENV ?? 'prod') as Exclude<
     DecoratorEnvProps['env'],

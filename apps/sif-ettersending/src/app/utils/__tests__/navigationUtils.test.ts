@@ -7,7 +7,7 @@ import { navigateToErrorPage, userIsCurrentlyOnErrorPage } from '../navigationUt
 
 const navigate: NavigateFunction = vi.fn().mockImplementation(() => {});
 
-vi.mock('@navikt/sif-common-env', () => {
+vi.mock('@sif/env', () => {
     return {
         getRequiredEnv: () => '',
         getMaybeEnv: () => '',

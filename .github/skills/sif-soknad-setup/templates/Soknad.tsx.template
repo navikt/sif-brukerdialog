@@ -4,7 +4,7 @@ import { søknadStepConfig, søknadStepOrder } from '@app/setup/soknadStepConfig
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '@app/setup/constants';
 import { formValuesToSøknadsdata } from '@app/utils/formValuesToSøknadsdata';
-import { SøknadRouter, SøknadStepGuard } from '@sif/soknad-app';
+import { SøknadProvider, SøknadStepGuard } from '@sif/soknad-app';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { useAppIntl } from './i18n';
@@ -17,7 +17,7 @@ export const Søknad = () => {
     const { text } = useAppIntl();
 
     return (
-        <SøknadRouter
+        <SøknadProvider
             config={søknadStepConfig}
             stepOrder={søknadStepOrder}
             ytelse={APP_YTELSE}
@@ -35,6 +35,6 @@ export const Søknad = () => {
                 </Route>
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
-        </SøknadRouter>
+        </SøknadProvider>
     );
 };

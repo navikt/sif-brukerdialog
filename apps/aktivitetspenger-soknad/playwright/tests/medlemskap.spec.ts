@@ -1,7 +1,7 @@
 import { expect, Page, test } from '@playwright/test';
 
 import { ScenarioType } from '../../mock/scenarios/types';
-import { mellomlagringTilMedlemskap } from '../mock-data/mellomlagring';
+import { getMellomlagringTilMedlemskap } from '../mock-data/mellomlagring';
 import { setScenario, setScenarioWithMellomlagring } from '../utils/scenario';
 import { testAccessibility } from '../utils/testAccessibility';
 
@@ -45,7 +45,7 @@ const leggTilArbeidsperiode = async (page: Page, land: string, fraOgMed: string,
 };
 
 test('gjenopptar søknaden på medlemskap med mellomlagring', async ({ page }) => {
-    await setScenarioWithMellomlagring(page, ScenarioType.kanSøkeFørstegang, mellomlagringTilMedlemskap);
+    await setScenarioWithMellomlagring(page, ScenarioType.kanSøkeFørstegang, await getMellomlagringTilMedlemskap());
     await page.goto('/');
 
     await expect(page).toHaveURL(/\/soknad\/medlemskap/);

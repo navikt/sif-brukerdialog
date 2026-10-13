@@ -2,13 +2,13 @@ import './app.css';
 
 import { Theme } from '@navikt/ds-react';
 import { OmsorgspengerutbetalingArbeidstakerApp } from '@navikt/sif-app-register';
-import { getMaybeEnv, isProd } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     NoAccessPage,
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import { getMaybeEnv, isProd } from '@sif/env';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import MockDate from 'mockdate';
 import { Navigate, Route } from 'react-router-dom';

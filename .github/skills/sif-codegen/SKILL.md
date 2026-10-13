@@ -16,7 +16,7 @@ description: Oversikt over hvordan codegen med @hey-api/openapi-ts er satt opp i
 
 ### Pakker med genererte klienter
 
-Hvert API har sin egen pakke under `packages/`:
+Hvert API har sin egen pakke under `packages/api/`. Nye API-pakker legges også der:
 
 | Pakke                                  | API                                                      |
 | -------------------------------------- | -------------------------------------------------------- |
@@ -38,7 +38,7 @@ codegen:dev / codegen:prod
       └─ fix-generated*.mjs   → kjører fixAndFormatGeneratedCode() fra codegenUtils.js
 ```
 
-### Post-prosessering (`scripts/codegen/codegenUtils.js`)
+### Post-prosessering (`@sif/codegen`, `packages/tooling/codegen/codegenUtils.js`)
 
 `fixAndFormatGeneratedCode()` kjøres etter codegen og transformerer de genererte filene med regex-patterns:
 
@@ -61,13 +61,14 @@ Backend publiserer skjemanavn med fullt kvalifisert Java-klassenavn (f.eks. `no.
 `createSchemaNameResolver(specPath)` i `codegenUtils.js`:
 
 - Bruker siste ledd i navnet (`…Utenlandsopphold.UtenlandsoppholdPeriodeInfo` → `UtenlandsoppholdPeriodeInfo`). Indre klasser skilles med `.`.
-- Kjente kollisjoner løses i den **felles** listen `scripts/codegen/schemaNameOverrides.js` (FQN → kort navn). Listen gjelder alle pakker. Nøklene er FQN, så de treffer bare riktig klasse.
+- Kjente kollisjoner løses i den **felles** listen `packages/tooling/codegen/schemaNameOverrides.js` (FQN → kort navn). Listen gjelder alle pakker. Nøklene er FQN, så de treffer bare riktig klasse.
 - **Feiler hardt** ved kollisjoner som ikke er løst. Den innebygde kollisjonshåndteringen i hey-api beholder stille FQN for den ene, avhengig av rekkefølgen i specen. Sjekken skjer når hey-api kaller funksjonen, altså etter `parser.filters`. Bare skjemaer som faktisk blir med i output, sjekkes, så en filtrert spec kan inneholde kollisjoner uten at genereringen stopper. Resultatet avhenger ikke av rekkefølgen.
 
 Oppsett i en config (spec-stien er relativ til pakkeroten, der `openapi-ts` kjøres):
 
 ```ts
-import { createSchemaNameResolver } from '../../../scripts/codegen/codegenUtils.js';
+// packages/api/<pakke>/configs/index.ts
+import { createSchemaNameResolver } from '@sif/codegen';
 
 export const createConfig = (): UserConfig => ({
     input: './specs/innsyn.json',
@@ -80,9 +81,9 @@ export const createConfig = (): UserConfig => ({
 });
 ```
 
-Ved navnevalg i `scripts/codegen/schemaNameOverrides.js` skal varianten som allerede var i bruk, beholde det korte navnet, slik at konsumentkoden fortsatt kompilerer. Den andre får et prefiks (`Felles…`, `Psb…`, `K9…`). Samme klasse kan dukke opp i flere specer (f.eks. `no.nav.k9.søknad.*`), og da får den samme navn overalt.
+Ved navnevalg i `packages/tooling/codegen/schemaNameOverrides.js` skal varianten som allerede var i bruk, beholde det korte navnet, slik at konsumentkoden fortsatt kompilerer. Den andre får et prefiks (`Felles…`, `Psb…`, `K9…`). Samme klasse kan dukke opp i flere specer (f.eks. `no.nav.k9.søknad.*`), og da får den samme navn overalt.
 
-Referanse: `packages/k9-sak-innsyn-api` (alle tre configs).
+Referanse: `packages/api/k9-sak-innsyn-api` (alle tre configs).
 
 #### Innføre i en ny pakke
 
@@ -92,7 +93,7 @@ Referanse: `packages/k9-sak-innsyn-api` (alle tre configs).
     node -e 'const n=Object.keys(require("./specs/X.json").components?.schemas??{});const g={};n.forEach(x=>{const k=x.split(".").pop();(g[k]??=[]).push(x)});Object.entries(g).filter(([,v])=>v.length>1).forEach(([k,v])=>console.log(k,"=>",v.join(" | ")))'
     ```
 3. Sjekk hvilken variant dagens `types.gen.ts` (i git) tilsvarer, ved å sammenligne feltene. Den varianten beholder det korte navnet.
-4. Legg inn `parser.transforms.schemaName` i config (for pakker med felles `createOpenApiConfig` i `configs/index.ts`: legg det inn der, med `input`-stien som `specPath`). Nye kollisjoner legges i `scripts/codegen/schemaNameOverrides.js`; sjekk først om klassen allerede står der.
+4. Legg inn `parser.transforms.schemaName` i config (for pakker med felles `createOpenApiConfig` i `configs/index.ts`: legg det inn der, med `input`-stien som `specPath`). Nye kollisjoner legges i `packages/tooling/codegen/schemaNameOverrides.js`; sjekk først om klassen allerede står der.
 5. Kjør pakkens genereringsscript (`pnpm gen-types:all:fixed` eller `pnpm gen-types:fixed`) → verifiser:
     - ingen `NoNav`/`no.nav` i `*.gen.ts`
     - ingen typenavn fjernet: `comm -23` på eksporterte navn i `HEAD:…/types.gen.ts` mot ny fil
@@ -138,8 +139,8 @@ export const initApiClients = () => {
 
 ## Viktige filer
 
-- `scripts/codegen/codegenUtils.js` — delt post-prosesseringslogikk og `createSchemaNameResolver` for alle pakker
-- `scripts/codegen/schemaNameOverrides.js` — felles overrides for navnekollisjoner (FQN → kort navn)
-- `packages/*/scripts/fix-generated-regex.mjs` — kaller `fixAndFormatGeneratedCode` fra `scripts/codegen/codegenUtils.js`
-- `packages/*/configs/openapi-ts.config*.ts` eller `packages/*/openapi-ts.config.ts` — codegen-konfig per API/miljø
-- `packages/*/scripts/download-spec.mjs` — spec-nedlasting (bruker `CODEGEN_ENV`)
+- `@sif/codegen` (`packages/tooling/codegen/codegenUtils.js`) — delt post-prosesseringslogikk og `createSchemaNameResolver` for alle pakker
+- `packages/tooling/codegen/schemaNameOverrides.js` — felles overrides for navnekollisjoner (FQN → kort navn)
+- `packages/api/*/scripts/fix-generated-regex.mjs` — kaller `fixAndFormatGeneratedCode` fra `@sif/codegen` (`packages/tooling/codegen/codegenUtils.js`)
+- `packages/api/*/configs/openapi-ts.config*.ts` eller `packages/api/*/openapi-ts*.config.ts` — codegen-konfig per API/miljø
+- `packages/api/*/scripts/download-spec.mjs` — spec-nedlasting (bruker `CODEGEN_ENV`)

@@ -27,7 +27,7 @@ Grafana henter browser-telemetri under `<namespace>/<app>`. Verdien av `app` i `
 // main.tsx
 import { initApm } from '@sif/apm';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
-import { getMaybeEnv } from '@navikt/sif-common-env';
+import { getMaybeEnv } from '@sif/env';
 
 void initApm({ app: PleiepengerSyktBarnApp.key, namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
 ```
@@ -56,7 +56,7 @@ Hvis disse ikke er identiske, finnes telemetrien ikke i Grafana.
     grep -r "initApm" apps/<app-mappe>/src/ -A1
     ```
 
-3. Sjekk at `SifAppKeys`-verdien i `packages/sif-app-register/src/index.ts` er identisk med NAIS app-navn.
+3. Sjekk at `SifAppKeys`-verdien i `packages/core/sif-app-register/src/index.ts` er identisk med NAIS app-navn.
 
 ---
 
@@ -66,10 +66,10 @@ Hvis disse ikke er identiske, finnes telemetrien ikke i Grafana.
 
 2. Legg til `"@navikt/sif-app-register": "workspace:*"` hvis appen ikke allerede har det.
 
-3. Opprett en ny `AppInfo` i `packages/sif-app-register/src/index.ts`. Nøkkelen **må** matche NAIS deployment-navn:
+3. Opprett en ny `AppInfo` i `packages/core/sif-app-register/src/index.ts`. Nøkkelen **må** matche NAIS deployment-navn:
 
     ```ts
-    // packages/sif-app-register/src/index.ts
+    // packages/core/sif-app-register/src/index.ts
     export enum SifAppKeys {
         // ...
         MinSoknadApp = 'min-soknad', // ← identisk med "app" i nais/prod-gcp.json
@@ -87,7 +87,7 @@ Hvis disse ikke er identiske, finnes telemetrien ikke i Grafana.
     ```ts
     import { initApm } from '@sif/apm';
     import { MinSoknadApp } from '@navikt/sif-app-register';
-    import { getMaybeEnv } from '@navikt/sif-common-env';
+    import { getMaybeEnv } from '@sif/env';
 
     void initApm({ app: MinSoknadApp.key, namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
     ```

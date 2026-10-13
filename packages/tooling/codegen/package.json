@@ -1,0 +1,13 @@
+{
+    "name": "@sif/codegen",
+    "version": "0.0.1",
+    "private": true,
+    "description": "Felles hjelpefunksjoner for codegen av API-pakker med @hey-api/openapi-ts",
+    "type": "module",
+    "exports": {
+        ".": "./codegenUtils.js"
+    },
+    "dependencies": {
+        "glob": "13.0.6"
+    }
+}

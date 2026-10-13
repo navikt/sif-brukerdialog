@@ -34,9 +34,9 @@ sif-api (ung-brukerdialog-api)
 | Fil                                                                      | Formål                                                                                  |
 | ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
 | `@navikt/ung-brukerdialog-api` (npm)                                     | Kilde til `OppgaveType`, `OppgaveYtelsetype`, `OppgaveStatus`                           |
-| `packages/sif-api/src/api/parse-utils/parseOppgaver.ts`                  | Registry som kobler backendens `OppgaveType` til riktig parser                          |
-| `packages/sif-api/src/api/parse-utils/oppgaver/`                         | Én parser per oppgavetype, pluss felles base-, respons- og vilkårshjelpere              |
-| `packages/sif-api/src/types/Oppgave.ts`                                  | `ParsedOppgavetype`-enum og alle oppgave-interfaces                                     |
+| `packages/core/sif-api/src/api/parse-utils/parseOppgaver.ts`                  | Registry som kobler backendens `OppgaveType` til riktig parser                          |
+| `packages/core/sif-api/src/api/parse-utils/oppgaver/`                         | Én parser per oppgavetype, pluss felles base-, respons- og vilkårshjelpere              |
+| `packages/core/sif-api/src/types/Oppgave.ts`                                  | `ParsedOppgavetype`-enum og alle oppgave-interfaces                                     |
 | `src/modules/oppgavepaneler/oppgaveLovverk.ts`                           | Tabeller over lovverk per `OppgaveType` og `ParsedOppgavetype`                          |
 | `src/modules/oppgavepaneler/<type>/<Panel>.mockData.ts`                  | Mock-objekter (uløst + besvart) per ytelsetype                                          |
 | `src/modules/oppgavepaneler/<type>/<Panel>.stories.tsx`                  | Individuelle Storybook-stories under `/Aktivitetspenger` eller `/Ungdomsprogramytelsen` |
@@ -199,18 +199,18 @@ Oversiktsstoriene bruker `Table.ExpandableRow` fra Aksel — lovlenker og full p
 ## Relaterte filer å inspisere
 
 ```
-packages/ung-innsyn/src/modules/oppgavepaneler/
+packages/core/ung-innsyn/src/modules/oppgavepaneler/
   oppgaveLovverk.ts
   storybook/OppgavetypeMappingUPY.stories.tsx
   storybook/OppgavetypeMappingAKT.stories.tsx
   <type>/<Panel>.mockData.ts
   <type>/<Panel>.stories.tsx
 
-packages/sif-api/src/api/parse-utils/
+packages/core/sif-api/src/api/parse-utils/
   parseOppgaver.ts
   mapPeriodeDto.ts
   oppgaver/                ← én parser per oppgavetype + felles hjelpere
 
-packages/sif-api/src/types/
+packages/core/sif-api/src/types/
   Oppgave.ts               ← ParsedOppgavetype-enum og oppgave-interfaces
 ```

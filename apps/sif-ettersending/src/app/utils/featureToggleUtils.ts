@@ -1,4 +1,4 @@
-import { getMaybeEnv } from '@navikt/sif-common-env';
+import { getMaybeEnv } from '@sif/env';
 
 export enum Feature {
     'OPPLARINGSPENGER_VELG_BARN' = 'SIF_PUBLIC_FEATURE_OPPLARINGSPENGER_VELG_BARN',

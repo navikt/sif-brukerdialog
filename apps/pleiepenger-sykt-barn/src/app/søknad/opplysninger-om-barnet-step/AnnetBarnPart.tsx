@@ -2,7 +2,6 @@ import { useAppIntl } from '@i18n/index';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
-import { isDevMode } from '@navikt/sif-common-env';
 import { resetFieldValue, resetFieldValues, SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateToday, prettifyDate } from '@navikt/sif-common-utils';
@@ -12,6 +11,7 @@ import {
     getRequiredFieldValidator,
     ValidateDateError,
 } from '@navikt/sif-validation';
+import { isDevMode } from '@sif/env';
 import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';
 

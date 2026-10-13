@@ -1,4 +1,4 @@
-import { getMaybeEnv, getRequiredEnv } from '@navikt/sif-common-env';
+import { getMaybeEnv, getRequiredEnv } from '@sif/env';
 
 export async function enableMocking() {
     const ENV = getMaybeEnv('ENV');

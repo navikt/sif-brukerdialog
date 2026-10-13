@@ -1,7 +1,7 @@
 ---
 name: sif-api
 type: referanse
-description: Bruk denne skillen når en utvikler trenger å hente informasjon fra ett av API-ene i appen via @sif/api (f.eks. kontonummer, søker, barn, arbeidsgivere, mellomlagring).
+description: Bruk denne skillen når en utvikler trenger å hente informasjon fra ett av API-ene i appen via @sif/api (f.eks. kontonummer, søker, barn, arbeidsgivere).
 ---
 
 # sif-api
@@ -25,7 +25,7 @@ I første respons skal agenten kun gi generell veiledning og et minimalt bruksek
 Bruk denne skillen umiddelbart hvis oppgaven nevner ett eller flere av disse signalene:
 
 - API-henting i frontend: `trenger data`, `hente informasjon om`, `hente fra api`, `api-kall`, `fetch`, `query`, `preutfyll fra api`, `last inn data`.
-- Query/hook-integrasjon: `@sif/api`, `useQuery`, `queryKey`, `queryFn`, `useSøker`, `useRegistrerteBarn`, `useKontonummer`, `useYtelseMellomlagring`.
+- Query/hook-integrasjon: `@sif/api`, `useQuery`, `queryKey`, `queryFn`, `useSøker`, `useRegistrerteBarn`, `useKontonummer`.
 - API-klient/oppsett: `env.schema.ts`, `initApiClients`, `*_API_URL`, `*_API_SCOPE`, `*_FRONTEND_PATH`, API-klient-init.
 
 Merk: Rene domeneord alene (f.eks. `barn`, `søker`) er ikke nok trigger uten tydelig API-hentekontekst.
@@ -91,7 +91,6 @@ Ved verifisering av API-ruter (for eksempel ved MSW-oppsett):
 | `useValiderFritekst(enabled?)`                                         | Valideringsresultat                         | —                                  |
 | `useLagreVedlegg()`                                                    | Mutation for opplasting                     | Invaliderer vedlegg-cache          |
 | `useSlettVedlegg()`                                                    | Mutation for sletting                       | Fjerner fra cache                  |
-| `useYtelseMellomlagring<State, MetaData>(ytelse, metadata?, options?)` | `State \| null` + `opprett`/`lagre`/`slett` | staleTime: Infinity, gcTime: 5 min |
 | `useRapporterInntekt()`                                                | Mutation for inntektsrapportering           | —                                  |
 | `useSendOppgavebekreftelse()`                                          | Mutation for oppgavebekreftelse             | —                                  |
 
@@ -130,13 +129,13 @@ Hver hook avhenger av en spesifikk API-klient som må være initialisert, og til
 
 ### `@sif/api/k9-prosessering` — k9-brukerdialog-prosessering-api
 
-**Hooks:** `useSøker`, `useRegistrerteBarn`, `useYtelseMellomlagring`, `useLagreVedlegg`, `useSlettVedlegg`, `useArbeidsgivere`, `useValiderFritekst`, `useRapporterInntekt`, `useSendOppgavebekreftelse`
+**Hooks:** `useSøker`, `useRegistrerteBarn`, `useLagreVedlegg`, `useSlettVedlegg`, `useArbeidsgivere`, `useValiderFritekst`, `useRapporterInntekt`, `useSendOppgavebekreftelse`
 
 | Element       | Verdi                                                                                                                          |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | Pakke         | `@navikt/k9-brukerdialog-prosessering-api`                                                                                     |
 | Init-funksjon | `initK9BrukerdialogProsesseringApiClients({ frontendPath, loginURL })`                                                         |
-| Env-schema    | `commonEnvSchema` (fra `@navikt/sif-common-env`) — inkludert automatisk                                                        |
+| Env-schema    | `commonEnvSchema` (fra `@sif/env`) — inkludert automatisk                                                        |
 | Env-variabler | `K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH`, `K9_BRUKERDIALOG_PROSESSERING_API_SCOPE`, `K9_BRUKERDIALOG_PROSESSERING_API_URL` |
 
 ### `@sif/api/ung-brukerdialog` — ung-brukerdialog-api
@@ -157,7 +156,7 @@ Hver hook avhenger av en spesifikk API-klient som må være initialisert, og til
 | ------------- | --------------------------------------------------------------------------------------------------------------- |
 | Pakke         | `@navikt/ung-deltakelse-opplyser-api-deltaker`                                                                  |
 | Init-funksjon | `initUngDeltakelseOpplyserApiDeltakerClient({ frontendPath, loginURL, onUnauthorized })`                       |
-| Env-schema    | `ungDeltakelseOpplyserEnvSchema` (fra `@navikt/sif-common-env`)                                                 |
+| Env-schema    | `ungDeltakelseOpplyserEnvSchema` (fra `@sif/env`)                                                 |
 | Env-variabler | `UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH`, `UNG_DELTAKELSE_OPPLYSER_API_SCOPE`, `UNG_DELTAKELSE_OPPLYSER_API_URL` |
 
 ---
@@ -178,7 +177,7 @@ Verifiser at appens `env.schema.ts` (typisk på app-root) har riktig env-schema 
 
 ```typescript
 // env.schema.ts
-import { commonEnvSchema, ungBrukerdialogApiEnvSchema, ungDeltakelseOpplyserEnvSchema } from '@navikt/sif-common-env';
+import { commonEnvSchema, ungBrukerdialogApiEnvSchema, ungDeltakelseOpplyserEnvSchema } from '@sif/env';
 
 export const appEnvSchema = z
     .object({
@@ -200,7 +199,7 @@ Verifiser at appens `src/app/api/initApiClients.ts` (eller tilsvarende) kaller r
 import { initK9BrukerdialogProsesseringApiClients } from '@navikt/k9-brukerdialog-prosessering-api';
 import { initUngBrukerdialogApiClient } from '@navikt/ung-brukerdialog-api';
 import { initUngDeltakelseOpplyserApiDeltakerClient } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
-import { EnvKey, getRequiredEnv } from '@navikt/sif-common-env';
+import { EnvKey, getRequiredEnv } from '@sif/env';
 
 export const initApiClients = () => {
     initK9BrukerdialogProsesseringApiClients({
@@ -270,7 +269,7 @@ Riktig praksis: bruk kun funksjonsnavn eller nøytral kontekst i feilmeldinger:
 throw handleApiError(e, 'hentSisteGyldigeVedtak');
 ```
 
-Gjelder alle API-funksjoner i `packages/sif-api/src/api/**` og ethvert annet sted der disse verdiene er tilgjengelige.
+Gjelder alle API-funksjoner i `packages/core/sif-api/src/api/**` og ethvert annet sted der disse verdiene er tilgjengelige.
 
 ---
 
@@ -298,40 +297,11 @@ const invalidParameters = getInvalidParametersFromApiError(apiError);
 
 ---
 
-## Mellomlagring (spesialtilfelle)
+## Mellomlagring
 
-Denne seksjonen er kun relevant når oppgaven faktisk gjelder mellomlagring. `useYtelseMellomlagring` har et annet bruksmønster enn de enkle hookene.
+Mellomlagring i v2-apper håndteres av `SøknadProvider` i `@sif/soknad-app` (henting, lagring, sletting og grunnlagssjekk via `mellomlagringGrunnlag`). Appen skal ikke kalle mellomlagrings-API-et selv. Se `sif-soknad-setup` → «Mellomlagring».
 
-### Konsept
-
-- Lagrer søknadsdata midlertidig i backend med metadata-hash-validering.
-- Hvis metadata (søker, barn, versjon) endres, slettes gammel mellomlagring automatisk.
-- Hooken eksponerer to separate lagre-operasjoner: `opprett` (POST, brukes første gang søknaden startes) og `lagre` (PUT, brukes ved alle påfølgende lagringer).
-
-### Bruksmønster
-
-```typescript
-import { useYtelseMellomlagring, MellomlagringYtelse } from '@sif/api/k9-prosessering';
-
-const metadata = useMemo(
-    () => ({
-        MELLOMLAGRING_VERSJON: '0.0.1',
-        søker: søker.data,
-        barn: registrerteBarn.data,
-    }),
-    [søker.data, registrerteBarn.data],
-);
-
-const mellomlagring = useYtelseMellomlagring<SøknadState, MellomlagringMetaData>(
-    MellomlagringYtelse.AKTIVITETSPENGER,
-    metadata,
-);
-
-// Lese: mellomlagring.data
-// Opprette (POST, ved søknadsstart): await mellomlagring.opprett(state)
-// Lagre (PUT, ved navigering): await mellomlagring.lagre(state)
-// Slette: await mellomlagring.slett()
-```
+`@sif/api/k9-prosessering` eksporterer de rå funksjonene (`hentYtelseMellomlagring`, `opprettYtelseMellomlagring`, `oppdaterYtelseMellomlagring`, `slettYtelseMellomlagring`) som rammeverket bruker.
 
 ### MellomlagringYtelse
 
@@ -346,5 +316,5 @@ export const APP_YTELSE = MellomlagringYtelse.AKTIVITETSPENGER;
 
 ## Referansefiler
 
-- `packages/sif-api/src/` — pakkens kildekode
-- `packages/sif-common-env/src/schemas.ts` — tilgjengelige env-schemas og EnvKey enum
+- `packages/core/sif-api/src/` — pakkens kildekode
+- `packages/core/sif-env/src/schemas.ts` — tilgjengelige env-schemas og EnvKey enum
