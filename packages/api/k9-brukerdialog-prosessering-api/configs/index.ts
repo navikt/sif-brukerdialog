@@ -1,6 +1,6 @@
 import { defineConfig, type UserConfig } from '@hey-api/openapi-ts';
 
-import { createSchemaNameResolver } from '../../../../scripts/codegen/codegenUtils.js';
+import { createSchemaNameResolver } from '@sif/codegen';
 
 interface ConfigOptions {
     /** API docs path segment, e.g. 'ettersendelse' or '' for root */

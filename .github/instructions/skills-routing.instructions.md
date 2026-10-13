@@ -12,7 +12,7 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
 
 - `sif-codegen`:
     - Codegen generelt: `codegen`, `codegen:dev`, `codegen:prod`, `openapi-ts`, `hey-api`, `@hey-api/openapi-ts`, `genererte klienter`, `client.gen.ts`, `types.gen.ts`, `sdk.gen.ts`.
-    - Post-prosessering: `codegenUtils`, `fix-generated`, `fixAndFormatGeneratedCode`, `PATTERNS`, `replaceClientBaseUrl`, `removeNullUnion`.
+    - Post-prosessering: `@sif/codegen`, `codegenUtils`, `fix-generated`, `fixAndFormatGeneratedCode`, `PATTERNS`, `replaceClientBaseUrl`, `removeNullUnion`.
     - Spec-nedlasting: `download-spec`, `openapi-spec.json`, `CODEGEN_ENV`.
     - Skjemanavn: `schemaName`, `createSchemaNameResolver`, `schemaNameOverrides`, `FQN`, `fullt kvalifisert`, `navnekollisjon`, `duplikate typenavn`, `strippe klassenavn`.
 - `sif-gh-pages`:

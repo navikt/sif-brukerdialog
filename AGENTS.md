@@ -10,7 +10,7 @@ Monorepo for selvbetjeningsdialoger og fellespakker i Sykdom i familien.
     - `packages/core/`: v2 packages (`@sif/*`). Use these in new code.
     - `packages/legacy/`: v1 packages (`@navikt/sif-common-*`). Bug fixes only; `packages/core` must not import from here.
     - `packages/api/`: generated API types/clients (codegen).
-    - `packages/tooling/`: shared tsconfig and ESLint config.
+    - `packages/tooling/`: shared tsconfig, ESLint config and codegen utilities (`@sif/codegen`).
 - Backend services are in `server/**` and `server-ungdomsytelse-veileder/**`.
 
 ## Tech Stack

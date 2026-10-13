@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { fixAndFormatGeneratedCode } from '../../../../scripts/codegen/codegenUtils.js';
+import { fixAndFormatGeneratedCode } from '@sif/codegen';
 
 fixAndFormatGeneratedCode('src/ung-brukerdialog-api', {
     patterns: {

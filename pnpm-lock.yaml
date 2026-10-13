@@ -3849,6 +3849,9 @@ importers:
       '@hey-api/openapi-ts':
         specifier: 0.98.2
         version: 0.98.2(magicast@0.5.5)(typescript@6.0.3)
+      '@sif/codegen':
+        specifier: workspace:*
+        version: link:../../tooling/codegen
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
@@ -3889,6 +3892,9 @@ importers:
       '@hey-api/openapi-ts':
         specifier: 0.98.2
         version: 0.98.2(magicast@0.5.5)(typescript@6.0.3)
+      '@sif/codegen':
+        specifier: workspace:*
+        version: link:../../tooling/codegen
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
@@ -3929,6 +3935,9 @@ importers:
       '@hey-api/openapi-ts':
         specifier: 0.98.2
         version: 0.98.2(magicast@0.5.5)(typescript@6.0.3)
+      '@sif/codegen':
+        specifier: workspace:*
+        version: link:../../tooling/codegen
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
@@ -3975,6 +3984,9 @@ importers:
       '@hey-api/openapi-ts':
         specifier: 0.98.2
         version: 0.98.2(magicast@0.5.5)(typescript@6.0.3)
+      '@sif/codegen':
+        specifier: workspace:*
+        version: link:../../tooling/codegen
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
@@ -4015,6 +4027,9 @@ importers:
       '@hey-api/openapi-ts':
         specifier: 0.98.2
         version: 0.98.2(magicast@0.5.5)(typescript@6.0.3)
+      '@sif/codegen':
+        specifier: workspace:*
+        version: link:../../tooling/codegen
       '@sif/env':
         specifier: workspace:*
         version: link:../../core/sif-env
@@ -4058,6 +4073,9 @@ importers:
       '@hey-api/openapi-ts':
         specifier: 0.98.2
         version: 0.98.2(magicast@0.5.5)(typescript@6.0.3)
+      '@sif/codegen':
+        specifier: workspace:*
+        version: link:../../tooling/codegen
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
@@ -4101,6 +4119,9 @@ importers:
       '@hey-api/openapi-ts':
         specifier: 0.98.2
         version: 0.98.2(magicast@0.5.5)(typescript@6.0.3)
+      '@sif/codegen':
+        specifier: workspace:*
+        version: link:../../tooling/codegen
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
@@ -5858,6 +5879,12 @@ importers:
       typescript:
         specifier: 6.0.3
         version: 6.0.3
+
+  packages/tooling/codegen:
+    dependencies:
+      glob:
+        specifier: 13.0.6
+        version: 13.0.6
 
   packages/tooling/config:
     dependencies:

@@ -1,6 +1,6 @@
 import { defineConfig, type UserConfig } from '@hey-api/openapi-ts';
 
-import { createSchemaNameResolver } from '../../../../scripts/codegen/codegenUtils.js';
+import { createSchemaNameResolver } from '@sif/codegen';
 
 export const createConfig = (): UserConfig => ({
     input: './specs/k9-sak.json',

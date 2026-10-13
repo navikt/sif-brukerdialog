@@ -48,7 +48,7 @@ export async function fetchAndNormalizeSpec(url, outputPath) {
  * Lager en navnefunksjon til hey-api `parser.transforms.schemaName` som gjør fullt kvalifiserte
  * Java-klassenavn (f.eks. `no.nav.k9.søknad.Søknad`) om til korte navn (`Søknad`).
  *
- * Kjente kollisjoner løses i den felles listen i scripts/codegen/schemaNameOverrides.js (FQN -> kort navn).
+ * Kjente kollisjoner løses i den felles listen i packages/tooling/codegen/schemaNameOverrides.js (FQN -> kort navn).
  * Feiler hardt ved kollisjoner som ikke er håndtert, fordi hey-api ellers stille beholder FQN for den ene av dem.
  *
  * Kollisjonssjekken skjer når hey-api kaller funksjonen. Den kjøres etter `parser.filters`, så bare
@@ -61,7 +61,7 @@ export function createSchemaNameResolver(specLabel) {
         const existing = resolvedBy.get(name);
         if (existing && existing !== fqn) {
             throw new Error(
-                `Navnekollisjon i ${specLabel}: "${name}" brukes av ${existing} og ${fqn} – legg til i scripts/codegen/schemaNameOverrides.js`,
+                `Navnekollisjon i ${specLabel}: "${name}" brukes av ${existing} og ${fqn} – legg til i packages/tooling/codegen/schemaNameOverrides.js`,
             );
         }
         resolvedBy.set(name, fqn);

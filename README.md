@@ -11,7 +11,7 @@ Monorepo for selvbetjeningsdialoger og fellespakker i Sykdom i familien.
 | `packages/core/`                 | Delte v2-pakker (`@sif/*`), brukes i nye apper                        |
 | `packages/legacy/`               | Delte v1-pakker (`@navikt/sif-common-*`), kun feilretting             |
 | `packages/api/`                  | Genererte API-typer og -klienter fra backend (codegen)                |
-| `packages/tooling/`              | Felles konfigurasjon (tsconfig, ESLint, Sanity)                       |
+| `packages/tooling/`              | Felles konfigurasjon og verktøy (tsconfig, ESLint, codegen, Sanity)   |
 | `server/`                        | Backend-server (proxying og autentisering) for de fleste apper        |
 | `server-ungdomsytelse-veileder/` | Backend-server (proxying og autentisering) for ungdomsytelse veileder |
 
