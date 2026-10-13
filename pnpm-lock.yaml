@@ -235,6 +235,9 @@ importers:
       compression:
         specifier: 1.8.2
         version: 1.8.2
+      config:
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -455,6 +458,9 @@ importers:
       '@vitest/browser-playwright':
         specifier: 5.0.3
         version: 5.0.3(msw@2.15.0(@types/node@26.6.4)(typescript@6.0.3))(playwright@1.64.0)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))(vitest@5.0.3)
+      config:
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -627,6 +633,9 @@ importers:
       '@vitest/browser-playwright':
         specifier: 5.0.3
         version: 5.0.3(msw@2.15.0(@types/node@26.6.4)(typescript@6.0.3))(playwright@1.64.0)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))(vitest@5.0.3)
+      config:
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -796,6 +805,9 @@ importers:
       classnames:
         specifier: 2.5.1
         version: 2.5.1
+      config:
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       dayjs:
         specifier: 1.11.23
         version: 1.11.23
@@ -989,6 +1001,9 @@ importers:
       compression:
         specifier: 1.8.2
         version: 1.8.2
+      config:
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -1218,6 +1233,9 @@ importers:
       compression:
         specifier: 1.8.2
         version: 1.8.2
+      config:
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -1417,6 +1435,9 @@ importers:
       compression:
         specifier: 1.8.2
         version: 1.8.2
+      config:
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       cors:
         specifier: 2.8.6
         version: 2.8.6
@@ -1734,6 +1755,9 @@ importers:
       compression:
         specifier: 1.8.2
         version: 1.8.2
+      config:
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -1942,6 +1966,9 @@ importers:
       compression:
         specifier: 1.8.2
         version: 1.8.2
+      config:
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -2159,6 +2186,9 @@ importers:
       compression:
         specifier: 1.8.2
         version: 1.8.2
+      config:
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       cors:
         specifier: 2.8.6
         version: 2.8.6
@@ -2355,6 +2385,9 @@ importers:
       '@vitest/browser-playwright':
         specifier: 5.0.3
         version: 5.0.3(msw@2.15.0(@types/node@26.6.4)(typescript@6.0.3))(playwright@1.64.0)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))(vitest@5.0.3)
+      config:
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -2575,6 +2608,9 @@ importers:
       busboy:
         specifier: 1.6.0
         version: 1.6.0
+      config:
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -2780,6 +2816,9 @@ importers:
       compression:
         specifier: 1.8.2
         version: 1.8.2
+      config:
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -2994,6 +3033,9 @@ importers:
       compression:
         specifier: 1.8.2
         version: 1.8.2
+      config:
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       dayjs:
         specifier: 1.11.23
         version: 1.11.23
@@ -3181,6 +3223,9 @@ importers:
       '@vitest/browser-playwright':
         specifier: 5.0.3
         version: 5.0.3(msw@2.15.0(@types/node@26.6.4)(typescript@6.0.3))(playwright@1.64.0)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))(vitest@5.0.3)
+      config:
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -3362,6 +3407,9 @@ importers:
       compression:
         specifier: 1.8.2
         version: 1.8.2
+      config:
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       express:
         specifier: 5.2.1
         version: 5.2.1
@@ -3456,6 +3504,9 @@ importers:
       '@types/react':
         specifier: 19.3.0
         version: 19.3.0
+      config:
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       dayjs:
         specifier: 1.11.23
         version: 1.11.23
@@ -3676,6 +3727,9 @@ importers:
       compression:
         specifier: 1.8.2
         version: 1.8.2
+      config:
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -3770,6 +3824,9 @@ importers:
       '@vitejs/plugin-react':
         specifier: 6.1.2
         version: 6.1.2(@rolldown/plugin-babel@0.2.4(@babel/core@7.29.7)(@babel/plugin-transform-runtime@7.29.7(@babel/core@7.29.7))(@babel/runtime@7.29.10)(rolldown@1.2.13)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1)))(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+      config:
+        specifier: workspace:*
+        version: link:../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4203,6 +4260,9 @@ importers:
       '@types/react':
         specifier: 19.3.0
         version: 19.3.0
+      config:
+        specifier: workspace:*
+        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4255,6 +4315,9 @@ importers:
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
+      config:
+        specifier: workspace:*
+        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4268,6 +4331,9 @@ importers:
         specifier: 4.6.5
         version: 4.6.5
     devDependencies:
+      config:
+        specifier: workspace:*
+        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4314,6 +4380,9 @@ importers:
       '@types/react-dom':
         specifier: 19.3.0
         version: 19.3.0(@types/react@19.3.0)
+      config:
+        specifier: workspace:*
+        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4399,6 +4468,9 @@ importers:
       '@types/react-dom':
         specifier: 19.3.0
         version: 19.3.0(@types/react@19.3.0)
+      config:
+        specifier: workspace:*
+        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4475,6 +4547,9 @@ importers:
       '@vitejs/plugin-react':
         specifier: 6.1.2
         version: 6.1.2(@rolldown/plugin-babel@0.2.4(@babel/core@7.29.7)(@babel/plugin-transform-runtime@7.29.7(@babel/core@7.29.7))(@babel/runtime@7.29.10)(rolldown@1.2.13)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1)))(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+      config:
+        specifier: workspace:*
+        version: link:../../tooling/config
       dayjs:
         specifier: 1.11.23
         version: 1.11.23
@@ -4557,6 +4632,9 @@ importers:
       '@types/react-dom':
         specifier: 19.3.0
         version: 19.3.0(@types/react@19.3.0)
+      config:
+        specifier: workspace:*
+        version: link:../../tooling/config
       eslint-plugin-storybook:
         specifier: 10.6.1
         version: 10.6.1(eslint@10.12.0(jiti@2.7.0))(typescript@6.0.3)
@@ -4606,6 +4684,9 @@ importers:
       '@types/react':
         specifier: 19.3.0
         version: 19.3.0
+      config:
+        specifier: workspace:*
+        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4792,6 +4873,9 @@ importers:
       '@types/react-dom':
         specifier: 19.3.0
         version: 19.3.0(@types/react@19.3.0)
+      config:
+        specifier: workspace:*
+        version: link:../../tooling/config
       dayjs:
         specifier: 1.11.23
         version: 1.11.23
@@ -4917,6 +5001,9 @@ importers:
       '@types/react':
         specifier: 19.3.0
         version: 19.3.0
+      config:
+        specifier: workspace:*
+        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -5368,6 +5455,9 @@ importers:
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
+      config:
+        specifier: workspace:*
+        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -5498,6 +5588,9 @@ importers:
       axios:
         specifier: 1.20.0
         version: 1.20.0
+      config:
+        specifier: workspace:*
+        version: link:../../tooling/config
       dayjs:
         specifier: 1.11.23
         version: 1.11.23
@@ -5619,6 +5712,9 @@ importers:
       '@types/react':
         specifier: 19.3.0
         version: 19.3.0
+      config:
+        specifier: workspace:*
+        version: link:../../tooling/config
       dayjs:
         specifier: 1.11.23
         version: 1.11.23
@@ -7884,6 +7980,9 @@ packages:
       '@types/react': ^17.0.30 || ^18 || ^19
       react: ^17 || ^18 || ^19
       react-dom: ^17 || ^18 || ^19
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   '@navikt/ds-tailwind@8.19.0':
     resolution: {integrity: sha512-068wR3tlHgHPWEhpWiDtc8xfI9FpjNSDlWt4R7xnQ0mt4ovMwkCctCPkAxD5xyHIhb3aIqZ7wM08wy5F+XorCw==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tailwind/8.19.0/784dbd2cacceba3fb28754dc04a4fc64f717fbdd}
@@ -17203,11 +17302,12 @@ snapshots:
       '@floating-ui/react-dom': 2.1.9(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@navikt/aksel-icons': 8.19.0
       '@navikt/ds-tokens': 8.19.0
-      '@types/react': 19.3.0
       date-fns: 4.4.0
       react: 19.3.0
       react-day-picker: 10.0.1(@types/react@19.3.0)(react@19.3.0)
       react-dom: 19.3.0(react@19.3.0)
+    optionalDependencies:
+      '@types/react': 19.3.0
 
   '@navikt/ds-tailwind@8.19.0': {}
 

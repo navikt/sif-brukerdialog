@@ -64,6 +64,7 @@
         "@types/node": "26.6.4",
         "@types/react": "19.3.0",
         "classnames": "2.5.1",
+        "config": "workspace:*",
         "dayjs": "1.11.23",
         "eslint": "10.12.0",
         "eslint-plugin-storybook": "10.6.1",

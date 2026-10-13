@@ -16,6 +16,7 @@
     "devDependencies": {
         "@sif/env": "workspace:*",
         "@sif/eslint-config": "workspace:*",
+        "config": "workspace:*",
         "eslint": "10.12.0"
     }
 }

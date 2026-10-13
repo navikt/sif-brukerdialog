@@ -54,6 +54,7 @@
         "@storybook/react-vite": "10.6.1",
         "@types/react": "19.3.0",
         "@types/react-dom": "19.3.0",
+        "config": "workspace:*",
         "eslint-plugin-storybook": "10.6.1",
         "react": "19.3.0",
         "react-dom": "19.3.0",

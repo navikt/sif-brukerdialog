@@ -26,6 +26,7 @@
         "@storybook/addon-docs": "10.6.1",
         "@storybook/react-vite": "10.6.1",
         "@types/react": "19.3.0",
+        "config": "workspace:*",
         "dayjs": "1.11.23",
         "eslint": "10.12.0",
         "eslint-plugin-storybook": "10.6.1",
