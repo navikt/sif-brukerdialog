@@ -1,4 +1,3 @@
-import { isDevMode } from '@navikt/sif-common-env';
 import { datepickerUtils, ValidationError, ValidationResult, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { UtenlandsoppholdUtvidet } from '@navikt/sif-common-forms-ds/src';
 import { Ferieuttak } from '@navikt/sif-common-forms-ds/src/forms/ferieuttak/types';
@@ -21,6 +20,7 @@ import {
     getFødselsnummerValidator,
     getStringValidator,
 } from '@navikt/sif-validation';
+import { isDevMode } from '@sif/env';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import minMax from 'dayjs/plugin/minMax';

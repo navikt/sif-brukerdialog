@@ -115,7 +115,7 @@ Eksempler på error-koder fra `@navikt/sif-validation`:
 | `getDateValidator`          | `dateHasNoValue`, `dateHasInvalidFormat`, `dateIsBeforeMin`, `dateIsAfterMax`                                      |
 | `getFødselsnummerValidator` | `fødselsnummerHasNoValue`, `fødselsnummerIsNot11Chars`, `fødselsnummerIsInvalid`, `fødselsnummerAsHnrIsNotAllowed` |
 
-**Viktig:** Bruk alltid de eksakte feilkodene fra validatorens enum — ikke dikk opp egne. Feil kode → valideringsmelding vises aldri. Du finner alle koder i `packages/sif-validation/src/get*Validator.ts` via `enum Validate*Error`.
+**Viktig:** Bruk alltid de eksakte feilkodene fra validatorens enum — ikke dikk opp egne. Feil kode → valideringsmelding vises aldri. Du finner alle koder i `packages/core/sif-validation/src/get*Validator.ts` via `enum Validate*Error`.
 
 ### DateRangePicker-validering
 

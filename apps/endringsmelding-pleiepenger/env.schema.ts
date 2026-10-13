@@ -1,4 +1,4 @@
-import { commonEnvSchema, sifInnsynEnvSchema } from '@navikt/sif-common-env';
+import { commonEnvSchema, sifInnsynEnvSchema } from '@sif/env';
 import * as z from 'zod';
 
 export const appEnvSchema = commonEnvSchema.merge(sifInnsynEnvSchema).extend({

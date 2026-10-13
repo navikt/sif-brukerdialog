@@ -5,6 +5,10 @@ This repository is a pnpm + Turborepo monorepo.
 ## Repository Structure
 
 - Frontend code is primarily in `apps/**`, `apps-intern/**`, and shared frontend packages in `packages/**`.
+    - `packages/core/`: v2 packages (`@sif/*`). Use these in new code.
+    - `packages/legacy/`: v1 packages (`@navikt/sif-common-*`). Bug fixes only; `packages/core` must not import from here.
+    - `packages/api/`: generated API types/clients (codegen).
+    - `packages/tooling/`: shared tsconfig, ESLint config and codegen utilities (`@sif/codegen`).
 - Backend services are in `server/**` and `server-ungdomsytelse-veileder/**`.
 
 ## Scope and Ownership
@@ -23,7 +27,7 @@ This repository is a pnpm + Turborepo monorepo.
 ## Existing Test Setup
 
 - Vitest is already configured across multiple apps/packages.
-- Workspace aggregation is defined in `vitest.workspace.ts`.
+- Each workspace has its own Vitest config; `pnpm test` runs them via Turbo.
 - Do not add duplicate root test configs unless explicitly needed.
 
 ## Coding Style

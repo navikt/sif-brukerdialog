@@ -17,7 +17,7 @@ const formValues: OmsorgsstønadFormValues = {
     antallTimer: '10',
 };
 
-vi.mock('@navikt/sif-common-env', () => {
+vi.mock('@sif/env', () => {
     return { getRequiredEnv: () => '', getCommonEnv: () => ({}), getMaybeEnv: () => '' };
 });
 

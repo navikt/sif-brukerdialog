@@ -8,7 +8,7 @@ import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFor
 import { YesOrNoOrDoNotKnow } from '../../../types/YesOrNoOrDoNotKnow';
 import { cleanupOmsorgstilbudStep } from '../omsorgstilbudStepUtils';
 
-vi.mock('@navikt/sif-common-env', () => {
+vi.mock('@sif/env', () => {
     return { getRequiredEnv: () => '', getCommonEnv: () => ({}), getMaybeEnv: () => '' };
 });
 

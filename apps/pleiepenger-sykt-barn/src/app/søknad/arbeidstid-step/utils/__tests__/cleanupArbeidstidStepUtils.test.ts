@@ -11,7 +11,7 @@ import {
 } from '../../../../types/søknad-form-values/ArbeidIPeriodeFormValues';
 import { cleanupArbeidIPeriode, cleanupArbeidsuker } from '../cleanupArbeidstidStep';
 
-vi.mock('@navikt/sif-common-env', () => {
+vi.mock('@sif/env', () => {
     return {
         getRequiredEnv: () => '',
         getCommonEnv: () => ({}),

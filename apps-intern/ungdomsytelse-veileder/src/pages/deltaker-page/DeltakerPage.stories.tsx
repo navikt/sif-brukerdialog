@@ -1,4 +1,4 @@
-import { getRequiredEnv } from '@navikt/sif-common-env';
+import { getRequiredEnv } from '@sif/env';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { http, HttpResponse } from 'msw';
 import { MemoryRouter } from 'react-router-dom';

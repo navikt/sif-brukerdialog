@@ -4,7 +4,7 @@ import { vi } from 'vitest';
 
 import { getEndringerForArbeidsukeForm } from '../arbeidsaktivitetUtils';
 
-vi.mock('@navikt/sif-common-env', () => {
+vi.mock('@sif/env', () => {
     return {
         getRequiredEnv: () => '',
         getMaybeEnv: () => '',

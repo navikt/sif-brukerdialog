@@ -12,7 +12,7 @@ import {
     harKunValgtJobberSomNormalt,
 } from '../form-parts/arbeidstidUtils';
 
-vi.mock('@navikt/sif-common-env', () => {
+vi.mock('@sif/env', () => {
     return {
         getRequiredEnv: () => 'mockedApiUrl',
         getMaybeEnv: () => 'mockedApiUrl',

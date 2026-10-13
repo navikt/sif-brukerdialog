@@ -6,7 +6,7 @@ import { describe, expect, it, vi } from 'vitest';
 import actionsCreator from '../../action/actionCreator';
 import { søknadReducer } from '../søknadReducer';
 
-vi.mock('@navikt/sif-common-env', () => ({
+vi.mock('@sif/env', () => ({
     getRequiredEnv: () => '',
     getMaybeEnv: () => '',
     getCommonEnv: () => ({}),

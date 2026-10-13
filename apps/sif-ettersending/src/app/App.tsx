@@ -3,12 +3,12 @@ import './app.css';
 
 import { Theme } from '@navikt/ds-react';
 import { EttersendelseApp } from '@navikt/sif-app-register';
-import { isProd } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import { isProd } from '@sif/env';
 import { Navigate, Route } from 'react-router-dom';
 
 import { applicationIntlMessages } from './i18n';

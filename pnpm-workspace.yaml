@@ -1,7 +1,7 @@
 packages:
   - "apps/*"
   - "apps-intern/*"
-  - "packages/*"
+  - "packages/*/*"
   - "gh-pages"
   - "server"
   - "server-ungdomsytelse-veileder"

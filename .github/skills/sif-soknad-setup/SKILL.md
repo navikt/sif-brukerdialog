@@ -386,7 +386,7 @@ APM initialiseres her — utenfor React-treet — slik at telemetri er aktiv fra
 ```tsx
 import { initApm } from '@sif/apm';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
-import { getMaybeEnv } from '@navikt/sif-common-env';
+import { getMaybeEnv } from '@sif/env';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 

@@ -1,6 +1,6 @@
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { storageParser } from '@navikt/sif-common-core-ds/src/utils/persistence/storageParser';
-import { getSifInnsynBrowserEnv } from '@navikt/sif-common-env';
+import { getSifInnsynBrowserEnv } from '@sif/env';
 import axios, { AxiosError, AxiosRequestConfig, RawAxiosRequestHeaders } from 'axios';
 
 import { appEnv } from '../utils/appEnv';

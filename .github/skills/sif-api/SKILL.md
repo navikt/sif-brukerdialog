@@ -135,7 +135,7 @@ Hver hook avhenger av en spesifikk API-klient som må være initialisert, og til
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | Pakke         | `@navikt/k9-brukerdialog-prosessering-api`                                                                                     |
 | Init-funksjon | `initK9BrukerdialogProsesseringApiClients({ frontendPath, loginURL })`                                                         |
-| Env-schema    | `commonEnvSchema` (fra `@navikt/sif-common-env`) — inkludert automatisk                                                        |
+| Env-schema    | `commonEnvSchema` (fra `@sif/env`) — inkludert automatisk                                                        |
 | Env-variabler | `K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH`, `K9_BRUKERDIALOG_PROSESSERING_API_SCOPE`, `K9_BRUKERDIALOG_PROSESSERING_API_URL` |
 
 ### `@sif/api/ung-brukerdialog` — ung-brukerdialog-api
@@ -156,7 +156,7 @@ Hver hook avhenger av en spesifikk API-klient som må være initialisert, og til
 | ------------- | --------------------------------------------------------------------------------------------------------------- |
 | Pakke         | `@navikt/ung-deltakelse-opplyser-api-deltaker`                                                                  |
 | Init-funksjon | `initUngDeltakelseOpplyserApiDeltakerClient({ frontendPath, loginURL, onUnauthorized })`                       |
-| Env-schema    | `ungDeltakelseOpplyserEnvSchema` (fra `@navikt/sif-common-env`)                                                 |
+| Env-schema    | `ungDeltakelseOpplyserEnvSchema` (fra `@sif/env`)                                                 |
 | Env-variabler | `UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH`, `UNG_DELTAKELSE_OPPLYSER_API_SCOPE`, `UNG_DELTAKELSE_OPPLYSER_API_URL` |
 
 ---
@@ -177,7 +177,7 @@ Verifiser at appens `env.schema.ts` (typisk på app-root) har riktig env-schema 
 
 ```typescript
 // env.schema.ts
-import { commonEnvSchema, ungBrukerdialogApiEnvSchema, ungDeltakelseOpplyserEnvSchema } from '@navikt/sif-common-env';
+import { commonEnvSchema, ungBrukerdialogApiEnvSchema, ungDeltakelseOpplyserEnvSchema } from '@sif/env';
 
 export const appEnvSchema = z
     .object({
@@ -199,7 +199,7 @@ Verifiser at appens `src/app/api/initApiClients.ts` (eller tilsvarende) kaller r
 import { initK9BrukerdialogProsesseringApiClients } from '@navikt/k9-brukerdialog-prosessering-api';
 import { initUngBrukerdialogApiClient } from '@navikt/ung-brukerdialog-api';
 import { initUngDeltakelseOpplyserApiDeltakerClient } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
-import { EnvKey, getRequiredEnv } from '@navikt/sif-common-env';
+import { EnvKey, getRequiredEnv } from '@sif/env';
 
 export const initApiClients = () => {
     initK9BrukerdialogProsesseringApiClients({
@@ -269,7 +269,7 @@ Riktig praksis: bruk kun funksjonsnavn eller nøytral kontekst i feilmeldinger:
 throw handleApiError(e, 'hentSisteGyldigeVedtak');
 ```
 
-Gjelder alle API-funksjoner i `packages/sif-api/src/api/**` og ethvert annet sted der disse verdiene er tilgjengelige.
+Gjelder alle API-funksjoner i `packages/core/sif-api/src/api/**` og ethvert annet sted der disse verdiene er tilgjengelige.
 
 ---
 
@@ -316,5 +316,5 @@ export const APP_YTELSE = MellomlagringYtelse.AKTIVITETSPENGER;
 
 ## Referansefiler
 
-- `packages/sif-api/src/` — pakkens kildekode
-- `packages/sif-common-env/src/schemas.ts` — tilgjengelige env-schemas og EnvKey enum
+- `packages/core/sif-api/src/` — pakkens kildekode
+- `packages/core/sif-env/src/schemas.ts` — tilgjengelige env-schemas og EnvKey enum

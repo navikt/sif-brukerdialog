@@ -13,7 +13,7 @@ const registrertBarn: RegistrertBarn = {
     fødselsdato: new Date(),
 };
 
-vi.mock('@navikt/sif-common-env', () => {
+vi.mock('@sif/env', () => {
     return { getRequiredEnv: () => '', getCommonEnv: () => ({}), getMaybeEnv: () => '' };
 });
 

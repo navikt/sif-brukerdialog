@@ -8,7 +8,7 @@ description: Arkitekturreferanse og beslutningslogg for @sif/soknad-app — ramm
 
 ## Bruk når
 
-- Du skal utvide eller endre **selve rammeverk-pakken** `packages/sif-soknad-app`.
+- Du skal utvide eller endre **selve rammeverk-pakken** `packages/core/sif-soknad-app`.
 - Du feilsøker oppførsel i `SøknadProvider`, `SøknadStep`, `SøknadStepGuard`, `useStepData`, `useMellomlagring` e.l.
 - Du trenger å forstå arkitekturvalg og nøkkelbegreper i rammeverket.
 
@@ -24,7 +24,7 @@ Disse skillene handler om å _bruke_ rammeverket fra en app. Denne skillen handl
 ## Pakke og plassering
 
 ```
-packages/sif-soknad-app/src/
+packages/core/sif-soknad-app/src/
   components/       SøknadAppProvider, SøknadProvider, SøknadStep, SøknadStepForm,
                     SøknadStepContext, SøknadStepGuard, SøknadVelkommenPage, StepRouteGuard
   consistency/      SøknadStepFormContext, checkConsistencyForSteps, InconsistentFormValuesMessage

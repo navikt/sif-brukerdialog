@@ -151,7 +151,7 @@ Validatorer fra `@navikt/sif-validation` beholdes uendret.
 
 ## Komponenterstatninger
 
-Ikke importer fra gamle pakker i v2-apper. Bruk Aksel-komponenter eller `@sif/*`-pakker:
+Ikke importer fra gamle pakker (`packages/legacy`, `@navikt/sif-common-*`) i v2-apper. Bruk Aksel-komponenter eller `@sif/*`-pakker (`packages/core`). I `packages/core` håndheves dette av `restrictLegacyImports` fra `@sif/eslint-config/legacy-imports`:
 
 | Gammel komponent | Gammel pakke                 | Erstatning   | Ny pakke                    |
 | ---------------- | ---------------------------- | ------------ | --------------------------- |
@@ -341,7 +341,7 @@ Valideringsnøkler må matche `<scope>.validation.<fieldName>.<errorCode>`.
 | `getDateValidator`          | `dateHasNoValue`, `dateHasInvalidFormat`, `dateIsBeforeMin`, `dateIsAfterMax`                                      |
 | `getFødselsnummerValidator` | `fødselsnummerHasNoValue`, `fødselsnummerIsNot11Chars`, `fødselsnummerIsInvalid`, `fødselsnummerAsHnrIsNotAllowed` |
 
-Finn alle koder i `packages/sif-validation/src/get*Validator.ts` via `enum Validate*Error`.
+Finn alle koder i `packages/core/sif-validation/src/get*Validator.ts` via `enum Validate*Error`.
 
 **Sjekk:** Felt-enum i Formik og felt-navnene i i18n-nøklene må matche. Hvis formik brukte `formErrorHandler` med scope `'uttalelseForm.validation'` men felt-enum heter `harUttalelse`, må nøkkelen i `nb.ts` være:
 

@@ -5,7 +5,7 @@ import { vi } from 'vitest';
 import { GjentagelseType } from '../TidEnkeltdagForm';
 import { getDagerMedNyTid, getDateRangeWithinDateRange, trimDateRangeToWeekdays } from '../utils/tidEnkeltdagUtils';
 
-vi.mock('@navikt/sif-common-env', () => {
+vi.mock('@sif/env', () => {
     return { getRequiredEnv: () => '', getCommonEnv: () => ({}), getMaybeEnv: () => '' };
 });
 

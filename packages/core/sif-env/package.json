@@ -1,0 +1,22 @@
+{
+    "name": "@sif/env",
+    "version": "0.2.0",
+    "private": true,
+    "type": "module",
+    "main": "src/index.ts",
+    "types": "src/index.ts",
+    "scripts": {
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit",
+        "test": "vitest run --environment jsdom"
+    },
+    "dependencies": {
+        "zod": "4.6.5"
+    },
+    "devDependencies": {
+        "config": "workspace:*",
+        "eslint": "10.12.0",
+        "typescript": "6.0.3"
+    }
+}

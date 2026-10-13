@@ -22,6 +22,7 @@ description: Porter *ListAndDialog-komponenter fra sif-common-forms-ds (v1/Formi
 - Story i `.stories.tsx`
 - i18n (`nb.ts` og `nn.ts`) under `src/dialogs/<navn>/i18n/`
 - Eksport fra `src/dialogs/<navn>/index.ts` og `src/dialogs/index.ts`
+- Ingen nye importer fra `@navikt/sif-common-*` (lint-regelen `restrictLegacyImports` i `eslint.config.js`). Fjern pakken fra unntakslisten der når siste import av den er borte.
 
 ## Avgrensning
 
@@ -36,7 +37,7 @@ description: Porter *ListAndDialog-komponenter fra sif-common-forms-ds (v1/Formi
 
 ### ModalFormAndList
 
-Generisk komponent i `packages/sif-soknad-forms/src/components/ModalFormAndList.tsx` som håndterer:
+Generisk komponent i `packages/core/sif-soknad-forms/src/components/ModalFormAndList.tsx` som håndterer:
 
 - Dialog-state (åpne for ny/rediger, lukke)
 - Add/edit/delete-operasjoner på en liste
@@ -123,7 +124,7 @@ Dato-APIet er delt i to lag:
 
 ### Miljøavhengigheter
 
-- Unngå å lese app-miljø direkte via `@navikt/sif-common-env` i `packages/sif-soknad-forms` uten at det er strengt nødvendig.
+- Unngå å lese app-miljø direkte via `@sif/env` i `packages/core/sif-soknad-forms` uten at det er strengt nødvendig.
 - Husk at dialoger i `sif-soknad-forms` også kjøres i Storybook, hvor full `appSettings` ikke alltid finnes.
 - Hvis en dialog trenger miljøstyrt oppførsel, foretrekk eksplisitt prop eller en liten lokal fallback fremfor å binde dialogen til app-env.
 
@@ -143,7 +144,7 @@ Dato-APIet er delt i to lag:
 
 ## Storybook-konvensjoner
 
-Når du lager stories i `packages/sif-soknad-forms`:
+Når du lager stories i `packages/core/sif-soknad-forms`:
 
 1. **Ikke** legg lokal `IntlProvider` — intl er globalt satt opp i `.storybook/preview.js` via `withIntl`.
 2. Bruk `StoryFrame` fra `src/storybook/components/StoryFrame.tsx` for layout (`maxWidth`, `minHeight`).
@@ -290,7 +291,7 @@ export const BostedUtlandListAndDialog = ({ minDate, maxDate, bosteder, addButto
 
 ## Dialoger som skal porteres
 
-Fra `packages/sif-common-forms-ds/src/forms/`:
+Fra `packages/legacy/sif-common-forms-ds/src/forms/`:
 
 | v1-mappe                    | Porteringsstatus |
 | --------------------------- | ---------------- |

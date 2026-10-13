@@ -1,4 +1,4 @@
-import { getRequiredEnv } from '@navikt/sif-common-env';
+import { getRequiredEnv } from '@sif/env';
 import { ReactNode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
