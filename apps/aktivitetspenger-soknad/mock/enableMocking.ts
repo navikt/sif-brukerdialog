@@ -1,4 +1,4 @@
-import { getMaybeEnv } from '@navikt/sif-common-env';
+import { getMaybeEnv } from '@sif/env';
 import { enableMocking as enableMockingBase } from '@sif/api/mock-utils';
 
 

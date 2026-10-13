@@ -28,7 +28,7 @@
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
         "@navikt/k9-sak-innsyn-api": "workspace:*",
         "@navikt/sif-app-register": "workspace:*",
-        "@navikt/sif-common-env": "workspace:*",
+        "@sif/env": "workspace:*",
         "@navikt/sif-common-hooks": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@sif/api": "workspace:*",

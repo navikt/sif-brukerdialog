@@ -22,7 +22,7 @@
     },
     "devDependencies": {
         "@hey-api/openapi-ts": "0.98.2",
-        "@navikt/sif-common-env": "workspace:*",
+        "@sif/env": "workspace:*",
         "@sif/eslint-config": "workspace:*",
         "axios": "1.20.0",
         "config": "workspace:*",

@@ -36,7 +36,7 @@
         "@navikt/sif-common-analytics": "workspace:*",
         "@navikt/sif-common-api": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
-        "@navikt/sif-common-env": "workspace:*",
+        "@sif/env": "workspace:*",
         "@navikt/sif-common-formik-ds": "workspace:*",
         "@navikt/sif-common-forms-ds": "workspace:*",
         "@navikt/sif-common-hooks": "workspace:*",

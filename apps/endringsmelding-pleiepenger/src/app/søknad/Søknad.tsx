@@ -1,10 +1,10 @@
 import { RequestStatus } from '@app/types';
 import { Alert } from '@navikt/ds-react';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
-import { getMaybeEnv } from '@navikt/sif-common-env';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { appLogger } from '@sif/apm';
+import { getMaybeEnv } from '@sif/env';
 import { SkyraSlug, SkyraTestPage } from '@sif/surveys';
 import { isAxiosError } from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';

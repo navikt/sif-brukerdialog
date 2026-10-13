@@ -1,4 +1,4 @@
-import { commonEnvSchema, ungDeltakelseOpplyserEnvSchema } from '@navikt/sif-common-env';
+import { commonEnvSchema, ungDeltakelseOpplyserEnvSchema } from '@sif/env';
 import * as z from 'zod';
 
 /**

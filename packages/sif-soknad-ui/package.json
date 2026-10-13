@@ -38,7 +38,7 @@
         "@navikt/aksel-icons": "8.19.0",
         "@navikt/ds-react": "8.19.0",
         "@navikt/nav-dekoratoren-moduler": "4.5.1",
-        "@navikt/sif-common-env": "workspace:*",
+        "@sif/env": "workspace:*",
         "@navikt/sif-common-hooks": "workspace:*",
         "@sif/api": "workspace:*",
         "@sif/utils": "workspace:*",

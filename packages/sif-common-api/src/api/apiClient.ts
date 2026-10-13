@@ -1,4 +1,4 @@
-import { getCommonEnv } from '@navikt/sif-common-env';
+import { getCommonEnv } from '@sif/env';
 import axios, { AxiosError, AxiosRequestConfig, HttpStatusCode } from 'axios';
 import { v4 } from 'uuid';
 

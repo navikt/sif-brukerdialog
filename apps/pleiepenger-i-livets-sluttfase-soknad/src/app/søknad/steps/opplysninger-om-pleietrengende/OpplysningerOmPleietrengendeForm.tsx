@@ -3,7 +3,6 @@ import { Søker } from '@navikt/sif-common-api';
 import { useVedleggHelper } from '@navikt/sif-common-core-ds';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
-import { isDevMode } from '@navikt/sif-common-env';
 import {
     getIntlFormErrorHandler,
     getTypedFormComponents,
@@ -19,6 +18,7 @@ import {
     getRequiredFieldValidator,
     getStringValidator,
 } from '@navikt/sif-validation';
+import { isDevMode } from '@sif/env';
 import { useFormikContext } from 'formik';
 
 import { AppText, useAppIntl } from '../../../i18n';

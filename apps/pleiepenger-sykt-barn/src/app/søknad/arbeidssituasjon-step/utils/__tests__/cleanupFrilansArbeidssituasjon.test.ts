@@ -5,7 +5,7 @@ import { vi } from 'vitest';
 import { FrilansFormValues, Frilanstype } from '../../../../types/søknad-form-values/FrilansFormValues';
 import { cleanupFrilansArbeidssituasjon } from '../cleanupArbeidssituasjonStep';
 
-vi.mock('@navikt/sif-common-env', () => {
+vi.mock('@sif/env', () => {
     return {
         getRequiredEnv: () => 'mockedApiUrl',
         getMaybeEnv: () => 'mockedApiUrl',

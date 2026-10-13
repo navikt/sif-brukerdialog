@@ -1,5 +1,5 @@
-import { isDevMode } from '@navikt/sif-common-env';
 import { appLogger } from '@sif/apm';
+import { isDevMode } from '@sif/env';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 

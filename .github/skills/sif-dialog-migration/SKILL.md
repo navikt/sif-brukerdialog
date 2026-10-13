@@ -123,7 +123,7 @@ Dato-APIet er delt i to lag:
 
 ### Miljøavhengigheter
 
-- Unngå å lese app-miljø direkte via `@navikt/sif-common-env` i `packages/sif-soknad-forms` uten at det er strengt nødvendig.
+- Unngå å lese app-miljø direkte via `@sif/env` i `packages/sif-soknad-forms` uten at det er strengt nødvendig.
 - Husk at dialoger i `sif-soknad-forms` også kjøres i Storybook, hvor full `appSettings` ikke alltid finnes.
 - Hvis en dialog trenger miljøstyrt oppførsel, foretrekk eksplisitt prop eller en liten lokal fallback fremfor å binde dialogen til app-env.
 

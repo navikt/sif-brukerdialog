@@ -3,7 +3,7 @@ import {
     getRequiredEnv,
     getUngBrukerdialogApiBrowserEnv,
     getUngDeltakelseOpplyserBrowserEnv,
-} from '@navikt/sif-common-env';
+} from '@sif/env';
 
 import { AppEnv } from '../../../env.schema.ts';
 

@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 
 import { begrensPeriodeTilPeriodeEnSkalOppgiTimerFor } from '../arbeidstidStepUtils';
 
-vi.mock('@navikt/sif-common-env', () => {
+vi.mock('@sif/env', () => {
     return {
         getRequiredEnv: () => 'mockedApiUrl',
         getMaybeEnv: () => 'mockedApiUrl',

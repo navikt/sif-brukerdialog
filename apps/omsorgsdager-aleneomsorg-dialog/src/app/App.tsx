@@ -2,13 +2,13 @@ import './app.css';
 
 import { Theme } from '@navikt/ds-react';
 import { OmsorgsdagerAleneomsorgApp } from '@navikt/sif-app-register';
-import { isProd } from '@navikt/sif-common-env';
 import {
     ensureBaseNameForReactRouter,
     NoAccessPage,
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import { isProd } from '@sif/env';
 import { Navigate, Route } from 'react-router-dom';
 
 import { applicationIntlMessages, type AppMessageKeys } from './i18n';

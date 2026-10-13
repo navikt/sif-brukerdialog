@@ -1,4 +1,4 @@
-import { getMaybeEnv, getRequiredEnv } from '@navikt/sif-common-env';
+import { getMaybeEnv, getRequiredEnv } from '@sif/env';
 
 interface SetupWorker {
     start: (options?: { onUnhandledRequest?: 'bypass' | 'warn' | 'error' }) => Promise<unknown>;

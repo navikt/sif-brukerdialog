@@ -3,8 +3,8 @@ import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 
 import { Theme } from '@navikt/ds-react';
 import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
-import { getMaybeEnv, isProd } from '@navikt/sif-common-env';
 import { ensureBaseNameForReactRouter, SoknadApplication } from '@navikt/sif-common-soknad-ds';
+import { getMaybeEnv, isProd } from '@sif/env';
 import { DemoInfoAlert, DemoWatermark } from '@sif/soknad-ui';
 import { SkyraHandler, UxSignalsLoaderProvider } from '@sif/surveys';
 import dayjs from 'dayjs';

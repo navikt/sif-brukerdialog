@@ -1,4 +1,4 @@
-import { baseEnvSchema, ungDeltakelseOpplyserEnvSchema } from '@navikt/sif-common-env';
+import { baseEnvSchema, ungDeltakelseOpplyserEnvSchema } from '@sif/env';
 import * as z from 'zod';
 
 const localSchema = z.object({

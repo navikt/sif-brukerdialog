@@ -6,7 +6,7 @@ import { StepID } from '../../types/StepID';
 import { getArbeidsgiver, getPersistUrl, persist, sendApplication } from '../api';
 import { axiosJsonConfig } from '../utils/apiUtils';
 
-vi.mock('@navikt/sif-common-env', () => {
+vi.mock('@sif/env', () => {
     return {
         getRequiredEnv: () => 'mockedApiUrl',
         getMaybeEnv: () => 'mockedApiUrl',

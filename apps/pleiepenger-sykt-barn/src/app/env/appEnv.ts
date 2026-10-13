@@ -1,4 +1,4 @@
-import { getCommonEnv, getMaybeEnv, getRequiredEnv } from '@navikt/sif-common-env';
+import { getCommonEnv, getMaybeEnv, getRequiredEnv } from '@sif/env';
 
 import { AppEnv } from '../../../env.schema';
 

@@ -1,5 +1,5 @@
 import { Tag } from '@navikt/ds-react';
-import { getMaybeEnv, isDevMode } from '@navikt/sif-common-env';
+import { getMaybeEnv, isDevMode } from '@sif/env';
 import { useRef } from 'react';
 
 const DevBranchInfo = () => {

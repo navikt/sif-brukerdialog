@@ -1,4 +1,4 @@
-import { getCommonEnv, getK9SakInnsynEnv } from '@navikt/sif-common-env';
+import { getCommonEnv, getK9SakInnsynEnv } from '@sif/env';
 import axios from 'axios';
 import { v4 } from 'uuid';
 

@@ -28,7 +28,7 @@
         "@navikt/ds-react": "8.19.0",
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
         "@navikt/k9-sak-innsyn-api": "workspace:*",
-        "@navikt/sif-common-env": "workspace:*",
+        "@sif/env": "workspace:*",
         "@navikt/ung-brukerdialog-api": "workspace:*",
         "@navikt/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
         "@sif/utils": "workspace:*",

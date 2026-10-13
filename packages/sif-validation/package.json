@@ -20,7 +20,7 @@
         "react-intl": "12.1.4"
     },
     "devDependencies": {
-        "@navikt/sif-common-env": "workspace:*",
+        "@sif/env": "workspace:*",
         "@sif/eslint-config": "workspace:*",
         "config": "workspace:*",
         "eslint": "10.12.0",

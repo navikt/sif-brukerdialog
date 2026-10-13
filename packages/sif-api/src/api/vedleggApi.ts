@@ -1,5 +1,5 @@
 import { VedleggController, zHentVedleggResponse } from '@navikt/k9-brukerdialog-prosessering-api';
-import { getCommonEnv } from '@navikt/sif-common-env';
+import { getCommonEnv } from '@sif/env';
 
 /**
  * Extract vedlegg ID from response location header

@@ -22,7 +22,7 @@
     },
     "dependencies": {
         "@navikt/sif-common-api": "workspace:*",
-        "@navikt/sif-common-env": "workspace:*"
+        "@sif/env": "workspace:*"
     },
     "devDependencies": {
         "@hey-api/openapi-ts": "0.98.2",

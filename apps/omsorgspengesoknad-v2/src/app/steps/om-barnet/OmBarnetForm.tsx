@@ -5,7 +5,6 @@ import { SøkersRelasjonTilBarnet } from '@app/types/SøkersRelasjonTilBarnet';
 import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { Box, Heading, ReadMore, Tag } from '@navikt/ds-react';
-import { isDevMode } from '@navikt/sif-common-env';
 import {
     getFødselsnummerValidator,
     getISODateValidator,
@@ -14,6 +13,7 @@ import {
     getYesOrNoValidator,
 } from '@navikt/sif-validation';
 import { useInnvilgedeVedtakForRegistrerteBarn } from '@sif/api/k9-sak-innsyn-api';
+import { isDevMode } from '@sif/env';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { SøknadStepForm, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { VelgBarnEkstrainfo, VelgRegistrertBarnPanel } from '@sif/soknad-forms';

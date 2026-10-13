@@ -1,4 +1,4 @@
-import { getCommonEnv, getMaybeEnv, getUngDeltakelseOpplyserBrowserEnv } from '@navikt/sif-common-env';
+import { getCommonEnv, getMaybeEnv, getUngDeltakelseOpplyserBrowserEnv } from '@sif/env';
 
 import { AppEnv, AppEnvKey } from '../../../env.schema';
 

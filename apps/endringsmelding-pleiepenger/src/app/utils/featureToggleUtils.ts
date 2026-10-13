@@ -1,4 +1,4 @@
-import { getMaybeEnv } from '@navikt/sif-common-env';
+import { getMaybeEnv } from '@sif/env';
 
 export enum Feature {
     SIF_PUBLIC_VELG_ENDRE_FRA_OPPSUMMERING = 'SIF_PUBLIC_VELG_ENDRE_FRA_OPPSUMMERING',

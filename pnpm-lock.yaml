@@ -105,9 +105,6 @@ importers:
       '@navikt/sif-common-core-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-core-ds
-      '@navikt/sif-common-env':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-env
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
@@ -132,6 +129,9 @@ importers:
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/sif-apm
+      '@sif/env':
+        specifier: workspace:*
+        version: link:../../packages/sif-env
       '@tanstack/react-query':
         specifier: 5.104.1
         version: 5.104.1(react@19.3.0)
@@ -343,9 +343,6 @@ importers:
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/sif-app-register
-      '@navikt/sif-common-env':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-env
       '@navikt/sif-common-hooks':
         specifier: workspace:*
         version: link:../../packages/sif-common-hooks
@@ -364,6 +361,9 @@ importers:
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/sif-apm
+      '@sif/env':
+        specifier: workspace:*
+        version: link:../../packages/sif-env
       '@sif/rhf':
         specifier: workspace:*
         version: link:../../packages/sif-rhf
@@ -521,9 +521,6 @@ importers:
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/sif-app-register
-      '@navikt/sif-common-env':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-env
       '@navikt/sif-common-hooks':
         specifier: workspace:*
         version: link:../../packages/sif-common-hooks
@@ -542,6 +539,9 @@ importers:
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/sif-apm
+      '@sif/env':
+        specifier: workspace:*
+        version: link:../../packages/sif-env
       '@sif/rhf':
         specifier: workspace:*
         version: link:../../packages/sif-rhf
@@ -877,9 +877,6 @@ importers:
       '@navikt/sif-common-core-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-core-ds
-      '@navikt/sif-common-env':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-env
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
@@ -904,6 +901,9 @@ importers:
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/sif-apm
+      '@sif/env':
+        specifier: workspace:*
+        version: link:../../packages/sif-env
       axios:
         specifier: 1.20.0
         version: 1.20.0
@@ -1061,9 +1061,6 @@ importers:
       '@navikt/sif-common-core-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-core-ds
-      '@navikt/sif-common-env':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-env
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
@@ -1088,6 +1085,9 @@ importers:
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/sif-apm
+      '@sif/env':
+        specifier: workspace:*
+        version: link:../../packages/sif-env
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../../packages/sif-soknad-ui
@@ -1299,9 +1299,6 @@ importers:
       '@navikt/sif-common-core-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-core-ds
-      '@navikt/sif-common-env':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-env
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
@@ -1326,6 +1323,9 @@ importers:
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/sif-apm
+      '@sif/env':
+        specifier: workspace:*
+        version: link:../../packages/sif-env
       '@testing-library/react':
         specifier: 16.3.3
         version: 16.3.3(@testing-library/dom@10.4.2)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -1604,9 +1604,6 @@ importers:
       '@navikt/sif-common-core-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-core-ds
-      '@navikt/sif-common-env':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-env
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
@@ -1631,6 +1628,9 @@ importers:
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/sif-apm
+      '@sif/env':
+        specifier: workspace:*
+        version: link:../../packages/sif-env
       '@sif/surveys':
         specifier: workspace:*
         version: link:../../packages/sif-surveys
@@ -1818,9 +1818,6 @@ importers:
       '@navikt/sif-common-core-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-core-ds
-      '@navikt/sif-common-env':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-env
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
@@ -1845,6 +1842,9 @@ importers:
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/sif-apm
+      '@sif/env':
+        specifier: workspace:*
+        version: link:../../packages/sif-env
       '@sif/surveys':
         specifier: workspace:*
         version: link:../../packages/sif-surveys
@@ -2026,9 +2026,6 @@ importers:
       '@navikt/sif-common-core-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-core-ds
-      '@navikt/sif-common-env':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-env
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
@@ -2053,6 +2050,9 @@ importers:
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/sif-apm
+      '@sif/env':
+        specifier: workspace:*
+        version: link:../../packages/sif-env
       '@sif/surveys':
         specifier: workspace:*
         version: link:../../packages/sif-surveys
@@ -2249,9 +2249,6 @@ importers:
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/sif-app-register
-      '@navikt/sif-common-env':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-env
       '@navikt/sif-common-hooks':
         specifier: workspace:*
         version: link:../../packages/sif-common-hooks
@@ -2264,6 +2261,9 @@ importers:
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/sif-apm
+      '@sif/env':
+        specifier: workspace:*
+        version: link:../../packages/sif-env
       '@sif/rhf':
         specifier: workspace:*
         version: link:../../packages/sif-rhf
@@ -2424,9 +2424,6 @@ importers:
       '@navikt/sif-common-core-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-core-ds
-      '@navikt/sif-common-env':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-env
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
@@ -2451,6 +2448,9 @@ importers:
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/sif-apm
+      '@sif/env':
+        specifier: workspace:*
+        version: link:../../packages/sif-env
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../../packages/sif-soknad-ui
@@ -2650,9 +2650,6 @@ importers:
       '@navikt/sif-common-core-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-core-ds
-      '@navikt/sif-common-env':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-env
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
@@ -2677,6 +2674,9 @@ importers:
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/sif-apm
+      '@sif/env':
+        specifier: workspace:*
+        version: link:../../packages/sif-env
       '@sif/surveys':
         specifier: workspace:*
         version: link:../../packages/sif-surveys
@@ -2858,9 +2858,6 @@ importers:
       '@navikt/sif-common-core-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-core-ds
-      '@navikt/sif-common-env':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-env
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
@@ -2885,6 +2882,9 @@ importers:
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/sif-apm
+      '@sif/env':
+        specifier: workspace:*
+        version: link:../../packages/sif-env
       '@sif/surveys':
         specifier: workspace:*
         version: link:../../packages/sif-surveys
@@ -3078,9 +3078,6 @@ importers:
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/sif-app-register
-      '@navikt/sif-common-env':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-env
       '@navikt/sif-common-hooks':
         specifier: workspace:*
         version: link:../../packages/sif-common-hooks
@@ -3096,6 +3093,9 @@ importers:
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/sif-apm
+      '@sif/env':
+        specifier: workspace:*
+        version: link:../../packages/sif-env
       '@sif/rhf':
         specifier: workspace:*
         version: link:../../packages/sif-rhf
@@ -3253,9 +3253,6 @@ importers:
       '@navikt/sif-common-core-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-core-ds
-      '@navikt/sif-common-env':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-env
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
@@ -3280,6 +3277,9 @@ importers:
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/sif-apm
+      '@sif/env':
+        specifier: workspace:*
+        version: link:../../packages/sif-env
       axios:
         specifier: 1.20.0
         version: 1.20.0
@@ -3531,9 +3531,6 @@ importers:
       '@navikt/sif-common-core-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-core-ds
-      '@navikt/sif-common-env':
-        specifier: workspace:*
-        version: link:../../packages/sif-common-env
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/sif-common-formik-ds
@@ -3567,6 +3564,9 @@ importers:
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/sif-apm
+      '@sif/env':
+        specifier: workspace:*
+        version: link:../../packages/sif-env
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../../packages/sif-soknad-ui
@@ -4141,15 +4141,15 @@ importers:
       '@navikt/k9-sak-innsyn-api':
         specifier: workspace:*
         version: link:../k9-sak-innsyn-api
-      '@navikt/sif-common-env':
-        specifier: workspace:*
-        version: link:../sif-common-env
       '@navikt/ung-brukerdialog-api':
         specifier: workspace:*
         version: link:../ung-brukerdialog-api
       '@navikt/ung-deltakelse-opplyser-api-deltaker':
         specifier: workspace:*
         version: link:../ung-deltakelse-opplyser-api-deltaker
+      '@sif/env':
+        specifier: workspace:*
+        version: link:../sif-env
       '@sif/utils':
         specifier: workspace:*
         version: link:../sif-utils
@@ -4279,9 +4279,6 @@ importers:
       '@navikt/fnrvalidator':
         specifier: 2.2.1
         version: 2.2.1
-      '@navikt/sif-common-env':
-        specifier: workspace:*
-        version: link:../sif-common-env
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../sif-common-formik-ds
@@ -4291,6 +4288,9 @@ importers:
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../sif-validation
+      '@sif/env':
+        specifier: workspace:*
+        version: link:../sif-env
       axios:
         specifier: 1.20.0
         version: 1.20.0
@@ -4364,15 +4364,15 @@ importers:
       '@navikt/sif-common-api':
         specifier: workspace:*
         version: link:../sif-common-api
-      '@navikt/sif-common-env':
-        specifier: workspace:*
-        version: link:../sif-common-env
       '@navikt/sif-common-hooks':
         specifier: workspace:*
         version: link:../sif-common-hooks
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../sif-common-utils
+      '@sif/env':
+        specifier: workspace:*
+        version: link:../sif-env
       browser-image-compression:
         specifier: 2.0.2
         version: 2.0.2
@@ -4504,19 +4504,6 @@ importers:
         specifier: 5.0.3
         version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.4)(@vitest/browser-playwright@5.0.3)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.1.2(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.4)(typescript@6.0.3))(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
-  packages/sif-common-env:
-    dependencies:
-      zod:
-        specifier: 4.6.5
-        version: 4.6.5
-    devDependencies:
-      eslint:
-        specifier: 10.12.0
-        version: 10.12.0(jiti@2.7.0)
-      typescript:
-        specifier: 6.0.3
-        version: 6.0.3
-
   packages/sif-common-formik-ds:
     dependencies:
       '@navikt/sif-common-utils':
@@ -4637,15 +4624,15 @@ importers:
       '@navikt/sif-common-api':
         specifier: workspace:*
         version: link:../sif-common-api
-      '@navikt/sif-common-env':
-        specifier: workspace:*
-        version: link:../sif-common-env
       '@navikt/sif-common-soknad-ds':
         specifier: workspace:*
         version: link:../sif-common-soknad-ds
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../sif-common-ui
+      '@sif/env':
+        specifier: workspace:*
+        version: link:../sif-env
     devDependencies:
       '@formatjs/intl-pluralrules':
         specifier: 6.3.15
@@ -4780,9 +4767,9 @@ importers:
         specifier: 6.0.3
         version: 6.0.3
     devDependencies:
-      '@navikt/sif-common-env':
+      '@sif/env':
         specifier: workspace:*
-        version: link:../sif-common-env
+        version: link:../sif-env
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config-sif
@@ -4810,15 +4797,15 @@ importers:
       '@navikt/sif-common-api':
         specifier: workspace:*
         version: link:../sif-common-api
-      '@navikt/sif-common-env':
-        specifier: workspace:*
-        version: link:../sif-common-env
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../sif-common-ui
       '@sif/apm':
         specifier: workspace:*
         version: link:../sif-apm
+      '@sif/env':
+        specifier: workspace:*
+        version: link:../sif-env
       classnames:
         specifier: 2.5.1
         version: 2.5.1
@@ -5138,14 +5125,27 @@ importers:
         specifier: 5.0.3
         version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.4)(@vitest/browser-playwright@5.0.3)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.1.2(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.4)(typescript@6.0.3))(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
+  packages/sif-env:
+    dependencies:
+      zod:
+        specifier: 4.6.5
+        version: 4.6.5
+    devDependencies:
+      eslint:
+        specifier: 10.12.0
+        version: 10.12.0(jiti@2.7.0)
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+
   packages/sif-innsyn-api:
     dependencies:
       '@navikt/sif-common-api':
         specifier: workspace:*
         version: link:../sif-common-api
-      '@navikt/sif-common-env':
+      '@sif/env':
         specifier: workspace:*
-        version: link:../sif-common-env
+        version: link:../sif-env
       dayjs:
         specifier: '*'
         version: 1.11.23
@@ -5423,15 +5423,15 @@ importers:
       '@navikt/nav-dekoratoren-moduler':
         specifier: 4.5.1
         version: 4.5.1(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
-      '@navikt/sif-common-env':
-        specifier: workspace:*
-        version: link:../sif-common-env
       '@navikt/sif-common-hooks':
         specifier: workspace:*
         version: link:../sif-common-hooks
       '@sif/api':
         specifier: workspace:*
         version: link:../sif-api
+      '@sif/env':
+        specifier: workspace:*
+        version: link:../sif-env
       '@sif/utils':
         specifier: workspace:*
         version: link:../sif-utils
@@ -5595,9 +5595,9 @@ importers:
         specifier: 12.1.4
         version: 12.1.4(@types/react@19.3.0)(react@19.3.0)
     devDependencies:
-      '@navikt/sif-common-env':
+      '@sif/env':
         specifier: workspace:*
-        version: link:../sif-common-env
+        version: link:../sif-env
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config-sif
@@ -5629,9 +5629,9 @@ importers:
       '@hey-api/openapi-ts':
         specifier: 0.98.2
         version: 0.98.2(magicast@0.5.5)(typescript@6.0.3)
-      '@navikt/sif-common-env':
+      '@sif/env':
         specifier: workspace:*
-        version: link:../sif-common-env
+        version: link:../sif-env
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config-sif
@@ -5702,9 +5702,9 @@ importers:
 
   packages/ung-deltakelse-opplyser-api-veileder:
     dependencies:
-      '@navikt/sif-common-env':
+      '@sif/env':
         specifier: workspace:*
-        version: link:../sif-common-env
+        version: link:../sif-env
       dayjs:
         specifier: '*'
         version: 1.11.23
@@ -5869,9 +5869,9 @@ importers:
       '@navikt/oasis':
         specifier: 4.2.2
         version: 4.2.2
-      '@navikt/sif-common-env':
+      '@sif/env':
         specifier: workspace:*
-        version: link:../packages/sif-common-env
+        version: link:../packages/sif-env
       csp-header:
         specifier: 6.4.0
         version: 6.4.0
@@ -5939,9 +5939,9 @@ importers:
       '@navikt/oasis':
         specifier: 4.2.2
         version: 4.2.2
-      '@navikt/sif-common-env':
+      '@sif/env':
         specifier: workspace:*
-        version: link:../packages/sif-common-env
+        version: link:../packages/sif-env
       csp-header:
         specifier: 6.4.0
         version: 6.4.0
@@ -7884,6 +7884,9 @@ packages:
       '@types/react': ^17.0.30 || ^18 || ^19
       react: ^17 || ^18 || ^19
       react-dom: ^17 || ^18 || ^19
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   '@navikt/ds-tailwind@8.19.0':
     resolution: {integrity: sha512-068wR3tlHgHPWEhpWiDtc8xfI9FpjNSDlWt4R7xnQ0mt4ovMwkCctCPkAxD5xyHIhb3aIqZ7wM08wy5F+XorCw==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tailwind/8.19.0/784dbd2cacceba3fb28754dc04a4fc64f717fbdd}
@@ -7900,6 +7903,9 @@ packages:
     peerDependencies:
       html-react-parser: '>=5.x'
       react: '>=17.x'
+    peerDependenciesMeta:
+      react:
+        optional: true
 
   '@navikt/next-logger@5.0.1':
     resolution: {integrity: sha512-3P9ygoIGJ5u8REkYG7lCd/GDsmnfdfEAgmVvb1GjEFdWXaWgpXBCHhiaXfXlCu3szO6/fuJDW7XeOFec4owCVQ==, tarball: https://npm.pkg.github.com/download/@navikt/next-logger/5.0.1/9b62906c0f9db26caae24c314197f3e33f016474}
@@ -17200,11 +17206,12 @@ snapshots:
       '@floating-ui/react-dom': 2.1.9(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@navikt/aksel-icons': 8.19.0
       '@navikt/ds-tokens': 8.19.0
-      '@types/react': 19.3.0
       date-fns: 4.4.0
       react: 19.3.0
       react-day-picker: 10.0.1(@types/react@19.3.0)(react@19.3.0)
       react-dom: 19.3.0(react@19.3.0)
+    optionalDependencies:
+      '@types/react': 19.3.0
 
   '@navikt/ds-tailwind@8.19.0': {}
 
@@ -17218,6 +17225,7 @@ snapshots:
       csp-header: 6.4.0
       html-react-parser: 6.1.8(@types/react@19.3.0)(react@19.3.0)
       js-cookie: 3.0.8
+    optionalDependencies:
       react: 19.3.0
 
   '@navikt/next-logger@5.0.1(next@16.4.0(@opentelemetry/api@1.9.1)(@playwright/test@1.64.0)(@types/node@26.6.4)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(sass@1.105.1))(pino@10.4.0)':
@@ -19598,6 +19606,10 @@ snapshots:
     dependencies:
       acorn: 8.18.0
 
+  acorn-jsx@5.3.2(acorn@8.19.0):
+    dependencies:
+      acorn: 8.19.0
+
   acorn-loose@8.5.2:
     dependencies:
       acorn: 8.19.0
@@ -20816,8 +20828,8 @@ snapshots:
 
   espree@11.2.0:
     dependencies:
-      acorn: 8.18.0
-      acorn-jsx: 5.3.2(acorn@8.18.0)
+      acorn: 8.19.0
+      acorn-jsx: 5.3.2(acorn@8.19.0)
       eslint-visitor-keys: 5.0.1
 
   esprima@4.0.1: {}
@@ -24578,7 +24590,7 @@ snapshots:
   terser@5.51.2:
     dependencies:
       '@jridgewell/source-map': 0.3.11
-      acorn: 8.18.0
+      acorn: 8.19.0
       commander: 2.20.3
       source-map-support: 0.5.21
 
@@ -24844,7 +24856,7 @@ snapshots:
   unplugin@2.3.11:
     dependencies:
       '@jridgewell/remapping': 2.3.5
-      acorn: 8.18.0
+      acorn: 8.19.0
       picomatch: 4.0.7
       webpack-virtual-modules: 0.6.2
 

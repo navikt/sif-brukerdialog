@@ -4,7 +4,7 @@ import { vi } from 'vitest';
 
 import { tilgangskontroll, tilgangskontrollUtils } from '../tilgangskontroll';
 
-vi.mock('@navikt/sif-common-env', () => ({
+vi.mock('@sif/env', () => ({
     getRequiredEnv: () => {
         return false;
     },

@@ -1,4 +1,4 @@
-import { getRequiredEnv } from '@navikt/sif-common-env';
+import { getRequiredEnv } from '@sif/env';
 import { ScenarioSelectorHeader, type ScenarioSelectorHeaderGroup } from '@sif/soknad-ui';
 
 import { ScenarioType } from '../../mock/scenarios/types';

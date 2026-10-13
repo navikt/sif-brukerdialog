@@ -1,4 +1,4 @@
-import { EnvKey, getSifInnsynBrowserEnv } from '@navikt/sif-common-env';
+import { EnvKey, getSifInnsynBrowserEnv } from '@sif/env';
 import { AxiosError } from 'axios';
 import { v4 } from 'uuid';
 

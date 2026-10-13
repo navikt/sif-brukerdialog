@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 
 import { getUgyldigeArbeidstidPerioder } from '../arbeidstidPeriodeValidering';
 
-vi.mock('@navikt/sif-common-env', () => ({
+vi.mock('@sif/env', () => ({
     getRequiredEnv: () => '',
     getMaybeEnv: () => '',
     getCommonEnv: () => ({}),

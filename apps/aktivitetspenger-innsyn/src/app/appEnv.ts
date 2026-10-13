@@ -1,4 +1,4 @@
-import { getCommonEnv, getRequiredEnv, getUngBrukerdialogApiBrowserEnv } from '@navikt/sif-common-env';
+import { getCommonEnv, getRequiredEnv, getUngBrukerdialogApiBrowserEnv } from '@sif/env';
 
 import { AppEnv } from '../../env.schema.ts';
 

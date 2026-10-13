@@ -27,7 +27,7 @@ Grafana henter browser-telemetri under `<namespace>/<app>`. Verdien av `app` i `
 // main.tsx
 import { initApm } from '@sif/apm';
 import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
-import { getMaybeEnv } from '@navikt/sif-common-env';
+import { getMaybeEnv } from '@sif/env';
 
 void initApm({ app: PleiepengerSyktBarnApp.key, namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
 ```
@@ -87,7 +87,7 @@ Hvis disse ikke er identiske, finnes telemetrien ikke i Grafana.
     ```ts
     import { initApm } from '@sif/apm';
     import { MinSoknadApp } from '@navikt/sif-app-register';
-    import { getMaybeEnv } from '@navikt/sif-common-env';
+    import { getMaybeEnv } from '@sif/env';
 
     void initApm({ app: MinSoknadApp.key, namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
     ```

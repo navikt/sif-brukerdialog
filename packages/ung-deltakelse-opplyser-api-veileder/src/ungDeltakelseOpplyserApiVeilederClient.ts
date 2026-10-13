@@ -1,4 +1,4 @@
-import { EnvKey, getUngDeltakelseOpplyserBrowserEnv } from '@navikt/sif-common-env';
+import { EnvKey, getUngDeltakelseOpplyserBrowserEnv } from '@sif/env';
 import { AxiosError } from 'axios';
 import { v4 } from 'uuid';
 

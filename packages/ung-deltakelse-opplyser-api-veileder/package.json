@@ -21,7 +21,7 @@
         "lint:tsc": "tsc --noEmit"
     },
     "dependencies": {
-        "@navikt/sif-common-env": "workspace:*"
+        "@sif/env": "workspace:*"
     },
     "devDependencies": {
         "@hey-api/openapi-ts": "0.98.2",
