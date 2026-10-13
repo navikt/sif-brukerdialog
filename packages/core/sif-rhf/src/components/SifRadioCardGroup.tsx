@@ -7,7 +7,10 @@ export type SifRadioCardProp = Omit<RadioProps, 'children' | 'name'> & {
     label: ReactNode;
 };
 
-type Props<T extends FieldValues> = Omit<RadioGroupProps, 'name' | 'onChange' | 'children'> & {
+type Props<T extends FieldValues> = Omit<
+    RadioGroupProps,
+    'name' | 'onChange' | 'value' | 'defaultValue' | 'children'
+> & {
     name: Path<T>;
     radios: SifRadioCardProp[];
     horizontal?: boolean;
