@@ -3,7 +3,7 @@ import { BodyLong } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 
-import { MedlemskapFormFields, MedlemskapFormValues } from '../types';
+import { MedlemskapFormValues } from '../types';
 
 const { YesOrNoQuestion } = createSifFormComponents<MedlemskapFormValues>();
 
@@ -12,9 +12,9 @@ export const HarBoddINorgeSporsmal = () => {
     const { validateField } = useSifValidate('medlemskapForm');
     return (
         <YesOrNoQuestion
-            name={MedlemskapFormFields.harBoddINorge}
+            name="harBoddINorge"
             legend={text('medlemskapSteg.spørsmål.harBoddINorge')}
-            validate={validateField(MedlemskapFormFields.harBoddINorge, getYesOrNoValidator())}
+            validate={validateField('harBoddINorge', getYesOrNoValidator())}
             description={
                 <BodyLong>
                     <AppText id="medlemskapSteg.spørsmål.harBoddINorge.readMore.tekst" />

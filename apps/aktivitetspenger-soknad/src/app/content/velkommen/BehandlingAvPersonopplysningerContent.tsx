@@ -1,10 +1,10 @@
 import { AppText } from '@app/i18n';
-import { useLenker } from '@app/lenker';
+import { getLenker } from '@app/lenker';
 import { BodyLong, Heading, Link, List, VStack } from '@navikt/ds-react';
 import { ReactNode } from 'react';
 
 const BehandlingAvPersonopplysningerContent = () => {
-    const lenker = useLenker();
+    const lenker = getLenker();
 
     return (
         <VStack gap="space-24" paddingBlock="space-8 space-0">

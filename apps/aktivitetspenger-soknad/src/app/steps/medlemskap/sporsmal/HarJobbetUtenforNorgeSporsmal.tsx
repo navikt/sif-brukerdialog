@@ -3,7 +3,7 @@ import { BodyLong, ReadMore, VStack } from '@navikt/ds-react';
 import { getYesOrNoValidator } from '@navikt/sif-validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 
-import { MedlemskapFormFields, MedlemskapFormValues } from '../types';
+import { MedlemskapFormValues } from '../types';
 
 const { YesOrNoQuestion } = createSifFormComponents<MedlemskapFormValues>();
 
@@ -15,7 +15,7 @@ export const HarJobbetUtenforNorgeSporsmal = ({ harJobbetINorge }: Props) => {
     const { validateField } = useSifValidate('medlemskapForm');
     return (
         <YesOrNoQuestion
-            name={MedlemskapFormFields.harJobbetUtenforNorge}
+            name="harJobbetUtenforNorge"
             legend={
                 harJobbetINorge
                     ? text('medlemskapSteg.spørsmål.jobbetINorge.harJobbetUtenforNorge')
@@ -33,7 +33,7 @@ export const HarJobbetUtenforNorgeSporsmal = ({ harJobbetINorge }: Props) => {
                     </ReadMore>
                 </VStack>
             }
-            validate={validateField(MedlemskapFormFields.harJobbetUtenforNorge, getYesOrNoValidator())}
+            validate={validateField('harJobbetUtenforNorge', getYesOrNoValidator())}
         />
     );
 };

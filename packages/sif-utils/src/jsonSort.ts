@@ -4,7 +4,7 @@ export const jsonSort = (json: any): any => {
     }
     const sort = (o: any): any => {
         if (Array.isArray(o)) {
-            return o.sort().map(sort);
+            return o.map(sort);
         } else if (isObject(o)) {
             return Object.keys(o)
                 .sort()

@@ -1,6 +1,7 @@
 import { YesOrNo } from '@sif/rhf';
+import { yesOrNoToBoolean } from '@sif/utils';
 
-import { getMedlemskapSynlighet, yesOrNoToBoolean } from '../medlemskapSynlighet';
+import { getMedlemskapSynlighet } from '../medlemskapSynlighet';
 
 describe('yesOrNoToBoolean', () => {
     it('skal returnere true for YesOrNo.YES', () => {

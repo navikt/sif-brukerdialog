@@ -1,23 +1,9 @@
-import { YesOrNo } from '@sif/rhf';
-
 /** Svarene synlighetsreglene avhenger av. undefined betyr «ikke besvart». */
 interface MedlemskapSvar {
     harBoddINorge?: boolean;
     harJobbetINorge?: boolean;
     harJobbetUtenforNorge?: boolean;
 }
-
-export const yesOrNoToBoolean = (svar?: YesOrNo): boolean | undefined => {
-    switch (svar) {
-        case YesOrNo.YES:
-            return true;
-        case YesOrNo.NO:
-            return false;
-        case undefined:
-        case YesOrNo.UNANSWERED:
-            return undefined;
-    }
-};
 
 /**
  * Eneste kilde til sannhet for hvilke medlemskapsspørsmål som er relevante.

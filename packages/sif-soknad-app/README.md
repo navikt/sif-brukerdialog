@@ -35,7 +35,7 @@ Skjemafelter og validering, domenetyper og konvertering mellom skjemaverdier og 
 
 ### 1. App-rot
 
-`SøknadAppProvider` setter opp fellesinfrastrukturen. En React Router-router må ligge mellom provideren og `SøknadRouter` — `SøknadRouter` bruker `useNavigate`/`useLocation`.
+`SøknadAppProvider` setter opp fellesinfrastrukturen. En React Router-router må ligge mellom provideren og `SøknadProvider` — `SøknadProvider` bruker `useNavigate`/`useLocation`.
 
 ```tsx
 // App.tsx
@@ -78,11 +78,12 @@ export const søknadStepOrder: SøknadStepId[] = [SøknadStepId.BOSTED, SøknadS
 ```tsx
 // Soknad.tsx
 export const Søknad = () => (
-    <SøknadRouter
+    <SøknadProvider
         config={søknadStepConfig}
         stepOrder={søknadStepOrder}
         ytelse={APP_YTELSE}
         versjon={MELLOMLAGRING_VERSJON}
+        mellomlagringGrunnlag={{ antallBarn: barn.length }}
         applicationTitle={text('application.title')}
         formValuesToSøknadsdata={formValuesToSøknadsdata}
         kvitteringElement={<Kvittering />}
@@ -97,11 +98,11 @@ export const Søknad = () => (
             </Route>
             <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-    </SøknadRouter>
+    </SøknadProvider>
 );
 ```
 
-Merk: `/kvittering` registreres **ikke** av appen. Ruten eies av `SøknadRouter` og kan ikke åpnes via direkte URL.
+Merk: `/kvittering` registreres **ikke** av appen. Ruten eies av `SøknadProvider` og kan ikke åpnes via direkte URL.
 
 ### 4. Påkrevde i18n-nøkler
 
@@ -127,7 +128,7 @@ Knappetekster («Neste steg», «Forrige steg»), avbryt- og fortsett-senere-dia
 | Komponent                       | Formål                                                                                   |
 | ------------------------------- | ---------------------------------------------------------------------------------------- |
 | `SøknadAppProvider`             | App-rot: error boundary, react-query, analytics, UxSignals, i18n og appstatus (Sanity)   |
-| `SøknadRouter`                  | Hoved-inngang: store, mellomlagring, gjenopptaking, kvitteringsrute                      |
+| `SøknadProvider`                | Hoved-inngang: store, mellomlagring, gjenopptaking, kvitteringsrute                      |
 | `SøknadStepGuard`               | Routing-guard på layout-ruten for steg                                                   |
 | `SøknadStep`                    | Wrapper for ett steg: tittel, progress-stepper, avbryt, fortsett senere, konsistenssjekk |
 | `SøknadStepForm`                | RHF-skjema for ett steg: submit-/forrige-knapp, deaktivering ved inkonsistens            |
@@ -137,9 +138,9 @@ Knappetekster («Neste steg», «Forrige steg»), avbryt- og fortsett-senere-dia
 | `AppErrorBoundary`              | Feilgrense rundt appen                                                                   |
 | `AnalyticsProvider`             | Innblikk-logging                                                                         |
 | `InconsistentFormValuesMessage` | Varsel ved ulagrede endringer i tidligere steg (rendres av `SøknadStep`)                 |
-| `SøknadStepFormProvider`        | In-session skjemaverdier. Rendres av `SøknadRouter` — eksportert for tester/Storybook    |
+| `SøknadStepFormProvider`        | In-session skjemaverdier. Rendres av `SøknadProvider` — eksportert for tester/Storybook  |
 
-### `SøknadRouter`-props
+### `SøknadProvider`-props
 
 | Prop                      | Påkrevd | Beskrivelse                                                                                                    |
 | ------------------------- | ------- | -------------------------------------------------------------------------------------------------------------- |
@@ -151,6 +152,7 @@ Knappetekster («Neste steg», «Forrige steg»), avbryt- og fortsett-senere-dia
 | `kvitteringElement`       | ✅      | Vises på `/kvittering` etter innsending                                                                        |
 | `basePath`                |         | Basepath for steg. Default `/soknad`. Må matche `<Route path>` og `SøknadStepGuard`                            |
 | `validateMellomlagring`   |         | Egen validering av lagret blob. Returner `null` for å forkaste                                                 |
+| `mellomlagringGrunnlag`   |         | Ikke-sensitive grunnlagsverdier. Kun hash lagres; avvik ved oppstart forkaster og sletter mellomlagringen      |
 | `resumeLaterUrl`          |         | URL ved «fortsett senere». Default Nav Min side                                                                |
 | `loadingElement`          |         | Vises mens mellomlagring hentes                                                                                |
 | `formValuesToSøknadsdata` |         | Aktiverer konsistenssjekk. Uten denne er sjekken stille deaktivert                                             |
@@ -172,9 +174,9 @@ Knappetekster («Neste steg», «Forrige steg»), avbryt- og fortsett-senere-dia
 
 ### Typer og konstanter
 
-`StepDefinition`, `IncludedStep`, `StepFormValues`, `MellomlagringBlob`, `SøknadRouterProps`, `SøknadStepProps`, `AppIntlConfig`, `SanityConfig`, `ApplikasjonHendelse`, `CustomAnalyticsEvents`, `KVITTERING_PATH`.
+`StepDefinition`, `IncludedStep`, `StepFormValues`, `MellomlagringBlob`, `SøknadProviderProps`, `SøknadStepProps`, `AppIntlConfig`, `IntlMessageObjectFormat`, `SanityConfig`, `ApplikasjonHendelse`, `CustomAnalyticsEvents`, `KVITTERING_PATH`.
 
-`SøknadAppContext`, `useSøknadAppContext` og `createSøknadAppStore` er eksportert for avansert bruk — typisk Storybook-dekoratører og tester som trenger kontekst uten en full `SøknadRouter`.
+`SøknadAppContext`, `useSøknadAppContext` og `createSøknadAppStore` er eksportert for avansert bruk — typisk Storybook-dekoratører og tester som trenger kontekst uten en full `SøknadProvider`.
 
 ## Konsepter
 
@@ -182,14 +184,27 @@ Knappetekster («Neste steg», «Forrige steg»), avbryt- og fortsett-senere-dia
 
 ```
 <SøknadAppProvider>            ErrorBoundary, react-query, analytics, UxSignals, i18n, appstatus
-  <BrowserRouter>              Appens ansvar — kreves av SøknadRouter
-    <SøknadRouter>             Zustand-store, mellomlagring-init, eier /kvittering
+  <BrowserRouter>              Appens ansvar — kreves av SøknadProvider
+    <SøknadProvider>             Zustand-store, mellomlagring-init, eier /kvittering
       <SøknadStepFormProvider> In-session skjemaverdier per steg (konsistenssjekk + live getters)
         <SøknadAppContext>     Store + config eksponert til alle hooks
           {children}           Appens <Routes> — velkomst og steg
 ```
 
-`SøknadRouter` venter på mellomlagring-hentingen før den viser `children`, slik at velkomstsiden ikke blinker før en eventuell resume-navigering.
+`SøknadProvider` venter på mellomlagring-hentingen før den viser `children`, slik at velkomstsiden ikke blinker før en eventuell resume-navigering.
+
+### Mellomlagring ved oppstart
+
+`SøknadProvider` henter mellomlagringen én gang ved mount og forkaster den hvis:
+
+1. `versjon` er ulik
+2. `resumeStepId` ikke finnes i `stepOrder`
+3. `grunnlagHash` er ulik hashen av `mellomlagringGrunnlag` — da slettes den også i backend
+4. `validateMellomlagring` returnerer `null`
+
+`mellomlagringGrunnlag` er valgfri. Uten den lagres ingen hash. Hvis mellomlagringen inneholder en hash fra før, forkastes og slettes den når prop-en fjernes. Tilsvarende forkastes og slettes mellomlagring uten hash når prop-en legges til. Mellomlagring uten hash kan gjenopptas når prop-en også mangler.
+
+Grunnlaget må være lastet før `SøknadProvider` mountes, og hashen beregnes med `createGrunnlagHash` fra `@sif/utils`. Playwright-fixturer importerer den fra `@sif/utils/grunnlagHash` for å unngå JSON-importer i Node.
 
 ### `resumeStepId`
 
@@ -213,29 +228,29 @@ Midlertidige skjemaverdier (ikke submittet) finnes på tre steder med ulik levet
 
 ### Navigasjonsansvar
 
-| Beslutning                         | Eier                                          |
-| ---------------------------------- | --------------------------------------------- |
-| Resume fra mellomlagring ved mount | `SøknadRouter`                                |
-| Start søknad → første steg         | `useStartSøknad`                              |
-| Neste steg etter submit            | `useStepData.commit`                          |
-| Forrige steg / hopp til steg       | `useStepNavigation`                           |
-| Klikk i progress-stepper           | `SøknadStep`                                  |
-| Avbryt → forsiden                  | `SøknadStep` / `useAvbryt`                    |
-| Fortsett senere                    | `SøknadStep`                                  |
-| Kvittering etter innsending        | `SøknadRouter` (synker URL mot `søknadSendt`) |
-| URL-guard / redirect               | `SøknadStepGuard`                             |
+| Beslutning                         | Eier                                            |
+| ---------------------------------- | ----------------------------------------------- |
+| Resume fra mellomlagring ved mount | `SøknadProvider`                                |
+| Start søknad → første steg         | `useStartSøknad`                                |
+| Neste steg etter submit            | `useStepData.commit`                            |
+| Forrige steg / hopp til steg       | `useStepNavigation`                             |
+| Klikk i progress-stepper           | `SøknadStep`                                    |
+| Avbryt → forsiden                  | `SøknadStep` / `useAvbryt`                      |
+| Fortsett senere                    | `SøknadStep`                                    |
+| Kvittering etter innsending        | `SøknadProvider` (synker URL mot `søknadSendt`) |
+| URL-guard / redirect               | `SøknadStepGuard`                               |
 
 ### Konsistenssjekk (browser back/forward)
 
 Dersom bruker endrer et tidligere steg via back-knappen uten å submitte, vises `InconsistentFormValuesMessage` øverst i neste steg og submit deaktiveres.
 
-Sjekken er opt-in og aktiveres ved å sette `formValuesToSøknadsdata` på `SøknadRouter`:
+Sjekken er opt-in og aktiveres ved å sette `formValuesToSøknadsdata` på `SøknadProvider`:
 
 ```tsx
 // Lag en hook siden konverteringen typisk trenger app-kontekst
 const formValuesToSøknadsdata = useFormValuesToSøknadsdata();
 
-<SøknadRouter formValuesToSøknadsdata={formValuesToSøknadsdata} ...>
+<SøknadProvider formValuesToSøknadsdata={formValuesToSøknadsdata} ...>
 ```
 
 ## Oppskrifter
@@ -260,7 +275,7 @@ export const MyStep = () => {
 
     return (
         <SøknadStep stepId={stepId}>
-            <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
+            <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit}>
                 <FormLayout.Content>
                     <FormLayout.Questions>{/* skjemafelter her */}</FormLayout.Questions>
                 </FormLayout.Content>
@@ -303,7 +318,7 @@ const { onSøknadSendt } = useSøknadSendt();
 // Kall etter vellykket POST:
 await onSøknadSendt();
 // → sletter mellomlagring, logger analytics, setter søknadSendt = true
-// → SøknadRouter synker URL til /kvittering og viser kvitteringElement
+// → SøknadProvider synker URL til /kvittering og viser kvitteringElement
 ```
 
 ## Utvikling

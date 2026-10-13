@@ -1,10 +1,16 @@
 import { AppText, useAppIntl } from '@app/i18n';
-import { useLenker } from '@app/lenker';
+import { getLenker } from '@app/lenker';
 import { DeltBostedSøknadsdata, Søknadsdata } from '@app/types/Soknadsdata';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { getVedleggValidator } from '@navikt/sif-validation';
-import { UploadedFile,useSifValidate } from '@sif/rhf';
-import { SøknadStepForm, useMellomlagring, useSaveSøknadFormValues, useSøknadsdata, useStepData } from '@sif/soknad-app';
+import { UploadedFile, useSifValidate } from '@sif/rhf';
+import {
+    SøknadStepForm,
+    useMellomlagring,
+    useSaveSøknadFormValues,
+    useSøknadsdata,
+    useStepData,
+} from '@sif/soknad-app';
 import { toUploadedFile, VedleggPanel } from '@sif/soknad-forms';
 import { FormLayout, SifGuidePanel } from '@sif/soknad-ui/components';
 import { useForm } from 'react-hook-form';
@@ -15,7 +21,7 @@ import { DeltBostedFormFields, DeltBostedFormValues } from './types';
 const stepId = SøknadStepId.DELT_BOSTED;
 
 export const DeltBostedForm = () => {
-    const lenker = useLenker();
+    const lenker = getLenker();
     const { text } = useAppIntl();
     const { validateField } = useSifValidate('deltBostedForm');
 

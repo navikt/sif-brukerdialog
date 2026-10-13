@@ -5,6 +5,10 @@
     "description": "V2 utils for Sykdom i familien teamet",
     "author": "navikt",
     "type": "module",
+    "exports": {
+        ".": "./src/index.ts",
+        "./grunnlagHash": "./src/grunnlagHash.ts"
+    },
     "main": "src/index.ts",
     "scripts": {
         "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",

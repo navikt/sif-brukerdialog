@@ -19,7 +19,7 @@ Bruk denne indeksen for rask routing til riktig skill.
 
 - `sif-soknad-app`
     - Når: endre eller feilsøke selve søknadsrammeverket, inkludert steg-navigering, mellomlagring og gjenopptak.
-    - Triggerord: `@sif/soknad-app`, `SøknadRouter`, `SøknadStep`, `SøknadStepGuard`, `useStepData`, `useMellomlagring`, `resumeStepId`.
+    - Triggerord: `@sif/soknad-app`, `SøknadProvider`, `SøknadStep`, `SøknadStepGuard`, `useStepData`, `useMellomlagring`, `resumeStepId`.
     - Fil: `.github/skills/sif-soknad-app/SKILL.md`
 
 - `aksel-spacing`

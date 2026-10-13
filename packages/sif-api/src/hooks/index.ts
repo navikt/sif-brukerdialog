@@ -9,4 +9,3 @@ export * from './useSendOppgavebekreftelse';
 export * from './useSoker';
 export * from './useValiderFritekst';
 export * from './useVedlegg';
-export * from './useYtelseMellomlagring';

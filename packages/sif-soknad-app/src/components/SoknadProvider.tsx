@@ -4,13 +4,14 @@ import {
     oppdaterYtelseMellomlagring,
     slettYtelseMellomlagring,
 } from '@sif/api/k9-prosessering';
+import { createGrunnlagHash } from '@sif/utils';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
 import { SøknadStepFormProvider } from '../consistency/SøknadStepFormContext';
 import { SøknadAppContext, SøknadAppContextValue } from '../context/SøknadAppContext';
 import { createSøknadAppStore } from '../store/createSøknadAppStore';
-import { MellomlagringBlob, SøknadRouterProps } from '../types';
+import { MellomlagringBlob, SøknadProviderProps } from '../types';
 import { buildStepPath, KVITTERING_PATH } from '../utils/routeUtils';
 const isMellomlagringBlob = (value: unknown): value is MellomlagringBlob => {
     if (typeof value !== 'object' || value === null) return false;
@@ -36,7 +37,7 @@ const DEFAULT_RESUME_LATER_URL = 'https://www.nav.no/minside';
  *
  * Se README for navigasjonsansvar og oppsett i app.
  */
-export const SøknadRouter = ({
+export const SøknadProvider = ({
     config,
     stepOrder,
     ytelse,
@@ -44,18 +45,26 @@ export const SøknadRouter = ({
     applicationTitle,
     basePath = '/soknad',
     validateMellomlagring,
+    mellomlagringGrunnlag,
     resumeLaterUrl = DEFAULT_RESUME_LATER_URL,
     loadingElement,
     kvitteringElement,
     formValuesToSøknadsdata,
     children,
-}: SøknadRouterProps) => {
-    // Én stabil store-instans per SøknadRouter-mount
+}: SøknadProviderProps) => {
+    // Én stabil store-instans per SøknadProvider-mount
     const storeRef = useRef<ReturnType<typeof createSøknadAppStore>>(null);
     if (!storeRef.current) {
         storeRef.current = createSøknadAppStore({ config, stepOrder });
     }
     const store = storeRef.current;
+    // Grunnlaget er lastet før mount og endres ikke i økten — hashes én gang
+    const grunnlagHashRef = useRef<Promise<string | undefined>>(null);
+    if (!grunnlagHashRef.current) {
+        grunnlagHashRef.current = mellomlagringGrunnlag
+            ? createGrunnlagHash(mellomlagringGrunnlag)
+            : Promise.resolve(undefined);
+    }
     const søknadSendt = store((s) => s.søknadSendt);
     const isInitialized = store((s) => s.isInitialized);
     const resumeStepId = store((s) => s.resumeStepId);
@@ -75,6 +84,9 @@ export const SøknadRouter = ({
                         blob = null;
                     } else if (!stepOrder.includes(payload.resumeStepId)) {
                         blob = null;
+                    } else if (payload.grunnlagHash !== (await grunnlagHashRef.current)) {
+                        blob = null;
+                        void slettYtelseMellomlagring(ytelse as MellomlagringYtelse).catch(() => {});
                     } else {
                         blob = validateMellomlagring ? validateMellomlagring(payload) : payload;
                     }
@@ -122,9 +134,13 @@ export const SøknadRouter = ({
 
     const lagreMellomlagring = useCallback(
         async (blobData: MellomlagringBlob): Promise<void> => {
+            const grunnlagHash = await grunnlagHashRef.current;
             await oppdaterYtelseMellomlagring(
                 ytelse as MellomlagringYtelse,
-                blobData as unknown as Record<string, unknown>,
+                {
+                    ...blobData,
+                    grunnlagHash,
+                } as unknown as Record<string, unknown>,
             ).catch(() => {});
         },
         [ytelse],

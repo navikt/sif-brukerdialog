@@ -84,7 +84,7 @@ export const useSendSøknad = () => {
 };
 ```
 
-**Ikke** kall `slettMellomlagring()` eller `setSøknadSendt()` manuelt i oppsummeringssteget — `onSøknadSendt` gjør begge deler, og `SøknadRouter` navigerer selv til `/kvittering`. **Ikke** bruk `mutateAsync`: uten `try/catch` re-kaster RHF `handleSubmit`, og `SifForm` fanger ikke — det gir unhandled rejection ved hver feilede innsending.
+**Ikke** kall `slettMellomlagring()` eller `setSøknadSendt()` manuelt i oppsummeringssteget — `onSøknadSendt` gjør begge deler, og `SøknadProvider` navigerer selv til `/kvittering`. **Ikke** bruk `mutateAsync`: uten `try/catch` re-kaster RHF `handleSubmit`, og `SifForm` fanger ikke — det gir unhandled rejection ved hver feilede innsending.
 
 ### `src/app/utils/soknadsdataToSoknadDTO.ts`
 

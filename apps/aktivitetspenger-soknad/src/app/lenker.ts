@@ -16,9 +16,7 @@ const getLenker = (): Lenker => ({
     sendBeskjed: getAppEnv().SIF_PUBLIC_SEND_BESKJED,
 });
 
-const useLenker = (): Lenker => getLenker();
-
-export { getLenker, useLenker };
+export { getLenker };
 export type { SifLenker };
 
 export default getLenker;

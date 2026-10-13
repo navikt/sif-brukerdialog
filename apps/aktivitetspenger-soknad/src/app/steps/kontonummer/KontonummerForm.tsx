@@ -13,7 +13,7 @@ import { AriaLiveRegion, ExternalLink, SifGuidePanel, SifInfoCard } from '@sif/s
 import { useForm } from 'react-hook-form';
 
 import { toKontonummerFormValues, toKontonummerSøknadsdata } from './kontonummerStegUtils';
-import { KontonummerFormFields, KontonummerFormValues } from './types';
+import { KontonummerFormValues } from './types';
 
 const { YesOrNoQuestion } = createSifFormComponents<KontonummerFormValues>();
 
@@ -32,11 +32,11 @@ export const KontonummerForm = () => {
 
     const onSubmit = (data: KontonummerFormValues) => commit(toKontonummerSøknadsdata(data));
 
-    const kontonummerErRiktig = methods.watch(KontonummerFormFields.kontonummerErRiktig);
+    const kontonummerErRiktig = methods.watch('kontonummerErRiktig');
 
     return (
         <SøknadStep stepId={stepId}>
-            <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
+            <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit}>
                 <FormLayout.Content>
                     <SifGuidePanel>
                         <AppText id="kontonummerSteg.veileder.tekst" />
@@ -45,14 +45,11 @@ export const KontonummerForm = () => {
                         {kontonummerInfo.harKontonummer === HarKontonummerEnum.JA && (
                             <>
                                 <YesOrNoQuestion
-                                    name={KontonummerFormFields.kontonummerErRiktig}
+                                    name="kontonummerErRiktig"
                                     legend={text('kontonummerSteg.spørsmål.kontonummerErRiktig', {
                                         kontonummer: kontonummerInfo.formatertKontonummer,
                                     })}
-                                    validate={validateField(
-                                        KontonummerFormFields.kontonummerErRiktig,
-                                        getYesOrNoValidator(),
-                                    )}
+                                    validate={validateField('kontonummerErRiktig', getYesOrNoValidator())}
                                 />
                                 <AriaLiveRegion visible={kontonummerErRiktig === YesOrNo.NO}>
                                     <FormLayout.QuestionRelatedMessage>

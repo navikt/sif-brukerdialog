@@ -21,7 +21,7 @@ export const useInitialData = (): InitialDataResult => {
 
     const requiredQueries = [søker, registrerteBarn, tilgjengeligSøknad];
 
-    if (requiredQueries.some((q) => q.isLoading) || kontonummer.isLoading || tilgjengeligSøknad.isLoading) {
+    if (requiredQueries.some((q) => q.isLoading) || kontonummer.isLoading) {
         return { status: 'loading' };
     }
 

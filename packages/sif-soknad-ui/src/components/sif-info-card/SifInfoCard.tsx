@@ -1,8 +1,8 @@
 import {
     CheckmarkCircleFillIcon,
-    XMarkOctagonFillIcon,
-    InformationSquareFillIcon,
     ExclamationmarkTriangleFillIcon,
+    InformationSquareFillIcon,
+    XMarkOctagonFillIcon,
 } from '@navikt/aksel-icons';
 import { InfoCard, InfoCardProps } from '@navikt/ds-react';
 import { ReactNode, Ref } from 'react';

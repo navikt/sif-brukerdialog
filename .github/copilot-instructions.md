@@ -35,5 +35,6 @@ This repository is a pnpm + Turborepo monorepo.
 ## Tekster og copy
 
 - Ikke dikte opp eller formuler nye brukertekster, feilmeldinger eller labels på egen hånd.
-- Hent alltid tekster fra eksisterende kildeapp, etablert copy i repoet, eller eksplisitt brukerbestilling.
+- Bruk tekster fra eksisterende kildeapp, etablert copy i repoet eller eksplisitt oppgitt ordlyd. Ordlyd utvikleren selv legger inn i PR-diffen regnes som eksplisitt copygrunnlag.
+- Ikke krev en separat kilde eller godkjenning for ny tekst i PR-diffen, og ikke kommenter bare fordi teksten ikke finnes i en annen kilde.
 - Ved migrering: les kildeappen og kopier tekstene ordrett.

@@ -1,7 +1,7 @@
 import { MedlemskapSøknadsdata } from '@app/types/Soknadsdata';
-import { getYesOrNoFromBoolean } from '@sif/utils';
+import { getYesOrNoFromBoolean, yesOrNoToBoolean } from '@sif/utils';
 
-import { getMedlemskapSynlighet, yesOrNoToBoolean } from './medlemskapSynlighet';
+import { getMedlemskapSynlighet } from './medlemskapSynlighet';
 import { MedlemskapFormValues } from './types';
 
 export const toMedlemskapStegFormValues = (

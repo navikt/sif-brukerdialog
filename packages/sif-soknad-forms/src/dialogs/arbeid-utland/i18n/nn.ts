@@ -43,6 +43,14 @@ export const arbeidUtlandMessages_nn: Record<keyof typeof arbeidUtlandMessages_n
         'Du må oppgje når perioden med jobb vart avslutta i eit gyldig format. Gyldig format er dd.mm.åååå.',
     '@sifSoknadForms.arbeidUtlandForm.validation.tom.toDateIsBeforeFromDate':
         'Datoen perioden med jobb vart avslutta kan ikkje vere før datoen det starta. Skriv inn eller vel sluttdato frå datoveljaren.',
+
+    '@sifSoknadForms.arbeidUtlandForm.validation.utenlandskNasjonalId.stringIsTooLong':
+        'Utanlandsk ID-nummer/personnummer kan ikkje innehalde fleire enn {maks} teikn.',
+    '@sifSoknadForms.arbeidUtlandForm.validation.utenlandskNasjonalId.stringIsTooShort':
+        'Utanlandsk ID-nummer/personnummer må innehalde minst {min} teikn.',
+    '@sifSoknadForms.arbeidUtlandForm.validation.utenlandskNasjonalId.stringHasInvalidCharacters':
+        'Feltet inneheld ugyldige teikn. Dette kan mellom anna oppstå dersom tekst vert kopiert frå andre stader. Du kan prøve å skrive inn teksten på nytt direkte i feltet.',
+
     '@sifSoknadForms.arbeidUtlandForm.validation.landkode.noValue': 'Du må velja land',
     '@sifSoknadForms.arbeidUtlandForm.validation.jobbetIPerioden.yesOrNoIsUnanswered':
         'Du må svara på om du jobba i dette landet i denne perioden',

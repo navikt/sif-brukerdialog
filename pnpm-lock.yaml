@@ -4162,9 +4162,6 @@ importers:
       dayjs:
         specifier: 1.11.23
         version: 1.11.23
-      object-hash:
-        specifier: 3.0.0
-        version: 3.0.0
       uuid:
         specifier: ^14.0.2
         version: 14.0.2

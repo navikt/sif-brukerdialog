@@ -44,7 +44,7 @@ const SøknadStepFormContext = createContext<SøknadStepFormContextValue | null>
 
 /**
  * Provider som holder in-session skjemaverdier per steg (lag 1 + 2 av tre draft-lag).
- * Monteres av SøknadRouter og wrapper hele søknadsflyten.
+ * Monteres av SøknadProvider og wrapper hele søknadsflyten.
  */
 export const SøknadStepFormProvider = ({ children }: { children: ReactNode }) => {
     const [values, setValues] = useState<StepFormValuesMap>({});

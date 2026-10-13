@@ -6,7 +6,6 @@ export { useSendOppgavebekreftelse, type YtelseOppgavebekreftelse } from '../hoo
 export { useSøker } from '../hooks/useSoker';
 export { useValiderFritekst } from '../hooks/useValiderFritekst';
 export { useLagreVedlegg, useSlettVedlegg } from '../hooks/useVedlegg';
-export { useYtelseMellomlagring } from '../hooks/useYtelseMellomlagring';
 
 // API
 export { hentArbeidsgivere } from '../api/arbeidsgivereApi';

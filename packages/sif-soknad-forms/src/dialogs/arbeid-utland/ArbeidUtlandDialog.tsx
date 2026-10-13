@@ -1,4 +1,4 @@
-import { BodyLong, Box,Button, Dialog } from '@navikt/ds-react';
+import { BodyLong, Box, Button, Dialog } from '@navikt/ds-react';
 import { ISODate } from '@sif/utils';
 
 import { SifSoknadFormsText } from '../../i18n';
@@ -45,11 +45,10 @@ export const ArbeidUtlandFormDialog = ({
                             <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.tittel.generell" />
                         </Dialog.Title>
                         <Dialog.Description>
-                            <Box marginBlock="space-12">
-                                <BodyLong>
+                            <Box marginBlock="space-12" as="span">
+                                <BodyLong as="span">
                                     <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.generell.beskrivelse.1" />
-                                </BodyLong>
-                                <BodyLong>
+                                    <br />
                                     <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.generell.beskrivelse.2" />
                                 </BodyLong>
                             </Box>
@@ -61,11 +60,10 @@ export const ArbeidUtlandFormDialog = ({
                             <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.tittel.periodeMedJobb" />
                         </Dialog.Title>
                         <Dialog.Description>
-                            <Box marginBlock="space-12">
-                                <BodyLong>
+                            <Box marginBlock="space-12" as="span">
+                                <BodyLong as="span">
                                     <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.periodeMedJobb.beskrivelse.1" />
-                                </BodyLong>
-                                <BodyLong>
+                                    <br />
                                     <SifSoknadFormsText id="@sifSoknadForms.arbeidUtland.dialog.periodeMedJobb.beskrivelse.2" />
                                 </BodyLong>
                             </Box>

@@ -1,5 +1,5 @@
 import { AppText, useAppIntl } from '@app/i18n';
-import { useLenker } from '@app/lenker';
+import { getLenker } from '@app/lenker';
 import { BodyLong, Heading, Link, VStack } from '@navikt/ds-react';
 import { SifInfoCard } from '@sif/soknad-ui/components';
 import { dateFormatter } from '@sif/utils';
@@ -13,7 +13,7 @@ interface Props {
 
 export const VedtakForBarnInfo = ({ barnetsFornavn, vedtak }: Props) => {
     const { text } = useAppIntl();
-    const lenker = useLenker();
+    const lenker = getLenker();
 
     const minSideLenke = (chunks: React.ReactNode) => (
         <Link href={lenker.navMinSide} target="_blank" rel="noopener noreferrer">

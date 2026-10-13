@@ -28,11 +28,11 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
     - Sjekk: `parametersjekk`, `meningssjekk`, `{param}`, `plural`, `ICU`.
 - `sif-api`:
     - API-henting i app: `hente fra api`, `api-kall`, `fetch`, `react query`, `tanstack query`, `preutfyll fra api`, `last inn data`.
-    - Hooks og query: `@sif/api`, `useQuery`, `queryKey`, `queryFn`, `useKontonummer`, `useSøker`, `useRegistrerteBarn`, `useYtelseMellomlagring`, `ApiErrorAlert`.
+    - Hooks og query: `@sif/api`, `useQuery`, `queryKey`, `queryFn`, `useKontonummer`, `useSøker`, `useRegistrerteBarn`, `ApiErrorAlert`.
     - Oppsett: `env.schema.ts`, `initApiClients`, API-klient-init, `*_API_URL`, `*_API_SCOPE`, `*_FRONTEND_PATH`.
 - `sif-soknad-app`:
     - Rammeverket selv: `@sif/soknad-app`, `sif-soknad-app`, `packages/sif-soknad-app`, `utvide rammeverket`, `endre rammeverket`.
-    - Komponenter: `SøknadRouter`, `SøknadStep`, `SøknadStepGuard`, `StepRouteGuard`, `SøknadAppContext`, `SøknadFormValuesProvider`.
+    - Komponenter: `SøknadProvider`, `SøknadStep`, `SøknadStepGuard`, `StepRouteGuard`, `SøknadAppContext`, `SøknadFormValuesProvider`.
     - Hooks: `useStepData`, `useMellomlagring`, `useSaveSøknadFormValues`, `useCheckConsistency`, `useStartSøknad`, `useSøknadSendt`.
     - Store og typer: `createSøknadAppStore`, `commitState`, `MellomlagringBlob`, `resumeStepId`, `draftFormValues`, `SøknadStoreState`, `formValuesToSøknadsdata`.
 - `sif-soknad-setup`:

@@ -13,7 +13,7 @@ description: Legg til et nytt steg i en søknadsapp som bruker @sif/soknad-app o
 
 ## Leveranse
 
-- `src/app/steps/<steg>/types.ts` — `FormFields` og `FormValues`
+- `src/app/steps/<steg>/types.ts` — `FormValues` (uten `FormFields`-enum, se `sif-soknad-setup` → «Feltnavn uten `FormFields`-enum»)
 - `src/app/steps/<steg>/<Prefix>Form.tsx` — skjemakomponent
 - `src/app/steps/<steg>/<prefix>StegUtils.ts` — mapping mellom FormValues og søknadsdata
 - `src/app/steps/<steg>/i18n/nb.ts` og `nn.ts` — tekster og valideringsmeldinger
@@ -140,16 +140,12 @@ Opprett 5 filer under `src/app/steps/<mappename>/`:
 ```ts
 import { YesOrNo } from '@sif/rhf';
 
-export enum <Prefix>FormFields {
-    <felt> = '<felt>',
+export interface <Prefix>FormValues {
+    <felt>?: YesOrNo;
 }
-
-export type <Prefix>FormValues = {
-    [<Prefix>FormFields.<felt>]?: YesOrNo;
-};
 ```
 
-> For andre felttyper enn YesOrNo, bruk `string`, `boolean`, osv. etter behov.
+> For andre felttyper enn YesOrNo, bruk `string`, `boolean`, osv. etter behov. Ikke lag `FormFields`-enum — RHF typesjekker `name` mot `FormValues`.
 
 #### `<prefix>StegUtils.ts`
 
@@ -210,7 +206,7 @@ import { SøknadStep, SøknadStepForm, useSaveSøknadFormValues, useStepData } f
 import { useForm } from 'react-hook-form';
 
 import { to<Prefix>FormValues, to<Prefix>Søknadsdata } from './<prefix>StegUtils';
-import { <Prefix>FormFields, <Prefix>FormValues } from './types';
+import { <Prefix>FormValues } from './types';
 
 const { YesOrNoQuestion } = createSifFormComponents<<Prefix>FormValues>();
 
@@ -228,11 +224,11 @@ export const <Prefix>Form = () => {
 
     return (
         <SøknadStep stepId={stepId}>
-            <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit} isPending={false}>
+            <SøknadStepForm stepId={stepId} methods={methods} onSubmit={onSubmit}>
                 <YesOrNoQuestion
-                    name={<Prefix>FormFields.<felt>}
+                    name="<felt>"
                     legend={text('<prefix>Steg.spørsmål.<felt>')}
-                    validate={validateField(<Prefix>FormFields.<felt>, getYesOrNoValidator())}
+                    validate={validateField('<felt>', getYesOrNoValidator())}
                 />
             </SøknadStepForm>
         </SøknadStep>

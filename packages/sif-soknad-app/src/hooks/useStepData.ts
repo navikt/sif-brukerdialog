@@ -47,8 +47,11 @@ export function useStepData<TCommitted = unknown, TDraft = Record<string, unknow
     commit: (data: TCommitted) => Promise<void>;
 } {
     const { store, basePath, versjon, lagreMellomlagring } = useSøknadAppContext();
-    const { markSkipNextUnmountSaveForStep, clearFormValuesForStep, draftFormValues: inSessionValues } =
-        useSøknadStepFormContext();
+    const {
+        markSkipNextUnmountSaveForStep,
+        clearFormValuesForStep,
+        draftFormValues: inSessionValues,
+    } = useSøknadStepFormContext();
     const navigate = useNavigate();
 
     const lagretData = store((s) => s.søknadsdata[stepId]) as TCommitted | undefined;

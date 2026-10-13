@@ -6,7 +6,7 @@ import { useSøknadAppContext } from '../context/SøknadAppContext';
 /**
  * Hook for å fullføre søknadsinnsending: rydder opp og markerer søknaden som sendt.
  *
- * Navigerer ikke selv — SøknadRouter synker URL mot `søknadSendt`.
+ * Navigerer ikke selv — SøknadProvider synker URL mot `søknadSendt`.
  *
  * **Bruk den som `onSuccess` i mutasjonsoppsettet:**
  *
