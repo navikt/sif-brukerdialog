@@ -114,7 +114,7 @@ export const zAktivitetspengersøknad = z.object({
     kontonummerInfo: zKontonummerInfo,
     medlemskap: zMedlemskapAktivitetspenger,
     språk: z.string(),
-    startdato: z.iso.date(),
+    startdato: z.iso.date().nullish(),
     søkerNorskIdent: z.string(),
 });
 
