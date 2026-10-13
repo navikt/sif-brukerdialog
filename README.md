@@ -8,7 +8,10 @@ Monorepo for selvbetjeningsdialoger og fellespakker i Sykdom i familien.
 | -------------------------------- | --------------------------------------------------------------------- |
 | `apps/`                          | Brukerrettede søknadsapper (React/Next.js)                            |
 | `apps-intern/`                   | Interne verktøy og veilederflater                                     |
-| `packages/`                      | Delte pakker og biblioteker                                           |
+| `packages/core/`                 | Delte v2-pakker (`@sif/*`), brukes i nye apper                        |
+| `packages/legacy/`               | Delte v1-pakker (`@navikt/sif-common-*`), kun feilretting             |
+| `packages/api/`                  | Genererte API-typer og -klienter fra backend (codegen)                |
+| `packages/tooling/`              | Felles konfigurasjon (tsconfig, ESLint, Sanity)                       |
 | `server/`                        | Backend-server (proxying og autentisering) for de fleste apper        |
 | `server-ungdomsytelse-veileder/` | Backend-server (proxying og autentisering) for ungdomsytelse veileder |
 

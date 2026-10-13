@@ -1,0 +1,27 @@
+import { defineConfig, type UserConfig } from '@hey-api/openapi-ts';
+
+import { createSchemaNameResolver } from '../../../../scripts/codegen/codegenUtils.js';
+
+export const createConfig = (): UserConfig => ({
+    input: './specs/innsyn.json',
+    parser: {
+        transforms: {
+            schemaName: createSchemaNameResolver('./specs/innsyn.json'),
+        },
+    },
+    output: {
+        postProcess: ['prettier'],
+        path: './src/generated/innsyn', // Separat mappe
+    },
+    plugins: [
+        { name: 'zod', exportFromIndex: true },
+        { operations: { strategy: 'byTags' }, name: '@hey-api/sdk', validator: true },
+        { name: '@hey-api/client-axios', throwOnError: true, baseUrl: '', exportFromIndex: true },
+        {
+            enums: 'typescript',
+            name: '@hey-api/typescript',
+        },
+    ],
+});
+
+export default defineConfig(createConfig());

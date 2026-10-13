@@ -51,11 +51,11 @@ jobs:
                   filters: |
                       #   aktivitetspenger-innsyn:
                       #     - 'apps/aktivitetspenger-innsyn/**'
-                      #     - 'packages/ung-innsyn/**'
+                      #     - 'packages/core/ung-innsyn/**'
                       #     - 'server/**'
                       #   aktivitetspenger-soknad:
                       #     - 'apps/aktivitetspenger-soknad/**'
-                      #     - 'packages/sif-soknad-app/**'
+                      #     - 'packages/core/sif-soknad-app/**'
                       #     - 'server/**'
                         dine-pleiepenger:
                           - 'apps/dine-pleiepenger/**'

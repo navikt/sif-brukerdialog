@@ -341,7 +341,7 @@ Valideringsnøkler må matche `<scope>.validation.<fieldName>.<errorCode>`.
 | `getDateValidator`          | `dateHasNoValue`, `dateHasInvalidFormat`, `dateIsBeforeMin`, `dateIsAfterMax`                                      |
 | `getFødselsnummerValidator` | `fødselsnummerHasNoValue`, `fødselsnummerIsNot11Chars`, `fødselsnummerIsInvalid`, `fødselsnummerAsHnrIsNotAllowed` |
 
-Finn alle koder i `packages/sif-validation/src/get*Validator.ts` via `enum Validate*Error`.
+Finn alle koder i `packages/core/sif-validation/src/get*Validator.ts` via `enum Validate*Error`.
 
 **Sjekk:** Felt-enum i Formik og felt-navnene i i18n-nøklene må matche. Hvis formik brukte `formErrorHandler` med scope `'uttalelseForm.validation'` men felt-enum heter `harUttalelse`, må nøkkelen i `nb.ts` være:
 

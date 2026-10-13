@@ -26,7 +26,7 @@ description: Bruk denne skillen når en utvikler skal sette opp eller feilsøke 
 
 ## Pakken `@sif/surveys`
 
-Alt Skyra- og UX Signals-relatert ligger i `packages/sif-surveys`. Apper importerer direkte — ingen lokale re-eksporter.
+Alt Skyra- og UX Signals-relatert ligger i `packages/core/sif-surveys`. Apper importerer direkte — ingen lokale re-eksporter.
 
 ### Eksporter
 
@@ -43,7 +43,7 @@ Alt Skyra- og UX Signals-relatert ligger i `packages/sif-surveys`. Apper importe
 
 ### `SkyraSlug` — sentral enum
 
-Alle gyldige slugs er registrert i `packages/sif-surveys/src/skyra/SkyraSlug.ts`. Komponentene `Skyra` og `SkyraTestPage` aksepterer **kun** `SkyraSlug`-verdier — feil slug gir kompileringsfeil.
+Alle gyldige slugs er registrert i `packages/core/sif-surveys/src/skyra/SkyraSlug.ts`. Komponentene `Skyra` og `SkyraTestPage` aksepterer **kun** `SkyraSlug`-verdier — feil slug gir kompileringsfeil.
 
 Nye slugs legges til her. Spør utvikleren om slug-verdi først (format: `organisasjon/undersøkelse-navn`). Ikke gjenbruk slugs fra en annen app.
 

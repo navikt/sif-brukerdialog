@@ -1,9 +1,0 @@
-{
-    "extends": "../config/tsconfig-packages.json",
-    "compilerOptions": {
-        "outDir": "./lib",
-        "types": ["vitest/globals"]
-    },
-    "exclude": ["src/**/*.spec.*", "src/**/*.test.*", "src/**/*.stories.*"],
-    "include": ["src"]
-}

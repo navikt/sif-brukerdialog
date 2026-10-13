@@ -24,7 +24,7 @@
         "lint:fix": "turbo lint:fix",
         "lint:tsc": "turbo lint:tsc",
         "prepare": "husky install",
-        "sort-package-json": "sort-package-json \"package.json\" \"apps/*/package.json\" \"apps-intern/*/package.json\" \"packages/*/package.json\" \"server*/package.json\"",
+        "sort-package-json": "sort-package-json \"package.json\" \"apps/*/package.json\" \"apps-intern/*/package.json\" \"packages/*/*/package.json\" \"server*/package.json\"",
         "test": "turbo test"
     },
     "lint-staged": {

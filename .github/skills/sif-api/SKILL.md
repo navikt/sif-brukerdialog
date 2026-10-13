@@ -269,7 +269,7 @@ Riktig praksis: bruk kun funksjonsnavn eller nøytral kontekst i feilmeldinger:
 throw handleApiError(e, 'hentSisteGyldigeVedtak');
 ```
 
-Gjelder alle API-funksjoner i `packages/sif-api/src/api/**` og ethvert annet sted der disse verdiene er tilgjengelige.
+Gjelder alle API-funksjoner i `packages/core/sif-api/src/api/**` og ethvert annet sted der disse verdiene er tilgjengelige.
 
 ---
 
@@ -316,5 +316,5 @@ export const APP_YTELSE = MellomlagringYtelse.AKTIVITETSPENGER;
 
 ## Referansefiler
 
-- `packages/sif-api/src/` — pakkens kildekode
-- `packages/sif-env/src/schemas.ts` — tilgjengelige env-schemas og EnvKey enum
+- `packages/core/sif-api/src/` — pakkens kildekode
+- `packages/core/sif-env/src/schemas.ts` — tilgjengelige env-schemas og EnvKey enum

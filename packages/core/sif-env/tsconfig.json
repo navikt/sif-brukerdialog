@@ -1,0 +1,8 @@
+{
+    "extends": "../../tooling/config/tsconfig-packages.json",
+    "compilerOptions": {
+        "types": ["vitest/globals"]
+    },
+    "exclude": ["src/**/*.spec.*", "src/**/*.test.*", "src/**/*.stories.*"],
+    "include": ["src", "envUtils.ts"]
+}

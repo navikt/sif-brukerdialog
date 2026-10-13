@@ -1,0 +1,27 @@
+import { defineConfig, type UserConfig } from '@hey-api/openapi-ts';
+
+import { createSchemaNameResolver } from '../../../../scripts/codegen/codegenUtils.js';
+
+export const createConfig = (): UserConfig => ({
+    input: './specs/k9-sak.json',
+    parser: {
+        transforms: {
+            schemaName: createSchemaNameResolver('./specs/k9-sak.json'),
+        },
+    },
+    output: {
+        postProcess: ['prettier'],
+        path: './src/generated/client',
+    },
+    plugins: [
+        { name: 'zod', exportFromIndex: true },
+        { operations: { strategy: 'byTags' }, name: '@hey-api/sdk', validator: true },
+        { name: '@hey-api/client-axios', throwOnError: true },
+        {
+            enums: 'typescript', // default
+            name: '@hey-api/typescript',
+        },
+    ],
+});
+
+export default defineConfig(createConfig());

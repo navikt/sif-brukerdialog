@@ -82,7 +82,7 @@ export const createConfig = (): UserConfig => ({
 
 Ved navnevalg i `scripts/codegen/schemaNameOverrides.js` skal varianten som allerede var i bruk, beholde det korte navnet, slik at konsumentkoden fortsatt kompilerer. Den andre får et prefiks (`Felles…`, `Psb…`, `K9…`). Samme klasse kan dukke opp i flere specer (f.eks. `no.nav.k9.søknad.*`), og da får den samme navn overalt.
 
-Referanse: `packages/k9-sak-innsyn-api` (alle tre configs).
+Referanse: `packages/api/k9-sak-innsyn-api` (alle tre configs).
 
 #### Innføre i en ny pakke
 
@@ -140,6 +140,6 @@ export const initApiClients = () => {
 
 - `scripts/codegen/codegenUtils.js` — delt post-prosesseringslogikk og `createSchemaNameResolver` for alle pakker
 - `scripts/codegen/schemaNameOverrides.js` — felles overrides for navnekollisjoner (FQN → kort navn)
-- `packages/*/scripts/fix-generated-regex.mjs` — kaller `fixAndFormatGeneratedCode` fra `scripts/codegen/codegenUtils.js`
-- `packages/*/configs/openapi-ts.config*.ts` eller `packages/*/openapi-ts.config.ts` — codegen-konfig per API/miljø
-- `packages/*/scripts/download-spec.mjs` — spec-nedlasting (bruker `CODEGEN_ENV`)
+- `packages/api/*/scripts/fix-generated-regex.mjs` — kaller `fixAndFormatGeneratedCode` fra `scripts/codegen/codegenUtils.js`
+- `packages/api/*/configs/openapi-ts.config*.ts` eller `packages/api/*/openapi-ts*.config.ts` — codegen-konfig per API/miljø
+- `packages/api/*/scripts/download-spec.mjs` — spec-nedlasting (bruker `CODEGEN_ENV`)

@@ -565,5 +565,5 @@ MENINGSAVVIK
 - App-meldinger: `apps/aktivitetspenger-soknad/src/app/i18n/nb.ts`
 - Side-meldinger: `apps/aktivitetspenger-soknad/src/app/pages/velkommen/i18n/nb.ts` / `nn.ts`
 - Steg-meldinger: `apps/aktivitetspenger-soknad/src/app/steps/barn/i18n/nb.ts`
-- Pakke: `packages/sif-soknad-ui/src/i18n/index.tsx`
-- Pakke-meldinger: `packages/sif-soknad-ui/src/pages/step-page/i18n/nb.ts`
+- Pakke: `packages/core/sif-soknad-ui/src/i18n/index.tsx`
+- Pakke-meldinger: `packages/core/sif-soknad-ui/src/pages/step-page/i18n/nb.ts`
