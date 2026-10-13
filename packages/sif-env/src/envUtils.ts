@@ -8,22 +8,52 @@ import {
     UngDeltakelseOpplyserBrowserEnv,
 } from './schemas';
 
-let envs: Record<string, string | undefined> | undefined;
+type AppSettingsValue = string | boolean | undefined;
+export type AppSettings = Record<string, AppSettingsValue>;
 
-const getEnvFromAppSettings = (envName: string): string | undefined => {
+declare global {
+    interface Window {
+        appSettings?: AppSettings;
+    }
+}
+
+let envs: AppSettings | undefined;
+
+const parseAppSettings = (settingsText: string): AppSettings => {
+    let parsedSettings: unknown;
+
+    try {
+        parsedSettings = JSON.parse(settingsText);
+    } catch {
+        throw new Error('Kunne ikke lese appSettings: innholdet er ikke gyldig JSON');
+    }
+
+    if (typeof parsedSettings !== 'object' || parsedSettings === null || Array.isArray(parsedSettings)) {
+        throw new Error('Kunne ikke lese appSettings: innholdet må være et objekt');
+    }
+
+    const entries = Object.entries(parsedSettings);
+    if (entries.some(([, value]) => typeof value !== 'string' && typeof value !== 'boolean')) {
+        throw new Error('Kunne ikke lese appSettings: alle verdier må være strenger eller boolske verdier');
+    }
+
+    return Object.fromEntries(entries);
+};
+
+const getEnvFromAppSettings = (envName: string): AppSettingsValue => {
     if (!envs) {
         const settingsNode = document.getElementById('nav:appSettings') as HTMLScriptElement;
-        const appSettingsInline = settingsNode ? JSON.parse(settingsNode.text) : undefined;
-        envs = appSettingsInline || (window as any).appSettings || {};
+        // Denne modulen er kun ment brukt i nettleseren, hvor document og window finnes.
+        envs = settingsNode ? parseAppSettings(settingsNode.text) : (window.appSettings ?? {});
     }
     const resolvedEnvs = envs!;
-    const envValue = resolvedEnvs[envName] || resolvedEnvs[`SIF_PUBLIC_${envName}`];
+    const envValue = resolvedEnvs[envName] ?? resolvedEnvs[`SIF_PUBLIC_${envName}`];
     return envValue === undefined || envValue === 'undefined' ? undefined : envValue;
 };
 
 export const getRequiredEnv = (key: EnvKey | string): string => {
     const env = getEnvFromAppSettings(key);
-    if (!env) {
+    if (!env || typeof env !== 'string') {
         throw new Error(`Mangler miljøvariabel ${key}`);
     }
     return env;
@@ -35,11 +65,15 @@ export const getMaybeEnv = (key: EnvKey | string): string | undefined => {
         // eslint-disable-next-line no-console
         console.warn(`Mangler miljøvariabel ${key}`);
     }
-    return env;
+    return typeof env === 'boolean' ? String(env) : env;
 };
 
 export const getMaybeBoolEnv = (key: EnvKey | string): boolean => {
-    const env = getMaybeEnv(key) as any;
+    const env = getEnvFromAppSettings(key);
+    if (!env && !isProd()) {
+        // eslint-disable-next-line no-console
+        console.warn(`Mangler miljøvariabel ${key}`);
+    }
     return env === 'true' || env === true;
 };
 
