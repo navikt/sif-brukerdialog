@@ -27,7 +27,7 @@ export const oppsummeringStegMessages_nn: Record<keyof typeof oppsummeringStegMe
     'oppsummeringSteg.startdato.testing': 'Berre for testing i Q',
     'oppsummeringSteg.startdato.velgStartdato': 'Startdato',
     'oppsummeringSteg.startdato.tekst':
-        'La feltet stå tomt for å bruke samme oppførsel som i produksjon, som bruker dagens dato som startdato.',
+        'La feltet stå tomt for å bruke same oppførsel som i produksjon, som brukar dagens dato som startdato.',
     'oppsummeringSteg.bosted.tittel': 'Bustad',
     'oppsummeringSteg.bosted.erBosattITrondheim': 'Er du busett i Trondheim kommune?',
     'oppsummeringSteg.medlemskap.bostederUtenforNorge': 'Bustadar utanfor Noreg siste 5 år',
