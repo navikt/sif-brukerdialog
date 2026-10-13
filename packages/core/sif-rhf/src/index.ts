@@ -11,6 +11,7 @@ export {
     SifForm,
     SifInputGroup,
     SifNumberInput,
+    SifRadioCardGroup,
     SifRadioGroup,
     SifSelect,
     SifTextarea,

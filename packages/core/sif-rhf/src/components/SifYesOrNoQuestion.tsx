@@ -2,6 +2,7 @@ import { YesOrNo } from '@sif/utils';
 import { ReactNode } from 'react';
 import { FieldValues, Path } from 'react-hook-form';
 
+import { SifRadioCardGroup } from './SifRadioCardGroup';
 import { SifRadioGroup, SifRadioProp } from './SifRadioGroup';
 
 export { YesOrNo } from '@sif/utils';
@@ -15,15 +16,24 @@ type Props<T extends FieldValues> = {
         yes?: string;
         no?: string;
     };
+    useCards?: boolean;
     reverse?: boolean;
 };
 
-export function SifYesOrNoQuestion<T extends FieldValues>({ labels, reverse, ...rest }: Props<T>) {
+export function SifYesOrNoQuestion<T extends FieldValues>({ labels, reverse, useCards = false, ...rest }: Props<T>) {
     const yesLabel = labels?.yes || 'Ja';
     const noLabel = labels?.no || 'Nei';
 
     const yesRadio: SifRadioProp = { label: yesLabel, value: YesOrNo.YES };
     const noRadio: SifRadioProp = { label: noLabel, value: YesOrNo.NO };
 
-    return <SifRadioGroup<T> {...rest} radios={reverse ? [noRadio, yesRadio] : [yesRadio, noRadio]} />;
+    return useCards ? (
+        <SifRadioCardGroup<T>
+            {...rest}
+            horizontal={true}
+            radios={reverse ? [noRadio, yesRadio] : [yesRadio, noRadio]}
+        />
+    ) : (
+        <SifRadioGroup<T> {...rest} radios={reverse ? [noRadio, yesRadio] : [yesRadio, noRadio]} />
+    );
 }
