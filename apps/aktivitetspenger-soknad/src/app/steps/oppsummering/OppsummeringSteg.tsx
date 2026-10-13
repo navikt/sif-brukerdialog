@@ -87,9 +87,7 @@ export const OppsummeringSteg = () => {
                     <StartdatoSpørsmål
                         value={startdato}
                         onDateChange={(dato) => {
-                            if (dato) {
-                                setStartdato(dateToISODate(dato));
-                            }
+                            setStartdato(dato ? dateToISODate(dato) : undefined);
                         }}
                     />
                 )}
