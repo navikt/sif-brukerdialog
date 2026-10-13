@@ -27,13 +27,20 @@ export function SifRadioGroup<T extends FieldValues>({ name, radios, validate, .
                     id={name}
                     value={field.value || ''}
                     error={fieldState.error?.message}>
-                    {radios.map(({ label, value, ...radioRest }) => (
+                    {radios.map(({ label, value, onChange, onBlur, ...radioRest }) => (
                         <Radio
                             key={value as string}
                             {...radioRest}
                             value={value}
                             name={field.name}
-                            onChange={(evt) => field.onChange(evt.target.value)}>
+                            onChange={(evt) => {
+                                field.onChange(evt.target.value);
+                                onChange?.(evt);
+                            }}
+                            onBlur={(evt) => {
+                                field.onBlur();
+                                onBlur?.(evt);
+                            }}>
                             {label}
                         </Radio>
                     ))}
