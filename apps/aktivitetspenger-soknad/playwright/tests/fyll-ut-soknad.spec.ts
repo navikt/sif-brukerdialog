@@ -19,49 +19,91 @@ const gåTilNesteSteg = async (page: Page, steg: string) => {
     await expect(page).toHaveURL(new RegExp(`/soknad/${steg}`));
 };
 
-test('fyller ut og sender inn søknaden', async ({ page }) => {
-    await setScenario(page, ScenarioType.kanSøkeFørstegang);
-    await page.goto('/');
+const setAppVersion = async (page: Page, appVersion: 'dev' | 'prod') => {
+    await page.addInitScript((version) => {
+        const oppdaterAppSettings = () => {
+            const appSettingsElement = document.getElementById('nav:appSettings');
+            if (!appSettingsElement) {
+                return false;
+            }
+            const appSettings = JSON.parse(appSettingsElement.textContent || '{}');
+            appSettingsElement.textContent = JSON.stringify({ ...appSettings, APP_VERSION: version });
+            return true;
+        };
+        if (oppdaterAppSettings()) {
+            return;
+        }
+        const observer = new MutationObserver(() => {
+            if (oppdaterAppSettings()) {
+                observer.disconnect();
+            }
+        });
+        observer.observe(document, { childList: true, subtree: true });
+    }, appVersion);
+};
 
-    await expect(page.getByRole('heading', { name: 'Søknad om aktivitetspenger' })).toBeVisible();
-    await testAccessibility(page);
+const miljøer = [
+    { miljø: 'prod', appVersion: 'prod' as const, startdatoErSynlig: false },
+    { miljø: 'dev/test', appVersion: 'dev' as const, startdatoErSynlig: true },
+] as const;
 
-    await page.getByLabel('Jeg bekrefter at jeg vil svare så riktig som jeg kan.').check();
-    await page.getByRole('button', { name: 'Start søknad' }).click();
+miljøer.forEach(({ miljø, appVersion, startdatoErSynlig }) => {
+    test(`fyller ut og sender inn søknaden i ${miljø}`, async ({ page }) => {
+        await setAppVersion(page, appVersion);
+        await setScenario(page, ScenarioType.kanSøkeFørstegang);
+        await page.goto('/');
 
-    const kontonummerSpørsmål = /Stemmer det at ditt kontonummer er/;
-    await expect(page.getByRole('radiogroup', { name: kontonummerSpørsmål })).toBeVisible();
-    await testAccessibility(page);
-    await svarJa(page, kontonummerSpørsmål);
-    await gåTilNesteSteg(page, 'bosted');
+        await expect(page.getByRole('heading', { name: 'Søknad om aktivitetspenger' })).toBeVisible();
+        await testAccessibility(page);
 
-    const bostedSpørsmål = 'Bor du i Trondheim kommune?';
-    await expect(page.getByRole('radiogroup', { name: bostedSpørsmål })).toBeVisible();
-    await svarJa(page, bostedSpørsmål);
-    await testAccessibility(page);
-    await gåTilNesteSteg(page, 'medlemskap');
+        await page.getByLabel('Jeg bekrefter at jeg vil svare så riktig som jeg kan.').check();
+        await page.getByRole('button', { name: 'Start søknad' }).click();
 
-    const boddINorgeSpørsmål = 'Har du bodd sammenhengende i Norge de 5 siste årene?';
-    await expect(page.getByRole('radiogroup', { name: boddINorgeSpørsmål })).toBeVisible();
-    await testAccessibility(page);
-    await svarJa(page, boddINorgeSpørsmål);
+        const kontonummerSpørsmål = /Stemmer det at ditt kontonummer er/;
+        await expect(page.getByRole('radiogroup', { name: kontonummerSpørsmål })).toBeVisible();
+        await testAccessibility(page);
+        await svarJa(page, kontonummerSpørsmål);
+        await gåTilNesteSteg(page, 'bosted');
 
-    const jobbetUtenforNorgeSpørsmål = 'Har du jobbet utenfor Norge de 5 siste årene?';
-    await expect(page.getByRole('radiogroup', { name: jobbetUtenforNorgeSpørsmål })).toBeVisible();
-    await svarNei(page, jobbetUtenforNorgeSpørsmål);
-    await gåTilNesteSteg(page, 'barn');
+        const bostedSpørsmål = 'Bor du i Trondheim kommune?';
+        await expect(page.getByRole('radiogroup', { name: bostedSpørsmål })).toBeVisible();
+        await svarJa(page, bostedSpørsmål);
+        await testAccessibility(page);
+        await gåTilNesteSteg(page, 'medlemskap');
 
-    const barnSpørsmål = /Stemmer opplysningen om barna?/;
-    await expect(page.getByRole('radiogroup', { name: barnSpørsmål })).toBeVisible();
-    await testAccessibility(page);
-    await svarJa(page, barnSpørsmål);
-    await gåTilNesteSteg(page, 'oppsummering');
+        const boddINorgeSpørsmål = 'Har du bodd sammenhengende i Norge de 5 siste årene?';
+        await expect(page.getByRole('radiogroup', { name: boddINorgeSpørsmål })).toBeVisible();
+        await testAccessibility(page);
+        await svarJa(page, boddINorgeSpørsmål);
 
-    await expect(page.getByRole('heading', { name: 'Oppsummering' })).toBeVisible();
-    await testAccessibility(page);
-    await page.getByLabel('Jeg bekrefter at opplysningene jeg har gitt er riktige').check();
-    await page.getByRole('button', { name: 'Send inn' }).click();
+        const jobbetUtenforNorgeSpørsmål = 'Har du jobbet utenfor Norge de 5 siste årene?';
+        await expect(page.getByRole('radiogroup', { name: jobbetUtenforNorgeSpørsmål })).toBeVisible();
+        await svarNei(page, jobbetUtenforNorgeSpørsmål);
+        await gåTilNesteSteg(page, 'barn');
 
-    await expect(page.getByRole('heading', { name: 'Søknaden er sendt' })).toBeVisible();
-    await testAccessibility(page);
+        const barnSpørsmål = /Stemmer opplysningen om barna?/;
+        await expect(page.getByRole('radiogroup', { name: barnSpørsmål })).toBeVisible();
+        await testAccessibility(page);
+        await svarJa(page, barnSpørsmål);
+        await gåTilNesteSteg(page, 'oppsummering');
+
+        await expect(page.getByRole('heading', { name: 'Oppsummering' })).toBeVisible();
+        await testAccessibility(page);
+
+        const startdato = page.getByRole('textbox', { name: 'Startdato' });
+        if (startdatoErSynlig) {
+            await expect(startdato).toBeVisible();
+        } else {
+            await expect(startdato).toHaveCount(0);
+        }
+
+        await page.getByLabel('Jeg bekrefter at opplysningene jeg har gitt er riktige').check();
+        const innsending = page.waitForRequest('**/aktivitetspenger/soknad/innsending');
+        await page.getByRole('button', { name: 'Send inn' }).click();
+
+        const requestBody = (await innsending).postDataJSON();
+        expect(requestBody).not.toHaveProperty('startdato');
+        await expect(page.getByRole('heading', { name: 'Søknaden er sendt' })).toBeVisible();
+        await testAccessibility(page);
+    });
 });
