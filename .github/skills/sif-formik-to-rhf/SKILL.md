@@ -151,7 +151,7 @@ Validatorer fra `@navikt/sif-validation` beholdes uendret.
 
 ## Komponenterstatninger
 
-Ikke importer fra gamle pakker i v2-apper. Bruk Aksel-komponenter eller `@sif/*`-pakker:
+Ikke importer fra gamle pakker (`packages/legacy`, `@navikt/sif-common-*`) i v2-apper. Bruk Aksel-komponenter eller `@sif/*`-pakker (`packages/core`). I `packages/core` håndheves dette av `restrictLegacyImports` fra `@sif/eslint-config/legacy-imports`:
 
 | Gammel komponent | Gammel pakke                 | Erstatning   | Ny pakke                    |
 | ---------------- | ---------------------------- | ------------ | --------------------------- |

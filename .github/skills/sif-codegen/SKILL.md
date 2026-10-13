@@ -16,7 +16,7 @@ description: Oversikt over hvordan codegen med @hey-api/openapi-ts er satt opp i
 
 ### Pakker med genererte klienter
 
-Hvert API har sin egen pakke under `packages/`:
+Hvert API har sin egen pakke under `packages/api/`. Nye API-pakker legges også der:
 
 | Pakke                                  | API                                                      |
 | -------------------------------------- | -------------------------------------------------------- |
@@ -67,7 +67,8 @@ Backend publiserer skjemanavn med fullt kvalifisert Java-klassenavn (f.eks. `no.
 Oppsett i en config (spec-stien er relativ til pakkeroten, der `openapi-ts` kjøres):
 
 ```ts
-import { createSchemaNameResolver } from '../../../scripts/codegen/codegenUtils.js';
+// packages/api/<pakke>/configs/index.ts
+import { createSchemaNameResolver } from '../../../../scripts/codegen/codegenUtils.js';
 
 export const createConfig = (): UserConfig => ({
     input: './specs/innsyn.json',

@@ -22,6 +22,7 @@ description: Porter *ListAndDialog-komponenter fra sif-common-forms-ds (v1/Formi
 - Story i `.stories.tsx`
 - i18n (`nb.ts` og `nn.ts`) under `src/dialogs/<navn>/i18n/`
 - Eksport fra `src/dialogs/<navn>/index.ts` og `src/dialogs/index.ts`
+- Ingen nye importer fra `@navikt/sif-common-*` (lint-regelen `restrictLegacyImports` i `eslint.config.js`). Fjern pakken fra unntakslisten der når siste import av den er borte.
 
 ## Avgrensning
 

@@ -5,6 +5,10 @@ This repository is a pnpm + Turborepo monorepo.
 ## Repository Structure
 
 - Frontend code is primarily in `apps/**`, `apps-intern/**`, and shared frontend packages in `packages/**`.
+    - `packages/core/`: v2 packages (`@sif/*`). Use these in new code.
+    - `packages/legacy/`: v1 packages (`@navikt/sif-common-*`). Bug fixes only; `packages/core` must not import from here.
+    - `packages/api/`: generated API types/clients (codegen).
+    - `packages/tooling/`: shared tsconfig and ESLint config.
 - Backend services are in `server/**` and `server-ungdomsytelse-veileder/**`.
 
 ## Scope and Ownership
