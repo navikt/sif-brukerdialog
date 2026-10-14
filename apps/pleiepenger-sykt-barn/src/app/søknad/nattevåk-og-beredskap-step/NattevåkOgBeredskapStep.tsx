@@ -86,6 +86,9 @@ const NattevåkOgBeredskapStep = ({ onValidSubmit }: StepCommonProps) => {
                                                     <List.Item>
                                                         <AppText id="steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.3" />
                                                     </List.Item>
+                                                    <List.Item>
+                                                        <AppText id="steg.nattevåkOgBeredskap.nattevåk.tilleggsinfo.liste.4" />
+                                                    </List.Item>
                                                 </List>
                                             </BodyLong>
                                         </Box>
