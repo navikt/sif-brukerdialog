@@ -1,4 +1,4 @@
-import { Arbeidsgiver, K9Sak } from '@app/types';
+import { ArbeidsgiverMedAnsettelseperioder, K9Sak } from '@app/types';
 import { Søker } from '@navikt/sif-common-api';
 import { DateRange } from '@navikt/sif-common-utils';
 
@@ -11,7 +11,7 @@ import {
 type Params = {
     søker: Søker;
     k9saker: K9Sak[];
-    arbeidsgivere: Arbeidsgiver[];
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[];
     tillattEndringsperiode: DateRange;
 };
 

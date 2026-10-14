@@ -1,13 +1,9 @@
 import { isK9FormatError, K9Format, K9Sak, UgyldigK9SakFormat } from '@app/types';
-import {
-    getEndringsdato,
-    getTillattEndringsperiode,
-    isK9SakErInnenforGyldigEndringsperiode,
-    parseK9Format,
-} from '@app/utils';
+import { getEndringsdato, getTillattEndringsperiode, parseK9Format } from '@app/utils';
 import { appLogger } from '@sif/apm';
 import { isAxiosError } from 'axios';
 
+import { erSakEldreEnnEndringsperiode, lesSøknadsperioder } from '../../tilgang/lesSøknadsperioder';
 import { verifyK9Format } from '../../utils/verifyk9Format';
 import api from '../api';
 import { ApiEndpointInnsyn } from '.';
@@ -25,16 +21,26 @@ export const sakerEndpoint = {
                 try {
                     verifyK9Format(sak);
                     const parsedSak = parseK9Format(sak);
-                    if (isK9SakErInnenforGyldigEndringsperiode(parsedSak, endringsperiode)) {
-                        k9Saker.push(parsedSak);
-                    } else {
+                    if (erSakEldreEnnEndringsperiode(parsedSak.ytelse.søknadsperioder, endringsperiode)) {
                         eldreSaker.push(parsedSak);
+                    } else {
+                        k9Saker.push(parsedSak);
                     }
                 } catch (error) {
                     if (isK9FormatError(error)) {
                         const ugyldigeFelt = error.error.cause?.ugyldigeFelt;
                         const detaljer = Array.isArray(ugyldigeFelt) ? { ugyldigeFelt } : undefined;
-                        k9Saker.push({
+                        /**
+                         * Saken kan ikke leses i sin helhet, men søknadsperiodene kan ofte leses
+                         * likevel. Er saken for gammel til å kunne endres, skal den ikke blokkere
+                         * en nyere sak bruker faktisk kan gjøre noe med.
+                         */
+                        const søknadsperioder = lesSøknadsperioder(sak);
+                        const erEldre =
+                            søknadsperioder !== undefined &&
+                            erSakEldreEnnEndringsperiode(søknadsperioder, endringsperiode);
+
+                        (erEldre ? eldreSaker : k9Saker).push({
                             erUgyldigK9SakFormat: true,
                             detaljer,
                         });
@@ -44,9 +50,9 @@ export const sakerEndpoint = {
                          * ugyldigeFelt inneholder kun feltnavn, ikke verdier, og er trygt å logge.
                          */
                         appLogger.logInfo(
-                            `sakerEndpoint.verifyK9Format: ugyldig k9-format${
-                                detaljer ? ` (ugyldigeFelt=${detaljer.ugyldigeFelt.join(',')})` : ''
-                            }`,
+                            `sakerEndpoint.verifyK9Format: ugyldig k9-format (eldre=${erEldre}${
+                                detaljer ? `, ugyldigeFelt=${detaljer.ugyldigeFelt.join(',')}` : ''
+                            })`,
                         );
                     } else {
                         appLogger.logException(error, {

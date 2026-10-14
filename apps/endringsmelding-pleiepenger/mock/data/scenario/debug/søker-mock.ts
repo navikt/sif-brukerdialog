@@ -1,8 +1,8 @@
 export default {
-    aktørId: '2422533723040',
-    etternavn: 'LUNSJ',
-    fornavn: 'IMPULSIV',
-    fødselsdato: '1991-04-30',
-    fødselsnummer: '30449135691',
+    aktørId: '2870453157308',
+    etternavn: 'MUÑECO',
+    fornavn: 'FRUKTBAR',
+    fødselsdato: '1996-07-23',
+    fødselsnummer: '23479647747',
     mellomnavn: null,
 };

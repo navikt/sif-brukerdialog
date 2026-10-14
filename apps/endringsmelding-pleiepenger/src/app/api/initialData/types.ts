@@ -1,4 +1,4 @@
-import { Arbeidsgiver, K9Sak } from '@app/types';
+import { ArbeidsgiverMedAnsettelseperioder, K9Sak } from '@app/types';
 import { Søker } from '@navikt/sif-common-api';
 
 import { SøknadStatePersistence } from '../endpoints/søknadStateEndpoint';
@@ -8,6 +8,6 @@ export type InitialData = {
     søker: Søker;
     k9saker: K9Sak[];
     antallSakerFørEndringsperiode: number;
-    arbeidsgivere: Arbeidsgiver[];
+    arbeidsgivere: ArbeidsgiverMedAnsettelseperioder[];
     lagretSøknadState?: SøknadStatePersistence;
 };

@@ -8,7 +8,7 @@ import {
     ArbeidstidEndringMap,
     LovbestemtFerieSøknadsdata,
 } from '@app/types';
-import { isDateInDateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
+import { DateRange,isDateInDateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 
 import { ArbeidsaktivitetFormValues, ArbeidstidFormFields } from '../ArbeidstidForm';
 import ArbeidsaktivitetContent from './components/ArbeidsaktivitetContent';
@@ -21,6 +21,7 @@ interface Props {
     expansionCardDefaultOpen?: boolean;
     aktivitetFormValues: ArbeidsaktivitetFormValues;
     arbeiderIPerioden?: ArbeiderIPeriodenSvar;
+    tillattEndringsperiode: DateRange;
     onArbeidstidChange: (arbeidstidEndringer: ArbeidstidEndringMap) => void;
 }
 
@@ -30,6 +31,7 @@ const ArbeidsaktivitetFormPart = ({
     renderAsExpansionCard,
     expansionCardDefaultOpen,
     aktivitetFormValues,
+    tillattEndringsperiode,
     onArbeidstidChange,
 }: Props) => {
     const { text } = useAppIntl();
@@ -69,6 +71,7 @@ const ArbeidsaktivitetFormPart = ({
                     endringer={endringer}
                     parentFieldName={aktivitetFieldName}
                     formValues={aktivitetFormValues}
+                    tillattEndringsperiode={tillattEndringsperiode}
                     onArbeidstidAktivitetChange={onArbeidstidChange}
                 />
             </ArbeidsaktivitetBlock>
