@@ -1,26 +1,28 @@
 import type { aktivitetspenger, ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
-import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { useMutation } from '@tanstack/react-query';
 
 import { ApiError } from '../../shared/errorHandlers';
 import { rapporterInntektAktivitetspenger, rapporterInntektUngdomsytelse } from './inntektApi';
 
-/** Inntektsrapportering knyttet til ytelsen sin, slik at hver ytelse sender sin egen DTO. */
+/**
+ * Inntektsrapportering knyttet til ytelsen sin, slik at hver ytelse sender sin egen DTO.
+ * Verdiene i `ytelse` er de samme som i OppgaveYtelsetype fra ung-brukerdialog-api, slik at enumen kan sendes inn direkte.
+ */
 export type YtelseInntektsrapportering =
-    | { ytelse: OppgaveYtelsetype.AKTIVITETSPENGER; data: aktivitetspenger.AktivitetspengerInntektsrapportering }
-    | { ytelse: OppgaveYtelsetype.UNGDOMSYTELSE; data: ungdomsytelse.UngdomsytelseInntektsrapportering };
+    | { ytelse: 'AKTIVITETSPENGER'; data: aktivitetspenger.AktivitetspengerInntektsrapportering }
+    | { ytelse: 'UNGDOMSYTELSE'; data: ungdomsytelse.UngdomsytelseInntektsrapportering };
 
 export const useRapporterInntekt = () => {
     return useMutation<void, ApiError, YtelseInntektsrapportering>({
         mutationFn: (rapportering) => {
-            const ytelse = rapportering.ytelse;
             switch (rapportering.ytelse) {
-                case OppgaveYtelsetype.AKTIVITETSPENGER:
+                case 'AKTIVITETSPENGER':
                     return rapporterInntektAktivitetspenger(rapportering.data);
-                case OppgaveYtelsetype.UNGDOMSYTELSE:
+                case 'UNGDOMSYTELSE':
                     return rapporterInntektUngdomsytelse(rapportering.data);
                 default: {
-                    throw new Error(`Ukjent OppgaveYtelsetype: ${String(ytelse)}`);
+                    const ukjent: never = rapportering;
+                    throw new Error(`Ukjent ytelse: ${JSON.stringify(ukjent)}`);
                 }
             }
         },

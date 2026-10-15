@@ -1,28 +1,28 @@
 import type { aktivitetspenger, ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
-import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { useMutation } from '@tanstack/react-query';
 
 import { ApiError } from '../../shared/errorHandlers';
 import { sendOppgavebekreftelseAktivitetspenger, sendOppgavebekreftelseUngdomsytelse } from './oppgavebekreftelseApi';
 
-/** Oppgavebekreftelse knyttet til ytelsen sin, slik at hver ytelse sender sin egen DTO. */
+/**
+ * Oppgavebekreftelse knyttet til ytelsen sin, slik at hver ytelse sender sin egen DTO.
+ * Verdiene i `ytelse` er de samme som i OppgaveYtelsetype fra ung-brukerdialog-api, slik at enumen kan sendes inn direkte.
+ */
 export type YtelseOppgavebekreftelse =
-    | { ytelse: OppgaveYtelsetype.AKTIVITETSPENGER; data: aktivitetspenger.AktivitetspengerOppgavebekreftelse }
-    | { ytelse: OppgaveYtelsetype.UNGDOMSYTELSE; data: ungdomsytelse.UngdomsytelseOppgavebekreftelse };
+    | { ytelse: 'AKTIVITETSPENGER'; data: aktivitetspenger.AktivitetspengerOppgavebekreftelse }
+    | { ytelse: 'UNGDOMSYTELSE'; data: ungdomsytelse.UngdomsytelseOppgavebekreftelse };
 
 export const useSendOppgavebekreftelse = () => {
     return useMutation<void, ApiError, YtelseOppgavebekreftelse>({
         mutationFn: (bekreftelse) => {
-            const ytelse = bekreftelse.ytelse;
             switch (bekreftelse.ytelse) {
-                case OppgaveYtelsetype.AKTIVITETSPENGER:
+                case 'AKTIVITETSPENGER':
                     return sendOppgavebekreftelseAktivitetspenger(bekreftelse.data);
-                case OppgaveYtelsetype.UNGDOMSYTELSE:
+                case 'UNGDOMSYTELSE':
                     return sendOppgavebekreftelseUngdomsytelse(bekreftelse.data);
                 default: {
-                    const _exhaustive: never = bekreftelse;
-                    void _exhaustive;
-                    throw new Error(`Ukjent OppgaveYtelsetype: ${String(ytelse)}`);
+                    const ukjent: never = bekreftelse;
+                    throw new Error(`Ukjent ytelse: ${JSON.stringify(ukjent)}`);
                 }
             }
         },

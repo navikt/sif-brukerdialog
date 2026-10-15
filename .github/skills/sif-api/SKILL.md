@@ -94,6 +94,8 @@ Ved verifisering av API-ruter (for eksempel ved MSW-oppsett):
 | `useRapporterInntekt()`                          | Mutation for inntektsrapportering  | —                                 |
 | `useSendOppgavebekreftelse()`                    | Mutation for oppgavebekreftelse    | —                                 |
 
+`useRapporterInntekt` og `useSendOppgavebekreftelse` tar imot `{ ytelse: 'AKTIVITETSPENGER' | 'UNGDOMSYTELSE', data }`. `ytelse` styrer hvilket endepunkt i k9-brukerdialog-prosessering-api som kalles. Verdiene er de samme som i `OppgaveYtelsetype` fra ung-brukerdialog-api, så enumen kan sendes inn direkte, mens hookene ikke importerer noe fra ung-brukerdialog-api. Hvis verdiene i enumen endres, feiler typesjekken der enumen sendes inn.
+
 ### Vedlegg-utilities (ikke hooks)
 
 `@sif/api/k9-brukerdialog-prosessering` eksporterer også rene funksjoner for vedlegg:
