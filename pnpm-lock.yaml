@@ -108,9 +108,6 @@ importers:
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-formik-ds
-      '@navikt/sif-common-hooks':
-        specifier: workspace:*
-        version: link:../../packages/legacy/sif-common-hooks
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-ui
@@ -132,6 +129,9 @@ importers:
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
+      '@sif/hooks':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-hooks
       '@tanstack/react-query':
         specifier: 5.104.1
         version: 5.104.1(react@19.3.0)
@@ -346,9 +346,6 @@ importers:
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/core/sif-app-register
-      '@navikt/sif-common-hooks':
-        specifier: workspace:*
-        version: link:../../packages/legacy/sif-common-hooks
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/core/sif-validation
@@ -367,6 +364,9 @@ importers:
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
+      '@sif/hooks':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-hooks
       '@sif/rhf':
         specifier: workspace:*
         version: link:../../packages/core/sif-rhf
@@ -527,9 +527,6 @@ importers:
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/core/sif-app-register
-      '@navikt/sif-common-hooks':
-        specifier: workspace:*
-        version: link:../../packages/legacy/sif-common-hooks
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/core/sif-validation
@@ -548,6 +545,9 @@ importers:
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
+      '@sif/hooks':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-hooks
       '@sif/rhf':
         specifier: workspace:*
         version: link:../../packages/core/sif-rhf
@@ -702,15 +702,15 @@ importers:
       '@navikt/sif-common-core-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-core-ds
-      '@navikt/sif-common-hooks':
-        specifier: workspace:*
-        version: link:../../packages/legacy/sif-common-hooks
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-utils
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/core/sif-apm
+      '@sif/hooks':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-hooks
       '@types/lodash.sortby':
         specifier: 4.7.9
         version: 4.7.9
@@ -895,9 +895,6 @@ importers:
       '@navikt/sif-common-forms-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-forms-ds
-      '@navikt/sif-common-hooks':
-        specifier: workspace:*
-        version: link:../../packages/legacy/sif-common-hooks
       '@navikt/sif-common-soknad-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-soknad-ds
@@ -916,6 +913,9 @@ importers:
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
+      '@sif/hooks':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-hooks
       axios:
         specifier: 1.20.0
         version: 1.20.0
@@ -1082,9 +1082,6 @@ importers:
       '@navikt/sif-common-forms-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-forms-ds
-      '@navikt/sif-common-hooks':
-        specifier: workspace:*
-        version: link:../../packages/legacy/sif-common-hooks
       '@navikt/sif-common-soknad-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-soknad-ds
@@ -1103,6 +1100,9 @@ importers:
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
+      '@sif/hooks':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-hooks
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../../packages/core/sif-soknad-ui
@@ -1323,9 +1323,6 @@ importers:
       '@navikt/sif-common-forms-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-forms-ds
-      '@navikt/sif-common-hooks':
-        specifier: workspace:*
-        version: link:../../packages/legacy/sif-common-hooks
       '@navikt/sif-common-soknad-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-soknad-ds
@@ -1344,6 +1341,9 @@ importers:
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
+      '@sif/hooks':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-hooks
       '@testing-library/react':
         specifier: 16.3.3
         version: 16.3.3(@testing-library/dom@10.4.2)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -1631,9 +1631,6 @@ importers:
       '@navikt/sif-common-forms-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-forms-ds
-      '@navikt/sif-common-hooks':
-        specifier: workspace:*
-        version: link:../../packages/legacy/sif-common-hooks
       '@navikt/sif-common-soknad-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-soknad-ds
@@ -1652,6 +1649,9 @@ importers:
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
+      '@sif/hooks':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-hooks
       '@sif/surveys':
         specifier: workspace:*
         version: link:../../packages/core/sif-surveys
@@ -1848,9 +1848,6 @@ importers:
       '@navikt/sif-common-forms-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-forms-ds
-      '@navikt/sif-common-hooks':
-        specifier: workspace:*
-        version: link:../../packages/legacy/sif-common-hooks
       '@navikt/sif-common-soknad-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-soknad-ds
@@ -1869,6 +1866,9 @@ importers:
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
+      '@sif/hooks':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-hooks
       '@sif/surveys':
         specifier: workspace:*
         version: link:../../packages/core/sif-surveys
@@ -2059,9 +2059,6 @@ importers:
       '@navikt/sif-common-forms-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-forms-ds
-      '@navikt/sif-common-hooks':
-        specifier: workspace:*
-        version: link:../../packages/legacy/sif-common-hooks
       '@navikt/sif-common-soknad-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-soknad-ds
@@ -2080,6 +2077,9 @@ importers:
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
+      '@sif/hooks':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-hooks
       '@sif/surveys':
         specifier: workspace:*
         version: link:../../packages/core/sif-surveys
@@ -2279,9 +2279,6 @@ importers:
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/core/sif-app-register
-      '@navikt/sif-common-hooks':
-        specifier: workspace:*
-        version: link:../../packages/legacy/sif-common-hooks
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/core/sif-validation
@@ -2294,6 +2291,9 @@ importers:
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
+      '@sif/hooks':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-hooks
       '@sif/rhf':
         specifier: workspace:*
         version: link:../../packages/core/sif-rhf
@@ -2463,9 +2463,6 @@ importers:
       '@navikt/sif-common-forms-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-forms-ds
-      '@navikt/sif-common-hooks':
-        specifier: workspace:*
-        version: link:../../packages/legacy/sif-common-hooks
       '@navikt/sif-common-soknad-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-soknad-ds
@@ -2484,6 +2481,9 @@ importers:
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
+      '@sif/hooks':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-hooks
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../../packages/core/sif-soknad-ui
@@ -2692,9 +2692,6 @@ importers:
       '@navikt/sif-common-forms-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-forms-ds
-      '@navikt/sif-common-hooks':
-        specifier: workspace:*
-        version: link:../../packages/legacy/sif-common-hooks
       '@navikt/sif-common-soknad-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-soknad-ds
@@ -2713,6 +2710,9 @@ importers:
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
+      '@sif/hooks':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-hooks
       '@sif/surveys':
         specifier: workspace:*
         version: link:../../packages/core/sif-surveys
@@ -2903,9 +2903,6 @@ importers:
       '@navikt/sif-common-forms-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-forms-ds
-      '@navikt/sif-common-hooks':
-        specifier: workspace:*
-        version: link:../../packages/legacy/sif-common-hooks
       '@navikt/sif-common-soknad-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-soknad-ds
@@ -2924,6 +2921,9 @@ importers:
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
+      '@sif/hooks':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-hooks
       '@sif/surveys':
         specifier: workspace:*
         version: link:../../packages/core/sif-surveys
@@ -3120,9 +3120,6 @@ importers:
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/core/sif-app-register
-      '@navikt/sif-common-hooks':
-        specifier: workspace:*
-        version: link:../../packages/legacy/sif-common-hooks
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-ui
@@ -3138,6 +3135,9 @@ importers:
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
+      '@sif/hooks':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-hooks
       '@sif/rhf':
         specifier: workspace:*
         version: link:../../packages/core/sif-rhf
@@ -3304,9 +3304,6 @@ importers:
       '@navikt/sif-common-forms-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-forms-ds
-      '@navikt/sif-common-hooks':
-        specifier: workspace:*
-        version: link:../../packages/legacy/sif-common-hooks
       '@navikt/sif-common-soknad-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-soknad-ds
@@ -3325,6 +3322,9 @@ importers:
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
+      '@sif/hooks':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-hooks
       axios:
         specifier: 1.20.0
         version: 1.20.0
@@ -3597,9 +3597,6 @@ importers:
       '@navikt/sif-common-forms-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-forms-ds
-      '@navikt/sif-common-hooks':
-        specifier: workspace:*
-        version: link:../../packages/legacy/sif-common-hooks
       '@navikt/sif-common-soknad-ds':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-soknad-ds
@@ -3627,6 +3624,9 @@ importers:
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
+      '@sif/hooks':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-hooks
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../../packages/core/sif-soknad-ui
@@ -4164,15 +4164,15 @@ importers:
       '@navikt/aksel-icons':
         specifier: 8.19.0
         version: 8.19.0
-      '@navikt/sif-common-hooks':
-        specifier: workspace:*
-        version: link:../../legacy/sif-common-hooks
       '@portabletext/react':
         specifier: 8.0.1
         version: 8.0.1(react@19.3.0)
       '@sanity/client':
         specifier: 8.9.0
         version: 8.9.0(vitest@5.0.3)
+      '@sif/hooks':
+        specifier: workspace:*
+        version: link:../sif-hooks
       '@sif/utils':
         specifier: workspace:*
         version: link:../sif-utils
@@ -4370,6 +4370,28 @@ importers:
       typescript:
         specifier: 6.0.3
         version: 6.0.3
+
+  packages/core/sif-hooks:
+    dependencies:
+      react:
+        specifier: 19.3.0
+        version: 19.3.0
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+    devDependencies:
+      '@sif/env':
+        specifier: workspace:*
+        version: link:../sif-env
+      '@sif/eslint-config':
+        specifier: workspace:*
+        version: link:../../tooling/eslint-config-sif
+      config:
+        specifier: workspace:*
+        version: link:../../tooling/config
+      eslint:
+        specifier: 10.12.0
+        version: 10.12.0(jiti@2.7.0)
 
   packages/core/sif-rhf:
     dependencies:
@@ -4619,15 +4641,15 @@ importers:
       '@navikt/nav-dekoratoren-moduler':
         specifier: 4.5.1
         version: 4.5.1(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
-      '@navikt/sif-common-hooks':
-        specifier: workspace:*
-        version: link:../../legacy/sif-common-hooks
       '@sif/api':
         specifier: workspace:*
         version: link:../sif-api
       '@sif/env':
         specifier: workspace:*
         version: link:../sif-env
+      '@sif/hooks':
+        specifier: workspace:*
+        version: link:../sif-hooks
       '@sif/utils':
         specifier: workspace:*
         version: link:../sif-utils
@@ -4692,9 +4714,9 @@ importers:
       '@navikt/ds-react':
         specifier: 8.19.0
         version: 8.19.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@navikt/sif-common-hooks':
+      '@sif/hooks':
         specifier: workspace:*
-        version: link:../../legacy/sif-common-hooks
+        version: link:../sif-hooks
       react:
         specifier: 19.3.0
         version: 19.3.0
@@ -4836,9 +4858,6 @@ importers:
       '@navikt/k9-brukerdialog-prosessering-api':
         specifier: workspace:*
         version: link:../../api/k9-brukerdialog-prosessering-api
-      '@navikt/sif-common-hooks':
-        specifier: workspace:*
-        version: link:../../legacy/sif-common-hooks
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../../legacy/sif-common-ui
@@ -4854,6 +4873,9 @@ importers:
       '@sif/api':
         specifier: workspace:*
         version: link:../sif-api
+      '@sif/hooks':
+        specifier: workspace:*
+        version: link:../sif-hooks
       '@sif/rhf':
         specifier: workspace:*
         version: link:../sif-rhf
@@ -5076,15 +5098,15 @@ importers:
       '@navikt/sif-common-api':
         specifier: workspace:*
         version: link:../sif-common-api
-      '@navikt/sif-common-hooks':
-        specifier: workspace:*
-        version: link:../sif-common-hooks
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../sif-common-utils
       '@sif/env':
         specifier: workspace:*
         version: link:../../core/sif-env
+      '@sif/hooks':
+        specifier: workspace:*
+        version: link:../../core/sif-hooks
       browser-image-compression:
         specifier: 2.0.2
         version: 2.0.2
@@ -5470,28 +5492,6 @@ importers:
         specifier: 5.0.3
         version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.4)(@vitest/browser-playwright@5.0.3)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.1.2(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.4)(typescript@6.0.3))(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
-  packages/legacy/sif-common-hooks:
-    dependencies:
-      react:
-        specifier: 19.3.0
-        version: 19.3.0
-      typescript:
-        specifier: 6.0.3
-        version: 6.0.3
-    devDependencies:
-      '@sif/env':
-        specifier: workspace:*
-        version: link:../../core/sif-env
-      '@sif/eslint-config':
-        specifier: workspace:*
-        version: link:../../tooling/eslint-config-sif
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
-      eslint:
-        specifier: 10.12.0
-        version: 10.12.0(jiti@2.7.0)
-
   packages/legacy/sif-common-soknad-ds:
     dependencies:
       '@nais/apm':
@@ -5567,9 +5567,6 @@ importers:
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../sif-common-formik-ds
-      '@navikt/sif-common-hooks':
-        specifier: workspace:*
-        version: link:../sif-common-hooks
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../sif-common-utils
@@ -5579,6 +5576,9 @@ importers:
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
+      '@sif/hooks':
+        specifier: workspace:*
+        version: link:../../core/sif-hooks
       '@storybook/addon-a11y':
         specifier: 10.6.1
         version: 10.6.1(storybook@10.6.1(@types/react@19.3.0)(prettier@3.9.9)(react@19.3.0))

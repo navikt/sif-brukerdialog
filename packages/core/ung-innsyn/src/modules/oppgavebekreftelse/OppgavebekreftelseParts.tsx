@@ -1,5 +1,5 @@
 import { Box, FormSummary, Heading, VStack } from '@navikt/ds-react';
-import { usePrevious } from '@navikt/sif-common-hooks';
+import { usePrevious } from '@sif/hooks';
 import { TextareaSvar } from '@navikt/sif-common-ui';
 import { OppgaveResponsDto, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { SifGuidePanel, SifInfoCard } from '@sif/soknad-ui';

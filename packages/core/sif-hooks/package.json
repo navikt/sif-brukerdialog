@@ -1,5 +1,5 @@
 {
-    "name": "@navikt/sif-common-hooks",
+    "name": "@sif/hooks",
     "version": "0.3.11",
     "private": true,
     "type": "module",

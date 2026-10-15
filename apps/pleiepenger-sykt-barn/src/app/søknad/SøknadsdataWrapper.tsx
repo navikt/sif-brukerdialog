@@ -1,4 +1,4 @@
-import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useEffectOnce } from '@sif/hooks';
 import React, { useState } from 'react';
 
 import { SøknadFormValues } from '../types/søknad-form-values/SøknadFormValues';

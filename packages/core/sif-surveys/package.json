@@ -11,7 +11,7 @@
     },
     "dependencies": {
         "@navikt/ds-react": "8.19.0",
-        "@navikt/sif-common-hooks": "workspace:*",
+        "@sif/hooks": "workspace:*",
         "react": "19.3.0",
         "react-router-dom": "7.18.4",
         "typescript": "6.0.3"

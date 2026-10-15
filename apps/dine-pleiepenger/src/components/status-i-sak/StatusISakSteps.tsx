@@ -1,6 +1,6 @@
 import { PlusCircleIcon } from '@navikt/aksel-icons';
 import { Button, HStack, Process, ProcessProps } from '@navikt/ds-react';
-import { usePagination } from '@navikt/sif-common-hooks';
+import { usePagination } from '@sif/hooks';
 
 import { ProcessStepData } from '../../types/ProcessStepData';
 import { formatSakshendelseTidspunkt } from '../../utils/sakUtils';

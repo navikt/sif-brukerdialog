@@ -1,6 +1,6 @@
 import { PlusCircleIcon } from '@navikt/aksel-icons';
 import { BodyShort, Button, Heading, HStack, VStack } from '@navikt/ds-react';
-import { usePagination } from '@navikt/sif-common-hooks';
+import { usePagination } from '@sif/hooks';
 
 import { Inntektsmelding } from '../../types';
 import { ArbeidsgiverMedInntektsmeldinger } from '../../utils/inntektsmeldingUtils';

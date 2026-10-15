@@ -1,6 +1,6 @@
 import './page.scss';
 
-import { useDocumentTitle } from '@navikt/sif-common-hooks';
+import { useDocumentTitle } from '@sif/hooks';
 import React, { useEffect } from 'react';
 
 import PageBoundary from '../page-boundary/PageBoundary';

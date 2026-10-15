@@ -1,5 +1,5 @@
 import { Page, VStack } from '@navikt/ds-react';
-import { useDocumentTitle } from '@navikt/sif-common-hooks';
+import { useDocumentTitle } from '@sif/hooks';
 import { ReactNode, useEffect } from 'react';
 
 import { AppHeader } from '../../components/app-header/AppHeader';
