@@ -60,9 +60,9 @@ export const appCommonMessages_nn: Record<keyof typeof appCommonMessages_nb, str
 
     'arbeidsperiode.avsluttet': 'Periode: {fra} - {til}',
     'arbeidsperiode.pågående': 'Periode: {fra} - pågåande',
-    'arbeidsaktivitetBlockHeader.arbeidsgiver.ansettelsesperioder': 'Ansettelsesperioder',
-    'arbeidsaktivitetBlockHeader.arbeidsgiver.ansattFomTom': 'Ansatt: {fom} - {tom}.',
-    'arbeidsaktivitetBlockHeader.arbeidsgiver.ansattFom': 'Ansatt: {dato} - pågående',
+    'arbeidsaktivitetBlockHeader.arbeidsgiver.ansettelsesperioder': 'Tilsetjingsperiodar',
+    'arbeidsaktivitetBlockHeader.arbeidsgiver.ansattFomTom': 'Tilsett: {fom} - {tom}.',
+    'arbeidsaktivitetBlockHeader.arbeidsgiver.ansattFom': 'Tilsett: {dato} - pågåande',
     'arbeidsaktivitetBlockHeader.arbeidsgiver.ansattTom': ' Sluttdato: {dato}.',
 
     'apiValidationError.tittel': 'Her har det skjedd ein feil',
