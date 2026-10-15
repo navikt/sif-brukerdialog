@@ -1,6 +1,8 @@
 import { VedleggController, zHentVedleggResponse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { getCommonEnv } from '@sif/env';
 
+import { handleApiError } from '../utils/errorHandlers';
+
 /**
  * Extract vedlegg ID from response location header
  * @param url The location URL returned from the upload response
@@ -36,12 +38,16 @@ export const getVedleggApiUrl = (id: string): string => {
  * @throws Error hvis API-kallet feiler
  */
 export const lagreVedlegg = async (vedlegg: Blob | File) => {
-    const response = await VedleggController.lagreVedlegg({
-        body: {
-            vedlegg,
-        },
-    });
-    return response;
+    try {
+        const response = await VedleggController.lagreVedlegg({
+            body: {
+                vedlegg,
+            },
+        });
+        return response;
+    } catch (error) {
+        throw handleApiError(error, 'lagreVedlegg');
+    }
 };
 
 /**
@@ -52,12 +58,16 @@ export const lagreVedlegg = async (vedlegg: Blob | File) => {
  * @throws Error hvis API-kallet feiler
  */
 export const slettVedlegg = async (vedleggId: string) => {
-    const response = await VedleggController.slettVedlegg({
-        path: {
-            vedleggId,
-        },
-    });
-    return response.data;
+    try {
+        const response = await VedleggController.slettVedlegg({
+            path: {
+                vedleggId,
+            },
+        });
+        return response.data;
+    } catch (error) {
+        throw handleApiError(error, 'slettVedlegg');
+    }
 };
 
 /**
@@ -68,10 +78,14 @@ export const slettVedlegg = async (vedleggId: string) => {
  * @throws Error hvis API-kallet feiler eller data ikke kan parses
  */
 export const hentVedlegg = async (vedleggId: string) => {
-    const response = await VedleggController.hentVedlegg({
-        path: {
-            vedleggId,
-        },
-    });
-    return zHentVedleggResponse.parse(response.data);
+    try {
+        const response = await VedleggController.hentVedlegg({
+            path: {
+                vedleggId,
+            },
+        });
+        return zHentVedleggResponse.parse(response.data);
+    } catch (error) {
+        throw handleApiError(error, 'hentVedlegg');
+    }
 };

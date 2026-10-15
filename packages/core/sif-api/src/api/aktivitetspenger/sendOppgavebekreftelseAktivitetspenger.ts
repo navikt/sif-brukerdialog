@@ -1,7 +1,7 @@
 import { aktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
+import { commonRequestHeaders } from '@sif/api-client';
 
 import { handleApiError } from '../../utils/errorHandlers';
-import { commonRequestHeader } from '../../utils/initApiClient';
 
 export const sendOppgavebekreftelseAktivitetspenger = async (
     oppgave: aktivitetspenger.AktivitetspengerOppgavebekreftelse,
@@ -9,7 +9,7 @@ export const sendOppgavebekreftelseAktivitetspenger = async (
     try {
         await aktivitetspenger.AktivitetspengerController.oppgavebekreftelse({
             body: oppgave,
-            headers: commonRequestHeader,
+            headers: commonRequestHeaders,
         });
     } catch (e) {
         throw handleApiError(e, 'sendOppgavebekreftelseAktivitetspenger');

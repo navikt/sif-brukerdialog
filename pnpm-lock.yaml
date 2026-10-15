@@ -3848,6 +3848,9 @@ importers:
 
   packages/api/k9-brukerdialog-prosessering-api:
     dependencies:
+      '@sif/api-client':
+        specifier: workspace:*
+        version: link:../../core/sif-api-client
       dayjs:
         specifier: '*'
         version: 1.11.23
@@ -3891,6 +3894,9 @@ importers:
 
   packages/api/k9-sak-innsyn-api:
     dependencies:
+      '@sif/api-client':
+        specifier: workspace:*
+        version: link:../../core/sif-api-client
       dayjs:
         specifier: '*'
         version: 1.11.23
@@ -3934,6 +3940,9 @@ importers:
 
   packages/api/k9-sak-innsyn-k9-sak-api:
     dependencies:
+      '@sif/api-client':
+        specifier: workspace:*
+        version: link:../../core/sif-api-client
       dayjs:
         specifier: '*'
         version: 1.11.23
@@ -3980,6 +3989,9 @@ importers:
       '@navikt/sif-common-api':
         specifier: workspace:*
         version: link:../../legacy/sif-common-api
+      '@sif/api-client':
+        specifier: workspace:*
+        version: link:../../core/sif-api-client
       '@sif/env':
         specifier: workspace:*
         version: link:../../core/sif-env
@@ -4026,6 +4038,9 @@ importers:
 
   packages/api/ung-brukerdialog-api:
     dependencies:
+      '@sif/api-client':
+        specifier: workspace:*
+        version: link:../../core/sif-api-client
       dayjs:
         specifier: '*'
         version: 1.11.23
@@ -4072,6 +4087,9 @@ importers:
 
   packages/api/ung-deltakelse-opplyser-api-deltaker:
     dependencies:
+      '@sif/api-client':
+        specifier: workspace:*
+        version: link:../../core/sif-api-client
       dayjs:
         specifier: '*'
         version: 1.11.23
@@ -4115,6 +4133,9 @@ importers:
 
   packages/api/ung-deltakelse-opplyser-api-veileder:
     dependencies:
+      '@sif/api-client':
+        specifier: workspace:*
+        version: link:../../core/sif-api-client
       '@sif/env':
         specifier: workspace:*
         version: link:../../core/sif-env
@@ -4265,6 +4286,9 @@ importers:
       '@navikt/ung-deltakelse-opplyser-api-deltaker':
         specifier: workspace:*
         version: link:../../api/ung-deltakelse-opplyser-api-deltaker
+      '@sif/api-client':
+        specifier: workspace:*
+        version: link:../sif-api-client
       '@sif/env':
         specifier: workspace:*
         version: link:../sif-env
@@ -4305,6 +4329,31 @@ importers:
       zod:
         specifier: 4.6.5
         version: 4.6.5
+
+  packages/core/sif-api-client:
+    dependencies:
+      axios:
+        specifier: 1.20.0
+        version: 1.20.0
+      uuid:
+        specifier: ^14.0.2
+        version: 14.0.2
+    devDependencies:
+      '@sif/eslint-config':
+        specifier: workspace:*
+        version: link:../../tooling/eslint-config-sif
+      config:
+        specifier: workspace:*
+        version: link:../../tooling/config
+      eslint:
+        specifier: 10.12.0
+        version: 10.12.0(jiti@2.7.0)
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vitest:
+        specifier: 5.0.3
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.6.4)(@vitest/browser-playwright@5.0.3)(@vitest/coverage-v8@5.0.3)(@vitest/ui@5.0.3)(jsdom@30.1.2(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.4)(typescript@6.0.3))(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   packages/core/sif-apm:
     dependencies:

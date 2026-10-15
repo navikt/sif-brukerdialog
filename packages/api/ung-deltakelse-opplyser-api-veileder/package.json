@@ -21,6 +21,7 @@
         "lint:tsc": "tsc --noEmit"
     },
     "dependencies": {
+        "@sif/api-client": "workspace:*",
         "@sif/env": "workspace:*"
     },
     "devDependencies": {

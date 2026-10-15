@@ -19,6 +19,9 @@
         "lint:tsc": "tsc --noEmit",
         "openapi-ts": "openapi-ts"
     },
+    "dependencies": {
+        "@sif/api-client": "workspace:*"
+    },
     "devDependencies": {
         "@hey-api/openapi-ts": "0.98.2",
         "@sif/codegen": "workspace:*",
