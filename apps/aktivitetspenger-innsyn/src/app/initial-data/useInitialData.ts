@@ -1,5 +1,5 @@
 import { OppgaveYtelsetype, TilgjengeligSøknadResponse } from '@navikt/ung-brukerdialog-api';
-import { Søker, useSøker } from '@sif/api/k9-prosessering';
+import { Søker, useSøker } from '@sif/api/k9-brukerdialog-prosessering';
 import { Oppgave, useOppgaver, useTilgjengeligAktivitetspengerSøknad } from '@sif/api/ung-brukerdialog';
 
 interface InitialData {

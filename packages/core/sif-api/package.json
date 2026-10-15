@@ -6,11 +6,10 @@
     "type": "module",
     "exports": {
         ".": "./src/index.ts",
-        "./k9-prosessering": "./src/k9-prosessering/index.ts",
+        "./k9-brukerdialog-prosessering": "./src/k9-brukerdialog-prosessering/index.ts",
         "./ung-brukerdialog": "./src/ung-brukerdialog/index.ts",
-        "./ung-deltaker": "./src/ung-deltaker/index.ts",
-        "./k9-sak-innsyn-api": "./src/k9-sak-innsyn-api/index.ts",
-        "./components": "./src/components/index.ts",
+        "./ung-deltakelse-opplyser-deltaker": "./src/ung-deltakelse-opplyser-deltaker/index.ts",
+        "./k9-sak-innsyn": "./src/k9-sak-innsyn/index.ts",
         "./mock-data": "./src/mock-data/index.ts",
         "./mock-utils": "./src/mock-utils/index.ts"
     },

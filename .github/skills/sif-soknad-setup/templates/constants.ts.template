@@ -1,6 +1,6 @@
 // src/app/setup/constants.ts
 // Tilpass: APP_YTELSE til riktig MellomlagringYtelse
-import { MellomlagringYtelse } from '@sif/api/k9-prosessering';
+import { MellomlagringYtelse } from '@sif/api/k9-brukerdialog-prosessering';
 
 export const APP_YTELSE = MellomlagringYtelse.AKTIVITETSPENGER; // ← tilpass
 export const MELLOMLAGRING_VERSJON = 1;

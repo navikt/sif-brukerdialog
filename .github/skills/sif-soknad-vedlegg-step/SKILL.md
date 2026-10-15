@@ -58,7 +58,7 @@ Bruk delte hjelpere fra `@sif/soknad-forms`. Ikke dupliser disse lokalt.
 
 ```ts
 import { <Prefix>Søknadsdata } from '@app/types/Soknadsdata';
-import { getVedleggApiUrl } from '@sif/api/k9-prosessering';
+import { getVedleggApiUrl } from '@sif/api/k9-brukerdialog-prosessering';
 import { isUploadedVedlegg, toPersistedVedlegg, toUploadedFile } from '@sif/soknad-forms';
 
 import { <Prefix>FormValues } from './types';

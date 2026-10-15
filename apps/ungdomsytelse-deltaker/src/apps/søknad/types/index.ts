@@ -1,13 +1,13 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
-import { RegistrertBarn, Søker } from '@sif/api/k9-prosessering';
+import { RegistrertBarn, Søker } from '@sif/api/k9-brukerdialog-prosessering';
 import { SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
-import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
+import { UtvidetKontonummerInfo } from '@sif/api/ung-deltakelse-opplyser-deltaker';
 
 export enum Steg {
-    'KONTONUMMER' = 'kontonummer',
-    'BARN' = 'barn',
-    'OPPSUMMERING' = 'oppsummering',
+    KONTONUMMER = 'kontonummer',
+    BARN = 'barn',
+    OPPSUMMERING = 'oppsummering',
 }
 
 export enum Spørsmål {

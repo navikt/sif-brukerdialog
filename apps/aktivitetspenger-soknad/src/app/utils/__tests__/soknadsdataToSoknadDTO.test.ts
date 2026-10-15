@@ -1,6 +1,6 @@
 import { Søknadsdata } from '@app/types/Soknadsdata';
 import { SøknadStepId } from '@app/types/SoknadStepId';
-import { Søker } from '@sif/api/k9-prosessering';
+import { Søker } from '@sif/api/k9-brukerdialog-prosessering';
 import { ISODate } from '@sif/utils';
 
 import { søknadsdataToSøknadDTO } from '../soknadsdataToSoknadDTO';

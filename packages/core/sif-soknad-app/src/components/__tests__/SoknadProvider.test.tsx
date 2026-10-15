@@ -1,4 +1,4 @@
-import { hentYtelseMellomlagring, slettYtelseMellomlagring } from '@sif/api/k9-prosessering';
+import { hentYtelseMellomlagring, slettYtelseMellomlagring } from '@sif/api/k9-brukerdialog-prosessering';
 import { createGrunnlagHash } from '@sif/utils';
 import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
@@ -6,7 +6,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { SøknadProvider } from '../SoknadProvider';
 
-vi.mock('@sif/api/k9-prosessering', () => ({
+vi.mock('@sif/api/k9-brukerdialog-prosessering', () => ({
     hentYtelseMellomlagring: vi.fn(),
     oppdaterYtelseMellomlagring: vi.fn(),
     slettYtelseMellomlagring: vi.fn(),

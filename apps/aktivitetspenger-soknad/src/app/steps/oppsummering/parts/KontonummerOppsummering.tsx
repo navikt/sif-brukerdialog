@@ -2,7 +2,7 @@ import { AppText } from '@app/i18n';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { FormSummary } from '@navikt/ds-react';
 import type { aktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
-import { HarKontonummerEnum, UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
+import { HarKontonummerEnum, UtvidetKontonummerInfo } from '@sif/api/ung-deltakelse-opplyser-deltaker';
 import { useStepNavigation } from '@sif/soknad-app';
 import { JaNeiSvar } from '@sif/soknad-ui';
 

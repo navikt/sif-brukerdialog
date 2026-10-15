@@ -3,7 +3,7 @@ import {
     MellomlagringYtelse,
     oppdaterYtelseMellomlagring,
     slettYtelseMellomlagring,
-} from '@sif/api/k9-prosessering';
+} from '@sif/api/k9-brukerdialog-prosessering';
 import { createGrunnlagHash } from '@sif/utils';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';

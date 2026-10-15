@@ -118,7 +118,7 @@ Legg merke til: stegtitler settes **ikke** her. De hentes automatisk fra i18n vi
 ### 3. `src/app/setup/constants.ts`
 
 ```ts
-import { MellomlagringYtelse } from '@sif/api/k9-prosessering';
+import { MellomlagringYtelse } from '@sif/api/k9-brukerdialog-prosessering';
 
 export const APP_YTELSE = MellomlagringYtelse.AKTIVITETSPENGER; // ← tilpass
 export const MELLOMLAGRING_VERSJON = 1;
@@ -170,7 +170,7 @@ export const formValuesToSøknadsdata = (
 
 ```tsx
 import { createContext, useContext } from 'react';
-import { Søker } from '@sif/api/k9-prosessering';
+import { Søker } from '@sif/api/k9-brukerdialog-prosessering';
 
 export interface AppContextData {
     søker: Søker;

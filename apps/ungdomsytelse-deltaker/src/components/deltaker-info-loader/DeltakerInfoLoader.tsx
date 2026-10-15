@@ -1,6 +1,6 @@
 import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { ApiError } from '@sif/api';
-import { useSøker } from '@sif/api/k9-prosessering';
+import { useSøker } from '@sif/api/k9-brukerdialog-prosessering';
 import { ParsedOppgavetype, useOppgaver } from '@sif/api/ung-brukerdialog';
 import { appLogger } from '@sif/apm';
 import { SkyraSlug, SkyraTestPage } from '@sif/surveys';

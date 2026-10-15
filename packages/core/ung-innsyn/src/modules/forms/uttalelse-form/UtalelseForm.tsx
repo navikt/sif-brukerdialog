@@ -2,7 +2,7 @@ import { BodyLong, Button, HStack, VStack } from '@navikt/ds-react';
 import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
 import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { ApiErrorAlert } from '@sif/api';
-import { useSendOppgavebekreftelse, YtelseOppgavebekreftelse } from '@sif/api/k9-prosessering';
+import { useSendOppgavebekreftelse, YtelseOppgavebekreftelse } from '@sif/api/k9-brukerdialog-prosessering';
 import { createSifFormComponents, SifForm, useSifValidate, YesOrNo } from '@sif/rhf';
 import { ReactNode } from 'react';
 import { useForm } from 'react-hook-form';

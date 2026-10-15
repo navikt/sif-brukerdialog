@@ -1,7 +1,7 @@
 import { Theme } from '@navikt/ds-react';
-import { useRegistrerteBarn } from '@sif/api/k9-prosessering';
+import { useRegistrerteBarn } from '@sif/api/k9-brukerdialog-prosessering';
 import { ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
-import { kontonummerFallback, useKontonummer } from '@sif/api/ung-deltaker';
+import { kontonummerFallback, useKontonummer } from '@sif/api/ung-deltakelse-opplyser-deltaker';
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 

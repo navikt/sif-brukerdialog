@@ -1,5 +1,5 @@
 import { Heading, HeadingProps, HelpText, HStack, VStack } from '@navikt/ds-react';
-import { RegistrertBarn } from '@sif/api/k9-prosessering';
+import { RegistrertBarn } from '@sif/api/k9-brukerdialog-prosessering';
 import { SifRadioGroup, SifRadioProp } from '@sif/rhf';
 import { SifInfoCard } from '@sif/soknad-ui';
 import { dateFormatter, formatName } from '@sif/utils';
