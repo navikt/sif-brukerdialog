@@ -12,11 +12,11 @@ export const useEndreFraOppsummering = () => {
         dispatch,
     } = useSøknadContext();
     const navigate = useNavigate();
-    const { logInfo } = useAnalyticsInstance();
+    const { logEvent } = useAnalyticsInstance();
 
     const endre = (steg: EndringStepId) => {
         if (valgteEndringer[steg] === false) {
-            logInfo({ hendelse: 'legg_til_endring', valgtSteg: steg });
+            logEvent('leggTilEndring', { steg });
         }
         dispatch(actionsCreator.leggTilValgtEndring(steg));
         dispatch(actionsCreator.requestLagreSøknad());
