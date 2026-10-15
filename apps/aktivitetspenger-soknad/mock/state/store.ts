@@ -1,4 +1,4 @@
-import { createStore } from '@sif/api/mock-utils';
+import { createStore } from '@sif/mock-utils';
 
 import { getScenarioMockData } from '../scenarios/scenarioer';
 import { ScenarioData, ScenarioType } from '../scenarios/types';

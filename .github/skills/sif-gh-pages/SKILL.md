@@ -109,7 +109,7 @@ declare const __IS_DEMO__: boolean;
 Service worker registreres på origin-roten som standard. Sett URL eksplisitt når `__IS_GITHUB_PAGES__`:
 `serviceWorker.url = import.meta.env.BASE_URL + 'mockServiceWorker.js'`.
 
-Ikke bruk `enableMockingBase` fra `@sif/api/mock-utils` — den krever `ENV === 'development'`.
+Ikke bruk `enableMockingBase` fra `@sif/mock-utils` — den krever `ENV === 'development'`.
 
 **Catch-all-handlere (`http.get('*', ...)`, `http.all('*', ...)`) fanger også cross-origin-kall.**
 `*` i msw matcher enhver URL, ikke bare samme origin — inkludert `https://cdn.nav.no/...`, som

@@ -10,8 +10,7 @@
         "./ung-brukerdialog": "./src/ung-brukerdialog/index.ts",
         "./ung-deltakelse-opplyser-deltaker": "./src/ung-deltakelse-opplyser-deltaker/index.ts",
         "./k9-sak-innsyn": "./src/k9-sak-innsyn/index.ts",
-        "./mock-data": "./src/mock-data/index.ts",
-        "./mock-utils": "./src/mock-utils/index.ts"
+        "./mock-data": "./src/mock-data/index.ts"
     },
     "main": "src/index.ts",
     "types": "src/index.ts",
