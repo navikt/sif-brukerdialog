@@ -33,7 +33,7 @@ export {
 } from './vedlegg/vedleggApi';
 
 // Types
-export type { InvalidParameterProblemDetail, InvalidParameterViolation } from '../shared/invalidParameterProblemDetail';
+export type { InvalidParameterProblemDetail, InvalidParameterViolation } from '../shared/InvalidParameterProblemDetail';
 export type {
     Arbeidsgivere,
     ArbeidsgiverFrilansoppdrag,

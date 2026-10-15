@@ -1,5 +1,5 @@
 import { Søker } from '../../k9-brukerdialog-prosessering/soker/Soker';
-import { testTestesen } from '../entiteter/søkere';
+import { testTestesen } from '../entiteter/sokere';
 
 export const mockSøker: Søker = {
     aktørId: testTestesen.aktørId,

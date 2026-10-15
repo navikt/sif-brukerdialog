@@ -3,8 +3,7 @@ import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { useMutation } from '@tanstack/react-query';
 
 import { ApiError } from '../../shared/errorHandlers';
-import { rapporterInntektAktivitetspenger } from './rapporterInntektAktivitetspenger';
-import { rapporterInntektUngdomsytelse } from './rapporterInntektUngdomsytelse';
+import { rapporterInntektAktivitetspenger, rapporterInntektUngdomsytelse } from './inntektApi';
 
 /** Inntektsrapportering knyttet til ytelsen sin, slik at hver ytelse sender sin egen DTO. */
 export type YtelseInntektsrapportering =

@@ -2,8 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 
 import { sifApiQueryKeys } from '../../queryKeys';
 import { ApiError } from '../../shared/errorHandlers';
-import { hentSisteGyldigeVedtakForAktørId } from './hentSisteGyldigeVedtakForAktorId';
 import { SisteGyldigeVedtakForAktørId } from './SisteGyldigeVedtakForAktorId';
+import { hentSisteGyldigeVedtakForAktørId } from './vedtakApi';
 
 export const useHentSisteGyldigeVedtakForAktørId = (aktørId: string, enabled = true) => {
     return useQuery<SisteGyldigeVedtakForAktørId, ApiError>({

@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { sifApiQueryKeys } from '../../queryKeys';
 import { ApiError } from '../../shared/errorHandlers';
-import { tilgjengeligAktivitetspengerSoknad } from './tilgjengeligAktivitetspengerSoknad';
+import { tilgjengeligAktivitetspengerSoknad } from './aktivitetspengerTilgangApi';
 
 /**
  * Hook for å hente informasjon om tilgjengelig aktivitetspenger-søknad

@@ -14,4 +14,4 @@ export {
 
 // Komponenter (kryssdomene)
 export { ApiErrorAlert } from './shared/ApiErrorAlert';
-export type { InvalidParameterViolation } from './shared/invalidParameterProblemDetail';
+export type { InvalidParameterViolation } from './shared/InvalidParameterProblemDetail';

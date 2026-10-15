@@ -3,8 +3,7 @@ import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { useMutation } from '@tanstack/react-query';
 
 import { ApiError } from '../../shared/errorHandlers';
-import { sendOppgavebekreftelseAktivitetspenger } from './sendOppgavebekreftelseAktivitetspenger';
-import { sendOppgavebekreftelseUngdomsytelse } from './sendOppgavebekreftelseUngdomsytelse';
+import { sendOppgavebekreftelseAktivitetspenger, sendOppgavebekreftelseUngdomsytelse } from './oppgavebekreftelseApi';
 
 /** Oppgavebekreftelse knyttet til ytelsen sin, slik at hver ytelse sender sin egen DTO. */
 export type YtelseOppgavebekreftelse =

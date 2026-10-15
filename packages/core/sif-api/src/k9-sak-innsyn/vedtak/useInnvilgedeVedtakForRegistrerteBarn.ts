@@ -2,8 +2,8 @@ import { useQueries } from '@tanstack/react-query';
 
 import { RegistrertBarn } from '../../k9-brukerdialog-prosessering/barn/Barn';
 import { sifApiQueryKeys } from '../../queryKeys';
-import { hentSisteGyldigeVedtakForAktørId } from './hentSisteGyldigeVedtakForAktorId';
 import { SisteGyldigeVedtakForAktørId } from './SisteGyldigeVedtakForAktorId';
+import { hentSisteGyldigeVedtakForAktørId } from './vedtakApi';
 
 export interface InnvilgedeVedtak {
     [aktørId: string]: SisteGyldigeVedtakForAktørId | undefined;

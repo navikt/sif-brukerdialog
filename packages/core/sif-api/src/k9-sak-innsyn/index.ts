@@ -6,7 +6,7 @@ export type { InnvilgedeVedtak } from './vedtak/useInnvilgedeVedtakForRegistrert
 export { useInnvilgedeVedtakForRegistrerteBarn } from './vedtak/useInnvilgedeVedtakForRegistrerteBarn';
 
 // API
-export { hentSisteGyldigeVedtakForAktørId } from './vedtak/hentSisteGyldigeVedtakForAktorId';
+export { hentSisteGyldigeVedtakForAktørId } from './vedtak/vedtakApi';
 
 // Types
 export type { SisteGyldigeVedtakForAktørId } from './vedtak/SisteGyldigeVedtakForAktorId';

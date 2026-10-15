@@ -1,7 +1,7 @@
 import { arbeidsgivereEnOrgResponse } from './api-response/arbeidsgivere';
 import { barnListeEttBarn, barnListeTom } from './api-response/barn';
 import { kontonummerApiResponse } from './api-response/kontonummer';
-import { søkerTestTestesen } from './api-response/søker';
+import { søkerTestTestesen } from './api-response/soker';
 
 export const standardProfil = {
     søker: søkerTestTestesen,
