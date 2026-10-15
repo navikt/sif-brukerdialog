@@ -9,4 +9,4 @@ export { useInnvilgedeVedtakForRegistrerteBarn } from '../hooks/omsorgsdager-kro
 export { hentSisteGyldigeVedtakForAktørId } from '../api/omsorgsdager-kronisk-sykt-barn/hentSisteGyldigeVedtakForAktorId';
 
 // Types
-export * from '../types/omsorgsdager-kronisk-sykt-barn/SisteGyldigeVedtakForAktorId';
+export type { SisteGyldigeVedtakForAktørId } from '../types/omsorgsdager-kronisk-sykt-barn/SisteGyldigeVedtakForAktorId';

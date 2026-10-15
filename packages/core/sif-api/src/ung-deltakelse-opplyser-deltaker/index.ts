@@ -7,4 +7,4 @@ export { kontonummerFallback, useKontonummer } from '../hooks/useKontonummer';
 export { hentKontonummer } from '../api/kontonummerApi';
 
 // Types
-export * from '../types/UtvidetKontonummerInfo';
+export { HarKontonummerEnum, type UtvidetKontonummerInfo } from '../types/UtvidetKontonummerInfo';

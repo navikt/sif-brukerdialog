@@ -3,7 +3,14 @@ export { sifApiQueryKeys } from './queryKeys';
 export { commonRequestHeaders } from '@sif/api-client';
 
 // Utils (kryssdomene)
-export * from './utils/errorHandlers';
+export {
+    type ApiError,
+    ApiErrorType,
+    getInvalidParametersFromApiError,
+    handleApiError,
+    isApiAxiosError,
+    isApiError,
+} from './utils/errorHandlers';
 
 // Komponenter (kryssdomene)
 export { ApiErrorAlert } from './components/ApiErrorAlert';

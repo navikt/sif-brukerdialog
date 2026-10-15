@@ -9,4 +9,23 @@ export { tilgjengeligAktivitetspengerSoknad } from '../api/aktivitetspenger/tilg
 export { hentOppgaver } from '../api/oppgaverApi';
 
 // Types
-export * from '../types/Oppgave';
+export type {
+    AndreLivsoppholdsytelserOppgave,
+    AvvikRegisterinntektOppgave,
+    BekreftelseOppgave,
+    BostedVilkårOppgave,
+    EndretSluttdatoOppgave,
+    EndretStartdatoOppgave,
+    EndretStartOgSluttdatoOppgave,
+    FjernetPeriodeOppgave,
+    MeldtUtOppgave,
+    Oppgave,
+    OpphorVedMaksdatoOppgave,
+    ParsedOppgaveBase,
+    ParsedRapportertInntektOppgave,
+    RapporterInntektOppgave,
+    RapportertInntektRespons,
+    SøkYtelseOppgave,
+    SvarPåVarselRespons,
+} from '../types/Oppgave';
+export { ParsedOppgavetype } from '../types/Oppgave';

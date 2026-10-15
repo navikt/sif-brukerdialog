@@ -30,8 +30,13 @@ export {
 } from '../api/ytelseMellomlagringApi';
 
 // Types
-export * from '../types/Arbeidsgivere';
-export * from '../types/Barn';
-export * from '../types/invalidParameterProblemDetail';
-export * from '../types/MellomlagringYtelse';
-export * from '../types/Soker';
+export type {
+    Arbeidsgivere,
+    ArbeidsgiverFrilansoppdrag,
+    ArbeidsgiverOrganisasjon,
+    ArbeidsgiverPrivatperson,
+} from '../types/Arbeidsgivere';
+export type { RegistrertBarn } from '../types/Barn';
+export type { InvalidParameterProblemDetail, InvalidParameterViolation } from '../types/invalidParameterProblemDetail';
+export { MellomlagringYtelse } from '../types/MellomlagringYtelse';
+export type { Søker } from '../types/Soker';
