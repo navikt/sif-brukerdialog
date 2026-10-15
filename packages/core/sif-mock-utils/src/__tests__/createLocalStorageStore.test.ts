@@ -46,6 +46,16 @@ describe('createLocalStorageStore — init', () => {
         const store = makeStore();
         store.init(Scenario.default);
         expect(store.getScenario()).toBe(Scenario.default);
+        expect(localStorage.getItem('TEST_SCENARIO')).toBe(Scenario.default);
+    });
+
+    it('erstatter data fra et ugyldig lagret scenario med init-scenarioets data', () => {
+        localStorage.setItem('TEST_SCENARIO', 'fjernet_scenario');
+        localStorage.setItem('TEST_DATA', JSON.stringify({ value: 'gammel' }));
+        const store = makeStore();
+        store.init(Scenario.other);
+        expect(store.getScenario()).toBe(Scenario.other);
+        expect(store.get()).toEqual({ value: 'other-data' });
     });
 });
 

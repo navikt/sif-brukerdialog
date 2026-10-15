@@ -25,12 +25,10 @@ export async function enableMocking({ loadWorker, mode }: EnableMockingOptions) 
     }
 
     try {
-        return worker.start({
-            onUnhandledRequest: 'warn',
-        });
-    } catch {
-        // do nothing
+        await worker.start({ onUnhandledRequest: 'warn' });
+    } catch (error) {
+        // Appen skal fortsatt rendres, men uten mock
+        // eslint-disable-next-line no-console
+        console.error('Kunne ikke starte MSW', error);
     }
-
-    return worker.start();
 }

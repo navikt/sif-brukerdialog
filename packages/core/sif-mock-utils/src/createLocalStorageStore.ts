@@ -17,12 +17,12 @@ export const createLocalStorageStore = <TData, TScenario extends string>(
             const current = localStorage.getItem(scenarioKey);
             const hasData = localStorage.getItem(storageKey) !== null;
 
-            if (!current) {
+            if (!current || !isValidScenario(current)) {
                 store.setScenario(scenario);
                 return;
             }
 
-            if (!hasData && isValidScenario(current)) {
+            if (!hasData) {
                 store.setScenario(current);
             }
         },
