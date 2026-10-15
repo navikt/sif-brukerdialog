@@ -1,6 +1,6 @@
 // Query keys
 export { sifApiQueryKeys } from './queryKeys';
-export { commonRequestHeaders as commonRequestHeader } from '@sif/api-client';
+export { commonRequestHeaders } from '@sif/api-client';
 
 // Utils (kryssdomene)
 export * from './utils/errorHandlers';

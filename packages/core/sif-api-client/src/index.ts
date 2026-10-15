@@ -31,6 +31,10 @@ export const commonRequestHeaders: CommonRequestHeaders = {
     'X-Brukerdialog-Git-Sha': 'overskrives-av-server',
 };
 
+const defaultRequestHeaders: CommonRequestHeaders = {
+    'X-Brukerdialog-Git-Sha': commonRequestHeaders['X-Brukerdialog-Git-Sha'],
+};
+
 const isPlainObject = (value: object): boolean => {
     const prototype = Object.getPrototypeOf(value);
     return prototype === Object.prototype || prototype === null;
@@ -70,7 +74,7 @@ export const initApiClient = (
 
     client.setConfig({
         baseURL: `${origin}${normalizedPath}`,
-        headers: headers === undefined ? commonRequestHeaders : { ...commonRequestHeaders, ...headers },
+        headers: headers === undefined ? defaultRequestHeaders : { ...defaultRequestHeaders, ...headers },
         withCredentials: false,
     });
 

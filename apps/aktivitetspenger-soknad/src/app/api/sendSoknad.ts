@@ -1,6 +1,6 @@
 import { SøknadApiData } from '@app/types/SoknadApiData';
 import { aktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
-import { commonRequestHeader, handleApiError } from '@sif/api';
+import { commonRequestHeaders, handleApiError } from '@sif/api';
 import { isProd } from '@sif/env';
 
 export const sendSøknad = async (data: SøknadApiData): Promise<void> => {
@@ -13,7 +13,7 @@ export const sendSøknad = async (data: SøknadApiData): Promise<void> => {
     try {
         await aktivitetspenger.AktivitetspengerController.innsendingAktivitetspengersøknad({
             body,
-            headers: commonRequestHeader,
+            headers: commonRequestHeaders,
         });
     } catch (e) {
         throw handleApiError(e, 'sendSøknad');

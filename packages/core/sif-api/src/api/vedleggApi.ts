@@ -35,19 +35,14 @@ export const getVedleggApiUrl = (id: string): string => {
  *
  * @param vedlegg Vedlegget som skal lagres (Blob eller File)
  * @returns Promise med upload response
- * @throws Error hvis API-kallet feiler
+ * @throws AxiosError uendret – useFileUploader leser code/status for å skille timeout og 400
  */
 export const lagreVedlegg = async (vedlegg: Blob | File) => {
-    try {
-        const response = await VedleggController.lagreVedlegg({
-            body: {
-                vedlegg,
-            },
-        });
-        return response;
-    } catch (error) {
-        throw handleApiError(error, 'lagreVedlegg');
-    }
+    return VedleggController.lagreVedlegg({
+        body: {
+            vedlegg,
+        },
+    });
 };
 
 /**
@@ -55,7 +50,7 @@ export const lagreVedlegg = async (vedlegg: Blob | File) => {
  *
  * @param vedleggId ID-en til vedlegget som skal slettes
  * @returns Promise med sletting response
- * @throws Error hvis API-kallet feiler
+ * @throws ApiError hvis API-kallet feiler
  */
 export const slettVedlegg = async (vedleggId: string) => {
     try {
@@ -75,7 +70,7 @@ export const slettVedlegg = async (vedleggId: string) => {
  *
  * @param vedleggId ID-en til vedlegget som skal hentes
  * @returns Promise med vedleggsdata
- * @throws Error hvis API-kallet feiler eller data ikke kan parses
+ * @throws ApiError hvis API-kallet feiler eller data ikke kan parses
  */
 export const hentVedlegg = async (vedleggId: string) => {
     try {
