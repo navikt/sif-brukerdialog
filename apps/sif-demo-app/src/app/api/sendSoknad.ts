@@ -1,5 +1,6 @@
-import { SøknadApiData } from '../types/SoknadApiData';
 import { commonRequestHeader } from '@sif/api';
+
+import { SøknadApiData } from '../types/SoknadApiData';
 
 export const sendSøknad = async (data: SøknadApiData): Promise<any> => {
     const response = await fetch('/sif-demo/api/aktivitetspenger/soknad/innsending', {

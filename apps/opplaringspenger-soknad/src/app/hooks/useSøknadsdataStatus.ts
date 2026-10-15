@@ -1,7 +1,7 @@
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { getMedlemskapSøknadsdataFromFormValues } from '@navikt/sif-common-forms-ds/src';
-import { useEffectOnce } from '@sif/hooks';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
+import { useEffectOnce } from '@sif/hooks';
 import { useState } from 'react';
 import isEqual from 'react-fast-compare';
 

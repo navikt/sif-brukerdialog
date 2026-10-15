@@ -1,7 +1,7 @@
 import { useSøknadContext } from '@app/hooks';
 import { ArbeidsgiverMedAnsettelseperioder, Søknadsdata } from '@app/types';
-import { useEffectOnce } from '@sif/hooks';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
+import { useEffectOnce } from '@sif/hooks';
 import { useState } from 'react';
 import isEqual from 'react-fast-compare';
 

@@ -1,8 +1,8 @@
 import {
     type AxiosError,
     type AxiosInstance,
-    isAxiosError,
     HttpStatusCode,
+    isAxiosError,
     type RawAxiosRequestHeaders,
 } from 'axios';
 import { v4 } from 'uuid';

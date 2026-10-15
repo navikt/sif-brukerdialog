@@ -4,8 +4,8 @@ import EditButton from '@app/components/buttons/EditButton';
 import { AppText, useAppIntl } from '@app/i18n';
 import { PlusCircleIcon } from '@navikt/aksel-icons';
 import { Button, HStack, VStack } from '@navikt/ds-react';
-import { usePrevious } from '@sif/hooks';
 import { getDateRangeText } from '@navikt/sif-common-utils';
+import { usePrevious } from '@sif/hooks';
 import { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 

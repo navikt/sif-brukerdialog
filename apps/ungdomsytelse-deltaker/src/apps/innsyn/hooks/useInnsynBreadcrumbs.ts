@@ -1,7 +1,7 @@
 import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
-import { useEffectOnce } from '@sif/hooks';
 import { useAppIntl } from '@shared/i18n';
 import getLenker from '@shared/utils/lenker';
+import { useEffectOnce } from '@sif/hooks';
 import { useNavigate } from 'react-router-dom';
 
 type DecoratorBreadcrumb = {
