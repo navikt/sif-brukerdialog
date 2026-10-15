@@ -92,6 +92,9 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
     - Lovhenvisninger: `oppgaveLovverk`, `getLovLenker`, `OPPGAVE_LOVVERK`, `LENKEKATALOG`, `RegelverkOgInnsynReadMore`, `lovverk for oppgave`.
     - Storybook/preview: `oppgavepanel story`, `.preview.tsx`, `OppgavetypeMappingUPY`, `OppgavetypeMappingAKT`, `panelpreview`, `renderXxxAlleStater`.
     - Panelkomponenter: `OppgavePanel`, `Oppgavebekreftelse`, `oppgavepaneler`, `ung-innsyn oppgave`.
+- `explain-diff`:
+    - Grundig forklaring av endring: `explain-diff`, `rik forklaring`, `HTML-forklaring`, `interaktiv forklaring`, `forklar PR med quiz`.
+    - Ikke for en kort tekstoppsummering av en diff.
 
 ## Prioritering ved overlapp
 
