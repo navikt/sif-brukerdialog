@@ -1,8 +1,8 @@
 import { Link } from '@navikt/ds-react';
 import { Infolist } from '@navikt/sif-common-core-ds';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import { useEffectOnce } from '@sif/hooks';
 import { Kvittering } from '@navikt/sif-common-soknad-ds';
+import { useEffectOnce } from '@sif/hooks';
 import React from 'react';
 
 import { AppText, useAppIntl } from '../../i18n';

@@ -226,7 +226,8 @@ Legg vedlegg-handlerne før catch-all-handlere.
 ## Feilsøking
 
 - Ingen request i nettverkspanelet: sjekk om generert `zLagreVedleggData` bruker `z.string()` i stedet for `z.instanceof(Blob)`.
-- Request sendes som JSON: sjekk at API-klienten ikke setter global `Content-type: application/json`.
+- Request sendes som JSON: sjekk at verken `initApiClient` eller kallet setter `Content-Type: application/json`. Den genererte `lagreVedlegg` setter `Content-Type: null`, slik at Axios velger `multipart/form-data`.
+- Tidsavbrudd kan ikke prøves på nytt, eller 400 gir generell feilmelding: sjekk at `lagreVedlegg` kaster den opprinnelige Axios-feilen og ikke en `ApiError`.
 - Lenken i oppsummeringen virker ikke i dev/mock: sjekk `Location`-header og `GET /vedlegg/:id`.
 
 ## Minimumstester

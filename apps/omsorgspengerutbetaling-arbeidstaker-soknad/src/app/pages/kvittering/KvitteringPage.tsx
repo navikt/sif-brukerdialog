@@ -3,8 +3,8 @@ import './kvitteringPage.css';
 import { VStack } from '@navikt/ds-react';
 import Infolist from '@navikt/sif-common-core-ds/src/components/lists/infolist/Infolist';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import { useEffectOnce } from '@sif/hooks';
 import { Kvittering } from '@navikt/sif-common-soknad-ds/src';
+import { useEffectOnce } from '@sif/hooks';
 import { Skyra, SkyraSlug } from '@sif/surveys';
 
 import { AppText, useAppIntl } from '../../i18n';

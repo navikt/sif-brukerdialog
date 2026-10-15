@@ -83,16 +83,16 @@ Ved verifisering av API-ruter (for eksempel ved MSW-oppsett):
 
 ### `@sif/api/k9-prosessering` (k9-brukerdialog-prosessering-api)
 
-| Hook                                                                   | Returnerer                                  | Typisk caching (per dagens impl.)  |
-| ---------------------------------------------------------------------- | ------------------------------------------- | ---------------------------------- |
-| `useSøker(enabled?)`                                                   | `Søker`                                     | staleTime: Infinity                |
-| `useRegistrerteBarn(enabled?)`                                         | `RegistrertBarn[]`                          | staleTime: Infinity                |
-| `useArbeidsgivere(enabled?)`                                           | Arbeidsgivere                               | —                                  |
-| `useValiderFritekst(enabled?)`                                         | Valideringsresultat                         | —                                  |
-| `useLagreVedlegg()`                                                    | Mutation for opplasting                     | Invaliderer vedlegg-cache          |
-| `useSlettVedlegg()`                                                    | Mutation for sletting                       | Fjerner fra cache                  |
-| `useRapporterInntekt()`                                                | Mutation for inntektsrapportering           | —                                  |
-| `useSendOppgavebekreftelse()`                                          | Mutation for oppgavebekreftelse             | —                                  |
+| Hook                                             | Returnerer                         | Typisk caching (per dagens impl.) |
+| ------------------------------------------------ | ---------------------------------- | --------------------------------- |
+| `useSøker(enabled?)`                             | `Søker`                            | staleTime: Infinity               |
+| `useRegistrerteBarn(enabled?)`                   | `RegistrertBarn[]`                 | staleTime: Infinity               |
+| `useArbeidsgivere(fraOgMed, tilOgMed, options?)` | `Arbeidsgivere`                    | staleTime: Infinity               |
+| `useValiderFritekst(fritekst?)`                  | `{ isPending, invalidParameters }` | Ingen retry eller refetch         |
+| `useLagreVedlegg()`                              | Mutation for opplasting            | Invaliderer vedlegg-cache         |
+| `useSlettVedlegg()`                              | Mutation for sletting              | Fjerner fra cache                 |
+| `useRapporterInntekt()`                          | Mutation for inntektsrapportering  | —                                 |
+| `useSendOppgavebekreftelse()`                    | Mutation for oppgavebekreftelse    | —                                 |
 
 ### Vedlegg-utilities (ikke hooks)
 
@@ -101,7 +101,7 @@ Ved verifisering av API-ruter (for eksempel ved MSW-oppsett):
 | Funksjon                                      | Returnerer   | Bruk                                                      |
 | --------------------------------------------- | ------------ | --------------------------------------------------------- |
 | `lagreVedlegg(file)`                          | Response     | Laster opp vedlegg (brukes i VedleggPanel)                |
-| `slettVedlegg(id)`                            | Response     | Sletter vedlegg (brukes i VedleggPanel)                   |
+| `slettVedlegg(id)`                            | Responsdata  | Sletter vedlegg (brukes i VedleggPanel)                   |
 | `hentVedlegg(id)`                             | Vedleggsdata | Henter vedlegg                                            |
 | `getVedleggFrontendUrl(id)`                   | `string`     | Frontend-proxy-URL for visning i nettleseren              |
 | `getVedleggApiUrl(id)`                        | `string`     | Full backend-API-URL for innsending i DTO                 |
@@ -111,15 +111,18 @@ Ved verifisering av API-ruter (for eksempel ved MSW-oppsett):
 
 ### `@sif/api/ung-brukerdialog` (ung-brukerdialog-api)
 
-| Hook                  | Returnerer  | Typisk caching |
-| --------------------- | ----------- | -------------- |
-| `useOppgaver(ytelse)` | `Oppgave[]` | —              |
+| Hook                                              | Returnerer                   | Typisk caching    |
+| ------------------------------------------------- | ---------------------------- | ----------------- |
+| `useOppgaver(ytelse, enabled?)`                   | `Oppgave[]`                  | —                 |
+| `useTilgjengeligAktivitetspengerSøknad(enabled?)` | `TilgjengeligSøknadResponse` | staleTime: 10 min |
 
 ### `@sif/api/ung-deltaker` (ung-deltakelse-opplyser-api-deltaker)
 
 | Hook                       | Returnerer               | Typisk caching    |
 | -------------------------- | ------------------------ | ----------------- |
-| `useKontonummer(enabled?)` | `KontonummerDto \| null` | staleTime: 20 min |
+| `useKontonummer(enabled?)` | `UtvidetKontonummerInfo` | staleTime: 20 min |
+
+`kontonummerFallback` eksporteres for bruk når kontonummer ikke kan hentes.
 
 ---
 
@@ -135,7 +138,7 @@ Hver hook avhenger av en spesifikk API-klient som må være initialisert, og til
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | Pakke         | `@navikt/k9-brukerdialog-prosessering-api`                                                                                     |
 | Init-funksjon | `initK9BrukerdialogProsesseringApiClients({ frontendPath, loginURL })`                                                         |
-| Env-schema    | `commonEnvSchema` (fra `@sif/env`) — inkludert automatisk                                                        |
+| Env-schema    | `commonEnvSchema` (fra `@sif/env`) — inkludert automatisk                                                                      |
 | Env-variabler | `K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH`, `K9_BRUKERDIALOG_PROSESSERING_API_SCOPE`, `K9_BRUKERDIALOG_PROSESSERING_API_URL` |
 
 ### `@sif/api/ung-brukerdialog` — ung-brukerdialog-api
@@ -145,7 +148,7 @@ Hver hook avhenger av en spesifikk API-klient som må være initialisert, og til
 | Element       | Verdi                                                                                          |
 | ------------- | ---------------------------------------------------------------------------------------------- |
 | Pakke         | `@navikt/ung-brukerdialog-api`                                                                 |
-| Init-funksjon | `initUngBrukerdialogApiClient({ frontendPath, loginURL, onUnauthorized })`                    |
+| Init-funksjon | `initUngBrukerdialogApiClient({ frontendPath, loginURL, onUnauthorized })`                     |
 | Env-variabler | `UNG_BRUKERDIALOG_API_FRONTEND_PATH`, `UNG_BRUKERDIALOG_API_SCOPE`, `UNG_BRUKERDIALOG_API_URL` |
 
 ### `@sif/api/ung-deltaker` — ung-deltakelse-opplyser-api-deltaker
@@ -155,8 +158,8 @@ Hver hook avhenger av en spesifikk API-klient som må være initialisert, og til
 | Element       | Verdi                                                                                                           |
 | ------------- | --------------------------------------------------------------------------------------------------------------- |
 | Pakke         | `@navikt/ung-deltakelse-opplyser-api-deltaker`                                                                  |
-| Init-funksjon | `initUngDeltakelseOpplyserApiDeltakerClient({ frontendPath, loginURL, onUnauthorized })`                       |
-| Env-schema    | `ungDeltakelseOpplyserEnvSchema` (fra `@sif/env`)                                                 |
+| Init-funksjon | `initUngDeltakelseOpplyserApiDeltakerClient({ frontendPath, loginURL, onUnauthorized })`                        |
+| Env-schema    | `ungDeltakelseOpplyserEnvSchema` (fra `@sif/env`)                                                               |
 | Env-variabler | `UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH`, `UNG_DELTAKELSE_OPPLYSER_API_SCOPE`, `UNG_DELTAKELSE_OPPLYSER_API_URL` |
 
 ---
@@ -221,6 +224,12 @@ export const initApiClients = () => {
 };
 ```
 
+Alle init-funksjonene bruker `initApiClient` fra `@sif/api-client`. Den setter `baseURL` til `origin + frontendPath`, legger på `X-Brukerdialog-Git-Sha` og `X-Correlation-ID`, gjør `null` i responser om til `undefined` og håndterer 401. Ved 401 kalles `onUnauthorized`, og deretter sendes brukeren til `loginURL`.
+
+`Content-Type` settes ikke som standard for klienten. Den genererte operasjonen bestemmer den, slik at opplasting av vedlegg sendes som `multipart/form-data`.
+
+Noen genererte operasjoner krever `X-Brukerdialog-Git-Sha` i `headers`. Send da med `commonRequestHeaders` fra `@sif/api`. Serveren overskriver verdien.
+
 ### 4. Bruk hooken
 
 Importer alltid fra det relevante domenet. Importér `ApiErrorAlert` fra rotnivå (`@sif/api`).
@@ -275,7 +284,9 @@ Gjelder alle API-funksjoner i `packages/core/sif-api/src/api/**` og ethvert anne
 
 ## Feilhåndtering (ApiError)
 
-Alle hooks kaster `ApiError` ved feil. Typen har tre varianter: `ValidationError` (Zod-parsing feiler), `NetworkError` (HTTP-feil) og `UnknownError`. Hvert feilobjekt inneholder `type`, `context` (hvilken API-funksjon som feilet), `message` og `originalError`.
+Alle hooks kaster `ApiError` ved feil. Typen har tre varianter: `ZodValidationError` (Zod-parsing feiler), `NetworkError` (HTTP-feil) og `UnknownError`. Hvert feilobjekt inneholder `type`, `context` (hvilken API-funksjon som feilet), `message` og `originalError`.
+
+Unntak: `lagreVedlegg` og `useLagreVedlegg` kaster den opprinnelige Axios-feilen. `useFileUploader` i `@sif/rhf` leser `code` og `status` direkte for å skille tidsavbrudd (kan prøves på nytt) fra 400 (ugyldig fil).
 
 Nyttige hjelpefunksjoner:
 
@@ -317,4 +328,5 @@ export const APP_YTELSE = MellomlagringYtelse.AKTIVITETSPENGER;
 ## Referansefiler
 
 - `packages/core/sif-api/src/` — pakkens kildekode
+- `packages/core/sif-api-client/src/index.ts` — felles klientoppsett (`initApiClient`, `commonRequestHeaders`)
 - `packages/core/sif-env/src/schemas.ts` — tilgjengelige env-schemas og EnvKey enum

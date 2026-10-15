@@ -1,8 +1,8 @@
 import { ErrorSummary, VStack } from '@navikt/ds-react';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { usePrevious } from '@sif/hooks';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { getCheckedValidator } from '@navikt/sif-validation';
+import { usePrevious } from '@sif/hooks';
 import { useSkyraReloader } from '@sif/surveys';
 import { useEffect, useRef } from 'react';
 

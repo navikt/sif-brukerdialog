@@ -1,6 +1,8 @@
 import { VedleggController, zHentVedleggResponse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { getCommonEnv } from '@sif/env';
 
+import { handleApiError } from '../utils/errorHandlers';
+
 /**
  * Extract vedlegg ID from response location header
  * @param url The location URL returned from the upload response
@@ -33,15 +35,14 @@ export const getVedleggApiUrl = (id: string): string => {
  *
  * @param vedlegg Vedlegget som skal lagres (Blob eller File)
  * @returns Promise med upload response
- * @throws Error hvis API-kallet feiler
+ * @throws AxiosError uendret – useFileUploader leser code/status for å skille timeout og 400
  */
 export const lagreVedlegg = async (vedlegg: Blob | File) => {
-    const response = await VedleggController.lagreVedlegg({
+    return VedleggController.lagreVedlegg({
         body: {
             vedlegg,
         },
     });
-    return response;
 };
 
 /**
@@ -49,15 +50,19 @@ export const lagreVedlegg = async (vedlegg: Blob | File) => {
  *
  * @param vedleggId ID-en til vedlegget som skal slettes
  * @returns Promise med sletting response
- * @throws Error hvis API-kallet feiler
+ * @throws ApiError hvis API-kallet feiler
  */
 export const slettVedlegg = async (vedleggId: string) => {
-    const response = await VedleggController.slettVedlegg({
-        path: {
-            vedleggId,
-        },
-    });
-    return response.data;
+    try {
+        const response = await VedleggController.slettVedlegg({
+            path: {
+                vedleggId,
+            },
+        });
+        return response.data;
+    } catch (error) {
+        throw handleApiError(error, 'slettVedlegg');
+    }
 };
 
 /**
@@ -65,13 +70,17 @@ export const slettVedlegg = async (vedleggId: string) => {
  *
  * @param vedleggId ID-en til vedlegget som skal hentes
  * @returns Promise med vedleggsdata
- * @throws Error hvis API-kallet feiler eller data ikke kan parses
+ * @throws ApiError hvis API-kallet feiler eller data ikke kan parses
  */
 export const hentVedlegg = async (vedleggId: string) => {
-    const response = await VedleggController.hentVedlegg({
-        path: {
-            vedleggId,
-        },
-    });
-    return zHentVedleggResponse.parse(response.data);
+    try {
+        const response = await VedleggController.hentVedlegg({
+            path: {
+                vedleggId,
+            },
+        });
+        return zHentVedleggResponse.parse(response.data);
+    } catch (error) {
+        throw handleApiError(error, 'hentVedlegg');
+    }
 };

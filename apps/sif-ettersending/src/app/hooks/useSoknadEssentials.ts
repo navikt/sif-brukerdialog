@@ -1,7 +1,7 @@
 import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { useEffectOnce } from '@sif/hooks';
 import { appLogger } from '@sif/apm';
+import { useEffectOnce } from '@sif/hooks';
 import { isObjectLike } from 'lodash';
 import { useState } from 'react';
 

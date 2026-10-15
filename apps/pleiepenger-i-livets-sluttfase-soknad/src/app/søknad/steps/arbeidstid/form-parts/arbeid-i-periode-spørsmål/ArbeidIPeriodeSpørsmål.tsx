@@ -6,7 +6,6 @@ import {
     TypedFormikFormContext,
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
-import { useEffectOnce } from '@sif/hooks';
 import { DurationWeekdaysInput, FormLayout } from '@navikt/sif-common-ui';
 import {
     dateFormatter,
@@ -17,6 +16,7 @@ import {
     summarizeDateDurationMap,
 } from '@navikt/sif-common-utils';
 import { getTimeValidator } from '@navikt/sif-validation';
+import { useEffectOnce } from '@sif/hooks';
 import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';
 import { useContext, useEffect, useState } from 'react';

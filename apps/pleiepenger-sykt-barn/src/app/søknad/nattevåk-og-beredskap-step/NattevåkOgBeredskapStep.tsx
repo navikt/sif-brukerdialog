@@ -2,9 +2,9 @@ import { useAppIntl } from '@i18n/index';
 import { BodyLong, Box, List } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { useEffectOnce } from '@sif/hooks';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { useEffectOnce } from '@sif/hooks';
 import { useFormikContext } from 'formik';
 import { useState } from 'react';
 

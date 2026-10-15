@@ -19,10 +19,6 @@ export const hentSøker = async (): Promise<Søker> => {
 };
 
 export const hentSøkerId = async (): Promise<string> => {
-    try {
-        const søker = await hentSøker();
-        return søker.fødselsnummer;
-    } catch (e) {
-        throw handleApiError(e, 'hentSøkerId');
-    }
+    const søker = await hentSøker();
+    return søker.fødselsnummer;
 };

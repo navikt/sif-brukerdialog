@@ -22,6 +22,7 @@
     },
     "dependencies": {
         "@navikt/sif-common-api": "workspace:*",
+        "@sif/api-client": "workspace:*",
         "@sif/env": "workspace:*"
     },
     "devDependencies": {

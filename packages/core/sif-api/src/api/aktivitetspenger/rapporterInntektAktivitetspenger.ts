@@ -1,7 +1,7 @@
 import { aktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
+import { commonRequestHeaders } from '@sif/api-client';
 
 import { handleApiError } from '../../utils/errorHandlers';
-import { commonRequestHeader } from '../../utils/initApiClient';
 
 export const rapporterInntektAktivitetspenger = async (
     data: aktivitetspenger.AktivitetspengerInntektsrapportering,
@@ -9,7 +9,7 @@ export const rapporterInntektAktivitetspenger = async (
     try {
         await aktivitetspenger.AktivitetspengerController.inntektrapportering({
             body: data,
-            headers: commonRequestHeader,
+            headers: commonRequestHeaders,
         });
     } catch (e) {
         throw handleApiError(e, 'rapporterInntektAktivitetspenger');

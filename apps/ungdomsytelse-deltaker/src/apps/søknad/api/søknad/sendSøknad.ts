@@ -1,11 +1,11 @@
 import { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
-import { commonRequestHeader, handleApiError } from '@sif/api';
+import { commonRequestHeaders, handleApiError } from '@sif/api';
 
 export const sendSøknad = async (data: ungdomsytelse.Ungdomsytelsesøknad): Promise<any> => {
     try {
         await ungdomsytelse.UngdomsytelseController.innsendingUngdomsytelsesøknad({
             body: data,
-            headers: commonRequestHeader,
+            headers: commonRequestHeaders,
         });
     } catch (e) {
         throw handleApiError(e, 'sendSøknad');

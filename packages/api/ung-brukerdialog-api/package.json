@@ -20,6 +20,9 @@
         "lint:fix": "eslint --quiet --fix './src/ung-brukerdialog-api/client/*.gen.ts'",
         "lint:tsc": "tsc --noEmit"
     },
+    "dependencies": {
+        "@sif/api-client": "workspace:*"
+    },
     "devDependencies": {
         "@hey-api/openapi-ts": "0.98.2",
         "@sif/codegen": "workspace:*",
