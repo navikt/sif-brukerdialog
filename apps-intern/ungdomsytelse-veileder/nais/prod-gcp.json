@@ -32,7 +32,7 @@
         "PUBLIC_PATH": "/",
         "SIF_PUBLIC_FEATURE_FORLENGE_PERIODE": "on",
         "SIF_PUBLIC_FEATURE_SLETT_SLUTTDATO": "on",
-        "SIF_PUBLIC_FEATURE_SLETT_AKTIV_DELTAKELSE": "off",
+        "SIF_PUBLIC_FEATURE_SLETT_AKTIV_DELTAKELSE": "on",
         "REQUIRED_PROXY_SERVICES": "UNG_DELTAKELSE_OPPLYSER",
         "UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH": "/api/ung-deltakelse-opplyser",
         "UNG_DELTAKELSE_OPPLYSER_API_SCOPE": "api://prod-gcp.k9saksbehandling.ung-deltakelse-opplyser/.default",
