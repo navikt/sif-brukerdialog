@@ -10,8 +10,8 @@ export {
     handleApiError,
     isApiAxiosError,
     isApiError,
-} from './utils/errorHandlers';
+} from './shared/errorHandlers';
 
 // Komponenter (kryssdomene)
-export { ApiErrorAlert } from './components/ApiErrorAlert';
-export type { InvalidParameterViolation } from './types';
+export { ApiErrorAlert } from './shared/ApiErrorAlert';
+export type { InvalidParameterViolation } from './shared/invalidParameterProblemDetail';

@@ -1,12 +1,12 @@
 // Krever at appen har kalt initK9SakInnsynApiClients fra @navikt/k9-sak-innsyn-api.
 
 // Hooks
-export { useHentSisteGyldigeVedtakForAktørId } from '../hooks/omsorgsdager-kronisk-sykt-barn/useHentSisteGyldigeVedtakForAktorId';
-export type { InnvilgedeVedtak } from '../hooks/omsorgsdager-kronisk-sykt-barn/useInnvilgedeVedtakForRegistrerteBarn';
-export { useInnvilgedeVedtakForRegistrerteBarn } from '../hooks/omsorgsdager-kronisk-sykt-barn/useInnvilgedeVedtakForRegistrerteBarn';
+export { useHentSisteGyldigeVedtakForAktørId } from './vedtak/useHentSisteGyldigeVedtakForAktorId';
+export type { InnvilgedeVedtak } from './vedtak/useInnvilgedeVedtakForRegistrerteBarn';
+export { useInnvilgedeVedtakForRegistrerteBarn } from './vedtak/useInnvilgedeVedtakForRegistrerteBarn';
 
 // API
-export { hentSisteGyldigeVedtakForAktørId } from '../api/omsorgsdager-kronisk-sykt-barn/hentSisteGyldigeVedtakForAktorId';
+export { hentSisteGyldigeVedtakForAktørId } from './vedtak/hentSisteGyldigeVedtakForAktorId';
 
 // Types
-export type { SisteGyldigeVedtakForAktørId } from '../types/omsorgsdager-kronisk-sykt-barn/SisteGyldigeVedtakForAktorId';
+export type { SisteGyldigeVedtakForAktørId } from './vedtak/SisteGyldigeVedtakForAktorId';

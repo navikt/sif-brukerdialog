@@ -1,19 +1,28 @@
 // Krever at appen har kalt initK9BrukerdialogProsesseringApiClients fra @navikt/k9-brukerdialog-prosessering-api.
 
 // Hooks
-export { useArbeidsgivere } from '../hooks/useArbeidsgivere';
-export { useRapporterInntekt, type YtelseInntektsrapportering } from '../hooks/useRapporterInntekt';
-export { useRegistrerteBarn } from '../hooks/useRegistrerteBarn';
-export { useSendOppgavebekreftelse, type YtelseOppgavebekreftelse } from '../hooks/useSendOppgavebekreftelse';
-export { useSøker } from '../hooks/useSoker';
-export { useValiderFritekst } from '../hooks/useValiderFritekst';
-export { useLagreVedlegg, useSlettVedlegg } from '../hooks/useVedlegg';
+export { useArbeidsgivere } from './arbeidsgivere/useArbeidsgivere';
+export { useRegistrerteBarn } from './barn/useRegistrerteBarn';
+export { useValiderFritekst } from './fritekst/useValiderFritekst';
+export { useRapporterInntekt, type YtelseInntektsrapportering } from './inntekt/useRapporterInntekt';
+export {
+    useSendOppgavebekreftelse,
+    type YtelseOppgavebekreftelse,
+} from './oppgavebekreftelse/useSendOppgavebekreftelse';
+export { useSøker } from './soker/useSoker';
+export { useLagreVedlegg, useSlettVedlegg } from './vedlegg/useVedlegg';
 
 // API
-export { hentArbeidsgivere } from '../api/arbeidsgivereApi';
-export { hentRegistrerteBarn } from '../api/registrerteBarnApi';
-export { hentSøker, hentSøkerId } from '../api/sokerApi';
-export { validerFritekst } from '../api/validerFritekstApi';
+export { hentArbeidsgivere } from './arbeidsgivere/arbeidsgivereApi';
+export { hentRegistrerteBarn } from './barn/registrerteBarnApi';
+export { validerFritekst } from './fritekst/validerFritekstApi';
+export {
+    hentYtelseMellomlagring,
+    oppdaterYtelseMellomlagring,
+    opprettYtelseMellomlagring,
+    slettYtelseMellomlagring,
+} from './mellomlagring/ytelseMellomlagringApi';
+export { hentSøker, hentSøkerId } from './soker/sokerApi';
 export {
     getVedleggApiUrl,
     getVedleggFrontendUrl,
@@ -21,22 +30,16 @@ export {
     hentVedlegg,
     lagreVedlegg,
     slettVedlegg,
-} from '../api/vedleggApi';
-export {
-    hentYtelseMellomlagring,
-    oppdaterYtelseMellomlagring,
-    opprettYtelseMellomlagring,
-    slettYtelseMellomlagring,
-} from '../api/ytelseMellomlagringApi';
+} from './vedlegg/vedleggApi';
 
 // Types
+export type { InvalidParameterProblemDetail, InvalidParameterViolation } from '../shared/invalidParameterProblemDetail';
 export type {
     Arbeidsgivere,
     ArbeidsgiverFrilansoppdrag,
     ArbeidsgiverOrganisasjon,
     ArbeidsgiverPrivatperson,
-} from '../types/Arbeidsgivere';
-export type { RegistrertBarn } from '../types/Barn';
-export type { InvalidParameterProblemDetail, InvalidParameterViolation } from '../types/invalidParameterProblemDetail';
-export { MellomlagringYtelse } from '../types/MellomlagringYtelse';
-export type { Søker } from '../types/Soker';
+} from './arbeidsgivere/Arbeidsgivere';
+export type { RegistrertBarn } from './barn/Barn';
+export { MellomlagringYtelse } from './mellomlagring/MellomlagringYtelse';
+export type { Søker } from './soker/Soker';

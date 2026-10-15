@@ -1,12 +1,12 @@
 // Krever at appen har kalt initUngBrukerdialogApiClient fra @navikt/ung-brukerdialog-api.
 
 // Hooks
-export { useOppgaver } from '../hooks/useOppgaver';
-export { useTilgjengeligAktivitetspengerSøknad } from '../hooks/useTilgjengeligAktivitetspengerSøknad';
+export { useTilgjengeligAktivitetspengerSøknad } from './aktivitetspenger-tilgang/useTilgjengeligAktivitetspengerSøknad';
+export { useOppgaver } from './oppgaver/useOppgaver';
 
 // API
-export { tilgjengeligAktivitetspengerSoknad } from '../api/aktivitetspenger/tilgjengeligAktivitetspengerSoknad';
-export { hentOppgaver } from '../api/oppgaverApi';
+export { tilgjengeligAktivitetspengerSoknad } from './aktivitetspenger-tilgang/tilgjengeligAktivitetspengerSoknad';
+export { hentOppgaver } from './oppgaver/oppgaverApi';
 
 // Types
 export type {
@@ -27,5 +27,5 @@ export type {
     RapportertInntektRespons,
     SøkYtelseOppgave,
     SvarPåVarselRespons,
-} from '../types/Oppgave';
-export { ParsedOppgavetype } from '../types/Oppgave';
+} from './oppgaver/Oppgave';
+export { ParsedOppgavetype } from './oppgaver/Oppgave';

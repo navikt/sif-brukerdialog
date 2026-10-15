@@ -1,10 +1,10 @@
 // Krever at appen har kalt initUngDeltakelseOpplyserApiDeltakerClient fra @navikt/ung-deltakelse-opplyser-api-deltaker.
 
 // Hooks
-export { kontonummerFallback, useKontonummer } from '../hooks/useKontonummer';
+export { kontonummerFallback, useKontonummer } from './kontonummer/useKontonummer';
 
 // API
-export { hentKontonummer } from '../api/kontonummerApi';
+export { hentKontonummer } from './kontonummer/kontonummerApi';
 
 // Types
-export { HarKontonummerEnum, type UtvidetKontonummerInfo } from '../types/UtvidetKontonummerInfo';
+export { HarKontonummerEnum, type UtvidetKontonummerInfo } from './kontonummer/UtvidetKontonummerInfo';

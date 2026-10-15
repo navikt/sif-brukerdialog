@@ -31,22 +31,22 @@ sif-api (ung-brukerdialog-api)
 
 ### Viktige filer
 
-| Fil                                                                      | Formål                                                                                  |
-| ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
-| `@navikt/ung-brukerdialog-api` (npm)                                     | Kilde til `OppgaveType`, `OppgaveYtelsetype`, `OppgaveStatus`                           |
-| `packages/core/sif-api/src/api/parse-utils/parseOppgaver.ts`                  | Registry som kobler backendens `OppgaveType` til riktig parser                          |
-| `packages/core/sif-api/src/api/parse-utils/oppgaver/`                         | Én parser per oppgavetype, pluss felles base-, respons- og vilkårshjelpere              |
-| `packages/core/sif-api/src/types/Oppgave.ts`                                  | `ParsedOppgavetype`-enum og alle oppgave-interfaces                                     |
-| `src/modules/oppgavepaneler/oppgaveLovverk.ts`                           | Tabeller over lovverk per `OppgaveType` og `ParsedOppgavetype`                          |
-| `src/modules/oppgavepaneler/<type>/<Panel>.mockData.ts`                  | Mock-objekter (uløst + besvart) per ytelsetype                                          |
-| `src/modules/oppgavepaneler/<type>/<Panel>.stories.tsx`                  | Individuelle Storybook-stories under `/Aktivitetspenger` eller `/Ungdomsprogramytelsen` |
-| `src/modules/oppgavepaneler/storybook/OppgavetypeMappingUPY.stories.tsx` | Oversiktstabell for UPY med ekspandert panelpreview                                     |
-| `src/modules/oppgavepaneler/storybook/OppgavetypeMappingAKT.stories.tsx` | Oversiktstabell for AKT med ekspandert panelpreview                                     |
-| `src/storybook/storyUtils.tsx`                                           | `StoryBox`, `StateLabel`, `PanelPreviewWrapper`, `renderOppgaveStandardStater`          |
-| `apps/<ytelse>-innsyn/mock/data/oppgaver.ts`                             | DTO-mocker for demoappens oppgavescenarioer                                             |
-| `apps/<ytelse>-innsyn/mock/data/varseltekster.ts`                        | Varseltekster brukt av DTO-mockene                                                      |
-| `apps/<ytelse>-innsyn/mock/scenarios/{types,scenarioer}.ts`              | Scenariotype og registrering av demo-scenario                                           |
-| `apps/<ytelse>-innsyn/src/demo/ScenarioHeader.tsx`                       | Eksponerer scenarioet i demoappens scenario-velger                                      |
+| Fil                                                                          | Formål                                                                                  |
+| ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `@navikt/ung-brukerdialog-api` (npm)                                         | Kilde til `OppgaveType`, `OppgaveYtelsetype`, `OppgaveStatus`                           |
+| `packages/core/sif-api/src/ung-brukerdialog/oppgaver/parse/parseOppgaver.ts` | Registry som kobler backendens `OppgaveType` til riktig parser                          |
+| `packages/core/sif-api/src/ung-brukerdialog/oppgaver/parse/oppgaver/`        | Én parser per oppgavetype, pluss felles base-, respons- og vilkårshjelpere              |
+| `packages/core/sif-api/src/ung-brukerdialog/oppgaver/Oppgave.ts`             | `ParsedOppgavetype`-enum og alle oppgave-interfaces                                     |
+| `src/modules/oppgavepaneler/oppgaveLovverk.ts`                               | Tabeller over lovverk per `OppgaveType` og `ParsedOppgavetype`                          |
+| `src/modules/oppgavepaneler/<type>/<Panel>.mockData.ts`                      | Mock-objekter (uløst + besvart) per ytelsetype                                          |
+| `src/modules/oppgavepaneler/<type>/<Panel>.stories.tsx`                      | Individuelle Storybook-stories under `/Aktivitetspenger` eller `/Ungdomsprogramytelsen` |
+| `src/modules/oppgavepaneler/storybook/OppgavetypeMappingUPY.stories.tsx`     | Oversiktstabell for UPY med ekspandert panelpreview                                     |
+| `src/modules/oppgavepaneler/storybook/OppgavetypeMappingAKT.stories.tsx`     | Oversiktstabell for AKT med ekspandert panelpreview                                     |
+| `src/storybook/storyUtils.tsx`                                               | `StoryBox`, `StateLabel`, `PanelPreviewWrapper`, `renderOppgaveStandardStater`          |
+| `apps/<ytelse>-innsyn/mock/data/oppgaver.ts`                                 | DTO-mocker for demoappens oppgavescenarioer                                             |
+| `apps/<ytelse>-innsyn/mock/data/varseltekster.ts`                            | Varseltekster brukt av DTO-mockene                                                      |
+| `apps/<ytelse>-innsyn/mock/scenarios/{types,scenarioer}.ts`                  | Scenariotype og registrering av demo-scenario                                           |
+| `apps/<ytelse>-innsyn/src/demo/ScenarioHeader.tsx`                           | Eksponerer scenarioet i demoappens scenario-velger                                      |
 
 ---
 
@@ -206,11 +206,12 @@ packages/core/ung-innsyn/src/modules/oppgavepaneler/
   <type>/<Panel>.mockData.ts
   <type>/<Panel>.stories.tsx
 
-packages/core/sif-api/src/api/parse-utils/
-  parseOppgaver.ts
-  mapPeriodeDto.ts
-  oppgaver/                ← én parser per oppgavetype + felles hjelpere
-
-packages/core/sif-api/src/types/
+packages/core/sif-api/src/ung-brukerdialog/oppgaver/
   Oppgave.ts               ← ParsedOppgavetype-enum og oppgave-interfaces
+  oppgaverApi.ts
+  useOppgaver.ts
+  parse/
+    parseOppgaver.ts
+    mapPeriodeDto.ts
+    oppgaver/                ← én parser per oppgavetype + felles hjelpere
 ```

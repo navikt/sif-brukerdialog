@@ -1,4 +1,4 @@
-import { Søker } from '../../types/Soker';
+import { Søker } from '../../k9-brukerdialog-prosessering/soker/Soker';
 import { testTestesen } from '../entiteter/søkere';
 
 export const mockSøker: Søker = {

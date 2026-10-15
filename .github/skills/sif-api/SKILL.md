@@ -276,7 +276,7 @@ Riktig praksis: bruk kun funksjonsnavn eller nøytral kontekst i feilmeldinger:
 throw handleApiError(e, 'hentSisteGyldigeVedtak');
 ```
 
-Gjelder alle API-funksjoner i `packages/core/sif-api/src/api/**` og ethvert annet sted der disse verdiene er tilgjengelige.
+Gjelder alle API-funksjoner i `packages/core/sif-api/src/<backend>/**` og ethvert annet sted der disse verdiene er tilgjengelige.
 
 ---
 
