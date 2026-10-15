@@ -1,4 +1,4 @@
-import { useHasChanged } from '@navikt/sif-common-hooks';
+import { useHasChanged } from '@sif/hooks';
 import { useEffect, useState } from 'react';
 
 import { StepID } from '../types/StepID';

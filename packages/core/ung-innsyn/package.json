@@ -31,7 +31,7 @@
         "@navikt/ds-css": "8.19.0",
         "@navikt/ds-react": "8.19.0",
         "@navikt/k9-brukerdialog-prosessering-api": "workspace:*",
-        "@navikt/sif-common-hooks": "workspace:*",
+        "@sif/hooks": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@navikt/ung-brukerdialog-api": "workspace:*",

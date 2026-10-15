@@ -14,7 +14,7 @@ import { ChevronLeftIcon } from '@navikt/aksel-icons';
 import { Alert, BodyLong, Button, ErrorSummary, Link, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { usePrevious } from '@navikt/sif-common-hooks';
+import { usePrevious } from '@sif/hooks';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getCheckedValidator } from '@navikt/sif-validation';
 import { useSkyraReloader } from '@sif/surveys';

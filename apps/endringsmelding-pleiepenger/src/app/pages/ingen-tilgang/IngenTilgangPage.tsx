@@ -5,7 +5,7 @@ import { BodyLong, Heading } from '@navikt/ds-react';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { Søker } from '@navikt/sif-common-api';
 import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useEffectOnce } from '@sif/hooks';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getMaybeEnv } from '@sif/env';
 

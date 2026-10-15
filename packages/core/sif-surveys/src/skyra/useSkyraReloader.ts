@@ -1,4 +1,4 @@
-import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useEffectOnce } from '@sif/hooks';
 
 export const useSkyraReloader = () => {
     useEffectOnce(() => {

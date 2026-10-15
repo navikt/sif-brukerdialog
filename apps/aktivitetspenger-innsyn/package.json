@@ -37,7 +37,7 @@
         "@navikt/nav-dekoratoren-moduler": "4.5.1",
         "@navikt/sif-app-register": "workspace:*",
         "@sif/env": "workspace:*",
-        "@navikt/sif-common-hooks": "workspace:*",
+        "@sif/hooks": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
         "@navikt/ung-brukerdialog-api": "workspace:*",
         "@sif/analytics": "workspace:*",

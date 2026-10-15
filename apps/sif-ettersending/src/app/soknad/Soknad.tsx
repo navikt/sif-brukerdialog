@@ -2,7 +2,7 @@ import { failure, pending, success } from '@devexperts/remote-data-ts';
 import { ApplikasjonHendelse, useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { fetchSøkerId, RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { isUserLoggedOut } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useEffectOnce } from '@sif/hooks';
 import { LoadingPage, useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';

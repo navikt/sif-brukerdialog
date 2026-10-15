@@ -6,7 +6,7 @@ import {
     TypedFormikFormContext,
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useEffectOnce } from '@sif/hooks';
 import { DurationWeekdaysInput, FormLayout } from '@navikt/sif-common-ui';
 import {
     dateFormatter,

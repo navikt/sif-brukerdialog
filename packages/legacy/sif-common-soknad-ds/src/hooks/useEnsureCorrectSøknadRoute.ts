@@ -1,4 +1,4 @@
-import { usePrevious } from '@navikt/sif-common-hooks';
+import { usePrevious } from '@sif/hooks';
 import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -7,8 +7,8 @@ const isRouteAvailable = (route: string, availableRoutes: string[], welcomeRoute
 };
 
 export enum EnsureCorrectSøknadRouteErrorType {
-    'welcomePage' = 'welcomePage',
-    'unavailableRoute' = 'unavailableRoute',
+    welcomePage = 'welcomePage',
+    unavailableRoute = 'unavailableRoute',
 }
 
 export const useEnsureCorrectSøknadRoute = (

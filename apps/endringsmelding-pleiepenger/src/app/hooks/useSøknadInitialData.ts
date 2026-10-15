@@ -1,5 +1,5 @@
 import { RequestStatus, Sak, SøknadContextState, SøknadInitialDataState, TimerEllerProsent } from '@app/types';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useEffectOnce } from '@sif/hooks';
 import { DateRange } from '@navikt/sif-common-utils';
 import { appLogger } from '@sif/apm';
 import { useState } from 'react';

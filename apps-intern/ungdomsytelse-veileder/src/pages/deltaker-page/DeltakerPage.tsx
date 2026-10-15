@@ -1,5 +1,5 @@
 import { Box, Page, Skeleton } from '@navikt/ds-react';
-import { useDocumentTitle } from '@navikt/sif-common-hooks';
+import { useDocumentTitle } from '@sif/hooks';
 import { useNavigate, useParams } from 'react-router-dom';
 import { validate } from 'uuid';
 

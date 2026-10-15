@@ -2,7 +2,7 @@ import { ErrorSummary, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { MedlemskapSummary } from '@navikt/sif-common-forms-ds';
-import { usePrevious } from '@navikt/sif-common-hooks';
+import { usePrevious } from '@sif/hooks';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
 import { getCheckedValidator } from '@navikt/sif-validation';

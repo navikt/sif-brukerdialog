@@ -1,7 +1,7 @@
 import { BodyLong, ReadMore, VStack } from '@navikt/ds-react';
 import ConfirmationDialog from '@navikt/sif-common-core-ds/src/components/dialogs/confirmation-dialog/ConfirmationDialog';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useEffectOnce } from '@sif/hooks';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { useState } from 'react';
 

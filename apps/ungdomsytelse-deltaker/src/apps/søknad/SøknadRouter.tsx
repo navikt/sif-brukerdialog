@@ -1,4 +1,4 @@
-import { usePrevious } from '@navikt/sif-common-hooks';
+import { usePrevious } from '@sif/hooks';
 import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 

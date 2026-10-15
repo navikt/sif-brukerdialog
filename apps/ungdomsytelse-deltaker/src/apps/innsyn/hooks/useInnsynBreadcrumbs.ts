@@ -1,5 +1,5 @@
 import { onBreadcrumbClick, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useEffectOnce } from '@sif/hooks';
 import { useAppIntl } from '@shared/i18n';
 import getLenker from '@shared/utils/lenker';
 import { useNavigate } from 'react-router-dom';
