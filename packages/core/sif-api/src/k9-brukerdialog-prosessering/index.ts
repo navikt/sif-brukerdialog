@@ -1,3 +1,5 @@
+// Krever at appen har kalt initK9BrukerdialogProsesseringApiClients fra @navikt/k9-brukerdialog-prosessering-api.
+
 // Hooks
 export { useArbeidsgivere } from '../hooks/useArbeidsgivere';
 export { useRapporterInntekt, type YtelseInntektsrapportering } from '../hooks/useRapporterInntekt';

@@ -1,3 +1,5 @@
+// Krever at appen har kalt initUngBrukerdialogApiClient fra @navikt/ung-brukerdialog-api.
+
 // Hooks
 export { useOppgaver } from '../hooks/useOppgaver';
 export { useTilgjengeligAktivitetspengerSøknad } from '../hooks/useTilgjengeligAktivitetspengerSøknad';

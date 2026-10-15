@@ -122,7 +122,7 @@ Ved verifisering av API-ruter (for eksempel ved MSW-oppsett):
 | -------------------------- | ------------------------ | ----------------- |
 | `useKontonummer(enabled?)` | `UtvidetKontonummerInfo` | staleTime: 20 min |
 
-`kontonummerFallback` eksporteres for bruk når kontonummer ikke kan hentes.
+`kontonummerFallback` eksporteres for bruk når kontonummer ikke kan hentes. API-funksjonen `hentKontonummer` eksporteres også.
 
 ---
 

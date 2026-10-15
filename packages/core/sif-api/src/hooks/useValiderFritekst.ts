@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { validerFritekst } from '../api';
+import { validerFritekst } from '../api/validerFritekstApi';
 import { sifApiQueryKeys } from '../queryKeys';
 import { ApiError, getInvalidParametersFromApiError } from '../utils/errorHandlers';
 

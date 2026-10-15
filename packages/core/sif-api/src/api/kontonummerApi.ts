@@ -1,8 +1,8 @@
 import { Deltaker, zKontonummerDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
-import { handleApiError } from '@sif/api';
 import { z } from 'zod';
 
 import { HarKontonummerEnum, UtvidetKontonummerInfo } from '../types/UtvidetKontonummerInfo';
+import { handleApiError } from '../utils/errorHandlers';
 
 type KontonummerParsed = z.infer<typeof zKontonummerDto>;
 

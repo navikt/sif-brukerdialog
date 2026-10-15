@@ -1,8 +1,9 @@
-import { ApiError, sifApiQueryKeys } from '@sif/api';
 import { useQuery } from '@tanstack/react-query';
 
 import { hentKontonummer } from '../api/kontonummerApi';
+import { sifApiQueryKeys } from '../queryKeys';
 import { HarKontonummerEnum, UtvidetKontonummerInfo } from '../types/UtvidetKontonummerInfo';
+import { ApiError } from '../utils/errorHandlers';
 
 export const kontonummerFallback: UtvidetKontonummerInfo = { harKontonummer: HarKontonummerEnum.UVISST };
 

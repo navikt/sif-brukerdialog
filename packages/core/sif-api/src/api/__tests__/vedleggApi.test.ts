@@ -19,15 +19,9 @@ vi.mock('@navikt/k9-brukerdialog-prosessering-api', async (importOriginal) => {
 import { getVedleggIdFromResponseHeaderLocation, lagreVedlegg } from '../vedleggApi';
 
 const responseError = (status: number, code?: string) =>
-    new AxiosError(
-        'Opplasting feilet',
-        code,
-        undefined,
-        undefined,
-        {
-            status,
-        } as AxiosResponse,
-    );
+    new AxiosError('Opplasting feilet', code, undefined, undefined, {
+        status,
+    } as AxiosResponse);
 
 beforeEach(() => vi.clearAllMocks());
 
