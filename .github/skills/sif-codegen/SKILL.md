@@ -42,15 +42,15 @@ codegen:dev / codegen:prod
 
 `fixAndFormatGeneratedCode()` kjøres etter codegen og transformerer de genererte filene med regex-patterns:
 
-| Pattern                    | Hva det gjør                                                                                                    |
-| -------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `removeZodRegex`           | Fjerner `.regex(...)` fra Zod-schemas                                                                           |
-| `removeNullUnion`          | Fjerner `\| null` fra `types.gen.ts` (null håndteres av `convertNullToUndefined`-interceptor i `initApiClient`) |
-| `removeBaseUrlLiteral`     | Fjerner URL-literal fra `baseURL`-typen i `types.gen.ts`                                                        |
-| `replaceClientBaseUrl`     | Erstatter hardkodet `baseURL` i `client.gen.ts` med `'SET_BY_INIT_API_CLIENT'`                                  |
-| `fixTsExpectError`         | Bytter `@ts-expect-error` med `@ts-ignore`                                                                      |
-| `fixIsoDateTimeAllowLocal` | Utvider `z.iso.datetime()` til å tillate local                                                                  |
-| `fixVedleggBlobType`       | Fikser `vedlegg: z.string()` → `z.instanceof(Blob)`                                                             |
+| Pattern                    | Hva det gjør                                                                                                 |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `removeZodRegex`           | Fjerner `.regex(...)` fra Zod-schemas                                                                        |
+| `removeNullUnion`          | Fjerner `\| null` fra `types.gen.ts` (null gjøres om til `undefined` av `initApiClient` i `@sif/api-client`) |
+| `removeBaseUrlLiteral`     | Fjerner URL-literal fra `baseURL`-typen i `types.gen.ts`                                                     |
+| `replaceClientBaseUrl`     | Erstatter hardkodet `baseURL` i `client.gen.ts` med `'SET_BY_INIT_API_CLIENT'`                               |
+| `fixTsExpectError`         | Bytter `@ts-expect-error` med `@ts-ignore`                                                                   |
+| `fixIsoDateTimeAllowLocal` | Utvider `z.iso.datetime()` til å tillate local                                                               |
+| `fixVedleggBlobType`       | Fikser `vedlegg: z.string()` → `z.instanceof(Blob)`                                                          |
 
 Etter regex-fixes kjøres `prettier` + `eslint --fix` på alle genererte filer.
 
@@ -121,19 +121,22 @@ Per API genereres det en mappe med:
 
 ### Klient-initialisering i app
 
-`baseURL` i `client.gen.ts` er en placeholder. Den faktiske URL settes av `initApiClient()` ved oppstart:
+`baseURL` i `client.gen.ts` er en placeholder. Den faktiske URL-en settes ved oppstart av pakkens init-funksjon, som bruker `initApiClient` fra `@sif/api-client`:
 
 ```ts
-// f.eks. i apps/min-app/src/api/initApiClients.ts
-import { initApiClient } from '@navikt/k9-sak-innsyn-k9-sak-api/utils/initApiClient';
-import { client } from '@navikt/k9-sak-innsyn-k9-sak-api';
+// f.eks. i apps/min-app/src/app/api/initApiClients.ts
+import { initK9BrukerdialogProsesseringApiClients } from '@navikt/k9-brukerdialog-prosessering-api';
+import { EnvKey, getRequiredEnv } from '@sif/env';
 
 export const initApiClients = () => {
-    initApiClient(client, env.FRONTEND_PATH, env.LOGIN_URL);
+    initK9BrukerdialogProsesseringApiClients({
+        frontendPath: getRequiredEnv(EnvKey.K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH),
+        loginURL: '#',
+    });
 };
 ```
 
-`initApiClient` setter `baseURL`, `withCredentials`, headers, og legger på 401-interceptor.
+`initApiClient` setter `baseURL`, `withCredentials` og `X-Brukerdialog-Git-Sha`. Den legger også på `X-Correlation-ID`, gjør `null` om til `undefined` og håndterer 401. En ny API-pakke skal bruke `initApiClient` fra `@sif/api-client` og ikke lage sitt eget oppsett.
 
 > **Relatert skill:** Hvordan de genererte klientene faktisk brukes i en app (hooks, `initApiClients`, env-oppsett) er beskrevet i [sif-api](../sif-api/SKILL.md).
 
