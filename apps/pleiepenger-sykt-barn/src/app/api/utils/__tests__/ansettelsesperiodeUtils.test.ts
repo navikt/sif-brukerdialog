@@ -92,6 +92,10 @@ describe('slåSammenAnsettelsesperioder', () => {
         expect(organisasjoner).toHaveLength(1);
         expect(organisasjoner[0].ansattFom).toBe('2024-01-01');
         expect(organisasjoner[0].ansattTom).toBe('2024-01-09');
+        expect(organisasjoner[0].ansettelsesperioder).toEqual([
+            { ansattFom: '2024-01-01', ansattTom: '2024-01-09' },
+            { ansattFom: '2024-01-11', ansattTom: '2024-01-20' },
+        ]);
         expect(harDuplikater).toBe(true);
     });
 

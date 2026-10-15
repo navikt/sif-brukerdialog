@@ -40,8 +40,8 @@ export const syncAnsattArbeidsforhold = (
             appLogger.logError('Get arbeidsgiver: Manglende navn på organisasjon');
         }
         syncedArbeidsforhold.push({
-            arbeidsgiver,
             ...forhold,
+            arbeidsgiver,
         });
     });
     return syncedArbeidsforhold;
