@@ -45,12 +45,12 @@ importers:
         specifier: 2.11.7
         version: 2.11.7
     devDependencies:
+      '@sif/config':
+        specifier: workspace:*
+        version: link:packages/tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:packages/tooling/eslint-config-sif
-      config:
-        specifier: workspace:*
-        version: link:packages/tooling/config
       gh-pages:
         specifier: 6.3.0
         version: 6.3.0
@@ -96,9 +96,6 @@ importers:
       '@navikt/nav-dekoratoren-moduler':
         specifier: 4.5.1
         version: 4.5.1(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
-      '@navikt/sif-app-register':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-app-register
       '@navikt/sif-common-api':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-api
@@ -114,24 +111,27 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-utils
-      '@navikt/sif-validation':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-validation
-      '@navikt/ung-deltakelse-opplyser-api-veileder':
-        specifier: workspace:*
-        version: link:../../packages/api/ung-deltakelse-opplyser-api-veileder
       '@sif/api':
         specifier: workspace:*
         version: link:../../packages/core/sif-api
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/core/sif-apm
+      '@sif/app-register':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-app-register
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
       '@sif/hooks':
         specifier: workspace:*
         version: link:../../packages/core/sif-hooks
+      '@sif/ung-deltakelse-opplyser-api-veileder':
+        specifier: workspace:*
+        version: link:../../packages/api/ung-deltakelse-opplyser-api-veileder
+      '@sif/validation':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-validation
       '@tanstack/react-query':
         specifier: 5.104.1
         version: 5.104.1(react@19.3.0)
@@ -196,6 +196,9 @@ importers:
       '@playwright/test':
         specifier: 1.64.0
         version: 1.64.0
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../packages/tooling/eslint-config-sif
@@ -235,9 +238,6 @@ importers:
       compression:
         specifier: 1.8.2
         version: 1.8.2
-      config:
-        specifier: workspace:*
-        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -334,24 +334,9 @@ importers:
       '@navikt/fnrvalidator':
         specifier: 2.2.1
         version: 2.2.1
-      '@navikt/k9-brukerdialog-prosessering-api':
-        specifier: workspace:*
-        version: link:../../packages/api/k9-brukerdialog-prosessering-api
-      '@navikt/k9-sak-innsyn-api':
-        specifier: workspace:*
-        version: link:../../packages/api/k9-sak-innsyn-api
       '@navikt/nav-dekoratoren-moduler':
         specifier: 4.5.1
         version: 4.5.1(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
-      '@navikt/sif-app-register':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-app-register
-      '@navikt/sif-validation':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-validation
-      '@navikt/ung-brukerdialog-api':
-        specifier: workspace:*
-        version: link:../../packages/api/ung-brukerdialog-api
       '@sif/analytics':
         specifier: workspace:*
         version: link:../../packages/core/sif-analytics
@@ -361,12 +346,21 @@ importers:
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/core/sif-apm
+      '@sif/app-register':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-app-register
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
       '@sif/hooks':
         specifier: workspace:*
         version: link:../../packages/core/sif-hooks
+      '@sif/k9-brukerdialog-prosessering-api':
+        specifier: workspace:*
+        version: link:../../packages/api/k9-brukerdialog-prosessering-api
+      '@sif/k9-sak-innsyn-api':
+        specifier: workspace:*
+        version: link:../../packages/api/k9-sak-innsyn-api
       '@sif/mock-utils':
         specifier: workspace:*
         version: link:../../packages/core/sif-mock-utils
@@ -376,12 +370,18 @@ importers:
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../../packages/core/sif-soknad-ui
+      '@sif/ung-brukerdialog-api':
+        specifier: workspace:*
+        version: link:../../packages/api/ung-brukerdialog-api
       '@sif/ung-innsyn':
         specifier: workspace:*
         version: link:../../packages/core/ung-innsyn
       '@sif/utils':
         specifier: workspace:*
         version: link:../../packages/core/sif-utils
+      '@sif/validation':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-validation
       '@tanstack/react-query':
         specifier: 5.104.1
         version: 5.104.1(react@19.3.0)
@@ -425,6 +425,9 @@ importers:
       '@playwright/test':
         specifier: 1.64.0
         version: 1.64.0
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../packages/tooling/eslint-config-sif
@@ -461,9 +464,6 @@ importers:
       '@vitest/browser-playwright':
         specifier: 5.0.3
         version: 5.0.3(msw@2.15.0(@types/node@26.6.4)(typescript@6.0.3))(playwright@1.64.0)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))(vitest@5.0.3)
-      config:
-        specifier: workspace:*
-        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -521,36 +521,27 @@ importers:
       '@navikt/fnrvalidator':
         specifier: 2.2.1
         version: 2.2.1
-      '@navikt/k9-brukerdialog-prosessering-api':
-        specifier: workspace:*
-        version: link:../../packages/api/k9-brukerdialog-prosessering-api
-      '@navikt/k9-sak-innsyn-api':
-        specifier: workspace:*
-        version: link:../../packages/api/k9-sak-innsyn-api
-      '@navikt/sif-app-register':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-app-register
-      '@navikt/sif-validation':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-validation
-      '@navikt/ung-brukerdialog-api':
-        specifier: workspace:*
-        version: link:../../packages/api/ung-brukerdialog-api
-      '@navikt/ung-deltakelse-opplyser-api-deltaker':
-        specifier: workspace:*
-        version: link:../../packages/api/ung-deltakelse-opplyser-api-deltaker
       '@sif/api':
         specifier: workspace:*
         version: link:../../packages/core/sif-api
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/core/sif-apm
+      '@sif/app-register':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-app-register
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
       '@sif/hooks':
         specifier: workspace:*
         version: link:../../packages/core/sif-hooks
+      '@sif/k9-brukerdialog-prosessering-api':
+        specifier: workspace:*
+        version: link:../../packages/api/k9-brukerdialog-prosessering-api
+      '@sif/k9-sak-innsyn-api':
+        specifier: workspace:*
+        version: link:../../packages/api/k9-sak-innsyn-api
       '@sif/mock-utils':
         specifier: workspace:*
         version: link:../../packages/core/sif-mock-utils
@@ -566,9 +557,18 @@ importers:
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../../packages/core/sif-soknad-ui
+      '@sif/ung-brukerdialog-api':
+        specifier: workspace:*
+        version: link:../../packages/api/ung-brukerdialog-api
+      '@sif/ung-deltakelse-opplyser-api-deltaker':
+        specifier: workspace:*
+        version: link:../../packages/api/ung-deltakelse-opplyser-api-deltaker
       '@sif/utils':
         specifier: workspace:*
         version: link:../../packages/core/sif-utils
+      '@sif/validation':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-validation
       '@tanstack/react-query':
         specifier: 5.104.1
         version: 5.104.1(react@19.3.0)
@@ -609,6 +609,9 @@ importers:
       '@playwright/test':
         specifier: 1.64.0
         version: 1.64.0
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../packages/tooling/eslint-config-sif
@@ -639,9 +642,6 @@ importers:
       '@vitest/browser-playwright':
         specifier: 5.0.3
         version: 5.0.3(msw@2.15.0(@types/node@26.6.4)(typescript@6.0.3))(playwright@1.64.0)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))(vitest@5.0.3)
-      config:
-        specifier: workspace:*
-        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -684,12 +684,6 @@ importers:
       '@navikt/aksel-icons':
         specifier: 8.19.0
         version: 8.19.0
-      '@navikt/appstatus-react-ds':
-        specifier: workspace:*
-        version: link:../../packages/core/appstatus-react-ds
-      '@navikt/k9-sak-innsyn-api':
-        specifier: workspace:*
-        version: link:../../packages/api/k9-sak-innsyn-api
       '@navikt/nav-dekoratoren-moduler':
         specifier: 4.5.1
         version: 4.5.1(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
@@ -699,9 +693,6 @@ importers:
       '@navikt/oasis':
         specifier: 4.2.2
         version: 4.2.2
-      '@navikt/sif-app-register':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-app-register
       '@navikt/sif-common-analytics':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-analytics
@@ -714,9 +705,18 @@ importers:
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/core/sif-apm
+      '@sif/app-register':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-app-register
+      '@sif/appstatus-react-ds':
+        specifier: workspace:*
+        version: link:../../packages/core/appstatus-react-ds
       '@sif/hooks':
         specifier: workspace:*
         version: link:../../packages/core/sif-hooks
+      '@sif/k9-sak-innsyn-api':
+        specifier: workspace:*
+        version: link:../../packages/api/k9-sak-innsyn-api
       '@types/lodash.sortby':
         specifier: 4.7.9
         version: 4.7.9
@@ -784,6 +784,9 @@ importers:
       '@playwright/test':
         specifier: 1.64.0
         version: 1.64.0
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../packages/tooling/eslint-config-sif
@@ -811,9 +814,6 @@ importers:
       classnames:
         specifier: 2.5.1
         version: 2.5.1
-      config:
-        specifier: workspace:*
-        version: link:../../packages/tooling/config
       dayjs:
         specifier: 1.11.23
         version: 1.11.23
@@ -883,9 +883,6 @@ importers:
       '@navikt/nav-dekoratoren-moduler':
         specifier: 4.5.1
         version: 4.5.1(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
-      '@navikt/sif-app-register':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-app-register
       '@navikt/sif-common-analytics':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-analytics
@@ -910,18 +907,21 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-utils
-      '@navikt/sif-validation':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-validation
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/core/sif-apm
+      '@sif/app-register':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-app-register
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
       '@sif/hooks':
         specifier: workspace:*
         version: link:../../packages/core/sif-hooks
+      '@sif/validation':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-validation
       axios:
         specifier: 1.20.0
         version: 1.20.0
@@ -968,6 +968,9 @@ importers:
       '@playwright/test':
         specifier: 1.64.0
         version: 1.64.0
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../packages/tooling/eslint-config-sif
@@ -1007,9 +1010,6 @@ importers:
       compression:
         specifier: 1.8.2
         version: 1.8.2
-      config:
-        specifier: workspace:*
-        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -1070,9 +1070,6 @@ importers:
       '@navikt/fnrvalidator':
         specifier: 2.2.1
         version: 2.2.1
-      '@navikt/sif-app-register':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-app-register
       '@navikt/sif-common-analytics':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-analytics
@@ -1097,12 +1094,12 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-utils
-      '@navikt/sif-validation':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-validation
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/core/sif-apm
+      '@sif/app-register':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-app-register
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
@@ -1115,6 +1112,9 @@ importers:
       '@sif/surveys':
         specifier: workspace:*
         version: link:../../packages/core/sif-surveys
+      '@sif/validation':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-validation
       axios:
         specifier: 1.20.0
         version: 1.20.0
@@ -1182,6 +1182,9 @@ importers:
       '@playwright/test':
         specifier: 1.64.0
         version: 1.64.0
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../packages/tooling/eslint-config-sif
@@ -1239,9 +1242,6 @@ importers:
       compression:
         specifier: 1.8.2
         version: 1.8.2
-      config:
-        specifier: workspace:*
-        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -1311,9 +1311,6 @@ importers:
       '@navikt/nav-dekoratoren-moduler':
         specifier: 4.5.1
         version: 4.5.1(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
-      '@navikt/sif-app-register':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-app-register
       '@navikt/sif-common-analytics':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-analytics
@@ -1338,18 +1335,21 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-utils
-      '@navikt/sif-validation':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-validation
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/core/sif-apm
+      '@sif/app-register':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-app-register
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
       '@sif/hooks':
         specifier: workspace:*
         version: link:../../packages/core/sif-hooks
+      '@sif/validation':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-validation
       '@testing-library/react':
         specifier: 16.3.3
         version: 16.3.3(@testing-library/dom@10.4.2)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -1405,6 +1405,9 @@ importers:
       '@playwright/test':
         specifier: 1.64.0
         version: 1.64.0
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../packages/tooling/eslint-config-sif
@@ -1441,9 +1444,6 @@ importers:
       compression:
         specifier: 1.8.2
         version: 1.8.2
-      config:
-        specifier: workspace:*
-        version: link:../../packages/tooling/config
       cors:
         specifier: 2.8.6
         version: 2.8.6
@@ -1556,6 +1556,9 @@ importers:
       '@playwright/test':
         specifier: 1.64.0
         version: 1.64.0
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       '@tailwindcss/postcss':
         specifier: 4.3.3
         version: 4.3.3
@@ -1571,9 +1574,6 @@ importers:
       '@types/react-dom':
         specifier: 19.3.0
         version: 19.3.0(@types/react@19.3.0)
-      config:
-        specifier: workspace:*
-        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -1619,9 +1619,6 @@ importers:
       '@navikt/nav-dekoratoren-moduler':
         specifier: 4.5.1
         version: 4.5.1(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
-      '@navikt/sif-app-register':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-app-register
       '@navikt/sif-common-analytics':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-analytics
@@ -1646,12 +1643,12 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-utils
-      '@navikt/sif-validation':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-validation
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/core/sif-apm
+      '@sif/app-register':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-app-register
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
@@ -1661,6 +1658,9 @@ importers:
       '@sif/surveys':
         specifier: workspace:*
         version: link:../../packages/core/sif-surveys
+      '@sif/validation':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-validation
       '@tanstack/react-query':
         specifier: 5.104.1
         version: 5.104.1(react@19.3.0)
@@ -1722,6 +1722,9 @@ importers:
       '@playwright/test':
         specifier: 1.64.0
         version: 1.64.0
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../packages/tooling/eslint-config-sif
@@ -1761,9 +1764,6 @@ importers:
       compression:
         specifier: 1.8.2
         version: 1.8.2
-      config:
-        specifier: workspace:*
-        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -1836,9 +1836,6 @@ importers:
       '@navikt/nav-dekoratoren-moduler':
         specifier: 4.5.1
         version: 4.5.1(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
-      '@navikt/sif-app-register':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-app-register
       '@navikt/sif-common-analytics':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-analytics
@@ -1863,12 +1860,12 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-utils
-      '@navikt/sif-validation':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-validation
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/core/sif-apm
+      '@sif/app-register':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-app-register
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
@@ -1878,6 +1875,9 @@ importers:
       '@sif/surveys':
         specifier: workspace:*
         version: link:../../packages/core/sif-surveys
+      '@sif/validation':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-validation
       axios:
         specifier: 1.20.0
         version: 1.20.0
@@ -1930,6 +1930,9 @@ importers:
       '@playwright/test':
         specifier: 1.64.0
         version: 1.64.0
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../packages/tooling/eslint-config-sif
@@ -1972,9 +1975,6 @@ importers:
       compression:
         specifier: 1.8.2
         version: 1.8.2
-      config:
-        specifier: workspace:*
-        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -2047,9 +2047,6 @@ importers:
       '@navikt/nav-dekoratoren-moduler':
         specifier: 4.5.1
         version: 4.5.1(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
-      '@navikt/sif-app-register':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-app-register
       '@navikt/sif-common-analytics':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-analytics
@@ -2074,12 +2071,12 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-utils
-      '@navikt/sif-validation':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-validation
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/core/sif-apm
+      '@sif/app-register':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-app-register
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
@@ -2089,6 +2086,9 @@ importers:
       '@sif/surveys':
         specifier: workspace:*
         version: link:../../packages/core/sif-surveys
+      '@sif/validation':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-validation
       axios:
         specifier: 1.20.0
         version: 1.20.0
@@ -2147,6 +2147,9 @@ importers:
       '@playwright/test':
         specifier: 1.64.0
         version: 1.64.0
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../packages/tooling/eslint-config-sif
@@ -2192,9 +2195,6 @@ importers:
       compression:
         specifier: 1.8.2
         version: 1.8.2
-      config:
-        specifier: workspace:*
-        version: link:../../packages/tooling/config
       cors:
         specifier: 2.8.6
         version: 2.8.6
@@ -2276,30 +2276,27 @@ importers:
       '@navikt/fnrvalidator':
         specifier: 2.2.1
         version: 2.2.1
-      '@navikt/k9-brukerdialog-prosessering-api':
-        specifier: workspace:*
-        version: link:../../packages/api/k9-brukerdialog-prosessering-api
-      '@navikt/k9-sak-innsyn-api':
-        specifier: workspace:*
-        version: link:../../packages/api/k9-sak-innsyn-api
-      '@navikt/sif-app-register':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-app-register
-      '@navikt/sif-validation':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-validation
       '@sif/api':
         specifier: workspace:*
         version: link:../../packages/core/sif-api
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/core/sif-apm
+      '@sif/app-register':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-app-register
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
       '@sif/hooks':
         specifier: workspace:*
         version: link:../../packages/core/sif-hooks
+      '@sif/k9-brukerdialog-prosessering-api':
+        specifier: workspace:*
+        version: link:../../packages/api/k9-brukerdialog-prosessering-api
+      '@sif/k9-sak-innsyn-api':
+        specifier: workspace:*
+        version: link:../../packages/api/k9-sak-innsyn-api
       '@sif/mock-utils':
         specifier: workspace:*
         version: link:../../packages/core/sif-mock-utils
@@ -2321,6 +2318,9 @@ importers:
       '@sif/utils':
         specifier: workspace:^
         version: link:../../packages/core/sif-utils
+      '@sif/validation':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-validation
       '@tanstack/react-query':
         specifier: 5.104.1
         version: 5.104.1(react@19.3.0)
@@ -2364,6 +2364,9 @@ importers:
       '@playwright/test':
         specifier: 1.64.0
         version: 1.64.0
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../packages/tooling/eslint-config-sif
@@ -2394,9 +2397,6 @@ importers:
       '@vitest/browser-playwright':
         specifier: 5.0.3
         version: 5.0.3(msw@2.15.0(@types/node@26.6.4)(typescript@6.0.3))(playwright@1.64.0)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))(vitest@5.0.3)
-      config:
-        specifier: workspace:*
-        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -2454,9 +2454,6 @@ importers:
       '@navikt/nav-dekoratoren-moduler':
         specifier: 4.5.1
         version: 4.5.1(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
-      '@navikt/sif-app-register':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-app-register
       '@navikt/sif-common-analytics':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-analytics
@@ -2481,12 +2478,12 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-utils
-      '@navikt/sif-validation':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-validation
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/core/sif-apm
+      '@sif/app-register':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-app-register
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
@@ -2499,6 +2496,9 @@ importers:
       '@sif/surveys':
         specifier: workspace:*
         version: link:../../packages/core/sif-surveys
+      '@sif/validation':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-validation
       '@tanstack/react-query':
         specifier: 5.104.1
         version: 5.104.1(react@19.3.0)
@@ -2578,6 +2578,9 @@ importers:
       '@playwright/test':
         specifier: 1.64.0
         version: 1.64.0
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../packages/tooling/eslint-config-sif
@@ -2617,9 +2620,6 @@ importers:
       busboy:
         specifier: 1.6.0
         version: 1.6.0
-      config:
-        specifier: workspace:*
-        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -2683,9 +2683,6 @@ importers:
       '@navikt/nav-dekoratoren-moduler':
         specifier: 4.5.1
         version: 4.5.1(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
-      '@navikt/sif-app-register':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-app-register
       '@navikt/sif-common-analytics':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-analytics
@@ -2710,12 +2707,12 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-utils
-      '@navikt/sif-validation':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-validation
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/core/sif-apm
+      '@sif/app-register':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-app-register
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
@@ -2725,6 +2722,9 @@ importers:
       '@sif/surveys':
         specifier: workspace:*
         version: link:../../packages/core/sif-surveys
+      '@sif/validation':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-validation
       '@tanstack/react-query':
         specifier: 5.104.1
         version: 5.104.1(react@19.3.0)
@@ -2786,6 +2786,9 @@ importers:
       '@playwright/test':
         specifier: 1.64.0
         version: 1.64.0
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../packages/tooling/eslint-config-sif
@@ -2825,9 +2828,6 @@ importers:
       compression:
         specifier: 1.8.2
         version: 1.8.2
-      config:
-        specifier: workspace:*
-        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -2876,9 +2876,6 @@ importers:
       '@navikt/aksel-icons':
         specifier: 8.19.0
         version: 8.19.0
-      '@navikt/appstatus-react-ds':
-        specifier: workspace:*
-        version: link:../../packages/core/appstatus-react-ds
       '@navikt/ds-css':
         specifier: 8.19.0
         version: 8.19.0
@@ -2894,9 +2891,6 @@ importers:
       '@navikt/nav-dekoratoren-moduler':
         specifier: 4.5.1
         version: 4.5.1(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
-      '@navikt/sif-app-register':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-app-register
       '@navikt/sif-common-analytics':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-analytics
@@ -2921,12 +2915,15 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-utils
-      '@navikt/sif-validation':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-validation
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/core/sif-apm
+      '@sif/app-register':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-app-register
+      '@sif/appstatus-react-ds':
+        specifier: workspace:*
+        version: link:../../packages/core/appstatus-react-ds
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
@@ -2936,6 +2933,9 @@ importers:
       '@sif/surveys':
         specifier: workspace:*
         version: link:../../packages/core/sif-surveys
+      '@sif/validation':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-validation
       '@tanstack/react-query':
         specifier: 5.104.1
         version: 5.104.1(react@19.3.0)
@@ -2991,6 +2991,9 @@ importers:
       '@playwright/test':
         specifier: 1.64.0
         version: 1.64.0
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../packages/tooling/eslint-config-sif
@@ -3042,9 +3045,6 @@ importers:
       compression:
         specifier: 1.8.2
         version: 1.8.2
-      config:
-        specifier: workspace:*
-        version: link:../../packages/tooling/config
       dayjs:
         specifier: 1.11.23
         version: 1.11.23
@@ -3108,9 +3108,6 @@ importers:
       '@navikt/aksel-icons':
         specifier: 8.19.0
         version: 8.19.0
-      '@navikt/appstatus-react-ds':
-        specifier: workspace:*
-        version: link:../../packages/core/appstatus-react-ds
       '@navikt/ds-css':
         specifier: 8.19.0
         version: 8.19.0
@@ -3123,30 +3120,30 @@ importers:
       '@navikt/fnrvalidator':
         specifier: 2.2.1
         version: 2.2.1
-      '@navikt/k9-brukerdialog-prosessering-api':
-        specifier: workspace:*
-        version: link:../../packages/api/k9-brukerdialog-prosessering-api
-      '@navikt/sif-app-register':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-app-register
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-ui
-      '@navikt/sif-validation':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-validation
       '@sif/api':
         specifier: workspace:*
         version: link:../../packages/core/sif-api
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/core/sif-apm
+      '@sif/app-register':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-app-register
+      '@sif/appstatus-react-ds':
+        specifier: workspace:*
+        version: link:../../packages/core/appstatus-react-ds
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
       '@sif/hooks':
         specifier: workspace:*
         version: link:../../packages/core/sif-hooks
+      '@sif/k9-brukerdialog-prosessering-api':
+        specifier: workspace:*
+        version: link:../../packages/api/k9-brukerdialog-prosessering-api
       '@sif/mock-utils':
         specifier: workspace:*
         version: link:../../packages/core/sif-mock-utils
@@ -3165,6 +3162,9 @@ importers:
       '@sif/utils':
         specifier: workspace:*
         version: link:../../packages/core/sif-utils
+      '@sif/validation':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-validation
       '@tanstack/react-query':
         specifier: 5.104.1
         version: 5.104.1(react@19.3.0)
@@ -3202,6 +3202,9 @@ importers:
       '@playwright/test':
         specifier: 1.64.0
         version: 1.64.0
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../packages/tooling/eslint-config-sif
@@ -3235,9 +3238,6 @@ importers:
       '@vitest/browser-playwright':
         specifier: 5.0.3
         version: 5.0.3(msw@2.15.0(@types/node@26.6.4)(typescript@6.0.3))(playwright@1.64.0)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))(vitest@5.0.3)
-      config:
-        specifier: workspace:*
-        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -3298,9 +3298,6 @@ importers:
       '@navikt/nav-dekoratoren-moduler':
         specifier: 4.5.1
         version: 4.5.1(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
-      '@navikt/sif-app-register':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-app-register
       '@navikt/sif-common-analytics':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-analytics
@@ -3325,18 +3322,21 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-utils
-      '@navikt/sif-validation':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-validation
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/core/sif-apm
+      '@sif/app-register':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-app-register
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
       '@sif/hooks':
         specifier: workspace:*
         version: link:../../packages/core/sif-hooks
+      '@sif/validation':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-validation
       axios:
         specifier: 1.20.0
         version: 1.20.0
@@ -3380,6 +3380,9 @@ importers:
       '@playwright/test':
         specifier: 1.64.0
         version: 1.64.0
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../packages/tooling/eslint-config-sif
@@ -3419,9 +3422,6 @@ importers:
       compression:
         specifier: 1.8.2
         version: 1.8.2
-      config:
-        specifier: workspace:*
-        version: link:../../packages/tooling/config
       express:
         specifier: 5.2.1
         version: 5.2.1
@@ -3503,7 +3503,7 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-utils
-      '@navikt/sif-validation':
+      '@sif/validation':
         specifier: workspace:*
         version: link:../../packages/core/sif-validation
       classnames:
@@ -3513,6 +3513,9 @@ importers:
         specifier: 10.0.2
         version: 10.0.2(@types/react@19.3.0)(react@19.3.0)
     devDependencies:
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../packages/tooling/eslint-config-sif
@@ -3525,9 +3528,6 @@ importers:
       '@types/react':
         specifier: 19.3.0
         version: 19.3.0
-      config:
-        specifier: workspace:*
-        version: link:../../packages/tooling/config
       dayjs:
         specifier: 1.11.23
         version: 1.11.23
@@ -3573,9 +3573,6 @@ importers:
       '@navikt/aksel-icons':
         specifier: 8.19.0
         version: 8.19.0
-      '@navikt/appstatus-react-ds':
-        specifier: workspace:*
-        version: link:../../packages/core/appstatus-react-ds
       '@navikt/ds-css':
         specifier: 8.19.0
         version: 8.19.0
@@ -3585,18 +3582,9 @@ importers:
       '@navikt/ds-tailwind':
         specifier: 8.19.0
         version: 8.19.0
-      '@navikt/k9-brukerdialog-prosessering-api':
-        specifier: workspace:*
-        version: link:../../packages/api/k9-brukerdialog-prosessering-api
-      '@navikt/k9-sak-innsyn-api':
-        specifier: workspace:*
-        version: link:../../packages/api/k9-sak-innsyn-api
       '@navikt/nav-dekoratoren-moduler':
         specifier: 4.5.1
         version: 4.5.1(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
-      '@navikt/sif-app-register':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-app-register
       '@navikt/sif-common-analytics':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-analytics
@@ -3615,15 +3603,6 @@ importers:
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../../packages/legacy/sif-common-ui
-      '@navikt/sif-validation':
-        specifier: workspace:*
-        version: link:../../packages/core/sif-validation
-      '@navikt/ung-brukerdialog-api':
-        specifier: workspace:*
-        version: link:../../packages/api/ung-brukerdialog-api
-      '@navikt/ung-deltakelse-opplyser-api-deltaker':
-        specifier: workspace:*
-        version: link:../../packages/api/ung-deltakelse-opplyser-api-deltaker
       '@sif/analytics':
         specifier: workspace:*
         version: link:../../packages/core/sif-analytics
@@ -3633,12 +3612,24 @@ importers:
       '@sif/apm':
         specifier: workspace:*
         version: link:../../packages/core/sif-apm
+      '@sif/app-register':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-app-register
+      '@sif/appstatus-react-ds':
+        specifier: workspace:*
+        version: link:../../packages/core/appstatus-react-ds
       '@sif/env':
         specifier: workspace:*
         version: link:../../packages/core/sif-env
       '@sif/hooks':
         specifier: workspace:*
         version: link:../../packages/core/sif-hooks
+      '@sif/k9-brukerdialog-prosessering-api':
+        specifier: workspace:*
+        version: link:../../packages/api/k9-brukerdialog-prosessering-api
+      '@sif/k9-sak-innsyn-api':
+        specifier: workspace:*
+        version: link:../../packages/api/k9-sak-innsyn-api
       '@sif/mock-utils':
         specifier: workspace:*
         version: link:../../packages/core/sif-mock-utils
@@ -3648,12 +3639,21 @@ importers:
       '@sif/surveys':
         specifier: workspace:*
         version: link:../../packages/core/sif-surveys
+      '@sif/ung-brukerdialog-api':
+        specifier: workspace:*
+        version: link:../../packages/api/ung-brukerdialog-api
+      '@sif/ung-deltakelse-opplyser-api-deltaker':
+        specifier: workspace:*
+        version: link:../../packages/api/ung-deltakelse-opplyser-api-deltaker
       '@sif/ung-innsyn':
         specifier: workspace:*
         version: link:../../packages/core/ung-innsyn
       '@sif/utils':
         specifier: workspace:*
         version: link:../../packages/core/sif-utils
+      '@sif/validation':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-validation
       '@tanstack/react-query':
         specifier: 5.104.1
         version: 5.104.1(react@19.3.0)
@@ -3721,6 +3721,9 @@ importers:
       '@playwright/test':
         specifier: 1.64.0
         version: 1.64.0
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
       '@storybook/addon-docs':
         specifier: 10.6.1
         version: 10.6.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(storybook@10.6.1(@types/react@19.3.0)(prettier@3.9.9)(react@19.3.0))
@@ -3751,9 +3754,6 @@ importers:
       compression:
         specifier: 1.8.2
         version: 1.8.2
-      config:
-        specifier: workspace:*
-        version: link:../../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -3836,6 +3836,9 @@ importers:
         specifier: 19.3.0
         version: 19.3.0(react@19.3.0)
     devDependencies:
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../packages/tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../packages/tooling/eslint-config-sif
@@ -3848,9 +3851,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: 6.1.2
         version: 6.1.2(@rolldown/plugin-babel@0.2.4(@babel/core@7.29.7)(@babel/plugin-transform-runtime@7.29.7(@babel/core@7.29.7))(@babel/runtime@7.29.10)(rolldown@1.2.13)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1)))(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
-      config:
-        specifier: workspace:*
-        version: link:../packages/tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -3879,15 +3879,15 @@ importers:
       '@sif/codegen':
         specifier: workspace:*
         version: link:../../tooling/codegen
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
       axios:
         specifier: 1.20.0
         version: 1.20.0
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -3925,15 +3925,15 @@ importers:
       '@sif/codegen':
         specifier: workspace:*
         version: link:../../tooling/codegen
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
       axios:
         specifier: 1.20.0
         version: 1.20.0
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -3971,15 +3971,15 @@ importers:
       '@sif/codegen':
         specifier: workspace:*
         version: link:../../tooling/codegen
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
       axios:
         specifier: 1.20.0
         version: 1.20.0
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4023,15 +4023,15 @@ importers:
       '@sif/codegen':
         specifier: workspace:*
         version: link:../../tooling/codegen
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
       axios:
         specifier: 1.20.0
         version: 1.20.0
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4069,6 +4069,9 @@ importers:
       '@sif/codegen':
         specifier: workspace:*
         version: link:../../tooling/codegen
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/env':
         specifier: workspace:*
         version: link:../../core/sif-env
@@ -4078,9 +4081,6 @@ importers:
       axios:
         specifier: 1.20.0
         version: 1.20.0
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4118,15 +4118,15 @@ importers:
       '@sif/codegen':
         specifier: workspace:*
         version: link:../../tooling/codegen
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
       axios:
         specifier: 1.20.0
         version: 1.20.0
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4167,15 +4167,15 @@ importers:
       '@sif/codegen':
         specifier: workspace:*
         version: link:../../tooling/codegen
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
       axios:
         specifier: 1.20.0
         version: 1.20.0
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4219,6 +4219,9 @@ importers:
       '@navikt/ds-react':
         specifier: 8.19.0
         version: 8.19.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
@@ -4231,9 +4234,6 @@ importers:
       '@types/react-dom':
         specifier: 19.3.0
         version: 19.3.0(@types/react@19.3.0)
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4262,6 +4262,9 @@ importers:
         specifier: 4.5.1
         version: 4.5.1(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
     devDependencies:
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
@@ -4271,9 +4274,6 @@ importers:
       '@types/react':
         specifier: 19.3.0
         version: 19.3.0
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4289,24 +4289,24 @@ importers:
       '@navikt/ds-react':
         specifier: 8.19.0
         version: 8.19.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@navikt/k9-brukerdialog-prosessering-api':
-        specifier: workspace:*
-        version: link:../../api/k9-brukerdialog-prosessering-api
-      '@navikt/k9-sak-innsyn-api':
-        specifier: workspace:*
-        version: link:../../api/k9-sak-innsyn-api
-      '@navikt/ung-brukerdialog-api':
-        specifier: workspace:*
-        version: link:../../api/ung-brukerdialog-api
-      '@navikt/ung-deltakelse-opplyser-api-deltaker':
-        specifier: workspace:*
-        version: link:../../api/ung-deltakelse-opplyser-api-deltaker
       '@sif/api-client':
         specifier: workspace:*
         version: link:../sif-api-client
       '@sif/env':
         specifier: workspace:*
         version: link:../sif-env
+      '@sif/k9-brukerdialog-prosessering-api':
+        specifier: workspace:*
+        version: link:../../api/k9-brukerdialog-prosessering-api
+      '@sif/k9-sak-innsyn-api':
+        specifier: workspace:*
+        version: link:../../api/k9-sak-innsyn-api
+      '@sif/ung-brukerdialog-api':
+        specifier: workspace:*
+        version: link:../../api/ung-brukerdialog-api
+      '@sif/ung-deltakelse-opplyser-api-deltaker':
+        specifier: workspace:*
+        version: link:../../api/ung-deltakelse-opplyser-api-deltaker
       '@sif/utils':
         specifier: workspace:*
         version: link:../sif-utils
@@ -4323,15 +4323,15 @@ importers:
         specifier: ^14.0.2
         version: 14.0.2
     devDependencies:
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
       '@types/react':
         specifier: 19.3.0
         version: 19.3.0
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4354,12 +4354,12 @@ importers:
         specifier: ^14.0.2
         version: 14.0.2
     devDependencies:
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4385,15 +4385,15 @@ importers:
         specifier: 19.3.0
         version: 19.3.0
     devDependencies:
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
       '@types/node':
         specifier: 26.6.4
         version: 26.6.4
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4406,12 +4406,12 @@ importers:
 
   packages/core/sif-app-register:
     devDependencies:
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4425,7 +4425,7 @@ importers:
         specifier: 4.6.5
         version: 4.6.5
     devDependencies:
-      config:
+      '@sif/config':
         specifier: workspace:*
         version: link:../../tooling/config
       eslint:
@@ -4444,15 +4444,15 @@ importers:
         specifier: 6.0.3
         version: 6.0.3
     devDependencies:
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/env':
         specifier: workspace:*
         version: link:../sif-env
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4463,12 +4463,12 @@ importers:
         specifier: workspace:*
         version: link:../sif-env
     devDependencies:
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4500,6 +4500,9 @@ importers:
         specifier: 12.1.4
         version: 12.1.4(@types/react@19.3.0)(react@19.3.0)
     devDependencies:
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
@@ -4518,9 +4521,6 @@ importers:
       '@types/react-dom':
         specifier: 19.3.0
         version: 19.3.0(@types/react@19.3.0)
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4542,9 +4542,6 @@ importers:
       '@nais/apm':
         specifier: 0.7.3
         version: 0.7.3(@grafana/faro-react@2.10.0(react-dom@19.3.0(react@19.3.0))(react-router-dom@7.18.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-router@7.18.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react-router-dom@7.18.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-router@7.18.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)
-      '@navikt/appstatus-react-ds':
-        specifier: workspace:*
-        version: link:../appstatus-react-ds
       '@navikt/ds-react':
         specifier: 8.19.0
         version: 8.19.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -4563,6 +4560,9 @@ importers:
       '@sif/apm':
         specifier: workspace:*
         version: link:../sif-apm
+      '@sif/appstatus-react-ds':
+        specifier: workspace:*
+        version: link:../appstatus-react-ds
       '@sif/rhf':
         specifier: workspace:*
         version: link:../sif-rhf
@@ -4594,6 +4594,9 @@ importers:
         specifier: 5.0.15
         version: 5.0.15(@types/react@19.3.0)(react@19.3.0)(use-sync-external-store@1.7.0(react@19.3.0))
     devDependencies:
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
@@ -4606,9 +4609,6 @@ importers:
       '@types/react-dom':
         specifier: 19.3.0
         version: 19.3.0(@types/react@19.3.0)
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4636,9 +4636,6 @@ importers:
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../../legacy/sif-common-ui
-      '@navikt/sif-validation':
-        specifier: workspace:*
-        version: link:../sif-validation
       '@sif/api':
         specifier: workspace:*
         version: link:../sif-api
@@ -4651,6 +4648,9 @@ importers:
       '@sif/utils':
         specifier: workspace:*
         version: link:../sif-utils
+      '@sif/validation':
+        specifier: workspace:*
+        version: link:../sif-validation
       react-hook-form:
         specifier: 7.89.0
         version: 7.89.0(@types/react@19.3.0)(react@19.3.0)
@@ -4661,6 +4661,9 @@ importers:
       '@navikt/ds-css':
         specifier: 8.19.0
         version: 8.19.0
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
@@ -4685,9 +4688,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: 6.1.2
         version: 6.1.2(@rolldown/plugin-babel@0.2.4(@babel/core@7.29.7)(@babel/plugin-transform-runtime@7.29.7(@babel/core@7.29.7))(@babel/runtime@7.29.10)(rolldown@1.2.13)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1)))(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       dayjs:
         specifier: 1.11.23
         version: 1.11.23
@@ -4752,6 +4752,9 @@ importers:
       '@navikt/ds-css':
         specifier: 8.19.0
         version: 8.19.0
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
@@ -4770,9 +4773,6 @@ importers:
       '@types/react-dom':
         specifier: 19.3.0
         version: 19.3.0(@types/react@19.3.0)
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4816,6 +4816,9 @@ importers:
         specifier: 6.0.3
         version: 6.0.3
     devDependencies:
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
@@ -4825,9 +4828,6 @@ importers:
       '@types/react':
         specifier: 19.3.0
         version: 19.3.0
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4850,6 +4850,9 @@ importers:
         specifier: ^14.0.2
         version: 14.0.2
     devDependencies:
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
@@ -4862,9 +4865,6 @@ importers:
       '@types/react-dom':
         specifier: 19.3.0
         version: 19.3.0(@types/react@19.3.0)
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4908,15 +4908,15 @@ importers:
         specifier: 12.1.4
         version: 12.1.4(@types/react@19.3.0)(react@19.3.0)
     devDependencies:
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/env':
         specifier: workspace:*
         version: link:../sif-env
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -4944,18 +4944,9 @@ importers:
       '@navikt/ds-react':
         specifier: 8.19.0
         version: 8.19.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@navikt/k9-brukerdialog-prosessering-api':
-        specifier: workspace:*
-        version: link:../../api/k9-brukerdialog-prosessering-api
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../../legacy/sif-common-ui
-      '@navikt/sif-validation':
-        specifier: workspace:*
-        version: link:../sif-validation
-      '@navikt/ung-brukerdialog-api':
-        specifier: workspace:*
-        version: link:../../api/ung-brukerdialog-api
       '@sif/analytics':
         specifier: workspace:*
         version: link:../sif-analytics
@@ -4965,15 +4956,24 @@ importers:
       '@sif/hooks':
         specifier: workspace:*
         version: link:../sif-hooks
+      '@sif/k9-brukerdialog-prosessering-api':
+        specifier: workspace:*
+        version: link:../../api/k9-brukerdialog-prosessering-api
       '@sif/rhf':
         specifier: workspace:*
         version: link:../sif-rhf
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../sif-soknad-ui
+      '@sif/ung-brukerdialog-api':
+        specifier: workspace:*
+        version: link:../../api/ung-brukerdialog-api
       '@sif/utils':
         specifier: workspace:*
         version: link:../sif-utils
+      '@sif/validation':
+        specifier: workspace:*
+        version: link:../sif-validation
       '@tanstack/react-query':
         specifier: 5.104.1
         version: 5.104.1(react@19.3.0)
@@ -4993,6 +4993,9 @@ importers:
       '@navikt/fnrvalidator':
         specifier: 2.2.1
         version: 2.2.1
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
@@ -5014,9 +5017,6 @@ importers:
       '@types/react-dom':
         specifier: 19.3.0
         version: 19.3.0(@types/react@19.3.0)
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       dayjs:
         specifier: 1.11.23
         version: 1.11.23
@@ -5060,6 +5060,9 @@ importers:
         specifier: 4.0.0
         version: 4.0.0(react@19.3.0)
     devDependencies:
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
@@ -5069,9 +5072,6 @@ importers:
       '@types/react':
         specifier: 19.3.0
         version: 19.3.0
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -5105,12 +5105,12 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../sif-common-utils
-      '@navikt/sif-validation':
-        specifier: workspace:*
-        version: link:../../core/sif-validation
       '@sif/env':
         specifier: workspace:*
         version: link:../../core/sif-env
+      '@sif/validation':
+        specifier: workspace:*
+        version: link:../../core/sif-validation
       axios:
         specifier: 1.20.0
         version: 1.20.0
@@ -5130,6 +5130,9 @@ importers:
         specifier: 4.6.5
         version: 4.6.5
     devDependencies:
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
@@ -5142,9 +5145,6 @@ importers:
       '@types/react':
         specifier: 19.3.0
         version: 19.3.0
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -5178,9 +5178,6 @@ importers:
 
   packages/legacy/sif-common-core-ds:
     dependencies:
-      '@navikt/appstatus-react-ds':
-        specifier: workspace:*
-        version: link:../../core/appstatus-react-ds
       '@navikt/fnrvalidator':
         specifier: 2.2.1
         version: 2.2.1
@@ -5190,6 +5187,9 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../sif-common-utils
+      '@sif/appstatus-react-ds':
+        specifier: workspace:*
+        version: link:../../core/appstatus-react-ds
       '@sif/env':
         specifier: workspace:*
         version: link:../../core/sif-env
@@ -5236,15 +5236,18 @@ importers:
       '@navikt/sif-common-formik-ds':
         specifier: workspace:*
         version: link:../sif-common-formik-ds
-      '@navikt/sif-validation':
-        specifier: workspace:*
-        version: link:../../core/sif-validation
       '@playwright/test':
         specifier: 1.64.0
         version: 1.64.0
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
+      '@sif/validation':
+        specifier: workspace:*
+        version: link:../../core/sif-validation
       '@storybook/addon-a11y':
         specifier: 10.6.1
         version: 10.6.1(storybook@10.6.1(@types/react@19.3.0)(prettier@3.9.9)(react@19.3.0))
@@ -5269,9 +5272,6 @@ importers:
       axios:
         specifier: 1.20.0
         version: 1.20.0
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)
@@ -5332,7 +5332,7 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../sif-common-utils
-      '@navikt/sif-validation':
+      '@sif/validation':
         specifier: workspace:*
         version: link:../../core/sif-validation
       classnames:
@@ -5372,6 +5372,9 @@ importers:
       '@navikt/fnrvalidator':
         specifier: 2.2.1
         version: 2.2.1
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
@@ -5399,9 +5402,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: 6.1.2
         version: 6.1.2(@rolldown/plugin-babel@0.2.4(@babel/core@7.29.7)(@babel/plugin-transform-runtime@7.29.7(@babel/core@7.29.7))(@babel/runtime@7.29.10)(rolldown@1.2.13)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1)))(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.105.1)(sass@1.105.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       dayjs:
         specifier: 1.11.23
         version: 1.11.23
@@ -5478,12 +5478,15 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../sif-common-utils
-      '@navikt/sif-validation':
+      '@sif/config':
         specifier: workspace:*
-        version: link:../../core/sif-validation
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
+      '@sif/validation':
+        specifier: workspace:*
+        version: link:../../core/sif-validation
       '@storybook/addon-a11y':
         specifier: 10.6.1
         version: 10.6.1(storybook@10.6.1(@types/react@19.3.0)(prettier@3.9.9)(react@19.3.0))
@@ -5517,9 +5520,6 @@ importers:
       axios:
         specifier: 1.20.0
         version: 1.20.0
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       dayjs:
         specifier: 1.11.23
         version: 1.11.23
@@ -5586,9 +5586,6 @@ importers:
       '@nais/apm':
         specifier: 0.7.3
         version: 0.7.3(@grafana/faro-react@2.10.0(react-dom@19.3.0(react@19.3.0))(react-router-dom@7.18.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-router@7.18.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react-router-dom@7.18.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-router@7.18.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)
-      '@navikt/appstatus-react-ds':
-        specifier: workspace:*
-        version: link:../../core/appstatus-react-ds
       '@navikt/fnrvalidator':
         specifier: 2.2.1
         version: 2.2.1
@@ -5607,6 +5604,9 @@ importers:
       '@sif/apm':
         specifier: workspace:*
         version: link:../../core/sif-apm
+      '@sif/appstatus-react-ds':
+        specifier: workspace:*
+        version: link:../../core/appstatus-react-ds
       '@sif/env':
         specifier: workspace:*
         version: link:../../core/sif-env
@@ -5659,15 +5659,18 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../sif-common-utils
-      '@navikt/sif-validation':
+      '@sif/config':
         specifier: workspace:*
-        version: link:../../core/sif-validation
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
       '@sif/hooks':
         specifier: workspace:*
         version: link:../../core/sif-hooks
+      '@sif/validation':
+        specifier: workspace:*
+        version: link:../../core/sif-validation
       '@storybook/addon-a11y':
         specifier: 10.6.1
         version: 10.6.1(storybook@10.6.1(@types/react@19.3.0)(prettier@3.9.9)(react@19.3.0))
@@ -5707,9 +5710,6 @@ importers:
       axios:
         specifier: 1.20.0
         version: 1.20.0
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       dayjs:
         specifier: 1.11.23
         version: 1.11.23
@@ -5788,9 +5788,6 @@ importers:
       '@navikt/fnrvalidator':
         specifier: 2.2.1
         version: 2.2.1
-      '@navikt/sif-app-register':
-        specifier: workspace:*
-        version: link:../../core/sif-app-register
       '@navikt/sif-common-api':
         specifier: workspace:*
         version: link:../sif-common-api
@@ -5803,7 +5800,10 @@ importers:
       '@navikt/sif-common-utils':
         specifier: workspace:*
         version: link:../sif-common-utils
-      '@navikt/sif-validation':
+      '@sif/app-register':
+        specifier: workspace:*
+        version: link:../../core/sif-app-register
+      '@sif/validation':
         specifier: workspace:*
         version: link:../../core/sif-validation
       classnames:
@@ -5822,6 +5822,9 @@ importers:
       '@navikt/sif-common-analytics':
         specifier: workspace:*
         version: link:../sif-common-analytics
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
@@ -5834,9 +5837,6 @@ importers:
       '@types/react':
         specifier: 19.3.0
         version: 19.3.0
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       dayjs:
         specifier: 1.11.23
         version: 1.11.23
@@ -5898,6 +5898,9 @@ importers:
         specifier: ^14.0.2
         version: 14.0.2
     devDependencies:
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../tooling/config
       '@sif/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint-config-sif
@@ -5910,9 +5913,6 @@ importers:
       '@types/react-dom':
         specifier: 19.3.0
         version: 19.3.0(@types/react@19.3.0)
-      config:
-        specifier: workspace:*
-        version: link:../../tooling/config
       eslint:
         specifier: 10.12.0
         version: 10.12.0(jiti@2.7.0)

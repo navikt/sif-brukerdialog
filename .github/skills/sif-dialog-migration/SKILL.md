@@ -95,7 +95,7 @@ For hver dialog som porteres:
 ### Validering
 
 - Bruk `useSifValidate('@sifSoknadForms.<xxxForm>')` — scope følger `@sifSoknadForms`-prefiksen.
-- Bruk `getDateValidator`, `getRequiredFieldValidator` etc. fra `@navikt/sif-validation`.
+- Bruk `getDateValidator`, `getRequiredFieldValidator` etc. fra `@sif/validation`.
 - For `DateRangePicker`: `getDateValidator` per felt + `validate`-prop på gruppen for cross-field validering.
 
 ### Datakonvertering
@@ -120,7 +120,7 @@ Dato-APIet er delt i to lag:
 - For typeguard/sjekk om en streng er gyldig ISO-dato, bruk `dateUtils.isISODateString(value)`.
 - `new Date(...)` er blokkert i portert runtime-kode for skjemaer med mindre bruker eksplisitt har godkjent det.
 - `ISODateToDate` kan brukes i tester og mock-data, men ikke som erstatning for `parseDatePickerValue` i skjemaflyt.
-- `validationUtils.getDateFromDateString` (fra `@navikt/sif-validation`) brukes fortsatt internt i validatorer — ikke bland den inn i dialog-mapping.
+- `validationUtils.getDateFromDateString` (fra `@sif/validation`) brukes fortsatt internt i validatorer — ikke bland den inn i dialog-mapping.
 
 ### Miljøavhengigheter
 

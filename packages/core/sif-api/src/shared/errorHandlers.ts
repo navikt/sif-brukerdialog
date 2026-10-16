@@ -1,4 +1,4 @@
-import { ProblemDetail, zProblemDetail } from '@navikt/k9-brukerdialog-prosessering-api';
+import { ProblemDetail, zProblemDetail } from '@sif/k9-brukerdialog-prosessering-api';
 import axios, { AxiosError, isAxiosError } from 'axios';
 import { z, ZodError } from 'zod';
 

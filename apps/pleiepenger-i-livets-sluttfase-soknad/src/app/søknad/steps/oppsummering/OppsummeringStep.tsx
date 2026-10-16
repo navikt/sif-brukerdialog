@@ -4,7 +4,7 @@ import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-com
 import { MedlemskapSummary } from '@navikt/sif-common-forms-ds';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { getCheckedValidator } from '@navikt/sif-validation';
+import { getCheckedValidator } from '@sif/validation';
 import { usePrevious } from '@sif/hooks';
 import { useSkyraReloader } from '@sif/surveys';
 import { useEffect, useRef } from 'react';

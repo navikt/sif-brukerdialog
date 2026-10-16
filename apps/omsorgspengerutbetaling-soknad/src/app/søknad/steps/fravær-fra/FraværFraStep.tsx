@@ -6,7 +6,7 @@ import {
     getTypedFormComponents,
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
-import { getRequiredFieldValidator } from '@navikt/sif-validation';
+import { getRequiredFieldValidator } from '@sif/validation';
 import dayjs from 'dayjs';
 
 import { mellomlagringService } from '../../../api/mellomlagringService';

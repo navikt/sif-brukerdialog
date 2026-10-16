@@ -1,4 +1,4 @@
-import { innsyn } from '@navikt/k9-sak-innsyn-api';
+import { innsyn } from '@sif/k9-sak-innsyn-api';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { withAuthenticatedApi } from '../../../../auth/withAuthentication';

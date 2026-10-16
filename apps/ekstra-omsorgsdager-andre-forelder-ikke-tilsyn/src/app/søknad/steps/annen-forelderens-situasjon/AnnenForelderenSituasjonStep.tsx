@@ -7,7 +7,7 @@ import {
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { getRequiredFieldValidator, getYesOrNoValidator } from '@sif/validation';
 
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';

@@ -1,5 +1,5 @@
-import { zSøker } from '@navikt/k9-brukerdialog-prosessering-api';
-import { BrukerdialogOppgaveDto, TilgjengeligSøknadResponse } from '@navikt/ung-brukerdialog-api';
+import { zSøker } from '@sif/k9-brukerdialog-prosessering-api';
+import { BrukerdialogOppgaveDto, TilgjengeligSøknadResponse } from '@sif/ung-brukerdialog-api';
 import { z } from 'zod';
 
 export enum ScenarioType {

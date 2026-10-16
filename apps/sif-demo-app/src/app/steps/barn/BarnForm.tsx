@@ -2,7 +2,7 @@ import { useAppContext } from '@app/context/AppContext';
 import { useAppIntl } from '@app/i18n';
 import { BarnSøknadsdata } from '@app/types/Soknadsdata';
 import { SøknadStepId } from '@app/types/SoknadStepId';
-import { getRequiredFieldValidator } from '@navikt/sif-validation';
+import { getRequiredFieldValidator } from '@sif/validation';
 import { useSifValidate } from '@sif/rhf';
 import { SøknadStep, SøknadStepForm, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { VelgRegistrertBarnPanel } from '@sif/soknad-forms';

@@ -1,5 +1,5 @@
 {
-    "name": "@navikt/server-ungdomsytelse-veileder",
+    "name": "@sif/server-ungdomsytelse-veileder",
     "version": "0.0.59",
     "private": true,
     "license": "MIT",

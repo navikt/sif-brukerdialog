@@ -1,4 +1,4 @@
-import { zProblemDetail } from '@navikt/k9-brukerdialog-prosessering-api';
+import { zProblemDetail } from '@sif/k9-brukerdialog-prosessering-api';
 import { z } from 'zod';
 
 export const invalidParameterViolationSchema = z.object({

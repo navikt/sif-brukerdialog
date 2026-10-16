@@ -1,4 +1,4 @@
-import { ArbeidsgivereDto } from '@navikt/k9-brukerdialog-prosessering-api';
+import { ArbeidsgivereDto } from '@sif/k9-brukerdialog-prosessering-api';
 
 import { arbeidsgivansenAS, norskBedriftAS, vingeFlyfly } from '../entiteter/organisasjoner';
 

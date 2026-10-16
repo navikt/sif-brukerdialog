@@ -1,5 +1,5 @@
-import { innsyn } from '@navikt/k9-sak-innsyn-api';
-import { zBehandlingDto, zInnsendelserISakDto, zInnsending } from '@navikt/k9-sak-innsyn-api/src/generated/innsyn';
+import { innsyn } from '@sif/k9-sak-innsyn-api';
+import { zBehandlingDto, zInnsendelserISakDto, zInnsending } from '@sif/k9-sak-innsyn-api/src/generated/innsyn';
 import axios from 'axios';
 import { NextApiRequest } from 'next';
 import { z } from 'zod';

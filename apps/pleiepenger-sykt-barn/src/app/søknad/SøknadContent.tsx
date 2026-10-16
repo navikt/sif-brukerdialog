@@ -1,4 +1,4 @@
-import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
+import { PleiepengerSyktBarnApp } from '@sif/app-register';
 import { ApplikasjonHendelse, useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { fetchSøkerId, Søker } from '@navikt/sif-common-api';
 import { useVerifyUserOnWindowFocus } from '@navikt/sif-common-soknad-ds/src';

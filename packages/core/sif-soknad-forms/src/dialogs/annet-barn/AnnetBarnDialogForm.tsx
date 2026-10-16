@@ -4,7 +4,7 @@ import {
     getISODateValidator,
     getRequiredFieldValidator,
     getStringValidator,
-} from '@navikt/sif-validation';
+} from '@sif/validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { ISODate } from '@sif/utils';
 import { FormProvider, useForm } from 'react-hook-form';

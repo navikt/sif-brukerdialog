@@ -1,4 +1,4 @@
-import { Søker as SøkerGenerated } from '@navikt/k9-brukerdialog-prosessering-api';
+import { Søker as SøkerGenerated } from '@sif/k9-brukerdialog-prosessering-api';
 import { ISODate } from '@sif/utils';
 
 type SøkerEntitet = Omit<SøkerGenerated, 'fødselsdato'> & { fødselsdato: ISODate };

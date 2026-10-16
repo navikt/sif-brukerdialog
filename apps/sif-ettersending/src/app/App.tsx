@@ -2,7 +2,7 @@ import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
 
 import { Theme } from '@navikt/ds-react';
-import { EttersendelseApp } from '@navikt/sif-app-register';
+import { EttersendelseApp } from '@sif/app-register';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,

@@ -1,4 +1,4 @@
-import { Deltakelse } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { Deltakelse } from '@sif/ung-deltakelse-opplyser-api-deltaker';
 import { commonRequestHeaders, handleApiError } from '@sif/api';
 
 export const markerDeltakelseSomSøkt = async (deltakelseId: string): Promise<void> => {

@@ -1,4 +1,4 @@
-import { BrukerdialogOppgave, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
+import { BrukerdialogOppgave, OppgaveYtelsetype } from '@sif/ung-brukerdialog-api';
 
 import { handleApiError } from '../../shared/errorHandlers';
 import { Oppgave } from './Oppgave';

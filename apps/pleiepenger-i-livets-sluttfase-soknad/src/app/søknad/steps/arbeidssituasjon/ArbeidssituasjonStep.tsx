@@ -12,7 +12,7 @@ import { UtenlandskNæring } from '@navikt/sif-common-forms-ds/src/forms/utenlan
 import UtenlandskNæringListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/UtenlandskNæringListAndDialog';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getDate1YearAgo, getDate1YearFromNow, getDateToday } from '@navikt/sif-common-utils';
-import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { getListValidator, getYesOrNoValidator } from '@sif/validation';
 
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useArbeidsgivereQuery } from '../../../hooks/useArbeidsgivereQuery';

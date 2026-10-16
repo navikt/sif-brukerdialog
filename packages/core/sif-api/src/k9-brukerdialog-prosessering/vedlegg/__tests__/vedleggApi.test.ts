@@ -5,8 +5,8 @@ const { lagreVedleggMock } = vi.hoisted(() => ({
     lagreVedleggMock: vi.fn(),
 }));
 
-vi.mock('@navikt/k9-brukerdialog-prosessering-api', async (importOriginal) => {
-    const original = await importOriginal<typeof import('@navikt/k9-brukerdialog-prosessering-api')>();
+vi.mock('@sif/k9-brukerdialog-prosessering-api', async (importOriginal) => {
+    const original = await importOriginal<typeof import('@sif/k9-brukerdialog-prosessering-api')>();
     return {
         ...original,
         VedleggController: {

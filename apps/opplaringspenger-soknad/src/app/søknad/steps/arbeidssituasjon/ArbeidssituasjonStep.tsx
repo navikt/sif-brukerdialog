@@ -11,7 +11,7 @@ import { OpptjeningUtland } from '@navikt/sif-common-forms-ds/src/forms/opptjeni
 import { UtenlandskNæring } from '@navikt/sif-common-forms-ds/src/forms/utenlandsk-næring/types';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateToday } from '@navikt/sif-common-utils';
-import { getYesOrNoValidator } from '@navikt/sif-validation';
+import { getYesOrNoValidator } from '@sif/validation';
 
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useArbeidsgivereQuery } from '../../../hooks/useArbeidsgivereQuery';

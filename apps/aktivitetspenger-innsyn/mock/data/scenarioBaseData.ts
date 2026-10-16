@@ -1,4 +1,4 @@
-import { TilgjengeligSøknadType } from '@navikt/ung-brukerdialog-api';
+import { TilgjengeligSøknadType } from '@sif/ung-brukerdialog-api';
 import { søkerTestBrukeresen } from '@sif/api/mock-data';
 
 import { ScenarioData } from '../scenarios/types';

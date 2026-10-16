@@ -1,4 +1,4 @@
-import { BrukerdialogOppgaveDto, OppgaveType } from '@navikt/ung-brukerdialog-api';
+import { BrukerdialogOppgaveDto, OppgaveType } from '@sif/ung-brukerdialog-api';
 
 import { Oppgave } from '../Oppgave';
 import { OppgaveParser } from './oppgaver/oppgaveBase';

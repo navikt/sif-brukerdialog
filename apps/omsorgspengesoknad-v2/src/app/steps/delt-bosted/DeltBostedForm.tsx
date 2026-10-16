@@ -2,7 +2,7 @@ import { AppText, useAppIntl } from '@app/i18n';
 import { getLenker } from '@app/lenker';
 import { DeltBostedSøknadsdata, Søknadsdata } from '@app/types/Soknadsdata';
 import { SøknadStepId } from '@app/types/SoknadStepId';
-import { getVedleggValidator } from '@navikt/sif-validation';
+import { getVedleggValidator } from '@sif/validation';
 import { UploadedFile, useSifValidate } from '@sif/rhf';
 import {
     SøknadStepForm,

@@ -1,4 +1,4 @@
-import { zHentSisteGyldigeVedtakForAktorIdResponse } from '@navikt/k9-sak-innsyn-api';
+import { zHentSisteGyldigeVedtakForAktorIdResponse } from '@sif/k9-sak-innsyn-api';
 import { z } from 'zod';
 
 import { zISODate } from '../../shared/zDateSchemas';

@@ -17,7 +17,7 @@
         "react-refresh": "0.11.0"
     },
     "dependencies": {
-        "@navikt/appstatus-react-ds": "workspace:*",
+        "@sif/appstatus-react-ds": "workspace:*",
         "@navikt/fnrvalidator": "2.2.1",
         "@navikt/sif-common-api": "workspace:*",
         "@sif/env": "workspace:*",
@@ -38,7 +38,7 @@
         "@navikt/ds-react": "8.19.0",
         "@navikt/ds-tailwind": "8.19.0",
         "@navikt/sif-common-formik-ds": "workspace:*",
-        "@navikt/sif-validation": "workspace:*",
+        "@sif/validation": "workspace:*",
         "@playwright/test": "1.64.0",
         "@sif/eslint-config": "workspace:*",
         "@storybook/addon-a11y": "10.6.1",
@@ -49,7 +49,7 @@
         "@types/react-dom": "19.3.0",
         "@vitejs/plugin-react": "6.1.2",
         "axios": "1.20.0",
-        "config": "workspace:*",
+        "@sif/config": "workspace:*",
         "eslint": "10.12.0",
         "eslint-plugin-storybook": "10.6.1",
         "formik": "2.4.9",

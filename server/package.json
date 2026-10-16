@@ -1,5 +1,5 @@
 {
-    "name": "@navikt/sif-server",
+    "name": "@sif/server",
     "version": "0.4.60",
     "private": true,
     "license": "MIT",

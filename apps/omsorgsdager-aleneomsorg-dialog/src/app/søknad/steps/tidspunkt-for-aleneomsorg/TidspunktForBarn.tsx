@@ -2,7 +2,7 @@ import { Heading } from '@navikt/ds-react';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateToday } from '@navikt/sif-common-utils';
-import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
+import { getDateValidator, getRequiredFieldValidator } from '@sif/validation';
 
 import { useAppIntl } from '../../../i18n';
 import {

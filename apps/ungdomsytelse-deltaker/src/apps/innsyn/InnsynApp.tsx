@@ -1,5 +1,5 @@
 import { Theme } from '@navikt/ds-react';
-import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
+import { UngdomsytelseDeltakerApp } from '@sif/app-register';
 import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
 import { applicationIntlMessages } from '@shared/i18n';
 import { getAppEnv } from '@shared/utils/appEnv';

@@ -1,7 +1,7 @@
 import { Alert, BodyLong, BodyShort, Heading, Radio, RadioGroup } from '@navikt/ds-react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { getYesOrNoValidator } from '@navikt/sif-validation';
+import { getYesOrNoValidator } from '@sif/validation';
 import AriaLiveRegion from '@shared/components/aria-live-region/AriaLiveRegion';
 import ExternalLink from '@shared/components/external-link/ExternalLink';
 import { AppText, useAppIntl } from '@shared/i18n';

@@ -1,4 +1,4 @@
-import { BrukerdialogSøknad, TilgjengeligSøknadResponse } from '@navikt/ung-brukerdialog-api';
+import { BrukerdialogSøknad, TilgjengeligSøknadResponse } from '@sif/ung-brukerdialog-api';
 import { commonRequestHeaders } from '@sif/api-client';
 
 import { handleApiError } from '../../shared/errorHandlers';

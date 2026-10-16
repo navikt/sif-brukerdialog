@@ -1,4 +1,4 @@
-import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
+import { UngdomsytelseDeltakerApp } from '@sif/app-register';
 import { getRequiredEnv } from '@sif/env';
 import { ScenarioSelectorHeader, type ScenarioSelectorHeaderGroup } from '@sif/soknad-ui';
 import { useNavigate } from 'react-router-dom';

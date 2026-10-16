@@ -1,4 +1,4 @@
-import { aktivitetspenger, ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
+import { aktivitetspenger, ungdomsytelse } from '@sif/k9-brukerdialog-prosessering-api';
 import { commonRequestHeaders } from '@sif/api-client';
 
 import { handleApiError } from '../../shared/errorHandlers';

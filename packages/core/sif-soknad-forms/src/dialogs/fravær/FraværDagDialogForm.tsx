@@ -1,7 +1,7 @@
 import { FormLayout } from '@navikt/sif-common-ui';
-import { getISODateValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
+import { getISODateValidator, getRequiredFieldValidator } from '@sif/validation';
 import { createSifFormComponents, datePickerUtils, useSifValidate } from '@sif/rhf';
-import { DateRange, dateToISODate, isDateInDateRanges, isDateWeekDay,ISODate } from '@sif/utils';
+import { DateRange, dateToISODate, isDateInDateRanges, isDateWeekDay, ISODate } from '@sif/utils';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';

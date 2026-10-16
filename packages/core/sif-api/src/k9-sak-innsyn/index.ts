@@ -1,4 +1,4 @@
-// Krever at appen har kalt initK9SakInnsynApiClients fra @navikt/k9-sak-innsyn-api.
+// Krever at appen har kalt initK9SakInnsynApiClients fra @sif/k9-sak-innsyn-api.
 
 // Hooks
 export { useHentSisteGyldigeVedtakForAktørId } from './vedtak/useHentSisteGyldigeVedtakForAktorId';

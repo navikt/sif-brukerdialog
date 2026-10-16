@@ -5,7 +5,7 @@ import {
     DeltakerPersonalia,
     Endringstype,
     Revisjonstype,
-} from '@navikt/ung-deltakelse-opplyser-api-veileder';
+} from '@sif/ung-deltakelse-opplyser-api-veileder';
 import dayjs from 'dayjs';
 import { PeriodeKanForlengesÅrsak } from '../../src/utils/deltakelseUtils';
 import { demoMockDate } from '../mockConstants';

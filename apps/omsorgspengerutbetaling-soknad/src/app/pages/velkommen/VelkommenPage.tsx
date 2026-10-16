@@ -1,4 +1,4 @@
-import { OmsorgspengerutbetalingSNFriApp } from '@navikt/sif-app-register';
+import { OmsorgspengerutbetalingSNFriApp } from '@sif/app-register';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
 

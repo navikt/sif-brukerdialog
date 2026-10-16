@@ -34,7 +34,7 @@
     },
     "dependencies": {
         "@navikt/sif-common-utils": "workspace:*",
-        "@navikt/sif-validation": "workspace:*",
+        "@sif/validation": "workspace:*",
         "classnames": "2.5.1",
         "formik": "2.4.9",
         "i18n-iso-countries": "7.14.0",
@@ -58,7 +58,7 @@
         "@types/react": "19.3.0",
         "@types/react-dom": "19.3.0",
         "@vitejs/plugin-react": "6.1.2",
-        "config": "workspace:*",
+        "@sif/config": "workspace:*",
         "dayjs": "1.11.23",
         "prop-types": "15.8.1",
         "react": "19.3.0",

@@ -1,4 +1,4 @@
-import { Avslutningsårsak } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { Avslutningsårsak } from '@sif/ung-deltakelse-opplyser-api-veileder';
 
 import { SlettDeltakerÅrsak } from '../types/SlettDeltakerÅrsaker';
 import { AppHendelse, useAnalyticsInstance } from './analytics';

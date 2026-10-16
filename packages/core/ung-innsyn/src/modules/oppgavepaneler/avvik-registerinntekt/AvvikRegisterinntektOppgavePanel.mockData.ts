@@ -6,7 +6,7 @@ import {
     RegisterinntektDto,
     YtelseRegisterInntektDto,
     YtelseType,
-} from '@navikt/ung-brukerdialog-api';
+} from '@sif/ung-brukerdialog-api';
 import { AvvikRegisterinntektOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import { dateToISODate, ISODate } from '@sif/utils';
 import dayjs from 'dayjs';

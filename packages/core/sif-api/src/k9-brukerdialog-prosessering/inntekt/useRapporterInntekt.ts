@@ -1,4 +1,4 @@
-import type { aktivitetspenger, ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
+import type { aktivitetspenger, ungdomsytelse } from '@sif/k9-brukerdialog-prosessering-api';
 import { useMutation } from '@tanstack/react-query';
 
 import { ApiError } from '../../shared/errorHandlers';

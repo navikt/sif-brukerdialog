@@ -1,4 +1,4 @@
-import { getRequiredFieldValidator } from '@navikt/sif-validation';
+import { getRequiredFieldValidator } from '@sif/validation';
 
 import { ArbeidIPeriodeIntlValues } from '../../../../../types/ArbeidIPeriodeIntlValues';
 

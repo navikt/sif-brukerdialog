@@ -1,7 +1,7 @@
 import './app.css';
 
 import { Theme } from '@navikt/ds-react';
-import { OpplæringspengerApp } from '@navikt/sif-app-register';
+import { OpplæringspengerApp } from '@sif/app-register';
 import {
     ensureBaseNameForReactRouter,
     NoAccessPage,

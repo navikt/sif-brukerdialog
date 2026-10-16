@@ -1,4 +1,4 @@
-import { AppStatusWrapper, NoticeRenderers, SanityConfig } from '@navikt/appstatus-react-ds';
+import { AppStatusWrapper, NoticeRenderers, SanityConfig } from '@sif/appstatus-react-ds';
 import { AnalyticsProvider } from '@sif/analytics';
 import { ApplicationPage, ApplicationUnavailableContent, DevBranchInfo } from '@sif/soknad-ui';
 import { UxSignalsLoaderProvider } from '@sif/surveys';

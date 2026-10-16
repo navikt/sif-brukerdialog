@@ -1,4 +1,4 @@
-import { innsyn } from '@navikt/k9-sak-innsyn-api';
+import { innsyn } from '@sif/k9-sak-innsyn-api';
 import axios from 'axios';
 import { NextApiRequest } from 'next';
 

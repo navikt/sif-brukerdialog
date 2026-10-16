@@ -1,7 +1,7 @@
 import './app.css';
 
 import { Theme } from '@navikt/ds-react';
-import { PleiepengerLivetsSluttApp } from '@navikt/sif-app-register';
+import { PleiepengerLivetsSluttApp } from '@sif/app-register';
 import {
     ensureBaseNameForReactRouter,
     NoAccessPage,

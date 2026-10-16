@@ -1,4 +1,4 @@
-import { OmsorgsdagerAnnenForelderIkkeTilsynApp } from '@navikt/sif-app-register';
+import { OmsorgsdagerAnnenForelderIkkeTilsynApp } from '@sif/app-register';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
 

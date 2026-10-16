@@ -1,4 +1,4 @@
-import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
+import { OppgaveYtelsetype } from '@sif/ung-brukerdialog-api';
 import { useQuery } from '@tanstack/react-query';
 
 import { sifApiQueryKeys } from '../../queryKeys';

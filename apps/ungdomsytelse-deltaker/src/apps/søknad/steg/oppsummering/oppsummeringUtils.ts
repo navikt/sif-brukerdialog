@@ -1,4 +1,4 @@
-import { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
+import { ungdomsytelse } from '@sif/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import {
     HarKontonummerEnum as HarKontonummerApiEnum,

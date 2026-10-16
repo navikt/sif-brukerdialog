@@ -1,4 +1,4 @@
-import type { aktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
+import type { aktivitetspenger } from '@sif/k9-brukerdialog-prosessering-api';
 import { ArbeidUtlandFormData } from '@sif/soknad-forms';
 
 import { SøknadStepId } from './SoknadStepId';

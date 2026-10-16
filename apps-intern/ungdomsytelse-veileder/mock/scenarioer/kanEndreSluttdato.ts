@@ -6,7 +6,7 @@ import {
     DeltakerPersonalia,
     Endringstype,
     Revisjonstype,
-} from '@navikt/ung-deltakelse-opplyser-api-veileder';
+} from '@sif/ung-deltakelse-opplyser-api-veileder';
 import { PeriodeKanForlengesÅrsak } from '../../src/utils/deltakelseUtils';
 import { beregnPeriodeMaksDato, relativeMockISODate, relativeMockTimestamp } from '../mockDateUtils';
 import { MockScenario } from './types';

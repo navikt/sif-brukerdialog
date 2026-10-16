@@ -4,7 +4,7 @@ import {
     OppgaveStatus,
     OppgaveType,
     OppgaveYtelsetype,
-} from '@navikt/ung-brukerdialog-api';
+} from '@sif/ung-brukerdialog-api';
 import { BostedVilkårOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import { dateFormatter, dateToISODate, ISODate } from '@sif/utils';
 import dayjs from 'dayjs';

@@ -1,4 +1,4 @@
-import { BarnController } from '@navikt/k9-brukerdialog-prosessering-api';
+import { BarnController } from '@sif/k9-brukerdialog-prosessering-api';
 
 import { handleApiError } from '../../shared/errorHandlers';
 import { RegistrertBarn, registrerteBarnListeSchema } from './RegistrertBarn';

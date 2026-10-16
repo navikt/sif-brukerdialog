@@ -19,7 +19,7 @@ import {
     getDateValidator,
     getFødselsnummerValidator,
     getStringValidator,
-} from '@navikt/sif-validation';
+} from '@sif/validation';
 import { isDevMode } from '@sif/env';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
@@ -33,22 +33,22 @@ dayjs.extend(minMax);
 dayjs.extend(isoWeek);
 
 export enum AppFieldValidationErrors {
-    'arbeidsforhold_timerUgyldig_under_1_prosent' = 'timerUgyldig_under_1_prosent',
-    'arbeidsforhold_timerUgyldig_under_0_prosent' = 'timerUgyldig_under_0_prosent',
-    'arbeidsforhold_timerUgyldig_over_99_prosent' = 'timerUgyldig_over_99_prosent',
-    'arbeidsforhold_timerUgyldig_over_100_prosent' = 'timerUgyldig_over_100_prosent',
+    arbeidsforhold_timerUgyldig_under_1_prosent = 'timerUgyldig_under_1_prosent',
+    arbeidsforhold_timerUgyldig_under_0_prosent = 'timerUgyldig_under_0_prosent',
+    arbeidsforhold_timerUgyldig_over_99_prosent = 'timerUgyldig_over_99_prosent',
+    arbeidsforhold_timerUgyldig_over_100_prosent = 'timerUgyldig_over_100_prosent',
 
-    'omsorgstilbud_gruppe_ingenInfo' = 'ingenInfo',
-    'omsorgstilbud_gruppe_forMangeTimerTotalt' = 'forMangeTimerTotalt',
+    omsorgstilbud_gruppe_ingenInfo = 'ingenInfo',
+    omsorgstilbud_gruppe_forMangeTimerTotalt = 'forMangeTimerTotalt',
 
-    'utenlandsopphold_ikke_registrert' = 'utenlandsopphold_ikke_registrert',
-    'utenlandsopphold_overlapper' = 'utenlandsopphold_overlapper',
-    'utenlandsopphold_overlapper_samme_start_slutt' = 'utenlandsopphold_overlapper_samme_start_slutt',
-    'utenlandsopphold_utenfor_periode' = 'utenlandsopphold_utenfor_periode',
-    'ferieuttak_ikke_registrert' = 'ferieuttak_ikke_registrert',
-    'ferieuttak_overlapper' = 'ferieuttak_overlapper',
-    'ferieuttak_utenfor_periode' = 'ferieuttak_utenfor_periode',
-    'starter_slutter_undeveis_nei' = 'starter_slutter_undeveis_nei',
+    utenlandsopphold_ikke_registrert = 'utenlandsopphold_ikke_registrert',
+    utenlandsopphold_overlapper = 'utenlandsopphold_overlapper',
+    utenlandsopphold_overlapper_samme_start_slutt = 'utenlandsopphold_overlapper_samme_start_slutt',
+    utenlandsopphold_utenfor_periode = 'utenlandsopphold_utenfor_periode',
+    ferieuttak_ikke_registrert = 'ferieuttak_ikke_registrert',
+    ferieuttak_overlapper = 'ferieuttak_overlapper',
+    ferieuttak_utenfor_periode = 'ferieuttak_utenfor_periode',
+    starter_slutter_undeveis_nei = 'starter_slutter_undeveis_nei',
 }
 
 export const isYesOrNoAnswered = (answer?: YesOrNoOrDoNotKnow | YesOrNo) => {

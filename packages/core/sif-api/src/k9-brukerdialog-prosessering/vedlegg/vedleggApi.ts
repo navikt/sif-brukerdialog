@@ -1,4 +1,4 @@
-import { VedleggController, zHentVedleggResponse } from '@navikt/k9-brukerdialog-prosessering-api';
+import { VedleggController, zHentVedleggResponse } from '@sif/k9-brukerdialog-prosessering-api';
 import { getCommonEnv } from '@sif/env';
 
 import { handleApiError } from '../../shared/errorHandlers';

@@ -15,7 +15,7 @@ import {
     isDateInDates,
     summarizeDateDurationMap,
 } from '@navikt/sif-common-utils';
-import { getTimeValidator } from '@navikt/sif-validation';
+import { getTimeValidator } from '@sif/validation';
 import { useEffectOnce } from '@sif/hooks';
 import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';

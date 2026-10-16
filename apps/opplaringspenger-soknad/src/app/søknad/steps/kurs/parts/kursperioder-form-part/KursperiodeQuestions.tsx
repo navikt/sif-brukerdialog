@@ -3,7 +3,7 @@ import { Box, Button, VStack } from '@navikt/ds-react';
 import { getTypedFormComponents, ISOStringToDate, ValidationError } from '@navikt/sif-common-formik-ds';
 import { handleDateRangeValidationError } from '@navikt/sif-common-forms-ds/src/utils';
 import { DateRange, ISODate } from '@navikt/sif-common-utils';
-import { getDateRangeValidator } from '@navikt/sif-validation';
+import { getDateRangeValidator } from '@sif/validation';
 import { useFormikContext } from 'formik';
 
 import { AppText, useAppIntl } from '../../../../../i18n';

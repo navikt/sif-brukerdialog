@@ -1,7 +1,7 @@
 import { validateAll, ValidationError } from '@navikt/sif-common-formik-ds';
 import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds';
 import { validateNoCollisions } from '@navikt/sif-common-forms-ds/src/forms/fravær/fraværValidationUtils';
-import { getListValidator } from '@navikt/sif-validation';
+import { getListValidator } from '@sif/validation';
 
 enum FraværErrors {
     ulikeÅrstall = 'ulikeÅrstall',

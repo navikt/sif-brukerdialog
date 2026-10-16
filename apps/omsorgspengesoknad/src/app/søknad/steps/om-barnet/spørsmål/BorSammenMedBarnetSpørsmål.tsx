@@ -1,5 +1,5 @@
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
-import { getRequiredFieldValidator, ValidateRequiredFieldError } from '@navikt/sif-validation';
+import { getRequiredFieldValidator, ValidateRequiredFieldError } from '@sif/validation';
 
 import { useAppIntl } from '../../../../i18n';
 import { BarnSammeAdresse } from '../../../../types/BarnSammeAdresse';

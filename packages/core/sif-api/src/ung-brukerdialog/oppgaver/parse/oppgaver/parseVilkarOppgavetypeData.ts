@@ -1,4 +1,4 @@
-import { BrukerdialogOppgaveDto } from '@navikt/ung-brukerdialog-api';
+import { BrukerdialogOppgaveDto } from '@sif/ung-brukerdialog-api';
 
 /**
  * Bosted, andre livsoppholdsytelser (m.fl.) har identisk struktur i backend – de skiller seg

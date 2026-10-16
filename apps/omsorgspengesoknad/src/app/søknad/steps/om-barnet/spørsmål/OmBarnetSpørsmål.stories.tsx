@@ -1,8 +1,4 @@
-import {
-    ValidateRequiredFieldError,
-    ValidateRequiredFieldErrorKeys,
-    ValidateYesOrNoErrorKeys,
-} from '@navikt/sif-validation';
+import { ValidateRequiredFieldError, ValidateRequiredFieldErrorKeys, ValidateYesOrNoErrorKeys } from '@sif/validation';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { SpørsmålWrapper } from '../../../../../storybook/components/SpørsmålWrapper';

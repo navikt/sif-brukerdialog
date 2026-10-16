@@ -1,4 +1,4 @@
-import { innsyn } from '@navikt/k9-sak-innsyn-api';
+import { innsyn } from '@sif/k9-sak-innsyn-api';
 import dayjs from 'dayjs';
 import z from 'zod';
 
@@ -54,13 +54,13 @@ export const inntektsmeldingClientSchema = innsyn.zSakInntektsmeldingDto
 
         naturalYtelser: z.optional(
             z.array(
-                innsyn.zNaturalYtelseDto.extend({ periode: zDatePeriodeFromStringPeriode }).transform(
-                    ({ periode, ...rest }): NaturalYtelse => ({
+                innsyn.zNaturalYtelseDto
+                    .extend({ periode: zDatePeriodeFromStringPeriode })
+                    .transform(({ periode, ...rest }): NaturalYtelse => ({
                         ...rest,
                         opptjeningsperiode: periode,
                         ...utledNaturalYtelseEndring(periode),
-                    }),
-                ),
+                    })),
             ),
         ),
         refusjon: innsyn.zRefusjonDto

@@ -1,5 +1,5 @@
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
-import { EttersendelseApp } from '@navikt/sif-app-register';
+import { EttersendelseApp } from '@sif/app-register';
 import { initApm } from '@sif/apm';
 import { getMaybeEnv } from '@sif/env';
 import { StrictMode } from 'react';

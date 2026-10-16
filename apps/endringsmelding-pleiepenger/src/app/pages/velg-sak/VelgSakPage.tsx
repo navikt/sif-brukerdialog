@@ -9,7 +9,7 @@ import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { getRequiredFieldValidator } from '@navikt/sif-validation';
+import { getRequiredFieldValidator } from '@sif/validation';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 

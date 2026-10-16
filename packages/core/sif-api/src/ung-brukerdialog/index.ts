@@ -1,4 +1,4 @@
-// Krever at appen har kalt initUngBrukerdialogApiClient fra @navikt/ung-brukerdialog-api.
+// Krever at appen har kalt initUngBrukerdialogApiClient fra @sif/ung-brukerdialog-api.
 
 // Hooks
 export { useTilgjengeligAktivitetspengerSøknad } from './aktivitetspenger-tilgang/useTilgjengeligAktivitetspengerSoknad';

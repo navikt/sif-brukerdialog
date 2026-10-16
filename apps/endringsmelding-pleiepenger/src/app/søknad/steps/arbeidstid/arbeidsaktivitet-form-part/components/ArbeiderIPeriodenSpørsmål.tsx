@@ -1,7 +1,7 @@
 import { AppMessageKeys, useAppIntl } from '@app/i18n';
 import { ArbeiderIPeriodenSvar, ArbeidsaktivitetArbeidstaker } from '@app/types';
 import { FormikRadioGroup, IntlErrorObject } from '@navikt/sif-common-formik-ds';
-import { getRequiredFieldValidator } from '@navikt/sif-validation';
+import { getRequiredFieldValidator } from '@sif/validation';
 
 interface Props {
     arbeidsaktivitet: ArbeidsaktivitetArbeidstaker;

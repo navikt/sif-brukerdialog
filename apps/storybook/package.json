@@ -20,7 +20,7 @@
         "@navikt/sif-common-soknad-ds": "workspace:*",
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
-        "@navikt/sif-validation": "workspace:*",
+        "@sif/validation": "workspace:*",
         "classnames": "2.5.1",
         "react-day-picker": "10.0.2"
     },
@@ -29,7 +29,7 @@
         "@storybook/addon-docs": "10.6.1",
         "@storybook/react-vite": "10.6.1",
         "@types/react": "19.3.0",
-        "config": "workspace:*",
+        "@sif/config": "workspace:*",
         "dayjs": "1.11.23",
         "eslint": "10.12.0",
         "eslint-plugin-storybook": "10.6.1",

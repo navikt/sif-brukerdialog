@@ -19,7 +19,7 @@ FROM base AS prune
 WORKDIR /app
 COPY . .
 # Prune med app og server
-RUN turbo prune ${SCOPE} @navikt/sif-server --docker
+RUN turbo prune ${SCOPE} @sif/server --docker
 
 #########################################
 # INSTALLER - Installer pakker og kopier kildekode

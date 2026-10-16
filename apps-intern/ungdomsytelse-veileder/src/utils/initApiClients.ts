@@ -1,4 +1,4 @@
-import { initUngDeltakelseOpplyserApiVeilederClient } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { initUngDeltakelseOpplyserApiVeilederClient } from '@sif/ung-deltakelse-opplyser-api-veileder';
 
 export const initApiClients = () => {
     initUngDeltakelseOpplyserApiVeilederClient({

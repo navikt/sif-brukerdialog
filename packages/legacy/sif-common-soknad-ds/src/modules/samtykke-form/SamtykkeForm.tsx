@@ -1,6 +1,6 @@
 import { Heading, Link, List, VStack } from '@navikt/ds-react';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { getCheckedValidator } from '@navikt/sif-validation';
+import { getCheckedValidator } from '@sif/validation';
 import { useIntl } from 'react-intl';
 
 import { useSoknadIntl } from '../../hooks/useSoknadIntl';

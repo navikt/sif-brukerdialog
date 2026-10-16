@@ -2,7 +2,7 @@ import { Alert, BodyLong, Box, Button, Heading, HStack, VStack } from '@navikt/d
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { getCheckedValidator, getRequiredFieldValidator, getStringValidator } from '@navikt/sif-validation';
+import { getCheckedValidator, getRequiredFieldValidator, getStringValidator } from '@sif/validation';
 import { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 

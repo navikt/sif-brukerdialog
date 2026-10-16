@@ -1,4 +1,4 @@
-import { AktivitetspengerSoknadApp } from '@navikt/sif-app-register';
+import { AktivitetspengerSoknadApp } from '@sif/app-register';
 import { initApm } from '@sif/apm';
 import { getMaybeEnv } from '@sif/env';
 import { StrictMode } from 'react';

@@ -1,5 +1,5 @@
 import { BodyLong, Link, List, ReadMore, VStack } from '@navikt/ds-react';
-import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
+import { OppgaveYtelsetype } from '@sif/ung-brukerdialog-api';
 
 import { UngInnsynText, useUngInnsynIntl } from '../../i18n';
 import { Lovlenke } from '../../modules/oppgavepaneler/oppgaveLovverk';

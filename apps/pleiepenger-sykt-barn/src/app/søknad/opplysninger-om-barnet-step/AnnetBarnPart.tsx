@@ -10,7 +10,7 @@ import {
     getFødselsnummerValidator,
     getRequiredFieldValidator,
     ValidateDateError,
-} from '@navikt/sif-validation';
+} from '@sif/validation';
 import { isDevMode } from '@sif/env';
 import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';

@@ -1,5 +1,5 @@
 import { ISODate } from '@navikt/sif-common-utils';
-import { Avslutningsårsak } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { Avslutningsårsak } from '@sif/ung-deltakelse-opplyser-api-veileder';
 import { ApiError } from '@sif/api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 

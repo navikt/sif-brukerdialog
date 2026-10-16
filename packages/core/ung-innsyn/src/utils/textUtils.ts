@@ -1,4 +1,4 @@
-import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { OppgaveStatus } from '@sif/ung-brukerdialog-api';
 import { BekreftelseOppgave, Oppgave, ParsedOppgaveBase, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import { dateFormatter, dateTimeFormatter } from '@sif/utils';
 

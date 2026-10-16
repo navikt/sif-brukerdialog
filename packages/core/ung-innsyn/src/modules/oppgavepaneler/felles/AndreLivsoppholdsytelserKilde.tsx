@@ -1,5 +1,5 @@
 import { ReadMore } from '@navikt/ds-react';
-import { AndreLivsoppholdsytelserAvklaringKildeType } from '@navikt/ung-brukerdialog-api';
+import { AndreLivsoppholdsytelserAvklaringKildeType } from '@sif/ung-brukerdialog-api';
 
 import Fritekst from '../../../components/fritekst/Fritekst';
 import { UngInnsynText, useUngInnsynIntl } from '../../../i18n';
@@ -17,7 +17,9 @@ export const AndreLivsoppholdsytelserKilde = ({ kilde, kildeFritekst }: Props) =
             return (
                 <ReadMore header={text('@ungInnsyn.andreLivsoppholdsytelserKilde.header')}>
                     <Fritekst
-                        text={kildeFritekst?.trim() || text('@ungInnsyn.andreLivsoppholdsytelserKilde.FRITEKST_FALLBACK')}
+                        text={
+                            kildeFritekst?.trim() || text('@ungInnsyn.andreLivsoppholdsytelserKilde.FRITEKST_FALLBACK')
+                        }
                     />
                 </ReadMore>
             );

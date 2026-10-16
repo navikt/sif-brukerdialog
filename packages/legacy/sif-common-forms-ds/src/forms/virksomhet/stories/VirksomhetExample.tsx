@@ -8,7 +8,7 @@ import {
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { getRequiredFieldValidator } from '@navikt/sif-validation';
+import { getRequiredFieldValidator } from '@sif/validation';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 
@@ -21,7 +21,7 @@ import VirksomhetInfoAndDialog from '../VirksomhetInfoAndDialog';
 import VirksomhetSummary from '../VirksomhetSummary';
 
 enum FormField {
-    'virksomhet' = 'virksomhet',
+    virksomhet = 'virksomhet',
 }
 
 export const mockVirksomhet: Virksomhet = {

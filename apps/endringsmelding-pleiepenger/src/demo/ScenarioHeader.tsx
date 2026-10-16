@@ -1,4 +1,4 @@
-import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
+import { EndringsmeldingPsbApp } from '@sif/app-register';
 import { ScenarioSelectorHeader } from '@sif/soknad-ui';
 
 

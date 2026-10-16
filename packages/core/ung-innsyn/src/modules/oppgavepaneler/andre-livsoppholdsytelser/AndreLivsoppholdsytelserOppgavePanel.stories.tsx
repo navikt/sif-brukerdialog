@@ -3,7 +3,7 @@ import {
     AndreLivsoppholdsytelserAvklaringKildeType,
     AndreLivsoppholdsytelserIkkeOppfyltÅrsak,
     OppgaveStatus,
-} from '@navikt/ung-brukerdialog-api';
+} from '@sif/ung-brukerdialog-api';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { OppgaverList } from '../../../components';

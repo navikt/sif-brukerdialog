@@ -1,4 +1,4 @@
-import { BrukerdialogOppgaveDto, TilgjengeligSøknadType } from '@navikt/ung-brukerdialog-api';
+import { BrukerdialogOppgaveDto, TilgjengeligSøknadType } from '@sif/ung-brukerdialog-api';
 
 import { getMockOppgaver } from '../data/oppgaver';
 import { scenarioBaseData } from '../data/scenarioBaseData';

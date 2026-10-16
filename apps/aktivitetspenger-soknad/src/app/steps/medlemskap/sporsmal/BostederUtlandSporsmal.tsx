@@ -1,6 +1,6 @@
 import { AppText } from '@app/i18n';
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
-import { getListValidator } from '@navikt/sif-validation';
+import { getListValidator } from '@sif/validation';
 import { useSifValidate } from '@sif/rhf';
 import { useMellomlagring } from '@sif/soknad-app';
 import { ArbeidUtlandFormData, ArbeidUtlandListAndDialog } from '@sif/soknad-forms';

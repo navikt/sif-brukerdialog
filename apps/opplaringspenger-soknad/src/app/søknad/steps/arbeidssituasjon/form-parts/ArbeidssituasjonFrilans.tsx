@@ -9,7 +9,7 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { ISODate, ISODateToDate } from '@navikt/sif-common-utils';
-import { getYesOrNoValidator } from '@navikt/sif-validation';
+import { getYesOrNoValidator } from '@sif/validation';
 import dayjs from 'dayjs';
 
 import { AppText, useAppIntl } from '../../../../i18n';

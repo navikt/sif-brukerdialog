@@ -105,7 +105,7 @@ Status: `parser.transforms.schemaName` er lagt inn i alle codegen-configs. Funks
 
 Hele API-et (`default.json`) har mange kollisjoner mellom ytelsene, så det genereres ikke lenger i sin helhet. Felles endepunkter (`/oppslag/**`, `/vedlegg/**`, `/mellomlagring/**`, `/valider/**`) genereres i stedet til `src/generated/felles` med `configs/openapi-ts.config-felles.ts`. Den bruker `includeOperations` (hey-api `parser.filters.operations.include`) og hey-api fjerner skjemaer som ingen operasjon bruker. Bare felles typer blir dermed med, for eksempel `ProblemDetail`, `Søker`, `BarnOppslag` og `ArbeidsgivereDto`.
 
-- `felles` eksporteres flatt fra pakkeroten (`import { zProblemDetail, BarnController } from '@navikt/k9-brukerdialog-prosessering-api'`) og har sin egen `client`, som initialiseres i `initK9BrukerdialogProsesseringApiClients`.
+- `felles` eksporteres flatt fra pakkeroten (`import { zProblemDetail, BarnController } from '@sif/k9-brukerdialog-prosessering-api'`) og har sin egen `client`, som initialiseres i `initK9BrukerdialogProsesseringApiClients`.
 - Ytelsestyper hentes alltid via navnerommet for ytelsen: `ungdomsytelse.KontonummerInfo`, `omsorgspenger.OmsorgspengerKroniskSyktBarnSøknad`.
 - Et nytt felles endepunkt legges til i `includeOperations`.
 - På sikt bør backend lage en egen definisjon, `oppslag`/`felles`, som erstatter filteret.
@@ -125,7 +125,7 @@ Per API genereres det en mappe med:
 
 ```ts
 // f.eks. i apps/min-app/src/app/api/initApiClients.ts
-import { initK9BrukerdialogProsesseringApiClients } from '@navikt/k9-brukerdialog-prosessering-api';
+import { initK9BrukerdialogProsesseringApiClients } from '@sif/k9-brukerdialog-prosessering-api';
 import { EnvKey, getRequiredEnv } from '@sif/env';
 
 export const initApiClients = () => {

@@ -1,4 +1,4 @@
-import type { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
+import type { ungdomsytelse } from '@sif/k9-brukerdialog-prosessering-api';
 import { delay, http, HttpResponse } from 'msw';
 
 import { ScenarioType } from '../scenarios/types';

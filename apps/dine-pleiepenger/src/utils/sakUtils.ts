@@ -1,4 +1,4 @@
-import { Arbeidstaker } from '@navikt/k9-sak-innsyn-api/src/generated/innsyn';
+import { Arbeidstaker } from '@sif/k9-sak-innsyn-api/src/generated/innsyn';
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';

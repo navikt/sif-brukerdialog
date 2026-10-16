@@ -1,4 +1,4 @@
-import { TilgjengeligSøknadType } from '@navikt/ung-brukerdialog-api';
+import { TilgjengeligSøknadType } from '@sif/ung-brukerdialog-api';
 import { mockSøker } from '@sif/api/mock-data';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 

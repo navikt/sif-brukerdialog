@@ -15,7 +15,7 @@ import {
     ISODateToDate,
     sortDateRange,
 } from '@navikt/sif-common-utils';
-import { getDateRangeValidator, getListValidator } from '@navikt/sif-validation';
+import { getDateRangeValidator, getListValidator } from '@sif/validation';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 

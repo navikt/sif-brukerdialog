@@ -3,7 +3,7 @@ import { FormikFileUpload, useVedleggHelper } from '@navikt/sif-common-core-ds';
 import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { getRequiredFieldValidator, getStringValidator, ValidateStringError } from '@navikt/sif-validation';
+import { getRequiredFieldValidator, getStringValidator, ValidateStringError } from '@sif/validation';
 import { useFormikContext } from 'formik';
 
 import { useAppIntl } from '../../../../i18n';

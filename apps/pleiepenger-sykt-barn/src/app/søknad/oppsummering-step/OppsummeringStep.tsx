@@ -2,7 +2,7 @@ import './oppsummeringStep.less';
 
 import { useAppIntl } from '@i18n/index';
 import { VStack } from '@navikt/ds-react';
-import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
+import { PleiepengerSyktBarnApp } from '@sif/app-register';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { InvalidParameterViolation } from '@navikt/sif-common-api';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
@@ -13,7 +13,7 @@ import { LoadingPage } from '@navikt/sif-common-soknad-ds';
 import { isInvalidParameterErrorResponse } from '@navikt/sif-common-soknad-ds/src/utils/innsendingErrorUtils';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { getCheckedValidator } from '@navikt/sif-validation';
+import { getCheckedValidator } from '@sif/validation';
 import { appLogger } from '@sif/apm';
 import { useSkyraReloader } from '@sif/surveys';
 import { isAxiosError } from 'axios';

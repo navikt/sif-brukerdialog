@@ -1,4 +1,4 @@
-import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
+import { OppgaveYtelsetype } from '@sif/ung-brukerdialog-api';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 

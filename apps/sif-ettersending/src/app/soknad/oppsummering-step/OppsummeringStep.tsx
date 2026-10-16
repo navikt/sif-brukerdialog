@@ -7,7 +7,7 @@ import VedleggSummaryList from '@navikt/sif-common-core-ds/src/components/vedleg
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { FormLayout, Sitat, TextareaSvar } from '@navikt/sif-common-ui';
 import { prettifyDate } from '@navikt/sif-common-utils';
-import { getCheckedValidator } from '@navikt/sif-validation';
+import { getCheckedValidator } from '@sif/validation';
 import { useEffectOnce } from '@sif/hooks';
 import { useFormikContext } from 'formik';
 import { useIntl } from 'react-intl';

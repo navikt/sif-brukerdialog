@@ -144,7 +144,7 @@ Alt fra `@sif/soknad-ui`, vist når `__IS_DEMO__` er true:
 
 1. **`ScenarioHeader`** — appens egen i `src/demo/ScenarioHeader.tsx` (named export), som bruker
    `ScenarioSelectorHeader` med `isGitHubPages={__IS_GITHUB_PAGES__}` og `appTitle={<AppNavn>App.tittel.nb}`
-   fra `@navikt/sif-app-register` — ikke dikt opp ny tekst.
+   fra `@sif/app-register` — ikke dikt opp ny tekst.
 2. **`DemoInfoAlert`** — GlobalAlert med felles standardtekst om fiktive data. Samme `appTitle`.
 3. **`DemoWatermark`** — wrapper som legger DEMO-vannmerket bak innholdet. CSS-en følger med komponenten;
    ingen egen `demo.css` eller `className="demoMode"` i appen.

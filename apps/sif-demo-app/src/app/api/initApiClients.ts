@@ -1,4 +1,4 @@
-import { initK9BrukerdialogProsesseringApiClients } from '@navikt/k9-brukerdialog-prosessering-api';
+import { initK9BrukerdialogProsesseringApiClients } from '@sif/k9-brukerdialog-prosessering-api';
 
 /**
  * Oppretter API-klienter for alle API-er som brukes i appen.

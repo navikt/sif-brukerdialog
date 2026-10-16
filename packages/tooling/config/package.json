@@ -1,5 +1,5 @@
 {
-    "name": "config",
+    "name": "@sif/config",
     "version": "0.11.55",
     "private": true,
     "main": "index.js",

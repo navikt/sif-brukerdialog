@@ -1,4 +1,4 @@
-import { OpplæringspengerApp } from '@navikt/sif-app-register';
+import { OpplæringspengerApp } from '@sif/app-register';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { SoknadVelkommenPage } from '@navikt/sif-common-soknad-ds';
 

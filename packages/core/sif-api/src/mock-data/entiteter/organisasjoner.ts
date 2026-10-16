@@ -1,4 +1,4 @@
-import { OrganisasjonDto } from '@navikt/k9-brukerdialog-prosessering-api';
+import { OrganisasjonDto } from '@sif/k9-brukerdialog-prosessering-api';
 import { ISODate } from '@sif/utils';
 
 type OrganisasjonEntitet = Omit<OrganisasjonDto, 'ansattFom' | 'ansattTom'> & {

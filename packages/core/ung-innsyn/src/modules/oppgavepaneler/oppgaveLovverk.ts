@@ -1,4 +1,4 @@
-import { OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
+import { OppgaveType, OppgaveYtelsetype } from '@sif/ung-brukerdialog-api';
 import { ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 
 import type { UngInnsynMessageKeys } from '../../i18n';

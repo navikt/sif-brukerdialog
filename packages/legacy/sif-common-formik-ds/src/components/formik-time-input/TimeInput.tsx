@@ -1,7 +1,7 @@
 import './timeInput.scss';
 
 import { TextField } from '@navikt/ds-react';
-import { hasValue } from '@navikt/sif-validation';
+import { hasValue } from '@sif/validation';
 import classNames from 'classnames';
 import React, { RefObject, useEffect, useState } from 'react';
 

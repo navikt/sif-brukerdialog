@@ -6,7 +6,7 @@ import {
     getStringValidator,
     ValidateFødselsnummerError,
     ValidateStringError,
-} from '@navikt/sif-validation';
+} from '@sif/validation';
 import { isDevMode } from '@sif/env';
 import { useIntl } from 'react-intl';
 

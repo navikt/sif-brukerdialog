@@ -1,5 +1,5 @@
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik-ds';
-import { getDateRangeValidator, getDateValidator, getStringValidator } from '@navikt/sif-validation';
+import { getDateRangeValidator, getDateValidator, getStringValidator } from '@sif/validation';
 
 export const validateFraDato = (
     fraDatoString?: string,

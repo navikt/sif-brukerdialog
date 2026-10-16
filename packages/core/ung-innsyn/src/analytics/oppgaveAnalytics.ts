@@ -1,4 +1,4 @@
-import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { OppgaveStatus } from '@sif/ung-brukerdialog-api';
 import { useAnalyticsInstance } from '@sif/analytics';
 import { ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 

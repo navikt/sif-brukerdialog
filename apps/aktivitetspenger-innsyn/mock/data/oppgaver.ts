@@ -7,7 +7,7 @@ import {
     OppgaveStatus,
     OppgaveType,
     OppgaveYtelsetype,
-} from '@navikt/ung-brukerdialog-api';
+} from '@sif/ung-brukerdialog-api';
 import { dateToISODate } from '@sif/utils';
 import dayjs from 'dayjs';
 
@@ -267,12 +267,10 @@ const getBekreftAndreLivsoppholdsytelserOppgaveDto = (): BrukerdialogOppgaveDto 
         kilde: AndreLivsoppholdsytelserAvklaringKildeType.NAV,
         fom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
         tom: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month')),
-        varseltekst: mockVarseltekster.getAndreLivsoppholdsytelserOppgaveVarseltekst(
-            {
-                from: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
-                to: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month')),
-            },
-        ),
+        varseltekst: mockVarseltekster.getAndreLivsoppholdsytelserOppgaveVarseltekst({
+            from: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month')),
+            to: dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month')),
+        }),
     },
     status: OppgaveStatus.ULØST,
     opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),

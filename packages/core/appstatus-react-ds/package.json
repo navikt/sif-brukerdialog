@@ -1,5 +1,5 @@
 {
-    "name": "@navikt/appstatus-react-ds",
+    "name": "@sif/appstatus-react-ds",
     "version": "2.21.1",
     "private": true,
     "description": "Sanity utils for sykdom i familien",
@@ -26,7 +26,7 @@
         "@types/node": "26.6.4",
         "@types/react": "19.3.0",
         "@types/react-dom": "19.3.0",
-        "config": "workspace:*",
+        "@sif/config": "workspace:*",
         "eslint": "10.12.0",
         "postcss": ">=8.5.28",
         "prop-types": "15.8.1",

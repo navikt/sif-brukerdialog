@@ -1,5 +1,5 @@
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { Diskresjonskode, zHentDeltakerInfoGittDeltakerIdResponse } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { Diskresjonskode, zHentDeltakerInfoGittDeltakerIdResponse } from '@sif/ung-deltakelse-opplyser-api-veileder';
 import { z } from 'zod';
 
 export const uregistrertDeltakerSchema = zHentDeltakerInfoGittDeltakerIdResponse

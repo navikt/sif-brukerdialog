@@ -5,7 +5,7 @@ import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { DateRange, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import VirksomhetInfoAndDialog from '@navikt/sif-common-forms-ds/src/forms/virksomhet/VirksomhetInfoAndDialog';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { getRequiredFieldValidator, getYesOrNoValidator } from '@sif/validation';
 import { useFormikContext } from 'formik';
 
 import { AppText } from '../../../i18n';

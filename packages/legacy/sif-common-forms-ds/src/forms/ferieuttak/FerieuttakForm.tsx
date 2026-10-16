@@ -12,7 +12,7 @@ import {
     isDateRange,
     prettifyDate,
 } from '@navikt/sif-common-utils';
-import { getDateRangeValidator, ValidateDateError, ValidateDateRangeError } from '@navikt/sif-validation';
+import { getDateRangeValidator, ValidateDateError, ValidateDateRangeError } from '@sif/validation';
 import dayjs from 'dayjs';
 import { useIntl } from 'react-intl';
 

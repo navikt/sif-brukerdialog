@@ -1,23 +1,23 @@
 import { validateAll, ValidationError } from '@navikt/sif-common-formik-ds';
 import { validateNoCollisions } from '@navikt/sif-common-forms-ds/src/forms/fravær/fraværValidationUtils';
 import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds/src/forms/fravær/types';
-import { getListValidator } from '@navikt/sif-validation';
+import { getListValidator } from '@sif/validation';
 
 export enum AppFieldValidationErrors {
-    'arbeidsforhold_fraværPerioder_listIsEmpty' = 'validation.arbeidsforhold.fraværPerioder.listIsEmpty',
-    'arbeidsforhold_harPerioderMedFravær_yesOrNoIsUnanswered' = 'validation.arbeidsforhold.harPerioderMedFravær.yesOrNoIsUnanswered',
-    'arbeidsforhold_harDagerMedDelvisFravær_yesOrNoIsUnanswered' = 'validation.arbeidsforhold.harDagerMedDelvisFravær.yesOrNoIsUnanswered',
-    'arbeidsforhold_fraværDager_listIsEmpty' = 'validation.arbeidsforhold.fraværDager.listIsEmpty',
-    'arbeidsforhold_hvorLengeJobbet_noValue' = 'validation.arbeidsforhold.hvorLengeJobbet.noValue',
-    'arbeidsforhold_ansettelseslengde_begrunnelse_noValue' = 'validation.arbeidsforhold.ansettelseslengde.begrunnelse.noValue',
-    'periode_ingenDagerEllerPerioder' = 'validation.periode_ingenDagerEllerPerioder',
-    'harHattFraværHosArbeidsgiver_yesOrNoIsUnanswered' = 'validation.harHattFraværHosArbeidsgiver.yesOrNoIsUnanswered',
-    'arbeidsgiverHarUtbetaltLønn_yesOrNoIsUnanswered' = 'validation.arbeidsgiverHarUtbetaltLønn.yesOrNoIsUnanswered',
-    'fraværDagIkkeSammeÅrstall' = 'validation.fraværDagIkkeSammeÅrstall',
-    'fraværPeriodeIkkeSammeÅrstall' = 'validation.fraværPeriodeIkkeSammeÅrstall',
-    'perioderEllerDagerOverlapper' = 'validation.perioderEllerDagerOverlapper',
-    'arbeidsforhold_utbetalings_årsak_no_Value' = 'validation.situasjon.arbeidsforhold.utbetalingsårsak.noValue',
-    'arbeidsforhold_årsak_mindre_4uker_no_Value' = 'validation.situasjon.arbeidsforhold.ÅrsakMindre4Uker.noValue',
+    arbeidsforhold_fraværPerioder_listIsEmpty = 'validation.arbeidsforhold.fraværPerioder.listIsEmpty',
+    arbeidsforhold_harPerioderMedFravær_yesOrNoIsUnanswered = 'validation.arbeidsforhold.harPerioderMedFravær.yesOrNoIsUnanswered',
+    arbeidsforhold_harDagerMedDelvisFravær_yesOrNoIsUnanswered = 'validation.arbeidsforhold.harDagerMedDelvisFravær.yesOrNoIsUnanswered',
+    arbeidsforhold_fraværDager_listIsEmpty = 'validation.arbeidsforhold.fraværDager.listIsEmpty',
+    arbeidsforhold_hvorLengeJobbet_noValue = 'validation.arbeidsforhold.hvorLengeJobbet.noValue',
+    arbeidsforhold_ansettelseslengde_begrunnelse_noValue = 'validation.arbeidsforhold.ansettelseslengde.begrunnelse.noValue',
+    periode_ingenDagerEllerPerioder = 'validation.periode_ingenDagerEllerPerioder',
+    harHattFraværHosArbeidsgiver_yesOrNoIsUnanswered = 'validation.harHattFraværHosArbeidsgiver.yesOrNoIsUnanswered',
+    arbeidsgiverHarUtbetaltLønn_yesOrNoIsUnanswered = 'validation.arbeidsgiverHarUtbetaltLønn.yesOrNoIsUnanswered',
+    fraværDagIkkeSammeÅrstall = 'validation.fraværDagIkkeSammeÅrstall',
+    fraværPeriodeIkkeSammeÅrstall = 'validation.fraværPeriodeIkkeSammeÅrstall',
+    perioderEllerDagerOverlapper = 'validation.perioderEllerDagerOverlapper',
+    arbeidsforhold_utbetalings_årsak_no_Value = 'validation.situasjon.arbeidsforhold.utbetalingsårsak.noValue',
+    arbeidsforhold_årsak_mindre_4uker_no_Value = 'validation.situasjon.arbeidsforhold.ÅrsakMindre4Uker.noValue',
 }
 
 export const getFraværPerioderValidator =

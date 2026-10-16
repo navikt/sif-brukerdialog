@@ -1,4 +1,4 @@
-import { AktivitetspengerSoknadApp } from '@navikt/sif-app-register';
+import { AktivitetspengerSoknadApp } from '@sif/app-register';
 import { getRequiredEnv } from '@sif/env';
 import { ScenarioSelectorHeader, type ScenarioSelectorHeaderGroup } from '@sif/soknad-ui';
 

@@ -1,4 +1,4 @@
-import { BrukerdialogOppgaveDto, EndretSluttdatoDataDto, EndretStartdatoDataDto } from '@navikt/ung-brukerdialog-api';
+import { BrukerdialogOppgaveDto, EndretSluttdatoDataDto, EndretStartdatoDataDto } from '@sif/ung-brukerdialog-api';
 import { ISODate } from '@sif/utils';
 
 import { EndretSluttdatoOppgave, EndretStartdatoOppgave, MeldtUtOppgave, ParsedOppgavetype } from '../../Oppgave';

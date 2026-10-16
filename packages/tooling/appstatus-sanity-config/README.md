@@ -1,6 +1,6 @@
-# appstatus-sanity-config
+# @sif/appstatus-sanity-config
 
-Sanity Studio for appstatus, som brukes til driftsmeldinger og status for søknadsdialogene i Sykdom i familien. Innholdet leses av `@navikt/appstatus-react-ds`.
+Sanity Studio for appstatus, som brukes til driftsmeldinger og status for søknadsdialogene i Sykdom i familien. Innholdet leses av `@sif/appstatus-react-ds`.
 
 Studioet bruker datasettet `production` i prosjektet `ryujtq87`. Det finnes ikke noe testdatasett, så alt som publiseres fra Studio, også lokalt, går rett ut i produksjon.
 

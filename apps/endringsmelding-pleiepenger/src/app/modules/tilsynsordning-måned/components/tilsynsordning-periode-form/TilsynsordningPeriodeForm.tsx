@@ -9,7 +9,7 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { dateRangeUtils, DurationWeekdays, getDateToday } from '@navikt/sif-common-utils';
-import { getDateRangeValidator, ValidateDateError, ValidateDateRangeError } from '@navikt/sif-validation';
+import { getDateRangeValidator, ValidateDateError, ValidateDateRangeError } from '@sif/validation';
 import React from 'react';
 
 import TidFasteUkedagerInput from '../../../../components/tid-faste-ukedager-input/TidFasteUkedagerInput';
@@ -28,9 +28,9 @@ export type TilsynsordningPeriodeData = {
 };
 
 enum FormFields {
-    'fom' = 'fom',
-    'tom' = 'tom',
-    'tidFasteDager' = 'tidFasteDager',
+    fom = 'fom',
+    tom = 'tom',
+    tidFasteDager = 'tidFasteDager',
     'tidFasteDager.gruppe' = 'tidFasteDager.gruppe',
 }
 

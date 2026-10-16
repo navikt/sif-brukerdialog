@@ -7,7 +7,7 @@ import {
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
 import { getDate1YearAgo, getDate1YearFromNow } from '@navikt/sif-common-utils';
-import { getListValidator } from '@navikt/sif-validation';
+import { getListValidator } from '@sif/validation';
 import { flatten } from 'flat';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -21,7 +21,7 @@ import { bostedUtlandMessages } from '../i18n';
 import { BostedUtland } from '../types';
 
 enum FormField {
-    'bosted' = 'bosted',
+    bosted = 'bosted',
 }
 
 interface FormValues {

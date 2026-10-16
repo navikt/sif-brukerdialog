@@ -1,4 +1,4 @@
-import { OpplæringspengerApp } from '@navikt/sif-app-register';
+import { OpplæringspengerApp } from '@sif/app-register';
 import { ScenarioSelectorHeader } from '@sif/soknad-ui';
 
 

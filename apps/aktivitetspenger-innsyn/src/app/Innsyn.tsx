@@ -1,5 +1,5 @@
 import { BodyLong, Heading, Link, VStack } from '@navikt/ds-react';
-import { TilgjengeligSøknadResponse } from '@navikt/ung-brukerdialog-api';
+import { TilgjengeligSøknadResponse } from '@sif/ung-brukerdialog-api';
 import { Søker } from '@sif/api/k9-brukerdialog-prosessering';
 import { Oppgave } from '@sif/api/ung-brukerdialog';
 import { getMaybeEnv } from '@sif/env';

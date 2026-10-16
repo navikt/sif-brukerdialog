@@ -6,7 +6,7 @@ import {
     Diskresjonskode,
     Endringstype,
     Revisjonstype,
-} from '@navikt/ung-deltakelse-opplyser-api-veileder';
+} from '@sif/ung-deltakelse-opplyser-api-veileder';
 import { beregnPeriodeMaksDato, relativeMockISODate, relativeMockTimestamp } from '../mockDateUtils';
 import { MockScenario } from './types';
 
