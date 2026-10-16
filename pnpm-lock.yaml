@@ -5879,6 +5879,9 @@ importers:
 
   packages/legacy/sif-common-utils:
     dependencies:
+      '@sif/utils':
+        specifier: workspace:*
+        version: link:../../core/sif-utils
       dayjs:
         specifier: 1.11.23
         version: 1.11.23

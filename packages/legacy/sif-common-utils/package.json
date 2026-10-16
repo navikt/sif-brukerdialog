@@ -14,6 +14,7 @@
         "test-w": "vitest watch"
     },
     "dependencies": {
+        "@sif/utils": "workspace:*",
         "dayjs": "1.11.23",
         "i18n-iso-countries": "7.14.0",
         "iso8601-duration": "2.2.0",
