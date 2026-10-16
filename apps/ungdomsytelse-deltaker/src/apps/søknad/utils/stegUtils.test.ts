@@ -1,5 +1,5 @@
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
+import { UtvidetKontonummerInfo } from '@sif/api/ung-deltakelse-opplyser-deltaker';
 import { describe, expect, it } from 'vitest';
 
 import { HarKontonummerEnum } from '../steg/oppsummering/oppsummeringUtils';

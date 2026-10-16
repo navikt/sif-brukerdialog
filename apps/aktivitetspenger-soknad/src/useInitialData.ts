@@ -1,7 +1,7 @@
 import { TilgjengeligSøknadResponse } from '@navikt/ung-brukerdialog-api';
-import { RegistrertBarn, Søker, useRegistrerteBarn, useSøker } from '@sif/api/k9-prosessering';
+import { RegistrertBarn, Søker, useRegistrerteBarn, useSøker } from '@sif/api/k9-brukerdialog-prosessering';
 import { useTilgjengeligAktivitetspengerSøknad } from '@sif/api/ung-brukerdialog';
-import { kontonummerFallback, useKontonummer, UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
+import { kontonummerFallback, useKontonummer, UtvidetKontonummerInfo } from '@sif/api/ung-deltakelse-opplyser-deltaker';
 
 interface InitialData {
     søker: Søker;

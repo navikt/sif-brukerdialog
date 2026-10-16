@@ -1,5 +1,5 @@
 import { Tag } from '@navikt/ds-react';
-import type { RegistrertBarn } from '@sif/api/k9-prosessering';
+import type { RegistrertBarn } from '@sif/api/k9-brukerdialog-prosessering';
 import { ISODate } from '@sif/utils';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { JSX } from 'react/jsx-runtime';

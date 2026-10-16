@@ -1,6 +1,6 @@
 import { BodyLong, Heading, Link, VStack } from '@navikt/ds-react';
 import { TilgjengeligSøknadResponse } from '@navikt/ung-brukerdialog-api';
-import { Søker } from '@sif/api/k9-prosessering';
+import { Søker } from '@sif/api/k9-brukerdialog-prosessering';
 import { Oppgave } from '@sif/api/ung-brukerdialog';
 import { getMaybeEnv } from '@sif/env';
 import { SifGuidePanel } from '@sif/soknad-ui';
@@ -74,9 +74,7 @@ export const Innsyn = ({ søker, oppgaver, tilgangsinfo: tilgjengeligSøknad }: 
                             <AppText
                                 id="page.ikkeTilgang.info.2"
                                 values={{
-                                    Lenke: (chunks) => (
-                                        <Link href={getLenker().aktivitetspenger}>{chunks}</Link>
-                                    ),
+                                    Lenke: (chunks) => <Link href={getLenker().aktivitetspenger}>{chunks}</Link>,
                                 }}
                             />
                         </BodyLong>

@@ -8,7 +8,7 @@ Importer hooks fra domenet de tilhører. `ApiErrorAlert`, feilhjelpere og `commo
 
 ```tsx
 import { ApiErrorAlert } from '@sif/api';
-import { useSøker } from '@sif/api/k9-prosessering';
+import { useSøker } from '@sif/api/k9-brukerdialog-prosessering';
 
 function MinKomponent() {
     const søker = useSøker();
@@ -20,12 +20,14 @@ function MinKomponent() {
 }
 ```
 
-| Importsti                    | API                                    |
-| ---------------------------- | -------------------------------------- |
-| `@sif/api/k9-prosessering`   | `k9-brukerdialog-prosessering-api`     |
-| `@sif/api/ung-brukerdialog`  | `ung-brukerdialog-api`                 |
-| `@sif/api/ung-deltaker`      | `ung-deltakelse-opplyser-api-deltaker` |
-| `@sif/api/k9-sak-innsyn-api` | `k9-sak-innsyn-api`                    |
+Importstien har samme navn som den genererte API-pakken, uten `-api`. Da ser du hvilken init-funksjon appen må kalle.
+
+| Importsti                                   | API                                    | Init-funksjon                                |
+| ------------------------------------------- | -------------------------------------- | -------------------------------------------- |
+| `@sif/api/k9-brukerdialog-prosessering`     | `k9-brukerdialog-prosessering-api`     | `initK9BrukerdialogProsesseringApiClients`   |
+| `@sif/api/ung-brukerdialog`                 | `ung-brukerdialog-api`                 | `initUngBrukerdialogApiClient`               |
+| `@sif/api/ung-deltakelse-opplyser-deltaker` | `ung-deltakelse-opplyser-api-deltaker` | `initUngDeltakelseOpplyserApiDeltakerClient` |
+| `@sif/api/k9-sak-innsyn`                    | `k9-sak-innsyn-api`                    | `initK9SakInnsynApiClients`                  |
 
 Hooks og hvilke env-variabler de krever, står i `sif-api`-skillen (`.github/skills/sif-api/SKILL.md`).
 

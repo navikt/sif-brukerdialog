@@ -1,5 +1,5 @@
 import { getMaybeEnv } from '@sif/env';
-import { enableMocking as enableMockingBase } from '@sif/api/mock-utils';
+import { enableMocking as enableMockingBase } from '@sif/mock-utils';
 
 
 export async function enableMocking() {

@@ -1,4 +1,4 @@
-import { RegistrertBarn, Søker } from '@sif/api/k9-prosessering';
+import { RegistrertBarn, Søker } from '@sif/api/k9-brukerdialog-prosessering';
 import { createContext, useContext } from 'react';
 
 export interface AppContextData {

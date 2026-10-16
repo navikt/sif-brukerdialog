@@ -1,6 +1,6 @@
 import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
-import { RegistrertBarn } from '@sif/api/k9-prosessering';
-import { InnvilgedeVedtak } from '@sif/api/k9-sak-innsyn-api';
+import { RegistrertBarn } from '@sif/api/k9-brukerdialog-prosessering';
+import { InnvilgedeVedtak } from '@sif/api/k9-sak-innsyn';
 import { YesOrNo } from '@sif/rhf';
 import { dateToISODate, getDagensDatoIOslo, ISODate } from '@sif/utils';
 import dayjs from 'dayjs';

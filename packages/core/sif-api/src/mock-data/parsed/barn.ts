@@ -1,4 +1,4 @@
-import { RegistrertBarn } from '../../types/Barn';
+import { RegistrertBarn } from '../../k9-brukerdialog-prosessering/registrert-barn/RegistrertBarn';
 import { alfaTestesen } from '../entiteter/barn';
 
 export const mockRegistrertBarn: RegistrertBarn = {

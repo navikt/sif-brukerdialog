@@ -1,4 +1,4 @@
-import { RegistrertBarn, Søker } from '@sif/api/k9-prosessering';
+import { RegistrertBarn, Søker } from '@sif/api/k9-brukerdialog-prosessering';
 import { ISODate } from '@sif/utils';
 
 export const SøkerMock: Søker = {

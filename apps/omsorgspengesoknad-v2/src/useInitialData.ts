@@ -1,4 +1,4 @@
-import { RegistrertBarn, Søker, useRegistrerteBarn, useSøker } from '@sif/api/k9-prosessering';
+import { RegistrertBarn, Søker, useRegistrerteBarn, useSøker } from '@sif/api/k9-brukerdialog-prosessering';
 
 interface InitialData {
     søker: Søker;
@@ -6,9 +6,7 @@ interface InitialData {
 }
 
 type InitialDataResult =
-    | { status: 'loading' }
-    | { status: 'error'; errors: unknown[] }
-    | { status: 'success'; data: InitialData };
+    { status: 'loading' } | { status: 'error'; errors: unknown[] } | { status: 'success'; data: InitialData };
 
 export const useInitialData = (): InitialDataResult => {
     const søker = useSøker();

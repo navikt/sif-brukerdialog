@@ -1,4 +1,4 @@
-import { Søker } from '@sif/api/k9-prosessering';
+import { Søker } from '@sif/api/k9-brukerdialog-prosessering';
 import { Oppgave } from '@sif/api/ung-brukerdialog';
 import { createContext, ReactNode, useMemo } from 'react';
 

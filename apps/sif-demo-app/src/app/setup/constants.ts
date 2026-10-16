@@ -1,4 +1,4 @@
-import { MellomlagringYtelse } from '@sif/api/k9-prosessering';
+import { MellomlagringYtelse } from '@sif/api/k9-brukerdialog-prosessering';
 
 export const APP_YTELSE = MellomlagringYtelse.UNGDOMSYTELSE;
 

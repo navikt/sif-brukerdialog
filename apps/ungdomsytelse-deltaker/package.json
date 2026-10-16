@@ -53,6 +53,7 @@
         "@sif/analytics": "workspace:*",
         "@sif/api": "workspace:*",
         "@sif/apm": "workspace:*",
+        "@sif/mock-utils": "workspace:*",
         "@sif/soknad-ui": "workspace:*",
         "@sif/surveys": "workspace:*",
         "@sif/ung-innsyn": "workspace:*",

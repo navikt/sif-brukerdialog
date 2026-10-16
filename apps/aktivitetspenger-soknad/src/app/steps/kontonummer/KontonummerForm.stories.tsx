@@ -1,5 +1,5 @@
 import { mockRegistrerteBarn } from '@sif/api/mock-data';
-import { HarKontonummerEnum } from '@sif/api/ung-deltaker';
+import { HarKontonummerEnum } from '@sif/api/ung-deltakelse-opplyser-deltaker';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { withIntl } from '../../../../storybook/decorators/withIntl';

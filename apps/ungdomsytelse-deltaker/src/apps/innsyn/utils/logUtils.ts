@@ -2,7 +2,7 @@ import { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 import { BekreftelseOppgave, Oppgave, ParsedOppgavetype, SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
-import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
+import { UtvidetKontonummerInfo } from '@sif/api/ung-deltakelse-opplyser-deltaker';
 import { HarKontonummerEnum } from '@søknad/steg/oppsummering/oppsummeringUtils';
 import dayjs from 'dayjs';
 

@@ -1,7 +1,7 @@
 import { SøknadApiData } from '@app/types/SoknadApiData';
 import { MedlemskapSøknadsdata, Søknadsdata } from '@app/types/Soknadsdata';
 import type { aktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
-import { Søker } from '@sif/api/k9-prosessering';
+import { Søker } from '@sif/api/k9-brukerdialog-prosessering';
 import { ISODate } from '@sif/utils';
 
 import { getMedlemskapSynlighet } from '../steps/medlemskap/medlemskapSynlighet';

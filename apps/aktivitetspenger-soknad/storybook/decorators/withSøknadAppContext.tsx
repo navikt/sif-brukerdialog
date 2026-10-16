@@ -1,6 +1,6 @@
 import { Theme } from '@navikt/ds-react';
 import { mockRegistrerteBarn, mockSøker } from '@sif/api/mock-data';
-import { HarKontonummerEnum } from '@sif/api/ung-deltaker';
+import { HarKontonummerEnum } from '@sif/api/ung-deltakelse-opplyser-deltaker';
 import {
     createSøknadAppStore,
     SifQueryClientProvider,

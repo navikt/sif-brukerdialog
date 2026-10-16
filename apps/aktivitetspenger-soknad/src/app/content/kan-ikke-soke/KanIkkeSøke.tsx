@@ -2,7 +2,7 @@ import { AppText, useAppIntl } from '@app/i18n';
 import getLenker from '@app/lenker';
 import { BodyLong, Box, GuidePanel, Heading, Link, VStack } from '@navikt/ds-react';
 import { TilgjengeligSøknadResponse } from '@navikt/ung-brukerdialog-api';
-import { Søker } from '@sif/api/k9-prosessering';
+import { Søker } from '@sif/api/k9-brukerdialog-prosessering';
 import { ApplicationPage, SifSoknadUiText } from '@sif/soknad-ui';
 
 import { getKanIkkeSøkeÅrsak, KanIkkeSøkeÅrsak } from './kanIkkeSøkeUtils';

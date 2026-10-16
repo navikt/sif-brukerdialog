@@ -33,6 +33,7 @@
         "@navikt/sif-validation": "workspace:*",
         "@sif/api": "workspace:*",
         "@sif/apm": "workspace:*",
+        "@sif/mock-utils": "workspace:*",
         "@sif/rhf": "workspace:*",
         "@sif/soknad-app": "workspace:*",
         "@sif/soknad-forms": "workspace:*",
