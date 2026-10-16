@@ -62,14 +62,6 @@ export const sider: GhPagesSide[] = [
         disabled: false,
     },
     {
-        path: 'storybook',
-        type: 'storybook',
-        tittel: 'Felles storybook',
-        beskrivelse: 'Storybook som viser tekst og noen av komponentene som brukes på tvers i sif.',
-        workspace: 'apps/storybook',
-        disabled: false,
-    },
-    {
         path: 'aktivitetspenger-soknad-storybook',
         type: 'storybook',
         tittel: 'Aktivitetspenger søknad',
