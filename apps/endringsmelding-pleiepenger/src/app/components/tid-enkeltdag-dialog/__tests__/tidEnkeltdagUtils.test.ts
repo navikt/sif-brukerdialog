@@ -46,11 +46,46 @@ describe('tidEnkeltdagUtils', () => {
             ]);
         });
 
-        it('heleUken - returnerer alle ukedager i uken til valgt dato, clamped til endringsperiode', () => {
+        it('heleUken - returnerer alle ukedager i uken til valgt dato', () => {
             const result = getGjentagendeDager(søknadsperiode, endringsperiodeIMåned, dato, {
                 gjentagelsetype: GjentagelseType.heleUken,
             });
             expect(result).toEqual(['2022-01-10', '2022-01-11', '2022-01-12', '2022-01-13', '2022-01-14']);
+        });
+
+        it('heleUken - inkluderer dager i neste måned når uken går over to måneder', () => {
+            const result = getGjentagendeDager(søknadsperiode, endringsperiodeIMåned, ISODateToDate('2022-01-31'), {
+                gjentagelsetype: GjentagelseType.heleUken,
+            });
+            expect(result).toEqual(['2022-01-31', '2022-02-01', '2022-02-02', '2022-02-03', '2022-02-04']);
+        });
+
+        it('heleUken - inkluderer dager i forrige måned når uken går over to måneder', () => {
+            const result = getGjentagendeDager(
+                søknadsperiode,
+                ISODateRangeToDateRange('2022-02-01/2022-02-28'),
+                ISODateToDate('2022-02-02'),
+                { gjentagelsetype: GjentagelseType.heleUken },
+            );
+            expect(result).toEqual(['2022-01-31', '2022-02-01', '2022-02-02', '2022-02-03', '2022-02-04']);
+        });
+
+        it('heleUken - avgrenses til søknadsperioden', () => {
+            const result = getGjentagendeDager(
+                ISODateRangeToDateRange('2022-01-12/2022-02-01'),
+                ISODateRangeToDateRange('2022-01-12/2022-01-31'),
+                ISODateToDate('2022-01-13'),
+                { gjentagelsetype: GjentagelseType.heleUken },
+            );
+            expect(result).toEqual(['2022-01-12', '2022-01-13', '2022-01-14']);
+
+            const resultSlutt = getGjentagendeDager(
+                ISODateRangeToDateRange('2022-01-12/2022-02-01'),
+                ISODateRangeToDateRange('2022-01-12/2022-01-31'),
+                ISODateToDate('2022-01-31'),
+                { gjentagelsetype: GjentagelseType.heleUken },
+            );
+            expect(resultSlutt).toEqual(['2022-01-31', '2022-02-01']);
         });
 
         it('heleMåneden - returnerer alle ukedager i endringsperioden', () => {
