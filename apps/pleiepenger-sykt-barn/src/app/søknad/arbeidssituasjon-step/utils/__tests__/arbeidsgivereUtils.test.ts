@@ -82,4 +82,29 @@ describe('syncArbeidsforholdWithArbeidsgivere', () => {
         expect(result[1].arbeidsgiver?.id).toBe('4');
         expect(result[1].erAnsatt).toBe(YesOrNo.UNANSWERED);
     });
+
+    it('oppdaterer ansettelsesperioder uten å miste brukerens svar', () => {
+        const eksisterendeArbeidsforhold: ArbeidsforholdFormValues[] = [
+            {
+                ...arbeidsforholdErAnsatt,
+                arbeidsgiver: {
+                    ...arbeidsforholdErAnsatt.arbeidsgiver,
+                    ansattFom: new Date('2024-06-01'),
+                },
+            },
+        ];
+        const oppdaterteArbeidsgivere: Arbeidsgiver[] = [
+            {
+                ...arbeidsforholdErAnsatt.arbeidsgiver,
+                ansattFom: new Date('2024-01-01'),
+                ansettelsesperioder: [{ from: new Date('2024-01-01') }, { from: new Date('2024-06-01') }],
+            },
+        ];
+
+        const result = syncAnsattArbeidsforhold(oppdaterteArbeidsgivere, eksisterendeArbeidsforhold);
+
+        expect(result[0].erAnsatt).toBe(YesOrNo.YES);
+        expect(result[0].normalarbeidstid).toEqual({ timerPerUke: '10' });
+        expect(result[0].arbeidsgiver).toEqual(oppdaterteArbeidsgivere[0]);
+    });
 });
