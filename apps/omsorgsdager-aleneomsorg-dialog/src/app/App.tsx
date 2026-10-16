@@ -1,7 +1,7 @@
 import './app.css';
 
 import { Theme } from '@navikt/ds-react';
-import { OmsorgsdagerAleneomsorgApp } from '@navikt/sif-app-register';
+import { OmsorgsdagerAleneomsorgApp } from '@sif/app-register';
 import {
     ensureBaseNameForReactRouter,
     NoAccessPage,

@@ -8,7 +8,7 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { QuestionBleedTop } from '@navikt/sif-common-ui';
 import { formatName } from '@navikt/sif-common-utils';
-import { getCheckedValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { getCheckedValidator, getYesOrNoValidator } from '@sif/validation';
 import { useIntl } from 'react-intl';
 
 import ApiErrorAlert from '../../components/api-error-alert/ApiErrorAlert';

@@ -10,7 +10,7 @@ import {
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { getCheckedValidator, getDateValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { getCheckedValidator, getDateValidator, getYesOrNoValidator } from '@sif/validation';
 import { ApiErrorType } from '@sif/api';
 import dayjs from 'dayjs';
 import { useIntl } from 'react-intl';

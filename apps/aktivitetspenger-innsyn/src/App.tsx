@@ -3,7 +3,7 @@ import './app.css';
 
 import { Theme } from '@navikt/ds-react';
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
-import { AktivitetspengerInnsynApp } from '@navikt/sif-app-register';
+import { AktivitetspengerInnsynApp } from '@sif/app-register';
 import { AnalyticsProvider } from '@sif/analytics';
 import { EnvKey } from '@sif/env';
 import { DevBranchInfo } from '@sif/soknad-ui';

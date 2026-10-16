@@ -6,7 +6,7 @@ import Page from '@navikt/sif-common-core-ds/src/components/page/Page';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { SamtykkeFormPart } from '@navikt/sif-common-soknad-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { getListValidator } from '@navikt/sif-validation';
+import { getListValidator } from '@sif/validation';
 
 import OmSøknaden from './OmSøknaden';
 

@@ -31,7 +31,7 @@ import {
     ValidateRequiredFieldError,
     ValidateStringError,
     ValidateYesOrNoError,
-} from '@navikt/sif-validation';
+} from '@sif/validation';
 import { FormikProps } from 'formik';
 import { FormattedMessage, useIntl } from 'react-intl';
 

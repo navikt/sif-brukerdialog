@@ -2,7 +2,7 @@ import { ErrorSummary, FormSummary, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
-import { getCheckedValidator } from '@navikt/sif-validation';
+import { getCheckedValidator } from '@sif/validation';
 import { usePrevious } from '@sif/hooks';
 import { useEffect, useRef } from 'react';
 import { useIntl } from 'react-intl';

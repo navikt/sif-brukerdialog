@@ -1,4 +1,4 @@
-import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
+import { UngdomsytelseDeltakerApp } from '@sif/app-register';
 import { initApm } from '@sif/apm';
 import { getMaybeEnv } from '@sif/env';
 import { StrictMode } from 'react';

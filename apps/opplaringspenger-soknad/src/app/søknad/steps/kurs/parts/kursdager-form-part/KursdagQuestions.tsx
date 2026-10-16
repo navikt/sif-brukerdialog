@@ -2,7 +2,7 @@ import { TrashIcon } from '@navikt/aksel-icons';
 import { Box, Button, HGrid, VStack } from '@navikt/ds-react';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { DateRange, isDateInDateRange, isDateWeekDay, ISODate } from '@navikt/sif-common-utils';
-import { getDateValidator } from '@navikt/sif-validation';
+import { getDateValidator } from '@sif/validation';
 
 import { AppText, useAppIntl } from '../../../../../i18n';
 import { KursFormFields } from '../../KursStepForm';

@@ -1,6 +1,6 @@
 import './app.css';
 
-import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
+import { OmsorgsdagerKroniskApp } from '@sif/app-register';
 import {
     ensureBaseNameForReactRouter,
     NoAccessPage,

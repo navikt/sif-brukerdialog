@@ -2,7 +2,7 @@ import { BodyLong, Box, Button, HStack, VStack } from '@navikt/ds-react';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { dateFormatter } from '@navikt/sif-common-utils';
-import { getCheckedValidator } from '@navikt/sif-validation';
+import { getCheckedValidator } from '@sif/validation';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 

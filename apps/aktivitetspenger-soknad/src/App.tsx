@@ -1,6 +1,6 @@
 import './app.css';
 
-import { AktivitetspengerSoknadApp } from '@navikt/sif-app-register';
+import { AktivitetspengerSoknadApp } from '@sif/app-register';
 import { TilgjengeligSøknadType } from '@sif/ung-brukerdialog-api';
 import { SøknadAppProvider } from '@sif/soknad-app';
 import { InitialDataErrorPage, LoadingPage } from '@sif/soknad-ui';

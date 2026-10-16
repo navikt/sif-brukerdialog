@@ -3,7 +3,7 @@ import { AppText, useAppIntl } from '@app/i18n';
 import { Søknadsdata } from '@app/types/Soknadsdata';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { FormSummary, InlineMessage } from '@navikt/ds-react';
-import { getCheckedValidator } from '@navikt/sif-validation';
+import { getCheckedValidator } from '@sif/validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { SøknadStep, SøknadStepForm, useSøknadsdata } from '@sif/soknad-app';
 import { PersistedVedlegg } from '@sif/soknad-forms';

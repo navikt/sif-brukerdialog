@@ -4,7 +4,7 @@ import getLenker from '@app/lenker';
 import { BarnSøknadsdata } from '@app/types/Soknadsdata';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { BodyLong, Heading } from '@navikt/ds-react';
-import { getYesOrNoValidator } from '@navikt/sif-validation';
+import { getYesOrNoValidator } from '@sif/validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { SøknadStep, SøknadStepForm, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import {

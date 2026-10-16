@@ -16,7 +16,7 @@ import {
     getRequiredFieldValidator,
     getStringValidator,
     ValidateDateError,
-} from '@navikt/sif-validation';
+} from '@sif/validation';
 import { isDevMode } from '@sif/env';
 import { useFormikContext } from 'formik';
 

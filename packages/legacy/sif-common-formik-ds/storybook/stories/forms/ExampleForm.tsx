@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { Box, Heading, Panel } from '@navikt/ds-react';
-import { getCheckedValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
+import { getCheckedValidator, getRequiredFieldValidator } from '@sif/validation';
 import * as React from 'react';
 import { useIntl } from 'react-intl';
 

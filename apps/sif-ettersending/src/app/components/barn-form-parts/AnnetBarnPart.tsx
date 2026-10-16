@@ -1,7 +1,7 @@
 import { Heading } from '@navikt/ds-react';
 import { resetFieldValue, SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { getFødselsnummerValidator } from '@navikt/sif-validation';
+import { getFødselsnummerValidator } from '@sif/validation';
 import { isDevMode } from '@sif/env';
 import { useFormikContext } from 'formik';
 

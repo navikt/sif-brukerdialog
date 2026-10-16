@@ -91,7 +91,7 @@ Ved migrering fra gammel `VelgBarnFormPart` (fra `@navikt/sif-common-forms-ds`):
 | `Select`          | Nedtrekksliste              | `string`               | `getRequiredFieldValidator()`                              |
 | `Checkbox`        | Enkelt avkrysningsboks      | `boolean`              | `getCheckedValidator()`                                    |
 
-Alle validatorer importeres fra `@navikt/sif-validation`.
+Alle validatorer importeres fra `@sif/validation`.
 
 ## Validering
 
@@ -103,7 +103,7 @@ Alle validatorer importeres fra `@navikt/sif-validation`.
 
 **Scope-konvensjon:** Bruk `<prefix>Form` der `<prefix>` er lowerCamelCase av stegets domenenavn (f.eks. `barnForm`, `bostedForm`, `andreYtelserForm`).
 
-Eksempler på error-koder fra `@navikt/sif-validation`:
+Eksempler på error-koder fra `@sif/validation`:
 
 | Validator                   | Feilkode(r)                                                                                                        |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------ |
@@ -282,7 +282,7 @@ const { YesOrNoQuestion, CheckboxGroup } = createSifFormComponents<<Prefix>FormV
 #### b) Legg til import av ny validator
 
 ```ts
-import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { getListValidator, getYesOrNoValidator } from '@sif/validation';
 ```
 
 #### c) Oppgi scope til `useSifValidate`

@@ -9,7 +9,7 @@ import {
     ValidateRequiredFieldError,
     ValidateStringError,
     ValidateYesOrNoError,
-} from '@navikt/sif-validation';
+} from '@sif/validation';
 
 export const validationMessages = {
     [ValidateRequiredFieldError.noValue]: ({ hva }: { hva: string }) => `Du må svare på ${hva}.`,

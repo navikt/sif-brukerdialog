@@ -200,7 +200,7 @@ export const <prefix>StegMessages_nn: Record<keyof typeof <prefix>StegMessages_n
 import { useAppIntl } from '@app/i18n';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { <Prefix>Søknadsdata } from '@app/types/Soknadsdata';
-import { getYesOrNoValidator } from '@navikt/sif-validation';
+import { getYesOrNoValidator } from '@sif/validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { SøknadStep, SøknadStepForm, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { useForm } from 'react-hook-form';

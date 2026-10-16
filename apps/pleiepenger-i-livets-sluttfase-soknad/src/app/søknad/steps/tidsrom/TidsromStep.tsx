@@ -12,7 +12,7 @@ import { UtenlandsoppholdEnkel } from '@navikt/sif-common-forms-ds';
 import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateRangeFromDates } from '@navikt/sif-common-utils';
-import { getYesOrNoValidator } from '@navikt/sif-validation';
+import { getYesOrNoValidator } from '@sif/validation';
 
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '../../../hooks/useOnValidSubmit';

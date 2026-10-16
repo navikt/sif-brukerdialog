@@ -1,6 +1,6 @@
 import { Alert, Heading, Link, List, VStack } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { getRequiredFieldValidator } from '@navikt/sif-validation';
+import { getRequiredFieldValidator } from '@sif/validation';
 import { ReactNode } from 'react';
 
 import { AppText, useAppIntl } from '../../i18n';

@@ -1,5 +1,5 @@
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
-import { getDateValidator } from '@navikt/sif-validation';
+import { getDateValidator } from '@sif/validation';
 
 export const getPeriodeDatoValidator = (options: { periode: DateRange; registrertDato?: Date }) => {
     const { from: min, to: max } = options.periode;

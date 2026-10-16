@@ -1,7 +1,7 @@
 import { List, VStack } from '@navikt/ds-react';
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { getFødselsnummerValidator, getStringValidator } from '@navikt/sif-validation';
+import { getFødselsnummerValidator, getStringValidator } from '@sif/validation';
 import { isDevMode } from '@sif/env';
 
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';

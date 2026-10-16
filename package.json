@@ -46,7 +46,7 @@
     },
     "devDependencies": {
         "@sif/eslint-config": "workspace:*",
-        "config": "workspace:*",
+        "@sif/config": "workspace:*",
         "gh-pages": "6.3.0",
         "husky": "9.1.7",
         "lint-staged": "17.6.0",

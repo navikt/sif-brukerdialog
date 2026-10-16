@@ -22,7 +22,7 @@ import {
     ValidateStringError,
     ValidateTimeError,
     ValidateYesOrNoError,
-} from '@navikt/sif-validation';
+} from '@sif/validation';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '../../../src';
 import TypedFormikWrapper from '../../../src/components/typed-formik-wrapper/TypedFormikWrapper';
 import { ValidationError } from '../../../src/validation/types';

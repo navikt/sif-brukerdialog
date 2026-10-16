@@ -1,7 +1,7 @@
 import './app.css';
 
 import { Theme } from '@navikt/ds-react';
-import { OmsorgspengerutbetalingArbeidstakerApp } from '@navikt/sif-app-register';
+import { OmsorgspengerutbetalingArbeidstakerApp } from '@sif/app-register';
 import {
     ensureBaseNameForReactRouter,
     NoAccessPage,

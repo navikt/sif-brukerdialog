@@ -1,5 +1,5 @@
 import { FormLayout } from '@navikt/sif-common-ui';
-import { getISODateValidator, getRequiredFieldValidator } from '@navikt/sif-validation';
+import { getISODateValidator, getRequiredFieldValidator } from '@sif/validation';
 import { createSifFormComponents, datePickerUtils, useSifValidate } from '@sif/rhf';
 import { dateToISODate, getCountryName, ISODate } from '@sif/utils';
 import { FormProvider, useForm } from 'react-hook-form';

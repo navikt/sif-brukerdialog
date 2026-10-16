@@ -20,7 +20,7 @@
         "@sif/eslint-config": "workspace:*",
         "@types/node": "26.6.4",
         "@types/react": "19.3.0",
-        "config": "workspace:*",
+        "@sif/config": "workspace:*",
         "eslint": "10.12.0"
     }
 }

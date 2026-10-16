@@ -4,7 +4,7 @@ import {
     getRequiredFieldValidator,
     getStringValidator,
     getYesOrNoValidator,
-} from '@navikt/sif-validation';
+} from '@sif/validation';
 import { createSifFormComponents, SifForm, useSifValidate, YesOrNo } from '@sif/rhf';
 import { countryIsMemberOfEøsOrEfta, dateRangesCollide, ISODate } from '@sif/utils';
 import { useForm } from 'react-hook-form';

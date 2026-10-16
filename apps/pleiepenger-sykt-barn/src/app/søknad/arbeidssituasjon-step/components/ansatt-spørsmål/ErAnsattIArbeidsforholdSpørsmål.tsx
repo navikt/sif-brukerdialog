@@ -1,6 +1,6 @@
 import { useAppIntl } from '@i18n/index';
 import { getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { getYesOrNoValidator } from '@navikt/sif-validation';
+import { getYesOrNoValidator } from '@sif/validation';
 
 import {
     ArbeidsforholdFormField,

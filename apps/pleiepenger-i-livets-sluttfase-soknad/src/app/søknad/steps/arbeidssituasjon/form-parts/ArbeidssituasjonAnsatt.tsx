@@ -2,7 +2,7 @@ import { Alert, Heading } from '@navikt/ds-react';
 import { DateRange, getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { prettifyDateExtended } from '@navikt/sif-common-utils';
-import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { getRequiredFieldValidator, getYesOrNoValidator } from '@sif/validation';
 
 import { AppText, useAppIntl } from '../../../../i18n';
 import { Arbeidsgiver } from '../../../../types/Arbeidsgiver';

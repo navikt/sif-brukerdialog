@@ -15,7 +15,7 @@ import { Alert, BodyLong, Button, ErrorSummary, Link, VStack } from '@navikt/ds-
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { getCheckedValidator } from '@navikt/sif-validation';
+import { getCheckedValidator } from '@sif/validation';
 import { usePrevious } from '@sif/hooks';
 import { useSkyraReloader } from '@sif/surveys';
 import { useEffect, useRef } from 'react';

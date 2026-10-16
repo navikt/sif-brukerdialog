@@ -2,7 +2,7 @@ import { YesOrNo } from '@navikt/sif-common-core-ds';
 import UtenlandsoppholdListAndDialog from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/UtenlandsoppholdListAndDialog';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
-import { getYesOrNoValidator } from '@navikt/sif-validation';
+import { getYesOrNoValidator } from '@sif/validation';
 
 import { useAppIntl } from '../../../../i18n';
 import { KursFormComponents, KursFormFields, KursFormValues } from '../KursStepForm';

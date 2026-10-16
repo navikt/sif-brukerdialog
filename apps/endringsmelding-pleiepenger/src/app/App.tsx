@@ -2,7 +2,7 @@ import '@navikt/ds-css';
 import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 
 import { Theme } from '@navikt/ds-react';
-import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
+import { EndringsmeldingPsbApp } from '@sif/app-register';
 import { ensureBaseNameForReactRouter, SoknadApplication } from '@navikt/sif-common-soknad-ds';
 import { getMaybeEnv, isProd } from '@sif/env';
 import { DemoInfoAlert, DemoWatermark } from '@sif/soknad-ui';

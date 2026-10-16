@@ -4,7 +4,7 @@ import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bosted-utland/BostedUtlandListAndDialog';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { getYesOrNoValidator } from '@navikt/sif-validation';
+import { getYesOrNoValidator } from '@sif/validation';
 import { useFormikContext } from 'formik';
 
 import getLenker from '../../lenker';

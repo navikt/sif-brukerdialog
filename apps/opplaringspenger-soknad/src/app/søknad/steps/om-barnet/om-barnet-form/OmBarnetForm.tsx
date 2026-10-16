@@ -4,7 +4,7 @@ import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { getIntlFormErrorHandler } from '@navikt/sif-common-formik-ds';
 import { VelgBarn_AnnetBarnValue, VelgBarnFormPart } from '@navikt/sif-common-forms-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { getRequiredFieldValidator } from '@navikt/sif-validation';
+import { getRequiredFieldValidator } from '@sif/validation';
 import { useFormikContext } from 'formik';
 
 import AnnetBarnPart from './components/AnnetBarnPart';

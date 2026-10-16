@@ -1,5 +1,5 @@
 import { Box, Button, Checkbox, Fieldset, Heading, HStack, TextField, VStack } from '@navikt/ds-react';
-import { getFødselsnummerValidator, ValidateFødselsnummerError } from '@navikt/sif-validation';
+import { getFødselsnummerValidator, ValidateFødselsnummerError } from '@sif/validation';
 import { useEffect, useState } from 'react';
 
 import DeltakerKort from '../../components/deltaker-kort/DeltakerKort';

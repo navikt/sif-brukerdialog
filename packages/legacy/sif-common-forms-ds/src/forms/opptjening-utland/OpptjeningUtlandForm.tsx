@@ -12,7 +12,7 @@ import {
     ValidateDateError,
     ValidateDateRangeError,
     ValidateRequiredFieldError,
-} from '@navikt/sif-validation';
+} from '@sif/validation';
 import { useIntl } from 'react-intl';
 
 import { handleDateRangeValidationError } from '../../utils';

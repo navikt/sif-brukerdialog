@@ -1,4 +1,4 @@
-import { PleiepengerLivetsSluttApp } from '@navikt/sif-app-register';
+import { PleiepengerLivetsSluttApp } from '@sif/app-register';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { getInnsendingService, InnsendingType, Søker } from '@navikt/sif-common-api';
 import { AxiosError } from 'axios';

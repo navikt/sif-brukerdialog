@@ -1,4 +1,4 @@
-import { UngdomsytelseVeilederApp } from '@navikt/sif-app-register';
+import { UngdomsytelseVeilederApp } from '@sif/app-register';
 import { initApm } from '@sif/apm';
 import { getMaybeEnv } from '@sif/env';
 import MockDate from 'mockdate';

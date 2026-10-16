@@ -7,12 +7,7 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange, getDateToday } from '@navikt/sif-common-utils';
-import {
-    getDateValidator,
-    getRequiredFieldValidator,
-    ValidateDateError,
-    ValidateNumberError,
-} from '@navikt/sif-validation';
+import { getDateValidator, getRequiredFieldValidator, ValidateDateError, ValidateNumberError } from '@sif/validation';
 import dayjs from 'dayjs';
 import { ReactElement } from 'react';
 import { useIntl } from 'react-intl';

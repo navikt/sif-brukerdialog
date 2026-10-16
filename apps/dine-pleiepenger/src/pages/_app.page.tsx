@@ -4,7 +4,7 @@ import '../style/global.css';
 import { initNaisAPMClient } from '@nais/apm/react';
 import { Theme } from '@navikt/ds-react';
 import { configureLogger } from '@navikt/next-logger';
-import { InnsynPsbApp } from '@navikt/sif-app-register';
+import { InnsynPsbApp } from '@sif/app-register';
 import { AnalyticsProvider } from '@navikt/sif-common-analytics';
 import { appLogger, isNoiseException } from '@sif/apm';
 import axios, { AxiosError } from 'axios';

@@ -6,7 +6,7 @@ import {
     TypedFormikWrapper,
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
-import { getListValidator } from '@navikt/sif-validation';
+import { getListValidator } from '@sif/validation';
 import { flatten } from 'flat';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -20,7 +20,7 @@ import FosterbarnListAndDialog from '../FosterbarnListAndDialog';
 import { Fosterbarn } from '../types';
 
 enum FormField {
-    'fosterbarn' = 'fosterbarn',
+    fosterbarn = 'fosterbarn',
 }
 
 interface FormValues {

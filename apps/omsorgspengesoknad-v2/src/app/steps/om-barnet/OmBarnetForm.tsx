@@ -11,7 +11,7 @@ import {
     getRequiredFieldValidator,
     getStringValidator,
     getYesOrNoValidator,
-} from '@navikt/sif-validation';
+} from '@sif/validation';
 import { useInnvilgedeVedtakForRegistrerteBarn } from '@sif/api/k9-sak-innsyn';
 import { isDevMode } from '@sif/env';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';

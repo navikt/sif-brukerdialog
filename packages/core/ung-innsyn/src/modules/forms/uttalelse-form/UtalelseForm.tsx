@@ -1,5 +1,5 @@
 import { BodyLong, Button, HStack, VStack } from '@navikt/ds-react';
-import { getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { getStringValidator, getYesOrNoValidator } from '@sif/validation';
 import { OppgaveYtelsetype } from '@sif/ung-brukerdialog-api';
 import { ApiErrorAlert } from '@sif/api';
 import { useSendOppgavebekreftelse, YtelseOppgavebekreftelse } from '@sif/api/k9-brukerdialog-prosessering';

@@ -1,4 +1,4 @@
-import { AktivitetspengerSoknadApp } from '@navikt/sif-app-register';
+import { AktivitetspengerSoknadApp } from '@sif/app-register';
 import { DemoInfoAlert, DemoWatermark } from '@sif/soknad-ui';
 import { ReactNode } from 'react';
 import { HashRouter } from 'react-router-dom';

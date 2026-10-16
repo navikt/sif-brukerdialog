@@ -1,4 +1,4 @@
-import { getFødselsnummerValidator, ValidateFødselsnummerErrorKeys } from '@navikt/sif-validation';
+import { getFødselsnummerValidator, ValidateFødselsnummerErrorKeys } from '@sif/validation';
 
 import { useAppIntl } from '../../../../i18n';
 import { omBarnetFormComponents } from '../omBarnetFormComponents';

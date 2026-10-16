@@ -204,7 +204,7 @@ Ytterste wrapper-komponent — brukes av apper som ikke setter opp providers sel
 
 ```tsx
 // main.tsx — APM initialiseres før rendering
-import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
+import { PleiepengerSyktBarnApp } from '@sif/app-register';
 // app-verdien MÅ matche "app"-feltet i nais/prod-gcp.json — se sif-apm-skillen
 void initApm({ app: PleiepengerSyktBarnApp.key, namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
 

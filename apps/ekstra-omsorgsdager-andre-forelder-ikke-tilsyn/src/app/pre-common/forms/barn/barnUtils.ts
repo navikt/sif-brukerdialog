@@ -1,4 +1,4 @@
-import { hasValue } from '@navikt/sif-validation';
+import { hasValue } from '@sif/validation';
 
 import { AndreBarn, BarnFormValues } from './types';
 

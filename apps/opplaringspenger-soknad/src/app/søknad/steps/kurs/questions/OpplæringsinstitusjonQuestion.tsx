@@ -1,5 +1,5 @@
 import { Box, ReadMore } from '@navikt/ds-react';
-import { getStringValidator } from '@navikt/sif-validation';
+import { getStringValidator } from '@sif/validation';
 
 import { Institusjon } from '../../../../api/institusjonService';
 import { AppText, useAppIntl } from '../../../../i18n';

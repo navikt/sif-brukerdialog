@@ -4,7 +4,7 @@ import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable
 import { getTypedFormComponents, ValidationError, YesOrNo } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
-import { getRequiredFieldValidator, getStringValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { getRequiredFieldValidator, getStringValidator, getYesOrNoValidator } from '@sif/validation';
 import { useFormikContext } from 'formik';
 
 import { AppText } from '../../../../i18n';

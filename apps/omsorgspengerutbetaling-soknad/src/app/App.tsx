@@ -1,7 +1,7 @@
 import './app.css';
 
 import { Theme } from '@navikt/ds-react';
-import { OmsorgspengerutbetalingSNFriApp } from '@navikt/sif-app-register';
+import { OmsorgspengerutbetalingSNFriApp } from '@sif/app-register';
 import {
     ensureBaseNameForReactRouter,
     NoAccessPage,

@@ -1,4 +1,4 @@
-import { getFødselsnummerValidator } from '@navikt/sif-validation';
+import { getFødselsnummerValidator } from '@sif/validation';
 
 import { TextfieldFormatter } from '../hooks/useTextFieldFormatter';
 

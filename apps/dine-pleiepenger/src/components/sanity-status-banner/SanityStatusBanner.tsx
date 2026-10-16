@@ -1,6 +1,6 @@
-import { AppStatusNotice, Status, useAppStatus } from '@navikt/appstatus-react-ds';
 import { Box } from '@navikt/ds-react';
-import { InnsynPsbApp } from '@navikt/sif-app-register';
+import { InnsynPsbApp } from '@sif/app-register';
+import { AppStatusNotice, Status, useAppStatus } from '@sif/appstatus-react-ds';
 import { ReactNode } from 'react';
 
 import { maxPageWidth } from '../../constants';

@@ -20,7 +20,7 @@ import {
     getWeekDateRange,
     NumberDuration,
 } from '@navikt/sif-common-utils';
-import { getRequiredFieldValidator } from '@navikt/sif-validation';
+import { getRequiredFieldValidator } from '@sif/validation';
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import { ReactElement } from 'react';
@@ -58,10 +58,10 @@ export interface TidEnkeltdagEndring {
 }
 
 enum FormFields {
-    'tid' = 'tid',
-    'skalGjentas' = 'skalGjentas',
-    'gjentagelse' = 'gjentagelse',
-    'stopDato' = 'stopDato',
+    tid = 'tid',
+    skalGjentas = 'skalGjentas',
+    gjentagelse = 'gjentagelse',
+    stopDato = 'stopDato',
 }
 
 export enum GjentagelseType {

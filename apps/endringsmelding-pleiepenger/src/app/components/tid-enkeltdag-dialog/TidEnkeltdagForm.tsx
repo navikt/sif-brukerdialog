@@ -17,7 +17,7 @@ import {
     getNumberOfDaysInDateRange,
     NumberDuration,
 } from '@navikt/sif-common-utils';
-import { getRequiredFieldValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { getRequiredFieldValidator, getYesOrNoValidator } from '@sif/validation';
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import { ReactElement } from 'react';
@@ -53,11 +53,11 @@ export interface TidEnkeltdagEndring {
 }
 
 enum FormFields {
-    'erIkkeIOmsorgstilbud' = 'erIkkeIOmsorgstilbud',
-    'erBarnetIOmsorgstilbud' = 'erBarnetIOmsorgstilbud',
-    'tid' = 'tid',
-    'skalGjentas' = 'skalGjentas',
-    'gjentagelse' = 'gjentagelse',
+    erIkkeIOmsorgstilbud = 'erIkkeIOmsorgstilbud',
+    erBarnetIOmsorgstilbud = 'erBarnetIOmsorgstilbud',
+    tid = 'tid',
+    skalGjentas = 'skalGjentas',
+    gjentagelse = 'gjentagelse',
 }
 
 export enum GjentagelseType {

@@ -2,7 +2,7 @@ import { Box, Heading, Tabs } from '@navikt/ds-react';
 import * as React from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-import { hasValue } from '@navikt/sif-validation';
+import { hasValue } from '@sif/validation';
 
 interface Props {
     title: string;
