@@ -2,19 +2,18 @@
 
 // Hooks
 export { useArbeidsgivere } from './arbeidsgivere/useArbeidsgivere';
-export { useRegistrerteBarn } from './registrert-barn/useRegistrerteBarn';
 export { useValiderFritekst } from './fritekst/useValiderFritekst';
 export { useRapporterInntekt, type YtelseInntektsrapportering } from './inntekt/useRapporterInntekt';
 export {
     useSendOppgavebekreftelse,
     type YtelseOppgavebekreftelse,
 } from './oppgavebekreftelse/useSendOppgavebekreftelse';
+export { useRegistrerteBarn } from './registrert-barn/useRegistrerteBarn';
 export { useSøker } from './soker/useSoker';
 export { useLagreVedlegg, useSlettVedlegg } from './vedlegg/useVedlegg';
 
 // API
 export { hentArbeidsgivere } from './arbeidsgivere/arbeidsgivereApi';
-export { hentRegistrerteBarn } from './registrert-barn/registrerteBarnApi';
 export { validerFritekst } from './fritekst/validerFritekstApi';
 export {
     hentYtelseMellomlagring,
@@ -22,6 +21,7 @@ export {
     opprettYtelseMellomlagring,
     slettYtelseMellomlagring,
 } from './mellomlagring/ytelseMellomlagringApi';
+export { hentRegistrerteBarn } from './registrert-barn/registrerteBarnApi';
 export { hentSøker, hentSøkerId } from './soker/sokerApi';
 export {
     getVedleggApiUrl,
@@ -40,6 +40,6 @@ export type {
     ArbeidsgiverOrganisasjon,
     ArbeidsgiverPrivatperson,
 } from './arbeidsgivere/Arbeidsgivere';
-export type { RegistrertBarn } from './registrert-barn/RegistrertBarn';
 export { MellomlagringYtelse } from './mellomlagring/MellomlagringYtelse';
+export type { RegistrertBarn } from './registrert-barn/RegistrertBarn';
 export type { Søker } from './soker/Soker';

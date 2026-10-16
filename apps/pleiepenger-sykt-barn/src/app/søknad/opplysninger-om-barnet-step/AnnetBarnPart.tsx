@@ -5,13 +5,13 @@ import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { resetFieldValue, resetFieldValues, SkjemagruppeQuestion } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateToday, prettifyDate } from '@navikt/sif-common-utils';
+import { isDevMode } from '@sif/env';
 import {
     getDateValidator,
     getFødselsnummerValidator,
     getRequiredFieldValidator,
     ValidateDateError,
 } from '@sif/validation';
-import { isDevMode } from '@sif/env';
 import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';
 

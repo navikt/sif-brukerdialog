@@ -1,10 +1,10 @@
+import { handleApiError } from '@sif/api';
 import {
     Avslutningsårsak,
     DeltakelseUtmeldingDto,
     Veileder,
     zDeltakelseUtmeldingDto,
 } from '@sif/ung-deltakelse-opplyser-api-veileder';
-import { handleApiError } from '@sif/api';
 
 import { Deltakelse, deltakelseSchema } from '../../types/Deltakelse';
 

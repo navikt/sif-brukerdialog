@@ -1,7 +1,7 @@
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
-import { OppgaveStatus } from '@sif/ung-brukerdialog-api';
 import { Søker } from '@sif/api/k9-brukerdialog-prosessering';
 import { Oppgave } from '@sif/api/ung-brukerdialog';
+import { OppgaveStatus } from '@sif/ung-brukerdialog-api';
 import { InnsynForsideHeader, OppgaverList } from '@sif/ung-innsyn/components';
 import { UngInnsynPage } from '@sif/ung-innsyn/pages';
 import { formatName, sortDateTimes } from '@sif/utils';

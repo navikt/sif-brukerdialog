@@ -1,6 +1,6 @@
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
-import { EndringsmeldingPsbApp } from '@sif/app-register';
 import { initApm } from '@sif/apm';
+import { EndringsmeldingPsbApp } from '@sif/app-register';
 import { getMaybeEnv } from '@sif/env';
 import MockDate from 'mockdate';
 import { createRoot } from 'react-dom/client';

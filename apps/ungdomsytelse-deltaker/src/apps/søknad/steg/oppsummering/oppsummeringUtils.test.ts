@@ -1,6 +1,6 @@
-import type { ungdomsytelse } from '@sif/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
 import { UtvidetKontonummerInfo } from '@sif/api/ung-deltakelse-opplyser-deltaker';
+import type { ungdomsytelse } from '@sif/k9-brukerdialog-prosessering-api';
 import { ISODate } from '@sif/utils';
 import { describe, expect, it } from 'vitest';
 

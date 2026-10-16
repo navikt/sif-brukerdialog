@@ -1,8 +1,8 @@
 import '../ung-innsyn.css';
 
 import { Box, Heading, Theme, VStack } from '@navikt/ds-react';
-import { OppgaveStatus } from '@sif/ung-brukerdialog-api';
 import { Oppgave } from '@sif/api/ung-brukerdialog';
+import { OppgaveStatus } from '@sif/ung-brukerdialog-api';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactNode } from 'react';
 import { IntlProvider } from 'react-intl';

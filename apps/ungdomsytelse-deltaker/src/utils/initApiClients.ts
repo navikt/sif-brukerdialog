@@ -1,7 +1,7 @@
+import { EnvKey, getRequiredEnv } from '@sif/env';
 import { initK9BrukerdialogProsesseringApiClients } from '@sif/k9-brukerdialog-prosessering-api';
 import { initUngBrukerdialogApiClient } from '@sif/ung-brukerdialog-api';
 import { initUngDeltakelseOpplyserApiDeltakerClient } from '@sif/ung-deltakelse-opplyser-api-deltaker';
-import { EnvKey, getRequiredEnv } from '@sif/env';
 
 export const initApiClients = () => {
     initUngDeltakelseOpplyserApiDeltakerClient({

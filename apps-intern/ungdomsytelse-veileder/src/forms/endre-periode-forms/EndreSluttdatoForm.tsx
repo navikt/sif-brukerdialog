@@ -8,8 +8,8 @@ import {
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { dateFormatter, dateToISODate } from '@navikt/sif-common-utils';
-import { getCheckedValidator, getRequiredFieldValidator, getYesOrNoValidator } from '@sif/validation';
 import { Avslutningsårsak } from '@sif/ung-deltakelse-opplyser-api-veileder';
+import { getCheckedValidator, getRequiredFieldValidator, getYesOrNoValidator } from '@sif/validation';
 import dayjs from 'dayjs';
 import { FormattedMessage, useIntl } from 'react-intl';
 

@@ -3,13 +3,13 @@ import { AppText, useAppIntl } from '@app/i18n';
 import { Søknadsdata } from '@app/types/Soknadsdata';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { FormSummary, InlineMessage } from '@navikt/ds-react';
-import { getCheckedValidator } from '@sif/validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { SøknadStep, SøknadStepForm, useSøknadsdata } from '@sif/soknad-app';
 import { PersistedVedlegg } from '@sif/soknad-forms';
 import { FormLayout } from '@sif/soknad-ui';
 import { VedleggSummaryList } from '@sif/soknad-ui/components';
 import { dateFormatter, formatName } from '@sif/utils';
+import { getCheckedValidator } from '@sif/validation';
 import { useForm } from 'react-hook-form';
 
 import { useSendSøknad } from '../../hooks/useSendSoknad';

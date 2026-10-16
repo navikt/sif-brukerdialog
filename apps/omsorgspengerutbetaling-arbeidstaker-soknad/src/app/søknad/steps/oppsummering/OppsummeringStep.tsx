@@ -2,9 +2,9 @@ import { ErrorSummary, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
-import { getCheckedValidator } from '@sif/validation';
 import { usePrevious } from '@sif/hooks';
 import { useSkyraReloader } from '@sif/surveys';
+import { getCheckedValidator } from '@sif/validation';
 import { useEffect, useRef } from 'react';
 
 import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';

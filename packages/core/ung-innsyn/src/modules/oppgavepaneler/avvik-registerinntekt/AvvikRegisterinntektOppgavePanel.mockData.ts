@@ -1,3 +1,4 @@
+import { AvvikRegisterinntektOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import {
     ArbeidOgFrilansRegisterInntektDto,
     OppgaveStatus,
@@ -7,7 +8,6 @@ import {
     YtelseRegisterInntektDto,
     YtelseType,
 } from '@sif/ung-brukerdialog-api';
-import { AvvikRegisterinntektOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import { dateToISODate, ISODate } from '@sif/utils';
 import dayjs from 'dayjs';
 

@@ -1,11 +1,11 @@
 import { logUtils } from '@innsyn/utils/logUtils';
-import { UngdomsytelseDeltakerApp } from '@sif/app-register';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 import { DeltakerSkjemaId } from '@shared/types/DeltakerSkjemaId';
 import { RegistrertBarn, Søker } from '@sif/api/k9-brukerdialog-prosessering';
 import { Oppgave, SøkYtelseOppgave } from '@sif/api/ung-brukerdialog';
 import { UtvidetKontonummerInfo } from '@sif/api/ung-deltakelse-opplyser-deltaker';
+import { UngdomsytelseDeltakerApp } from '@sif/app-register';
 import React, { createContext, useMemo, useState } from 'react';
 
 import { ApplikasjonHendelse, useAnalyticsInstance } from '../../../analytics/analytics';

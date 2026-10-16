@@ -2,12 +2,12 @@ import '@navikt/sif-common-core-ds/src/styles/sif-ds-theme.css';
 import './app.css';
 
 import { Theme } from '@navikt/ds-react';
-import { EttersendelseApp } from '@sif/app-register';
 import {
     ensureBaseNameForReactRouter,
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import { EttersendelseApp } from '@sif/app-register';
 import { isProd } from '@sif/env';
 import { Navigate, Route } from 'react-router-dom';
 

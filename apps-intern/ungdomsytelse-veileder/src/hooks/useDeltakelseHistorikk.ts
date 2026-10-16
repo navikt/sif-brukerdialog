@@ -1,5 +1,5 @@
-import { DeltakelseHistorikkDto } from '@sif/ung-deltakelse-opplyser-api-veileder';
 import { ApiError } from '@sif/api';
+import { DeltakelseHistorikkDto } from '@sif/ung-deltakelse-opplyser-api-veileder';
 import { useQuery } from '@tanstack/react-query';
 
 import { getDeltakelseHistorikk } from '../api/deltakelse/deltakelseHistorikk';

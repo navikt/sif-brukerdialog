@@ -1,4 +1,6 @@
 import { Button, Heading, HStack, VStack } from '@navikt/ds-react';
+import { createSifFormComponents, SifForm, useSifValidate } from '@sif/rhf';
+import { dateToISODate } from '@sif/utils';
 import {
     getCheckedValidator,
     getDateValidator,
@@ -8,8 +10,6 @@ import {
     getStringValidator,
     getTimeValidator,
 } from '@sif/validation';
-import { createSifFormComponents, SifForm, useSifValidate } from '@sif/rhf';
-import { dateToISODate } from '@sif/utils';
 import { useForm } from 'react-hook-form';
 
 enum Field {

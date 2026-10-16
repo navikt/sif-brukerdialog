@@ -5,13 +5,6 @@ import { SøkersRelasjonTilBarnet } from '@app/types/SøkersRelasjonTilBarnet';
 import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { Box, Heading, ReadMore, Tag } from '@navikt/ds-react';
-import {
-    getFødselsnummerValidator,
-    getISODateValidator,
-    getRequiredFieldValidator,
-    getStringValidator,
-    getYesOrNoValidator,
-} from '@sif/validation';
 import { useInnvilgedeVedtakForRegistrerteBarn } from '@sif/api/k9-sak-innsyn';
 import { isDevMode } from '@sif/env';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
@@ -19,6 +12,13 @@ import { SøknadStepForm, useSaveSøknadFormValues, useStepData } from '@sif/sok
 import { VelgBarnEkstrainfo, VelgRegistrertBarnPanel } from '@sif/soknad-forms';
 import { AriaLiveRegion, FormContentLoader, FormLayout, SifInfoCard } from '@sif/soknad-ui/components';
 import { dateFormatter, getDateToday } from '@sif/utils';
+import {
+    getFødselsnummerValidator,
+    getISODateValidator,
+    getRequiredFieldValidator,
+    getStringValidator,
+    getYesOrNoValidator,
+} from '@sif/validation';
 import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 

@@ -3,7 +3,6 @@ import { AppText, useAppIntl } from '@app/i18n';
 import { Søknadsdata } from '@app/types/Soknadsdata';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { FormSummary, InlineMessage, LocalAlert } from '@navikt/ds-react';
-import { getCheckedValidator } from '@sif/validation';
 import { Søker } from '@sif/api/k9-brukerdialog-prosessering';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { SøknadStep, SøknadStepForm, useSøknadsdata } from '@sif/soknad-app';
@@ -11,6 +10,7 @@ import { PersistedVedlegg } from '@sif/soknad-forms';
 import { FormLayout, VedleggSummaryList } from '@sif/soknad-ui/components';
 import { useSkyraReloader } from '@sif/surveys';
 import { dateFormatter, formatName, ISODate } from '@sif/utils';
+import { getCheckedValidator } from '@sif/validation';
 import { useForm } from 'react-hook-form';
 
 import { useSendSøknad } from '../../hooks/useSendSoknad';

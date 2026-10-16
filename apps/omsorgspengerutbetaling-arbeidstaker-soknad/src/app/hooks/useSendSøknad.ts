@@ -1,6 +1,6 @@
-import { OmsorgspengerutbetalingArbeidstakerApp } from '@sif/app-register';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { getInnsendingService, InnsendingType } from '@navikt/sif-common-api';
+import { OmsorgspengerutbetalingArbeidstakerApp } from '@sif/app-register';
 import { AxiosError } from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';

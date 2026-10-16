@@ -1,11 +1,11 @@
 import { AppText } from '@app/i18n';
 import { BodyLong, Heading, VStack } from '@navikt/ds-react';
-import { getListValidator } from '@sif/validation';
 import { useSifValidate } from '@sif/rhf';
 import { useMellomlagring } from '@sif/soknad-app';
 import { ArbeidUtlandFormData, ArbeidUtlandListAndDialog } from '@sif/soknad-forms';
 import { FormLayout } from '@sif/soknad-ui';
 import { ISODate } from '@sif/utils';
+import { getListValidator } from '@sif/validation';
 import { useController } from 'react-hook-form';
 
 import { MedlemskapFormValues } from '../types';

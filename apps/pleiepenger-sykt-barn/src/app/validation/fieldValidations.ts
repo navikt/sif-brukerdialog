@@ -14,13 +14,13 @@ import {
     getValidDurations,
     summarizeDateDurationMap,
 } from '@navikt/sif-common-utils';
+import { isDevMode } from '@sif/env';
 import {
     getDateRangeValidator,
     getDateValidator,
     getFødselsnummerValidator,
     getStringValidator,
 } from '@sif/validation';
-import { isDevMode } from '@sif/env';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import minMax from 'dayjs/plugin/minMax';
