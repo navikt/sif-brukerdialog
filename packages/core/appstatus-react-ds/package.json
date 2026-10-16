@@ -13,20 +13,20 @@
         "lint:tsc": "tsc --noEmit"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "8.19.0",
-        "@sif/hooks": "workspace:*",
+        "@navikt/aksel-icons": "8.19.1",
         "@portabletext/react": "8.0.1",
         "@sanity/client": "8.9.0",
+        "@sif/hooks": "workspace:*",
         "@sif/utils": "workspace:*"
     },
     "devDependencies": {
-        "@navikt/ds-css": "8.19.0",
-        "@navikt/ds-react": "8.19.0",
+        "@navikt/ds-css": "8.19.1",
+        "@navikt/ds-react": "8.19.1",
+        "@sif/config": "workspace:*",
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "26.6.4",
+        "@types/node": "26.6.5",
         "@types/react": "19.3.0",
         "@types/react-dom": "19.3.0",
-        "@sif/config": "workspace:*",
         "eslint": "10.12.0",
         "postcss": ">=8.5.28",
         "prop-types": "15.8.1",

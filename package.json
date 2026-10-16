@@ -45,15 +45,15 @@
         "turbo": "2.11.7"
     },
     "devDependencies": {
-        "@sif/eslint-config": "workspace:*",
         "@sif/config": "workspace:*",
+        "@sif/eslint-config": "workspace:*",
         "gh-pages": "6.3.0",
         "husky": "9.1.7",
         "lint-staged": "17.6.0",
-        "prettier": "3.9.9",
+        "prettier": "3.9.10",
         "sort-package-json": "4.0.0",
         "typescript": "6.0.3",
-        "vitest": "5.0.3"
+        "vitest": "5.0.4"
     },
     "packageManager": "pnpm@10.33.4",
     "pnpm": {
