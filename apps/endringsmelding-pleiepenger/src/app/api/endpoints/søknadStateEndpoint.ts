@@ -26,6 +26,7 @@ export type SøknadStatePersistence = {
     søknadHashString: string;
     harArbeidsgivereIkkeISak: boolean;
     valgteEndringer: ValgteEndringer;
+    valgteEndringerInitielt: ValgteEndringer;
     søknadSteps: StepId[];
     metadata: {
         updatedTimestamp: string;
@@ -130,7 +131,15 @@ export const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
     create: persistSetup.create,
     purge: persistSetup.purge,
     update: (
-        { søknadsdata, søknadRoute, barnAktørId, valgteEndringer, harArbeidsgivereIkkeISak, søknadSteps },
+        {
+            søknadsdata,
+            søknadRoute,
+            barnAktørId,
+            valgteEndringer,
+            valgteEndringerInitielt,
+            harArbeidsgivereIkkeISak,
+            søknadSteps,
+        },
         søker,
     ) => {
         return persistSetup.update({
@@ -140,6 +149,7 @@ export const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
             søknadsdata,
             søknadRoute,
             valgteEndringer,
+            valgteEndringerInitielt,
             harArbeidsgivereIkkeISak,
             søknadSteps,
             metadata: {

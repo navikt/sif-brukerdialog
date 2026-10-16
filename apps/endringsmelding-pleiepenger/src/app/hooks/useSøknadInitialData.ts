@@ -50,6 +50,14 @@ const prepInitialData = (loadedData: InitialData, tillattEndringsperiode: DateRa
                       lovbestemtFerie: false,
                       tilsynsordning: false,
                   },
+        valgteEndringerInitielt:
+            sak && lagretSøknadState
+                ? lagretSøknadState.valgteEndringerInitielt
+                : {
+                      arbeidstid: false,
+                      lovbestemtFerie: false,
+                      tilsynsordning: false,
+                  },
         søknadsdata: {} as any,
         søknadSteps: [],
         antallSakerFørEndringsperiode,

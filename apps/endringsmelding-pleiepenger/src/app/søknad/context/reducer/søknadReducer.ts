@@ -43,6 +43,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                 },
                 sak,
                 valgteEndringer,
+                valgteEndringerInitielt: valgteEndringer,
                 søknadSteps,
                 søknadRoute: getSøknadStepRoute(søknadSteps[0]),
                 børMellomlagres: true,
