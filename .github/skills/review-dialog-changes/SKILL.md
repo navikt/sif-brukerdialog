@@ -1,3 +1,8 @@
+---
+name: review-dialog-changes
+description: review-dialog-changes
+disable-model-invocation: true
+---
 # Review dialog changes
 
 Review changes in a dialog-related pull request.
