@@ -1,4 +1,4 @@
-import { DeltakelseHistorikkDto, Veileder } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { DeltakelseHistorikkDto, Veileder } from '@sif/ung-deltakelse-opplyser-api-veileder';
 import { handleApiError } from '@sif/api';
 
 /**

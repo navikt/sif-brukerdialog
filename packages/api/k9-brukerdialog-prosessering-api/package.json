@@ -1,5 +1,5 @@
 {
-    "name": "@navikt/k9-brukerdialog-prosessering-api",
+    "name": "@sif/k9-brukerdialog-prosessering-api",
     "version": "0.3.19",
     "private": true,
     "repository": {

@@ -1,4 +1,4 @@
-import { Oppslag } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { Oppslag } from '@sif/ung-deltakelse-opplyser-api-veileder';
 import { handleApiError } from '@sif/api';
 
 import { registrertDeltakerSchema } from '../../types/Deltaker';

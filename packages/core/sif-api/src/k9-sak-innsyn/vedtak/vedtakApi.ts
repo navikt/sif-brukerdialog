@@ -1,4 +1,4 @@
-import { k9Sak } from '@navikt/k9-sak-innsyn-api';
+import { k9Sak } from '@sif/k9-sak-innsyn-api';
 
 import { handleApiError } from '../../shared/errorHandlers';
 import { SisteGyldigeVedtakForAktørId, zSisteGyldigeVedtakForAktørId } from './SisteGyldigeVedtakForAktorId';

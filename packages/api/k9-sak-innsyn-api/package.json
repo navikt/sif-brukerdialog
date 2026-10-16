@@ -1,5 +1,5 @@
 {
-    "name": "@navikt/k9-sak-innsyn-api",
+    "name": "@sif/k9-sak-innsyn-api",
     "version": "0.2.21",
     "private": true,
     "repository": {

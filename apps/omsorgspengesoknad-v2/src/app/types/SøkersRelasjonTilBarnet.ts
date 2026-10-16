@@ -1,4 +1,4 @@
-import type { omsorgspenger } from '@navikt/k9-brukerdialog-prosessering-api';
+import type { omsorgspenger } from '@sif/k9-brukerdialog-prosessering-api';
 
 export type SøkersRelasjonTilBarnet = NonNullable<
     omsorgspenger.OmsorgspengerKroniskSyktBarnSøknad['relasjonTilBarnet']

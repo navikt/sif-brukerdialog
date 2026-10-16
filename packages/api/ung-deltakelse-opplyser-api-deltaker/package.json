@@ -1,5 +1,5 @@
 {
-    "name": "@navikt/ung-deltakelse-opplyser-api-deltaker",
+    "name": "@sif/ung-deltakelse-opplyser-api-deltaker",
     "version": "0.3.22",
     "private": true,
     "repository": {

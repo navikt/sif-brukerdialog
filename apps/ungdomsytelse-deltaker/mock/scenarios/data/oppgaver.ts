@@ -4,7 +4,7 @@ import {
     OppgaveType,
     OppgaveYtelsetype,
     PeriodeEndringType,
-} from '@navikt/ung-brukerdialog-api';
+} from '@sif/ung-brukerdialog-api';
 import dayjs from 'dayjs';
 
 import { dateToISODate } from '../../utils/dateUtils';

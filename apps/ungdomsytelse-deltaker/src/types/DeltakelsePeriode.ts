@@ -1,4 +1,4 @@
-import { zDeltakelseDto, zDeltakelseStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { zDeltakelseDto, zDeltakelseStatus } from '@sif/ung-deltakelse-opplyser-api-deltaker';
 import { ISODate, OpenDateRange } from '@sif/utils';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';

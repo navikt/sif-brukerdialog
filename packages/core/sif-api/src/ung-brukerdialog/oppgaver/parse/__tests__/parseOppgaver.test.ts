@@ -6,7 +6,7 @@ import {
     OppgaveStatus,
     OppgaveType,
     OppgaveYtelsetype,
-} from '@navikt/ung-brukerdialog-api';
+} from '@sif/ung-brukerdialog-api';
 import { describe, expect, it } from 'vitest';
 
 import {

@@ -1,4 +1,4 @@
-import { OppgaveResponsDto, RapportertInntektDto, SvarPåVarselDto } from '@navikt/ung-brukerdialog-api';
+import { OppgaveResponsDto, RapportertInntektDto, SvarPåVarselDto } from '@sif/ung-brukerdialog-api';
 
 import { RapportertInntektRespons, SvarPåVarselRespons } from '../../Oppgave';
 

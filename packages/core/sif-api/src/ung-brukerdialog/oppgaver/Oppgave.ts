@@ -6,7 +6,7 @@ import {
     RapportertInntektDto,
     RegisterinntektDto,
     SvarPåVarselDto,
-} from '@navikt/ung-brukerdialog-api';
+} from '@sif/ung-brukerdialog-api';
 import { DateRange, ISODate, OpenDateRange } from '@sif/utils';
 
 export enum ParsedOppgavetype {

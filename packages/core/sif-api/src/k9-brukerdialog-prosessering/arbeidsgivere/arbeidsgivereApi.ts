@@ -1,4 +1,4 @@
-import { ArbeidsgivereController } from '@navikt/k9-brukerdialog-prosessering-api';
+import { ArbeidsgivereController } from '@sif/k9-brukerdialog-prosessering-api';
 
 import { handleApiError } from '../../shared/errorHandlers';
 import { Arbeidsgivere, arbeidsgivereSchema } from './Arbeidsgivere';

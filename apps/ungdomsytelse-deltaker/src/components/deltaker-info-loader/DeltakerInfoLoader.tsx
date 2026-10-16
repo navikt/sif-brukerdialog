@@ -1,4 +1,4 @@
-import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
+import { OppgaveYtelsetype } from '@sif/ung-brukerdialog-api';
 import { ApiError } from '@sif/api';
 import { useSøker } from '@sif/api/k9-brukerdialog-prosessering';
 import { ParsedOppgavetype, useOppgaver } from '@sif/api/ung-brukerdialog';

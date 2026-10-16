@@ -1,4 +1,4 @@
-import { BarnOppslag } from '@navikt/k9-brukerdialog-prosessering-api';
+import { BarnOppslag } from '@sif/k9-brukerdialog-prosessering-api';
 import { ISODate } from '@sif/utils';
 
 type BarnEntitet = Omit<BarnOppslag, 'fødselsdato'> & { fødselsdato: ISODate };

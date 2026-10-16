@@ -1,4 +1,4 @@
-import { MellomlagringController } from '@navikt/k9-brukerdialog-prosessering-api';
+import { MellomlagringController } from '@sif/k9-brukerdialog-prosessering-api';
 
 import { handleApiError } from '../../shared/errorHandlers';
 import { MellomlagringYtelse } from './MellomlagringYtelse';

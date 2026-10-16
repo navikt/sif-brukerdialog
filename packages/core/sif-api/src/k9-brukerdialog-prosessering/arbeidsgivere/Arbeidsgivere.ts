@@ -3,7 +3,7 @@ import {
     zFrilansoppdragDto,
     zOrganisasjonDto,
     zPrivatArbeidsgiverDto,
-} from '@navikt/k9-brukerdialog-prosessering-api';
+} from '@sif/k9-brukerdialog-prosessering-api';
 import { z } from 'zod';
 
 import { zISODate } from '../../shared/zDateSchemas';

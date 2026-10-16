@@ -1,4 +1,4 @@
-import { innsyn } from '@navikt/k9-sak-innsyn-api';
+import { innsyn } from '@sif/k9-sak-innsyn-api';
 import z from 'zod';
 
 import { dokumentClientSchema } from './client-schemas/dokumentClientSchema';
@@ -38,6 +38,6 @@ export type Organisasjon = z.infer<typeof innsyn.zOrganisasjon>;
 export type Innsynsdata = z.infer<typeof innsynsdataClientSchema>;
 
 export * from './client-schemas/innsendtSøknadClientSchema';
-export type { SaksbehandlingtidDto as Saksbehandlingstid } from '@navikt/k9-sak-innsyn-api/src/generated/innsyn';
-export { BehandlingStatus, Venteårsak } from '@navikt/k9-sak-innsyn-api/src/generated/innsyn';
-export { InntektsmeldingStatusDto as InntektsmeldingStatus } from '@navikt/k9-sak-innsyn-api/src/generated/innsyn/types.gen';
+export type { SaksbehandlingtidDto as Saksbehandlingstid } from '@sif/k9-sak-innsyn-api/src/generated/innsyn';
+export { BehandlingStatus, Venteårsak } from '@sif/k9-sak-innsyn-api/src/generated/innsyn';
+export { InntektsmeldingStatusDto as InntektsmeldingStatus } from '@sif/k9-sak-innsyn-api/src/generated/innsyn/types.gen';

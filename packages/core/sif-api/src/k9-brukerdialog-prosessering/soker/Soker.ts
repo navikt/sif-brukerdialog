@@ -1,4 +1,4 @@
-import { zSøker } from '@navikt/k9-brukerdialog-prosessering-api';
+import { zSøker } from '@sif/k9-brukerdialog-prosessering-api';
 import { z } from 'zod';
 
 import { zISODate } from '../../shared/zDateSchemas';

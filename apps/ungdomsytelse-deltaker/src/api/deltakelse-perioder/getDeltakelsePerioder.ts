@@ -1,4 +1,4 @@
-import { Deltakelse } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { Deltakelse } from '@sif/ung-deltakelse-opplyser-api-deltaker';
 import { handleApiError } from '@sif/api';
 
 import { logApiErrorFaro } from '../../apps/innsyn/utils/apiErrorLogger';

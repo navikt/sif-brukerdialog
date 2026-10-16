@@ -1,5 +1,5 @@
-import { initK9BrukerdialogProsesseringApiClients } from '@navikt/k9-brukerdialog-prosessering-api';
-import { initK9SakInnsynApiClients } from '@navikt/k9-sak-innsyn-api';
+import { initK9BrukerdialogProsesseringApiClients } from '@sif/k9-brukerdialog-prosessering-api';
+import { initK9SakInnsynApiClients } from '@sif/k9-sak-innsyn-api';
 import { EnvKey, getRequiredEnv } from '@sif/env';
 
 export const initApiClients = () => {

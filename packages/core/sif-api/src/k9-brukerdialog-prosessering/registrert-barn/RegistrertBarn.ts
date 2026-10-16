@@ -1,4 +1,4 @@
-import { zBarnOppslag, zBarnOppslagListe } from '@navikt/k9-brukerdialog-prosessering-api';
+import { zBarnOppslag, zBarnOppslagListe } from '@sif/k9-brukerdialog-prosessering-api';
 import { z } from 'zod';
 
 import { zISODate } from '../../shared/zDateSchemas';

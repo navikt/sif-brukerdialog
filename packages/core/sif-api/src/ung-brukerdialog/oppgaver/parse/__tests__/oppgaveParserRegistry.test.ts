@@ -8,7 +8,7 @@ import {
     OppgaveType,
     OppgaveYtelsetype,
     PeriodeEndringType,
-} from '@navikt/ung-brukerdialog-api';
+} from '@sif/ung-brukerdialog-api';
 import { describe, expect, it } from 'vitest';
 
 import { ParsedOppgavetype } from '../../Oppgave';

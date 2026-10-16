@@ -1,4 +1,4 @@
-import { FeltValideringController, Friteksfelt } from '@navikt/k9-brukerdialog-prosessering-api';
+import { FeltValideringController, Friteksfelt } from '@sif/k9-brukerdialog-prosessering-api';
 
 import { handleApiError } from '../../shared/errorHandlers';
 

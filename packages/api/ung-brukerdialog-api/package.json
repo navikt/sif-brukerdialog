@@ -1,5 +1,5 @@
 {
-    "name": "@navikt/ung-brukerdialog-api",
+    "name": "@sif/ung-brukerdialog-api",
     "version": "0.0.9",
     "private": true,
     "repository": {

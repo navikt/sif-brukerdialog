@@ -1,5 +1,5 @@
 import { Bleed, BodyLong, Box, Heading, List, ReadMore, VStack } from '@navikt/ds-react';
-import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
+import { OppgaveYtelsetype } from '@sif/ung-brukerdialog-api';
 import { dateFormatter, DateRange, ISODate } from '@sif/utils';
 import { ReactNode } from 'react';
 

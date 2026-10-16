@@ -1,4 +1,4 @@
-import { zOrganisasjon } from '@navikt/k9-sak-innsyn-api/src/generated/innsyn';
+import { zOrganisasjon } from '@sif/k9-sak-innsyn-api/src/generated/innsyn';
 import { z } from 'zod';
 
 import { zOptionalDateFromDateTimeString, zOptionalDateFromISODateString } from './zDateFromString';
@@ -84,8 +84,6 @@ export type InnsendtPleiepengerEttersendelse = z.infer<typeof ettersendelseSchem
 export type InnsendtPleiepengerEndringsmelding = z.infer<typeof endringsmeldingSchema>;
 
 export type InnsendtSøknad =
-    | InnsendtPleiepengesøknad
-    | InnsendtPleiepengerEttersendelse
-    | InnsendtPleiepengerEndringsmelding;
+    InnsendtPleiepengesøknad | InnsendtPleiepengerEttersendelse | InnsendtPleiepengerEndringsmelding;
 
 export const innsendteSøknaderSchema = z.array(innsendtSøknadSchema);

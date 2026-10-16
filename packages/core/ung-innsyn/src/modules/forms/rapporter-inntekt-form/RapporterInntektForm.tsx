@@ -1,7 +1,7 @@
 import { BodyLong, Button, HStack, ReadMore, VStack } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getNumberValidator, getYesOrNoValidator } from '@navikt/sif-validation';
-import { OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
+import { OppgaveYtelsetype } from '@sif/ung-brukerdialog-api';
 import { ApiErrorAlert } from '@sif/api';
 import { useRapporterInntekt, YtelseInntektsrapportering } from '@sif/api/k9-brukerdialog-prosessering';
 import { createSifFormComponents, SifForm, useSifValidate, YesOrNo } from '@sif/rhf';

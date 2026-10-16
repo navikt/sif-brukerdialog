@@ -48,7 +48,7 @@
         "@navikt/sif-common-ui": "workspace:*",
         "@navikt/sif-common-utils": "workspace:*",
         "@navikt/sif-validation": "workspace:*",
-        "@navikt/ung-deltakelse-opplyser-api-veileder": "workspace:*",
+        "@sif/ung-deltakelse-opplyser-api-veileder": "workspace:*",
         "@sif/api": "workspace:*",
         "@sif/apm": "workspace:*",
         "@tanstack/react-query": "5.104.1",

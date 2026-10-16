@@ -117,9 +117,6 @@ importers:
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/core/sif-validation
-      '@navikt/ung-deltakelse-opplyser-api-veileder':
-        specifier: workspace:*
-        version: link:../../packages/api/ung-deltakelse-opplyser-api-veileder
       '@sif/api':
         specifier: workspace:*
         version: link:../../packages/core/sif-api
@@ -132,6 +129,9 @@ importers:
       '@sif/hooks':
         specifier: workspace:*
         version: link:../../packages/core/sif-hooks
+      '@sif/ung-deltakelse-opplyser-api-veileder':
+        specifier: workspace:*
+        version: link:../../packages/api/ung-deltakelse-opplyser-api-veileder
       '@tanstack/react-query':
         specifier: 5.104.1
         version: 5.104.1(react@19.3.0)
@@ -334,12 +334,6 @@ importers:
       '@navikt/fnrvalidator':
         specifier: 2.2.1
         version: 2.2.1
-      '@navikt/k9-brukerdialog-prosessering-api':
-        specifier: workspace:*
-        version: link:../../packages/api/k9-brukerdialog-prosessering-api
-      '@navikt/k9-sak-innsyn-api':
-        specifier: workspace:*
-        version: link:../../packages/api/k9-sak-innsyn-api
       '@navikt/nav-dekoratoren-moduler':
         specifier: 4.5.1
         version: 4.5.1(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
@@ -349,9 +343,6 @@ importers:
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/core/sif-validation
-      '@navikt/ung-brukerdialog-api':
-        specifier: workspace:*
-        version: link:../../packages/api/ung-brukerdialog-api
       '@sif/analytics':
         specifier: workspace:*
         version: link:../../packages/core/sif-analytics
@@ -367,6 +358,12 @@ importers:
       '@sif/hooks':
         specifier: workspace:*
         version: link:../../packages/core/sif-hooks
+      '@sif/k9-brukerdialog-prosessering-api':
+        specifier: workspace:*
+        version: link:../../packages/api/k9-brukerdialog-prosessering-api
+      '@sif/k9-sak-innsyn-api':
+        specifier: workspace:*
+        version: link:../../packages/api/k9-sak-innsyn-api
       '@sif/mock-utils':
         specifier: workspace:*
         version: link:../../packages/core/sif-mock-utils
@@ -376,6 +373,9 @@ importers:
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../../packages/core/sif-soknad-ui
+      '@sif/ung-brukerdialog-api':
+        specifier: workspace:*
+        version: link:../../packages/api/ung-brukerdialog-api
       '@sif/ung-innsyn':
         specifier: workspace:*
         version: link:../../packages/core/ung-innsyn
@@ -521,24 +521,12 @@ importers:
       '@navikt/fnrvalidator':
         specifier: 2.2.1
         version: 2.2.1
-      '@navikt/k9-brukerdialog-prosessering-api':
-        specifier: workspace:*
-        version: link:../../packages/api/k9-brukerdialog-prosessering-api
-      '@navikt/k9-sak-innsyn-api':
-        specifier: workspace:*
-        version: link:../../packages/api/k9-sak-innsyn-api
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/core/sif-app-register
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/core/sif-validation
-      '@navikt/ung-brukerdialog-api':
-        specifier: workspace:*
-        version: link:../../packages/api/ung-brukerdialog-api
-      '@navikt/ung-deltakelse-opplyser-api-deltaker':
-        specifier: workspace:*
-        version: link:../../packages/api/ung-deltakelse-opplyser-api-deltaker
       '@sif/api':
         specifier: workspace:*
         version: link:../../packages/core/sif-api
@@ -551,6 +539,12 @@ importers:
       '@sif/hooks':
         specifier: workspace:*
         version: link:../../packages/core/sif-hooks
+      '@sif/k9-brukerdialog-prosessering-api':
+        specifier: workspace:*
+        version: link:../../packages/api/k9-brukerdialog-prosessering-api
+      '@sif/k9-sak-innsyn-api':
+        specifier: workspace:*
+        version: link:../../packages/api/k9-sak-innsyn-api
       '@sif/mock-utils':
         specifier: workspace:*
         version: link:../../packages/core/sif-mock-utils
@@ -566,6 +560,12 @@ importers:
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../../packages/core/sif-soknad-ui
+      '@sif/ung-brukerdialog-api':
+        specifier: workspace:*
+        version: link:../../packages/api/ung-brukerdialog-api
+      '@sif/ung-deltakelse-opplyser-api-deltaker':
+        specifier: workspace:*
+        version: link:../../packages/api/ung-deltakelse-opplyser-api-deltaker
       '@sif/utils':
         specifier: workspace:*
         version: link:../../packages/core/sif-utils
@@ -687,9 +687,6 @@ importers:
       '@navikt/appstatus-react-ds':
         specifier: workspace:*
         version: link:../../packages/core/appstatus-react-ds
-      '@navikt/k9-sak-innsyn-api':
-        specifier: workspace:*
-        version: link:../../packages/api/k9-sak-innsyn-api
       '@navikt/nav-dekoratoren-moduler':
         specifier: 4.5.1
         version: 4.5.1(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
@@ -717,6 +714,9 @@ importers:
       '@sif/hooks':
         specifier: workspace:*
         version: link:../../packages/core/sif-hooks
+      '@sif/k9-sak-innsyn-api':
+        specifier: workspace:*
+        version: link:../../packages/api/k9-sak-innsyn-api
       '@types/lodash.sortby':
         specifier: 4.7.9
         version: 4.7.9
@@ -2276,12 +2276,6 @@ importers:
       '@navikt/fnrvalidator':
         specifier: 2.2.1
         version: 2.2.1
-      '@navikt/k9-brukerdialog-prosessering-api':
-        specifier: workspace:*
-        version: link:../../packages/api/k9-brukerdialog-prosessering-api
-      '@navikt/k9-sak-innsyn-api':
-        specifier: workspace:*
-        version: link:../../packages/api/k9-sak-innsyn-api
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/core/sif-app-register
@@ -2300,6 +2294,12 @@ importers:
       '@sif/hooks':
         specifier: workspace:*
         version: link:../../packages/core/sif-hooks
+      '@sif/k9-brukerdialog-prosessering-api':
+        specifier: workspace:*
+        version: link:../../packages/api/k9-brukerdialog-prosessering-api
+      '@sif/k9-sak-innsyn-api':
+        specifier: workspace:*
+        version: link:../../packages/api/k9-sak-innsyn-api
       '@sif/mock-utils':
         specifier: workspace:*
         version: link:../../packages/core/sif-mock-utils
@@ -3123,9 +3123,6 @@ importers:
       '@navikt/fnrvalidator':
         specifier: 2.2.1
         version: 2.2.1
-      '@navikt/k9-brukerdialog-prosessering-api':
-        specifier: workspace:*
-        version: link:../../packages/api/k9-brukerdialog-prosessering-api
       '@navikt/sif-app-register':
         specifier: workspace:*
         version: link:../../packages/core/sif-app-register
@@ -3147,6 +3144,9 @@ importers:
       '@sif/hooks':
         specifier: workspace:*
         version: link:../../packages/core/sif-hooks
+      '@sif/k9-brukerdialog-prosessering-api':
+        specifier: workspace:*
+        version: link:../../packages/api/k9-brukerdialog-prosessering-api
       '@sif/mock-utils':
         specifier: workspace:*
         version: link:../../packages/core/sif-mock-utils
@@ -3585,12 +3585,6 @@ importers:
       '@navikt/ds-tailwind':
         specifier: 8.19.0
         version: 8.19.0
-      '@navikt/k9-brukerdialog-prosessering-api':
-        specifier: workspace:*
-        version: link:../../packages/api/k9-brukerdialog-prosessering-api
-      '@navikt/k9-sak-innsyn-api':
-        specifier: workspace:*
-        version: link:../../packages/api/k9-sak-innsyn-api
       '@navikt/nav-dekoratoren-moduler':
         specifier: 4.5.1
         version: 4.5.1(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
@@ -3618,12 +3612,6 @@ importers:
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../../packages/core/sif-validation
-      '@navikt/ung-brukerdialog-api':
-        specifier: workspace:*
-        version: link:../../packages/api/ung-brukerdialog-api
-      '@navikt/ung-deltakelse-opplyser-api-deltaker':
-        specifier: workspace:*
-        version: link:../../packages/api/ung-deltakelse-opplyser-api-deltaker
       '@sif/analytics':
         specifier: workspace:*
         version: link:../../packages/core/sif-analytics
@@ -3639,6 +3627,12 @@ importers:
       '@sif/hooks':
         specifier: workspace:*
         version: link:../../packages/core/sif-hooks
+      '@sif/k9-brukerdialog-prosessering-api':
+        specifier: workspace:*
+        version: link:../../packages/api/k9-brukerdialog-prosessering-api
+      '@sif/k9-sak-innsyn-api':
+        specifier: workspace:*
+        version: link:../../packages/api/k9-sak-innsyn-api
       '@sif/mock-utils':
         specifier: workspace:*
         version: link:../../packages/core/sif-mock-utils
@@ -3648,6 +3642,12 @@ importers:
       '@sif/surveys':
         specifier: workspace:*
         version: link:../../packages/core/sif-surveys
+      '@sif/ung-brukerdialog-api':
+        specifier: workspace:*
+        version: link:../../packages/api/ung-brukerdialog-api
+      '@sif/ung-deltakelse-opplyser-api-deltaker':
+        specifier: workspace:*
+        version: link:../../packages/api/ung-deltakelse-opplyser-api-deltaker
       '@sif/ung-innsyn':
         specifier: workspace:*
         version: link:../../packages/core/ung-innsyn
@@ -4289,24 +4289,24 @@ importers:
       '@navikt/ds-react':
         specifier: 8.19.0
         version: 8.19.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@navikt/k9-brukerdialog-prosessering-api':
-        specifier: workspace:*
-        version: link:../../api/k9-brukerdialog-prosessering-api
-      '@navikt/k9-sak-innsyn-api':
-        specifier: workspace:*
-        version: link:../../api/k9-sak-innsyn-api
-      '@navikt/ung-brukerdialog-api':
-        specifier: workspace:*
-        version: link:../../api/ung-brukerdialog-api
-      '@navikt/ung-deltakelse-opplyser-api-deltaker':
-        specifier: workspace:*
-        version: link:../../api/ung-deltakelse-opplyser-api-deltaker
       '@sif/api-client':
         specifier: workspace:*
         version: link:../sif-api-client
       '@sif/env':
         specifier: workspace:*
         version: link:../sif-env
+      '@sif/k9-brukerdialog-prosessering-api':
+        specifier: workspace:*
+        version: link:../../api/k9-brukerdialog-prosessering-api
+      '@sif/k9-sak-innsyn-api':
+        specifier: workspace:*
+        version: link:../../api/k9-sak-innsyn-api
+      '@sif/ung-brukerdialog-api':
+        specifier: workspace:*
+        version: link:../../api/ung-brukerdialog-api
+      '@sif/ung-deltakelse-opplyser-api-deltaker':
+        specifier: workspace:*
+        version: link:../../api/ung-deltakelse-opplyser-api-deltaker
       '@sif/utils':
         specifier: workspace:*
         version: link:../sif-utils
@@ -4944,18 +4944,12 @@ importers:
       '@navikt/ds-react':
         specifier: 8.19.0
         version: 8.19.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@navikt/k9-brukerdialog-prosessering-api':
-        specifier: workspace:*
-        version: link:../../api/k9-brukerdialog-prosessering-api
       '@navikt/sif-common-ui':
         specifier: workspace:*
         version: link:../../legacy/sif-common-ui
       '@navikt/sif-validation':
         specifier: workspace:*
         version: link:../sif-validation
-      '@navikt/ung-brukerdialog-api':
-        specifier: workspace:*
-        version: link:../../api/ung-brukerdialog-api
       '@sif/analytics':
         specifier: workspace:*
         version: link:../sif-analytics
@@ -4965,12 +4959,18 @@ importers:
       '@sif/hooks':
         specifier: workspace:*
         version: link:../sif-hooks
+      '@sif/k9-brukerdialog-prosessering-api':
+        specifier: workspace:*
+        version: link:../../api/k9-brukerdialog-prosessering-api
       '@sif/rhf':
         specifier: workspace:*
         version: link:../sif-rhf
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../sif-soknad-ui
+      '@sif/ung-brukerdialog-api':
+        specifier: workspace:*
+        version: link:../../api/ung-brukerdialog-api
       '@sif/utils':
         specifier: workspace:*
         version: link:../sif-utils

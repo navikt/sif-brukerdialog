@@ -1,4 +1,4 @@
-import { BarnOppslagListe } from '@navikt/k9-brukerdialog-prosessering-api';
+import { BarnOppslagListe } from '@sif/k9-brukerdialog-prosessering-api';
 
 import { alfaTestesen, betaTestesen } from '../entiteter/barn';
 

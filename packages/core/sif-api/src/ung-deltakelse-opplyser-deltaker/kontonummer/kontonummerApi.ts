@@ -1,4 +1,4 @@
-import { Deltaker, zKontonummerDto } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { Deltaker, zKontonummerDto } from '@sif/ung-deltakelse-opplyser-api-deltaker';
 import { z } from 'zod';
 
 import { handleApiError } from '../../shared/errorHandlers';

@@ -1,4 +1,4 @@
-// Krever at appen har kalt initK9BrukerdialogProsesseringApiClients fra @navikt/k9-brukerdialog-prosessering-api.
+// Krever at appen har kalt initK9BrukerdialogProsesseringApiClients fra @sif/k9-brukerdialog-prosessering-api.
 
 // Hooks
 export { useArbeidsgivere } from './arbeidsgivere/useArbeidsgivere';

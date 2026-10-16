@@ -1,4 +1,4 @@
-import { DeltakelseInnmeldingDto } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { DeltakelseInnmeldingDto } from '@sif/ung-deltakelse-opplyser-api-veileder';
 import { ApiError } from '@sif/api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 

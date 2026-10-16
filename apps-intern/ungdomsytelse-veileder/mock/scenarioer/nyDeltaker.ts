@@ -1,4 +1,4 @@
-import { DeltakerPersonalia } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { DeltakerPersonalia } from '@sif/ung-deltakelse-opplyser-api-veileder';
 import { MockScenario } from './types';
 
 const deltakerPersonalia: DeltakerPersonalia = {

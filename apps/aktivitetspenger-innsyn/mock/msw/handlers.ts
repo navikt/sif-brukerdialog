@@ -1,4 +1,4 @@
-import type { aktivitetspenger } from '@navikt/k9-brukerdialog-prosessering-api';
+import type { aktivitetspenger } from '@sif/k9-brukerdialog-prosessering-api';
 import { http, HttpResponse } from 'msw';
 
 import { ScenarioType } from '../scenarios/types';

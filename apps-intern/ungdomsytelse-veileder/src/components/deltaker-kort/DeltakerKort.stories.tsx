@@ -1,6 +1,6 @@
 import { VStack } from '@navikt/ds-react';
 import { ISODateToDate } from '@navikt/sif-common-utils';
-import { Diskresjonskode } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { Diskresjonskode } from '@sif/ung-deltakelse-opplyser-api-veileder';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { BrowserRouter } from 'react-router-dom';
 

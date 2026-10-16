@@ -1,5 +1,5 @@
 import { HStack } from '@navikt/ds-react';
-import { Diskresjonskode } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { Diskresjonskode } from '@sif/ung-deltakelse-opplyser-api-veileder';
 
 import DiskresjonskodeTag from './DiskresjonskodeTag';
 

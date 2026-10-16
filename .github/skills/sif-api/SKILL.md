@@ -138,7 +138,7 @@ Hver hook avhenger av en spesifikk API-klient som må være initialisert, og til
 
 | Element       | Verdi                                                                                                                          |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| Pakke         | `@navikt/k9-brukerdialog-prosessering-api`                                                                                     |
+| Pakke         | `@sif/k9-brukerdialog-prosessering-api`                                                                                     |
 | Init-funksjon | `initK9BrukerdialogProsesseringApiClients({ frontendPath, loginURL })`                                                         |
 | Env-schema    | `commonEnvSchema` (fra `@sif/env`) — inkludert automatisk                                                                      |
 | Env-variabler | `K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH`, `K9_BRUKERDIALOG_PROSESSERING_API_SCOPE`, `K9_BRUKERDIALOG_PROSESSERING_API_URL` |
@@ -149,7 +149,7 @@ Hver hook avhenger av en spesifikk API-klient som må være initialisert, og til
 
 | Element       | Verdi                                                                                          |
 | ------------- | ---------------------------------------------------------------------------------------------- |
-| Pakke         | `@navikt/ung-brukerdialog-api`                                                                 |
+| Pakke         | `@sif/ung-brukerdialog-api`                                                                 |
 | Init-funksjon | `initUngBrukerdialogApiClient({ frontendPath, loginURL, onUnauthorized })`                     |
 | Env-variabler | `UNG_BRUKERDIALOG_API_FRONTEND_PATH`, `UNG_BRUKERDIALOG_API_SCOPE`, `UNG_BRUKERDIALOG_API_URL` |
 
@@ -159,7 +159,7 @@ Hver hook avhenger av en spesifikk API-klient som må være initialisert, og til
 
 | Element       | Verdi                                                                                                           |
 | ------------- | --------------------------------------------------------------------------------------------------------------- |
-| Pakke         | `@navikt/ung-deltakelse-opplyser-api-deltaker`                                                                  |
+| Pakke         | `@sif/ung-deltakelse-opplyser-api-deltaker`                                                                  |
 | Init-funksjon | `initUngDeltakelseOpplyserApiDeltakerClient({ frontendPath, loginURL, onUnauthorized })`                        |
 | Env-schema    | `ungDeltakelseOpplyserEnvSchema` (fra `@sif/env`)                                                               |
 | Env-variabler | `UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH`, `UNG_DELTAKELSE_OPPLYSER_API_SCOPE`, `UNG_DELTAKELSE_OPPLYSER_API_URL` |
@@ -199,9 +199,9 @@ Verifiser at appens `src/app/api/initApiClients.ts` (eller tilsvarende) kaller r
 
 ```typescript
 // initApiClients.ts
-import { initK9BrukerdialogProsesseringApiClients } from '@navikt/k9-brukerdialog-prosessering-api';
-import { initUngBrukerdialogApiClient } from '@navikt/ung-brukerdialog-api';
-import { initUngDeltakelseOpplyserApiDeltakerClient } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { initK9BrukerdialogProsesseringApiClients } from '@sif/k9-brukerdialog-prosessering-api';
+import { initUngBrukerdialogApiClient } from '@sif/ung-brukerdialog-api';
+import { initUngDeltakelseOpplyserApiDeltakerClient } from '@sif/ung-deltakelse-opplyser-api-deltaker';
 import { EnvKey, getRequiredEnv } from '@sif/env';
 
 export const initApiClients = () => {

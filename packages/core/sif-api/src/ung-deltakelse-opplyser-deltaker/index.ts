@@ -1,4 +1,4 @@
-// Krever at appen har kalt initUngDeltakelseOpplyserApiDeltakerClient fra @navikt/ung-deltakelse-opplyser-api-deltaker.
+// Krever at appen har kalt initUngDeltakelseOpplyserApiDeltakerClient fra @sif/ung-deltakelse-opplyser-api-deltaker.
 
 // Hooks
 export { kontonummerFallback, useKontonummer } from './kontonummer/useKontonummer';

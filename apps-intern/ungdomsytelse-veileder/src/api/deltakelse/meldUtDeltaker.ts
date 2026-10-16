@@ -3,7 +3,7 @@ import {
     DeltakelseUtmeldingDto,
     Veileder,
     zDeltakelseUtmeldingDto,
-} from '@navikt/ung-deltakelse-opplyser-api-veileder';
+} from '@sif/ung-deltakelse-opplyser-api-veileder';
 import { handleApiError } from '@sif/api';
 
 import { Deltakelse, deltakelseSchema } from '../../types/Deltakelse';
