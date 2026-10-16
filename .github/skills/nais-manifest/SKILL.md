@@ -1,9 +1,8 @@
 ---
 name: nais-manifest
 description: Generer et produksjonsklart Nais-applikasjonsmanifest for Kubernetes-deployment
-model: GPT-6 Luna
+disable-model-invocation: true
 ---
-
 You are creating a Nais application manifest for deploying to Nav's Kubernetes platform.
 
 The default path is `.nais/app.yaml`. If that file already exists and declares a different

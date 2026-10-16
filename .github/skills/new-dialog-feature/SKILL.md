@@ -1,3 +1,8 @@
+---
+name: new-dialog-feature
+description: new-dialog-feature
+disable-model-invocation: true
+---
 # New dialog feature
 
 Implement a new feature in a dialog app in this monorepo.
