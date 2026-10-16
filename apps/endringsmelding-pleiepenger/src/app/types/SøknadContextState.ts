@@ -22,6 +22,7 @@ export interface SøknadContextState {
     endringsmeldingSendt?: boolean;
     børMellomlagres?: boolean;
     valgteEndringer: ValgteEndringer;
+    valgteEndringerInitielt: ValgteEndringer;
     søknadSteps: StepId[];
     inputPreferanser: SøknadContextInputPreferanse;
     /** Antall saker hvor siste søknadsperiode slutter før gyldig endringsperiode */

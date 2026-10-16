@@ -58,6 +58,12 @@ export type SøknadApiDataMetadata = {
         valgtEndreArbeidstid: boolean;
         valgtEndreFerie: boolean;
         valgtEndreOmsorgstilbud: boolean;
+        laTilArbeidstidFraOppsummering: boolean;
+        gjordeEndringIArbeidstidEtterTillegg: boolean;
+        laTilFerieFraOppsummering: boolean;
+        gjordeEndringIFerieEtterTillegg: boolean;
+        laTilOmsorgstilbudFraOppsummering: boolean;
+        gjordeEndringIOmsorgstilbudEtterTillegg: boolean;
     };
 
 const getOmsorgstilbudMetadata = (tilsynsordning?: TilsynsordningApiData): OmsorgstilbudMetadata => {
@@ -125,20 +131,38 @@ export const getSøknadApiDataMetadata = (
     apiData: SøknadApiData,
     søknadsdata: Søknadsdata,
     valgteEndringer: ValgteEndringer,
+    valgteEndringerInitielt: ValgteEndringer,
     sak: Sak,
 ): SøknadApiDataMetadata => {
     const { arbeidstid, lovbestemtFerie, tilsynsordning } = apiData.ytelse;
+    const arbeidstidMetadata = getArbeidstidMetadata(arbeidstid);
+    const ferieMetadata = getFerieMetadata(lovbestemtFerie);
+    const omsorgstilbudMetadata = getOmsorgstilbudMetadata(tilsynsordning);
+    const laTilArbeidstidFraOppsummering =
+        valgteEndringerInitielt?.arbeidstid === false && valgteEndringer?.arbeidstid === true;
+    const laTilFerieFraOppsummering =
+        valgteEndringerInitielt?.lovbestemtFerie === false && valgteEndringer?.lovbestemtFerie === true;
+    const laTilOmsorgstilbudFraOppsummering =
+        valgteEndringerInitielt?.tilsynsordning === false && valgteEndringer?.tilsynsordning === true;
 
     return {
         valgtEndreOmsorgstilbud: valgteEndringer?.tilsynsordning || false,
         valgtEndreArbeidstid: valgteEndringer?.arbeidstid || false,
         valgtEndreFerie: valgteEndringer?.lovbestemtFerie || false,
+        laTilArbeidstidFraOppsummering,
+        gjordeEndringIArbeidstidEtterTillegg:
+            laTilArbeidstidFraOppsummering && arbeidstidMetadata?.endretArbeidstid === true,
+        laTilFerieFraOppsummering,
+        gjordeEndringIFerieEtterTillegg: laTilFerieFraOppsummering && ferieMetadata?.endretFerie === true,
+        laTilOmsorgstilbudFraOppsummering,
+        gjordeEndringIOmsorgstilbudEtterTillegg:
+            laTilOmsorgstilbudFraOppsummering && omsorgstilbudMetadata.endretOmsorgstilbud === true,
         antallAktiviteterSomKanEndres: sak.utledet.aktiviteterSomKanEndres.length,
         ...getUkjentArbeidsforholdMetadata(søknadsdata),
-        ...getFerieMetadata(lovbestemtFerie),
-        ...getArbeidstidMetadata(arbeidstid),
+        ...ferieMetadata,
+        ...arbeidstidMetadata,
         ...getArbeidsgiverIkkeIAaregMetadata(sak),
-        ...getOmsorgstilbudMetadata(tilsynsordning),
+        ...omsorgstilbudMetadata,
     };
 };
 
