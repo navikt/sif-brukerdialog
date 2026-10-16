@@ -38,9 +38,9 @@
         "dayjs": "1.11.23",
         "eslint": "10.12.0",
         "postcss": ">=8.5.28",
-        "prettier": "3.9.9",
+        "prettier": "3.9.10",
         "react-is": "19.3.0",
-        "styled-components": "6.5.3",
+        "styled-components": "6.6.0",
         "typescript": "6.0.3"
     }
 }

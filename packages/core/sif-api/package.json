@@ -21,27 +21,27 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@navikt/ds-react": "8.19.0",
-        "@sif/k9-brukerdialog-prosessering-api": "workspace:*",
-        "@sif/k9-sak-innsyn-api": "workspace:*",
+        "@navikt/ds-react": "8.19.1",
         "@sif/api-client": "workspace:*",
         "@sif/env": "workspace:*",
+        "@sif/k9-brukerdialog-prosessering-api": "workspace:*",
+        "@sif/k9-sak-innsyn-api": "workspace:*",
         "@sif/ung-brukerdialog-api": "workspace:*",
         "@sif/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
         "@sif/utils": "workspace:*",
-        "@tanstack/react-query": "5.104.1",
+        "@tanstack/react-query": "5.104.2",
         "axios": "1.20.0",
         "dayjs": "1.11.23",
         "uuid": "^14.0.2"
     },
     "devDependencies": {
+        "@sif/config": "workspace:*",
         "@sif/eslint-config": "workspace:*",
         "@types/react": "19.3.0",
-        "@sif/config": "workspace:*",
         "eslint": "10.12.0",
         "react": "19.3.0",
         "typescript": "6.0.3",
-        "zod": "4.6.5"
+        "zod": "4.6.7"
     },
     "peerDependencies": {
         "zod": "^4.0.0"
