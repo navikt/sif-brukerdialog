@@ -1,7 +1,7 @@
 import { BarnController } from '@navikt/k9-brukerdialog-prosessering-api';
 
 import { handleApiError } from '../../shared/errorHandlers';
-import { RegistrertBarn, registrerteBarnListeSchema } from './Barn';
+import { RegistrertBarn, registrerteBarnListeSchema } from './RegistrertBarn';
 
 /**
  * Henter informasjon om registrerte barn fra k9-brukerdialog-prosessering-api

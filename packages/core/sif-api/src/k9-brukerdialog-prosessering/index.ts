@@ -2,7 +2,7 @@
 
 // Hooks
 export { useArbeidsgivere } from './arbeidsgivere/useArbeidsgivere';
-export { useRegistrerteBarn } from './barn/useRegistrerteBarn';
+export { useRegistrerteBarn } from './registrert-barn/useRegistrerteBarn';
 export { useValiderFritekst } from './fritekst/useValiderFritekst';
 export { useRapporterInntekt, type YtelseInntektsrapportering } from './inntekt/useRapporterInntekt';
 export {
@@ -14,7 +14,7 @@ export { useLagreVedlegg, useSlettVedlegg } from './vedlegg/useVedlegg';
 
 // API
 export { hentArbeidsgivere } from './arbeidsgivere/arbeidsgivereApi';
-export { hentRegistrerteBarn } from './barn/registrerteBarnApi';
+export { hentRegistrerteBarn } from './registrert-barn/registrerteBarnApi';
 export { validerFritekst } from './fritekst/validerFritekstApi';
 export {
     hentYtelseMellomlagring,
@@ -40,6 +40,6 @@ export type {
     ArbeidsgiverOrganisasjon,
     ArbeidsgiverPrivatperson,
 } from './arbeidsgivere/Arbeidsgivere';
-export type { RegistrertBarn } from './barn/Barn';
+export type { RegistrertBarn } from './registrert-barn/RegistrertBarn';
 export { MellomlagringYtelse } from './mellomlagring/MellomlagringYtelse';
 export type { Søker } from './soker/Soker';

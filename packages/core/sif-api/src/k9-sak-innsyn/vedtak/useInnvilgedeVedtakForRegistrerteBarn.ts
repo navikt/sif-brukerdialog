@@ -1,6 +1,6 @@
 import { useQueries } from '@tanstack/react-query';
 
-import { RegistrertBarn } from '../../k9-brukerdialog-prosessering/barn/Barn';
+import { RegistrertBarn } from '../../k9-brukerdialog-prosessering/registrert-barn/RegistrertBarn';
 import { sifApiQueryKeys } from '../../queryKeys';
 import { SisteGyldigeVedtakForAktørId } from './SisteGyldigeVedtakForAktorId';
 import { hentSisteGyldigeVedtakForAktørId } from './vedtakApi';

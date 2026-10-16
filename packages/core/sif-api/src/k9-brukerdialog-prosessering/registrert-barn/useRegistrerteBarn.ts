@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { sifApiQueryKeys } from '../../queryKeys';
 import { ApiError } from '../../shared/errorHandlers';
-import { RegistrertBarn } from './Barn';
+import { RegistrertBarn } from './RegistrertBarn';
 import { hentRegistrerteBarn } from './registrerteBarnApi';
 
 /**
