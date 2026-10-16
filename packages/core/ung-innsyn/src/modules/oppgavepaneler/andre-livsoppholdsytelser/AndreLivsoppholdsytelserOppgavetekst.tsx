@@ -1,6 +1,6 @@
 import { BodyLong, VStack } from '@navikt/ds-react';
-import { AndreLivsoppholdsytelserIkkeOppfyltÅrsak } from '@sif/ung-brukerdialog-api';
 import { AndreLivsoppholdsytelserOppgave } from '@sif/api/ung-brukerdialog';
+import { AndreLivsoppholdsytelserIkkeOppfyltÅrsak } from '@sif/ung-brukerdialog-api';
 
 import Fritekst from '../../../components/fritekst/Fritekst';
 

@@ -1,5 +1,5 @@
-import { BrukerdialogSøknad, TilgjengeligSøknadResponse } from '@sif/ung-brukerdialog-api';
 import { commonRequestHeaders } from '@sif/api-client';
+import { BrukerdialogSøknad, TilgjengeligSøknadResponse } from '@sif/ung-brukerdialog-api';
 
 import { handleApiError } from '../../shared/errorHandlers';
 

@@ -1,13 +1,13 @@
 import './app.css';
 
 import { Theme } from '@navikt/ds-react';
-import { OmsorgsdagerAleneomsorgApp } from '@sif/app-register';
 import {
     ensureBaseNameForReactRouter,
     NoAccessPage,
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import { OmsorgsdagerAleneomsorgApp } from '@sif/app-register';
 import { isProd } from '@sif/env';
 import { Navigate, Route } from 'react-router-dom';
 

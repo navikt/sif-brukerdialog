@@ -1,7 +1,7 @@
 import { SøknadApiData } from '@app/types/SoknadApiData';
-import { aktivitetspenger } from '@sif/k9-brukerdialog-prosessering-api';
 import { commonRequestHeaders, handleApiError } from '@sif/api';
 import { isProd } from '@sif/env';
+import { aktivitetspenger } from '@sif/k9-brukerdialog-prosessering-api';
 
 export const sendSøknad = async (data: SøknadApiData): Promise<void> => {
     // Startdato brukes i dev/test, så denne fjernes i produksjon

@@ -1,5 +1,5 @@
-import { omsorgspenger } from '@sif/k9-brukerdialog-prosessering-api';
 import { commonRequestHeaders, handleApiError } from '@sif/api';
+import { omsorgspenger } from '@sif/k9-brukerdialog-prosessering-api';
 
 import { SøknadApiData } from '../types/SoknadApiData';
 

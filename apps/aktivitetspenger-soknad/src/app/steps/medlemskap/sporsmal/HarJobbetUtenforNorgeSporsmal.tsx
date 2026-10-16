@@ -1,7 +1,7 @@
 import { AppText, useAppIntl } from '@app/i18n';
 import { BodyLong, ReadMore, VStack } from '@navikt/ds-react';
-import { getYesOrNoValidator } from '@sif/validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
+import { getYesOrNoValidator } from '@sif/validation';
 
 import { MedlemskapFormValues } from '../types';
 

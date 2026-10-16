@@ -1,5 +1,5 @@
-import { Veileder } from '@sif/ung-deltakelse-opplyser-api-veileder';
 import { handleApiError } from '@sif/api';
+import { Veileder } from '@sif/ung-deltakelse-opplyser-api-veileder';
 
 import { Deltakelse, deltakelseSchema } from '../../types/Deltakelse';
 

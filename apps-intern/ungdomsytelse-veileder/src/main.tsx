@@ -1,5 +1,5 @@
-import { UngdomsytelseVeilederApp } from '@sif/app-register';
 import { initApm } from '@sif/apm';
+import { UngdomsytelseVeilederApp } from '@sif/app-register';
 import { getMaybeEnv } from '@sif/env';
 import MockDate from 'mockdate';
 import { createRoot } from 'react-dom/client';

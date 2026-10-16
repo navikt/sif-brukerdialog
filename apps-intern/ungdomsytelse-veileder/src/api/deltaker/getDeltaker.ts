@@ -1,5 +1,5 @@
-import { Oppslag } from '@sif/ung-deltakelse-opplyser-api-veileder';
 import { handleApiError } from '@sif/api';
+import { Oppslag } from '@sif/ung-deltakelse-opplyser-api-veileder';
 
 import { registrertDeltakerSchema } from '../../types/Deltaker';
 

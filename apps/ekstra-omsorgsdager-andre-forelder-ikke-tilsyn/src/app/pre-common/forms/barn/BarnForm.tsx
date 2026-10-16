@@ -1,8 +1,8 @@
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { guid } from '@navikt/sif-common-utils';
-import { getFødselsnummerValidator, getStringValidator } from '@sif/validation';
 import { isDevMode } from '@sif/env';
+import { getFødselsnummerValidator, getStringValidator } from '@sif/validation';
 
 import { useAppIntl } from '../../../i18n';
 import barnUtils from './barnUtils';

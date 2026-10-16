@@ -1,8 +1,8 @@
 import { useSøknadContext } from '@app/hooks';
 import { SøknadApiData } from '@app/types';
-import { EndringsmeldingPsbApp } from '@sif/app-register';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { appLogger } from '@sif/apm';
+import { EndringsmeldingPsbApp } from '@sif/app-register';
 import { AxiosError, isAxiosError } from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';

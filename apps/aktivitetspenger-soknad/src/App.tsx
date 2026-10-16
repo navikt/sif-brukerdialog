@@ -1,9 +1,9 @@
 import './app.css';
 
 import { AktivitetspengerSoknadApp } from '@sif/app-register';
-import { TilgjengeligSøknadType } from '@sif/ung-brukerdialog-api';
 import { SøknadAppProvider } from '@sif/soknad-app';
 import { InitialDataErrorPage, LoadingPage } from '@sif/soknad-ui';
+import { TilgjengeligSøknadType } from '@sif/ung-brukerdialog-api';
 
 import { initApiClients } from './app/api/initApiClients';
 import AppRouter from './app/AppRouter';

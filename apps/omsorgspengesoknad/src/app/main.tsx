@@ -1,6 +1,6 @@
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
-import { OmsorgsdagerKroniskApp } from '@sif/app-register';
 import { initApm } from '@sif/apm';
+import { OmsorgsdagerKroniskApp } from '@sif/app-register';
 import { getMaybeEnv } from '@sif/env';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';

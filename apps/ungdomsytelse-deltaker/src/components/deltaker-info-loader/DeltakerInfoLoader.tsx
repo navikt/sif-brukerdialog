@@ -1,9 +1,9 @@
-import { OppgaveYtelsetype } from '@sif/ung-brukerdialog-api';
 import { ApiError } from '@sif/api';
 import { useSøker } from '@sif/api/k9-brukerdialog-prosessering';
 import { ParsedOppgavetype, useOppgaver } from '@sif/api/ung-brukerdialog';
 import { appLogger } from '@sif/apm';
 import { SkyraSlug, SkyraTestPage } from '@sif/surveys';
+import { OppgaveYtelsetype } from '@sif/ung-brukerdialog-api';
 import { Navigate, Route, Routes, useParams } from 'react-router-dom';
 
 import { ApiErrorKey, ApplikasjonHendelse, useAnalyticsInstance } from '../../analytics/analytics';

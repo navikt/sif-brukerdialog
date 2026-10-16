@@ -1,12 +1,12 @@
 import './app.css';
 
-import { OmsorgsdagerKroniskApp } from '@sif/app-register';
 import {
     ensureBaseNameForReactRouter,
     NoAccessPage,
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import { OmsorgsdagerKroniskApp } from '@sif/app-register';
 import { isProd } from '@sif/env';
 import { Navigate, Route } from 'react-router-dom';
 

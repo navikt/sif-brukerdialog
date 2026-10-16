@@ -1,6 +1,6 @@
-import { OppgaveYtelsetype, TilgjengeligSøknadResponse } from '@sif/ung-brukerdialog-api';
 import { Søker, useSøker } from '@sif/api/k9-brukerdialog-prosessering';
 import { Oppgave, useOppgaver, useTilgjengeligAktivitetspengerSøknad } from '@sif/api/ung-brukerdialog';
+import { OppgaveYtelsetype, TilgjengeligSøknadResponse } from '@sif/ung-brukerdialog-api';
 
 interface InitialData {
     søker: Søker;

@@ -1,5 +1,5 @@
-import { OppgaveStatus } from '@sif/ung-brukerdialog-api';
 import { BekreftelseOppgave, Oppgave, ParsedOppgaveBase, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
+import { OppgaveStatus } from '@sif/ung-brukerdialog-api';
 import { dateFormatter, dateTimeFormatter } from '@sif/utils';
 
 import { UngInnsynIntlShape } from '../i18n';

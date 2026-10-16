@@ -1,6 +1,6 @@
+import { EnvKey, getRequiredEnv } from '@sif/env';
 import { initK9BrukerdialogProsesseringApiClients } from '@sif/k9-brukerdialog-prosessering-api';
 import { initK9SakInnsynApiClients } from '@sif/k9-sak-innsyn-api';
-import { EnvKey, getRequiredEnv } from '@sif/env';
 
 export const initApiClients = () => {
     initK9BrukerdialogProsesseringApiClients({

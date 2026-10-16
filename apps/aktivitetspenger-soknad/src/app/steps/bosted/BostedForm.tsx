@@ -1,11 +1,11 @@
 import { AppText, useAppIntl } from '@app/i18n';
 import { BostedSøknadsdata } from '@app/types/Soknadsdata';
 import { SøknadStepId } from '@app/types/SoknadStepId';
-import { getYesOrNoValidator } from '@sif/validation';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { SøknadStep, SøknadStepForm, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { SifInfoCard } from '@sif/soknad-ui';
 import { FormLayout, SifGuidePanel } from '@sif/soknad-ui/components';
+import { getYesOrNoValidator } from '@sif/validation';
 import { useForm } from 'react-hook-form';
 
 import { toBostedFormValues, toBostedSøknadsdata } from './bostedStegUtils';

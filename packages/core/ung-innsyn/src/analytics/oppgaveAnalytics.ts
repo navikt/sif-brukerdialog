@@ -1,6 +1,6 @@
-import { OppgaveStatus } from '@sif/ung-brukerdialog-api';
 import { useAnalyticsInstance } from '@sif/analytics';
 import { ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
+import { OppgaveStatus } from '@sif/ung-brukerdialog-api';
 
 /**
  * Egne hendelser for oppgaver. Nav-taksonomiens skjema-hendelser brukes ikke, siden en oppgave ikke er et skjemaforløp

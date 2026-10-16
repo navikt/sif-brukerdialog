@@ -1,6 +1,6 @@
 import { BodyLong, VStack } from '@navikt/ds-react';
-import { BostedsvilkårIkkeOppfyltÅrsak } from '@sif/ung-brukerdialog-api';
 import { BostedVilkårOppgave } from '@sif/api/ung-brukerdialog';
+import { BostedsvilkårIkkeOppfyltÅrsak } from '@sif/ung-brukerdialog-api';
 
 import Fritekst from '../../../components/fritekst/Fritekst';
 

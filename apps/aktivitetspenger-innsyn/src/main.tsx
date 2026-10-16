@@ -1,5 +1,5 @@
-import { AktivitetspengerInnsynApp } from '@sif/app-register';
 import { initApm } from '@sif/apm';
+import { AktivitetspengerInnsynApp } from '@sif/app-register';
 import { getMaybeEnv } from '@sif/env';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';

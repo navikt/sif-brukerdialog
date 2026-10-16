@@ -1,13 +1,13 @@
 import './app.css';
 
 import { Theme } from '@navikt/ds-react';
-import { PleiepengerLivetsSluttApp } from '@sif/app-register';
 import {
     ensureBaseNameForReactRouter,
     NoAccessPage,
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import { PleiepengerLivetsSluttApp } from '@sif/app-register';
 import { isProd } from '@sif/env';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Navigate, Route } from 'react-router-dom';
