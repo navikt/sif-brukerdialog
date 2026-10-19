@@ -7,6 +7,18 @@ on:
 permissions: {}
 
 jobs:
+    deploy-aktivitetspenger-innsyn:
+        name: Deploy aktivitetspenger-innsyn to dev
+        uses: ./.github/workflows/.deploy-app-to-dev.yml
+        secrets: inherit
+        permissions:
+            contents: read
+            id-token: write
+        with:
+            app-name: "aktivitetspenger-innsyn"
+            working-directory: "apps/aktivitetspenger-innsyn"
+            use-cdn: true
+
     deploy-endringsmelding-pleiepenger:
         name: Deploy endringsmelding-pleiepenger to dev
         uses: ./.github/workflows/.deploy-app-to-dev.yml
