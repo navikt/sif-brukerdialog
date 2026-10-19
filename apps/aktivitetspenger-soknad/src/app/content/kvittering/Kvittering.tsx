@@ -32,8 +32,11 @@ export const Kvittering = () => {
                             />
                         </List.Item>
                         <List.Item>
+                            <AppText id="kvitteringPage.hvaSkjerVidere.2" />
+                        </List.Item>
+                        <List.Item>
                             <AppText
-                                id="kvitteringPage.hvaSkjerVidere.2"
+                                id="kvitteringPage.hvaSkjerVidere.3"
                                 values={{
                                     Lenke: (children) => <Link href={getLenker().navMinSide}>{children}</Link>,
                                 }}

@@ -11,7 +11,6 @@ export const kanIkkeSøkePageMessages_nb = {
     'page.kanIkkeSøke.utenforSøknadsvindu.1':
         'Du har allerede fått innvilget aktivitetspenger. Du kan derfor ikke sende inn en ny søknad nå.',
     'page.kanIkkeSøke.utenforSøknadsvindu.2':
-        'Du kan tidligst søke på nytt når det er fire uker igjen av perioden med aktivitetspenger. Du får et varsel på Min side når det er fire uker igjen.',
-
+        'Du kan tidligst søke på nytt når det er 4 uker igjen av perioden med aktivitetspenger. Du får et varsel på Min side når det er 4 uker igjen.',
     'page.kanIkkeSøke.annet': 'Du kan ikke sende inn søknad om aktivitetspenger på dette tidspunktet.',
 };
