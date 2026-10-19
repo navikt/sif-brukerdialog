@@ -29,5 +29,4 @@ export const appMessages_nn: Record<keyof typeof appMessages_nb, string> = {
     'step.medlemskap.title': 'Medlemskap i folketrygda',
     'step.barn.title': 'Barn',
     'step.oppsummering.title': 'Oppsummering',
-    'component.todo.label': 'Oppgåve',
 };

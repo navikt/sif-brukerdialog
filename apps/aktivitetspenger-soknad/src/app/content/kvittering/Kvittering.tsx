@@ -32,6 +32,9 @@ export const Kvittering = () => {
                             />
                         </List.Item>
                         <List.Item>
+                            <AppText id="kvitteringPage.hvaSkjerVidere.2" />
+                        </List.Item>
+                        <List.Item>
                             <AppText
                                 id="kvitteringPage.hvaSkjerVidere.2"
                                 values={{

@@ -28,5 +28,4 @@ export const appMessages_nb = {
     'step.medlemskap.title': 'Medlemskap i folketrygden',
     'step.barn.title': 'Barn',
     'step.oppsummering.title': 'Oppsummering',
-    'component.todo.label': 'Todo',
 };
