@@ -44,6 +44,7 @@
         "@sif/soknad-app": "workspace:*",
         "@sif/soknad-forms": "workspace:*",
         "@sif/soknad-ui": "workspace:*",
+        "@sif/surveys": "workspace:*",
         "@sif/ung-brukerdialog-api": "workspace:*",
         "@sif/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
         "@sif/utils": "workspace:*",

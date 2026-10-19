@@ -3,6 +3,7 @@ import getLenker from '@app/lenker';
 import { getAppEnv } from '@app/setup/appEnv';
 import { BodyLong, Heading, Link, List, VStack } from '@navikt/ds-react';
 import { SøknadKvitteringPage } from '@sif/soknad-ui';
+import { Skyra, SkyraSlug } from '@sif/surveys';
 
 export const Kvittering = () => {
     const { text } = useAppIntl();
@@ -43,6 +44,7 @@ export const Kvittering = () => {
                 <BodyLong>
                     <AppText id="kvitteringPage.lykkeTil" />
                 </BodyLong>
+                <Skyra slug={SkyraSlug.aktivitetspenger_soknad} />
             </VStack>
         </SøknadKvitteringPage>
     );

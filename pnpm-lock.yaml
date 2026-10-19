@@ -557,6 +557,9 @@ importers:
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../../packages/core/sif-soknad-ui
+      '@sif/surveys':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-surveys
       '@sif/ung-brukerdialog-api':
         specifier: workspace:*
         version: link:../../packages/api/ung-brukerdialog-api
