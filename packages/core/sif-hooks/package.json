@@ -10,13 +10,13 @@
         "lint:tsc": "tsc --noEmit"
     },
     "dependencies": {
-        "react": "19.3.0",
+        "react": "19.3.1",
         "typescript": "6.0.3"
     },
     "devDependencies": {
+        "@sif/config": "workspace:*",
         "@sif/env": "workspace:*",
         "@sif/eslint-config": "workspace:*",
-        "@sif/config": "workspace:*",
         "eslint": "10.12.0"
     }
 }
