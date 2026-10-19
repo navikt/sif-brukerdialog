@@ -31,10 +31,10 @@
         "globals": "17.13.0",
         "intl": "1.2.5",
         "postcss": ">=8.5.28",
-        "react": "19.3.0",
-        "react-dom": "19.3.0",
+        "react": "19.3.1",
+        "react-dom": "19.3.1",
         "react-intl": "12.1.4",
         "typescript": "6.0.3",
-        "vitest": "5.0.4"
+        "vitest": "5.0.5"
     }
 }

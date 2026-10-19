@@ -14,11 +14,11 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "8.19.1",
-        "@navikt/ds-css": "8.19.1",
-        "@navikt/ds-react": "8.19.1",
-        "react": "19.3.0",
-        "react-dom": "19.3.0"
+        "@navikt/aksel-icons": "8.19.2",
+        "@navikt/ds-css": "8.19.2",
+        "@navikt/ds-react": "8.19.2",
+        "react": "19.3.1",
+        "react-dom": "19.3.1"
     },
     "devDependencies": {
         "@sif/config": "workspace:*",
