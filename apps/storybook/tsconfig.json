@@ -1,8 +1,0 @@
-{
-    "extends": "@sif/config/tsconfig-apps.json",
-    "compilerOptions": {
-        "outDir": "./lib"
-    },
-    "exclude": ["node_modules"],
-    "include": ["storybook"]
-}
