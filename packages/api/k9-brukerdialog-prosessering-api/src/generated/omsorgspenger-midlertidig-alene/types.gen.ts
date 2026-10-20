@@ -6,6 +6,10 @@ export type ClientOptions = {
 
 export type JsonNode = unknown;
 
+export type DagensDatoResponse = {
+    dato: string;
+};
+
 export type ArbeidsgivereDto = {
     frilansoppdrag?: FrilansoppdragDto[];
     organisasjoner: OrganisasjonDto[];
@@ -93,6 +97,43 @@ export type ProblemDetail = {
     title?: string;
     type?: string;
 };
+
+export type DagensDatoData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/dato/dagens';
+};
+
+export type DagensDatoErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetail;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type DagensDatoError = DagensDatoErrors[keyof DagensDatoErrors];
+
+export type DagensDatoResponses = {
+    /**
+     * OK
+     */
+    200: DagensDatoResponse;
+};
+
+export type DagensDatoResponse2 = DagensDatoResponses[keyof DagensDatoResponses];
 
 export type DeleteMellomlagringData = {
     body?: never;

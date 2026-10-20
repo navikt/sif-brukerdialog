@@ -15,6 +15,9 @@ import type {
     CreateMellomlagringData,
     CreateMellomlagringErrors,
     CreateMellomlagringResponses,
+    DagensDatoData,
+    DagensDatoErrors,
+    DagensDatoResponses,
     DeleteMellomlagringData,
     DeleteMellomlagringErrors,
     DeleteMellomlagringResponses,
@@ -55,6 +58,7 @@ import type {
 import {
     zCreateMellomlagringBody,
     zCreateMellomlagringPath,
+    zDagensDatoResponse2,
     zDeleteMellomlagringPath,
     zGetMellomlagringPath,
     zGetMellomlagringResponse,
@@ -94,6 +98,27 @@ export type Options<
      */
     meta?: keyof ClientMeta extends never ? Record<string, unknown> : ClientMeta;
 };
+
+export class DatoController {
+    public static dagensDato<ThrowOnError extends boolean = true>(
+        options?: Options<DagensDatoData, ThrowOnError>,
+    ): RequestResult<DagensDatoResponses, DagensDatoErrors, ThrowOnError> {
+        return (options?.client ?? client).get<DagensDatoResponses, DagensDatoErrors, ThrowOnError>({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: z.never().optional(),
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
+            responseValidator: async (data) => await zDagensDatoResponse2.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/dato/dagens',
+            ...options,
+        });
+    }
+}
 
 export class MellomlagringController {
     public static deleteMellomlagring<ThrowOnError extends boolean = true>(

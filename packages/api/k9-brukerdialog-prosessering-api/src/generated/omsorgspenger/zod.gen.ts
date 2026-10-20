@@ -4,6 +4,10 @@ import * as z from 'zod';
 
 export const zJsonNode = z.unknown();
 
+export const zDagensDatoResponse = z.object({
+    dato: z.string(),
+});
+
 export const zFrilansoppdragDto = z.object({
     ansattFom: z.iso.date().nullish(),
     ansattTom: z.iso.date().nullish(),
@@ -88,6 +92,11 @@ export const zProblemDetail = z.object({
     title: z.string().optional(),
     type: z.url().optional(),
 });
+
+/**
+ * OK
+ */
+export const zDagensDatoResponse2 = zDagensDatoResponse;
 
 export const zDeleteMellomlagringPath = z.object({
     ytelse: z.string(),
