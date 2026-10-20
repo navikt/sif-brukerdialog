@@ -38,7 +38,6 @@ export default defineConfig({
                         SIF_PUBLIC_USE_ANALYTICS: 'false',
                         SIF_PUBLIC_AKTIVITETSPENGER_INNSYN_URL: '#',
                         SIF_PUBLIC_SEND_BESKJED: '#',
-                        SIF_PUBLIC_SUBMIT_ENABLED: 'true',
                         // Må ligge under MSW-workerens scope, se DEMO_PUBLIC_PATH over.
                         PUBLIC_PATH: DEMO_PUBLIC_PATH,
                         K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: `${DEMO_PUBLIC_PATH}/api/brukerdialog`,
