@@ -20,7 +20,7 @@ type Props<T extends FieldValues> = {
     reverse?: boolean;
 };
 
-export function SifYesOrNoQuestion<T extends FieldValues>({ labels, reverse, useCards = true, ...rest }: Props<T>) {
+export function SifYesOrNoQuestion<T extends FieldValues>({ labels, reverse, useCards, ...rest }: Props<T>) {
     const yesLabel = labels?.yes || 'Ja';
     const noLabel = labels?.no || 'Nei';
 
