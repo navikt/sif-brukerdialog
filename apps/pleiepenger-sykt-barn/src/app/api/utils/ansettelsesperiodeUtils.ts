@@ -9,6 +9,10 @@ export type AAregOrganisasjon = {
     ansattTom?: ISODate | null;
 };
 
+export type SammenslåttAAregOrganisasjon = AAregOrganisasjon & {
+    ansettelsesperioder: Array<Pick<AAregOrganisasjon, 'ansattFom' | 'ansattTom'>>;
+};
+
 const sorterPåAnsattFom = (a: AAregOrganisasjon, b: AAregOrganisasjon): number =>
     (a.ansattFom ?? '').localeCompare(b.ansattFom ?? '');
 
@@ -48,14 +52,17 @@ const slåSammenSammenhengendePerioder = (perioder: AAregOrganisasjon[]): AAregO
  */
 export const slåSammenAnsettelsesperioder = (
     organisasjoner: AAregOrganisasjon[],
-): { organisasjoner: AAregOrganisasjon[]; harDuplikater: boolean } => {
+): { organisasjoner: SammenslåttAAregOrganisasjon[]; harDuplikater: boolean } => {
     const perioderPerOrganisasjon = Object.values(
         groupBy(organisasjoner, (organisasjon) => organisasjon.organisasjonsnummer),
     ).map(slåSammenSammenhengendePerioder);
 
     return {
-        /** Sett første periode for hver organisasjon */
-        organisasjoner: perioderPerOrganisasjon.map((perioder) => perioder[0]),
+        /** Sett første periode for hver organisasjon, og behold alle sammenslåtte perioder */
+        organisasjoner: perioderPerOrganisasjon.map((perioder) => ({
+            ...perioder[0],
+            ansettelsesperioder: perioder.map(({ ansattFom, ansattTom }) => ({ ansattFom, ansattTom })),
+        })),
         /** Har bruker flere perioder for noen organisasjoner? */
         harDuplikater: perioderPerOrganisasjon.some((perioder) => perioder.length > 1),
     };

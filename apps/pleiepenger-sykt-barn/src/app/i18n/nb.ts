@@ -59,6 +59,10 @@ export const appCommonMessages_nb = {
 
     'arbeidsperiode.avsluttet': 'Periode: {fra} - {til}',
     'arbeidsperiode.pågående': 'Periode: {fra} - pågående',
+    'arbeidsaktivitetBlockHeader.arbeidsgiver.ansettelsesperioder': 'Ansettelsesperioder',
+    'arbeidsaktivitetBlockHeader.arbeidsgiver.ansattFomTom': 'Ansatt: {fom} - {tom}.',
+    'arbeidsaktivitetBlockHeader.arbeidsgiver.ansattFom': 'Ansatt: {dato} - pågående',
+    'arbeidsaktivitetBlockHeader.arbeidsgiver.ansattTom': ' Sluttdato: {dato}.',
 
     'apiValidationError.tittel': 'Her har det skjedd en feil',
 

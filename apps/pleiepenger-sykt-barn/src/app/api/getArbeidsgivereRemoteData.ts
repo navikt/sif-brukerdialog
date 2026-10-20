@@ -36,6 +36,10 @@ const mapAAregArbeidsgiverRemoteDataToArbeidsgiver = (
         navn: a.navn || a.organisasjonsnummer,
         ansattFom: a.ansattFom ? ISODateToDate(a.ansattFom) : undefined,
         ansattTom: a.ansattTom ? ISODateToDate(a.ansattTom) : undefined,
+        ansettelsesperioder: a.ansettelsesperioder.map(({ ansattFom, ansattTom }) => ({
+            from: ansattFom ? ISODateToDate(ansattFom) : undefined,
+            to: ansattTom ? ISODateToDate(ansattTom) : undefined,
+        })),
     }));
 
     /*
