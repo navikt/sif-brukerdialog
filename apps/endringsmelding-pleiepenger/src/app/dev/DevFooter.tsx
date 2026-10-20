@@ -3,7 +3,7 @@ import './devFooter.scss';
 import { useSøknadContext } from '@app/hooks';
 import { CogIcon } from '@navikt/aksel-icons';
 import { Button, Modal, Radio, RadioGroup, VStack } from '@navikt/ds-react';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
+import { useEffectOnce } from '@sif/hooks';
 import React, { useState } from 'react';
 
 import { useMellomlagring } from '../hooks/useMellomlagring';

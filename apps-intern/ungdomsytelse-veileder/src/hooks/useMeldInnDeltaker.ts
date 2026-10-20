@@ -1,5 +1,5 @@
-import { DeltakelseInnmeldingDto } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import { ApiError } from '@sif/api';
+import { DeltakelseInnmeldingDto } from '@sif/ung-deltakelse-opplyser-api-veileder';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { meldInnDeltaker } from '../api/deltakelse/meldInnDeltaker';

@@ -1,7 +1,7 @@
 import '@navikt/ds-css';
 import './app.css';
 
-import { UngdomsytelseVeilederApp } from '@navikt/sif-app-register';
+import { UngdomsytelseVeilederApp } from '@sif/app-register';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { IntlProvider } from 'react-intl';
 

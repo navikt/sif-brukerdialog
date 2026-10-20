@@ -1,5 +1,5 @@
 import { BodyShort, Box, Tag } from '@navikt/ds-react';
-import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { OppgaveStatus } from '@sif/ung-brukerdialog-api';
 import { ReactNode } from 'react';
 
 import { OppgaveStatusIkon } from '../oppgave-status-ikon/OppgaveStatusIkon';

@@ -1,5 +1,5 @@
 {
-    "extends": "config/tsconfig-base.json",
+    "extends": "@sif/config/tsconfig-base.json",
     "include": ["packages/**/*.test.ts", "packages/**/*.test.tsx", "packages/**/*.spec.ts", "packages/**/*.spec.tsx"],
     "exclude": ["node_modules"]
 }

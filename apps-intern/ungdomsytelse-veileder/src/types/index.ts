@@ -1,4 +1,4 @@
-import { DeltakelseHistorikkDto } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { DeltakelseHistorikkDto } from '@sif/ung-deltakelse-opplyser-api-veileder';
 
 export interface DeltakelseHistorikkInnslag extends Omit<DeltakelseHistorikkDto, 'tidspunkt'> {
     tidspunkt: Date;

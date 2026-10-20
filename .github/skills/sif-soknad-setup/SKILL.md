@@ -118,7 +118,7 @@ Legg merke til: stegtitler settes **ikke** her. De hentes automatisk fra i18n vi
 ### 3. `src/app/setup/constants.ts`
 
 ```ts
-import { MellomlagringYtelse } from '@sif/api/k9-prosessering';
+import { MellomlagringYtelse } from '@sif/api/k9-brukerdialog-prosessering';
 
 export const APP_YTELSE = MellomlagringYtelse.AKTIVITETSPENGER; // ← tilpass
 export const MELLOMLAGRING_VERSJON = 1;
@@ -170,7 +170,7 @@ export const formValuesToSøknadsdata = (
 
 ```tsx
 import { createContext, useContext } from 'react';
-import { Søker } from '@sif/api/k9-prosessering';
+import { Søker } from '@sif/api/k9-brukerdialog-prosessering';
 
 export interface AppContextData {
     søker: Søker;
@@ -324,7 +324,7 @@ export const Kvittering = () => {
 
 ```tsx
 import '@navikt/ds-css';
-import { SomAppKey } from '@navikt/sif-app-register';
+import { SomAppKey } from '@sif/app-register';
 import { SøknadAppProvider } from '@sif/soknad-app';
 import { InitialDataErrorPage, LoadingPage } from '@sif/soknad-ui';
 import { BrowserRouter } from 'react-router-dom';
@@ -385,7 +385,7 @@ APM initialiseres her — utenfor React-treet — slik at telemetri er aktiv fra
 
 ```tsx
 import { initApm } from '@sif/apm';
-import { PleiepengerSyktBarnApp } from '@navikt/sif-app-register';
+import { PleiepengerSyktBarnApp } from '@sif/app-register';
 import { getMaybeEnv } from '@sif/env';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';

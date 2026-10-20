@@ -2,7 +2,6 @@ import { AppText, useAppIntl } from '@app/i18n';
 import { getLenker } from '@app/lenker';
 import { LegeerklæringSøknadsdata, Søknadsdata } from '@app/types/Soknadsdata';
 import { SøknadStepId } from '@app/types/SoknadStepId';
-import { getVedleggValidator } from '@navikt/sif-validation';
 import { UploadedFile, useSifValidate } from '@sif/rhf';
 import {
     SøknadStepForm,
@@ -13,6 +12,7 @@ import {
 } from '@sif/soknad-app';
 import { toUploadedFile, VedleggPanel } from '@sif/soknad-forms';
 import { FormLayout, SifGuidePanel } from '@sif/soknad-ui/components';
+import { getVedleggValidator } from '@sif/validation';
 import { useForm } from 'react-hook-form';
 
 import { toLegeerklæringFormValues, toSøknadsdata } from './legeerklæringStegUtils';

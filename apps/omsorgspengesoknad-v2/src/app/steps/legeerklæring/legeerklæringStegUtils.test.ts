@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
-vi.mock('@sif/api/k9-prosessering', () => ({
+vi.mock('@sif/api/k9-brukerdialog-prosessering', () => ({
     getVedleggApiUrl: (id: string) => `https://api.example.com/vedlegg/${id}`,
 }));
 

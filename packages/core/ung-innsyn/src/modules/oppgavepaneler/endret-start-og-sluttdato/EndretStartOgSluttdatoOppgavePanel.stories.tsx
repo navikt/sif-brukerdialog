@@ -1,5 +1,5 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { OppgaveStatus } from '@sif/ung-brukerdialog-api';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { OppgaverList } from '../../../components';

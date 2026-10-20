@@ -1,5 +1,5 @@
-import { Deltakelse } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
 import { handleApiError } from '@sif/api';
+import { Deltakelse } from '@sif/ung-deltakelse-opplyser-api-deltaker';
 
 import { logApiErrorFaro } from '../../apps/innsyn/utils/apiErrorLogger';
 import { DeltakelsePeriode, deltakelsePerioderSchema } from '../../types/DeltakelsePeriode';

@@ -1,4 +1,4 @@
-import { zBarnOppslag, zSøker } from '@navikt/k9-brukerdialog-prosessering-api';
+import { zBarnOppslag, zSøker } from '@sif/k9-brukerdialog-prosessering-api';
 import { z } from 'zod';
 
 export enum ScenarioType {

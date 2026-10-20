@@ -1,12 +1,12 @@
 import { FormLayout } from '@navikt/sif-common-ui';
+import { createSifFormComponents, SifForm, useSifValidate, YesOrNo } from '@sif/rhf';
+import { countryIsMemberOfEøsOrEfta, dateRangesCollide, ISODate } from '@sif/utils';
 import {
     getISODateValidator,
     getRequiredFieldValidator,
     getStringValidator,
     getYesOrNoValidator,
-} from '@navikt/sif-validation';
-import { createSifFormComponents, SifForm, useSifValidate, YesOrNo } from '@sif/rhf';
-import { countryIsMemberOfEøsOrEfta, dateRangesCollide, ISODate } from '@sif/utils';
+} from '@sif/validation';
 import { useForm } from 'react-hook-form';
 
 import { useSifSoknadFormsIntl } from '../../i18n';

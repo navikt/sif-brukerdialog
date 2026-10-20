@@ -136,3 +136,8 @@ Bruk denne indeksen for rask routing til riktig skill.
     - Når: legge til eller endre oppgavetyper, lovhenvisninger, panelkomponenter, `.preview.tsx`-filer eller Storybook-oversikter i `ung-innsyn`.
     - Triggerord: `OppgaveType`, `ParsedOppgavetype`, `parseOppgaver`, `oppgaveLovverk`, `getLovLenker`, `OppgavePanel`, `preview.tsx`, `OppgavetypeMappingUPY`, `OppgavetypeMappingAKT`, `RegelverkOgInnsynReadMore`.
     - Fil: `.github/skills/ung-innsyn-oppgaver/SKILL.md`
+
+- `explain-diff`
+    - Når: grundig, interaktiv HTML-forklaring av en diff, branch eller PR (bakgrunn, intuisjon, kode, quiz).
+    - Triggerord: `explain-diff`, `rik forklaring`, `HTML-forklaring`, `interaktiv forklaring`, `forklar PR med quiz`.
+    - Fil: `.github/skills/explain-diff/SKILL.md`

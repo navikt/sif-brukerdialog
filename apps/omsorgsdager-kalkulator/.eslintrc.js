@@ -1,5 +1,5 @@
 module.exports = {
-    ...require('config/eslint-next'),
+    ...require('@sif/config/eslint-next'),
 
     parserOptions: {
         root: true,

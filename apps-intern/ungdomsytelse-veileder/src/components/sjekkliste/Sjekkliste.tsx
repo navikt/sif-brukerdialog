@@ -12,7 +12,7 @@ import {
     ReadMore,
     VStack,
 } from '@navikt/ds-react';
-import { usePrevious } from '@navikt/sif-common-hooks';
+import { usePrevious } from '@sif/hooks';
 import { ReactNode, useEffect, useState } from 'react';
 
 import ExternalLink from '../external-link/ExternalLink';

@@ -1,0 +1,22 @@
+{
+    "name": "@sif/hooks",
+    "version": "0.3.11",
+    "private": true,
+    "type": "module",
+    "main": "src/index.ts",
+    "scripts": {
+        "lint:eslint": "eslint \"./src/**/*.{js,ts,tsx}\"",
+        "lint:fix": "eslint --quiet --fix './src/**/*.{js,ts,tsx}'",
+        "lint:tsc": "tsc --noEmit"
+    },
+    "dependencies": {
+        "react": "19.3.1",
+        "typescript": "6.0.3"
+    },
+    "devDependencies": {
+        "@sif/config": "workspace:*",
+        "@sif/env": "workspace:*",
+        "@sif/eslint-config": "workspace:*",
+        "eslint": "10.12.0"
+    }
+}

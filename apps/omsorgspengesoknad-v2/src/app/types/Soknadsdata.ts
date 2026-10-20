@@ -1,4 +1,4 @@
-import { RegistrertBarn } from '@sif/api/k9-prosessering';
+import { RegistrertBarn } from '@sif/api/k9-brukerdialog-prosessering';
 import { PersistedVedlegg } from '@sif/soknad-forms';
 
 import { BarnSammeAdresse } from './BarnSammeAdresse';

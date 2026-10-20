@@ -8,7 +8,7 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getDate1YearAgo, getDate1YearFromNow, getDateToday } from '@navikt/sif-common-utils';
-import { getListValidator } from '@navikt/sif-validation';
+import { getListValidator } from '@sif/validation';
 import { flatten } from 'flat';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';

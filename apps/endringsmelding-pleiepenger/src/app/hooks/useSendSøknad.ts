@@ -1,8 +1,8 @@
 import { useSøknadContext } from '@app/hooks';
 import { SøknadApiData } from '@app/types';
-import { EndringsmeldingPsbApp } from '@navikt/sif-app-register';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { appLogger } from '@sif/apm';
+import { EndringsmeldingPsbApp } from '@sif/app-register';
 import { AxiosError, isAxiosError } from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -17,7 +17,7 @@ import { useMellomlagring } from './useMellomlagring';
 export const useSendSøknad = () => {
     const {
         dispatch,
-        state: { sak, søknadsdata, valgteEndringer },
+        state: { sak, søknadsdata, valgteEndringer, valgteEndringerInitielt },
     } = useSøknadContext();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [sendSøknadError, setSendSøknadError] = useState<AxiosError | undefined>();
@@ -31,7 +31,11 @@ export const useSendSøknad = () => {
         setIsSubmitting(true);
         sendSøknadEndpoint
             .send(apiData)
-            .then(async () => onSøknadSendSuccess(getSøknadApiDataMetadata(apiData, søknadsdata, valgteEndringer, sak)))
+            .then(async () =>
+                onSøknadSendSuccess(
+                    getSøknadApiDataMetadata(apiData, søknadsdata, valgteEndringer, valgteEndringerInitielt, sak),
+                ),
+            )
             .catch((error) => {
                 if (isAxiosError(error)) {
                     appLogger.logApiError(error, 'Innsending feilet');

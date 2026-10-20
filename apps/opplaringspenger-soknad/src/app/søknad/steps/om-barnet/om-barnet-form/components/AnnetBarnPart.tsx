@@ -10,14 +10,14 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateToday, prettifyDate } from '@navikt/sif-common-utils';
+import { isDevMode } from '@sif/env';
 import {
     getDateValidator,
     getFødselsnummerValidator,
     getRequiredFieldValidator,
     getStringValidator,
     ValidateDateError,
-} from '@navikt/sif-validation';
-import { isDevMode } from '@sif/env';
+} from '@sif/validation';
 import { useFormikContext } from 'formik';
 
 import { AppText } from '../../../../../i18n';

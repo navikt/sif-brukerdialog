@@ -1,5 +1,5 @@
 {
-    "extends": "config/tsconfig-apps.json",
+    "extends": "@sif/config/tsconfig-apps.json",
     "compilerOptions": {
         "lib": ["DOM", "ESNext"],
         "outDir": "build/dist",

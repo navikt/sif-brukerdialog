@@ -4,7 +4,7 @@ import {
     getVedleggIdFromResponseHeaderLocation,
     lagreVedlegg,
     slettVedlegg,
-} from '@sif/api/k9-prosessering';
+} from '@sif/api/k9-brukerdialog-prosessering';
 import { SifFileUpload, UploadedFile, useFileUploader } from '@sif/rhf';
 import { PictureScanningGuide } from '@sif/soknad-ui';
 import { useCallback, useRef } from 'react';

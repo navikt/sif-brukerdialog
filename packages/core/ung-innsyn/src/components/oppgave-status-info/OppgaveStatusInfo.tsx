@@ -1,6 +1,6 @@
 import { BodyLong, Box } from '@navikt/ds-react';
-import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { SifInfoCard } from '@sif/soknad-ui';
+import { OppgaveStatus } from '@sif/ung-brukerdialog-api';
 
 import { UngInnsynText } from '../../i18n';
 

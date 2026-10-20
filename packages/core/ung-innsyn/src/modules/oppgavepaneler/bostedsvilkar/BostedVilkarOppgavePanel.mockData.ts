@@ -1,11 +1,11 @@
+import { BostedVilkårOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import {
     BostedsavklaringKildeType,
     BostedsvilkårIkkeOppfyltÅrsak,
     OppgaveStatus,
     OppgaveType,
     OppgaveYtelsetype,
-} from '@navikt/ung-brukerdialog-api';
-import { BostedVilkårOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
+} from '@sif/ung-brukerdialog-api';
 import { dateFormatter, dateToISODate, ISODate } from '@sif/utils';
 import dayjs from 'dayjs';
 

@@ -1,6 +1,6 @@
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { VelgBarn_AnnetBarnValue, VelgBarnFormPart } from '@navikt/sif-common-forms-ds';
-import { getRequiredFieldValidator } from '@navikt/sif-validation';
+import { getRequiredFieldValidator } from '@sif/validation';
 import { useFormikContext } from 'formik';
 
 import { AppText, useAppIntl } from '../../i18n';

@@ -1,6 +1,6 @@
 import { List } from '@navikt/ds-react';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { RegistrertBarn } from '@sif/api/k9-prosessering';
+import { RegistrertBarn } from '@sif/api/k9-brukerdialog-prosessering';
 
 interface Props {
     barn: RegistrertBarn[];

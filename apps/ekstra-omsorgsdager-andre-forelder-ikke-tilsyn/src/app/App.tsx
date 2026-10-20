@@ -2,13 +2,13 @@ import '@navikt/ds-css';
 import './app.css';
 
 import { Theme } from '@navikt/ds-react';
-import { OmsorgsdagerAnnenForelderIkkeTilsynApp } from '@navikt/sif-app-register';
 import {
     ensureBaseNameForReactRouter,
     NoAccessPage,
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import { OmsorgsdagerAnnenForelderIkkeTilsynApp } from '@sif/app-register';
 import { isProd } from '@sif/env';
 import { Navigate, Route } from 'react-router-dom';
 

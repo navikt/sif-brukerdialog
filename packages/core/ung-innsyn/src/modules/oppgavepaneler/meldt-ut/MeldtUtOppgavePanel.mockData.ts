@@ -1,5 +1,5 @@
-import { OppgaveStatus, OppgaveType, OppgaveYtelsetype } from '@navikt/ung-brukerdialog-api';
 import { MeldtUtOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
+import { OppgaveStatus, OppgaveType, OppgaveYtelsetype } from '@sif/ung-brukerdialog-api';
 import { dateToISODate, ISODate } from '@sif/utils';
 import dayjs from 'dayjs';
 

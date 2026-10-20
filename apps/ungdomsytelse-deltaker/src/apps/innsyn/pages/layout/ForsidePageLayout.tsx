@@ -1,6 +1,6 @@
 import { Box, VStack } from '@navikt/ds-react';
-import { useDocumentTitle } from '@navikt/sif-common-hooks';
 import { useAppIntl } from '@shared/i18n';
+import { useDocumentTitle } from '@sif/hooks';
 import { InnsynPageBoundary } from '@sif/ung-innsyn';
 import React, { useEffect } from 'react';
 

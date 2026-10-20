@@ -8,7 +8,7 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getDateToday } from '@navikt/sif-common-utils';
-import { getYesOrNoValidator, ValidateYesOrNoError } from '@navikt/sif-validation';
+import { getYesOrNoValidator, ValidateYesOrNoError } from '@sif/validation';
 
 import BostedUtlandListAndDialog from '../../bosted-utland/BostedUtlandListAndDialog';
 import type { UtenlandsoppholdEnkel } from '../../utenlandsopphold/types';

@@ -3,7 +3,7 @@ import { restrictLegacyImports } from '@sif/eslint-config/legacy-imports';
 
 export default [
     ...commonConfig,
-    restrictLegacyImports(['@navikt/sif-common-hooks', '@navikt/sif-common-ui']),
+    restrictLegacyImports(['@sif/hooks', '@navikt/sif-common-ui']),
     {
         languageOptions: {
             parserOptions: {

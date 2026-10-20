@@ -1,6 +1,6 @@
 import { DateRange, dateRangeUtils, getDateToday, ISODateToDate } from '@navikt/sif-common-utils';
-import { DeltakelseHistorikkDto, Endringstype } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import { getRequiredEnv } from '@sif/env';
+import { DeltakelseHistorikkDto, Endringstype } from '@sif/ung-deltakelse-opplyser-api-veileder';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 

@@ -4,7 +4,7 @@ import {
     ISOStringToDate,
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
-import { getDateRangeValidator, ValidateDateError, ValidateDateRangeError } from '@navikt/sif-validation';
+import { getDateRangeValidator, ValidateDateError, ValidateDateRangeError } from '@sif/validation';
 import { useIntl } from 'react-intl';
 
 import { handleDateRangeValidationError, mapFomTomToDateRange } from '../../utils';

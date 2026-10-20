@@ -1,6 +1,6 @@
-import { PleiepengerLivetsSluttApp } from '@navikt/sif-app-register';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { getInnsendingService, InnsendingType, Søker } from '@navikt/sif-common-api';
+import { PleiepengerLivetsSluttApp } from '@sif/app-register';
 import { AxiosError } from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';

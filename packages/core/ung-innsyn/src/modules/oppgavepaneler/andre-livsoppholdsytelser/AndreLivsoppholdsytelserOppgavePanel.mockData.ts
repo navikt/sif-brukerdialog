@@ -1,11 +1,11 @@
+import { AndreLivsoppholdsytelserOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
 import {
     AndreLivsoppholdsytelserAvklaringKildeType,
     AndreLivsoppholdsytelserIkkeOppfyltÅrsak,
     OppgaveStatus,
     OppgaveType,
     OppgaveYtelsetype,
-} from '@navikt/ung-brukerdialog-api';
-import { AndreLivsoppholdsytelserOppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
+} from '@sif/ung-brukerdialog-api';
 import { dateFormatter, dateToISODate, ISODate } from '@sif/utils';
 import dayjs from 'dayjs';
 

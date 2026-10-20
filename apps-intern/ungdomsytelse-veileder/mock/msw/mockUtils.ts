@@ -8,7 +8,7 @@ import {
     DeltakerPersonalia,
     Endringstype,
     Revisjonstype,
-} from '@navikt/ung-deltakelse-opplyser-api-veileder';
+} from '@sif/ung-deltakelse-opplyser-api-veileder';
 import dayjs from 'dayjs';
 import { v4 } from 'uuid';
 import { addUkedagerToDate } from '../../src/utils/deltakelseUtils';

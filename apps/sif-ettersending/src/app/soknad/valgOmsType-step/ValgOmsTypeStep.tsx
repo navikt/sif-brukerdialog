@@ -1,5 +1,5 @@
 import { FormikRadioProp } from '@navikt/sif-common-formik-ds';
-import { getRequiredFieldValidator } from '@navikt/sif-validation';
+import { getRequiredFieldValidator } from '@sif/validation';
 
 import { useAppIntl } from '../../i18n';
 import { SoknadFormField } from '../../types/SoknadFormData';

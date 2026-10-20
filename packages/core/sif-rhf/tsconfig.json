@@ -1,5 +1,5 @@
 {
-    "extends": "config/tsconfig-packages.json",
+    "extends": "@sif/config/tsconfig-packages.json",
     "compilerOptions": {
         "rootDir": "./src",
         "types": ["vitest/globals", "node"]

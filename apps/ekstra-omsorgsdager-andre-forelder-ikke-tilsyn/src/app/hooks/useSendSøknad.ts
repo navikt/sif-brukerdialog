@@ -1,5 +1,5 @@
-import { OmsorgsdagerAnnenForelderIkkeTilsynApp } from '@navikt/sif-app-register';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
+import { OmsorgsdagerAnnenForelderIkkeTilsynApp } from '@sif/app-register';
 import { AxiosError } from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';

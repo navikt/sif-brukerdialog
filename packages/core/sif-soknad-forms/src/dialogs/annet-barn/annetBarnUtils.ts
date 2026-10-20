@@ -1,5 +1,5 @@
-import { hasValue } from '@navikt/sif-validation';
 import { datePickerUtils } from '@sif/rhf';
+import { hasValue } from '@sif/validation';
 
 import { AnnetBarn, AnnetBarnFormValues } from './index';
 

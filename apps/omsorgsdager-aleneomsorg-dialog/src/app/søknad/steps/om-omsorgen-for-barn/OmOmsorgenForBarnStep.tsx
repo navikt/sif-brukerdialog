@@ -14,7 +14,7 @@ import { AnnetBarn } from '@navikt/sif-common-forms-ds/src/forms/annet-barn';
 import AnnetBarnListAndDialog from '@navikt/sif-common-forms-ds/src/forms/annet-barn/AnnetBarnListAndDialog';
 import { RegistrerteBarnListeHeading } from '@navikt/sif-common-ui';
 import { getDateToday } from '@navikt/sif-common-utils';
-import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { getListValidator, getYesOrNoValidator } from '@sif/validation';
 import { useIntl } from 'react-intl';
 
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';

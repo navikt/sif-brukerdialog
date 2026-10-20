@@ -2,10 +2,10 @@ import { ErrorSummary, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import FormBlock from '@navikt/sif-common-core-ds/src/atoms/form-block/FormBlock';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
-import { useEffectOnce, usePrevious } from '@navikt/sif-common-hooks';
 import { ErrorPage, getInvalidParametersFromAxiosError } from '@navikt/sif-common-soknad-ds';
-import { getCheckedValidator } from '@navikt/sif-validation';
+import { useEffectOnce, usePrevious } from '@sif/hooks';
 import { useSkyraReloader } from '@sif/surveys';
+import { getCheckedValidator } from '@sif/validation';
 import { useEffect, useRef } from 'react';
 
 import ResetMellomagringButton from '../../../components/reset-mellomlagring-button/ResetMellomlagringButton';

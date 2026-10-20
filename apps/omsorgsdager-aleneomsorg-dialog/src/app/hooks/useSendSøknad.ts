@@ -1,5 +1,5 @@
-import { OmsorgsdagerAleneomsorgApp } from '@navikt/sif-app-register';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
+import { OmsorgsdagerAleneomsorgApp } from '@sif/app-register';
 import { AxiosError } from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';

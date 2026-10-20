@@ -6,12 +6,12 @@ import { SøknadStepId } from '@app/types/SoknadStepId';
 import { søknadsdataToSøknadDTO } from '@app/utils/soknadsdataToSoknadDTO';
 import { InformationSquareIcon } from '@navikt/aksel-icons';
 import { InfoCard } from '@navikt/ds-react';
-import { getCheckedValidator } from '@navikt/sif-validation';
 import { isProd } from '@sif/env';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { SøknadStep, SøknadStepForm, useSøknadsdata } from '@sif/soknad-app';
 import { FormLayout } from '@sif/soknad-ui';
 import { dateToISODate, ISODate } from '@sif/utils';
+import { getCheckedValidator } from '@sif/validation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 

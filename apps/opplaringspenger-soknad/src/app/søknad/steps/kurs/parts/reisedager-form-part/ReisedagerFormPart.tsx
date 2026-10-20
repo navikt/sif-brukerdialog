@@ -5,7 +5,7 @@ import { Enkeltdato } from '@navikt/sif-common-forms-ds/src';
 import EnkeltdatoListAndDialog from '@navikt/sif-common-forms-ds/src/forms/enkeltdatoer/EnkeltdatoListAndDialog';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { capsFirstCharacter, dateFormatter, DateRange } from '@navikt/sif-common-utils';
-import { getStringValidator } from '@navikt/sif-validation';
+import { getStringValidator } from '@sif/validation';
 import { useFormikContext } from 'formik';
 
 import { AppText, useAppIntl } from '../../../../../i18n';

@@ -1,5 +1,5 @@
 {
-    "name": "@navikt/k9-sak-innsyn-k9-sak-api",
+    "name": "@sif/k9-sak-innsyn-k9-sak-api",
     "version": "0.2.16",
     "private": true,
     "repository": {
@@ -19,18 +19,21 @@
         "lint:tsc": "tsc --noEmit",
         "openapi-ts": "openapi-ts"
     },
+    "dependencies": {
+        "@sif/api-client": "workspace:*"
+    },
     "devDependencies": {
         "@hey-api/openapi-ts": "0.98.2",
         "@sif/codegen": "workspace:*",
+        "@sif/config": "workspace:*",
         "@sif/eslint-config": "workspace:*",
         "axios": "1.20.0",
-        "config": "workspace:*",
         "eslint": "10.12.0",
         "postcss": ">=8.5.28",
-        "prettier": "3.9.9",
+        "prettier": "3.9.10",
         "typescript": "6.0.3",
-        "vitest": "5.0.3",
-        "zod": "4.6.5"
+        "vitest": "5.0.5",
+        "zod": "4.6.7"
     },
     "peerDependencies": {
         "axios": "^1.19.0",

@@ -1,6 +1,6 @@
-import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
 import { DeltakelsePeriode } from '@shared/types/DeltakelsePeriode';
 import { Oppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
+import { OppgaveStatus } from '@sif/ung-brukerdialog-api';
 import { getDateToday } from '@sif/utils';
 import dayjs from 'dayjs';
 

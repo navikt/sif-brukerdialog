@@ -1,5 +1,5 @@
-import { innsyn } from '@navikt/k9-sak-innsyn-api';
 import { ISODateToDate } from '@navikt/sif-common-utils';
+import { innsyn } from '@sif/k9-sak-innsyn-api';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import z from 'zod';

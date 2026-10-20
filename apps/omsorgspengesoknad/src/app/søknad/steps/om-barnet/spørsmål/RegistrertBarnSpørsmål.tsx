@@ -2,7 +2,7 @@ import { Box, Heading, Tag, VStack } from '@navikt/ds-react';
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { VelgBarnEkstrainfo, VelgBarnFormPart } from '@navikt/sif-common-forms-ds';
 import { dateFormatter, ISODateToDate } from '@navikt/sif-common-utils';
-import { getRequiredFieldValidator } from '@navikt/sif-validation';
+import { getRequiredFieldValidator } from '@sif/validation';
 
 import { InnvilgedeVedtak } from '../../../../hooks/useInnvilgedeVedtakForRegistrerteBarn';
 import { useAppIntl } from '../../../../i18n';

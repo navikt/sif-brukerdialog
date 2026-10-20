@@ -1,4 +1,4 @@
-import { innsyn } from '@navikt/k9-sak-innsyn-api';
+import { innsyn } from '@sif/k9-sak-innsyn-api';
 import z from 'zod';
 
 /** Pleietrengende uten aktørId */

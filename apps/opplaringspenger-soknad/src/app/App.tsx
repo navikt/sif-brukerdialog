@@ -1,13 +1,13 @@
 import './app.css';
 
 import { Theme } from '@navikt/ds-react';
-import { OpplæringspengerApp } from '@navikt/sif-app-register';
 import {
     ensureBaseNameForReactRouter,
     NoAccessPage,
     SoknadApplication,
     SoknadApplicationCommonRoutes,
 } from '@navikt/sif-common-soknad-ds';
+import { OpplæringspengerApp } from '@sif/app-register';
 import { isProd } from '@sif/env';
 import { DemoInfoAlert, DemoWatermark } from '@sif/soknad-ui';
 import { UxSignalsLoaderProvider } from '@sif/surveys';

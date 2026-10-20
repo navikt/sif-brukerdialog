@@ -1,6 +1,6 @@
-import { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { commonQueries } from '@shared/api/queries/commonQueries';
 import { ApiError, sifApiQueryKeys } from '@sif/api';
+import { ungdomsytelse } from '@sif/k9-brukerdialog-prosessering-api';
 import { sendSøknad } from '@søknad/api/søknad/sendSøknad';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 

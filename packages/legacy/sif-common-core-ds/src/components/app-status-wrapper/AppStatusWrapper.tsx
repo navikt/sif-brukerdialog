@@ -1,5 +1,5 @@
-import { AppStatusNotice, NoticeRenderers, SanityConfig, Status, useAppStatus } from '@navikt/appstatus-react-ds';
-import { sanityConfigIsValid } from '@navikt/appstatus-react-ds/src/utils';
+import { AppStatusNotice, NoticeRenderers, SanityConfig, Status, useAppStatus } from '@sif/appstatus-react-ds';
+import { sanityConfigIsValid } from '@sif/appstatus-react-ds/src/utils';
 import React from 'react';
 
 import LoadingSpinner from '../../atoms/loading-spinner/LoadingSpinner';

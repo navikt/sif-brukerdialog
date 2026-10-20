@@ -1,5 +1,5 @@
-import { RegistrertBarn, Søker } from '@sif/api/k9-prosessering';
-import { UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
+import { RegistrertBarn, Søker } from '@sif/api/k9-brukerdialog-prosessering';
+import { UtvidetKontonummerInfo } from '@sif/api/ung-deltakelse-opplyser-deltaker';
 import { createContext, useContext } from 'react';
 
 export interface AppContextData {

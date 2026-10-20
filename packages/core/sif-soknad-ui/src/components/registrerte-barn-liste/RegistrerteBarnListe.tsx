@@ -1,6 +1,6 @@
 import { InformationSquareIcon } from '@navikt/aksel-icons';
 import { Box, Heading, HeadingProps, HelpText, HStack, InfoCard, VStack } from '@navikt/ds-react';
-import { RegistrertBarn } from '@sif/api/k9-prosessering';
+import { RegistrertBarn } from '@sif/api/k9-brukerdialog-prosessering';
 import { dateFormatter, dateToISODate, formatName } from '@sif/utils';
 import { ReactNode } from 'react';
 

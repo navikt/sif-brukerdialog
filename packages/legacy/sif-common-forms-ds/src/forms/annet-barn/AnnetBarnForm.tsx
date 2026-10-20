@@ -1,6 +1,7 @@
 import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { prettifyDate } from '@navikt/sif-common-utils';
+import { isDevMode } from '@sif/env';
 import {
     getDateValidator,
     getFødselsnummerValidator,
@@ -10,8 +11,7 @@ import {
     ValidateFødselsnummerError,
     ValidateRequiredFieldError,
     ValidateStringError,
-} from '@navikt/sif-validation';
-import { isDevMode } from '@sif/env';
+} from '@sif/validation';
 import { useIntl } from 'react-intl';
 
 import { AnnetBarnMessageKeys, useAnnetBarnIntl } from './';

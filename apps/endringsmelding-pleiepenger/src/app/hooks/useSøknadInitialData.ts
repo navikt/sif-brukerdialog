@@ -1,7 +1,7 @@
 import { RequestStatus, Sak, SøknadContextState, SøknadInitialDataState, TimerEllerProsent } from '@app/types';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { DateRange } from '@navikt/sif-common-utils';
 import { appLogger } from '@sif/apm';
+import { useEffectOnce } from '@sif/hooks';
 import { useState } from 'react';
 
 import { fetchInitialData, InitialData, isSøknadInitialDataErrorState } from '../api/initialData';
@@ -12,9 +12,20 @@ import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
 
 export type SøknadInitialData = Omit<SøknadContextState, 'sak'> & { sak: Sak | undefined };
 
+const standardValgteEndringer = {
+    arbeidstid: false,
+    lovbestemtFerie: false,
+    tilsynsordning: false,
+};
+
 const defaultSøknadState: Partial<SøknadContextState> = {
     søknadRoute: SøknadRoutes.VELKOMMEN,
 };
+
+export const getValgteEndringerInitielt = (lagretSøknadState: InitialData['lagretSøknadState']) =>
+    lagretSøknadState?.valgteEndringerInitielt ??
+    lagretSøknadState?.valgteEndringer ??
+    standardValgteEndringer;
 
 const prepInitialData = (loadedData: InitialData, tillattEndringsperiode: DateRange): SøknadInitialData => {
     const { arbeidsgivere, lagretSøknadState, k9saker, søker, antallSakerFørEndringsperiode } = loadedData;
@@ -45,11 +56,7 @@ const prepInitialData = (loadedData: InitialData, tillattEndringsperiode: DateRa
         valgteEndringer:
             sak && lagretSøknadState
                 ? lagretSøknadState.valgteEndringer
-                : {
-                      arbeidstid: false,
-                      lovbestemtFerie: false,
-                      tilsynsordning: false,
-                  },
+                : standardValgteEndringer,
         søknadsdata: {} as any,
         søknadSteps: [],
         antallSakerFørEndringsperiode,
@@ -57,6 +64,7 @@ const prepInitialData = (loadedData: InitialData, tillattEndringsperiode: DateRa
             timerEllerProsent: TimerEllerProsent.PROSENT,
         },
         ...(lagretSøknadState ? lagretSøknadState : defaultSøknadState),
+        valgteEndringerInitielt: getValgteEndringerInitielt(sak ? lagretSøknadState : undefined),
     };
 };
 

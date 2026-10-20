@@ -111,15 +111,15 @@ Skriv ned kartleggingen som kommentarer øverst i `<Prefix>Form.tsx` eller som l
 
 ### Steg 1c — API-typer fra k9-brukerdialog-prosessering-api
 
-Pakken `@navikt/k9-brukerdialog-prosessering-api` re-eksporterer typer fra mange ytelser. Bruk **alltid** ytelse-spesifikk subpath — ikke flat import fra rot.
+Pakken `@sif/k9-brukerdialog-prosessering-api` re-eksporterer typer fra mange ytelser. Bruk **alltid** ytelse-spesifikk subpath — ikke flat import fra rot.
 
 ```ts
 // ✅ Riktig — omsorgspenger-spesifikk Barn og søknadstype
-import { omsorgspenger } from '@navikt/k9-brukerdialog-prosessering-api';
+import { omsorgspenger } from '@sif/k9-brukerdialog-prosessering-api';
 export type SøknadApiData = omsorgspenger.OmsorgspengerKroniskSyktBarnSøknad;
 
 // ❌ Feil — henter fra legacy client/types.gen.ts som har andre (feil) typer
-import { OmsorgspengerKroniskSyktBarnSøknad } from '@navikt/k9-brukerdialog-prosessering-api';
+import { OmsorgspengerKroniskSyktBarnSøknad } from '@sif/k9-brukerdialog-prosessering-api';
 ```
 
 Tilgjengelige subpaths: `omsorgspenger`, `aktivitetspenger`, `ungdomsytelse`, `ettersendelse`, `omsorgspenger-aleneomsorg`, o.l. — se `src/index.ts` i pakken.
@@ -200,7 +200,7 @@ export const <prefix>StegMessages_nn: Record<keyof typeof <prefix>StegMessages_n
 import { useAppIntl } from '@app/i18n';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { <Prefix>Søknadsdata } from '@app/types/Soknadsdata';
-import { getYesOrNoValidator } from '@navikt/sif-validation';
+import { getYesOrNoValidator } from '@sif/validation';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { SøknadStep, SøknadStepForm, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { useForm } from 'react-hook-form';

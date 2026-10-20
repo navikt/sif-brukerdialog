@@ -19,7 +19,7 @@ FROM base AS prune
 WORKDIR /app
 COPY . .
 # Prune med app og server
-RUN turbo prune ${SCOPE} @navikt/server-ungdomsytelse-veileder --docker
+RUN turbo prune ${SCOPE} @sif/server-ungdomsytelse-veileder --docker
 
 #########################################
 # INSTALLER - Installer pakker og kopier kildekode

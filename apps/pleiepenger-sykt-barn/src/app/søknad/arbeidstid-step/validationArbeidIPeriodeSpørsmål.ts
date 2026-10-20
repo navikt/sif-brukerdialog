@@ -1,6 +1,6 @@
 import { DateRange } from '@navikt/sif-common-formik-ds';
 import { dateRangeUtils, decimalDurationToDuration } from '@navikt/sif-common-utils';
-import { getNumberValidator, getRequiredFieldValidator, ValidateNumberError } from '@navikt/sif-validation';
+import { getNumberValidator, getRequiredFieldValidator, ValidateNumberError } from '@sif/validation';
 
 import { AppIntlShape } from '../../i18n';
 import { ArbeidIPeriodeIntlValues } from '../../local-sif-common-pleiepenger';

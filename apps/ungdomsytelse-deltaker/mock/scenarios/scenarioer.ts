@@ -1,5 +1,5 @@
-import { BrukerdialogOppgaveDto } from '@navikt/ung-brukerdialog-api';
-import { type DeltakelseDto, DeltakelseStatus } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { BrukerdialogOppgaveDto } from '@sif/ung-brukerdialog-api';
+import { type DeltakelseDto, DeltakelseStatus } from '@sif/ung-deltakelse-opplyser-api-deltaker';
 import { ISODate } from '@sif/utils';
 import dayjs from 'dayjs';
 

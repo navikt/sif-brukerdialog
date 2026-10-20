@@ -147,7 +147,7 @@ import { createSifFormComponents, SifForm, useSifValidate, YesOrNo } from '@sif/
 import { useForm } from 'react-hook-form';
 ```
 
-Validatorer fra `@navikt/sif-validation` beholdes uendret.
+Validatorer fra `@sif/validation` beholdes uendret.
 
 ## Komponenterstatninger
 
@@ -506,7 +506,7 @@ i18n-nøkler for cross-field-feilen bruker gruppens navn som felt: `scope.valida
 - [ ] `AriaLiveRegion` brukes kun rundt dynamiske meldinger (`SifInfoCard`, `InlineMessage`, `LocalAlert`)
 - [ ] Betingede felter som skjules får `clearErrors` i `useEffect`
 - [ ] `useSifValidate` brukes når key-strukturen følger standardmønsteret, med `values` ved behov
-- [ ] i18n-nøkler bruker eksakte feilkoder fra `@navikt/sif-validation` (sjekk `enum Validate*Error`)
+- [ ] i18n-nøkler bruker eksakte feilkoder fra `@sif/validation` (sjekk `enum Validate*Error`)
 - [ ] Feltnavnene (strengverdiene) er uendret, og `FormFields`-enum er fjernet i v2-apper
 - [ ] `@sif/rhf: workspace:*` finnes i `package.json`
 - [ ] `DateRange`-importer er oppdatert (hvis aktuelt)

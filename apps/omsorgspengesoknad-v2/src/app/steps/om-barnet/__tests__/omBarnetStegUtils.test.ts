@@ -2,8 +2,8 @@
 import { BarnSammeAdresse } from '@app/types/BarnSammeAdresse';
 import { SøkersRelasjonTilBarnet } from '@app/types/SøkersRelasjonTilBarnet';
 import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
-import { RegistrertBarn } from '@sif/api/k9-prosessering';
-import { InnvilgedeVedtak } from '@sif/api/k9-sak-innsyn-api';
+import { RegistrertBarn } from '@sif/api/k9-brukerdialog-prosessering';
+import { InnvilgedeVedtak } from '@sif/api/k9-sak-innsyn';
 import { YesOrNo } from '@sif/rhf';
 import { getYearFromISODate, isISODate, ISODate } from '@sif/utils';
 import { afterAll, afterEach, describe, expect, it, test, vi } from 'vitest';

@@ -1,4 +1,4 @@
-import { usePrevious } from '@navikt/sif-common-hooks';
+import { usePrevious } from '@sif/hooks';
 import { useEffect, useRef, useState } from 'react';
 
 import { SanityConfig, SanityError, Status, TeamStatus } from '../types';

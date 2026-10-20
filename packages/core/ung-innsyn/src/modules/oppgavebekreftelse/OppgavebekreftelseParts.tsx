@@ -1,8 +1,8 @@
 import { Box, FormSummary, Heading, VStack } from '@navikt/ds-react';
-import { usePrevious } from '@navikt/sif-common-hooks';
 import { TextareaSvar } from '@navikt/sif-common-ui';
-import { OppgaveResponsDto, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { usePrevious } from '@sif/hooks';
 import { SifGuidePanel, SifInfoCard } from '@sif/soknad-ui';
+import { OppgaveResponsDto, OppgaveStatus } from '@sif/ung-brukerdialog-api';
 import { ReactNode, useEffect, useRef } from 'react';
 
 import { ForsideLenkeButton, OppgaveStatusInfo } from '../../components';

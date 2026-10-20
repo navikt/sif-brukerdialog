@@ -1,4 +1,4 @@
-import { getRequiredFieldValidator } from '@navikt/sif-validation';
+import { getRequiredFieldValidator } from '@sif/validation';
 
 import { useAppIntl } from '../../../../i18n';
 import { EnkeltdagEllerPeriode, KursFormComponents, KursFormFields } from '../KursStepForm';

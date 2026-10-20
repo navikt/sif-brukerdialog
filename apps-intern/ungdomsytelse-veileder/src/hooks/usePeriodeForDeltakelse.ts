@@ -1,6 +1,6 @@
 import { ISODate } from '@navikt/sif-common-utils';
-import { Avslutningsårsak } from '@navikt/ung-deltakelse-opplyser-api-veileder';
 import { ApiError } from '@sif/api';
+import { Avslutningsårsak } from '@sif/ung-deltakelse-opplyser-api-veileder';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { endreSluttdatoForDeltakelse } from '../api/deltakelse/endreSluttdatoForDeltakelse';

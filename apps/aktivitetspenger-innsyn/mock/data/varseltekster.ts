@@ -1,4 +1,4 @@
-import { BostedsvilkårIkkeOppfyltÅrsak } from '@navikt/ung-brukerdialog-api';
+import { BostedsvilkårIkkeOppfyltÅrsak } from '@sif/ung-brukerdialog-api';
 import { dateFormatter, ISODate } from '@sif/utils';
 
 /** Bosted opphør */

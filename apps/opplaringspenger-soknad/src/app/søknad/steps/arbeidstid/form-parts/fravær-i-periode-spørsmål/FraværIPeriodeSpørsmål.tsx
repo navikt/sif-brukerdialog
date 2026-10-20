@@ -1,6 +1,5 @@
 import { Alert, Box, Heading, VStack } from '@navikt/ds-react';
 import { DateRange, getTypedFormComponents, ValidationError } from '@navikt/sif-common-formik-ds';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { DurationWeekdaysInput, FormLayout } from '@navikt/sif-common-ui';
 import {
     capsFirstCharacter,
@@ -10,7 +9,8 @@ import {
     isDateInDates,
     summarizeDateDurationMap,
 } from '@navikt/sif-common-utils';
-import { getTimeValidator } from '@navikt/sif-validation';
+import { useEffectOnce } from '@sif/hooks';
+import { getTimeValidator } from '@sif/validation';
 import dayjs from 'dayjs';
 import { useFormikContext } from 'formik';
 import { useEffect, useState } from 'react';

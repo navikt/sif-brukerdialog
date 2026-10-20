@@ -1,11 +1,11 @@
 import { Alert, BodyLong, Heading, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import { YesOrNo } from '@navikt/sif-common-core-ds/src';
 import { FormLayout, RegistrerteBarnListeHeading } from '@navikt/sif-common-ui';
-import { getYesOrNoValidator } from '@navikt/sif-validation';
 import AriaLiveRegion from '@shared/components/aria-live-region/AriaLiveRegion';
 import ExternalLink from '@shared/components/external-link/ExternalLink';
 import { AppText, useAppIntl } from '@shared/i18n';
 import getLenker from '@shared/utils/lenker';
+import { getYesOrNoValidator } from '@sif/validation';
 import SøknadSteg from '@søknad/components/søknad-steg/SøknadSteg';
 import SkjemaFooter from '@søknad/components/steg-skjema/SkjemaFooter';
 import { useSøknadContext } from '@søknad/hooks/context/useSøknadContext';

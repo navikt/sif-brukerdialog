@@ -11,7 +11,7 @@ import { fraværDagToFraværDateRange, fraværPeriodeToDateRange } from '@navikt
 import FraværDagerListAndDialog from '@navikt/sif-common-forms-ds/src/forms/fravær/FraværDagerListAndDialog';
 import FraværPerioderListAndDialog from '@navikt/sif-common-forms-ds/src/forms/fravær/FraværPerioderListAndDialog';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { getYesOrNoValidator, ValidateYesOrNoError } from '@navikt/sif-validation';
+import { getYesOrNoValidator, ValidateYesOrNoError } from '@sif/validation';
 
 import { AppText, useAppIntl } from '../../../../i18n';
 import { Fravær, FraværFormFields } from '../../../../types/FraværTypes';

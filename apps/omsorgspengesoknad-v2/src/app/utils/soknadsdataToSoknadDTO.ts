@@ -1,4 +1,4 @@
-import { Søker } from '@sif/api/k9-prosessering';
+import { Søker } from '@sif/api/k9-brukerdialog-prosessering';
 import { dateToISODate } from '@sif/utils';
 
 import { BarnSammeAdresse } from '../types/BarnSammeAdresse';

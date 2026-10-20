@@ -1,4 +1,4 @@
-import { Arbeidsgivere } from '../../types/Arbeidsgivere';
+import { Arbeidsgivere } from '../../k9-brukerdialog-prosessering/arbeidsgivere/Arbeidsgivere';
 import { arbeidsgivansenAS } from '../entiteter/organisasjoner';
 
 export const mockArbeidsgivere: Arbeidsgivere = {

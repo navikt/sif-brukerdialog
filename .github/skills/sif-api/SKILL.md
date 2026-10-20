@@ -81,27 +81,29 @@ Ved verifisering av API-ruter (for eksempel ved MSW-oppsett):
 
 ## Tilgjengelige hooks
 
-### `@sif/api/k9-prosessering` (k9-brukerdialog-prosessering-api)
+### `@sif/api/k9-brukerdialog-prosessering` (k9-brukerdialog-prosessering-api)
 
-| Hook                                                                   | Returnerer                                  | Typisk caching (per dagens impl.)  |
-| ---------------------------------------------------------------------- | ------------------------------------------- | ---------------------------------- |
-| `useSøker(enabled?)`                                                   | `Søker`                                     | staleTime: Infinity                |
-| `useRegistrerteBarn(enabled?)`                                         | `RegistrertBarn[]`                          | staleTime: Infinity                |
-| `useArbeidsgivere(enabled?)`                                           | Arbeidsgivere                               | —                                  |
-| `useValiderFritekst(enabled?)`                                         | Valideringsresultat                         | —                                  |
-| `useLagreVedlegg()`                                                    | Mutation for opplasting                     | Invaliderer vedlegg-cache          |
-| `useSlettVedlegg()`                                                    | Mutation for sletting                       | Fjerner fra cache                  |
-| `useRapporterInntekt()`                                                | Mutation for inntektsrapportering           | —                                  |
-| `useSendOppgavebekreftelse()`                                          | Mutation for oppgavebekreftelse             | —                                  |
+| Hook                                             | Returnerer                         | Typisk caching (per dagens impl.) |
+| ------------------------------------------------ | ---------------------------------- | --------------------------------- |
+| `useSøker(enabled?)`                             | `Søker`                            | staleTime: Infinity               |
+| `useRegistrerteBarn(enabled?)`                   | `RegistrertBarn[]`                 | staleTime: Infinity               |
+| `useArbeidsgivere(fraOgMed, tilOgMed, options?)` | `Arbeidsgivere`                    | staleTime: Infinity               |
+| `useValiderFritekst(fritekst?)`                  | `{ isPending, invalidParameters }` | Ingen retry eller refetch         |
+| `useLagreVedlegg()`                              | Mutation for opplasting            | Invaliderer vedlegg-cache         |
+| `useSlettVedlegg()`                              | Mutation for sletting              | Fjerner fra cache                 |
+| `useRapporterInntekt()`                          | Mutation for inntektsrapportering  | —                                 |
+| `useSendOppgavebekreftelse()`                    | Mutation for oppgavebekreftelse    | —                                 |
+
+`useRapporterInntekt` og `useSendOppgavebekreftelse` tar imot `{ ytelse: 'AKTIVITETSPENGER' | 'UNGDOMSYTELSE', data }`. `ytelse` styrer hvilket endepunkt i k9-brukerdialog-prosessering-api som kalles. Verdiene er de samme som i `OppgaveYtelsetype` fra ung-brukerdialog-api, så enumen kan sendes inn direkte, mens hookene ikke importerer noe fra ung-brukerdialog-api. Hvis verdiene i enumen endres, feiler typesjekken der enumen sendes inn.
 
 ### Vedlegg-utilities (ikke hooks)
 
-`@sif/api/k9-prosessering` eksporterer også rene funksjoner for vedlegg:
+`@sif/api/k9-brukerdialog-prosessering` eksporterer også rene funksjoner for vedlegg:
 
 | Funksjon                                      | Returnerer   | Bruk                                                      |
 | --------------------------------------------- | ------------ | --------------------------------------------------------- |
 | `lagreVedlegg(file)`                          | Response     | Laster opp vedlegg (brukes i VedleggPanel)                |
-| `slettVedlegg(id)`                            | Response     | Sletter vedlegg (brukes i VedleggPanel)                   |
+| `slettVedlegg(id)`                            | Responsdata  | Sletter vedlegg (brukes i VedleggPanel)                   |
 | `hentVedlegg(id)`                             | Vedleggsdata | Henter vedlegg                                            |
 | `getVedleggFrontendUrl(id)`                   | `string`     | Frontend-proxy-URL for visning i nettleseren              |
 | `getVedleggApiUrl(id)`                        | `string`     | Full backend-API-URL for innsending i DTO                 |
@@ -111,15 +113,18 @@ Ved verifisering av API-ruter (for eksempel ved MSW-oppsett):
 
 ### `@sif/api/ung-brukerdialog` (ung-brukerdialog-api)
 
-| Hook                  | Returnerer  | Typisk caching |
-| --------------------- | ----------- | -------------- |
-| `useOppgaver(ytelse)` | `Oppgave[]` | —              |
+| Hook                                              | Returnerer                   | Typisk caching    |
+| ------------------------------------------------- | ---------------------------- | ----------------- |
+| `useOppgaver(ytelse, enabled?)`                   | `Oppgave[]`                  | —                 |
+| `useTilgjengeligAktivitetspengerSøknad(enabled?)` | `TilgjengeligSøknadResponse` | staleTime: 10 min |
 
-### `@sif/api/ung-deltaker` (ung-deltakelse-opplyser-api-deltaker)
+### `@sif/api/ung-deltakelse-opplyser-deltaker` (ung-deltakelse-opplyser-api-deltaker)
 
 | Hook                       | Returnerer               | Typisk caching    |
 | -------------------------- | ------------------------ | ----------------- |
-| `useKontonummer(enabled?)` | `KontonummerDto \| null` | staleTime: 20 min |
+| `useKontonummer(enabled?)` | `UtvidetKontonummerInfo` | staleTime: 20 min |
+
+`kontonummerFallback` eksporteres for bruk når kontonummer ikke kan hentes. API-funksjonen `hentKontonummer` eksporteres også.
 
 ---
 
@@ -127,15 +132,15 @@ Ved verifisering av API-ruter (for eksempel ved MSW-oppsett):
 
 Hver hook avhenger av en spesifikk API-klient som må være initialisert, og tilhørende env-variabler må være satt.
 
-### `@sif/api/k9-prosessering` — k9-brukerdialog-prosessering-api
+### `@sif/api/k9-brukerdialog-prosessering` — k9-brukerdialog-prosessering-api
 
 **Hooks:** `useSøker`, `useRegistrerteBarn`, `useLagreVedlegg`, `useSlettVedlegg`, `useArbeidsgivere`, `useValiderFritekst`, `useRapporterInntekt`, `useSendOppgavebekreftelse`
 
 | Element       | Verdi                                                                                                                          |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| Pakke         | `@navikt/k9-brukerdialog-prosessering-api`                                                                                     |
+| Pakke         | `@sif/k9-brukerdialog-prosessering-api`                                                                                     |
 | Init-funksjon | `initK9BrukerdialogProsesseringApiClients({ frontendPath, loginURL })`                                                         |
-| Env-schema    | `commonEnvSchema` (fra `@sif/env`) — inkludert automatisk                                                        |
+| Env-schema    | `commonEnvSchema` (fra `@sif/env`) — inkludert automatisk                                                                      |
 | Env-variabler | `K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH`, `K9_BRUKERDIALOG_PROSESSERING_API_SCOPE`, `K9_BRUKERDIALOG_PROSESSERING_API_URL` |
 
 ### `@sif/api/ung-brukerdialog` — ung-brukerdialog-api
@@ -144,19 +149,19 @@ Hver hook avhenger av en spesifikk API-klient som må være initialisert, og til
 
 | Element       | Verdi                                                                                          |
 | ------------- | ---------------------------------------------------------------------------------------------- |
-| Pakke         | `@navikt/ung-brukerdialog-api`                                                                 |
-| Init-funksjon | `initUngBrukerdialogApiClient({ frontendPath, loginURL, onUnauthorized })`                    |
+| Pakke         | `@sif/ung-brukerdialog-api`                                                                 |
+| Init-funksjon | `initUngBrukerdialogApiClient({ frontendPath, loginURL, onUnauthorized })`                     |
 | Env-variabler | `UNG_BRUKERDIALOG_API_FRONTEND_PATH`, `UNG_BRUKERDIALOG_API_SCOPE`, `UNG_BRUKERDIALOG_API_URL` |
 
-### `@sif/api/ung-deltaker` — ung-deltakelse-opplyser-api-deltaker
+### `@sif/api/ung-deltakelse-opplyser-deltaker` — ung-deltakelse-opplyser-api-deltaker
 
 **Hooks:** `useKontonummer`
 
 | Element       | Verdi                                                                                                           |
 | ------------- | --------------------------------------------------------------------------------------------------------------- |
-| Pakke         | `@navikt/ung-deltakelse-opplyser-api-deltaker`                                                                  |
-| Init-funksjon | `initUngDeltakelseOpplyserApiDeltakerClient({ frontendPath, loginURL, onUnauthorized })`                       |
-| Env-schema    | `ungDeltakelseOpplyserEnvSchema` (fra `@sif/env`)                                                 |
+| Pakke         | `@sif/ung-deltakelse-opplyser-api-deltaker`                                                                  |
+| Init-funksjon | `initUngDeltakelseOpplyserApiDeltakerClient({ frontendPath, loginURL, onUnauthorized })`                        |
+| Env-schema    | `ungDeltakelseOpplyserEnvSchema` (fra `@sif/env`)                                                               |
 | Env-variabler | `UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH`, `UNG_DELTAKELSE_OPPLYSER_API_SCOPE`, `UNG_DELTAKELSE_OPPLYSER_API_URL` |
 
 ---
@@ -180,9 +185,7 @@ Verifiser at appens `env.schema.ts` (typisk på app-root) har riktig env-schema 
 import { commonEnvSchema, ungBrukerdialogApiEnvSchema, ungDeltakelseOpplyserEnvSchema } from '@sif/env';
 
 export const appEnvSchema = z
-    .object({
-        /* app-spesifikke env-keys */
-    })
+    .object({/* app-spesifikke env-keys */})
     .extend(commonEnvSchema.shape) // k9-brukerdialog-prosessering
     .extend(ungBrukerdialogApiEnvSchema.shape) // kun hvis useOppgaver trengs
     .extend(ungDeltakelseOpplyserEnvSchema.shape); // kun hvis useKontonummer trengs
@@ -196,9 +199,9 @@ Verifiser at appens `src/app/api/initApiClients.ts` (eller tilsvarende) kaller r
 
 ```typescript
 // initApiClients.ts
-import { initK9BrukerdialogProsesseringApiClients } from '@navikt/k9-brukerdialog-prosessering-api';
-import { initUngBrukerdialogApiClient } from '@navikt/ung-brukerdialog-api';
-import { initUngDeltakelseOpplyserApiDeltakerClient } from '@navikt/ung-deltakelse-opplyser-api-deltaker';
+import { initK9BrukerdialogProsesseringApiClients } from '@sif/k9-brukerdialog-prosessering-api';
+import { initUngBrukerdialogApiClient } from '@sif/ung-brukerdialog-api';
+import { initUngDeltakelseOpplyserApiDeltakerClient } from '@sif/ung-deltakelse-opplyser-api-deltaker';
 import { EnvKey, getRequiredEnv } from '@sif/env';
 
 export const initApiClients = () => {
@@ -221,14 +224,20 @@ export const initApiClients = () => {
 };
 ```
 
+Alle init-funksjonene bruker `initApiClient` fra `@sif/api-client`. Den setter `baseURL` til `origin + frontendPath`, legger på `X-Brukerdialog-Git-Sha` og `X-Correlation-ID`, gjør `null` i responser om til `undefined` og håndterer 401. Ved 401 kalles `onUnauthorized`, og deretter sendes brukeren til `loginURL`.
+
+`Content-Type` settes ikke som standard for klienten. Den genererte operasjonen bestemmer den, slik at opplasting av vedlegg sendes som `multipart/form-data`.
+
+Noen genererte operasjoner krever `X-Brukerdialog-Git-Sha` i `headers`. Send da med `commonRequestHeaders` fra `@sif/api`. Serveren overskriver verdien.
+
 ### 4. Bruk hooken
 
 Importer alltid fra det relevante domenet. Importér `ApiErrorAlert` fra rotnivå (`@sif/api`).
 
 ```typescript
-import { useSøker, useRegistrerteBarn } from '@sif/api/k9-prosessering';
+import { useSøker, useRegistrerteBarn } from '@sif/api/k9-brukerdialog-prosessering';
 import { useOppgaver } from '@sif/api/ung-brukerdialog';
-import { useKontonummer } from '@sif/api/ung-deltaker';
+import { useKontonummer } from '@sif/api/ung-deltakelse-opplyser-deltaker';
 import { ApiErrorAlert } from '@sif/api';
 
 const søker = useSøker();
@@ -269,13 +278,15 @@ Riktig praksis: bruk kun funksjonsnavn eller nøytral kontekst i feilmeldinger:
 throw handleApiError(e, 'hentSisteGyldigeVedtak');
 ```
 
-Gjelder alle API-funksjoner i `packages/core/sif-api/src/api/**` og ethvert annet sted der disse verdiene er tilgjengelige.
+Gjelder alle API-funksjoner i `packages/core/sif-api/src/<backend>/**` og ethvert annet sted der disse verdiene er tilgjengelige.
 
 ---
 
 ## Feilhåndtering (ApiError)
 
-Alle hooks kaster `ApiError` ved feil. Typen har tre varianter: `ValidationError` (Zod-parsing feiler), `NetworkError` (HTTP-feil) og `UnknownError`. Hvert feilobjekt inneholder `type`, `context` (hvilken API-funksjon som feilet), `message` og `originalError`.
+Alle hooks kaster `ApiError` ved feil. Typen har tre varianter: `ZodValidationError` (Zod-parsing feiler), `NetworkError` (HTTP-feil) og `UnknownError`. Hvert feilobjekt inneholder `type`, `context` (hvilken API-funksjon som feilet), `message` og `originalError`.
+
+Unntak: `lagreVedlegg` og `useLagreVedlegg` kaster den opprinnelige Axios-feilen. `useFileUploader` i `@sif/rhf` leser `code` og `status` direkte for å skille tidsavbrudd (kan prøves på nytt) fra 400 (ugyldig fil).
 
 Nyttige hjelpefunksjoner:
 
@@ -301,14 +312,14 @@ const invalidParameters = getInvalidParametersFromApiError(apiError);
 
 Mellomlagring i v2-apper håndteres av `SøknadProvider` i `@sif/soknad-app` (henting, lagring, sletting og grunnlagssjekk via `mellomlagringGrunnlag`). Appen skal ikke kalle mellomlagrings-API-et selv. Se `sif-soknad-setup` → «Mellomlagring».
 
-`@sif/api/k9-prosessering` eksporterer de rå funksjonene (`hentYtelseMellomlagring`, `opprettYtelseMellomlagring`, `oppdaterYtelseMellomlagring`, `slettYtelseMellomlagring`) som rammeverket bruker.
+`@sif/api/k9-brukerdialog-prosessering` eksporterer de rå funksjonene (`hentYtelseMellomlagring`, `opprettYtelseMellomlagring`, `oppdaterYtelseMellomlagring`, `slettYtelseMellomlagring`) som rammeverket bruker.
 
 ### MellomlagringYtelse
 
 Enum med alle støttede ytelser. Appen definerer sin ytelse som konstant:
 
 ```typescript
-import { MellomlagringYtelse } from '@sif/api/k9-prosessering';
+import { MellomlagringYtelse } from '@sif/api/k9-brukerdialog-prosessering';
 export const APP_YTELSE = MellomlagringYtelse.AKTIVITETSPENGER;
 ```
 
@@ -317,4 +328,5 @@ export const APP_YTELSE = MellomlagringYtelse.AKTIVITETSPENGER;
 ## Referansefiler
 
 - `packages/core/sif-api/src/` — pakkens kildekode
+- `packages/core/sif-api-client/src/index.ts` — felles klientoppsett (`initApiClient`, `commonRequestHeaders`)
 - `packages/core/sif-env/src/schemas.ts` — tilgjengelige env-schemas og EnvKey enum

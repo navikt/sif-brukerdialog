@@ -1,5 +1,5 @@
 import { Alert, Bleed, BodyLong, Box, Heading, HStack, Page, VStack } from '@navikt/ds-react';
-import { useDocumentTitle } from '@navikt/sif-common-hooks';
+import { useDocumentTitle } from '@sif/hooks';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';

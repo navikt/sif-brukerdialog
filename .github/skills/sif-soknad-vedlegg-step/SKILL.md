@@ -58,7 +58,7 @@ Bruk delte hjelpere fra `@sif/soknad-forms`. Ikke dupliser disse lokalt.
 
 ```ts
 import { <Prefix>Søknadsdata } from '@app/types/Soknadsdata';
-import { getVedleggApiUrl } from '@sif/api/k9-prosessering';
+import { getVedleggApiUrl } from '@sif/api/k9-brukerdialog-prosessering';
 import { isUploadedVedlegg, toPersistedVedlegg, toUploadedFile } from '@sif/soknad-forms';
 
 import { <Prefix>FormValues } from './types';
@@ -226,7 +226,8 @@ Legg vedlegg-handlerne før catch-all-handlere.
 ## Feilsøking
 
 - Ingen request i nettverkspanelet: sjekk om generert `zLagreVedleggData` bruker `z.string()` i stedet for `z.instanceof(Blob)`.
-- Request sendes som JSON: sjekk at API-klienten ikke setter global `Content-type: application/json`.
+- Request sendes som JSON: sjekk at verken `initApiClient` eller kallet setter `Content-Type: application/json`. Den genererte `lagreVedlegg` setter `Content-Type: null`, slik at Axios velger `multipart/form-data`.
+- Tidsavbrudd kan ikke prøves på nytt, eller 400 gir generell feilmelding: sjekk at `lagreVedlegg` kaster den opprinnelige Axios-feilen og ikke en `ApiError`.
 - Lenken i oppsummeringen virker ikke i dev/mock: sjekk `Location`-header og `GET /vedlegg/:id`.
 
 ## Minimumstester

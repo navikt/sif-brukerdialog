@@ -1,4 +1,4 @@
-import type { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
+import type { ungdomsytelse } from '@sif/k9-brukerdialog-prosessering-api';
 
 import { HarKontonummerEnum } from '../steg/oppsummering/oppsummeringUtils';
 import { SøknadSvar, Spørsmål, Steg } from '../types';
@@ -37,6 +37,10 @@ export const getTilgjengeligeSteg = (svar: SøknadSvar, kontonummerInfo: ungdoms
     return tilgjengeligeSteg;
 };
 
-export const erStegTilgjengelig = (steg: Steg, svar: SøknadSvar, kontonummerInfo: ungdomsytelse.KontonummerInfo): boolean => {
+export const erStegTilgjengelig = (
+    steg: Steg,
+    svar: SøknadSvar,
+    kontonummerInfo: ungdomsytelse.KontonummerInfo,
+): boolean => {
     return getTilgjengeligeSteg(svar, kontonummerInfo).some((s) => s === steg);
 };

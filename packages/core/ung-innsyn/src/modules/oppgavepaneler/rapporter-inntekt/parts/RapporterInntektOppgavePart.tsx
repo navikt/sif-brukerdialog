@@ -1,7 +1,7 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { usePrevious } from '@navikt/sif-common-hooks';
-import { OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import { usePrevious } from '@sif/hooks';
 import { SifInfoCard } from '@sif/soknad-ui';
+import { OppgaveStatus } from '@sif/ung-brukerdialog-api';
 import { dateFormatter, DateRange } from '@sif/utils';
 import { useEffect, useRef, useState } from 'react';
 

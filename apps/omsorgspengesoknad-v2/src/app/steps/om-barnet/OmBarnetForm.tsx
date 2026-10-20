@@ -5,20 +5,20 @@ import { SøkersRelasjonTilBarnet } from '@app/types/SøkersRelasjonTilBarnet';
 import { OmBarnetSøknadsdata } from '@app/types/Soknadsdata';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { Box, Heading, ReadMore, Tag } from '@navikt/ds-react';
-import {
-    getFødselsnummerValidator,
-    getISODateValidator,
-    getRequiredFieldValidator,
-    getStringValidator,
-    getYesOrNoValidator,
-} from '@navikt/sif-validation';
-import { useInnvilgedeVedtakForRegistrerteBarn } from '@sif/api/k9-sak-innsyn-api';
+import { useInnvilgedeVedtakForRegistrerteBarn } from '@sif/api/k9-sak-innsyn';
 import { isDevMode } from '@sif/env';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { SøknadStepForm, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { VelgBarnEkstrainfo, VelgRegistrertBarnPanel } from '@sif/soknad-forms';
 import { AriaLiveRegion, FormContentLoader, FormLayout, SifInfoCard } from '@sif/soknad-ui/components';
 import { dateFormatter, getDateToday } from '@sif/utils';
+import {
+    getFødselsnummerValidator,
+    getISODateValidator,
+    getRequiredFieldValidator,
+    getStringValidator,
+    getYesOrNoValidator,
+} from '@sif/validation';
 import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -161,168 +161,171 @@ export const OmBarnetForm = () => {
 
                     {(!vedtakForValgtBarn || vedtakForValgtBarn.kanSøke === true) &&
                         (søknadenGjelderAnnetBarn || !harRegistrerteBarn) && (
-                        <FormLayout.Section title={text('omBarnetSteg.annetBarn.tittel')}>
-                            <FormLayout.Questions>
-                                <Datepicker
-                                    name={OmBarnetFormFields.barnetsFødselsdato}
-                                    label={text('omBarnetSteg.spørsmål.barnetsFødselsdato')}
-                                    description={text('omBarnetSteg.spørsmål.barnetsFødselsdato.info', {
-                                        minFødselsdato: dateFormatter.full(minDatoForBarnetsFødselsdato),
-                                    })}
-                                    minDate={minDatoForBarnetsFødselsdato}
-                                    maxDate={getDateToday()}
-                                    validate={validateField(OmBarnetFormFields.barnetsFødselsdato, (value) => {
-                                        const dateValidationerror = getISODateValidator({
-                                            required: true,
-                                            min: minDatoForBarnetsFødselsdato,
-                                            max: getDateToday(),
-                                        })(value);
+                            <FormLayout.Section title={text('omBarnetSteg.annetBarn.tittel')}>
+                                <FormLayout.Questions>
+                                    <Datepicker
+                                        name={OmBarnetFormFields.barnetsFødselsdato}
+                                        label={text('omBarnetSteg.spørsmål.barnetsFødselsdato')}
+                                        description={text('omBarnetSteg.spørsmål.barnetsFødselsdato.info', {
+                                            minFødselsdato: dateFormatter.full(minDatoForBarnetsFødselsdato),
+                                        })}
+                                        minDate={minDatoForBarnetsFødselsdato}
+                                        maxDate={getDateToday()}
+                                        validate={validateField(OmBarnetFormFields.barnetsFødselsdato, (value) => {
+                                            const dateValidationerror = getISODateValidator({
+                                                required: true,
+                                                min: minDatoForBarnetsFødselsdato,
+                                                max: getDateToday(),
+                                            })(value);
 
-                                        if (dateValidationerror) {
-                                            return dateValidationerror;
-                                        }
-                                        if (isBarnOver18år(value)) {
-                                            return 'barnOver18år';
-                                        }
-                                        return undefined;
-                                    })}
-                                />
-                                <TextField
-                                    name={OmBarnetFormFields.barnetsFødselsnummer}
-                                    label={text('omBarnetSteg.spørsmål.barnetsFødselsnummer')}
-                                    inputMode="numeric"
-                                    htmlSize={15}
-                                    maxLength={11}
-                                    validate={validateField(
-                                        OmBarnetFormFields.barnetsFødselsnummer,
-                                        getFødselsnummerValidator({
-                                            required: true,
-                                            allowHnr: isDevMode(),
-                                            disallowedValues: [søker.fødselsnummer],
-                                        }),
-                                    )}
-                                />
-                                <TextField
-                                    name={OmBarnetFormFields.barnetsNavn}
-                                    label={text('omBarnetSteg.spørsmål.barnetsNavn')}
-                                    validate={validateField(
-                                        OmBarnetFormFields.barnetsNavn,
-                                        getStringValidator({ required: true, maxLength: 50 }),
-                                    )}
-                                />
-                                <RadioGroup
-                                    name={OmBarnetFormFields.søkersRelasjonTilBarnet}
-                                    legend={text('omBarnetSteg.spørsmål.søkersRelasjonTilBarnet')}
-                                    radios={[
-                                        {
-                                            value: SøkersRelasjonTilBarnet.MOR,
-                                            label: text('omBarnetSteg.relasjon.mor'),
-                                        },
-                                        {
-                                            value: SøkersRelasjonTilBarnet.FAR,
-                                            label: text('omBarnetSteg.relasjon.far'),
-                                        },
-                                        {
-                                            value: SøkersRelasjonTilBarnet.ADOPTIVFORELDER,
-                                            label: text('omBarnetSteg.relasjon.adoptivforelder'),
-                                        },
-                                        {
-                                            value: SøkersRelasjonTilBarnet.FOSTERFORELDER,
-                                            label: text('omBarnetSteg.relasjon.fosterforelder'),
-                                        },
-                                    ]}
-                                    validate={validateField(
-                                        OmBarnetFormFields.søkersRelasjonTilBarnet,
-                                        getRequiredFieldValidator(),
-                                    )}
-                                />
-                            </FormLayout.Questions>
-                        </FormLayout.Section>
-                    )}
+                                            if (dateValidationerror) {
+                                                return dateValidationerror;
+                                            }
+                                            if (isBarnOver18år(value)) {
+                                                return 'barnOver18år';
+                                            }
+                                            return undefined;
+                                        })}
+                                    />
+                                    <TextField
+                                        name={OmBarnetFormFields.barnetsFødselsnummer}
+                                        label={text('omBarnetSteg.spørsmål.barnetsFødselsnummer')}
+                                        inputMode="numeric"
+                                        htmlSize={15}
+                                        maxLength={11}
+                                        validate={validateField(
+                                            OmBarnetFormFields.barnetsFødselsnummer,
+                                            getFødselsnummerValidator({
+                                                required: true,
+                                                allowHnr: isDevMode(),
+                                                disallowedValues: [søker.fødselsnummer],
+                                            }),
+                                        )}
+                                    />
+                                    <TextField
+                                        name={OmBarnetFormFields.barnetsNavn}
+                                        label={text('omBarnetSteg.spørsmål.barnetsNavn')}
+                                        validate={validateField(
+                                            OmBarnetFormFields.barnetsNavn,
+                                            getStringValidator({ required: true, maxLength: 50 }),
+                                        )}
+                                    />
+                                    <RadioGroup
+                                        name={OmBarnetFormFields.søkersRelasjonTilBarnet}
+                                        legend={text('omBarnetSteg.spørsmål.søkersRelasjonTilBarnet')}
+                                        radios={[
+                                            {
+                                                value: SøkersRelasjonTilBarnet.MOR,
+                                                label: text('omBarnetSteg.relasjon.mor'),
+                                            },
+                                            {
+                                                value: SøkersRelasjonTilBarnet.FAR,
+                                                label: text('omBarnetSteg.relasjon.far'),
+                                            },
+                                            {
+                                                value: SøkersRelasjonTilBarnet.ADOPTIVFORELDER,
+                                                label: text('omBarnetSteg.relasjon.adoptivforelder'),
+                                            },
+                                            {
+                                                value: SøkersRelasjonTilBarnet.FOSTERFORELDER,
+                                                label: text('omBarnetSteg.relasjon.fosterforelder'),
+                                            },
+                                        ]}
+                                        validate={validateField(
+                                            OmBarnetFormFields.søkersRelasjonTilBarnet,
+                                            getRequiredFieldValidator(),
+                                        )}
+                                    />
+                                </FormLayout.Questions>
+                            </FormLayout.Section>
+                        )}
 
                     {(!vedtakForValgtBarn || vedtakForValgtBarn.kanSøke === true) &&
                         (harValgtBarn || !harRegistrerteBarn) && (
-                        <>
-                            <RadioGroup
-                                name={OmBarnetFormFields.sammeAdresse}
-                                legend={text('omBarnetSteg.spørsmål.sammeAdresse')}
-                                radios={[
-                                    { value: BarnSammeAdresse.JA, label: text('omBarnetSteg.sammeAdresse.JA') },
-                                    {
-                                        value: BarnSammeAdresse.JA_DELT_BOSTED,
-                                        label: text('omBarnetSteg.sammeAdresse.JA_DELT_BOSTED'),
-                                    },
-                                    { value: BarnSammeAdresse.NEI, label: text('omBarnetSteg.sammeAdresse.NEI') },
-                                ]}
-                                validate={validateField(OmBarnetFormFields.sammeAdresse, getRequiredFieldValidator())}
-                                description={
-                                    <ReadMore header={text('omBarnetSteg.sammeAdresse.hvaBetyrDette')}>
-                                        {text('omBarnetSteg.sammeAdresse.hvaBetyrDette.info')}
-                                    </ReadMore>
-                                }
-                            />
-                            <AriaLiveRegion visible={visIkkeSammeAdresseAlert}>
-                                <FormLayout.QuestionRelatedMessage>
-                                    <SifInfoCard>
-                                        <AppText id="omBarnetSteg.alert.ikkeSammeAdresse" />
-                                    </SifInfoCard>
-                                </FormLayout.QuestionRelatedMessage>
-                            </AriaLiveRegion>
-
-                            <YesOrNoQuestion
-                                name={OmBarnetFormFields.kroniskEllerFunksjonshemming}
-                                legend={text('omBarnetSteg.spørsmål.kroniskEllerFunksjonshemming')}
-                                validate={validateField(
-                                    OmBarnetFormFields.kroniskEllerFunksjonshemming,
-                                    getYesOrNoValidator(),
-                                )}
-                            />
-                            <AriaLiveRegion visible={kroniskEllerFunksjonshemming === YesOrNo.NO}>
-                                <FormLayout.QuestionRelatedMessage>
-                                    <SifInfoCard>
-                                        <AppText id="omBarnetSteg.alert.ikkeKronisk" />
-                                    </SifInfoCard>
-                                </FormLayout.QuestionRelatedMessage>
-                            </AriaLiveRegion>
-
-                            {visHøyereRisikoSpørsmål && (
-                                <>
-                                    <YesOrNoQuestion
-                                        name={OmBarnetFormFields.høyereRisikoForFravær}
-                                        legend={text('omBarnetSteg.spørsmål.høyereRisikoForFravær')}
-                                        validate={validateField(
-                                            OmBarnetFormFields.høyereRisikoForFravær,
-                                            getYesOrNoValidator(),
-                                        )}
-                                    />
-                                    <AriaLiveRegion visible={høyereRisikoForFravær === YesOrNo.NO}>
-                                        <FormLayout.QuestionRelatedMessage>
-                                            <SifInfoCard>
-                                                <AppText id="omBarnetSteg.alert.ikkeHøyereRisiko" />
-                                            </SifInfoCard>
-                                        </FormLayout.QuestionRelatedMessage>
-                                    </AriaLiveRegion>
-                                </>
-                            )}
-
-                            {visHøyereRisikoBeskrivelseSpørsmål && (
-                                <Textarea
-                                    name={OmBarnetFormFields.høyereRisikoForFraværBeskrivelse}
-                                    label={text('omBarnetSteg.spørsmål.høyereRisikoForFraværBeskrivelse')}
-                                    maxLength={1000}
+                            <>
+                                <RadioGroup
+                                    name={OmBarnetFormFields.sammeAdresse}
+                                    legend={text('omBarnetSteg.spørsmål.sammeAdresse')}
+                                    radios={[
+                                        { value: BarnSammeAdresse.JA, label: text('omBarnetSteg.sammeAdresse.JA') },
+                                        {
+                                            value: BarnSammeAdresse.JA_DELT_BOSTED,
+                                            label: text('omBarnetSteg.sammeAdresse.JA_DELT_BOSTED'),
+                                        },
+                                        { value: BarnSammeAdresse.NEI, label: text('omBarnetSteg.sammeAdresse.NEI') },
+                                    ]}
                                     validate={validateField(
-                                        OmBarnetFormFields.høyereRisikoForFraværBeskrivelse,
-                                        getStringValidator({
-                                            required: true,
-                                            minLength: 5,
-                                            maxLength: 1000,
-                                            disallowInvalidBackendCharacters: true,
-                                        }),
+                                        OmBarnetFormFields.sammeAdresse,
+                                        getRequiredFieldValidator(),
+                                    )}
+                                    description={
+                                        <ReadMore header={text('omBarnetSteg.sammeAdresse.hvaBetyrDette')}>
+                                            {text('omBarnetSteg.sammeAdresse.hvaBetyrDette.info')}
+                                        </ReadMore>
+                                    }
+                                />
+                                <AriaLiveRegion visible={visIkkeSammeAdresseAlert}>
+                                    <FormLayout.QuestionRelatedMessage>
+                                        <SifInfoCard>
+                                            <AppText id="omBarnetSteg.alert.ikkeSammeAdresse" />
+                                        </SifInfoCard>
+                                    </FormLayout.QuestionRelatedMessage>
+                                </AriaLiveRegion>
+
+                                <YesOrNoQuestion
+                                    name={OmBarnetFormFields.kroniskEllerFunksjonshemming}
+                                    legend={text('omBarnetSteg.spørsmål.kroniskEllerFunksjonshemming')}
+                                    validate={validateField(
+                                        OmBarnetFormFields.kroniskEllerFunksjonshemming,
+                                        getYesOrNoValidator(),
                                     )}
                                 />
-                            )}
-                        </>
-                    )}
+                                <AriaLiveRegion visible={kroniskEllerFunksjonshemming === YesOrNo.NO}>
+                                    <FormLayout.QuestionRelatedMessage>
+                                        <SifInfoCard>
+                                            <AppText id="omBarnetSteg.alert.ikkeKronisk" />
+                                        </SifInfoCard>
+                                    </FormLayout.QuestionRelatedMessage>
+                                </AriaLiveRegion>
+
+                                {visHøyereRisikoSpørsmål && (
+                                    <>
+                                        <YesOrNoQuestion
+                                            name={OmBarnetFormFields.høyereRisikoForFravær}
+                                            legend={text('omBarnetSteg.spørsmål.høyereRisikoForFravær')}
+                                            validate={validateField(
+                                                OmBarnetFormFields.høyereRisikoForFravær,
+                                                getYesOrNoValidator(),
+                                            )}
+                                        />
+                                        <AriaLiveRegion visible={høyereRisikoForFravær === YesOrNo.NO}>
+                                            <FormLayout.QuestionRelatedMessage>
+                                                <SifInfoCard>
+                                                    <AppText id="omBarnetSteg.alert.ikkeHøyereRisiko" />
+                                                </SifInfoCard>
+                                            </FormLayout.QuestionRelatedMessage>
+                                        </AriaLiveRegion>
+                                    </>
+                                )}
+
+                                {visHøyereRisikoBeskrivelseSpørsmål && (
+                                    <Textarea
+                                        name={OmBarnetFormFields.høyereRisikoForFraværBeskrivelse}
+                                        label={text('omBarnetSteg.spørsmål.høyereRisikoForFraværBeskrivelse')}
+                                        maxLength={1000}
+                                        validate={validateField(
+                                            OmBarnetFormFields.høyereRisikoForFraværBeskrivelse,
+                                            getStringValidator({
+                                                required: true,
+                                                minLength: 5,
+                                                maxLength: 1000,
+                                                disallowInvalidBackendCharacters: true,
+                                            }),
+                                        )}
+                                    />
+                                )}
+                            </>
+                        )}
                 </FormLayout.Questions>
             </FormLayout.Content>
         </SøknadStepForm>

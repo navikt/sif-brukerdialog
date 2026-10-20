@@ -1,5 +1,5 @@
 import { VStack } from '@navikt/ds-react';
-import { AktivitetspengerInnsynApp } from '@navikt/sif-app-register';
+import { AktivitetspengerInnsynApp } from '@sif/app-register';
 import { DemoInfoAlert, DemoWatermark } from '@sif/soknad-ui';
 import { ReactNode } from 'react';
 import { HashRouter } from 'react-router-dom';

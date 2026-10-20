@@ -91,7 +91,7 @@ export const useSendSøknad = () => {
 Mapper `Søknadsdata` + `Søker` + `språk` til `SøknadApiData` (minus `harBekreftetOpplysninger` som legges til ved innsending).
 
 ```ts
-import { Søker } from '@sif/api/k9-prosessering';
+import { Søker } from '@sif/api/k9-brukerdialog-prosessering';
 
 import { SøknadStepId } from '../types/SoknadStepId';
 import { SøknadApiData } from '../types/SoknadApiData';

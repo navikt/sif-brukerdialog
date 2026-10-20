@@ -1,5 +1,5 @@
-import type { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
-import { BrukerdialogOppgaveDto, OppgaveStatus } from '@navikt/ung-brukerdialog-api';
+import type { ungdomsytelse } from '@sif/k9-brukerdialog-prosessering-api';
+import { BrukerdialogOppgaveDto, OppgaveStatus } from '@sif/ung-brukerdialog-api';
 import { RapporterInntektOppgave } from '@sif/api/ung-brukerdialog';
 
 import { store } from '../state/store';

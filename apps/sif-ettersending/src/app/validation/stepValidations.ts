@@ -1,5 +1,5 @@
 import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
-import { hasValue } from '@navikt/sif-validation';
+import { hasValue } from '@sif/validation';
 
 import { SoknadFormData, SoknadFormField } from '../types/SoknadFormData';
 

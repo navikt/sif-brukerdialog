@@ -14,7 +14,7 @@ import { FraværDag, FraværPeriode } from '@navikt/sif-common-forms-ds/src/form
 import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getDate1YearAgo, getDateToday } from '@navikt/sif-common-utils';
-import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { getListValidator, getYesOrNoValidator } from '@sif/validation';
 import { useEffect } from 'react';
 
 import { mellomlagringService } from '../../../api/mellomlagringService';

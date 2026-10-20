@@ -1,5 +1,5 @@
 import { ReadMore } from '@navikt/ds-react';
-import { BostedsavklaringKildeType } from '@navikt/ung-brukerdialog-api';
+import { BostedsavklaringKildeType } from '@sif/ung-brukerdialog-api';
 
 import Fritekst from '../../../components/fritekst/Fritekst';
 import { UngInnsynText, useUngInnsynIntl } from '../../../i18n';

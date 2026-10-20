@@ -1,5 +1,5 @@
-import { useDocumentTitle } from '@navikt/sif-common-hooks';
 import { useAppIntl } from '@shared/i18n';
+import { useDocumentTitle } from '@sif/hooks';
 import React, { useEffect } from 'react';
 
 import PageContentWrapper from './PageContentWrapper';

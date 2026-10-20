@@ -1,7 +1,10 @@
-import { ungdomsytelse } from '@navikt/k9-brukerdialog-prosessering-api';
 import { YesOrNo } from '@navikt/sif-common-formik-ds';
-import { HarKontonummerEnum as HarKontonummerApiEnum, UtvidetKontonummerInfo } from '@sif/api/ung-deltaker';
+import {
+    HarKontonummerEnum as HarKontonummerApiEnum,
+    UtvidetKontonummerInfo,
+} from '@sif/api/ung-deltakelse-opplyser-deltaker';
 import { appLogger } from '@sif/apm';
+import { ungdomsytelse } from '@sif/k9-brukerdialog-prosessering-api';
 import { dateToISODate, ISODate } from '@sif/utils';
 
 import { SøknadSvar, Spørsmål } from '../../types';

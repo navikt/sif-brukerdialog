@@ -22,7 +22,7 @@ import {
 } from '@navikt/sif-common-formik-ds';
 import { FormLayout, getDurationString } from '@navikt/sif-common-ui';
 import { DateRange } from '@navikt/sif-common-utils';
-import { getNumberValidator } from '@navikt/sif-validation';
+import { getNumberValidator } from '@sif/validation';
 import dayjs from 'dayjs';
 
 import UkeTags from '../arbeidstid-uker/components/UkeTags';

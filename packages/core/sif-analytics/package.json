@@ -15,15 +15,15 @@
         "@navikt/nav-dekoratoren-moduler": "4.5.1"
     },
     "devDependencies": {
+        "@sif/config": "workspace:*",
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "26.6.4",
+        "@types/node": "26.6.5",
         "@types/react": "19.3.0",
-        "config": "workspace:*",
         "eslint": "10.12.0",
-        "react": "19.3.0",
+        "react": "19.3.1",
         "typescript": "6.0.3"
     },
     "peerDependencies": {
-        "react": "19.3.0"
+        "react": "^19.3.1"
     }
 }

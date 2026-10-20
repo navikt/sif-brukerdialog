@@ -1,10 +1,10 @@
 import { Theme } from '@navikt/ds-react';
-import { UngdomsytelseDeltakerApp } from '@navikt/sif-app-register';
 import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
 import { applicationIntlMessages } from '@shared/i18n';
 import { getAppEnv } from '@shared/utils/appEnv';
 import { AppRoutes } from '@shared/utils/AppRoutes';
 import { AnalyticsProvider } from '@sif/analytics';
+import { UngdomsytelseDeltakerApp } from '@sif/app-register';
 import { EnvKey } from '@sif/env';
 import { useEffect } from 'react';
 import { IntlProvider } from 'react-intl';

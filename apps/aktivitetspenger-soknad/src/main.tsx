@@ -1,5 +1,5 @@
-import { AktivitetspengerSoknadApp } from '@navikt/sif-app-register';
 import { initApm } from '@sif/apm';
+import { AktivitetspengerSoknadApp } from '@sif/app-register';
 import { getMaybeEnv } from '@sif/env';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';

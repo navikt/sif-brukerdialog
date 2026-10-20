@@ -1,6 +1,6 @@
 import { ValidationError } from '@navikt/sif-common-formik-ds';
 import { DateRange, prettifyDate } from '@navikt/sif-common-utils';
-import { ValidateDateError, ValidateDateRangeError, ValidateRequiredFieldError } from '@navikt/sif-validation';
+import { ValidateDateError, ValidateDateRangeError, ValidateRequiredFieldError } from '@sif/validation';
 
 import { DateTidsperiode } from '../forms/tidsperiode';
 

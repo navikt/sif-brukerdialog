@@ -1,7 +1,7 @@
 import '@navikt/ds-css';
 import './app.css';
 
-import { OmsorgsdagerKroniskApp } from '@navikt/sif-app-register';
+import { OmsorgsdagerKroniskApp } from '@sif/app-register';
 import { SøknadAppProvider } from '@sif/soknad-app';
 import { DemoInfoAlert, InitialDataErrorPage, LoadingPage } from '@sif/soknad-ui';
 import { BrowserRouter } from 'react-router-dom';

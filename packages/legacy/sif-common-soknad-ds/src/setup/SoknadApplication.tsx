@@ -4,8 +4,6 @@ import '@formatjs/intl-pluralrules/polyfill.js';
 import 'dayjs/locale/nb';
 import 'dayjs/locale/nn';
 
-import { NoticeRenderers } from '@navikt/appstatus-react-ds';
-import { SanityConfig } from '@navikt/appstatus-react-ds/src/types';
 import { AnalyticsProvider } from '@navikt/sif-common-analytics';
 import AppStatusWrapper from '@navikt/sif-common-core-ds/src/components/app-status-wrapper/AppStatusWrapper';
 import SifAppWrapper from '@navikt/sif-common-core-ds/src/components/sif-app-wrapper/SifAppWrapper';
@@ -17,6 +15,8 @@ import {
     getNynorskLocale,
     setLocaleInSessionStorage,
 } from '@navikt/sif-common-core-ds/src/utils/localeUtils';
+import { NoticeRenderers } from '@sif/appstatus-react-ds';
+import { SanityConfig } from '@sif/appstatus-react-ds/src/types';
 import dayjs from 'dayjs';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
@@ -96,9 +96,7 @@ const SoknadApplication = ({
                                 noticeRenderers={appStatus.noticeRenderers}
                                 contentRenderer={() => <>{children}</>}
                                 unavailableContentRenderer={() => (
-                                    <ErrorPage
-                                        contentRenderer={() => <SoknadErrorMessages.ApplicationUnavailable />}
-                                    />
+                                    <ErrorPage contentRenderer={() => <SoknadErrorMessages.ApplicationUnavailable />} />
                                 )}
                             />
                             <DevBranchInfo />

@@ -12,7 +12,7 @@ import BostedUtlandListAndDialog from '@navikt/sif-common-forms-ds/src/forms/bos
 import { Utenlandsopphold } from '@navikt/sif-common-forms-ds/src/forms/utenlandsopphold/types';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getDate1YearAgo, getDateToday } from '@navikt/sif-common-utils';
-import { getListValidator, getYesOrNoValidator } from '@navikt/sif-validation';
+import { getListValidator, getYesOrNoValidator } from '@sif/validation';
 import { useCallback, useState } from 'react';
 
 import PersistStepFormValues from '../../../components/persist-step-form-values/PersistStepFormValues';

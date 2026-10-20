@@ -1,4 +1,4 @@
-import { DeltakelseDto, DeltakelseHistorikkDto, DeltakerPersonalia } from '@navikt/ung-deltakelse-opplyser-api-veileder';
+import { DeltakelseDto, DeltakelseHistorikkDto, DeltakerPersonalia } from '@sif/ung-deltakelse-opplyser-api-veileder';
 import type { DeltakelseHandlinger } from '../../src/utils/deltakelseUtils';
 
 export type ScenarioGruppe = 'grunnscenarioer' | 'handlinger' | 'tilgangsbegrensning';

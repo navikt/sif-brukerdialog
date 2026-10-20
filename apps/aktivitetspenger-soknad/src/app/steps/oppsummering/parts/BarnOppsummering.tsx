@@ -1,7 +1,7 @@
 import { AppText } from '@app/i18n';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { BodyShort, FormSummary, List } from '@navikt/ds-react';
-import { RegistrertBarn } from '@sif/api/k9-prosessering';
+import { RegistrertBarn } from '@sif/api/k9-brukerdialog-prosessering';
 import { useStepNavigation } from '@sif/soknad-app';
 import { JaNeiSvar } from '@sif/soknad-ui';
 import { formatName } from '@sif/utils';

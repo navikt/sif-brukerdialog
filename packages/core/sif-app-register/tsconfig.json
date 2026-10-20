@@ -1,5 +1,5 @@
 {
-    "extends": "config/tsconfig-packages.json",
+    "extends": "@sif/config/tsconfig-packages.json",
     "compilerOptions": {
         "outDir": "./lib",
         "types": ["vitest/globals"]

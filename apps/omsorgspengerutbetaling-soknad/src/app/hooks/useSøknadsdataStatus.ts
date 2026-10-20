@@ -1,6 +1,6 @@
 import { getMedlemskapSøknadsdataFromFormValues, MedlemskapFormValues } from '@navikt/sif-common-forms-ds';
-import { useEffectOnce } from '@navikt/sif-common-hooks';
 import { SoknadStepsConfig } from '@navikt/sif-common-soknad-ds';
+import { useEffectOnce } from '@sif/hooks';
 import { useState } from 'react';
 import isEqual from 'react-fast-compare';
 

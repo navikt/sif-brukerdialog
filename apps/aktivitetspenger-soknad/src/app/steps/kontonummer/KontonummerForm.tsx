@@ -4,12 +4,12 @@ import getLenker from '@app/lenker';
 import { KontonummerSøknadsdata } from '@app/types/Soknadsdata';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { BodyLong, BodyShort, Heading } from '@navikt/ds-react';
-import { getYesOrNoValidator } from '@navikt/sif-validation';
-import { HarKontonummerEnum } from '@sif/api/ung-deltaker';
+import { HarKontonummerEnum } from '@sif/api/ung-deltakelse-opplyser-deltaker';
 import { createSifFormComponents, useSifValidate, YesOrNo } from '@sif/rhf';
 import { SøknadStep, SøknadStepForm, useSaveSøknadFormValues, useStepData } from '@sif/soknad-app';
 import { FormLayout } from '@sif/soknad-ui';
 import { AriaLiveRegion, ExternalLink, SifGuidePanel, SifInfoCard } from '@sif/soknad-ui/components';
+import { getYesOrNoValidator } from '@sif/validation';
 import { useForm } from 'react-hook-form';
 
 import { toKontonummerFormValues, toKontonummerSøknadsdata } from './kontonummerStegUtils';

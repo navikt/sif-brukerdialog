@@ -1,4 +1,4 @@
-import { NaturalYtelseTypeDto } from '@navikt/k9-sak-innsyn-api/src/generated/innsyn';
+import { NaturalYtelseTypeDto } from '@sif/k9-sak-innsyn-api/src/generated/innsyn';
 
 export const naturalytelseNavn: Record<NaturalYtelseTypeDto, string> = {
     ELEKTRISK_KOMMUNIKASJON: 'Elektronisk kommunikasjon',

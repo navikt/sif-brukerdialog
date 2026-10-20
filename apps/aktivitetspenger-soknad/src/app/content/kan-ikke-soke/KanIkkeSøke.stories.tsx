@@ -1,5 +1,5 @@
-import { TilgjengeligSøknadType } from '@navikt/ung-brukerdialog-api';
 import { mockSøker } from '@sif/api/mock-data';
+import { TilgjengeligSøknadType } from '@sif/ung-brukerdialog-api';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { withIntl } from '../../../../storybook/decorators/withIntl';

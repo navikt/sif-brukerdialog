@@ -7,7 +7,7 @@ import {
     getDate3YearsAgo,
     getDateRangeFromDates,
 } from '@navikt/sif-common-utils';
-import { getDateRangeValidator } from '@navikt/sif-validation';
+import { getDateRangeValidator } from '@sif/validation';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 
