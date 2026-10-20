@@ -1,13 +1,22 @@
-import { RegistrertBarn, Søker, useRegistrerteBarn, useSøker } from '@sif/api/k9-brukerdialog-prosessering';
+import {
+    RegistrertBarn,
+    Søker,
+    useDagensDato,
+    useRegistrerteBarn,
+    useSøker,
+} from '@sif/api/k9-brukerdialog-prosessering';
 import { useTilgjengeligAktivitetspengerSøknad } from '@sif/api/ung-brukerdialog';
 import { kontonummerFallback, useKontonummer, UtvidetKontonummerInfo } from '@sif/api/ung-deltakelse-opplyser-deltaker';
 import { TilgjengeligSøknadResponse } from '@sif/ung-brukerdialog-api';
+import { ISODate } from '@sif/utils';
 
 interface InitialData {
     søker: Søker;
     barn: RegistrertBarn[];
     kontonummer: UtvidetKontonummerInfo;
     tilgjengeligSøknad: TilgjengeligSøknadResponse;
+    /** undefined hvis dato ikke kunne hentes – søknaden skal da være stengt */
+    dagensDato?: ISODate;
 }
 
 type InitialDataResult =
@@ -18,10 +27,11 @@ export const useInitialData = (): InitialDataResult => {
     const tilgjengeligSøknad = useTilgjengeligAktivitetspengerSøknad();
     const registrerteBarn = useRegistrerteBarn();
     const kontonummer = useKontonummer();
+    const dagensDato = useDagensDato();
 
     const requiredQueries = [søker, registrerteBarn, tilgjengeligSøknad];
 
-    if (requiredQueries.some((q) => q.isLoading) || kontonummer.isLoading) {
+    if (requiredQueries.some((q) => q.isLoading) || kontonummer.isLoading || dagensDato.isLoading) {
         return { status: 'loading' };
     }
 
@@ -41,6 +51,7 @@ export const useInitialData = (): InitialDataResult => {
             barn: registrerteBarn.data,
             kontonummer: kontonummer.data ?? kontonummerFallback,
             tilgjengeligSøknad: tilgjengeligSøknad.data,
+            dagensDato: dagensDato.data,
         },
     };
 };

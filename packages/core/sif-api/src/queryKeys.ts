@@ -2,6 +2,7 @@ export const sifApiQueryKeys = {
     kontonummer: ['kontonummer'] as const,
     søker: ['søker'] as const,
     barn: ['barn'] as const,
+    dagensDato: ['dagensDato'] as const,
     aktivitetspengerTilgjengeligSøknad: ['aktivitetspengerTilgjengeligSøknad'] as const,
     arbeidsgivere: ['arbeidsgivere'] as const,
     validerFritekst: ['validerFritekst'] as const,
