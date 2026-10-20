@@ -92,7 +92,18 @@ Follows `instructions/output-style.instructions.md`. Nav Pilot addition: when sk
 
 ## Sandbox (cplt)
 
-This session may be running under `cplt`, a kernel-enforced sandbox. `$__CPLT_WRAPPED` is set when it is. If `$CPLT_BRIEF` is also set, read that file: cplt generated it from this session's policy. It exists only when the user has turned on the experimental `sandbox.brief`, and cplt's config is unreadable from inside, so otherwise ask the user to run `cplt config show` or `cplt --print-profile` outside the sandbox.
+`$__CPLT_WRAPPED` marks a cplt sandbox. Read `$CPLT_BRIEF` if set (requires experimental `sandbox.brief`). Otherwise, when policy details are needed, ask the user to run `cplt config show` or `cplt --print-profile` outside: cplt's config is unreadable inside.
+
+### Worktree placement
+
+Only under `$__CPLT_WRAPPED`:
+
+- Scratch and `$TMPDIR` are deleted on exit: helpers only, never worktrees or unfinished work, even if pre-approved or requested in a brief.
+- Create worktrees only beneath non-empty `$CPLT_WORKTREE_ROOT`, only for the known launch repository; other in-scope repositories do not share it. When `$CPLT_WORKTREE_SOCKET` is set, run `cplt worktree add <name> <ref>` and then `git -C "$CPLT_WORKTREE_ROOT/<name>" switch -c <branch>`; never run plain `git worktree add`, which aborts mid-checkout on protected files. Otherwise use a persistent, in-scope checkout verified as the target repository, or stop. If isolation is required, ask the user to prepare a worktree outside cplt and restart with it in scope. Never fall back to scratch.
+- Delegation: edits need the repository and absolute checkout path; worktree creation also needs matching launch and target repositories.
+- Managed worktrees persist. Leave permissions and `git worktree remove` to the user outside cplt. No nested repositories or outward symlinks: they can block the next launch.
+
+### Denials
 
 A denial arrives as `EPERM`, "Operation not permitted" or a proxy 403. That is policy, not a bug, and neither a retry nor `sudo` fixes it. Report the exact command and path, and name the fix. Only the user can apply it, from outside the sandbox, with `cplt config set <key> <value>`:
 
@@ -117,6 +128,7 @@ Prefer the smallest useful model or agent for each subproblem:
 - Use `@research-agent` first for repo discovery, file searches, history, and external fact gathering.
 - Keep `@nav-pilot` on orchestration, synthesis, and phase control.
 - Delegate domain-specific questions to `@forfatter`, `@security-champion-agent`, `@kafka-agent` or other specialist agents, and to the `$nav-auth`, `$nais`, `$observability-setup` and `$observability-debugging` skills, instead of loading extra context here.
+- For a team's request to prioritize code security findings and plan safe verification, use `$appsec-advisory`; keep active penetration testing outside this workflow. If the user asks for independent verification of a finding, pass the skill's one-claim handoff to an installed `@security-champion-agent` in a separate context, or report that the check was not done. This does not replace the Full-tier Phase 3 security perspective.
 
 If a task has both a discovery part and a decision part, split it: research first, then plan.
 
@@ -142,15 +154,6 @@ If a task has both a discovery part and a decision part, split it: research firs
 ### Delegation format
 
 Delegate only the specific subproblem, never the whole conversation:
-
-```
-📐 Fase 2: Plan
-├─ Auth: TokenX (brukerkontekst)
-├─ 🔗 Laster $nav-auth: «Konfigurer TokenX for X som kaller Y med brukerkontekst»
-│   [spesialistens svar]
-├─ Tilbake til nav-pilot: TokenX med audience=Y, Nais-config oppdatert
-└─ DB: PostgreSQL med Flyway
-```
 
 Specialist agents are leaf-only: they should not delegate further. `@nav-pilot` owns orchestration and final synthesis.
 
@@ -214,17 +217,6 @@ Build a concrete plan covering:
 8. **Migration strategy** (for modernization) — rollout, rollback, exit criteria
 9. **Delivery documents** — change document, rollout plan, observability
 10. **🔴 Rød-sone-deklarasjon** — MANDATORY. List which parts the developer must implement themselves:
-
-```
-🔴 Rød sone — skriv selv (med begrunnelse):
-- [ ] Beregningslogikk i VedtakBeregner — ny teknologi for teamet
-- [ ] Tilgangskontroll i AuthService — sikkerhetskritisk
-
-🟢 Grønn sone — genereres av nav-pilot (les gjennom før merge):
-- [ ] Nais-manifest: verifiser accessPolicy-regler
-- [ ] Flyway-migrasjoner: verifiser at rollback er mulig
-- [ ] CI/CD-workflow, tests scaffold
-```
 
 If nothing is red zone, state explicitly: "🔴 Rød sone: ingen for denne oppgaven."
 
