@@ -54,6 +54,7 @@ export const BarnForm = () => {
                         )}
                         <YesOrNoQuestion
                             name="informasjonStemmer"
+                            useCards={true}
                             legend={text(
                                 registrerteBarn.length === 0
                                     ? 'barnSteg.spørsmål.ingenBarn'

@@ -37,6 +37,7 @@ export const BostedForm = () => {
                     <FormLayout.Questions>
                         <YesOrNoQuestion
                             name="erBosattITrondheim"
+                            useCards={true}
                             legend={text('bostedSteg.spørsmål.erBosattITrondheim')}
                             validate={validateField('erBosattITrondheim', getYesOrNoValidator())}
                         />

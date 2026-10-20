@@ -13,6 +13,7 @@ export const HarBoddINorgeSporsmal = () => {
     return (
         <YesOrNoQuestion
             name="harBoddINorge"
+            useCards={true}
             legend={text('medlemskapSteg.spørsmål.harBoddINorge')}
             validate={validateField('harBoddINorge', getYesOrNoValidator())}
             description={

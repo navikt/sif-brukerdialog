@@ -46,6 +46,7 @@ export const KontonummerForm = () => {
                             <>
                                 <YesOrNoQuestion
                                     name="kontonummerErRiktig"
+                                    useCards={true}
                                     legend={text('kontonummerSteg.spørsmål.kontonummerErRiktig', {
                                         kontonummer: kontonummerInfo.formatertKontonummer,
                                     })}
