@@ -23,7 +23,7 @@ const getDagerMedInterval = (interval: number, periode: DateRange) => {
 };
 
 export const getGjentagendeDager = (
-    /** Hele søknadsperioden */
+    /** Hele søknadsperioden - avgrenset til tillatt endringsperiode */
     søknadsperiode: DateRange,
     /** Endringsperioden - dvs dager innenfor samme måned; kan være avkortet */
     endringsperiodeIMåned: DateRange,
@@ -49,8 +49,8 @@ export const getGjentagendeDager = (
             const uke = getWeekDateRange(dato, true);
             dager = getDatesInDateRange(
                 {
-                    from: dayjs.max(dayjs(uke.from), dayjs(endringsperiodeIMåned.from))!.toDate(),
-                    to: dayjs.min(dayjs(uke.to), dayjs(endringsperiodeIMåned.to))!.toDate(),
+                    from: dayjs.max(dayjs(uke.from), dayjs(søknadsperiode.from))!.toDate(),
+                    to: dayjs.min(dayjs(uke.to), dayjs(søknadsperiode.to))!.toDate(),
                 },
                 true,
             );
