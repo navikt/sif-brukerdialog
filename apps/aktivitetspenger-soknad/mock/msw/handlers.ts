@@ -1,3 +1,4 @@
+import { getDagensDatoIOslo } from '@sif/utils';
 import { delay, http, HttpResponse, passthrough } from 'msw';
 
 import { getScenarioMockData } from '../scenarios/scenarioer';
@@ -28,6 +29,8 @@ export const handlers = [
     http.get(`**/deltaker/hent-kontonummer`, () => {
         return HttpResponse.json(store.get().kontonummer);
     }),
+
+    http.get('**/dato/dagens', () => HttpResponse.json({ dato: getDagensDatoIOslo() })),
 
     http.post('**/aktivitetspenger/soknad/innsending', async () => {
         await delay(300);

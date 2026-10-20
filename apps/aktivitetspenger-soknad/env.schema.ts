@@ -10,7 +10,7 @@ import * as z from 'zod';
 export enum AppEnvKey {
     SIF_PUBLIC_AKTIVITETSPENGER_INNSYN_URL = 'SIF_PUBLIC_AKTIVITETSPENGER_INNSYN_URL',
     SIF_PUBLIC_SEND_BESKJED = 'SIF_PUBLIC_SEND_BESKJED',
-    SIF_PUBLIC_IS_OPEN = 'SIF_PUBLIC_IS_OPEN',
+    SIF_PUBLIC_APP_LANSERINGSDATO = 'SIF_PUBLIC_APP_LANSERINGSDATO',
     SIF_PUBLIC_SUBMIT_ENABLED = 'SIF_PUBLIC_SUBMIT_ENABLED',
 }
 
@@ -18,7 +18,7 @@ export const appEnvSchema = z
     .object({
         SIF_PUBLIC_AKTIVITETSPENGER_INNSYN_URL: z.url(),
         SIF_PUBLIC_SEND_BESKJED: z.url(),
-        SIF_PUBLIC_IS_OPEN: z.string(),
+        SIF_PUBLIC_APP_LANSERINGSDATO: z.iso.date(),
         SIF_PUBLIC_SUBMIT_ENABLED: z.string(),
     })
     .extend(commonEnvSchema.shape)

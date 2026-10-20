@@ -2,6 +2,7 @@
 
 // Hooks
 export { useArbeidsgivere } from './arbeidsgivere/useArbeidsgivere';
+export { useDagensDato } from './dato/useDagensDato';
 export { useValiderFritekst } from './fritekst/useValiderFritekst';
 export { useRapporterInntekt, type YtelseInntektsrapportering } from './inntekt/useRapporterInntekt';
 export {
@@ -14,6 +15,7 @@ export { useLagreVedlegg, useSlettVedlegg } from './vedlegg/useVedlegg';
 
 // API
 export { hentArbeidsgivere } from './arbeidsgivere/arbeidsgivereApi';
+export { hentDagensDato } from './dato/dagensDatoApi';
 export { validerFritekst } from './fritekst/validerFritekstApi';
 export {
     hentYtelseMellomlagring,

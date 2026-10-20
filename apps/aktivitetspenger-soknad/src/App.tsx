@@ -18,7 +18,7 @@ import { useInitialData } from './useInitialData';
 
 initApiClients();
 
-const SøknadDataWrapper = () => {
+const SøknadDataWrapper = ({ åpnerDato }: { åpnerDato: string }) => {
     const result = useInitialData();
     const { text } = useAppIntl();
     switch (result.status) {
@@ -33,6 +33,11 @@ const SøknadDataWrapper = () => {
             }
             return <InitialDataErrorPage applicationTitle={text('application.title')} />;
         case 'success': {
+            // ISODate (YYYY-MM-DD) kan sammenlignes som streng
+            const { dagensDato } = result.data;
+            if (!dagensDato || dagensDato < åpnerDato) {
+                return <IkkeÅpenPage />;
+            }
             if (result.data.tilgjengeligSøknad.type === TilgjengeligSøknadType.INGEN) {
                 return <KanIkkeSøkePage søker={result.data.søker} tilgjengelig={result.data.tilgjengeligSøknad} />;
             }
@@ -62,10 +67,6 @@ export const App = () => {
         return <SkyraTestPage slugs={[SkyraSlug.aktivitetspenger_soknad]} />;
     }
 
-    if (env.SIF_PUBLIC_IS_OPEN !== 'true') {
-        return <IkkeÅpenPage />;
-    }
-
     return (
         <SøknadAppProvider
             applicationKey={AktivitetspengerSoknadApp.key}
@@ -79,7 +80,7 @@ export const App = () => {
             intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
             <AppRouter>
                 <SkyraHandler />
-                <SøknadDataWrapper />
+                <SøknadDataWrapper åpnerDato={env.SIF_PUBLIC_APP_LANSERINGSDATO} />
             </AppRouter>
         </SøknadAppProvider>
     );
