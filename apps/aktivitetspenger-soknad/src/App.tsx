@@ -3,6 +3,7 @@ import './app.css';
 import { AktivitetspengerSoknadApp } from '@sif/app-register';
 import { SøknadAppProvider } from '@sif/soknad-app';
 import { InitialDataErrorPage, LoadingPage } from '@sif/soknad-ui';
+import { SkyraHandler, SkyraSlug, SkyraTestPage } from '@sif/surveys';
 import { TilgjengeligSøknadType } from '@sif/ung-brukerdialog-api';
 
 import { initApiClients } from './app/api/initApiClients';
@@ -56,6 +57,11 @@ export const App = () => {
         return null;
     }
 
+    /** Testside for skyra */
+    if (globalThis.location.pathname.includes('skyra/test')) {
+        return <SkyraTestPage slugs={[SkyraSlug.aktivitetspenger_soknad]} />;
+    }
+
     if (env.SIF_PUBLIC_IS_OPEN !== 'true') {
         return <IkkeÅpenPage />;
     }
@@ -72,6 +78,7 @@ export const App = () => {
             }}
             intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
             <AppRouter>
+                <SkyraHandler />
                 <SøknadDataWrapper />
             </AppRouter>
         </SøknadAppProvider>

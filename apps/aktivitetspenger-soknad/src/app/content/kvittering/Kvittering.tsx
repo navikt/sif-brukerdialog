@@ -3,6 +3,7 @@ import getLenker from '@app/lenker';
 import { getAppEnv } from '@app/setup/appEnv';
 import { BodyLong, Heading, Link, List, VStack } from '@navikt/ds-react';
 import { SøknadKvitteringPage } from '@sif/soknad-ui';
+import { Skyra, SkyraSlug } from '@sif/surveys';
 
 export const Kvittering = () => {
     const { text } = useAppIntl();
@@ -31,8 +32,11 @@ export const Kvittering = () => {
                             />
                         </List.Item>
                         <List.Item>
+                            <AppText id="kvitteringPage.hvaSkjerVidere.2" />
+                        </List.Item>
+                        <List.Item>
                             <AppText
-                                id="kvitteringPage.hvaSkjerVidere.2"
+                                id="kvitteringPage.hvaSkjerVidere.3"
                                 values={{
                                     Lenke: (children) => <Link href={getLenker().navMinSide}>{children}</Link>,
                                 }}
@@ -43,6 +47,7 @@ export const Kvittering = () => {
                 <BodyLong>
                     <AppText id="kvitteringPage.lykkeTil" />
                 </BodyLong>
+                <Skyra slug={SkyraSlug.aktivitetspenger_soknad} />
             </VStack>
         </SøknadKvitteringPage>
     );

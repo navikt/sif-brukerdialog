@@ -1,4 +1,5 @@
 export enum SkyraSlug {
+    aktivitetspenger_soknad = 'arbeids-og-velferdsetaten-nav/soknad-om-aktivitetspenger',
     ekstra_omsorgsdager_kronisk_syk = 'arbeids-og-velferdsetaten-nav/soknad-om-ekstra-omsorgsdager-kronisk-syk',
     endringsmelding_pleiepenger = 'arbeids-og-velferdsetaten-nav/endringsmelding-pleiepenger-barn',
     omsorgspenger_arbeidstaker = 'arbeids-og-velferdsetaten-nav/soknad-om-omsorgspenger-arbeidstaker',

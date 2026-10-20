@@ -32,17 +32,6 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.READER_TOKEN }}
 
-      # Bygg Storybook (eget prosjekt)
-      - name: Build Storybook
-        run: pnpm build-storybook
-        working-directory: apps/storybook
-
-      # Flytt Storybook-output til en subfolder
-      - name: Prepare Storybook for deployment
-        run: |
-          mkdir -p deployment/storybook
-          mv apps/storybook/storybook-static/* deployment/storybook/
-
       # Bygg ungdomsytelse-deltaker demo-app med gh-pages:rebuild
       - name: Build ungdomsytelse-deltaker
         run: pnpm gh-pages:rebuild
