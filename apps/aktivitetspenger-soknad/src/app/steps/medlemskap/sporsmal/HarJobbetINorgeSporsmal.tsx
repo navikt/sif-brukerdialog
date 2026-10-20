@@ -13,6 +13,7 @@ export const HarJobbetINorgeSporsmal = () => {
     return (
         <YesOrNoQuestion
             name="harJobbetINorge"
+            useCards={true}
             legend={text('medlemskapSteg.spørsmål.harJobbetINorge')}
             description={
                 <VStack gap="space-12">

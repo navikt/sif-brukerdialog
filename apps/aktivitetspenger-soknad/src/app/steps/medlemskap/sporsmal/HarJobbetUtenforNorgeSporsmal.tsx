@@ -16,6 +16,7 @@ export const HarJobbetUtenforNorgeSporsmal = ({ harJobbetINorge }: Props) => {
     return (
         <YesOrNoQuestion
             name="harJobbetUtenforNorge"
+            useCards={true}
             legend={
                 harJobbetINorge
                     ? text('medlemskapSteg.spørsmål.jobbetINorge.harJobbetUtenforNorge')
