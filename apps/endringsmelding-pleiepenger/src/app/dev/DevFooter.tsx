@@ -1,28 +1,16 @@
 import './devFooter.scss';
 
-import { useSøknadContext } from '@app/hooks';
 import { CogIcon } from '@navikt/aksel-icons';
-import { Button, Modal, Radio, RadioGroup, VStack } from '@navikt/ds-react';
+import { Button, Modal } from '@navikt/ds-react';
 import { useEffectOnce } from '@sif/hooks';
 import React, { useState } from 'react';
 
-import { useMellomlagring } from '../hooks/useMellomlagring';
-import actionsCreator from '../søknad/context/action/actionCreator';
-import { relocateToWelcomePage } from '../utils/navigationUtils';
-import { getScenarioFromLocalStorage, saveScenarioToLocalStorage, Scenario, scenarioer } from './scenarioer';
+import { getScenarioFromLocalStorage } from './scenarioer';
+import { ScenarioSelector } from './ScenarioSelector';
 
 const DevFooter: React.FunctionComponent = () => {
     const [showModal, setShowModal] = useState(false);
-    const [scenario, setScenario] = useState<Scenario>(getScenarioFromLocalStorage());
-    const { slettMellomlagring } = useMellomlagring();
-    const { dispatch } = useSøknadContext();
-
-    const setScenarioFromValue = (value: string) => {
-        const scenarioFromValue = scenarioer.find((s) => s.value === value);
-        if (scenarioFromValue) {
-            setScenario(scenarioFromValue);
-        }
-    };
+    const scenario = getScenarioFromLocalStorage();
 
     useEffectOnce(() => {
         document.addEventListener('keydown', (e) => {
@@ -53,48 +41,7 @@ const DevFooter: React.FunctionComponent = () => {
                 className="scenario-modal"
                 style={{ width: '100%' }}>
                 <Modal.Body>
-                    <VStack gap="space-32">
-                        <div className="scenarioes">
-                            <RadioGroup
-                                value={scenario.value}
-                                legend="Scenario hvor bruker har tilgang"
-                                onChange={(value) => setScenarioFromValue(value)}>
-                                {scenarioer
-                                    .filter(({ harTilgang }) => harTilgang === true)
-                                    .map(({ name, value }) => (
-                                        <Radio key={value} value={value}>
-                                            {name}
-                                        </Radio>
-                                    ))}
-                            </RadioGroup>
-                            <RadioGroup
-                                value={scenario.value}
-                                legend="Scenario hvor bruker stoppes"
-                                onChange={(value) => setScenarioFromValue(value)}>
-                                {scenarioer
-                                    .filter(({ harTilgang }) => harTilgang === false)
-                                    .map(({ name, value }) => (
-                                        <Radio key={value} value={value}>
-                                            {name}
-                                        </Radio>
-                                    ))}
-                            </RadioGroup>
-                        </div>
-                        <div>
-                            <Button
-                                type="button"
-                                style={{ width: '100%' }}
-                                onClick={() => {
-                                    slettMellomlagring().then(() => {
-                                        dispatch(actionsCreator.resetSøknad());
-                                        saveScenarioToLocalStorage(scenario);
-                                        relocateToWelcomePage();
-                                    });
-                                }}>
-                                Velg
-                            </Button>
-                        </div>
-                    </VStack>
+                    <ScenarioSelector />
                 </Modal.Body>
             </Modal>
         </>
