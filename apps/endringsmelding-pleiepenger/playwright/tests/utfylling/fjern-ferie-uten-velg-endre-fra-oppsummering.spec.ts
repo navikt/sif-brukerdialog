@@ -29,7 +29,7 @@ test('Oppsummering viser kun steg i flyten når valg av endringer fra oppsummeri
     await expect(page.getByRole('heading', { name: 'Ferie som er fjernet' })).toBeVisible();
 
     // Arbeidstid er lagt til i flyten, men ikke endret: info om at ingen endringer finnes vises
-    await expect(page.getByRole('heading', { name: 'Arbeidstid', exact: true })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Endringer i arbeidstid', exact: true })).toBeVisible();
     await expect(page.getByText('Det er ikke registrert noen endringer i arbeidstid')).toBeVisible();
 
     // Omsorgstilbud er ikke i flyten: blokken vises ikke

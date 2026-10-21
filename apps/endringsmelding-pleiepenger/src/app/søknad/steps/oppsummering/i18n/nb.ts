@@ -9,7 +9,7 @@ export const oppsummeringStepMessages_nb = {
 
     'oppsummeringStep.nyttArbeidsforhold.tittel': 'Nytt arbeidsforhold',
 
-    'oppsummeringStep.arbeidstid.tittel': 'Arbeidstid',
+    'oppsummeringStep.arbeidstid.tittel': 'Endringer i arbeidstid',
     'oppsummeringStep.arbeidstid.flereTimerEnnTilgjengelig':
         'Det er registrert flere timer enn det er tilgjengelig for en periode. Vennligst gå tilbake til steget for arbeidstid og korriger dette.',
     'oppsummeringStep.arbeidstid.ingenEndringer': 'Det er ikke registrert noen endringer i arbeidstid',
