@@ -29,9 +29,9 @@ export const useInitialData = (): InitialDataResult => {
     const kontonummer = useKontonummer();
     const dagensDato = useDagensDato();
 
-    const requiredQueries = [søker, registrerteBarn, tilgjengeligSøknad];
+    const requiredQueries = [søker, registrerteBarn, kontonummer, tilgjengeligSøknad, dagensDato];
 
-    if (requiredQueries.some((q) => q.isLoading) || kontonummer.isLoading || dagensDato.isLoading) {
+    if (requiredQueries.some((q) => q.isLoading)) {
         return { status: 'loading' };
     }
 

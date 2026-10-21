@@ -1,11 +1,13 @@
-import { Søker, useSøker } from '@sif/api/k9-brukerdialog-prosessering';
+import { Søker, useDagensDato, useSøker } from '@sif/api/k9-brukerdialog-prosessering';
 import { Oppgave, useOppgaver, useTilgjengeligAktivitetspengerSøknad } from '@sif/api/ung-brukerdialog';
 import { OppgaveYtelsetype, TilgjengeligSøknadResponse } from '@sif/ung-brukerdialog-api';
+import { ISODate } from '@sif/utils';
 
 interface InitialData {
     søker: Søker;
     oppgaver: Oppgave[];
     tilgangsinfo: TilgjengeligSøknadResponse;
+    dagensDato?: ISODate;
 }
 
 type InitialDataResult =
@@ -15,8 +17,9 @@ export const useInitialData = (): InitialDataResult => {
     const søker = useSøker();
     const oppgaver = useOppgaver(OppgaveYtelsetype.AKTIVITETSPENGER);
     const tilgjengeligSøknad = useTilgjengeligAktivitetspengerSøknad();
+    const dagensDato = useDagensDato();
 
-    const requiredQueries = [søker, oppgaver, tilgjengeligSøknad];
+    const requiredQueries = [søker, oppgaver, tilgjengeligSøknad, dagensDato];
 
     if (requiredQueries.some((q) => q.isPending)) {
         return { status: 'loading' };
@@ -37,6 +40,7 @@ export const useInitialData = (): InitialDataResult => {
             søker: søker.data,
             oppgaver: oppgaver.data,
             tilgangsinfo: tilgjengeligSøknad.data,
+            dagensDato: dagensDato.data,
         },
     };
 };

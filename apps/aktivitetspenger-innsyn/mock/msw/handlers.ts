@@ -1,4 +1,5 @@
 import type { aktivitetspenger } from '@sif/k9-brukerdialog-prosessering-api';
+import { getDagensDatoIOslo } from '@sif/utils';
 import { http, HttpResponse } from 'msw';
 
 import { ScenarioType } from '../scenarios/types';
@@ -28,6 +29,8 @@ export const handlers = [
         }
         return new HttpResponse(null, { status: 200 });
     }),
+
+    http.get('**/dato/dagens', () => HttpResponse.json({ dato: getDagensDatoIOslo() })),
 
     http.post('**/aktivitetspenger/inntektsrapportering/innsending', async ({ request }) => {
         const text = await request.text();
