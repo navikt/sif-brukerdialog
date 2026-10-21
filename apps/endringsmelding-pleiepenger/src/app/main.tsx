@@ -7,6 +7,7 @@ import { createRoot } from 'react-dom/client';
 
 import { enableMocking } from '../../mock/msw/enableMocking';
 import App from './App';
+import { getScenarioFromLocalStorage } from './dev/scenarioer';
 
 void initApm({ app: EndringsmeldingPsbApp.key, namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
 
@@ -24,7 +25,7 @@ if (import.meta.env.INJECT_DECORATOR) {
 
 enableMocking().then(() => {
     const envNow = getMaybeEnv('NOW');
-    if (envNow) {
+    if (envNow && !getScenarioFromLocalStorage().brukDagensDato) {
         MockDate.set(new Date(envNow));
     }
 

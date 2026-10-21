@@ -5,6 +5,7 @@ import { ArbeidsgiverIkkeISak } from './arbeidsgiver-ikke-i-sak/ArbeidsgiverIkke
 import { ArbeidsgiverIkkeISakFlereAnsettelser } from './arbeidsgiver-ikke-i-sak-flere-ansettelser/ArbeidsgiverIkkeISakFlereAnsettelser';
 import { ArbeidsgiverOgFrilanser } from './arbeidsgiver-og-frilanser/ArbeidsgiverOgFrilanser';
 import { ArbeidsgivereOgFrilanser } from './arbeidsgivere-og-frilanser/ArbeidsgivereOgFrilanser';
+import { Brukertest2026 } from './brukertest-2026/Brukertest2026';
 import { Debug } from './debug/Debug';
 import { EnArbeidsgiverEnPeriode } from './en-arbeidsgiver-en-periode/EnArbeidsgiverEnPeriode';
 import { EnArbeidsgiverToAnsettelserSammeUkeMedOpphold } from './en-arbeidsgiver-to-ansettelser-samme-uke-med-opphold/EnArbeidsgiverToAnsettelserSammeUkeMedOpphold';
@@ -34,6 +35,7 @@ export const mockData: ScenarioMap = {
     ['ugyldig-k9-format']: UgyldigK9Format,
     ['en-arbeidsgiver-to-ansettelser-samme-uke-med-opphold']: EnArbeidsgiverToAnsettelserSammeUkeMedOpphold,
     ['en-arbeidsgiver-to-ansettelser-samme-uke-uten-opphold']: EnArbeidsgiverToAnsettelserSammeUkeUtenOpphold,
+    ['brukertest-2026']: Brukertest2026,
 };
 
 export interface ScenarioData {

@@ -13,13 +13,16 @@ export type ScenarioType =
     | 'arbeidsaktivitet-uten-arbeidsgiver'
     | 'ugyldig-k9-format'
     | 'en-arbeidsgiver-to-ansettelser-samme-uke-med-opphold'
-    | 'en-arbeidsgiver-to-ansettelser-samme-uke-uten-opphold';
+    | 'en-arbeidsgiver-to-ansettelser-samme-uke-uten-opphold'
+    | 'brukertest-2026';
 
 export interface Scenario {
     name: string;
     value: ScenarioType;
     description?: string;
     harTilgang: boolean;
+    /** Scenarioet bruker dagens dato i stedet for NOW fra app settings */
+    brukDagensDato?: boolean;
 }
 
 export const scenarioer: Scenario[] = [
@@ -97,6 +100,12 @@ export const scenarioer: Scenario[] = [
         name: 'Arbeidsgiver med to ansettelser samme uke uten opphold',
         value: 'en-arbeidsgiver-to-ansettelser-samme-uke-uten-opphold',
         harTilgang: true,
+    },
+    {
+        name: 'Brukertest 2026',
+        value: 'brukertest-2026',
+        harTilgang: true,
+        brukDagensDato: true,
     },
 ];
 
