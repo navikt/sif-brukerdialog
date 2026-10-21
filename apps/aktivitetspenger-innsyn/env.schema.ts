@@ -10,14 +10,14 @@ import * as z from 'zod';
 export enum AppEnvKey {
     SIF_PUBLIC_URL_AKTIVITETSPENGER = 'SIF_PUBLIC_URL_AKTIVITETSPENGER',
     SIF_PUBLIC_URL_SAKSBEHANDLINGSTIDER = 'SIF_PUBLIC_URL_SAKSBEHANDLINGSTIDER',
-    SIF_PUBLIC_IS_OPEN = 'SIF_PUBLIC_IS_OPEN',
+    SIF_PUBLIC_APP_LANSERINGSDATO = 'SIF_PUBLIC_APP_LANSERINGSDATO',
 }
 
 export const appEnvSchema = z
     .object({
         SIF_PUBLIC_URL_AKTIVITETSPENGER: z.url(),
         SIF_PUBLIC_URL_SAKSBEHANDLINGSTIDER: z.url(),
-        SIF_PUBLIC_IS_OPEN: z.string(),
+        SIF_PUBLIC_APP_LANSERINGSDATO: z.iso.date(),
     })
     .extend(commonEnvSchema.shape)
     .extend(ungBrukerdialogApiEnvSchema.shape);

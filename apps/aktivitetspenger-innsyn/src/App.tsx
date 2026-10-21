@@ -17,7 +17,6 @@ import { getAppEnv } from './app/appEnv';
 import AppRouter from './app/AppRouter';
 import { applicationIntlMessages } from './app/i18n';
 import { InitialDataLoader } from './app/initial-data/InitialDataLoader';
-import { IkkeÅpenPage } from './app/pages/IkkeApenPage';
 import { AppErrorBoundary } from './app/setup/wrappers/AppErrorBoundary';
 import { SifQueryClientProvider } from './app/setup/wrappers/SifQueryClientProvider';
 
@@ -55,14 +54,6 @@ export const App = () => {
         };
     }, []);
 
-    if (appEnv.SIF_PUBLIC_IS_OPEN !== 'true') {
-        return (
-            <Theme hasBackground={false}>
-                <IkkeÅpenPage />
-            </Theme>
-        );
-    }
-
     return (
         <Theme hasBackground={false}>
             <AppErrorBoundary>
@@ -72,7 +63,7 @@ export const App = () => {
                     <SifQueryClientProvider>
                         <IntlProvider locale="nb" messages={applicationIntlMessages.nb}>
                             <AppRouter>
-                                <InitialDataLoader />
+                                <InitialDataLoader åpnerDato={appEnv.SIF_PUBLIC_APP_LANSERINGSDATO} />
                             </AppRouter>
                         </IntlProvider>
                     </SifQueryClientProvider>
