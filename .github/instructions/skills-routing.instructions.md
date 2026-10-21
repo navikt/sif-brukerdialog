@@ -92,6 +92,10 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
     - Lovhenvisninger: `oppgaveLovverk`, `getLovLenker`, `OPPGAVE_LOVVERK`, `LENKEKATALOG`, `RegelverkOgInnsynReadMore`, `lovverk for oppgave`.
     - Storybook/preview: `oppgavepanel story`, `.preview.tsx`, `OppgavetypeMappingUPY`, `OppgavetypeMappingAKT`, `panelpreview`, `renderXxxAlleStater`.
     - Panelkomponenter: `OppgavePanel`, `Oppgavebekreftelse`, `oppgavepaneler`, `ung-innsyn oppgave`.
+- `code-review`:
+    - Forenkling/reduksjon i kode: `forenkle kode`, `reduser kompleksitet`, `rydde kode`, `opprydding`, `fjerne redundans`, `unødvendig abstraksjon`, `kan dette gjøres enklere`, `review for simplification`.
+- `detox`:
+    - Kutt i kodebase/bloat: `detox`, `code bloat`, `trimme kode`, `kutte kode`, `fjern død kode`, `hva kan fjernes`, `overhåndterte edge cases`, `minimalisere kode`.
 - `explain-diff`:
     - Grundig forklaring av endring: `explain-diff`, `rik forklaring`, `HTML-forklaring`, `interaktiv forklaring`, `forklar PR med quiz`.
     - Ikke for en kort tekstoppsummering av en diff.
@@ -116,3 +120,5 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
 - Hvis oppgaven handler om å endre eller utvide selve rammeverk-pakken (`packages/core/sif-soknad-app`), prioriter `sif-soknad-app` over `sif-soknad-setup`/`sif-soknad-add-step`.
 - Hvis oppgaven handler om dato/tid, parsing, formattering, tidssone eller Day.js, prioriter `sif-date-handling`.
 - Hvis oppgaven handler om oppgavetyper i ung-innsyn (ny oppgavetype, lovhenvisninger, panelkomponent, preview eller Storybook-oversikt for oppgaver), prioriter `ung-innsyn-oppgaver`.
+- Hvis oppgaven eksplisitt ber om forenkling/reduksjon av kode, prioriter `code-review`.
+- Hvis oppgaven ber om aggressiv trimming/kutt av kode med lav nytteverdi, prioriter `detox` over `code-review`.
