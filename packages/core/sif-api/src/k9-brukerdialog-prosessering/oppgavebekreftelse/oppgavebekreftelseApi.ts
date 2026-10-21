@@ -3,28 +3,31 @@ import { aktivitetspenger, ungdomsytelse } from '@sif/k9-brukerdialog-prosesseri
 
 import { handleApiError } from '../../shared/errorHandlers';
 
-export const sendOppgavebekreftelseAktivitetspenger = async (
-    oppgave: aktivitetspenger.AktivitetspengerOppgavebekreftelse,
-): Promise<void> => {
-    try {
-        await aktivitetspenger.AktivitetspengerController.oppgavebekreftelse({
-            body: oppgave,
-            headers: commonRequestHeaders,
-        });
-    } catch (e) {
-        throw handleApiError(e, 'sendOppgavebekreftelseAktivitetspenger');
-    }
-};
+/**
+ * Oppgavebekreftelse knyttet til ytelsen sin, slik at hver ytelse sender sin egen DTO.
+ * Verdiene i `ytelse` er de samme som i OppgaveYtelsetype fra ung-brukerdialog-api, slik at enumen kan sendes inn direkte.
+ */
+export type YtelseOppgavebekreftelse =
+    | { ytelse: 'AKTIVITETSPENGER'; data: aktivitetspenger.AktivitetspengerOppgavebekreftelse }
+    | { ytelse: 'UNGDOMSYTELSE'; data: ungdomsytelse.UngdomsytelseOppgavebekreftelse };
 
-export const sendOppgavebekreftelseUngdomsytelse = async (
-    oppgave: ungdomsytelse.UngdomsytelseOppgavebekreftelse,
-): Promise<void> => {
+export const sendOppgavebekreftelse = async ({ ytelse, data }: YtelseOppgavebekreftelse): Promise<void> => {
     try {
-        await ungdomsytelse.UngdomsytelseController.oppgavebekreftelse({
-            body: oppgave,
-            headers: commonRequestHeaders,
-        });
+        if (ytelse === 'AKTIVITETSPENGER') {
+            await aktivitetspenger.AktivitetspengerController.oppgavebekreftelse({
+                body: data,
+                headers: commonRequestHeaders,
+            });
+        } else if (ytelse === 'UNGDOMSYTELSE') {
+            await ungdomsytelse.UngdomsytelseController.oppgavebekreftelse({
+                body: data,
+                headers: commonRequestHeaders,
+            });
+        } else {
+            const ukjent: never = ytelse;
+            throw new Error(`Ukjent ytelse: ${ukjent}`);
+        }
     } catch (e) {
-        throw handleApiError(e, 'sendOppgavebekreftelseUngdomsytelse');
+        throw handleApiError(e, `sendOppgavebekreftelse-${ytelse}`);
     }
 };
