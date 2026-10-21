@@ -23,6 +23,7 @@ export interface Scenario {
     harTilgang: boolean;
     /** Scenarioet bruker dagens dato i stedet for NOW fra app settings */
     brukDagensDato?: boolean;
+    fremhevet?: boolean;
 }
 
 export const scenarioer: Scenario[] = [
@@ -106,6 +107,7 @@ export const scenarioer: Scenario[] = [
         value: 'brukertest-2026',
         harTilgang: true,
         brukDagensDato: true,
+        fremhevet: true,
     },
 ];
 
