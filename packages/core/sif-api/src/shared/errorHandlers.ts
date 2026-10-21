@@ -28,20 +28,6 @@ type HttpStatusErrorMessages = Record<number, string | ((error: AxiosError) => s
 
 export type ApiError = ApiErrorBase | ApiAxiosError;
 
-export const createApiError = (
-    type: ApiErrorType,
-    context: string,
-    message: string,
-    originalError: unknown,
-): ApiError => {
-    return {
-        type,
-        context,
-        message,
-        originalError,
-    };
-};
-
 export const isApiError = (error: unknown): error is ApiError => {
     return (
         typeof error === 'object' && error !== null && 'type' in error && 'context' in error && 'originalError' in error
