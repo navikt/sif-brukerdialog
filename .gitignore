@@ -33,9 +33,6 @@ out
 dist-e2e
 dist-playwright
 
-# cplt config
-.cplt.toml
-
 .github/copilot
 .pnpm-store
 
