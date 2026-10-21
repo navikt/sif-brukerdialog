@@ -11,6 +11,7 @@ test('test', async ({ page }) => {
     );
 
     await page.getByRole('button', { name: 'Én arbeidsgiver - en periode' }).click();
+    await page.getByRole('button', { name: 'Vis mer' }).click();
     await page.getByText('To arbeidsgivere + frilans').click();
     await page.getByRole('button', { name: 'Velg' }).click();
     await page.getByTestId('endreLovbestemtFerie').check();
