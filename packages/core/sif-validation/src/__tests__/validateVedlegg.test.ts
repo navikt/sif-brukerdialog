@@ -62,12 +62,12 @@ describe('getVedleggValidator', () => {
     });
 
     describe('tooManyVedlegg', () => {
-        it('returnerer tooManyVedlegg når mer enn 100 filer er lastet opp', () => {
-            const files = Array.from({ length: 101 }, () => makeFile(1));
+        it('returnerer tooManyVedlegg når mer enn 20 filer er lastet opp', () => {
+            const files = Array.from({ length: 21 }, () => makeFile(1));
             expect(getVedleggValidator()(files)).toEqual(ValidateVedleggError.tooManyVedlegg);
         });
-        it('returnerer undefined for nøyaktig 100 filer', () => {
-            const files = Array.from({ length: 100 }, () => makeFile(1));
+        it('returnerer undefined for nøyaktig 20 filer', () => {
+            const files = Array.from({ length: 20 }, () => makeFile(1));
             expect(getVedleggValidator()(files)).toBeUndefined();
         });
     });
