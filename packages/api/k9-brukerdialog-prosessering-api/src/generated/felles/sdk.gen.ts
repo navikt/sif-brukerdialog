@@ -18,6 +18,9 @@ import type {
     DeleteMellomlagringData,
     DeleteMellomlagringErrors,
     DeleteMellomlagringResponses,
+    FinnesVedleggData,
+    FinnesVedleggErrors,
+    FinnesVedleggResponses,
     GetMellomlagringData,
     GetMellomlagringErrors,
     GetMellomlagringResponses,
@@ -50,6 +53,8 @@ import {
     zCreateMellomlagringBody,
     zCreateMellomlagringPath,
     zDeleteMellomlagringPath,
+    zFinnesVedleggBody,
+    zFinnesVedleggResponse,
     zGetMellomlagringPath,
     zGetMellomlagringResponse,
     zHentArbeidsgivereQuery,
@@ -277,6 +282,29 @@ export class VedleggController {
             headers: {
                 'Content-Type': null,
                 ...options?.headers,
+            },
+        });
+    }
+
+    public static finnesVedlegg<ThrowOnError extends boolean = true>(
+        options: Options<FinnesVedleggData, ThrowOnError>,
+    ): RequestResult<FinnesVedleggResponses, FinnesVedleggErrors, ThrowOnError> {
+        return (options.client ?? client).post<FinnesVedleggResponses, FinnesVedleggErrors, ThrowOnError>({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: zFinnesVedleggBody,
+                        path: z.never().optional(),
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
+            responseValidator: async (data) => await zFinnesVedleggResponse.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/vedlegg/eksisterer',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers,
             },
         });
     }

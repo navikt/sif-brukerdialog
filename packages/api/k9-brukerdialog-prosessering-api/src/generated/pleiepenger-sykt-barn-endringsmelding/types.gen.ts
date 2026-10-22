@@ -10,6 +10,15 @@ export type DagensDatoResponse = {
     dato: string;
 };
 
+export type VedleggEksistens = {
+    finnes: boolean;
+    vedleggId: string;
+};
+
+export type VedleggEksistensRequest = {
+    vedleggIder: string[];
+};
+
 export type ArbeidsgivereDto = {
     frilansoppdrag?: FrilansoppdragDto[];
     organisasjoner: OrganisasjonDto[];
@@ -698,6 +707,43 @@ export type LagreVedleggResponses = {
      */
     200: unknown;
 };
+
+export type FinnesVedleggData = {
+    body: VedleggEksistensRequest;
+    path?: never;
+    query?: never;
+    url: '/vedlegg/eksisterer';
+};
+
+export type FinnesVedleggErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetail;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type FinnesVedleggError = FinnesVedleggErrors[keyof FinnesVedleggErrors];
+
+export type FinnesVedleggResponses = {
+    /**
+     * OK
+     */
+    200: VedleggEksistens[];
+};
+
+export type FinnesVedleggResponse = FinnesVedleggResponses[keyof FinnesVedleggResponses];
 
 export type SlettVedleggData = {
     body?: never;

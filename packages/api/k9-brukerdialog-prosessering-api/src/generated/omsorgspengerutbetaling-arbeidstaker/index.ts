@@ -39,6 +39,11 @@ export type {
     DeleteMellomlagringResponses,
     DineBarn,
     DineBarnWritable,
+    FinnesVedleggData,
+    FinnesVedleggError,
+    FinnesVedleggErrors,
+    FinnesVedleggResponse,
+    FinnesVedleggResponses,
     FrilansoppdragDto,
     GetMellomlagringData,
     GetMellomlagringError,
@@ -91,6 +96,8 @@ export type {
     UpdateMellomlagringResponses,
     Utbetalingsperiode,
     UtbetalingsperiodeWritable,
+    VedleggEksistens,
+    VedleggEksistensRequest,
 } from './types.gen';
 export {
     zArbeidsgiver,
@@ -110,6 +117,8 @@ export {
     zDeleteMellomlagringPath,
     zDineBarn,
     zDineBarnWritable,
+    zFinnesVedleggBody,
+    zFinnesVedleggResponse,
     zFrilansoppdragDto,
     zGetMellomlagringPath,
     zGetMellomlagringResponse,
@@ -135,4 +144,6 @@ export {
     zUpdateMellomlagringPath,
     zUtbetalingsperiode,
     zUtbetalingsperiodeWritable,
+    zVedleggEksistens,
+    zVedleggEksistensRequest,
 } from './zod.gen';

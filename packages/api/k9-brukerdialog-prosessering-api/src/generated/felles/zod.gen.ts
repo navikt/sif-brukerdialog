@@ -4,6 +4,15 @@ import * as z from 'zod';
 
 export const zJsonNode = z.unknown();
 
+export const zVedleggEksistens = z.object({
+    finnes: z.boolean(),
+    vedleggId: z.string(),
+});
+
+export const zVedleggEksistensRequest = z.object({
+    vedleggIder: z.array(z.string().min(1)).min(1).max(20),
+});
+
 export const zFrilansoppdragDto = z.object({
     ansattFom: z.iso.date().nullish(),
     ansattTom: z.iso.date().nullish(),
@@ -123,6 +132,13 @@ export const zValiderFriteksfeltBody = zFriteksfelt;
 export const zLagreVedleggBody = z.object({
     vedlegg: z.instanceof(Blob),
 });
+
+export const zFinnesVedleggBody = zVedleggEksistensRequest;
+
+/**
+ * OK
+ */
+export const zFinnesVedleggResponse = z.array(zVedleggEksistens);
 
 export const zSlettVedleggPath = z.object({
     vedleggId: z.string().min(1),
