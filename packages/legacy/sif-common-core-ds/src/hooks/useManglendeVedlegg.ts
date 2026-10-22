@@ -20,7 +20,8 @@ export const useManglendeVedlegg = (vedleggIder: string[]) => {
             return;
         }
         let avbrutt = false;
-        fetchManglendeVedleggIder(key.split(','))
+        const vedleggIderTilSjekk = [...vedleggIder];
+        fetchManglendeVedleggIder(vedleggIderTilSjekk)
             .catch(() => [])
             .then((manglendeVedleggIder) => {
                 if (!avbrutt) {
