@@ -1,4 +1,5 @@
 import { http, HttpResponse } from 'msw';
+import { v4 } from 'uuid';
 
 import { mockData } from '../data';
 import { getDevAppSettings } from '../devAppSettings';
@@ -6,7 +7,6 @@ import { getMellomlagringHandlers } from './mellomlagringHandlers';
 
 const { K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH } = getDevAppSettings();
 
-let vedleggCounter = 0;
 const vedleggStore = new Map<string, { name: string; type: string; content: ArrayBuffer }>();
 
 const getVedleggUrl = (vedleggId: string) => `${K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH}/vedlegg/${vedleggId}`;
@@ -32,8 +32,7 @@ export const getHandlers = () => [
             return HttpResponse.json({ message: 'Mangler vedlegg i request' }, { status: 400 });
         }
 
-        vedleggCounter += 1;
-        const vedleggId = `mock-vedlegg-${vedleggCounter}`;
+        const vedleggId = `mock-vedlegg-${v4()}`;
         vedleggStore.set(vedleggId, {
             name: vedlegg.name,
             type: vedlegg.type,
