@@ -68,6 +68,7 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
 - `sif-soknad-vedlegg-step`:
     - Legge til filvedlegg i et steg: `vedlegg`, `last opp`, `filvedlegg`, `VedleggPanel`, `PersistedVedlegg`, `lagreVedlegg`, `slettVedlegg`, `FileUpload`.
     - Vedlegg-hjelpere: `toPersistedVedlegg`, `isUploadedVedlegg`, `toUploadedFile`, `getVedleggApiUrl`, `getVedleggFrontendUrl`, `backendUrl`.
+    - Sjekk av manglende vedlegg (v1 og v2): `useManglendeVedlegg`, `manglendeVedleggIder`, `finnesVedlegg`, `vedlegg/eksisterer`, `vedlegg mangler`.
 - `sif-dialog-migration`:
     - Portering av dialoger: `porter dialog`, `migrer ListAndDialog`, `flytt til sif-soknad-forms`, `ModalFormAndList`, `ListAndDialog til v2`.
     - Spesifikke dialoger: `BostedUtlandListAndDialog`, `UtenlandsoppholdListAndDialog`, `TidsperiodeListAndDialog`, `FerieuttakListAndDialog`, `OpptjeningUtlandListAndDialog`, `EnkeltdatoListAndDialog`, `AnnetBarnListAndDialog`, `UtenlandskNæringListAndDialog`, `FraværListAndDialog`, `FosterbarnListAndDialog`.

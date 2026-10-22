@@ -1,10 +1,11 @@
 import { useAppIntl } from '@i18n/index';
 import { Heading } from '@navikt/ds-react';
-import { FormikFileUpload, getVedleggValidator, useVedleggHelper } from '@navikt/sif-common-core-ds';
+import { FormikFileUpload, getVedleggIder, getVedleggValidator, useManglendeVedlegg } from '@navikt/sif-common-core-ds';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { useFormikContext } from 'formik';
+import { useState } from 'react';
 
-import { persist } from '../../api/api';
+import usePersistSoknad from '../../hooks/usePersistSoknad';
 import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
@@ -16,16 +17,19 @@ interface Props {
 
 const FødselsattestPart = ({ fødselsattester }: Props) => {
     const { text, intl } = useAppIntl();
-    const { values, setFieldValue } = useFormikContext<SøknadFormValues>();
+    const { values } = useFormikContext<SøknadFormValues>();
     const andreVedlegg: Vedlegg[] = values[SøknadFormField.legeerklæring] || [];
+    const { persistSoknad } = usePersistSoknad();
 
     const onVedleggChange = (changedVedlegg: Vedlegg[]) => {
         const valuesToPersist: SøknadFormValues = { ...values, fødselsattest: changedVedlegg };
-        setFieldValue(SøknadFormField.fødselsattest, changedVedlegg);
-        persist({ formValues: valuesToPersist, lastStepID: StepID.LEGEERKLÆRING });
+        persistSoknad({ formValues: valuesToPersist, stepID: StepID.OPPLYSNINGER_OM_BARNET });
     };
 
-    useVedleggHelper(fødselsattester, andreVedlegg, onVedleggChange);
+    // Sjekken kjøres når steget åpnes. Vedlegg som lastes opp mens steget er åpent, er bekreftet av opplastingen,
+    // og en fast liste hindrer ny sjekk ved hver opplasting eller sletting.
+    const [initielleVedleggIder] = useState(() => getVedleggIder(fødselsattester));
+    const { manglendeVedleggIder } = useManglendeVedlegg(initielleVedleggIder);
 
     return (
         <div>
@@ -45,6 +49,8 @@ const FødselsattestPart = ({ fødselsattester }: Props) => {
                 uploadLaterURL={getLenker(intl.locale).ettersend}
                 otherFiles={andreVedlegg}
                 showPictureScanningGuide={true}
+                manglendeVedleggIder={manglendeVedleggIder}
+                onVedleggEndret={onVedleggChange}
             />
         </div>
     );

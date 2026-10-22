@@ -200,6 +200,8 @@ const legeerklæring = søknadsdata[SøknadStepId.LEGEERKLÆRING]?.vedlegg ?? []
 
 DTO-feltene inneholder backend-URLer (strenger). Lenkelista trenger `name`, `url` og gjerne `size`, og må derfor bruke `PersistedVedlegg[]` fra søknadsdata. `PersistedVedlegg` importeres fra `@sif/soknad-forms`.
 
+Sjekk at vedleggene finnes i backend med `useManglendeVedlegg`, send `manglendeVedleggIder` til `VedleggSummaryList` og sperr submit mens sjekken pågår eller noe mangler. Se `sif-soknad-vedlegg-step`, punkt 8.
+
 ### Feil-tilstand
 
 Hvis DTO ikke kan bygges (`dto === undefined`), vis `InfoCard data-color="warning"` og disable submit. Oppsummeringssteget er siste steg, så `isFinalSubmit` skal settes:

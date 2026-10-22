@@ -198,4 +198,7 @@ export const oppsummeringMessages_nn: Record<keyof typeof oppsummeringMessages_n
     'oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.timer.uke': 'Veke {ukenummer}: {timer}',
 
     'oppsummering.virksomhet.virksomhetInfo.tittel': 'Næringsverksemd som du har lagt inn:',
+
+    'steg.oppsummering.vedleggMangler':
+        'Det er ein feil med {antall, plural, one {dokumentet} other {nokre dokument}} som er lasta opp. {antall, plural, one {Dette} other {Desse}} må du lasta opp på nytt.',
 };

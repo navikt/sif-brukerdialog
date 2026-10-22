@@ -5,7 +5,7 @@ import {
     getVedleggIdFromResponseHeaderLocation,
     uploadVedlegg,
 } from '@navikt/sif-common-api';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { Vedlegg } from '../../types/Vedlegg';
 import { canRetryFileUpload, getFileUploadErrorReason, mapFileToPersistedFile } from './fileUploadUtils';
@@ -17,12 +17,13 @@ interface Props {
 
 export const useFileUploader = ({ initialFiles = [], onFilesChanged }: Props) => {
     const [files, setFiles] = useState<Vedlegg[]>(initialFiles);
+    const onFilesChangedRef = useRef(onFilesChanged);
+
+    onFilesChangedRef.current = onFilesChanged;
 
     useEffect(() => {
-        if (onFilesChanged) {
-            onFilesChanged(files);
-        }
-    }, [files, onFilesChanged]);
+        onFilesChangedRef.current?.(files);
+    }, [files]);
 
     const uploadFile = async (file: FileObject) => {
         try {
@@ -78,13 +79,14 @@ export const useFileUploader = ({ initialFiles = [], onFilesChanged }: Props) =>
     );
 
     const onRemove = useCallback(
-        async (fileToRemove: Vedlegg) => {
-            if (fileToRemove.info) {
-                await deleteVedlegg(fileToRemove.info.id);
-            }
+        (fileToRemove: Vedlegg) => {
             setFiles((prevFiles) => prevFiles.filter((file) => file !== fileToRemove));
+            if (fileToRemove.info) {
+                // Filen er allerede fjernet fra søknaden, så feil ved sletting i backend ignoreres
+                deleteVedlegg(fileToRemove.info.id).catch(() => undefined);
+            }
         },
-        [files],
+        [],
     );
 
     const onRetryUpload = useCallback(

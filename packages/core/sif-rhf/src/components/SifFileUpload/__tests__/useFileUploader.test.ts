@@ -105,12 +105,38 @@ describe('useFileUploader', () => {
         ];
         const { result } = renderHook(() => useFileUploader({ initialFiles: initial, uploadFile, deleteFile }));
 
-        await act(async () => {
-            await result.current.onRemove(result.current.acceptedFiles[0]);
+        act(() => {
+            result.current.onRemove(result.current.acceptedFiles[0]);
         });
 
         expect(deleteFile).toHaveBeenCalledWith('rem-1');
         expect(result.current.acceptedFiles).toHaveLength(0);
+    });
+
+    it('onRemove beholder filen fjernet når deleteFile feiler', async () => {
+        const failingDelete = vi.fn().mockRejectedValue(new Error('500'));
+        const initial = [
+            {
+                file: makeFile(),
+                pending: false,
+                uploaded: true,
+                error: false,
+                reasons: [],
+                canRetry: false,
+                info: { id: 'rem-2', url: 'u' },
+            },
+        ];
+        const { result } = renderHook(() =>
+            useFileUploader({ initialFiles: initial, uploadFile, deleteFile: failingDelete }),
+        );
+
+        await act(async () => {
+            result.current.onRemove(result.current.acceptedFiles[0]);
+        });
+
+        expect(failingDelete).toHaveBeenCalledWith('rem-2');
+        expect(result.current.acceptedFiles).toHaveLength(0);
+        expect(result.current.rejectedFiles).toHaveLength(0);
     });
 
     it('onRetryUpload laster opp filen på nytt og flytter den til acceptedFiles', async () => {

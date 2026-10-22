@@ -18,6 +18,7 @@ interface Props {
     barn: RegistrertBarn[];
     formValues: SøknadFormValues;
     apiValues: SøknadApiData;
+    manglendeVedleggIder: string[];
     onEdit?: () => void;
 }
 
@@ -38,7 +39,7 @@ const apiBarnSummary = (apiBarn: RegistrertBarn) => (
     </>
 );
 
-const annetBarnSummary = (apiValues: SøknadApiData, fødselsattester: Vedlegg[]) => (
+const annetBarnSummary = (apiValues: SøknadApiData, fødselsattester: Vedlegg[], manglendeVedleggIder: string[]) => (
     <>
         {apiValues.barn.fødselsdato ? (
             <FormSummary.Answer>
@@ -84,7 +85,7 @@ const annetBarnSummary = (apiValues: SøknadApiData, fødselsattester: Vedlegg[]
                     </FormSummary.Label>
                     <FormSummary.Value>
                         <div data-testid="oppsummering-omBarn-fødselsattest">
-                            <VedleggSummaryList vedlegg={fødselsattester} />
+                            <VedleggSummaryList vedlegg={fødselsattester} manglendeVedleggIder={manglendeVedleggIder} />
                         </div>
                         {apiValues.fødselsattestVedleggUrls.length === 0 && (
                             <AppText id="step.oppsummering.omBarn.ingenFødselsattest" />
@@ -116,7 +117,7 @@ const relasjonTilBarnetSummary = (apiValues: SøknadApiData) => (
     </FormSummary.Answer>
 );
 
-const BarnSummary = ({ formValues, apiValues, barn, onEdit }: Props) => {
+const BarnSummary = ({ formValues, apiValues, barn, manglendeVedleggIder, onEdit }: Props) => {
     const apiBarn = barn.find(({ aktørId }) => aktørId === formValues.barnetSøknadenGjelder);
     const useApiBarn =
         formValues[SøknadFormField.barnetSøknadenGjelder] !== VelgBarn_AnnetBarnValue && barn && barn.length > 0;
@@ -131,7 +132,7 @@ const BarnSummary = ({ formValues, apiValues, barn, onEdit }: Props) => {
                 </FormSummary.Header>
                 <FormSummary.Answers>
                     {useApiBarn && apiBarn && apiBarnSummary(apiBarn)}
-                    {!useApiBarn && annetBarnSummary(apiValues, formValues.fødselsattest)}
+                    {!useApiBarn && annetBarnSummary(apiValues, formValues.fødselsattest, manglendeVedleggIder)}
                     {!useApiBarn && relasjonTilBarnetSummary(apiValues)}
                 </FormSummary.Answers>
                 {onEdit && (

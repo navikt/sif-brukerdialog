@@ -97,11 +97,12 @@ export const useFileUploader = ({
     );
 
     const onRemove = useCallback(
-        async (fileToRemove: UploadedFile) => {
-            if (fileToRemove.info) {
-                await deleteFile(fileToRemove.info.id);
-            }
+        (fileToRemove: UploadedFile) => {
             setFiles((prev) => prev.filter((f) => f !== fileToRemove));
+            if (fileToRemove.info) {
+                // Filen er allerede fjernet fra søknaden, så feil ved sletting i backend ignoreres
+                deleteFile(fileToRemove.info.id).catch(() => undefined);
+            }
         },
         [deleteFile],
     );

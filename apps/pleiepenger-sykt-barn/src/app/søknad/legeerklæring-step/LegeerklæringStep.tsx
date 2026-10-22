@@ -1,11 +1,18 @@
 import { useAppIntl } from '@i18n/index';
-import { FormikFileUpload, getVedleggValidator, useVedleggHelper } from '@navikt/sif-common-core-ds';
+import {
+    FormikFileUpload,
+    getVedleggIder,
+    getVedleggValidator,
+    useManglendeVedlegg,
+    useVedleggHelper,
+} from '@navikt/sif-common-core-ds';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { useFormikContext } from 'formik';
+import { useState } from 'react';
 
-import { persist } from '../../api/api';
 import usePersistOnChange from '../../hooks/usePersistOnChange';
+import usePersistSoknad from '../../hooks/usePersistSoknad';
 import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
@@ -14,19 +21,24 @@ import { StepID } from '../../types/StepID';
 import SøknadFormStep from '../SøknadFormStep';
 
 const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
-    const { values, setFieldValue } = useFormikContext<SøknadFormValues>();
+    const { values } = useFormikContext<SøknadFormValues>();
     const { intl, text } = useAppIntl();
 
     const vedlegg = values[SøknadFormField.legeerklæring] || [];
     const andreVedlegg: Vedlegg[] = values[SøknadFormField.fødselsattest] || [];
+    const { persistSoknad } = usePersistSoknad();
 
     const onVedleggChange = (changedVedlegg: Vedlegg[]) => {
         const valuesToPersist: SøknadFormValues = { ...values, legeerklæring: changedVedlegg };
-        setFieldValue(SøknadFormField.legeerklæring, changedVedlegg);
-        persist({ formValues: valuesToPersist, lastStepID: StepID.LEGEERKLÆRING });
+        persistSoknad({ formValues: valuesToPersist, stepID: StepID.LEGEERKLÆRING });
     };
 
-    const { hasPendingUploads } = useVedleggHelper(vedlegg, andreVedlegg, onVedleggChange);
+    const { hasPendingUploads } = useVedleggHelper(vedlegg, andreVedlegg);
+
+    // Sjekken kjøres når steget åpnes. Vedlegg som lastes opp mens steget er åpent, er bekreftet av opplastingen,
+    // og en fast liste hindrer ny sjekk ved hver opplasting eller sletting.
+    const [initielleVedleggIder] = useState(() => getVedleggIder(vedlegg));
+    const { manglendeVedleggIder } = useManglendeVedlegg(initielleVedleggIder);
 
     usePersistOnChange(vedlegg, true, StepID.LEGEERKLÆRING);
 
@@ -56,6 +68,8 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
                 uploadLaterURL={getLenker(intl.locale).ettersend}
                 otherFiles={andreVedlegg}
                 showPictureScanningGuide={true}
+                manglendeVedleggIder={manglendeVedleggIder}
+                onVedleggEndret={onVedleggChange}
             />
         </SøknadFormStep>
     );

@@ -1,7 +1,7 @@
 ---
 name: sif-soknad-vedlegg-step
 type: action
-description: Implementer et vedleggssteg i en v2-app — VedleggPanel, PersistedVedlegg, hydration og MSW-handlere.
+description: Implementer et vedleggssteg i en v2-app — VedleggPanel, PersistedVedlegg, hydration, sjekk av manglende vedlegg og MSW-handlere.
 ---
 
 # sif-soknad-vedlegg-step
@@ -10,14 +10,17 @@ description: Implementer et vedleggssteg i en v2-app — VedleggPanel, Persisted
 
 - Bruker skal legge til filvedlegg (opplasting/sletting) i et steg.
 - Bruker nevner `vedlegg`, `last opp`, `filvedlegg`, `VedleggPanel`, `PersistedVedlegg`.
+- Bruker skal sjekke at vedlegg fra mellomlagring fortsatt finnes i backend (`useManglendeVedlegg`, `manglendeVedleggIder`), også i v1-apper.
 
 ## Leveranse
 
 - Opplasting, sletting og hydration virker
 - Mellomlagring oppdateres når vedlegg lastes opp eller slettes
+- Sletting i UI er optimistisk: vedlegg fjernes fra skjemaet umiddelbart, backend-delete kjøres best effort
 - Submit sperres ved pending uploads
 - DTO får vedleggenes backend-URL-er
 - Oppsummering kan vise vedlegg som lenker
+- Vedlegg som mangler i backend markeres i steg og oppsummering, og innsending sperres
 
 ## Endre disse filene
 
@@ -139,6 +142,15 @@ export const <Prefix>Form = () => {
 - `initialFiles` skal være den initielle listen, ikke `watch(...)`-verdien.
 - `uploadLaterURL` hentes fra delt lenkekilde via `getLenker()`.
 
+### Viktig ved sletting (gjelder v1 og v2)
+
+Sletting skal være **optimistisk**:
+
+1. Fjern vedlegget fra form state med én gang (slik at mellomlagring ikke får med vedlegget ved umiddelbar reload).
+2. Kjør backend-delete i bakgrunnen (best effort), uten å blokkere UI på nettverkskallet.
+
+Dette er viktigere enn at filen fjernes umiddelbart i backend, siden backend uansett rydder vedlegg senere.
+
 ## 5. Wire opp mapping
 
 ### formValuesToSoknadsdata
@@ -222,6 +234,33 @@ http.delete(`**/vedlegg/:vedleggId`, ({ params }) => {
 ```
 
 Legg vedlegg-handlerne før catch-all-handlere.
+
+## 8. Sjekk at vedlegg finnes i backend
+
+Vedlegg i mellomlagringen kan være slettet i backend. Bruker må da laste dem opp på nytt. Sjekken bruker `POST /vedlegg/eksisterer` (maks 20 ID-er per kall, som er nok i praksis).
+
+- **Steg:** sjekk bare vedleggene som fantes da steget ble åpnet (`defaultValues`/`initialFiles`), ikke `watch(...)`. Send resultatet til `manglendeVedleggIder` på opplastingskomponenten.
+- **Oppsummering:** sjekk vedleggene som faktisk sendes inn. Send resultatet til `manglendeVedleggIder` på `VedleggSummaryList`. Sperr submit mens sjekken pågår og når noe mangler. Vis en egen feilmelding over innsendingsknappen når det bare er manglende vedlegg som stopper innsendingen.
+- **Feiler selve sjekken:** ikke blokker bruker. Regn ingen vedlegg som manglende.
+
+|              | v2 (`@sif/*`)                                                                         | v1 (`@navikt/sif-common-*`)                                                                                                            |
+| ------------ | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Hook         | `useManglendeVedlegg(ider)` fra `@sif/api/k9-brukerdialog-prosessering` (React Query) | `useManglendeVedlegg(ider)` fra `@navikt/sif-common-core-ds` (uten React Query), returnerer `{ manglendeVedleggIder, sjekkerVedlegg }` |
+| ID-er        | `f.info?.id` / `PersistedVedlegg.id`                                                  | `getVedleggIder(vedlegg)` fra `@navikt/sif-common-core-ds`                                                                             |
+| Steg         | `VedleggPanel`                                                                        | `FormikFileUpload`                                                                                                                     |
+| Oppsummering | `VedleggSummaryList` fra `@sif/soknad-ui/components`                                  | `VedleggSummaryList` fra `@navikt/sif-common-core-ds`                                                                                  |
+| Sletting     | Oppdater RHF/form state først, kjør delete-kall i bakgrunnen                          | Oppdater Formik/form state først, kjør `deleteVedlegg` i bakgrunnen (`void`)                                                          |
+
+Referanser: `apps/omsorgspengesoknad-v2` (v2) og `apps/pleiepenger-sykt-barn` (v1).
+
+MSW-handler (legg til et scenario med `finnes: false` for å teste feilvisningen):
+
+```ts
+http.post('**/vedlegg/eksisterer', async ({ request }) => {
+    const { vedleggIder } = (await request.json()) as { vedleggIder: string[] };
+    return HttpResponse.json(vedleggIder.map((vedleggId) => ({ vedleggId, finnes: true })));
+});
+```
 
 ## Feilsøking
 

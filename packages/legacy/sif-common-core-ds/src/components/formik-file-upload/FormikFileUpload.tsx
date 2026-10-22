@@ -6,7 +6,7 @@ import {
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
 import { Field, FieldProps, useFormikContext } from 'formik';
-import { useCallback, useContext } from 'react';
+import { useCallback, useContext, useRef } from 'react';
 
 import { CoreText, useCoreIntl } from '../../i18n/common.messages';
 import { Vedlegg } from '../../types/Vedlegg';
@@ -17,6 +17,11 @@ import { getRejectedFileError } from './fileUploadUtils';
 import { MAX_TOTAL_VEDLEGG_SIZE_BYTES } from './getVedleggValidator';
 import { useFileUploader } from './useFileUploader';
 import VedleggTotalSizeAlert from './VedleggTotalSizeAlert';
+
+const getUploadedVedleggIds = (files: Vedlegg[]): string[] =>
+    files.flatMap((file) => (file.uploaded && file.info ? [file.info.id] : []));
+
+const getFormFiles = (files: Vedlegg[]): Vedlegg[] => files.filter((file) => (file.uploaded || file.pending) && !file.error);
 
 interface Props extends TypedFormInputValidationProps<string, ValidationError> {
     fieldName: string;
@@ -34,6 +39,8 @@ interface Props extends TypedFormInputValidationProps<string, ValidationError> {
     showPictureScanningGuide?: boolean;
     uploadLaterURL?: string;
     retryEnabled?: boolean;
+    manglendeVedleggIder?: string[];
+    onVedleggEndret?: (vedlegg: Vedlegg[]) => void;
 }
 
 const FormikFileUpload = ({
@@ -53,6 +60,8 @@ const FormikFileUpload = ({
     showSizeProgress,
     showPictureScanningGuide,
     validate,
+    manglendeVedleggIder = [],
+    onVedleggEndret,
 }: Props) => {
     const { setFieldValue } = useFormikContext<any>();
     const intl = useCoreIntl();
@@ -66,10 +75,27 @@ const FormikFileUpload = ({
         throw new Error('TypedFormikFormContext is required');
     }
 
+    const previousUploadedIds = useRef(getUploadedVedleggIds(initialFiles));
+    const onVedleggEndretRef = useRef(onVedleggEndret);
+    onVedleggEndretRef.current = onVedleggEndret;
+
     const onFilesChanged = useCallback(
         (files: Vedlegg[]) => {
-            const newFiles = files.filter((file) => (file.uploaded || file.pending) && !file.error);
-            setFieldValue(fieldName, newFiles, true);
+            const formFiles = getFormFiles(files);
+            setFieldValue(fieldName, formFiles, true);
+            if (!onVedleggEndretRef.current) {
+                return;
+            }
+            const uploadedFiles = formFiles.filter((file) => file.uploaded);
+            const ids = getUploadedVedleggIds(uploadedFiles);
+            const removed = previousUploadedIds.current.some((id) => !ids.includes(id));
+            const added = ids.some((id) => !previousUploadedIds.current.includes(id));
+            // Slettinger lagres med en gang, opplastinger når ingen flere pågår
+            if (!removed && (!added || formFiles.some((file) => file.pending))) {
+                return;
+            }
+            previousUploadedIds.current = ids;
+            onVedleggEndretRef.current(uploadedFiles);
         },
         [setFieldValue, fieldName],
     );
@@ -123,22 +149,31 @@ const FormikFileUpload = ({
                         </Box>
                     )}
                     <VStack as="ul" gap="space-12">
-                        {acceptedFiles.map((file, index) => (
-                            <FileUpload.Item
-                                as="li"
-                                key={index}
-                                file={file.file}
-                                onFileClick={file.info ? () => window.open(file.info?.url, '_blank') : undefined}
-                                status={file.pending ? 'uploading' : undefined}
-                                button={{
-                                    action: 'delete',
-                                    onClick: () => onRemove(file),
-                                }}
-                                translations={{
-                                    uploading: intl.text('@core.formikFileUpload.dokumenterLastetOpp.lasterOpp'),
-                                }}
-                            />
-                        ))}
+                        {acceptedFiles.map((file, index) => {
+                            const filManglerBackend =
+                                file.info !== undefined && manglendeVedleggIder.includes(file.info.id);
+                            return (
+                                <FileUpload.Item
+                                    as="li"
+                                    key={index}
+                                    file={filManglerBackend ? { name: file.file.name } : file.file}
+                                    onFileClick={
+                                        file.info && !filManglerBackend
+                                            ? () => window.open(file.info?.url, '_blank')
+                                            : undefined
+                                    }
+                                    status={file.pending ? 'uploading' : undefined}
+                                    error={filManglerBackend ? intl.text('@core.vedlegg.mangler') : undefined}
+                                    button={{
+                                        action: 'delete',
+                                        onClick: () => onRemove(file),
+                                    }}
+                                    translations={{
+                                        uploading: intl.text('@core.formikFileUpload.dokumenterLastetOpp.lasterOpp'),
+                                    }}
+                                />
+                            );
+                        })}
                     </VStack>
                 </VStack>
             )}
@@ -174,7 +209,7 @@ const FormikFileUpload = ({
                     </VStack>
                 </VStack>
             )}
-            {showPictureScanningGuide ? <PictureScanningGuide headingLevel={headingLevel} /> : null}
+            {showPictureScanningGuide && <PictureScanningGuide headingLevel={headingLevel} />}
         </VStack>
     );
 };

@@ -194,4 +194,7 @@ export const oppsummeringMessages_nb = {
     'oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.timer.uke': 'Uke {ukenummer}: {timer}',
 
     'oppsummering.virksomhet.virksomhetInfo.tittel': 'Næringsvirksomhet som du har lagt inn:',
+
+    'steg.oppsummering.vedleggMangler':
+        'Det er en feil med {antall, plural, one {dokumentet} other {noen dokumenter}} som er lastet opp. {antall, plural, one {Dette} other {Disse}} må lastes opp på nytt.',
 };
