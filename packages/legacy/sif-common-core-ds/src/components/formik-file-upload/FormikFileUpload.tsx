@@ -79,12 +79,14 @@ const FormikFileUpload = ({
     }
 
     const previousUploadedVedleggKey = useRef(getUploadedVedleggKey(initialFiles));
+    const onVedleggEndretRef = useRef(onVedleggEndret);
+    onVedleggEndretRef.current = onVedleggEndret;
 
     const onFilesChanged = useCallback(
         (files: Vedlegg[]) => {
             const formFiles = getFormFiles(files);
             setFieldValue(fieldName, formFiles, true);
-            if (!onVedleggEndret) {
+            if (!onVedleggEndretRef.current) {
                 return;
             }
             if (formFiles.some((file) => file.pending)) {
@@ -96,9 +98,9 @@ const FormikFileUpload = ({
                 return;
             }
             previousUploadedVedleggKey.current = currentUploadedVedleggKey;
-            onVedleggEndret(uploadedFiles);
+            onVedleggEndretRef.current(uploadedFiles);
         },
-        [setFieldValue, fieldName, onVedleggEndret],
+        [setFieldValue, fieldName],
     );
 
     const { onSelect, onRemove, onRetryUpload, acceptedFiles, rejectedFiles } = useFileUploader({
