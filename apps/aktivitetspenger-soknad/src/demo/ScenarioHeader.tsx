@@ -32,6 +32,7 @@ const scenarioGroups: Array<ScenarioSelectorHeaderGroup<ScenarioType>> = [
             { value: ScenarioType.medKontonummer, label: 'Med kontonummer' },
             { value: ScenarioType.utenKontonummer, label: 'Uten kontonummer' },
             { value: ScenarioType.ingenRegistrerteBarn, label: 'Ingen registrerte barn' },
+            { value: ScenarioType.søker30ÅrEllerEldre, label: 'Søker er 30 år eller eldre' },
         ],
     },
 ];

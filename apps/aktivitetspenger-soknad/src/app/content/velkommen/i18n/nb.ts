@@ -9,6 +9,10 @@ export const velkommenPageMessages_nb = {
     'page.velkommen.guide.info.3': 'Dette er et forsøk bare for deg som er bosatt i Trondheim kommune.',
     'page.velkommen.guide.info.4': 'Les mer om aktivitetspenger på <Lenke>nav.no</Lenke>.',
 
+    'page.velkommen.over29år.tittel': 'Du er over 29 år',
+    'page.velkommen.over29år':
+        'For å ha rett til aktivitetspenger må du være over 18 år, og ikke ha fylt 30 år den dagen du søker. Du kan sende inn søknaden, men det kan være du får avslag på grunn av alder.',
+
     'page.velkommen.omSøknaden.tittel': 'Om søknaden',
     'page.velkommen.omSøknaden.1': 'Du får veiledning underveis i søknaden om hva du skal fylle ut, og hvordan.',
     'page.velkommen.omSøknaden.2':
