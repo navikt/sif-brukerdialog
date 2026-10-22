@@ -98,11 +98,7 @@ export const useFileUploader = ({
 
     const onRemove = useCallback(
         async (fileToRemove: UploadedFile) => {
-            setFiles((prev) => {
-                const nextFiles = prev.filter((f) => f !== fileToRemove);
-                onFilesChangedRef.current?.(nextFiles);
-                return nextFiles;
-            });
+            setFiles((prev) => prev.filter((f) => f !== fileToRemove));
             if (fileToRemove.info) {
                 void deleteFile(fileToRemove.info.id);
             }

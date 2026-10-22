@@ -89,9 +89,6 @@ const FormikFileUpload = ({
             if (!onVedleggEndretRef.current) {
                 return;
             }
-            if (formFiles.some((file) => file.pending)) {
-                return;
-            }
             const uploadedFiles = formFiles.filter((file) => file.uploaded);
             const currentUploadedVedleggKey = getUploadedVedleggKey(uploadedFiles);
             if (currentUploadedVedleggKey === previousUploadedVedleggKey.current) {
