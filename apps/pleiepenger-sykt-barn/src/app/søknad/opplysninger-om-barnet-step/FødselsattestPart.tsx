@@ -1,8 +1,15 @@
 import { useAppIntl } from '@i18n/index';
 import { Heading } from '@navikt/ds-react';
-import { FormikFileUpload, getVedleggValidator, useVedleggHelper } from '@navikt/sif-common-core-ds';
+import {
+    FormikFileUpload,
+    getVedleggIder,
+    getVedleggValidator,
+    useManglendeVedlegg,
+    useVedleggHelper,
+} from '@navikt/sif-common-core-ds';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { useFormikContext } from 'formik';
+import { useState } from 'react';
 
 import { persist } from '../../api/api';
 import { AppText } from '../../i18n';
@@ -27,6 +34,10 @@ const FødselsattestPart = ({ fødselsattester }: Props) => {
 
     useVedleggHelper(fødselsattester, andreVedlegg, onVedleggChange);
 
+    // Sjekker bare vedleggene som fantes da steget ble åpnet
+    const [initielleVedleggIder] = useState(() => getVedleggIder(fødselsattester));
+    const { manglendeVedleggIder } = useManglendeVedlegg(initielleVedleggIder);
+
     return (
         <div>
             <Heading level="2" size="medium" style={{ display: 'inline-block', fontSize: '1.125rem' }}>
@@ -45,6 +56,7 @@ const FødselsattestPart = ({ fødselsattester }: Props) => {
                 uploadLaterURL={getLenker(intl.locale).ettersend}
                 otherFiles={andreVedlegg}
                 showPictureScanningGuide={true}
+                manglendeVedleggIder={manglendeVedleggIder}
             />
         </div>
     );

@@ -1,6 +1,7 @@
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { getMedlemskapApiDataFromSøknadsdata } from '@navikt/sif-common-forms-ds/src';
 import { dateToISODate } from '@navikt/sif-common-utils';
 import { appLogger } from '@sif/apm';
@@ -27,6 +28,12 @@ import { getSelvstendigApiDataFromSøknadsdata } from './getSelvstendigApiDataFr
 import { getUtenlandskNæringSøknadsdata } from './getUtenlandskNæringSøknadsdata';
 import { getUtenlandsoppholdIPeriodenApiDataFromSøknadsdata } from './getUtenlandsoppholdIPeriodenFromSøknadsdata';
 
+export const getFødselsattesterSomSendesInn = (barn: Søknadsdata['barn']): Vedlegg[] =>
+    barn?.type === 'annetBarnUtenFnr' &&
+    barn.årsakManglerIdentitetsnummer === ÅrsakManglerIdentitetsnummer.BARNET_BOR_I_UTLANDET
+        ? (barn.fødselsattest ?? [])
+        : [];
+
 export const getApiDataFromSøknadsdata = (
     søkerNorskIdent: string,
     barn: RegistrertBarn[],
@@ -48,14 +55,7 @@ export const getApiDataFromSøknadsdata = (
                     harForståttRettigheterOgPlikter !== undefined ? harForståttRettigheterOgPlikter : false,
                 harBekreftetOpplysninger: harBekreftetOpplysninger !== undefined ? harBekreftetOpplysninger : false,
                 ...getBarnApiDataFromSøknadsdata(barn, søknadsdata.barn),
-                fødselsattestVedleggUrls:
-                    søknadsdata.barn &&
-                    søknadsdata.barn.type === 'annetBarnUtenFnr' &&
-                    søknadsdata.barn.årsakManglerIdentitetsnummer ===
-                        ÅrsakManglerIdentitetsnummer.BARNET_BOR_I_UTLANDET &&
-                    søknadsdata.barn.fødselsattest
-                        ? getVedleggApiData(søknadsdata.barn.fødselsattest)
-                        : [],
+                fødselsattestVedleggUrls: getVedleggApiData(getFødselsattesterSomSendesInn(søknadsdata.barn)),
                 fraOgMed: dateToISODate(søknadsperiode.from),
                 tilOgMed: dateToISODate(søknadsperiode.to),
                 ...getUtenlandsoppholdIPeriodenApiDataFromSøknadsdata(sprak, søknadsdata.utenlandsoppholdIPerioden),

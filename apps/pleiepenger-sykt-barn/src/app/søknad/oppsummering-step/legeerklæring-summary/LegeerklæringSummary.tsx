@@ -7,10 +7,11 @@ import { AppText } from '../../../i18n';
 import { SøknadFormValues } from '../../../types/søknad-form-values/SøknadFormValues';
 
 export interface Props {
+    manglendeVedleggIder: string[];
     onEdit?: () => void;
 }
 
-const LegeerklæringSummary = ({ onEdit }: Props) => {
+const LegeerklæringSummary = ({ manglendeVedleggIder, onEdit }: Props) => {
     const {
         values: { legeerklæring },
     } = useFormikContext<SøknadFormValues>();
@@ -27,7 +28,7 @@ const LegeerklæringSummary = ({ onEdit }: Props) => {
                         <AppText id="steg.oppsummering.vedlegg.listTitle" />
                     </FormSummary.Label>
                     <FormSummary.Value>
-                        <VedleggSummaryList vedlegg={legeerklæring} />
+                        <VedleggSummaryList vedlegg={legeerklæring} manglendeVedleggIder={manglendeVedleggIder} />
                     </FormSummary.Value>
                 </FormSummary.Answer>
             </FormSummary.Answers>

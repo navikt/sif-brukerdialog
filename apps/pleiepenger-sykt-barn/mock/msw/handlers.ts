@@ -22,6 +22,11 @@ export const getHandlers = () => [
     http.delete('**/vedlegg/*', () => {
         return HttpResponse.json({});
     }),
+    // Vedlegg lagres ikke i mock, så alle regnes som at de finnes
+    http.post('**/vedlegg/eksisterer', async ({ request }) => {
+        const { vedleggIder } = (await request.json()) as { vedleggIder: string[] };
+        return HttpResponse.json(vedleggIder.map((vedleggId) => ({ vedleggId, finnes: false })));
+    }),
 
     ...getMellomlagringHandlers('PLEIEPENGER_SYKT_BARN', 'mellomlagring/PLEIEPENGER_SYKT_BARN'),
 

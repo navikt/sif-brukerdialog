@@ -1,8 +1,15 @@
 import { useAppIntl } from '@i18n/index';
-import { FormikFileUpload, getVedleggValidator, useVedleggHelper } from '@navikt/sif-common-core-ds';
+import {
+    FormikFileUpload,
+    getVedleggIder,
+    getVedleggValidator,
+    useManglendeVedlegg,
+    useVedleggHelper,
+} from '@navikt/sif-common-core-ds';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { useFormikContext } from 'formik';
+import { useState } from 'react';
 
 import { persist } from '../../api/api';
 import usePersistOnChange from '../../hooks/usePersistOnChange';
@@ -27,6 +34,10 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
     };
 
     const { hasPendingUploads } = useVedleggHelper(vedlegg, andreVedlegg, onVedleggChange);
+
+    // Sjekker bare vedleggene som fantes da steget ble åpnet
+    const [initielleVedleggIder] = useState(() => getVedleggIder(vedlegg));
+    const { manglendeVedleggIder } = useManglendeVedlegg(initielleVedleggIder);
 
     usePersistOnChange(vedlegg, true, StepID.LEGEERKLÆRING);
 
@@ -56,6 +67,7 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
                 uploadLaterURL={getLenker(intl.locale).ettersend}
                 otherFiles={andreVedlegg}
                 showPictureScanningGuide={true}
+                manglendeVedleggIder={manglendeVedleggIder}
             />
         </SøknadFormStep>
     );

@@ -1,9 +1,10 @@
 import './oppsummeringStep.less';
 
 import { useAppIntl } from '@i18n/index';
-import { VStack } from '@navikt/ds-react';
+import { Alert, VStack } from '@navikt/ds-react';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { InvalidParameterViolation } from '@navikt/sif-common-api';
+import { getVedleggIder, useManglendeVedlegg } from '@navikt/sif-common-core-ds';
 import { Locale } from '@navikt/sif-common-core-ds/src/types/Locale';
 import { isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { DateRange } from '@navikt/sif-common-formik-ds';
@@ -31,7 +32,10 @@ import { StepID } from '../../types/StepID';
 import { harArbeidIPerioden, harFraværFraJobb } from '../../utils/arbeidUtils';
 import { getDataBruktTilUtledning } from '../../utils/getDataBruktTilUtledning';
 import { relocateToLoginPage } from '../../utils/navigationUtils';
-import { getApiDataFromSøknadsdata } from '../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
+import {
+    getApiDataFromSøknadsdata,
+    getFødselsattesterSomSendesInn,
+} from '../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
 import { validateApiValues } from '../../validation/apiValuesValidation';
 import SøknadFormComponents from '../SøknadFormComponents';
 import SøknadFormStep from '../SøknadFormStep';
@@ -71,6 +75,11 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
     const { logSoknadSent, logSoknadFailed, logUserLoggedOut } = useAnalyticsInstance();
     const { logSenderInnSøknadMedIngenFravær } = useLogSøknadInfo();
     const { søknadsdata } = useSøknadsdataContext();
+
+    const { manglendeVedleggIder, sjekkerVedlegg } = useManglendeVedlegg(
+        getVedleggIder([...(søknadsdata.legeerklæring ?? []), ...getFødselsattesterSomSendesInn(søknadsdata.barn)]),
+    );
+    const vedleggErGyldige = !sjekkerVedlegg && manglendeVedleggIder.length === 0;
 
     if (!søknadsdata.isInitialized) {
         return <LoadingPage />;
@@ -168,7 +177,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                     <SøknadFormStep
                         stepId={StepID.SUMMARY}
                         onValidFormSubmit={() => {
-                            if (apiValuesValidationErrors === undefined) {
+                            if (apiValuesValidationErrors === undefined && vedleggErGyldige) {
                                 setTimeout(() => {
                                     /** La view oppdatere seg først */
                                     sendSoknad(apiValues, søkerdata, harArbeidMenIngenFravær);
@@ -180,7 +189,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                         useValidationErrorSummary={false}
                         showSubmitButton={apiValuesValidationErrors === undefined}
                         isFinalSubmit={true}
-                        buttonDisabled={sendingInProgress}
+                        buttonDisabled={sendingInProgress || !vedleggErGyldige}
                         requestPending={sendingInProgress}>
                         <FormLayout.Guide>
                             <p>
@@ -200,6 +209,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                                 barn={barn}
                                 formValues={values}
                                 apiValues={apiValues}
+                                manglendeVedleggIder={manglendeVedleggIder}
                                 onEdit={() => {
                                     navigate(søknadStepConfig[StepID.OPPLYSNINGER_OM_BARNET].route);
                                 }}
@@ -255,6 +265,7 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                             />
 
                             <LegeerklæringSummary
+                                manglendeVedleggIder={manglendeVedleggIder}
                                 onEdit={() => {
                                     navigate(søknadStepConfig[StepID.LEGEERKLÆRING].route);
                                 }}
@@ -267,6 +278,14 @@ const OppsummeringStep = ({ onApplicationSent, søknadsdato, values }: Props) =>
                             />
 
                             <div aria-live="polite">
+                                {apiValuesValidationErrors === undefined && manglendeVedleggIder.length > 0 && (
+                                    <Alert variant="error">
+                                        <AppText
+                                            id="steg.oppsummering.vedleggMangler"
+                                            values={{ antall: manglendeVedleggIder.length }}
+                                        />
+                                    </Alert>
+                                )}
                                 {invalidParameters && (
                                     <InnsendingFeiletInformasjon invalidParameter={invalidParameters} />
                                 )}
