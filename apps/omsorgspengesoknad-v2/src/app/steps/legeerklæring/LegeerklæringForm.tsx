@@ -2,6 +2,7 @@ import { AppText, useAppIntl } from '@app/i18n';
 import { getLenker } from '@app/lenker';
 import { LegeerklæringSøknadsdata, Søknadsdata } from '@app/types/Soknadsdata';
 import { SøknadStepId } from '@app/types/SoknadStepId';
+import { useManglendeVedlegg } from '@sif/api/k9-brukerdialog-prosessering';
 import { UploadedFile, useSifValidate } from '@sif/rhf';
 import {
     SøknadStepForm,
@@ -42,6 +43,10 @@ export const LegeerklæringForm = () => {
     const vedlegg: UploadedFile[] = methods.watch(LegeerklæringFormFields.vedlegg) ?? [];
     const hasPendingUploads = vedlegg.some((file) => file.pending);
 
+    const { data: manglendeVedleggIder } = useManglendeVedlegg(
+        (defaultValues[LegeerklæringFormFields.vedlegg] ?? []).flatMap((f) => (f.info ? [f.info.id] : [])),
+    );
+
     return (
         <SøknadStepForm
             stepId={stepId}
@@ -71,6 +76,7 @@ export const LegeerklæringForm = () => {
                         getVedleggValidator({ otherFiles: samværsavtaleFiles }),
                     )}
                     showPictureScanningGuide={true}
+                    manglendeVedleggIder={manglendeVedleggIder}
                 />
             </FormLayout.Content>
         </SøknadStepForm>

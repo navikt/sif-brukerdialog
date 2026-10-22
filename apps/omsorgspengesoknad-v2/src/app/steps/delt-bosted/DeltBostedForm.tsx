@@ -2,6 +2,7 @@ import { AppText, useAppIntl } from '@app/i18n';
 import { getLenker } from '@app/lenker';
 import { DeltBostedSøknadsdata, Søknadsdata } from '@app/types/Soknadsdata';
 import { SøknadStepId } from '@app/types/SoknadStepId';
+import { useManglendeVedlegg } from '@sif/api/k9-brukerdialog-prosessering';
 import { UploadedFile, useSifValidate } from '@sif/rhf';
 import {
     SøknadStepForm,
@@ -40,6 +41,10 @@ export const DeltBostedForm = () => {
     const samværsavtale: UploadedFile[] = methods.watch(DeltBostedFormFields.samværsavtale) ?? [];
     const hasPendingUploads = samværsavtale.some((file) => file.pending);
 
+    const { data: manglendeVedleggIder } = useManglendeVedlegg(
+        (defaultValues[DeltBostedFormFields.samværsavtale] ?? []).flatMap((f) => (f.info ? [f.info.id] : [])),
+    );
+
     return (
         <SøknadStepForm
             stepId={stepId}
@@ -66,6 +71,7 @@ export const DeltBostedForm = () => {
                         getVedleggValidator({ otherFiles: legeerklæringFiles }),
                     )}
                     showPictureScanningGuide={true}
+                    manglendeVedleggIder={manglendeVedleggIder}
                 />
             </FormLayout.Content>
         </SøknadStepForm>

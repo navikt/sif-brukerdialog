@@ -8,6 +8,7 @@ export enum ScenarioType {
     barnMedTidsavgrensetVedtak = 'barnMedTidsavgrensetVedtak',
     innsendingFeiler = 'innsendingFeiler',
     innsendingFeilerMedUgyldigeParametre = 'innsendingFeilerMedUgyldigeParametre',
+    vedleggMangler = 'vedleggMangler',
 }
 
 interface InnsendingResponse {
@@ -20,6 +21,8 @@ export interface ScenarioData {
     barn: { barn: Array<z.infer<typeof zBarnOppslag>> };
     mellomlagring?: Record<string, unknown>;
     innsendingResponse?: InnsendingResponse;
+    /** Alle vedlegg rapporteres som manglende i backend */
+    vedleggMangler?: boolean;
     vedtakPerAktørId?: Record<
         string,
         {

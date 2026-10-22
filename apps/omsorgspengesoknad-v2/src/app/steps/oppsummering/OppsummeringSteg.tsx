@@ -3,7 +3,7 @@ import { AppText, useAppIntl } from '@app/i18n';
 import { Søknadsdata } from '@app/types/Soknadsdata';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { FormSummary, InlineMessage, LocalAlert } from '@navikt/ds-react';
-import { Søker } from '@sif/api/k9-brukerdialog-prosessering';
+import { Søker, useManglendeVedlegg } from '@sif/api/k9-brukerdialog-prosessering';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { SøknadStep, SøknadStepForm, useSøknadsdata } from '@sif/soknad-app';
 import { PersistedVedlegg } from '@sif/soknad-forms';
@@ -51,8 +51,15 @@ export const OppsummeringSteg = () => {
 
     const harBekreftetOpplysninger = methods.watch(FormFields.bekrefterOpplysninger);
 
+    const legeerklæring = søknadsdata[SøknadStepId.LEGEERKLÆRING]?.vedlegg ?? [];
+    const samværsavtale = søknadsdata[SøknadStepId.DELT_BOSTED]?.samværsavtale;
+    const { data: manglendeVedleggIder = [], isLoading: sjekkerVedlegg } = useManglendeVedlegg(
+        [...legeerklæring, ...(samværsavtale ?? [])].map((v) => v.id),
+    );
+    const kanSendeInn = !!dto && !sjekkerVedlegg && manglendeVedleggIder.length === 0;
+
     const onSubmit = () => {
-        if (dto === undefined) {
+        if (dto === undefined || !kanSendeInn) {
             return;
         }
         sendSøknad({ ...dto, harBekreftetOpplysninger });
@@ -66,7 +73,7 @@ export const OppsummeringSteg = () => {
                 onSubmit={onSubmit}
                 isPending={isPending}
                 isFinalSubmit={true}
-                submitDisabled={!dto}>
+                submitDisabled={!kanSendeInn}>
                 <FormLayout.Content>
                     {!dto && (
                         <LocalAlert status="error">
@@ -85,8 +92,9 @@ export const OppsummeringSteg = () => {
                             <OmSøkerOppsummering søker={søker} />
                             <OmBarnetOppsummering dto={dto} />
                             <VedleggOppsummering
-                                legeerklæring={søknadsdata[SøknadStepId.LEGEERKLÆRING]?.vedlegg ?? []}
-                                samværsavtale={søknadsdata[SøknadStepId.DELT_BOSTED]?.samværsavtale}
+                                legeerklæring={legeerklæring}
+                                samværsavtale={samværsavtale}
+                                manglendeVedleggIder={manglendeVedleggIder}
                             />
                         </>
                     )}
@@ -247,9 +255,11 @@ const OmBarnetOppsummering = ({ dto }: { dto: DtoUtenBekreftelse }) => {
 const VedleggOppsummering = ({
     legeerklæring,
     samværsavtale,
+    manglendeVedleggIder,
 }: {
     legeerklæring: PersistedVedlegg[];
     samværsavtale?: PersistedVedlegg[];
+    manglendeVedleggIder: string[];
 }) => {
     return (
         <FormSummary>
@@ -269,7 +279,7 @@ const VedleggOppsummering = ({
                                 <AppText id="oppsummeringSteg.vedlegg.ingenLastetOpp" />
                             </InlineMessage>
                         ) : (
-                            <VedleggSummaryList vedlegg={legeerklæring} />
+                            <VedleggSummaryList vedlegg={legeerklæring} manglendeVedleggIder={manglendeVedleggIder} />
                         )}
                     </FormSummary.Value>
                 </FormSummary.Answer>
@@ -284,7 +294,10 @@ const VedleggOppsummering = ({
                                     <AppText id="oppsummeringSteg.vedlegg.ingenLastetOpp" />
                                 </InlineMessage>
                             ) : (
-                                <VedleggSummaryList vedlegg={samværsavtale} />
+                                <VedleggSummaryList
+                                    vedlegg={samværsavtale}
+                                    manglendeVedleggIder={manglendeVedleggIder}
+                                />
                             )}
                         </FormSummary.Value>
                     </FormSummary.Answer>

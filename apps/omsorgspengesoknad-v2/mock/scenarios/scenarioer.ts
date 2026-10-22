@@ -62,6 +62,11 @@ const innsendingFeilerMedUgyldigeParametreScenarioData: ScenarioData = {
     },
 };
 
+const vedleggManglerScenarioData: ScenarioData = {
+    ...defaultScenarioData,
+    vedleggMangler: true,
+};
+
 const scenarioData: Record<ScenarioType, ScenarioData> = {
     [ScenarioType.default]: defaultScenarioData,
     [ScenarioType.ingenRegistrerteBarn]: ingenRegistrerteBarnScenarioData,
@@ -69,6 +74,7 @@ const scenarioData: Record<ScenarioType, ScenarioData> = {
     [ScenarioType.barnMedTidsavgrensetVedtak]: barnMedTidsavgrensetVedtakScenarioData,
     [ScenarioType.innsendingFeiler]: innsendingFeilerScenarioData,
     [ScenarioType.innsendingFeilerMedUgyldigeParametre]: innsendingFeilerMedUgyldigeParametreScenarioData,
+    [ScenarioType.vedleggMangler]: vedleggManglerScenarioData,
 };
 
 export const getScenarioMockData = (scenario: ScenarioType): ScenarioData => {

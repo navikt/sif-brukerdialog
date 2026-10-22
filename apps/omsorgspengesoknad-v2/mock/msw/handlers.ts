@@ -46,6 +46,13 @@ export const handlers = [
         });
     }),
 
+    // Vedlegg lagres bare i minnet, så de regnes som at de finnes (også etter reload), med mindre scenarioet sier noe annet
+    http.post(`**/vedlegg/eksisterer`, async ({ request }) => {
+        const { vedleggIder } = (await request.json()) as { vedleggIder: string[] };
+        const finnes = !store.get().vedleggMangler;
+        return HttpResponse.json(vedleggIder.map((vedleggId) => ({ vedleggId, finnes })));
+    }),
+
     http.get(`**/vedlegg/:vedleggId`, ({ params }) => {
         const vedleggId = String(params.vedleggId);
         const file = vedleggStore.get(vedleggId);
