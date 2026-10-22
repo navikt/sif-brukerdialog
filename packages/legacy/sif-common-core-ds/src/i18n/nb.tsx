@@ -19,6 +19,7 @@ export const commonMessages_nb = {
         'Vi klarte ikke lese filen. Kontroller at den lar seg åpne og vises riktig.',
     '@core.formikFileUpload.file-upload.error.unknown': 'Det oppstod en feil under opplastingen ({reason})',
     '@core.vedleggSummaryList.ingenVedlegg': 'Ingen dokumenter er lastet opp',
+    '@core.vedlegg.mangler': 'Ugyldig fil. Filen må lastes opp på nytt.',
     '@core.formikVedleggList.validation.noVedleggUploaded': 'Ingen dokumenter er lastet opp',
     '@core.formikVedleggList.validation.tooManyVedlegg': 'For mange dokumenter er lastet opp',
     '@core.formikVedleggList.validation.maxTotalSizeExceeded':

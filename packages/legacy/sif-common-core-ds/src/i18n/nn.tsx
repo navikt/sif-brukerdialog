@@ -21,6 +21,7 @@ export const commonMessages_nn: Record<CoreMessageKeys, string> = {
 
     '@core.formikFileUpload.file-upload.error.unknown': 'Det oppstod ein feil under opplastinga ({reason})',
     '@core.vedleggSummaryList.ingenVedlegg': 'Ingen dokument er lasta opp',
+    '@core.vedlegg.mangler': 'Ugyldig fil. Filen må lastes opp på nytt.',
     '@core.formikVedleggList.validation.noVedleggUploaded': 'Ingen dokument er lasta opp',
     '@core.formikVedleggList.validation.tooManyVedlegg': 'For mange dokument er lasta opp',
     '@core.formikVedleggList.validation.maxTotalSizeExceeded':

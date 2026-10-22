@@ -34,6 +34,7 @@ interface Props extends TypedFormInputValidationProps<string, ValidationError> {
     showPictureScanningGuide?: boolean;
     uploadLaterURL?: string;
     retryEnabled?: boolean;
+    manglendeVedleggIder?: string[];
 }
 
 const FormikFileUpload = ({
@@ -53,6 +54,7 @@ const FormikFileUpload = ({
     showSizeProgress,
     showPictureScanningGuide,
     validate,
+    manglendeVedleggIder = [],
 }: Props) => {
     const { setFieldValue } = useFormikContext<any>();
     const intl = useCoreIntl();
@@ -123,22 +125,31 @@ const FormikFileUpload = ({
                         </Box>
                     )}
                     <VStack as="ul" gap="space-12">
-                        {acceptedFiles.map((file, index) => (
-                            <FileUpload.Item
-                                as="li"
-                                key={index}
-                                file={file.file}
-                                onFileClick={file.info ? () => window.open(file.info?.url, '_blank') : undefined}
-                                status={file.pending ? 'uploading' : undefined}
-                                button={{
-                                    action: 'delete',
-                                    onClick: () => onRemove(file),
-                                }}
-                                translations={{
-                                    uploading: intl.text('@core.formikFileUpload.dokumenterLastetOpp.lasterOpp'),
-                                }}
-                            />
-                        ))}
+                        {acceptedFiles.map((file, index) => {
+                            const filManglerBackend =
+                                file.info !== undefined && manglendeVedleggIder.includes(file.info.id);
+                            return (
+                                <FileUpload.Item
+                                    as="li"
+                                    key={index}
+                                    file={filManglerBackend ? { name: file.file.name } : file.file}
+                                    onFileClick={
+                                        file.info && !filManglerBackend
+                                            ? () => window.open(file.info?.url, '_blank')
+                                            : undefined
+                                    }
+                                    status={file.pending ? 'uploading' : undefined}
+                                    error={filManglerBackend ? intl.text('@core.vedlegg.mangler') : undefined}
+                                    button={{
+                                        action: 'delete',
+                                        onClick: () => onRemove(file),
+                                    }}
+                                    translations={{
+                                        uploading: intl.text('@core.formikFileUpload.dokumenterLastetOpp.lasterOpp'),
+                                    }}
+                                />
+                            );
+                        })}
                     </VStack>
                 </VStack>
             )}

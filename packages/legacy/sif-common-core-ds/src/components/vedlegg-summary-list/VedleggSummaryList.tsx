@@ -1,5 +1,5 @@
 import { PaperclipIcon } from '@navikt/aksel-icons';
-import { BodyShort, Box, HStack, Link, List } from '@navikt/ds-react';
+import { BodyShort, Box, HStack, InlineMessage, Link, List } from '@navikt/ds-react';
 
 import { useCoreIntl } from '../../i18n/common.messages';
 import { Vedlegg } from '../../types/Vedlegg';
@@ -12,6 +12,7 @@ export interface VedleggSummaryListProps {
     emptyListText?: string;
     variant?: Variant;
     showFileSize?: boolean;
+    manglendeVedleggIder?: string[];
 }
 
 const getVariantStyle = (variant: Variant, index: number): React.CSSProperties => {
@@ -43,6 +44,7 @@ const VedleggSummaryList = ({
     emptyListText,
     variant = 'plain',
     showFileSize = true,
+    manglendeVedleggIder = [],
 }: VedleggSummaryListProps) => {
     const { text } = useCoreIntl();
 
@@ -54,6 +56,7 @@ const VedleggSummaryList = ({
         <List as="ul">
             {vedlegg.map((v, index) => {
                 const { file, info } = v;
+                const filManglerBackend = info !== undefined && manglendeVedleggIder.includes(info.id);
                 return (
                     <List.Item
                         style={getVariantStyle(variant, index)}
@@ -61,7 +64,7 @@ const VedleggSummaryList = ({
                         icon={<PaperclipIcon title="Ikon" aria-hidden />}>
                         <HStack gap="space-8" wrap={false} align="baseline">
                             <HStack flexGrow="2" gap="space-0 space-12" align="baseline">
-                                {info ? (
+                                {info && !filManglerBackend ? (
                                     <Link
                                         href={info.url}
                                         style={{ wordBreak: 'break-word' }}
@@ -75,12 +78,22 @@ const VedleggSummaryList = ({
                                     </BodyShort>
                                 )}
                                 {showFileSize && file.size ? (
-                                    <BodyShort as="span" size="small" style={{ color: 'var(--ax-text-neutral-subtle)' }}>
+                                    <BodyShort
+                                        as="span"
+                                        size="small"
+                                        style={{ color: 'var(--ax-text-neutral-subtle)' }}>
                                         ({formatFileSize(file.size)})
                                     </BodyShort>
                                 ) : null}
                             </HStack>
                         </HStack>
+                        {filManglerBackend ? (
+                            <Box marginBlock="space-0 space-8">
+                                <InlineMessage status="error" size="small">
+                                    {text('@core.vedlegg.mangler')}
+                                </InlineMessage>
+                            </Box>
+                        ) : null}
                     </List.Item>
                 );
             })}
