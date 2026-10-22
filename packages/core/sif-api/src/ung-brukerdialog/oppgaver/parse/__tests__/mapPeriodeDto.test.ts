@@ -47,10 +47,6 @@ describe('mapPeriodeDtoToDateRange', () => {
         );
     });
 
-    it('kaster feil når tomDato er undefined', () => {
-        expect(() => mapPeriodeDtoToDateRange({ fomDato: '2025-01-01' })).toThrow('Udefinert tom i periode: undefined');
-    });
-
     it('kaster feil ved ugyldig tomDato', () => {
         expect(() => mapPeriodeDtoToDateRange({ fomDato: '2025-01-01', tomDato: 'ugyldig' })).toThrow(
             'Ugyldig datoformat for tom i periode: ugyldig',

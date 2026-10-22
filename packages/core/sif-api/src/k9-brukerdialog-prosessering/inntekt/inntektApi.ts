@@ -3,28 +3,31 @@ import { aktivitetspenger, ungdomsytelse } from '@sif/k9-brukerdialog-prosesseri
 
 import { handleApiError } from '../../shared/errorHandlers';
 
-export const rapporterInntektAktivitetspenger = async (
-    data: aktivitetspenger.AktivitetspengerInntektsrapportering,
-): Promise<void> => {
-    try {
-        await aktivitetspenger.AktivitetspengerController.inntektrapportering({
-            body: data,
-            headers: commonRequestHeaders,
-        });
-    } catch (e) {
-        throw handleApiError(e, 'rapporterInntektAktivitetspenger');
-    }
-};
+/**
+ * Inntektsrapportering knyttet til ytelsen sin, slik at hver ytelse sender sin egen DTO.
+ * Verdiene i `ytelse` er de samme som i OppgaveYtelsetype fra ung-brukerdialog-api, slik at enumen kan sendes inn direkte.
+ */
+export type YtelseInntektsrapportering =
+    | { ytelse: 'AKTIVITETSPENGER'; data: aktivitetspenger.AktivitetspengerInntektsrapportering }
+    | { ytelse: 'UNGDOMSYTELSE'; data: ungdomsytelse.UngdomsytelseInntektsrapportering };
 
-export const rapporterInntektUngdomsytelse = async (
-    data: ungdomsytelse.UngdomsytelseInntektsrapportering,
-): Promise<void> => {
+export const rapporterInntekt = async ({ ytelse, data }: YtelseInntektsrapportering): Promise<void> => {
     try {
-        await ungdomsytelse.UngdomsytelseController.inntektrapportering({
-            body: data,
-            headers: commonRequestHeaders,
-        });
+        if (ytelse === 'AKTIVITETSPENGER') {
+            await aktivitetspenger.AktivitetspengerController.inntektrapportering({
+                body: data,
+                headers: commonRequestHeaders,
+            });
+        } else if (ytelse === 'UNGDOMSYTELSE') {
+            await ungdomsytelse.UngdomsytelseController.inntektrapportering({
+                body: data,
+                headers: commonRequestHeaders,
+            });
+        } else {
+            const ukjent: never = ytelse;
+            throw new Error(`Ukjent ytelse: ${ukjent}`);
+        }
     } catch (e) {
-        throw handleApiError(e, 'rapporterInntektUngdomsytelse');
+        throw handleApiError(e, `rapporterInntekt-${ytelse}`);
     }
 };
