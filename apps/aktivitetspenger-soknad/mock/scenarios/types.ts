@@ -13,6 +13,7 @@ export enum ScenarioType {
     medKontonummer = 'medKontonummer',
     ingenRegistrerteBarn = 'ingenRegistrerteBarn',
     utenKontonummer = 'utenKontonummer',
+    søker30ÅrEllerEldre = 'søker30ÅrEllerEldre',
 }
 
 export interface ScenarioData {

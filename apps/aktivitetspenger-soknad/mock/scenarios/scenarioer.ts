@@ -1,10 +1,11 @@
-import { TilgjengeligSøknadType } from '@sif/ung-brukerdialog-api';
 import {
     ingenBarnProfil,
     kontonummerApiResponse,
     standardProfil,
     standardProfilMedKontonummer,
 } from '@sif/api/mock-data';
+import { TilgjengeligSøknadType } from '@sif/ung-brukerdialog-api';
+import dayjs from 'dayjs';
 
 import { ScenarioData, ScenarioType } from './types';
 
@@ -100,6 +101,16 @@ const utenKontonummerScenarioData: ScenarioData = {
     mellomlagring: undefined,
 };
 
+const søker30ÅrEllerEldreScenarioData: ScenarioData = {
+    ...standardProfilMedKontonummer,
+    søker: {
+        ...standardProfilMedKontonummer.søker,
+        fødselsdato: dayjs().subtract(31, 'year').format('YYYY-MM-DD'),
+    },
+    tilgjengeligSøknad: kanSøkeFørstegang,
+    mellomlagring: undefined,
+};
+
 const scenarioData: Record<ScenarioType, ScenarioData> = {
     [ScenarioType.default]: defaultScenarioData,
     [ScenarioType.kanSøkeFørstegang]: kanSøkeFørstegangScenarioData,
@@ -110,6 +121,7 @@ const scenarioData: Record<ScenarioType, ScenarioData> = {
     [ScenarioType.medKontonummer]: medKontonummerScenarioData,
     [ScenarioType.ingenRegistrerteBarn]: ingenRegistrerteBarnScenarioData,
     [ScenarioType.utenKontonummer]: utenKontonummerScenarioData,
+    [ScenarioType.søker30ÅrEllerEldre]: søker30ÅrEllerEldreScenarioData,
 };
 
 export const getScenarioMockData = (scenario: ScenarioType): ScenarioData => {

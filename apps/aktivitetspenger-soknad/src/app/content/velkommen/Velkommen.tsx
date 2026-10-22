@@ -1,10 +1,16 @@
 import { useAppContext } from '@app/context/AppContext';
 import { AppText, useAppIntl } from '@app/i18n';
 import { getLenker } from '@app/lenker';
-import { BodyLong, Link } from '@navikt/ds-react';
+import { BodyShort, Heading, Link, VStack } from '@navikt/ds-react';
 import { SøknadVelkommenPage } from '@sif/soknad-app';
+import { SifInfoCard } from '@sif/soknad-ui';
+import { getDagensDatoIOslo } from '@sif/utils';
+import dayjs from 'dayjs';
 
 import OmSøknaden from './OmSoknaden';
+
+const erSøker30ÅrEllerEldre = (fødselsdato?: string | null): boolean =>
+    !!fødselsdato && dayjs(getDagensDatoIOslo()).diff(dayjs(fødselsdato), 'year') >= 30;
 
 export const Velkommen = () => {
     const { text } = useAppIntl();
@@ -17,25 +23,40 @@ export const Velkommen = () => {
                 navn: søker.fornavn || '',
                 content: (
                     <>
-                        <BodyLong spacing>
+                        <BodyShort spacing>
                             <AppText id="page.velkommen.guide.info.1" />
-                        </BodyLong>
-                        <BodyLong spacing>
+                        </BodyShort>
+                        <BodyShort spacing>
                             <AppText id="page.velkommen.guide.info.2" />
-                        </BodyLong>
-                        <BodyLong spacing>
+                        </BodyShort>
+                        <BodyShort spacing>
                             <AppText id="page.velkommen.guide.info.3" />
-                        </BodyLong>
-                        <BodyLong spacing>
+                        </BodyShort>
+                        <BodyShort spacing>
                             <AppText
                                 id="page.velkommen.guide.info.4"
                                 values={{ Lenke: (children) => <Link href={getLenker().navForside}>{children}</Link> }}
                             />
-                        </BodyLong>
+                        </BodyShort>
                     </>
                 ),
             }}>
-            <OmSøknaden />
+            <VStack gap="space-32">
+                <OmSøknaden />
+                {erSøker30ÅrEllerEldre(søker.fødselsdato) && (
+                    <SifInfoCard variant="warning">
+                        <Heading size="xsmall" level="3" spacing>
+                            <AppText id="page.velkommen.over29år.tittel" />
+                        </Heading>
+                        <BodyShort spacing>
+                            <AppText id="page.velkommen.over29år.tekst.1" />
+                        </BodyShort>
+                        <BodyShort>
+                            <AppText id="page.velkommen.over29år.tekst.2" />
+                        </BodyShort>
+                    </SifInfoCard>
+                )}
+            </VStack>
         </SøknadVelkommenPage>
     );
 };
