@@ -11,8 +11,8 @@ import { FormLayout } from '@navikt/sif-common-ui';
 import { useFormikContext } from 'formik';
 import { useState } from 'react';
 
-import { persist } from '../../api/api';
 import usePersistOnChange from '../../hooks/usePersistOnChange';
+import usePersistSoknad from '../../hooks/usePersistSoknad';
 import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
@@ -26,14 +26,11 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
 
     const vedlegg = values[SøknadFormField.legeerklæring] || [];
     const andreVedlegg: Vedlegg[] = values[SøknadFormField.fødselsattest] || [];
-    const getVedleggKey = (vedlegg: Vedlegg[]) => getVedleggIder(vedlegg).sort().join(',');
+    const { persistSoknad } = usePersistSoknad();
 
     const onVedleggChange = (changedVedlegg: Vedlegg[]) => {
-        if (getVedleggKey(changedVedlegg) === getVedleggKey(vedlegg)) {
-            return;
-        }
         const valuesToPersist: SøknadFormValues = { ...values, legeerklæring: changedVedlegg };
-        persist({ formValues: valuesToPersist, lastStepID: StepID.LEGEERKLÆRING });
+        persistSoknad({ formValues: valuesToPersist, stepID: StepID.LEGEERKLÆRING });
     };
 
     const { hasPendingUploads } = useVedleggHelper(vedlegg, andreVedlegg);

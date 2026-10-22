@@ -18,11 +18,8 @@ import { MAX_TOTAL_VEDLEGG_SIZE_BYTES } from './getVedleggValidator';
 import { useFileUploader } from './useFileUploader';
 import VedleggTotalSizeAlert from './VedleggTotalSizeAlert';
 
-const getUploadedVedleggKey = (files: Vedlegg[]): string =>
-    files
-        .flatMap((file) => (file.uploaded && file.info ? [file.info.id] : []))
-        .sort()
-        .join(',');
+const getUploadedVedleggIds = (files: Vedlegg[]): string[] =>
+    files.flatMap((file) => (file.uploaded && file.info ? [file.info.id] : []));
 
 const getFormFiles = (files: Vedlegg[]): Vedlegg[] => files.filter((file) => (file.uploaded || file.pending) && !file.error);
 
@@ -78,7 +75,7 @@ const FormikFileUpload = ({
         throw new Error('TypedFormikFormContext is required');
     }
 
-    const previousUploadedVedleggKey = useRef(getUploadedVedleggKey(initialFiles));
+    const previousUploadedIds = useRef(getUploadedVedleggIds(initialFiles));
     const onVedleggEndretRef = useRef(onVedleggEndret);
     onVedleggEndretRef.current = onVedleggEndret;
 
@@ -90,11 +87,14 @@ const FormikFileUpload = ({
                 return;
             }
             const uploadedFiles = formFiles.filter((file) => file.uploaded);
-            const currentUploadedVedleggKey = getUploadedVedleggKey(uploadedFiles);
-            if (currentUploadedVedleggKey === previousUploadedVedleggKey.current) {
+            const ids = getUploadedVedleggIds(uploadedFiles);
+            const removed = previousUploadedIds.current.some((id) => !ids.includes(id));
+            const added = ids.some((id) => !previousUploadedIds.current.includes(id));
+            // Slettinger lagres med en gang, opplastinger når ingen flere pågår
+            if (!removed && (!added || formFiles.some((file) => file.pending))) {
                 return;
             }
-            previousUploadedVedleggKey.current = currentUploadedVedleggKey;
+            previousUploadedIds.current = ids;
             onVedleggEndretRef.current(uploadedFiles);
         },
         [setFieldValue, fieldName],

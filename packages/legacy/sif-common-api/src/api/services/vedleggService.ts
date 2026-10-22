@@ -31,9 +31,6 @@ export const deleteVedlegg = async (id: string): Promise<AxiosResponse<any, any>
  * @returns ID-ene til vedlegg som mangler i backend
  */
 export const fetchManglendeVedleggIder = async (vedleggIder: string[]): Promise<string[]> => {
-    if (vedleggIder.length === 0) {
-        return [];
-    }
     const manglendeVedleggIder: string[] = [];
     for (let i = 0; i < vedleggIder.length; i += eksistererBatchSize) {
         const batch = vedleggIder.slice(i, i + eksistererBatchSize);

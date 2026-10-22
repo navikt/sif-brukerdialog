@@ -5,7 +5,8 @@ import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { useFormikContext } from 'formik';
 import { useState } from 'react';
 
-import { persist } from '../../api/api';
+import usePersistOnChange from '../../hooks/usePersistOnChange';
+import usePersistSoknad from '../../hooks/usePersistSoknad';
 import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
 import { SøknadFormField, SøknadFormValues } from '../../types/søknad-form-values/SøknadFormValues';
@@ -19,19 +20,18 @@ const FødselsattestPart = ({ fødselsattester }: Props) => {
     const { text, intl } = useAppIntl();
     const { values } = useFormikContext<SøknadFormValues>();
     const andreVedlegg: Vedlegg[] = values[SøknadFormField.legeerklæring] || [];
-    const getVedleggKey = (vedlegg: Vedlegg[]) => getVedleggIder(vedlegg).sort().join(',');
+    const { persistSoknad } = usePersistSoknad();
 
     const onVedleggChange = (changedVedlegg: Vedlegg[]) => {
-        if (getVedleggKey(changedVedlegg) === getVedleggKey(fødselsattester)) {
-            return;
-        }
         const valuesToPersist: SøknadFormValues = { ...values, fødselsattest: changedVedlegg };
-        persist({ formValues: valuesToPersist, lastStepID: StepID.LEGEERKLÆRING });
+        persistSoknad({ formValues: valuesToPersist, stepID: StepID.OPPLYSNINGER_OM_BARNET });
     };
 
     // Sjekker bare vedleggene som fantes da steget ble åpnet
     const [initielleVedleggIder] = useState(() => getVedleggIder(fødselsattester));
     const { manglendeVedleggIder } = useManglendeVedlegg(initielleVedleggIder);
+
+    usePersistOnChange(values[SøknadFormField.fødselsattest], true, StepID.OPPLYSNINGER_OM_BARNET);
 
     return (
         <div>

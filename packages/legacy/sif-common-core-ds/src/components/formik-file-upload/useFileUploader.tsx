@@ -82,7 +82,8 @@ export const useFileUploader = ({ initialFiles = [], onFilesChanged }: Props) =>
         (fileToRemove: Vedlegg) => {
             setFiles((prevFiles) => prevFiles.filter((file) => file !== fileToRemove));
             if (fileToRemove.info) {
-                void deleteVedlegg(fileToRemove.info.id);
+                // Filen er allerede fjernet fra søknaden, så feil ved sletting i backend ignoreres
+                deleteVedlegg(fileToRemove.info.id).catch(() => undefined);
             }
         },
         [],
