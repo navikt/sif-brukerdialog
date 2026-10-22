@@ -200,5 +200,5 @@ export const oppsummeringMessages_nn: Record<keyof typeof oppsummeringMessages_n
     'oppsummering.virksomhet.virksomhetInfo.tittel': 'Næringsverksemd som du har lagt inn:',
 
     'steg.oppsummering.vedleggMangler':
-        'Det er ein feil med {antall, plural, one {eitt dokument} other {nokre dokument}} som er lasta opp. {antall, plural, one {Dette} other {Desse}} må du lasta opp på nytt.',
+        'Det er ein feil med {antall, plural, one {dokumentet} other {nokre dokument}} som er lasta opp. {antall, plural, one {Dette} other {Desse}} må du lasta opp på nytt.',
 };
