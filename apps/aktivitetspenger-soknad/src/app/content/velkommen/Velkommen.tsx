@@ -41,17 +41,20 @@ export const Velkommen = () => {
                 ),
             }}>
             <VStack gap="space-32">
+                <OmSøknaden />
                 {erSøker30ÅrEllerEldre(søker.fødselsdato) && (
                     <SifInfoCard variant="warning">
                         <Heading size="xsmall" level="3" spacing>
                             <AppText id="page.velkommen.over29år.tittel" />
                         </Heading>
+                        <BodyShort spacing>
+                            <AppText id="page.velkommen.over29år.tekst.1" />
+                        </BodyShort>
                         <BodyShort>
-                            <AppText id="page.velkommen.over29år" />
+                            <AppText id="page.velkommen.over29år.tekst.2" />
                         </BodyShort>
                     </SifInfoCard>
                 )}
-                <OmSøknaden />
             </VStack>
         </SøknadVelkommenPage>
     );

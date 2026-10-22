@@ -10,8 +10,10 @@ export const velkommenPageMessages_nn: Record<keyof typeof velkommenPageMessages
     'page.velkommen.guide.info.3': 'Dette er eit forsøk berre for deg som er busett i Trondheim kommune.',
     'page.velkommen.guide.info.4': 'Les meir om aktivitetspengar på <Lenke>nav.no</Lenke>.',
     'page.velkommen.over29år.tittel': 'Du er over 29 år',
-    'page.velkommen.over29år':
-        'For å ha rett til aktivitetspengar må du vere over 18 år, og ikkje ha fylt 30 år den dagen du søkjer. Du kan sende inn søknaden, men det kan vere du får avslag på grunn av alder.',
+    'page.velkommen.over29år.tekst.1':
+        'Du kan sende inn søknaden, men det kan hende at du får avslag på grunn av alderen din.',
+    'page.velkommen.over29år.tekst.2':
+        'Aktivitetspengar er for deg som er mellom 18 og 30 år. Du kan søkje frå den dagen du fyller 18 år, og du kan få aktivitetspengar fram til dagen før du fyller 30 år.',
     'page.velkommen.omSøknaden.tittel': 'Om søknaden',
     'page.velkommen.omSøknaden.1': 'Du får rettleiing undervegs i søknaden om kva du skal fylle ut, og korleis.',
     'page.velkommen.omSøknaden.2':
