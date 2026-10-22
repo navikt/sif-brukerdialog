@@ -11,7 +11,8 @@ export {
 } from './oppgavebekreftelse/useSendOppgavebekreftelse';
 export { useRegistrerteBarn } from './registrert-barn/useRegistrerteBarn';
 export { useSøker } from './soker/useSoker';
-export { useLagreVedlegg, useSlettVedlegg } from './vedlegg/useVedlegg';
+export type { VedleggEksistens } from './vedlegg/useVedlegg';
+export { useLagreVedlegg, useManglendeVedlegg, useSlettVedlegg } from './vedlegg/useVedlegg';
 
 // API
 export { hentArbeidsgivere } from './arbeidsgivere/arbeidsgivereApi';
@@ -26,6 +27,7 @@ export {
 export { hentRegistrerteBarn } from './registrert-barn/registrerteBarnApi';
 export { hentSøker, hentSøkerId } from './soker/sokerApi';
 export {
+    finnesVedlegg,
     getVedleggApiUrl,
     getVedleggFrontendUrl,
     getVedleggIdFromResponseHeaderLocation,
