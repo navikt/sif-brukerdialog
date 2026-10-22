@@ -1,5 +1,5 @@
 import { getCommonEnv } from '@sif/env';
-import { VedleggController, zHentVedleggResponse } from '@sif/k9-brukerdialog-prosessering-api';
+import { VedleggController, zFinnesVedleggResponse, zHentVedleggResponse } from '@sif/k9-brukerdialog-prosessering-api';
 
 import { handleApiError } from '../../shared/errorHandlers';
 
@@ -82,5 +82,25 @@ export const hentVedlegg = async (vedleggId: string) => {
         return zHentVedleggResponse.parse(response.data);
     } catch (error) {
         throw handleApiError(error, 'hentVedlegg');
+    }
+};
+
+/**
+ * Sjekker om vedlegg finnes i k9-brukerdialog-prosessering-api
+ *
+ * @param vedleggIder ID-ene til vedleggene som skal sjekkes
+ * @returns Promise med { vedleggId, finnes } per vedlegg
+ * @throws ApiError hvis API-kallet feiler eller data ikke kan parses
+ */
+export const finnesVedlegg = async (vedleggIder: string[]) => {
+    try {
+        const response = await VedleggController.finnesVedlegg({
+            body: {
+                vedleggIder,
+            },
+        });
+        return zFinnesVedleggResponse.parse(response.data);
+    } catch (error) {
+        throw handleApiError(error, 'finnesVedlegg');
     }
 };

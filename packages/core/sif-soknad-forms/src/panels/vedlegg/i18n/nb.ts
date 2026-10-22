@@ -18,4 +18,5 @@ export const vedleggPanelMessages_nb = {
         'Du har totalt lastet opp mer enn grensen på 24 MB. Det betyr at du må fjerne noe av det du har lastet opp.',
     '@sifSoknadForms.vedlegg.sizeProgress.label':
         'Samlet størrelse for filene som er lastet opp er {usedMB} MB. Du kan laste opp maks {maxMB} MB.',
+    '@sifSoknadForms.vedlegg.missing': 'Ugyldig fil. Filen må lastes opp på nytt.',
 };

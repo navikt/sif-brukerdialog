@@ -1,7 +1,7 @@
 import { ValidationFunction } from './types';
 
 const MAX_TOTAL_VEDLEGG_SIZE_BYTES = 24 * 1024 * 1024;
-const MAX_VEDLEGG_COUNT = 100;
+const MAX_VEDLEGG_COUNT = 20;
 
 export enum ValidateVedleggError {
     noVedleggUploaded = 'noVedleggUploaded',
@@ -28,11 +28,11 @@ export const getVedleggValidator =
         if (required && uploadedFiles.length === 0) {
             return ValidateVedleggError.noVedleggUploaded;
         }
-        if (uploadedFiles.length > MAX_VEDLEGG_COUNT) {
-            return ValidateVedleggError.tooManyVedlegg;
-        }
         const otherUploadedFiles: any[] = otherFiles.filter((f) => f.uploaded && !f.error);
         const allFiles = [...uploadedFiles, ...otherUploadedFiles];
+        if (allFiles.length > MAX_VEDLEGG_COUNT) {
+            return ValidateVedleggError.tooManyVedlegg;
+        }
         const totalSize: number = allFiles.reduce((sum: number, f: any) => sum + (f.file?.size ?? 0), 0);
         if (totalSize > MAX_TOTAL_VEDLEGG_SIZE_BYTES) {
             return ValidateVedleggError.maxTotalSizeExceeded;

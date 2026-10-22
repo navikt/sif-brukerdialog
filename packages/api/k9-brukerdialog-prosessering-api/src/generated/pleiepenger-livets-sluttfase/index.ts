@@ -29,6 +29,11 @@ export type {
     DeleteMellomlagringError,
     DeleteMellomlagringErrors,
     DeleteMellomlagringResponses,
+    FinnesVedleggData,
+    FinnesVedleggError,
+    FinnesVedleggErrors,
+    FinnesVedleggResponse,
+    FinnesVedleggResponses,
     FrilansoppdragDto,
     GetMellomlagringData,
     GetMellomlagringError,
@@ -73,6 +78,8 @@ export type {
     UpdateMellomlagringError,
     UpdateMellomlagringErrors,
     UpdateMellomlagringResponses,
+    VedleggEksistens,
+    VedleggEksistensRequest,
 } from './types.gen';
 export {
     zArbeidsgivereDto,
@@ -83,6 +90,8 @@ export {
     zDagensDatoResponse,
     zDagensDatoResponse2,
     zDeleteMellomlagringPath,
+    zFinnesVedleggBody,
+    zFinnesVedleggResponse,
     zFrilansoppdragDto,
     zGetMellomlagringPath,
     zGetMellomlagringResponse,
@@ -102,4 +111,6 @@ export {
     zSøker,
     zUpdateMellomlagringBody,
     zUpdateMellomlagringPath,
+    zVedleggEksistens,
+    zVedleggEksistensRequest,
 } from './zod.gen';

@@ -44,6 +44,11 @@ export type {
     Endringsmelding,
     FellesUtenlandsopphold,
     FellesUtenlandsoppholdPeriodeInfo,
+    FinnesVedleggData,
+    FinnesVedleggError,
+    FinnesVedleggErrors,
+    FinnesVedleggResponse,
+    FinnesVedleggResponses,
     Frilanser,
     FrilansoppdragDto,
     GetMellomlagringData,
@@ -111,6 +116,8 @@ export type {
     UtenlandskArbeidsforhold,
     Uttak,
     UttakPeriodeInfo,
+    VedleggEksistens,
+    VedleggEksistensRequest,
 } from './types.gen';
 export {
     zAnnenAktivitet,
@@ -135,6 +142,8 @@ export {
     zEndringsmelding,
     zFellesUtenlandsopphold,
     zFellesUtenlandsoppholdPeriodeInfo,
+    zFinnesVedleggBody,
+    zFinnesVedleggResponse,
     zFrilanser,
     zFrilansoppdragDto,
     zGetMellomlagringPath,
@@ -175,4 +184,6 @@ export {
     zUtenlandskArbeidsforhold,
     zUttak,
     zUttakPeriodeInfo,
+    zVedleggEksistens,
+    zVedleggEksistensRequest,
 } from './zod.gen';

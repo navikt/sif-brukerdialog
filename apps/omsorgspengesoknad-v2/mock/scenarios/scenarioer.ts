@@ -57,9 +57,21 @@ const innsendingFeilerMedUgyldigeParametreScenarioData: ScenarioData = {
         status: 400,
         body: {
             title: 'Ugyldig forespørsel',
-            invalidParameters: [{ parameterName: 'høyereRisikoForFraværBeskrivelse' }],
+            invalidParameters: [
+                {
+                    parameterName: 'høyereRisikoForFraværBeskrivelse',
+                    parameterType: 'body',
+                    reason: 'Må være 5 tegn eller mer',
+                    invalidValue: null,
+                },
+            ],
         },
     },
+};
+
+const vedleggManglerScenarioData: ScenarioData = {
+    ...defaultScenarioData,
+    vedleggMangler: true,
 };
 
 const scenarioData: Record<ScenarioType, ScenarioData> = {
@@ -69,6 +81,7 @@ const scenarioData: Record<ScenarioType, ScenarioData> = {
     [ScenarioType.barnMedTidsavgrensetVedtak]: barnMedTidsavgrensetVedtakScenarioData,
     [ScenarioType.innsendingFeiler]: innsendingFeilerScenarioData,
     [ScenarioType.innsendingFeilerMedUgyldigeParametre]: innsendingFeilerMedUgyldigeParametreScenarioData,
+    [ScenarioType.vedleggMangler]: vedleggManglerScenarioData,
 };
 
 export const getScenarioMockData = (scenario: ScenarioType): ScenarioData => {

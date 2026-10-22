@@ -1,7 +1,8 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { sifApiQueryKeys } from '../../queryKeys';
-import { getVedleggIdFromResponseHeaderLocation, lagreVedlegg, slettVedlegg } from './vedleggApi';
+import { ApiError } from '../../shared/errorHandlers';
+import { finnesVedlegg, getVedleggIdFromResponseHeaderLocation, lagreVedlegg, slettVedlegg } from './vedleggApi';
 
 // Re-export utility function
 export { getVedleggIdFromResponseHeaderLocation };
@@ -18,6 +19,24 @@ export const useLagreVedlegg = () => {
                 queryKey: sifApiQueryKeys.vedlegg,
             });
         },
+    });
+};
+
+export type VedleggEksistens = Awaited<ReturnType<typeof finnesVedlegg>>[number];
+
+/**
+ * Henter ID-ene til vedlegg som ikke lenger finnes i backend, f.eks. når søknaden er hentet fra mellomlagring.
+ * Kjøres én gang per visning av siden: ikke ved fokus, reconnect eller lagring/sletting av vedlegg.
+ */
+export const useManglendeVedlegg = (vedleggIder: string[], enabled = true) => {
+    return useQuery<VedleggEksistens[], ApiError, string[]>({
+        queryKey: sifApiQueryKeys.vedleggEksisterer(vedleggIder),
+        queryFn: () => finnesVedlegg(vedleggIder),
+        select: (data) => data.filter((v) => !v.finnes).map((v) => v.vedleggId),
+        enabled: enabled && vedleggIder.length > 0,
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: false,
+        retry: 1,
     });
 };
 

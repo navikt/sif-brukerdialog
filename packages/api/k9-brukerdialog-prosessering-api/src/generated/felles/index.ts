@@ -23,6 +23,11 @@ export type {
     DeleteMellomlagringError,
     DeleteMellomlagringErrors,
     DeleteMellomlagringResponses,
+    FinnesVedleggData,
+    FinnesVedleggError,
+    FinnesVedleggErrors,
+    FinnesVedleggResponse,
+    FinnesVedleggResponses,
     FrilansoppdragDto,
     Friteksfelt,
     GetMellomlagringData,
@@ -72,6 +77,8 @@ export type {
     ValiderFriteksfeltError,
     ValiderFriteksfeltErrors,
     ValiderFriteksfeltResponses,
+    VedleggEksistens,
+    VedleggEksistensRequest,
 } from './types.gen';
 export {
     zArbeidsgivereDto,
@@ -80,6 +87,8 @@ export {
     zCreateMellomlagringBody,
     zCreateMellomlagringPath,
     zDeleteMellomlagringPath,
+    zFinnesVedleggBody,
+    zFinnesVedleggResponse,
     zFrilansoppdragDto,
     zFriteksfelt,
     zGetMellomlagringPath,
@@ -101,4 +110,6 @@ export {
     zUpdateMellomlagringBody,
     zUpdateMellomlagringPath,
     zValiderFriteksfeltBody,
+    zVedleggEksistens,
+    zVedleggEksistensRequest,
 } from './zod.gen';

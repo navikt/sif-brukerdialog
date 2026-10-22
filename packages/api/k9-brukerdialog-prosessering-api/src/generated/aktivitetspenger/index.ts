@@ -35,6 +35,11 @@ export type {
     DeleteMellomlagringError,
     DeleteMellomlagringErrors,
     DeleteMellomlagringResponses,
+    FinnesVedleggData,
+    FinnesVedleggError,
+    FinnesVedleggErrors,
+    FinnesVedleggResponse,
+    FinnesVedleggResponses,
     FrilansoppdragDto,
     GetMellomlagringData,
     GetMellomlagringError,
@@ -96,6 +101,8 @@ export type {
     UpdateMellomlagringErrors,
     UpdateMellomlagringResponses,
     UtenlandsoppholdAktivitetspenger,
+    VedleggEksistens,
+    VedleggEksistensRequest,
 } from './types.gen';
 export {
     zAktivitetspengerInntektsrapportering,
@@ -111,6 +118,8 @@ export {
     zDagensDatoResponse,
     zDagensDatoResponse2,
     zDeleteMellomlagringPath,
+    zFinnesVedleggBody,
+    zFinnesVedleggResponse,
     zFrilansoppdragDto,
     zGetMellomlagringPath,
     zGetMellomlagringResponse,
@@ -141,4 +150,6 @@ export {
     zUpdateMellomlagringBody,
     zUpdateMellomlagringPath,
     zUtenlandsoppholdAktivitetspenger,
+    zVedleggEksistens,
+    zVedleggEksistensRequest,
 } from './zod.gen';
