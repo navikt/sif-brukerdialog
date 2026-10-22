@@ -35,7 +35,8 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
 
     const { hasPendingUploads } = useVedleggHelper(vedlegg, andreVedlegg);
 
-    // Sjekker bare vedleggene som fantes da steget ble åpnet
+    // Sjekken kjøres når steget åpnes. Vedlegg som lastes opp mens steget er åpent, er bekreftet av opplastingen,
+    // og en fast liste hindrer ny sjekk ved hver opplasting eller sletting.
     const [initielleVedleggIder] = useState(() => getVedleggIder(vedlegg));
     const { manglendeVedleggIder } = useManglendeVedlegg(initielleVedleggIder);
 

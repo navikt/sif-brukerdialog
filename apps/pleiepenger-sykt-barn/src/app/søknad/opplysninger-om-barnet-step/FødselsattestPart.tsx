@@ -26,7 +26,8 @@ const FødselsattestPart = ({ fødselsattester }: Props) => {
         persistSoknad({ formValues: valuesToPersist, stepID: StepID.OPPLYSNINGER_OM_BARNET });
     };
 
-    // Sjekker bare vedleggene som fantes da steget ble åpnet
+    // Sjekken kjøres når steget åpnes. Vedlegg som lastes opp mens steget er åpent, er bekreftet av opplastingen,
+    // og en fast liste hindrer ny sjekk ved hver opplasting eller sletting.
     const [initielleVedleggIder] = useState(() => getVedleggIder(fødselsattester));
     const { manglendeVedleggIder } = useManglendeVedlegg(initielleVedleggIder);
 
