@@ -1,12 +1,6 @@
 import { useAppIntl } from '@i18n/index';
 import { Heading } from '@navikt/ds-react';
-import {
-    FormikFileUpload,
-    getVedleggIder,
-    getVedleggValidator,
-    useManglendeVedlegg,
-    useVedleggHelper,
-} from '@navikt/sif-common-core-ds';
+import { FormikFileUpload, getVedleggIder, getVedleggValidator, useManglendeVedlegg } from '@navikt/sif-common-core-ds';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { useFormikContext } from 'formik';
 import { useState } from 'react';
@@ -23,16 +17,17 @@ interface Props {
 
 const FødselsattestPart = ({ fødselsattester }: Props) => {
     const { text, intl } = useAppIntl();
-    const { values, setFieldValue } = useFormikContext<SøknadFormValues>();
+    const { values } = useFormikContext<SøknadFormValues>();
     const andreVedlegg: Vedlegg[] = values[SøknadFormField.legeerklæring] || [];
+    const getVedleggKey = (vedlegg: Vedlegg[]) => getVedleggIder(vedlegg).sort().join(',');
 
     const onVedleggChange = (changedVedlegg: Vedlegg[]) => {
+        if (getVedleggKey(changedVedlegg) === getVedleggKey(fødselsattester)) {
+            return;
+        }
         const valuesToPersist: SøknadFormValues = { ...values, fødselsattest: changedVedlegg };
-        setFieldValue(SøknadFormField.fødselsattest, changedVedlegg);
         persist({ formValues: valuesToPersist, lastStepID: StepID.LEGEERKLÆRING });
     };
-
-    useVedleggHelper(fødselsattester, andreVedlegg, onVedleggChange);
 
     // Sjekker bare vedleggene som fantes da steget ble åpnet
     const [initielleVedleggIder] = useState(() => getVedleggIder(fødselsattester));
@@ -57,6 +52,7 @@ const FødselsattestPart = ({ fødselsattester }: Props) => {
                 otherFiles={andreVedlegg}
                 showPictureScanningGuide={true}
                 manglendeVedleggIder={manglendeVedleggIder}
+                onVedleggEndret={onVedleggChange}
             />
         </div>
     );

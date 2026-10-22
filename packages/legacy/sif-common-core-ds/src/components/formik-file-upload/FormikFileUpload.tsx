@@ -6,7 +6,7 @@ import {
     ValidationError,
 } from '@navikt/sif-common-formik-ds';
 import { Field, FieldProps, useFormikContext } from 'formik';
-import { useCallback, useContext } from 'react';
+import { useCallback, useContext, useRef } from 'react';
 
 import { CoreText, useCoreIntl } from '../../i18n/common.messages';
 import { Vedlegg } from '../../types/Vedlegg';
@@ -17,6 +17,14 @@ import { getRejectedFileError } from './fileUploadUtils';
 import { MAX_TOTAL_VEDLEGG_SIZE_BYTES } from './getVedleggValidator';
 import { useFileUploader } from './useFileUploader';
 import VedleggTotalSizeAlert from './VedleggTotalSizeAlert';
+
+const getUploadedVedleggKey = (files: Vedlegg[]): string =>
+    files
+        .flatMap((file) => (file.uploaded && file.info ? [file.info.id] : []))
+        .sort()
+        .join(',');
+
+const getFormFiles = (files: Vedlegg[]): Vedlegg[] => files.filter((file) => (file.uploaded || file.pending) && !file.error);
 
 interface Props extends TypedFormInputValidationProps<string, ValidationError> {
     fieldName: string;
@@ -35,6 +43,7 @@ interface Props extends TypedFormInputValidationProps<string, ValidationError> {
     uploadLaterURL?: string;
     retryEnabled?: boolean;
     manglendeVedleggIder?: string[];
+    onVedleggEndret?: (vedlegg: Vedlegg[]) => void;
 }
 
 const FormikFileUpload = ({
@@ -55,6 +64,7 @@ const FormikFileUpload = ({
     showPictureScanningGuide,
     validate,
     manglendeVedleggIder = [],
+    onVedleggEndret,
 }: Props) => {
     const { setFieldValue } = useFormikContext<any>();
     const intl = useCoreIntl();
@@ -68,12 +78,27 @@ const FormikFileUpload = ({
         throw new Error('TypedFormikFormContext is required');
     }
 
+    const previousUploadedVedleggKey = useRef(getUploadedVedleggKey(initialFiles));
+
     const onFilesChanged = useCallback(
         (files: Vedlegg[]) => {
-            const newFiles = files.filter((file) => (file.uploaded || file.pending) && !file.error);
-            setFieldValue(fieldName, newFiles, true);
+            const formFiles = getFormFiles(files);
+            setFieldValue(fieldName, formFiles, true);
+            if (!onVedleggEndret) {
+                return;
+            }
+            if (formFiles.some((file) => file.pending)) {
+                return;
+            }
+            const uploadedFiles = formFiles.filter((file) => file.uploaded);
+            const currentUploadedVedleggKey = getUploadedVedleggKey(uploadedFiles);
+            if (currentUploadedVedleggKey === previousUploadedVedleggKey.current) {
+                return;
+            }
+            previousUploadedVedleggKey.current = currentUploadedVedleggKey;
+            onVedleggEndret(uploadedFiles);
         },
-        [setFieldValue, fieldName],
+        [setFieldValue, fieldName, onVedleggEndret],
     );
 
     const { onSelect, onRemove, onRetryUpload, acceptedFiles, rejectedFiles } = useFileUploader({
@@ -185,7 +210,7 @@ const FormikFileUpload = ({
                     </VStack>
                 </VStack>
             )}
-            {showPictureScanningGuide ? <PictureScanningGuide headingLevel={headingLevel} /> : null}
+            {showPictureScanningGuide && <PictureScanningGuide headingLevel={headingLevel} />}
         </VStack>
     );
 };

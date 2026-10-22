@@ -21,19 +21,22 @@ import { StepID } from '../../types/StepID';
 import SøknadFormStep from '../SøknadFormStep';
 
 const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
-    const { values, setFieldValue } = useFormikContext<SøknadFormValues>();
+    const { values } = useFormikContext<SøknadFormValues>();
     const { intl, text } = useAppIntl();
 
     const vedlegg = values[SøknadFormField.legeerklæring] || [];
     const andreVedlegg: Vedlegg[] = values[SøknadFormField.fødselsattest] || [];
+    const getVedleggKey = (vedlegg: Vedlegg[]) => getVedleggIder(vedlegg).sort().join(',');
 
     const onVedleggChange = (changedVedlegg: Vedlegg[]) => {
+        if (getVedleggKey(changedVedlegg) === getVedleggKey(vedlegg)) {
+            return;
+        }
         const valuesToPersist: SøknadFormValues = { ...values, legeerklæring: changedVedlegg };
-        setFieldValue(SøknadFormField.legeerklæring, changedVedlegg);
         persist({ formValues: valuesToPersist, lastStepID: StepID.LEGEERKLÆRING });
     };
 
-    const { hasPendingUploads } = useVedleggHelper(vedlegg, andreVedlegg, onVedleggChange);
+    const { hasPendingUploads } = useVedleggHelper(vedlegg, andreVedlegg);
 
     // Sjekker bare vedleggene som fantes da steget ble åpnet
     const [initielleVedleggIder] = useState(() => getVedleggIder(vedlegg));
@@ -68,6 +71,7 @@ const LegeerklæringStep = ({ onValidSubmit }: StepCommonProps) => {
                 otherFiles={andreVedlegg}
                 showPictureScanningGuide={true}
                 manglendeVedleggIder={manglendeVedleggIder}
+                onVedleggEndret={onVedleggChange}
             />
         </SøknadFormStep>
     );
