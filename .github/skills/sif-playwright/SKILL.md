@@ -298,6 +298,7 @@ Når appen har vedleggssteg:
 - legg testfilene under `playwright/files/`
 - bruk små, deterministiske filer med stabile filnavn
 - verifiser både at filen vises i steglisten og at den vises igjen i oppsummeringen
+- har appen sjekk av manglende vedlegg: bruk et scenario der `/vedlegg/eksisterer` svarer `finnes: false`, og verifiser feilmeldingen og at innsending er sperret
 
 Målet er å teste hele UI-flyten for opplasting, ikke filinnholdet.
 

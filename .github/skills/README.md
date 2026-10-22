@@ -68,8 +68,8 @@ Bruk denne indeksen for rask routing til riktig skill.
     - Fil: `.github/skills/sif-soknad-oppsummering/SKILL.md`
 
 - `sif-soknad-vedlegg-step`
-    - Når: implementere eller endre vedleggssteg med opplasting, sletting, hydration og mellomlagring.
-    - Triggerord: `vedlegg`, `last opp`, `filvedlegg`, `VedleggPanel`, `PersistedVedlegg`, `lagreVedlegg`, `slettVedlegg`, `FileUpload`.
+    - Når: implementere eller endre vedleggssteg med opplasting, sletting, hydration, mellomlagring og sjekk av manglende vedlegg (v1 og v2).
+    - Triggerord: `vedlegg`, `last opp`, `filvedlegg`, `VedleggPanel`, `PersistedVedlegg`, `lagreVedlegg`, `slettVedlegg`, `FileUpload`, `useManglendeVedlegg`, `manglendeVedleggIder`.
     - Fil: `.github/skills/sif-soknad-vedlegg-step/SKILL.md`
 
 - `sif-codegen`
