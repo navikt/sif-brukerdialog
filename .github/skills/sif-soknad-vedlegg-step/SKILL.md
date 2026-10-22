@@ -16,6 +16,7 @@ description: Implementer et vedleggssteg i en v2-app — VedleggPanel, Persisted
 
 - Opplasting, sletting og hydration virker
 - Mellomlagring oppdateres når vedlegg lastes opp eller slettes
+- Sletting i UI er optimistisk: vedlegg fjernes fra skjemaet umiddelbart, backend-delete kjøres best effort
 - Submit sperres ved pending uploads
 - DTO får vedleggenes backend-URL-er
 - Oppsummering kan vise vedlegg som lenker
@@ -141,6 +142,15 @@ export const <Prefix>Form = () => {
 - `initialFiles` skal være den initielle listen, ikke `watch(...)`-verdien.
 - `uploadLaterURL` hentes fra delt lenkekilde via `getLenker()`.
 
+### Viktig ved sletting (gjelder v1 og v2)
+
+Sletting skal være **optimistisk**:
+
+1. Fjern vedlegget fra form state med én gang (slik at mellomlagring ikke får med vedlegget ved umiddelbar reload).
+2. Kjør backend-delete i bakgrunnen (best effort), uten å blokkere UI på nettverkskallet.
+
+Dette er viktigere enn at filen fjernes umiddelbart i backend, siden backend uansett rydder vedlegg senere.
+
 ## 5. Wire opp mapping
 
 ### formValuesToSoknadsdata
@@ -239,6 +249,7 @@ Vedlegg i mellomlagringen kan være slettet i backend. Bruker må da laste dem o
 | ID-er        | `f.info?.id` / `PersistedVedlegg.id`                                                  | `getVedleggIder(vedlegg)` fra `@navikt/sif-common-core-ds`                                                                             |
 | Steg         | `VedleggPanel`                                                                        | `FormikFileUpload`                                                                                                                     |
 | Oppsummering | `VedleggSummaryList` fra `@sif/soknad-ui/components`                                  | `VedleggSummaryList` fra `@navikt/sif-common-core-ds`                                                                                  |
+| Sletting     | Oppdater RHF/form state først, kjør delete-kall i bakgrunnen                          | Oppdater Formik/form state først, kjør `deleteVedlegg` i bakgrunnen (`void`)                                                          |
 
 Referanser: `apps/omsorgspengesoknad-v2` (v2) og `apps/pleiepenger-sykt-barn` (v1).
 

@@ -78,13 +78,13 @@ export const useFileUploader = ({ initialFiles = [], onFilesChanged }: Props) =>
     );
 
     const onRemove = useCallback(
-        async (fileToRemove: Vedlegg) => {
-            if (fileToRemove.info) {
-                await deleteVedlegg(fileToRemove.info.id);
-            }
+        (fileToRemove: Vedlegg) => {
             setFiles((prevFiles) => prevFiles.filter((file) => file !== fileToRemove));
+            if (fileToRemove.info) {
+                void deleteVedlegg(fileToRemove.info.id);
+            }
         },
-        [files],
+        [],
     );
 
     const onRetryUpload = useCallback(
