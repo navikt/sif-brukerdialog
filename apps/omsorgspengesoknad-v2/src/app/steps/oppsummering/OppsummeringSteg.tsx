@@ -53,7 +53,9 @@ export const OppsummeringSteg = () => {
 
     const legeerklæring = søknadsdata[SøknadStepId.LEGEERKLÆRING]?.vedlegg ?? [];
     const samværsavtale = søknadsdata[SøknadStepId.DELT_BOSTED]?.samværsavtale;
-    const { data: manglendeVedleggIder = [], isLoading: sjekkerVedlegg } = useManglendeVedlegg(
+
+    // Feiler sjekken, tillates innsending uten å vise feil til bruker. isFetching hindrer innsending på bufret svar.
+    const { data: manglendeVedleggIder = [], isFetching: sjekkerVedlegg } = useManglendeVedlegg(
         [...legeerklæring, ...(samværsavtale ?? [])].map((v) => v.id),
     );
     const kanSendeInn = !!dto && !sjekkerVedlegg && manglendeVedleggIder.length === 0;

@@ -59,7 +59,7 @@ export function VedleggPanel<T extends FieldValues>({
     initialFiles = [],
     otherFiles = [],
     onVedleggEndret,
-    limits = { MAX_FILES: 100, MAX_SIZE_MB: 10 },
+    limits = { MAX_FILES: 20, MAX_SIZE_MB: 10 },
     headingLevel = '2',
     showSizeProgress,
     showPictureScanningGuide,

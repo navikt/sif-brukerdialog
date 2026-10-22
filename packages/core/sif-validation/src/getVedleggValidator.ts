@@ -1,7 +1,7 @@
 import { ValidationFunction } from './types';
 
 const MAX_TOTAL_VEDLEGG_SIZE_BYTES = 24 * 1024 * 1024;
-const MAX_VEDLEGG_COUNT = 100;
+const MAX_VEDLEGG_COUNT = 20;
 
 export enum ValidateVedleggError {
     noVedleggUploaded = 'noVedleggUploaded',
