@@ -70,6 +70,21 @@ describe('getVedleggValidator', () => {
             const files = Array.from({ length: 20 }, () => makeFile(1));
             expect(getVedleggValidator()(files)).toBeUndefined();
         });
+        it('returnerer undefined når filer og otherFiles til sammen er 20', () => {
+            const files = Array.from({ length: 10 }, () => makeFile(1));
+            const otherFiles = Array.from({ length: 10 }, () => makeFile(1));
+            expect(getVedleggValidator({ otherFiles })(files)).toBeUndefined();
+        });
+        it('returnerer tooManyVedlegg når filer og otherFiles til sammen er 21', () => {
+            const files = Array.from({ length: 11 }, () => makeFile(1));
+            const otherFiles = Array.from({ length: 10 }, () => makeFile(1));
+            expect(getVedleggValidator({ otherFiles })(files)).toEqual(ValidateVedleggError.tooManyVedlegg);
+        });
+        it('teller ikke feil/pending-filer i otherFiles mot antallet', () => {
+            const files = Array.from({ length: 20 }, () => makeFile(1));
+            const otherFiles = [makeErrorFile(), makePendingFile()];
+            expect(getVedleggValidator({ otherFiles })(files)).toBeUndefined();
+        });
     });
 
     describe('maxTotalSizeExceeded', () => {
