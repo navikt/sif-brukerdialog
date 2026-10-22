@@ -57,7 +57,14 @@ const innsendingFeilerMedUgyldigeParametreScenarioData: ScenarioData = {
         status: 400,
         body: {
             title: 'Ugyldig forespørsel',
-            invalidParameters: [{ parameterName: 'høyereRisikoForFraværBeskrivelse' }],
+            invalidParameters: [
+                {
+                    parameterName: 'høyereRisikoForFraværBeskrivelse',
+                    parameterType: 'body',
+                    reason: 'Må være 5 tegn eller mer',
+                    invalidValue: null,
+                },
+            ],
         },
     },
 };
