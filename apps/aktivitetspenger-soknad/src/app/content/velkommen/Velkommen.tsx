@@ -4,12 +4,13 @@ import { getLenker } from '@app/lenker';
 import { BodyShort, Heading, Link, VStack } from '@navikt/ds-react';
 import { SøknadVelkommenPage } from '@sif/soknad-app';
 import { SifInfoCard } from '@sif/soknad-ui';
+import { getDagensDatoIOslo } from '@sif/utils';
 import dayjs from 'dayjs';
 
 import OmSøknaden from './OmSoknaden';
 
 const erSøker30ÅrEllerEldre = (fødselsdato?: string | null): boolean =>
-    !!fødselsdato && dayjs().diff(dayjs(fødselsdato), 'year') >= 30;
+    !!fødselsdato && dayjs(getDagensDatoIOslo()).diff(dayjs(fødselsdato), 'year') >= 30;
 
 export const Velkommen = () => {
     const { text } = useAppIntl();
