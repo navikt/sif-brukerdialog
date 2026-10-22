@@ -1,11 +1,11 @@
-import { TilgjengeligSøknadType } from '@sif/ung-brukerdialog-api';
-import dayjs from 'dayjs';
 import {
     ingenBarnProfil,
     kontonummerApiResponse,
     standardProfil,
     standardProfilMedKontonummer,
 } from '@sif/api/mock-data';
+import { TilgjengeligSøknadType } from '@sif/ung-brukerdialog-api';
+import dayjs from 'dayjs';
 
 import { ScenarioData, ScenarioType } from './types';
 
@@ -105,7 +105,7 @@ const søker30ÅrEllerEldreScenarioData: ScenarioData = {
     ...standardProfilMedKontonummer,
     søker: {
         ...standardProfilMedKontonummer.søker,
-        fødselsdato: dayjs().subtract(30, 'year').format('YYYY-MM-DD'),
+        fødselsdato: dayjs().subtract(31, 'year').format('YYYY-MM-DD'),
     },
     tilgjengeligSøknad: kanSøkeFørstegang,
     mellomlagring: undefined,
