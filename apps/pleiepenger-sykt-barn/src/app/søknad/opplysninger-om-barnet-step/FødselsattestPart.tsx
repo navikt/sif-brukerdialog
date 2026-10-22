@@ -5,7 +5,6 @@ import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { useFormikContext } from 'formik';
 import { useState } from 'react';
 
-import usePersistOnChange from '../../hooks/usePersistOnChange';
 import usePersistSoknad from '../../hooks/usePersistSoknad';
 import { AppText } from '../../i18n';
 import getLenker from '../../lenker';
@@ -30,8 +29,6 @@ const FødselsattestPart = ({ fødselsattester }: Props) => {
     // Sjekker bare vedleggene som fantes da steget ble åpnet
     const [initielleVedleggIder] = useState(() => getVedleggIder(fødselsattester));
     const { manglendeVedleggIder } = useManglendeVedlegg(initielleVedleggIder);
-
-    usePersistOnChange(values[SøknadFormField.fødselsattest], true, StepID.OPPLYSNINGER_OM_BARNET);
 
     return (
         <div>
