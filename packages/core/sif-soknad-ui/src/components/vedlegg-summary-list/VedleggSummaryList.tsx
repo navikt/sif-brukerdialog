@@ -1,5 +1,5 @@
 import { PaperclipIcon } from '@navikt/aksel-icons';
-import { BodyShort, Box, HStack, Link, List } from '@navikt/ds-react';
+import { BodyShort, Box, HStack, InlineMessage, Link, List } from '@navikt/ds-react';
 
 import { useSifSoknadUiIntl } from '../../i18n';
 
@@ -14,6 +14,7 @@ interface VedleggSummaryListProps {
     vedlegg: SummaryVedlegg[];
     emptyListText?: string;
     showFileSize?: boolean;
+    manglendeVedleggIder?: string[];
 }
 
 const formatFileSize = (fileSizeInBytes?: number): string | null => {
@@ -33,7 +34,12 @@ const formatter = new Intl.NumberFormat('nb-NO', {
     roundingMode: 'ceil',
 });
 
-export const VedleggSummaryList = ({ vedlegg, emptyListText, showFileSize = true }: VedleggSummaryListProps) => {
+export const VedleggSummaryList = ({
+    vedlegg,
+    emptyListText,
+    showFileSize = true,
+    manglendeVedleggIder = [],
+}: VedleggSummaryListProps) => {
     const { text } = useSifSoknadUiIntl();
 
     if (vedlegg.length === 0) {
@@ -48,6 +54,7 @@ export const VedleggSummaryList = ({ vedlegg, emptyListText, showFileSize = true
         <List as="ul">
             {vedlegg.map((fil) => {
                 const formattedSize = formatFileSize(fil.size);
+                const filManglerBackend = manglendeVedleggIder.includes(fil.id);
                 return (
                     <List.Item
                         key={fil.id}
@@ -55,7 +62,7 @@ export const VedleggSummaryList = ({ vedlegg, emptyListText, showFileSize = true
                         style={{ margin: 0, padding: '.25rem 0' }}>
                         <HStack gap="space-8" wrap={false} align="baseline">
                             <HStack flexGrow="2" gap="space-0 space-12" align="baseline">
-                                {fil.url ? (
+                                {fil.url && !filManglerBackend ? (
                                     <Link
                                         href={fil.url}
                                         style={{ wordBreak: 'break-word' }}
@@ -78,6 +85,13 @@ export const VedleggSummaryList = ({ vedlegg, emptyListText, showFileSize = true
                                 ) : null}
                             </HStack>
                         </HStack>
+                        {filManglerBackend ? (
+                            <Box marginBlock="space-0 space-8">
+                                <InlineMessage status="error" size="small">
+                                    {text('@sifSoknadUi.vedleggSummaryList.mangler')}
+                                </InlineMessage>
+                            </Box>
+                        ) : null}
                     </List.Item>
                 );
             })}

@@ -50,6 +50,7 @@ interface Props<T extends FieldValues> {
     description?: string;
     validate?: (value: UploadedFile[]) => string | undefined;
     onVedleggEndret?: () => void;
+    manglendeVedleggIder?: string[];
 }
 
 export function VedleggPanel<T extends FieldValues>({
@@ -66,6 +67,7 @@ export function VedleggPanel<T extends FieldValues>({
     retryEnabled,
     label,
     description,
+    manglendeVedleggIder = [],
 }: Props<T>) {
     const { text } = useSifSoknadFormsIntl();
 
@@ -136,23 +138,28 @@ export function VedleggPanel<T extends FieldValues>({
                         <FileUploadSizeProgress maxSizeBytes={MAX_TOTAL_VEDLEGG_SIZE_BYTES} usedSizeBytes={totalSize} />
                     )}
                     <VStack as="ul" gap="space-12">
-                        {acceptedFiles.map((file) => (
-                            <FileUpload.Item
-                                as="li"
-                                key={getFileKey(file)}
-                                file={file.file}
-                                onFileClick={
-                                    file.info?.url
-                                        ? () => window.open(file.info!.url, '_blank', 'noopener,noreferrer')
-                                        : undefined
-                                }
-                                status={file.pending ? 'uploading' : undefined}
-                                button={{ action: 'delete', onClick: () => onRemove(file) }}
-                                translations={{
-                                    uploading: text('@sifSoknadForms.vedlegg.lasterOpp'),
-                                }}
-                            />
-                        ))}
+                        {acceptedFiles.map((file) => {
+                            const filManglerBackend = file.info && manglendeVedleggIder.includes(file.info.id);
+
+                            return (
+                                <FileUpload.Item
+                                    as="li"
+                                    key={getFileKey(file)}
+                                    file={filManglerBackend ? { name: file.file.name } : file.file}
+                                    onFileClick={
+                                        file.info?.url && filManglerBackend === false
+                                            ? () => window.open(file.info!.url, '_blank', 'noopener,noreferrer')
+                                            : undefined
+                                    }
+                                    status={file.pending ? 'uploading' : undefined}
+                                    error={filManglerBackend ? text('@sifSoknadForms.vedlegg.missing') : undefined}
+                                    button={{ action: 'delete', onClick: () => onRemove(file) }}
+                                    translations={{
+                                        uploading: text('@sifSoknadForms.vedlegg.lasterOpp'),
+                                    }}
+                                />
+                            );
+                        })}
                     </VStack>
                 </VStack>
             )}
