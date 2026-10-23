@@ -40,10 +40,10 @@
         "@sif/ung-brukerdialog-api": "workspace:*",
         "@sif/utils": "workspace:*",
         "@sif/validation": "workspace:*",
-        "@tanstack/react-query": "5.104.3",
+        "@tanstack/react-query": "5.104.5",
         "dompurify": "3.4.17",
         "react-hook-form": "7.90.0",
-        "react-intl": "12.1.4",
+        "react-intl": "12.1.5",
         "react-router-dom": "7.18.4"
     },
     "devDependencies": {
@@ -57,7 +57,7 @@
         "@types/react": "19.3.0",
         "@types/react-dom": "19.3.0",
         "dayjs": "1.11.23",
-        "eslint": "10.12.0",
+        "eslint": "10.13.0",
         "eslint-plugin-storybook": "10.6.2",
         "react": "19.3.1",
         "react-day-picker": "10.0.2",
