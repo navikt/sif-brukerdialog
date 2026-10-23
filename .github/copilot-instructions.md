@@ -42,3 +42,9 @@ This repository is a pnpm + Turborepo monorepo.
 - Bruk tekster fra eksisterende kildeapp, etablert copy i repoet eller eksplisitt oppgitt ordlyd. Ordlyd utvikleren selv legger inn i PR-diffen regnes som eksplisitt copygrunnlag.
 - Ikke krev en separat kilde eller godkjenning for ny tekst i PR-diffen, og ikke kommenter bare fordi teksten ikke finnes i en annen kilde.
 - Ved migrering: les kildeappen og kopier tekstene ordrett.
+
+## PR-beskrivelser
+
+- Skriv kort og overordnet, med to seksjoner: «Bakgrunn» og «Løsning».
+- Bakgrunn: hva som endres for brukeren, og hvorfor. 2–3 setninger.
+- Løsning: 3–5 punkter om hva som er gjort. Ikke nevn enkeltfiler, typer eller funksjonsnavn.

@@ -70,15 +70,6 @@ const ArbeidIPeriodeSummaryItem = ({ arbeidIPeriodeSummaryItem }: Props) => {
     const { redusertArbeid } = arbeidIPeriode;
 
     switch (redusertArbeid.type) {
-        case RedusertArbeidstidType.prosentAvNormalt:
-            return (
-                <List>
-                    <List.Item>
-                        <AppText id="oppsummering.arbeidIPeriode.arbeiderIPerioden.redusert" />
-                    </List.Item>
-                    <List.Item>{getArbeidProsentTekst(redusertArbeid.prosentAvNormalt, appIntl)}</List.Item>
-                </List>
-            );
         case RedusertArbeidstidType.timerISnittPerUke:
             return (
                 <List>
@@ -120,12 +111,6 @@ const ArbeidIPeriodeSummaryItem = ({ arbeidIPeriodeSummaryItem }: Props) => {
 
 const getTimerNormaltString = (timerNormaltNumber: number, appIntl: AppIntlShape) =>
     formatTimerOgMinutter(appIntl, decimalDurationToDuration(timerNormaltNumber));
-
-const getArbeidProsentTekst = (prosent: number, { text }: AppIntlShape) => {
-    return text('oppsummering.arbeidIPeriode.arbeiderIPerioden.prosent', {
-        prosent: Intl.NumberFormat().format(prosent),
-    });
-};
 
 const getArbeiderUlikeUkerTimerSummary = (arbeidsuker: ArbeidsukeTimerApiData[], appIntl: AppIntlShape) => {
     return (
