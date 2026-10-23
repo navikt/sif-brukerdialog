@@ -17,6 +17,6 @@
         "@sif/config": "workspace:*",
         "@sif/env": "workspace:*",
         "@sif/eslint-config": "workspace:*",
-        "eslint": "10.12.0"
+        "eslint": "10.13.0"
     }
 }
