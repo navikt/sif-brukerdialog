@@ -52,11 +52,6 @@ export const getRedusertArbeidApiData = (
     arbeid: ArbeidIPeriodeRedusertArbeidSøknadsdata,
 ): ArbeidRedusertIPeriodeApiData => {
     switch (arbeid.type) {
-        case RedusertArbeidstidType.prosentAvNormalt:
-            return {
-                type: RedusertArbeidstidType.prosentAvNormalt,
-                prosentAvNormalt: arbeid.prosentAvNormalt,
-            };
         case RedusertArbeidstidType.timerISnittPerUke:
             return {
                 type: RedusertArbeidstidType.timerISnittPerUke,

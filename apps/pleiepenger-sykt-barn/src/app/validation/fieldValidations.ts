@@ -33,11 +33,6 @@ dayjs.extend(minMax);
 dayjs.extend(isoWeek);
 
 export enum AppFieldValidationErrors {
-    arbeidsforhold_timerUgyldig_under_1_prosent = 'timerUgyldig_under_1_prosent',
-    arbeidsforhold_timerUgyldig_under_0_prosent = 'timerUgyldig_under_0_prosent',
-    arbeidsforhold_timerUgyldig_over_99_prosent = 'timerUgyldig_over_99_prosent',
-    arbeidsforhold_timerUgyldig_over_100_prosent = 'timerUgyldig_over_100_prosent',
-
     omsorgstilbud_gruppe_ingenInfo = 'ingenInfo',
     omsorgstilbud_gruppe_forMangeTimerTotalt = 'forMangeTimerTotalt',
 
