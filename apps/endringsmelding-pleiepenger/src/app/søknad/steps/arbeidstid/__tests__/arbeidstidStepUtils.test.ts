@@ -1,6 +1,6 @@
 import { vi } from 'vitest';
 
-import { ArbeiderIPeriodenSvar, TimerEllerProsent } from '../../../../types';
+import { ArbeiderIPeriodenSvar } from '../../../../types';
 import { getArbeidstidSøknadsdataFromFormValues } from '../arbeidstidStepUtils';
 
 vi.mock('@sif/env', () => {
@@ -29,7 +29,7 @@ describe('arbeidstidStepUtils', () => {
             const result = getArbeidstidSøknadsdataFromFormValues({
                 arbeidsaktivitet: {
                     org1: { endringer: {} },
-                    org2: { endringer: { [isoDateRange]: { type: TimerEllerProsent.PROSENT, prosent: 20 } } },
+                    org2: { endringer: { [isoDateRange]: { timer: 20 } } },
                 },
             });
             expect(result.arbeidsaktivitet.org1).toBeUndefined();
@@ -46,18 +46,18 @@ describe('arbeidstidStepUtils', () => {
                         arbeiderIPerioden: undefined,
                     },
                     org2: {
-                        endringer: { [isoDateRange]: { type: TimerEllerProsent.PROSENT, prosent: 20 } },
+                        endringer: { [isoDateRange]: { timer: 20 } },
                     },
                     org3_vanlig: {
-                        endringer: { [isoDateRange]: { type: TimerEllerProsent.PROSENT, prosent: 20 } },
+                        endringer: { [isoDateRange]: { timer: 20 } },
                         arbeiderIPerioden: ArbeiderIPeriodenSvar.somVanlig,
                     },
                     org4_redusert: {
-                        endringer: { [isoDateRange]: { type: TimerEllerProsent.PROSENT, prosent: 20 } },
+                        endringer: { [isoDateRange]: { timer: 20 } },
                         arbeiderIPerioden: ArbeiderIPeriodenSvar.redusert,
                     },
                     org5_heltFravær: {
-                        endringer: { [isoDateRange]: { type: TimerEllerProsent.PROSENT, prosent: 20 } },
+                        endringer: { [isoDateRange]: { timer: 20 } },
                         arbeiderIPerioden: ArbeiderIPeriodenSvar.heltFravær,
                     },
                 },

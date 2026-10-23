@@ -38,12 +38,12 @@ test('test', async ({ page }) => {
     /** Arbeid */
     await page.getByTestId('dateRangeAccordion_0_header').click();
     await page.getByTestId('uke_51').getByTestId('endre-button').click();
-    await page.getByTestId('prosent-verdi').click();
-    await page.getByTestId('prosent-verdi').fill('0');
+    await page.getByTestId('timer-verdi').click();
+    await page.getByTestId('timer-verdi').fill('0');
     await page.getByRole('button', { name: 'Ok' }).click();
     await page.getByTestId('uke_52').getByTestId('endre-button').click();
-    await page.getByTestId('prosent-verdi').click();
-    await page.getByTestId('prosent-verdi').fill('0');
+    await page.getByTestId('timer-verdi').click();
+    await page.getByTestId('timer-verdi').fill('0');
     await page.getByRole('button', { name: 'Ok' }).click();
     await page.getByTestId('dateRangeAccordion_1_header').click();
     await page.getByTestId('typedFormikForm-submitButton').click();

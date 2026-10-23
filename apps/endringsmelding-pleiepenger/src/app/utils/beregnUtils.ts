@@ -1,27 +1,15 @@
-import { ArbeidstidEndring, TimerEllerProsent } from '@app/types';
+import { ArbeidstidEndring } from '@app/types';
 import { decimalDurationToDuration, Duration, durationToDecimalDuration } from '@navikt/sif-common-utils';
 
-export const beregnEndretArbeidstidForUke = (
-    endring: ArbeidstidEndring,
-    normaltidPerUke: Duration,
-    antallDagerMedArbeidstid: number,
-): Duration => {
+export const beregnEndretArbeidstidForUke = (endring: ArbeidstidEndring, antallDagerMedArbeidstid: number): Duration => {
     return getTimerPerUkeFraTimerPerDag(
-        beregnEndretFaktiskArbeidstidPerDag(normaltidPerUke, endring, antallDagerMedArbeidstid),
+        beregnEndretFaktiskArbeidstidPerDag(endring, antallDagerMedArbeidstid),
         antallDagerMedArbeidstid,
     );
 };
 
-export const beregnEndretFaktiskArbeidstidPerDag = (
-    normalArbeidstidIPeriode: Duration,
-    endring: ArbeidstidEndring,
-    antallDager: number,
-): Duration => {
-    if (endring.type === TimerEllerProsent.TIMER) {
-        return beregnSnittTimerPerDag(decimalDurationToDuration(endring.timer), antallDager);
-    }
-    const redusertTimerIPeriode = (durationToDecimalDuration(normalArbeidstidIPeriode) / 100) * endring.prosent;
-    return beregnSnittTimerPerDag(decimalDurationToDuration(redusertTimerIPeriode), antallDager);
+export const beregnEndretFaktiskArbeidstidPerDag = (endring: ArbeidstidEndring, antallDager: number): Duration => {
+    return beregnSnittTimerPerDag(decimalDurationToDuration(endring.timer), antallDager);
 };
 
 export const beregnSnittTimerPerDag = (timerIPeriode: Duration, antallDager: number): Duration => {

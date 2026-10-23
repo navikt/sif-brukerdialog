@@ -1,20 +1,6 @@
 const nb = {
-    'endreArbeidstid.intlValues.harJobbet': 'har jobbet',
-    'endreArbeidstid.intlValues.skalJobbe': 'skal jobbe',
-    'endreArbeidstid.intlValues.somAnsatt': `hos {arbeidsstedNavn}`,
-    'endreArbeidstid.intlValues.somFrilanser': 'som frilanser',
-    'endreArbeidstid.intlValues.somSN': 'som selvstendig næringsdrivende',
-    'endreArbeidstid.intlValues.iPerioden': `i perioden {fra} til {til}`,
-
-    'endreArbeidstidForm.prosentAvNormalt.spm': 'Hvor mange prosent av normalt jobber du {periode}?',
     'endreArbeidstidForm.timerAvNormalt.spm': 'Hvor mange timer jobber du {periode}?',
     'endreArbeidstidForm.timerAvNormalt.flereUker.spm': 'I de ukene du har valgt, hvor mange timer jobber du per uke?',
-
-    'endreArbeidstidForm.prosentAvNormalt.numberHasNoValue': 'Du må oppgi hvor mange prosent av normalt du jobber',
-    'endreArbeidstidForm.prosentAvNormalt.numberIsTooSmall': 'Du kan ikke oppgi mindre enn 0 prosent',
-    'endreArbeidstidForm.prosentAvNormalt.numberIsTooLarge': 'Du kan ikke oppgi med enn 100 prosent',
-    'endreArbeidstidForm.prosentAvNormalt.numberHasInvalidFormat':
-        'Oppgitt prosent er ikke et gyldig tall. Et gyldig tall inneholder kun siffer og komma som desimaltegn.',
 
     'endreArbeidstidForm.antallTimer.numberHasNoValue': 'Du må oppgi hvor mange timer du jobber',
     'endreArbeidstidForm.antallTimer.numberIsTooSmall': 'Du kan ikke oppgi mindre enn 0 timer',
@@ -26,10 +12,6 @@ const nb = {
     'endreArbeidstidForm.heading.endreForFlereUker': 'Endre jobb for flere uker',
     'endreArbeidstidForm.dagerMedFerieFjernet.melding':
         'Du har fjernet ferie ({feriedagerTekst}) denne uken. Hvis du skal jobbe i stedet for ferie, oppgi hvor mye du jobber denne uken.',
-
-    'endreArbeidstidForm.hvordanOppgiArbeid.spm': 'Hvordan vil du oppgi hvor mye du jobber?',
-    'endreArbeidstidForm.hvordanOppgiArbeid.iProsent': 'I prosent',
-    'endreArbeidstidForm.hvordanOppgiArbeid.iTimer': 'I timer',
 
     'endreArbeidstidForm.kortUke.info':
         'Dette er en kort uke, som går fra {dager}. Du skal oppgi hvor mye du jobber kun for disse dagene.',
