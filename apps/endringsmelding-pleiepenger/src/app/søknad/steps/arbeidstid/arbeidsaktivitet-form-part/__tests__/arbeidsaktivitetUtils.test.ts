@@ -1,4 +1,4 @@
-import { ArbeidstidEndringMap, Arbeidsuke, TimerEllerProsent } from '@app/types';
+import { ArbeidstidEndringMap, Arbeidsuke } from '@app/types';
 import { ISODateRange } from '@navikt/sif-common-utils';
 import { vi } from 'vitest';
 
@@ -25,16 +25,13 @@ describe('arbeidsaktivitetUtils', () => {
 
         const endringer: ArbeidstidEndringMap = {
             [uke1]: {
-                prosent: 20,
-                type: TimerEllerProsent.PROSENT,
+                timer: 20,
             },
             [uke2]: {
-                prosent: 20,
-                type: TimerEllerProsent.PROSENT,
+                timer: 20,
             },
             [uke3]: {
-                prosent: 22,
-                type: TimerEllerProsent.PROSENT,
+                timer: 22,
             },
         };
 

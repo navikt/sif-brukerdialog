@@ -7,7 +7,6 @@ import { ValgteEndringer } from './ValgteEndringer';
 export type ArbeidstidPeriodeApiData = {
     jobberNormaltTimerPerDag: ISODuration;
     faktiskArbeidTimerPerDag: ISODuration;
-    _endretProsent?: number;
     _opprinneligNormaltPerDag: ISODuration;
     _opprinneligFaktiskPerDag?: ISODuration;
 };

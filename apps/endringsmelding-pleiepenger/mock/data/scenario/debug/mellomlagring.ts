@@ -9,8 +9,7 @@ export default {
                 a_967170232: {
                     endringer: {
                         '2026-02-23/2026-03-01': {
-                            type: 'prosent',
-                            prosent: 20,
+                            timer: 7.5,
                         },
                     },
                 },

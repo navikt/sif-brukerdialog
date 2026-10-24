@@ -13,7 +13,6 @@ import {
     Arbeidsuke,
     ArbeidsukeMap,
     PeriodeMedArbeidstid,
-    TimerEllerProsent,
     UkjentArbeidsforholdSøknadsdata,
 } from '@app/types';
 import {
@@ -59,11 +58,7 @@ const getEndretArbeidstid = (
         const { antallDagerMedArbeidstid } = arbeidsuke;
 
         const jobberNormaltTimerPerDag = beregnSnittTimerPerDag(arbeidsuke.normalt.uke, antallDagerMedArbeidstid);
-        const faktiskArbeidTimerPerDag = beregnEndretFaktiskArbeidstidPerDag(
-            arbeidsuke.normalt.uke,
-            endring,
-            antallDagerMedArbeidstid,
-        );
+        const faktiskArbeidTimerPerDag = beregnEndretFaktiskArbeidstidPerDag(endring, antallDagerMedArbeidstid);
 
         /** Splitt opp hvis det er enkeltdager i uken */
         const perioder = getDateRangesFromDates(dagerSøktFor.map(ISODateToDate));
@@ -71,7 +66,6 @@ const getEndretArbeidstid = (
             perioderMedEndretArbeidstid[dateRangeToISODateRange(periode)] = {
                 jobberNormaltTimerPerDag: durationToISODuration(jobberNormaltTimerPerDag),
                 faktiskArbeidTimerPerDag: durationToISODuration(faktiskArbeidTimerPerDag),
-                _endretProsent: endring.type === TimerEllerProsent.PROSENT ? endring.prosent : undefined,
                 _opprinneligNormaltPerDag: durationToISODuration(arbeidsuke.normalt.dag),
                 _opprinneligFaktiskPerDag: arbeidsuke.faktisk
                     ? durationToISODuration(arbeidsuke.faktisk.dag)
@@ -180,10 +174,6 @@ export const getArbeidstidApiDataFromSøknadsdata = (
                     arbeidstidInfo.perioder[dateRangeToISODateRange(periode)] = {
                         jobberNormaltTimerPerDag: durationToISODuration(jobberNormaltTimerPerDag),
                         faktiskArbeidTimerPerDag: durationToISODuration(faktiskArbeidTimerPerDag),
-                        _endretProsent:
-                            ukeEndring !== undefined && ukeEndring.type === TimerEllerProsent.PROSENT
-                                ? ukeEndring.prosent
-                                : undefined,
                         _opprinneligNormaltPerDag: durationToISODuration(arbeidsuke.normalt.dag),
                         _opprinneligFaktiskPerDag: arbeidsuke.faktisk
                             ? durationToISODuration(arbeidsuke.faktisk.dag)
@@ -225,11 +215,7 @@ export const getFaktiskArbeidTimerPerDagForUkjentArbeidsforhold = (
         throw 'Faktisk arbeidstid mangler for redusert arbeidsforhold';
     }
     if (endring) {
-        return beregnEndretFaktiskArbeidstidPerDag(
-            arbeidsuke.normalt.uke,
-            endring,
-            arbeidsuke.antallDagerMedArbeidstid,
-        );
+        return beregnEndretFaktiskArbeidstidPerDag(endring, arbeidsuke.antallDagerMedArbeidstid);
     }
     return arbeiderIPerioden === ArbeiderIPeriodenSvar.heltFravær
         ? {
