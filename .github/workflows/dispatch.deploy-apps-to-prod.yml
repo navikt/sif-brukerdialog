@@ -8,6 +8,9 @@ on:
             - "apps/**/*"
             - "server/**/*"
             - "packages/**/*"
+            - "package.json"
+            - "pnpm-lock.yaml"
+            - "pnpm-workspace.yaml"
     workflow_dispatch:
         inputs:
             app:
@@ -41,61 +44,79 @@ jobs:
     detect-changes:
         if: github.event_name == 'push'
         runs-on: ubuntu-latest
+        # Kjører pnpm install (tredjeparts install-skript), så ingen arvede skrive-/id-token-rettigheter
+        permissions:
+            contents: read
         outputs:
-            apps: ${{ steps.filter.outputs.changes }}
+            apps: ${{ steps.affected.outputs.apps }}
         steps:
             - uses: actions/checkout@v7.0.1
-            - uses: dorny/paths-filter@v4.0.3
-              id: filter
               with:
-                  filters: |
-                      #   aktivitetspenger-innsyn:
-                      #     - 'apps/aktivitetspenger-innsyn/**'
-                      #     - 'packages/core/ung-innsyn/**'
-                      #     - 'server/**'
-                      #   aktivitetspenger-soknad:
-                      #     - 'apps/aktivitetspenger-soknad/**'
-                      #     - 'packages/core/sif-soknad-app/**'
-                      #     - 'server/**'
-                        dine-pleiepenger:
-                          - 'apps/dine-pleiepenger/**'
-                          - 'server/**'
-                        ekstra-omsorgsdager-andre-forelder-ikke-tilsyn:
-                          - 'apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/**'
-                          - 'server/**'
-                        endringsmelding-pleiepenger:
-                          - 'apps/endringsmelding-pleiepenger/**'
-                          - 'server/**'
-                        omsorgsdager-aleneomsorg-dialog:
-                          - 'apps/omsorgsdager-aleneomsorg-dialog/**'
-                          - 'server/**'
-                        omsorgsdager-kalkulator:
-                          - 'apps/omsorgsdager-kalkulator/**'
-                          - 'server/**'
-                        omsorgspengerutbetaling-arbeidstaker-soknad:
-                          - 'apps/omsorgspengerutbetaling-arbeidstaker-soknad/**'
-                          - 'server/**'
-                        omsorgspengerutbetaling-soknad:
-                          - 'apps/omsorgspengerutbetaling-soknad/**'
-                          - 'server/**'
-                        omsorgspengesoknad:
-                          - 'apps/omsorgspengesoknad/**'
-                          - 'server/**'
-                        opplaringspenger-soknad:
-                          - 'apps/opplaringspenger-soknad/**'
-                          - 'server/**'
-                        pleiepenger-i-livets-sluttfase-soknad:
-                          - 'apps/pleiepenger-i-livets-sluttfase-soknad/**'
-                          - 'server/**'
-                        pleiepenger-sykt-barn:
-                          - 'apps/pleiepenger-sykt-barn/**'
-                          - 'server/**'
-                        sif-ettersending:
-                          - 'apps/sif-ettersending/**'
-                          - 'server/**'
-                        ungdomsytelse-deltaker:
-                          - 'apps/ungdomsytelse-deltaker/**'
-                          - 'server/**'
+                  persist-credentials: false
+                  fetch-depth: 0
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v6
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v7.1.0
+              with:
+                  node-version: 24
+                  cache: "pnpm"
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+              env:
+                  NPM_TOKEN: ${{ secrets.READER_TOKEN }}
+
+            # Turbo fanger opp endringer i appen, packages/** og avhengigheter i pnpm-lock.yaml.
+            # Endring i overrides (via pnpm-lock.yaml) gir alle apper.
+            - name: Resolve affected apps
+              id: affected
+              shell: bash
+              env:
+                  TURBO_SCM_BASE: ${{ github.event.before }}
+                  TURBO_SCM_HEAD: ${{ github.sha }}
+              run: |
+                  set -euo pipefail
+
+                  # Apper som prodsettes automatisk ved push. aktivitetspenger-* er bevisst utelatt.
+                  apps=(
+                      dine-pleiepenger
+                      ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
+                      endringsmelding-pleiepenger
+                      omsorgsdager-aleneomsorg-dialog
+                      omsorgsdager-kalkulator
+                      omsorgspengerutbetaling-arbeidstaker-soknad
+                      omsorgspengerutbetaling-soknad
+                      omsorgspengesoknad
+                      opplaringspenger-soknad
+                      pleiepenger-i-livets-sluttfase-soknad
+                      pleiepenger-sykt-barn
+                      sif-ettersending
+                      ungdomsytelse-deltaker
+                  )
+                  app_dir="apps"
+                  server_package="@sif/server"
+
+                  # Appene får serveren via `turbo prune` i Dockerfile, ikke via package.json,
+                  # så Turbo kjenner ikke koblingen. Den leses derfor fra Dockerfile.
+                  apps_with_server="$(for app in "${apps[@]}"; do
+                      if grep -qE "turbo prune .*${server_package}( |$)" "$app_dir/$app/Dockerfile"; then echo "$app"; fi
+                  done | jq -Rsc 'split("\n") | map(select(length > 0))')"
+
+                  filters=("--filter=$server_package")
+                  for app in "${apps[@]}"; do filters+=("--filter=@navikt/$app"); done
+
+                  affected="$(pnpm turbo ls --affected --output=json "${filters[@]}" | jq -c '[.packages.items[].name]')"
+
+                  echo "Apps with server: $apps_with_server"
+                  echo "Affected packages (turbo): $affected"
+
+                  apps_to_deploy="$(jq -c --arg server "$server_package" --argjson withServer "$apps_with_server" '
+                      ([.[] | select(startswith("@navikt/")) | sub("^@navikt/"; "")]
+                      + (if index($server) then $withServer else [] end))
+                      | unique' <<< "$affected")"
+
+                  echo "Apps to deploy: $apps_to_deploy"
+                  echo "apps=$apps_to_deploy" >> "$GITHUB_OUTPUT"
 
     deploy-dine-pleiepenger:
         if: |
