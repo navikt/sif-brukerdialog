@@ -7,6 +7,10 @@ on:
         paths:
             - "apps-intern/ungdomsytelse-veileder/**/*"
             - "server-ungdomsytelse-veileder/**/*"
+            - "packages/**/*"
+            - "package.json"
+            - "pnpm-lock.yaml"
+            - "pnpm-workspace.yaml"
     workflow_dispatch:
 
 permissions:
@@ -16,7 +20,77 @@ permissions:
     actions: read
 
 jobs:
+    detect-changes:
+        if: github.event_name == 'push'
+        runs-on: ubuntu-latest
+        # Kjører pnpm install (tredjeparts install-skript), så ingen arvede skrive-/id-token-rettigheter
+        permissions:
+            contents: read
+        outputs:
+            apps: ${{ steps.affected.outputs.apps }}
+        steps:
+            - uses: actions/checkout@v7.0.1
+              with:
+                  persist-credentials: false
+                  fetch-depth: 0
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v6
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v7.1.0
+              with:
+                  node-version: 24
+                  cache: "pnpm"
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+              env:
+                  NPM_TOKEN: ${{ secrets.READER_TOKEN }}
+
+            # Turbo fanger opp endringer i appen, packages/** og avhengigheter i pnpm-lock.yaml.
+            # Endring i rot-package.json (f.eks. pnpm.overrides) gir alle apper.
+            - name: Resolve affected apps
+              id: affected
+              shell: bash
+              env:
+                  TURBO_SCM_BASE: ${{ github.event.before }}
+                  TURBO_SCM_HEAD: ${{ github.sha }}
+              run: |
+                  set -euo pipefail
+
+                  # Apper som prodsettes automatisk ved push.
+                  apps=(
+                      ungdomsytelse-veileder
+                  )
+                  app_dir="apps-intern"
+                  server_package="@sif/server-ungdomsytelse-veileder"
+
+                  # Appene får serveren via `turbo prune` i Dockerfile, ikke via package.json,
+                  # så Turbo kjenner ikke koblingen. Den leses derfor fra Dockerfile.
+                  apps_with_server="$(for app in "${apps[@]}"; do
+                      if grep -qE "turbo prune .*${server_package}( |$)" "$app_dir/$app/Dockerfile"; then echo "$app"; fi
+                  done | jq -Rsc 'split("\n") | map(select(length > 0))')"
+
+                  filters=("--filter=$server_package")
+                  for app in "${apps[@]}"; do filters+=("--filter=@navikt/$app"); done
+
+                  affected="$(pnpm turbo ls --affected --output=json "${filters[@]}" | jq -c '[.packages.items[].name]')"
+
+                  echo "Apps with server: $apps_with_server"
+                  echo "Affected packages (turbo): $affected"
+
+                  apps_to_deploy="$(jq -c --arg server "$server_package" --argjson withServer "$apps_with_server" '
+                      ([.[] | select(startswith("@navikt/")) | sub("^@navikt/"; "")]
+                      + (if index($server) then $withServer else [] end))
+                      | unique' <<< "$affected")"
+
+                  echo "Apps to deploy: $apps_to_deploy"
+                  echo "apps=$apps_to_deploy" >> "$GITHUB_OUTPUT"
+
     deploy-ungdomsytelse-veileder:
+        if: |
+            always() &&
+            (github.event_name == 'workflow_dispatch' ||
+             github.event_name == 'push' && contains(needs.detect-changes.outputs.apps, 'ungdomsytelse-veileder'))
+        needs: [detect-changes]
         uses: ./.github/workflows/.test-and-deploy-to-intern-prod.yml
         secrets: inherit
         with:

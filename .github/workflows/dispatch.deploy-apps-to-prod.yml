@@ -44,6 +44,9 @@ jobs:
     detect-changes:
         if: github.event_name == 'push'
         runs-on: ubuntu-latest
+        # Kjører pnpm install (tredjeparts install-skript), så ingen arvede skrive-/id-token-rettigheter
+        permissions:
+            contents: read
         outputs:
             apps: ${{ steps.affected.outputs.apps }}
         steps:
@@ -65,7 +68,6 @@ jobs:
 
             # Turbo fanger opp endringer i appen, packages/** og avhengigheter i pnpm-lock.yaml.
             # Endring i rot-package.json (f.eks. pnpm.overrides) gir alle apper.
-            # aktivitetspenger-* er bevisst utelatt fra automatisk prodsetting.
             - name: Resolve affected apps
               id: affected
               shell: bash
@@ -75,48 +77,46 @@ jobs:
               run: |
                   set -euo pipefail
 
-                  # Appene får @sif/server via `turbo prune` i Dockerfile, ikke via package.json,
-                  # så Turbo kjenner ikke koblingen. Endringer i serveren mappes derfor manuelt.
-                  apps_with_server='[
-                      "ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
-                      "endringsmelding-pleiepenger",
-                      "omsorgsdager-aleneomsorg-dialog",
-                      "omsorgspengerutbetaling-arbeidstaker-soknad",
-                      "omsorgspengerutbetaling-soknad",
-                      "omsorgspengesoknad",
-                      "opplaringspenger-soknad",
-                      "pleiepenger-i-livets-sluttfase-soknad",
-                      "pleiepenger-sykt-barn",
-                      "sif-ettersending",
-                      "ungdomsytelse-deltaker"
-                  ]'
+                  # Apper som prodsettes automatisk ved push. aktivitetspenger-* er bevisst utelatt.
+                  apps=(
+                      dine-pleiepenger
+                      ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
+                      endringsmelding-pleiepenger
+                      omsorgsdager-aleneomsorg-dialog
+                      omsorgsdager-kalkulator
+                      omsorgspengerutbetaling-arbeidstaker-soknad
+                      omsorgspengerutbetaling-soknad
+                      omsorgspengesoknad
+                      opplaringspenger-soknad
+                      pleiepenger-i-livets-sluttfase-soknad
+                      pleiepenger-sykt-barn
+                      sif-ettersending
+                      ungdomsytelse-deltaker
+                  )
+                  app_dir="apps"
+                  server_package="@sif/server"
 
-                  affected="$(pnpm turbo ls --affected --output=json \
-                      --filter=@sif/server \
-                      --filter=@navikt/dine-pleiepenger \
-                      --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn \
-                      --filter=@navikt/endringsmelding-pleiepenger \
-                      --filter=@navikt/omsorgsdager-aleneomsorg-dialog \
-                      --filter=@navikt/omsorgsdager-kalkulator \
-                      --filter=@navikt/omsorgspengerutbetaling-arbeidstaker-soknad \
-                      --filter=@navikt/omsorgspengerutbetaling-soknad \
-                      --filter=@navikt/omsorgspengesoknad \
-                      --filter=@navikt/opplaringspenger-soknad \
-                      --filter=@navikt/pleiepenger-i-livets-sluttfase-soknad \
-                      --filter=@navikt/pleiepenger-sykt-barn \
-                      --filter=@navikt/sif-ettersending \
-                      --filter=@navikt/ungdomsytelse-deltaker \
-                      | jq -c '[.packages.items[].name]')"
+                  # Appene får serveren via `turbo prune` i Dockerfile, ikke via package.json,
+                  # så Turbo kjenner ikke koblingen. Den leses derfor fra Dockerfile.
+                  apps_with_server="$(for app in "${apps[@]}"; do
+                      if grep -qE "turbo prune .*${server_package}( |$)" "$app_dir/$app/Dockerfile"; then echo "$app"; fi
+                  done | jq -Rsc 'split("\n") | map(select(length > 0))')"
 
+                  filters=("--filter=$server_package")
+                  for app in "${apps[@]}"; do filters+=("--filter=@navikt/$app"); done
+
+                  affected="$(pnpm turbo ls --affected --output=json "${filters[@]}" | jq -c '[.packages.items[].name]')"
+
+                  echo "Apps with server: $apps_with_server"
                   echo "Affected packages (turbo): $affected"
 
-                  apps="$(jq -c --argjson withServer "$apps_with_server" '
+                  apps_to_deploy="$(jq -c --arg server "$server_package" --argjson withServer "$apps_with_server" '
                       ([.[] | select(startswith("@navikt/")) | sub("^@navikt/"; "")]
-                      + (if index("@sif/server") then $withServer else [] end))
+                      + (if index($server) then $withServer else [] end))
                       | unique' <<< "$affected")"
 
-                  echo "Apps to deploy: $apps"
-                  echo "apps=$apps" >> "$GITHUB_OUTPUT"
+                  echo "Apps to deploy: $apps_to_deploy"
+                  echo "apps=$apps_to_deploy" >> "$GITHUB_OUTPUT"
 
     deploy-dine-pleiepenger:
         if: |
