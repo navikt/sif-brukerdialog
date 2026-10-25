@@ -45,65 +45,12 @@ jobs:
         if: github.event_name == 'push'
         runs-on: ubuntu-latest
         outputs:
-            apps: ${{ steps.merge.outputs.apps }}
+            apps: ${{ steps.affected.outputs.apps }}
         steps:
             - uses: actions/checkout@v7.0.1
               with:
                   persist-credentials: false
                   fetch-depth: 0
-            # Turbo ser ikke server/** (appene avhenger ikke av @sif/server), så paths-filter beholdes for det
-            - uses: dorny/paths-filter@v4.0.3
-              id: filter
-              with:
-                  filters: |
-                      #   aktivitetspenger-innsyn:
-                      #     - 'apps/aktivitetspenger-innsyn/**'
-                      #     - 'packages/core/ung-innsyn/**'
-                      #     - 'server/**'
-                      #   aktivitetspenger-soknad:
-                      #     - 'apps/aktivitetspenger-soknad/**'
-                      #     - 'packages/core/sif-soknad-app/**'
-                      #     - 'server/**'
-                        dine-pleiepenger:
-                          - 'apps/dine-pleiepenger/**'
-                          - 'server/**'
-                        ekstra-omsorgsdager-andre-forelder-ikke-tilsyn:
-                          - 'apps/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn/**'
-                          - 'server/**'
-                        endringsmelding-pleiepenger:
-                          - 'apps/endringsmelding-pleiepenger/**'
-                          - 'server/**'
-                        omsorgsdager-aleneomsorg-dialog:
-                          - 'apps/omsorgsdager-aleneomsorg-dialog/**'
-                          - 'server/**'
-                        omsorgsdager-kalkulator:
-                          - 'apps/omsorgsdager-kalkulator/**'
-                          - 'server/**'
-                        omsorgspengerutbetaling-arbeidstaker-soknad:
-                          - 'apps/omsorgspengerutbetaling-arbeidstaker-soknad/**'
-                          - 'server/**'
-                        omsorgspengerutbetaling-soknad:
-                          - 'apps/omsorgspengerutbetaling-soknad/**'
-                          - 'server/**'
-                        omsorgspengesoknad:
-                          - 'apps/omsorgspengesoknad/**'
-                          - 'server/**'
-                        opplaringspenger-soknad:
-                          - 'apps/opplaringspenger-soknad/**'
-                          - 'server/**'
-                        pleiepenger-i-livets-sluttfase-soknad:
-                          - 'apps/pleiepenger-i-livets-sluttfase-soknad/**'
-                          - 'server/**'
-                        pleiepenger-sykt-barn:
-                          - 'apps/pleiepenger-sykt-barn/**'
-                          - 'server/**'
-                        sif-ettersending:
-                          - 'apps/sif-ettersending/**'
-                          - 'server/**'
-                        ungdomsytelse-deltaker:
-                          - 'apps/ungdomsytelse-deltaker/**'
-                          - 'server/**'
-
             - name: Setup pnpm
               uses: pnpm/action-setup@v6
             - name: Setup Node.js environment
@@ -116,9 +63,10 @@ jobs:
               env:
                   NPM_TOKEN: ${{ secrets.READER_TOKEN }}
 
-            # Fanger opp endringer i packages/** og avhengigheter i pnpm-lock.yaml.
+            # Turbo fanger opp endringer i appen, packages/** og avhengigheter i pnpm-lock.yaml.
             # Endring i rot-package.json (f.eks. pnpm.overrides) gir alle apper.
-            - name: Resolve affected apps (turbo)
+            # aktivitetspenger-* er bevisst utelatt fra automatisk prodsetting.
+            - name: Resolve affected apps
               id: affected
               shell: bash
               env:
@@ -127,7 +75,24 @@ jobs:
               run: |
                   set -euo pipefail
 
-                  apps="$(pnpm turbo ls --affected --output=json \
+                  # Appene får @sif/server via `turbo prune` i Dockerfile, ikke via package.json,
+                  # så Turbo kjenner ikke koblingen. Endringer i serveren mappes derfor manuelt.
+                  apps_with_server='[
+                      "ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
+                      "endringsmelding-pleiepenger",
+                      "omsorgsdager-aleneomsorg-dialog",
+                      "omsorgspengerutbetaling-arbeidstaker-soknad",
+                      "omsorgspengerutbetaling-soknad",
+                      "omsorgspengesoknad",
+                      "opplaringspenger-soknad",
+                      "pleiepenger-i-livets-sluttfase-soknad",
+                      "pleiepenger-sykt-barn",
+                      "sif-ettersending",
+                      "ungdomsytelse-deltaker"
+                  ]'
+
+                  affected="$(pnpm turbo ls --affected --output=json \
+                      --filter=@sif/server \
                       --filter=@navikt/dine-pleiepenger \
                       --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn \
                       --filter=@navikt/endringsmelding-pleiepenger \
@@ -141,21 +106,14 @@ jobs:
                       --filter=@navikt/pleiepenger-sykt-barn \
                       --filter=@navikt/sif-ettersending \
                       --filter=@navikt/ungdomsytelse-deltaker \
-                      | jq -c '[.packages.items[].name | sub("^@navikt/"; "")]')"
+                      | jq -c '[.packages.items[].name]')"
 
-                  echo "Affected apps (turbo): $apps"
-                  echo "apps=$apps" >> "$GITHUB_OUTPUT"
+                  echo "Affected packages (turbo): $affected"
 
-            - name: Merge changed apps
-              id: merge
-              shell: bash
-              env:
-                  FILTER_APPS: ${{ steps.filter.outputs.changes }}
-                  AFFECTED_APPS: ${{ steps.affected.outputs.apps }}
-              run: |
-                  set -euo pipefail
-
-                  apps="$(jq -cn --argjson a "$FILTER_APPS" --argjson b "$AFFECTED_APPS" '$a + $b | unique')"
+                  apps="$(jq -c --argjson withServer "$apps_with_server" '
+                      ([.[] | select(startswith("@navikt/")) | sub("^@navikt/"; "")]
+                      + (if index("@sif/server") then $withServer else [] end))
+                      | unique' <<< "$affected")"
 
                   echo "Apps to deploy: $apps"
                   echo "apps=$apps" >> "$GITHUB_OUTPUT"
