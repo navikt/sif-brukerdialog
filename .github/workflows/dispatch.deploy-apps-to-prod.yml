@@ -8,6 +8,9 @@ on:
             - "apps/**/*"
             - "server/**/*"
             - "packages/**/*"
+            - "package.json"
+            - "pnpm-lock.yaml"
+            - "pnpm-workspace.yaml"
     workflow_dispatch:
         inputs:
             app:
@@ -42,9 +45,13 @@ jobs:
         if: github.event_name == 'push'
         runs-on: ubuntu-latest
         outputs:
-            apps: ${{ steps.filter.outputs.changes }}
+            apps: ${{ steps.merge.outputs.apps }}
         steps:
             - uses: actions/checkout@v7.0.1
+              with:
+                  persist-credentials: false
+                  fetch-depth: 0
+            # Turbo ser ikke server/** (appene avhenger ikke av @sif/server), så paths-filter beholdes for det
             - uses: dorny/paths-filter@v4.0.3
               id: filter
               with:
@@ -96,6 +103,62 @@ jobs:
                         ungdomsytelse-deltaker:
                           - 'apps/ungdomsytelse-deltaker/**'
                           - 'server/**'
+
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v6
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v7.1.0
+              with:
+                  node-version: 24
+                  cache: "pnpm"
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+              env:
+                  NPM_TOKEN: ${{ secrets.READER_TOKEN }}
+
+            # Fanger opp endringer i packages/** og avhengigheter i pnpm-lock.yaml.
+            # Endring i rot-package.json (f.eks. pnpm.overrides) gir alle apper.
+            - name: Resolve affected apps (turbo)
+              id: affected
+              shell: bash
+              env:
+                  TURBO_SCM_BASE: ${{ github.event.before }}
+                  TURBO_SCM_HEAD: ${{ github.sha }}
+              run: |
+                  set -euo pipefail
+
+                  apps="$(pnpm turbo ls --affected --output=json \
+                      --filter=@navikt/dine-pleiepenger \
+                      --filter=@navikt/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn \
+                      --filter=@navikt/endringsmelding-pleiepenger \
+                      --filter=@navikt/omsorgsdager-aleneomsorg-dialog \
+                      --filter=@navikt/omsorgsdager-kalkulator \
+                      --filter=@navikt/omsorgspengerutbetaling-arbeidstaker-soknad \
+                      --filter=@navikt/omsorgspengerutbetaling-soknad \
+                      --filter=@navikt/omsorgspengesoknad \
+                      --filter=@navikt/opplaringspenger-soknad \
+                      --filter=@navikt/pleiepenger-i-livets-sluttfase-soknad \
+                      --filter=@navikt/pleiepenger-sykt-barn \
+                      --filter=@navikt/sif-ettersending \
+                      --filter=@navikt/ungdomsytelse-deltaker \
+                      | jq -c '[.packages.items[].name | sub("^@navikt/"; "")]')"
+
+                  echo "Affected apps (turbo): $apps"
+                  echo "apps=$apps" >> "$GITHUB_OUTPUT"
+
+            - name: Merge changed apps
+              id: merge
+              shell: bash
+              env:
+                  FILTER_APPS: ${{ steps.filter.outputs.changes }}
+                  AFFECTED_APPS: ${{ steps.affected.outputs.apps }}
+              run: |
+                  set -euo pipefail
+
+                  apps="$(jq -cn --argjson a "$FILTER_APPS" --argjson b "$AFFECTED_APPS" '$a + $b | unique')"
+
+                  echo "Apps to deploy: $apps"
+                  echo "apps=$apps" >> "$GITHUB_OUTPUT"
 
     deploy-dine-pleiepenger:
         if: |
