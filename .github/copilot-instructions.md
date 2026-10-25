@@ -47,3 +47,4 @@ This repository is a pnpm + Turborepo monorepo.
 
 - Følg malen i `.github/pull_request_template.md` (Behov / Bakgrunn, Løsning, Andre endringer).
 - Hold teksten kort og oppsummerende. Beskriv hva og hvorfor, ikke endringer per fil, med mindre det er nødvendig for å forstå PR-en.
+- Unngå filnavn, kommandoer, flagg og input-navn. Små tilpasninger og opprydding som følger av hovedendringen, skal ikke listes. Disse skal kun tas med hvis det er essensielt for å forstå PR-en.

@@ -302,7 +302,6 @@ jobs:
             working-directory: "apps/ungdomsytelse-deltaker"
             use-cdn: true
             package-name: "@navikt/ungdomsytelse-deltaker"
-            use-turbo-test: true
             e2e-build-command: "e2e:build"
             run-sonar: true
     deploy-aktivitetspenger-soknad:
@@ -318,7 +317,6 @@ jobs:
             working-directory: "apps/aktivitetspenger-soknad"
             use-cdn: true
             package-name: "@navikt/aktivitetspenger-soknad"
-            use-turbo-test: true
             e2e-build-command: "e2e:build"
             run-sonar: true
     deploy-aktivitetspenger-innsyn:
@@ -334,6 +332,5 @@ jobs:
             working-directory: "apps/aktivitetspenger-innsyn"
             use-cdn: true
             package-name: "@navikt/aktivitetspenger-innsyn"
-            use-turbo-test: true
             e2e-build-command: "e2e:build"
             run-sonar: true
