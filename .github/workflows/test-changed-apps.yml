@@ -300,7 +300,6 @@ jobs:
             app-name: "ungdomsytelse-deltaker"
             working-directory: "apps/ungdomsytelse-deltaker"
             package-name: "@navikt/ungdomsytelse-deltaker"
-            use-turbo-test: true
             e2e-build-command: "e2e:build"
             run-sonar: true
 
@@ -313,7 +312,6 @@ jobs:
             app-name: "ungdomsytelse-veileder"
             working-directory: "apps-intern/ungdomsytelse-veileder"
             package-name: "@navikt/ungdomsytelse-veileder"
-            use-turbo-test: true
             e2e-build-command: "e2e:build"
             run-sonar: true
 
@@ -369,13 +367,14 @@ jobs:
                   # Apper som detect-changes allerede har flagget for egen test-<app>-jobb (unit + playwright)
                   # basert på paths-filter (uavhengig av om det er direkte app-endring, packages/** osv.). Disse
                   # skal ekskluderes her, ellers kjøres de samme testene to ganger når både packages/** og en
-                  # av app-triggerne matcher i samme push.
+                  # av app-triggerne matcher i samme push. `...` ekskluderer også appens avhengigheter,
+                  # siden test-<app>-jobben kjører pakketestene deres.
                   DETECT_CHANGES_APPS: ${{ needs.detect-changes.outputs.apps }}
               run: |
                   set -euo pipefail
 
                   exclude_filters="$(echo "$DETECT_CHANGES_APPS" \
-                      | jq -r '.[] | "--filter=!@navikt/" + .' \
+                      | jq -r '.[] | "--filter=!@navikt/" + . + "..."' \
                       | paste -sd' ' -)"
 
                   echo "Excluding already-tested apps: $DETECT_CHANGES_APPS"
