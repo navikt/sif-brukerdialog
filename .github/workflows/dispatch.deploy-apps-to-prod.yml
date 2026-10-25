@@ -67,7 +67,7 @@ jobs:
                   NPM_TOKEN: ${{ secrets.READER_TOKEN }}
 
             # Turbo fanger opp endringer i appen, packages/** og avhengigheter i pnpm-lock.yaml.
-            # Endring i rot-package.json (f.eks. pnpm.overrides) gir alle apper.
+            # Endring i overrides (via pnpm-lock.yaml) gir alle apper.
             - name: Resolve affected apps
               id: affected
               shell: bash
