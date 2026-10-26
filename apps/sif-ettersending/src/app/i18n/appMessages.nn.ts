@@ -136,6 +136,9 @@ export const appMessagesNN: Record<keyof typeof appMessagesNB, string> = {
         'Det oppstod framleis ein feil under innsending. Ver venleg og prøv på nytt seinare.',
 
     'steg.oppsummering.validering.manglerVedlegg': 'Det er ikkje lasta opp nokre vedlegg.',
+    'steg.oppsummering.vedleggMangler':
+        'Det er ein feil med {antall, plural, one {dokumentet} other {nokre dokument}} som er lasta opp. {antall, plural, one {Dette} other {Desse}} må du lasta opp på nytt.',
+
     'vedleggsliste.ingenVedleggLastetOpp': 'Ingen dokument er lasta opp',
 
     'page.intro.hvilkenTypeSøknad': 'Vel kva denne ettersendinga gjeld',

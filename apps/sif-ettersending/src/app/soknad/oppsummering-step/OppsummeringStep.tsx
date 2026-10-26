@@ -20,6 +20,7 @@ import { useSoknadContext } from '../SoknadContext';
 import SoknadFormComponents from '../SoknadFormComponents';
 import SoknadFormStep from '../SoknadFormStep';
 import { inkluderDokumentTypeSteg, StepID } from '../soknadStepsConfig';
+import { getVedleggIder, useManglendeVedlegg } from '@navikt/sif-common-core-ds';
 
 interface Props {
     soknadId: string;
@@ -46,6 +47,11 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker, registrerteBarn }: P
         resetSendSøknadStatus();
     });
 
+    const { manglendeVedleggIder, sjekkerVedlegg } = useManglendeVedlegg(
+        getVedleggIder([...(values[SoknadFormField.dokumenter] ?? [])]),
+    );
+    const vedleggErGyldige = !sjekkerVedlegg && manglendeVedleggIder.length === 0;
+
     const brukerHarValgtDokumenttype = inkluderDokumentTypeSteg(søknadstype);
 
     return (
@@ -56,7 +62,7 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker, registrerteBarn }: P
             showButtonSpinner={isPending(sendSoknadStatus.status)}
             submitButtonLabel={text('step.sendButtonLabel')}
             isFinalSubmit={true}
-            buttonDisabled={isPending(sendSoknadStatus.status) || apiValues === undefined}
+            buttonDisabled={isPending(sendSoknadStatus.status) || apiValues === undefined || !vedleggErGyldige}
             onSendSoknad={apiValues ? () => sendSoknad(apiValues) : undefined}>
             <FormLayout.Guide>
                 <AppText id="steg.oppsummering.info" />
@@ -164,7 +170,10 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker, registrerteBarn }: P
                                     </FormSummary.Label>
                                     <FormSummary.Value>
                                         <div data-testid="vedlegg-liste">
-                                            <VedleggSummaryList vedlegg={values.dokumenter} />
+                                            <VedleggSummaryList
+                                                vedlegg={values.dokumenter}
+                                                manglendeVedleggIder={manglendeVedleggIder}
+                                            />
                                         </div>
                                     </FormSummary.Value>
                                 </FormSummary.Answer>
@@ -179,20 +188,30 @@ const OppsummeringStep = ({ soknadId, søknadstype, søker, registrerteBarn }: P
                     validate={getCheckedValidator()}
                 />
 
-                {isFailure(sendSoknadStatus.status) && (
-                    <>
-                        {sendSoknadStatus.failures === 1 && (
-                            <Alert variant="error">
-                                <AppText id="steg.oppsummering.sendMelding.feilmelding.førsteGang" />
-                            </Alert>
-                        )}
-                        {sendSoknadStatus.failures === 2 && (
-                            <Alert variant="error">
-                                <AppText id="steg.oppsummering.sendMelding.feilmelding.andreGang" />
-                            </Alert>
-                        )}
-                    </>
-                )}
+                <div aria-live="polite">
+                    {isFailure(sendSoknadStatus.status) && (
+                        <>
+                            {sendSoknadStatus.failures === 1 && (
+                                <Alert variant="error">
+                                    <AppText id="steg.oppsummering.sendMelding.feilmelding.førsteGang" />
+                                </Alert>
+                            )}
+                            {sendSoknadStatus.failures === 2 && (
+                                <Alert variant="error">
+                                    <AppText id="steg.oppsummering.sendMelding.feilmelding.andreGang" />
+                                </Alert>
+                            )}
+                        </>
+                    )}
+                    {manglendeVedleggIder.length > 0 && (
+                        <Alert variant="error">
+                            <AppText
+                                id="steg.oppsummering.vedleggMangler"
+                                values={{ antall: manglendeVedleggIder.length }}
+                            />
+                        </Alert>
+                    )}
+                </div>
             </VStack>
         </SoknadFormStep>
     );
