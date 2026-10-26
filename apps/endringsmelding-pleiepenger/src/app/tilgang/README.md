@@ -11,20 +11,23 @@ Kjøres i dag i frontend.
 
 | Verdi | Kilde |
 |---|---|
-| Sakene til bruker | innsyn |
-| Arbeidsgivere med ansettelsesperioder | AA-registeret, hentes for oppslagsperioden fra fase 1 |
+| Sakene til bruker | innsyn (`innsyn/sak`) |
+| Arbeidsgivere med ansettelsesperioder | AA-registeret (`oppslag/arbeidsgiver` med `inkluderAlleAnsettelsesperioder=true`), hentes for oppslagsperioden fra fase 1. Gir også historiske perioder. `ansattFom`/`ansattTom` kan mangle |
 | Tillatt endringsperiode | regnes ut fra dagens dato |
 
 **Ut** — tilgang, eller en liste med `IngenTilgangÅrsak`. Ved avslag fra fase 2
-også `{ erArbeidstaker, erFrilanser, erSN }` som loggmetadata.
+også `{ erArbeidstaker, erFrilanser, erSN }` som loggmetadata. Siden
+`IngenTilgangPage` viser bare melding for den første årsaken.
 
 ## Definisjoner som må implementeres
 
 **Tillatt endringsperiode** — fra den 1. i måneden tre måneder tilbake, til og
-med 12 måneder fram fra inneværende måned. Begge ender settes til midnatt.
-Se `utils/endringsperiode.ts`.
+med siste dag i måneden 12 måneder fram. Begge ender settes til midnatt.
+Eksempel: 2026-10-26 gir 2026-07-01–2027-10-31. Se `utils/endringsperiode.ts`.
 
-**Aktuell sak** — har minst én søknadsperiode inn i endringsperioden.
+**Aktuell sak** — alle saker som ikke er eldre. Det gjelder også saker uten
+søknadsperioder og saker som ligger etter endringsperioden. De gir avslag i
+fase 1.
 
 **Eldre sak** — alle søknadsperioder slutter før endringsperioden starter. Eldre
 saker skal ikke blokkere, og ikke telle med i vurderingen av om bruker har flere
@@ -32,6 +35,15 @@ saker. De skal skilles ut for å kunne gi ulik melding ved «ingen sak» og «ba
 gamle saker».
 
 **Sak uten søknadsperioder** er ikke eldre. Den skal gi `harIngenPerioder`.
+
+**Sak med ugyldig format** — saken består ikke `verifyK9Format`. Søknadsperiodene
+leses likevel separat (`lesSøknadsperioder`). Hvis de kan leses og saken er
+eldre, legges den blant de eldre sakene. Ellers er den aktuell og gir
+`harUgyldigK9FormatSak`.
+
+**Åpne ansettelsesperioder** — en manglende `from` eller `to` fylles inn med
+perioden det sammenlignes mot (`ensureDateRange`). I regel 8 er det
+endringsperioden, og i regel 9 er det søknadsperioden.
 
 **Oppslagsperiode** — snittet av sakens samlede søknadsperiode og
 endringsperioden. Regnes ut i fase 1 og brukes til arbeidsgiveroppslaget. Må ikke
@@ -79,28 +91,31 @@ Sammenlign hver periode mot den seneste sluttdatoen som er dekket så langt, ikk
 mot forrige periode. Perioder kan overlappe, og et opphold kan være dekket av en
 tidligere periode.
 
-**9.** Gjelder kun arbeidsgivere som **ikke** finnes i saken. Tell bare
-ansettelser som overlapper en søknadsperiode. Mer enn én gir avslag.
+**9.** Gjelder kun arbeidsgivere som **ikke** finnes i saken. Klipp
+søknadsperiodene til endringsperioden. Tell ansettelser som overlapper en
+søknadsperiode. En overlapp på én dag teller. Mer enn én ansettelse gir avslag.
 
 ## Krav til implementasjonen
 
 - Sammenlign arbeidsgivere kun på organisasjonsnummer
-  (`finnesArbeidsgiverIK9Sak`). Bekreft mot kildedataene at saken alltid har
-  orgnr — uten orgnr regnes arbeidsgiver som ukjent.
+  (`finnesArbeidsgiverIK9Sak`). `verifyK9Format` godtar arbeidstakere med bare
+  `norskIdentitetsnummer` (privat arbeidsgiver). En slik arbeidstaker matcher
+  aldri, og arbeidsgiveren regnes som ukjent.
 - Bruk isouke (mandag–søndag). I JVM: `WeekFields.ISO`.
 - Gjør alle datosammenligninger på dagsnivå.
-- Bruk samme dato og tidssone som frontend når endringsperioden regnes ut.
+- Frontend bruker nettleserens klokke. Backend skal bruke `Europe/Oslo` og regne
+  ut endringsperioden én gang per vurdering.
 - Behold `IngenTilgangÅrsak`-verdiene i kontrakten ut. Frontend har egen melding
   per årsak.
-- Hold loggmetadataen utenfor reglene. Kriteriet der er timer over null, altså et
-  annet kriterium enn regel 7.
+- Hold loggmetadataen utenfor reglene. Kriteriet der er minst én periode med
+  `jobberNormaltTimerPerDag > 0`. Det er et annet kriterium enn regel 7.
 - Port `getSamletDateRangeForK9Saker` og `finnesArbeidsgiverIK9Sak` fra
   `utils/k9SakUtils.ts`.
 
 ## Testgrunnlag
 
-`__tests__/` har 50 tester skrevet som tabeller av tilfeller med forventet
-årsakliste, og kan oversettes direkte til backend-tester.
+Testene i `__tests__/` er skrevet som tabeller med forventet årsakliste. De kan
+oversettes direkte til backend-tester.
 
 | Fil | Dekker |
 |---|---|
