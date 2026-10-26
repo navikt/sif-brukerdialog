@@ -26,9 +26,6 @@ import type {
     HentSøknaderData,
     HentSøknaderErrors,
     HentSøknaderResponses,
-    HentTilgangData,
-    HentTilgangErrors,
-    HentTilgangResponses,
     LastNedArbeidsgivermeldingData,
     LastNedArbeidsgivermeldingErrors,
     LastNedArbeidsgivermeldingResponses,
@@ -45,7 +42,6 @@ import {
     zHentSakResponse,
     zHentSaksbehandlingstidResponse,
     zHentSøknaderResponse,
-    zHentTilgangResponse,
     zLastNedArbeidsgivermeldingPath,
     zLastNedArbeidsgivermeldingQuery,
     zLastNedArbeidsgivermeldingResponse,
@@ -97,39 +93,6 @@ export class DokumentController {
                 },
             ],
             url: '/dokument/{journalpostId}/{dokumentInfoId}/{variantFormat}',
-            ...options,
-        });
-    }
-}
-
-export class EndringsmeldingTilgangController {
-    public static hentTilgang<ThrowOnError extends boolean = true>(
-        options?: Options<HentTilgangData, ThrowOnError>,
-    ): RequestResult<HentTilgangResponses, HentTilgangErrors, ThrowOnError> {
-        return (options?.client ?? client).get<HentTilgangResponses, HentTilgangErrors, ThrowOnError>({
-            requestValidator: async (data) =>
-                await z
-                    .object({
-                        body: z.never().optional(),
-                        path: z.never().optional(),
-                        query: z.never().optional(),
-                    })
-                    .parseAsync(data),
-            responseType: 'json',
-            responseValidator: async (data) => await zHentTilgangResponse.parseAsync(data),
-            security: [
-                {
-                    key: 'Authorization',
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-                {
-                    key: 'oauth2',
-                    scheme: 'bearer',
-                    type: 'http',
-                },
-            ],
-            url: '/endringsmelding/psb/tilgang',
             ...options,
         });
     }
