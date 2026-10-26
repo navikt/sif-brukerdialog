@@ -8,6 +8,7 @@ import { hentGyldigLagretSøknadState } from './hentGyldigLagretSøknadState';
 import { mapInitialDataError } from './initialDataError';
 import { tilgangKontroll } from './tilgangKontroll';
 import { InitialData } from './types';
+import { hentBackendTilgang, verifiserTilgangMotBackend } from './verifiserTilgangMotBackend';
 
 /** Logges for å følge med på hvor mange som møter søknaden uten noen sak i innsyn. */
 const loggIngenSaker = (sakerInnenforEndringsperiode: K9SakResult[], sakerFørEndringsperiode: K9SakResult[]) => {
@@ -27,17 +28,21 @@ export const fetchInitialData = async (tillattEndringsperiode: DateRange): Promi
     let søker: Søker | undefined;
 
     try {
+        const backendTilgang = hentBackendTilgang();
         const [søkerResult, sakerResult] = await Promise.all([fetchSøker(), sakerEndpoint.fetch()]);
         søker = søkerResult;
 
         const { k9Saker: sakerInnenforEndringsperiode, eldreSaker: sakerFørEndringsperiode } = sakerResult;
         loggIngenSaker(sakerInnenforEndringsperiode, sakerFørEndringsperiode);
 
-        const { sak, arbeidsgivere } = await tilgangKontroll(
-            sakerInnenforEndringsperiode,
-            sakerFørEndringsperiode,
-            tillattEndringsperiode,
-            arbeidsgivereEndpoint.fetch,
+        const { sak, arbeidsgivere } = await verifiserTilgangMotBackend(
+            tilgangKontroll(
+                sakerInnenforEndringsperiode,
+                sakerFørEndringsperiode,
+                tillattEndringsperiode,
+                arbeidsgivereEndpoint.fetch,
+            ),
+            backendTilgang,
         );
 
         const k9saker = [sak];
