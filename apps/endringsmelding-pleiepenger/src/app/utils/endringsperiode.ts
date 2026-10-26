@@ -25,6 +25,6 @@ export const getTillattEndringsperiode = (endringsdato: Date): DateRange => {
             .subtract(ANTALL_MÅNEDER_TILLATT_FOR_ENDRING, 'months')
             .startOf('day')
             .toDate(),
-        to: dayjs(endringsdato).endOf('month').add(12, 'months').startOf('day').toDate(),
+        to: dayjs(endringsdato).add(12, 'months').endOf('month').startOf('day').toDate(),
     };
 };

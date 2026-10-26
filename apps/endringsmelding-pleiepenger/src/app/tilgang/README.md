@@ -23,7 +23,8 @@ også `{ erArbeidstaker, erFrilanser, erSN }` som loggmetadata. Siden
 
 **Tillatt endringsperiode** — fra den 1. i måneden tre måneder tilbake, til og
 med siste dag i måneden 12 måneder fram. Begge ender settes til midnatt.
-Eksempel: 2026-10-26 gir 2026-07-01–2027-10-31. Se `utils/endringsperiode.ts`.
+Eksempel: 2026-10-26 gir 2026-07-01–2027-10-31, og 2027-02-10 gir
+2026-11-01–2028-02-29. Se `utils/endringsperiode.ts`.
 
 **Aktuell sak** — alle saker som ikke er eldre. Det gjelder også saker uten
 søknadsperioder og saker som ligger etter endringsperioden. De gir avslag i
