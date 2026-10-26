@@ -36,6 +36,9 @@ import type {
     HentSøkerData,
     HentSøkerErrors,
     HentSøkerResponses,
+    HentTilgangData,
+    HentTilgangErrors,
+    HentTilgangResponses,
     HentVedleggData,
     HentVedleggErrors,
     HentVedleggResponses,
@@ -65,6 +68,7 @@ import {
     zHentArbeidsgivereResponse,
     zHentBarnResponse,
     zHentSøkerResponse,
+    zHentTilgangResponse,
     zHentVedleggPath,
     zHentVedleggResponse,
     zInnsendingEndringsmeldingBody,
@@ -289,6 +293,28 @@ export class EndringsmeldingController {
                 'Content-Type': 'application/json',
                 ...options.headers,
             },
+        });
+    }
+}
+
+export class EndringsmeldingTilgangController {
+    public static hentTilgang<ThrowOnError extends boolean = true>(
+        options?: Options<HentTilgangData, ThrowOnError>,
+    ): RequestResult<HentTilgangResponses, HentTilgangErrors, ThrowOnError> {
+        return (options?.client ?? client).get<HentTilgangResponses, HentTilgangErrors, ThrowOnError>({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: z.never().optional(),
+                        path: z.never().optional(),
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
+            responseType: 'json',
+            responseValidator: async (data) => await zHentTilgangResponse.parseAsync(data),
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/pleiepenger-sykt-barn/endringsmelding/tilgang',
+            ...options,
         });
     }
 }

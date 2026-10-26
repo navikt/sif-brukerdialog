@@ -66,6 +66,21 @@ export const zSøker = z.object({
     mellomnavn: z.string().nullish(),
 });
 
+export const zTilgangResultat = z.object({
+    kanBruke: z.boolean(),
+    årsaker: z.array(
+        z.enum([
+            'harIngenSak',
+            'søknadsperioderUtenforTillattEndringsperiode',
+            'harMerEnnEnSak',
+            'harIngenPerioder',
+            'harArbeidstidSomSelvstendigNæringsdrivende',
+            'enArbeidsgiverToAnsettelserSammeUkeMedOpphold',
+            'harFlereAnsettelsesforholdHosUkjentArbeidsgiver',
+        ]),
+    ),
+});
+
 export const zAnnenAktivitet = z.object({
     annenAktivitetType: z.enum(['MILITÆR_ELLER_SIVILTJENESTE', '-']),
     periode: z.string(),
@@ -357,6 +372,11 @@ export const zInnsendingEndringsmeldingBody = zEndringsmelding;
 export const zInnsendingEndringsmeldingHeaders = z.object({
     'X-Brukerdialog-Git-Sha': z.string(),
 });
+
+/**
+ * OK
+ */
+export const zHentTilgangResponse = zTilgangResultat;
 
 export const zLagreVedleggBody = z.object({
     vedlegg: z.instanceof(Blob),
