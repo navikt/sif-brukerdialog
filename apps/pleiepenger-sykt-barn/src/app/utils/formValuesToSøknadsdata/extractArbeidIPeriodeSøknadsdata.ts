@@ -1,8 +1,7 @@
-import { DateRange, getNumberFromNumberInputValue, YesOrNo } from '@navikt/sif-common-formik-ds';
-import { dateUtils, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
+import { getNumberFromNumberInputValue, YesOrNo } from '@navikt/sif-common-formik-ds';
+import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 
 import { ArbeiderIPeriodenSvar } from '../../local-sif-common-pleiepenger';
-import { TimerEllerProsent } from '../../types';
 import { ArbeidIPeriodeType } from '../../types/ArbeidIPeriodeType';
 import { RedusertArbeidstidType } from '../../types/RedusertArbeidstidType';
 import {
@@ -10,11 +9,6 @@ import {
     ArbeidsukerFormValues,
 } from '../../types/søknad-form-values/ArbeidIPeriodeFormValues';
 import { ArbeidIPeriodeSøknadsdata, ArbeidsukerTimerSøknadsdata } from '../../types/søknadsdata/Søknadsdata';
-
-export const getMinDateRangeFromDateRanges = (dr1: DateRange, dr2: DateRange): DateRange => ({
-    from: dateUtils.getLastOfTwoDates(dr1.from, dr2.from),
-    to: dateUtils.getFirstOfTwoDates(dr1.to, dr2.to),
-});
 
 export const extractArbeidsukerTimerSøknadsdata = (arbeidsuker: ArbeidsukerFormValues): ArbeidsukerTimerSøknadsdata => {
     const arbeidsukerSøknadsdata: ArbeidsukerTimerSøknadsdata = [];
@@ -32,8 +26,7 @@ export const extractArbeidsukerTimerSøknadsdata = (arbeidsuker: ArbeidsukerForm
 export const extractArbeidIPeriodeSøknadsdata = (
     formValues: ArbeidIPeriodeFormValues,
 ): ArbeidIPeriodeSøknadsdata | undefined => {
-    const { arbeiderIPerioden, prosentAvNormalt, snittTimerPerUke, timerEllerProsent, erLiktHverUke, arbeidsuker } =
-        formValues;
+    const { arbeiderIPerioden, snittTimerPerUke, erLiktHverUke, arbeidsuker } = formValues;
 
     if (arbeiderIPerioden === ArbeiderIPeriodenSvar.heltFravær) {
         return {
@@ -47,29 +40,13 @@ export const extractArbeidIPeriodeSøknadsdata = (
     }
 
     if (erLiktHverUke === YesOrNo.YES) {
-        const arbeiderProsent =
-            timerEllerProsent === TimerEllerProsent.PROSENT
-                ? getNumberFromNumberInputValue(prosentAvNormalt)
-                : undefined;
-
-        const timerISnittPerUke =
-            timerEllerProsent === TimerEllerProsent.TIMER ? getNumberFromNumberInputValue(snittTimerPerUke) : undefined;
-
-        if (snittTimerPerUke && timerISnittPerUke !== undefined) {
+        const timerISnittPerUke = getNumberFromNumberInputValue(snittTimerPerUke);
+        if (timerISnittPerUke !== undefined) {
             return {
                 type: ArbeidIPeriodeType.arbeiderRedusert,
                 redusertArbeid: {
                     type: RedusertArbeidstidType.timerISnittPerUke,
                     timerISnittPerUke,
-                },
-            };
-        }
-        if (arbeiderProsent && prosentAvNormalt) {
-            return {
-                type: ArbeidIPeriodeType.arbeiderRedusert,
-                redusertArbeid: {
-                    type: RedusertArbeidstidType.prosentAvNormalt,
-                    prosentAvNormalt: arbeiderProsent,
                 },
             };
         }

@@ -5,9 +5,7 @@ import { ArbeidIPeriodeFormField } from '../../../types/søknad-form-values/Arbe
 type ArbeidstidSpørsmål = {
     [ArbeidIPeriodeFormField.arbeiderIPerioden]: string;
     [ArbeidIPeriodeFormField.erLiktHverUke]: string;
-    [ArbeidIPeriodeFormField.timerEllerProsent]: string;
     [ArbeidIPeriodeFormField.snittTimerPerUke]: string;
-    [ArbeidIPeriodeFormField.prosentAvNormalt]: string;
     [ArbeidIPeriodeFormField.arbeidsuker]: string;
 };
 
@@ -25,16 +23,8 @@ export const getArbeidstidSpørsmålstekst = (
             getSpørsmålIntlKey(ArbeidIPeriodeFormField.erLiktHverUke, arbeidsforholdType),
             values,
         ),
-        [ArbeidIPeriodeFormField.timerEllerProsent]: text(
-            getSpørsmålIntlKey(ArbeidIPeriodeFormField.timerEllerProsent, arbeidsforholdType),
-            values,
-        ),
         [ArbeidIPeriodeFormField.snittTimerPerUke]: text(
             getSpørsmålIntlKey(ArbeidIPeriodeFormField.snittTimerPerUke, arbeidsforholdType),
-            values,
-        ),
-        [ArbeidIPeriodeFormField.prosentAvNormalt]: text(
-            getSpørsmålIntlKey(ArbeidIPeriodeFormField.prosentAvNormalt, arbeidsforholdType),
             values,
         ),
         [ArbeidIPeriodeFormField.arbeidsuker]: text(
