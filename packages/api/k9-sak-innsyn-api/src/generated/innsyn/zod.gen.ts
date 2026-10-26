@@ -509,6 +509,21 @@ export const zSøknad = z.object({
     ]),
 });
 
+export const zIngenTilgangÅrsak = z.enum([
+    'harIngenSak',
+    'søknadsperioderUtenforTillattEndringsperiode',
+    'harMerEnnEnSak',
+    'harIngenPerioder',
+    'harArbeidstidSomSelvstendigNæringsdrivende',
+    'enArbeidsgiverToAnsettelserSammeUkeMedOpphold',
+    'harFlereAnsettelsesforholdHosUkjentArbeidsgiver',
+]);
+
+export const zTilgangResultat = z.object({
+    getårsaker: z.array(zIngenTilgangÅrsak),
+    kanBruke: z.boolean(),
+});
+
 export const zAdressebeskyttelseGradering = z.enum([
     'STRENGT_FORTROLIG_UTLAND',
     'STRENGT_FORTROLIG',
@@ -857,6 +872,11 @@ export const zHentDokumentQuery = z.object({
  * OK
  */
 export const zHentDokumentResponse = z.string();
+
+/**
+ * OK
+ */
+export const zHentTilgangResponse = zTilgangResultat;
 
 export const zHentSakPath = z.object({
     saksnummer: z.string(),
