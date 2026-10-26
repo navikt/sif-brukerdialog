@@ -42,6 +42,12 @@ leses likevel separat (`lesSøknadsperioder`). Hvis de kan leses og saken er
 eldre, legges den blant de eldre sakene. Ellers er den aktuell og gir
 `harUgyldigK9FormatSak`.
 
+**Kjent arbeidsgiver** — en arbeidstaker i saken med minst én periode over 0
+normaltimer. Andre arbeidstakere regnes som ukjente. Søknadsflyten behandler en
+arbeidsgiver med bare 0 timer som et ukjent arbeidsforhold, og tilgangskontrollen
+må gjøre det samme. Filteret ligger i `fjernK9SakArbeidstidMedIngenNormalarbeidstid`
+(`utils/parseK9Format.ts`) og kjøres før reglene.
+
 **Åpne ansettelsesperioder** — en manglende `from` eller `to` fylles inn med
 perioden det sammenlignes mot (`ensureDateRange`). Ved to ansettelser samme
 isouke er det endringsperioden, og ved flere ansettelser hos ukjent
@@ -100,7 +106,8 @@ søknadsperiode. En overlapp på én dag teller. Mer enn én ansettelse gir avsl
 ## Krav til implementasjonen
 
 - Sammenlign arbeidsgivere kun på organisasjonsnummer
-  (`finnesArbeidsgiverIK9Sak`). `verifyK9Format` godtar arbeidstakere med bare
+  (`finnesArbeidsgiverIK9Sak`), og bare mot kjente arbeidsgivere (se
+  definisjonen over). `verifyK9Format` godtar arbeidstakere med bare
   `norskIdentitetsnummer` (privat arbeidsgiver). En slik arbeidstaker matcher
   aldri, og arbeidsgiveren regnes som ukjent.
 - Bruk isouke (mandag–søndag). I JVM: `WeekFields.ISO`.

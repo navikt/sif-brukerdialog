@@ -56,6 +56,12 @@ const avslagCases: AvslagCase[] = [
         arbeidsgivere: [lagArbeidsgiver(UKJENT_ORGNR, ['2024-01-01/2024-01-10', '2024-01-15/2024-01-20'])],
         forventet: [IngenTilgangÅrsak.harFlereAnsettelsesforholdHosUkjentArbeidsgiver],
     },
+    {
+        beskrivelse: 'arbeidsgiver i saken med bare 0 timer regnes som ukjent',
+        sak: lagSak({ arbeidstakere: [lagArbeidstaker(KJENT_ORGNR, 'PT0H0M')] }),
+        arbeidsgivere: [lagArbeidsgiver(KJENT_ORGNR, ['2024-01-01/2024-01-10', '2024-01-15/2024-01-20'])],
+        forventet: [IngenTilgangÅrsak.harFlereAnsettelsesforholdHosUkjentArbeidsgiver],
+    },
 
     /** Flere årsaker samtidig - rekkefølgen er en del av spesifikasjonen */
     {
