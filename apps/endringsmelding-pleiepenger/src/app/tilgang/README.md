@@ -45,7 +45,12 @@ eldre, legges den blant de eldre sakene. Ellers er den aktuell og gir
 **Kjent arbeidsgiver** — en arbeidstaker i saken med minst én periode over 0
 normaltimer. Andre arbeidstakere regnes som ukjente. Søknadsflyten behandler en
 arbeidsgiver med bare 0 timer som et ukjent arbeidsforhold, og tilgangskontrollen
-må gjøre det samme. Filteret ligger i `fjernK9SakArbeidstidMedIngenNormalarbeidstid`
+må gjøre det samme.
+
+**SN i saken** — SN-info med minst én periode over 0 normaltimer. SN-info der
+alle periodene har 0 normaltimer, regnes som fraværende.
+
+Begge filtrene ligger i `fjernK9SakArbeidstidMedIngenNormalarbeidstid`
 (`utils/parseK9Format.ts`) og kjøres før reglene.
 
 **Åpne ansettelsesperioder** — en manglende `from` eller `to` fylles inn med
@@ -88,8 +93,8 @@ Evaluer alle tre. Samle årsakene i denne rekkefølgen.
 | To ansettelser samme isouke med opphold | `enArbeidsgiverToAnsettelserSammeUkeMedOpphold` |
 | Flere ansettelser hos ukjent arbeidsgiver | `harFlereAnsettelsesforholdHosUkjentArbeidsgiver` |
 
-**SN-perioder.** Slår til når det finnes SN-perioder i saken, uansett antall timer. Også
-perioder med null timer.
+**SN-perioder.** Slår til når saken har SN (se definisjonen over), altså minst
+én SN-periode over 0 normaltimer. SN med bare 0 normaltimer gir ikke avslag.
 
 **To ansettelser samme isouke med opphold.** Gjelder kun arbeidsgivere som finnes i saken. Klipp ansettelsesperiodene
 til endringsperioden. Slår til når en periode starter i samme isouke som den
@@ -116,9 +121,8 @@ søknadsperiode. En overlapp på én dag teller. Mer enn én ansettelse gir avsl
   ut endringsperioden én gang per vurdering.
 - Behold `IngenTilgangÅrsak`-verdiene i kontrakten ut. Frontend har egen melding
   per årsak.
-- Hold loggmetadataen utenfor reglene. Kriteriet der er minst én periode med
-  `jobberNormaltTimerPerDag > 0`. Det er et annet kriterium enn
-  SN-regelen.
+- Hold loggmetadataen utenfor reglene. Den skal aldri påvirke om bruker får
+  tilgang.
 - Port `getSamletDateRangeForK9Saker` og `finnesArbeidsgiverIK9Sak` fra
   `utils/k9SakUtils.ts`.
 

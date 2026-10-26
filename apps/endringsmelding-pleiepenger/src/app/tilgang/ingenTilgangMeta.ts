@@ -4,10 +4,6 @@ import { durationToDecimalDuration } from '@navikt/sif-common-utils';
 /**
  * Loggmetadata, ikke en regel. Verdiene brukes kun til å se hvilke arbeidsforhold
  * de som blir avvist faktisk har, og skal aldri påvirke om bruker får tilgang.
- *
- * Kriteriet er strengere enn SN-regelen i vurderArbeidsforhold: her kreves minst
- * én periode med timer over null, mens tilgangsregelen kun ser om det finnes
- * perioder. De skal ikke slås sammen.
  */
 export const getIngenTilgangMeta = (arbeidstid: K9SakArbeidstid): IngenTilgangMeta => {
     const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } = arbeidstid;

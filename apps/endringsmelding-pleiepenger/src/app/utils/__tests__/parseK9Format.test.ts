@@ -115,12 +115,12 @@ describe('parseK9Format', () => {
             });
             expect(result.frilanserArbeidstidInfo).toBeDefined();
         });
-        it('Beholder sn med ingen normalarbeidstid, slik at tilgangskontrollen kan gi avslag', () => {
+        it('Fjerner sn med ingen normalarbeidstid', () => {
             const result = fjernK9SakArbeidstidMedIngenNormalarbeidstid({
                 arbeidstakerList: [],
                 selvstendigNæringsdrivendeArbeidstidInfo: arbeidstidInfoIngenArbeidEnPeriode,
             });
-            expect(result.selvstendigNæringsdrivendeArbeidstidInfo).toEqual(arbeidstidInfoIngenArbeidEnPeriode);
+            expect(result.selvstendigNæringsdrivendeArbeidstidInfo).toBeUndefined();
         });
         it('Fjerner sn uten perioder', () => {
             const result = fjernK9SakArbeidstidMedIngenNormalarbeidstid({

@@ -43,11 +43,9 @@ export const vurderArbeidsforhold = (
 };
 
 /**
- * Det er om det finnes SN-perioder i saken som avgjør, ikke hvor mange timer de
- * inneholder. En periode med null timer betyr at saksbehandler har registrert
- * næringsvirksomhet, og endringsmeldingen støtter ikke den situasjonen.
- *
- * Ikke forveksle med erSN i ingenTilgangMeta, som teller timer. Den er kun logging.
+ * SN-info med bare 0 normaltimer er allerede fjernet av
+ * fjernK9SakArbeidstidMedIngenNormalarbeidstid. Gjenstår det perioder, har minst
+ * én av dem normaltimer over 0.
  */
 const erSelvstendigNæringsdrivende = (sak: K9Sak): boolean => {
     const { selvstendigNæringsdrivendeArbeidstidInfo } = sak.ytelse.arbeidstid;

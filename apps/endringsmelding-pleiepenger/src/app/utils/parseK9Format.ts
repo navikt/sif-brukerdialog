@@ -83,12 +83,7 @@ export const harNormalarbeidstidIK9SakArbeidstidInfo = (arbeidstidInfo?: K9SakAr
     return keys.map((key) => perioder[key].jobberNormaltTimerPerDag).some(durationUtils.durationIsGreatherThanZero);
 };
 
-/**
- * Hvis det kun er oppgitt 0 timer som normalarbeidstid, fjernes arbeidstidsinfoen, og en kan ikke endre disse arbeidsforholdene.
- *
- * SN beholdes uansett timer: tilgangskontrollen gir avslag på alle SN-perioder, også de med 0 timer.
- * SN uten perioder fjernes, ellers lager søknadsflyten en SN-aktivitet uten innhold.
- */
+/** Hvis det kun er oppgitt 0 timer som normalarbeidstid, fjernes arbeidstidsinfoen, og en kan ikke endre disse arbeidsforholdene. */
 export const fjernK9SakArbeidstidMedIngenNormalarbeidstid = (arbeidstid: K9SakArbeidstid): K9SakArbeidstid => {
     const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } = arbeidstid;
 
@@ -97,10 +92,11 @@ export const fjernK9SakArbeidstidMedIngenNormalarbeidstid = (arbeidstid: K9SakAr
         frilanserArbeidstidInfo: harNormalarbeidstidIK9SakArbeidstidInfo(frilanserArbeidstidInfo)
             ? frilanserArbeidstidInfo
             : undefined,
-        selvstendigNæringsdrivendeArbeidstidInfo:
-            Object.keys(selvstendigNæringsdrivendeArbeidstidInfo?.perioder ?? {}).length > 0
-                ? selvstendigNæringsdrivendeArbeidstidInfo
-                : undefined,
+        selvstendigNæringsdrivendeArbeidstidInfo: harNormalarbeidstidIK9SakArbeidstidInfo(
+            selvstendigNæringsdrivendeArbeidstidInfo,
+        )
+            ? selvstendigNæringsdrivendeArbeidstidInfo
+            : undefined,
     };
 };
 

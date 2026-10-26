@@ -34,12 +34,6 @@ const avslagCases: AvslagCase[] = [
         arbeidsgivere: [],
         forventet: [IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende],
     },
-    {
-        beskrivelse: 'SN-perioder uten timer blokkerer også - det er perioden som definerer SN',
-        sak: lagSak({ snTimerPerDag: 'PT0H0M' }),
-        arbeidsgivere: [],
-        forventet: [IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende],
-    },
 
     /** Kjent arbeidsgiver, to ansettelser samme uke med opphold */
     {
@@ -103,6 +97,11 @@ const tilgangCases: TilgangCase[] = [
     {
         beskrivelse: 'frilans blokkerer ikke',
         sak: lagSak({ frilansTimerPerDag: 'PT7H30M' }),
+        arbeidsgivere: [],
+    },
+    {
+        beskrivelse: 'SN med bare 0 normaltimer blokkerer ikke',
+        sak: lagSak({ snTimerPerDag: 'PT0H0M' }),
         arbeidsgivere: [],
     },
     {
