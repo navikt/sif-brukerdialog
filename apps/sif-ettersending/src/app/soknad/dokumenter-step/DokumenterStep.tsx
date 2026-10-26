@@ -1,5 +1,5 @@
 import { Søker } from '@navikt/sif-common-api';
-import { FormikFileUpload, useVedleggHelper } from '@navikt/sif-common-core-ds';
+import { FormikFileUpload, getVedleggIder, useManglendeVedlegg, useVedleggHelper } from '@navikt/sif-common-core-ds';
 import { getVedleggValidator } from '@navikt/sif-common-core-ds/src/components/formik-file-upload/getVedleggValidator';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { FormLayout } from '@navikt/sif-common-ui';
@@ -12,6 +12,7 @@ import { getFeaturesHashString } from '../../utils/featureToggleUtils';
 import SoknadFormStep from '../SoknadFormStep';
 import { StepID } from '../soknadStepsConfig';
 import SøknadTempStorage from '../soknadTempStorage';
+import { useState } from 'react';
 
 interface Props {
     søknadstype: Søknadstype;
@@ -40,6 +41,9 @@ const DokumenterStep = ({ søknadstype, søker, soknadId }: Props) => {
 
     const { hasPendingUploads } = useVedleggHelper(values[SoknadFormField.dokumenter], [], onVedleggChange);
 
+    const [initielleVedleggIder] = useState(() => getVedleggIder(values[SoknadFormField.dokumenter]));
+    const { manglendeVedleggIder } = useManglendeVedlegg(initielleVedleggIder);
+
     return (
         <SoknadFormStep id={StepID.DOKUMENTER} søknadstype={søknadstype} buttonDisabled={hasPendingUploads}>
             <FormLayout.Guide>
@@ -58,6 +62,7 @@ const DokumenterStep = ({ søknadstype, søker, soknadId }: Props) => {
                 initialFiles={values[SoknadFormField.dokumenter]}
                 fieldName={SoknadFormField.dokumenter}
                 validate={getVedleggValidator({ required: true })}
+                manglendeVedleggIder={manglendeVedleggIder}
                 showPictureScanningGuide={true}
             />
         </SoknadFormStep>
