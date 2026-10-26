@@ -45,6 +45,6 @@ This repository is a pnpm + Turborepo monorepo.
 
 ## PR-beskrivelser
 
-- Skriv kort og overordnet, med to seksjoner: «Bakgrunn» og «Løsning».
-- Bakgrunn: hva som endres for brukeren, og hvorfor. 2–3 setninger.
-- Løsning: 3–5 punkter om hva som er gjort. Ikke nevn enkeltfiler, typer eller funksjonsnavn.
+- Følg malen i `.github/pull_request_template.md` (Behov / Bakgrunn, Løsning, Andre endringer).
+- Hold teksten kort og oppsummerende. Beskriv hva og hvorfor, ikke endringer per fil, med mindre det er nødvendig for å forstå PR-en.
+- Unngå filnavn, kommandoer, flagg og input-navn. Små tilpasninger og opprydding som følger av hovedendringen, skal ikke listes. Disse skal kun tas med hvis det er essensielt for å forstå PR-en.

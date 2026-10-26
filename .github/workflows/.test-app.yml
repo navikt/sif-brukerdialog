@@ -20,11 +20,6 @@ on:
         type: boolean
         default: false
         description: "Install Playwright with system dependencies (--with-deps)"
-      use-turbo-test:
-        required: false
-        type: boolean
-        default: false
-        description: "Use 'pnpm turbo test' instead of 'pnpm test'"
       e2e-build-command:
         required: false
         type: string
@@ -66,13 +61,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # `...` tar med appens workspace-avhengigheter, så pakketester må også passere
       - name: Run code tests
-        run: |
-          if [ "${{ inputs.use-turbo-test }}" = "true" ]; then
-            pnpm turbo test --filter=${{ inputs.package-name }}
-          else
-            pnpm test --filter=${{ inputs.package-name }}
-          fi
+        run: pnpm turbo test --filter="${{ inputs.package-name }}..."
 
   run-playwright-test:
     timeout-minutes: 60

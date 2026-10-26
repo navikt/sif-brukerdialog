@@ -134,6 +134,8 @@ export const appMessagesNB = {
         'Det oppstod fortsatt en feil under innsending. Vennligst vent litt og prøv på nytt.',
 
     'steg.oppsummering.validering.manglerVedlegg': 'Det er ikke lastet opp noen vedlegg.',
+    'steg.oppsummering.vedleggMangler':
+        'Det er en feil med {antall, plural, one {dokumentet} other {noen dokumenter}} som er lastet opp. {antall, plural, one {Dette} other {Disse}} må lastes opp på nytt.',
 
     'vedleggsliste.ingenVedleggLastetOpp': 'Ingen dokumenter er lastet opp',
 
