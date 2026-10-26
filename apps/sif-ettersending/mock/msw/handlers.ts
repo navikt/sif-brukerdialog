@@ -24,9 +24,6 @@ export const getHandlers = () => [
     http.post('**/ettersending/innsending', () => {
         return HttpResponse.json({});
     }),
-    http.post('**/vedlegg', () => {
-        return HttpResponse.json({}, { headers: { location: '/vedlegg/123' } });
-    }),
     http.post('**/vedlegg', async ({ request }) => {
         const formData = await request.formData();
         const vedlegg = formData.get('vedlegg');
