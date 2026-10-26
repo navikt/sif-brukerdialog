@@ -78,6 +78,19 @@ export type Endringsmelding = {
     ytelse: PleiepengerSyktBarn;
 };
 
+export type TilgangResultat = {
+    kanBruke: boolean;
+    årsaker: Array<
+        | 'harIngenSak'
+        | 'søknadsperioderUtenforTillattEndringsperiode'
+        | 'harMerEnnEnSak'
+        | 'harIngenPerioder'
+        | 'harArbeidstidSomSelvstendigNæringsdrivende'
+        | 'enArbeidsgiverToAnsettelserSammeUkeMedOpphold'
+        | 'harFlereAnsettelsesforholdHosUkjentArbeidsgiver'
+    >;
+};
+
 export type AnnenAktivitet = {
     annenAktivitetType: 'MILITÆR_ELLER_SIVILTJENESTE' | '-';
     periode: string;
@@ -670,6 +683,43 @@ export type InnsendingEndringsmeldingResponses = {
      */
     202: unknown;
 };
+
+export type HentTilgangData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/pleiepenger-sykt-barn/endringsmelding/tilgang';
+};
+
+export type HentTilgangErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetail;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type HentTilgangError = HentTilgangErrors[keyof HentTilgangErrors];
+
+export type HentTilgangResponses = {
+    /**
+     * OK
+     */
+    200: TilgangResultat;
+};
+
+export type HentTilgangResponse = HentTilgangResponses[keyof HentTilgangResponses];
 
 export type LagreVedleggData = {
     body?: {
