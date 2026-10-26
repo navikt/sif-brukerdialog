@@ -122,6 +122,13 @@ describe('parseK9Format', () => {
             });
             expect(result.selvstendigNæringsdrivendeArbeidstidInfo).toEqual(arbeidstidInfoIngenArbeidEnPeriode);
         });
+        it('Fjerner sn uten perioder', () => {
+            const result = fjernK9SakArbeidstidMedIngenNormalarbeidstid({
+                arbeidstakerList: [],
+                selvstendigNæringsdrivendeArbeidstidInfo: { perioder: {} },
+            });
+            expect(result.selvstendigNæringsdrivendeArbeidstidInfo).toBeUndefined();
+        });
         it('Beholder sn som har normalarbeidstid', () => {
             const result = fjernK9SakArbeidstidMedIngenNormalarbeidstid({
                 arbeidstakerList: [],
