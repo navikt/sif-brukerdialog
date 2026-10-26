@@ -14,9 +14,9 @@ dayjs.extend(isoWeek);
  * Samler alle årsaker som slår til.
  *
  * Regelrekkefølge (bestemmer rekkefølgen i årsak-listen):
- *  6. Selvstendig næringsdrivende              -> harArbeidstidSomSelvstendigNæringsdrivende
- *  7. To ansettelser samme isoUke med opphold  -> enArbeidsgiverToAnsettelserSammeUkeMedOpphold
- *  8. Flere ansettelser hos ukjent arbeidsgiver -> harFlereAnsettelsesforholdHosUkjentArbeidsgiver
+ *  - Selvstendig næringsdrivende              -> harArbeidstidSomSelvstendigNæringsdrivende
+ *  - To ansettelser samme isoUke med opphold  -> enArbeidsgiverToAnsettelserSammeUkeMedOpphold
+ *  - Flere ansettelser hos ukjent arbeidsgiver -> harFlereAnsettelsesforholdHosUkjentArbeidsgiver
  *
  * @param arbeidsgivere hentet for oppslagsperioden fra vurderSaker
  */

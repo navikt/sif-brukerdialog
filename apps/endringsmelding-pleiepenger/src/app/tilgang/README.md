@@ -43,8 +43,9 @@ eldre, legges den blant de eldre sakene. Ellers er den aktuell og gir
 `harUgyldigK9FormatSak`.
 
 **Åpne ansettelsesperioder** — en manglende `from` eller `to` fylles inn med
-perioden det sammenlignes mot (`ensureDateRange`). I regel 8 er det
-endringsperioden, og i regel 9 er det søknadsperioden.
+perioden det sammenlignes mot (`ensureDateRange`). Ved to ansettelser samme
+isouke er det endringsperioden, og ved flere ansettelser hos ukjent
+arbeidsgiver er det søknadsperioden.
 
 **Oppslagsperiode** — snittet av sakens samlede søknadsperiode og
 endringsperioden. Regnes ut i fase 1 og brukes til arbeidsgiveroppslaget. Må ikke
@@ -60,14 +61,14 @@ klassifiser aktuell/eldre  →  fase 1  →  hent arbeidsgivere  →  fase 2
 
 Evaluer i rekkefølge. Stopp ved første treff og returner én årsak.
 
-| # | Regel | Årsak |
-|---|-------|-------|
-| 1 | Ingen saker overhodet | `harIngenSak` |
-| 2 | Kun eldre saker | `søknadsperioderUtenforTillattEndringsperiode` |
-| 3 | Uleselig format blant de aktuelle sakene | `harUgyldigK9FormatSak` |
-| 4 | Flere aktuelle saker (eldre teller ikke) | `harMerEnnEnSak` |
-| 5 | Saken har ingen søknadsperioder | `harIngenPerioder` |
-| 6 | Tomt snitt mot endringsperioden | `søknadsperioderUtenforTillattEndringsperiode` |
+| Regel | Årsak |
+|-------|-------|
+| Ingen saker overhodet | `harIngenSak` |
+| Kun eldre saker | `søknadsperioderUtenforTillattEndringsperiode` |
+| Uleselig format blant de aktuelle sakene | `harUgyldigK9FormatSak` |
+| Flere aktuelle saker (eldre teller ikke) | `harMerEnnEnSak` |
+| Saken har ingen søknadsperioder | `harIngenPerioder` |
+| Tomt snitt mot endringsperioden | `søknadsperioderUtenforTillattEndringsperiode` |
 
 Ved tilgang: returner saken og oppslagsperioden.
 
@@ -75,16 +76,16 @@ Ved tilgang: returner saken og oppslagsperioden.
 
 Evaluer alle tre. Samle årsakene i denne rekkefølgen.
 
-| # | Regel | Årsak |
-|---|-------|-------|
-| 7 | Saken har SN-perioder | `harArbeidstidSomSelvstendigNæringsdrivende` |
-| 8 | To ansettelser samme isouke med opphold | `enArbeidsgiverToAnsettelserSammeUkeMedOpphold` |
-| 9 | Flere ansettelser hos ukjent arbeidsgiver | `harFlereAnsettelsesforholdHosUkjentArbeidsgiver` |
+| Regel | Årsak |
+|-------|-------|
+| Saken har SN-perioder | `harArbeidstidSomSelvstendigNæringsdrivende` |
+| To ansettelser samme isouke med opphold | `enArbeidsgiverToAnsettelserSammeUkeMedOpphold` |
+| Flere ansettelser hos ukjent arbeidsgiver | `harFlereAnsettelsesforholdHosUkjentArbeidsgiver` |
 
-**7.** Slår til når det finnes SN-perioder i saken, uansett antall timer. Også
+**SN-perioder.** Slår til når det finnes SN-perioder i saken, uansett antall timer. Også
 perioder med null timer.
 
-**8.** Gjelder kun arbeidsgivere som finnes i saken. Klipp ansettelsesperiodene
+**To ansettelser samme isouke med opphold.** Gjelder kun arbeidsgivere som finnes i saken. Klipp ansettelsesperiodene
 til endringsperioden. Slår til når en periode starter i samme isouke som den
 forrige sluttet, med minst én ledig dag mellom.
 
@@ -92,7 +93,7 @@ Sammenlign hver periode mot den seneste sluttdatoen som er dekket så langt, ikk
 mot forrige periode. Perioder kan overlappe, og et opphold kan være dekket av en
 tidligere periode.
 
-**9.** Gjelder kun arbeidsgivere som **ikke** finnes i saken. Klipp
+**Flere ansettelser hos ukjent arbeidsgiver.** Gjelder kun arbeidsgivere som **ikke** finnes i saken. Klipp
 søknadsperiodene til endringsperioden. Tell ansettelser som overlapper en
 søknadsperiode. En overlapp på én dag teller. Mer enn én ansettelse gir avslag.
 
@@ -109,7 +110,8 @@ søknadsperiode. En overlapp på én dag teller. Mer enn én ansettelse gir avsl
 - Behold `IngenTilgangÅrsak`-verdiene i kontrakten ut. Frontend har egen melding
   per årsak.
 - Hold loggmetadataen utenfor reglene. Kriteriet der er minst én periode med
-  `jobberNormaltTimerPerDag > 0`. Det er et annet kriterium enn regel 7.
+  `jobberNormaltTimerPerDag > 0`. Det er et annet kriterium enn
+  SN-regelen.
 - Port `getSamletDateRangeForK9Saker` og `finnesArbeidsgiverIK9Sak` fra
   `utils/k9SakUtils.ts`.
 

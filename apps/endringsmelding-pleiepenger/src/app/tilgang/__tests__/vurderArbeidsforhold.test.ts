@@ -27,7 +27,7 @@ interface AvslagCase {
 }
 
 const avslagCases: AvslagCase[] = [
-    /** Regel 6 - selvstendig næringsdrivende */
+    /** Selvstendig næringsdrivende */
     {
         beskrivelse: 'SN med arbeidstid',
         sak: lagSak({ snTimerPerDag: 'PT7H30M' }),
@@ -41,7 +41,7 @@ const avslagCases: AvslagCase[] = [
         forventet: [IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende],
     },
 
-    /** Regel 7 - kjent arbeidsgiver, to ansettelser samme uke med opphold */
+    /** Kjent arbeidsgiver, to ansettelser samme uke med opphold */
     {
         beskrivelse: 'kjent arbeidsgiver med to ansettelser samme isoUke med opphold',
         sak: sakMedKjentArbeidsgiver,
@@ -49,7 +49,7 @@ const avslagCases: AvslagCase[] = [
         forventet: [IngenTilgangÅrsak.enArbeidsgiverToAnsettelserSammeUkeMedOpphold],
     },
 
-    /** Regel 8 - ukjent arbeidsgiver med flere ansettelser */
+    /** Ukjent arbeidsgiver med flere ansettelser */
     {
         beskrivelse: 'ukjent arbeidsgiver med flere ansettelser i søknadsperioden',
         sak: sakMedKjentArbeidsgiver,
@@ -152,8 +152,9 @@ describe('vurderArbeidsforhold', () => {
 });
 
 /**
- * Utfallene av regel 7 dekkes gjennom vurderArbeidsforhold over. Her testes kun
- * at funksjonen sorterer selv, og at den ikke muterer listen den får inn.
+ * Utfallene av regelen om to ansettelser samme uke dekkes gjennom
+ * vurderArbeidsforhold over. Her testes kun at funksjonen sorterer selv, og at
+ * den ikke muterer listen den får inn.
  */
 describe('perioderSlutterOgStarterSammeUkeMedOpphold', () => {
     /** Uke 2 er 06.01-12.01, uke 3 er 13.01-19.01 og uke 4 er 20.01-26.01 i 2025. */
