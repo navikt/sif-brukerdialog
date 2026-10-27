@@ -122,3 +122,10 @@ export const getScenarioFromLocalStorage = (): Scenario => {
 export const saveScenarioToLocalStorage = (scenario: Scenario) => {
     localStorage.setItem('scenario', scenario.value);
 };
+
+/** Innsendte endringer lagres per scenario av mock-backend (MSW) */
+export const getInnsendtSakStorageKey = (scenario: ScenarioType) => `sak-endring-psb-${scenario}`;
+
+export const nullstillScenarioer = (scenarioerSomSkalNullstilles: ScenarioType[]) => {
+    scenarioerSomSkalNullstilles.forEach((scenario) => localStorage.removeItem(getInnsendtSakStorageKey(scenario)));
+};

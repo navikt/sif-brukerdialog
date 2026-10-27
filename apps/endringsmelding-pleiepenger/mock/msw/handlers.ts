@@ -1,7 +1,9 @@
-import { getScenarioFromLocalStorage } from '@app/dev/scenarioer';
+import { getInnsendtSakStorageKey, getScenarioFromLocalStorage } from '@app/dev/scenarioer';
+import { SøknadApiData } from '@app/types';
 import { delay, http, HttpResponse, passthrough } from 'msw';
 
 import { getScenarioMockData } from '../data/scenario';
+import { oppdaterSakerMedEndringsmelding } from './oppdaterSakMedEndringsmelding';
 
 const baseUrl = '*';
 
@@ -9,7 +11,14 @@ const MellomlagringStorageKey = 'mellomlagring-endring-psb';
 
 export const getHandlers = () => {
     const scenario = getScenarioFromLocalStorage();
-    const { sak, arbeidsgiver, søker } = getScenarioMockData(scenario.value);
+    const { sak: scenarioSak, arbeidsgiver, søker } = getScenarioMockData(scenario.value);
+
+    /** Innsendte endringer lagres per scenario, slik at de ligger i saken neste gang dialogen åpnes */
+    const SakStorageKey = getInnsendtSakStorageKey(scenario.value);
+    const getSak = () => {
+        const lagretSak = localStorage.getItem(SakStorageKey);
+        return lagretSak ? JSON.parse(lagretSak) : scenarioSak;
+    };
 
     const handlers = [
         http.all('https://widget.uxsignals.com/*', () => passthrough()),
@@ -21,7 +30,7 @@ export const getHandlers = () => {
         }),
         http.get(`${baseUrl}/innsyn/sak`, async () => {
             await delay(250);
-            return new HttpResponse(JSON.stringify(sak), { status: 200 });
+            return new HttpResponse(JSON.stringify(getSak()), { status: 200 });
         }),
         http.get(`${baseUrl}/oppslag/arbeidsgiver`, () => {
             return new HttpResponse(JSON.stringify(arbeidsgiver), { status: 200 });
@@ -45,7 +54,10 @@ export const getHandlers = () => {
             localStorage.setItem(MellomlagringStorageKey, '');
             return new HttpResponse(null, { status: 200 });
         }),
-        http.post(`${baseUrl}/pleiepenger-sykt-barn/endringsmelding/innsending`, () => {
+        http.post(`${baseUrl}/pleiepenger-sykt-barn/endringsmelding/innsending`, async ({ request }) => {
+            const endringsmelding = (await request.json()) as SøknadApiData;
+            const oppdaterteSaker = oppdaterSakerMedEndringsmelding(getSak(), endringsmelding);
+            localStorage.setItem(SakStorageKey, JSON.stringify(oppdaterteSaker));
             return new HttpResponse(null, { status: 200 });
         }),
         http.post('*', () => new HttpResponse(null, { status: 200 })),
