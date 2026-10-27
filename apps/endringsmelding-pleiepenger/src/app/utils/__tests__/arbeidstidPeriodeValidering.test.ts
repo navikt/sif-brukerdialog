@@ -1,4 +1,4 @@
-import { ArbeidstidSøknadsdata, Sak, TimerEllerProsent } from '@app/types';
+import { ArbeidstidSøknadsdata, Sak } from '@app/types';
 import { ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import { vi } from 'vitest';
 
@@ -15,7 +15,7 @@ const getArbeidstid = (perioder: string[]): ArbeidstidSøknadsdata => ({
     arbeidsaktivitet: {
         a_123456789: {
             endringer: Object.fromEntries(
-                perioder.map((periode) => [periode, { type: TimerEllerProsent.PROSENT, prosent: 50 }]),
+                perioder.map((periode) => [periode, { timer: 50 }]),
             ),
         },
     },
@@ -25,7 +25,7 @@ const getArbeidstidForArbeidsgiver = (arbeidsgiverKey: string, perioder: string[
     arbeidsaktivitet: {
         [arbeidsgiverKey]: {
             endringer: Object.fromEntries(
-                perioder.map((periode) => [periode, { type: TimerEllerProsent.PROSENT, prosent: 50 }]),
+                perioder.map((periode) => [periode, { timer: 50 }]),
             ),
         },
     },

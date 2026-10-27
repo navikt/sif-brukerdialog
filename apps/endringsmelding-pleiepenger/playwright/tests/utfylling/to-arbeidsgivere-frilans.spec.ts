@@ -26,19 +26,17 @@ test('test', async ({ page }) => {
     await page.getByTestId('aktivitet_a_947064649').getByRole('button', { name: 'Vis mer' }).click();
     await testAccessibility(page);
     await page.getByTestId('aktivitet_a_947064649').getByTestId('uke_44').getByTestId('endre-button').click();
-    await page.getByTestId('prosent-verdi').click();
-    await page.getByTestId('prosent-verdi').fill('50');
+    await page.getByTestId('timer-verdi').click();
+    await page.getByTestId('timer-verdi').fill('8,75');
     await testAccessibility(page);
     await page.getByRole('button', { name: 'Ok' }).click();
     await page.getByTestId('aktivitet_a_947064640').getByRole('button', { name: 'Vis mer' }).click();
     await page.getByTestId('dateRangeAccordion_1_header').click();
     await page.getByRole('button', { name: 'Endre uke 4 (23.01.2023 - 29.' }).click();
-    await page.getByTestId('prosent-verdi').click();
-    await page.getByTestId('prosent-verdi').fill('5');
+    await page.getByTestId('timer-verdi').click();
+    await page.getByTestId('timer-verdi').fill('1,5');
     await page.getByRole('button', { name: 'Ok', exact: true }).click();
     await page.getByTestId('uke_5').getByTestId('endre-button').click();
-    await page.getByTestId('prosent-verdi').click();
-    await page.getByTestId('toggle-timer').click();
     await page.getByTestId('timer-verdi').click();
     await page.getByTestId('timer-verdi').fill('2');
     await testAccessibility(page);
@@ -55,10 +53,10 @@ test('test', async ({ page }) => {
     await page.getByTestId('typedFormikForm-submitButton').click();
 
     await expect(page.getByTestId('uke_44').getByTestId('arbeidstid-faktisk')).toContainText(
-        '8 t. 45 m. (50 %)Endret fra 7 t. 30 m.',
+        '8 t. 45 m.Endret fra 7 t. 30 m.',
     );
     await expect(page.getByTestId('uke_4').getByTestId('arbeidstid-faktisk')).toContainText(
-        '1 t. 55 m. (5 %)Endret fra 22 t. 30 m.',
+        '1 t. 30 m.Endret fra 22 t. 30 m.',
     );
     await expect(page.getByTestId('uke_5').getByTestId('arbeidstid-faktisk')).toContainText(
         '2 t. 0 m.Endret fra 22 t. 30 m.',

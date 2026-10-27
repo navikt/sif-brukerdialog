@@ -3,7 +3,6 @@ import { erTimerGyldigInnenforAntallDager } from '@app/utils';
 import { XMarkOctagonFillIcon } from '@navikt/aksel-icons';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 import { DurationText } from '@navikt/sif-common-ui';
-import { useIntl } from 'react-intl';
 
 import { erArbeidstidUkeItemEndret } from '../arbeidstidUkerUtils';
 import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
@@ -14,8 +13,6 @@ interface Props {
 }
 
 const ArbeidstidUkeInfoListe = ({ uke, visEndringSomOpprinnelig }: Props) => {
-    const intl = useIntl();
-
     if (uke.endret === undefined || visEndringSomOpprinnelig) {
         return (
             <div className="arbeidstidInfoListe">
@@ -32,15 +29,7 @@ const ArbeidstidUkeInfoListe = ({ uke, visEndringSomOpprinnelig }: Props) => {
                             <DurationText duration={uke.opprinnelig.faktisk} />
                         )}
                         {uke.endret !== undefined && uke.endret.faktisk && (
-                            <>
-                                <DurationText duration={uke.endret.faktisk} />
-                                {uke.endret && uke.endret.endretProsent !== undefined && (
-                                    <span className="endretArbeidstid__prosent">
-                                        {' '}
-                                        ({intl.formatNumber(uke.endret.endretProsent)} %)
-                                    </span>
-                                )}
-                            </>
+                            <DurationText duration={uke.endret.faktisk} />
                         )}
                     </span>
                 </p>
@@ -62,17 +51,9 @@ const ArbeidstidUkeInfoListe = ({ uke, visEndringSomOpprinnelig }: Props) => {
             <p>
                 <span className="arbeidstidInfoListe__label">Arbeid i perioden:</span>
                 <span className="arbeidstidInfoListe__value" data-testid="timer-faktisk">
-                    <>
-                        <strong>
-                            <DurationText duration={uke.endret.faktisk} />
-                        </strong>
-                        {erEndret && uke.endret.endretProsent !== undefined && (
-                            <span className="endretArbeidstid__prosent">
-                                {' '}
-                                ({intl.formatNumber(uke.endret.endretProsent)} %)
-                            </span>
-                        )}
-                    </>
+                    <strong>
+                        <DurationText duration={uke.endret.faktisk} />
+                    </strong>
                     {erEndret && (
                         <span className="endretArbeidstid__opprinnelig">
                             <AriaText>Endret fra </AriaText>
