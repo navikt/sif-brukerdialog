@@ -28,6 +28,13 @@ export interface Scenario {
 
 export const scenarioer: Scenario[] = [
     {
+        name: 'Brukertest 2026',
+        value: 'brukertest-2026',
+        harTilgang: true,
+        brukDagensDato: true,
+        fremhevet: true,
+    },
+    {
         name: 'Én arbeidsgiver - en periode',
         value: 'en-arbeidsgiver-en-periode',
         harTilgang: true,
@@ -101,13 +108,6 @@ export const scenarioer: Scenario[] = [
         name: 'Arbeidsgiver med to ansettelser samme uke uten opphold',
         value: 'en-arbeidsgiver-to-ansettelser-samme-uke-uten-opphold',
         harTilgang: true,
-    },
-    {
-        name: 'Brukertest 2026',
-        value: 'brukertest-2026',
-        harTilgang: true,
-        brukDagensDato: true,
-        fremhevet: true,
     },
 ];
 
