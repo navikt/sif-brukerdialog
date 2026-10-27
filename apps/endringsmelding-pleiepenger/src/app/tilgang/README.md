@@ -16,8 +16,8 @@ Kjøres i dag i frontend.
 | Tillatt endringsperiode | regnes ut fra dagens dato |
 
 **Ut** — tilgang, eller en liste med `IngenTilgangÅrsak`. Ved avslag fra fase 2
-også `{ erArbeidstaker, erFrilanser, erSN }` som loggmetadata. Siden
-`IngenTilgangPage` viser bare melding for den første årsaken.
+også `{ erArbeidstaker, erFrilanser, erSN }` som loggmetadata. `IngenTilgangPage`
+viser bare melding for den første årsaken.
 
 ## Definisjoner som må implementeres
 
@@ -40,7 +40,7 @@ gamle saker».
 **Sak med ugyldig format** — saken består ikke `verifyK9Format`. Søknadsperiodene
 leses likevel separat (`lesSøknadsperioder`). Hvis de kan leses og saken er
 eldre, legges den blant de eldre sakene. Ellers er den aktuell og gir
-`harUgyldigK9FormatSak`.
+`harUgyldigK9FormatSak`. Gjelder bare frontend, som validerer formatet selv.
 
 **Kjent arbeidsgiver** — en arbeidstaker i saken med minst én periode over 0
 normaltimer. Andre arbeidstakere regnes som ukjente. Søknadsflyten behandler en
