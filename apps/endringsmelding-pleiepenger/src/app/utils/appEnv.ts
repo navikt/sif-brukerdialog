@@ -1,10 +1,11 @@
-import { getCommonEnv, getRequiredEnv, getSifInnsynBrowserEnv } from '@sif/env';
+import { getCommonEnv, getK9SakInnsynEnv, getRequiredEnv, getSifInnsynBrowserEnv } from '@sif/env';
 
 import { AppEnv } from '../../../env.schema';
 
 const getAppEnv = (): AppEnv => ({
     ...getCommonEnv(),
     ...getSifInnsynBrowserEnv(),
+    ...getK9SakInnsynEnv(),
     SIF_PUBLIC_INNSYN_URL: getRequiredEnv('SIF_PUBLIC_INNSYN_URL'),
     SIF_PUBLIC_DOMAIN_URL: getRequiredEnv('SIF_PUBLIC_DOMAIN_URL'),
 });

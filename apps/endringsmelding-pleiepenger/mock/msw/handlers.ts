@@ -26,7 +26,7 @@ export const getHandlers = () => {
         http.get(`${baseUrl}/oppslag/arbeidsgiver`, () => {
             return new HttpResponse(JSON.stringify(arbeidsgiver), { status: 200 });
         }),
-        http.get(`${baseUrl}/pleiepenger-sykt-barn/endringsmelding/tilgang`, () => {
+        http.get(`${baseUrl}/psb/endringsmelding/tilgang`, () => {
             return HttpResponse.json({ kanBruke: true, årsaker: [] });
         }),
         http.get(`${baseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, () => {

@@ -14,7 +14,7 @@ vi.mock('@sif/apm', () => ({
 }));
 
 vi.mock('../../api', () => ({
-    default: { psb: { get: vi.fn() } },
+    default: { k9SakInnsyn: { get: vi.fn() } },
 }));
 
 import { appLogger } from '@sif/apm';
@@ -29,7 +29,7 @@ describe('verifiserTilgangMotBackend', () => {
     beforeEach(() => vi.clearAllMocks());
 
     it('feil fra backend gir undefined, ikke en reject', async () => {
-        vi.mocked(api.psb.get).mockRejectedValue(new AxiosError('feil'));
+        vi.mocked(api.k9SakInnsyn.get).mockRejectedValue(new AxiosError('feil'));
         expect(await hentBackendTilgang()).toBeUndefined();
     });
 

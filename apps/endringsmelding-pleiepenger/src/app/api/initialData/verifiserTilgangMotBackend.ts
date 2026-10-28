@@ -2,7 +2,7 @@ import { appLogger } from '@sif/apm';
 import { AxiosError } from 'axios';
 
 import api from '../api';
-import { ApiEndpointPsb } from '../endpoints';
+import { ApiEndpointK9SakInnsyn } from '../endpoints';
 import { IngenTilgangError } from './initialDataError';
 
 /** Midlertidig: sammenligner tilgangsvurderingen med backend og logger avvik, uten å påvirke dialogen. */
@@ -14,7 +14,7 @@ type Tilgangsvurdering = {
 
 export const hentBackendTilgang = async (): Promise<Tilgangsvurdering | undefined> => {
     try {
-        const { data } = await api.psb.get<Tilgangsvurdering>(ApiEndpointPsb.tilgang);
+        const { data } = await api.k9SakInnsyn.get<Tilgangsvurdering>(ApiEndpointK9SakInnsyn.tilgang);
         return data;
     } catch (error) {
         appLogger.logApiError(error as AxiosError, 'tilgangVerifisering.hentBackendTilgang');
