@@ -84,6 +84,7 @@ export const zBostedPeriodeInfo = z.object({
 
 export const zBosteder = z.object({
     perioder: z.record(z.string(), zBostedPeriodeInfo).optional(),
+    perioderSomSkalSlettes: z.record(z.string(), zBostedPeriodeInfo).optional(),
 });
 
 export const zDataBruktTilUtledning = z.object({
@@ -330,19 +331,25 @@ export const zOpptjeningAktivitet = z.object({
 });
 
 export const zUtenlandsoppholdPeriodeInfo = z.object({
-    erSammenMedBarnet: z.boolean().optional(),
+    jobbetIPerioden: z.boolean(),
     land: z.string(),
-    årsak: z
-        .enum([
-            'barnetInnlagtIHelseinstitusjonForNorskOffentligRegning',
-            'barnetInnlagtIHelseinstitusjonDekketEtterAvtaleMedEtAnnetLandOmTrygd',
-        ])
+    utenlandskNasjonalId: z
+        .string()
+        .min(0)
+        .max(50)
+
         .optional(),
 });
 
 export const zUtenlandsopphold = z.object({
     perioder: z.record(z.string(), zUtenlandsoppholdPeriodeInfo).optional(),
-    perioderSomSkalSlettes: z.record(z.string(), zUtenlandsoppholdPeriodeInfo).optional(),
+});
+
+export const zMedlemskap = z.object({
+    harBoddINorge: z.boolean(),
+    harJobbetINorge: z.boolean().optional(),
+    harJobbetUtenforNorge: z.boolean().optional(),
+    utenlandsopphold: zUtenlandsopphold.optional(),
 });
 
 export const zUttakPeriodeInfo = z.object({
@@ -360,9 +367,8 @@ export const zYtelse = z.object({
 export const zAktivitetspenger = zYtelse.and(
     z.object({
         erBosattITrondheim: z.boolean().optional(),
-        forutgåendeBosteder: zBosteder,
         inntekter: zOppgittInntekt.optional(),
-        søknadsperiode: z.string().optional(),
+        medlemskap: zMedlemskap,
         søknadsperiodeFom: z.iso.date().optional(),
         type: z.literal('Aktivitetspenger'),
     }),

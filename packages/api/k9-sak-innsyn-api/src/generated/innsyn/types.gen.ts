@@ -840,6 +840,21 @@ export type SøknadDto = {
     søknader?: Søknad[];
 };
 
+export enum IngenTilgangÅrsak {
+    HAR_INGEN_SAK = 'harIngenSak',
+    SØKNADSPERIODER_UTENFOR_TILLATT_ENDRINGSPERIODE = 'søknadsperioderUtenforTillattEndringsperiode',
+    HAR_MER_ENN_EN_SAK = 'harMerEnnEnSak',
+    HAR_INGEN_PERIODER = 'harIngenPerioder',
+    HAR_ARBEIDSTID_SOM_SELVSTENDIG_NÆRINGSDRIVENDE = 'harArbeidstidSomSelvstendigNæringsdrivende',
+    EN_ARBEIDSGIVER_TO_ANSETTELSER_SAMME_UKE_MED_OPPHOLD = 'enArbeidsgiverToAnsettelserSammeUkeMedOpphold',
+    HAR_FLERE_ANSETTELSESFORHOLD_HOS_UKJENT_ARBEIDSGIVER = 'harFlereAnsettelsesforholdHosUkjentArbeidsgiver',
+}
+
+export type TilgangResultat = {
+    kanBruke: boolean;
+    årsaker: IngenTilgangÅrsak[];
+};
+
 export type ProblemDetail = {
     detail?: string;
     instance?: string;
@@ -943,6 +958,43 @@ export type HentDokumentResponses = {
 };
 
 export type HentDokumentResponse = HentDokumentResponses[keyof HentDokumentResponses];
+
+export type HentTilgangData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/psb/endringsmelding/tilgang';
+};
+
+export type HentTilgangErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetail;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type HentTilgangError = HentTilgangErrors[keyof HentTilgangErrors];
+
+export type HentTilgangResponses = {
+    /**
+     * OK
+     */
+    200: TilgangResultat;
+};
+
+export type HentTilgangResponse = HentTilgangResponses[keyof HentTilgangResponses];
 
 export type HentSakData = {
     body?: never;

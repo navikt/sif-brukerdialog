@@ -80,6 +80,7 @@ export type {
     LastNedArbeidsgivermeldingResponses,
     LovbestemtFerie,
     LovbestemtFeriePeriodeInfo,
+    Medlemskap,
     MikrofrontendAktiverRequest,
     MikrofrontendOppslagRequest,
     MikrofrontendRespons,
