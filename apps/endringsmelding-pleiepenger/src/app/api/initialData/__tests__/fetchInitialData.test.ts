@@ -26,6 +26,11 @@ vi.mock('../../endpoints/arbeidsgivereEndpoint', () => ({
     arbeidsgivereEndpoint: { fetch: vi.fn() },
 }));
 
+vi.mock('../verifiserTilgangMotBackend', () => ({
+    hentBackendTilgang: vi.fn(() => Promise.resolve(undefined)),
+    verifiserTilgangMotBackend: <T>(frontendVurdering: Promise<T>) => frontendVurdering,
+}));
+
 vi.mock('../../endpoints/søknadStateEndpoint', () => ({
     søknadStateEndpoint: { fetch: vi.fn(), purge: vi.fn() },
     isPersistedSøknadStateValid: vi.fn(() => true),

@@ -7,6 +7,8 @@ import {
 } from '@app/types';
 import { DateRange, ISODateRange, ISODateRangeToDateRange, ISODurationToDuration } from '@navikt/sif-common-utils';
 
+import { fjernK9SakArbeidstidMedIngenNormalarbeidstid } from '../../utils/parseK9Format';
+
 export const periode = (isoDateRange: ISODateRange): DateRange => ISODateRangeToDateRange(isoDateRange);
 
 export const perioder = (...isoDateRanges: ISODateRange[]): DateRange[] => isoDateRanges.map(periode);
@@ -41,6 +43,10 @@ interface LagSakOptions {
     frilansTimerPerDag?: string;
 }
 
+/**
+ * Arbeidstiden går gjennom samme filter som parseK9Format, slik at testene ser
+ * saken slik tilgangskontrollen får den i produksjon.
+ */
 export const lagSak = ({
     søknadsperioder = ['2024-01-01/2024-01-31'],
     arbeidstakere = [],
@@ -52,7 +58,7 @@ export const lagSak = ({
         ytelse: {
             type: 'PLEIEPENGER_SYKT_BARN',
             søknadsperioder: perioder(...søknadsperioder),
-            arbeidstid: {
+            arbeidstid: fjernK9SakArbeidstidMedIngenNormalarbeidstid({
                 arbeidstakerList: arbeidstakere,
                 selvstendigNæringsdrivendeArbeidstidInfo: snTimerPerDag
                     ? { perioder: arbeidstidPerioder(snTimerPerDag, '2024-01-01/2024-01-31') }
@@ -60,7 +66,7 @@ export const lagSak = ({
                 frilanserArbeidstidInfo: frilansTimerPerDag
                     ? { perioder: arbeidstidPerioder(frilansTimerPerDag, '2024-01-01/2024-01-31') }
                     : undefined,
-            },
+            }),
         },
     }) as K9Sak;
 

@@ -9,3 +9,7 @@ export enum ApiEndpointPsb {
 export enum ApiEndpointInnsyn {
     'sak' = 'innsyn/sak',
 }
+
+export enum ApiEndpointK9SakInnsyn {
+    'tilgang' = 'psb/endringsmelding/tilgang',
+}
