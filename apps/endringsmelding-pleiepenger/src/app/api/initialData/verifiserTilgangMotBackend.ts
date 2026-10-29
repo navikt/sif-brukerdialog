@@ -1,6 +1,7 @@
 import { appLogger } from '@sif/apm';
 import { AxiosError } from 'axios';
 
+import { Feature, isFeatureEnabled } from '../../utils';
 import api from '../api';
 import { ApiEndpointK9SakInnsyn } from '../endpoints';
 import { IngenTilgangError } from './initialDataError';
@@ -13,6 +14,9 @@ type Tilgangsvurdering = {
 };
 
 export const hentBackendTilgang = async (): Promise<Tilgangsvurdering | undefined> => {
+    if (!isFeatureEnabled(Feature.SIF_PUBLIC_HENT_TILGANG_FRA_BACKEND)) {
+        return undefined;
+    }
     try {
         const { data } = await api.k9SakInnsyn.get<Tilgangsvurdering>(ApiEndpointK9SakInnsyn.tilgang);
         return data;
