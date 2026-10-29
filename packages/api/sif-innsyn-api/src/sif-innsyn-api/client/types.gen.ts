@@ -6,8 +6,9 @@ export type ClientOptions = {
 
 export type Aktivitetspenger = Omit<Ytelse, 'type'> & {
     erBosattITrondheim?: boolean;
+    forutgåendeBosteder: Bosteder;
     inntekter?: OppgittInntekt;
-    medlemskap: Medlemskap;
+    søknadsperiode?: string;
     søknadsperiodeFom?: string;
     type: 'Aktivitetspenger';
 };
@@ -96,9 +97,6 @@ export type Bosteder = {
     perioder?: {
         [key: string]: BostedPeriodeInfo;
     };
-    perioderSomSkalSlettes?: {
-        [key: string]: BostedPeriodeInfo;
-    };
 };
 
 export type DataBruktTilUtledning = {
@@ -179,13 +177,6 @@ export type LovbestemtFerie = {
 
 export type LovbestemtFeriePeriodeInfo = {
     skalHaFerie?: boolean;
-};
-
-export type Medlemskap = {
-    harBoddINorge: boolean;
-    harJobbetINorge?: boolean;
-    harJobbetUtenforNorge?: boolean;
-    utenlandsopphold?: Utenlandsopphold;
 };
 
 export type MikrofrontendAktiverRequest = {
@@ -467,12 +458,17 @@ export type Utenlandsopphold = {
     perioder?: {
         [key: string]: UtenlandsoppholdPeriodeInfo;
     };
+    perioderSomSkalSlettes?: {
+        [key: string]: UtenlandsoppholdPeriodeInfo;
+    };
 };
 
 export type UtenlandsoppholdPeriodeInfo = {
-    jobbetIPerioden: boolean;
+    erSammenMedBarnet?: boolean;
     land: string;
-    utenlandskNasjonalId?: string;
+    årsak?:
+        | 'barnetInnlagtIHelseinstitusjonForNorskOffentligRegning'
+        | 'barnetInnlagtIHelseinstitusjonDekketEtterAvtaleMedEtAnnetLandOmTrygd';
 };
 
 export type Uttak = {
