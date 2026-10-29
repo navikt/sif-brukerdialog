@@ -32,7 +32,7 @@ export const getDevAppSettings = (isTest?: boolean) => {
 
         SIF_PUBLIC_VELG_ENDRE_FRA_OPPSUMMERING: 'on',
         SIF_PUBLIC_SJEKK_OM_ARBEIDSTID_ER_GYLDIG: 'on',
-        SIF_PUBLIC_HENT_TILGANG_FRA_BACKEND: 'on',
+        SIF_PUBLIC_HENT_TILGANG_FRA_BACKEND: isTest ? 'off' : 'on',
 
         VELG_SCENARIO: isTest ? 'on' : 'on',
         MSW: isTest ? 'off' : 'on',
