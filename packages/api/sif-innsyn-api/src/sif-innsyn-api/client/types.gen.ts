@@ -4,122 +4,30 @@ export type ClientOptions = {
     baseURL: string & {};
 };
 
-export type Aktivitetspenger = Omit<Ytelse, 'type'> & {
-    erBosattITrondheim?: boolean;
-    forutgåendeBosteder: Bosteder;
-    inntekter?: OppgittInntekt;
-    søknadsperiode?: string;
-    søknadsperiodeFom?: string;
-    type: 'Aktivitetspenger';
-};
-
-export type AktørBytteRequest = {
-    gyldigAktør: string;
-    utgåttAktør: string;
-};
-
-export type AktørBytteRespons = {
-    antallOppdaterteRader: number;
-};
-
-export type AnnenAktivitet = {
-    annenAktivitetType: 'MILITÆR_ELLER_SIVILTJENESTE' | '-';
-    periode: string;
-};
-
-export type AnnenForelder = {
-    norskIdentitetsnummer: string;
-    periode?: string;
-    situasjon: 'INNLAGT_I_HELSEINSTITUSJON' | 'UTØVER_VERNEPLIKT' | 'FENGSEL' | 'SYKDOM' | 'ANNET';
-    situasjonBeskrivelse?: string;
-};
-
-export type Arbeidstaker = {
-    arbeidstidInfo: ArbeidstidInfo;
-    norskIdentitetsnummer?: string;
-    organisasjonsnavn?: string;
-    organisasjonsnummer?: string;
-};
-
-export type Arbeidstid = {
-    arbeidstakerList: Arbeidstaker[];
-    frilanserArbeidstidInfo?: ArbeidstidInfo;
-    selvstendigNæringsdrivendeArbeidstidInfo?: ArbeidstidInfo;
-};
-
-export type ArbeidstidInfo = {
-    perioder: {
-        [key: string]: ArbeidstidPeriodeInfo;
-    };
-};
-
-export type ArbeidstidPeriodeInfo = {
-    faktiskArbeidTimerPerDag: string;
-    jobberNormaltTimerPerDag: string;
-};
-
-export type Barn = {
-    fødselsdato?: string;
-    norskIdentitetsnummer: string;
-};
-
-export type BarnOpplysninger = {
-    aktørId: string;
-    etternavn: string;
-    fornavn: string;
-    fødselsdato: string;
-    identitetsnummer?: string;
-    mellomnavn?: string;
-};
-
-export type BegrunnelseForInnsending = {
-    tekst?: string;
-};
-
-export type Beredskap = {
-    perioder: {
-        [key: string]: BeredskapPeriodeInfo;
-    };
-    perioderSomSkalSlettes?: {
-        [key: string]: BeredskapPeriodeInfo;
-    };
-};
-
-export type BeredskapPeriodeInfo = {
-    tilleggsinformasjon: string;
-};
-
-export type BostedPeriodeInfo = {
-    land: string;
-};
-
-export type Bosteder = {
-    perioder?: {
-        [key: string]: BostedPeriodeInfo;
-    };
-};
-
-export type DataBruktTilUtledning = {
-    annetData?: string;
-    harBekreftetOpplysninger: boolean;
-    harForståttRettigheterOgPlikter: boolean;
-    soknadDialogCommitSha?: string;
+export type Søknad = {
+    begrunnelseForInnsending?: BegrunnelseForInnsending;
+    journalposter?: Journalpost[];
+    kildesystem?: string;
+    mottattDato: string;
+    språk?: 'nb' | 'nn';
+    søker: Søker;
+    søknadId: string;
+    versjon: string;
+    ytelse:
+        | Aktivitetspenger
+        | Opplæringspenger
+        | OmsorgspengerAleneOmsorg
+        | OmsorgspengerKroniskSyktBarn
+        | OmsorgspengerMidlertidigAlene
+        | OmsorgspengerUtbetaling
+        | PleipengerLivetsSluttfase
+        | PleiepengerSyktBarn
+        | Ungdomsytelse;
 };
 
 export type DelvisFravær = {
     fravær: string;
     normalarbeidstid: string;
-};
-
-export type DokumentDto = {
-    dokumentInfoId: string;
-    filtype: string;
-    harTilgang: boolean;
-    journalpostId: string;
-    relevanteDatoer: RelevantDato[];
-    sakId?: string;
-    tittel: string;
-    url: string;
 };
 
 export type FraværPeriode = {
@@ -133,14 +41,93 @@ export type FraværPeriode = {
     årsak: 'STENGT_SKOLE_ELLER_BARNEHAGE' | 'SMITTEVERNHENSYN' | 'ORDINÆRT_FRAVÆR';
 };
 
+export type AnnenAktivitet = {
+    annenAktivitetType: 'MILITÆR_ELLER_SIVILTJENESTE' | '-';
+    periode: string;
+};
+
 export type Frilanser = {
     sluttdato?: string;
     startdato: string;
 };
 
-export type InfoFraPunsj = {
-    inneholderMedisinskeOpplysninger?: boolean;
-    søknadenInneholderInfomasjonSomIkkeKanPunsjes?: boolean;
+export type OpptjeningAktivitet = {
+    andreAktiviteter: AnnenAktivitet[];
+    frilanser?: Frilanser;
+    selvstendigNæringsdrivende: SelvstendigNæringsdrivende[];
+    utenlandskeArbeidsforhold: UtenlandskArbeidsforhold[];
+};
+
+export type SelvstendigNæringsdrivende = {
+    organisasjonsnummer?: string;
+    perioder: {
+        [key: string]: SelvstendigNæringsdrivendePeriodeInfo;
+    };
+    virksomhetNavn?: string;
+};
+
+export type SelvstendigNæringsdrivendePeriodeInfo = {
+    bruttoInntekt?: number;
+    endringBegrunnelse?: string;
+    endringDato?: string;
+    erFiskerPåBladB?: boolean;
+    erNyIArbeidslivet?: boolean;
+    erNyoppstartet?: boolean;
+    erVarigEndring?: boolean;
+    landkode?: string;
+    registrertIUtlandet?: boolean;
+    regnskapsførerNavn?: string;
+    regnskapsførerTlf?: string;
+    virksomhetstyper: Array<'DAGMAMMA' | 'FISKE' | 'JORDBRUK_SKOGBRUK' | 'ANNEN' | '-'>;
+};
+
+export type UtenlandskArbeidsforhold = {
+    ansettelsePeriode: string;
+    arbeidsgiversnavn: string;
+    land: string;
+};
+
+export type Barn = {
+    fødselsdato?: string;
+    norskIdentitetsnummer: string;
+};
+
+export type Bosteder = {
+    perioder?: {
+        [key: string]: BostedPeriodeInfo;
+    };
+    perioderSomSkalSlettes?: {
+        [key: string]: BostedPeriodeInfo;
+    };
+};
+
+export type BostedPeriodeInfo = {
+    land: string;
+};
+
+export type Søker = {
+    norskIdentitetsnummer: string;
+};
+
+export type FellesUtenlandsopphold = {
+    perioder?: {
+        [key: string]: FellesUtenlandsoppholdPeriodeInfo;
+    };
+    perioderSomSkalSlettes?: {
+        [key: string]: FellesUtenlandsoppholdPeriodeInfo;
+    };
+};
+
+export type FellesUtenlandsoppholdPeriodeInfo = {
+    erSammenMedBarnet?: boolean;
+    land: string;
+    årsak?:
+        | 'barnetInnlagtIHelseinstitusjonForNorskOffentligRegning'
+        | 'barnetInnlagtIHelseinstitusjonDekketEtterAvtaleMedEtAnnetLandOmTrygd';
+};
+
+export type BegrunnelseForInnsending = {
+    tekst?: string;
 };
 
 export type Journalpost = {
@@ -153,9 +140,59 @@ export type Journalpost = {
     journalpostId: string;
 };
 
-export type K9SakInnsynSøknad = {
-    barn: BarnOpplysninger;
-    søknad: Søknad;
+export type DataBruktTilUtledning = {
+    annetData?: string;
+    harBekreftetOpplysninger: boolean;
+    harForståttRettigheterOgPlikter: boolean;
+    soknadDialogCommitSha?: string;
+};
+
+export type Ytelse = {
+    type: string;
+};
+
+export type Aktivitetspenger = Omit<Ytelse, 'type'> & {
+    erBosattITrondheim?: boolean;
+    inntekter?: OppgittInntekt;
+    medlemskap: Medlemskap;
+    søknadsperiodeFom?: string;
+    type: 'Aktivitetspenger';
+};
+
+export type Medlemskap = {
+    harBoddINorge: boolean;
+    harJobbetINorge?: boolean;
+    harJobbetUtenforNorge?: boolean;
+    utenlandsopphold?: Utenlandsopphold;
+};
+
+export type Utenlandsopphold = {
+    perioder?: {
+        [key: string]: UtenlandsoppholdPeriodeInfo;
+    };
+};
+
+export type UtenlandsoppholdPeriodeInfo = {
+    jobbetIPerioden: boolean;
+    land: string;
+    utenlandskNasjonalId?: string;
+};
+
+export type Opplæringspenger = Omit<Ytelse, 'type'> & {
+    arbeidstid: Arbeidstid;
+    barn: Barn;
+    bosteder: Bosteder;
+    dataBruktTilUtledning?: DataBruktTilUtledning;
+    kurs?: Kurs;
+    lovbestemtFerie: LovbestemtFerie;
+    omsorg: Omsorg;
+    opptjeningAktivitet: OpptjeningAktivitet;
+    skalEttersendeVedlegg?: boolean;
+    søknadsperiode: string[];
+    trekkKravPerioder: string[];
+    utenlandsopphold: FellesUtenlandsopphold;
+    uttak: Uttak;
+    type: 'Opplæringspenger';
 };
 
 export type Kurs = {
@@ -169,50 +206,17 @@ export type Kursholder = {
     navn?: string;
 };
 
-export type LovbestemtFerie = {
-    perioder: {
-        [key: string]: LovbestemtFeriePeriodeInfo;
-    };
+export type Reise = {
+    reisedager?: string[];
+    reisedagerBeskrivelse?: string;
+    reiserUtenforKursdager: boolean;
 };
 
-export type LovbestemtFeriePeriodeInfo = {
-    skalHaFerie?: boolean;
-};
-
-export type MikrofrontendAktiverRequest = {
-    fødselsnummer: string;
-};
-
-export type MikrofrontendOppslagRequest = {
-    fødselsnummer: string;
-};
-
-export type MikrofrontendRespons = {
-    behandlingsdato?: string;
-    endret?: string;
-    fødselsnummer: string;
-    id: string;
-    mikrofrontendId: string;
-    opprettet?: string;
-    status: 'ENABLE' | 'DISABLE';
-};
-
-export type Nattevåk = {
-    perioder: {
-        [key: string]: NattevåkPeriodeInfo;
-    };
-    perioderSomSkalSlettes: {
-        [key: string]: NattevåkPeriodeInfo;
-    };
-};
-
-export type NattevåkPeriodeInfo = {
-    tilleggsinformasjon: string;
-};
-
-export type Omsorg = {
-    beskrivelseAvOmsorgsrollen?: string;
-    relasjonTilBarnet?: 'MOR' | 'MEDMOR' | 'FAR' | 'FOSTERFORELDER' | 'ANNET';
+export type AnnenForelder = {
+    norskIdentitetsnummer: string;
+    periode?: string;
+    situasjon: 'INNLAGT_I_HELSEINSTITUSJON' | 'UTØVER_VERNEPLIKT' | 'FENGSEL' | 'SYKDOM' | 'ANNET';
+    situasjonBeskrivelse?: string;
 };
 
 export type OmsorgspengerAleneOmsorg = Omit<Ytelse, 'type'> & {
@@ -246,71 +250,8 @@ export type OmsorgspengerUtbetaling = Omit<Ytelse, 'type'> & {
     fosterbarn?: Barn[];
     fraværsperioder?: FraværPeriode[];
     fraværsperioderKorrigeringIm?: FraværPeriode[];
-    utenlandsopphold?: Utenlandsopphold;
+    utenlandsopphold?: FellesUtenlandsopphold;
     type: 'OmsorgspengerUtbetaling';
-};
-
-export type OppgittInntekt = {
-    oppgittePeriodeinntekter: OppgittInntektForPeriode[];
-};
-
-export type OppgittInntektForPeriode = {
-    arbeidstakerOgFrilansInntekt?: number;
-    næringsinntekt?: number;
-    periode: string;
-    ytelse?: number;
-};
-
-export type Opplæringspenger = Omit<Ytelse, 'type'> & {
-    arbeidstid: Arbeidstid;
-    barn: Barn;
-    bosteder: Bosteder;
-    dataBruktTilUtledning?: DataBruktTilUtledning;
-    kurs?: Kurs;
-    lovbestemtFerie: LovbestemtFerie;
-    omsorg: Omsorg;
-    opptjeningAktivitet: OpptjeningAktivitet;
-    skalEttersendeVedlegg?: boolean;
-    søknadsperiode: string[];
-    trekkKravPerioder: string[];
-    utenlandsopphold: Utenlandsopphold;
-    uttak: Uttak;
-    type: 'Opplæringspenger';
-};
-
-export type OpptjeningAktivitet = {
-    andreAktiviteter: AnnenAktivitet[];
-    frilanser?: Frilanser;
-    selvstendigNæringsdrivende: SelvstendigNæringsdrivende[];
-    utenlandskeArbeidsforhold: UtenlandskArbeidsforhold[];
-};
-
-export type PleiepengerSyktBarn = Omit<Ytelse, 'type'> & {
-    annetDataBruktTilUtledning?: DataBruktTilUtledning;
-    arbeidstid: Arbeidstid;
-    barn: Barn;
-    beredskap: Beredskap;
-    bosteder: Bosteder;
-    dataBruktTilUtledning?: DataBruktTilUtledning;
-    /**
-     * @deprecated
-     */
-    endringsperiode: string[];
-    erSammenMedBarnet?: boolean;
-    /**
-     * @deprecated
-     */
-    infoFraPunsj?: InfoFraPunsj;
-    lovbestemtFerie: LovbestemtFerie;
-    nattevåk: Nattevåk;
-    omsorg: Omsorg;
-    opptjeningAktivitet?: OpptjeningAktivitet;
-    søknadsperiode: string[];
-    tilsynsordning: Tilsynsordning;
-    trekkKravPerioder: string[];
-    utenlandsopphold: Utenlandsopphold;
-    uttak: Uttak;
-    type: 'PleiepengerSyktBarn';
 };
 
 export type Pleietrengende = {
@@ -327,26 +268,229 @@ export type PleipengerLivetsSluttfase = Omit<Ytelse, 'type'> & {
     pleietrengende: Pleietrengende;
     søknadsperiode: string[];
     trekkKravPerioder: string[];
-    utenlandsopphold: Utenlandsopphold;
+    utenlandsopphold: FellesUtenlandsopphold;
     uttak?: Uttak;
     type: 'PleipengerLivetsSluttfase';
 };
 
-export type ProblemDetail = {
-    detail?: string;
-    instance?: string;
-    properties?: {
-        [key: string]: unknown;
+export type Beredskap = {
+    perioder: {
+        [key: string]: BeredskapPeriodeInfo;
     };
-    status?: number;
-    title?: string;
-    type?: string;
+    perioderSomSkalSlettes?: {
+        [key: string]: BeredskapPeriodeInfo;
+    };
 };
 
-export type Reise = {
-    reisedager?: string[];
-    reisedagerBeskrivelse?: string;
-    reiserUtenforKursdager: boolean;
+export type BeredskapPeriodeInfo = {
+    tilleggsinformasjon: string;
+};
+
+export type PsbDataBruktTilUtledning = {
+    bekrefterPeriodeOver8Uker?: boolean;
+    /**
+     * @deprecated
+     */
+    harBekreftetOpplysninger?: boolean;
+    /**
+     * @deprecated
+     */
+    harForståttRettigheterOgPlikter?: boolean;
+    harMedsøker?: boolean;
+    samtidigHjemme?: boolean;
+    /**
+     * @deprecated
+     */
+    soknadDialogCommitSha?: string;
+    ukjenteArbeidsforhold?: UkjentArbeidsforhold[];
+};
+
+export type InfoFraPunsj = {
+    inneholderMedisinskeOpplysninger?: boolean;
+    søknadenInneholderInfomasjonSomIkkeKanPunsjes?: boolean;
+};
+
+export type LovbestemtFerie = {
+    perioder: {
+        [key: string]: LovbestemtFeriePeriodeInfo;
+    };
+};
+
+export type LovbestemtFeriePeriodeInfo = {
+    skalHaFerie?: boolean;
+};
+
+export type Nattevåk = {
+    perioder: {
+        [key: string]: NattevåkPeriodeInfo;
+    };
+    perioderSomSkalSlettes: {
+        [key: string]: NattevåkPeriodeInfo;
+    };
+};
+
+export type NattevåkPeriodeInfo = {
+    tilleggsinformasjon: string;
+};
+
+export type NormalArbeidstid = {
+    timerPerUke: string;
+};
+
+export type Omsorg = {
+    beskrivelseAvOmsorgsrollen?: string;
+    relasjonTilBarnet?: 'MOR' | 'MEDMOR' | 'FAR' | 'FOSTERFORELDER' | 'ANNET';
+};
+
+export type PleiepengerSyktBarn = Omit<Ytelse, 'type'> & {
+    annetDataBruktTilUtledning?: DataBruktTilUtledning;
+    arbeidstid: Arbeidstid;
+    barn: Barn;
+    beredskap: Beredskap;
+    bosteder: Bosteder;
+    dataBruktTilUtledning?: PsbDataBruktTilUtledning;
+    /**
+     * @deprecated
+     */
+    endringsperiode: string[];
+    erSammenMedBarnet?: boolean;
+    /**
+     * @deprecated
+     */
+    infoFraPunsj?: InfoFraPunsj;
+    lovbestemtFerie: LovbestemtFerie;
+    nattevåk: Nattevåk;
+    omsorg: Omsorg;
+    opptjeningAktivitet?: OpptjeningAktivitet;
+    søknadsperiode: string[];
+    tilsynsordning: Tilsynsordning;
+    trekkKravPerioder: string[];
+    utenlandsopphold: FellesUtenlandsopphold;
+    uttak: Uttak;
+    type: 'PleiepengerSyktBarn';
+};
+
+export type UkjentArbeidsforhold = {
+    arbeiderIPerioden?: 'SOM_VANLIG' | 'REDUSERT' | 'HELT_FRAVÆR';
+    erAnsatt: boolean;
+    normalarbeidstid?: NormalArbeidstid;
+    organisasjonsnavn?: string;
+    organisasjonsnummer: string;
+};
+
+export type Uttak = {
+    perioder: {
+        [key: string]: UttakPeriodeInfo;
+    };
+};
+
+export type UttakPeriodeInfo = {
+    timerPleieAvBarnetPerDag: string;
+};
+
+export type Arbeidstaker = {
+    arbeidstidInfo: ArbeidstidInfo;
+    norskIdentitetsnummer?: string;
+    organisasjonsnavn?: string;
+    organisasjonsnummer?: string;
+};
+
+export type Arbeidstid = {
+    arbeidstakerList: Arbeidstaker[];
+    frilanserArbeidstidInfo?: ArbeidstidInfo;
+    selvstendigNæringsdrivendeArbeidstidInfo?: ArbeidstidInfo;
+};
+
+export type ArbeidstidInfo = {
+    perioder: {
+        [key: string]: ArbeidstidPeriodeInfo;
+    };
+};
+
+export type ArbeidstidPeriodeInfo = {
+    faktiskArbeidTimerPerDag: string;
+    jobberNormaltTimerPerDag: string;
+};
+
+export type TilsynPeriodeInfo = {
+    etablertTilsynTimerPerDag: string;
+};
+
+export type Tilsynsordning = {
+    perioder: {
+        [key: string]: TilsynPeriodeInfo;
+    };
+};
+
+export type Ungdomsytelse = Omit<Ytelse, 'type'> & {
+    deltakelseId?: string;
+    inntekter?: OppgittInntekt;
+    søknadType: 'DELTAKELSE_SØKNAD' | 'RAPPORTERING_SØKNAD';
+    søktFraDatoer: string[];
+    type: 'Ungdomsytelse';
+};
+
+export type OppgittInntekt = {
+    oppgittePeriodeinntekter: OppgittInntektForPeriode[];
+};
+
+export type OppgittInntektForPeriode = {
+    arbeidstakerOgFrilansInntekt?: number;
+    næringsinntekt?: number;
+    periode: string;
+    ytelse?: number;
+};
+
+export type DokumentDto = {
+    dokumentInfoId: string;
+    filtype: string;
+    harTilgang: boolean;
+    journalpostId: string;
+    relevanteDatoer: RelevantDato[];
+    sakId?: string;
+    tittel: string;
+    url: string;
+};
+
+export type AktørBytteRequest = {
+    gyldigAktør: string;
+    utgåttAktør: string;
+};
+
+export type AktørBytteRespons = {
+    antallOppdaterteRader: number;
+};
+
+export type MikrofrontendAktiverRequest = {
+    fødselsnummer: string;
+};
+
+export type MikrofrontendOppslagRequest = {
+    fødselsnummer: string;
+};
+
+export type MikrofrontendRespons = {
+    behandlingsdato?: string;
+    endret?: string;
+    fødselsnummer: string;
+    id: string;
+    mikrofrontendId: string;
+    opprettet?: string;
+    status: 'ENABLE' | 'DISABLE';
+};
+
+export type BarnOpplysninger = {
+    aktørId: string;
+    etternavn: string;
+    fornavn: string;
+    fødselsdato: string;
+    identitetsnummer?: string;
+    mellomnavn?: string;
+};
+
+export type K9SakInnsynSøknad = {
+    barn: BarnOpplysninger;
+    søknad: Søknad;
 };
 
 export type RelevantDato = {
@@ -360,54 +504,6 @@ export type RelevantDato = {
         | 'DATO_AVS_RETUR'
         | 'DATO_DOKUMENT'
         | '__UNKNOWN_VALUE';
-};
-
-export type SelvstendigNæringsdrivende = {
-    organisasjonsnummer?: string;
-    perioder: {
-        [key: string]: SelvstendigNæringsdrivendePeriodeInfo;
-    };
-    virksomhetNavn?: string;
-};
-
-export type SelvstendigNæringsdrivendePeriodeInfo = {
-    bruttoInntekt?: number;
-    endringBegrunnelse?: string;
-    endringDato?: string;
-    erFiskerPåBladB?: boolean;
-    erNyIArbeidslivet?: boolean;
-    erNyoppstartet?: boolean;
-    erVarigEndring?: boolean;
-    landkode?: string;
-    registrertIUtlandet?: boolean;
-    regnskapsførerNavn?: string;
-    regnskapsførerTlf?: string;
-    virksomhetstyper: Array<'DAGMAMMA' | 'FISKE' | 'JORDBRUK_SKOGBRUK' | 'ANNEN' | '-'>;
-};
-
-export type Søker = {
-    norskIdentitetsnummer: string;
-};
-
-export type Søknad = {
-    begrunnelseForInnsending?: BegrunnelseForInnsending;
-    journalposter?: Journalpost[];
-    kildesystem?: string;
-    mottattDato: string;
-    språk?: 'nb' | 'nn';
-    søker: Søker;
-    søknadId: string;
-    versjon: string;
-    ytelse:
-        | Aktivitetspenger
-        | OmsorgspengerAleneOmsorg
-        | OmsorgspengerKroniskSyktBarn
-        | OmsorgspengerMidlertidigAlene
-        | OmsorgspengerUtbetaling
-        | Opplæringspenger
-        | PleiepengerSyktBarn
-        | PleipengerLivetsSluttfase
-        | Ungdomsytelse;
 };
 
 export type SøknadDto = {
@@ -430,59 +526,36 @@ export type SøknadDto = {
         | 'PP_SYKT_BARN_ENDRINGSMELDING';
 };
 
-export type TilsynPeriodeInfo = {
-    etablertTilsynTimerPerDag: string;
-};
-
-export type Tilsynsordning = {
-    perioder: {
-        [key: string]: TilsynPeriodeInfo;
+export type ProblemDetail = {
+    detail?: string;
+    instance?: string;
+    properties?: {
+        [key: string]: unknown;
     };
+    status?: number;
+    title?: string;
+    type?: string;
 };
 
-export type Ungdomsytelse = Omit<Ytelse, 'type'> & {
-    deltakelseId?: string;
-    inntekter?: OppgittInntekt;
-    søknadType: 'DELTAKELSE_SØKNAD' | 'RAPPORTERING_SØKNAD';
-    søktFraDatoer: string[];
-    type: 'Ungdomsytelse';
-};
-
-export type UtenlandskArbeidsforhold = {
-    ansettelsePeriode: string;
-    arbeidsgiversnavn: string;
-    land: string;
-};
-
-export type Utenlandsopphold = {
-    perioder?: {
-        [key: string]: UtenlandsoppholdPeriodeInfo;
-    };
-    perioderSomSkalSlettes?: {
-        [key: string]: UtenlandsoppholdPeriodeInfo;
-    };
-};
-
-export type UtenlandsoppholdPeriodeInfo = {
-    erSammenMedBarnet?: boolean;
-    land: string;
-    årsak?:
-        | 'barnetInnlagtIHelseinstitusjonForNorskOffentligRegning'
-        | 'barnetInnlagtIHelseinstitusjonDekketEtterAvtaleMedEtAnnetLandOmTrygd';
-};
-
-export type Uttak = {
-    perioder: {
-        [key: string]: UttakPeriodeInfo;
-    };
-};
-
-export type UttakPeriodeInfo = {
-    timerPleieAvBarnetPerDag: string;
-};
-
-export type Ytelse = {
-    type: string;
+export type SøknadWritable = {
+    begrunnelseForInnsending?: BegrunnelseForInnsending;
+    journalposter?: Journalpost[];
+    kildesystem?: string;
+    mottattDato: string;
+    språk?: 'nb' | 'nn';
+    søker: Søker;
+    søknadId: string;
+    versjon: string;
+    ytelse:
+        | Aktivitetspenger
+        | Opplæringspenger
+        | OmsorgspengerAleneOmsorg
+        | OmsorgspengerKroniskSyktBarn
+        | OmsorgspengerMidlertidigAlene
+        | OmsorgspengerUtbetalingWritable
+        | PleipengerLivetsSluttfase
+        | PleiepengerSyktBarn
+        | Ungdomsytelse;
 };
 
 export type FraværPeriodeWritable = {
@@ -497,11 +570,6 @@ export type FraværPeriodeWritable = {
     årsak: 'STENGT_SKOLE_ELLER_BARNEHAGE' | 'SMITTEVERNHENSYN' | 'ORDINÆRT_FRAVÆR';
 };
 
-export type K9SakInnsynSøknadWritable = {
-    barn: BarnOpplysninger;
-    søknad: SøknadWritable;
-};
-
 export type OmsorgspengerUtbetalingWritable = Omit<Ytelse, 'type'> & {
     aktivitet?: OpptjeningAktivitet;
     bosteder?: Bosteder;
@@ -509,29 +577,13 @@ export type OmsorgspengerUtbetalingWritable = Omit<Ytelse, 'type'> & {
     fosterbarn?: Barn[];
     fraværsperioder?: FraværPeriodeWritable[];
     fraværsperioderKorrigeringIm?: FraværPeriodeWritable[];
-    utenlandsopphold?: Utenlandsopphold;
+    utenlandsopphold?: FellesUtenlandsopphold;
     type: 'OmsorgspengerUtbetalingWritable';
 };
 
-export type SøknadWritable = {
-    begrunnelseForInnsending?: BegrunnelseForInnsending;
-    journalposter?: Journalpost[];
-    kildesystem?: string;
-    mottattDato: string;
-    språk?: 'nb' | 'nn';
-    søker: Søker;
-    søknadId: string;
-    versjon: string;
-    ytelse:
-        | Aktivitetspenger
-        | OmsorgspengerAleneOmsorg
-        | OmsorgspengerKroniskSyktBarn
-        | OmsorgspengerMidlertidigAlene
-        | OmsorgspengerUtbetalingWritable
-        | Opplæringspenger
-        | PleiepengerSyktBarn
-        | PleipengerLivetsSluttfase
-        | Ungdomsytelse;
+export type K9SakInnsynSøknadWritable = {
+    barn: BarnOpplysninger;
+    søknad: SøknadWritable;
 };
 
 export type HentDokumentOversiktData = {
