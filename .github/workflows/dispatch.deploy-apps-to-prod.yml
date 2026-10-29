@@ -79,8 +79,8 @@ jobs:
 
                   # Apper som prodsettes automatisk ved push. aktivitetspenger-* er bevisst utelatt.
                   apps=(
-                  aktivitetspenger-soknad
-                  aktivitetspenger-innsyn
+                      aktivitetspenger-soknad
+                      aktivitetspenger-innsyn
                       dine-pleiepenger
                       ekstra-omsorgsdager-andre-forelder-ikke-tilsyn
                       endringsmelding-pleiepenger
