@@ -7,6 +7,7 @@ export const appEnvSchema = commonEnvSchema.merge(sifInnsynEnvSchema).merge(k9Sa
     VELG_SCENARIO: z.enum(['on', 'off']).optional(),
     SIF_PUBLIC_VELG_ENDRE_FRA_OPPSUMMERING: z.enum(['on', 'off']).optional(),
     SIF_PUBLIC_SJEKK_OM_ARBEIDSTID_ER_GYLDIG: z.enum(['on', 'off']).optional(),
+    SIF_PUBLIC_HENT_TILGANG_FRA_BACKEND: z.enum(['on', 'off']).optional(),
 });
 
 export const appDevEnvSchema = appEnvSchema.extend({
