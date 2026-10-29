@@ -50,7 +50,7 @@
         "K9_SAK_INNSYN_API_SCOPE": "prod-gcp:dusseldorf:k9-sak-innsyn-api",
         "SIF_PUBLIC_VELG_ENDRE_FRA_OPPSUMMERING": "on",
         "SIF_PUBLIC_SJEKK_OM_ARBEIDSTID_ER_GYLDIG": "off",
-        "SIF_PUBLIC_HENT_TILGANG_FRA_BACKEND": "off"
+        "SIF_PUBLIC_HENT_TILGANG_FRA_BACKEND": "on"
     },
     "faro": true
 }
