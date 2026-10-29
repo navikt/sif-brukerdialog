@@ -30,7 +30,7 @@
         "eslint": "10.13.0",
         "globals": "17.13.0",
         "intl": "1.2.5",
-        "postcss": "8.5.31",
+        "postcss": ">=8.5.28",
         "react": "19.3.1",
         "react-dom": "19.3.1",
         "react-intl": "12.1.5",
