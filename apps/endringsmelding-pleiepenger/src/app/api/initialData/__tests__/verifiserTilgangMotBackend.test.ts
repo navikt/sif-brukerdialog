@@ -1,8 +1,16 @@
 import { IngenTilgangÅrsak } from '@app/types';
+import { appLogger } from '@sif/apm';
 import { AxiosError } from 'axios';
 
+import api from '../../api';
+import { IngenTilgangError } from '../initialDataError';
+import { hentBackendTilgang, loggAvvik, verifiserTilgangMotBackend } from '../verifiserTilgangMotBackend';
+
 vi.hoisted(() => {
-    const appSettings = new Proxy({}, { get: () => 'test' });
+    const appSettings = new Proxy(
+        {},
+        { get: (_, key) => (key === 'SIF_PUBLIC_HENT_TILGANG_FRA_BACKEND' ? 'on' : 'test') },
+    );
     (globalThis as any).appSettings = appSettings;
     if (typeof window !== 'undefined') {
         (window as any).appSettings = appSettings;
@@ -17,20 +25,16 @@ vi.mock('../../api', () => ({
     default: { k9SakInnsyn: { get: vi.fn() } },
 }));
 
-import { appLogger } from '@sif/apm';
-
-import api from '../../api';
-import { IngenTilgangError } from '../initialDataError';
-import { hentBackendTilgang, loggAvvik, verifiserTilgangMotBackend } from '../verifiserTilgangMotBackend';
-
 const flushPromises = () => new Promise((resolve) => setTimeout(resolve, 0));
 
 describe('verifiserTilgangMotBackend', () => {
     beforeEach(() => vi.clearAllMocks());
 
     it('feil fra backend gir undefined, ikke en reject', async () => {
-        vi.mocked(api.k9SakInnsyn.get).mockRejectedValue(new AxiosError('feil'));
+        const error = new AxiosError('feil');
+        vi.mocked(api.k9SakInnsyn.get).mockRejectedValue(error);
         expect(await hentBackendTilgang()).toBeUndefined();
+        expect(appLogger.logApiError).toHaveBeenCalledWith(error, 'tilgangVerifisering.hentBackendTilgang');
     });
 
     it('venter ikke på backend og returnerer frontend-resultatet uendret', async () => {

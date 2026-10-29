@@ -1,7 +1,7 @@
 import { appLogger } from '@sif/apm';
 import { AxiosError } from 'axios';
 
-import { Feature, isFeatureEnabled } from '../../utils';
+import { Feature, isFeatureEnabled } from '../../utils/featureToggleUtils';
 import api from '../api';
 import { ApiEndpointK9SakInnsyn } from '../endpoints';
 import { IngenTilgangError } from './initialDataError';
