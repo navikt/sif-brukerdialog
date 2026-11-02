@@ -31,18 +31,18 @@
     "devDependencies": {
         "@sif/config": "workspace:*",
         "@sif/eslint-config": "workspace:*",
-        "@storybook/addon-a11y": "10.6.4",
+        "@storybook/addon-a11y": "10.6.5",
         "@storybook/addon-actions": "9.0.8",
         "@types/react": "19.3.0",
         "eslint": "10.13.0",
         "globals": "17.13.0",
         "intl": "1.2.5",
         "less": "4.9.1",
-        "postcss": ">=8.5.28",
+        "postcss": "8.5.32",
         "react": "19.3.1",
         "react-dom": "19.3.1",
         "react-intl": "12.1.5",
-        "storybook": "10.6.4",
+        "storybook": "10.6.5",
         "typescript": "6.0.3"
     }
 }
