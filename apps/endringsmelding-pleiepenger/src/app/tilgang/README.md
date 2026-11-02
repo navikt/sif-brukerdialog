@@ -40,7 +40,9 @@ gamle saker».
 **Sak med ugyldig format** — saken består ikke `verifyK9Format`. Søknadsperiodene
 leses likevel separat (`lesSøknadsperioder`). Hvis de kan leses og saken er
 eldre, legges den blant de eldre sakene. Ellers er den aktuell og gir
-`harUgyldigK9FormatSak`. Gjelder bare frontend, som validerer formatet selv.
+`harUgyldigK9FormatSak`. Frontend validerer formatet selv. Backend leser sakene
+typet og har i stedet `barnManglerIdentitetsnummer`, som frontend behandler som
+`harUgyldigK9FormatSak` både i visning og ved sammenligning i avviksloggen.
 
 **Kjent arbeidsgiver** — en arbeidstaker i saken med minst én periode over 0
 normaltimer. Andre arbeidstakere regnes som ukjente. Søknadsflyten behandler en

@@ -56,4 +56,12 @@ describe('verifiserTilgangMotBackend', () => {
         loggAvvik({ kanBruke: false, årsaker: ['a', 'b'] }, { kanBruke: false, årsaker: ['b', 'a'] });
         expect(appLogger.logInfo).not.toHaveBeenCalled();
     });
+
+    it('logger ikke når backend sier barnManglerIdentitetsnummer og frontend harUgyldigK9FormatSak', () => {
+        loggAvvik(
+            { kanBruke: false, årsaker: [IngenTilgangÅrsak.harUgyldigK9FormatSak] },
+            { kanBruke: false, årsaker: ['barnManglerIdentitetsnummer'] },
+        );
+        expect(appLogger.logInfo).not.toHaveBeenCalled();
+    });
 });
