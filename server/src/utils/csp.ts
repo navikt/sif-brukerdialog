@@ -1,5 +1,6 @@
 import { buildCspHeader } from '@navikt/nav-dekoratoren-moduler/ssr/index.js';
 import { BLOB, DATA, NONE, SELF } from 'csp-header';
+import logger from './log.js';
 import config from './serverConfig.js';
 
 export type CspHeader = { name: string; value: string };
@@ -25,6 +26,12 @@ export const getCspHeader = async (): Promise<CspHeader | undefined> => {
         return undefined;
     }
     const value = await buildCspHeader(appDirectives, { env: config.app.env });
+    // Når dekoratøren ikke svarer, returnerer buildCspHeader en åpen policy uten appDirectives (og uten 'self').
+    // Den skal ikke sendes som om den beskytter noe.
+    if (!value.includes(SELF)) {
+        logger.warning('Fikk ikke hentet CSP fra dekoratøren. HTML sendes uten CSP frem til neste restart.');
+        return undefined;
+    }
     return {
         name: mode === 'enforce' ? 'Content-Security-Policy' : 'Content-Security-Policy-Report-Only',
         value,
