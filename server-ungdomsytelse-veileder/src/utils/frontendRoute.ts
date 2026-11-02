@@ -33,22 +33,6 @@ export const setupAndServeHtml = async (app: Express) => {
     const renderedHtml = htmlWithMetaTags.replaceAll('{{{APP_SETTINGS}}}', JSON.stringify(envs.data));
     const cspHeader = getCspHeader();
 
-    app.get('/me', (request, response) => {
-        const token = getToken(request);
-        if (token) {
-            const parse = parseAzureUserToken(token);
-            if (parse.ok) {
-                response.json({
-                    name: parse.preferred_username,
-                    NAVIdent: parse.NAVident,
-                });
-            } else {
-                logger.error('Failed to parse Azure user token', parse.error);
-            }
-        }
-        response.json({});
-    });
-
     app.get(/^\/(?!.*dist).*$/, async (request, response) => {
         const token = getToken(request);
         let userInfo = {};

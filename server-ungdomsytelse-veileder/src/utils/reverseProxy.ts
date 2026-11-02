@@ -56,6 +56,8 @@ export function addProxyHandler(server: Express, { ingoingUrl, outgoingUrl, scop
         createProxyMiddleware({
             target: outgoingUrl,
             changeOrigin: true,
+            // Under ingress-nginx sin standard på 60 s, slik at vi svarer 504 og logger før ingress kutter
+            proxyTimeout: 55_000,
             logger: console,
             on: {
                 proxyReq: (proxyRequest, request) => {

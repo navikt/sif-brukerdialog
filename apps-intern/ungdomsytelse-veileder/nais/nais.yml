@@ -6,7 +6,8 @@ metadata:
     labels:
         team: {{team}}
     annotations:
-        nginx.ingress.kubernetes.io/proxy-body-size: "100M"
+        # Bare JSON-kall, ingen filopplasting
+        nginx.ingress.kubernetes.io/proxy-body-size: "1M"
 spec:
     image: {{ image }}
     port: 8080

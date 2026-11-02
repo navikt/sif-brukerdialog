@@ -6,7 +6,8 @@ metadata:
     labels:
         team: {{team}}
     annotations:
-        nginx.ingress.kubernetes.io/proxy-body-size: "100M"
+        # Maks 10 MB per vedlegg (VedleggPanel) pluss margin for multipart
+        nginx.ingress.kubernetes.io/proxy-body-size: "20M"
 spec:
     image: {{ image }}
     port: 8080
