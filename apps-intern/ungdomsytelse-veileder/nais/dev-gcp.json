@@ -36,6 +36,7 @@
     "faro": true,
     "env": {
         "ENV": "dev",
+        "CSP_MODE": "report-only",
         "APP_VERSION": "dev",
         "NPM_CONFIG_CACHE": "/tmp",
         "PUBLIC_PATH": "/",
