@@ -777,11 +777,17 @@ export const zSøknadDto = z.object({
     søknader: z.array(zSøknad).nullish(),
 });
 
+export const zDatoperiode = z.object({
+    fom: z.iso.date(),
+    tom: z.iso.date(),
+});
+
 export const zIngenTilgangÅrsak = z.enum([
     'harIngenSak',
     'søknadsperioderUtenforTillattEndringsperiode',
     'harMerEnnEnSak',
     'harIngenPerioder',
+    'barnManglerIdentitetsnummer',
     'harArbeidstidSomSelvstendigNæringsdrivende',
     'enArbeidsgiverToAnsettelserSammeUkeMedOpphold',
     'harFlereAnsettelsesforholdHosUkjentArbeidsgiver',
@@ -789,6 +795,7 @@ export const zIngenTilgangÅrsak = z.enum([
 
 export const zTilgangResultat = z.object({
     kanBruke: z.boolean(),
+    tillattEndringsperiode: zDatoperiode.nullish(),
     årsaker: z.array(zIngenTilgangÅrsak),
 });
 
