@@ -39,6 +39,7 @@
     "faro": true,
     "env": {
         "ENV": "dev",
+        "CSP_MODE": "enforce",
         "APP_VERSION": "dev",
         "NODE_ENV": "development",
         "PUBLIC_PATH": "/aktivitetspenger/soknad",

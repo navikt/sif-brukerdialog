@@ -31,7 +31,7 @@
     "observabilityEnabled": "true",
     "env": {
         "ENV": "dev",
-        "CSP_MODE": "report-only",
+        "CSP_MODE": "enforce",
         "APP_VERSION": "dev",
         "NODE_ENV": "development",
         "NPM_CONFIG_CACHE": "/tmp",

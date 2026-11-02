@@ -18,6 +18,7 @@
     "observabilityEnabled": "true",
     "env": {
         "ENV": "prod",
+        "CSP_MODE": "report-only",
         "APP_VERSION": "prod",
         "NPM_CONFIG_CACHE": "/tmp",
         "NODE_ENV": "production",

@@ -31,6 +31,7 @@
     "observabilityEnabled": "true",
     "env": {
         "ENV": "dev",
+        "CSP_MODE": "enforce",
         "APP_VERSION": "dev",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/omsorgspenger",
         "NPM_CONFIG_CACHE": "/tmp",
