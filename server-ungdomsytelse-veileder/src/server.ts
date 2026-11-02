@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'node:path';
 import { setupActuators } from './utils/actuators.js';
+import { setCorrelationId } from './utils/correlationId.js';
 import { errorHandling } from './utils/errorHandler.js';
 import { setupAndServeHtml } from './utils/frontendRoute.js';
 import logger from './utils/log.js';
@@ -14,6 +15,7 @@ const server = express();
 setupServerDefaults(server);
 setupActuators(server);
 
+server.use(setCorrelationId);
 server.use(logger.morganMiddleware);
 server.use(express.static('./public', { index: false }));
 server.use(`${serverConfig.app.publicPath}/assets`, express.static(path.resolve(path.resolve('public'), 'assets')));

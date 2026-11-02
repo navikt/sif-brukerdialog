@@ -1,7 +1,6 @@
 import { getToken, requestOboToken } from '@navikt/oasis';
 import { Express, NextFunction, Request, Response } from 'express';
 import { createProxyMiddleware } from 'http-proxy-middleware';
-import { v4 as uuid } from 'uuid';
 import logger from './log.js';
 import config, { Service, verifyProxyConfigIsSet } from './serverConfig.js';
 
@@ -36,9 +35,6 @@ export function addProxyHandler(server: Express, { ingoingUrl, outgoingUrl, scop
         async (request: Request, response: Response, next: NextFunction) => {
             if (process.env.NAIS_CLIENT_ID !== undefined) {
                 request.headers['X-K9-Brukerdialog'] = process.env.NAIS_CLIENT_ID;
-            }
-            if (request.headers['X-Correlation-ID'] === undefined) {
-                request.headers['X-Correlation-ID'] = uuid();
             }
             request.headers['X-Brukerdialog-Git-Sha'] = getCommitShaFromEnv();
 
