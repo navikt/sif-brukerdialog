@@ -1,3 +1,4 @@
+import { IngenTilgangÅrsak } from '@app/types';
 import { appLogger } from '@sif/apm';
 import { AxiosError } from 'axios';
 
@@ -26,6 +27,14 @@ export const hentBackendTilgang = async (): Promise<Tilgangsvurdering | undefine
     }
 };
 
+/**
+ * Backend leser sakene typet og finner bare manglende identitetsnummer på barnet.
+ * Frontend fanger dette, og andre formatfeil, som harUgyldigK9FormatSak.
+ */
+const backendÅrsakTilFrontend: Record<string, IngenTilgangÅrsak> = {
+    barnManglerIdentitetsnummer: IngenTilgangÅrsak.harUgyldigK9FormatSak,
+};
+
 const formater = ({ kanBruke, årsaker }: Tilgangsvurdering): string =>
     `kanBruke=${kanBruke} årsaker=[${[...årsaker].sort().join(',')}]`;
 
@@ -34,7 +43,10 @@ export const loggAvvik = (frontend: Tilgangsvurdering, backend: Tilgangsvurderin
         return;
     }
     const frontendTekst = formater(frontend);
-    const backendTekst = formater(backend);
+    const backendTekst = formater({
+        ...backend,
+        årsaker: backend.årsaker.map((årsak) => backendÅrsakTilFrontend[årsak] ?? årsak),
+    });
     if (frontendTekst !== backendTekst) {
         appLogger.logInfo(`tilgangVerifisering.avvik frontend(${frontendTekst}) backend(${backendTekst})`);
     }

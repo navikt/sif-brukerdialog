@@ -840,11 +840,17 @@ export type SøknadDto = {
     søknader?: Søknad[];
 };
 
+export type Datoperiode = {
+    fom: string;
+    tom: string;
+};
+
 export enum IngenTilgangÅrsak {
     HAR_INGEN_SAK = 'harIngenSak',
     SØKNADSPERIODER_UTENFOR_TILLATT_ENDRINGSPERIODE = 'søknadsperioderUtenforTillattEndringsperiode',
     HAR_MER_ENN_EN_SAK = 'harMerEnnEnSak',
     HAR_INGEN_PERIODER = 'harIngenPerioder',
+    BARN_MANGLER_IDENTITETSNUMMER = 'barnManglerIdentitetsnummer',
     HAR_ARBEIDSTID_SOM_SELVSTENDIG_NÆRINGSDRIVENDE = 'harArbeidstidSomSelvstendigNæringsdrivende',
     EN_ARBEIDSGIVER_TO_ANSETTELSER_SAMME_UKE_MED_OPPHOLD = 'enArbeidsgiverToAnsettelserSammeUkeMedOpphold',
     HAR_FLERE_ANSETTELSESFORHOLD_HOS_UKJENT_ARBEIDSGIVER = 'harFlereAnsettelsesforholdHosUkjentArbeidsgiver',
@@ -852,6 +858,10 @@ export enum IngenTilgangÅrsak {
 
 export type TilgangResultat = {
     kanBruke: boolean;
+    /**
+     * Satt bare når kanBruke er true.
+     */
+    tillattEndringsperiode?: Datoperiode;
     årsaker: IngenTilgangÅrsak[];
 };
 
