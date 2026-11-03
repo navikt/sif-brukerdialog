@@ -4,6 +4,7 @@ import { Express } from 'express';
 import fs from 'fs';
 import path from 'node:path';
 import { appEnvSchema } from '../env.schema.js';
+import { getCspHeader } from './csp.js';
 import logger from './log.js';
 import serverConfig from './serverConfig.js';
 
@@ -30,22 +31,7 @@ export const setupAndServeHtml = async (app: Express) => {
     }
 
     const renderedHtml = htmlWithMetaTags.replaceAll('{{{APP_SETTINGS}}}', JSON.stringify(envs.data));
-
-    app.get('/me', (request, response) => {
-        const token = getToken(request);
-        if (token) {
-            const parse = parseAzureUserToken(token);
-            if (parse.ok) {
-                response.json({
-                    name: parse.preferred_username,
-                    NAVIdent: parse.NAVident,
-                });
-            } else {
-                logger.error('Failed to parse Azure user token', parse.error);
-            }
-        }
-        response.json({});
-    });
+    const cspHeader = getCspHeader();
 
     app.get(/^\/(?!.*dist).*$/, async (request, response) => {
         const token = getToken(request);
@@ -62,6 +48,9 @@ export const setupAndServeHtml = async (app: Express) => {
             }
         }
         const responseHtml = renderedHtml.replaceAll('{{{USER_INFO}}}', JSON.stringify(userInfo));
+        if (cspHeader) {
+            response.set(cspHeader.name, cspHeader.value);
+        }
         response.send(responseHtml);
     });
 };

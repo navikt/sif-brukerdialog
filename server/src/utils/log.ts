@@ -1,5 +1,6 @@
 import morgan from 'morgan';
 import winston from 'winston';
+import { CORRELATION_ID_HEADER } from './correlationId.js';
 import config from './serverConfig.js';
 
 const { format } = winston;
@@ -29,7 +30,7 @@ winston.addColors(colors);
 
 // Add custom morgan token for correlation ID
 morgan.token('correlation-id', (req) => {
-    return (req.headers['X-Correlation-ID'] as string) || '-';
+    return (req.headers[CORRELATION_ID_HEADER] as string) || '-';
 });
 
 const stdoutLogger = winston.createLogger({

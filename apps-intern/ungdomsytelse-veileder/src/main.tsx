@@ -1,3 +1,5 @@
+import './zodConfig';
+
 import { initApm } from '@sif/apm';
 import { UngdomsytelseVeilederApp } from '@sif/app-register';
 import { getMaybeEnv } from '@sif/env';

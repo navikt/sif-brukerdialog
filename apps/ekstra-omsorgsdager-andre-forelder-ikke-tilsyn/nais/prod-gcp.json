@@ -18,6 +18,7 @@
     "observabilityEnabled": "true",
     "env": {
         "ENV": "prod",
+        "CSP_MODE": "report-only",
         "APP_VERSION": "prod",
         "NODE_ENV": "production",
         "PUBLIC_PATH": "/familie/sykdom-i-familien/soknad/ekstra-omsorgsdager-andre-forelder-ikke-tilsyn",
