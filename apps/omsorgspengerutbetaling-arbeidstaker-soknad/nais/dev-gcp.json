@@ -3,7 +3,10 @@
     "cluster": "dev-gcp",
     "namespace": "dusseldorf",
     "team": "dusseldorf",
-    "ingresses": ["https://omsorgspengerutbetaling-arbeidstaker-soknad.intern.dev.nav.no"],
+    "ingresses": [
+        "https://omsorgspengerutbetaling-arbeidstaker-soknad.intern.dev.nav.no",
+        "https://www.ekstern.dev.nav.no/familie/sykdom-i-familien/soknad/omsorgspengerutbetaling-arbeidstaker"
+    ],
     "externalHosts": ["www.nav.no", "dekoratoren.ekstern.dev.nav.no"],
     "livenessPath": "/internal/health/isAlive",
     "readinessPath": "/internal/health/isReady",
