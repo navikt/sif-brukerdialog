@@ -186,7 +186,6 @@ export const oppsummeringMessages_nb = {
     'oppsummering.arbeidIPeriode.arbeiderIPerioden.frilanser.SOM_VANLIG':
         'Frilanser: Jobber som normalt, har ikke fravær på grunn av pleiepenger',
 
-    'oppsummering.arbeidIPeriode.arbeiderIPerioden.prosent': 'Jobber {prosent} prosent av normalt',
     'oppsummering.arbeidIPeriode.arbeiderIPerioden.timerPerUke': 'Jobber {timer} per uke',
     'oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.timer.tittel':
         'Jobber ulikt antall timer i ukene i søknadsperioden:',
