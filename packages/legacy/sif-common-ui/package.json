@@ -12,9 +12,9 @@
         "storybook": "storybook dev -p 6006"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "8.20.1",
-        "@navikt/ds-css": "8.20.1",
-        "@navikt/ds-react": "8.20.1",
+        "@navikt/aksel-icons": "8.21.0",
+        "@navikt/ds-css": "8.21.0",
+        "@navikt/ds-react": "8.21.0",
         "@navikt/fnrvalidator": "2.2.1",
         "@navikt/sif-common-api": "workspace:*",
         "@navikt/sif-common-core-ds": "workspace:*",
@@ -25,7 +25,7 @@
         "classnames": "2.5.1",
         "dompurify": "3.4.17",
         "react-day-picker": "10.0.2",
-        "sass-embedded": "1.107.0"
+        "sass-embedded": "1.107.1"
     },
     "devDependencies": {
         "@navikt/sif-common-analytics": "workspace:*",
@@ -35,16 +35,16 @@
         "@storybook/react-vite": "10.6.5",
         "@types/react": "19.3.0",
         "dayjs": "1.11.23",
-        "eslint": "10.13.0",
+        "eslint": "10.14.0",
         "eslint-plugin-storybook": "10.6.5",
         "globals": "17.13.0",
         "intl": "1.2.5",
         "less": "4.9.1",
-        "postcss": "8.5.32",
+        "postcss": ">=8.5.28",
         "react": "19.3.1",
         "react-dom": "19.3.1",
-        "react-intl": "12.1.5",
-        "react-router-dom": "7.18.4",
+        "react-intl": "12.1.6",
+        "react-router-dom": "7.18.5",
         "storybook": "10.6.5",
         "typescript": "6.0.3"
     },

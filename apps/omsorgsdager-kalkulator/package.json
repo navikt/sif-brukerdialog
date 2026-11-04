@@ -15,11 +15,11 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@navikt/aksel-icons": "8.20.1",
-        "@navikt/ds-css": "8.20.1",
-        "@navikt/ds-react": "8.20.1",
-        "@navikt/ds-tailwind": "8.20.1",
-        "@navikt/nav-dekoratoren-moduler": "4.5.2",
+        "@navikt/aksel-icons": "8.21.0",
+        "@navikt/ds-css": "8.21.0",
+        "@navikt/ds-react": "8.21.0",
+        "@navikt/ds-tailwind": "8.21.0",
+        "@navikt/nav-dekoratoren-moduler": "4.5.3",
         "classnames": "2.5.1",
         "csp-header": "6.4.0",
         "dayjs": "1.11.23",
@@ -31,7 +31,7 @@
         "react-day-picker": "10.0.2",
         "react-dom": "19.3.1",
         "react-fast-compare": "3.2.2",
-        "react-intl": "12.1.5",
+        "react-intl": "12.1.6",
         "uuid": "^14.0.2"
     },
     "devDependencies": {
@@ -43,9 +43,9 @@
         "@types/node": "26.6.6",
         "@types/react": "19.3.0",
         "@types/react-dom": "19.3.0",
-        "eslint": "10.13.0",
+        "eslint": "10.14.0",
         "playwright-core": "1.64.1",
-        "postcss": "8.5.32",
+        "postcss": ">=8.5.28",
         "tailwindcss": "4.3.3",
         "typescript": "6.0.3",
         "vite": "8.3.5",

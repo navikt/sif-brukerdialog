@@ -7,7 +7,7 @@
         "build": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --format=cjs"
     },
     "dependencies": {
-        "@navikt/nav-dekoratoren-moduler": "4.5.2",
+        "@navikt/nav-dekoratoren-moduler": "4.5.3",
         "@navikt/oasis": "4.2.2",
         "@sif/env": "workspace:*",
         "csp-header": "6.4.0",
@@ -24,9 +24,9 @@
         "@types/express": "5.0.6",
         "@types/morgan": "1.9.10",
         "@types/node": "26.6.6",
-        "axios": "1.20.0",
+        "axios": "1.21.0",
         "esbuild": "0.28.2",
-        "postcss": "8.5.32",
+        "postcss": ">=8.5.28",
         "prettier": "3.9.10",
         "typescript": "6.0.3",
         "winston": "3.19.0"
