@@ -28,3 +28,30 @@ export const getTillattEndringsperiode = (endringsdato: Date): DateRange => {
         to: dayjs(endringsdato).add(12, 'months').endOf('month').startOf('day').toDate(),
     };
 };
+
+/**
+ * Sann når ingen av søknadsperiodene strekker seg inn i endringsperioden.
+ * En sak uten søknadsperioder er ikke eldre, den er mangelfull.
+ */
+export const erSakEldreEnnEndringsperiode = (
+    søknadsperioder: DateRange[],
+    tillattEndringsperiode: DateRange,
+): boolean =>
+    søknadsperioder.length > 0 &&
+    søknadsperioder.every((periode) => dayjs(periode.to).isBefore(tillattEndringsperiode.from, 'day'));
+
+/**
+ * Perioden arbeidsgivere hentes for: snittet av sakens samlede søknadsperiode og endringsperioden.
+ *
+ * @returns undefined når periodene ikke overlapper
+ */
+export const getOppslagsperiode = (
+    samletSøknadsperiode: DateRange,
+    tillattEndringsperiode: DateRange,
+): DateRange | undefined => {
+    const periode: DateRange = {
+        from: dayjs.max(dayjs(samletSøknadsperiode.from), dayjs(tillattEndringsperiode.from))!.toDate(),
+        to: dayjs.min(dayjs(samletSøknadsperiode.to), dayjs(tillattEndringsperiode.to))!.toDate(),
+    };
+    return dayjs(periode.to).isBefore(periode.from, 'day') ? undefined : periode;
+};
