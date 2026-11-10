@@ -5,8 +5,12 @@ import z from 'zod';
 import { createDemoRequestContext, createRequestContext } from '../auth/withAuthentication';
 import { isLocal } from './env';
 
+// Headeren kan settes av klienten og videresendes som X-Correlation-ID, så vi godtar bare ID-lignende verdier
+const gyldigRequestId = /^[A-Za-z0-9-]{1,64}$/;
+
 export const getXRequestId = (req: NextApiRequest): string => {
-    return (req.headers['x-request-id'] as string) || 'undefined-x-request-id';
+    const requestId = req.headers['x-request-id'];
+    return typeof requestId === 'string' && gyldigRequestId.test(requestId) ? requestId : 'undefined-x-request-id';
 };
 
 export const getContextForApiHandler = (req: NextApiRequest) => {
