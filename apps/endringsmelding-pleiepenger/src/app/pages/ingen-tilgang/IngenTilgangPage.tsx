@@ -1,6 +1,6 @@
 import { AppText, useAppIntl } from '@app/i18n';
 import { SøknadContextProvider } from '@app/søknad/context/SøknadContext';
-import { IngenTilgangÅrsak, IngenTilgangMeta } from '@app/types';
+import { IngenTilgangÅrsak } from '@app/types';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { Søker } from '@navikt/sif-common-api';
@@ -16,7 +16,6 @@ import { ANTALL_MÅNEDER_TILLATT_FOR_ENDRING } from '../../utils/endringsperiode
 export interface IngenTilgangPageProps {
     søker: Søker;
     årsak: IngenTilgangÅrsak[];
-    ingenTilgangMeta?: IngenTilgangMeta;
 }
 
 const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
@@ -29,16 +28,6 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
         />
     );
     switch (årsak) {
-        case IngenTilgangÅrsak.harUgyldigK9FormatSak:
-            return (
-                <BodyLong as="div" data-testid="ugyldigK9FormatSak">
-                    <p>
-                        <AppText id="ingenTilgangPage.harUgyldigK9FormatSak.1" />
-                    </p>
-                    <p>{beskjedTilOssGenerell}</p>
-                </BodyLong>
-            );
-
         case IngenTilgangÅrsak.harIngenPerioder:
         case IngenTilgangÅrsak.harIngenSak:
             return (
@@ -136,14 +125,14 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
     }
 };
 
-const IngenTilgangPage = ({ årsak = [], søker, ingenTilgangMeta }: IngenTilgangPageProps) => {
+const IngenTilgangPage = ({ årsak = [], søker }: IngenTilgangPageProps) => {
     const { logInfo, logEvent } = useAnalyticsInstance();
     const { text } = useAppIntl();
 
     useEffectOnce(() => {
         const årsakStr = årsak.length > 0 ? årsak[0] : 'ukjent';
-        logEvent('brukerIkkeTilgang', { årsak: årsakStr, ...ingenTilgangMeta });
-        logInfo({ brukerIkkeTilgang: årsakStr, ...ingenTilgangMeta });
+        logEvent('brukerIkkeTilgang', { årsak: årsakStr });
+        logInfo({ brukerIkkeTilgang: årsakStr });
     });
 
     return (

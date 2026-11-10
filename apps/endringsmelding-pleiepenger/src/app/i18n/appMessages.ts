@@ -102,8 +102,6 @@ const nb = {
     'ingenTilgangPage.tittel': 'Hei {navn}',
     'ingenTilgangPage.beskjedTilOssGenerell':
         'I mellomtiden bruker du tjenesten {SendBeskjedLink} for å melde fra om endringer.',
-    'ingenTilgangPage.harUgyldigK9FormatSak.1':
-        'Vi ser at du har en sak om pleiepenger hos oss, men foreløpig kan du ikke bruke denne tjenesten. Vi jobber for å få det til, slik at du også snart kan melde fra om endring her.',
     'ingenTilgangPage.harIngenSak.1':
         'Vi finner ingen sak om pleiepenger for sykt barn registrert på deg, derfor kan du heller ikke bruke denne tjenesten. Hvis du akkurat har sendt inn en søknad, tar det noen minutter før saken din kommer opp her.',
     'ingenTilgangPage.harIngenSak.2':

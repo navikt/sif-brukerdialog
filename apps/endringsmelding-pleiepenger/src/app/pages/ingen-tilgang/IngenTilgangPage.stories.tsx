@@ -68,13 +68,6 @@ export const MerEnnEnSak: Story = {
         årsak: [IngenTilgangÅrsak.harMerEnnEnSak],
     },
 };
-export const UgyldigK9FormatSak: Story = {
-    name: 'harUgyldigK9FormatSak',
-    args: {
-        søker,
-        årsak: [IngenTilgangÅrsak.harUgyldigK9FormatSak],
-    },
-};
 export const SøknadsperioderUtenforTillattEndringsperiode: Story = {
     name: 'søknadsperioderUtenforTillattEndringsperiode',
     args: {
