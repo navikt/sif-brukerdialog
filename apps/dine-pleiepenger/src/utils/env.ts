@@ -136,4 +136,9 @@ export function getServerEnv(): ServerEnv & PublicEnv {
     }
 }
 
+/**
+ * Styrer om token-validering hoppes over. Trygt fordi `next build` alltid setter NODE_ENV=production
+ * og bygger verdien inn som `false`. Kjøremiljøet kan ikke slå den på. Må ikke byttes til en env-variabel
+ * som leses ved kjøring uten en fail-closed-sjekk mot Nais (f.eks. NAIS_CLUSTER_NAME).
+ */
 export const isLocal = process.env.NODE_ENV !== 'production';

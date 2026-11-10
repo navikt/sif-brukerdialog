@@ -159,7 +159,7 @@ export function parseAuthHeader(headers: IncomingHttpHeaders): TokenPayload | nu
 }
 
 /**
- * Used locally or in demo environments to create a fake request context.
+ * Used in local development to create a fake request context.
  */
 export function createDemoRequestContext(req: GetServerSidePropsContext['req'] | NextApiRequest): RequestContext {
     if (!isLocal) {
