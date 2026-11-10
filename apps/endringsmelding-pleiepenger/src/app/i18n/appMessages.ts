@@ -123,9 +123,8 @@ const nb = {
         'Hvis du mener at dette ikke stemmer, er det fint at du sender en melding til oss {SkrivTilOssLink}.',
     'ingenTilgangPage.slutterOgStarterInneforSammeUke':
         'Vi ser at du har to ansettelsesforhold hos samme arbeidsgiver som slutter og starter samme uke. Da kan du dessverre ikke bruke denne løsningen for å melde fra om endringer.',
-    // TODO: Endelig ordlyd mangler
     'ingenTilgangPage.barnManglerIdentitetsnummer.1':
-        'Du kan ikke bruke denne tjenesten enda, fordi saken din ikke er klar for endring enda.',
+        'Du kan ikke bruke denne tjenesten enda, fordi saken ikke er klar for endring enda.',
 
     'kvitteringPage.pageTitle': 'Endringsmelding er mottatt',
     'kvitteringPage.title': 'Melding om endring er lagt til saken din',
