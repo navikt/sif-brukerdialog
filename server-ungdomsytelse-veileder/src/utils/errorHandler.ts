@@ -11,7 +11,7 @@ export function errorHandling(
 ) {
     const errorInfo = {
         message: error.message,
-        url: request.url,
+        url: request.originalUrl.split('?')[0],
         method: request.method,
         timestamp: new Date().toISOString(),
     };
