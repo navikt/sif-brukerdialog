@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<title>Plan 2: saker fra k9-sak-innsyn-api</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 920px; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; color: #23262a; }
+  h1 { font-size: 1.7rem; }
+  h2 { margin-top: 2.2rem; border-bottom: 1px solid #ccc; padding-bottom: .2rem; }
+  h3 { margin-top: 1.4rem; }
+  code { background: #f2f3f5; padding: 0 .25rem; border-radius: 3px; }
+  pre { background: #f2f3f5; padding: .8rem; border-radius: 4px; overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; margin: .8rem 0; }
+  th, td { border: 1px solid #ccc; padding: .4rem .6rem; text-align: left; vertical-align: top; }
+  th { background: #f2f3f5; }
+  .rod { border-left: 4px solid #c30000; background: #fff4f4; padding: .6rem 1rem; }
+  .apen { border-left: 4px solid #c77300; background: #fff8ef; padding: .6rem 1rem; }
+  .meta { color: #555; font-size: .9rem; }
+</style>
+</head>
+<body>
+
+<h1>Plan 2: saker fra k9-sak-innsyn-api</h1>
+<p class="meta">Utkast. Endringsmelding pleiepenger (sif-brukerdialog) og k9-sak-innsyn-api. 10. november 2026.</p>
+
+<h2>Mål</h2>
+<p>Endringsmeldingen henter saker fra <code>/soknad</code> i k9-sak-innsyn-api i stedet for <code>innsyn/sak</code> i sif-innsyn-api. Appen bruker den genererte klienten og typene i <code>@sif/k9-sak-innsyn-api</code>, og slutter å bruke sif-innsyn-api.</p>
+<p>k9-sak-innsyn-api skal erstatte sif-innsyn-api. Endringsmeldingen bruker i dag sif-innsyn-api bare for saker, og den tjenesten sender kallet videre til <code>/soknad</code> i k9-sak-innsyn-api.</p>
+
+<h2>Relaterte planer</h2>
+<ul>
+  <li><strong>Plan 1:</strong> <a href="plan-endringsmelding-tilgang-fra-backend.html">tilgang fra backend</a>. Uavhengig av denne planen og kan rulles ut først.</li>
+</ul>
+
+<h2>Funn</h2>
+<ul>
+  <li><code>innsyn/sak</code> i sif-innsyn-api (<code>K9SakInnsynSøknadController</code>) kaller <code>/soknad</code> i k9-sak-innsyn-api via <code>K9SakInnsynApiService.hentSøknadsopplysninger</code> og returnerer svaret uten filtrering.</li>
+  <li>sif-innsyn-api deserialiserer svaret til <code>K9SakInnsynSøknad(barn: BarnOpplysninger, søknad: Søknad)</code>. <code>BarnOpplysninger</code> har trolig færre felt enn <code>BarnOppslagDto</code> i k9-sak-innsyn-api. Hele klassen er ikke lest.</li>
+  <li><code>/soknad</code> i k9-sak-innsyn-api returnerer <code>SøknadDto[]</code> (<code>barn: BarnOppslagDto</code>, <code>søknad: Søknad</code>), som har samme form som appens <code>K9Format</code>.</li>
+  <li>Den genererte SDK-en har <code>SØknadController.hentSøknader</code>. Den validerer hele svaret med zod (<code>zHentSøknaderResponse</code>).</li>
+  <li><code>BarnOppslagDto</code> har det påkrevde feltet <code>adressebeskyttelse$no_nav_k9_sak_innsyn_api</code>. Navnet ligner Kotlins navnemangling av en <code>internal</code>-property. Sender backend feltet under et annet navn, feiler valideringen og hele kallet.</li>
+  <li>Appen har allerede proxy, env og accessPolicy mot k9-sak-innsyn-api for <code>/tilgang</code>.</li>
+</ul>
+
+<h2>Foreløpige valg</h2>
+<table>
+  <tr><th>Tema</th><th>Forslag</th><th>Begrunnelse</th></tr>
+  <tr><td>Klient</td><td>Generert SDK fra <code>@sif/k9-sak-innsyn-api</code>, initialisert med <code>initK9SakInnsynApiClients</code> som i omsorgspengesoknad-v2.</td><td>Typer og klient følger backend-spec-en. Mindre håndskrevet kode.</td></tr>
+  <tr><td>Typer</td><td><code>K9Format.ts</code> erstattes av den genererte <code>SøknadDto</code>. <code>verifyK9Format</code> og <code>parseK9Format</code> beholdes.</td><td>De genererte typene er løsere enn det appen krever. Verify sjekker det zod ikke fanger.</td></tr>
+  <tr><td>Validering av hele svaret</td><td>Må avklares, se åpne punkter.</td><td>Zod på hele lista gjør at én avvikende sak stopper alle. I dag håndteres formatfeil per sak.</td></tr>
+  <tr><td>Rekkefølge</td><td>Etter plan 1.</td><td>Plan 1 er mindre og løser avviket i tilgang. Da kan vi skille feil i tilgang fra feil i ny datakilde.</td></tr>
+</table>
+
+<h2>Arbeid</h2>
+
+<h3>Backend (k9-sak-innsyn-api)</h3>
+<ul>
+  <li>Rett feltnavnet <code>adressebeskyttelse$no_nav_k9_sak_innsyn_api</code> i <code>BarnOppslagDto</code>, eller utelat feltet fra svaret. Sjekk hva JSON-svaret faktisk inneholder i dag.</li>
+  <li>Kjør <code>codegen:dev</code> i <code>packages/api/k9-sak-innsyn-api</code> etterpå.</li>
+</ul>
+
+<h3>Frontend</h3>
+<ul>
+  <li>Legg til <code>@sif/k9-sak-innsyn-api</code> som avhengighet og kall <code>initK9SakInnsynApiClients</code> ved oppstart. Sjekk at redirect til innlogging ved 401 virker som med dagens axios-interceptor.</li>
+  <li><code>sakerEndpoint</code> henter med SDK-en og kjører <code>verifyK9Format</code> og <code>parseK9Format</code> per sak som i dag.</li>
+  <li>Bytt <code>K9Format</code> til den genererte <code>SøknadDto</code> i verify, parse og tester.</li>
+  <li>Bak toggle, slik at rollback er å slå den av.</li>
+  <li>Mocks: ny sti i <code>mock/server.cjs</code>, MSW-handlerne og <code>playwright/utils/setupMockRoutes.ts</code>. De 15 <code>sak-mock.ts</code> under <code>mock/data/scenario/</code> må få barnefeltene fra <code>BarnOppslagDto</code> hvis svaret valideres med zod.</li>
+</ul>
+
+<h3>Opprydding</h3>
+<ul>
+  <li>Fjern <code>ApiEndpointInnsyn</code> og <code>api.innsyn</code>.</li>
+  <li>Fjern <code>SIF_INNSYN_*</code> fra env, nais-config, <code>REQUIRED_PROXY_SERVICES</code>, devAppSettings og playwrightAppSettings.</li>
+  <li>Fjern accessPolicy mot sif-innsyn-api hvis ingenting annet i appen bruker den.</li>
+  <li>Fjern toggle.</li>
+</ul>
+
+<h2>Personvern</h2>
+<p><code>BarnOppslagDto</code> har trolig flere felt enn <code>BarnOpplysninger</code>, blant annet adressebeskyttelse og aktør-ID. Brukeren ser bare data om eget barn, så tilgangen endres ikke. Avklar hvilke felt som er nye i nettleseren. De skal ikke logges, og de skal ikke havne i mellomlagringen.</p>
+
+<h2>Rød sone</h2>
+<div class="rod">
+<ul>
+  <li>Håndtering av formatfeil per sak når svaret kommer fra SDK-en.</li>
+</ul>
+<p>Grønn sone: klientoppsett, bytte av typer, mocks og opprydding.</p>
+</div>
+
+<h2>Åpne punkter</h2>
+<div class="apen">
+<ul>
+  <li><strong>Feltene i <code>BarnOpplysninger</code>.</strong> Les <code>K9SakInnsynApiService.kt</code> i sif-innsyn-api og sammenlign med <code>BarnOppslagDto</code>.</li>
+  <li><strong>Validering av svaret.</strong> Skal SDK-en validere hele svaret med zod, eller skal appen bare bruke typene og validere per sak med <code>verifyK9Format</code>? Anbefaling: valider per sak, så én avvikende sak ikke stopper alle.</li>
+  <li><strong>Feltnavnet <code>adressebeskyttelse$…</code>.</strong> Hva sender backend i dag, og hvem retter det?</li>
+  <li><strong>Ny avhengighet.</strong> <code>@sif/k9-sak-innsyn-api</code> er en workspace-pakke, men er ny for appen.</li>
+</ul>
+</div>
+
+</body>
+</html>
