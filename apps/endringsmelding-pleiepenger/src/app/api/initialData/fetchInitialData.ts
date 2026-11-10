@@ -1,14 +1,9 @@
 import { K9Sak } from '@app/types';
 import { fetchSøker, Søker } from '@navikt/sif-common-api';
-import { DateRange, dateToISODate } from '@navikt/sif-common-utils';
+import { DateRange } from '@navikt/sif-common-utils';
 import { appLogger } from '@sif/apm';
 
-import {
-    erSakEldreEnnEndringsperiode,
-    getEndringsdato,
-    getOppslagsperiode,
-    getTillattEndringsperiode,
-} from '../../utils/endringsperiode';
+import { erSakEldreEnnEndringsperiode, getOppslagsperiode } from '../../utils/endringsperiode';
 import { getSamletDateRangeForK9Saker } from '../../utils/k9SakUtils';
 import { arbeidsgivereEndpoint } from '../endpoints/arbeidsgivereEndpoint';
 import { sakerEndpoint } from '../endpoints/sakerEndpoint';
@@ -16,17 +11,6 @@ import { tilgangEndpoint } from '../endpoints/tilgangEndpoint';
 import { hentGyldigLagretSøknadState } from './hentGyldigLagretSøknadState';
 import { IngenTilgangError, mapInitialDataError } from './initialDataError';
 import { InitialData } from './types';
-
-const formaterPeriode = ({ from, to }: DateRange) => `${dateToISODate(from)}/${dateToISODate(to)}`;
-
-/** Frontend regner med nettleserens klokke, backend med Europe/Oslo. Logges for å se om de spriker. */
-const loggAvvikIEndringsperiode = (fraBackend: DateRange) => {
-    const backend = formaterPeriode(fraBackend);
-    const frontend = formaterPeriode(getTillattEndringsperiode(getEndringsdato()));
-    if (backend !== frontend) {
-        appLogger.logInfo(`fetchInitialData.avvikIEndringsperiode frontend(${frontend}) backend(${backend})`);
-    }
-};
 
 /**
  * Backend har gitt tilgang, og da finnes det nøyaktig én aktuell sak.
@@ -36,18 +20,17 @@ const velgSak = (saker: K9Sak[], tillattEndringsperiode: DateRange): { sak: K9Sa
     const aktuelleSaker = saker.filter(
         (sak) => !erSakEldreEnnEndringsperiode(sak.ytelse.søknadsperioder, tillattEndringsperiode),
     );
-    const samletSøknadsperiode = aktuelleSaker.length === 1 ? getSamletDateRangeForK9Saker(aktuelleSaker) : undefined;
-    const oppslagsperiode = samletSøknadsperiode
-        ? getOppslagsperiode(samletSøknadsperiode, tillattEndringsperiode)
-        : undefined;
+    const sak = aktuelleSaker.length === 1 ? aktuelleSaker[0] : undefined;
+    const samletSøknadsperiode = sak && getSamletDateRangeForK9Saker([sak]);
+    const oppslagsperiode = samletSøknadsperiode && getOppslagsperiode(samletSøknadsperiode, tillattEndringsperiode);
 
-    if (!oppslagsperiode) {
+    if (!sak || !oppslagsperiode) {
         appLogger.logInfo(
             `fetchInitialData.fantIkkeSak antallGyldigeSaker=${saker.length} antallAktuelleSaker=${aktuelleSaker.length}`,
         );
         throw new Error('fetchInitialData: fant ikke én aktuell sak etter tilgang fra backend');
     }
-    return { sak: aktuelleSaker[0], oppslagsperiode };
+    return { sak, oppslagsperiode };
 };
 
 /**
@@ -68,8 +51,6 @@ export const fetchInitialData = async (): Promise<InitialData> => {
         }
 
         const { tillattEndringsperiode } = tilgang;
-        loggAvvikIEndringsperiode(tillattEndringsperiode);
-
         const saker = await sakerEndpoint.fetch();
         const { sak, oppslagsperiode } = velgSak(saker, tillattEndringsperiode);
         const arbeidsgivere = await arbeidsgivereEndpoint.fetch(oppslagsperiode);

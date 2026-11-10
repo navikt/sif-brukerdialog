@@ -10,7 +10,6 @@ export type ScenarioType =
     | 'debug'
     | 'selvstendig-næringsdrivende'
     | 'flere-saker'
-    | 'flere-saker-kun-en-aktiv'
     | 'ingen-sak'
     | 'arbeidsaktivitet-uten-arbeidsgiver'
     | 'barn-mangler-identitetsnummer'
@@ -63,11 +62,6 @@ export const scenarioer: Scenario[] = [
     {
         name: 'Saker for flere barn',
         value: 'flere-saker',
-        ingenTilgangÅrsak: IngenTilgangÅrsak.harMerEnnEnSak,
-    },
-    {
-        name: 'Saker for flere barn, kun én innenfor endringsperioden',
-        value: 'flere-saker-kun-en-aktiv',
         ingenTilgangÅrsak: IngenTilgangÅrsak.harMerEnnEnSak,
     },
     {

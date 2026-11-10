@@ -38,7 +38,6 @@ vi.mock('../../endpoints/søknadStateEndpoint', () => ({
 import { fetchSøker } from '@navikt/sif-common-api';
 import { appLogger } from '@sif/apm';
 
-import { getEndringsdato, getTillattEndringsperiode } from '../../../utils/endringsperiode';
 import { arbeidsgivereEndpoint } from '../../endpoints/arbeidsgivereEndpoint';
 import { sakerEndpoint } from '../../endpoints/sakerEndpoint';
 import { søknadStateEndpoint } from '../../endpoints/søknadStateEndpoint';
@@ -203,23 +202,5 @@ describe('fetchInitialData tilgang', () => {
             `fetchInitialData.fantIkkeSak antallGyldigeSaker=${saker.length} antallAktuelleSaker=${antallAktuelle}`,
         );
         expect(arbeidsgivereEndpoint.fetch).not.toHaveBeenCalled();
-    });
-
-    it('logger når endringsperioden fra backend avviker fra frontend sin', async () => {
-        await fetchInitialData();
-        expect(appLogger.logInfo).toHaveBeenCalledWith(
-            expect.stringContaining('fetchInitialData.avvikIEndringsperiode'),
-        );
-    });
-
-    it('logger ikke avvik når endringsperiodene er like', async () => {
-        vi.mocked(tilgangEndpoint.fetch).mockResolvedValue({
-            kanBruke: true,
-            tillattEndringsperiode: getTillattEndringsperiode(getEndringsdato()),
-        });
-        await fetchInitialData().catch(() => undefined);
-        expect(appLogger.logInfo).not.toHaveBeenCalledWith(
-            expect.stringContaining('fetchInitialData.avvikIEndringsperiode'),
-        );
     });
 });

@@ -116,7 +116,7 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     </p>
                 </BodyLong>
             );
-        default:
+        case IngenTilgangÅrsak.ukjent:
             return (
                 <BodyLong as="div" data-testid="ukjentÅrsak">
                     <p>{beskjedTilOssGenerell}</p>

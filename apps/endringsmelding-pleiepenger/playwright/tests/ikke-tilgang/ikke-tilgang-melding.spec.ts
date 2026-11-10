@@ -28,14 +28,6 @@ test('Flere saker', async ({ page }) => {
     await testAccessibility(page);
 });
 
-test('Flere saker, men kun én innenfor endringsperioden', async ({ page }) => {
-    await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN, 'flere-saker-kun-en-aktiv');
-    await expect(page).toHaveTitle('Ingen tilgang - Endringsmelding for pleiepenger sykt barn');
-    await expect(page.getByText('Hei Nora')).toBeVisible();
-    await expect(page.getByTestId('flereSaker')).toBeVisible();
-    await testAccessibility(page);
-});
-
 test('Er selvstendig næringsdrivende', async ({ page }) => {
     await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN, 'selvstendig-næringsdrivende');
     await expect(page).toHaveTitle('Ingen tilgang - Endringsmelding for pleiepenger sykt barn');
