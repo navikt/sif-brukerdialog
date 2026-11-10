@@ -1,7 +1,8 @@
-import { ScenarioType } from '@app/dev/scenarioer';
+import { scenarioer, ScenarioType } from '@app/dev/scenarioer';
 import { Page } from '@playwright/test';
 
-import { getScenarioMockData } from '../../mock/data/scenario';
+import { getScenarioMockData, getTilgangMockData } from '../../mock/data/scenario';
+import { getPlaywrightAppSettings } from '../playwrightAppSettings';
 
 export const setupScenarioMockRoutes = async (page: Page, scenario: ScenarioType) => {
     const mockData = getScenarioMockData(scenario);
@@ -13,6 +14,11 @@ export const setupScenarioMockRoutes = async (page: Page, scenario: ScenarioType
     });
     await page.route('**/innsyn/sak', async (route) => {
         await route.fulfill({ status: 200, body: JSON.stringify(mockData.sak) });
+    });
+    await page.route('**/psb/endringsmelding/tilgang', async (route) => {
+        const brukDagensDato = scenarioer.find((s) => s.value === scenario)?.brukDagensDato;
+        const now = brukDagensDato ? new Date() : new Date(getPlaywrightAppSettings().NOW);
+        await route.fulfill({ status: 200, body: JSON.stringify(getTilgangMockData(scenario, now)) });
     });
 };
 

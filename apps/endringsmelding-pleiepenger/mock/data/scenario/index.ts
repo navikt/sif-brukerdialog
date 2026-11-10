@@ -1,10 +1,13 @@
-import { ScenarioType } from '@app/dev/scenarioer';
+import { scenarioer, ScenarioType } from '@app/dev/scenarioer';
+import { getTillattEndringsperiode } from '@app/utils/endringsperiode';
+import { dateToISODate } from '@navikt/sif-common-utils';
 
 import { ArbeidsaktivitetUtenArbeidsgiver } from './arbeidsaktivitet-uten-arbeidsgiver/ArbeidsaktivitetUtenArbeidsgiver';
 import { ArbeidsgiverIkkeISak } from './arbeidsgiver-ikke-i-sak/ArbeidsgiverIkkeISak';
 import { ArbeidsgiverIkkeISakFlereAnsettelser } from './arbeidsgiver-ikke-i-sak-flere-ansettelser/ArbeidsgiverIkkeISakFlereAnsettelser';
 import { ArbeidsgiverOgFrilanser } from './arbeidsgiver-og-frilanser/ArbeidsgiverOgFrilanser';
 import { ArbeidsgivereOgFrilanser } from './arbeidsgivere-og-frilanser/ArbeidsgivereOgFrilanser';
+import { BarnManglerIdentitetsnummer } from './barn-mangler-identitetsnummer/BarnManglerIdentitetsnummer';
 import { Brukertest2026 } from './brukertest-2026/Brukertest2026';
 import { Debug } from './debug/Debug';
 import { EnArbeidsgiverEnPeriode } from './en-arbeidsgiver-en-periode/EnArbeidsgiverEnPeriode';
@@ -15,7 +18,6 @@ import { FlereSaker } from './flere-saker/FlereSaker';
 import { FlereSakerKunEnAktiv } from './flere-saker-kun-en-aktiv/FlereSakerKunEnAktiv';
 import { IngenSak } from './ingen-sak/IngenSak';
 import { SelvstendigNæringsdrivende } from './selvstendig-næringsdrivende/SelvstendigNæringsdrivende';
-import { UgyldigK9Format } from './ugyldig-k9-format/UgyldigK9Format';
 
 type ScenarioMap = Record<ScenarioType, ScenarioData>;
 
@@ -32,7 +34,7 @@ export const mockData: ScenarioMap = {
     ['arbeidsgiver-ikke-i-sak']: ArbeidsgiverIkkeISak,
     ['arbeidsgiver-ikke-i-sak-flere-ansettelser']: ArbeidsgiverIkkeISakFlereAnsettelser,
     ['arbeidsaktivitet-uten-arbeidsgiver']: ArbeidsaktivitetUtenArbeidsgiver,
-    ['ugyldig-k9-format']: UgyldigK9Format,
+    ['barn-mangler-identitetsnummer']: BarnManglerIdentitetsnummer,
     ['en-arbeidsgiver-to-ansettelser-samme-uke-med-opphold']: EnArbeidsgiverToAnsettelserSammeUkeMedOpphold,
     ['en-arbeidsgiver-to-ansettelser-samme-uke-uten-opphold']: EnArbeidsgiverToAnsettelserSammeUkeUtenOpphold,
     ['brukertest-2026']: Brukertest2026,
@@ -47,4 +49,18 @@ export interface ScenarioData {
 
 export const getScenarioMockData = (scenario: ScenarioType) => {
     return mockData[scenario];
+};
+
+/** Svar fra /tilgang for scenarioet. now må være samme dato som appen bruker (NOW eller dagens dato). */
+export const getTilgangMockData = (scenario: ScenarioType, now: Date) => {
+    const årsak = scenarioer.find((s) => s.value === scenario)?.ingenTilgangÅrsak;
+    if (årsak) {
+        return { kanBruke: false, årsaker: [årsak] };
+    }
+    const { from, to } = getTillattEndringsperiode(now);
+    return {
+        kanBruke: true,
+        årsaker: [],
+        tillattEndringsperiode: { fom: dateToISODate(from), tom: dateToISODate(to) },
+    };
 };

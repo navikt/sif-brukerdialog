@@ -1,7 +1,7 @@
 import { getScenarioFromLocalStorage } from '@app/dev/scenarioer';
 import { delay, http, HttpResponse, passthrough } from 'msw';
 
-import { getScenarioMockData } from '../data/scenario';
+import { getScenarioMockData, getTilgangMockData } from '../data/scenario';
 
 const baseUrl = '*';
 
@@ -27,7 +27,7 @@ export const getHandlers = () => {
             return new HttpResponse(JSON.stringify(arbeidsgiver), { status: 200 });
         }),
         http.get(`${baseUrl}/psb/endringsmelding/tilgang`, () => {
-            return HttpResponse.json({ kanBruke: true, årsaker: [] });
+            return HttpResponse.json(getTilgangMockData(scenario.value, new Date()));
         }),
         http.get(`${baseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, () => {
             const data = localStorage.getItem(MellomlagringStorageKey);
