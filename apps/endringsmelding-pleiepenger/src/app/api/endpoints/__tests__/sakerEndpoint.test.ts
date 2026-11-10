@@ -45,7 +45,7 @@ describe('sakerEndpoint.fetch', () => {
             return true as any;
         });
 
-        expect(await sakerEndpoint.fetch()).toEqual([gyldig]);
+        expect(await sakerEndpoint.fetch()).toEqual({ saker: [gyldig], antallUgyldige: 1 });
         expect(appLogger.logInfo).toHaveBeenCalledWith(expect.stringContaining('fornavn'));
         expect(appLogger.logException).not.toHaveBeenCalled();
     });

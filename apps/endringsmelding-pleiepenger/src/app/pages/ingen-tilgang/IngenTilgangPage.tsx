@@ -87,6 +87,15 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     <p>{beskjedTilOssGenerell}</p>
                 </BodyLong>
             );
+        case IngenTilgangÅrsak.harUgyldigK9FormatSak:
+            return (
+                <BodyLong as="div" data-testid="ugyldigK9FormatSak">
+                    <p>
+                        <AppText id="ingenTilgangPage.harUgyldigK9FormatSak.1" />
+                    </p>
+                    <p>{beskjedTilOssGenerell}</p>
+                </BodyLong>
+            );
         case IngenTilgangÅrsak.barnManglerIdentitetsnummer:
             return (
                 <BodyLong as="div" data-testid="barnManglerIdentitetsnummer">

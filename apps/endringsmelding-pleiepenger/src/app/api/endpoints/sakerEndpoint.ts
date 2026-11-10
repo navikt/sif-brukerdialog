@@ -8,20 +8,22 @@ import api from '../api';
 import { ApiEndpointInnsyn } from '.';
 
 /**
- * Henter sakene til bruker. Saker med ugyldig format utelates, fordi backend
+ * Henter sakene til bruker. Saker med ugyldig format utelates, men telles, fordi backend
  * allerede har avgjort tilgangen ut fra alle sakene.
  */
 export const sakerEndpoint = {
-    fetch: async (): Promise<K9Sak[]> => {
+    fetch: async (): Promise<{ saker: K9Sak[]; antallUgyldige: number }> => {
         try {
             const { data } = await api.innsyn.get<K9Format[]>(ApiEndpointInnsyn.sak);
             const saker: K9Sak[] = [];
+            let antallUgyldige = 0;
             data.forEach((sak, index) => {
                 try {
                     verifyK9Format(sak);
                     saker.push(parseK9Format(sak));
                 } catch (error) {
                     if (isK9FormatError(error)) {
+                        antallUgyldige++;
                         /** ugyldigeFelt inneholder kun feltnavn, ikke verdier, og er trygt å logge. */
                         const ugyldigeFelt = error.error.cause?.ugyldigeFelt;
                         appLogger.logInfo(
@@ -38,7 +40,7 @@ export const sakerEndpoint = {
                     }
                 }
             });
-            return saker;
+            return { saker, antallUgyldige };
         } catch (error) {
             if (isAxiosError(error)) {
                 appLogger.logApiError(error, 'sakerEndpoint.fetch');

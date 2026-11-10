@@ -68,7 +68,7 @@ const httpError = (status: number) =>
 const settOppLykkeligSti = (): void => {
     vi.mocked(fetchSøker).mockResolvedValue(søker);
     vi.mocked(tilgangEndpoint.fetch).mockResolvedValue({ kanBruke: true, tillattEndringsperiode });
-    vi.mocked(sakerEndpoint.fetch).mockResolvedValue([gyldigSak]);
+    vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ saker: [gyldigSak], antallUgyldige: 0 });
     vi.mocked(arbeidsgivereEndpoint.fetch).mockResolvedValue([]);
     vi.mocked(søknadStateEndpoint.fetch).mockResolvedValue(undefined);
 };
@@ -174,7 +174,7 @@ describe('fetchInitialData tilgang', () => {
     });
 
     it('velger saken i endringsperioden når bruker også har en eldre sak', async () => {
-        vi.mocked(sakerEndpoint.fetch).mockResolvedValue([eldreSak, gyldigSak]);
+        vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ saker: [eldreSak, gyldigSak], antallUgyldige: 0 });
         await expect(fetchInitialData()).resolves.toMatchObject({ k9saker: [gyldigSak] });
     });
 
@@ -196,11 +196,21 @@ describe('fetchInitialData tilgang', () => {
         { beskrivelse: 'ingen aktuelle saker', saker: [eldreSak], antallAktuelle: 0 },
         { beskrivelse: 'flere aktuelle saker', saker: [gyldigSak, gyldigSak], antallAktuelle: 2 },
     ])('gir feilside og logger når frontend finner $beskrivelse etter tilgang', async ({ saker, antallAktuelle }) => {
-        vi.mocked(sakerEndpoint.fetch).mockResolvedValue(saker);
+        vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ saker, antallUgyldige: 0 });
         await expect(fetchInitialData()).rejects.toMatchObject({ status: RequestStatus.error });
         expect(appLogger.logInfo).toHaveBeenCalledWith(
-            `fetchInitialData.fantIkkeSak antallGyldigeSaker=${saker.length} antallAktuelleSaker=${antallAktuelle}`,
+            `fetchInitialData.fantIkkeSak antallGyldigeSaker=${saker.length} antallAktuelleSaker=${antallAktuelle} antallUgyldigeSaker=0`,
         );
         expect(arbeidsgivereEndpoint.fetch).not.toHaveBeenCalled();
+    });
+
+    it('gir melding om ugyldig format når eneste aktuelle sak ikke kan leses', async () => {
+        vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ saker: [eldreSak], antallUgyldige: 1 });
+        await expect(fetchInitialData()).rejects.toEqual({
+            status: RequestStatus.success,
+            kanBrukeSøknad: false,
+            årsak: [IngenTilgangÅrsak.harUgyldigK9FormatSak],
+            søker,
+        });
     });
 });

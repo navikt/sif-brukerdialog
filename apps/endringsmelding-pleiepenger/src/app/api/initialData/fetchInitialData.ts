@@ -1,4 +1,4 @@
-import { K9Sak } from '@app/types';
+import { IngenTilgangÅrsak, K9Sak } from '@app/types';
 import { fetchSøker, Søker } from '@navikt/sif-common-api';
 import { DateRange } from '@navikt/sif-common-utils';
 import { appLogger } from '@sif/apm';
@@ -14,9 +14,14 @@ import { InitialData } from './types';
 
 /**
  * Backend har gitt tilgang, og da finnes det nøyaktig én aktuell sak.
- * Finner ikke frontend den samme saken, er frontend og backend uenige, og bruker får feilsiden.
+ * Finner ikke frontend den samme saken, er frontend og backend uenige. Er det fordi
+ * frontend ikke kan lese formatet på saken, får bruker melding om det. Ellers får bruker feilsiden.
  */
-const velgSak = (saker: K9Sak[], tillattEndringsperiode: DateRange): { sak: K9Sak; oppslagsperiode: DateRange } => {
+const velgSak = (
+    saker: K9Sak[],
+    antallUgyldige: number,
+    tillattEndringsperiode: DateRange,
+): { sak: K9Sak; oppslagsperiode: DateRange } => {
     const aktuelleSaker = saker.filter(
         (sak) => !erSakEldreEnnEndringsperiode(sak.ytelse.søknadsperioder, tillattEndringsperiode),
     );
@@ -26,8 +31,11 @@ const velgSak = (saker: K9Sak[], tillattEndringsperiode: DateRange): { sak: K9Sa
 
     if (!sak || !oppslagsperiode) {
         appLogger.logInfo(
-            `fetchInitialData.fantIkkeSak antallGyldigeSaker=${saker.length} antallAktuelleSaker=${aktuelleSaker.length}`,
+            `fetchInitialData.fantIkkeSak antallGyldigeSaker=${saker.length} antallAktuelleSaker=${aktuelleSaker.length} antallUgyldigeSaker=${antallUgyldige}`,
         );
+        if (aktuelleSaker.length === 0 && antallUgyldige > 0) {
+            throw new IngenTilgangError([IngenTilgangÅrsak.harUgyldigK9FormatSak]);
+        }
         throw new Error('fetchInitialData: fant ikke én aktuell sak etter tilgang fra backend');
     }
     return { sak, oppslagsperiode };
@@ -51,8 +59,8 @@ export const fetchInitialData = async (): Promise<InitialData> => {
         }
 
         const { tillattEndringsperiode } = tilgang;
-        const saker = await sakerEndpoint.fetch();
-        const { sak, oppslagsperiode } = velgSak(saker, tillattEndringsperiode);
+        const { saker, antallUgyldige } = await sakerEndpoint.fetch();
+        const { sak, oppslagsperiode } = velgSak(saker, antallUgyldige, tillattEndringsperiode);
         const arbeidsgivere = await arbeidsgivereEndpoint.fetch(oppslagsperiode);
         const k9saker = [sak];
 

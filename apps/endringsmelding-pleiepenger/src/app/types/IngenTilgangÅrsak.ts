@@ -7,6 +7,8 @@ export enum IngenTilgangÅrsak {
     enArbeidsgiverToAnsettelserSammeUkeMedOpphold = 'enArbeidsgiverToAnsettelserSammeUkeMedOpphold',
     harFlereAnsettelsesforholdHosUkjentArbeidsgiver = 'harFlereAnsettelsesforholdHosUkjentArbeidsgiver',
     barnManglerIdentitetsnummer = 'barnManglerIdentitetsnummer',
+    /** Frontend kan ikke lese saken backend har gitt tilgang til. */
+    harUgyldigK9FormatSak = 'harUgyldigK9FormatSak',
     /** Årsak fra backend som frontend ikke kjenner. Vises med generell melding. */
     ukjent = 'ukjent',
 }
