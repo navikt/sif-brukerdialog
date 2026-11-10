@@ -33,6 +33,12 @@ morgan.token('correlation-id', (req) => {
     return (req.headers[CORRELATION_ID_HEADER] as string) || '-';
 });
 
+// Logger bare stien
+morgan.token('path', (req) => {
+    const url = (req as { originalUrl?: string }).originalUrl || req.url || '-';
+    return url.split('?')[0];
+});
+
 const stdoutLogger = winston.createLogger({
     level: level(),
     levels,
@@ -72,7 +78,7 @@ const stream = {
 };
 
 // Production optimized format - simple and efficient
-const prodFormat = ':method :url :status :res[content-length] - :response-time ms - :correlation-id';
+const prodFormat = ':method :path :status :res[content-length] - :response-time ms - :correlation-id';
 
 const morganMiddleware = morgan(prodFormat as any, {
     stream,

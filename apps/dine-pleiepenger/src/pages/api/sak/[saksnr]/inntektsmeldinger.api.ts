@@ -11,7 +11,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         if (!isValidSaksnummer(saksnr)) {
             const logger = getLogger(req);
-            logger.warn('Ugyldig saksnummer i forespørsel', { saksnr });
+            logger.warn('Ugyldig saksnummer i forespørsel');
             return res.status(400).json({ error: 'Saksnummer mangler eller er ugyldig' });
         }
 

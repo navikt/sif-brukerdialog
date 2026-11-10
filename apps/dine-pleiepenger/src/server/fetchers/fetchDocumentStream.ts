@@ -21,9 +21,8 @@ export async function fetchDocumentStream(
         const response = await fetch(url, { headers });
 
         if (!response.ok) {
-            throw new Error(
-                `Unexpected response fetching PDF (status ${response.status} ${response.statusText}) for path ${safePath}`,
-            );
+            // Stien logges ikke, fordi den kan inneholde fnr (organisasjonsnummer for privat arbeidsgiver)
+            throw new Error(`Unexpected response fetching PDF (status ${response.status} ${response.statusText})`);
         }
 
         if (!response.body) {
