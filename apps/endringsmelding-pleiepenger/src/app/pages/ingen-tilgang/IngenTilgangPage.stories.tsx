@@ -82,3 +82,17 @@ export const SøknadsperioderUtenforTillattEndringsperiode: Story = {
         årsak: [IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode],
     },
 };
+export const BarnManglerIdentitetsnummer: Story = {
+    name: 'barnManglerIdentitetsnummer',
+    args: {
+        søker,
+        årsak: [IngenTilgangÅrsak.barnManglerIdentitetsnummer],
+    },
+};
+export const UkjentÅrsak: Story = {
+    name: 'ukjent',
+    args: {
+        søker,
+        årsak: [IngenTilgangÅrsak.ukjent],
+    },
+};

@@ -98,6 +98,15 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                     <p>{beskjedTilOssGenerell}</p>
                 </BodyLong>
             );
+        case IngenTilgangÅrsak.barnManglerIdentitetsnummer:
+            return (
+                <BodyLong as="div" data-testid="barnManglerIdentitetsnummer">
+                    <p>
+                        <AppText id="ingenTilgangPage.barnManglerIdentitetsnummer.1" />
+                    </p>
+                    <p>{beskjedTilOssGenerell}</p>
+                </BodyLong>
+            );
         case IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode:
             return (
                 <BodyLong as="div" data-testid="søknadsperiodeAvsluttetFørTillattEndringsperiode">
@@ -116,6 +125,12 @@ const getÅrsakMelding = (årsak: IngenTilgangÅrsak) => {
                             values={{ SkrivTilOssLink: <SkrivTilOssLink key="lenke" /> }}
                         />
                     </p>
+                </BodyLong>
+            );
+        default:
+            return (
+                <BodyLong as="div" data-testid="ukjentÅrsak">
+                    <p>{beskjedTilOssGenerell}</p>
                 </BodyLong>
             );
     }
