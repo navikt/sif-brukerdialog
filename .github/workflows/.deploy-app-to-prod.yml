@@ -93,7 +93,7 @@ jobs:
 
     trivy:
         needs: [deploy-to-prod]
-        uses: navikt/sif-gha-workflows/.github/workflows/trivy.yml@main
+        uses: navikt/sif-gha-workflows/.github/workflows/trivy.yml@cb2d8a237714c848b24fc54f1e3368670aa9d072 # main
         permissions:
             contents: write
             security-events: write
