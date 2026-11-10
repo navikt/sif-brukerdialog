@@ -87,3 +87,6 @@ Deploy til dev skjer **ikke** automatisk ved merge til `main`. Det kjøres manue
 ## GitHub Copilot
 
 Repoet har et sett med Copilot-skills under [`.github/skills/`](.github/skills/) som gir Copilot domenekunnskap om vanlige oppgaver — som å legge til steg i en søknad, sette opp i18n, migrere skjemaer fra Formik til RHF og mer. Se [`.github/skills/README.md`](.github/skills/README.md) for oversikt.
+
+### Kode generert av GitHub Copilot
+Dette repoet bruker GitHub Copilot til å generere kode.
