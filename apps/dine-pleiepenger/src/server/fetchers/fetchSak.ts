@@ -11,6 +11,20 @@ import { exchangeTokenAndPrepRequest } from '../utils/exchangeTokenPrepRequest';
 import { serverApiUtils } from '../utils/serverApiUtils';
 import { assertValidSaksnummer } from '../utils/validatePathSegment';
 
+/**
+ * Ytelse mangler i generert schema. Tar bare med feltene klienten bruker, slik at resten av
+ * søknaden (bl.a. fnr for private arbeidsgivere) ikke sendes til nettleseren.
+ * Feltene er valgfrie for at oppslaget ikke skal feile oftere enn før; klientskjemaet validerer innholdet.
+ */
+const zYtelseISak = z.object({
+    type: z.string().optional(),
+    arbeidstid: z
+        .object({
+            arbeidstakerList: z.array(z.object({ organisasjonsnummer: z.string().nullish() })).optional(),
+        })
+        .optional(),
+});
+
 export const zSakDtoExtended = innsyn.zSakDto.extend({
     // zSakDto har feil format i forhold til generert skjema; transformeres her
     fagsakYtelseType: z.union([
@@ -22,7 +36,6 @@ export const zSakDtoExtended = innsyn.zSakDto.extend({
             })
             .transform((val) => val.kode),
     ]),
-    /** Ytelse mangler i generert schema, legger til slik at det ikke strippes ut */
     behandlinger: z.array(
         zBehandlingDto.extend({
             innsendelser: z.array(
@@ -30,7 +43,7 @@ export const zSakDtoExtended = innsyn.zSakDto.extend({
                     k9FormatInnsendelse: z
                         .optional(
                             zInnsending.extend({
-                                ytelse: z.any().optional(),
+                                ytelse: zYtelseISak.optional(),
                             }),
                         )
                         .nullable(),
