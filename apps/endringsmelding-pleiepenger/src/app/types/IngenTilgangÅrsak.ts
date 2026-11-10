@@ -7,4 +7,7 @@ export enum IngenTilgangÅrsak {
     harArbeidstidSomSelvstendigNæringsdrivende = 'harArbeidstidSomSelvstendigNæringsdrivende',
     enArbeidsgiverToAnsettelserSammeUkeMedOpphold = 'enArbeidsgiverToAnsettelserSammeUkeMedOpphold',
     harFlereAnsettelsesforholdHosUkjentArbeidsgiver = 'harFlereAnsettelsesforholdHosUkjentArbeidsgiver',
+    barnManglerIdentitetsnummer = 'barnManglerIdentitetsnummer',
+    /** Årsak fra backend som frontend ikke kjenner. Vises med generell melding. */
+    ukjent = 'ukjent',
 }
