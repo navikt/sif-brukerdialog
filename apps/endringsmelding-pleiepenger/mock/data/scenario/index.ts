@@ -1,6 +1,4 @@
 import { scenarioer, ScenarioType } from '@app/dev/scenarioer';
-import { getTillattEndringsperiode } from '@app/utils/endringsperiode';
-import { dateToISODate } from '@navikt/sif-common-utils';
 
 import { ArbeidsaktivitetUtenArbeidsgiver } from './arbeidsaktivitet-uten-arbeidsgiver/ArbeidsaktivitetUtenArbeidsgiver';
 import { ArbeidsgiverIkkeISak } from './arbeidsgiver-ikke-i-sak/ArbeidsgiverIkkeISak';
@@ -51,16 +49,13 @@ export const getScenarioMockData = (scenario: ScenarioType) => {
     return mockData[scenario];
 };
 
-/** Svar fra /tilgang for scenarioet. now må være samme dato som appen bruker (NOW eller dagens dato). */
-export const getTilgangMockData = (scenario: ScenarioType, now: Date) => {
+export type TilgangMockPeriode = { fom: string; tom: string };
+
+/**
+ * Svar fra /tilgang for scenarioet. Perioden sendes inn fordi denne filen også lastes av Playwright i Node,
+ * der dato-koden i appen ikke kan importeres.
+ */
+export const getTilgangMockData = (scenario: ScenarioType, tillattEndringsperiode: TilgangMockPeriode) => {
     const årsak = scenarioer.find((s) => s.value === scenario)?.ingenTilgangÅrsak;
-    if (årsak) {
-        return { kanBruke: false, årsaker: [årsak] };
-    }
-    const { from, to } = getTillattEndringsperiode(now);
-    return {
-        kanBruke: true,
-        årsaker: [],
-        tillattEndringsperiode: { fom: dateToISODate(from), tom: dateToISODate(to) },
-    };
+    return årsak ? { kanBruke: false, årsaker: [årsak] } : { kanBruke: true, årsaker: [], tillattEndringsperiode };
 };

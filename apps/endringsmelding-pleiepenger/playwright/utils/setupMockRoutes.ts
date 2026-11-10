@@ -1,8 +1,18 @@
-import { scenarioer, ScenarioType } from '@app/dev/scenarioer';
+import { ScenarioType } from '@app/dev/scenarioer';
 import { Page } from '@playwright/test';
+import dayjs from 'dayjs';
 
 import { getScenarioMockData, getTilgangMockData } from '../../mock/data/scenario';
 import { getPlaywrightAppSettings } from '../playwrightAppSettings';
+
+/** Samme regel som getTillattEndringsperiode i appen. Den kan ikke importeres her, se getTilgangMockData. */
+const getTillattEndringsperiode = () => {
+    const now = dayjs(getPlaywrightAppSettings().NOW);
+    return {
+        fom: now.startOf('month').subtract(3, 'months').format('YYYY-MM-DD'),
+        tom: now.add(12, 'months').endOf('month').format('YYYY-MM-DD'),
+    };
+};
 
 export const setupScenarioMockRoutes = async (page: Page, scenario: ScenarioType) => {
     const mockData = getScenarioMockData(scenario);
@@ -16,9 +26,10 @@ export const setupScenarioMockRoutes = async (page: Page, scenario: ScenarioType
         await route.fulfill({ status: 200, body: JSON.stringify(mockData.sak) });
     });
     await page.route('**/psb/endringsmelding/tilgang', async (route) => {
-        const brukDagensDato = scenarioer.find((s) => s.value === scenario)?.brukDagensDato;
-        const now = brukDagensDato ? new Date() : new Date(getPlaywrightAppSettings().NOW);
-        await route.fulfill({ status: 200, body: JSON.stringify(getTilgangMockData(scenario, now)) });
+        await route.fulfill({
+            status: 200,
+            body: JSON.stringify(getTilgangMockData(scenario, getTillattEndringsperiode())),
+        });
     });
 };
 
