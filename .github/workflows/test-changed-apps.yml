@@ -189,7 +189,6 @@ jobs:
             app-name: "endringsmelding-pleiepenger"
             working-directory: "apps/endringsmelding-pleiepenger"
             package-name: "@navikt/endringsmelding-pleiepenger"
-            playwright-with-deps: true
 
     test-omsorgsdager-aleneomsorg-dialog:
         needs: detect-changes
@@ -279,7 +278,6 @@ jobs:
             app-name: "pleiepenger-sykt-barn"
             working-directory: "apps/pleiepenger-sykt-barn"
             package-name: "@navikt/pleiepenger-sykt-barn"
-            playwright-with-deps: true
 
     test-sif-ettersending:
         needs: detect-changes
