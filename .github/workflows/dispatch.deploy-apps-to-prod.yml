@@ -162,6 +162,7 @@ jobs:
             working-directory: "apps/endringsmelding-pleiepenger"
             use-cdn: true
             package-name: "@navikt/endringsmelding-pleiepenger"
+            playwright-with-deps: true
 
     deploy-omsorgsdager-aleneomsorg-dialog:
         if: |
@@ -274,6 +275,7 @@ jobs:
             working-directory: "apps/pleiepenger-sykt-barn"
             use-cdn: true
             package-name: "@navikt/pleiepenger-sykt-barn"
+            playwright-with-deps: true
 
     deploy-sif-ettersending:
         if: |
