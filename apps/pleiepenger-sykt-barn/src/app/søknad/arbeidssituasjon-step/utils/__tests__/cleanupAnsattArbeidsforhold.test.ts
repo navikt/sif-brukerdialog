@@ -3,7 +3,7 @@ import { ISODateToDate } from '@navikt/sif-common-utils';
 import { vi } from 'vitest';
 
 import { ArbeiderIPeriodenSvar } from '../../../../local-sif-common-pleiepenger';
-import { ArbeidsgiverType, TimerEllerProsent } from '../../../../types';
+import { ArbeidsgiverType } from '../../../../types';
 import { ArbeidsforholdFormValues } from '../../../../types/søknad-form-values/ArbeidsforholdFormValues';
 import { cleanupAnsattArbeidsforhold } from '../cleanupArbeidssituasjonStep';
 
@@ -17,7 +17,6 @@ const ansattArbeidsforhold: ArbeidsforholdFormValues = {
     },
     arbeidIPeriode: {
         arbeiderIPerioden: ArbeiderIPeriodenSvar.redusert,
-        timerEllerProsent: TimerEllerProsent.PROSENT,
         snittTimerPerUke: '20',
     },
     erAnsatt: YesOrNo.YES,

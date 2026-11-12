@@ -15,8 +15,8 @@ describe('arbeidUtils', () => {
         const arbeiderRedusert: ArbeidIPeriodeSøknadsdata = {
             type: ArbeidIPeriodeType.arbeiderRedusert,
             redusertArbeid: {
-                type: RedusertArbeidstidType.prosentAvNormalt,
-                prosentAvNormalt: 20,
+                type: RedusertArbeidstidType.timerISnittPerUke,
+                timerISnittPerUke: 8,
             },
         };
 

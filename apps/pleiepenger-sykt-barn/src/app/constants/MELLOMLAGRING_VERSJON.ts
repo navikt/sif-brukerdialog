@@ -1,2 +1,2 @@
-/** Normalarbeidstid for frilansere med oppdrag, men som ikke er frilansere */
-export const MELLOMLAGRING_VERSJON = '14.4.0';
+/** Fjernet mulighet for å oppgi arbeid i perioden i prosent */
+export const MELLOMLAGRING_VERSJON = '14.5.0';

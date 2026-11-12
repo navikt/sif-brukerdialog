@@ -4,7 +4,6 @@ import { DateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils';
 import { vi } from 'vitest';
 
 import { ArbeiderIPeriodenSvar } from '../../../../local-sif-common-pleiepenger';
-import { TimerEllerProsent } from '../../../../types';
 import {
     ArbeidIPeriodeFormValues,
     ArbeidsukerFormValues,
@@ -27,9 +26,7 @@ describe('cleanupArbeidstidStepUtils', () => {
             arbeiderIPerioden: ArbeiderIPeriodenSvar.somVanlig,
             arbeidsuker: {},
             erLiktHverUke: YesOrNo.YES,
-            prosentAvNormalt: '50',
             snittTimerPerUke: '10',
-            timerEllerProsent: TimerEllerProsent.TIMER,
         };
 
         it('bruker arbeider som normalt', () => {
@@ -53,36 +50,17 @@ describe('cleanupArbeidstidStepUtils', () => {
                 expect(rest).toEqual({});
             }
         });
-        it('bruker jobber prosent av normalt', () => {
-            const result = cleanupArbeidIPeriode(periode, {
-                ...arbeidFormValues,
-                arbeiderIPerioden: ArbeiderIPeriodenSvar.redusert,
-                erLiktHverUke: YesOrNo.YES,
-                timerEllerProsent: TimerEllerProsent.PROSENT,
-            });
-            expect(result).toBeDefined();
-            if (result) {
-                const { arbeiderIPerioden, erLiktHverUke, timerEllerProsent, prosentAvNormalt, ...rest } = result;
-                expect(arbeiderIPerioden).toEqual(ArbeiderIPeriodenSvar.redusert);
-                expect(erLiktHverUke).toEqual(YesOrNo.YES);
-                expect(timerEllerProsent).toEqual(TimerEllerProsent.PROSENT);
-                expect(prosentAvNormalt).toEqual('50');
-                expect(rest).toEqual({});
-            }
-        });
         it('bruker jobber timer hver uke', () => {
             const result = cleanupArbeidIPeriode(periode, {
                 ...arbeidFormValues,
                 arbeiderIPerioden: ArbeiderIPeriodenSvar.redusert,
                 erLiktHverUke: YesOrNo.YES,
-                timerEllerProsent: TimerEllerProsent.TIMER,
             });
             expect(result).toBeDefined();
             if (result) {
-                const { arbeiderIPerioden, erLiktHverUke, timerEllerProsent, snittTimerPerUke, ...rest } = result;
+                const { arbeiderIPerioden, erLiktHverUke, snittTimerPerUke, ...rest } = result;
                 expect(arbeiderIPerioden).toEqual(ArbeiderIPeriodenSvar.redusert);
                 expect(erLiktHverUke).toEqual(YesOrNo.YES);
-                expect(timerEllerProsent).toEqual(TimerEllerProsent.TIMER);
                 expect(snittTimerPerUke).toEqual('10');
                 expect(rest).toEqual({});
             }

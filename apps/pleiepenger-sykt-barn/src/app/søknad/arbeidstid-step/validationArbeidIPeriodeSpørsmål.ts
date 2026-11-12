@@ -4,7 +4,6 @@ import { getNumberValidator, getRequiredFieldValidator, ValidateNumberError } fr
 
 import { AppIntlShape } from '../../i18n';
 import { ArbeidIPeriodeIntlValues } from '../../local-sif-common-pleiepenger';
-import { getArbeidstidFastProsentValidator } from '../../local-sif-common-pleiepenger/utils/arbeidstidValidation';
 import { ArbeidsukeInfo } from '../../types/ArbeidsukeInfo';
 import { ArbeidIPeriodeFormField } from '../../types/søknad-form-values/ArbeidIPeriodeFormValues';
 import { formatTimerOgMinutter } from '../../utils/formatTimerOgMinutter';
@@ -37,32 +36,6 @@ export const getArbeidIPeriodeErLiktHverUkeValidator = (intlValues: ArbeidIPerio
           }
         : undefined;
 };
-
-export const getArbeidIPeriodeTimerEllerProsentValidator = (intlValues: ArbeidIPeriodeIntlValues) => (value: any) => {
-    const error = getRequiredFieldValidator()(value);
-    if (error) {
-        return {
-            key: getErrorIntlKey(ArbeidIPeriodeFormField.timerEllerProsent, error),
-            values: intlValues,
-            keepKeyUnaltered: true,
-        };
-    }
-    return undefined;
-};
-
-export const getArbeidIPeriodeProsentAvNormaltValidator =
-    (intlValues: ArbeidIPeriodeIntlValues, ukenummer?: number) => (value: string) => {
-        const ukeinfo = ukenummer !== undefined ? `${ukenummer}` : undefined;
-        const { min, max } = ukeinfo ? { min: 0, max: 100 } : { min: 1, max: 99 };
-        const error = getArbeidstidFastProsentValidator({ min, max })(value);
-        return error
-            ? {
-                  key: getErrorIntlKey(ArbeidIPeriodeFormField.prosentAvNormalt, error.key),
-                  values: { ...intlValues, min, max, ukeinfo },
-                  keepKeyUnaltered: true,
-              }
-            : undefined;
-    };
 
 export const getArbeidIPeriodeSnittTimerPerUkeValidator =
     (intl: AppIntlShape, intlValues: ArbeidIPeriodeIntlValues, timerNormalt: number) => (value: string) => {

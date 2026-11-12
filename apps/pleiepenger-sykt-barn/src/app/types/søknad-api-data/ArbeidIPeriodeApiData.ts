@@ -14,10 +14,6 @@ export type ArbeidsukeTimerApiData = {
 interface ArbeiderRedusertBase {
     type: RedusertArbeidstidType;
 }
-interface ArbeiderRedusertProsentAvNormalt extends ArbeiderRedusertBase {
-    type: RedusertArbeidstidType.prosentAvNormalt;
-    prosentAvNormalt: number;
-}
 interface ArbeiderRedusertTimerISnittPerUke extends ArbeiderRedusertBase {
     type: RedusertArbeidstidType.timerISnittPerUke;
     timerPerUke: ISODuration;
@@ -28,10 +24,7 @@ interface ArbeiderReduserUlikeUkerTimer extends ArbeiderRedusertBase {
     arbeidsuker: ArbeidsukeTimerApiData[];
 }
 
-export type ArbeidRedusertIPeriodeApiData =
-    | ArbeiderRedusertTimerISnittPerUke
-    | ArbeiderRedusertProsentAvNormalt
-    | ArbeiderReduserUlikeUkerTimer;
+export type ArbeidRedusertIPeriodeApiData = ArbeiderRedusertTimerISnittPerUke | ArbeiderReduserUlikeUkerTimer;
 
 export interface ArbeidIPeriodeApiDataIkkeBesvart {
     type: ArbeidIPeriodeType.ikkeBesvart;
