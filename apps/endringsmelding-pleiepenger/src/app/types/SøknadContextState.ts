@@ -7,7 +7,6 @@ import { ArbeidsgiverMedAnsettelseperioder } from './ArbeidsgiverMedAnsettelsepe
 import { K9Sak } from './K9Sak';
 import { Sak } from './Sak';
 import { Søknadsdata } from './Søknadsdata';
-import { TimerEllerProsent } from './TimerEllerProsent';
 import { ValgteEndringer } from './ValgteEndringer';
 
 export interface SøknadContextState {
@@ -24,11 +23,6 @@ export interface SøknadContextState {
     valgteEndringer: ValgteEndringer;
     valgteEndringerInitielt: ValgteEndringer;
     søknadSteps: StepId[];
-    inputPreferanser: SøknadContextInputPreferanse;
     /** Antall saker hvor siste søknadsperiode slutter før gyldig endringsperiode */
     antallSakerFørEndringsperiode: number;
-}
-
-export interface SøknadContextInputPreferanse {
-    timerEllerProsent: TimerEllerProsent;
 }

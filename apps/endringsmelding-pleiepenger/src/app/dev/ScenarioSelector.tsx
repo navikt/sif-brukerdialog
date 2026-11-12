@@ -1,16 +1,35 @@
-import { BodyShort, Button, ExpansionCard, Radio, RadioGroup, VStack } from '@navikt/ds-react';
+import { BodyShort, Button, ExpansionCard, HStack, Radio, RadioGroup, VStack } from '@navikt/ds-react';
 import { RadioCard, RadioCardGroup } from '@navikt/ds-react/PREVIEW';
 import { useState } from 'react';
 
 import { useMellomlagring, useSøknadContext } from '../hooks';
 import actionsCreator from '../søknad/context/action/actionCreator';
 import { relocateToWelcomePage } from '../utils';
-import { getScenarioFromLocalStorage, saveScenarioToLocalStorage, Scenario, scenarioer } from './scenarioer';
+import {
+    getScenarioFromLocalStorage,
+    nullstillScenarioer,
+    saveScenarioToLocalStorage,
+    Scenario,
+    scenarioer,
+    ScenarioType,
+} from './scenarioer';
 
 export const ScenarioSelector = () => {
     const [scenario, setScenario] = useState<Scenario>(getScenarioFromLocalStorage());
+    const aktivtScenario = getScenarioFromLocalStorage();
     const { slettMellomlagring } = useMellomlagring();
     const { dispatch } = useSøknadContext();
+
+    const startPåNytt = () =>
+        slettMellomlagring().then(() => {
+            dispatch(actionsCreator.resetSøknad());
+            relocateToWelcomePage();
+        });
+
+    const nullstill = (scenarioerSomSkalNullstilles: ScenarioType[]) => {
+        nullstillScenarioer(scenarioerSomSkalNullstilles);
+        startPåNytt();
+    };
 
     const setScenarioFromValue = (value: string) => {
         const scenarioFromValue = scenarioer.find((s) => s.value === value);
@@ -76,15 +95,31 @@ export const ScenarioSelector = () => {
                     type="button"
                     style={{ width: '100%' }}
                     onClick={() => {
-                        slettMellomlagring().then(() => {
-                            dispatch(actionsCreator.resetSøknad());
-                            saveScenarioToLocalStorage(scenario);
-                            relocateToWelcomePage();
-                        });
+                        saveScenarioToLocalStorage(scenario);
+                        startPåNytt();
                     }}>
                     Velg
                 </Button>
             </div>
+            <VStack gap="space-8">
+                <BodyShort>Nullstill innsendte endringer, slik at scenarioet starter med opprinnelige data.</BodyShort>
+                <HStack gap="space-8">
+                    <Button
+                        type="button"
+                        variant="secondary"
+                        size="small"
+                        onClick={() => nullstill([aktivtScenario.value])}>
+                        Nullstill «{aktivtScenario.name}»
+                    </Button>
+                    <Button
+                        type="button"
+                        variant="secondary"
+                        size="small"
+                        onClick={() => nullstill(scenarioer.map(({ value }) => value))}>
+                        Nullstill alle scenarioer
+                    </Button>
+                </HStack>
+            </VStack>
         </VStack>
     );
 };

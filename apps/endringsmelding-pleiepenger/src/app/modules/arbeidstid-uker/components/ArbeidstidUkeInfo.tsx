@@ -4,7 +4,6 @@ import { XMarkOctagonFillIcon } from '@navikt/aksel-icons';
 import { BodyShort } from '@navikt/ds-react';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 import { DurationText } from '@navikt/sif-common-ui';
-import { useIntl } from 'react-intl';
 
 import { erArbeidstidUkeItemEndret } from '../arbeidstidUkerUtils';
 import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
@@ -16,7 +15,6 @@ interface Props {
 }
 
 const ArbeidstidUkeInfo = ({ uke, medLabels = false, visEndringSomOpprinnelig }: Props) => {
-    const intl = useIntl();
     if (uke.endret === undefined) {
         return (
             <>
@@ -30,7 +28,6 @@ const ArbeidstidUkeInfo = ({ uke, medLabels = false, visEndringSomOpprinnelig }:
     const erEndret = erArbeidstidUkeItemEndret(uke);
 
     if (erEndret === false || visEndringSomOpprinnelig) {
-        const { endretProsent } = uke.endret;
         return (
             <>
                 {medLabels && (
@@ -41,13 +38,10 @@ const ArbeidstidUkeInfo = ({ uke, medLabels = false, visEndringSomOpprinnelig }:
                 <span data-testid="timer-faktisk">
                     <DurationText duration={uke.endret.faktisk} />
                 </span>
-                {endretProsent !== undefined && (
-                    <span className="endretArbeidstid__prosent"> ({intl.formatNumber(endretProsent)} %)</span>
-                )}
             </>
         );
     }
-    const { faktisk, endretProsent } = uke.endret;
+    const { faktisk } = uke.endret;
     const erEndringGyldig = erTimerGyldigInnenforAntallDager(faktisk, uke.antallDagerMedArbeidstid);
 
     return (
@@ -57,9 +51,6 @@ const ArbeidstidUkeInfo = ({ uke, medLabels = false, visEndringSomOpprinnelig }:
                 <strong className="endretArbeidstid__timer" data-testid="timer-faktisk">
                     <DurationText duration={faktisk} />
                 </strong>
-                {endretProsent !== undefined && (
-                    <span className="endretArbeidstid__prosent"> ({intl.formatNumber(endretProsent)} %)</span>
-                )}
             </div>
 
             <div>

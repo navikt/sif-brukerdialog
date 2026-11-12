@@ -5,7 +5,6 @@ import {
     ArbeidsforholdAktivt,
     ArbeidsgiverMedAnsettelseperioder,
     ArbeidstidSøknadsdata,
-    TimerEllerProsent,
     UkjentArbeidsforholdApiData,
 } from '../../../types';
 import {
@@ -68,8 +67,7 @@ describe('getUkjentArbeidsforholdApiDataFromSøknadsdata', () => {
             a_123: {
                 endringer: {
                     '2020-01-01/2020-02-01': {
-                        type: TimerEllerProsent.PROSENT,
-                        prosent: 50,
+                        timer: 50,
                     },
                 },
             },

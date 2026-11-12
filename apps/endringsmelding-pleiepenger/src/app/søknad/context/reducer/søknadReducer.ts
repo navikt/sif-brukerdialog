@@ -209,14 +209,6 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     sak: action.payload.sak,
                 };
-            case SøknadContextActionKeys.SET_INPUT_PREFERANSER:
-                return {
-                    ...state,
-                    inputPreferanser: {
-                        ...state.inputPreferanser,
-                        ...action.payload.inputPreferanser,
-                    },
-                };
 
             default:
                 // eslint-disable-next-line no-console

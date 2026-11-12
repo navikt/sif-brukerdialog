@@ -5,7 +5,6 @@ import {
     EndringType,
     LovbestemtFerieSøknadsdata,
     Sak,
-    SøknadContextInputPreferanse,
     UkjentArbeidsforholdSøknadsdata,
 } from '@app/types';
 
@@ -29,7 +28,6 @@ export enum SøknadContextActionKeys {
     SET_ENDRINGSMELDING_SENDT = 'setEndringsmeldingSendt',
     SET_UNSUBMITTED_STEP_FORM_VALUES = 'setUnsubmittedStepFormValues',
     CLEAR_STEP_SØKNADSDATA = 'clearStepSøknadsdata',
-    SET_INPUT_PREFERANSER = 'setInputPreferanser',
     LEGG_TIL_VALGT_ENDRING = 'leggTilValgtEndring',
 }
 
@@ -94,11 +92,6 @@ interface SetSøknadHarBekreftetOpplysninger {
 interface ClearStepSøknadsdata {
     type: SøknadContextActionKeys.CLEAR_STEP_SØKNADSDATA;
     payload: { stepId: StepId };
-}
-
-interface SetInputPreferanser {
-    type: SøknadContextActionKeys.SET_INPUT_PREFERANSER;
-    payload: { inputPreferanser: Partial<SøknadContextInputPreferanse> };
 }
 
 const setSak = (sak: Sak): SetSak => ({
@@ -176,13 +169,6 @@ const clearStepSøknadsdata = (stepId: StepId): ClearStepSøknadsdata => ({
     },
 });
 
-const setInputPreferanser = (inputPreferanser: SøknadContextInputPreferanse): SetInputPreferanser => ({
-    type: SøknadContextActionKeys.SET_INPUT_PREFERANSER,
-    payload: {
-        inputPreferanser,
-    },
-});
-
 export type SøknadContextAction =
     | SetSak
     | AvbrytSøknad
@@ -199,8 +185,7 @@ export type SøknadContextAction =
     | SetSøknadTilsynsordning
     | SetSøknadRoute
     | SetEndringsmeldingSendt
-    | StartSøknad
-    | SetInputPreferanser;
+    | StartSøknad;
 
 const actionsCreator = {
     setSak,
@@ -219,7 +204,6 @@ const actionsCreator = {
     setEndringsmeldingSendt,
     startSøknad,
     leggTilValgtEndring,
-    setInputPreferanser,
 };
 
 export default actionsCreator;

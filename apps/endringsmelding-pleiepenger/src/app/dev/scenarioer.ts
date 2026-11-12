@@ -28,6 +28,13 @@ export interface Scenario {
 
 export const scenarioer: Scenario[] = [
     {
+        name: 'Brukertest 2026',
+        value: 'brukertest-2026',
+        harTilgang: true,
+        brukDagensDato: true,
+        fremhevet: true,
+    },
+    {
         name: 'Én arbeidsgiver - en periode',
         value: 'en-arbeidsgiver-en-periode',
         harTilgang: true,
@@ -102,13 +109,6 @@ export const scenarioer: Scenario[] = [
         value: 'en-arbeidsgiver-to-ansettelser-samme-uke-uten-opphold',
         harTilgang: true,
     },
-    {
-        name: 'Brukertest 2026',
-        value: 'brukertest-2026',
-        harTilgang: true,
-        brukDagensDato: true,
-        fremhevet: true,
-    },
 ];
 
 export const defaultScenario = scenarioer[0];
@@ -121,4 +121,11 @@ export const getScenarioFromLocalStorage = (): Scenario => {
 
 export const saveScenarioToLocalStorage = (scenario: Scenario) => {
     localStorage.setItem('scenario', scenario.value);
+};
+
+/** Innsendte endringer lagres per scenario av mock-backend (MSW) */
+export const getInnsendtSakStorageKey = (scenario: ScenarioType) => `sak-endring-psb-${scenario}`;
+
+export const nullstillScenarioer = (scenarioerSomSkalNullstilles: ScenarioType[]) => {
+    scenarioerSomSkalNullstilles.forEach((scenario) => localStorage.removeItem(getInnsendtSakStorageKey(scenario)));
 };
