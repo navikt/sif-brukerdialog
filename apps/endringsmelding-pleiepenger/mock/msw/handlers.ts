@@ -1,7 +1,9 @@
 import { getScenarioFromLocalStorage } from '@app/dev/scenarioer';
+import { getTillattEndringsperiode } from '@app/utils/endringsperiode';
+import { dateToISODate } from '@navikt/sif-common-utils';
 import { delay, http, HttpResponse, passthrough } from 'msw';
 
-import { getScenarioMockData } from '../data/scenario';
+import { getScenarioMockData, getTilgangMockData } from '../data/scenario';
 
 const baseUrl = '*';
 
@@ -27,7 +29,10 @@ export const getHandlers = () => {
             return new HttpResponse(JSON.stringify(arbeidsgiver), { status: 200 });
         }),
         http.get(`${baseUrl}/psb/endringsmelding/tilgang`, () => {
-            return HttpResponse.json({ kanBruke: true, årsaker: [] });
+            const { from, to } = getTillattEndringsperiode(new Date());
+            return HttpResponse.json(
+                getTilgangMockData(scenario.value, { fom: dateToISODate(from), tom: dateToISODate(to) }),
+            );
         }),
         http.get(`${baseUrl}/mellomlagring/ENDRINGSMELDING_PLEIEPENGER_SYKT_BARN`, () => {
             const data = localStorage.getItem(MellomlagringStorageKey);

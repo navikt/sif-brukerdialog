@@ -29,13 +29,12 @@ describe('isSøknadInitialDataErrorState', () => {
 
 describe('mapInitialDataError', () => {
     it('mapper IngenTilgangError til success med kanBrukeSøknad false', () => {
-        const error = new IngenTilgangError([IngenTilgangÅrsak.harMerEnnEnSak], { erArbeidstaker: true });
+        const error = new IngenTilgangError([IngenTilgangÅrsak.harMerEnnEnSak]);
 
         expect(mapInitialDataError(error, søker)).toEqual({
             status: RequestStatus.success,
             kanBrukeSøknad: false,
             årsak: [IngenTilgangÅrsak.harMerEnnEnSak],
-            ingenTilgangMeta: { erArbeidstaker: true },
             søker,
         });
     });

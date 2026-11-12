@@ -1,4 +1,4 @@
-import { IngenTilgangÅrsak, IngenTilgangMeta, RequestStatus, SøknadInitialDataState } from '@app/types';
+import { IngenTilgangÅrsak, RequestStatus, SøknadInitialDataState } from '@app/types';
 import { Søker } from '@navikt/sif-common-api';
 import { isForbidden, isUnauthorized } from '@navikt/sif-common-core-ds/src/utils/apiUtils';
 import { isAxiosError } from 'axios';
@@ -7,18 +7,15 @@ import { isAxiosError } from 'axios';
  * Signaliserer at bruker ikke kan bruke søknaden. Dette er et forventet utfall, ikke en teknisk feil,
  * og mappes til RequestStatus.success med kanBrukeSøknad: false i mapInitialDataError.
  *
- * Kastes som en Error slik at reglene kan avbryte lastingen der de står, uten at hvert kallsted
- * må videreformidle et resultatobjekt.
+ * Kastes som en Error slik at lastingen avbrytes der avslaget oppdages.
  */
 export class IngenTilgangError extends Error {
     readonly årsak: IngenTilgangÅrsak[];
-    readonly ingenTilgangMeta?: IngenTilgangMeta;
 
-    constructor(årsak: IngenTilgangÅrsak[], ingenTilgangMeta?: IngenTilgangMeta) {
+    constructor(årsak: IngenTilgangÅrsak[]) {
         super(`Ingen tilgang: ${årsak.join(', ')}`);
         this.name = 'IngenTilgangError';
         this.årsak = årsak;
-        this.ingenTilgangMeta = ingenTilgangMeta;
     }
 }
 
@@ -48,8 +45,7 @@ export const mapInitialDataError = (error: unknown, søker?: Søker): SøknadIni
             status: RequestStatus.success,
             kanBrukeSøknad: false,
             årsak: error.årsak,
-            ingenTilgangMeta: error.ingenTilgangMeta,
-            /** Tilgangsreglene kjøres først etter at søker er hentet, så søker er alltid satt her. */
+            /** Avslaget kastes først etter at søker er hentet, så søker er alltid satt her. */
             søker: søker as Søker,
         };
     }

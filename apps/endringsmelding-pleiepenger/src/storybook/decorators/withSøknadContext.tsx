@@ -28,7 +28,6 @@ export const initialStateStorybook: SøknadContextState = {
         from: new Date(),
         to: new Date(),
     },
-    antallSakerFørEndringsperiode: 2,
     søknadSteps: [StepId.UKJENT_ARBEIDSFOHOLD, StepId.LOVBESTEMT_FERIE, StepId.ARBEIDSTID],
     sak: {
         ...sakMock,

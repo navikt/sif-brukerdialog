@@ -2,7 +2,6 @@ import { IngenTilgangÅrsak } from '@app/types';
 import { Søker } from '@navikt/sif-common-api';
 
 import { SøknadInitialData } from '../hooks';
-import { IngenTilgangMeta } from './IngenTilgangMeta';
 import { RequestStatus } from './RequestStatus';
 
 type SøknadInitialSuccess = {
@@ -33,7 +32,6 @@ export type SøknadInitialIkkeTilgang = {
     kanBrukeSøknad: false;
     årsak: IngenTilgangÅrsak[];
     søker: Søker;
-    ingenTilgangMeta?: IngenTilgangMeta;
 };
 
 export type SøknadInitialDataState =

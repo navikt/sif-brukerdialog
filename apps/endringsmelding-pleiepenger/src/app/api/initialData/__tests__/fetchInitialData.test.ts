@@ -26,9 +26,8 @@ vi.mock('../../endpoints/arbeidsgivereEndpoint', () => ({
     arbeidsgivereEndpoint: { fetch: vi.fn() },
 }));
 
-vi.mock('../verifiserTilgangMotBackend', () => ({
-    hentBackendTilgang: vi.fn(() => Promise.resolve(undefined)),
-    verifiserTilgangMotBackend: <T>(frontendVurdering: Promise<T>) => frontendVurdering,
+vi.mock('../../endpoints/tilgangEndpoint', () => ({
+    tilgangEndpoint: { fetch: vi.fn() },
 }));
 
 vi.mock('../../endpoints/søknadStateEndpoint', () => ({
@@ -42,6 +41,7 @@ import { appLogger } from '@sif/apm';
 import { arbeidsgivereEndpoint } from '../../endpoints/arbeidsgivereEndpoint';
 import { sakerEndpoint } from '../../endpoints/sakerEndpoint';
 import { søknadStateEndpoint } from '../../endpoints/søknadStateEndpoint';
+import { tilgangEndpoint } from '../../endpoints/tilgangEndpoint';
 import { fetchInitialData } from '../fetchInitialData';
 
 const tillattEndringsperiode = {
@@ -51,19 +51,24 @@ const tillattEndringsperiode = {
 
 const søker = { fornavn: 'Ola', etternavn: 'Nordmann', fødselsnummer: '12345678901' } as any;
 
-const gyldigSak = {
-    ytelse: {
-        søknadsperioder: [{ from: ISODateToDate('2024-02-01'), to: ISODateToDate('2024-03-01') }],
-        arbeidstid: {},
-    },
-} as unknown as K9Sak;
+const lagSak = (from: string, to: string) =>
+    ({
+        ytelse: {
+            søknadsperioder: [{ from: ISODateToDate(from), to: ISODateToDate(to) }],
+            arbeidstid: {},
+        },
+    }) as unknown as K9Sak;
+
+const gyldigSak = lagSak('2024-02-01', '2024-03-01');
+const eldreSak = lagSak('2022-01-01', '2022-03-01');
 
 const httpError = (status: number) =>
     new AxiosError('feil', 'ERR_BAD_RESPONSE', {} as any, {}, { status, data: {} } as any);
 
 const settOppLykkeligSti = (): void => {
     vi.mocked(fetchSøker).mockResolvedValue(søker);
-    vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ k9Saker: [gyldigSak], eldreSaker: [] });
+    vi.mocked(tilgangEndpoint.fetch).mockResolvedValue({ kanBruke: true, tillattEndringsperiode });
+    vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ saker: [gyldigSak], antallUgyldige: 0 });
     vi.mocked(arbeidsgivereEndpoint.fetch).mockResolvedValue([]);
     vi.mocked(søknadStateEndpoint.fetch).mockResolvedValue(undefined);
 };
@@ -72,7 +77,6 @@ afterEach(() => {
     vi.clearAllMocks();
 });
 
-/** Feilene oppstår i selve kallene, før noen tilgangsregel er kjørt. */
 describe('fetchInitialData feilhåndtering', () => {
     beforeEach(() => {
         settOppLykkeligSti();
@@ -81,44 +85,51 @@ describe('fetchInitialData feilhåndtering', () => {
     describe('feil fra oppstartskallene', () => {
         it('mapper 451 fra søker til forbidden', async () => {
             vi.mocked(fetchSøker).mockRejectedValue(httpError(451));
-            await expect(fetchInitialData(tillattEndringsperiode)).rejects.toEqual({
+            await expect(fetchInitialData()).rejects.toEqual({
                 status: RequestStatus.forbidden,
             });
         });
 
         it('mapper 403 fra søker til forbidden', async () => {
             vi.mocked(fetchSøker).mockRejectedValue(httpError(403));
-            await expect(fetchInitialData(tillattEndringsperiode)).rejects.toEqual({
+            await expect(fetchInitialData()).rejects.toEqual({
                 status: RequestStatus.forbidden,
             });
         });
 
         it('mapper 401 fra søker til redirectingToLogin', async () => {
             vi.mocked(fetchSøker).mockRejectedValue(httpError(401));
-            await expect(fetchInitialData(tillattEndringsperiode)).rejects.toEqual({
+            await expect(fetchInitialData()).rejects.toEqual({
                 status: RequestStatus.redirectingToLogin,
             });
         });
 
         it('mapper ukjent http-feil fra søker til error', async () => {
             vi.mocked(fetchSøker).mockRejectedValue(httpError(500));
-            await expect(fetchInitialData(tillattEndringsperiode)).rejects.toMatchObject({
+            await expect(fetchInitialData()).rejects.toMatchObject({
                 status: RequestStatus.error,
             });
         });
     });
 
     describe('feil fra kall senere i kjeden', () => {
+        it('mapper 500 fra tilgang til error', async () => {
+            vi.mocked(tilgangEndpoint.fetch).mockRejectedValue(httpError(500));
+            await expect(fetchInitialData()).rejects.toMatchObject({
+                status: RequestStatus.error,
+            });
+        });
+
         it('mapper 451 fra arbeidsgivere til forbidden', async () => {
             vi.mocked(arbeidsgivereEndpoint.fetch).mockRejectedValue(httpError(451));
-            await expect(fetchInitialData(tillattEndringsperiode)).rejects.toEqual({
+            await expect(fetchInitialData()).rejects.toEqual({
                 status: RequestStatus.forbidden,
             });
         });
 
         it('mapper 401 fra arbeidsgivere til redirectingToLogin', async () => {
             vi.mocked(arbeidsgivereEndpoint.fetch).mockRejectedValue(httpError(401));
-            await expect(fetchInitialData(tillattEndringsperiode)).rejects.toEqual({
+            await expect(fetchInitialData()).rejects.toEqual({
                 status: RequestStatus.redirectingToLogin,
             });
         });
@@ -127,66 +138,79 @@ describe('fetchInitialData feilhåndtering', () => {
          *  slik at appen rendret uten data i stedet for å vise feilsiden. */
         it('mapper 500 fra arbeidsgivere til error, ikke til http-statuskoden', async () => {
             vi.mocked(arbeidsgivereEndpoint.fetch).mockRejectedValue(httpError(500));
-            await expect(fetchInitialData(tillattEndringsperiode)).rejects.toMatchObject({
+            await expect(fetchInitialData()).rejects.toMatchObject({
                 status: RequestStatus.error,
             });
         });
 
         it('mapper 500 fra mellomlagring til error', async () => {
             vi.mocked(søknadStateEndpoint.fetch).mockRejectedValue(httpError(500));
-            await expect(fetchInitialData(tillattEndringsperiode)).rejects.toMatchObject({
+            await expect(fetchInitialData()).rejects.toMatchObject({
                 status: RequestStatus.error,
             });
         });
 
         it('mapper feil som ikke er http-feil til error', async () => {
             vi.mocked(arbeidsgivereEndpoint.fetch).mockRejectedValue(new TypeError('uventet'));
-            await expect(fetchInitialData(tillattEndringsperiode)).rejects.toMatchObject({
+            await expect(fetchInitialData()).rejects.toMatchObject({
                 status: RequestStatus.error,
             });
         });
     });
 });
 
-describe('fetchInitialData tilgangskontroll', () => {
+describe('fetchInitialData tilgang', () => {
     beforeEach(() => {
         settOppLykkeligSti();
     });
 
-    it('beholder årsak og beriker med søker når bruker ikke har sak', async () => {
-        vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ k9Saker: [], eldreSaker: [] });
-        await expect(fetchInitialData(tillattEndringsperiode)).rejects.toMatchObject({
-            status: RequestStatus.success,
-            kanBrukeSøknad: false,
-            årsak: [IngenTilgangÅrsak.harIngenSak],
-            søker,
-        });
-    });
-
-    it('returnerer data når alt går bra', async () => {
-        await expect(fetchInitialData(tillattEndringsperiode)).resolves.toMatchObject({
+    it('returnerer data med endringsperioden fra backend', async () => {
+        await expect(fetchInitialData()).resolves.toMatchObject({
             søker,
             k9saker: [gyldigSak],
             arbeidsgivere: [],
-            antallSakerFørEndringsperiode: 0,
+            tillattEndringsperiode,
         });
     });
-});
 
-describe('fetchInitialData loggIngenSaker', () => {
-    beforeEach(() => {
-        settOppLykkeligSti();
+    it('velger saken i endringsperioden når bruker også har en eldre sak', async () => {
+        vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ saker: [eldreSak, gyldigSak], antallUgyldige: 0 });
+        await expect(fetchInitialData()).resolves.toMatchObject({ k9saker: [gyldigSak] });
     });
 
-    it('logger når bruker verken har saker i eller før endringsperioden', async () => {
-        vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ k9Saker: [], eldreSaker: [] });
-        await fetchInitialData(tillattEndringsperiode).catch(() => undefined);
-        expect(appLogger.logInfo).toHaveBeenCalledWith('fetchInitialData.ingenSaker');
+    it('gir årsakene fra backend og henter ikke saker når bruker ikke har tilgang', async () => {
+        vi.mocked(tilgangEndpoint.fetch).mockResolvedValue({
+            kanBruke: false,
+            årsaker: [IngenTilgangÅrsak.harMerEnnEnSak],
+        });
+        await expect(fetchInitialData()).rejects.toEqual({
+            status: RequestStatus.success,
+            kanBrukeSøknad: false,
+            årsak: [IngenTilgangÅrsak.harMerEnnEnSak],
+            søker,
+        });
+        expect(sakerEndpoint.fetch).not.toHaveBeenCalled();
     });
 
-    it('logger ikke når bruker har en eldre sak', async () => {
-        vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ k9Saker: [], eldreSaker: [gyldigSak] });
-        await fetchInitialData(tillattEndringsperiode).catch(() => undefined);
-        expect(appLogger.logInfo).not.toHaveBeenCalledWith('fetchInitialData.ingenSaker');
+    it.each([
+        { beskrivelse: 'ingen aktuelle saker', saker: [eldreSak], antallAktuelle: 0 },
+        { beskrivelse: 'flere aktuelle saker', saker: [gyldigSak, gyldigSak], antallAktuelle: 2 },
+    ])('gir feilside og logger når frontend finner $beskrivelse etter tilgang', async ({ saker, antallAktuelle }) => {
+        vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ saker, antallUgyldige: 0 });
+        await expect(fetchInitialData()).rejects.toMatchObject({ status: RequestStatus.error });
+        expect(appLogger.logInfo).toHaveBeenCalledWith(
+            `fetchInitialData.fantIkkeSak antallGyldigeSaker=${saker.length} antallAktuelleSaker=${antallAktuelle} antallUgyldigeSaker=0`,
+        );
+        expect(arbeidsgivereEndpoint.fetch).not.toHaveBeenCalled();
+    });
+
+    it('gir melding om ugyldig format når eneste aktuelle sak ikke kan leses', async () => {
+        vi.mocked(sakerEndpoint.fetch).mockResolvedValue({ saker: [eldreSak], antallUgyldige: 1 });
+        await expect(fetchInitialData()).rejects.toEqual({
+            status: RequestStatus.success,
+            kanBrukeSøknad: false,
+            årsak: [IngenTilgangÅrsak.harUgyldigK9FormatSak],
+            søker,
+        });
     });
 });

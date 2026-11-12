@@ -3,7 +3,7 @@ import arbeidsgiver from './arbeidsgiver-mock';
 import sak from './sak-mock';
 import søker from './søker-mock';
 
-export const UgyldigK9Format: ScenarioData = {
+export const BarnManglerIdentitetsnummer: ScenarioData = {
     sak,
     arbeidsgiver,
     søker,

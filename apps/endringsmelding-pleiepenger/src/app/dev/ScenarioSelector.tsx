@@ -22,8 +22,8 @@ export const ScenarioSelector = () => {
     const fremhevetScenarioer = scenarioer.filter(({ fremhevet }) => fremhevet === true);
     const vanligeScenarioer = scenarioer.filter(({ fremhevet }) => fremhevet !== true);
 
-    const tilgangScenarioer = vanligeScenarioer.filter(({ harTilgang }) => harTilgang === true);
-    const stoppetScenarioer = vanligeScenarioer.filter(({ harTilgang }) => harTilgang === false);
+    const tilgangScenarioer = vanligeScenarioer.filter(({ ingenTilgangÅrsak }) => !ingenTilgangÅrsak);
+    const stoppetScenarioer = vanligeScenarioer.filter(({ ingenTilgangÅrsak }) => !!ingenTilgangÅrsak);
 
     return (
         <VStack gap="space-32">
