@@ -36,6 +36,8 @@ interface ArbeidstidMetadata {
     dagerBakoverArb?: number;
     /** Antall dager mellom dagens dato og siste dag endret */
     dagerFremoverArb?: number;
+    /** Antall dager fra og med første til og med siste dag endret */
+    dagerITidsromArb?: number;
 }
 
 interface ArbeidsgiverIkkeIAaregMetadata {
@@ -57,12 +59,12 @@ interface OmsorgstilbudMetadata {
     dagerBakoverOms?: number;
     /** Antall dager mellom dagens dato og siste dag endret */
     dagerFremoverOms?: number;
+    /** Antall dager fra og med første til og med siste dag endret */
+    dagerITidsromOms?: number;
 }
 
 export type SøknadApiDataMetadata = {
     antallAktiviteterSomKanEndres: number;
-    dagerBakover: number;
-    dagerFremover: number;
 } & LovbestemtFerieMetadata &
     ArbeidstidMetadata &
     OmsorgstilbudMetadata &
@@ -98,6 +100,11 @@ const getDagerFremover = (map: ISODateRangeMap<unknown>): number => {
     const sisteDag = getSisteDagEndret(map);
     return sisteDag ? Math.max(0, dayjs(sisteDag).diff(dayjs().startOf('day'), 'day')) : 0;
 };
+const getDagerITidsrom = (map: ISODateRangeMap<unknown>): number => {
+    const førsteDag = getFørsteDagEndret(map);
+    const sisteDag = getSisteDagEndret(map);
+    return førsteDag && sisteDag ? dayjs(sisteDag).diff(dayjs(førsteDag), 'day') + 1 : 0;
+};
 
 const getOmsorgstilbudMetadata = (tilsynsordning?: TilsynsordningApiData): OmsorgstilbudMetadata => {
     if (!tilsynsordning) {
@@ -118,32 +125,31 @@ const getOmsorgstilbudMetadata = (tilsynsordning?: TilsynsordningApiData): Omsor
         endretOmsorgstilbud: antallEndredeDager > 0,
         dagerBakoverOms: getDagerBakover(tilsynsordning.perioder),
         dagerFremoverOms: getDagerFremover(tilsynsordning.perioder),
+        dagerITidsromOms: getDagerITidsrom(tilsynsordning.perioder),
     };
 };
 
+const getAlleArbeidstidPerioder = (arbeidstid?: ArbeidstidApiData): ISODateRangeMap<unknown> => ({
+    ...(arbeidstid?.frilanserArbeidstidInfo?.perioder ?? {}),
+    ...(arbeidstid?.selvstendigNæringsdrivendeArbeidstidInfo?.perioder ?? {}),
+    ...Object.assign({}, ...(arbeidstid?.arbeidstakerList ?? []).map((a) => a.arbeidstidInfo.perioder)),
+});
+
 export const getArbeidstidMetadata = (arbeidstid?: ArbeidstidApiData): ArbeidstidMetadata | undefined => {
-    const perioder: ISODateRangeMap<any> = {
-        ...(arbeidstid?.frilanserArbeidstidInfo?.perioder ?? {}),
-        ...(arbeidstid?.selvstendigNæringsdrivendeArbeidstidInfo?.perioder ?? {}),
-    };
-    arbeidstid?.arbeidstakerList
-        .map((a) => a.arbeidstidInfo.perioder)
-        .forEach((p) => {
-            Object.keys(p).forEach((d) => {
-                perioder[d] = p[d];
-            });
-        });
+    const perioder = getAlleArbeidstidPerioder(arbeidstid);
 
     return arbeidstid
         ? {
               endretArbeidstid: oppsummeringStepUtils.harEndringerIArbeidstid(arbeidstid),
               dagerBakoverArb: getDagerBakover(perioder),
               dagerFremoverArb: getDagerFremover(perioder),
+              dagerITidsromArb: getDagerITidsrom(perioder),
           }
         : {
               endretArbeidstid: false,
               dagerBakoverArb: 0,
               dagerFremoverArb: 0,
+              dagerITidsromArb: 0,
           };
 };
 
@@ -196,15 +202,6 @@ export const getSøknadApiDataMetadata = (
     const laTilOmsorgstilbudFraOppsummering =
         valgteEndringerInitielt?.tilsynsordning === false && valgteEndringer?.tilsynsordning === true;
 
-    const dagerBakover = Math.max(
-        arbeidstidMetadata?.dagerBakoverArb ?? 0,
-        omsorgstilbudMetadata?.dagerBakoverOms ?? 0,
-    );
-    const dagerFremover = Math.max(
-        arbeidstidMetadata?.dagerFremoverArb ?? 0,
-        omsorgstilbudMetadata?.dagerFremoverOms ?? 0,
-    );
-
     return {
         valgtEndreOmsorgstilbud: valgteEndringer?.tilsynsordning || false,
         valgtEndreArbeidstid: valgteEndringer?.arbeidstid || false,
@@ -223,8 +220,6 @@ export const getSøknadApiDataMetadata = (
         ...arbeidstidMetadata,
         ...getArbeidsgiverIkkeIAaregMetadata(sak),
         ...omsorgstilbudMetadata,
-        dagerBakover,
-        dagerFremover,
     };
 };
 
