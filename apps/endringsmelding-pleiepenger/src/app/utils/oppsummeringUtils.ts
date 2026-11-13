@@ -84,15 +84,21 @@ const getFørsteDagEndret = (map: ISODateRangeMap<unknown>): ISODate | undefined
         .map((periode) => periode.split('/')[0])
         .sort()[0];
 };
-const getSisteDagEndret = (map: ISODateRangeMap<any>): ISODate => {
-    const keys = Object.keys(map);
-    return keys.map((periode) => periode.split('/')[0]).sort()[keys.length - 1];
+const getSisteDagEndret = (map: ISODateRangeMap<unknown>): ISODate | undefined => {
+    return Object.keys(map)
+        .map((periode) => periode.split('/')[1])
+        .sort()
+        .reverse()[0];
 };
 const getDagerBakover = (map: ISODateRangeMap<any>): number => {
-    return Math.abs(dayjs().diff(dayjs(getFørsteDagEndret(map)), 'day'));
+    return Math.abs(
+        dayjs()
+            .startOf('day')
+            .diff(dayjs(getFørsteDagEndret(map)), 'day'),
+    );
 };
 const getDagerFremover = (map: ISODateRangeMap<any>): number => {
-    return Math.abs(dayjs(getSisteDagEndret(map)).diff(dayjs(), 'day'));
+    return Math.abs(dayjs(getSisteDagEndret(map)).diff(dayjs().startOf('day'), 'day'));
 };
 
 const getOmsorgstilbudMetadata = (tilsynsordning?: TilsynsordningApiData): OmsorgstilbudMetadata => {
@@ -119,7 +125,8 @@ const getOmsorgstilbudMetadata = (tilsynsordning?: TilsynsordningApiData): Omsor
 
 export const getArbeidstidMetadata = (arbeidstid?: ArbeidstidApiData): ArbeidstidMetadata | undefined => {
     const perioder: ISODateRangeMap<any> = {
-        ...Object.keys(arbeidstid?.frilanserArbeidstidInfo?.perioder || {}),
+        ...(arbeidstid?.frilanserArbeidstidInfo?.perioder ?? {}),
+        ...(arbeidstid?.selvstendigNæringsdrivendeArbeidstidInfo?.perioder ?? {}),
     };
     arbeidstid?.arbeidstakerList
         .map((a) => a.arbeidstidInfo.perioder)
