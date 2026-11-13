@@ -77,7 +77,7 @@ describe('getSøknadApiDataMetadata', () => {
     });
 });
 
-describe('dagerBakover og dagerFremover', () => {
+describe('dager bakover, fremover og tidsrom', () => {
     beforeEach(() => {
         vi.useFakeTimers();
         vi.setSystemTime(new Date(2026, 10, 13, 12, 0));
@@ -103,19 +103,42 @@ describe('dagerBakover og dagerFremover', () => {
 
     it('gir 0 dager bakover når alle endringer er frem i tid', () => {
         const metadata = getMetadataForTilsyn(['2026-11-16/2026-11-20']);
-        expect(metadata.dagerBakover).toBe(0);
-        expect(metadata.dagerFremover).toBe(7);
+        expect(metadata.dagerBakoverOms).toBe(0);
+        expect(metadata.dagerFremoverOms).toBe(7);
+        expect(metadata.dagerITidsromOms).toBe(5);
     });
 
     it('gir 0 dager fremover når alle endringer er tilbake i tid', () => {
-        const metadata = getMetadataForTilsyn(['2026-11-02/2026-11-06']);
-        expect(metadata.dagerBakover).toBe(11);
-        expect(metadata.dagerFremover).toBe(0);
+        const metadata = getMetadataForTilsyn(['2026-09-28/2026-10-02']);
+        expect(metadata.dagerBakoverOms).toBe(46);
+        expect(metadata.dagerFremoverOms).toBe(0);
+        expect(metadata.dagerITidsromOms).toBe(5);
     });
 
     it('bruker tidligste startdato og seneste sluttdato på tvers av perioder', () => {
         const metadata = getMetadataForTilsyn(['2026-11-16/2026-11-20', '2026-11-09/2026-11-10']);
-        expect(metadata.dagerBakover).toBe(4);
-        expect(metadata.dagerFremover).toBe(7);
+        expect(metadata.dagerBakoverOms).toBe(4);
+        expect(metadata.dagerFremoverOms).toBe(7);
+        expect(metadata.dagerITidsromOms).toBe(12);
+    });
+
+    it('slår sammen arbeidstidsperioder fra alle aktiviteter', () => {
+        const metadata = getSøknadApiDataMetadata(
+            {
+                ytelse: {
+                    arbeidstid: {
+                        frilanserArbeidstidInfo: { perioder: { '2026-11-02/2026-11-06': {} } },
+                        arbeidstakerList: [{ arbeidstidInfo: { perioder: { '2026-11-16/2026-11-20': {} } } }],
+                    },
+                },
+            } as unknown as SøknadApiData,
+            søknadsdata,
+            {} as ValgteEndringer,
+            {} as ValgteEndringer,
+            sak,
+        );
+        expect(metadata.dagerBakoverArb).toBe(11);
+        expect(metadata.dagerFremoverArb).toBe(7);
+        expect(metadata.dagerITidsromArb).toBe(19);
     });
 });
