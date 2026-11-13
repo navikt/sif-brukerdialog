@@ -90,15 +90,13 @@ const getSisteDagEndret = (map: ISODateRangeMap<unknown>): ISODate | undefined =
         .sort()
         .reverse()[0];
 };
-const getDagerBakover = (map: ISODateRangeMap<any>): number => {
-    return Math.abs(
-        dayjs()
-            .startOf('day')
-            .diff(dayjs(getFørsteDagEndret(map)), 'day'),
-    );
+const getDagerBakover = (map: ISODateRangeMap<unknown>): number => {
+    const førsteDag = getFørsteDagEndret(map);
+    return førsteDag ? Math.max(0, dayjs().startOf('day').diff(dayjs(førsteDag), 'day')) : 0;
 };
-const getDagerFremover = (map: ISODateRangeMap<any>): number => {
-    return Math.abs(dayjs(getSisteDagEndret(map)).diff(dayjs().startOf('day'), 'day'));
+const getDagerFremover = (map: ISODateRangeMap<unknown>): number => {
+    const sisteDag = getSisteDagEndret(map);
+    return sisteDag ? Math.max(0, dayjs(sisteDag).diff(dayjs().startOf('day'), 'day')) : 0;
 };
 
 const getOmsorgstilbudMetadata = (tilsynsordning?: TilsynsordningApiData): OmsorgstilbudMetadata => {

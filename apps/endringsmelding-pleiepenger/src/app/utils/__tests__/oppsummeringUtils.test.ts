@@ -76,3 +76,46 @@ describe('getSøknadApiDataMetadata', () => {
         expect(metadata.gjordeEndringIFerieEtterTillegg).toBe(false);
     });
 });
+
+describe('dagerBakover og dagerFremover', () => {
+    beforeEach(() => {
+        vi.useFakeTimers();
+        vi.setSystemTime(new Date(2026, 10, 13, 12, 0));
+    });
+    afterEach(() => {
+        vi.useRealTimers();
+    });
+
+    const getMetadataForTilsyn = (perioder: string[]) =>
+        getSøknadApiDataMetadata(
+            {
+                ytelse: {
+                    tilsynsordning: {
+                        perioder: Object.fromEntries(perioder.map((p) => [p, { etablertTilsynTimerPerDag: 'PT1H' }])),
+                    },
+                },
+            } as unknown as SøknadApiData,
+            søknadsdata,
+            {} as ValgteEndringer,
+            {} as ValgteEndringer,
+            sak,
+        );
+
+    it('gir 0 dager bakover når alle endringer er frem i tid', () => {
+        const metadata = getMetadataForTilsyn(['2026-11-16/2026-11-20']);
+        expect(metadata.dagerBakover).toBe(0);
+        expect(metadata.dagerFremover).toBe(7);
+    });
+
+    it('gir 0 dager fremover når alle endringer er tilbake i tid', () => {
+        const metadata = getMetadataForTilsyn(['2026-11-02/2026-11-06']);
+        expect(metadata.dagerBakover).toBe(11);
+        expect(metadata.dagerFremover).toBe(0);
+    });
+
+    it('bruker tidligste startdato og seneste sluttdato på tvers av perioder', () => {
+        const metadata = getMetadataForTilsyn(['2026-11-16/2026-11-20', '2026-11-09/2026-11-10']);
+        expect(metadata.dagerBakover).toBe(4);
+        expect(metadata.dagerFremover).toBe(7);
+    });
+});
