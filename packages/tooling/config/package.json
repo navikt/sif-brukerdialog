@@ -7,20 +7,20 @@
         "tsconfig-base.json"
     ],
     "dependencies": {
-        "@typescript-eslint/eslint-plugin": "8.72.1",
-        "@typescript-eslint/parser": "8.72.1",
+        "@typescript-eslint/eslint-plugin": "8.72.2",
+        "@typescript-eslint/parser": "8.72.2",
         "eslint": "10.14.0",
         "eslint-config-prettier": "10.1.8",
         "eslint-plugin-jsx-a11y": "6.10.2",
         "eslint-plugin-prettier": "5.5.7",
         "eslint-plugin-react": "7.37.5",
         "eslint-plugin-react-hooks": "7.1.1",
-        "eslint-plugin-storybook": "10.6.5",
+        "eslint-plugin-storybook": "10.6.7",
         "postcss": ">=8.5.28",
-        "prettier": "3.9.10",
+        "prettier": "3.10.1",
         "typescript": "6.0.3"
     },
     "devDependencies": {
-        "storybook": "10.6.5"
+        "storybook": "10.6.7"
     }
 }
