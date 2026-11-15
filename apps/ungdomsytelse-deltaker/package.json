@@ -107,12 +107,11 @@
         "postcss-styled-syntax": "0.7.4",
         "prettier": "3.10.1",
         "storybook": "10.6.7",
-        "stylelint": "17.16.0",
         "tailwindcss": "4.3.5",
         "typescript": "6.0.3",
         "typescript-eslint": "8.72.2",
         "vite": "8.3.8",
-        "vite-plugin-checker": "0.14.5",
+        "vite-plugin-checker": "1.0.0",
         "vitest": "5.1.0"
     },
     "msw": {
