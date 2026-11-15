@@ -5,32 +5,24 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  adm-zip: 0.6.1
-  qs: 6.17.1
+  qs: ^6.17.1
   body-parser: ^2.4.0
-  node-forge: ^1.4.2
   brace-expansion@^1: ^1.1.21
-  brace-expansion@^2: ^2.1.4
   brace-expansion@^5: ^5.0.12
   fast-uri: ^3.1.9
   follow-redirects: ^1.16.2
-  immutable: '>=5.1.8'
-  ip-address: '>=10.7.4'
+  immutable: ^5.1.8
+  ip-address: ^10.7.4
   js-yaml@3.13.1: ^3.14.2
   js-yaml@^4: ^4.3.1
-  jsdom: ^30.1.1
+  jsdom@<30: ^30.1.1
   launch-editor: ^2.14.2
   picomatch@^2: ^2.3.2
   picomatch@^4: ^4.0.4
-  postcss: '>=8.5.28'
-  proxy-addr: '>=2.0.8'
-  sharp: '>=0.35.0'
-  shell-quote: 1.11.0
-  smol-toml: '>=1.6.1'
-  undici@^6: ^6.27.0
-  undici@^7: ^7.29.0
-  uuid: ^14.0.2
-  webpack-dev-middleware: ^7.4.6
+  postcss: ^8.5.28
+  shell-quote: ^1.11.0
+  smol-toml: ^1.6.1
+  uuid@<14: ^14.0.2
 
 importers:
 
@@ -282,7 +274,7 @@ importers:
         specifier: 1.65.0
         version: 1.65.0
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       postcss-styled-syntax:
         specifier: 0.7.4
@@ -840,7 +832,7 @@ importers:
         specifier: 1.65.0
         version: 1.65.0
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       react-intl:
         specifier: 12.1.7
@@ -1036,7 +1028,7 @@ importers:
         specifier: 1.65.0
         version: 1.65.0
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       rimraf:
         specifier: 6.1.4
@@ -1268,7 +1260,7 @@ importers:
         specifier: 1.65.0
         version: 1.65.0
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       react-responsive:
         specifier: 10.0.1
@@ -1476,7 +1468,7 @@ importers:
         specifier: 1.65.0
         version: 1.65.0
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       storybook:
         specifier: 10.6.7
@@ -1585,7 +1577,7 @@ importers:
         specifier: 1.65.0
         version: 1.65.0
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       tailwindcss:
         specifier: 4.3.5
@@ -1793,7 +1785,7 @@ importers:
         specifier: 1.65.0
         version: 1.65.0
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       postcss-nesting:
         specifier: 14.0.3
@@ -2004,7 +1996,7 @@ importers:
         specifier: 1.65.0
         version: 1.65.0
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       postcss-nesting:
         specifier: 14.0.3
@@ -2233,7 +2225,7 @@ importers:
         specifier: 1.65.0
         version: 1.65.0
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       prettier:
         specifier: 3.10.1
@@ -2640,7 +2632,7 @@ importers:
         specifier: 1.65.0
         version: 1.65.0
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       postcss-nesting:
         specifier: 14.0.3
@@ -2854,7 +2846,7 @@ importers:
         specifier: 1.65.0
         version: 1.65.0
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       storybook:
         specifier: 10.6.7
@@ -3080,7 +3072,7 @@ importers:
         specifier: 1.65.0
         version: 1.65.0
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       react-dom:
         specifier: 19.3.1
@@ -3448,7 +3440,7 @@ importers:
         specifier: 1.65.0
         version: 1.65.0
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       react-dom:
         specifier: 19.3.1
@@ -3695,7 +3687,7 @@ importers:
         specifier: 1.65.0
         version: 1.65.0
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       postcss-styled-syntax:
         specifier: 0.7.4
@@ -3725,7 +3717,7 @@ importers:
         specifier: 5.1.0
         version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
-  gh-pages:
+  gh-pages-src:
     dependencies:
       '@navikt/aksel-icons':
         specifier: 8.22.1
@@ -3799,7 +3791,7 @@ importers:
         specifier: 10.14.0
         version: 10.14.0(jiti@2.7.0)
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       prettier:
         specifier: 3.10.1
@@ -3845,7 +3837,7 @@ importers:
         specifier: 10.14.0
         version: 10.14.0(jiti@2.7.0)
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       prettier:
         specifier: 3.10.1
@@ -3891,7 +3883,7 @@ importers:
         specifier: 10.14.0
         version: 10.14.0(jiti@2.7.0)
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       prettier:
         specifier: 3.10.1
@@ -3943,7 +3935,7 @@ importers:
         specifier: 10.14.0
         version: 10.14.0(jiti@2.7.0)
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       prettier:
         specifier: 3.10.1
@@ -3992,7 +3984,7 @@ importers:
         specifier: 10.14.0
         version: 10.14.0(jiti@2.7.0)
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       prettier:
         specifier: 3.10.1
@@ -4038,7 +4030,7 @@ importers:
         specifier: 10.14.0
         version: 10.14.0(jiti@2.7.0)
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       prettier:
         specifier: 3.10.1
@@ -4087,7 +4079,7 @@ importers:
         specifier: 10.14.0
         version: 10.14.0(jiti@2.7.0)
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       prettier:
         specifier: 3.10.1
@@ -4145,7 +4137,7 @@ importers:
         specifier: 10.14.0
         version: 10.14.0(jiti@2.7.0)
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       prop-types:
         specifier: 15.8.1
@@ -4782,7 +4774,7 @@ importers:
         specifier: 1.2.5
         version: 1.2.5
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       react:
         specifier: 19.3.1
@@ -4828,7 +4820,7 @@ importers:
         specifier: 10.14.0
         version: 10.14.0(jiti@2.7.0)
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       typescript:
         specifier: 6.0.3
@@ -5065,7 +5057,7 @@ importers:
         specifier: 4.9.1
         version: 4.9.1
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       react:
         specifier: 19.3.1
@@ -5195,7 +5187,7 @@ importers:
         specifier: 3.0.3
         version: 3.0.3(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(storybook@10.6.7(@types/react@19.3.0)(prettier@3.10.1)(react@19.3.1))
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       prop-types:
         specifier: 15.8.1
@@ -5452,7 +5444,7 @@ importers:
         specifier: ^30.1.1
         version: 30.1.3(@noble/hashes@2.4.0)
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       react:
         specifier: 19.3.1
@@ -5536,7 +5528,7 @@ importers:
         specifier: 3.0.8
         version: 3.0.8
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       react-day-picker:
         specifier: 10.0.2
@@ -5763,7 +5755,7 @@ importers:
         specifier: 4.9.1
         version: 4.9.1
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       react:
         specifier: 19.3.1
@@ -5830,7 +5822,7 @@ importers:
         specifier: 1.2.5
         version: 1.2.5
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       react:
         specifier: 19.3.1
@@ -5876,7 +5868,7 @@ importers:
         specifier: 10.14.0
         version: 10.14.0(jiti@2.7.0)
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       prettier:
         specifier: 3.10.1
@@ -5927,7 +5919,7 @@ importers:
         specifier: 10.6.7
         version: 10.6.7(eslint@10.14.0(jiti@2.7.0))(typescript@6.0.3)
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       prettier:
         specifier: 3.10.1
@@ -5986,7 +5978,7 @@ importers:
         version: 8.72.2(eslint@10.14.0(jiti@2.7.0))(typescript@6.0.3)
     devDependencies:
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       prettier:
         specifier: 3.10.1
@@ -6050,7 +6042,7 @@ importers:
         specifier: 0.28.2
         version: 0.28.2
       postcss:
-        specifier: '>=8.5.28'
+        specifier: ^8.5.28
         version: 8.5.32
       prettier:
         specifier: 3.10.1
@@ -8113,9 +8105,6 @@ packages:
       '@types/react': ^17.0.30 || ^18 || ^19
       react: ^17 || ^18 || ^19
       react-dom: ^17 || ^18 || ^19
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
 
   '@navikt/ds-tailwind@8.22.1':
     resolution: {integrity: sha512-dglib5tqiXehwcPWUpPs6b4ZW197RgGp2PoqWnMCuiFLo1/GpOW0jHBRBOuNSVOHXfCiD4gslEu2jsr+SM+Suw==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tailwind/8.22.1/340fe46132cf9eaae78f7011b5126474bb0ee984}
@@ -13751,13 +13740,13 @@ packages:
     resolution: {integrity: sha512-S6NJP2WFinT50vIo7fu3Z8PrTgng3P0ky47a5wQSrQpsH3WS82ZpjkIdAs+2ltRkk0wU7vRBKLYM96qY0RvKjA==}
     engines: {node: '>=20.19.0'}
     peerDependencies:
-      postcss: '>=8.5.28'
+      postcss: ^8.5.28
 
   postcss-safe-parser@7.1.0:
     resolution: {integrity: sha512-1WzZxRLaAFwEh6Do+zyGpjWV3nGJNxxhuh7Ubu/q1ICImMgZJnLwhoaEpRbG4pJppp2Y1ncL9ffA2f+LhrefQg==}
     engines: {node: '>=18.0'}
     peerDependencies:
-      postcss: '>=8.5.28'
+      postcss: ^8.5.28
 
   postcss-selector-parser@7.1.6:
     resolution: {integrity: sha512-7qASPzhKF2l2KLboRZux8CCTRMdGiV08vWmyKzPz22qZ7ZjQBOeY7rNzNoCLSUiftJ7HUq0GERHmxw/t0dCdMw==}
@@ -13771,7 +13760,7 @@ packages:
     resolution: {integrity: sha512-wRRWfMTQEFtFv94NpfOAx/GLM7vfHRsgHQIEhBlBw3C7XXuFG6ASTGbR8VdINoF84uBx4lxHdWRUQ+VDi5jNpA==}
     engines: {node: '>=14.17'}
     peerDependencies:
-      postcss: '>=8.5.28'
+      postcss: ^8.5.28
 
   postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
@@ -15061,6 +15050,10 @@ packages:
 
   undici-types@8.9.0:
     resolution: {integrity: sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg==}
+
+  undici@7.30.1:
+    resolution: {integrity: sha512-03KrMbjIFDWQR5RNPrSw3bd1r12JpyFQl9/yxjUbJtqkjmllqC5lFjZh6ujeuJCKr8EOQvRW872Oy/az+nLYxg==}
+    engines: {node: '>=20.18.1'}
 
   undici@7.30.2:
     resolution: {integrity: sha512-mLyPQnHwUxaM/rideoK/+KL8DaAJLRl4aBCfmX444aCSLnIaomqPLtNRe2jdCYcsk5wZzXrDIQC8ZeYNRAYyIA==}
@@ -17764,7 +17757,7 @@ snapshots:
       adm-zip: 0.6.1
       isomorphic-ws: 5.0.0(ws@8.21.3)
       typescript: 6.0.3
-      undici: 7.30.2
+      undici: 7.30.1
       ws: 8.21.3
     transitivePeerDependencies:
       - bufferutil
@@ -17901,12 +17894,11 @@ snapshots:
       '@floating-ui/react-dom': 2.1.9(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@navikt/aksel-icons': 8.22.1
       '@navikt/ds-tokens': 8.22.1
+      '@types/react': 19.3.0
       date-fns: 4.4.0
       react: 19.3.1
       react-day-picker: 10.0.2(@types/react@19.3.0)(react@19.3.1)
       react-dom: 19.3.1(react@19.3.1)
-    optionalDependencies:
-      '@types/react': 19.3.0
 
   '@navikt/ds-tailwind@8.22.1': {}
 
@@ -25941,6 +25933,8 @@ snapshots:
       which-boxed-primitive: 1.1.1
 
   undici-types@8.9.0: {}
+
+  undici@7.30.1: {}
 
   undici@7.30.2: {}
 

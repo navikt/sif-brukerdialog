@@ -1,5 +1,5 @@
 {
-    "name": "@navikt/sif-gh-pages-forside",
+    "name": "@navikt/sif-gh-pages-src",
     "version": "0.1.1",
     "private": true,
     "description": "Forside for demoer og storybooks publisert på GitHub Pages",

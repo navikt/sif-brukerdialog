@@ -132,15 +132,15 @@ jobs:
           mv packages/core/ung-innsyn/storybook-static/* deployment/ung-innsyn-storybook/
 
       # Bygg forsiden som lenker til alle demoer og storybooks
-      - name: Build gh-pages-forside
+      - name: Build gh-pages-src
         run: pnpm build
-        working-directory: gh-pages
+        working-directory: gh-pages-src
 
       # Legg forsiden på roten av gh-pages
       - name: Kopier forside til gh-pages
         run: |
           mkdir -p deployment
-          cp -r gh-pages/dist/* deployment/
+          cp -r gh-pages-src/dist/* deployment/
 
       # Last opp bygget som en artefakt
       - name: Upload artifact for GitHub Pages
