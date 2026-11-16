@@ -12,7 +12,17 @@ type ProxyOptions = {
     blockedPaths?: string[];
 };
 
-const ALWAYS_BLOCKED_PATHS = ['/internal', '/actuator', '/admin'];
+const ALWAYS_BLOCKED_PATHS = [
+    '/internal',
+    '/actuator',
+    '/admin',
+    '/swagger-ui',
+    '/swagger-ui.html',
+    '/v3/api-docs',
+    '/v3/api-docs.yaml',
+    '/health',
+    '/metrics',
+];
 
 // Lovlige API-stier inneholder aldri disse tegnene. Avvis i stedet for å gjette hvordan backend normaliserer.
 const SUSPICIOUS_PATH = /[%\\;]|\/\.\.?(\/|$)/;
