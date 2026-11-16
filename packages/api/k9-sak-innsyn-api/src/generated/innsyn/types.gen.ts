@@ -856,6 +856,15 @@ export enum IngenTilgangÅrsak {
     HAR_FLERE_ANSETTELSESFORHOLD_HOS_UKJENT_ARBEIDSGIVER = 'harFlereAnsettelsesforholdHosUkjentArbeidsgiver',
 }
 
+export type SaksbehandlingTilgangForespørsel = {
+    søkerAktørId: string;
+};
+
+export type SaksbehandlingTilgangResultat = {
+    kanBruke: boolean;
+    tekst: string;
+};
+
 export type TilgangResultat = {
     kanBruke: boolean;
     /**
@@ -969,14 +978,14 @@ export type HentDokumentResponses = {
 
 export type HentDokumentResponse = HentDokumentResponses[keyof HentDokumentResponses];
 
-export type HentTilgangData = {
+export type HentTilgang1Data = {
     body?: never;
     path?: never;
     query?: never;
     url: '/psb/endringsmelding/tilgang';
 };
 
-export type HentTilgangErrors = {
+export type HentTilgang1Errors = {
     /**
      * Bad Request
      */
@@ -995,16 +1004,16 @@ export type HentTilgangErrors = {
     500: ProblemDetail;
 };
 
-export type HentTilgangError = HentTilgangErrors[keyof HentTilgangErrors];
+export type HentTilgang1Error = HentTilgang1Errors[keyof HentTilgang1Errors];
 
-export type HentTilgangResponses = {
+export type HentTilgang1Responses = {
     /**
      * OK
      */
     200: TilgangResultat;
 };
 
-export type HentTilgangResponse = HentTilgangResponses[keyof HentTilgangResponses];
+export type HentTilgang1Response = HentTilgang1Responses[keyof HentTilgang1Responses];
 
 export type HentSakData = {
     body?: never;
@@ -1195,6 +1204,43 @@ export type HentSaksbehandlingstidResponses = {
 };
 
 export type HentSaksbehandlingstidResponse = HentSaksbehandlingstidResponses[keyof HentSaksbehandlingstidResponses];
+
+export type HentTilgangData = {
+    body: SaksbehandlingTilgangForespørsel;
+    path?: never;
+    query?: never;
+    url: '/saksbehandling/psb/endringsmelding/tilgang';
+};
+
+export type HentTilgangErrors = {
+    /**
+     * Bad Request
+     */
+    400: ProblemDetail;
+    /**
+     * Unauthorized
+     */
+    401: ProblemDetail;
+    /**
+     * Forbidden
+     */
+    403: ProblemDetail;
+    /**
+     * Internal Server Error
+     */
+    500: ProblemDetail;
+};
+
+export type HentTilgangError = HentTilgangErrors[keyof HentTilgangErrors];
+
+export type HentTilgangResponses = {
+    /**
+     * OK
+     */
+    200: SaksbehandlingTilgangResultat;
+};
+
+export type HentTilgangResponse = HentTilgangResponses[keyof HentTilgangResponses];
 
 export type HentSøknaderData = {
     body?: never;
