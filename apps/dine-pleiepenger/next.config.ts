@@ -4,18 +4,25 @@
 import { buildCspHeader } from '@navikt/nav-dekoratoren-moduler/ssr';
 import * as path from 'path';
 
+// headers() evalueres ved bygg. `next build` setter NODE_ENV=production, `next dev` setter development.
+const isDevServer = process.env.NODE_ENV === 'development';
+
 const appDirectives = {
     'default-src': ["'self'"],
-    'script-src': ["'self'", "'unsafe-eval'", "'unsafe-inline'", 'https://uxsignals-frontend.uxsignals.app.iterate.no'],
+    'script-src': [
+        "'self'",
+        ...(isDevServer ? ["'unsafe-eval'"] : []),
+        "'unsafe-inline'",
+        'https://uxsignals-frontend.uxsignals.app.iterate.no',
+    ],
     'script-src-elem': ["'self'", "'unsafe-inline'", 'https://uxsignals-frontend.uxsignals.app.iterate.no'],
     'worker-src': ["'self'"],
     'connect-src': [
         "'self'",
         'https://*.nav.no',
         'https://*.uxsignals.com',
-        'http://localhost:1234',
-        'http://localhost:12347',
-        'http://*.api.sanity.io',
+        'https://*.api.sanity.io',
+        ...(isDevServer ? ['http://localhost:1234', 'http://localhost:12347'] : []),
     ],
 };
 
@@ -55,6 +62,11 @@ const nextConfig = {
     async headers() {
         const environment = process.env.NEXT_PUBLIC_RUNTIME_ENVIRONMENT === 'production' ? 'prod' : 'dev';
         const cspValue = await buildCspHeader(appDirectives, { env: environment });
+
+        // buildCspHeader faller tilbake til en åpen policy hvis dekoratøren ikke svarer. Den ville blitt låst inn i imaget.
+        if (!isDevServer && cspValue.startsWith('default-src * ')) {
+            throw new Error('Kunne ikke hente CSP fra dekoratøren. Stopper bygget for å unngå åpen CSP.');
+        }
 
         return [
             {
