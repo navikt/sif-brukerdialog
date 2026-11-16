@@ -26,6 +26,9 @@ import type {
     HentSøknaderData,
     HentSøknaderErrors,
     HentSøknaderResponses,
+    HentTilgang1Data,
+    HentTilgang1Errors,
+    HentTilgang1Responses,
     HentTilgangData,
     HentTilgangErrors,
     HentTilgangResponses,
@@ -45,6 +48,8 @@ import {
     zHentSakResponse,
     zHentSaksbehandlingstidResponse,
     zHentSøknaderResponse,
+    zHentTilgang1Response,
+    zHentTilgangBody,
     zHentTilgangResponse,
     zLastNedArbeidsgivermeldingPath,
     zLastNedArbeidsgivermeldingQuery,
@@ -103,10 +108,10 @@ export class DokumentController {
 }
 
 export class EndringsmeldingTilgangController {
-    public static hentTilgang<ThrowOnError extends boolean = true>(
-        options?: Options<HentTilgangData, ThrowOnError>,
-    ): RequestResult<HentTilgangResponses, HentTilgangErrors, ThrowOnError> {
-        return (options?.client ?? client).get<HentTilgangResponses, HentTilgangErrors, ThrowOnError>({
+    public static hentTilgang1<ThrowOnError extends boolean = true>(
+        options?: Options<HentTilgang1Data, ThrowOnError>,
+    ): RequestResult<HentTilgang1Responses, HentTilgang1Errors, ThrowOnError> {
+        return (options?.client ?? client).get<HentTilgang1Responses, HentTilgang1Errors, ThrowOnError>({
             requestValidator: async (data) =>
                 await z
                     .object({
@@ -116,7 +121,7 @@ export class EndringsmeldingTilgangController {
                     })
                     .parseAsync(data),
             responseType: 'json',
-            responseValidator: async (data) => await zHentTilgangResponse.parseAsync(data),
+            responseValidator: async (data) => await zHentTilgang1Response.parseAsync(data),
             security: [
                 {
                     key: 'Authorization',
@@ -306,6 +311,43 @@ export class SakInntektsmeldingerController {
             ],
             url: '/sak/{saksnummer}/inntektsmeldinger',
             ...options,
+        });
+    }
+}
+
+export class SaksbehandlingEndringsmeldingTilgangController {
+    public static hentTilgang<ThrowOnError extends boolean = true>(
+        options: Options<HentTilgangData, ThrowOnError>,
+    ): RequestResult<HentTilgangResponses, HentTilgangErrors, ThrowOnError> {
+        return (options.client ?? client).post<HentTilgangResponses, HentTilgangErrors, ThrowOnError>({
+            requestValidator: async (data) =>
+                await z
+                    .object({
+                        body: zHentTilgangBody,
+                        path: z.never().optional(),
+                        query: z.never().optional(),
+                    })
+                    .parseAsync(data),
+            responseType: 'json',
+            responseValidator: async (data) => await zHentTilgangResponse.parseAsync(data),
+            security: [
+                {
+                    key: 'Authorization',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+                {
+                    key: 'oauth2',
+                    scheme: 'bearer',
+                    type: 'http',
+                },
+            ],
+            url: '/saksbehandling/psb/endringsmelding/tilgang',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers,
+            },
         });
     }
 }

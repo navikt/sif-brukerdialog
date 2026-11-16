@@ -793,6 +793,15 @@ export const zIngenTilgangÅrsak = z.enum([
     'harFlereAnsettelsesforholdHosUkjentArbeidsgiver',
 ]);
 
+export const zSaksbehandlingTilgangForespørsel = z.object({
+    søkerAktørId: z.string(),
+});
+
+export const zSaksbehandlingTilgangResultat = z.object({
+    kanBruke: z.boolean(),
+    tekst: z.string(),
+});
+
 export const zTilgangResultat = z.object({
     kanBruke: z.boolean(),
     tillattEndringsperiode: zDatoperiode.nullish(),
@@ -883,7 +892,7 @@ export const zHentDokumentResponse = z.string();
 /**
  * OK
  */
-export const zHentTilgangResponse = zTilgangResultat;
+export const zHentTilgang1Response = zTilgangResultat;
 
 export const zHentSakPath = z.object({
     saksnummer: z.string(),
@@ -917,6 +926,13 @@ export const zHentSakerMetadataResponse = zSakerMetadataDto;
  * OK
  */
 export const zHentSaksbehandlingstidResponse = zSaksbehandlingtidDto;
+
+export const zHentTilgangBody = zSaksbehandlingTilgangForespørsel;
+
+/**
+ * OK
+ */
+export const zHentTilgangResponse = zSaksbehandlingTilgangResultat;
 
 /**
  * OK

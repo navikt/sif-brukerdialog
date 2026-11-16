@@ -10,9 +10,11 @@ export { hentOppgaver } from './oppgaver/oppgaverApi';
 
 // Types
 export type {
+    AktivitetVilkårOppgave,
     AndreLivsoppholdsytelserOppgave,
     AvvikRegisterinntektOppgave,
     BekreftelseOppgave,
+    BistandVilkårOppgave,
     BostedVilkårOppgave,
     EndretSluttdatoOppgave,
     EndretStartdatoOppgave,

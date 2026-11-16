@@ -3,8 +3,10 @@ import { useEffect } from 'react';
 
 import { OppgaveBesvartMetadata, useOppgaveAnalytics } from '../analytics/oppgaveAnalytics';
 import { useUngInnsynIntl } from '../i18n';
+import { AktivitetVilkårOppgavePanel } from '../modules/oppgavepaneler/aktivitetsvilkar/AktivitetVilkarOppgavePanel';
 import { AndreLivsoppholdsytelserOppgavePanel } from '../modules/oppgavepaneler/andre-livsoppholdsytelser/AndreLivsoppholdsytelserOppgavePanel';
 import { AvvikRegisterinntektOppgavePanel } from '../modules/oppgavepaneler/avvik-registerinntekt/AvvikRegisterinntektOppgavePanel';
+import { BistandVilkårOppgavePanel } from '../modules/oppgavepaneler/bistandsvilkar/BistandVilkarOppgavePanel';
 import { BostedVilkårOppgavePanel } from '../modules/oppgavepaneler/bostedsvilkar/BostedVilkarOppgavePanel';
 import { EndretSluttdatoOppgavePanel } from '../modules/oppgavepaneler/endret-sluttdato/EndretSluttdatoOppgavePanel';
 import { EndretStartOgSluttdatoOppgavePanel } from '../modules/oppgavepaneler/endret-start-og-sluttdato/EndretStartOgSluttdatoOppgavePanel';
@@ -26,6 +28,10 @@ const getOppgavePageComponent = (navn: string, oppgave: Oppgave, dokumentarkivUr
             return <BostedVilkårOppgavePanel navn={navn} oppgave={oppgave} />;
         case ParsedOppgavetype.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER:
             return <AndreLivsoppholdsytelserOppgavePanel navn={navn} oppgave={oppgave} />;
+        case ParsedOppgavetype.BEKREFT_AKTIVITET:
+            return <AktivitetVilkårOppgavePanel navn={navn} oppgave={oppgave} />;
+        case ParsedOppgavetype.BEKREFT_BISTAND:
+            return <BistandVilkårOppgavePanel navn={navn} oppgave={oppgave} />;
         case ParsedOppgavetype.BEKREFT_ENDRET_STARTDATO:
             return <EndretStartdatoOppgavePanel navn={navn} oppgave={oppgave} />;
         case ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO:

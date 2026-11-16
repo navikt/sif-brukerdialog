@@ -117,6 +117,26 @@ export const scenarioer: Record<ScenarioType, Scenario> = {
         name: 'Oppgave for å bekrefte andre livsoppholdsytelser opphør',
         data: createScenarioData([getMockOppgaver().bekreftAndreLivsoppholdsytelserOpphørOppgave]),
     },
+    [ScenarioType.bekreftAktivitet]: {
+        type: ScenarioType.bekreftAktivitet,
+        name: 'Oppgave for å bekrefte aktivitet periode',
+        data: createScenarioData([getMockOppgaver().bekreftAktivitetOppgave]),
+    },
+    [ScenarioType.bekreftAktivitetOpphør]: {
+        type: ScenarioType.bekreftAktivitetOpphør,
+        name: 'Oppgave for å bekrefte aktivitet opphør',
+        data: createScenarioData([getMockOppgaver().bekreftAktivitetOpphørOppgave]),
+    },
+    [ScenarioType.bekreftBistand]: {
+        type: ScenarioType.bekreftBistand,
+        name: 'Oppgave for å bekrefte bistand periode',
+        data: createScenarioData([getMockOppgaver().bekreftBistandOppgave]),
+    },
+    [ScenarioType.bekreftBistandOpphør]: {
+        type: ScenarioType.bekreftBistandOpphør,
+        name: 'Oppgave for å bekrefte bistand opphør',
+        data: createScenarioData([getMockOppgaver().bekreftBistandOpphørOppgave]),
+    },
 };
 
 export const defaultScenario = scenarioer[ScenarioType.innsynUtenOppgaver];

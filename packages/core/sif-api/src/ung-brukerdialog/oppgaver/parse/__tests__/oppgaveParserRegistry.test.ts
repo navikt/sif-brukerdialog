@@ -1,6 +1,10 @@
 import {
+    AktivitetsavklaringKildeType,
+    AktivitetsvilkåretIkkeOppfyltÅrsak,
     AndreLivsoppholdsytelserAvklaringKildeType,
     AndreLivsoppholdsytelserIkkeOppfyltÅrsak,
+    BistandsavklaringKildeType,
+    BistandsvilkårIkkeOppfyltÅrsak,
     BostedsavklaringKildeType,
     BostedsvilkårIkkeOppfyltÅrsak,
     BrukerdialogOppgaveDto,
@@ -191,10 +195,33 @@ const registryTestCases: RegistryTestCase[] = [
         },
         forventetParsedOppgavetype: ParsedOppgavetype.BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER,
     },
+    {
+        navn: 'BEKREFT_AKTIVITET',
+        oppgavetype: OppgaveType.BEKREFT_AKTIVITET,
+        oppgavetypeData: {
+            type: 'AKTIVITET',
+            ikkeOppfyltÅrsak: AktivitetsvilkåretIkkeOppfyltÅrsak.ANNET,
+            fom: '2026-01-01',
+            tom: '2026-03-31',
+            kilde: AktivitetsavklaringKildeType.NAV,
+            varseltekst: 'mock',
+        },
+        forventetParsedOppgavetype: ParsedOppgavetype.BEKREFT_AKTIVITET,
+    },
+    {
+        navn: 'BEKREFT_BISTAND',
+        oppgavetype: OppgaveType.BEKREFT_BISTAND,
+        oppgavetypeData: {
+            type: 'BISTAND_OPPHØR',
+            ikkeOppfyltÅrsak: BistandsvilkårIkkeOppfyltÅrsak.KOMMET_I_ARBEID,
+            fom: '2026-11-30',
+            kilde: BistandsavklaringKildeType.ANNET,
+            kildeFritekst: 'mock',
+            varseltekst: 'mock',
+        },
+        forventetParsedOppgavetype: ParsedOppgavetype.BEKREFT_BISTAND,
+    },
 ];
-
-/** Disse oppgavetypene finnes i backend, men er bevisst ikke støttet i frontend ennå. */
-const ikkeStøttedeOppgavetyper: OppgaveType[] = [OppgaveType.BEKREFT_BISTAND, OppgaveType.BEKREFT_AKTIVITET];
 
 describe('parseOppgaver - registeret ruter hver oppgavetype til riktig parser', () => {
     it.each(registryTestCases)('$navn', ({ oppgavetype, oppgavetypeData, forventetParsedOppgavetype }) => {
@@ -204,32 +231,10 @@ describe('parseOppgaver - registeret ruter hver oppgavetype til riktig parser', 
     });
 
     it('har minst én testrad for hver oppgavetype som er registrert i oppgaveParsers', () => {
-        const testedeTyper = new Set([
-            ...registryTestCases.map((testCase) => testCase.oppgavetype),
-            ...ikkeStøttedeOppgavetyper,
-        ]);
+        const testedeTyper = new Set(registryTestCases.map((testCase) => testCase.oppgavetype));
 
         Object.values(OppgaveType).forEach((oppgavetype) => {
             expect(testedeTyper.has(oppgavetype)).toBe(true);
         });
-    });
-
-    it('filtrerer oppgavetyper som ikke er støttet uten å miste støttede oppgaver', () => {
-        const støttetOppgave = registryTestCases[0];
-        const result = parseOppgaver([
-            ...ikkeStøttedeOppgavetyper.map((oppgavetype) => ({
-                ...baseOppgave,
-                oppgavetype,
-                oppgavetypeData: { type: 'IKKE_RELEVANT' } as never,
-            })),
-            {
-                ...baseOppgave,
-                oppgavetype: støttetOppgave.oppgavetype,
-                oppgavetypeData: støttetOppgave.oppgavetypeData,
-            },
-        ]);
-
-        expect(result).toHaveLength(1);
-        expect(result[0].parsedOppgavetype).toBe(støttetOppgave.forventetParsedOppgavetype);
     });
 });

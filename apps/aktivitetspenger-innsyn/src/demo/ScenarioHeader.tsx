@@ -68,6 +68,22 @@ const scenarioGroups: Array<ScenarioSelectorHeaderGroup<ScenarioType>> = [
                 value: ScenarioType.bekreftAndreLivsoppholdsytelserOpphør,
                 label: 'Bekreft andre livsoppholdsytelser opphør',
             },
+            {
+                value: ScenarioType.bekreftAktivitet,
+                label: 'Bekreft aktivitet periode',
+            },
+            {
+                value: ScenarioType.bekreftAktivitetOpphør,
+                label: 'Bekreft aktivitet opphør',
+            },
+            {
+                value: ScenarioType.bekreftBistand,
+                label: 'Bekreft bistand periode',
+            },
+            {
+                value: ScenarioType.bekreftBistandOpphør,
+                label: 'Bekreft bistand opphør',
+            },
         ],
     },
 ];

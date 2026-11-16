@@ -1,6 +1,8 @@
 import { oppgavebekreftelse_nb } from '../modules/oppgavebekreftelse/i18n/nb';
+import { aktivitetVilkårMessages_nb } from '../modules/oppgavepaneler/aktivitetsvilkar/i18n/nb';
 import { andreLivsoppholdsytelserMessages_nb } from '../modules/oppgavepaneler/andre-livsoppholdsytelser/i18n/nb';
 import { avvikRegisterinntektMessages_nb } from '../modules/oppgavepaneler/avvik-registerinntekt/i18n/nb';
+import { bistandVilkårMessages_nb } from '../modules/oppgavepaneler/bistandsvilkar/i18n/nb';
 import { bostedVilkårMessages_nb } from '../modules/oppgavepaneler/bostedsvilkar/i18n/nb';
 import { endretSluttdatoMessages_nb } from '../modules/oppgavepaneler/endret-sluttdato/i18n/nb';
 import { endretStartOgSluttdatoMessages_nb } from '../modules/oppgavepaneler/endret-start-og-sluttdato/i18n/nb';
@@ -23,6 +25,8 @@ export const ungInnsyn_messages_nb = {
     ...oppgavebekreftelse_nb,
     ...bostedVilkårMessages_nb,
     ...andreLivsoppholdsytelserMessages_nb,
+    ...aktivitetVilkårMessages_nb,
+    ...bistandVilkårMessages_nb,
     ...opphorVedMaksdatoMessages_nb,
 
     '@ungInnsyn.Ja': 'Ja',
@@ -79,6 +83,18 @@ export const ungInnsyn_messages_nb = {
     '@ungInnsyn.andreLivsoppholdsytelserKilde.BRUKER': 'Fra deg.',
     '@ungInnsyn.andreLivsoppholdsytelserKilde.NAV': 'Nav.',
     '@ungInnsyn.andreLivsoppholdsytelserKilde.FRITEKST_FALLBACK': 'Informasjon om kilde mangler',
+
+    /** AktivitetKilde */
+    '@ungInnsyn.aktivitetKilde.header': 'Hvor har vi fått opplysningene fra?',
+    '@ungInnsyn.aktivitetKilde.BRUKER': 'Fra deg.',
+    '@ungInnsyn.aktivitetKilde.NAV': 'Nav.',
+    '@ungInnsyn.aktivitetKilde.FRITEKST_FALLBACK': 'Informasjon om kilde mangler',
+
+    /** BistandKilde */
+    '@ungInnsyn.bistandKilde.header': 'Hvor har vi fått opplysningene fra?',
+    '@ungInnsyn.bistandKilde.BRUKER': 'Fra deg.',
+    '@ungInnsyn.bistandKilde.NAV': 'Nav.',
+    '@ungInnsyn.bistandKilde.FRITEKST_FALLBACK': 'Informasjon om kilde mangler',
 
     /** InntektForm */
     '@ungInnsyn.inntektForm.validation.harInntekt.yesOrNoIsUnanswered': 'Du må svare på om du hadde inntekt.',
