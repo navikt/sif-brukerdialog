@@ -321,7 +321,7 @@ const getBekreftAktivitetOppgaveDto = (): BrukerdialogOppgaveDto => ({
         kilde: AktivitetsavklaringKildeType.NAV,
         fom: getForrigeMånedFom(),
         tom: getForrigeMånedTom(),
-        varseltekst: mockVarseltekster.getPlassholderVarseltekst('aktivitetsvilkåret', 'periode'),
+        varseltekst: mockVarseltekster.getAktivitetOppgaveVarseltekst(getForrigeMånedFom(), getForrigeMånedTom()),
     },
 });
 
@@ -334,7 +334,7 @@ const getBekreftAktivitetOpphørOppgaveDto = (): BrukerdialogOppgaveDto => ({
         ikkeOppfyltÅrsak: AktivitetsvilkåretIkkeOppfyltÅrsak.UDEFINERT,
         kilde: AktivitetsavklaringKildeType.BRUKER,
         fom: getForrigeMånedFom(),
-        varseltekst: mockVarseltekster.getPlassholderVarseltekst('aktivitetsvilkåret', 'opphør'),
+        varseltekst: mockVarseltekster.getAktivitetOppgaveVarseltekst(getForrigeMånedFom()),
     },
 });
 
@@ -348,7 +348,11 @@ const getBekreftBistandOppgaveDto = (): BrukerdialogOppgaveDto => ({
         kilde: BistandsavklaringKildeType.NAV,
         fom: getForrigeMånedFom(),
         tom: getForrigeMånedTom(),
-        varseltekst: mockVarseltekster.getPlassholderVarseltekst('bistandsvilkåret', 'periode'),
+        varseltekst: mockVarseltekster.getBistandOppgaveVarseltekst(
+            BistandsvilkårIkkeOppfyltÅrsak.IKKE_14A_VEDTAK,
+            getForrigeMånedFom(),
+            getForrigeMånedTom(),
+        ),
     },
 });
 
@@ -362,7 +366,10 @@ const getBekreftBistandOpphørOppgaveDto = (): BrukerdialogOppgaveDto => ({
         kilde: BistandsavklaringKildeType.ANNET,
         kildeFritekst: 'Vi har fått informasjon fra din veileder.',
         fom: getForrigeMånedFom(),
-        varseltekst: mockVarseltekster.getBistandOpphørOppgaveVarseltekst(getForrigeMånedFom()),
+        varseltekst: mockVarseltekster.getBistandOppgaveVarseltekst(
+            BistandsvilkårIkkeOppfyltÅrsak.KOMMET_I_ARBEID,
+            getForrigeMånedFom(),
+        ),
     },
 });
 

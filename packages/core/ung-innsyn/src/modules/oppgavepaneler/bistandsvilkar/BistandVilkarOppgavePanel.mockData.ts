@@ -13,9 +13,18 @@ import dayjs from 'dayjs';
 export const BISTAND_ÅRSAK_SCENARIO_OPTIONS = Object.values(BistandsvilkårIkkeOppfyltÅrsak);
 export const BISTAND_KILDE_SCENARIO_OPTIONS = Object.values(BistandsavklaringKildeType);
 
-/** Varselteksten kommer ferdig formulert fra backend. */
-const mockVarseltekst =
-    'Vi har fått opplysninger om at du har begynt å jobbe og ikke lenger trenger hjelp fra Nav til å få jobb eller utdanning. Det betyr at du fra 30. november 2026 ikke lenger får aktivitetspenger.';
+const bortfall = 'Det betyr at du fra 30. november 2026 ikke lenger får aktivitetspenger.';
+const ikkeLengerBehovForHjelp = 'ikke lenger trenger hjelp fra Nav til å få jobb eller utdanning.';
+
+/** Varselteksten kommer ferdig formulert fra backend (bekreft_bistand.hbs, opphør). */
+const varseltekster = {
+    IKKE_14A_VEDTAK:
+        'Vi har fått opplysninger om at du fra 30. november 2026 ikke lenger har et vedtak fra Nav om behov for bistand til å komme i arbeid. Du må ha et slikt vedtak for å få aktivitetspenger.',
+    KOMMET_I_UTDANNING: `Vi har fått opplysninger om at du har begynt på en utdanning og ${ikkeLengerBehovForHjelp} ${bortfall}`,
+    KOMMET_I_ARBEID: `Vi har fått opplysninger om at du har begynt å jobbe og ${ikkeLengerBehovForHjelp} ${bortfall}`,
+    ANNET: `Vi har fått opplysninger om at du ${ikkeLengerBehovForHjelp} ${bortfall}`,
+    UDEFINERT: `Vi har fått opplysninger om at du ${ikkeLengerBehovForHjelp} ${bortfall}`,
+} satisfies Record<BistandsvilkårIkkeOppfyltÅrsak, string>;
 
 export const lagBistandOppgaveMedÅrsak = (
     base: BistandVilkårOppgave,
@@ -26,6 +35,7 @@ export const lagBistandOppgaveMedÅrsak = (
     oppgavetypeData: {
         ...base.oppgavetypeData,
         ikkeOppfyltÅrsak: årsak,
+        varseltekst: varseltekster[årsak],
         kilde,
         kildeFritekst:
             kilde === BistandsavklaringKildeType.ANNET
@@ -51,7 +61,7 @@ export const mockBistandVilkårAKT: BistandVilkårOppgave = {
     oppgavetypeData: {
         ikkeOppfyltÅrsak: BistandsvilkårIkkeOppfyltÅrsak.KOMMET_I_ARBEID,
         kilde: BistandsavklaringKildeType.NAV,
-        varseltekst: mockVarseltekst,
+        varseltekst: varseltekster.KOMMET_I_ARBEID,
     },
 };
 

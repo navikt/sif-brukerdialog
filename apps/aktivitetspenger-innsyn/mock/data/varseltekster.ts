@@ -1,4 +1,4 @@
-import { BostedsvilkårIkkeOppfyltÅrsak } from '@sif/ung-brukerdialog-api';
+import { BistandsvilkårIkkeOppfyltÅrsak, BostedsvilkårIkkeOppfyltÅrsak } from '@sif/ung-brukerdialog-api';
 import { dateFormatter, ISODate } from '@sif/utils';
 
 /** Bosted opphør */
@@ -58,19 +58,40 @@ const getAndreLivsoppholdsytelserOpphørOppgaveVarseltekst = (fom: ISODate): str
     );
 };
 
-/** Hentet fra ekte respons fra backend (BISTAND_OPPHØR, KOMMET_I_ARBEID). */
-const getBistandOpphørOppgaveVarseltekst = (fom: ISODate): string =>
-    `Vi har fått opplysninger om at du har begynt å jobbe og ikke lenger trenger hjelp fra Nav til å få jobb eller utdanning. Det betyr at du fra ${dateFormatter.full(fom)} ikke lenger får aktivitetspenger.`;
+/** Aktivitet og bistand: tekstene følger backendens maler (bekreft_aktivitet.hbs og bekreft_bistand.hbs). */
+const getAktivitetOppgaveVarseltekst = (fom: ISODate, tom?: ISODate): string => {
+    const tidsrom = tom
+        ? `i perioden ${dateFormatter.full(fom)} til ${dateFormatter.full(tom)} ikke er`
+        : `fra ${dateFormatter.full(fom)} ikke lenger er`;
+    return `Vi har fått opplysninger om at du ${tidsrom} i aktivitet. Du må være i aktivitet for å få aktivitetspenger.`;
+};
 
-/** Plassholder til vi har eksempel på varseltekst fra backend. */
-const getPlassholderVarseltekst = (vilkår: string, variant: 'periode' | 'opphør'): string =>
-    `Mock av varseltekst fra backend for ${vilkår} (${variant}).`;
+const getBistandOppgaveVarseltekst = (årsak: BistandsvilkårIkkeOppfyltÅrsak, fom: ISODate, tom?: ISODate): string => {
+    const lenger = tom ? '' : 'lenger ';
+    const bortfall = tom
+        ? `Det betyr at du i perioden ${dateFormatter.full(fom)} til ${dateFormatter.full(tom)} ikke får aktivitetspenger.`
+        : `Det betyr at du fra ${dateFormatter.full(fom)} ikke lenger får aktivitetspenger.`;
+    switch (årsak) {
+        case BistandsvilkårIkkeOppfyltÅrsak.IKKE_14A_VEDTAK: {
+            const tidsrom = tom
+                ? `i perioden ${dateFormatter.full(fom)} til ${dateFormatter.full(tom)} ikke har`
+                : `fra ${dateFormatter.full(fom)} ikke lenger har`;
+            return `Vi har fått opplysninger om at du ${tidsrom} et vedtak fra Nav om behov for bistand til å komme i arbeid. Du må ha et slikt vedtak for å få aktivitetspenger.`;
+        }
+        case BistandsvilkårIkkeOppfyltÅrsak.KOMMET_I_UTDANNING:
+            return `Vi har fått opplysninger om at du har begynt på en utdanning og ikke ${lenger}trenger hjelp fra Nav til å få jobb eller utdanning. ${bortfall}`;
+        case BistandsvilkårIkkeOppfyltÅrsak.KOMMET_I_ARBEID:
+            return `Vi har fått opplysninger om at du har begynt å jobbe og ikke ${lenger}trenger hjelp fra Nav til å få jobb eller utdanning. ${bortfall}`;
+        default:
+            return `Vi har fått opplysninger om at du ikke ${lenger}trenger hjelp fra Nav til å få jobb eller utdanning. ${bortfall}`;
+    }
+};
 
 export const mockVarseltekster = {
     getBostedVilkårOpphørOppgaveVarseltekst,
     getBostedVilkårPeriodeOppgaveVarseltekst,
     getAndreLivsoppholdsytelserOppgaveVarseltekst,
     getAndreLivsoppholdsytelserOpphørOppgaveVarseltekst,
-    getBistandOpphørOppgaveVarseltekst,
-    getPlassholderVarseltekst,
+    getAktivitetOppgaveVarseltekst,
+    getBistandOppgaveVarseltekst,
 };

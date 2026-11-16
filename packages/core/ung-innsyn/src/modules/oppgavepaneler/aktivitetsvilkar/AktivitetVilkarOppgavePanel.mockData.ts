@@ -13,8 +13,9 @@ import dayjs from 'dayjs';
 export const AKTIVITET_ÅRSAK_SCENARIO_OPTIONS = Object.values(AktivitetsvilkåretIkkeOppfyltÅrsak);
 export const AKTIVITET_KILDE_SCENARIO_OPTIONS = Object.values(AktivitetsavklaringKildeType);
 
-/** Varselteksten kommer ferdig formulert fra backend. */
-const mockVarseltekst = 'Mock av varseltekst fra backend for aktivitetsvilkåret.';
+/** Varselteksten kommer ferdig formulert fra backend (bekreft_aktivitet.hbs, opphør). */
+const mockVarseltekst =
+    'Vi har fått opplysninger om at du fra 30. november 2026 ikke lenger er i aktivitet. Du må være i aktivitet for å få aktivitetspenger.';
 
 export const lagAktivitetOppgaveMedÅrsak = (
     base: AktivitetVilkårOppgave,
