@@ -1,5 +1,7 @@
 import {
+    BekreftAktivitetOppgavetypeDataDto,
     BekreftAndreLivsoppholdsytelserOppgavetypeDataDto,
+    BekreftBistandOppgavetypeDataDto,
     BekreftBostedOppgavetypeDataDto,
     BrukerdialogOppgaveDto,
     OppgaveStatus,
@@ -12,6 +14,8 @@ import { DateRange, ISODate, OpenDateRange } from '@sif/utils';
 export enum ParsedOppgavetype {
     BEKREFT_BOSTED = 'BEKREFT_BOSTED',
     BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER = 'BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER',
+    BEKREFT_AKTIVITET = 'BEKREFT_AKTIVITET',
+    BEKREFT_BISTAND = 'BEKREFT_BISTAND',
     BEKREFT_OPPHOR_VED_MAKSDATO = 'BEKREFT_OPPHOR_VED_MAKSDATO',
     BEKREFT_AVVIK_REGISTERINNTEKT = 'BEKREFT_AVVIK_REGISTERINNTEKT',
     BEKREFT_ENDRET_STARTDATO = 'BEKREFT_ENDRET_STARTDATO',
@@ -96,6 +100,20 @@ export interface AndreLivsoppholdsytelserOppgave extends ParsedOppgaveBase {
 }
 
 /** Dekker både avslag i en periode og opphør fra en dato. */
+export interface AktivitetVilkårOppgave extends ParsedOppgaveBase {
+    parsedOppgavetype: ParsedOppgavetype.BEKREFT_AKTIVITET;
+    oppgavetypeData: ParsedVilkårOppgavetypeData<BekreftAktivitetOppgavetypeDataDto>;
+    respons?: SvarPåVarselRespons;
+}
+
+/** Dekker både avslag i en periode og opphør fra en dato. */
+export interface BistandVilkårOppgave extends ParsedOppgaveBase {
+    parsedOppgavetype: ParsedOppgavetype.BEKREFT_BISTAND;
+    oppgavetypeData: ParsedVilkårOppgavetypeData<BekreftBistandOppgavetypeDataDto>;
+    respons?: SvarPåVarselRespons;
+}
+
+/** Dekker både avslag i en periode og opphør fra en dato. */
 export interface EndretSluttdatoOppgave extends ParsedOppgaveBase {
     parsedOppgavetype: ParsedOppgavetype.BEKREFT_ENDRET_SLUTTDATO;
     oppgavetypeData: {
@@ -145,6 +163,8 @@ export type BekreftelseOppgave =
     | OpphorVedMaksdatoOppgave
     | BostedVilkårOppgave
     | AndreLivsoppholdsytelserOppgave
+    | AktivitetVilkårOppgave
+    | BistandVilkårOppgave
     | (AvvikRegisterinntektOppgave & {
           respons?: SvarPåVarselRespons;
       });
@@ -169,6 +189,8 @@ export type Oppgave =
     | AvvikRegisterinntektOppgave
     | BostedVilkårOppgave
     | AndreLivsoppholdsytelserOppgave
+    | AktivitetVilkårOppgave
+    | BistandVilkårOppgave
     | EndretSluttdatoOppgave
     | EndretStartdatoOppgave
     | EndretStartOgSluttdatoOppgave

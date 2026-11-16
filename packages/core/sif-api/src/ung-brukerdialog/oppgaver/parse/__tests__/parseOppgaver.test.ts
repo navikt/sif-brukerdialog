@@ -1,8 +1,11 @@
 import {
     AndreLivsoppholdsytelserAvklaringKildeType,
     AndreLivsoppholdsytelserIkkeOppfyltÅrsak,
+    BistandsavklaringKildeType,
+    BistandsvilkårIkkeOppfyltÅrsak,
     BostedsavklaringKildeType,
     BostedsvilkårIkkeOppfyltÅrsak,
+    BrukerdialogOppgaveDto,
     OppgaveStatus,
     OppgaveType,
     OppgaveYtelsetype,
@@ -11,6 +14,7 @@ import { describe, expect, it } from 'vitest';
 
 import {
     AndreLivsoppholdsytelserOppgave,
+    BistandVilkårOppgave,
     BostedVilkårOppgave,
     OpphorVedMaksdatoOppgave,
     ParsedOppgavetype,
@@ -407,5 +411,38 @@ describe('parseOppgaver - BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER (opphørsvarianten)'
             AndreLivsoppholdsytelserIkkeOppfyltÅrsak.MOTTAR_ARBEIDSAVKLARINGSPENGER,
         );
         expect(oppgave.oppgavetypeData.kilde).toBe(AndreLivsoppholdsytelserAvklaringKildeType.NAV);
+    });
+});
+
+describe('parseOppgaver - BEKREFT_BISTAND', () => {
+    it('parser opphørsvarianten fra backend og tar ikke med datoene', () => {
+        const fraBackend = {
+            oppgaveReferanse: '216abccd-4306-4c50-878f-e7899104f053',
+            oppgavetype: 'BEKREFT_BISTAND',
+            oppgavetypeData: {
+                type: 'BISTAND_OPPHØR',
+                fom: '2026-11-30',
+                ikkeOppfyltÅrsak: 'KOMMET_I_ARBEID',
+                ikkeOppfyltÅrsakFritekstbeskrivelse: null,
+                kilde: 'ANNET',
+                kildeFritekst: 'jjjjjjjj',
+                varseltekst: 'Vi har fått opplysninger om at du har begynt å jobbe.',
+            },
+            ytelsetype: 'AKTIVITETSPENGER',
+            respons: null,
+            status: 'ULØST',
+            opprettetDato: '2026-11-16T11:04:50.019+01:00',
+            løstDato: null,
+            frist: '2026-11-17T11:04:49.000+01:00',
+        } as unknown as BrukerdialogOppgaveDto;
+
+        const oppgave = parseOppgaver([fraBackend])[0] as BistandVilkårOppgave;
+
+        expect(oppgave.parsedOppgavetype).toBe(ParsedOppgavetype.BEKREFT_BISTAND);
+        expect(oppgave.oppgavetypeData.ikkeOppfyltÅrsak).toBe(BistandsvilkårIkkeOppfyltÅrsak.KOMMET_I_ARBEID);
+        expect(oppgave.oppgavetypeData.kilde).toBe(BistandsavklaringKildeType.ANNET);
+        expect(oppgave.oppgavetypeData.kildeFritekst).toBe('jjjjjjjj');
+        expect(oppgave.oppgavetypeData).not.toHaveProperty('fom');
+        expect(oppgave.respons).toBeUndefined();
     });
 });
