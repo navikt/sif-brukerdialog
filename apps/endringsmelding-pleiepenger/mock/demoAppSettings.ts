@@ -14,4 +14,5 @@ export const getDemoAppSettings = () => ({
     SIF_PUBLIC_USE_ANALYTICS: 'false',
     K9_BRUKERDIALOG_PROSESSERING_FRONTEND_PATH: `${PUBLIC_PATH}/api/k9-brukerdialog`,
     SIF_INNSYN_FRONTEND_PATH: `${PUBLIC_PATH}/api/sif-innsyn`,
+    K9_SAK_INNSYN_FRONTEND_PATH: `${PUBLIC_PATH}/api/k9-sak-innsyn`,
 });

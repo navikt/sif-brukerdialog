@@ -1,4 +1,4 @@
-# @navikt/sif-gh-pages-forside
+# @navikt/sif-gh-pages-src
 
 ## 0.1.1
 

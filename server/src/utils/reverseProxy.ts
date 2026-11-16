@@ -2,13 +2,31 @@ import { getToken, requestTokenxOboToken } from '@navikt/oasis';
 import { Express, NextFunction, Request, Response } from 'express';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import config, { Service, verifyProxyConfigIsSet } from './serverConfig.js';
+import { CORRELATION_ID_HEADER } from './correlationId.js';
 import logger from './log.js';
-import { v4 as uuid } from 'uuid';
 
 type ProxyOptions = {
     ingoingUrl: string;
     outgoingUrl: string;
     scope: string;
+    blockedPaths?: string[];
+};
+
+const ALWAYS_BLOCKED_PATHS = ['/internal', '/actuator', '/admin'];
+
+// Lovlige API-stier inneholder aldri disse tegnene. Avvis i stedet for å gjette hvordan backend normaliserer.
+const SUSPICIOUS_PATH = /[%\\;]|\/\.\.?(\/|$)/;
+
+const isBlockedPath = (url: string, blockedPaths: string[]): boolean => {
+    let path: string;
+    try {
+        path = decodeURIComponent(url.split('?')[0]).toLowerCase();
+    } catch {
+        return true;
+    }
+    if (SUSPICIOUS_PATH.test(path)) return true;
+    const normalized = path.replace(/\/{2,}/g, '/');
+    return blockedPaths.some((blocked) => normalized === blocked || normalized.startsWith(`${blocked}/`));
 };
 
 const getCommitShaFromEnv = () => {
@@ -25,20 +43,28 @@ export function configureReverseProxyApi(app: Express, services: Service[]) {
             ingoingUrl: proxy.frontendPath,
             outgoingUrl: proxy.apiUrl,
             scope: proxy.apiScope,
+            blockedPaths: proxy.blockedPaths,
         });
         logger.info(`Reverse proxyHandler added for ${key}: ${proxy.frontendPath} -> ${proxy.apiUrl}`);
     });
 }
 
-export function addProxyHandler(server: Express, { ingoingUrl, outgoingUrl, scope }: ProxyOptions) {
+export function addProxyHandler(server: Express, { ingoingUrl, outgoingUrl, scope, blockedPaths = [] }: ProxyOptions) {
+    const allBlockedPaths = [...ALWAYS_BLOCKED_PATHS, ...blockedPaths];
     server.use(
         ingoingUrl,
         async (request: Request, response: Response, next: NextFunction) => {
+            // request.url er relativ til ingoingUrl, altså stien som sendes videre til backend
+            if (isBlockedPath(request.url, allBlockedPaths)) {
+                logger.warning(
+                    `Blocked proxy path - ${request.method} ${request.originalUrl.split('?')[0]} (correlationId: ${request.headers[CORRELATION_ID_HEADER]})`,
+                );
+                response.status(404).send();
+                return;
+            }
+
             if (process.env.NAIS_CLIENT_ID !== undefined) {
                 request.headers['X-K9-Brukerdialog'] = process.env.NAIS_CLIENT_ID;
-            }
-            if (request.headers['X-Correlation-ID'] === undefined) {
-                request.headers['X-Correlation-ID'] = uuid();
             }
             request.headers['X-Brukerdialog-Git-Sha'] = getCommitShaFromEnv();
 
@@ -59,6 +85,8 @@ export function addProxyHandler(server: Express, { ingoingUrl, outgoingUrl, scop
         createProxyMiddleware({
             target: outgoingUrl,
             changeOrigin: true,
+            // Under ingress-nginx sin standard på 60 s, slik at vi svarer 504 og logger før ingress kutter
+            proxyTimeout: 55_000,
             logger: console,
             on: {
                 proxyReq: (proxyRequest, request) => {

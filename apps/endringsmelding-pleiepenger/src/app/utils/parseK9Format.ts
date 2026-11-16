@@ -84,7 +84,6 @@ export const harNormalarbeidstidIK9SakArbeidstidInfo = (arbeidstidInfo?: K9SakAr
 };
 
 /** Hvis det kun er oppgitt 0 timer som normalarbeidstid, fjernes arbeidstidsinfoen, og en kan ikke endre disse arbeidsforholdene. */
-
 export const fjernK9SakArbeidstidMedIngenNormalarbeidstid = (arbeidstid: K9SakArbeidstid): K9SakArbeidstid => {
     const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } = arbeidstid;
 

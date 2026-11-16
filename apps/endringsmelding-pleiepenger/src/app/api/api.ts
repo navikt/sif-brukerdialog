@@ -5,7 +5,7 @@ import axios, { AxiosError, AxiosRequestConfig, RawAxiosRequestHeaders } from 'a
 
 import { appEnv } from '../utils/appEnv';
 import { relocateToLoginPage } from '../utils/navigationUtils';
-import { ApiEndpointInnsyn, ApiEndpointPsb } from './endpoints';
+import { ApiEndpointInnsyn, ApiEndpointK9SakInnsyn, ApiEndpointPsb } from './endpoints';
 
 export * from './endpoints';
 
@@ -22,6 +22,11 @@ const axiosConfigInnsyn: AxiosRequestConfig = {
     ...axiosConfigCommon,
     transformResponse: storageParser,
     baseURL: getSifInnsynBrowserEnv().SIF_INNSYN_FRONTEND_PATH,
+};
+
+const axiosConfigK9SakInnsyn: AxiosRequestConfig = {
+    ...axiosConfigCommon,
+    baseURL: appEnv.K9_SAK_INNSYN_FRONTEND_PATH,
 };
 
 axios.interceptors.request.use((config) => {
@@ -46,6 +51,10 @@ const api = {
             const url = `${endpoint}${paramString ? `?${paramString}` : ''}`;
             return axios.get<ResponseType>(url, axiosConfigInnsyn);
         },
+    },
+    k9SakInnsyn: {
+        get: <ResponseType>(endpoint: ApiEndpointK9SakInnsyn) =>
+            axios.get<ResponseType>(endpoint, axiosConfigK9SakInnsyn),
     },
     psb: {
         get: <ResponseType>(endpoint: ApiEndpointPsb, paramString?: string, config?: AxiosRequestConfig) => {

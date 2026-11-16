@@ -24,7 +24,7 @@ export const SøknadKvitteringPage = ({
 }: PropsWithChildren<SøknadKvitteringPageProps>) => {
     return (
         <ApplicationPage documentTitle={documentTitle} applicationTitle={applicationTitle}>
-            <Kvittering infoTittel={infoTittel} infoInnhold={infoMelding}>
+            <Kvittering infoTittel={infoTittel} infoInnhold={infoMelding} setFocusOnHeadingOnMount={true}>
                 {children}
                 {appRootUrl && (
                     <div>

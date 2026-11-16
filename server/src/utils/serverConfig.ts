@@ -2,6 +2,8 @@ type Proxy = {
     frontendPath: string;
     apiScope: string;
     apiUrl: string;
+    /** Prefikser i backend som ikke skal kunne nås med borgertoken. Små bokstaver. */
+    blockedPaths?: string[];
 };
 type EnvVariables = { [key: string]: string };
 type ProxyEnvVariables = Record<Partial<ProxyEnvKey>, string>;
@@ -39,6 +41,7 @@ const proxies = {
         frontendPath: process.env[ProxyEnvKey.SIF_INNSYN_FRONTEND_PATH],
         apiScope: process.env[ProxyEnvKey.SIF_INNSYN_API_SCOPE],
         apiUrl: process.env[ProxyEnvKey.SIF_INNSYN_API_URL],
+        blockedPaths: ['/forvaltning'],
     },
     [Service.K9_SAK_INNSYN]: <Proxy>{
         frontendPath: process.env[ProxyEnvKey.K9_SAK_INNSYN_FRONTEND_PATH],
@@ -54,6 +57,7 @@ const proxies = {
         frontendPath: process.env[ProxyEnvKey.UNG_DELTAKELSE_OPPLYSER_FRONTEND_PATH],
         apiScope: process.env[ProxyEnvKey.UNG_DELTAKELSE_OPPLYSER_API_SCOPE],
         apiUrl: process.env[ProxyEnvKey.UNG_DELTAKELSE_OPPLYSER_API_URL],
+        blockedPaths: ['/veileder', '/oppslag/deltaker'],
     },
     [Service.UNG_BRUKERDIALOG_API]: <Proxy>{
         frontendPath: process.env[ProxyEnvKey.UNG_BRUKERDIALOG_API_FRONTEND_PATH],

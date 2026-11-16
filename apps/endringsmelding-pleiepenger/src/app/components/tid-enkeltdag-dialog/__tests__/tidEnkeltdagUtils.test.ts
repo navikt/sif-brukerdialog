@@ -10,6 +10,7 @@ vi.mock('@sif/env', () => {
         getCommonEnv: () => ({}),
         getMaybeEnv: () => '',
         getSifInnsynBrowserEnv: () => ({}),
+        getK9SakInnsynEnv: () => ({}),
     };
 });
 

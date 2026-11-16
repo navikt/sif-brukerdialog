@@ -4,8 +4,8 @@ import { getIngenTilgangMeta } from '../ingenTilgangMeta';
 import { lagArbeidstaker, lagSak } from './testdata';
 
 /**
- * Loggmetadata som følger med avslag fra fase 2. Kriteriet er timer over null,
- * i motsetning til SN-tilgangsregelen som kun ser om det finnes perioder.
+ * Loggmetadata som følger med avslag fra fase 2. Kriteriet er minst én periode
+ * med normaltimer over null.
  */
 describe('getIngenTilgangMeta', () => {
     it('markerer ingen arbeidsforhold når saken ikke har arbeidstid', () => {

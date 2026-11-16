@@ -27,21 +27,15 @@ interface AvslagCase {
 }
 
 const avslagCases: AvslagCase[] = [
-    /** Regel 6 - selvstendig næringsdrivende */
+    /** Selvstendig næringsdrivende */
     {
         beskrivelse: 'SN med arbeidstid',
         sak: lagSak({ snTimerPerDag: 'PT7H30M' }),
         arbeidsgivere: [],
         forventet: [IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende],
     },
-    {
-        beskrivelse: 'SN-perioder uten timer blokkerer også - det er perioden som definerer SN',
-        sak: lagSak({ snTimerPerDag: 'PT0H0M' }),
-        arbeidsgivere: [],
-        forventet: [IngenTilgangÅrsak.harArbeidstidSomSelvstendigNæringsdrivende],
-    },
 
-    /** Regel 7 - kjent arbeidsgiver, to ansettelser samme uke med opphold */
+    /** Kjent arbeidsgiver, to ansettelser samme uke med opphold */
     {
         beskrivelse: 'kjent arbeidsgiver med to ansettelser samme isoUke med opphold',
         sak: sakMedKjentArbeidsgiver,
@@ -49,11 +43,17 @@ const avslagCases: AvslagCase[] = [
         forventet: [IngenTilgangÅrsak.enArbeidsgiverToAnsettelserSammeUkeMedOpphold],
     },
 
-    /** Regel 8 - ukjent arbeidsgiver med flere ansettelser */
+    /** Ukjent arbeidsgiver med flere ansettelser */
     {
         beskrivelse: 'ukjent arbeidsgiver med flere ansettelser i søknadsperioden',
         sak: sakMedKjentArbeidsgiver,
         arbeidsgivere: [lagArbeidsgiver(UKJENT_ORGNR, ['2024-01-01/2024-01-10', '2024-01-15/2024-01-20'])],
+        forventet: [IngenTilgangÅrsak.harFlereAnsettelsesforholdHosUkjentArbeidsgiver],
+    },
+    {
+        beskrivelse: 'arbeidsgiver i saken med bare 0 timer regnes som ukjent',
+        sak: lagSak({ arbeidstakere: [lagArbeidstaker(KJENT_ORGNR, 'PT0H0M')] }),
+        arbeidsgivere: [lagArbeidsgiver(KJENT_ORGNR, ['2024-01-01/2024-01-10', '2024-01-15/2024-01-20'])],
         forventet: [IngenTilgangÅrsak.harFlereAnsettelsesforholdHosUkjentArbeidsgiver],
     },
 
@@ -97,6 +97,11 @@ const tilgangCases: TilgangCase[] = [
     {
         beskrivelse: 'frilans blokkerer ikke',
         sak: lagSak({ frilansTimerPerDag: 'PT7H30M' }),
+        arbeidsgivere: [],
+    },
+    {
+        beskrivelse: 'SN med bare 0 normaltimer blokkerer ikke',
+        sak: lagSak({ snTimerPerDag: 'PT0H0M' }),
         arbeidsgivere: [],
     },
     {
@@ -152,8 +157,9 @@ describe('vurderArbeidsforhold', () => {
 });
 
 /**
- * Utfallene av regel 7 dekkes gjennom vurderArbeidsforhold over. Her testes kun
- * at funksjonen sorterer selv, og at den ikke muterer listen den får inn.
+ * Utfallene av regelen om to ansettelser samme uke dekkes gjennom
+ * vurderArbeidsforhold over. Her testes kun at funksjonen sorterer selv, og at
+ * den ikke muterer listen den får inn.
  */
 describe('perioderSlutterOgStarterSammeUkeMedOpphold', () => {
     /** Uke 2 er 06.01-12.01, uke 3 er 13.01-19.01 og uke 4 er 20.01-26.01 i 2025. */

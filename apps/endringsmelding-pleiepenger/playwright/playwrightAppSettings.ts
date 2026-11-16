@@ -4,6 +4,7 @@ export const getPlaywrightAppSettings = (): AppEnv & any => ({
     VELG_SCENARIO: 'on',
     SIF_PUBLIC_VELG_ENDRE_FRA_OPPSUMMERING: 'on',
     SIF_PUBLIC_SJEKK_OM_ARBEIDSTID_ER_GYLDIG: 'on',
+    SIF_PUBLIC_HENT_TILGANG_FRA_BACKEND: 'on',
     NOW: '2023-01-05T12:00:00Z',
     APP_VERSION: 'dev',
     ENV: 'dev',
@@ -28,4 +29,8 @@ export const getPlaywrightAppSettings = (): AppEnv & any => ({
     SIF_INNSYN_FRONTEND_PATH: '/familie/sykdom-i-familien/soknad/endringsmelding/api/sif-innsyn',
     SIF_INNSYN_API_URL: 'http://sif-innsyn-api',
     SIF_INNSYN_API_SCOPE: 'dev-gcp:dusseldorf:sif-innsyn-api',
+
+    K9_SAK_INNSYN_FRONTEND_PATH: '/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/api/k9-sak-innsyn',
+    K9_SAK_INNSYN_API_URL: 'http://k9-sak-innsyn-api',
+    K9_SAK_INNSYN_API_SCOPE: 'dev-gcp:dusseldorf:k9-sak-innsyn-api',
 });

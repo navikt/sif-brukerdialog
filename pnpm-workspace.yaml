@@ -2,7 +2,7 @@ packages:
   - "apps/*"
   - "apps-intern/*"
   - "packages/*/*"
-  - "gh-pages"
+  - "gh-pages-src"
   - "server"
   - "server-ungdomsytelse-veileder"
 

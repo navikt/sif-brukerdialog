@@ -1,8 +1,6 @@
 import { innsyn } from '@sif/k9-sak-innsyn-api';
-import { zBehandlingDto, zInnsendelserISakDto, zInnsending } from '@sif/k9-sak-innsyn-api/src/generated/innsyn';
 import axios from 'axios';
 import { NextApiRequest } from 'next';
-import { z } from 'zod';
 
 import { getContextForApiHandler, prepApiError, serverResponseTransform } from '../../utils/apiUtils';
 import { getLogger } from '../../utils/getLogger';
@@ -10,37 +8,7 @@ import { ApiServices } from '../types/ApiServices';
 import { exchangeTokenAndPrepRequest } from '../utils/exchangeTokenPrepRequest';
 import { serverApiUtils } from '../utils/serverApiUtils';
 import { assertValidSaksnummer } from '../utils/validatePathSegment';
-
-export const zSakDtoExtended = innsyn.zSakDto.extend({
-    // zSakDto har feil format i forhold til generert skjema; transformeres her
-    fagsakYtelseType: z.union([
-        innsyn.zSakDto.shape.fagsakYtelseType,
-        z
-            .object({
-                kode: z.string(),
-                kodeverk: z.string(),
-            })
-            .transform((val) => val.kode),
-    ]),
-    /** Ytelse mangler i generert schema, legger til slik at det ikke strippes ut */
-    behandlinger: z.array(
-        zBehandlingDto.extend({
-            innsendelser: z.array(
-                zInnsendelserISakDto.extend({
-                    k9FormatInnsendelse: z
-                        .optional(
-                            zInnsending.extend({
-                                ytelse: z.any().optional(),
-                            }),
-                        )
-                        .nullable(),
-                }),
-            ),
-        }),
-    ),
-});
-
-export type SakDtoExtended = z.infer<typeof zSakDtoExtended>;
+import { SakDtoExtended, zSakDtoExtended } from './sakDtoExtended';
 
 const fjernUkjenteInnsendelserISak = (sak: SakDtoExtended): SakDtoExtended => {
     return {

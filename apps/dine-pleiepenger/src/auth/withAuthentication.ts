@@ -96,9 +96,11 @@ export function withAuthenticatedApi(handler: ApiHandler): ApiHandler {
             return handler(req, res, ...rest);
         }
 
+        // Query-strengen logges ikke, fordi den kan inneholde fnr (organisasjonsnummer for privat arbeidsgiver)
+        const path = req.url?.split('?')[0];
         const token = getToken(req);
         if (token == null) {
-            logger.error(`JWT-less request for API ${req.url}`);
+            logger.error(`JWT-less request for API ${path}`);
             res.status(401).json({ message: 'Access denied' });
             return;
         }
@@ -106,7 +108,7 @@ export function withAuthenticatedApi(handler: ApiHandler): ApiHandler {
         const validatedToken = await validateToken(token);
 
         if (!validatedToken.ok) {
-            logger.error(`Invalid JWT token found (cause: ${validatedToken.error.message} for API ${req.url}`);
+            logger.error(`Invalid JWT token found (cause: ${validatedToken.error.message} for API ${path}`);
             res.status(401).json({ message: 'Access denied' });
             return;
         }
@@ -157,7 +159,7 @@ export function parseAuthHeader(headers: IncomingHttpHeaders): TokenPayload | nu
 }
 
 /**
- * Used locally or in demo environments to create a fake request context.
+ * Used in local development to create a fake request context.
  */
 export function createDemoRequestContext(req: GetServerSidePropsContext['req'] | NextApiRequest): RequestContext {
     if (!isLocal) {
