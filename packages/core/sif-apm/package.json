@@ -14,16 +14,16 @@
     },
     "dependencies": {
         "@nais/apm": "0.7.3",
-        "axios": "1.20.0",
+        "axios": "1.21.1",
         "constate": "4.0.0",
         "react": "19.3.1"
     },
     "devDependencies": {
         "@sif/config": "workspace:*",
         "@sif/eslint-config": "workspace:*",
-        "@types/node": "26.6.5",
-        "eslint": "10.13.0",
+        "@types/node": "26.6.6",
+        "eslint": "10.14.0",
         "typescript": "6.0.3",
-        "vitest": "5.0.5"
+        "vitest": "5.1.0"
     }
 }

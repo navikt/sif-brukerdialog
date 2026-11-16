@@ -21,12 +21,12 @@ jobs:
       id-token: write # required: nais/docker-build-push
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7.0.1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v6
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6
       - name: Setup Node.js environment
-        uses: actions/setup-node@v7.1.0
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 24
           cache: "pnpm"
@@ -40,7 +40,7 @@ jobs:
         run: pnpm turbo run build --filter=@navikt/${{ env.APP_NAME }}
 
       - name: Upload assets to CDN
-        uses: nais/deploy/actions/cdn-upload/v2@d003bddf74ce5b96fa3056ae60bd4b9b3bbc89ef # v3
+        uses: nais/deploy/actions/cdn-upload/v2@033f70f2484ddfa91dc3d878e06ced3113f996ad # v3
         with:
           team: dusseldorf
           source: apps-intern/${{ env.APP_NAME }}/dist
@@ -49,7 +49,7 @@ jobs:
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
 
       - name: Build and publish docker image
-        uses: nais/docker-build-push@v0
+        uses: nais/docker-build-push@ceabe305c64640175f133b7e59af6666b0a3c46c # v0
         id: docker-push
         with:
           team: dusseldorf
@@ -63,7 +63,7 @@ jobs:
           build_secrets: |
             NPM_TOKEN=${{ secrets.READER_TOKEN }}
       - name: Deploy to dev
-        uses: nais/deploy/actions/deploy@d003bddf74ce5b96fa3056ae60bd4b9b3bbc89ef # v3
+        uses: nais/deploy/actions/deploy@033f70f2484ddfa91dc3d878e06ced3113f996ad # v3
         env:
           CLUSTER: dev-gcp
           RESOURCE: apps-intern/${{ env.APP_NAME }}/nais/nais.yml

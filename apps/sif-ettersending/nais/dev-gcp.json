@@ -27,6 +27,7 @@
     "observabilityEnabled": "true",
     "env": {
         "ENV": "dev",
+        "CSP_MODE": "enforce",
         "APP_VERSION": "dev",
         "NPM_CONFIG_CACHE": "/tmp",
         "NODE_ENV": "development",

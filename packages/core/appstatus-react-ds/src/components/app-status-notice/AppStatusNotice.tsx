@@ -24,9 +24,9 @@ interface Props {
 }
 
 const DefaultPlannedDowntimeMessage = ({ date, from, to }: PlannedDowntimeInfo) => (
-    <BodyLong>
-        På grunn av oppdateringer vil tjenesten være utilgjengelig {dateFormatter.dayDateMonthYear(date)} klokken {from}{' '}
-        - {to}. Hvis du har begynt å bruke tjenesten er det greit å vite at du må sende inn før{' '}
+    <BodyLong as="div">
+        På grunn av oppdateringer vil denne siden være utilgjengelig {dateFormatter.dayDateMonthYear(date)} klokken{' '}
+        {from} - {to}. Hvis du har begynt å bruke tjenesten er det greit å vite at du må sende inn før{' '}
         {dateFormatter.day(date)} klokken {from}, hvis ikke kan det være du må starte på nytt.
     </BodyLong>
 );

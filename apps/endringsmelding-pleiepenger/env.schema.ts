@@ -1,12 +1,13 @@
-import { commonEnvSchema, sifInnsynEnvSchema } from '@sif/env';
+import { commonEnvSchema, k9SakInnsynEnvSchema, sifInnsynEnvSchema } from '@sif/env';
 import * as z from 'zod';
 
-export const appEnvSchema = commonEnvSchema.merge(sifInnsynEnvSchema).extend({
+export const appEnvSchema = commonEnvSchema.merge(sifInnsynEnvSchema).merge(k9SakInnsynEnvSchema).extend({
     SIF_PUBLIC_INNSYN_URL: z.string().min(1),
     SIF_PUBLIC_DOMAIN_URL: z.string().min(1),
     VELG_SCENARIO: z.enum(['on', 'off']).optional(),
     SIF_PUBLIC_VELG_ENDRE_FRA_OPPSUMMERING: z.enum(['on', 'off']).optional(),
     SIF_PUBLIC_SJEKK_OM_ARBEIDSTID_ER_GYLDIG: z.enum(['on', 'off']).optional(),
+    SIF_PUBLIC_HENT_TILGANG_FRA_BACKEND: z.enum(['on', 'off']).optional(),
 });
 
 export const appDevEnvSchema = appEnvSchema.extend({

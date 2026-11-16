@@ -18,7 +18,7 @@ jobs:
 
       # Sett opp pnpm
       - name: Setup pnpm
-        uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6
       # Sett opp Node.js
       - name: Setup Node.js
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
@@ -132,15 +132,15 @@ jobs:
           mv packages/core/ung-innsyn/storybook-static/* deployment/ung-innsyn-storybook/
 
       # Bygg forsiden som lenker til alle demoer og storybooks
-      - name: Build gh-pages-forside
+      - name: Build gh-pages-src
         run: pnpm build
-        working-directory: gh-pages
+        working-directory: gh-pages-src
 
       # Legg forsiden på roten av gh-pages
       - name: Kopier forside til gh-pages
         run: |
           mkdir -p deployment
-          cp -r gh-pages/dist/* deployment/
+          cp -r gh-pages-src/dist/* deployment/
 
       # Last opp bygget som en artefakt
       - name: Upload artifact for GitHub Pages

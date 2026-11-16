@@ -1,4 +1,4 @@
-# gh-pages-forside
+# gh-pages-src
 
 Forsiden som ligger på roten av <https://navikt.github.io/sif-brukerdialog/> og lenker til demoene
 og storybookene som publiseres fra monorepoet.
@@ -6,9 +6,9 @@ og storybookene som publiseres fra monorepoet.
 ## Kjør lokalt
 
 ```bash
-pnpm --filter @navikt/sif-gh-pages-forside dev      # http://localhost:5180/sif-brukerdialog/
-pnpm --filter @navikt/sif-gh-pages-forside build
-pnpm --filter @navikt/sif-gh-pages-forside preview
+pnpm --filter @navikt/sif-gh-pages-src dev      # http://localhost:5180/sif-brukerdialog/
+pnpm --filter @navikt/sif-gh-pages-src build
+pnpm --filter @navikt/sif-gh-pages-src preview
 ```
 
 Lenkene på siden er relative (`./storybook/`), så de peker riktig både lokalt og på GitHub Pages.

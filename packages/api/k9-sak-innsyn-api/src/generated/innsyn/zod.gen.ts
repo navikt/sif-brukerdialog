@@ -777,6 +777,28 @@ export const zSøknadDto = z.object({
     søknader: z.array(zSøknad).nullish(),
 });
 
+export const zDatoperiode = z.object({
+    fom: z.iso.date(),
+    tom: z.iso.date(),
+});
+
+export const zIngenTilgangÅrsak = z.enum([
+    'harIngenSak',
+    'søknadsperioderUtenforTillattEndringsperiode',
+    'harMerEnnEnSak',
+    'harIngenPerioder',
+    'barnManglerIdentitetsnummer',
+    'harArbeidstidSomSelvstendigNæringsdrivende',
+    'enArbeidsgiverToAnsettelserSammeUkeMedOpphold',
+    'harFlereAnsettelsesforholdHosUkjentArbeidsgiver',
+]);
+
+export const zTilgangResultat = z.object({
+    kanBruke: z.boolean(),
+    tillattEndringsperiode: zDatoperiode.nullish(),
+    årsaker: z.array(zIngenTilgangÅrsak),
+});
+
 export const zProblemDetail = z.object({
     detail: z.string().optional(),
     instance: z.url().optional(),
@@ -857,6 +879,11 @@ export const zHentDokumentQuery = z.object({
  * OK
  */
 export const zHentDokumentResponse = z.string();
+
+/**
+ * OK
+ */
+export const zHentTilgangResponse = zTilgangResultat;
 
 export const zHentSakPath = z.object({
     saksnummer: z.string(),

@@ -3,13 +3,17 @@ import { Express } from 'express';
 import path from 'node:path';
 import { z } from 'zod';
 import { appEnvSchema } from '../env.schema.js';
+import { getCspHeader } from './csp.js';
 import config from './serverConfig.js';
 
 export const setupAndServeHtml = async (app: Express) => {
     // When deployed, the generated frontend index.html is copied into the public directory. If running BFF locally the index.html will not exist.
     const spaFilePath = path.resolve('./public', 'index.html');
 
-    const html = await injectDecorator(spaFilePath, config.app.fullDekorator);
+    const [html, cspHeader] = await Promise.all([
+        injectDecorator(spaFilePath, config.app.fullDekorator),
+        getCspHeader(),
+    ]);
 
     const envs = appEnvSchema.safeParse({
         ENV: `${config.app.env}`,
@@ -28,6 +32,9 @@ export const setupAndServeHtml = async (app: Express) => {
     const renderedHtml = html.replaceAll('{{{APP_SETTINGS}}}', JSON.stringify(envs.data));
 
     app.get(/^\/(?!.*dist).*$/, async (_request, response) => {
+        if (cspHeader) {
+            response.set(cspHeader.name, cspHeader.value);
+        }
         response.send(renderedHtml);
     });
 };

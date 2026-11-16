@@ -23,6 +23,7 @@
     "faro": true,
     "env": {
         "ENV": "prod",
+        "CSP_MODE": "report-only",
         "APP_VERSION": "prod",
         "NODE_ENV": "production",
         "PUBLIC_PATH": "/aktivitetspenger/innsyn",

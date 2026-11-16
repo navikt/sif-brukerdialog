@@ -14,9 +14,12 @@ import {
     Duration,
     durationToISODuration,
     getDatesInDateRange,
+    ISODate,
+    ISODateRangeMap,
     ISODateRangeToDateRange,
     ISODurationToDuration,
 } from '@navikt/sif-common-utils';
+import dayjs from 'dayjs';
 
 import { oppsummeringStepUtils } from '../søknad/steps/oppsummering/oppsummeringStepUtils';
 
@@ -29,6 +32,12 @@ interface ArbeidstidMetadata {
     endretArbeidstid?: boolean;
     harEndretFrilans?: boolean;
     harOmsorgsstønad?: boolean;
+    /** Antall dager mellom dagens dato og første dag endret */
+    dagerBakoverArb?: number;
+    /** Antall dager mellom dagens dato og siste dag endret */
+    dagerFremoverArb?: number;
+    /** Antall dager fra og med første til og med siste dag endret */
+    dagerITidsromArb?: number;
 }
 
 interface ArbeidsgiverIkkeIAaregMetadata {
@@ -46,6 +55,12 @@ interface OmsorgstilbudMetadata {
     omsAntallDagerMedTid?: number;
     omsAntallDagerUtenTid?: number;
     endretOmsorgstilbud?: boolean;
+    /** Antall dager mellom dagens dato og første dag endret */
+    dagerBakoverOms?: number;
+    /** Antall dager mellom dagens dato og siste dag endret */
+    dagerFremoverOms?: number;
+    /** Antall dager fra og med første til og med siste dag endret */
+    dagerITidsromOms?: number;
 }
 
 export type SøknadApiDataMetadata = {
@@ -66,6 +81,31 @@ export type SøknadApiDataMetadata = {
         gjordeEndringIOmsorgstilbudEtterTillegg: boolean;
     };
 
+const getFørsteDagEndret = (map: ISODateRangeMap<unknown>): ISODate | undefined => {
+    return Object.keys(map)
+        .map((periode) => periode.split('/')[0])
+        .sort()[0];
+};
+const getSisteDagEndret = (map: ISODateRangeMap<unknown>): ISODate | undefined => {
+    return Object.keys(map)
+        .map((periode) => periode.split('/')[1])
+        .sort()
+        .reverse()[0];
+};
+const getDagerBakover = (map: ISODateRangeMap<unknown>): number => {
+    const førsteDag = getFørsteDagEndret(map);
+    return førsteDag ? Math.max(0, dayjs().startOf('day').diff(dayjs(førsteDag), 'day')) : 0;
+};
+const getDagerFremover = (map: ISODateRangeMap<unknown>): number => {
+    const sisteDag = getSisteDagEndret(map);
+    return sisteDag ? Math.max(0, dayjs(sisteDag).diff(dayjs().startOf('day'), 'day')) : 0;
+};
+const getDagerITidsrom = (map: ISODateRangeMap<unknown>): number => {
+    const førsteDag = getFørsteDagEndret(map);
+    const sisteDag = getSisteDagEndret(map);
+    return førsteDag && sisteDag ? dayjs(sisteDag).diff(dayjs(førsteDag), 'day') + 1 : 0;
+};
+
 const getOmsorgstilbudMetadata = (tilsynsordning?: TilsynsordningApiData): OmsorgstilbudMetadata => {
     if (!tilsynsordning) {
         return {
@@ -83,16 +123,33 @@ const getOmsorgstilbudMetadata = (tilsynsordning?: TilsynsordningApiData): Omsor
             (p) => p.etablertTilsynTimerPerDag === ingenTid,
         ).length,
         endretOmsorgstilbud: antallEndredeDager > 0,
+        dagerBakoverOms: getDagerBakover(tilsynsordning.perioder),
+        dagerFremoverOms: getDagerFremover(tilsynsordning.perioder),
+        dagerITidsromOms: getDagerITidsrom(tilsynsordning.perioder),
     };
 };
 
-const getArbeidstidMetadata = (arbeidstid?: ArbeidstidApiData): ArbeidstidMetadata | undefined => {
+const getAlleArbeidstidPerioder = (arbeidstid?: ArbeidstidApiData): ISODateRangeMap<unknown> => ({
+    ...(arbeidstid?.frilanserArbeidstidInfo?.perioder ?? {}),
+    ...(arbeidstid?.selvstendigNæringsdrivendeArbeidstidInfo?.perioder ?? {}),
+    ...Object.assign({}, ...(arbeidstid?.arbeidstakerList ?? []).map((a) => a.arbeidstidInfo.perioder)),
+});
+
+export const getArbeidstidMetadata = (arbeidstid?: ArbeidstidApiData): ArbeidstidMetadata | undefined => {
+    const perioder = getAlleArbeidstidPerioder(arbeidstid);
+
     return arbeidstid
         ? {
               endretArbeidstid: oppsummeringStepUtils.harEndringerIArbeidstid(arbeidstid),
+              dagerBakoverArb: getDagerBakover(perioder),
+              dagerFremoverArb: getDagerFremover(perioder),
+              dagerITidsromArb: getDagerITidsrom(perioder),
           }
         : {
               endretArbeidstid: false,
+              dagerBakoverArb: 0,
+              dagerFremoverArb: 0,
+              dagerITidsromArb: 0,
           };
 };
 
