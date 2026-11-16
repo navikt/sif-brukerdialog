@@ -4,7 +4,7 @@ import { Readable } from 'stream';
 import { withAuthenticatedApi } from '../../../../auth/withAuthentication';
 import { fetchDocumentStream } from '../../../../server/fetchers/fetchDocumentStream';
 import { ApiServices } from '../../../../server/types/ApiServices';
-import { validateOrganisasjonsnummer, validatePathSegment } from '../../../../server/utils/validatePathSegment';
+import { isValidOrganisasjonsnummer, isValidPathSegment } from '../../../../server/utils/validatePathSegment';
 
 export const config = {
     api: {
@@ -17,15 +17,9 @@ export async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
     const søknadId = query.id;
     const organisasjonsnummer = query.organisasjonsnummer;
 
-    if (typeof søknadId !== 'string' || søknadId.length === 0) {
-        throw Error('SøknadId mangler eller er ugyldig');
+    if (!isValidPathSegment(søknadId) || !isValidOrganisasjonsnummer(organisasjonsnummer)) {
+        return res.status(400).json({ error: 'Ugyldig forespørsel' });
     }
-    if (typeof organisasjonsnummer !== 'string' || organisasjonsnummer.length === 0) {
-        throw Error('Organisasjonsnummer mangler eller er ugyldig');
-    }
-
-    validatePathSegment(søknadId, 'SøknadId');
-    validateOrganisasjonsnummer(organisasjonsnummer);
 
     try {
         const path = `soknad/${søknadId}/arbeidsgivermelding?organisasjonsnummer=${organisasjonsnummer}`;

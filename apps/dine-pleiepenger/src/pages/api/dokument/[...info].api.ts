@@ -4,7 +4,7 @@ import { Readable } from 'stream';
 import { withAuthenticatedApi } from '../../../auth/withAuthentication';
 import { fetchDocumentStream } from '../../../server/fetchers/fetchDocumentStream';
 import { ApiServices } from '../../../server/types/ApiServices';
-import { validateDokumentTittel, validatePathSegment } from '../../../server/utils/validatePathSegment';
+import { isValidDokumentTittel, isValidPathSegment } from '../../../server/utils/validatePathSegment';
 
 export const config = {
     api: {
@@ -12,41 +12,24 @@ export const config = {
     },
 };
 
-const dokumentTittelErGyldig = (value: unknown): value is string => {
-    if (typeof value !== 'string' || value.length === 0) {
-        return false;
-    }
-
-    try {
-        validateDokumentTittel(value);
-        return true;
-    } catch {
-        return false;
-    }
-};
-
-async function handler(req: NextApiRequest, res: NextApiResponse) {
+export async function handler(req: NextApiRequest, res: NextApiResponse) {
     const {
         query: { info, dokumentTittel },
     } = req;
 
-    if (!Array.isArray(info) || info.length !== 3) {
-        throw new Error('Ugyldig path i url');
-    }
-
-    if (!dokumentTittelErGyldig(dokumentTittel)) {
-        throw new Error('Ugyldig dokumentTittel - typeof !== string');
+    if (
+        !Array.isArray(info) ||
+        info.length !== 3 ||
+        !info.every(isValidPathSegment) ||
+        !isValidDokumentTittel(dokumentTittel)
+    ) {
+        return res.status(400).json({ error: 'Ugyldig forespørsel' });
     }
 
     try {
-        const sanitizedSegments = info.map((segment, index) => {
-            validatePathSegment(segment, `path segment ${index + 1}`);
-            return encodeURIComponent(segment);
-        });
-
         const safeDokumentTittel = encodeURIComponent(dokumentTittel);
 
-        const path = `dokument/${sanitizedSegments.join('/')}?dokumentTittel=${safeDokumentTittel}`;
+        const path = `dokument/${info.join('/')}?dokumentTittel=${safeDokumentTittel}`;
         const stream = await fetchDocumentStream(path, req, ApiServices.sifInnsyn);
 
         res.setHeader('Content-Type', 'application/pdf; charset=utf-8');

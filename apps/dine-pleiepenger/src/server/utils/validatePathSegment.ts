@@ -55,18 +55,6 @@ export function assertValidSaksnummer(saksnummer: string): void {
     validatePathSegment(saksnummer, 'Saksnummer');
 }
 
-export const isValidSaksnummer = (value: unknown): value is string => {
-    if (typeof value !== 'string' || value.length === 0) {
-        return false;
-    }
-    try {
-        assertValidSaksnummer(value);
-        return true;
-    } catch {
-        return false;
-    }
-};
-
 /**
  * Validerer en dokumenttittel.
  * Tillater litt mer enn path-segmenter (mellomrom, punktum).
@@ -123,3 +111,11 @@ export function validateOrganisasjonsnummer(organisasjonsnummer: string): void {
         throw new Error('Organisasjonsnummer inneholder ugyldige tegn');
     }
 }
+
+export const isValidPathSegment = (value: unknown): value is string =>
+    typeof value === 'string' && VALID_PATH_SEGMENT_REGEX.test(value);
+export const isValidSaksnummer = isValidPathSegment;
+export const isValidOrganisasjonsnummer = (value: unknown): value is string =>
+    typeof value === 'string' && VALID_ORGNUMMER_REGEX.test(value);
+export const isValidDokumentTittel = (value: unknown): value is string =>
+    typeof value === 'string' && VALID_DOCUMENT_TITLE_REGEX.test(value);
