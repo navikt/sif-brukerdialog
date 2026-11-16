@@ -7,6 +7,11 @@ import { ReactNode } from 'react';
 import { useUngInnsynIntl } from '../../../i18n';
 import { IntlDecorator } from '../../../storybook/IntlDecorator';
 import { PanelPreviewWrapper, renderOppgaveStandardStater } from '../../../storybook/storyUtils';
+import { AktivitetVilkårOppgavePanel } from '../aktivitetsvilkar/AktivitetVilkarOppgavePanel';
+import {
+    mockAktivitetVilkårAKT,
+    mockAktivitetVilkårBesvartAKT,
+} from '../aktivitetsvilkar/AktivitetVilkarOppgavePanel.mockData';
 import { AndreLivsoppholdsytelserOppgavePanel } from '../andre-livsoppholdsytelser/AndreLivsoppholdsytelserOppgavePanel';
 import {
     mockAndreLivsoppholdsytelserAKT,
@@ -19,6 +24,11 @@ import {
     lagAvvikRegisterinntektOppgave,
     lagOppgaveMedInntekt,
 } from '../avvik-registerinntekt/AvvikRegisterinntektOppgavePanel.mockData';
+import { BistandVilkårOppgavePanel } from '../bistandsvilkar/BistandVilkarOppgavePanel';
+import {
+    mockBistandVilkårAKT,
+    mockBistandVilkårBesvartAKT,
+} from '../bistandsvilkar/BistandVilkarOppgavePanel.mockData';
 import { BostedVilkårOppgavePanel } from '../bostedsvilkar/BostedVilkarOppgavePanel';
 import { mockBostedVilkårAKT, mockBostedVilkårBesvartAKT } from '../bostedsvilkar/BostedVilkarOppgavePanel.mockData';
 import { Lovlenke, OPPGAVE_LOVVERK } from '../oppgaveLovverk';
@@ -100,6 +110,34 @@ const rader: Rad[] = [
                         <AndreLivsoppholdsytelserOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />
                     ),
                 )}
+            </PanelPreviewWrapper>
+        ),
+    },
+    {
+        parsedType: ParsedOppgavetype.BEKREFT_AKTIVITET,
+        kilder: [
+            { backendType: OppgaveType.BEKREFT_AKTIVITET, betingelse: 'oppgavetypeData.type = AKTIVITET' },
+            { backendType: OppgaveType.BEKREFT_AKTIVITET, betingelse: 'oppgavetypeData.type = AKTIVITET_OPPHØR' },
+        ],
+        preview: (
+            <PanelPreviewWrapper>
+                {renderOppgaveStandardStater(mockAktivitetVilkårAKT, mockAktivitetVilkårBesvartAKT, (oppgave, opts) => (
+                    <AktivitetVilkårOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />
+                ))}
+            </PanelPreviewWrapper>
+        ),
+    },
+    {
+        parsedType: ParsedOppgavetype.BEKREFT_BISTAND,
+        kilder: [
+            { backendType: OppgaveType.BEKREFT_BISTAND, betingelse: 'oppgavetypeData.type = BISTAND' },
+            { backendType: OppgaveType.BEKREFT_BISTAND, betingelse: 'oppgavetypeData.type = BISTAND_OPPHØR' },
+        ],
+        preview: (
+            <PanelPreviewWrapper>
+                {renderOppgaveStandardStater(mockBistandVilkårAKT, mockBistandVilkårBesvartAKT, (oppgave, opts) => (
+                    <BistandVilkårOppgavePanel oppgave={oppgave} navn="SNODIG VAFFEL" {...opts} />
+                ))}
             </PanelPreviewWrapper>
         ),
     },

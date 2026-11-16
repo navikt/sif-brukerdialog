@@ -58,9 +58,19 @@ const getAndreLivsoppholdsytelserOpphørOppgaveVarseltekst = (fom: ISODate): str
     );
 };
 
+/** Hentet fra ekte respons fra backend (BISTAND_OPPHØR, KOMMET_I_ARBEID). */
+const getBistandOpphørOppgaveVarseltekst = (fom: ISODate): string =>
+    `Vi har fått opplysninger om at du har begynt å jobbe og ikke lenger trenger hjelp fra Nav til å få jobb eller utdanning. Det betyr at du fra ${dateFormatter.full(fom)} ikke lenger får aktivitetspenger.`;
+
+/** Plassholder til vi har eksempel på varseltekst fra backend. */
+const getPlassholderVarseltekst = (vilkår: string, variant: 'periode' | 'opphør'): string =>
+    `Mock av varseltekst fra backend for ${vilkår} (${variant}).`;
+
 export const mockVarseltekster = {
     getBostedVilkårOpphørOppgaveVarseltekst,
     getBostedVilkårPeriodeOppgaveVarseltekst,
     getAndreLivsoppholdsytelserOppgaveVarseltekst,
     getAndreLivsoppholdsytelserOpphørOppgaveVarseltekst,
+    getBistandOpphørOppgaveVarseltekst,
+    getPlassholderVarseltekst,
 };

@@ -24,19 +24,11 @@ export const LENKEKATALOG = {
 
 const ufyFelles = [LENKEKATALOG.arbeidsmarkedsloven_13_fjerde_ledd, LENKEKATALOG.forskriftUpy_11];
 
-type UstøttetOppgaveType = OppgaveType.BEKREFT_BISTAND | OppgaveType.BEKREFT_AKTIVITET;
-type OppgaveLovverk = Record<
-    Exclude<OppgaveType, UstøttetOppgaveType>,
-    Partial<Record<OppgaveYtelsetype, Lovlenke[]>>
-> &
-    Partial<Record<UstøttetOppgaveType, Partial<Record<OppgaveYtelsetype, Lovlenke[]>>>>;
-
 /**
  * Deklarativ tabell over hvilke lovhenvisninger som gjelder per oppgavetype og ytelse.
- * TypeScript varsler dersom en ny støttet OppgaveType legges til uten at tabellen oppdateres.
- * BISTAND og AKTIVITET er eksplisitt unntatt til de får panelstøtte.
+ * TypeScript varsler dersom en ny OppgaveType legges til uten at tabellen oppdateres.
  */
-export const OPPGAVE_LOVVERK: OppgaveLovverk = {
+export const OPPGAVE_LOVVERK: Record<OppgaveType, Partial<Record<OppgaveYtelsetype, Lovlenke[]>>> = {
     BEKREFT_ENDRET_STARTDATO: { UNGDOMSYTELSE: ufyFelles },
     BEKREFT_ENDRET_SLUTTDATO: { UNGDOMSYTELSE: ufyFelles },
     BEKREFT_ENDRET_PERIODE: { UNGDOMSYTELSE: ufyFelles },
@@ -48,10 +40,12 @@ export const OPPGAVE_LOVVERK: OppgaveLovverk = {
     SØK_YTELSE: { UNGDOMSYTELSE: ufyFelles },
     BEKREFT_BOSTED: {},
     BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER: {},
+    BEKREFT_AKTIVITET: {},
+    BEKREFT_BISTAND: {},
 };
 
 export const getLovLenker = (oppgave: { oppgavetype: OppgaveType; ytelsetype: OppgaveYtelsetype }): Lovlenke[] =>
-    OPPGAVE_LOVVERK[oppgave.oppgavetype]?.[oppgave.ytelsetype] ?? [];
+    OPPGAVE_LOVVERK[oppgave.oppgavetype][oppgave.ytelsetype] ?? [];
 
 export const OPPGAVE_LOVVERK_PARSED = {
     BEKREFT_ENDRET_STARTDATO: { UNGDOMSYTELSE: ufyFelles },
@@ -67,6 +61,8 @@ export const OPPGAVE_LOVVERK_PARSED = {
     SØK_YTELSE: { UNGDOMSYTELSE: ufyFelles },
     BEKREFT_BOSTED: {},
     BEKREFT_ANDRE_LIVSOPPHOLDSYTELSER: {},
+    BEKREFT_AKTIVITET: {},
+    BEKREFT_BISTAND: {},
 } satisfies Record<ParsedOppgavetype, Partial<Record<OppgaveYtelsetype, Lovlenke[]>>>;
 
 export const getLovLenkerForParsedType = (oppgave: {

@@ -1,6 +1,10 @@
 import {
+    AktivitetsavklaringKildeType,
+    AktivitetsvilkåretIkkeOppfyltÅrsak,
     AndreLivsoppholdsytelserAvklaringKildeType,
     AndreLivsoppholdsytelserIkkeOppfyltÅrsak,
+    BistandsavklaringKildeType,
+    BistandsvilkårIkkeOppfyltÅrsak,
     BostedsavklaringKildeType,
     BostedsvilkårIkkeOppfyltÅrsak,
     BrukerdialogOppgaveDto,
@@ -296,6 +300,72 @@ const getBekreftAndreLivsoppholdsytelserOpphørOppgaveDto = (): BrukerdialogOppg
     ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
 });
 
+const getVilkårOppgaveBase = () => ({
+    status: OppgaveStatus.ULØST,
+    opprettetDato: getDatoer().oppgaveMåned.add(3, 'hours').toISOString(),
+    frist: getDatoer().oppgaveMåned.add(14, 'days').add(7, 'hours').toISOString(),
+    ytelsetype: OppgaveYtelsetype.AKTIVITETSPENGER,
+});
+
+const getForrigeMånedFom = () => dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').startOf('month'));
+const getForrigeMånedTom = () => dateToISODate(getDatoer().oppgaveMåned.subtract(1, 'month').endOf('month'));
+
+const getBekreftAktivitetOppgaveDto = (): BrukerdialogOppgaveDto => ({
+    ...getVilkårOppgaveBase(),
+    oppgaveReferanse: '3c9e1f2a-7b4d-4e6a-9c1b-2d3e4f5a6b71',
+    oppgavetype: OppgaveType.BEKREFT_AKTIVITET,
+    oppgavetypeData: {
+        type: 'AKTIVITET',
+        ikkeOppfyltÅrsak: AktivitetsvilkåretIkkeOppfyltÅrsak.ANNET,
+        ikkeOppfyltÅrsakFritekstbeskrivelse: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        kilde: AktivitetsavklaringKildeType.NAV,
+        fom: getForrigeMånedFom(),
+        tom: getForrigeMånedTom(),
+        varseltekst: mockVarseltekster.getPlassholderVarseltekst('aktivitetsvilkåret', 'periode'),
+    },
+});
+
+const getBekreftAktivitetOpphørOppgaveDto = (): BrukerdialogOppgaveDto => ({
+    ...getVilkårOppgaveBase(),
+    oppgaveReferanse: '3c9e1f2a-7b4d-4e6a-9c1b-2d3e4f5a6b72',
+    oppgavetype: OppgaveType.BEKREFT_AKTIVITET,
+    oppgavetypeData: {
+        type: 'AKTIVITET_OPPHØR',
+        ikkeOppfyltÅrsak: AktivitetsvilkåretIkkeOppfyltÅrsak.UDEFINERT,
+        kilde: AktivitetsavklaringKildeType.BRUKER,
+        fom: getForrigeMånedFom(),
+        varseltekst: mockVarseltekster.getPlassholderVarseltekst('aktivitetsvilkåret', 'opphør'),
+    },
+});
+
+const getBekreftBistandOppgaveDto = (): BrukerdialogOppgaveDto => ({
+    ...getVilkårOppgaveBase(),
+    oppgaveReferanse: '216abccd-4306-4c50-878f-e7899104f051',
+    oppgavetype: OppgaveType.BEKREFT_BISTAND,
+    oppgavetypeData: {
+        type: 'BISTAND',
+        ikkeOppfyltÅrsak: BistandsvilkårIkkeOppfyltÅrsak.IKKE_14A_VEDTAK,
+        kilde: BistandsavklaringKildeType.NAV,
+        fom: getForrigeMånedFom(),
+        tom: getForrigeMånedTom(),
+        varseltekst: mockVarseltekster.getPlassholderVarseltekst('bistandsvilkåret', 'periode'),
+    },
+});
+
+const getBekreftBistandOpphørOppgaveDto = (): BrukerdialogOppgaveDto => ({
+    ...getVilkårOppgaveBase(),
+    oppgaveReferanse: '216abccd-4306-4c50-878f-e7899104f053',
+    oppgavetype: OppgaveType.BEKREFT_BISTAND,
+    oppgavetypeData: {
+        type: 'BISTAND_OPPHØR',
+        ikkeOppfyltÅrsak: BistandsvilkårIkkeOppfyltÅrsak.KOMMET_I_ARBEID,
+        kilde: BistandsavklaringKildeType.ANNET,
+        kildeFritekst: 'Vi har fått informasjon fra din veileder.',
+        fom: getForrigeMånedFom(),
+        varseltekst: mockVarseltekster.getBistandOpphørOppgaveVarseltekst(getForrigeMånedFom()),
+    },
+});
+
 export const getMockOppgaver = () => ({
     rapporterInntektOppgave: getRapporterInntektOppgaveDto(),
     rapporterInntektOppgaveLøst: getRapporterInntektOppgaveDtoLøst(),
@@ -309,4 +379,8 @@ export const getMockOppgaver = () => ({
     bekreftBostedOpphørOppgave: getBekreftBostedOpphørOppgaveDto(),
     bekreftAndreLivsoppholdsytelserOppgave: getBekreftAndreLivsoppholdsytelserOppgaveDto(),
     bekreftAndreLivsoppholdsytelserOpphørOppgave: getBekreftAndreLivsoppholdsytelserOpphørOppgaveDto(),
+    bekreftAktivitetOppgave: getBekreftAktivitetOppgaveDto(),
+    bekreftAktivitetOpphørOppgave: getBekreftAktivitetOpphørOppgaveDto(),
+    bekreftBistandOppgave: getBekreftBistandOppgaveDto(),
+    bekreftBistandOpphørOppgave: getBekreftBistandOpphørOppgaveDto(),
 });

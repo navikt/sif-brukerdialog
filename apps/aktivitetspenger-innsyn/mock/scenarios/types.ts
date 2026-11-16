@@ -15,6 +15,10 @@ export enum ScenarioType {
     bekreftBosted = 'bekreftBosted',
     bekreftAndreLivsoppholdsytelser = 'bekreftAndreLivsoppholdsytelser',
     bekreftAndreLivsoppholdsytelserOpphør = 'bekreftAndreLivsoppholdsytelserOpphør',
+    bekreftAktivitet = 'bekreftAktivitet',
+    bekreftAktivitetOpphør = 'bekreftAktivitetOpphør',
+    bekreftBistand = 'bekreftBistand',
+    bekreftBistandOpphør = 'bekreftBistandOpphør',
 }
 
 export interface ScenarioData {
