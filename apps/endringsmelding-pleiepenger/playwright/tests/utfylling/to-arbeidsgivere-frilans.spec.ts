@@ -6,14 +6,6 @@ import { testAccessibility } from '../../utils/testAccessibility';
 
 test('test', async ({ page }) => {
     await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN, 'arbeidsgivere-og-frilanser');
-    await page.goto(
-        'http://localhost:8080/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/melding/velkommen',
-    );
-
-    await page.getByRole('button', { name: 'Én arbeidsgiver - en periode' }).click();
-    await page.getByRole('button', { name: 'Vis mer' }).click();
-    await page.getByText('To arbeidsgivere + frilans').click();
-    await page.getByRole('button', { name: 'Velg' }).click();
     await page.getByTestId('endreLovbestemtFerie').check();
     await page.getByTestId('endreArbeidstid').check();
     await page.getByLabel('Jeg bekrefter at jeg har').check();

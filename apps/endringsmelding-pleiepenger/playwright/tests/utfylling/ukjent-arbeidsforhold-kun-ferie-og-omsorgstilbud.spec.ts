@@ -3,11 +3,8 @@ import { expect, test } from '@playwright/test';
 
 import { routeUtils } from '../../utils/routeUtils';
 
-const rootUrl = 'http://localhost:8080/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/melding/velkommen';
-
 test('ukjent arbeidsforhold med kun ferie valgt', async ({ page }) => {
     await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN, 'arbeidsgiver-ikke-i-sak');
-    await page.goto(rootUrl);
 
     /** Velkommen: kun ferie */
     await page.getByTestId('endreLovbestemtFerie').check();
@@ -59,7 +56,6 @@ test('ukjent arbeidsforhold med kun ferie valgt', async ({ page }) => {
 
 test('ukjent arbeidsforhold med kun omsorgstilbud valgt', async ({ page }) => {
     await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN, 'arbeidsgiver-ikke-i-sak');
-    await page.goto(rootUrl);
 
     /** Velkommen: kun omsorgstilbud */
     await page.getByText('Tid i omsorgstilbud').click();

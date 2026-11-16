@@ -5,9 +5,6 @@ import { routeUtils } from '../../utils/routeUtils';
 
 test('test', async ({ page }) => {
     await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN, 'arbeidsgiver-ikke-i-sak');
-    await page.goto(
-        'http://localhost:8080/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/melding/velkommen',
-    );
     await page.getByTestId('endreArbeidstid').check();
     await page.getByTestId('bekreft-label').click();
     await page.getByTestId('typedFormikForm-submitButton').click();

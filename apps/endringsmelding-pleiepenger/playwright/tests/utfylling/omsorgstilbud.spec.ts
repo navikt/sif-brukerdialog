@@ -5,9 +5,6 @@ import { routeUtils } from '../../utils/routeUtils';
 
 test('Sende endring om tid omsorgstilbud', async ({ page }) => {
     await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN, 'arbeidsgivere-og-frilanser');
-    await page.goto(
-        'http://localhost:8080/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/melding/velkommen',
-    );
     await page.getByText('Tid i omsorgstilbud').click();
     await page
         .locator('div')
