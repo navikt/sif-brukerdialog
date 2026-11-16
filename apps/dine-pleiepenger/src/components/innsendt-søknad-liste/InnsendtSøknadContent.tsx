@@ -5,17 +5,16 @@ import { useIntl } from 'react-intl';
 
 import { AppText } from '../../i18n';
 import { Dokument, InnsendtSøknad, InnsendtSøknadstype, Organisasjon } from '../../types';
-import { getDokumentFrontendUrl, getSøknadDokumentFilnavn } from '../../utils/dokumentUtils';
-import { browserEnv } from '../../utils/env';
+import {
+    getArbeidsgivermeldingApiUrlBySoknadIdOgOrgnummer,
+    getDokumentFrontendUrl,
+    getSøknadDokumentFilnavn,
+} from '../../utils/dokumentUtils';
 import { getOrganisasjonsnavnEllerOrgNummer } from '../../utils/sakUtils';
 
 interface Props {
     søknad: InnsendtSøknad;
 }
-
-const getArbeidsgivermeldingApiUrlBySoknadIdOgOrgnummer = (soknadID: string, organisasjonsnummer: string): string => {
-    return `${browserEnv.NEXT_PUBLIC_BASE_PATH}/api/soknad/${soknadID}/arbeidsgivermelding?organisasjonsnummer=${organisasjonsnummer}`;
-};
 
 const InnsendtSøknadContent = ({ søknad }: Props) => {
     const intl = useIntl();

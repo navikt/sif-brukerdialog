@@ -58,11 +58,8 @@ export const fetchSak = async (
         logger.info('Respons mottatt', { status: response.status });
 
         if (typeof response.data !== 'object' || response.data === null) {
-            const dataStr = typeof response.data === 'string' ? response.data : String(response.data);
             logger.warn('Innsyn - hent sak response.data er ikke objekt', {
                 dataType: typeof response.data,
-                length: dataStr.length,
-                preview: dataStr.slice(0, 10),
                 contentType: response.headers?.['content-type'],
                 status: response.status,
             });

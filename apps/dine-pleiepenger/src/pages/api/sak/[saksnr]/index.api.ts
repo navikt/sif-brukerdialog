@@ -15,7 +15,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     const unparsed = req.query.unparsed === 'true';
 
     if (!isValidSaksnummer(saksnr)) {
-        baseLogger.warn('Saksnummer mangler eller er ugyldig', { saksnr });
+        baseLogger.warn('Saksnummer mangler eller er ugyldig');
         return res.status(400).json({ error: 'Saksnummer mangler eller er ugyldig' });
     }
 
