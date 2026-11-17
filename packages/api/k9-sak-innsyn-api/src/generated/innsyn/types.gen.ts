@@ -978,14 +978,14 @@ export type HentDokumentResponses = {
 
 export type HentDokumentResponse = HentDokumentResponses[keyof HentDokumentResponses];
 
-export type HentTilgang1Data = {
+export type HentTilgangData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/psb/endringsmelding/tilgang';
 };
 
-export type HentTilgang1Errors = {
+export type HentTilgangErrors = {
     /**
      * Bad Request
      */
@@ -1004,16 +1004,16 @@ export type HentTilgang1Errors = {
     500: ProblemDetail;
 };
 
-export type HentTilgang1Error = HentTilgang1Errors[keyof HentTilgang1Errors];
+export type HentTilgangError = HentTilgangErrors[keyof HentTilgangErrors];
 
-export type HentTilgang1Responses = {
+export type HentTilgangResponses = {
     /**
      * OK
      */
     200: TilgangResultat;
 };
 
-export type HentTilgang1Response = HentTilgang1Responses[keyof HentTilgang1Responses];
+export type HentTilgangResponse = HentTilgangResponses[keyof HentTilgangResponses];
 
 export type HentSakData = {
     body?: never;
@@ -1205,14 +1205,14 @@ export type HentSaksbehandlingstidResponses = {
 
 export type HentSaksbehandlingstidResponse = HentSaksbehandlingstidResponses[keyof HentSaksbehandlingstidResponses];
 
-export type HentTilgangData = {
+export type HentSaksbehandlingTilgangData = {
     body: SaksbehandlingTilgangForespørsel;
     path?: never;
     query?: never;
     url: '/saksbehandling/psb/endringsmelding/tilgang';
 };
 
-export type HentTilgangErrors = {
+export type HentSaksbehandlingTilgangErrors = {
     /**
      * Bad Request
      */
@@ -1231,16 +1231,17 @@ export type HentTilgangErrors = {
     500: ProblemDetail;
 };
 
-export type HentTilgangError = HentTilgangErrors[keyof HentTilgangErrors];
+export type HentSaksbehandlingTilgangError = HentSaksbehandlingTilgangErrors[keyof HentSaksbehandlingTilgangErrors];
 
-export type HentTilgangResponses = {
+export type HentSaksbehandlingTilgangResponses = {
     /**
      * OK
      */
     200: SaksbehandlingTilgangResultat;
 };
 
-export type HentTilgangResponse = HentTilgangResponses[keyof HentTilgangResponses];
+export type HentSaksbehandlingTilgangResponse =
+    HentSaksbehandlingTilgangResponses[keyof HentSaksbehandlingTilgangResponses];
 
 export type HentSøknaderData = {
     body?: never;

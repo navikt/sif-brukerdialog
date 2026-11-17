@@ -892,7 +892,7 @@ export const zHentDokumentResponse = z.string();
 /**
  * OK
  */
-export const zHentTilgang1Response = zTilgangResultat;
+export const zHentTilgangResponse = zTilgangResultat;
 
 export const zHentSakPath = z.object({
     saksnummer: z.string(),
@@ -927,12 +927,12 @@ export const zHentSakerMetadataResponse = zSakerMetadataDto;
  */
 export const zHentSaksbehandlingstidResponse = zSaksbehandlingtidDto;
 
-export const zHentTilgangBody = zSaksbehandlingTilgangForespørsel;
+export const zHentSaksbehandlingTilgangBody = zSaksbehandlingTilgangForespørsel;
 
 /**
  * OK
  */
-export const zHentTilgangResponse = zSaksbehandlingTilgangResultat;
+export const zHentSaksbehandlingTilgangResponse = zSaksbehandlingTilgangResultat;
 
 /**
  * OK
