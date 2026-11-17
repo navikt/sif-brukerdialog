@@ -1,9 +1,17 @@
 import { List } from '@navikt/ds-react';
-import { FormikFileUpload, getVedleggValidator, useVedleggHelper, YesOrNo } from '@navikt/sif-common-core-ds';
+import {
+    FormikFileUpload,
+    getVedleggIder,
+    getVedleggValidator,
+    useManglendeVedlegg,
+    useVedleggHelper,
+    YesOrNo,
+} from '@navikt/sif-common-core-ds';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { getListValidator, getYesOrNoValidator } from '@sif/validation';
+import { useState } from 'react';
 
 import { AppText, useAppIntl } from '../../../i18n';
 import getLenker from '../../../lenker';
@@ -42,6 +50,11 @@ const LegeerklæringForm = ({ values, goBack, andreVedlegg = [], isSubmitting }:
     const { text, intl } = useAppIntl();
     const legeerklæringer = values.vedlegg ? values.vedlegg : [];
     const { hasPendingUploads } = useVedleggHelper(legeerklæringer, andreVedlegg);
+
+    // Sjekken kjøres når steget åpnes. Vedlegg som lastes opp mens steget er åpent, er bekreftet av opplastingen,
+    // og en fast liste hindrer ny sjekk ved hver opplasting eller sletting.
+    const [initielleVedleggIder] = useState(() => getVedleggIder(legeerklæringer));
+    const { manglendeVedleggIder } = useManglendeVedlegg(initielleVedleggIder);
 
     const skalEttersendeVedlegg = values.skalEttersendeVedlegg === YesOrNo.YES;
 
@@ -88,6 +101,7 @@ const LegeerklæringForm = ({ values, goBack, andreVedlegg = [], isSubmitting }:
                     )}
                     label={text('steg.legeerklæring.vedlegg.label')}
                     showPictureScanningGuide={true}
+                    manglendeVedleggIder={manglendeVedleggIder}
                 />
 
                 <YesOrNoQuestion

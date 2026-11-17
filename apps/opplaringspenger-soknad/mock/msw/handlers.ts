@@ -21,6 +21,10 @@ export const getHandlers = () => [
     http.post('**/opplaringspenger/innsending', () => {
         return HttpResponse.json({});
     }),
+    http.post('**/vedlegg/eksisterer', async ({ request }) => {
+        const { vedleggIder } = (await request.json()) as { vedleggIder: string[] };
+        return HttpResponse.json(vedleggIder.map((vedleggId) => ({ vedleggId, finnes: true })));
+    }),
     http.post('**/vedlegg', () => {
         return HttpResponse.json({}, { headers: { location: '/vedlegg/123' } });
     }),

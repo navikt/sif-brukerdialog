@@ -14,12 +14,14 @@ import {
     isRegistrertBarnApiData,
     OmBarnetApiData,
 } from '../../../../types/søknadApiData/SøknadApiData';
+import { getFødselsattesterSomSendesInn } from '../../../../utils/søknadsdataToApiData/getOmBarnetApiDataFromSøknadsdata';
 import { ÅrsakBarnetManglerIdentitetsnummer, RelasjonTilBarnet } from '../../om-barnet/om-barnet-form/types';
 import { OmBarnetFormSøknadsdata } from '../../om-barnet/om-barnet-form/types/OmBarnetFormSøknadsdata';
 
 interface Props {
     søknadsdata: OmBarnetFormSøknadsdata;
     apiData: OmBarnetApiData;
+    manglendeVedleggIder: string[];
     onEdit?: () => void;
 }
 
@@ -40,7 +42,15 @@ const RegistrertBarn = ({ barn }: { barn: RegistrertBarn }) => (
     </>
 );
 
-const AnnetBarnSummary = ({ apiData, fødselsattester }: { apiData: AnnetBarnApiData; fødselsattester: Vedlegg[] }) => (
+const AnnetBarnSummary = ({
+    apiData,
+    fødselsattester,
+    manglendeVedleggIder,
+}: {
+    apiData: AnnetBarnApiData;
+    fødselsattester: Vedlegg[];
+    manglendeVedleggIder: string[];
+}) => (
     <>
         <FormSummary.Answer>
             <FormSummary.Label>
@@ -88,7 +98,10 @@ const AnnetBarnSummary = ({ apiData, fødselsattester }: { apiData: AnnetBarnApi
                             <AppText id="step.oppsummering.omBarn.ingenFødselsattest" />
                         ) : (
                             <div data-testid="oppsummering-omBarn-fødselsattest">
-                                <VedleggSummaryList vedlegg={fødselsattester} />
+                                <VedleggSummaryList
+                                    vedlegg={fødselsattester}
+                                    manglendeVedleggIder={manglendeVedleggIder}
+                                />
                             </div>
                         )}
                     </FormSummary.Value>
@@ -118,7 +131,7 @@ const RelasjonTilBarnetSummary = ({ apiValues: apiData }: { apiValues: AnnetBarn
     </FormSummary.Answer>
 );
 
-const OmBarnetSummary = ({ søknadsdata, apiData, onEdit }: Props) => {
+const OmBarnetSummary = ({ søknadsdata, apiData, manglendeVedleggIder, onEdit }: Props) => {
     return (
         <FormSummary>
             <FormSummary.Header>
@@ -134,7 +147,8 @@ const OmBarnetSummary = ({ søknadsdata, apiData, onEdit }: Props) => {
                     <>
                         <AnnetBarnSummary
                             apiData={apiData}
-                            fødselsattester={søknadsdata.type === 'annetBarnUtenFnr' ? søknadsdata.fødselsattest : []}
+                            fødselsattester={getFødselsattesterSomSendesInn(søknadsdata)}
+                            manglendeVedleggIder={manglendeVedleggIder}
                         />
                         <RelasjonTilBarnetSummary apiValues={apiData} />
                     </>

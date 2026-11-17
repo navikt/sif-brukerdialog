@@ -10,10 +10,11 @@ import { LegeerklæringSøknadsdata } from '../../../../types/søknadsdata/Legee
 interface Props {
     apiData: SøknadApiData;
     legeerklæringSøknadsdata?: LegeerklæringSøknadsdata;
+    manglendeVedleggIder: string[];
     onEdit?: () => void;
 }
 
-const LegeerklæringOppsummering = ({ apiData, legeerklæringSøknadsdata, onEdit }: Props) => {
+const LegeerklæringOppsummering = ({ apiData, legeerklæringSøknadsdata, manglendeVedleggIder, onEdit }: Props) => {
     const legeerklæringer = getVedleggInLocationArray({
         locations: apiData.vedlegg,
         vedlegg: legeerklæringSøknadsdata?.vedlegg,
@@ -36,7 +37,10 @@ const LegeerklæringOppsummering = ({ apiData, legeerklæringSøknadsdata, onEdi
                             <AppText id="steg.oppsummering.legeerklæring.ingenVedlegg" />
                         ) : (
                             <div data-testid="legeerklæring-liste">
-                                <VedleggSummaryList vedlegg={legeerklæringer} />
+                                <VedleggSummaryList
+                                    vedlegg={legeerklæringer}
+                                    manglendeVedleggIder={manglendeVedleggIder}
+                                />
                             </div>
                         )}
                     </FormSummary.Value>

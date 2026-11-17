@@ -1,7 +1,14 @@
 import { Heading, VStack } from '@navikt/ds-react';
-import { FormikFileUpload, getVedleggValidator, useVedleggHelper } from '@navikt/sif-common-core-ds';
+import {
+    FormikFileUpload,
+    getVedleggIder,
+    getVedleggValidator,
+    useManglendeVedlegg,
+    useVedleggHelper,
+} from '@navikt/sif-common-core-ds';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { useFormikContext } from 'formik';
+import { useState } from 'react';
 
 import actionsCreator from '../../../../context/action/actionCreator';
 import { useSøknadContext } from '../../../../context/hooks/useSøknadContext';
@@ -26,6 +33,10 @@ const FødselsattestPart = ({ fødselsattester, andreVedlegg, ettersendelseURL }
 
     useVedleggHelper(fødselsattester, andreVedlegg, onVedleggChange);
 
+    // Fast liste: sjekk bare vedleggene som fantes da steget ble åpnet, ikke ved hver opplasting.
+    const [initielleVedleggIder] = useState(() => getVedleggIder(fødselsattester));
+    const { manglendeVedleggIder } = useManglendeVedlegg(initielleVedleggIder);
+
     return (
         <VStack gap="space-24">
             <div>
@@ -42,6 +53,7 @@ const FødselsattestPart = ({ fødselsattester, andreVedlegg, ettersendelseURL }
                 uploadLaterURL={ettersendelseURL}
                 otherFiles={andreVedlegg}
                 showPictureScanningGuide={true}
+                manglendeVedleggIder={manglendeVedleggIder}
             />
         </VStack>
     );

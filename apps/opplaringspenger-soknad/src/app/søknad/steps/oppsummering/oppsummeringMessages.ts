@@ -116,6 +116,8 @@ const nb = {
     'steg.oppsummering.sendSøknad': 'Send søknad',
 
     'steg.oppsummering.bekrefterOpplysninger.ikkeBekreftet': 'Du må bekrefte opplysningene',
+    'steg.oppsummering.vedleggMangler':
+        'Det er en feil med {antall, plural, one {dokumentet} other {noen dokumenter}} som er lastet opp. {antall, plural, one {Dette} other {Disse}} må lastes opp på nytt.',
 
     'opptjeningIUtlandetSummaryItem.periode': 'Periode: {periode}',
     'opptjeningIUtlandetSummaryItem.info': 'Jobbet i {landnavn} som {hva} hos {hvor}',
@@ -257,6 +259,8 @@ const nn: Record<keyof typeof nb, string> = {
     'steg.oppsummering.sendSøknad': 'Send søknad',
 
     'steg.oppsummering.bekrefterOpplysninger.ikkeBekreftet': 'Du må stadfeste opplysningane',
+    'steg.oppsummering.vedleggMangler':
+        'Det er ein feil med {antall, plural, one {dokumentet} other {nokre dokument}} som er lasta opp. {antall, plural, one {Dette} other {Desse}} må du lasta opp på nytt.',
 
     'opptjeningIUtlandetSummaryItem.periode': 'Periode: {periode}',
     'opptjeningIUtlandetSummaryItem.info': 'Jobba i {landnavn} som {hva} hos {hvor}',
