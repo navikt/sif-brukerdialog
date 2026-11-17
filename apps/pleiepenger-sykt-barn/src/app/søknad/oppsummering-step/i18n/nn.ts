@@ -190,7 +190,6 @@ export const oppsummeringMessages_nn: Record<keyof typeof oppsummeringMessages_n
     'oppsummering.arbeidIPeriode.arbeiderIPerioden.frilanser.SOM_VANLIG':
         'Frilansar: Jobbar som normalt, har ikkje fråvær på grunn av pleiepengar',
 
-    'oppsummering.arbeidIPeriode.arbeiderIPerioden.prosent': 'Jobbar {prosent} prosent av normalt',
     'oppsummering.arbeidIPeriode.arbeiderIPerioden.timerPerUke': 'Jobbar {timer} per veke',
     'oppsummering.arbeidIPeriode.arbeiderIPerioden.ulikeUker.timer.tittel':
         'Jobber ulikt antal timar i vekene i søknadsperioden:',

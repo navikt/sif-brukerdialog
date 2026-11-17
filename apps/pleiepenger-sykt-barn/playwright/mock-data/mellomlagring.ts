@@ -1,3 +1,5 @@
+import { MELLOMLAGRING_VERSJON } from '../../src/app/constants/MELLOMLAGRING_VERSJON';
+
 export const mellomlagringMock = {
     formValues: {
         periodeFra: '2023-01-03',
@@ -47,7 +49,7 @@ export const mellomlagringMock = {
     },
     metadata: {
         lastStepID: 'medlemskap',
-        version: '14.4.0',
+        version: MELLOMLAGRING_VERSJON,
         updatedTimestemp: '2023-01-03T00:00:00.000Z',
         featureToggles: {
             spørOmSluttetISøknadsperiode: false,

@@ -91,8 +91,8 @@ export const søknadsdata: Søknadsdata = {
         frilans: {
             type: ArbeidIPeriodeType.arbeiderRedusert,
             redusertArbeid: {
-                type: RedusertArbeidstidType.prosentAvNormalt,
-                prosentAvNormalt: 50,
+                type: RedusertArbeidstidType.timerISnittPerUke,
+                timerISnittPerUke: 5,
             },
         },
     },

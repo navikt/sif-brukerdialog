@@ -1,7 +1,7 @@
 import { YesOrNo } from '@navikt/sif-common-core-ds/src/types';
 
 import { ArbeiderIPeriodenSvar } from '../../app/local-sif-common-pleiepenger';
-import { ArbeidsgiverType, TimerEllerProsent } from '../../app/types';
+import { ArbeidsgiverType } from '../../app/types';
 import { Frilanstype } from '../../app/types/søknad-form-values/FrilansFormValues';
 import { SøknadFormValues } from '../../app/types/søknad-form-values/SøknadFormValues';
 import { YesOrNoOrDoNotKnow } from '../../app/types/YesOrNoOrDoNotKnow';
@@ -73,8 +73,7 @@ export const formikValues: SøknadFormValues = {
             arbeidIPeriode: {
                 arbeiderIPerioden: ArbeiderIPeriodenSvar.redusert,
                 erLiktHverUke: YesOrNo.YES,
-                timerEllerProsent: TimerEllerProsent.PROSENT,
-                prosentAvNormalt: '50',
+                snittTimerPerUke: '5',
             },
         },
     },

@@ -3,31 +3,22 @@ import { arbeidIPeriodeMessages_nb } from './nb';
 export const arbeidIPeriodeMessages_nn: Record<keyof typeof arbeidIPeriodeMessages_nb, string> = {
     'arbeidIPeriode.spørsmål.ANSATT.arbeiderIPerioden': 'Kva situasjon gjeld for deg {hvor} i søknadsperioden?',
     'arbeidIPeriode.spørsmål.ANSATT.erLiktHverUke': 'Jobbar du like mykje kvar veke {hvor} i perioden?',
-    'arbeidIPeriode.spørsmål.ANSATT.timerEllerProsent': 'Korleis vil du oppgje kor mykje du jobbar {hvor} i perioden?',
     'arbeidIPeriode.spørsmål.ANSATT.snittTimerPerUke': 'Kor mange timar jobbar du kvar veke {hvor} i perioden?',
-    'arbeidIPeriode.spørsmål.ANSATT.prosentAvNormalt': 'Kor mange prosent jobbar du {hvor} i perioden?',
     'arbeidIPeriode.spørsmål.ANSATT.arbeidsuker':
         'Oppgje kor mange timar du jobbar {hvor} i kvar enkeltveke i perioden?',
     'arbeidIPeriode.spørsmål.FRILANSER.arbeiderIPerioden':
         'Kva situasjon gjeld for deg som frilansar i søknadsperioden?',
     'arbeidIPeriode.spørsmål.FRILANSER.erLiktHverUke': 'Jobbar du like mykje kvar veke som frilansar i perioden?',
-    'arbeidIPeriode.spørsmål.FRILANSER.timerEllerProsent':
-        'Korleis vil du oppgje kor mykje du jobbar som frilansar i perioden?',
     'arbeidIPeriode.spørsmål.FRILANSER.snittTimerPerUke':
         'Kor mange timar jobbar du kvar veke som frilansar i perioden?',
-    'arbeidIPeriode.spørsmål.FRILANSER.prosentAvNormalt': 'Kor mange prosent jobbar du som frilansar i perioden?',
     'arbeidIPeriode.spørsmål.FRILANSER.arbeidsuker':
         'Oppgje kor mange timar du jobbar som frilansar i kvar enkeltveke i perioden?',
     'arbeidIPeriode.spørsmål.SELVSTENDIG.arbeiderIPerioden':
         'Kva situasjon gjeld for deg som sjølvstendig næringsdrivande i søknadsperioden?',
     'arbeidIPeriode.spørsmål.SELVSTENDIG.erLiktHverUke':
         'Jobbar du like mykje kvar veke som sjølvstendig næringsdrivande i perioden?',
-    'arbeidIPeriode.spørsmål.SELVSTENDIG.timerEllerProsent':
-        'Korleis vil du oppgje kor mykje du jobbar som sjølvstendig næringsdrivande i perioden?',
     'arbeidIPeriode.spørsmål.SELVSTENDIG.snittTimerPerUke':
         'Kor mange timar jobbar du kvar veke som sjølvstendig næringsdrivande i perioden?',
-    'arbeidIPeriode.spørsmål.SELVSTENDIG.prosentAvNormalt':
-        'Kor mange prosent jobbar du som sjølvstendig næringsdrivande i perioden?',
     'arbeidIPeriode.spørsmål.SELVSTENDIG.arbeidsuker':
         'Oppgje kor mange timar du jobbar som sjølvstendig næringsdrivande i kvar enkeltveke i perioden?',
 
@@ -35,15 +26,6 @@ export const arbeidIPeriodeMessages_nn: Record<keyof typeof arbeidIPeriodeMessag
         'Du må svare på kva situasjon som gjeld for deg {hvor} i søknadsperioden.',
     'arbeidIPeriode.validation.erLiktHverUke.noValue':
         'Du må svare på om du jobbar like mykje kvar veke {hvor} i perioden.',
-    'arbeidIPeriode.validation.timerEllerProsent.noValue':
-        'Du må svare på korleis du ønskjer å oppgje kor mykje du jobbar {hvor}.',
-    'arbeidIPeriode.validation.prosentAvNormalt.numberHasNoValue': 'Du må oppgje kor mange prosent du jobbar {hvor}.',
-    'arbeidIPeriode.validation.prosentAvNormalt.numberHasInvalidFormat':
-        'Talet på prosent du jobbar {hvor} har ikkje gyldig format. Eit gyldig tal inneheld berre siffer og komma som desimalteikn.',
-    'arbeidIPeriode.validation.prosentAvNormalt.numberIsTooSmall':
-        'Talet på prosent du jobbar {hvor} kan ikkje vere mindre enn {min}.',
-    'arbeidIPeriode.validation.prosentAvNormalt.numberIsTooLarge':
-        'Talet på prosent du jobbar {hvor} kan ikkje vere meir enn {max}.',
     'arbeidIPeriode.validation.snittTimerPerUke.numberHasNoValue': 'Du må oppgje kor mange timar du jobbar {hvor}.',
     'arbeidIPeriode.validation.snittTimerPerUke.numberHasInvalidFormat':
         'Talet på timar du jobbar {hvor} har ikkje gyldig format. Eit gyldig tal inneheld berre siffer og komma som desimalteikn.',
@@ -68,8 +50,6 @@ export const arbeidIPeriodeMessages_nn: Record<keyof typeof arbeidIPeriodeMessag
     'arbeidIPeriode.arbeiderIPerioden.svar.jobberRedusert': 'Eg kombinerer delvis jobb med pleiepengar',
     'arbeidIPeriode.arbeiderIPerioden.svar.jobberVanlig':
         'Eg jobbar som normalt, og har ikkje fråvær på grunn av pleiepengar',
-    'arbeidIPeriode.timerEllerProsent.timer': 'I timar',
-    'arbeidIPeriode.timerEllerProsent.prosent': 'I prosent',
 
     'arbeidIPeriode.arbeiderIPerioden.description':
         'Hugs at du også skal ta med eventuell jobb som du mottar honorar for.',

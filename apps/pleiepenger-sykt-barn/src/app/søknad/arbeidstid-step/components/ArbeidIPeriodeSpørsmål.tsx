@@ -9,7 +9,6 @@ import {
     ArbeidIPeriodeIntlValues,
     ArbeidsforholdType,
 } from '../../../local-sif-common-pleiepenger';
-import { TimerEllerProsent } from '../../../types';
 import { ArbeidsukeInfo } from '../../../types/ArbeidsukeInfo';
 import {
     ArbeidIPeriodeFormField,
@@ -21,10 +20,8 @@ import { skalSvarePåOmEnJobberLiktIPerioden } from '../utils/arbeidstidStepUtil
 import {
     getArbeidIPeriodeArbeiderIPeriodenValidator,
     getArbeidIPeriodeErLiktHverUkeValidator,
-    getArbeidIPeriodeProsentAvNormaltValidator,
     getArbeidIPeriodeSnittTimerEnArbeidsukeValidator,
     getArbeidIPeriodeSnittTimerPerUkeValidator,
-    getArbeidIPeriodeTimerEllerProsentValidator,
 } from '../validationArbeidIPeriodeSpørsmål';
 import ArbeidstidEnkeltuker from './ArbeidstidEnkeltuker';
 
@@ -103,52 +100,19 @@ const ArbeidIPeriodeSpørsmål = ({
                             />
                         )}
                         {visKunArbeidstidPerUke === false && formValues?.erLiktHverUke === YesOrNo.YES && (
-                            <>
-                                <SøknadFormComponents.RadioGroup
-                                    name={getFieldName(ArbeidIPeriodeFormField.timerEllerProsent)}
-                                    legend={spørsmål.timerEllerProsent}
-                                    radios={[
-                                        {
-                                            label: text(`arbeidIPeriode.timerEllerProsent.prosent`),
-                                            value: TimerEllerProsent.PROSENT,
-                                            'data-testid': TimerEllerProsent.PROSENT,
-                                        },
-                                        {
-                                            label: text(`arbeidIPeriode.timerEllerProsent.timer`),
-                                            value: TimerEllerProsent.TIMER,
-                                            'data-testid': TimerEllerProsent.TIMER,
-                                        },
-                                    ]}
-                                    validate={getArbeidIPeriodeTimerEllerProsentValidator(intlValues)}
-                                />
-
-                                {formValues.timerEllerProsent === TimerEllerProsent.PROSENT && (
-                                    <SøknadFormComponents.NumberInput
-                                        className="arbeidstidUkeInput"
-                                        name={getFieldName(ArbeidIPeriodeFormField.prosentAvNormalt)}
-                                        label={spørsmål.prosentAvNormalt}
-                                        data-testid="prosent-verdi"
-                                        validate={getArbeidIPeriodeProsentAvNormaltValidator(intlValues)}
-                                        width="xs"
-                                        maxLength={4}
-                                    />
+                            <SøknadFormComponents.NumberInput
+                                className="arbeidstidUkeInput"
+                                name={getFieldName(ArbeidIPeriodeFormField.snittTimerPerUke)}
+                                label={spørsmål.snittTimerPerUke}
+                                validate={getArbeidIPeriodeSnittTimerPerUkeValidator(
+                                    appIntl,
+                                    intlValues,
+                                    normalarbeidstid,
                                 )}
-                                {formValues.timerEllerProsent === TimerEllerProsent.TIMER && (
-                                    <SøknadFormComponents.NumberInput
-                                        className="arbeidstidUkeInput"
-                                        name={getFieldName(ArbeidIPeriodeFormField.snittTimerPerUke)}
-                                        label={spørsmål.snittTimerPerUke}
-                                        validate={getArbeidIPeriodeSnittTimerPerUkeValidator(
-                                            appIntl,
-                                            intlValues,
-                                            normalarbeidstid,
-                                        )}
-                                        data-testid="timer-verdi"
-                                        width="xs"
-                                        maxLength={5}
-                                    />
-                                )}
-                            </>
+                                data-testid="timer-verdi"
+                                width="xs"
+                                maxLength={5}
+                            />
                         )}
                         {visArbeidstidPerUke && (
                             <ArbeidstidEnkeltuker

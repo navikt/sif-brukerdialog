@@ -2,7 +2,6 @@ import { YesOrNo } from '@navikt/sif-common-core-ds/src/types/YesOrNo';
 import { DateRange } from '@navikt/sif-common-utils';
 
 import { ArbeiderIPeriodenSvar } from '../../../local-sif-common-pleiepenger';
-import { TimerEllerProsent } from '../../../types';
 import {
     ArbeidIPeriodeFormValues,
     ArbeidsukerFormValues,
@@ -36,31 +35,19 @@ export const cleanupArbeidIPeriode = (
     if (!formValues) {
         return undefined;
     }
-    const arbeid: ArbeidIPeriodeFormValues = {
-        arbeiderIPerioden: formValues.arbeiderIPerioden,
+    const { arbeiderIPerioden, erLiktHverUke, snittTimerPerUke, arbeidsuker } = formValues;
+
+    if (arbeiderIPerioden !== ArbeiderIPeriodenSvar.redusert) {
+        return { arbeiderIPerioden };
+    }
+    if (erLiktHverUke === YesOrNo.YES) {
+        return { arbeiderIPerioden, erLiktHverUke, snittTimerPerUke };
+    }
+    return {
+        arbeiderIPerioden,
+        erLiktHverUke,
+        arbeidsuker: arbeidsuker ? cleanupArbeidsuker(arbeidsperiode, arbeidsuker) : undefined,
     };
-
-    if (arbeid.arbeiderIPerioden !== ArbeiderIPeriodenSvar.redusert) {
-        return { arbeiderIPerioden: arbeid.arbeiderIPerioden };
-    }
-
-    arbeid.erLiktHverUke = formValues.erLiktHverUke;
-    arbeid.timerEllerProsent = formValues.erLiktHverUke === YesOrNo.YES ? formValues.timerEllerProsent : undefined;
-
-    if (arbeid.erLiktHverUke === YesOrNo.YES) {
-        return arbeid.timerEllerProsent === TimerEllerProsent.PROSENT
-            ? { ...arbeid, prosentAvNormalt: formValues.prosentAvNormalt, arbeidsuker: undefined }
-            : { ...arbeid, snittTimerPerUke: formValues.snittTimerPerUke, arbeidsuker: undefined };
-    } else {
-        return {
-            ...arbeid,
-            prosentAvNormalt: undefined,
-            snittTimerPerUke: undefined,
-            arbeidsuker: formValues.arbeidsuker
-                ? cleanupArbeidsuker(arbeidsperiode, formValues.arbeidsuker)
-                : undefined,
-        };
-    }
 };
 
 export const cleanupArbeidstidStep = (

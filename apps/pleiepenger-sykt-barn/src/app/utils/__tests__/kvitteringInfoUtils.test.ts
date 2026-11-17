@@ -69,8 +69,8 @@ describe('kvitteringUtils', () => {
                     arbeidIPeriode: {
                         type: ArbeidIPeriodeType.arbeiderRedusert,
                         redusertArbeid: {
-                            type: RedusertArbeidstidType.prosentAvNormalt,
-                            prosentAvNormalt: 20,
+                            type: RedusertArbeidstidType.timerISnittPerUke,
+                            timerPerUke: decimalDurationToISODuration(8),
                         },
                     },
                 },
@@ -86,8 +86,8 @@ describe('kvitteringUtils', () => {
                     arbeidIPeriode: {
                         type: ArbeidIPeriodeType.arbeiderRedusert,
                         redusertArbeid: {
-                            type: RedusertArbeidstidType.prosentAvNormalt,
-                            prosentAvNormalt: 20,
+                            type: RedusertArbeidstidType.timerISnittPerUke,
+                            timerPerUke: decimalDurationToISODuration(8),
                         },
                     },
                 },
