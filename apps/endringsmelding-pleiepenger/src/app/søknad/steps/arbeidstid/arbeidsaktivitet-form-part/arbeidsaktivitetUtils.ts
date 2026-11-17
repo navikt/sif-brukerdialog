@@ -5,13 +5,11 @@ import {
     Arbeidsuke,
     ArbeidsukeMap,
     LovbestemtFerieSøknadsdata,
-    TimerEllerProsent,
 } from '@app/types';
 import {
-    beregnEndretFaktiskArbeidstidPerDag,
+    beregnEndretArbeidstidForUke,
     erKortArbeidsuke,
     getLovbestemtFerieSøknadsdataForPeriode,
-    getTimerPerUkeFraTimerPerDag,
 } from '@app/utils';
 import { durationUtils } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
@@ -52,15 +50,7 @@ const arbeidsukeToArbeidstidUkerItem = (
         },
         endret: endring
             ? {
-                  faktisk: getTimerPerUkeFraTimerPerDag(
-                      beregnEndretFaktiskArbeidstidPerDag(
-                          arbeidsuke.normalt.uke,
-                          endring,
-                          arbeidsuke.antallDagerMedArbeidstid,
-                      ),
-                      arbeidsuke.antallDagerMedArbeidstid,
-                  ),
-                  endretProsent: endring.type === TimerEllerProsent.PROSENT ? endring.prosent : undefined,
+                  faktisk: beregnEndretArbeidstidForUke(endring, arbeidsuke.antallDagerMedArbeidstid),
               }
             : undefined,
     };

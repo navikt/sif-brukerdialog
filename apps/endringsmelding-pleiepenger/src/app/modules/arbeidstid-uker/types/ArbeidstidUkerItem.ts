@@ -19,7 +19,6 @@ export interface ArbeidstidUkerItem {
         normalt: Duration;
     };
     endret?: {
-        endretProsent?: number;
         faktisk: Duration;
     };
 }

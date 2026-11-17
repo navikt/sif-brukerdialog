@@ -4,13 +4,12 @@ import { arbeidsukerMockData } from '../../../../mock/data/app/arbeidsukerMockDa
 import { withIntl } from '../../../storybook/decorators/withIntl';
 import { withModalWrapper } from '../../../storybook/decorators/withModalWrapper';
 import { withRouterProvider } from '../../../storybook/decorators/withRouter';
-import { withSøknadContextProvider } from '../../../storybook/decorators/withSøknadContext';
 import EndreArbeidstidForm from './EndreArbeidstidForm';
 
 const meta: Meta<typeof EndreArbeidstidForm> = {
     title: 'Modules/EndreArbeidstidForm',
     component: EndreArbeidstidForm,
-    decorators: [withIntl, withRouterProvider, (Story) => withSøknadContextProvider(Story, {}), withModalWrapper],
+    decorators: [withIntl, withRouterProvider, withModalWrapper],
 };
 
 const { arbeidsuke, arbeidsukerEttÅr, arbeidsukerFlereÅr } = arbeidsukerMockData;

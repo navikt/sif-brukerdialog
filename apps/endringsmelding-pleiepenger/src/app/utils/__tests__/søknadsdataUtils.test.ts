@@ -1,4 +1,3 @@
-import { TimerEllerProsent } from '../../types';
 import { harEndretArbeidstid } from '../søknadsdataUtils';
 
 describe('søknadsdata', () => {
@@ -23,7 +22,7 @@ describe('søknadsdata', () => {
                     arbeidsaktivitet: {
                         abc: {
                             endringer: {
-                                sdf: { type: TimerEllerProsent.PROSENT, prosent: 20 },
+                                sdf: { timer: 20 },
                             },
                         },
                     },

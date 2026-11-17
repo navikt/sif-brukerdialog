@@ -17,6 +17,8 @@ export const setupScenarioMockRoutes = async (page: Page, scenario: ScenarioType
 };
 
 export const setupMockRoutes = async (page: Page, scenario: ScenarioType, props?: { mellomlagring: any }) => {
+    /** Appen leser scenario fra localStorage for å avgjøre om NOW skal mockes */
+    await page.addInitScript((value) => localStorage.setItem('scenario', value), scenario);
     await page.route('**hotjar**', async (route) => {
         await route.fulfill({ status: 200 });
     });

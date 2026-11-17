@@ -5,9 +5,6 @@ import { routeUtils } from '../../utils/routeUtils';
 
 test('test', async ({ page }) => {
     await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN, 'en-arbeidsgiver-to-perioder');
-    await page.goto(
-        'http://localhost:8080/familie/sykdom-i-familien/soknad/endringsmelding-pleiepenger/melding/velkommen',
-    );
     await page.getByTestId('endreLovbestemtFerie').check();
     await page.getByTestId('endreArbeidstid').check();
     await page.getByLabel('Jeg bekrefter at jeg har').check();
@@ -38,12 +35,12 @@ test('test', async ({ page }) => {
     /** Arbeid */
     await page.getByTestId('dateRangeAccordion_0_header').click();
     await page.getByTestId('uke_51').getByTestId('endre-button').click();
-    await page.getByTestId('prosent-verdi').click();
-    await page.getByTestId('prosent-verdi').fill('0');
+    await page.getByTestId('timer-verdi').click();
+    await page.getByTestId('timer-verdi').fill('0');
     await page.getByRole('button', { name: 'Ok' }).click();
     await page.getByTestId('uke_52').getByTestId('endre-button').click();
-    await page.getByTestId('prosent-verdi').click();
-    await page.getByTestId('prosent-verdi').fill('0');
+    await page.getByTestId('timer-verdi').click();
+    await page.getByTestId('timer-verdi').fill('0');
     await page.getByRole('button', { name: 'Ok' }).click();
     await page.getByTestId('dateRangeAccordion_1_header').click();
     await page.getByTestId('typedFormikForm-submitButton').click();

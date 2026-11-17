@@ -1,4 +1,4 @@
-import { RequestStatus, Sak, SøknadContextState, SøknadInitialDataState, TimerEllerProsent } from '@app/types';
+import { RequestStatus, Sak, SøknadContextState, SøknadInitialDataState } from '@app/types';
 import { DateRange } from '@navikt/sif-common-utils';
 import { appLogger } from '@sif/apm';
 import { useEffectOnce } from '@sif/hooks';
@@ -60,9 +60,6 @@ const prepInitialData = (loadedData: InitialData, tillattEndringsperiode: DateRa
         søknadsdata: {} as any,
         søknadSteps: [],
         antallSakerFørEndringsperiode,
-        inputPreferanser: {
-            timerEllerProsent: TimerEllerProsent.PROSENT,
-        },
         ...(lagretSøknadState ? lagretSøknadState : defaultSøknadState),
         valgteEndringerInitielt: getValgteEndringerInitielt(sak ? lagretSøknadState : undefined),
     };

@@ -1,9 +1,5 @@
-import './endreArbeidstidForm.scss';
-
-import { useSøknadContext } from '@app/hooks';
 import { AppIntlShape, AppText, useAppIntl } from '@app/i18n';
-import actionsCreator from '@app/søknad/context/action/actionCreator';
-import { ArbeidstidEndring, Arbeidsuke, LovbestemtFerieSøknadsdata, TimerEllerProsent } from '@app/types';
+import { ArbeidstidEndring, Arbeidsuke, LovbestemtFerieSøknadsdata } from '@app/types';
 import {
     arbeidsukerHarLikNormaltidPerDag,
     erKortArbeidsuke,
@@ -12,7 +8,7 @@ import {
     getFeriedagerIUke,
     getFeriedagerIUkeTekst,
 } from '@app/utils';
-import { Alert, BodyShort, Heading, ToggleGroup, VStack } from '@navikt/ds-react';
+import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
 import ExpandableInfo from '@navikt/sif-common-core-ds/src/components/expandable-info/ExpandableInfo';
 import {
     getIntlFormErrorHandler,
@@ -43,14 +39,10 @@ export interface EndreArbeidstidFormProps {
 }
 
 export enum EndreArbeidstidFormField {
-    timerEllerProsent = 'timerEllerProsent',
-    prosentAvNormalt = 'prosentAvNormalt',
     antallTimer = 'antallTimer',
 }
 
 export interface EndreArbeidstidFormValues {
-    [EndreArbeidstidFormField.timerEllerProsent]?: TimerEllerProsent;
-    [EndreArbeidstidFormField.prosentAvNormalt]?: string;
     [EndreArbeidstidFormField.antallTimer]?: string;
 }
 
@@ -69,36 +61,14 @@ const EndreArbeidstidForm = ({
 }: EndreArbeidstidFormProps) => {
     const appIntl = useAppIntl();
     const { text, intl } = appIntl;
-    const {
-        dispatch,
-        state: { inputPreferanser },
-    } = useSøknadContext();
 
     const onFormSubmit = (values: EndreArbeidstidFormValues) => {
-        if (values.timerEllerProsent === TimerEllerProsent.PROSENT && values.prosentAvNormalt) {
-            const value = getNumberFromNumberInputValue(values.prosentAvNormalt);
-            if (value !== undefined) {
-                onSubmit({
-                    perioder: arbeidsuker.map((a) => a.periode),
-                    endring: {
-                        type: TimerEllerProsent.PROSENT,
-                        prosent: value,
-                    },
-                });
-            }
-        }
-        if (values.timerEllerProsent === TimerEllerProsent.TIMER) {
-            const antallTimer = getNumberFromNumberInputValue(values.antallTimer);
-            if (antallTimer !== undefined) {
-                const perioder = arbeidsuker.map((uke) => uke.periode);
-                onSubmit({
-                    perioder,
-                    endring: {
-                        type: TimerEllerProsent.TIMER,
-                        timer: antallTimer,
-                    },
-                });
-            }
+        const antallTimer = getNumberFromNumberInputValue(values.antallTimer);
+        if (antallTimer !== undefined) {
+            onSubmit({
+                perioder: arbeidsuker.map((uke) => uke.periode),
+                endring: { timer: antallTimer },
+            });
         }
     };
 
@@ -117,33 +87,13 @@ const EndreArbeidstidForm = ({
         return 24 * antallDager;
     };
 
-    const getInitialValues = (): EndreArbeidstidFormValues => {
-        if (endring?.type === TimerEllerProsent.PROSENT) {
-            return {
-                timerEllerProsent: TimerEllerProsent.PROSENT,
-                prosentAvNormalt: `${endring.prosent}`,
-            };
-        }
-        if (endring?.type === TimerEllerProsent.TIMER) {
-            return {
-                timerEllerProsent: TimerEllerProsent.TIMER,
-                antallTimer: `${endring.timer}`,
-            };
-        }
-        return { timerEllerProsent: inputPreferanser.timerEllerProsent };
-    };
     return (
         <FormikWrapper
-            initialValues={getInitialValues()}
+            initialValues={{ antallTimer: endring ? `${endring.timer}` : undefined }}
             onSubmit={onFormSubmit}
-            renderForm={({ values, setValues }) => {
-                const { timerEllerProsent } = values;
-                const intlValues = getEndreArbeidstidIntlValues({
-                    arbeidsuker,
-                });
-
+            renderForm={() => {
                 return (
-                    <VStack gap="space-32" className="endreArbeidstidForm">
+                    <VStack gap="space-32">
                         <div>
                             <Heading size="large" level="2" spacing={true}>
                                 {arbeidsuker.length === 1
@@ -172,82 +122,39 @@ const EndreArbeidstidForm = ({
                             onCancel={onCancel}
                             showButtonArrows={false}>
                             <FormLayout.Questions>
-                                <ToggleGroup
-                                    className="endreArbeidstidForm__timerProsentToggler"
-                                    value={timerEllerProsent}
-                                    label={text('endreArbeidstidForm.hvordanOppgiArbeid.spm')}
-                                    onChange={(value) => {
-                                        dispatch(
-                                            actionsCreator.setInputPreferanser({
-                                                timerEllerProsent: value as TimerEllerProsent,
-                                            }),
-                                        );
-                                        setValues({ ...values, timerEllerProsent: value as TimerEllerProsent });
-                                    }}>
-                                    <ToggleGroup.Item value={TimerEllerProsent.PROSENT} data-testid="toggle-prosent">
-                                        <AppText id="endreArbeidstidForm.hvordanOppgiArbeid.iProsent" />
-                                    </ToggleGroup.Item>
-                                    <ToggleGroup.Item value={TimerEllerProsent.TIMER} data-testid="toggle-timer">
-                                        <AppText id="endreArbeidstidForm.hvordanOppgiArbeid.iTimer" />
-                                    </ToggleGroup.Item>
-                                </ToggleGroup>
-
                                 {gjelderKortUke && (
-                                    <FormLayout.QuestionBleedTop>
-                                        <Alert variant="info" inline={false}>
-                                            <AppText
-                                                id="endreArbeidstidForm.kortUke.info"
-                                                values={{ dager: getDagerTekst(arbeidsuker[0].periode) }}
-                                            />
-                                        </Alert>
-                                    </FormLayout.QuestionBleedTop>
+                                    <Alert variant="info" inline={false}>
+                                        <AppText
+                                            id="endreArbeidstidForm.kortUke.info"
+                                            values={{ dager: getDagerTekst(arbeidsuker[0].periode) }}
+                                        />
+                                    </Alert>
                                 )}
 
-                                {timerEllerProsent === TimerEllerProsent.PROSENT && (
-                                    <NumberInput
-                                        className="arbeidstidUkeInput"
-                                        name={EndreArbeidstidFormField.prosentAvNormalt}
-                                        label={text('endreArbeidstidForm.prosentAvNormalt.spm', intlValues)}
-                                        data-testid="prosent-verdi"
-                                        width="xs"
-                                        description={getNormalarbeidstidDescription(appIntl, arbeidsuker)}
-                                        maxLength={5}
-                                        validate={(value) => {
-                                            return getNumberValidator({
-                                                required: true,
-                                                min: 0,
-                                                max: 100,
-                                            })(value);
-                                        }}
-                                    />
-                                )}
-                                {timerEllerProsent === TimerEllerProsent.TIMER && (
-                                    <>
-                                        <NumberInput
-                                            className="arbeidstidUkeInput"
-                                            name={EndreArbeidstidFormField.antallTimer}
-                                            label={text(
-                                                arbeidsuker.length === 1
-                                                    ? `endreArbeidstidForm.timerAvNormalt.spm`
-                                                    : `endreArbeidstidForm.timerAvNormalt.flereUker.spm`,
-                                                intlValues,
-                                            )}
-                                            data-testid="timer-verdi"
-                                            width="xs"
-                                            description={getNormalarbeidstidDescription(appIntl, arbeidsuker)}
-                                            maxLength={5}
-                                            validate={(value) => {
-                                                const max = getMaksTimer();
-                                                const error = getNumberValidator({
-                                                    required: true,
-                                                    min: 0,
-                                                    max,
-                                                })(value);
-                                                return error ? { key: error, values: { maksTimer: max } } : undefined;
-                                            }}
-                                        />
-                                    </>
-                                )}
+                                <NumberInput
+                                    name={EndreArbeidstidFormField.antallTimer}
+                                    label={
+                                        arbeidsuker.length === 1
+                                            ? text(
+                                                  'endreArbeidstidForm.timerAvNormalt.spm',
+                                                  getEndreArbeidstidIntlValues(arbeidsuker[0]),
+                                              )
+                                            : text('endreArbeidstidForm.timerAvNormalt.flereUker.spm')
+                                    }
+                                    data-testid="timer-verdi"
+                                    width="xs"
+                                    description={getNormalarbeidstidDescription(appIntl, arbeidsuker)}
+                                    maxLength={5}
+                                    validate={(value) => {
+                                        const max = getMaksTimer();
+                                        const error = getNumberValidator({
+                                            required: true,
+                                            min: 0,
+                                            max,
+                                        })(value);
+                                        return error ? { key: error, values: { maksTimer: max } } : undefined;
+                                    }}
+                                />
                             </FormLayout.Questions>
                         </Form>
                     </VStack>

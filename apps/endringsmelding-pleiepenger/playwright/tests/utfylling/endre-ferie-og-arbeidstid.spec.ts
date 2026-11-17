@@ -32,21 +32,21 @@ test('endringsmelding om ferie og arbeid', async ({ page }) => {
 
     /** Arbeidstid */
     await page.getByTestId('uke_48').getByTestId('endre-button').click();
-    await page.getByTestId('prosent-verdi').click();
-    await page.getByTestId('prosent-verdi').fill('10');
+    await page.getByTestId('timer-verdi').click();
+    await page.getByTestId('timer-verdi').fill('10');
     await page.getByRole('button', { name: 'Ok' }).click();
 
     await page.getByTestId('uke_49').getByTestId('endre-button').click();
-    await page.getByTestId('prosent-verdi').click();
-    await page.getByTestId('prosent-verdi').fill('20');
+    await page.getByTestId('timer-verdi').click();
+    await page.getByTestId('timer-verdi').fill('20');
     await page.getByRole('button', { name: 'Ok' }).click();
 
     await page.getByLabel('Jeg ønsker å endre flere uker').check();
     await page.getByTestId('uke_4').getByLabel('Uke').check();
     await page.getByTestId('uke_5').getByLabel('Uke').check();
     await page.getByTestId('endre-flere-uker-button').click();
-    await page.getByTestId('prosent-verdi').click();
-    await page.getByTestId('prosent-verdi').fill('50');
+    await page.getByTestId('timer-verdi').click();
+    await page.getByTestId('timer-verdi').fill('20');
 
     await page.getByRole('button', { name: 'Ok' }).click();
     await page.getByTestId('typedFormikForm-submitButton').click();
