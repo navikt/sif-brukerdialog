@@ -1,10 +1,15 @@
 import { RegistrertBarn } from '@navikt/sif-common-api';
 import { getVedleggApiData } from '@navikt/sif-common-core-ds/src';
+import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
 import { dateToISODate } from '@navikt/sif-common-utils';
 
 import { OmBarnetApiData } from '../../types/søknadApiData/SøknadApiData';
 import { OmBarnetFormSøknadsdata, OmBarnetFormSøknadsdata_RegistrertBarn } from '../../types/søknadsdata/Søknadsdata';
+
+/** Søknadsdata har bare fødselsattester når barnet bor i utlandet, se getOmBarnetSøknadsdataFromFormValues. */
+export const getFødselsattesterSomSendesInn = (omBarnetSøknadsdata?: OmBarnetFormSøknadsdata): Vedlegg[] =>
+    omBarnetSøknadsdata?.type === 'annetBarnUtenFnr' ? omBarnetSøknadsdata.fødselsattest : [];
 
 const getRegistrertBarnApiData = (
     omBarnetSøknadsdata: OmBarnetFormSøknadsdata_RegistrertBarn,
@@ -55,7 +60,7 @@ export const getOmBarnetApiDataFromSøknadsdata = (
                 fødselsdato: dateToISODate(omBarnetSøknadsdata.barnetsFødselsdato),
                 relasjonTilBarnet: omBarnetSøknadsdata.relasjonTilBarnet,
                 relasjonTilBarnetBeskrivelse: omBarnetSøknadsdata.relasjonTilBarnetBeskrivelse,
-                fødselsattestVedleggUrls: getVedleggApiData(omBarnetSøknadsdata.fødselsattest),
+                fødselsattestVedleggUrls: getVedleggApiData(getFødselsattesterSomSendesInn(omBarnetSøknadsdata)),
             };
     }
 };

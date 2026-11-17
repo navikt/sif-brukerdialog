@@ -1,5 +1,6 @@
-import { ErrorSummary, VStack } from '@navikt/ds-react';
+import { Alert, ErrorSummary, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
+import { getVedleggIder, useManglendeVedlegg } from '@navikt/sif-common-core-ds';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { ErrorPage } from '@navikt/sif-common-soknad-ds';
 import { ISODateToDate } from '@navikt/sif-common-utils';
@@ -19,6 +20,7 @@ import SøknadStep from '../../../søknad/SøknadStep';
 import { getSøknadStepConfig, getSøknadStepConfigForStep } from '../../../søknad/søknadStepConfig';
 import { StepId } from '../../../types/StepId';
 import { getApiDataFromSøknadsdata } from '../../../utils/søknadsdataToApiData/getApiDataFromSøknadsdata';
+import { getFødselsattesterSomSendesInn } from '../../../utils/søknadsdataToApiData/getOmBarnetApiDataFromSøknadsdata';
 import ArbeidssituasjonSummary from './arbeidssituasjon-summary/ArbeidssituasjonSummary';
 import KursOppsummering from './components/KursOppsummering';
 import LegeerklæringOppsummering from './components/LegeerklæringOppsummering';
@@ -69,6 +71,14 @@ const OppsummeringStep = () => {
         }
     }, [previousSøknadError, sendSøknadError]);
 
+    const { manglendeVedleggIder, sjekkerVedlegg } = useManglendeVedlegg(
+        getVedleggIder([
+            ...(søknadsdata.legeerklæring?.vedlegg ?? []),
+            ...getFødselsattesterSomSendesInn(søknadsdata.omBarnet),
+        ]),
+    );
+    const vedleggErGyldige = !sjekkerVedlegg && manglendeVedleggIder.length === 0;
+
     const apiData = getApiDataFromSøknadsdata(søker.fødselsnummer, søknadsdata, registrerteBarn, institusjoner, locale);
 
     if (!apiData) {
@@ -96,7 +106,7 @@ const OppsummeringStep = () => {
             <FormikWrapper
                 initialValues={getOppsummeringStepInitialValues(søknadsdata)}
                 onSubmit={(values) => {
-                    if (apiData) {
+                    if (apiData && vedleggErGyldige) {
                         sendSøknad({
                             ...apiData,
                             harBekreftetOpplysninger: values[OppsummeringFormFields.harBekreftetOpplysninger] === true,
@@ -108,7 +118,7 @@ const OppsummeringStep = () => {
                         <VStack gap="space-32" data-testid="oppsummering">
                             <Form
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}
-                                submitDisabled={isSubmitting || hasInvalidSteps}
+                                submitDisabled={isSubmitting || hasInvalidSteps || !vedleggErGyldige}
                                 includeValidationSummary={true}
                                 submitButtonLabel={text('steg.oppsummering.sendSøknad')}
                                 isFinalSubmit={true}
@@ -121,6 +131,7 @@ const OppsummeringStep = () => {
                                     <OmBarnetSummary
                                         søknadsdata={søknadsdata.omBarnet!}
                                         apiData={apiData.barn}
+                                        manglendeVedleggIder={manglendeVedleggIder}
                                         onEdit={() => navigate(stepConfig[StepId.OM_BARNET].route)}
                                     />
 
@@ -162,6 +173,7 @@ const OppsummeringStep = () => {
                                     <LegeerklæringOppsummering
                                         apiData={apiData}
                                         legeerklæringSøknadsdata={søknadsdata.legeerklæring}
+                                        manglendeVedleggIder={manglendeVedleggIder}
                                         onEdit={() => navigate(stepConfig[StepId.LEGEERKLÆRING].route)}
                                     />
 
@@ -175,6 +187,17 @@ const OppsummeringStep = () => {
                                         validate={getCheckedValidator()}
                                         name={OppsummeringFormFields.harBekreftetOpplysninger}
                                     />
+
+                                    <div aria-live="polite">
+                                        {manglendeVedleggIder.length > 0 && (
+                                            <Alert variant="error">
+                                                <AppText
+                                                    id="steg.oppsummering.vedleggMangler"
+                                                    values={{ antall: manglendeVedleggIder.length }}
+                                                />
+                                            </Alert>
+                                        )}
+                                    </div>
                                 </VStack>
                             </Form>
                             {sendSøknadError && (
