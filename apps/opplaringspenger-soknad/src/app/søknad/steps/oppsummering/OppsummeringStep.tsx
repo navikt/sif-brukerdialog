@@ -1,4 +1,4 @@
-import { ErrorSummary, LocalAlert, VStack } from '@navikt/ds-react';
+import { Alert, ErrorSummary, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { getVedleggIder, useManglendeVedlegg } from '@navikt/sif-common-core-ds';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
@@ -188,18 +188,16 @@ const OppsummeringStep = () => {
                                         name={OppsummeringFormFields.harBekreftetOpplysninger}
                                     />
 
-                                    {manglendeVedleggIder.length > 0 && (
-                                        <LocalAlert status="error">
-                                            <LocalAlert.Header>
-                                                <LocalAlert.Title>
-                                                    <AppText
-                                                        id="steg.oppsummering.vedleggMangler"
-                                                        values={{ antall: manglendeVedleggIder.length }}
-                                                    />
-                                                </LocalAlert.Title>
-                                            </LocalAlert.Header>
-                                        </LocalAlert>
-                                    )}
+                                    <div aria-live="polite">
+                                        {manglendeVedleggIder.length > 0 && (
+                                            <Alert variant="error">
+                                                <AppText
+                                                    id="steg.oppsummering.vedleggMangler"
+                                                    values={{ antall: manglendeVedleggIder.length }}
+                                                />
+                                            </Alert>
+                                        )}
+                                    </div>
                                 </VStack>
                             </Form>
                             {sendSøknadError && (
