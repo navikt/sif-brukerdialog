@@ -68,7 +68,6 @@ const Søknad = () => {
                 <IngenTilgangPage
                     årsak={initialData.årsak}
                     søker={initialData.søker}
-                    ingenTilgangMeta={initialData.ingenTilgangMeta}
                 />
             );
         }
