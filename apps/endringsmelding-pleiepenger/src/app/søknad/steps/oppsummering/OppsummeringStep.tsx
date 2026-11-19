@@ -60,7 +60,7 @@ const OppsummeringStep = () => {
         dispatch(actionsCreator.requestLagreSøknad());
     }, [dispatch]);
 
-    const { stepConfig } = useStepConfig(stepId);
+    const { includeBackLink, stepConfig } = useStepConfig(stepId);
     const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig, arbeidsgivere);
     const { sendSøknad, isSubmitting, sendSøknadError } = useSendSøknad();
 
@@ -104,7 +104,7 @@ const OppsummeringStep = () => {
     );
 
     return (
-        <SøknadStep stepId={stepId} stepConfig={stepConfig}>
+        <SøknadStep stepId={stepId} stepConfig={stepConfig} includeBackLink={includeBackLink}>
             <VStack gap="space-24">
                 {harIngenEndringer ? (
                     <BodyShort size="large">

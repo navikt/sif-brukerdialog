@@ -17,6 +17,7 @@ export const useStepConfig = (stepId: StepId) => {
 
     return {
         goBack: skjulForrige ? undefined : goBack,
+        includeBackLink: !skjulForrige,
         stepConfig,
     };
 };
