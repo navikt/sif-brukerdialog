@@ -1,6 +1,28 @@
 export const oppsummeringStepMessages_nb = {
-    'oppsummeringStep.guide':
-        'Nedenfor ser du endringene som du har lagt inn. Se over at alt stemmer før du sender inn. Hvis noe ikke stemmer, kan du gå tilbake og endre igjen.',
+    'endringerTekstoppsummering.endret': 'Du har {endringer}.',
+    'endringerTekstoppsummering.endret.arbeidstid':
+        '{antallTotalt, plural, one {endret arbeidstid} other {endret arbeidstid i {antallEndret} av {antallTotalt} arbeidsforhold}}',
+    'endringerTekstoppsummering.endret.ferie':
+        '{type, select, lagtTil {lagt til ferie} fjernet {fjernet ferie} other {lagt til og fjernet ferie}}',
+    'endringerTekstoppsummering.endret.tilsynsordning': 'endret tid i omsorgstilbud',
+    'endringerTekstoppsummering.uendret': '{uendret} er uendret.',
+    'endringerTekstoppsummering.uendret.arbeidstid': 'arbeidstiden',
+    'endringerTekstoppsummering.uendret.andreArbeidsforhold':
+        '{antall, plural, one {det andre arbeidsforholdet} =2 {de to andre arbeidsforholdene} other {de {antall} andre arbeidsforholdene}}',
+    'endringerTekstoppsummering.uendret.ferie': 'ferien',
+    'endringerTekstoppsummering.uendret.tilsynsordning': 'omsorgstilbudet',
+
+    'oppsummeringStep.ingenEndringer': 'Du har ikke registrert noen endringer. Legg til endring ved å velge nedenfor.',
+    'oppsummeringStep.ingenEndringRegistrert': 'Ingen endring registrert',
+    'oppsummeringStep.manglerArbeidstid':
+        'Vi mangler informasjon om arbeidstid. Vennligst gå tilbake til steget <Lenke>{steg}</Lenke> og fortsett derfra.',
+
+    'oppsummeringStep.seksjon.ferie.tittel': 'Ferie',
+    'oppsummeringStep.seksjon.ferie.endre': 'Endre ferie',
+    'oppsummeringStep.seksjon.arbeidstid.tittel': 'Jobb i perioden',
+    'oppsummeringStep.seksjon.arbeidstid.endre': 'Endre jobb i perioden',
+    'oppsummeringStep.seksjon.tilsynsordning.tittel': 'Tid i omsorgstilbud',
+    'oppsummeringStep.seksjon.tilsynsordning.endre': 'Endre tid i omsorgstilbud',
 
     'oppsummeringStep.arbeidsgiver.erAnsatt':
         'Stemmer det at du er ansatt hos {arbeidsgivernavn} i perioden du har søkt pleiepenger?',
@@ -9,37 +31,18 @@ export const oppsummeringStepMessages_nb = {
 
     'oppsummeringStep.nyttArbeidsforhold.tittel': 'Nytt arbeidsforhold',
 
-    'oppsummeringStep.arbeidstid.tittel': 'Endringer i arbeidstid',
     'oppsummeringStep.arbeidstid.flereTimerEnnTilgjengelig':
         'Det er registrert flere timer enn det er tilgjengelig for en periode. Vennligst gå tilbake til steget for arbeidstid og korriger dette.',
-    'oppsummeringStep.arbeidstid.ingenEndringer': 'Det er ikke registrert noen endringer i arbeidstid',
-    'oppsummeringStep.arbeidstid.endringerIArbeidstid': 'Endringer i arbeidstid',
     'oppsummeringStep.arbeidstid.kolonne.endretArbeidstid': 'Endret arbeidstid',
-    'oppsummeringStep.arbeidstid.kolonne.iPerioden': 'I perioden',
     'oppsummeringStep.arbeidstid.frilanser.tittel': 'Frilanser',
     'oppsummeringStep.arbeidstid.sn.tittel': 'Selvstendig næringsdrivende',
-
-    'oppsummeringStep.ferie.tittel': 'Endringer i ferie',
-    'oppsummeringStep.ferie.ingenEndringer': 'Det er ikke registrert noen endringer i ferie',
 
     'oppsummeringStep.ferie.lagtTil': 'Ferie som er lagt til',
     'oppsummeringStep.ferie.fjernet': 'Ferie som er fjernet',
 
-    'oppsummeringStep.endre.arbeidstid': 'Endre arbeidstid',
-    'oppsummeringStep.endre.ferie': 'Endre ferie',
     'oppsummeringStep.endre.ukjentArbeidsforhold': 'Endre nytt arbeidsforhold',
-    'oppsummeringStep.endre.tilsynsordning': 'Endre tid i omsorgstilbud',
 
-    'oppsummeringStep.tilsynsordning.tittel': 'Endringer i omsorgstilbud',
-    'oppsummeringStep.tilsynsordning.ingenEndringer': 'Det er ikke registrert noen endringer i omsorgstilbud',
     'oppsummeringStep.tilsynsordning.dagerEndret': ' - {antall} {antall, plural, one {dag} other {dager}} endret',
-
-    'endretTilsynTabell.header.dato': 'Dato',
-    'endretTilsynTabell.header.endretFra': 'Endret fra',
-    'endretTilsynTabell.header.endretTil': 'Endret til',
-
-    'oppsummeringStep.forrige': 'Forrige steg',
-    'oppsummeringStep.forrige.ariaLabel': 'Pil venstre',
 
     'oppsummeringStep.submit.label': 'Send melding om endring',
     'oppsummeringStep.bekrefter.tekst':

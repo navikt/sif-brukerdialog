@@ -1,6 +1,6 @@
 import { SelectableListType } from '@app/hooks/useSelectableList';
 import { AppText } from '@app/i18n';
-import { BodyShort, Box, Heading, HStack, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, Heading, VStack } from '@navikt/ds-react';
 import { getDateRangeText } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import React, { ReactElement } from 'react';
@@ -16,12 +16,14 @@ interface Props {
     uker: ArbeidstidUkerItem[];
     selectableList: SelectableListType<ArbeidstidUkerItem>;
     visEndringSomOpprinnelig?: boolean;
+    visNormalarbeidstid?: boolean;
     renderEditButton: (uke: ArbeidstidUkerItem, ukenummer: number, renderLabel: boolean) => ReactElement | undefined;
 }
 
 const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
     uker,
     visEndringSomOpprinnelig,
+    visNormalarbeidstid,
     selectableList,
     renderEditButton,
 }) => {
@@ -50,15 +52,14 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                 </div>
                             )}
                             <div className="arbeidstidUke__info">
-                                <VStack gap="space-8">
+                                <VStack gap="space-4">
                                     <Heading level="3" size="xsmall">
                                         <AppText id="arbeidstidUkeListe.heading" values={{ ukenummer }} />
                                     </Heading>
 
                                     <BodyShort as="div">
-                                        <HStack gap="space-16">
-                                            <Box>{getDateRangeText(uke.periode, intl.locale)}</Box>
-                                        </HStack>
+                                        <Box>{getDateRangeText(uke.periode, intl.locale)}</Box>
+
                                         <Box marginBlock="space-8 space-0">
                                             <UkeTags
                                                 kortUkeTooltip={getKortUkeTooltipText(uke.periode)}
@@ -72,6 +73,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
                                     <ArbeidstidUkeInfoListe
                                         uke={uke}
                                         visEndringSomOpprinnelig={visEndringSomOpprinnelig}
+                                        visNormalarbeidstid={visNormalarbeidstid}
                                     />
                                 </VStack>
                             </div>

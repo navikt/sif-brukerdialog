@@ -25,6 +25,7 @@ interface Props {
     arbeidstidKolonneTittel?: string;
     triggerResetValgCounter?: number;
     visEndringSomOpprinnelig?: boolean;
+    visNormalarbeidstid?: boolean;
     onEndreUker?: (uke: ArbeidstidUkerItem[]) => void;
 }
 
@@ -36,6 +37,7 @@ const ArbeidstidUker = ({
     arbeidstidKolonneTittel,
     triggerResetValgCounter,
     visEndringSomOpprinnelig,
+    visNormalarbeidstid = true,
     onEndreUker,
 }: Props) => {
     const { text, intl } = useAppIntl();
@@ -154,6 +156,7 @@ const ArbeidstidUker = ({
                     uker={visibleItems}
                     selectableList={selectableList}
                     visEndringSomOpprinnelig={visEndringSomOpprinnelig}
+                    visNormalarbeidstid={visNormalarbeidstid}
                     renderEditButton={renderEditButton}
                 />
                 {renderUkerFooter()}
@@ -168,6 +171,7 @@ const ArbeidstidUker = ({
                 uker={visibleItems}
                 selectableList={selectableList}
                 visEndringSomOpprinnelig={visEndringSomOpprinnelig}
+                visNormalarbeidstid={visNormalarbeidstid}
                 renderEditButton={renderEditButton}
                 renderUkerFooter={renderUkerFooter}
                 arbeidstidKolonneTittel={arbeidstidKolonneTittel}

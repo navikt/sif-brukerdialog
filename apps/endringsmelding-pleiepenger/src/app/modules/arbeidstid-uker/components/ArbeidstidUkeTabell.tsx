@@ -1,3 +1,5 @@
+import '@app/components/ukenummer-kolonne/ukenummerKolonne.css';
+
 import { SelectableListType } from '@app/hooks/useSelectableList';
 import { AppText, useAppIntl } from '@app/i18n';
 import { Box, Checkbox, Table } from '@navikt/ds-react';
@@ -17,6 +19,7 @@ interface Props {
     uker: ArbeidstidUkerItem[];
     selectableList: SelectableListType<ArbeidstidUkerItem>;
     visEndringSomOpprinnelig?: boolean;
+    visNormalarbeidstid?: boolean;
     renderCompactTable: boolean;
     arbeidstidKolonneTittel?: string;
     renderEditButton: (uke: ArbeidstidUkerItem, ukenummer: number, renderLabel: boolean) => ReactElement | undefined;
@@ -29,6 +32,7 @@ const ArbeidstidUkeTabell = ({
     selectableList,
     arbeidstidKolonneTittel,
     renderCompactTable,
+    visNormalarbeidstid = true,
     renderEditButton,
 }: Props) => {
     const { intl } = useAppIntl();
@@ -68,19 +72,21 @@ const ArbeidstidUkeTabell = ({
                     {renderCompactTable && <Table.HeaderCell>Uke</Table.HeaderCell>}
                     {!renderCompactTable && (
                         <>
-                            <Table.HeaderCell className="arbeidstidUker__ukenummer">
+                            <Table.HeaderCell className="arbeidstidUker__ukenummer ukenummerKolonne">
                                 <AppText id="arbeidstidUkeTabell.header.uke" />
                             </Table.HeaderCell>
                             <Table.HeaderCell className="arbeidstidUker__periode">
                                 <AppText id="arbeidstidUkeTabell.header.dato" />
                             </Table.HeaderCell>
-                            <Table.HeaderCell className="arbeidstidUker__normalt">
-                                <AppText id="arbeidstidUkeTabell.header.normalt.title" />
-                            </Table.HeaderCell>
+                            {visNormalarbeidstid && (
+                                <Table.HeaderCell className="arbeidstidUker__normalt">
+                                    <AppText id="arbeidstidUkeTabell.header.normalt.title" />
+                                </Table.HeaderCell>
+                            )}
                         </>
                     )}
 
-                    <Table.HeaderCell className="arbeidstidUker__faktisk">
+                    <Table.HeaderCell className="arbeidstidUker__faktisk endringKolonne">
                         {arbeidstidKolonneTittel || <AppText id="arbeidstidUkeTabell.header.arbeidstid.title" />}
                     </Table.HeaderCell>
 
@@ -118,18 +124,20 @@ const ArbeidstidUkeTabell = ({
                                         <div>{getDateRangeText(uke.periode, intl.locale)}</div>
                                     </div>
 
-                                    <div>
-                                        <AppText
-                                            id="arbeidstidUkeTabell.compact.normalarbeidstid"
-                                            values={{
-                                                Varighet: () => (
-                                                    <span style={{ whiteSpace: 'nowrap' }}>
-                                                        <DurationText duration={uke.opprinnelig.normalt} />
-                                                    </span>
-                                                ),
-                                            }}
-                                        />
-                                    </div>
+                                    {visNormalarbeidstid && (
+                                        <div>
+                                            <AppText
+                                                id="arbeidstidUkeTabell.compact.normalarbeidstid"
+                                                values={{
+                                                    Varighet: () => (
+                                                        <span style={{ whiteSpace: 'nowrap' }}>
+                                                            <DurationText duration={uke.opprinnelig.normalt} />
+                                                        </span>
+                                                    ),
+                                                }}
+                                            />
+                                        </div>
+                                    )}
 
                                     {(uke.harFeriedager || uke.harFjernetFeriedager || uke.erKortUke) && (
                                         <Box marginBlock="space-0 space-16">
@@ -145,7 +153,9 @@ const ArbeidstidUkeTabell = ({
                             )}
                             {!renderCompactTable && (
                                 <>
-                                    <Table.DataCell data-testid="ukenummer" className="arbeidstidUker__ukenummer">
+                                    <Table.DataCell
+                                        data-testid="ukenummer"
+                                        className="arbeidstidUker__ukenummer ukenummerKolonne">
                                         <AriaText>
                                             <AppText id="arbeidstidUkeTabell.aria.uke" />
                                         </AriaText>{' '}
@@ -171,9 +181,11 @@ const ArbeidstidUkeTabell = ({
                                             </div>
                                         </div>
                                     </Table.DataCell>
-                                    <Table.DataCell data-testid="normalt-timer" className="arbeidstidUker__normalt">
-                                        <DurationText duration={uke.opprinnelig.normalt} />
-                                    </Table.DataCell>
+                                    {visNormalarbeidstid && (
+                                        <Table.DataCell data-testid="normalt-timer" className="arbeidstidUker__normalt">
+                                            <DurationText duration={uke.opprinnelig.normalt} />
+                                        </Table.DataCell>
+                                    )}
                                 </>
                             )}
                             <Table.DataCell data-testid="arbeidstid-faktisk" className="arbeidstidUker__faktisk">
