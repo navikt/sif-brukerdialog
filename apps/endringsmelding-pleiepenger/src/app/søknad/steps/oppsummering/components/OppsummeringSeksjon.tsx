@@ -22,7 +22,7 @@ const OppsummeringSeksjon = ({ tittel, endreLabel, ingenEndringTekst, onEndre, h
                     <HStack align="center" gap="space-12">
                         {tittel}
                         {harEndring && (
-                            <Tag size="small" data-color="success">
+                            <Tag size="small" data-color="info">
                                 <AppText id="tags.endret" />
                             </Tag>
                         )}
