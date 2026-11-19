@@ -23,6 +23,4 @@ export interface SøknadContextState {
     valgteEndringer: ValgteEndringer;
     valgteEndringerInitielt: ValgteEndringer;
     søknadSteps: StepId[];
-    /** Antall saker hvor siste søknadsperiode slutter før gyldig endringsperiode */
-    antallSakerFørEndringsperiode: number;
 }

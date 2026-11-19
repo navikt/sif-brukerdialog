@@ -68,6 +68,13 @@ export const MerEnnEnSak: Story = {
         årsak: [IngenTilgangÅrsak.harMerEnnEnSak],
     },
 };
+export const SøknadsperioderUtenforTillattEndringsperiode: Story = {
+    name: 'søknadsperioderUtenforTillattEndringsperiode',
+    args: {
+        søker,
+        årsak: [IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode],
+    },
+};
 export const UgyldigK9FormatSak: Story = {
     name: 'harUgyldigK9FormatSak',
     args: {
@@ -75,10 +82,17 @@ export const UgyldigK9FormatSak: Story = {
         årsak: [IngenTilgangÅrsak.harUgyldigK9FormatSak],
     },
 };
-export const SøknadsperioderUtenforTillattEndringsperiode: Story = {
-    name: 'søknadsperioderUtenforTillattEndringsperiode',
+export const BarnManglerIdentitetsnummer: Story = {
+    name: 'barnManglerIdentitetsnummer',
     args: {
         søker,
-        årsak: [IngenTilgangÅrsak.søknadsperioderUtenforTillattEndringsperiode],
+        årsak: [IngenTilgangÅrsak.barnManglerIdentitetsnummer],
+    },
+};
+export const UkjentÅrsak: Story = {
+    name: 'ukjent',
+    args: {
+        søker,
+        årsak: [IngenTilgangÅrsak.ukjent],
     },
 };
