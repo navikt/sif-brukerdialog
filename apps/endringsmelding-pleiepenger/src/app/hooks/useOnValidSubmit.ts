@@ -1,11 +1,12 @@
 import { useSøknadContext } from '@app/hooks';
+import { useAppIntl } from '@app/i18n';
 import { SøknadContextState } from '@app/types';
 import { relocateToLoginPage } from '@app/utils';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { getSøknadStepRoute } from '../søknad/config/SøknadRoutes';
-import { getSøknadStepConfig } from '../søknad/config/søknadStepConfig';
+import { getNesteSteg } from '../søknad/config/søknadStepConfig';
 import { StepId } from '../søknad/config/StepId';
 import actionsCreator, { SøknadContextAction } from '../søknad/context/action/actionCreator';
 
@@ -16,18 +17,27 @@ export const useOnValidSubmit = <T>(
 ) => {
     const { dispatch, state } = useSøknadContext();
     const navigate = useNavigate();
+    const { text } = useAppIntl();
     const [hasSubmitted, setSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState(undefined);
 
-    const { nextStep } = getSøknadStepConfig(state.søknadSteps)[stepId];
+    const nextStep = getNesteSteg(stepId, state.søknadSteps, state.søknadStepsVedOppsummering);
+    const submitButtonLabel =
+        state.søknadStepsVedOppsummering && nextStep === StepId.OPPSUMMERING ? text('step.oppdater') : undefined;
 
     useEffect(() => {
         if (hasSubmitted && postSubmit) {
             postSubmit(state)
                 .then(() => {
                     if (nextStep) {
-                        navigate(getSøknadStepRoute(nextStep));
+                        /** Oppsummeringen bruker endretSteg til å åpne og fokusere seksjonen som ble endret */
+                        const tilbakeTilOppsummering =
+                            nextStep === StepId.OPPSUMMERING && state.søknadStepsVedOppsummering !== undefined;
+                        navigate(
+                            getSøknadStepRoute(nextStep),
+                            tilbakeTilOppsummering ? { state: { endretSteg: stepId } } : undefined,
+                        );
                     }
                 })
                 .catch((error) => {
@@ -38,7 +48,7 @@ export const useOnValidSubmit = <T>(
                     }
                 });
         }
-    }, [hasSubmitted, navigate, nextStep, state, postSubmit]);
+    }, [hasSubmitted, navigate, nextStep, state, postSubmit, stepId]);
 
     useEffect(() => {
         if (submitError) {
@@ -63,5 +73,5 @@ export const useOnValidSubmit = <T>(
         Promise.all([...actions.map(dispatchAction)]).then(() => setSubmitted(true));
     };
 
-    return { handleSubmit, isSubmitting };
+    return { handleSubmit, isSubmitting, submitButtonLabel };
 };

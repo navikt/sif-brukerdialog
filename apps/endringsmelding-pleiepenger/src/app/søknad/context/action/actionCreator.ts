@@ -29,6 +29,11 @@ export enum SøknadContextActionKeys {
     SET_UNSUBMITTED_STEP_FORM_VALUES = 'setUnsubmittedStepFormValues',
     CLEAR_STEP_SØKNADSDATA = 'clearStepSøknadsdata',
     LEGG_TIL_VALGT_ENDRING = 'leggTilValgtEndring',
+    SET_OPPSUMMERING_VIST = 'setOppsummeringVist',
+}
+
+interface SetOppsummeringVist {
+    type: SøknadContextActionKeys.SET_OPPSUMMERING_VIST;
 }
 
 interface SetSak {
@@ -102,6 +107,10 @@ const setSak = (sak: Sak): SetSak => ({
 const leggTilValgtEndring = (steg: EndringStepId): LeggTilValgtEndring => ({
     type: SøknadContextActionKeys.LEGG_TIL_VALGT_ENDRING,
     payload: { steg },
+});
+
+const setOppsummeringVist = (): SetOppsummeringVist => ({
+    type: SøknadContextActionKeys.SET_OPPSUMMERING_VIST,
 });
 
 const resetSøknad = (): ResetSøknad => ({
@@ -185,6 +194,7 @@ export type SøknadContextAction =
     | SetSøknadTilsynsordning
     | SetSøknadRoute
     | SetEndringsmeldingSendt
+    | SetOppsummeringVist
     | StartSøknad;
 
 const actionsCreator = {
@@ -204,6 +214,7 @@ const actionsCreator = {
     setEndringsmeldingSendt,
     startSøknad,
     leggTilValgtEndring,
+    setOppsummeringVist,
 };
 
 export default actionsCreator;

@@ -24,6 +24,8 @@ const nb = {
     ...tilsynsordningMessages_nb,
     ...tilsynsordningMånedMessages_nb,
 
+    'step.oppdater': 'Neste',
+
     'psb.timerOgMinutter':
         '{timer, plural, one {# time} other {# timer}} og {minutter, plural, one {# minutt} other {# minutter}}',
 

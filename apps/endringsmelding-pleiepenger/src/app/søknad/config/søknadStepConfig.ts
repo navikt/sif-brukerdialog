@@ -52,3 +52,19 @@ export const getSøknadStepConfig = (søknadSteps: StepId[]): SoknadStepsConfig<
     soknadStepUtils.getStepsConfig(søknadSteps, SoknadApplicationType.MELDING, (stepId: StepId) =>
         getSøknadStepRoute(stepId),
     );
+
+/**
+ * Har bruker vært på oppsummeringen, sendes hen tilbake dit med mindre det har kommet til
+ * nye steg etter gjeldende steg. Da må bruker innom det første av dem først.
+ */
+export const getNesteSteg = (
+    stepId: StepId,
+    søknadSteps: StepId[],
+    søknadStepsVedOppsummering?: StepId[],
+): StepId | undefined => {
+    const etterfølgendeSteg = søknadSteps.slice(søknadSteps.indexOf(stepId) + 1);
+    if (!søknadStepsVedOppsummering) {
+        return etterfølgendeSteg[0];
+    }
+    return etterfølgendeSteg.find((steg) => !søknadStepsVedOppsummering.includes(steg)) ?? StepId.OPPSUMMERING;
+};

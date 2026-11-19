@@ -65,7 +65,7 @@ const LovbestemtFerieStep = () => {
         return [];
     };
 
-    const { handleSubmit, isSubmitting } = useOnValidSubmit(
+    const { handleSubmit, isSubmitting, submitButtonLabel } = useOnValidSubmit(
         onValidSubmitHandler,
         stepId,
         (state: SøknadContextState) => {
@@ -117,6 +117,7 @@ const LovbestemtFerieStep = () => {
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'lovbestemtFerieForm')}
                                 includeValidationSummary={true}
                                 submitPending={isSubmitting}
+                                submitButtonLabel={submitButtonLabel}
                                 runDelayedFormValidation={true}
                                 onBack={goBack}>
                                 <VStack gap="space-24">

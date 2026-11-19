@@ -48,7 +48,7 @@ const TilsynsordningStep = () => {
         return [];
     };
 
-    const { handleSubmit, isSubmitting } = useOnValidSubmit(
+    const { handleSubmit, isSubmitting, submitButtonLabel } = useOnValidSubmit(
         onValidSubmitHandler,
         stepId,
         (state: SøknadContextState) => {
@@ -111,6 +111,7 @@ const TilsynsordningStep = () => {
                                     søknadsperioder={sak.søknadsperioder}
                                     opprinneligTilsynsdager={sak.tilsynsordning.tilsynsdagerMap}
                                     isSubmitting={isSubmitting}
+                                    submitButtonLabel={submitButtonLabel}
                                     onTilsynsordningChanged={(values) => {
                                         oppdaterSøknadState(values);
                                     }}
