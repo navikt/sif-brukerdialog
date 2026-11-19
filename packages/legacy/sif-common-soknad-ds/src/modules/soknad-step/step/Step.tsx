@@ -19,6 +19,7 @@ interface Props {
     activeStepId: string;
     children: React.ReactNode;
     validationSummary?: React.ReactNode;
+    includeBackLink?: boolean;
     topContentRenderer?: () => React.ReactElement<any>;
     onCancel?: () => void;
     onContinueLater?: () => void;
@@ -31,6 +32,7 @@ function Step({
     activeStepId,
     onCancel,
     onContinueLater,
+    includeBackLink,
     validationSummary,
     cancelOrContinueLaterAriaLabel,
     children,
@@ -63,6 +65,7 @@ function Step({
                         steps={steps}
                         currentStepIndex={currentStepIndex}
                         onStepSelect={handleOnStepSelect}
+                        includeBackLink={includeBackLink}
                     />
                     <div>{children}</div>
                 </VStack>
