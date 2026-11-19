@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { getSøknadStepRoute } from '../søknad/config/SøknadRoutes';
-import { getNesteSteg } from '../søknad/config/søknadStepConfig';
+import { getNesteSteg, getStegMedManglendeSvar } from '../søknad/config/søknadStepConfig';
 import { StepId } from '../søknad/config/StepId';
 import actionsCreator, { SøknadContextAction } from '../søknad/context/action/actionCreator';
 
@@ -22,7 +22,12 @@ export const useOnValidSubmit = <T>(
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState(undefined);
 
-    const nextStep = getNesteSteg(stepId, state.søknadSteps, state.søknadStepsVedOppsummering);
+    const nextStep = getNesteSteg(
+        stepId,
+        state.søknadSteps,
+        state.søknadStepsVedOppsummering,
+        getStegMedManglendeSvar(state.søknadsdata),
+    );
     const submitButtonLabel =
         state.søknadStepsVedOppsummering && nextStep === StepId.OPPSUMMERING ? text('step.oppdater') : undefined;
 

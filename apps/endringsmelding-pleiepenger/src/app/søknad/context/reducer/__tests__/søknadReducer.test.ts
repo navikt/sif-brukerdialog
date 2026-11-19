@@ -1,7 +1,7 @@
 import { SøknadRoutes } from '@app/søknad/config/SøknadRoutes';
-import { getNesteSteg } from '@app/søknad/config/søknadStepConfig';
+import { getNesteSteg, getStegMedManglendeSvar } from '@app/søknad/config/søknadStepConfig';
 import { StepId } from '@app/søknad/config/StepId';
-import { SøknadContextState } from '@app/types';
+import { ArbeiderIPeriodenSvar, SøknadContextState } from '@app/types';
 import { describe, expect, it, vi } from 'vitest';
 
 import actionsCreator from '../../action/actionCreator';
@@ -58,5 +58,27 @@ describe('getNesteSteg', () => {
     it('går til nytt steg som har kommet til etter at bruker var på oppsummeringen', () => {
         const stegVedOppsummering = [StepId.LOVBESTEMT_FERIE, StepId.TILSYNSORDNING, StepId.OPPSUMMERING];
         expect(getNesteSteg(StepId.LOVBESTEMT_FERIE, steg, stegVedOppsummering)).toEqual(StepId.ARBEIDSTID);
+    });
+});
+
+describe('getStegMedManglendeSvar', () => {
+    const ukjentArbeidsforhold = { arbeidsforhold: [{ arbeidsgiverKey: 'a1', erAnsatt: true }] };
+
+    it('krever arbeidstid når nytt arbeidsforhold er ansatt uten svar på arbeid i perioden', () => {
+        const søknadsdata = { ukjentArbeidsforhold, arbeidstid: { arbeidsaktivitet: {} } } as any;
+        const stegMedManglendeSvar = getStegMedManglendeSvar(søknadsdata);
+        const steg = [StepId.UKJENT_ARBEIDSFOHOLD, StepId.ARBEIDSTID, StepId.OPPSUMMERING];
+
+        expect(getNesteSteg(StepId.UKJENT_ARBEIDSFOHOLD, steg, steg, stegMedManglendeSvar)).toEqual(
+            StepId.ARBEIDSTID,
+        );
+    });
+
+    it('krever ingen steg når arbeid i perioden er besvart', () => {
+        const søknadsdata = {
+            ukjentArbeidsforhold,
+            arbeidstid: { arbeidsaktivitet: { a1: { arbeiderIPerioden: ArbeiderIPeriodenSvar.somVanlig } } },
+        } as any;
+        expect(getStegMedManglendeSvar(søknadsdata)).toEqual([]);
     });
 });
