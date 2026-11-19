@@ -174,7 +174,6 @@ const OppsummeringStep = () => {
                         {tilsynsordning && (
                             <TilsynsordningOppsummering
                                 tilsynsordning={tilsynsordning}
-                                tidOpprinnelig={sak.tilsynsordning.tilsynsdagerMap}
                                 søknadsperioder={sak.søknadsperioder}
                             />
                         )}

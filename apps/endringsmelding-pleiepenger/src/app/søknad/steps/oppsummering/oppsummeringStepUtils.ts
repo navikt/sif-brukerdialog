@@ -17,7 +17,6 @@ import {
     getTimerPerUkeFraTimerPerDag,
 } from '@app/utils';
 import {
-    DateDurationMap,
     dateFormatter,
     getDatesInDateRange,
     ISODateRange,
@@ -192,9 +191,8 @@ type MånedMedDagerMedEndretTilsyn = {
 };
 const getMånederMedDagerEndretTilsyn = (
     tilsynsordning: TilsynsordningApiData,
-    tidOpprinnelig: DateDurationMap | undefined,
 ): MånedMedDagerMedEndretTilsyn[] => {
-    const dagerMedEndretTilsyn = getTilsynsordningOppsummeringInfo(tilsynsordning, tidOpprinnelig);
+    const dagerMedEndretTilsyn = getTilsynsordningOppsummeringInfo(tilsynsordning);
 
     const månederMedDager: Record<string, MånedMedDagerMedEndretTilsyn> = {};
     for (const dag of dagerMedEndretTilsyn) {
