@@ -27,9 +27,15 @@ const OppsummeringSeksjon = ({
 }: Props) => {
     const headerRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
-        if (fokuser) {
-            headerRef.current?.focus();
+        if (!fokuser) {
+            return;
         }
+
+        const animationFrameId = window.requestAnimationFrame(() => {
+            headerRef.current?.focus();
+        });
+
+        return () => window.cancelAnimationFrame(animationFrameId);
     }, [fokuser]);
 
     return (
