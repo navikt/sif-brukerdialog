@@ -97,12 +97,6 @@ export const scenarioer: Scenario[] = [
         name: 'Arbeidsgiver med to ansettelser samme uke uten opphold',
         value: 'en-arbeidsgiver-to-ansettelser-samme-uke-uten-opphold',
     },
-    {
-        name: 'Brukertest 2026',
-        value: 'brukertest-2026',
-        brukDagensDato: true,
-        fremhevet: true,
-    },
 ];
 
 export const defaultScenario = scenarioer[0];
