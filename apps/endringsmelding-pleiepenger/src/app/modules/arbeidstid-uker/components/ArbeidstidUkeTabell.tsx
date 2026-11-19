@@ -1,4 +1,4 @@
-import '@app/components/ukenummer-kolonne/ukenummerKolonne.css';
+import './arbeidstidUkeTabell.css';
 
 import { SelectableListType } from '@app/hooks/useSelectableList';
 import { AppText, useAppIntl } from '@app/i18n';
