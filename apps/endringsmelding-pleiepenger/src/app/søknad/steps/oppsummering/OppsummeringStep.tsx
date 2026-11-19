@@ -137,7 +137,9 @@ const OppsummeringStep = () => {
                             harEndring={true}
                             endreLabel={text('oppsummeringStep.endre.ukjentArbeidsforhold')}
                             ingenEndringTekst={text('oppsummeringStep.ingenEndringRegistrert.nyttArbeidsforhold')}
-                            onEndre={() => navigate(getSøknadStepRoute(StepId.UKJENT_ARBEIDSFOHOLD))}
+                            onEndre={() =>
+                                isSubmitting ? null : navigate(getSøknadStepRoute(StepId.UKJENT_ARBEIDSFOHOLD))
+                            }
                             fokuser={endretSteg === StepId.UKJENT_ARBEIDSFOHOLD}>
                             <NyttArbeidsforholdOppsummering nyeArbeidsforhold={nyeArbeidsforhold} />
                         </OppsummeringSeksjon>
@@ -148,7 +150,7 @@ const OppsummeringStep = () => {
                         harEndring={endringer.ferie}
                         endreLabel={text('oppsummeringStep.seksjon.ferie.endre')}
                         ingenEndringTekst={text('oppsummeringStep.ingenEndringRegistrert.ferie')}
-                        onEndre={() => endre(StepId.LOVBESTEMT_FERIE)}
+                        onEndre={() => (isSubmitting ? null : endre(StepId.LOVBESTEMT_FERIE))}
                         fokuser={endretSteg === StepId.LOVBESTEMT_FERIE}>
                         {lovbestemtFerie && <LovbestemtFerieOppsummering lovbestemtFerie={lovbestemtFerie} />}
                     </OppsummeringSeksjon>
@@ -158,7 +160,7 @@ const OppsummeringStep = () => {
                         harEndring={endringer.arbeidstid}
                         endreLabel={text('oppsummeringStep.seksjon.arbeidstid.endre')}
                         ingenEndringTekst={text('oppsummeringStep.ingenEndringRegistrert.arbeid')}
-                        onEndre={() => endre(StepId.ARBEIDSTID)}
+                        onEndre={() => (isSubmitting ? null : endre(StepId.ARBEIDSTID))}
                         fokuser={endretSteg === StepId.ARBEIDSTID}>
                         {arbeidstid && (
                             <ArbeidstidOppsummering
@@ -174,7 +176,7 @@ const OppsummeringStep = () => {
                         harEndring={endringer.tilsynsordning}
                         endreLabel={text('oppsummeringStep.seksjon.tilsynsordning.endre')}
                         ingenEndringTekst={text('oppsummeringStep.ingenEndringRegistrert.tilsynsordning')}
-                        onEndre={() => endre(StepId.TILSYNSORDNING)}
+                        onEndre={() => (isSubmitting ? null : endre(StepId.TILSYNSORDNING))}
                         fokuser={endretSteg === StepId.TILSYNSORDNING}>
                         {tilsynsordning && (
                             <TilsynsordningOppsummering
