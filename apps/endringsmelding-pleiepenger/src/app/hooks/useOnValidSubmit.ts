@@ -9,6 +9,33 @@ import { getSøknadStepRoute } from '../søknad/config/SøknadRoutes';
 import { getNesteSteg, getStegMedManglendeSvar } from '../søknad/config/søknadStepConfig';
 import { StepId } from '../søknad/config/StepId';
 import actionsCreator, { SøknadContextAction } from '../søknad/context/action/actionCreator';
+import { søknadReducer } from '../søknad/context/reducer/søknadReducer';
+
+/** Neste steg må beregnes fra state etter submit, siden svarene kan legge til eller kreve nye steg */
+export const getSubmitResult = (
+    state: SøknadContextState,
+    submitActions: SøknadContextAction[],
+    stepId: StepId,
+) => {
+    const stateAfterSubmit = submitActions.reduce(søknadReducer, state);
+    const nextStep = getNesteSteg(
+        stepId,
+        stateAfterSubmit.søknadSteps,
+        stateAfterSubmit.søknadStepsVedOppsummering,
+        getStegMedManglendeSvar(stateAfterSubmit.søknadsdata),
+    );
+
+    if (nextStep === undefined || nextStep === StepId.MELDING_SENDT) {
+        return { actions: submitActions, state: stateAfterSubmit, nextStep };
+    }
+
+    const routeAction = actionsCreator.setSøknadRoute(getSøknadStepRoute(nextStep));
+    return {
+        actions: [...submitActions, routeAction],
+        state: søknadReducer(stateAfterSubmit, routeAction),
+        nextStep,
+    };
+};
 
 export const useOnValidSubmit = <T>(
     submitHandler: (values: T) => SøknadContextAction[],
@@ -18,7 +45,6 @@ export const useOnValidSubmit = <T>(
     const { dispatch, state } = useSøknadContext();
     const navigate = useNavigate();
     const { text } = useAppIntl();
-    const [hasSubmitted, setSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState(undefined);
 
@@ -32,15 +58,26 @@ export const useOnValidSubmit = <T>(
         state.søknadStepsVedOppsummering && nextStep === StepId.OPPSUMMERING ? text('step.oppdater') : undefined;
 
     useEffect(() => {
-        if (hasSubmitted && postSubmit) {
-            postSubmit(state)
+        if (submitError) {
+            throw new Error(submitError);
+        }
+    }, [submitError]);
+
+    const handleSubmit = (values: T) => {
+        setIsSubmitting(true);
+        const submitResult = getSubmitResult(state, submitHandler(values), stepId);
+        submitResult.actions.forEach((action) => dispatch(action));
+
+        if (postSubmit) {
+            postSubmit(submitResult.state)
                 .then(() => {
-                    if (nextStep) {
+                    if (submitResult.nextStep) {
                         /** Oppsummeringen bruker endretSteg til å åpne og fokusere seksjonen som ble endret */
                         const tilbakeTilOppsummering =
-                            nextStep === StepId.OPPSUMMERING && state.søknadStepsVedOppsummering !== undefined;
+                            submitResult.nextStep === StepId.OPPSUMMERING &&
+                            submitResult.state.søknadStepsVedOppsummering !== undefined;
                         navigate(
-                            getSøknadStepRoute(nextStep),
+                            getSøknadStepRoute(submitResult.nextStep),
                             tilbakeTilOppsummering ? { state: { endretSteg: stepId } } : undefined,
                         );
                     }
@@ -53,29 +90,6 @@ export const useOnValidSubmit = <T>(
                     }
                 });
         }
-    }, [hasSubmitted, navigate, nextStep, state, postSubmit, stepId]);
-
-    useEffect(() => {
-        if (submitError) {
-            throw new Error(submitError);
-        }
-    }, [submitError]);
-
-    const dispatchAction = (action: SøknadContextAction | undefined): void => {
-        if (action) {
-            dispatch(action);
-        }
-    };
-
-    const handleSubmit = (values: T) => {
-        setIsSubmitting(true);
-        const actions = [
-            nextStep === undefined || nextStep === StepId.MELDING_SENDT
-                ? undefined
-                : dispatch(actionsCreator.setSøknadRoute(getSøknadStepRoute(nextStep))),
-            ...submitHandler(values),
-        ];
-        Promise.all([...actions.map(dispatchAction)]).then(() => setSubmitted(true));
     };
 
     return { handleSubmit, isSubmitting, submitButtonLabel };

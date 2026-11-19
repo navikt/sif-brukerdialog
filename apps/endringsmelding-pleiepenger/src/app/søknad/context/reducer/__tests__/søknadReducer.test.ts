@@ -1,3 +1,4 @@
+import { getSubmitResult } from '@app/hooks/useOnValidSubmit';
 import { SøknadRoutes } from '@app/søknad/config/SøknadRoutes';
 import { getNesteSteg, getStegMedManglendeSvar } from '@app/søknad/config/søknadStepConfig';
 import { StepId } from '@app/søknad/config/StepId';
@@ -41,6 +42,41 @@ describe('søknadReducer - SET_OPPSUMMERING_VIST', () => {
 
         const resetState = søknadReducer(state, actionsCreator.resetSøknad());
         expect(resetState.søknadStepsVedOppsummering).toBeUndefined();
+    });
+});
+
+describe('getSubmitResult', () => {
+    it('lagrer arbeidstid som neste route når ukjent arbeidsforhold endres fra nei til ja fra oppsummeringen', () => {
+        const state = {
+            ...getState(),
+            sak: { harArbeidsgivereIkkeISak: true },
+            valgteEndringer: { arbeidstid: false, lovbestemtFerie: false, tilsynsordning: false },
+            søknadsdata: {
+                id: '1',
+                ukjentArbeidsforhold: { arbeidsforhold: [{ arbeidsgiverKey: 'a1', erAnsatt: false }] },
+            },
+            søknadSteps: [StepId.UKJENT_ARBEIDSFOHOLD, StepId.OPPSUMMERING],
+            søknadStepsVedOppsummering: [StepId.UKJENT_ARBEIDSFOHOLD, StepId.OPPSUMMERING],
+        } as SøknadContextState;
+
+        const result = getSubmitResult(
+            state,
+            [
+                actionsCreator.setSøknadUkjentArbeidsforhold({
+                    arbeidsforhold: [
+                        {
+                            arbeidsgiverKey: 'a1',
+                            erAnsatt: true,
+                            normalarbeidstid: { timerPerUke: { hours: '37', minutes: '30' } },
+                        },
+                    ],
+                }),
+            ],
+            StepId.UKJENT_ARBEIDSFOHOLD,
+        );
+
+        expect(result.nextStep).toBe(StepId.ARBEIDSTID);
+        expect(result.state.søknadRoute).toBe(SøknadRoutes.ARBEIDSTID);
     });
 });
 
