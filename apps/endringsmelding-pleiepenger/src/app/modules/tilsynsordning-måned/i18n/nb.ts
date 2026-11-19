@@ -77,6 +77,7 @@ export const tilsynsordningMånedMessages_nb = {
     'tidEnkeltdagForm.gjelderFlereDager.info': 'Velg hvilke andre dager du ønsker at denne tiden skal registreres på:',
     'tidEnkeltdagForm.gjentagelse.alleDagerIUke': 'Alle dager i uke {ukeNavn}',
     'tidEnkeltdagForm.gjentagelse.alleDagerIMåned': 'Alle dager i {månedNavn}',
+    'tidEnkeltdagForm.gjentagelse.utMånedFraDato': 'Alle dager i {månedNavn}, fra og med {fra}',
     'tidEnkeltdagForm.gjentagelse.sammeDagUtMånedFom': 'Alle {dagerNavn} i {månedNavn}, fra og med {fra}',
     'tidEnkeltdagForm.gjentagelse.sammeDagUtSøknadsperiodenFom':
         'Alle {dagerNavn} i hele søknadsperioden, fra og med {fra}',
