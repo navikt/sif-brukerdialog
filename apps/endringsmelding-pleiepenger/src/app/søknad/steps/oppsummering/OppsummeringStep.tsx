@@ -17,7 +17,7 @@ import { SifInfoCard } from '@sif/soknad-ui/components';
 import { useSkyraReloader } from '@sif/surveys';
 import { getCheckedValidator } from '@sif/validation';
 import { useEffect, useRef } from 'react';
-import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 import ArbeidstidOppsummering from './arbeidstid/ArbeidstidOppsummering';
 import EndringerTekstoppsummering from './components/EndringerTekstoppsummering';
@@ -59,9 +59,6 @@ const OppsummeringStep = () => {
         dispatch(actionsCreator.setOppsummeringVist());
         dispatch(actionsCreator.requestLagreSøknad());
     }, [dispatch]);
-
-    /** Kommer bruker fra et steg som ble endret fra oppsummeringen, fokuseres den seksjonen */
-    const endretSteg = (useLocation().state as { endretSteg?: StepId } | null)?.endretSteg;
 
     const { stepConfig } = useStepConfig(stepId);
     const { hasInvalidSteps } = useSøknadsdataStatus(stepId, stepConfig, arbeidsgivere);
@@ -139,8 +136,7 @@ const OppsummeringStep = () => {
                             ingenEndringTekst={text('oppsummeringStep.ingenEndringRegistrert.nyttArbeidsforhold')}
                             onEndre={() =>
                                 isSubmitting ? null : navigate(getSøknadStepRoute(StepId.UKJENT_ARBEIDSFOHOLD))
-                            }
-                            fokuser={endretSteg === StepId.UKJENT_ARBEIDSFOHOLD}>
+                            }>
                             <NyttArbeidsforholdOppsummering nyeArbeidsforhold={nyeArbeidsforhold} />
                         </OppsummeringSeksjon>
                     )}
@@ -150,8 +146,7 @@ const OppsummeringStep = () => {
                         harEndring={endringer.ferie}
                         endreLabel={text('oppsummeringStep.seksjon.ferie.endre')}
                         ingenEndringTekst={text('oppsummeringStep.ingenEndringRegistrert.ferie')}
-                        onEndre={() => (isSubmitting ? null : endre(StepId.LOVBESTEMT_FERIE))}
-                        fokuser={endretSteg === StepId.LOVBESTEMT_FERIE}>
+                        onEndre={() => (isSubmitting ? null : endre(StepId.LOVBESTEMT_FERIE))}>
                         {lovbestemtFerie && <LovbestemtFerieOppsummering lovbestemtFerie={lovbestemtFerie} />}
                     </OppsummeringSeksjon>
 
@@ -160,8 +155,7 @@ const OppsummeringStep = () => {
                         harEndring={endringer.arbeidstid}
                         endreLabel={text('oppsummeringStep.seksjon.arbeidstid.endre')}
                         ingenEndringTekst={text('oppsummeringStep.ingenEndringRegistrert.arbeid')}
-                        onEndre={() => (isSubmitting ? null : endre(StepId.ARBEIDSTID))}
-                        fokuser={endretSteg === StepId.ARBEIDSTID}>
+                        onEndre={() => (isSubmitting ? null : endre(StepId.ARBEIDSTID))}>
                         {arbeidstid && (
                             <ArbeidstidOppsummering
                                 arbeidstid={arbeidstid}
@@ -176,8 +170,7 @@ const OppsummeringStep = () => {
                         harEndring={endringer.tilsynsordning}
                         endreLabel={text('oppsummeringStep.seksjon.tilsynsordning.endre')}
                         ingenEndringTekst={text('oppsummeringStep.ingenEndringRegistrert.tilsynsordning')}
-                        onEndre={() => (isSubmitting ? null : endre(StepId.TILSYNSORDNING))}
-                        fokuser={endretSteg === StepId.TILSYNSORDNING}>
+                        onEndre={() => (isSubmitting ? null : endre(StepId.TILSYNSORDNING))}>
                         {tilsynsordning && (
                             <TilsynsordningOppsummering
                                 tilsynsordning={tilsynsordning}

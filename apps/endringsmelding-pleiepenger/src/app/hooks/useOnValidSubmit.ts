@@ -72,14 +72,7 @@ export const useOnValidSubmit = <T>(
             postSubmit(submitResult.state)
                 .then(() => {
                     if (submitResult.nextStep) {
-                        /** Oppsummeringen bruker endretSteg til å åpne og fokusere seksjonen som ble endret */
-                        const tilbakeTilOppsummering =
-                            submitResult.nextStep === StepId.OPPSUMMERING &&
-                            submitResult.state.søknadStepsVedOppsummering !== undefined;
-                        navigate(
-                            getSøknadStepRoute(submitResult.nextStep),
-                            tilbakeTilOppsummering ? { state: { endretSteg: stepId } } : undefined,
-                        );
+                        navigate(getSøknadStepRoute(submitResult.nextStep));
                     }
                 })
                 .catch((error) => {

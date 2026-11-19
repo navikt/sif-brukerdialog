@@ -1,6 +1,6 @@
 import { AppText } from '@app/i18n';
 import { BodyShort, FormSummary, HStack, Tag } from '@navikt/ds-react';
-import { ReactNode, useEffect, useRef } from 'react';
+import { ReactNode } from 'react';
 
 import EndreLenke from './EndreLenke';
 
@@ -11,36 +11,13 @@ interface Props {
     onEndre: () => void;
     /** Styrer «Endret»-taggen, og om «Ingen endring registrert» vises i stedet for children */
     harEndring: boolean;
-    /** Settes når bruker kommer tilbake fra steget seksjonen viser */
-    fokuser?: boolean;
     children: ReactNode;
 }
 
-const OppsummeringSeksjon = ({
-    tittel,
-    endreLabel,
-    ingenEndringTekst,
-    onEndre,
-    harEndring,
-    fokuser,
-    children,
-}: Props) => {
-    const headerRef = useRef<HTMLDivElement>(null);
-    useEffect(() => {
-        if (!fokuser) {
-            return;
-        }
-
-        const animationFrameId = window.requestAnimationFrame(() => {
-            headerRef.current?.focus();
-        });
-
-        return () => window.cancelAnimationFrame(animationFrameId);
-    }, [fokuser]);
-
+const OppsummeringSeksjon = ({ tittel, endreLabel, ingenEndringTekst, onEndre, harEndring, children }: Props) => {
     return (
         <FormSummary>
-            <FormSummary.Header ref={headerRef} tabIndex={fokuser ? -1 : undefined}>
+            <FormSummary.Header>
                 <FormSummary.Heading level="2">
                     <HStack align="center" gap="space-12">
                         {tittel}
