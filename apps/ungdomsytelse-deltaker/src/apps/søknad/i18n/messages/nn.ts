@@ -64,7 +64,7 @@ export const ungSoknadMessages_nn: typeof ungSoknadMessages_nb = {
         'Svaret på søknaden (vedtaksbrevet) får du når me har handsama han. Då får du ein SMS av oss, og så loggar du inn på <Lenke>Min side</Lenke> på nav.no for å sjå vedtaksbrevet ditt.',
     'kvitteringPage.hvaSkjerVidere.2': 'Pengane får du som regel den 12. kvar månad.',
     'kvitteringPage.hvaSkjerVidere.3':
-        'Viss du jobbar og får løn medan du er i ungdomsprogrammet, må du melde frå om dette. Du får ein SMS den 1. kvar månad, og så loggar du inn på <Lenke>Min side</Lenke> på nav.no og melder frå om kva du fekk i løn månaden før.',
+        'Viss du jobbar og har ei inntekt medan du er i ungdomsprogrammet, må du melde frå om dette. Du får ein SMS den 1. kvar månad, og så loggar du inn på <Lenke>Min side</Lenke> på nav.no og melder frå om kva du fekk i løn månaden før.',
     'kvitteringPage.hvaSkjerVidere.4':
         'Hugs å bestille skattekort på <Lenke>Skatteetaten</Lenke> sine nettsider. Viss du ikkje har skattekort, blir det trekt 50 prosent skatt av pengane.',
 
