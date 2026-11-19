@@ -31,7 +31,6 @@ export const getDevAppSettings = (isTest?: boolean) => {
         K9_SAK_INNSYN_API_URL: 'http://k9-sak-innsyn-api',
 
         SIF_PUBLIC_SJEKK_OM_ARBEIDSTID_ER_GYLDIG: 'on',
-        SIF_PUBLIC_HENT_TILGANG_FRA_BACKEND: isTest ? 'off' : 'on',
 
         VELG_SCENARIO: isTest ? 'on' : 'on',
         MSW: isTest ? 'off' : 'on',

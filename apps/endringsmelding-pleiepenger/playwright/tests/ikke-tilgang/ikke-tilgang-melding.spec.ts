@@ -4,11 +4,11 @@ import { expect, test } from '@playwright/test';
 import { routeUtils } from '../../utils/routeUtils';
 import { testAccessibility } from '../../utils/testAccessibility';
 
-test('Ugyldig k9format på sak', async ({ page }) => {
-    await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN, 'ugyldig-k9-format');
+test('Barn mangler identitetsnummer', async ({ page }) => {
+    await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN, 'barn-mangler-identitetsnummer');
     await expect(page).toHaveTitle('Ingen tilgang - Endringsmelding for pleiepenger sykt barn');
     await expect(page.getByText('Hei Nora')).toBeVisible();
-    await expect(page.getByTestId('ugyldigK9FormatSak')).toBeVisible();
+    await expect(page.getByTestId('barnManglerIdentitetsnummer')).toBeVisible();
     await testAccessibility(page);
 });
 
@@ -22,14 +22,6 @@ test('Ingen sak funnet', async ({ page }) => {
 
 test('Flere saker', async ({ page }) => {
     await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN, 'flere-saker');
-    await expect(page).toHaveTitle('Ingen tilgang - Endringsmelding for pleiepenger sykt barn');
-    await expect(page.getByText('Hei Nora')).toBeVisible();
-    await expect(page.getByTestId('flereSaker')).toBeVisible();
-    await testAccessibility(page);
-});
-
-test('Flere saker, men kun én innenfor endringsperioden', async ({ page }) => {
-    await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN, 'flere-saker-kun-en-aktiv');
     await expect(page).toHaveTitle('Ingen tilgang - Endringsmelding for pleiepenger sykt barn');
     await expect(page.getByText('Hei Nora')).toBeVisible();
     await expect(page.getByTestId('flereSaker')).toBeVisible();

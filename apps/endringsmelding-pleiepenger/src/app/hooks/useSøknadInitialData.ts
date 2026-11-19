@@ -1,5 +1,4 @@
 import { RequestStatus, Sak, SøknadContextState, SøknadInitialDataState } from '@app/types';
-import { DateRange } from '@navikt/sif-common-utils';
 import { appLogger } from '@sif/apm';
 import { useEffectOnce } from '@sif/hooks';
 import { useState } from 'react';
@@ -7,7 +6,6 @@ import { useState } from 'react';
 import { fetchInitialData, InitialData, isSøknadInitialDataErrorState } from '../api/initialData';
 import { MELLOMLAGRING_VERSJON } from '../constants/MELLOMLAGRING_VERSJON';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
-import { getEndringsdato, getTillattEndringsperiode } from '../utils/endringsperiode';
 import { getSakFromK9Sak } from '../utils/getSakFromK9Sak';
 
 export type SøknadInitialData = Omit<SøknadContextState, 'sak'> & { sak: Sak | undefined };
@@ -23,12 +21,10 @@ const defaultSøknadState: Partial<SøknadContextState> = {
 };
 
 export const getValgteEndringerInitielt = (lagretSøknadState: InitialData['lagretSøknadState']) =>
-    lagretSøknadState?.valgteEndringerInitielt ??
-    lagretSøknadState?.valgteEndringer ??
-    standardValgteEndringer;
+    lagretSøknadState?.valgteEndringerInitielt ?? lagretSøknadState?.valgteEndringer ?? standardValgteEndringer;
 
-const prepInitialData = (loadedData: InitialData, tillattEndringsperiode: DateRange): SøknadInitialData => {
-    const { arbeidsgivere, lagretSøknadState, k9saker, søker, antallSakerFørEndringsperiode } = loadedData;
+const prepInitialData = (loadedData: InitialData): SøknadInitialData => {
+    const { arbeidsgivere, lagretSøknadState, k9saker, søker, tillattEndringsperiode } = loadedData;
 
     const persistedSak = lagretSøknadState
         ? k9saker.find((k9sak) => k9sak.barn.aktørId === lagretSøknadState.barnAktørId)
@@ -53,13 +49,9 @@ const prepInitialData = (loadedData: InitialData, tillattEndringsperiode: DateRa
         k9saker,
         sak,
         arbeidsgivere,
-        valgteEndringer:
-            sak && lagretSøknadState
-                ? lagretSøknadState.valgteEndringer
-                : standardValgteEndringer,
+        valgteEndringer: sak && lagretSøknadState ? lagretSøknadState.valgteEndringer : standardValgteEndringer,
         søknadsdata: {} as any,
         søknadSteps: [],
-        antallSakerFørEndringsperiode,
         ...(lagretSøknadState ? lagretSøknadState : defaultSøknadState),
         valgteEndringerInitielt: getValgteEndringerInitielt(sak ? lagretSøknadState : undefined),
     };
@@ -67,15 +59,14 @@ const prepInitialData = (loadedData: InitialData, tillattEndringsperiode: DateRa
 
 function useSøknadInitialData(): SøknadInitialDataState {
     const [initialData, setInitialData] = useState<SøknadInitialDataState>({ status: RequestStatus.loading });
-    const tillattEndringsperiode = getTillattEndringsperiode(getEndringsdato());
 
     const fetch = async () => {
-        fetchInitialData(tillattEndringsperiode)
+        fetchInitialData()
             .then((data) => {
                 setInitialData({
                     status: RequestStatus.success,
                     kanBrukeSøknad: true,
-                    data: prepInitialData(data, tillattEndringsperiode),
+                    data: prepInitialData(data),
                 });
             })
             .catch((error) => {

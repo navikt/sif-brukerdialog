@@ -26,5 +26,4 @@ export interface SøknadContextState {
     /** Stegene i søknaden da bruker sist var på oppsummeringen. Settes ikke før bruker har vært der. */
     søknadStepsVedOppsummering?: StepId[];
     /** Antall saker hvor siste søknadsperiode slutter før gyldig endringsperiode */
-    antallSakerFørEndringsperiode: number;
 }
