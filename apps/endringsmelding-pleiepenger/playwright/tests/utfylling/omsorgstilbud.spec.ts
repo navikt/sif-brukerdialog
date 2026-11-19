@@ -26,11 +26,11 @@ test('Sende endring om tid omsorgstilbud', async ({ page }) => {
     await page.getByTestId('calendar-grid-date-2023-03-01').click();
     await page.getByRole('radio', { name: 'Nei' }).check();
     await page.getByText('Gjenta denne tiden for flere').click();
-    await page.getByText('Alle dager i mars').click();
+    await page.getByText('Alle dager i mars 2023', { exact: true }).click();
     await page.getByRole('button', { name: 'Lagre' }).click();
     await page.getByTestId('typedFormikForm-submitButton').click();
-    await page.getByLabel('februar 2023 - 9 dager endret').getByRole('button', { name: 'Vis mer' }).click();
-    await page.getByLabel('mars 2023 - 23 dager endret').getByRole('button', { name: 'Vis mer' }).click();
+    await expect(page.getByRole('heading', { name: 'Februar 2023 - 9 dager endret' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Mars 2023 - 23 dager endret' })).toBeVisible();
     await page.getByText('Jeg bekrefter at').click();
     await page.getByTestId('typedFormikForm-submitButton').click();
     await expect(page.getByRole('heading', { name: 'Melding om endring er lagt' })).toBeVisible();

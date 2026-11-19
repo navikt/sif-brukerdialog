@@ -13,7 +13,10 @@ export const oppsummeringStepMessages_nb = {
     'endringerTekstoppsummering.uendret.tilsynsordning': 'omsorgstilbudet',
 
     'oppsummeringStep.ingenEndringer': 'Du har ikke registrert noen endringer. Legg til endring ved å velge nedenfor.',
-    'oppsummeringStep.ingenEndringRegistrert': 'Ingen endring registrert',
+    'oppsummeringStep.ingenEndringRegistrert.nyttArbeidsforhold': 'Ingen endring registrert i nytt arbeidsforhold',
+    'oppsummeringStep.ingenEndringRegistrert.ferie': 'Ingen endring registrert i ferie',
+    'oppsummeringStep.ingenEndringRegistrert.arbeid': 'Ingen endring registrert i jobb i perioden',
+    'oppsummeringStep.ingenEndringRegistrert.tilsynsordning': 'Ingen endring registrert i tid i omsorgstilbud',
     'oppsummeringStep.manglerArbeidstid':
         'Vi mangler informasjon om arbeidstid. Vennligst gå tilbake til steget <Lenke>{steg}</Lenke> og fortsett derfra.',
 

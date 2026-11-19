@@ -7,6 +7,7 @@ import EndreLenke from './EndreLenke';
 interface Props {
     tittel: string;
     endreLabel: string;
+    ingenEndringTekst: string;
     onEndre: () => void;
     /** Styrer «Endret»-taggen, og om «Ingen endring registrert» vises i stedet for children */
     harEndring: boolean;
@@ -15,7 +16,15 @@ interface Props {
     children: ReactNode;
 }
 
-const OppsummeringSeksjon = ({ tittel, endreLabel, onEndre, harEndring, fokuser, children }: Props) => {
+const OppsummeringSeksjon = ({
+    tittel,
+    endreLabel,
+    ingenEndringTekst,
+    onEndre,
+    harEndring,
+    fokuser,
+    children,
+}: Props) => {
     const headerRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
         if (fokuser) {
@@ -40,13 +49,7 @@ const OppsummeringSeksjon = ({ tittel, endreLabel, onEndre, harEndring, fokuser,
             <FormSummary.Answers>
                 <FormSummary.Answer>
                     <FormSummary.Value>
-                        {harEndring ? (
-                            children
-                        ) : (
-                            <BodyShort as="div">
-                                <AppText id="oppsummeringStep.ingenEndringRegistrert" />
-                            </BodyShort>
-                        )}
+                        {harEndring ? children : <BodyShort as="div">{ingenEndringTekst}</BodyShort>}
                     </FormSummary.Value>
                 </FormSummary.Answer>
             </FormSummary.Answers>

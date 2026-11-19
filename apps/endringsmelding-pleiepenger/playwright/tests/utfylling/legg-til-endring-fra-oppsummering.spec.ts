@@ -16,8 +16,8 @@ test('Legge til endring i omsorgstilbud fra oppsummeringen', async ({ page }) =>
     await page.getByTestId('typedFormikForm-submitButton').click();
 
     /** Oppsummering - omsorgstilbud er ikke valgt, men kan legges til */
-    await expect(page.getByRole('heading', { name: 'Endringer i omsorgstilbud' })).toBeVisible();
-    await expect(page.getByText('Det er ikke registrert noen endringer i omsorgstilbud')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Tid i omsorgstilbud' })).toBeVisible();
+    await expect(page.getByText('Ingen endring registrert i tid i omsorgstilbud')).toBeVisible();
 
     const mellomlagringMedOmsorgstilbud = page.waitForRequest(
         (request) =>
@@ -25,7 +25,7 @@ test('Legge til endring i omsorgstilbud fra oppsummeringen', async ({ page }) =>
             request.method() !== 'GET' &&
             request.postDataJSON()?.valgteEndringer?.tilsynsordning === true,
     );
-    await page.getByRole('button', { name: 'Endre tid i omsorgstilbud' }).click();
+    await page.getByRole('link', { name: 'Endre tid i omsorgstilbud' }).click();
     await mellomlagringMedOmsorgstilbud;
 
     /** Omsorgstilbud - steget er lagt til og kan fylles ut */
@@ -41,10 +41,9 @@ test('Legge til endring i omsorgstilbud fra oppsummeringen', async ({ page }) =>
     await page.getByTestId('typedFormikForm-submitButton').click();
 
     /** Oppsummering - endringen i omsorgstilbud vises, og ferie er fortsatt med */
-    await expect(
-        page.getByText('Endringer i omsorgstilbudfebruar 2023 - 3 dager endretVis merDatoEndret'),
-    ).toBeVisible();
-    await expect(page.getByText('Det er ikke registrert noen endringer i ferie')).toBeVisible();
+    await expect(page.getByText('Tid i omsorgstilbudEndret')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Februar 2023 - 3 dager endret' })).toBeVisible();
+    await expect(page.getByText('Ingen endring registrert i ferie')).toBeVisible();
 
     await page.getByText('Jeg bekrefter at').click();
     await page.getByTestId('typedFormikForm-submitButton').click();
