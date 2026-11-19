@@ -5,6 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
+  '@opentelemetry/api': 1.9.1
   qs: ^6.17.1
   body-parser: ^2.4.0
   brace-expansion@^1: ^1.1.21
@@ -67,7 +68,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   apps-intern/ungdomsytelse-veileder:
     dependencies:
@@ -274,7 +275,7 @@ importers:
         specifier: 1.65.1
         version: 1.65.1
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       postcss-styled-syntax:
         specifier: 0.7.4
@@ -492,7 +493,7 @@ importers:
         version: 1.0.0(eslint@10.15.0(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.16.0(typescript@6.0.3))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   apps/aktivitetspenger-soknad:
     dependencies:
@@ -670,7 +671,7 @@ importers:
         version: 1.0.0(eslint@10.15.0(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.16.0(typescript@6.0.3))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   apps/dine-pleiepenger:
     dependencies:
@@ -685,7 +686,7 @@ importers:
         version: 4.6.0(html-react-parser@6.1.9(@types/react@19.3.0)(react@19.3.1))(react@19.3.1)
       '@navikt/next-logger':
         specifier: 5.0.2
-        version: 5.0.2(next@16.4.6(@opentelemetry/api@1.10.0)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(pino@10.4.0)
+        version: 5.0.2(next@16.4.6(@opentelemetry/api@1.9.1)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(pino@10.4.0)
       '@navikt/oasis':
         specifier: 4.2.2
         version: 4.2.2
@@ -736,10 +737,10 @@ importers:
         version: 4.5.0
       next:
         specifier: 16.4.6
-        version: 16.4.6(@opentelemetry/api@1.10.0)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
+        version: 16.4.6(@opentelemetry/api@1.9.1)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
       next-logger:
         specifier: 5.0.2
-        version: 5.0.2(next@16.4.6(@opentelemetry/api@1.10.0)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(pino@10.4.0)(winston@3.19.0)
+        version: 5.0.2(next@16.4.6(@opentelemetry/api@1.9.1)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(pino@10.4.0)(winston@3.19.0)
       pino:
         specifier: 10.4.0
         version: 10.4.0
@@ -788,7 +789,7 @@ importers:
         version: link:../../packages/tooling/eslint-config-sif
       '@storybook/nextjs-vite':
         specifier: 10.6.7
-        version: 10.6.7(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(next@16.4.6(@opentelemetry/api@1.10.0)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(rollup@4.62.5)(storybook@10.6.7(@types/react@19.3.0)(prettier@3.10.1)(react@19.3.1))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 10.6.7(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(next@16.4.6(@opentelemetry/api@1.9.1)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(rollup@4.62.5)(storybook@10.6.7(@types/react@19.3.0)(prettier@3.10.1)(react@19.3.1))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       '@storybook/react':
         specifier: 10.6.7
         version: 10.6.7(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(storybook@10.6.7(@types/react@19.3.0)(prettier@3.10.1)(react@19.3.1))(typescript@6.0.3)
@@ -832,7 +833,7 @@ importers:
         specifier: 1.65.1
         version: 1.65.1
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       react-intl:
         specifier: 12.1.7
@@ -851,7 +852,7 @@ importers:
         version: 8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1)
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       webpack:
         specifier: 5.112.2
         version: 5.112.2(esbuild@0.28.2)(postcss@8.5.33)
@@ -1028,7 +1029,7 @@ importers:
         specifier: 1.65.1
         version: 1.65.1
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       rimraf:
         specifier: 6.1.4
@@ -1047,7 +1048,7 @@ importers:
         version: 1.0.0(eslint@10.15.0(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.16.0(typescript@6.0.3))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   apps/endringsmelding-pleiepenger:
     dependencies:
@@ -1260,7 +1261,7 @@ importers:
         specifier: 1.65.1
         version: 1.65.1
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       react-responsive:
         specifier: 10.0.1
@@ -1282,7 +1283,7 @@ importers:
         version: 1.0.0(eslint@10.15.0(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.16.0(typescript@6.0.3))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   apps/omsorgsdager-aleneomsorg-dialog:
     dependencies:
@@ -1468,7 +1469,7 @@ importers:
         specifier: 1.65.1
         version: 1.65.1
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       storybook:
         specifier: 10.6.7
@@ -1487,7 +1488,7 @@ importers:
         version: 1.0.0(eslint@10.15.0(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.16.0(typescript@6.0.3))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   apps/omsorgsdager-kalkulator:
     dependencies:
@@ -1526,7 +1527,7 @@ importers:
         version: 30.1.3(@noble/hashes@2.4.0)
       next:
         specifier: 16.4.6
-        version: 16.4.6(@opentelemetry/api@1.10.0)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
+        version: 16.4.6(@opentelemetry/api@1.9.1)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
       react:
         specifier: 19.3.1
         version: 19.3.1
@@ -1577,7 +1578,7 @@ importers:
         specifier: 1.65.1
         version: 1.65.1
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       tailwindcss:
         specifier: 4.3.5
@@ -1590,7 +1591,7 @@ importers:
         version: 8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1)
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   apps/omsorgspengerutbetaling-arbeidstaker-soknad:
     dependencies:
@@ -1785,7 +1786,7 @@ importers:
         specifier: 1.65.1
         version: 1.65.1
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       postcss-nesting:
         specifier: 14.0.3
@@ -1807,7 +1808,7 @@ importers:
         version: 1.0.0(eslint@10.15.0(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.16.0(typescript@6.0.3))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   apps/omsorgspengerutbetaling-soknad:
     dependencies:
@@ -1996,7 +1997,7 @@ importers:
         specifier: 1.65.1
         version: 1.65.1
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       postcss-nesting:
         specifier: 14.0.3
@@ -2018,7 +2019,7 @@ importers:
         version: 1.0.0(eslint@10.15.0(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.16.0(typescript@6.0.3))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   apps/omsorgspengesoknad:
     dependencies:
@@ -2225,7 +2226,7 @@ importers:
         specifier: 1.65.1
         version: 1.65.1
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       prettier:
         specifier: 3.10.1
@@ -2250,7 +2251,7 @@ importers:
         version: 1.0.0(eslint@10.15.0(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.16.0(typescript@6.0.3))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   apps/omsorgspengesoknad-v2:
     dependencies:
@@ -2425,7 +2426,7 @@ importers:
         version: 1.0.0(eslint@10.15.0(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.16.0(typescript@6.0.3))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   apps/opplaringspenger-soknad:
     dependencies:
@@ -2632,7 +2633,7 @@ importers:
         specifier: 1.65.1
         version: 1.65.1
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       postcss-nesting:
         specifier: 14.0.3
@@ -2654,7 +2655,7 @@ importers:
         version: 1.0.0(eslint@10.15.0(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.16.0(typescript@6.0.3))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   apps/pleiepenger-i-livets-sluttfase-soknad:
     dependencies:
@@ -2846,7 +2847,7 @@ importers:
         specifier: 1.65.1
         version: 1.65.1
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       storybook:
         specifier: 10.6.7
@@ -3072,7 +3073,7 @@ importers:
         specifier: 1.65.1
         version: 1.65.1
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       react-dom:
         specifier: 19.3.1
@@ -3094,7 +3095,7 @@ importers:
         version: 1.0.0(eslint@10.15.0(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.16.0(typescript@6.0.3))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   apps/sif-demo-app:
     dependencies:
@@ -3266,7 +3267,7 @@ importers:
         version: 1.0.0(eslint@10.15.0(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.16.0(typescript@6.0.3))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   apps/sif-ettersending:
     dependencies:
@@ -3440,7 +3441,7 @@ importers:
         specifier: 1.65.1
         version: 1.65.1
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       react-dom:
         specifier: 19.3.1
@@ -3462,7 +3463,7 @@ importers:
         version: 1.0.0(eslint@10.15.0(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.16.0(typescript@6.0.3))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       zod:
         specifier: 4.6.7
         version: 4.6.7
@@ -3687,7 +3688,7 @@ importers:
         specifier: 1.65.1
         version: 1.65.1
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       postcss-styled-syntax:
         specifier: 0.7.4
@@ -3715,7 +3716,7 @@ importers:
         version: 1.0.0(eslint@10.15.0(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.16.0(typescript@6.0.3))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   gh-pages-src:
     dependencies:
@@ -3791,7 +3792,7 @@ importers:
         specifier: 10.15.0
         version: 10.15.0(jiti@2.7.0)
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       prettier:
         specifier: 3.10.1
@@ -3801,7 +3802,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       zod:
         specifier: 4.6.7
         version: 4.6.7
@@ -3837,7 +3838,7 @@ importers:
         specifier: 10.15.0
         version: 10.15.0(jiti@2.7.0)
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       prettier:
         specifier: 3.10.1
@@ -3847,7 +3848,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       zod:
         specifier: 4.6.7
         version: 4.6.7
@@ -3883,7 +3884,7 @@ importers:
         specifier: 10.15.0
         version: 10.15.0(jiti@2.7.0)
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       prettier:
         specifier: 3.10.1
@@ -3893,7 +3894,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       zod:
         specifier: 4.6.7
         version: 4.6.7
@@ -3935,7 +3936,7 @@ importers:
         specifier: 10.15.0
         version: 10.15.0(jiti@2.7.0)
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       prettier:
         specifier: 3.10.1
@@ -3945,7 +3946,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       zod:
         specifier: 4.6.7
         version: 4.6.7
@@ -3984,7 +3985,7 @@ importers:
         specifier: 10.15.0
         version: 10.15.0(jiti@2.7.0)
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       prettier:
         specifier: 3.10.1
@@ -3994,7 +3995,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       zod:
         specifier: 4.6.7
         version: 4.6.7
@@ -4030,7 +4031,7 @@ importers:
         specifier: 10.15.0
         version: 10.15.0(jiti@2.7.0)
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       prettier:
         specifier: 3.10.1
@@ -4040,7 +4041,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       zod:
         specifier: 4.6.7
         version: 4.6.7
@@ -4079,7 +4080,7 @@ importers:
         specifier: 10.15.0
         version: 10.15.0(jiti@2.7.0)
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       prettier:
         specifier: 3.10.1
@@ -4089,7 +4090,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       zod:
         specifier: 4.6.7
         version: 4.6.7
@@ -4137,7 +4138,7 @@ importers:
         specifier: 10.15.0
         version: 10.15.0(jiti@2.7.0)
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       prop-types:
         specifier: 15.8.1
@@ -4267,7 +4268,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   packages/core/sif-apm:
     dependencies:
@@ -4301,7 +4302,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   packages/core/sif-app-register:
     devDependencies:
@@ -4376,7 +4377,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   packages/core/sif-rhf:
     dependencies:
@@ -4434,7 +4435,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   packages/core/sif-soknad-app:
     dependencies:
@@ -4522,7 +4523,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   packages/core/sif-soknad-forms:
     dependencies:
@@ -4613,7 +4614,7 @@ importers:
         version: 8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1)
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   packages/core/sif-soknad-ui:
     dependencies:
@@ -4695,7 +4696,7 @@ importers:
         version: 8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1)
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   packages/core/sif-surveys:
     dependencies:
@@ -4774,7 +4775,7 @@ importers:
         specifier: 1.2.5
         version: 1.2.5
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       react:
         specifier: 19.3.1
@@ -4790,7 +4791,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   packages/core/sif-validation:
     dependencies:
@@ -4820,14 +4821,14 @@ importers:
         specifier: 10.15.0
         version: 10.15.0(jiti@2.7.0)
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       typescript:
         specifier: 6.0.3
         version: 6.0.3
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   packages/core/ung-innsyn:
     dependencies:
@@ -4948,7 +4949,7 @@ importers:
         version: 8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1)
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   packages/legacy/sif-common-analytics:
     dependencies:
@@ -5057,7 +5058,7 @@ importers:
         specifier: 4.9.1
         version: 4.9.1
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       react:
         specifier: 19.3.1
@@ -5187,7 +5188,7 @@ importers:
         specifier: 3.0.3
         version: 3.0.3(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(storybook@10.6.7(@types/react@19.3.0)(prettier@3.10.1)(react@19.3.1))
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       prop-types:
         specifier: 15.8.1
@@ -5224,7 +5225,7 @@ importers:
         version: 1.0.0(eslint@10.15.0(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.16.0(typescript@6.0.3))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   packages/legacy/sif-common-formik-ds:
     dependencies:
@@ -5336,7 +5337,7 @@ importers:
         version: 1.0.0(eslint@10.15.0(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.16.0(typescript@6.0.3))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   packages/legacy/sif-common-forms-ds:
     dependencies:
@@ -5444,7 +5445,7 @@ importers:
         specifier: ^30.1.1
         version: 30.1.3(@noble/hashes@2.4.0)
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       react:
         specifier: 19.3.1
@@ -5478,7 +5479,7 @@ importers:
         version: 1.0.0(eslint@10.15.0(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.16.0(typescript@6.0.3))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   packages/legacy/sif-common-soknad-ds:
     dependencies:
@@ -5528,7 +5529,7 @@ importers:
         specifier: 3.0.8
         version: 3.0.8
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       react-day-picker:
         specifier: 10.0.2
@@ -5671,7 +5672,7 @@ importers:
         version: 1.0.0(eslint@10.15.0(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.16.0(typescript@6.0.3))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   packages/legacy/sif-common-ui:
     dependencies:
@@ -5755,7 +5756,7 @@ importers:
         specifier: 4.9.1
         version: 4.9.1
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       react:
         specifier: 19.3.1
@@ -5822,7 +5823,7 @@ importers:
         specifier: 1.2.5
         version: 1.2.5
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       react:
         specifier: 19.3.1
@@ -5838,7 +5839,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: 5.1.0
-        version: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+        version: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   packages/tooling/appstatus-sanity-config:
     dependencies:
@@ -5868,7 +5869,7 @@ importers:
         specifier: 10.15.0
         version: 10.15.0(jiti@2.7.0)
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       prettier:
         specifier: 3.10.1
@@ -5919,7 +5920,7 @@ importers:
         specifier: 10.6.7
         version: 10.6.7(eslint@10.15.0(jiti@2.7.0))(typescript@6.0.3)
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       prettier:
         specifier: 3.10.1
@@ -5978,7 +5979,7 @@ importers:
         version: 8.72.2(eslint@10.15.0(jiti@2.7.0))(typescript@6.0.3)
     devDependencies:
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       prettier:
         specifier: 3.10.1
@@ -6042,7 +6043,7 @@ importers:
         specifier: 0.28.2
         version: 0.28.2
       postcss:
-        specifier: ^8.5.33
+        specifier: ^8.5.28
         version: 8.5.33
       prettier:
         specifier: 3.10.1
@@ -8104,6 +8105,9 @@ packages:
       '@types/react': ^17.0.30 || ^18 || ^19
       react: ^17 || ^18 || ^19
       react-dom: ^17 || ^18 || ^19
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   '@navikt/ds-tailwind@8.23.0':
     resolution: {integrity: sha512-0XzOAIhLjxo0Wxv7Uer8/2DOxGXxf5JOj48lL9Cnm8dvDDL8IW4/6YRAnfREMOz6rqCYIbwnPFAw6SRcQv82LQ==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tailwind/8.23.0/f55efc25956862cf2dbf6569c2770a96b54f70b8}
@@ -8254,10 +8258,6 @@ packages:
     resolution: {integrity: sha512-pKr/0bxkzNPhWKTqqSP2KtPVxqmC2oQrWjUjr4EDHrJCCiRkGIN52m2c7ILhCnQkYKmlTQBiESIEeyg0hlmotQ==}
     engines: {node: '>=8.0.0'}
 
-  '@opentelemetry/api@1.10.0':
-    resolution: {integrity: sha512-lMkyes8iHrG+mk6WH7X70MdCLI2RS0FwNBY1PyQ8UemaijE2m5mv5A0Niy3HtbYTFrgkUEQjFMXmSAk2hQDuPQ==}
-    engines: {node: '>=8.0.0'}
-
   '@opentelemetry/api@1.9.1':
     resolution: {integrity: sha512-gLyJlPHPZYdAk1JENA9LeHejZe1Ti77/pTeFm/nMXmQH/HFZlcS/O2XJB+L8fkbrNSqhdtlvjBVjxwUYanNH5Q==}
     engines: {node: '>=8.0.0'}
@@ -8266,177 +8266,177 @@ packages:
     resolution: {integrity: sha512-7YP44XH0tV6+Mb54x2YGf84i7yi+31MBZlE8JwvozkxyTvXbSp10X7cI7YE49ChJ3shMJoBmCJF3+1QFBJctGA==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': '>=1.0.0 <1.10.0'
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/core@2.12.0':
     resolution: {integrity: sha512-1HsSAuvT4/my0QrXWsyXFdWjKaPeCHsismKZgEEIb8NK13LP6DrMRlsUbvD/0F9mDWK3xDom9AMv3IscxgOnOQ==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': '>=1.0.0 <1.10.0'
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/core@2.12.1':
     resolution: {integrity: sha512-3hr6Pj0/G0oVgIGb97IVcw9BjZ6eudonKjrmQxw7JquyU/XmVbJelkmyoU0sT/OvHGkv+r1tcrwv8MbSX7aKHw==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': '>=1.0.0 <1.10.0'
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/exporter-trace-otlp-http@0.222.0':
     resolution: {integrity: sha512-RCnPWcHppwiquQ+cV3nWvNwdf0MG1w26e5jewW2T83nTZOlXgcg88sY9ulCVgagGHcq1mj0L0GP6YHgzk2v8oA==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': ^1.3.0
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/exporter-trace-otlp-http@0.223.2':
     resolution: {integrity: sha512-ERCu66nR7+0x/KzwxI+6GW9m26+u/Ett78yApmB/Oy42AaYJGhJSA0JTyrsFChyKvBQ9Bywo+dPSccYDY48UZQ==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': ^1.3.0
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/instrumentation-fetch@0.222.0':
     resolution: {integrity: sha512-I0Vlvi1uzSnu4+cMssnYdaQgcJf/ffs0HSnq8/ZlkjgNS/J+ABc3196lZyL7uy++yRCl3bg2zPMhTphVdNx5sA==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': ^1.3.0
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/instrumentation-fetch@0.223.2':
     resolution: {integrity: sha512-ogh1No4x5GMzLDWN1/4lp9foZVyTNLTT4BOELfALxZnZgMm5J6T5j7afDi6L5bqHxZ5vVwhMHruffeE8pBlD5g==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': ^1.3.0
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/instrumentation-xml-http-request@0.222.0':
     resolution: {integrity: sha512-bA+6QSEV0tk/7IfGgCBnVIhTB6ljVP+eMuwCq/vPapNAZWsuS/8nFd+WE1R0oPJk+TBGGck23bhjq662MqJAEg==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': ^1.3.0
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/instrumentation-xml-http-request@0.223.2':
     resolution: {integrity: sha512-biAlRPBJFdcPSYkUK0OXZcBr9fa8cXSg/9hCT7W/OrnuOG5X15Gn6gMgvqkvVSyb8s1CJYgOWIZk1TNDCADivw==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': ^1.3.0
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/instrumentation@0.222.0':
     resolution: {integrity: sha512-fhbRDuAgzPKpq1k5+hX3uS+3QAYNca0on0Ngot/R8dDsQtuFaADeZnG2uSgxABuvcI7S2phAaRhbct9jieeKZw==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': ^1.3.0
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/instrumentation@0.223.2':
     resolution: {integrity: sha512-2tRpOgQ91+wC2/h6IDt+dsQNuUlfUR+CVwABceAEtiWtON9JumZR6YQcYCsisNRTX942TnCjPDuBI0xxGgVLHQ==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': ^1.3.0
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/otlp-exporter-base@0.222.0':
     resolution: {integrity: sha512-YbywG3veEm2Fb6TbdxRkuquWob6eVWXuA8/Ba1tXz9jHfUqpdE3keilOHEtPboC4CvS1bjeeVfNkWGOOrLj+lw==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': ^1.3.0
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/otlp-exporter-base@0.223.2':
     resolution: {integrity: sha512-xiDR0ECXojG2zq5ZK2gnjP7FeHM0aLSfDVlpokbViY2BcgEySnbvazb/li8Ddd6XnUrt2g3kVVg5PFkvWYpFGw==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': ^1.3.0
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/otlp-transformer@0.222.0':
     resolution: {integrity: sha512-/F3BZ89+CJQnZkMh2tCrtcdB+XT2Dxhj4FFE+WPQ//413hmFL0/RfEX6vgOIWGhiSzrkHWTK3+6SiT7K5/g/jQ==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': ^1.3.0
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/otlp-transformer@0.223.2':
     resolution: {integrity: sha512-EQcjay0lf1HDW0ykqOSakUpxpYyaV3URhWPhcFQCu19Dp5hYt8K44TOGp3ZAphZNQDBpRqLqMO8hkVyME54oXg==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': ^1.3.0
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/resources@2.11.0':
     resolution: {integrity: sha512-Ie7+8q8MDF4FAEQCKVMTx3ReUvxiIAgIiiW3c9JdmP8+HMcDy20puT+AHjexnExgnbvBxjQ9fjkFDWrikJ2jQA==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': '>=1.3.0 <1.10.0'
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/resources@2.12.0':
     resolution: {integrity: sha512-+rSRoOdln6NhXTVcBdHSlZxJDNzwxadeweK2ltZO3tVtfp6aklABc06xclDk6ovRR+EiGgIcSbh/6NgjFhnb3A==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': '>=1.3.0 <1.10.0'
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/resources@2.12.1':
     resolution: {integrity: sha512-IwrNcuLCvnJAnNLkXxx0Uw+rjBkVW6VGQrhd7PanNf0LavOzkTk9sDAjdqegM7p/VdxefNRrii6d+wBRJfz35g==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': '>=1.3.0 <1.10.0'
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/sdk-logs@0.222.0':
     resolution: {integrity: sha512-+19YHODIjaUCArxleaJtuufFZVpz/xvvK+VllQqE+W8hHolxdoRwHfK/s667zezwh1hkx6FFF+oYzetYgqK+Bg==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': '>=1.4.0 <1.10.0'
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/sdk-logs@0.223.2':
     resolution: {integrity: sha512-gMCNZzXvb89w8MxZWYZLIRImgromnT6iloTQaSbQNyIdjtl9KPiZMrfBv3fYbR3sQl5EYBDJhFN/W3gycbEICw==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': '>=1.4.0 <1.10.0'
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/sdk-metrics@2.11.0':
     resolution: {integrity: sha512-7GXXcObyHyDUUSG+L+kJoquty01bzm7ivE7+SSgXXJcHuPzGviptxwARmI2c+bnnxjexGQbJnyNlN8HxBP/Y7A==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': '>=1.9.0 <1.10.0'
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/sdk-metrics@2.12.1':
     resolution: {integrity: sha512-HeSblYhpds4QWliBE7ANCfoa2p3QH83uUxX4vO2qtk6BhIcqP7qDYYT36z3LOXftEBpdfbDStZxv+Cw5mqKX5g==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': '>=1.9.0 <1.10.0'
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/sdk-trace-base@2.11.0':
     resolution: {integrity: sha512-H19x/TX/LZdqiYOjM7fqtSxwlplC5pgelavqbQdHbhdq0q/AI/TGkM2dfGuuynTXmJPeF2HoZVoPDu+TGoW78A==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': '>=1.3.0 <1.10.0'
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/sdk-trace-base@2.12.0':
     resolution: {integrity: sha512-JOERgZCxRM06FEJ5kEWxlSRChah6MmXDx3KwCruqEv/iEyLkTokCSemf2y1w8oIHtfrr8EVTpzebq/31vn2Cpg==}
     engines: {node: ^18.19.0 || >=20.6.0}
     deprecated: Use @opentelemetry/sdk-trace package
     peerDependencies:
-      '@opentelemetry/api': '>=1.3.0 <1.10.0'
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/sdk-trace-web@2.11.0':
     resolution: {integrity: sha512-8hgLI437x8VRKzgUr+WRcHFp9AeaHmveKRsPIMNele9tethgCKprakRRqZCWyt41ilALHATfspUMl1An0OTMUQ==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': '>=1.0.0 <1.10.0'
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/sdk-trace-web@2.12.0':
     resolution: {integrity: sha512-y0hCzbnBHScmioF0drJOyaPk1sQf2wwbIuy3rWlM0Fcx8mLfPDvFsQ7tJ+zMm8yAqI06rSlFKkL7ZpcrFOqAdQ==}
     engines: {node: ^18.19.0 || >=20.6.0}
     deprecated: Use @opentelemetry/sdk-trace package
     peerDependencies:
-      '@opentelemetry/api': '>=1.0.0 <1.10.0'
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/sdk-trace@2.11.0':
     resolution: {integrity: sha512-fFnTqGm8/G73GQVnxYi7LXa1ZVYEUvgL6XI1LpvV0bPC7WQ/ZGgKxCSl8FnlZBKto9JHHEFTO6s6CUpvvtwFrA==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': '>=1.3.0 <1.10.0'
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/sdk-trace@2.12.0':
     resolution: {integrity: sha512-ImVuRQ6faOsTi1Wna88s2avgrrf/iDgXPigIeynkUhjstMuoQUDOJXgkez2j1mlU4btjXcXBGa+q7qKFYR3GsA==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': '>=1.3.0 <1.10.0'
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/sdk-trace@2.12.1':
     resolution: {integrity: sha512-vANdmCYnn+Ka/alBKxwICMl4Koa+aQBlRC9zAZy+Ig1Obbo3RZt2oiyv+8/gET5rrBBYrO3YniPcXfwZrN01rg==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': '>=1.3.0 <1.10.0'
+      '@opentelemetry/api': 1.9.1
 
   '@opentelemetry/semantic-conventions@1.43.0':
     resolution: {integrity: sha512-eSYWTm620tTk45EKSedaUL8MFYI8hW164hIXsgIHyxu3VobUB3fFCu5t0hQby6OoWRPsG1KkKUG2M5UadiLiVg==}
@@ -8450,7 +8450,7 @@ packages:
     resolution: {integrity: sha512-Wrz50L1/PTb9EZ76N6sBaMF+sp1gv/4zDd1nP7CgEVOnZtovpc1SI9OAkjpdHdx7QY7tKKuCEEcf2QV31F3D+Q==}
     engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
-      '@opentelemetry/api': '>=1.3.0 <1.10.0'
+      '@opentelemetry/api': 1.9.1
 
   '@oxc-parser/binding-android-arm-eabi@0.127.0':
     resolution: {integrity: sha512-0LC7ye4hvqbIKxAzThzvswgHLFu2AURKzYLeSVvLdu2TBOYWQDmHnTqPLeA597BcUCxiLqLsS4CJ5uoI5WYWCQ==}
@@ -13359,7 +13359,7 @@ packages:
     engines: {node: '>=20.9.0'}
     hasBin: true
     peerDependencies:
-      '@opentelemetry/api': ^1.1.0
+      '@opentelemetry/api': 1.9.1
       '@playwright/test': ^1.51.1
       babel-plugin-react-compiler: '*'
       react: ^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0
@@ -15343,7 +15343,7 @@ packages:
     hasBin: true
     peerDependencies:
       '@edge-runtime/vm': '*'
-      '@opentelemetry/api': ^1.9.0
+      '@opentelemetry/api': 1.9.1
       '@types/node': ^22.0.0 || >=24.0.0
       '@vitest/browser-playwright': 5.1.0
       '@vitest/browser-preview': 5.1.0
@@ -17143,8 +17143,8 @@ snapshots:
 
   '@grafana/faro-core@2.14.0':
     dependencies:
-      '@opentelemetry/api': 1.10.0
-      '@opentelemetry/otlp-transformer': 0.223.2(@opentelemetry/api@1.10.0)
+      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/otlp-transformer': 0.223.2(@opentelemetry/api@1.9.1)
     optional: true
 
   '@grafana/faro-react@2.10.0(react-dom@19.3.1(react@19.3.1))(react-router-dom@7.18.5(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-router@7.18.5(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)':
@@ -17193,15 +17193,15 @@ snapshots:
   '@grafana/faro-web-tracing@2.14.0':
     dependencies:
       '@grafana/faro-web-sdk': 2.14.0
-      '@opentelemetry/api': 1.10.0
-      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.10.0)
-      '@opentelemetry/exporter-trace-otlp-http': 0.223.2(@opentelemetry/api@1.10.0)
-      '@opentelemetry/instrumentation': 0.223.2(@opentelemetry/api@1.10.0)
-      '@opentelemetry/instrumentation-fetch': 0.223.2(@opentelemetry/api@1.10.0)
-      '@opentelemetry/instrumentation-xml-http-request': 0.223.2(@opentelemetry/api@1.10.0)
-      '@opentelemetry/otlp-transformer': 0.223.2(@opentelemetry/api@1.10.0)
-      '@opentelemetry/resources': 2.12.1(@opentelemetry/api@1.10.0)
-      '@opentelemetry/sdk-trace-web': 2.12.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.9.1)
+      '@opentelemetry/exporter-trace-otlp-http': 0.223.2(@opentelemetry/api@1.9.1)
+      '@opentelemetry/instrumentation': 0.223.2(@opentelemetry/api@1.9.1)
+      '@opentelemetry/instrumentation-fetch': 0.223.2(@opentelemetry/api@1.9.1)
+      '@opentelemetry/instrumentation-xml-http-request': 0.223.2(@opentelemetry/api@1.9.1)
+      '@opentelemetry/otlp-transformer': 0.223.2(@opentelemetry/api@1.9.1)
+      '@opentelemetry/resources': 2.12.1(@opentelemetry/api@1.9.1)
+      '@opentelemetry/sdk-trace-web': 2.12.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.45.0
     transitivePeerDependencies:
       - supports-color
@@ -17911,11 +17911,12 @@ snapshots:
       '@floating-ui/react-dom': 2.1.9(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@navikt/aksel-icons': 8.23.0
       '@navikt/ds-tokens': 8.23.0
-      '@types/react': 19.3.0
       date-fns: 4.4.0
       react: 19.3.1
       react-day-picker: 10.0.2(@types/react@19.3.0)(react@19.3.1)
       react-dom: 19.3.1(react@19.3.1)
+    optionalDependencies:
+      '@types/react': 19.3.0
 
   '@navikt/ds-tailwind@8.23.0': {}
 
@@ -17932,10 +17933,10 @@ snapshots:
     optionalDependencies:
       react: 19.3.1
 
-  '@navikt/next-logger@5.0.2(next@16.4.6(@opentelemetry/api@1.10.0)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(pino@10.4.0)':
+  '@navikt/next-logger@5.0.2(next@16.4.6(@opentelemetry/api@1.9.1)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(pino@10.4.0)':
     dependencies:
       '@navikt/pino-logger': 5.0.2(pino@10.4.0)
-      next: 16.4.6(@opentelemetry/api@1.10.0)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
+      next: 16.4.6(@opentelemetry/api@1.9.1)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
       pino: 10.4.0
 
   '@navikt/oasis@4.2.2':
@@ -17947,7 +17948,7 @@ snapshots:
 
   '@navikt/pino-logger@5.0.2(pino@10.4.0)':
     dependencies:
-      '@opentelemetry/api': 1.10.0
+      '@opentelemetry/api': 1.9.1
       pino: 10.4.0
     optionalDependencies:
       pino-socket: 8.0.0
@@ -18054,10 +18055,8 @@ snapshots:
 
   '@opentelemetry/api-logs@0.223.2':
     dependencies:
-      '@opentelemetry/api': 1.10.0
+      '@opentelemetry/api': 1.9.1
     optional: true
-
-  '@opentelemetry/api@1.10.0': {}
 
   '@opentelemetry/api@1.9.1': {}
 
@@ -18066,15 +18065,15 @@ snapshots:
       '@opentelemetry/api': 1.9.1
       '@opentelemetry/semantic-conventions': 1.43.0
 
-  '@opentelemetry/core@2.12.0(@opentelemetry/api@1.10.0)':
+  '@opentelemetry/core@2.12.0(@opentelemetry/api@1.9.1)':
     dependencies:
-      '@opentelemetry/api': 1.10.0
+      '@opentelemetry/api': 1.9.1
       '@opentelemetry/semantic-conventions': 1.45.0
     optional: true
 
-  '@opentelemetry/core@2.12.1(@opentelemetry/api@1.10.0)':
+  '@opentelemetry/core@2.12.1(@opentelemetry/api@1.9.1)':
     dependencies:
-      '@opentelemetry/api': 1.10.0
+      '@opentelemetry/api': 1.9.1
       '@opentelemetry/semantic-conventions': 1.45.0
     optional: true
 
@@ -18085,12 +18084,12 @@ snapshots:
       '@opentelemetry/otlp-transformer': 0.222.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/sdk-trace': 2.11.0(@opentelemetry/api@1.9.1)
 
-  '@opentelemetry/exporter-trace-otlp-http@0.223.2(@opentelemetry/api@1.10.0)':
+  '@opentelemetry/exporter-trace-otlp-http@0.223.2(@opentelemetry/api@1.9.1)':
     dependencies:
-      '@opentelemetry/api': 1.10.0
-      '@opentelemetry/otlp-exporter-base': 0.223.2(@opentelemetry/api@1.10.0)
-      '@opentelemetry/otlp-transformer': 0.223.2(@opentelemetry/api@1.10.0)
-      '@opentelemetry/sdk-trace': 2.12.1(@opentelemetry/api@1.10.0)
+      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/otlp-exporter-base': 0.223.2(@opentelemetry/api@1.9.1)
+      '@opentelemetry/otlp-transformer': 0.223.2(@opentelemetry/api@1.9.1)
+      '@opentelemetry/sdk-trace': 2.12.1(@opentelemetry/api@1.9.1)
     optional: true
 
   '@opentelemetry/instrumentation-fetch@0.222.0(@opentelemetry/api@1.9.1)':
@@ -18103,13 +18102,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@opentelemetry/instrumentation-fetch@0.223.2(@opentelemetry/api@1.10.0)':
+  '@opentelemetry/instrumentation-fetch@0.223.2(@opentelemetry/api@1.9.1)':
     dependencies:
-      '@opentelemetry/api': 1.10.0
-      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.10.0)
-      '@opentelemetry/instrumentation': 0.223.2(@opentelemetry/api@1.10.0)
+      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.9.1)
+      '@opentelemetry/instrumentation': 0.223.2(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.45.0
-      '@opentelemetry/web-common': 0.223.2(@opentelemetry/api@1.10.0)
+      '@opentelemetry/web-common': 0.223.2(@opentelemetry/api@1.9.1)
     transitivePeerDependencies:
       - supports-color
     optional: true
@@ -18124,13 +18123,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@opentelemetry/instrumentation-xml-http-request@0.223.2(@opentelemetry/api@1.10.0)':
+  '@opentelemetry/instrumentation-xml-http-request@0.223.2(@opentelemetry/api@1.9.1)':
     dependencies:
-      '@opentelemetry/api': 1.10.0
-      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.10.0)
-      '@opentelemetry/instrumentation': 0.223.2(@opentelemetry/api@1.10.0)
+      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.9.1)
+      '@opentelemetry/instrumentation': 0.223.2(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.45.0
-      '@opentelemetry/web-common': 0.223.2(@opentelemetry/api@1.10.0)
+      '@opentelemetry/web-common': 0.223.2(@opentelemetry/api@1.9.1)
     transitivePeerDependencies:
       - supports-color
     optional: true
@@ -18144,9 +18143,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@opentelemetry/instrumentation@0.223.2(@opentelemetry/api@1.10.0)':
+  '@opentelemetry/instrumentation@0.223.2(@opentelemetry/api@1.9.1)':
     dependencies:
-      '@opentelemetry/api': 1.10.0
+      '@opentelemetry/api': 1.9.1
       '@opentelemetry/api-logs': 0.223.2
       import-in-the-middle: 3.6.0
       require-in-the-middle: 8.0.1
@@ -18160,11 +18159,11 @@ snapshots:
       '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/otlp-transformer': 0.222.0(@opentelemetry/api@1.9.1)
 
-  '@opentelemetry/otlp-exporter-base@0.223.2(@opentelemetry/api@1.10.0)':
+  '@opentelemetry/otlp-exporter-base@0.223.2(@opentelemetry/api@1.9.1)':
     dependencies:
-      '@opentelemetry/api': 1.10.0
-      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.10.0)
-      '@opentelemetry/otlp-transformer': 0.223.2(@opentelemetry/api@1.10.0)
+      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.9.1)
+      '@opentelemetry/otlp-transformer': 0.223.2(@opentelemetry/api@1.9.1)
     optional: true
 
   '@opentelemetry/otlp-transformer@0.222.0(@opentelemetry/api@1.9.1)':
@@ -18177,15 +18176,15 @@ snapshots:
       '@opentelemetry/sdk-metrics': 2.11.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/sdk-trace': 2.11.0(@opentelemetry/api@1.9.1)
 
-  '@opentelemetry/otlp-transformer@0.223.2(@opentelemetry/api@1.10.0)':
+  '@opentelemetry/otlp-transformer@0.223.2(@opentelemetry/api@1.9.1)':
     dependencies:
-      '@opentelemetry/api': 1.10.0
+      '@opentelemetry/api': 1.9.1
       '@opentelemetry/api-logs': 0.223.2
-      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.10.0)
-      '@opentelemetry/resources': 2.12.1(@opentelemetry/api@1.10.0)
-      '@opentelemetry/sdk-logs': 0.223.2(@opentelemetry/api@1.10.0)
-      '@opentelemetry/sdk-metrics': 2.12.1(@opentelemetry/api@1.10.0)
-      '@opentelemetry/sdk-trace': 2.12.1(@opentelemetry/api@1.10.0)
+      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.9.1)
+      '@opentelemetry/resources': 2.12.1(@opentelemetry/api@1.9.1)
+      '@opentelemetry/sdk-logs': 0.223.2(@opentelemetry/api@1.9.1)
+      '@opentelemetry/sdk-metrics': 2.12.1(@opentelemetry/api@1.9.1)
+      '@opentelemetry/sdk-trace': 2.12.1(@opentelemetry/api@1.9.1)
     optional: true
 
   '@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1)':
@@ -18194,17 +18193,17 @@ snapshots:
       '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.43.0
 
-  '@opentelemetry/resources@2.12.0(@opentelemetry/api@1.10.0)':
+  '@opentelemetry/resources@2.12.0(@opentelemetry/api@1.9.1)':
     dependencies:
-      '@opentelemetry/api': 1.10.0
-      '@opentelemetry/core': 2.12.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/core': 2.12.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.45.0
     optional: true
 
-  '@opentelemetry/resources@2.12.1(@opentelemetry/api@1.10.0)':
+  '@opentelemetry/resources@2.12.1(@opentelemetry/api@1.9.1)':
     dependencies:
-      '@opentelemetry/api': 1.10.0
-      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.10.0)
+      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.45.0
     optional: true
 
@@ -18216,12 +18215,12 @@ snapshots:
       '@opentelemetry/resources': 2.11.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.43.0
 
-  '@opentelemetry/sdk-logs@0.223.2(@opentelemetry/api@1.10.0)':
+  '@opentelemetry/sdk-logs@0.223.2(@opentelemetry/api@1.9.1)':
     dependencies:
-      '@opentelemetry/api': 1.10.0
+      '@opentelemetry/api': 1.9.1
       '@opentelemetry/api-logs': 0.223.2
-      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.10.0)
-      '@opentelemetry/resources': 2.12.1(@opentelemetry/api@1.10.0)
+      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.9.1)
+      '@opentelemetry/resources': 2.12.1(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.45.0
     optional: true
 
@@ -18231,11 +18230,11 @@ snapshots:
       '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/resources': 2.11.0(@opentelemetry/api@1.9.1)
 
-  '@opentelemetry/sdk-metrics@2.12.1(@opentelemetry/api@1.10.0)':
+  '@opentelemetry/sdk-metrics@2.12.1(@opentelemetry/api@1.9.1)':
     dependencies:
-      '@opentelemetry/api': 1.10.0
-      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.10.0)
-      '@opentelemetry/resources': 2.12.1(@opentelemetry/api@1.10.0)
+      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.9.1)
+      '@opentelemetry/resources': 2.12.1(@opentelemetry/api@1.9.1)
     optional: true
 
   '@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1)':
@@ -18246,12 +18245,12 @@ snapshots:
       '@opentelemetry/sdk-trace': 2.11.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.43.0
 
-  '@opentelemetry/sdk-trace-base@2.12.0(@opentelemetry/api@1.10.0)':
+  '@opentelemetry/sdk-trace-base@2.12.0(@opentelemetry/api@1.9.1)':
     dependencies:
-      '@opentelemetry/api': 1.10.0
-      '@opentelemetry/core': 2.12.0(@opentelemetry/api@1.10.0)
-      '@opentelemetry/resources': 2.12.0(@opentelemetry/api@1.10.0)
-      '@opentelemetry/sdk-trace': 2.12.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/core': 2.12.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/resources': 2.12.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/sdk-trace': 2.12.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.45.0
     optional: true
 
@@ -18261,11 +18260,11 @@ snapshots:
       '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/sdk-trace-base': 2.11.0(@opentelemetry/api@1.9.1)
 
-  '@opentelemetry/sdk-trace-web@2.12.0(@opentelemetry/api@1.10.0)':
+  '@opentelemetry/sdk-trace-web@2.12.0(@opentelemetry/api@1.9.1)':
     dependencies:
-      '@opentelemetry/api': 1.10.0
-      '@opentelemetry/core': 2.12.0(@opentelemetry/api@1.10.0)
-      '@opentelemetry/sdk-trace-base': 2.12.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/core': 2.12.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/sdk-trace-base': 2.12.0(@opentelemetry/api@1.9.1)
     optional: true
 
   '@opentelemetry/sdk-trace@2.11.0(@opentelemetry/api@1.9.1)':
@@ -18275,19 +18274,19 @@ snapshots:
       '@opentelemetry/resources': 2.11.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.43.0
 
-  '@opentelemetry/sdk-trace@2.12.0(@opentelemetry/api@1.10.0)':
+  '@opentelemetry/sdk-trace@2.12.0(@opentelemetry/api@1.9.1)':
     dependencies:
-      '@opentelemetry/api': 1.10.0
-      '@opentelemetry/core': 2.12.0(@opentelemetry/api@1.10.0)
-      '@opentelemetry/resources': 2.12.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/core': 2.12.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/resources': 2.12.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.45.0
     optional: true
 
-  '@opentelemetry/sdk-trace@2.12.1(@opentelemetry/api@1.10.0)':
+  '@opentelemetry/sdk-trace@2.12.1(@opentelemetry/api@1.9.1)':
     dependencies:
-      '@opentelemetry/api': 1.10.0
-      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.10.0)
-      '@opentelemetry/resources': 2.12.1(@opentelemetry/api@1.10.0)
+      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.9.1)
+      '@opentelemetry/resources': 2.12.1(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.45.0
     optional: true
 
@@ -18296,10 +18295,10 @@ snapshots:
   '@opentelemetry/semantic-conventions@1.45.0':
     optional: true
 
-  '@opentelemetry/web-common@0.223.2(@opentelemetry/api@1.10.0)':
+  '@opentelemetry/web-common@0.223.2(@opentelemetry/api@1.9.1)':
     dependencies:
-      '@opentelemetry/api': 1.10.0
-      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.10.0)
+      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.45.0
     optional: true
 
@@ -19792,18 +19791,18 @@ snapshots:
     dependencies:
       react: 19.3.1
 
-  '@storybook/nextjs-vite@10.6.7(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(next@16.4.6(@opentelemetry/api@1.10.0)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(rollup@4.62.5)(storybook@10.6.7(@types/react@19.3.0)(prettier@3.10.1)(react@19.3.1))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))':
+  '@storybook/nextjs-vite@10.6.7(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(next@16.4.6(@opentelemetry/api@1.9.1)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(rollup@4.62.5)(storybook@10.6.7(@types/react@19.3.0)(prettier@3.10.1)(react@19.3.1))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))':
     dependencies:
       '@storybook/builder-vite': 10.6.7(storybook@10.6.7(@types/react@19.3.0)(prettier@3.10.1)(react@19.3.1))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
       '@storybook/react': 10.6.7(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(storybook@10.6.7(@types/react@19.3.0)(prettier@3.10.1)(react@19.3.1))(typescript@6.0.3)
       '@storybook/react-vite': 10.6.7(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(rollup@4.62.5)(storybook@10.6.7(@types/react@19.3.0)(prettier@3.10.1)(react@19.3.1))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
-      next: 16.4.6(@opentelemetry/api@1.10.0)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
+      next: 16.4.6(@opentelemetry/api@1.9.1)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
       react: 19.3.1
       react-dom: 19.3.1(react@19.3.1)
       storybook: 10.6.7(@types/react@19.3.0)(prettier@3.10.1)(react@19.3.1)
       styled-jsx: 5.1.6(react@19.3.1)
       vite: 8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1)
-      vite-plugin-storybook-nextjs: 10.6.7(next@16.4.6(@opentelemetry/api@1.10.0)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(rollup@4.62.5)(storybook@10.6.7(@types/react@19.3.0)(prettier@3.10.1)(react@19.3.1))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+      vite-plugin-storybook-nextjs: 10.6.7(next@16.4.6(@opentelemetry/api@1.9.1)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(rollup@4.62.5)(storybook@10.6.7(@types/react@19.3.0)(prettier@3.10.1)(react@19.3.1))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
     optionalDependencies:
       '@types/react': 19.3.0
       '@types/react-dom': 19.3.0(@types/react@19.3.0)
@@ -19989,7 +19988,7 @@ snapshots:
       picocolors: 1.1.1
       redent: 3.0.0
     optionalDependencies:
-      vitest: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+      vitest: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   '@testing-library/react@16.3.3(@testing-library/dom@10.4.2)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
@@ -22293,7 +22292,7 @@ snapshots:
     dependencies:
       undici: 7.30.2
     optionalDependencies:
-      vitest: 5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
+      vitest: 5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
 
   get-latest-version@6.0.1:
     dependencies:
@@ -23833,15 +23832,15 @@ snapshots:
       fp-ts: 2.16.11
       monocle-ts: 2.3.13(fp-ts@2.16.11)
 
-  next-logger@5.0.2(next@16.4.6(@opentelemetry/api@1.10.0)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(pino@10.4.0)(winston@3.19.0):
+  next-logger@5.0.2(next@16.4.6(@opentelemetry/api@1.9.1)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(pino@10.4.0)(winston@3.19.0):
     dependencies:
       lilconfig: 3.1.3
-      next: 16.4.6(@opentelemetry/api@1.10.0)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
+      next: 16.4.6(@opentelemetry/api@1.9.1)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
     optionalDependencies:
       pino: 10.4.0
       winston: 3.19.0
 
-  next@16.4.6(@opentelemetry/api@1.10.0)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2):
+  next@16.4.6(@opentelemetry/api@1.9.1)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2):
     dependencies:
       '@next/env': 16.4.6
       '@swc/helpers': 0.5.23
@@ -23860,7 +23859,7 @@ snapshots:
       '@next/swc-linux-x64-musl': 16.4.6
       '@next/swc-win32-arm64-msvc': 16.4.6
       '@next/swc-win32-x64-msvc': 16.4.6
-      '@opentelemetry/api': 1.10.0
+      '@opentelemetry/api': 1.9.1
       '@playwright/test': 1.65.1
       sass: 1.108.2
       sharp: 0.35.5(@types/node@26.6.6)
@@ -26146,13 +26145,13 @@ snapshots:
       stylelint: 17.16.0(typescript@6.0.3)
       typescript: 6.0.3
 
-  vite-plugin-storybook-nextjs@10.6.7(next@16.4.6(@opentelemetry/api@1.10.0)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(rollup@4.62.5)(storybook@10.6.7(@types/react@19.3.0)(prettier@3.10.1)(react@19.3.1))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1)):
+  vite-plugin-storybook-nextjs@10.6.7(next@16.4.6(@opentelemetry/api@1.9.1)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2))(rollup@4.62.5)(storybook@10.6.7(@types/react@19.3.0)(prettier@3.10.1)(react@19.3.1))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1)):
     dependencies:
       '@next/env': 16.4.6
       '@rollup/pluginutils': 5.5.1(rollup@4.62.5)
       magic-string: 0.30.21
       module-alias: 2.3.5
-      next: 16.4.6(@opentelemetry/api@1.10.0)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
+      next: 16.4.6(@opentelemetry/api@1.9.1)(@playwright/test@1.65.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.2)
       pathe: 2.0.3
       probe-image-size: 7.5.0
       semver: 7.8.6
@@ -26194,32 +26193,6 @@ snapshots:
       terser: 5.51.2
       tsx: 4.23.13
       yaml: 2.9.1
-
-  vitest@5.1.0(@opentelemetry/api@1.10.0)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1)):
-    dependencies:
-      '@types/chai': 5.2.3
-      '@vitest/mocker': 5.1.0(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))
-      chai: 6.3.0
-      es-module-lexer: 2.3.2
-      expect-type: 1.4.0
-      magic-string: 1.4.5
-      obug: 3.0.0
-      picomatch: 4.0.7
-      std-env: 4.3.0
-      tinybench: 6.2.3
-      tinyexec: 1.3.1
-      tinyglobby: 0.2.17
-      vite: 8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1)
-      why-is-node-running: 3.2.1
-    optionalDependencies:
-      '@opentelemetry/api': 1.10.0
-      '@types/node': 26.6.6
-      '@vitest/browser-playwright': 5.1.0(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(playwright@1.65.1)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1))(vitest@5.1.0)
-      '@vitest/coverage-v8': 5.1.0(@vitest/browser@5.1.0)(vitest@5.1.0)
-      '@vitest/ui': 5.1.0(vitest@5.1.0)
-      jsdom: 30.1.3(@noble/hashes@2.4.0)
-    transitivePeerDependencies:
-      - msw
 
   vitest@5.1.0(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.0)(@vitest/coverage-v8@5.1.0)(@vitest/ui@5.1.0)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1)):
     dependencies:
