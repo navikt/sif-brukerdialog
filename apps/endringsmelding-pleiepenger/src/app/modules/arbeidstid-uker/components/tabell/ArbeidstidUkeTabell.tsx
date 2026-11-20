@@ -18,7 +18,6 @@ interface Props {
     uker: ArbeidstidUkerItem[];
     selectableList: SelectableListType<ArbeidstidUkerItem>;
     visEndringSomOpprinnelig?: boolean;
-    /** Viser «Endret fra» og «Endret til» i hver sin kolonne */
     visEndringIEgenKolonne?: boolean;
     visNormalarbeidstid?: boolean;
     renderCompactTable: boolean;
