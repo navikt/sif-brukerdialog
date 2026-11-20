@@ -1,7 +1,7 @@
 import IconText from '@app/components/icon-text/IconText';
 import { erTimerGyldigInnenforAntallDager } from '@app/utils';
 import { XMarkOctagonFillIcon } from '@navikt/aksel-icons';
-import { BodyShort } from '@navikt/ds-react';
+import { Box } from '@navikt/ds-react';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 import { DurationText } from '@navikt/sif-common-ui';
 
@@ -11,68 +11,38 @@ import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
 interface Props {
     uke: ArbeidstidUkerItem;
     visEndringSomOpprinnelig?: boolean;
-    medLabels?: boolean;
 }
 
-const ArbeidstidUkeInfo = ({ uke, medLabels = false, visEndringSomOpprinnelig }: Props) => {
-    if (uke.endret === undefined) {
-        return (
-            <>
-                {medLabels && <BodyShort size="small">Arbeidstimer:</BodyShort>}
-                <span data-testid="timer-faktisk">
-                    {uke.opprinnelig.faktisk && <DurationText duration={uke.opprinnelig.faktisk} />}
-                </span>
-            </>
-        );
-    }
-    const erEndret = erArbeidstidUkeItemEndret(uke);
+const ArbeidstidUkeInfo = ({ uke, visEndringSomOpprinnelig }: Props) => {
+    const { opprinnelig, endret, antallDagerMedArbeidstid } = uke;
 
-    if (erEndret === false || visEndringSomOpprinnelig) {
-        return (
-            <>
-                {medLabels && (
-                    <BodyShort as="div" size="small">
-                        Arbeidstimer:
-                    </BodyShort>
-                )}
-                <span data-testid="timer-faktisk">
-                    <DurationText duration={uke.endret.faktisk} />
-                </span>
-            </>
-        );
+    if (!endret || visEndringSomOpprinnelig || !erArbeidstidUkeItemEndret(uke)) {
+        const faktisk = endret?.faktisk ?? opprinnelig.faktisk;
+        return <span data-testid="timer-faktisk">{faktisk && <DurationText duration={faktisk} />}</span>;
     }
-    const { faktisk } = uke.endret;
-    const erEndringGyldig = erTimerGyldigInnenforAntallDager(faktisk, uke.antallDagerMedArbeidstid);
 
     return (
-        <div className="endretArbeidstid">
-            <div className="endretArbeidstid_faktisk">
-                {medLabels && <BodyShort size="small">Jobber i perioden:</BodyShort>}
-                <strong className="endretArbeidstid__timer" data-testid="timer-faktisk">
-                    <DurationText duration={faktisk} />
-                </strong>
-            </div>
-
-            <div>
-                <span className="endretArbeidstid__opprinnelig">
-                    <AriaText>Endret fra </AriaText>
-                    <span className="endretArbeidstid__timer" data-testid="timer-opprinnelig">
-                        {uke.opprinnelig.faktisk && <DurationText duration={uke.opprinnelig.faktisk} />}
-                    </span>
+        <>
+            <strong className="endretArbeidstid__timer" data-testid="timer-faktisk">
+                <DurationText duration={endret.faktisk} />
+            </strong>
+            <div className="endretArbeidstid__opprinnelig">
+                <AriaText>Endret fra </AriaText>
+                <span className="endretArbeidstid__timer" data-testid="timer-opprinnelig">
+                    {opprinnelig.faktisk && <DurationText duration={opprinnelig.faktisk} />}
                 </span>
             </div>
-
-            {erEndringGyldig === false && (
-                <div style={{ marginTop: '0.25rem' }}>
+            {!erTimerGyldigInnenforAntallDager(endret.faktisk, antallDagerMedArbeidstid) && (
+                <Box marginBlock="space-4 space-0">
                     <IconText
                         icon={
                             <XMarkOctagonFillIcon style={{ color: '#C30000' }} role="presentation" aria-hidden="true" />
                         }>
                         For mange timer
                     </IconText>
-                </div>
+                </Box>
             )}
-        </div>
+        </>
     );
 };
 
