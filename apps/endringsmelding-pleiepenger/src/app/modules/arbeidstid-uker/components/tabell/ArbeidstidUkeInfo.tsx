@@ -14,7 +14,7 @@ interface Props {
 }
 
 const ArbeidstidUkeInfo = ({ uke, visEndringSomOpprinnelig }: Props) => {
-    const { opprinnelig, endret, antallDagerMedArbeidstid } = uke;
+    const { opprinnelig, endret } = uke;
 
     if (!endret || visEndringSomOpprinnelig || !erArbeidstidUkeItemEndret(uke)) {
         const faktisk = endret?.faktisk ?? opprinnelig.faktisk;
@@ -32,18 +32,19 @@ const ArbeidstidUkeInfo = ({ uke, visEndringSomOpprinnelig }: Props) => {
                     {opprinnelig.faktisk && <DurationText duration={opprinnelig.faktisk} />}
                 </span>
             </div>
-            {!erTimerGyldigInnenforAntallDager(endret.faktisk, antallDagerMedArbeidstid) && (
-                <Box marginBlock="space-4 space-0">
-                    <IconText
-                        icon={
-                            <XMarkOctagonFillIcon style={{ color: '#C30000' }} role="presentation" aria-hidden="true" />
-                        }>
-                        For mange timer
-                    </IconText>
-                </Box>
-            )}
+            <ForMangeTimerMelding uke={uke} />
         </>
     );
 };
+
+export const ForMangeTimerMelding = ({ uke }: { uke: ArbeidstidUkerItem }) =>
+    uke.endret && !erTimerGyldigInnenforAntallDager(uke.endret.faktisk, uke.antallDagerMedArbeidstid) ? (
+        <Box marginBlock="space-4 space-0">
+            <IconText
+                icon={<XMarkOctagonFillIcon style={{ color: '#C30000' }} role="presentation" aria-hidden="true" />}>
+                For mange timer
+            </IconText>
+        </Box>
+    ) : null;
 
 export default ArbeidstidUkeInfo;

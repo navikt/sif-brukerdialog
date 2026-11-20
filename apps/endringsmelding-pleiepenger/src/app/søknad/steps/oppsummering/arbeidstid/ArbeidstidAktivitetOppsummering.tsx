@@ -22,6 +22,7 @@ const ArbeidstidAktivitetOppsummering = ({ tittel, perioder, visEndringSomOpprin
                 listItems={oppsummeringStepUtils.getArbeidstidUkerItems(perioder)}
                 arbeidstidKolonneTittel={text('oppsummeringStep.arbeidstid.kolonne.endretArbeidstid')}
                 visEndringSomOpprinnelig={visEndringSomOpprinnelig}
+                visEndringIEgenKolonne
                 visNormalarbeidstid={false}
             />
         </VStack>

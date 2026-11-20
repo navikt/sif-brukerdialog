@@ -1,4 +1,4 @@
-import './arbeidstidUker.scss';
+import './arbeidstidUker.css';
 
 import EditButton from '@app/components/buttons/EditButton';
 import { AppText, useAppIntl } from '@app/i18n';
@@ -25,6 +25,7 @@ interface Props {
     arbeidstidKolonneTittel?: string;
     triggerResetValgCounter?: number;
     visEndringSomOpprinnelig?: boolean;
+    visEndringIEgenKolonne?: boolean;
     visNormalarbeidstid?: boolean;
     onEndreUker?: (uke: ArbeidstidUkerItem[]) => void;
 }
@@ -37,6 +38,7 @@ const ArbeidstidUker = ({
     arbeidstidKolonneTittel,
     triggerResetValgCounter,
     visEndringSomOpprinnelig,
+    visEndringIEgenKolonne,
     visNormalarbeidstid = false,
     onEndreUker,
 }: Props) => {
@@ -170,6 +172,7 @@ const ArbeidstidUker = ({
                 uker={visibleItems}
                 selectableList={selectableList}
                 visEndringSomOpprinnelig={visEndringSomOpprinnelig}
+                visEndringIEgenKolonne={visEndringIEgenKolonne}
                 visNormalarbeidstid={visNormalarbeidstid}
                 renderEditButton={renderEditButton}
                 arbeidstidKolonneTittel={arbeidstidKolonneTittel}

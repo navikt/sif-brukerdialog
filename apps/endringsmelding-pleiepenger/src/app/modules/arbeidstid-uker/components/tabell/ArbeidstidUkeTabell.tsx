@@ -7,16 +7,19 @@ import { getDateRangeText } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { ReactElement } from 'react';
 
+import { erArbeidstidUkeItemEndret } from '../../arbeidstidUkerUtils';
 import { ArbeidstidUkerItem } from '../../types/ArbeidstidUkerItem';
 import UkeInfoTooltip, { getKortUkeTooltipText } from '../UkeInfoTooltip';
 import UkeTags from '../UkeTags';
 import VelgArbeidsukeItem from '../VelgArbeidsukeItem';
-import ArbeidstidUkeInfo from './ArbeidstidUkeInfo';
+import ArbeidstidUkeInfo, { ForMangeTimerMelding } from './ArbeidstidUkeInfo';
 
 interface Props {
     uker: ArbeidstidUkerItem[];
     selectableList: SelectableListType<ArbeidstidUkerItem>;
     visEndringSomOpprinnelig?: boolean;
+    /** Viser «Endret fra» og «Endret til» i hver sin kolonne */
+    visEndringIEgenKolonne?: boolean;
     visNormalarbeidstid?: boolean;
     renderCompactTable: boolean;
     arbeidstidKolonneTittel?: string;
@@ -32,6 +35,7 @@ interface UkeCellsProps {
 const ArbeidstidUkeTabell = ({
     uker,
     visEndringSomOpprinnelig,
+    visEndringIEgenKolonne,
     selectableList,
     arbeidstidKolonneTittel,
     renderCompactTable,
@@ -86,9 +90,20 @@ const ArbeidstidUkeTabell = ({
                             )}
                         </>
                     )}
-                    <Table.HeaderCell className="arbeidstidUkeTabell__arbeidstid">
-                        {arbeidstidKolonneTittel || <AppText id="arbeidstidUkeTabell.header.arbeidstid.title" />}
-                    </Table.HeaderCell>
+                    {visEndringIEgenKolonne ? (
+                        <>
+                            <Table.HeaderCell className="arbeidstidUkeTabell__arbeidstid__endretFra">
+                                <AppText id="arbeidstidUkeTabell.header.endretFra.title" />
+                            </Table.HeaderCell>
+                            <Table.HeaderCell className="arbeidstidUkeTabell__arbeidstid__endretTil">
+                                <AppText id="arbeidstidUkeTabell.header.endretTil.title" />
+                            </Table.HeaderCell>
+                        </>
+                    ) : (
+                        <Table.HeaderCell className="arbeidstidUkeTabell__arbeidstid">
+                            {arbeidstidKolonneTittel || <AppText id="arbeidstidUkeTabell.header.arbeidstid.title" />}
+                        </Table.HeaderCell>
+                    )}
                     {singleSelectEnabled && (
                         <Table.HeaderCell className="arbeidstidUkeTabell__endre" align="right">
                             <AppText id="arbeidstidUkeTabell.header.endre" />
@@ -114,9 +129,13 @@ const ArbeidstidUkeTabell = ({
                                 </Table.DataCell>
                             )}
                             <UkeCells uke={uke} ukenummer={ukenummer} visNormalarbeidstid={visNormalarbeidstid} />
-                            <Table.DataCell data-testid="arbeidstid-faktisk">
-                                <ArbeidstidUkeInfo uke={uke} visEndringSomOpprinnelig={visEndringSomOpprinnelig} />
-                            </Table.DataCell>
+                            {visEndringIEgenKolonne ? (
+                                <EndretFraOgTilCeller uke={uke} visEndringSomOpprinnelig={visEndringSomOpprinnelig} />
+                            ) : (
+                                <Table.DataCell data-testid="arbeidstid-faktisk">
+                                    <ArbeidstidUkeInfo uke={uke} visEndringSomOpprinnelig={visEndringSomOpprinnelig} />
+                                </Table.DataCell>
+                            )}
                             {singleSelectEnabled && (
                                 <Table.DataCell className="arbeidstidUkeTabell__endre" align="right">
                                     {renderEditButton(uke, ukenummer, false)}
@@ -198,6 +217,40 @@ const UkeCeller = ({ uke, ukenummer, visNormalarbeidstid }: UkeCellsProps) => {
                     <DurationText duration={uke.opprinnelig.normalt} />
                 </Table.DataCell>
             )}
+        </>
+    );
+};
+
+interface EndretFraOgTilCellerProps {
+    uke: ArbeidstidUkerItem;
+    visEndringSomOpprinnelig?: boolean;
+}
+
+const EndretFraOgTilCeller = ({ uke, visEndringSomOpprinnelig }: EndretFraOgTilCellerProps) => {
+    const { opprinnelig, endret } = uke;
+    // Ny arbeidsgiver har ingen opprinnelig arbeidstid, så hele endringen vises som «Endret til»
+    const endretFra = visEndringSomOpprinnelig ? undefined : opprinnelig.faktisk;
+    const endretTil = visEndringSomOpprinnelig || erArbeidstidUkeItemEndret(uke) ? endret?.faktisk : undefined;
+
+    return (
+        <>
+            <Table.DataCell data-testid="arbeidstid-endret-fra">
+                {endretFra && (
+                    <span className={endretTil ? 'arbeidstidUkeInfo__opprinnelig' : undefined}>
+                        <DurationText duration={endretFra} />
+                    </span>
+                )}
+            </Table.DataCell>
+            <Table.DataCell data-testid="arbeidstid-endret-til">
+                {endretTil && (
+                    <>
+                        <strong className="arbeidstidUkeInfo__timer">
+                            <DurationText duration={endretTil} />
+                        </strong>
+                        <ForMangeTimerMelding uke={uke} />
+                    </>
+                )}
+            </Table.DataCell>
         </>
     );
 };
