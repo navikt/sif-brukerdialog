@@ -15,10 +15,10 @@ const UkjentArbeidsforholdStep = () => {
         state: { søknadsdata, sak, arbeidsgivere },
     } = useSøknadContext();
 
-    const { goBack, stepConfig } = useStepConfig(stepId);
+    const { goBack, includeBackLink, stepConfig } = useStepConfig(stepId);
 
     return (
-        <SøknadStep stepId={stepId} stepConfig={stepConfig}>
+        <SøknadStep stepId={stepId} stepConfig={stepConfig} includeBackLink={includeBackLink}>
             <FormLayout.Guide>
                 <Heading level="2" size="xsmall" spacing={true}>
                     Vi trenger informasjon om et nytt arbeidsforhold

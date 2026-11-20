@@ -54,7 +54,7 @@ const LovbestemtFerieStep = () => {
 
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
-    const { goBack, stepConfig } = useStepConfig(stepId);
+    const { goBack, includeBackLink, stepConfig } = useStepConfig(stepId);
 
     const onValidSubmitHandler = (values: LovbestemtFerieFormValues) => {
         const perioder = getLovbestemtFerieSøknadsdataFromFormValues(values);
@@ -65,7 +65,7 @@ const LovbestemtFerieStep = () => {
         return [];
     };
 
-    const { handleSubmit, isSubmitting } = useOnValidSubmit(
+    const { handleSubmit, isSubmitting, submitButtonLabel } = useOnValidSubmit(
         onValidSubmitHandler,
         stepId,
         (state: SøknadContextState) => {
@@ -82,7 +82,7 @@ const LovbestemtFerieStep = () => {
     const initialValues = getLovbestemtFerieStepInitialValues(søknadsdata, stepFormValues.lovbestemtFerie);
 
     return (
-        <SøknadStep stepId={stepId} stepConfig={stepConfig}>
+        <SøknadStep stepId={stepId} stepConfig={stepConfig} includeBackLink={includeBackLink}>
             <FormLayout.Guide>
                 <Heading level="2" size="xsmall" spacing={true}>
                     <AppText id="lovbestemtFerieStep.guide.tittel" />
@@ -117,6 +117,7 @@ const LovbestemtFerieStep = () => {
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'lovbestemtFerieForm')}
                                 includeValidationSummary={true}
                                 submitPending={isSubmitting}
+                                submitButtonLabel={submitButtonLabel}
                                 runDelayedFormValidation={true}
                                 onBack={goBack}>
                                 <VStack gap="space-24">

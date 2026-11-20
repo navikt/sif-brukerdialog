@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { DatePicker, DatePickerProps, useDatepicker } from '@navikt/ds-react';
 import React, { useEffect } from 'react';
-
 import { FormError } from '../../../types';
 import {
     dateToISODateString,
@@ -23,6 +22,7 @@ type Props = Omit<DatePickerProps, 'onChange' | 'fromDate' | 'toDate'> &
         inputDisabled?: boolean;
         description?: React.ReactNode;
         value?: string;
+        showWeekNumber?: boolean;
         onChange: (date: ISODateString | string) => void;
     };
 
@@ -37,6 +37,7 @@ const DateInputAndPicker = ({
     disabledDateRanges,
     disabledDaysOfWeek,
     onChange,
+    showWeekNumber,
     locale,
     ...restProps
 }: Props) => {
@@ -132,6 +133,7 @@ const DateInputAndPicker = ({
         <DatePicker
             {...(datepickerProps as any)}
             {...dpRestProps}
+            showWeekNumber={showWeekNumber}
             mode="single"
             onSelect={onSelect}
             inputDisabled={inputDisabled}>

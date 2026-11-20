@@ -1,20 +1,22 @@
 import { ArbeidstidUkerItem } from '@app/modules/arbeidstid-uker/types/ArbeidstidUkerItem';
 import {
+    ArbeidsgiverMedAnsettelseperioder,
     ArbeidstidApiData,
     ArbeidstidPeriodeApiData,
     ArbeidstidPeriodeApiDataMap,
     LovbestemtFerieApiData,
-    Søknadsdata,
+    Sak,
     TilsynsordningApiData,
+    UkjentArbeidsforholdApiData,
 } from '@app/types';
 import {
     DagMedEndretTilsyn,
     erKortArbeidsuke,
+    getLovbestemtFerieOppsummeringInfo,
     getTilsynsordningOppsummeringInfo,
     getTimerPerUkeFraTimerPerDag,
 } from '@app/utils';
 import {
-    DateDurationMap,
     dateFormatter,
     getDatesInDateRange,
     ISODateRange,
@@ -22,14 +24,6 @@ import {
     ISODurationToDecimalDuration,
     ISODurationToDuration,
 } from '@navikt/sif-common-utils';
-
-import { OppsummeringFormValues } from './OppsummeringStep';
-
-export const getOppsummeringStepInitialValues = (søknadsdata: Søknadsdata): OppsummeringFormValues => {
-    return {
-        harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger || false,
-    };
-};
 
 const harEndringerIArbeidstid = (arbeidstid?: ArbeidstidApiData): boolean => {
     if (!arbeidstid) {
@@ -122,33 +116,83 @@ const erArbeidstidEndringerGyldig = (arbeidstid?: ArbeidstidApiData): boolean =>
         return true;
     }
     const { arbeidstakerList, frilanserArbeidstidInfo, selvstendigNæringsdrivendeArbeidstidInfo } = arbeidstid;
-    const ugyldigArbeidstid: any[] = [];
-    arbeidstakerList.forEach((a) => {
-        if (!erArbeidstidInfoGyldig(a.arbeidstidInfo.perioder)) {
-            ugyldigArbeidstid.push(a);
-        }
-    });
-    if (frilanserArbeidstidInfo && !erArbeidstidInfoGyldig(frilanserArbeidstidInfo.perioder)) {
-        ugyldigArbeidstid.push(frilanserArbeidstidInfo);
-    }
-    if (
-        selvstendigNæringsdrivendeArbeidstidInfo &&
-        !erArbeidstidInfoGyldig(selvstendigNæringsdrivendeArbeidstidInfo.perioder)
-    ) {
-        ugyldigArbeidstid.push(selvstendigNæringsdrivendeArbeidstidInfo);
-    }
-    return ugyldigArbeidstid.length === 0;
+    return [
+        ...arbeidstakerList.map((a) => a.arbeidstidInfo),
+        frilanserArbeidstidInfo,
+        selvstendigNæringsdrivendeArbeidstidInfo,
+    ].every((info) => info === undefined || erArbeidstidInfoGyldig(info.perioder));
 };
 
-export type MånedMedDagerMedEndretTilsyn = {
+/** Antall arbeidsforhold (arbeidstaker, frilans og selvstendig) med minst én periode med endret arbeidstid */
+const getAntallArbeidsforholdMedEndretArbeidstid = (arbeidstid?: ArbeidstidApiData): number => {
+    if (!arbeidstid) {
+        return 0;
+    }
+    return [
+        ...arbeidstid.arbeidstakerList.map((a) => a.arbeidstidInfo.perioder),
+        arbeidstid.frilanserArbeidstidInfo?.perioder,
+        arbeidstid.selvstendigNæringsdrivendeArbeidstidInfo?.perioder,
+    ].filter((perioder) => perioder && Object.keys(perioder).length > 0).length;
+};
+
+const getFerieEndringer = (lovbestemtFerie?: LovbestemtFerieApiData) => {
+    if (!lovbestemtFerie) {
+        return { harLagtTil: false, harFjernet: false };
+    }
+    const { perioderLagtTil, perioderFjernet } = getLovbestemtFerieOppsummeringInfo(lovbestemtFerie);
+    return { harLagtTil: perioderLagtTil.length > 0, harFjernet: perioderFjernet.length > 0 };
+};
+
+/** Arbeidsforhold i saken pluss nye arbeidsforhold bruker har lagt inn */
+const getAntallArbeidsforholdTotalt = (sak: Sak, arbeidstid?: ArbeidstidApiData): number =>
+    sak.utledet.aktiviteterSomKanEndres.length +
+    (arbeidstid?.arbeidstakerList.filter((a) => a._erUkjentArbeidsforhold).length ?? 0);
+
+export type NyttArbeidsforhold = {
+    arbeidsgiver: ArbeidsgiverMedAnsettelseperioder;
+    arbeidsforhold: UkjentArbeidsforholdApiData;
+};
+
+/** Arbeidsgivere som ikke er i saken, og som bruker har svart på */
+const getNyeArbeidsforhold = (
+    arbeidsgivereIkkeISak: ArbeidsgiverMedAnsettelseperioder[],
+    ukjenteArbeidsforhold: UkjentArbeidsforholdApiData[] = [],
+): NyttArbeidsforhold[] =>
+    arbeidsgivereIkkeISak.flatMap((arbeidsgiver) => {
+        const arbeidsforhold = ukjenteArbeidsforhold.find(
+            (u) => u.organisasjonsnummer === arbeidsgiver.organisasjonsnummer,
+        );
+        return arbeidsforhold ? [{ arbeidsgiver, arbeidsforhold }] : [];
+    });
+
+export type OppsummeringEndringer = {
+    ferie: boolean;
+    arbeidstid: boolean;
+    tilsynsordning: boolean;
+};
+
+const getEndringer = ({
+    lovbestemtFerie,
+    arbeidstid,
+    tilsynsordning,
+}: {
+    lovbestemtFerie?: LovbestemtFerieApiData;
+    arbeidstid?: ArbeidstidApiData;
+    tilsynsordning?: TilsynsordningApiData;
+}): OppsummeringEndringer => ({
+    ferie: harEndringerILovbestemtFerieApiData(lovbestemtFerie),
+    arbeidstid: getAntallArbeidsforholdMedEndretArbeidstid(arbeidstid) > 0,
+    tilsynsordning: harEndringerITilsynsordningApiData(tilsynsordning),
+});
+
+type MånedMedDagerMedEndretTilsyn = {
     måned: Date;
     dagerMedEndretTilsyn: DagMedEndretTilsyn[];
 };
-export const getMånederMedDagerEndretTilsyn = (
+const getMånederMedDagerEndretTilsyn = (
     tilsynsordning: TilsynsordningApiData,
-    tidOpprinnelig: DateDurationMap | undefined,
 ): MånedMedDagerMedEndretTilsyn[] => {
-    const dagerMedEndretTilsyn = getTilsynsordningOppsummeringInfo(tilsynsordning, tidOpprinnelig);
+    const dagerMedEndretTilsyn = getTilsynsordningOppsummeringInfo(tilsynsordning);
 
     const månederMedDager: Record<string, MånedMedDagerMedEndretTilsyn> = {};
     for (const dag of dagerMedEndretTilsyn) {
@@ -167,6 +211,10 @@ export const oppsummeringStepUtils = {
     harEndringerIArbeidstid,
     harEndringerITilsynsordningApiData,
     erArbeidstidEndringerGyldig,
+    getAntallArbeidsforholdMedEndretArbeidstid,
+    getAntallArbeidsforholdTotalt,
+    getEndringer,
+    getFerieEndringer,
     getMånederMedDagerEndretTilsyn,
-    getOppsummeringStepInitialValues,
+    getNyeArbeidsforhold,
 };

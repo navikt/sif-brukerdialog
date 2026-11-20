@@ -19,12 +19,12 @@ const ArbeidstidStep = () => {
         },
     } = useSøknadContext();
 
-    const { goBack, stepConfig } = useStepConfig(stepId);
+    const { goBack, includeBackLink, stepConfig } = useStepConfig(stepId);
 
     const { harFjernetFerie } = useSøknadsdataInfo();
 
     return (
-        <SøknadStep stepId={stepId} stepConfig={stepConfig}>
+        <SøknadStep stepId={stepId} stepConfig={stepConfig} includeBackLink={includeBackLink}>
             <FormLayout.Guide>
                 <Heading level="2" size="xsmall" spacing={true}>
                     <AppText id="arbeidstidStep.title" />

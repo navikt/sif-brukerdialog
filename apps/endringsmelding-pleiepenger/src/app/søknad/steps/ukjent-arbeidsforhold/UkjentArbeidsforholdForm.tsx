@@ -89,7 +89,7 @@ const UkjentArbeidsforholdForm = ({
         return [];
     };
 
-    const { handleSubmit, isSubmitting } = useOnValidSubmit(
+    const { handleSubmit, isSubmitting, submitButtonLabel } = useOnValidSubmit(
         onValidSubmitHandler,
         stepId,
         (state: SøknadContextState) => {
@@ -114,6 +114,7 @@ const UkjentArbeidsforholdForm = ({
                             formErrorHandler={getIntlFormErrorHandler(intl, 'ukjentArbeidsforholdForm')}
                             includeValidationSummary={true}
                             submitPending={isSubmitting}
+                            submitButtonLabel={submitButtonLabel}
                             runDelayedFormValidation={true}
                             onBack={goBack}>
                             <VStack gap="space-32">

@@ -11,7 +11,7 @@ const nb = {
     'endreArbeidstidForm.heading.endreForEnUke': 'Endre jobb for uke {ukenummer}',
     'endreArbeidstidForm.heading.endreForFlereUker': 'Endre jobb for flere uker',
     'endreArbeidstidForm.dagerMedFerieFjernet.melding':
-        'Du har fjernet ferie ({feriedagerTekst}) denne uken. Hvis du skal jobbe i stedet for ferie, oppgi hvor mye du jobber denne uken.',
+        'Du har fjernet feriedager ({feriedagerTekst}) denne uken. Hvis du skal jobbe i stedet for ferie, oppgi hvor mye du jobber denne uken.',
 
     'endreArbeidstidForm.kortUke.info':
         'Dette er en kort uke, som går fra {dager}. Du skal oppgi hvor mye du jobber kun for disse dagene.',

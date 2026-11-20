@@ -34,6 +34,7 @@ export interface EndreArbeidstidFormProps {
     arbeidsuker: Arbeidsuke[];
     lovbestemtFerie?: LovbestemtFerieSøknadsdata;
     endring?: ArbeidstidEndring;
+    visNormalarbeidstid?: boolean;
     onSubmit: (data: EndreArbeidstidData) => void;
     onCancel: () => void;
 }
@@ -56,6 +57,7 @@ const EndreArbeidstidForm = ({
     arbeidsuker,
     lovbestemtFerie,
     endring,
+    visNormalarbeidstid,
     onCancel,
     onSubmit,
 }: EndreArbeidstidFormProps) => {
@@ -143,7 +145,11 @@ const EndreArbeidstidForm = ({
                                     }
                                     data-testid="timer-verdi"
                                     width="xs"
-                                    description={getNormalarbeidstidDescription(appIntl, arbeidsuker)}
+                                    description={
+                                        visNormalarbeidstid
+                                            ? getNormalarbeidstidDescription(appIntl, arbeidsuker)
+                                            : undefined
+                                    }
                                     maxLength={5}
                                     validate={(value) => {
                                         const max = getMaksTimer();

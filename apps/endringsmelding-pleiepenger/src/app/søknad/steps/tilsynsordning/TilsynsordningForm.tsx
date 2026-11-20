@@ -39,6 +39,7 @@ interface Props {
     søknadsperioder: DateRange[];
     opprinneligTilsynsdager: DateDurationMap;
     isSubmitting?: boolean;
+    submitButtonLabel?: string;
     goBack?: () => void;
     onTilsynsordningChanged?: (tilsynsdager: DateDurationMap) => void;
 }
@@ -48,6 +49,7 @@ const TilsynsordningForm = ({
     søknadsperioder,
     opprinneligTilsynsdager,
     isSubmitting,
+    submitButtonLabel,
     onTilsynsordningChanged,
 }: Props) => {
     const intl = useIntl();
@@ -120,6 +122,7 @@ const TilsynsordningForm = ({
             formErrorHandler={getIntlFormErrorHandler(intl, 'omsorgstilbudForm')}
             includeValidationSummary={true}
             submitPending={isSubmitting}
+            submitButtonLabel={submitButtonLabel}
             runDelayedFormValidation={true}
             onBack={goBack}>
             <VStack gap="space-16">

@@ -8,7 +8,7 @@ const nb = {
     'arbeidstidStep.info.4':
         'Fra 1. januar 2027 vil vurderingen av tapt arbeidstid vurderes ut fra den arbeidstiden du vanligvis jobbet før du startet perioden med pleiepenger. Endringen vil kun påvirke saken din hvis du søker forlengelse av perioden med pleiepenger, og i tillegg har endret stillingsprosent hos arbeidsgiver etter at du startet med pleiepenger.',
     'arbeidstidStep.fjernetFerie.melding':
-        'Du har fjernet dager med ferie. Skal du jobbe disse dagene, se over at jobb i perioden er riktig.',
+        'Du har fjernet feriedager. Hvis du skal du jobbe disse dagene, må du se over at arbeidstiden er riktig.',
     'arbeidstidStep.arbeiderIPeriodenSpm.heltFravær': 'Jeg jobber ikke og har fullt fravær her',
     'arbeidstidStep.arbeiderIPeriodenSpm.redusert': 'Jeg kombinerer delvis jobb med pleiepenger',
     'arbeidstidStep.arbeiderIPeriodenSpm.somVanlig': 'Jeg jobber som normalt og har ingen fravær her',

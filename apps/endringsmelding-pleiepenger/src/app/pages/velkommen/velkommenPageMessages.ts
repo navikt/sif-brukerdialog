@@ -12,8 +12,8 @@ const nb = {
         'Du kan melde fra om endringer i pleiepenger i tidsrommet {samletSøknadsperiodeTekst}.',
 
     'velkommenPage.endre.spm': 'Hva ønsker du å endre?',
-    'velkommenPage.endre.ferie': 'Ferie',
-    'velkommenPage.endre.jobb': 'Jobb',
+    'velkommenPage.endre.ferie': 'Feriedager',
+    'velkommenPage.endre.jobb': 'Arbeidstid',
     'velkommenPage.endre.tilsynsordning': 'Tid i omsorgstilbud',
 
     'velkommenPage.omSøknaden.tittel': 'Om utfylling av skjemaet',
