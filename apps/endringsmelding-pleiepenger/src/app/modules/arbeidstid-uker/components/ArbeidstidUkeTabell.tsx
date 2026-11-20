@@ -1,8 +1,8 @@
-import './arbeidstidUkeTabell.css';
+import './arbeidstidUkeTabell.scss';
 
 import { SelectableListType } from '@app/hooks/useSelectableList';
 import { AppText, useAppIntl } from '@app/i18n';
-import { Box, Checkbox, Table } from '@navikt/ds-react';
+import { Box, Checkbox, HStack, Table } from '@navikt/ds-react';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 import { DurationText } from '@navikt/sif-common-ui';
 import { getDateRangeText } from '@navikt/sif-common-utils';
@@ -23,7 +23,12 @@ interface Props {
     renderCompactTable: boolean;
     arbeidstidKolonneTittel?: string;
     renderEditButton: (uke: ArbeidstidUkerItem, ukenummer: number, renderLabel: boolean) => ReactElement | undefined;
-    renderUkerFooter: () => ReactElement;
+}
+
+interface UkeCellsProps {
+    uke: ArbeidstidUkerItem;
+    ukenummer: number;
+    visNormalarbeidstid: boolean;
 }
 
 const ArbeidstidUkeTabell = ({
@@ -35,7 +40,6 @@ const ArbeidstidUkeTabell = ({
     visNormalarbeidstid = false,
     renderEditButton,
 }: Props) => {
-    const { intl } = useAppIntl();
     const {
         isItemSelected,
         setItemSelected,
@@ -44,54 +48,51 @@ const ArbeidstidUkeTabell = ({
         listState: { itemsAreSelectable, singleSelectEnabled, selectedItems },
     } = selectableList;
 
+    const toggleAlleUker = () => {
+        setShowSelectItemsMessage(false);
+        setSelectedItems(selectedItems.length > 0 ? [] : uker.filter((uke) => uke.kanEndres && uke.kanVelges));
+    };
+
     return (
         <Table className="arbeidstidUkeTabell">
             <Table.Header>
                 <Table.Row>
                     {itemsAreSelectable && (
-                        <Table.HeaderCell className="arbeidstidUkeTabell__velgUke">
+                        <Table.HeaderCell>
                             <AriaText>
                                 <AppText id="arbeidstidUkeTabell.aria.velgUke" />
                             </AriaText>
                             <Checkbox
                                 checked={selectedItems.length === uker.length}
                                 indeterminate={selectedItems.length > 0 && selectedItems.length !== uker.length}
-                                onChange={() => {
-                                    setShowSelectItemsMessage(false);
-                                    if (selectedItems.length > 0) {
-                                        setSelectedItems([]);
-                                    } else {
-                                        setSelectedItems(uker.filter((uke) => uke.kanEndres && uke.kanVelges));
-                                    }
-                                }}
+                                onChange={toggleAlleUker}
                                 hideLabel>
                                 <AppText id="arbeidstidUkeTabell.velgAlleUker.cb" />
                             </Checkbox>
                         </Table.HeaderCell>
                     )}
-                    {renderCompactTable && <Table.HeaderCell>Uke</Table.HeaderCell>}
-                    {!renderCompactTable && (
+                    {renderCompactTable ? (
+                        <Table.HeaderCell>Uke</Table.HeaderCell>
+                    ) : (
                         <>
-                            <Table.HeaderCell className="arbeidstidUker__ukenummer ukenummerKolonne">
+                            <Table.HeaderCell className="arbeidstidUkeTabell__ukenummer">
                                 <AppText id="arbeidstidUkeTabell.header.uke" />
                             </Table.HeaderCell>
-                            <Table.HeaderCell className="arbeidstidUker__periode">
+                            <Table.HeaderCell>
                                 <AppText id="arbeidstidUkeTabell.header.dato" />
                             </Table.HeaderCell>
                             {visNormalarbeidstid && (
-                                <Table.HeaderCell className="arbeidstidUker__normalt">
+                                <Table.HeaderCell>
                                     <AppText id="arbeidstidUkeTabell.header.normalt.title" />
                                 </Table.HeaderCell>
                             )}
                         </>
                     )}
-
-                    <Table.HeaderCell className="arbeidstidUker__faktisk endringKolonne">
+                    <Table.HeaderCell className="arbeidstidUkeTabell__arbeidstid">
                         {arbeidstidKolonneTittel || <AppText id="arbeidstidUkeTabell.header.arbeidstid.title" />}
                     </Table.HeaderCell>
-
                     {singleSelectEnabled && (
-                        <Table.HeaderCell className="arbeidstidUker__endre">
+                        <Table.HeaderCell className="arbeidstidUkeTabell__endre" align="right">
                             <AppText id="arbeidstidUkeTabell.header.endre" />
                         </Table.HeaderCell>
                     )}
@@ -101,15 +102,12 @@ const ArbeidstidUkeTabell = ({
                 {uker.map((uke) => {
                     const ukenummer = dayjs(uke.periode.from).isoWeek();
                     const selected = isItemSelected(uke);
+                    const UkeCells = renderCompactTable ? KompakteUkeCeller : UkeCeller;
 
                     return (
-                        <Table.Row
-                            key={uke.isoDateRange}
-                            selected={selected}
-                            style={{ verticalAlign: 'top' }}
-                            data-testid={`uke_${ukenummer}`}>
+                        <Table.Row key={uke.isoDateRange} selected={selected} data-testid={`uke_${ukenummer}`}>
                             {itemsAreSelectable && (
-                                <Table.DataCell className="arbeidstidUkeTabell__velgUke">
+                                <Table.DataCell>
                                     <VelgArbeidsukeItem
                                         uke={uke}
                                         selected={selected}
@@ -117,82 +115,12 @@ const ArbeidstidUkeTabell = ({
                                     />
                                 </Table.DataCell>
                             )}
-                            {renderCompactTable && (
-                                <Table.DataCell>
-                                    <div>
-                                        <AppText id="arbeidstidUkeTabell.compact.uke" values={{ ukenummer }} />
-                                        <div>{getDateRangeText(uke.periode, intl.locale)}</div>
-                                    </div>
-
-                                    {visNormalarbeidstid && (
-                                        <div>
-                                            <AppText
-                                                id="arbeidstidUkeTabell.compact.normalarbeidstid"
-                                                values={{
-                                                    Varighet: () => (
-                                                        <span style={{ whiteSpace: 'nowrap' }}>
-                                                            <DurationText duration={uke.opprinnelig.normalt} />
-                                                        </span>
-                                                    ),
-                                                }}
-                                            />
-                                        </div>
-                                    )}
-
-                                    {(uke.harFeriedager || uke.harFjernetFeriedager || uke.erKortUke) && (
-                                        <Box marginBlock="space-0 space-16">
-                                            <UkeTags
-                                                kortUkeTooltip={getKortUkeTooltipText(uke.periode)}
-                                                dagerMedFerie={uke.ferie?.dagerMedFerie}
-                                                dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}
-                                                erKortUke={uke.erKortUke}
-                                            />
-                                        </Box>
-                                    )}
-                                </Table.DataCell>
-                            )}
-                            {!renderCompactTable && (
-                                <>
-                                    <Table.DataCell
-                                        data-testid="ukenummer"
-                                        className="arbeidstidUker__ukenummer ukenummerKolonne">
-                                        <AriaText>
-                                            <AppText id="arbeidstidUkeTabell.aria.uke" />
-                                        </AriaText>{' '}
-                                        {ukenummer}
-                                    </Table.DataCell>
-                                    <Table.DataCell data-testid="periode" className="arbeidstidUker__periode">
-                                        <div>
-                                            <div className="arbeidsukeTidsrom">
-                                                <span className="arbeidsukeTidsrom__tekst">
-                                                    {getDateRangeText(uke.periode, intl.locale)}
-                                                    {(uke.harFeriedager || uke.harFjernetFeriedager) && (
-                                                        <Box marginBlock="space-0 space-16">
-                                                            <UkeTags
-                                                                dagerMedFerie={uke.ferie?.dagerMedFerie}
-                                                                dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}
-                                                            />
-                                                        </Box>
-                                                    )}
-                                                </span>
-                                                <span className="arbeidsukeTidsrom__info">
-                                                    {uke.erKortUke && <UkeInfoTooltip uke={uke} />}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </Table.DataCell>
-                                    {visNormalarbeidstid && (
-                                        <Table.DataCell data-testid="normalt-timer" className="arbeidstidUker__normalt">
-                                            <DurationText duration={uke.opprinnelig.normalt} />
-                                        </Table.DataCell>
-                                    )}
-                                </>
-                            )}
-                            <Table.DataCell data-testid="arbeidstid-faktisk" className="arbeidstidUker__faktisk">
+                            <UkeCells uke={uke} ukenummer={ukenummer} visNormalarbeidstid={visNormalarbeidstid} />
+                            <Table.DataCell data-testid="arbeidstid-faktisk">
                                 <ArbeidstidUkeInfo uke={uke} visEndringSomOpprinnelig={visEndringSomOpprinnelig} />
                             </Table.DataCell>
                             {singleSelectEnabled && (
-                                <Table.DataCell className="arbeidstidUker__endre">
+                                <Table.DataCell className="arbeidstidUkeTabell__endre" align="right">
                                     {renderEditButton(uke, ukenummer, false)}
                                 </Table.DataCell>
                             )}
@@ -201,6 +129,78 @@ const ArbeidstidUkeTabell = ({
                 })}
             </Table.Body>
         </Table>
+    );
+};
+
+/** Uke, periode, normalarbeidstid og tagger samlet i én celle */
+const KompakteUkeCeller = ({ uke, ukenummer, visNormalarbeidstid }: UkeCellsProps) => {
+    const { intl } = useAppIntl();
+    return (
+        <Table.DataCell>
+            <div>
+                <AppText id="arbeidstidUkeTabell.compact.uke" values={{ ukenummer }} />
+                <div>{getDateRangeText(uke.periode, intl.locale)}</div>
+            </div>
+            {visNormalarbeidstid && (
+                <div>
+                    <AppText
+                        id="arbeidstidUkeTabell.compact.normalarbeidstid"
+                        values={{
+                            Varighet: () => (
+                                <span className="arbeidstidUkeTabell__varighet">
+                                    <DurationText duration={uke.opprinnelig.normalt} />
+                                </span>
+                            ),
+                        }}
+                    />
+                </div>
+            )}
+            {(uke.harFeriedager || uke.harFjernetFeriedager || uke.erKortUke) && (
+                <Box marginBlock="space-0 space-16">
+                    <UkeTags
+                        kortUkeTooltip={getKortUkeTooltipText(uke.periode)}
+                        dagerMedFerie={uke.ferie?.dagerMedFerie}
+                        dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}
+                        erKortUke={uke.erKortUke}
+                    />
+                </Box>
+            )}
+        </Table.DataCell>
+    );
+};
+
+const UkeCeller = ({ uke, ukenummer, visNormalarbeidstid }: UkeCellsProps) => {
+    const { intl } = useAppIntl();
+    return (
+        <>
+            <Table.DataCell data-testid="ukenummer" className="arbeidstidUkeTabell__ukenummer">
+                <AriaText>
+                    <AppText id="arbeidstidUkeTabell.aria.uke" />
+                </AriaText>{' '}
+                {ukenummer}
+            </Table.DataCell>
+            <Table.DataCell data-testid="periode">
+                <HStack justify="space-between" gap="space-8" wrap={false}>
+                    <div>
+                        {getDateRangeText(uke.periode, intl.locale)}
+                        {(uke.harFeriedager || uke.harFjernetFeriedager) && (
+                            <Box marginBlock="space-4">
+                                <UkeTags
+                                    dagerMedFerie={uke.ferie?.dagerMedFerie}
+                                    dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}
+                                />
+                            </Box>
+                        )}
+                    </div>
+                    {uke.erKortUke && <UkeInfoTooltip uke={uke} />}
+                </HStack>
+            </Table.DataCell>
+            {visNormalarbeidstid && (
+                <Table.DataCell data-testid="normalt-timer">
+                    <DurationText duration={uke.opprinnelig.normalt} />
+                </Table.DataCell>
+            )}
+        </>
     );
 };
 

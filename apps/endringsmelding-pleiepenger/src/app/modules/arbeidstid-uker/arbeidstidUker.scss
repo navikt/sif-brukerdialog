@@ -1,5 +1,4 @@
 @use './components/arbeidstidUkeListe.scss';
-@use './components/arbeidstidUkeTabell.scss';
 
 .endretArbeidstid__faktisk {
     font-weight: 700;
@@ -10,20 +9,6 @@
 }
 .endretArbeidstid__timer {
     white-space: nowrap;
-}
-
-.arbeidsukeTidsrom {
-    width: 100%;
-    display: flex;
-    &__tekst {
-        flex-grow: 2;
-    }
-    &__info {
-        font-size: 1.4rem;
-        svg {
-            margin: 0 0.25rem;
-        }
-    }
 }
 
 .arbeidstidInfoListe {

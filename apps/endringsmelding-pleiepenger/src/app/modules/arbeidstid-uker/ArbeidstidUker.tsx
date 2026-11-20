@@ -173,7 +173,6 @@ const ArbeidstidUker = ({
                 visEndringSomOpprinnelig={visEndringSomOpprinnelig}
                 visNormalarbeidstid={visNormalarbeidstid}
                 renderEditButton={renderEditButton}
-                renderUkerFooter={renderUkerFooter}
                 arbeidstidKolonneTittel={arbeidstidKolonneTittel}
                 renderCompactTable={renderCompactTable}
             />

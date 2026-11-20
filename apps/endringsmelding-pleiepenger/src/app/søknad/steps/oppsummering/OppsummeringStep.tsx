@@ -35,7 +35,7 @@ export interface OppsummeringFormValues {
     [OppsummeringFormFields.harBekreftetOpplysninger]: boolean;
 }
 
-const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
+const { FormikWrapper, Form, ConfirmationCheckbox, Checkbox } = getTypedFormComponents<
     OppsummeringFormFields,
     OppsummeringFormValues
 >();
@@ -43,6 +43,8 @@ const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
 const getInitialValues = (søknadsdata: Søknadsdata): OppsummeringFormValues => ({
     harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger || false,
 });
+
+const brukConfirmationCheckbox = false;
 
 const OppsummeringStep = () => {
     useSkyraReloader();
@@ -228,18 +230,20 @@ const OppsummeringStep = () => {
                                         <Heading level="2" size="small">
                                             Bekreft og send inn
                                         </Heading>
-                                        {/* <Checkbox
-                                        name={OppsummeringFormFields.harBekreftetOpplysninger}
-                                        validate={getCheckedValidator()}
-                                        label={<AppText id="oppsummeringStep.bekrefter.tekst" />}
-                                    /> */}
-
-                                        <ConfirmationCheckbox
-                                            disabled={isSubmitting || !harGyldigArbeidstid}
-                                            label={text('oppsummeringStep.bekrefter.tekst')}
-                                            validate={getCheckedValidator()}
-                                            name={OppsummeringFormFields.harBekreftetOpplysninger}
-                                        />
+                                        {brukConfirmationCheckbox ? (
+                                            <ConfirmationCheckbox
+                                                disabled={isSubmitting || !harGyldigArbeidstid}
+                                                label={text('oppsummeringStep.bekrefter.tekst')}
+                                                validate={getCheckedValidator()}
+                                                name={OppsummeringFormFields.harBekreftetOpplysninger}
+                                            />
+                                        ) : (
+                                            <Checkbox
+                                                name={OppsummeringFormFields.harBekreftetOpplysninger}
+                                                validate={getCheckedValidator()}
+                                                label={<AppText id="oppsummeringStep.bekrefter.tekst" />}
+                                            />
+                                        )}
                                     </VStack>
                                 </Form>
 
