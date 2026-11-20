@@ -35,7 +35,7 @@ interface UkeCellsProps {
 const ArbeidstidUkeTabell = ({
     uker,
     visEndringSomOpprinnelig,
-    visEndringIEgenKolonne,
+    visEndringIEgenKolonne = true,
     selectableList,
     arbeidstidKolonneTittel,
     renderCompactTable,
@@ -93,7 +93,7 @@ const ArbeidstidUkeTabell = ({
                     {visEndringIEgenKolonne ? (
                         <>
                             <Table.HeaderCell className="arbeidstidUkeTabell__arbeidstid__endretFra">
-                                <AppText id="arbeidstidUkeTabell.header.endretFra.title" />
+                                {arbeidstidKolonneTittel || <AppText id="arbeidstidUkeTabell.header.endretFra.title" />}
                             </Table.HeaderCell>
                             <Table.HeaderCell className="arbeidstidUkeTabell__arbeidstid__endretTil">
                                 <AppText id="arbeidstidUkeTabell.header.endretTil.title" />
