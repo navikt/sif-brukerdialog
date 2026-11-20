@@ -23,7 +23,7 @@ interface Props {
 const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
     uker,
     visEndringSomOpprinnelig,
-    visNormalarbeidstid,
+    visNormalarbeidstid = false,
     selectableList,
     renderEditButton,
 }) => {

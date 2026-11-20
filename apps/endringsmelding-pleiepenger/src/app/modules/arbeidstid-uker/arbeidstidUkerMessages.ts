@@ -11,7 +11,7 @@ const nb = {
     'arbeidstidUkeTabell.header.uke': 'Uke',
     'arbeidstidUkeTabell.header.dato': 'Dato',
     'arbeidstidUkeTabell.header.normalt.title': 'Normalt',
-    'arbeidstidUkeTabell.header.arbeidstid.title': 'I perioden',
+    'arbeidstidUkeTabell.header.arbeidstid.title': 'Arbeidstid',
     'arbeidstidUkeTabell.header.endre': 'Endre',
     'arbeidstidUkeTabell.compact.uke': 'Uke {ukenummer}',
     'arbeidstidUkeTabell.compact.normalarbeidstid': 'Normal arbeidstid: <Varighet></Varighet>',

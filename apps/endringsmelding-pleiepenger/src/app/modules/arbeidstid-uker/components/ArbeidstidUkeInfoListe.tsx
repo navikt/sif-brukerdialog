@@ -13,7 +13,7 @@ interface Props {
     visNormalarbeidstid?: boolean;
 }
 
-const ArbeidstidUkeInfoListe = ({ uke, visEndringSomOpprinnelig, visNormalarbeidstid = true }: Props) => {
+const ArbeidstidUkeInfoListe = ({ uke, visEndringSomOpprinnelig, visNormalarbeidstid = false }: Props) => {
     const normalarbeidstid = visNormalarbeidstid ? (
         <div>
             <div className="arbeidstidInfoListe__label">Normal arbeidstid:</div>
@@ -28,7 +28,7 @@ const ArbeidstidUkeInfoListe = ({ uke, visEndringSomOpprinnelig, visNormalarbeid
             <div className="arbeidstidInfoListe">
                 {normalarbeidstid}
                 <div>
-                    <div className="arbeidstidInfoListe__label">Arbeid i perioden:</div>
+                    <div className="arbeidstidInfoListe__label">Arbeidstid:</div>
                     <div className="arbeidstidInfoListe__value">
                         {uke.endret === undefined && uke.opprinnelig.faktisk && (
                             <DurationText duration={uke.opprinnelig.faktisk} />
@@ -49,7 +49,7 @@ const ArbeidstidUkeInfoListe = ({ uke, visEndringSomOpprinnelig, visNormalarbeid
         <div className="arbeidstidInfoListe">
             {normalarbeidstid}
             <div>
-                <div className="arbeidstidInfoListe__label">Arbeid i perioden:</div>
+                <div className="arbeidstidInfoListe__label">Arbeidstid:</div>
                 <div className="arbeidstidInfoListe__value" data-testid="timer-faktisk">
                     <strong>
                         <DurationText duration={uke.endret.faktisk} />

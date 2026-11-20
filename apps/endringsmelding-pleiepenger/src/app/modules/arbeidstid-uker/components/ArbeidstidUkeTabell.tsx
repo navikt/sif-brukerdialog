@@ -32,7 +32,7 @@ const ArbeidstidUkeTabell = ({
     selectableList,
     arbeidstidKolonneTittel,
     renderCompactTable,
-    visNormalarbeidstid = true,
+    visNormalarbeidstid = false,
     renderEditButton,
 }: Props) => {
     const { intl } = useAppIntl();
