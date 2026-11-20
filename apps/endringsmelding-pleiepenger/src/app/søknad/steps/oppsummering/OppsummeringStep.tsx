@@ -124,12 +124,6 @@ const OppsummeringStep = () => {
                     tilsynsordningErEndret={endringer.tilsynsordning}
                 />
 
-                {harFjernetFerie && (
-                    <SifInfoCard variant="warning">
-                        <AppText id="arbeidstidStep.fjernetFerie.melding" />
-                    </SifInfoCard>
-                )}
-
                 <VStack gap="space-16">
                     {nyeArbeidsforhold.length > 0 && (
                         <OppsummeringSeksjon
@@ -152,6 +146,12 @@ const OppsummeringStep = () => {
                         onEndre={() => (isSubmitting ? null : endre(StepId.LOVBESTEMT_FERIE))}>
                         {lovbestemtFerie && <LovbestemtFerieOppsummering lovbestemtFerie={lovbestemtFerie} />}
                     </OppsummeringSeksjon>
+
+                    {harFjernetFerie && (
+                        <SifInfoCard variant="warning">
+                            <AppText id="arbeidstidStep.fjernetFerie.melding" />
+                        </SifInfoCard>
+                    )}
 
                     <OppsummeringSeksjon
                         tittel={text('oppsummeringStep.seksjon.arbeidstid.tittel')}

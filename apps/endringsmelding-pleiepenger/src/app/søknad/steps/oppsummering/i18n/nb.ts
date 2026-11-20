@@ -3,7 +3,7 @@ export const oppsummeringStepMessages_nb = {
     'endringerTekstoppsummering.endret.arbeidstid':
         '{antallTotalt, plural, one {endret arbeidstid} other {endret arbeidstid i {antallEndret} av {antallTotalt} arbeidsforhold}}',
     'endringerTekstoppsummering.endret.ferie':
-        '{type, select, lagtTil {lagt til ferie} fjernet {fjernet ferie} other {lagt til og fjernet ferie}}',
+        '{type, select, lagtTil {lagt til feriedager} fjernet {fjernet feriedager} other {lagt til og fjernet feriedager}}',
     'endringerTekstoppsummering.endret.tilsynsordning': 'endret tid i omsorgstilbud',
     'endringerTekstoppsummering.uendret': '{uendret} er uendret.',
     'endringerTekstoppsummering.uendret.arbeidstid': 'arbeidstiden',
