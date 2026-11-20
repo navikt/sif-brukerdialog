@@ -165,7 +165,7 @@ const getNyeArbeidsforhold = (
         return arbeidsforhold ? [{ arbeidsgiver, arbeidsforhold }] : [];
     });
 
-type OppsummeringEndringer = {
+export type OppsummeringEndringer = {
     ferie: boolean;
     arbeidstid: boolean;
     tilsynsordning: boolean;

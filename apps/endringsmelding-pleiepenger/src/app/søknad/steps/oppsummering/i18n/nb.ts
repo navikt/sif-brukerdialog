@@ -12,7 +12,7 @@ export const oppsummeringStepMessages_nb = {
     'endringerTekstoppsummering.uendret.ferie': 'ferie',
     'endringerTekstoppsummering.uendret.tilsynsordning': 'tid i omsorgstilbud',
 
-    'oppsummeringStep.ingenEndringer': 'Du har ikke registrert noen endringer. Legg til endring ved å velge nedenfor.',
+    'oppsummeringStep.ingenEndringer': 'Du har ikke registrert noen endringer. Velg hva du ønsker å endre nedenfor.',
     'oppsummeringStep.ingenEndringRegistrert.nyttArbeidsforhold': 'Ingen endring registrert i nytt arbeidsforhold',
     'oppsummeringStep.ingenEndringRegistrert.ferie': 'Ingen endring registrert i ferie',
     'oppsummeringStep.ingenEndringRegistrert.arbeid': 'Ingen endring registrert i jobb i perioden',
@@ -50,6 +50,12 @@ export const oppsummeringStepMessages_nb = {
     'oppsummeringStep.submit.label': 'Send melding om endring',
     'oppsummeringStep.bekrefter.tekst':
         'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger.',
+
+    'flereEndringer.tittel': 'Ønsker du å melde fra om flere endringer?',
+    'flereEndringer.tekst': 'Hvis du skal melde fra om flere endringer, kan du velge dette nedenfor.',
+    'flereEndringer.endreFerie': 'Endre ferie',
+    'flereEndringer.endreArbeidstid': 'Endre jobb i pleiepengeperioden',
+    'flereEndringer.endreTilsynsordning': 'Endre tid i omsorgstilbud',
 
     'oppsummeringForm.harBekreftetOpplysninger.notChecked': 'Du må bekrefte at opplysningene er riktig',
 };

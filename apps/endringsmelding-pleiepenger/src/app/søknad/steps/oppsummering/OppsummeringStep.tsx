@@ -9,7 +9,7 @@ import actionsCreator from '@app/søknad/context/action/actionCreator';
 import SøknadStep from '@app/søknad/SøknadStep';
 import { Søknadsdata } from '@app/types';
 import { getApiDataFromSøknadsdata, harUkjentArbeidsforholdMenHarIkkeBesvartArbeidstid } from '@app/utils';
-import { BodyLong, ErrorSummary, Heading, Link, VStack } from '@navikt/ds-react';
+import { BodyLong, ErrorSummary, Link, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@sif/hooks';
@@ -20,7 +20,7 @@ import { useEffect, useRef } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 import ArbeidstidOppsummering from './arbeidstid/ArbeidstidOppsummering';
-import EndreLenke from './components/EndreLenke';
+import FlereEndringer from './components/FlereEndringer';
 import OppsummeringSeksjon from './components/OppsummeringSeksjon';
 import LovbestemtFerieOppsummering from './lovbestemt-ferie/LovbestemtFerieOppsummering';
 import NyttArbeidsforholdOppsummering from './nytt-arbeidsforhold/NyttArbeidsforholdOppsummering';
@@ -106,19 +106,20 @@ const OppsummeringStep = () => {
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig} includeBackLink={includeBackLink}>
             <VStack gap="space-24">
-                {harIngenEndringer ? (
-                    <SifInfoCard variant="info">
-                        <AppText id="oppsummeringStep.ingenEndringer" />
-                    </SifInfoCard>
-                ) : null
-                // <EndringerTekstoppsummering
-                //     arbeidsforhold={{
-                //         antallEndret: oppsummeringStepUtils.getAntallArbeidsforholdMedEndretArbeidstid(arbeidstid),
-                //         antallTotalt: oppsummeringStepUtils.getAntallArbeidsforholdTotalt(sak, arbeidstid),
-                //     }}
-                //     ferie={oppsummeringStepUtils.getFerieEndringer(lovbestemtFerie)}
-                //     tilsynsordningErEndret={endringer.tilsynsordning}
-                // />
+                {
+                    harIngenEndringer ? (
+                        <SifInfoCard variant="info">
+                            <AppText id="oppsummeringStep.ingenEndringer" />
+                        </SifInfoCard>
+                    ) : null
+                    // <EndringerTekstoppsummering
+                    //     arbeidsforhold={{
+                    //         antallEndret: oppsummeringStepUtils.getAntallArbeidsforholdMedEndretArbeidstid(arbeidstid),
+                    //         antallTotalt: oppsummeringStepUtils.getAntallArbeidsforholdTotalt(sak, arbeidstid),
+                    //     }}
+                    //     ferie={oppsummeringStepUtils.getFerieEndringer(lovbestemtFerie)}
+                    //     tilsynsordningErEndret={endringer.tilsynsordning}
+                    // />
                 }
 
                 {harFjernetFerie && (
@@ -179,36 +180,7 @@ const OppsummeringStep = () => {
                         )}
                     </OppsummeringSeksjon>
 
-                    <VStack gap="space-12" marginBlock="space-24 space-12">
-                        <VStack gap="space-4">
-                            <Heading level="2" size="small">
-                                Ønsker du å melde fra om flere endringer?
-                            </Heading>
-                            <BodyLong className="noPadding">
-                                Hvis du skal melde fra om flere endringer, er det en fordel å gjøre dette i samme
-                                søknad.
-                            </BodyLong>
-                        </VStack>
-
-                        {!endringer.ferie && (
-                            <EndreLenke
-                                label="Endre ferie"
-                                onClick={() => (isSubmitting ? null : endre(StepId.LOVBESTEMT_FERIE))}
-                            />
-                        )}
-                        {!endringer.arbeidstid && (
-                            <EndreLenke
-                                label="Endre jobb i perioden"
-                                onClick={() => (isSubmitting ? null : endre(StepId.ARBEIDSTID))}
-                            />
-                        )}
-                        {!endringer.tilsynsordning && (
-                            <EndreLenke
-                                label="Endre tid i omsorgstilbud"
-                                onClick={() => (isSubmitting ? null : endre(StepId.TILSYNSORDNING))}
-                            />
-                        )}
-                    </VStack>
+                    <FlereEndringer endringer={endringer} onEndre={(id) => (isSubmitting ? null : endre(id))} />
                 </VStack>
 
                 {harFeilPgaManglendeArbeidstidInfo && (
