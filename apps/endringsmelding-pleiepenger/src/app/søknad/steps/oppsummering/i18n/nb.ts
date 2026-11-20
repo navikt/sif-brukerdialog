@@ -9,8 +9,8 @@ export const oppsummeringStepMessages_nb = {
     'endringerTekstoppsummering.uendret.arbeidstid': 'arbeidstiden',
     'endringerTekstoppsummering.uendret.andreArbeidsforhold':
         '{antall, plural, one {det andre arbeidsforholdet} =2 {de to andre arbeidsforholdene} other {de {antall} andre arbeidsforholdene}}',
-    'endringerTekstoppsummering.uendret.ferie': 'ferien',
-    'endringerTekstoppsummering.uendret.tilsynsordning': 'omsorgstilbudet',
+    'endringerTekstoppsummering.uendret.ferie': 'ferie',
+    'endringerTekstoppsummering.uendret.tilsynsordning': 'tid i omsorgstilbud',
 
     'oppsummeringStep.ingenEndringer': 'Du har ikke registrert noen endringer. Legg til endring ved å velge nedenfor.',
     'oppsummeringStep.ingenEndringRegistrert.nyttArbeidsforhold': 'Ingen endring registrert i nytt arbeidsforhold',

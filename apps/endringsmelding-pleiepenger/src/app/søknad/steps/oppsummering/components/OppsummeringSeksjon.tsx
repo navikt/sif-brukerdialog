@@ -1,5 +1,4 @@
-import { AppText } from '@app/i18n';
-import { BodyShort, FormSummary, HStack, Tag } from '@navikt/ds-react';
+import { BodyShort, FormSummary, HStack } from '@navikt/ds-react';
 import { ReactNode } from 'react';
 
 import EndreLenke from './EndreLenke';
@@ -15,17 +14,20 @@ interface Props {
 }
 
 const OppsummeringSeksjon = ({ tittel, endreLabel, ingenEndringTekst, onEndre, harEndring, children }: Props) => {
+    if (!harEndring) {
+        return null;
+    }
     return (
         <FormSummary>
             <FormSummary.Header>
                 <FormSummary.Heading level="2">
                     <HStack align="center" gap="space-12">
                         {tittel}
-                        {harEndring && (
+                        {/* {harEndring && (
                             <Tag size="small" data-color="info">
                                 <AppText id="tags.endret" />
                             </Tag>
-                        )}
+                        )} */}
                     </HStack>
                 </FormSummary.Heading>
             </FormSummary.Header>
