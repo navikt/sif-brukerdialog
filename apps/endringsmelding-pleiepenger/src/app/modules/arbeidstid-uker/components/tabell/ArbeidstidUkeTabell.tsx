@@ -1,5 +1,3 @@
-import './arbeidstidUkeTabell.scss';
-
 import { SelectableListType } from '@app/hooks/useSelectableList';
 import { AppText, useAppIntl } from '@app/i18n';
 import { Box, Checkbox, HStack, Table } from '@navikt/ds-react';
@@ -9,11 +7,11 @@ import { getDateRangeText } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import { ReactElement } from 'react';
 
-import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
+import { ArbeidstidUkerItem } from '../../types/ArbeidstidUkerItem';
+import UkeInfoTooltip, { getKortUkeTooltipText } from '../UkeInfoTooltip';
+import UkeTags from '../UkeTags';
+import VelgArbeidsukeItem from '../VelgArbeidsukeItem';
 import ArbeidstidUkeInfo from './ArbeidstidUkeInfo';
-import UkeInfoTooltip, { getKortUkeTooltipText } from './UkeInfoTooltip';
-import UkeTags from './UkeTags';
-import VelgArbeidsukeItem from './VelgArbeidsukeItem';
 
 interface Props {
     uker: ArbeidstidUkerItem[];

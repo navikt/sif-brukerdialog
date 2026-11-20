@@ -11,10 +11,10 @@ import { useMediaQuery } from 'react-responsive';
 
 import { usePagination } from '../../hooks/usePagination';
 import { useSelectableList } from '../../hooks/useSelectableList';
-import ArbeidstidUkeListe from './components/ArbeidstidUkeListe';
-import ArbeidstidUkeTabell from './components/ArbeidstidUkeTabell';
 import EndreUkerFooter from './components/EndreUkerFooter';
 import EndreUkerHeader from './components/EndreUkerHeader';
+import ArbeidstidUkeListe from './components/liste/ArbeidstidUkeListe';
+import ArbeidstidUkeTabell from './components/tabell/ArbeidstidUkeTabell';
 import { ArbeidstidUkerItem } from './types/ArbeidstidUkerItem';
 
 interface Props {
@@ -86,7 +86,6 @@ const ArbeidstidUker = ({
 
         return (
             <EditButton
-                className="endreArbeidstidUkeButton"
                 data-testid="endre-button"
                 onClick={() => {
                     editItem(uke);
@@ -150,7 +149,7 @@ const ArbeidstidUker = ({
 
     if (renderAsList) {
         return (
-            <VStack gap="space-16" className="arbeidstidUkeListeWrapper">
+            <VStack gap="space-16" className="arbeidstidUker--liste">
                 {renderEndreUkerHeader()}
                 <ArbeidstidUkeListe
                     uker={visibleItems}

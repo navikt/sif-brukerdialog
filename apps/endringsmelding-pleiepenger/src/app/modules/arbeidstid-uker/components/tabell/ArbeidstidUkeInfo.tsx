@@ -5,8 +5,8 @@ import { Box } from '@navikt/ds-react';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 import { DurationText } from '@navikt/sif-common-ui';
 
-import { erArbeidstidUkeItemEndret } from '../arbeidstidUkerUtils';
-import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
+import { erArbeidstidUkeItemEndret } from '../../arbeidstidUkerUtils';
+import { ArbeidstidUkerItem } from '../../types/ArbeidstidUkerItem';
 
 interface Props {
     uke: ArbeidstidUkerItem;
@@ -23,12 +23,12 @@ const ArbeidstidUkeInfo = ({ uke, visEndringSomOpprinnelig }: Props) => {
 
     return (
         <>
-            <strong className="endretArbeidstid__timer" data-testid="timer-faktisk">
+            <strong className="arbeidstidUkeInfo__timer" data-testid="timer-faktisk">
                 <DurationText duration={endret.faktisk} />
             </strong>
-            <div className="endretArbeidstid__opprinnelig">
+            <div className="arbeidstidUkeInfo__opprinnelig">
                 <AriaText>Endret fra </AriaText>
-                <span className="endretArbeidstid__timer" data-testid="timer-opprinnelig">
+                <span className="arbeidstidUkeInfo__timer" data-testid="timer-opprinnelig">
                     {opprinnelig.faktisk && <DurationText duration={opprinnelig.faktisk} />}
                 </span>
             </div>

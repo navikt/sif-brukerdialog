@@ -4,8 +4,8 @@ import { XMarkOctagonFillIcon } from '@navikt/aksel-icons';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
 import { DurationText } from '@navikt/sif-common-ui';
 
-import { erArbeidstidUkeItemEndret } from '../arbeidstidUkerUtils';
-import { ArbeidstidUkerItem } from '../types/ArbeidstidUkerItem';
+import { erArbeidstidUkeItemEndret } from '../../arbeidstidUkerUtils';
+import { ArbeidstidUkerItem } from '../../types/ArbeidstidUkerItem';
 
 interface Props {
     uke: ArbeidstidUkerItem;
@@ -16,8 +16,8 @@ interface Props {
 const ArbeidstidUkeInfoListe = ({ uke, visEndringSomOpprinnelig, visNormalarbeidstid = false }: Props) => {
     const normalarbeidstid = visNormalarbeidstid ? (
         <div>
-            <div className="arbeidstidInfoListe__label">Normal arbeidstid:</div>
-            <div className="arbeidstidInfoListe__value">
+            <div className="arbeidstidUkeInfoListe__label">Normal arbeidstid:</div>
+            <div className="arbeidstidUkeInfoListe__value">
                 <DurationText duration={uke.opprinnelig.normalt} />
             </div>
         </div>
@@ -25,11 +25,11 @@ const ArbeidstidUkeInfoListe = ({ uke, visEndringSomOpprinnelig, visNormalarbeid
 
     if (uke.endret === undefined || visEndringSomOpprinnelig) {
         return (
-            <div className="arbeidstidInfoListe">
+            <div className="arbeidstidUkeInfoListe">
                 {normalarbeidstid}
                 <div>
-                    <div className="arbeidstidInfoListe__label">Arbeidstid:</div>
-                    <div className="arbeidstidInfoListe__value">
+                    <div className="arbeidstidUkeInfoListe__label">Arbeidstid:</div>
+                    <div className="arbeidstidUkeInfoListe__value">
                         {uke.endret === undefined && uke.opprinnelig.faktisk && (
                             <DurationText duration={uke.opprinnelig.faktisk} />
                         )}
@@ -46,18 +46,18 @@ const ArbeidstidUkeInfoListe = ({ uke, visEndringSomOpprinnelig, visNormalarbeid
 
     const erEndringGyldig = erTimerGyldigInnenforAntallDager(uke.endret.faktisk, uke.antallDagerMedArbeidstid);
     return (
-        <div className="arbeidstidInfoListe">
+        <div className="arbeidstidUkeInfoListe">
             {normalarbeidstid}
             <div>
-                <div className="arbeidstidInfoListe__label">Arbeidstid:</div>
-                <div className="arbeidstidInfoListe__value" data-testid="timer-faktisk">
+                <div className="arbeidstidUkeInfoListe__label">Arbeidstid:</div>
+                <div className="arbeidstidUkeInfoListe__value" data-testid="timer-faktisk">
                     <strong>
                         <DurationText duration={uke.endret.faktisk} />
                     </strong>
                     {erEndret && (
-                        <div className="endretArbeidstid__opprinnelig">
+                        <div className="arbeidstidUkeInfoListe__opprinnelig">
                             <AriaText>Endret fra </AriaText>
-                            <div className="endretArbeidstid__timer" data-testid="timer-opprinnelig">
+                            <div className="arbeidstidUkeInfoListe__timer" data-testid="timer-opprinnelig">
                                 {uke.opprinnelig.faktisk && <DurationText duration={uke.opprinnelig.faktisk} />}
                             </div>
                         </div>
