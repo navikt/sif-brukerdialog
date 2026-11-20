@@ -9,7 +9,7 @@ import actionsCreator from '@app/søknad/context/action/actionCreator';
 import SøknadStep from '@app/søknad/SøknadStep';
 import { Søknadsdata } from '@app/types';
 import { getApiDataFromSøknadsdata, harUkjentArbeidsforholdMenHarIkkeBesvartArbeidstid } from '@app/utils';
-import { BodyLong, BodyShort, ErrorSummary, Heading, Link, VStack } from '@navikt/ds-react';
+import { BodyLong, ErrorSummary, Heading, Link, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@sif/hooks';
@@ -21,7 +21,6 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 import ArbeidstidOppsummering from './arbeidstid/ArbeidstidOppsummering';
 import EndreLenke from './components/EndreLenke';
-import EndringerTekstoppsummering from './components/EndringerTekstoppsummering';
 import OppsummeringSeksjon from './components/OppsummeringSeksjon';
 import LovbestemtFerieOppsummering from './lovbestemt-ferie/LovbestemtFerieOppsummering';
 import NyttArbeidsforholdOppsummering from './nytt-arbeidsforhold/NyttArbeidsforholdOppsummering';
@@ -108,19 +107,19 @@ const OppsummeringStep = () => {
         <SøknadStep stepId={stepId} stepConfig={stepConfig} includeBackLink={includeBackLink}>
             <VStack gap="space-24">
                 {harIngenEndringer ? (
-                    <BodyShort size="large">
+                    <SifInfoCard variant="info">
                         <AppText id="oppsummeringStep.ingenEndringer" />
-                    </BodyShort>
-                ) : (
-                    <EndringerTekstoppsummering
-                        arbeidsforhold={{
-                            antallEndret: oppsummeringStepUtils.getAntallArbeidsforholdMedEndretArbeidstid(arbeidstid),
-                            antallTotalt: oppsummeringStepUtils.getAntallArbeidsforholdTotalt(sak, arbeidstid),
-                        }}
-                        ferie={oppsummeringStepUtils.getFerieEndringer(lovbestemtFerie)}
-                        tilsynsordningErEndret={endringer.tilsynsordning}
-                    />
-                )}
+                    </SifInfoCard>
+                ) : null
+                // <EndringerTekstoppsummering
+                //     arbeidsforhold={{
+                //         antallEndret: oppsummeringStepUtils.getAntallArbeidsforholdMedEndretArbeidstid(arbeidstid),
+                //         antallTotalt: oppsummeringStepUtils.getAntallArbeidsforholdTotalt(sak, arbeidstid),
+                //     }}
+                //     ferie={oppsummeringStepUtils.getFerieEndringer(lovbestemtFerie)}
+                //     tilsynsordningErEndret={endringer.tilsynsordning}
+                // />
+                }
 
                 {harFjernetFerie && (
                     <SifInfoCard variant="warning">
