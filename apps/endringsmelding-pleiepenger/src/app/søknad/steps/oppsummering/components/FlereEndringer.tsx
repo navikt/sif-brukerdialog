@@ -7,20 +7,23 @@ import EndreLenke from './EndreLenke';
 
 interface Props {
     endringer: OppsummeringEndringer;
+    harIngenEndringer: boolean;
     onEndre: (stepId: EndringStepId) => void;
 }
 
-const FlereEndringer = ({ endringer, onEndre }: Props) => {
+const FlereEndringer = ({ endringer, harIngenEndringer, onEndre }: Props) => {
     const { text } = useAppIntl();
     return (
         <VStack gap="space-12" marginBlock="space-24 space-12">
             <VStack gap="space-4">
                 <Heading level="2" size="small">
-                    <AppText id="flereEndringer.tittel" />
+                    <AppText id={harIngenEndringer ? 'flereEndringer.ingenEndringer.tittel' : 'flereEndringer.tittel'} />
                 </Heading>
-                <BodyLong className="noPadding">
-                    <AppText id="flereEndringer.tekst" />
-                </BodyLong>
+                {!harIngenEndringer && (
+                    <BodyLong className="noPadding">
+                        <AppText id="flereEndringer.tekst" />
+                    </BodyLong>
+                )}
             </VStack>
 
             {!endringer.ferie && (

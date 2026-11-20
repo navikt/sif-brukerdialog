@@ -106,21 +106,20 @@ const OppsummeringStep = () => {
     return (
         <SøknadStep stepId={stepId} stepConfig={stepConfig} includeBackLink={includeBackLink}>
             <VStack gap="space-24">
-                {
-                    harIngenEndringer ? (
-                        <SifInfoCard variant="info">
-                            <AppText id="oppsummeringStep.ingenEndringer" />
-                        </SifInfoCard>
-                    ) : null
-                    // <EndringerTekstoppsummering
-                    //     arbeidsforhold={{
-                    //         antallEndret: oppsummeringStepUtils.getAntallArbeidsforholdMedEndretArbeidstid(arbeidstid),
-                    //         antallTotalt: oppsummeringStepUtils.getAntallArbeidsforholdTotalt(sak, arbeidstid),
-                    //     }}
-                    //     ferie={oppsummeringStepUtils.getFerieEndringer(lovbestemtFerie)}
-                    //     tilsynsordningErEndret={endringer.tilsynsordning}
-                    // />
-                }
+                {harIngenEndringer && (
+                    <SifInfoCard variant="info">
+                        <AppText id="oppsummeringStep.ingenEndringer" />
+                    </SifInfoCard>
+                )}
+
+                {/* <EndringerTekstoppsummering
+                    arbeidsforhold={{
+                        antallEndret: oppsummeringStepUtils.getAntallArbeidsforholdMedEndretArbeidstid(arbeidstid),
+                        antallTotalt: oppsummeringStepUtils.getAntallArbeidsforholdTotalt(sak, arbeidstid),
+                    }}
+                    ferie={oppsummeringStepUtils.getFerieEndringer(lovbestemtFerie)}
+                    tilsynsordningErEndret={endringer.tilsynsordning}
+                /> */}
 
                 {harFjernetFerie && (
                     <SifInfoCard variant="warning">
@@ -180,7 +179,11 @@ const OppsummeringStep = () => {
                         )}
                     </OppsummeringSeksjon>
 
-                    <FlereEndringer endringer={endringer} onEndre={(id) => (isSubmitting ? null : endre(id))} />
+                    <FlereEndringer
+                        endringer={endringer}
+                        harIngenEndringer={harIngenEndringer}
+                        onEndre={(id) => (isSubmitting ? null : endre(id))}
+                    />
                 </VStack>
 
                 {harFeilPgaManglendeArbeidstidInfo && (

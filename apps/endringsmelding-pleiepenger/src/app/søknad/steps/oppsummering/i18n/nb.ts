@@ -12,7 +12,7 @@ export const oppsummeringStepMessages_nb = {
     'endringerTekstoppsummering.uendret.ferie': 'ferie',
     'endringerTekstoppsummering.uendret.tilsynsordning': 'tid i omsorgstilbud',
 
-    'oppsummeringStep.ingenEndringer': 'Du har ikke registrert noen endringer. Velg hva du ønsker å endre nedenfor.',
+    'oppsummeringStep.ingenEndringer': 'Du har ikke registrert noen endringer.',
     'oppsummeringStep.ingenEndringRegistrert.nyttArbeidsforhold': 'Ingen endring registrert i nytt arbeidsforhold',
     'oppsummeringStep.ingenEndringRegistrert.ferie': 'Ingen endring registrert i ferie',
     'oppsummeringStep.ingenEndringRegistrert.arbeid': 'Ingen endring registrert i jobb i perioden',
@@ -53,6 +53,7 @@ export const oppsummeringStepMessages_nb = {
 
     'flereEndringer.tittel': 'Ønsker du å melde fra om flere endringer?',
     'flereEndringer.tekst': 'Hvis du skal melde fra om flere endringer, kan du velge dette nedenfor.',
+    'flereEndringer.ingenEndringer.tittel': 'Hva ønsker du å endre?',
     'flereEndringer.endreFerie': 'Endre ferie',
     'flereEndringer.endreArbeidstid': 'Endre jobb i pleiepengeperioden',
     'flereEndringer.endreTilsynsordning': 'Endre tid i omsorgstilbud',
