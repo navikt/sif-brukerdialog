@@ -20,6 +20,7 @@ import { useEffect, useRef } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 import ArbeidstidOppsummering from './arbeidstid/ArbeidstidOppsummering';
+import EndringerTekstoppsummering from './components/EndringerTekstoppsummering';
 import FlereEndringer from './components/FlereEndringer';
 import OppsummeringSeksjon from './components/OppsummeringSeksjon';
 import LovbestemtFerieOppsummering from './lovbestemt-ferie/LovbestemtFerieOppsummering';
@@ -44,7 +45,7 @@ const getInitialValues = (søknadsdata: Søknadsdata): OppsummeringFormValues =>
     harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger || false,
 });
 
-const brukConfirmationCheckbox = false;
+const brukConfirmationCheckbox = true;
 
 const OppsummeringStep = () => {
     useSkyraReloader();
@@ -114,14 +115,14 @@ const OppsummeringStep = () => {
                     </SifInfoCard>
                 )}
 
-                {/* <EndringerTekstoppsummering
+                <EndringerTekstoppsummering
                     arbeidsforhold={{
                         antallEndret: oppsummeringStepUtils.getAntallArbeidsforholdMedEndretArbeidstid(arbeidstid),
                         antallTotalt: oppsummeringStepUtils.getAntallArbeidsforholdTotalt(sak, arbeidstid),
                     }}
                     ferie={oppsummeringStepUtils.getFerieEndringer(lovbestemtFerie)}
                     tilsynsordningErEndret={endringer.tilsynsordning}
-                /> */}
+                />
 
                 {harFjernetFerie && (
                     <SifInfoCard variant="warning">
@@ -226,25 +227,25 @@ const OppsummeringStep = () => {
                                     isFinalSubmit={true}
                                     submitPending={isSubmitting}
                                     backButtonDisabled={isSubmitting}>
-                                    <VStack gap="space-8">
-                                        <Heading level="2" size="small">
-                                            Bekreft og send inn
-                                        </Heading>
-                                        {brukConfirmationCheckbox ? (
-                                            <ConfirmationCheckbox
-                                                disabled={isSubmitting || !harGyldigArbeidstid}
-                                                label={text('oppsummeringStep.bekrefter.tekst')}
-                                                validate={getCheckedValidator()}
-                                                name={OppsummeringFormFields.harBekreftetOpplysninger}
-                                            />
-                                        ) : (
+                                    {brukConfirmationCheckbox ? (
+                                        <ConfirmationCheckbox
+                                            disabled={isSubmitting || !harGyldigArbeidstid}
+                                            label={text('oppsummeringStep.bekrefter.tekst')}
+                                            validate={getCheckedValidator()}
+                                            name={OppsummeringFormFields.harBekreftetOpplysninger}
+                                        />
+                                    ) : (
+                                        <VStack gap="space-8">
+                                            <Heading level="2" size="small">
+                                                Bekreft og send inn
+                                            </Heading>
                                             <Checkbox
                                                 name={OppsummeringFormFields.harBekreftetOpplysninger}
                                                 validate={getCheckedValidator()}
                                                 label={<AppText id="oppsummeringStep.bekrefter.tekst" />}
                                             />
-                                        )}
-                                    </VStack>
+                                        </VStack>
+                                    )}
                                 </Form>
 
                                 {sendSøknadError && (
