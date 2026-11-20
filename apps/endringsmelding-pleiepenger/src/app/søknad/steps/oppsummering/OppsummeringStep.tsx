@@ -9,7 +9,7 @@ import actionsCreator from '@app/søknad/context/action/actionCreator';
 import SøknadStep from '@app/søknad/SøknadStep';
 import { Søknadsdata } from '@app/types';
 import { getApiDataFromSøknadsdata, harUkjentArbeidsforholdMenHarIkkeBesvartArbeidstid } from '@app/utils';
-import { BodyLong, ErrorSummary, Link, VStack } from '@navikt/ds-react';
+import { BodyLong, ErrorSummary, Heading, Link, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@sif/hooks';
@@ -35,10 +35,7 @@ export interface OppsummeringFormValues {
     [OppsummeringFormFields.harBekreftetOpplysninger]: boolean;
 }
 
-const { FormikWrapper, Form, ConfirmationCheckbox } = getTypedFormComponents<
-    OppsummeringFormFields,
-    OppsummeringFormValues
->();
+const { FormikWrapper, Form, Checkbox } = getTypedFormComponents<OppsummeringFormFields, OppsummeringFormValues>();
 
 const getInitialValues = (søknadsdata: Søknadsdata): OppsummeringFormValues => ({
     harBekreftetOpplysninger: søknadsdata.oppsummering?.harBekreftetOpplysninger || false,
@@ -224,13 +221,22 @@ const OppsummeringStep = () => {
                                     isFinalSubmit={true}
                                     submitPending={isSubmitting}
                                     backButtonDisabled={isSubmitting}>
-                                    <ConfirmationCheckbox
+                                    <Heading level="2" size="small">
+                                        Bekreft og send inn
+                                    </Heading>
+                                    <Checkbox
+                                        name={OppsummeringFormFields.harBekreftetOpplysninger}
+                                        validate={getCheckedValidator()}
+                                        label={<AppText id="oppsummeringStep.bekrefter.tekst" />}
+                                    />
+
+                                    {/* <ConfirmationCheckbox
                                         disabled={isSubmitting || !harGyldigArbeidstid}
                                         label={text('oppsummeringStep.bekrefter.tekst')}
                                         validate={getCheckedValidator()}
                                         data-testid="bekreft-opplysninger"
                                         name={OppsummeringFormFields.harBekreftetOpplysninger}
-                                    />
+                                    /> */}
                                 </Form>
 
                                 {sendSøknadError && (
