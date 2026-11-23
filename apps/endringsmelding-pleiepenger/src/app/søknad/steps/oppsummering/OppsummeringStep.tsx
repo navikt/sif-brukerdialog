@@ -8,7 +8,7 @@ import actionsCreator from '@app/søknad/context/action/actionCreator';
 import SøknadStep from '@app/søknad/SøknadStep';
 import { Søknadsdata } from '@app/types';
 import { getApiDataFromSøknadsdata, harUkjentArbeidsforholdMenHarIkkeBesvartArbeidstid } from '@app/utils';
-import { BodyLong, ErrorSummary, Heading, Link, VStack } from '@navikt/ds-react';
+import { Alert, BodyLong, ErrorSummary, Heading, Link, VStack } from '@navikt/ds-react';
 import { ErrorSummaryItem } from '@navikt/ds-react/ErrorSummary';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { usePrevious } from '@sif/hooks';
@@ -148,9 +148,9 @@ const OppsummeringStep = () => {
                     </OppsummeringSeksjon>
 
                     {visFjernetFerieMelding && harFjernetFerie && (
-                        <SifInfoCard variant="warning">
+                        <Alert variant="warning">
                             <AppText id="arbeidstidStep.fjernetFerie.melding" />
-                        </SifInfoCard>
+                        </Alert>
                     )}
 
                     <OppsummeringSeksjon
