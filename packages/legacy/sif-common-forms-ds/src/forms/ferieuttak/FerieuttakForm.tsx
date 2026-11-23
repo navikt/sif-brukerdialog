@@ -131,6 +131,7 @@ const FerieuttakForm = ({
                     submitButtonLabel={formLabels.okButton}
                     cancelButtonLabel={formLabels.cancelButton}>
                     <Form.DateRangePicker
+                        dropdownCaption={true}
                         legend={formLabels.intervalTitle}
                         minDate={minDate}
                         maxDate={maxDate}
@@ -138,6 +139,7 @@ const FerieuttakForm = ({
                         disabledDateRanges={[...andreFerieuttak, ...utilgjengeligePerioder]}
                         disableWeekends={disableWeekends}
                         fromInputProps={{
+                            showWeekNumber: true,
                             label: formLabels.fromDate,
                             name: FerieuttakFormFields.from,
                             validate: (value) => {
@@ -158,6 +160,7 @@ const FerieuttakForm = ({
                             },
                         }}
                         toInputProps={{
+                            showWeekNumber: true,
                             label: formLabels.toDate,
                             name: FerieuttakFormFields.to,
                             defaultMonth: ISOStringToDate(formik.values.from) || defaultMonth,
