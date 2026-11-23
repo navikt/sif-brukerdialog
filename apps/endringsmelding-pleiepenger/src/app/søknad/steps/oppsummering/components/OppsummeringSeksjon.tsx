@@ -1,4 +1,4 @@
-import { BodyShort, FormSummary, HStack } from '@navikt/ds-react';
+import { FormSummary, HStack } from '@navikt/ds-react';
 import { ReactNode } from 'react';
 
 import EndreLenke from './EndreLenke';
@@ -6,14 +6,13 @@ import EndreLenke from './EndreLenke';
 interface Props {
     tittel: string;
     endreLabel: string;
-    ingenEndringTekst: string;
     onEndre: () => void;
     /** Styrer «Endret»-taggen, og om «Ingen endring registrert» vises i stedet for children */
     harEndring: boolean;
     children: ReactNode;
 }
 
-const OppsummeringSeksjon = ({ tittel, endreLabel, ingenEndringTekst, onEndre, harEndring, children }: Props) => {
+const OppsummeringSeksjon = ({ tittel, endreLabel, onEndre, harEndring, children }: Props) => {
     if (!harEndring) {
         return null;
     }
@@ -23,19 +22,12 @@ const OppsummeringSeksjon = ({ tittel, endreLabel, ingenEndringTekst, onEndre, h
                 <FormSummary.Heading level="2">
                     <HStack align="center" gap="space-12">
                         {tittel}
-                        {/* {harEndring && (
-                            <Tag size="small" data-color="info">
-                                <AppText id="tags.endret" />
-                            </Tag>
-                        )} */}
                     </HStack>
                 </FormSummary.Heading>
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
-                    <FormSummary.Value>
-                        {harEndring ? children : <BodyShort as="div">{ingenEndringTekst}</BodyShort>}
-                    </FormSummary.Value>
+                    <FormSummary.Value>{children}</FormSummary.Value>
                 </FormSummary.Answer>
             </FormSummary.Answers>
             <FormSummary.Footer>
