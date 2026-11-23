@@ -87,7 +87,7 @@ const OppsummeringStep = () => {
     );
 
     if (!apiData) {
-        return <SifInfoCard variant="error">ApiData er undefined</SifInfoCard>;
+        return <Alert variant="error">ApiData er undefined</Alert>;
     }
 
     const {
