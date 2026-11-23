@@ -1,6 +1,6 @@
 import AriaAlternative from '@navikt/sif-common-core-ds/src/atoms/aria-alternative/AriaAlternative';
 import { DateRange, InputTime } from '@navikt/sif-common-formik-ds';
-import { DateDurationMap, dateToISODate, Duration, ensureDuration } from '@navikt/sif-common-utils';
+import { DateDurationMap, dateToISODate, Duration, durationsAreEqual, ensureDuration } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import React from 'react';
 
@@ -27,6 +27,8 @@ interface Props {
     skjulTommeDagerIListe?: boolean;
     visOpprinneligTid?: boolean;
     skjulUkerMedKunUtilgjengeligeDager?: boolean;
+    /** Skjuler uendrede dager i listevisning, og uker uten endringer i begge visninger */
+    skjulUendredeDager?: boolean;
     onDateClick?: (date: Date) => void;
     tomUkeContentRenderer?: () => React.ReactNode;
     tidRenderer?: TidRenderer;
@@ -43,6 +45,7 @@ const TidsbrukKalender = ({
     skjulTommeDagerIListe,
     visOpprinneligTid,
     skjulUkerMedKunUtilgjengeligeDager,
+    skjulUendredeDager,
     onDateClick,
     tidRenderer,
     opprinneligTidRenderer,
@@ -70,6 +73,11 @@ const TidsbrukKalender = ({
         };
     });
 
+    const erDagEndret = (dato: Date): boolean => {
+        const dag = kalenderdager[dateToISODate(dato)];
+        return dag?.tid !== undefined && !durationsAreEqual(ensureDuration(dag.tid), dag.tidOpprinnelig);
+    };
+
     return (
         <CalendarGrid
             month={måned}
@@ -77,6 +85,7 @@ const TidsbrukKalender = ({
             disabledDateInfo={utilgjengeligDagInfo}
             hideEmptyContentInListMode={skjulTommeDagerIListe}
             hideWeeksWithOnlyDisabledContent={skjulUkerMedKunUtilgjengeligeDager}
+            hideDate={skjulUendredeDager ? (dato) => !erDagEndret(dato) : undefined}
             onDateClick={onDateClick}
             allDaysInWeekDisabledContentRenderer={tomUkeContentRenderer}
             dateRendererShort={(date: Date) => (
