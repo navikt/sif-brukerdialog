@@ -13,7 +13,7 @@ export const velkommenPageMessages_nb = {
 
     'velkommenPage.endre.spm': 'Hva ønsker du å endre?',
     'velkommenPage.endre.ferie': 'Feriedager',
-    'velkommenPage.endre.jobb': 'Arbeidstid',
+    'velkommenPage.endre.jobb': 'Jobb i pleiepengeperioden',
     'velkommenPage.endre.tilsynsordning': 'Tid i omsorgstilbud',
 
     'velkommenPage.omSøknaden.tittel': 'Om utfylling av skjemaet',
