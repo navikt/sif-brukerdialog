@@ -64,6 +64,7 @@ export enum GjentagelseType {
     sammeDagUtMånedFom = 'sammeDagUtMånedFom',
     heleUken = 'heleUken',
     heleMåneden = 'heleMåneden',
+    utMånedFraDato = 'utMånedFraDato',
     sammeDagUtSøknadsperiodenFom = 'sammeDagUtSøknadsperiodenFom',
     alleDagerUtSøknadsperioden = 'alleDagerUtSøknadsperioden',
 }
@@ -234,6 +235,13 @@ const TidEnkeltdagForm = ({
                                                             månedNavn,
                                                         }),
                                                         value: GjentagelseType.heleMåneden,
+                                                    },
+                                                    {
+                                                        label: text('tidEnkeltdagForm.gjentagelse.utMånedFraDato', {
+                                                            månedNavn,
+                                                            fra: dateFormatter.dayDateMonth(dato),
+                                                        }),
+                                                        value: GjentagelseType.utMånedFraDato,
                                                     },
                                                     {
                                                         label: text(
