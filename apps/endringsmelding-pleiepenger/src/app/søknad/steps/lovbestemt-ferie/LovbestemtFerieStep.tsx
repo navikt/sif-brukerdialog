@@ -49,7 +49,7 @@ const LovbestemtFerieStep = () => {
 
     const {
         dispatch,
-        state: { søknadsdata, sak, valgteEndringer },
+        state: { søknadsdata, sak },
     } = useSøknadContext();
 
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
@@ -181,7 +181,7 @@ const LovbestemtFerieStep = () => {
                                         }}
                                     />
 
-                                    {harFjernetFerieIValues && valgteEndringer.arbeidstid === false && (
+                                    {harFjernetFerieIValues && (
                                         <Alert variant="warning">
                                             <AppText id="lovbestemtFerieStep.ferieFjernet.melding" />
                                         </Alert>
