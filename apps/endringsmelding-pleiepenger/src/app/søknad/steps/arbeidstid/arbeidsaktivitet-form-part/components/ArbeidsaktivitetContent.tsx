@@ -4,7 +4,7 @@ import DateRangeExpansionCards from '@app/components/date-range-expansion-cards/
 import EndretTag from '@app/components/tags/EndretTag';
 import FerieTag from '@app/components/tags/FerieTag';
 import TagsContainer from '@app/components/tags/tags-container/TagsContainer';
-import { AppText } from '@app/i18n';
+import { AppText, useAppIntl } from '@app/i18n';
 import ArbeidstidUker from '@app/modules/arbeidstid-uker/ArbeidstidUker';
 import { ArbeidstidUkerItem } from '@app/modules/arbeidstid-uker/types/ArbeidstidUkerItem';
 import EndreArbeidstidForm from '@app/modules/endre-arbeidstid-form/EndreArbeidstidForm';
@@ -61,6 +61,7 @@ const ArbeidsaktivitetContent = ({
     tillattEndringsperiode,
     onArbeidstidAktivitetChange,
 }: Props) => {
+    const { text } = useAppIntl();
     const [arbeidsukerForEndring, setArbeidsukerForEndring] = useState<Arbeidsuke[] | undefined>();
     const [resetUkerTabellCounter, setResetUkerTabellCounter] = useState(0);
 
@@ -81,6 +82,7 @@ const ArbeidsaktivitetContent = ({
                 )}
                 visEndringSomOpprinnelig={erNyArbeidsgiver}
                 triggerResetValgCounter={resetUkerTabellCounter}
+                arbeidstidKolonneTittel={text('arbeidstidUkeTabell.header.arbeidstid.title')}
                 onEndreUker={(uker: ArbeidstidUkerItem[]) => {
                     setArbeidsukerForEndring(uker.map((uke) => periode.arbeidsuker[uke.isoDateRange]));
                 }}
