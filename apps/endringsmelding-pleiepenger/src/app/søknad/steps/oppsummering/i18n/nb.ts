@@ -44,6 +44,7 @@ export const oppsummeringStepMessages_nb = {
     'oppsummeringStep.tilsynsordning.dagerEndret': ' - {antall} {antall, plural, one {dag} other {dager}} endret',
 
     'oppsummeringStep.submit.label': 'Send melding om endring',
+    'oppsummeringStep.bekreftOgSendInn.tittel': 'Bekreft og send inn',
     'oppsummeringStep.bekrefter.tekst':
         'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger.',
 

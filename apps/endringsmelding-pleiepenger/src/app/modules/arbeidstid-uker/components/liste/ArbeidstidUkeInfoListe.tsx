@@ -1,4 +1,5 @@
 import IconText from '@app/components/icon-text/IconText';
+import { AppText } from '@app/i18n';
 import { erTimerGyldigInnenforAntallDager } from '@app/utils';
 import { XMarkOctagonFillIcon } from '@navikt/aksel-icons';
 import AriaText from '@navikt/sif-common-core-ds/src/atoms/aria-text/AriaText';
@@ -16,7 +17,9 @@ interface Props {
 const ArbeidstidUkeInfoListe = ({ uke, visEndringSomOpprinnelig, visNormalarbeidstid = false }: Props) => {
     const normalarbeidstid = visNormalarbeidstid ? (
         <div>
-            <div className="arbeidstidUkeInfoListe__label">Normal arbeidstid:</div>
+            <div className="arbeidstidUkeInfoListe__label">
+                <AppText id="arbeidstidUkeInfoListe.normalArbeidstid" />
+            </div>
             <div className="arbeidstidUkeInfoListe__value">
                 <DurationText duration={uke.opprinnelig.normalt} />
             </div>
@@ -28,7 +31,9 @@ const ArbeidstidUkeInfoListe = ({ uke, visEndringSomOpprinnelig, visNormalarbeid
             <div className="arbeidstidUkeInfoListe">
                 {normalarbeidstid}
                 <div>
-                    <div className="arbeidstidUkeInfoListe__label">Arbeidstid:</div>
+                    <div className="arbeidstidUkeInfoListe__label">
+                        <AppText id="arbeidstidUkeInfoListe.arbeidstid" />
+                    </div>
                     <div className="arbeidstidUkeInfoListe__value">
                         {uke.endret === undefined && uke.opprinnelig.faktisk && (
                             <DurationText duration={uke.opprinnelig.faktisk} />
@@ -49,14 +54,18 @@ const ArbeidstidUkeInfoListe = ({ uke, visEndringSomOpprinnelig, visNormalarbeid
         <div className="arbeidstidUkeInfoListe">
             {normalarbeidstid}
             <div>
-                <div className="arbeidstidUkeInfoListe__label">Arbeidstid:</div>
+                <div className="arbeidstidUkeInfoListe__label">
+                    <AppText id="arbeidstidUkeInfoListe.arbeidstid" />
+                </div>
                 <div className="arbeidstidUkeInfoListe__value" data-testid="timer-faktisk">
                     <strong>
                         <DurationText duration={uke.endret.faktisk} />
                     </strong>
                     {erEndret && (
                         <div className="arbeidstidUkeInfoListe__opprinnelig">
-                            <AriaText>Endret fra </AriaText>
+                            <AriaText>
+                                <AppText id="arbeidstidUkeInfoListe.endretFra" />{' '}
+                            </AriaText>
                             <div className="arbeidstidUkeInfoListe__timer" data-testid="timer-opprinnelig">
                                 {uke.opprinnelig.faktisk && <DurationText duration={uke.opprinnelig.faktisk} />}
                             </div>
@@ -70,7 +79,7 @@ const ArbeidstidUkeInfoListe = ({ uke, visEndringSomOpprinnelig, visNormalarbeid
                         icon={
                             <XMarkOctagonFillIcon style={{ color: '#C30000' }} role="presentation" aria-hidden="true" />
                         }>
-                        For mange timer
+                        <AppText id="arbeidstidUkeInfoListe.forMangeTimer" />
                     </IconText>
                 </div>
             )}

@@ -180,7 +180,9 @@ const CalendarGrid = ({
                     <AppText id="calendarGrid.Uke" /> {` `}
                 </span>
                 <span>
-                    <span className="sr-only">Uke </span>
+                    <span className="sr-only">
+                        <AppText id="calendarGrid.Uke" />{' '}
+                    </span>
                     {weekNum}
                 </span>
                 {areAllDaysInWeekDisabledOrOutsideMonth && allDaysInWeekDisabledContentRenderer ? (

@@ -1,4 +1,5 @@
 import IconText from '@app/components/icon-text/IconText';
+import { AppText } from '@app/i18n';
 import { erTimerGyldigInnenforAntallDager } from '@app/utils';
 import { XMarkOctagonFillIcon } from '@navikt/aksel-icons';
 import { Box } from '@navikt/ds-react';
@@ -27,7 +28,9 @@ const ArbeidstidUkeInfo = ({ uke, visEndringSomOpprinnelig }: Props) => {
                 <DurationText duration={endret.faktisk} />
             </strong>
             <div className="arbeidstidUkeInfo__opprinnelig">
-                <AriaText>Endret fra </AriaText>
+                <AriaText>
+                    <AppText id="arbeidstidUkeInfo.endretFra" />{' '}
+                </AriaText>
                 <span className="arbeidstidUkeInfo__timer" data-testid="timer-opprinnelig">
                     {opprinnelig.faktisk && <DurationText duration={opprinnelig.faktisk} />}
                 </span>
@@ -42,7 +45,7 @@ export const ForMangeTimerMelding = ({ uke }: { uke: ArbeidstidUkerItem }) =>
         <Box marginBlock="space-4 space-0">
             <IconText
                 icon={<XMarkOctagonFillIcon style={{ color: '#C30000' }} role="presentation" aria-hidden="true" />}>
-                For mange timer
+                <AppText id="arbeidstidUkeInfo.forMangeTimer" />
             </IconText>
         </Box>
     ) : null;

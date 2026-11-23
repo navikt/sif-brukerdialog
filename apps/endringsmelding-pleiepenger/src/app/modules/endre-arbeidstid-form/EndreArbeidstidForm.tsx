@@ -119,8 +119,8 @@ const EndreArbeidstidForm = ({
                         <Form
                             formErrorHandler={getIntlFormErrorHandler(intl, 'endreArbeidstidForm')}
                             includeValidationSummary={true}
-                            submitButtonLabel="Ok"
-                            cancelButtonLabel="Avbryt"
+                            submitButtonLabel={appIntl.text('endreArbeidstidForm.submitButtonLabel')}
+                            cancelButtonLabel={appIntl.text('endreArbeidstidForm.cancelButtonLabel')}
                             onCancel={onCancel}
                             showButtonArrows={false}>
                             <FormLayout.Questions>

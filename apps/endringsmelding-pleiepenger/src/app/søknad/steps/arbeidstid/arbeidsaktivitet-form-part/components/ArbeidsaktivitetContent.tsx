@@ -134,7 +134,7 @@ const ArbeidsaktivitetContent = ({
                         <VStack gap="space-8">
                             <FormikYesOrNoQuestion
                                 name={`${parentFieldName}.mottarOmsorgsstønad`}
-                                legend="Mottar du omsorgsstønad i perioden du skal endre?"
+                                legend={text('arbeidsaktivitetContent.omsorgsstønad.legend')}
                             />
                             {mottarOmsorgsstønad === YesOrNo.YES && (
                                 <Alert variant="info">

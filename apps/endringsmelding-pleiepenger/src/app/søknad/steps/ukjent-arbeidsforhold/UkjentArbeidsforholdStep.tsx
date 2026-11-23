@@ -1,6 +1,7 @@
 import AAregisteret from '@app/components/aa-registeret/AARegisteret';
 import { useSøknadContext } from '@app/hooks';
 import { useStepConfig } from '@app/hooks/useStepConfig';
+import { AppText } from '@app/i18n';
 import { StepId } from '@app/søknad/config/StepId';
 import SøknadStep from '@app/søknad/SøknadStep';
 import { Heading } from '@navikt/ds-react';
@@ -21,11 +22,10 @@ const UkjentArbeidsforholdStep = () => {
         <SøknadStep stepId={stepId} stepConfig={stepConfig} includeBackLink={includeBackLink}>
             <FormLayout.Guide>
                 <Heading level="2" size="xsmall" spacing={true}>
-                    Vi trenger informasjon om et nytt arbeidsforhold
+                    <AppText id="ukjentArbeidsforholdStep.tittel" />
                 </Heading>
                 <p>
-                    Vi har funnet et arbeidsforhold på deg i <AAregisteret /> som ikke var der da du sendte inn søknad
-                    om pleiepenger. Vi trenger litt informasjon fra deg før du kan fortsette.
+                    <AppText id="ukjentArbeidsforholdStep.intro" values={{ AAregisteret: <AAregisteret /> }} />
                 </p>
             </FormLayout.Guide>
 

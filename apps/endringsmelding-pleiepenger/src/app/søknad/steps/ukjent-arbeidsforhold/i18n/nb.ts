@@ -1,4 +1,4 @@
-const nb = {
+export const ukjentArbeidsforholdStepMessages_nb = {
     'ukjentArbeidsforhold.validation.erAnsatt.yesOrNoIsUnanswered':
         'Du må svare på om det stemmer at du er ansatt hos {navn} i perioden med pleiepenger.',
     'ukjentArbeidsforhold.validation.timerPerUke.numberHasNoValue':
@@ -11,11 +11,12 @@ const nb = {
         'Oppgitt timer for hvor mye du jobber normalt per uke hos {navn} er ikke et gyldig tall. Et gyldig tall inneholder kun siffer og komma som desimaltegn',
     'ukjentArbeidsforhold.validation.arbeider.noValue':
         'Du må velge hvilken situasjon som gjelder for deg hos {navn} i perioden med pleiepenger.',
-};
 
-const nn: Record<keyof typeof nb, string> = { ...nb };
+    'ukjentArbeidsforholdStep.tittel': 'Vi trenger informasjon om et nytt arbeidsforhold',
+    'ukjentArbeidsforholdStep.intro':
+        'Vi har funnet et arbeidsforhold på deg i {AAregisteret} som ikke var der da du sendte inn søknad om pleiepenger. Vi trenger litt informasjon fra deg før du kan fortsette.',
 
-export const ukjentArbeidsforholdFormMessages = {
-    nb,
-    nn,
+    'ukjentArbeidsforholdForm.erAnsatt.legend':
+        'Stemmer det at du er ansatt hos {navn} i perioden du har søkt pleiepenger?',
+    'ukjentArbeidsforholdForm.timerPerUke.label': 'Hvor mange timer jobber du normalt per uke hos {navn}?',
 };

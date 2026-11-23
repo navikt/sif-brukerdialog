@@ -1,26 +1,27 @@
-import { infoNormalarbeidstid } from '@app/components/info-normalarbeidstid/infoNormalarbeidstid.messages';
-import { arbeidstidUkerMessages } from '@app/modules/arbeidstid-uker/arbeidstidUkerMessages';
-import { endreArbeidstidMessages } from '@app/modules/endre-arbeidstid-form/endreArbeidstidMessages';
-
+import { infoNormalarbeidstidMessages_nb } from '../components/info-normalarbeidstid/i18n/nb';
+import { arbeidstidUkerMessages_nb } from '../modules/arbeidstid-uker/i18n/nb';
+import { endreArbeidstidFormMessages_nb } from '../modules/endre-arbeidstid-form/i18n/nb';
 import { tilsynsordningMånedMessages_nb } from '../modules/tilsynsordning-måned/i18n/nb';
-import { velkommenPageMessages } from '../pages/velkommen/velkommenPageMessages';
-import { arbeidstidStepMessages } from '../søknad/steps/arbeidstid/arbeidstidStepMessages';
+import { velgSakPageMessages_nb } from '../pages/velg-sak/i18n/nb';
+import { velkommenPageMessages_nb } from '../pages/velkommen/i18n/nb';
+import { arbeidstidStepMessages_nb } from '../søknad/steps/arbeidstid/i18n/nb';
 import { oppsummeringStepMessages_nb } from '../søknad/steps/oppsummering/i18n/nb';
 import { tilsynsordningMessages_nb } from '../søknad/steps/tilsynsordning/i18n/nb';
-import { ukjentArbeidsforholdFormMessages } from '../søknad/steps/ukjent-arbeidsforhold/ukjentArbeidsforholdFormMessages';
-import { samtykkeFormOverrideMessages } from './samtykkeFormOverrideMessages';
-import { sifCommonSoknadOverrideMessages } from './sifCommonSoknadOverrideMessages';
+import { ukjentArbeidsforholdStepMessages_nb } from '../søknad/steps/ukjent-arbeidsforhold/i18n/nb';
+import { samtykkeFormOverrideMessages_nb } from './samtykkeFormOverrideMessages';
+import { sifCommonSoknadOverrideMessages_nb } from './sifCommonSoknadOverrideMessages';
 
-const nb = {
-    ...arbeidstidStepMessages.nb,
-    ...endreArbeidstidMessages.nb,
-    ...infoNormalarbeidstid.nb,
-    ...samtykkeFormOverrideMessages.nb,
-    ...ukjentArbeidsforholdFormMessages.nb,
-    ...velkommenPageMessages.nb,
+export const appMessages_nb = {
+    ...arbeidstidStepMessages_nb,
+    ...endreArbeidstidFormMessages_nb,
+    ...infoNormalarbeidstidMessages_nb,
+    ...samtykkeFormOverrideMessages_nb,
+    ...ukjentArbeidsforholdStepMessages_nb,
+    ...velkommenPageMessages_nb,
+    ...velgSakPageMessages_nb,
     ...oppsummeringStepMessages_nb,
-    ...sifCommonSoknadOverrideMessages.nb,
-    ...arbeidstidUkerMessages.nb,
+    ...sifCommonSoknadOverrideMessages_nb,
+    ...arbeidstidUkerMessages_nb,
     ...tilsynsordningMessages_nb,
     ...tilsynsordningMånedMessages_nb,
 
@@ -62,6 +63,9 @@ const nb = {
 
     'startPåNyttDialog.tekst.1': 'Du har trykket deg tilbake til startsiden.',
     'startPåNyttDialog.tekst.2': 'Vil du starte utfyllingen på nytt eller fortsette der du var?',
+    'startPåNyttDialog.tittel': 'Oops',
+    'startPåNyttDialog.okLabel': 'Starte på nytt',
+    'startPåNyttDialog.cancelLabel': 'Fortsette der jeg var',
 
     'tags.kortUke': 'Kort uke',
     'tags.nytt': 'Nytt',
@@ -82,7 +86,7 @@ const nb = {
     'arbeidsaktiviteterMedUkjentArbeidsgiver.feil.enUkjent':
         'Jobber du fremdeles i arbeidsforholdet og det er feil at arbeidsforholdet er avsluttet, må du be arbeidsgiveren din om å rette dette i {AAregisteret}. Dette gjør de enten via eget lønns- og personalsystem, eller via Altinn.',
     'arbeidsaktiviteterMedUkjentArbeidsgiver.feil.flereUkjent':
-        'Jobber du fremdeles i noen av arbeidsforholdene og det er feil at arbeidsforholdene er avsluttet, må du be arbeidsgiverene dine om å rette dette i <AAregisteret />. Dette gjør de enten via eget lønns- og personalsystem, eller via Altinn.',
+        'Jobber du fremdeles i noen av arbeidsforholdene og det er feil at arbeidsforholdene er avsluttet, må du be arbeidsgiverene dine om å rette dette i {AAregisteret}. Dette gjør de enten via eget lønns- og personalsystem, eller via Altinn.',
 
     'invalidStepSøknadsdataInfo.title': 'Oops, dette stemmer ikke helt',
     'invalidStepSøknadsdataInfo.info':
@@ -156,11 +160,19 @@ const nb = {
     'calendarGrid.Uke': 'Uke',
     'calendarGrid.måned': 'måned',
     'calendarGrid.Måned': 'Måned',
-};
 
-const nn: Record<keyof typeof nb, string> = { ...nb };
+    'tidsbrukKalenderDag.endretFra': 'Endret fra:',
+    'tidsbrukKalenderDag.ingenTid': 'Ingen tid',
+    'tidsbrukKalenderDag.uendret': '(uendret)',
 
-export const appMessages = {
-    nb,
-    nn,
+    'endreArbeidstidModal.ariaLabel': 'Endre arbeidstid dialog',
+    'lovbestemtFerieModal.ariaLabel': 'Lovbestemt ferie',
+
+    'søknad.ingenTilgang.pageTitle': 'Ingen tilgang',
+    'søknad.ingenTilgang.tekst': 'Du har ikke tilgang til denne siden.',
+    'søknad.feil.pageTitle': 'Det oppstod en feil',
+    'søknad.feil.tekst': 'Det oppstod en feil under henting av informasjon. Vennligst prøv igjen litt senere.',
+
+    'ukjentPathMelding.tekst': 'Oops, det oppstod en feil.',
+    'ukjentPathMelding.startPåNytt': 'Start på nytt',
 };

@@ -1,10 +1,9 @@
 import { SelectableListType } from '@app/hooks/useSelectableList';
-import { AppText } from '@app/i18n';
+import { AppText, useAppIntl } from '@app/i18n';
 import { BodyShort, Box, Heading, VStack } from '@navikt/ds-react';
 import { getDateRangeText } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import React, { ReactElement } from 'react';
-import { useIntl } from 'react-intl';
 
 import { ArbeidstidUkerItem } from '../../types/ArbeidstidUkerItem';
 import { getKortUkeTooltipText } from '../UkeInfoTooltip';
@@ -27,7 +26,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
     selectableList,
     renderEditButton,
 }) => {
-    const intl = useIntl();
+    const { intl, text } = useAppIntl();
     const {
         isItemSelected,
         setItemSelected,
@@ -69,7 +68,7 @@ const ArbeidstidUkeListe: React.FunctionComponent<Props> = ({
 
                                     <Box marginBlock="space-8 space-0">
                                         <UkeTags
-                                            kortUkeTooltip={getKortUkeTooltipText(uke.periode)}
+                                            kortUkeTooltip={getKortUkeTooltipText(uke.periode, text)}
                                             erKortUke={uke.erKortUke}
                                             dagerMedFerie={uke.ferie?.dagerMedFerie}
                                             dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}

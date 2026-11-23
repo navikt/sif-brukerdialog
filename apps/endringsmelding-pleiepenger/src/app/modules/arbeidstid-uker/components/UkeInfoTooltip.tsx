@@ -1,3 +1,4 @@
+import { AppIntlShape, useAppIntl } from '@app/i18n';
 import { InformationSquareFillIcon } from '@navikt/aksel-icons';
 import { Tooltip } from '@navikt/ds-react';
 import { dateFormatter, DateRange } from '@navikt/sif-common-utils';
@@ -8,17 +9,19 @@ interface Props {
     uke: ArbeidstidUkerItem;
 }
 
-export const getKortUkeTooltipText = (periode: DateRange): string => `Kort uke - ${getDagerPeriode(periode, false)}`;
+export const getKortUkeTooltipText = (periode: DateRange, text: AppIntlShape['text']): string =>
+    text('ukeInfoTooltip.kortUke', { dager: getDagerPeriode(periode, text, false) });
 
 const UkeInfoTooltip: React.FunctionComponent<Props> = ({ uke }) => {
+    const { text } = useAppIntl();
     const { erKortUke } = uke;
     if (erKortUke) {
         return (
-            <Tooltip content={getKortUkeTooltipText(uke.periode)}>
+            <Tooltip content={getKortUkeTooltipText(uke.periode, text)}>
                 <span style={{ fontSize: '1.4rem' }}>
                     <InformationSquareFillIcon
                         style={{ color: '#457c9d' }}
-                        aria-label={`Kort uke - ${getDagerPeriode(uke.periode, false)}`}
+                        aria-label={getKortUkeTooltipText(uke.periode, text)}
                     />
                 </span>
             </Tooltip>
@@ -26,13 +29,13 @@ const UkeInfoTooltip: React.FunctionComponent<Props> = ({ uke }) => {
     }
 };
 
-const getDagerPeriode = ({ from, to }: DateRange, visDato = true): string => {
+const getDagerPeriode = ({ from, to }: DateRange, text: AppIntlShape['text'], visDato = true): string => {
     const fra = visDato ? dateFormatter.dayDateMonthYear(from) : dateFormatter.day(from);
     const til = visDato ? dateFormatter.dayDateMonthYear(to) : dateFormatter.day(to);
     if (fra === til) {
         return fra;
     }
-    return `${fra} til ${til}`;
+    return text('ukeInfoTooltip.dagerPeriode', { fra, til });
 };
 
 export default UkeInfoTooltip;

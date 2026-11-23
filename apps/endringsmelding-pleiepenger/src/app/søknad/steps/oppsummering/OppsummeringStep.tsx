@@ -233,7 +233,7 @@ const OppsummeringStep = () => {
                                     ) : (
                                         <VStack gap="space-8">
                                             <Heading level="2" size="small">
-                                                Bekreft og send inn
+                                                <AppText id="oppsummeringStep.bekreftOgSendInn.tittel" />
                                             </Heading>
                                             <Checkbox
                                                 name={OppsummeringFormFields.harBekreftetOpplysninger}

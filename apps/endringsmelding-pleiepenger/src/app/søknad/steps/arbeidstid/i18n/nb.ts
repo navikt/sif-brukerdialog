@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-const nb = {
+export const arbeidstidStepMessages_nb = {
     'arbeidstidStep.title': 'Slik endrer du jobb i pleiepengeperioden',
     'arbeidstidStep.info.1': 'Du oppgir hvor mye du jobber i timer per uke.',
     'arbeidstidStep.info.2': 'Du kan endre flere uker samtidig, eller én og én uke.',
@@ -41,11 +41,5 @@ const nb = {
         'Når du får omsorgsstønad, regnes dette som arbeid som frilanser. Du må derfor registrere de timene du får omsorgsstønad for.',
     'arbeidsaktivitetContent.omsorgsstønad.2':
         'Hvis du jobber som frilanser i tillegg til å få omsorgsstønad, skal du oppgi samlet arbeidstid som frilanser og for omsorgsstønad.',
-};
-
-const nn: Record<keyof typeof nb, string> = { ...nb };
-
-export const arbeidstidStepMessages = {
-    nb,
-    nn,
+    'arbeidsaktivitetContent.omsorgsstønad.legend': 'Mottar du omsorgsstønad i perioden du skal endre?',
 };

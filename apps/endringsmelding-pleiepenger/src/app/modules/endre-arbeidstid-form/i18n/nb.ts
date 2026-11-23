@@ -1,4 +1,4 @@
-const nb = {
+export const endreArbeidstidFormMessages_nb = {
     'endreArbeidstidForm.timerAvNormalt.spm': 'Hvor mange timer jobber du {periode}?',
     'endreArbeidstidForm.timerAvNormalt.flereUker.spm': 'I de ukene du har valgt, hvor mange timer jobber du per uke?',
 
@@ -24,11 +24,6 @@ const nb = {
     'endreArbeidstidForm.ukerOgÅr.ingenUkerValgt': 'Ingen uker valgt',
     'endreArbeidstidForm.ukerOgÅr.visValgteUker.tittel': 'Vis hvilke {antallUker} uker som er valgt',
     'endreArbeidstidForm.ukerOgÅr.årOgUke': '{år}: Uke {uker}',
-};
-
-const nn: Record<keyof typeof nb, string> = { ...nb };
-
-export const endreArbeidstidMessages = {
-    nb,
-    nn,
+    'endreArbeidstidForm.submitButtonLabel': 'Ok',
+    'endreArbeidstidForm.cancelButtonLabel': 'Avbryt',
 };

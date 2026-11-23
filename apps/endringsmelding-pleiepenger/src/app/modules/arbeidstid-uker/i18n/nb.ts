@@ -1,4 +1,4 @@
-const nb = {
+export const arbeidstidUkerMessages_nb = {
     'arbeidstidUker.editButton.endreValgteUker.title': 'Endre valgte uker',
     'arbeidstidUker.editButton.endreEnkeltuke.title': 'Endre uke {ukenummer} ({tidsrom})',
     'arbeidstidUker.editButton.endreEnkeltuke.label': 'Endre arbeidstid',
@@ -22,8 +22,22 @@ const nb = {
     'endreUkerHeader.cb.endreFlereSamtidig.label': 'Jeg ønsker å endre flere uker samtidig',
     'endreUkerHeader.korteUker.melding':
         'Korte uker, altså ikke hele uker, eller uker med ferie må endres hver for seg.',
+
+    'ukeTags.ferie': 'Ferie: {dager}',
+    'ukeTags.feriedager': '{antall, plural, one {Feriedag} other {Feriedager}}',
+    'ukeTags.ferieFjernet': 'Ferie fjernet',
+
+    'ukeInfoTooltip.kortUke': 'Kort uke - {dager}',
+    'ukeInfoTooltip.dagerPeriode': '{fra} til {til}',
+
+    'velgArbeidsukeItem.uke': 'Uke {ukenummer}',
+    'velgArbeidsukeItem.kanIkkeVelges': 'Uke {ukenummer} - kort uke kan ikke velges',
+
+    'arbeidstidUkeInfoListe.normalArbeidstid': 'Normal arbeidstid:',
+    'arbeidstidUkeInfoListe.arbeidstid': 'Arbeidstid:',
+    'arbeidstidUkeInfoListe.endretFra': 'Endret fra',
+    'arbeidstidUkeInfoListe.forMangeTimer': 'For mange timer',
+
+    'arbeidstidUkeInfo.endretFra': 'Endret fra',
+    'arbeidstidUkeInfo.forMangeTimer': 'For mange timer',
 };
-
-const nn: Record<keyof typeof nb, string> = { ...nb };
-
-export const arbeidstidUkerMessages = { nb, nn };

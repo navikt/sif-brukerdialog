@@ -1,5 +1,6 @@
 import './lovbestemtFerieModal.css';
 
+import { useAppIntl } from '@app/i18n';
 import { Modal } from '@navikt/ds-react';
 import React, { FunctionComponent } from 'react';
 
@@ -11,13 +12,14 @@ interface Props {
 }
 
 const LovbestemtFerieModal: FunctionComponent<Props> = ({ children, title, open = false, onClose }) => {
+    const { text } = useAppIntl();
     return open ? (
         <Modal
             portal={true}
             open={open}
             onClose={onClose}
             className="lovbestemtFerieModal"
-            aria-label="Lovbestemt ferie"
+            aria-label={text('lovbestemtFerieModal.ariaLabel')}
             header={{
                 heading: title,
                 closeButton: true,

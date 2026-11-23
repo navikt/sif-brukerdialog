@@ -1,3 +1,4 @@
+import { AppText, useAppIntl } from '@app/i18n';
 import { RequestStatus } from '@app/types';
 import { Alert } from '@navikt/ds-react';
 import LoadingSpinner from '@navikt/sif-common-core-ds/src/atoms/loading-spinner/LoadingSpinner';
@@ -19,6 +20,7 @@ import SøknadRouter from './SøknadRouter';
 
 const Søknad = () => {
     const location = useLocation();
+    const { text } = useAppIntl();
 
     const initialData = useSøknadInitialData();
     const { status } = initialData;
@@ -35,8 +37,12 @@ const Søknad = () => {
         appLogger.logError(`Søknad.requestStatus: ${RequestStatus.forbidden}`);
         return (
             <ErrorPage
-                pageTitle="Ingen tilgang"
-                contentRenderer={() => <Alert variant="error">Du har ikke tilgang til denne siden.</Alert>}
+                pageTitle={text('søknad.ingenTilgang.pageTitle')}
+                contentRenderer={() => (
+                    <Alert variant="error">
+                        <AppText id="søknad.ingenTilgang.tekst" />
+                    </Alert>
+                )}
             />
         );
     }
@@ -50,10 +56,10 @@ const Søknad = () => {
         }
         return (
             <ErrorPage
-                pageTitle="Det oppstod en feil"
+                pageTitle={text('søknad.feil.pageTitle')}
                 contentRenderer={() => (
                     <FormLayout.Guide mood="uncertain">
-                        Det oppstod en feil under henting av informasjon. Vennligst prøv igjen litt senere.
+                        <AppText id="søknad.feil.tekst" />
                     </FormLayout.Guide>
                 )}
             />

@@ -73,7 +73,9 @@ const ArbeidstidUkeTabell = ({
                         </Table.HeaderCell>
                     )}
                     {renderCompactTable ? (
-                        <Table.HeaderCell>Uke</Table.HeaderCell>
+                        <Table.HeaderCell>
+                            <AppText id="arbeidstidUkeTabell.header.uke" />
+                        </Table.HeaderCell>
                     ) : (
                         <>
                             <Table.HeaderCell className="arbeidstidUkeTabell__ukenummer">
@@ -150,7 +152,7 @@ const ArbeidstidUkeTabell = ({
 
 /** Uke, periode, normalarbeidstid og tagger samlet i én celle */
 const KompakteUkeCeller = ({ uke, ukenummer, visNormalarbeidstid }: UkeCellsProps) => {
-    const { intl } = useAppIntl();
+    const { intl, text } = useAppIntl();
     return (
         <Table.DataCell>
             <div>
@@ -174,7 +176,7 @@ const KompakteUkeCeller = ({ uke, ukenummer, visNormalarbeidstid }: UkeCellsProp
             {(uke.harFeriedager || uke.harFjernetFeriedager || uke.erKortUke) && (
                 <Box marginBlock="space-0 space-16">
                     <UkeTags
-                        kortUkeTooltip={getKortUkeTooltipText(uke.periode)}
+                        kortUkeTooltip={getKortUkeTooltipText(uke.periode, text)}
                         dagerMedFerie={uke.ferie?.dagerMedFerie}
                         dagerMedFjernetFerie={uke.ferie?.dagerMedFjernetFerie}
                         erKortUke={uke.erKortUke}

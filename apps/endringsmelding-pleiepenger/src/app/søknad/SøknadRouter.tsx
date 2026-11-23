@@ -1,4 +1,5 @@
 import StartPåNyttDialog from '@app/components/start-på-nytt-dialog/StartPåNyttDialog';
+import { AppText } from '@app/i18n';
 import { BodyShort, Button, VStack } from '@navikt/ds-react';
 import { useAnalyticsInstance } from '@navikt/sif-common-analytics';
 import { fetchSøkerId } from '@navikt/sif-common-api';
@@ -147,9 +148,11 @@ const UkjentPathMelding = ({ pathname, onReset }: { pathname: string; onReset: (
     return (
         <FormLayout.Guide mood="uncertain">
             <VStack gap="space-24">
-                <BodyShort>Oops, det oppstod en feil.</BodyShort>
+                <BodyShort>
+                    <AppText id="ukjentPathMelding.tekst" />
+                </BodyShort>
                 <Button type="button" onClick={onReset}>
-                    Start på nytt
+                    <AppText id="ukjentPathMelding.startPåNytt" />
                 </Button>
             </VStack>
         </FormLayout.Guide>

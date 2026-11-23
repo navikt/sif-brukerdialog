@@ -58,9 +58,15 @@ const ArbeidsaktiviteterMedUkjentArbeidsgiver = ({
             <ExpandableInfo title={text('arbeidsaktiviteterMedUkjentArbeidsgiver.feil.tittel')}>
                 <p>
                     {antallUkjente === 1 ? (
-                        <AppText id="arbeidsaktiviteterMedUkjentArbeidsgiver.feil.enUkjent" />
+                        <AppText
+                            id="arbeidsaktiviteterMedUkjentArbeidsgiver.feil.enUkjent"
+                            values={{ AAregisteret: <AAregisteret /> }}
+                        />
                     ) : (
-                        <AppText id="arbeidsaktiviteterMedUkjentArbeidsgiver.feil.flereUkjent" />
+                        <AppText
+                            id="arbeidsaktiviteterMedUkjentArbeidsgiver.feil.flereUkjent"
+                            values={{ AAregisteret: <AAregisteret /> }}
+                        />
                     )}
                 </p>
             </ExpandableInfo>

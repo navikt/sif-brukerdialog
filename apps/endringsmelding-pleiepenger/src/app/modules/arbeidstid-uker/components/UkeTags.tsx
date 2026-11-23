@@ -1,6 +1,7 @@
 import FerieTag from '@app/components/tags/FerieTag';
 import KortUkeTag from '@app/components/tags/KortUkeTag';
 import TagsContainer from '@app/components/tags/tags-container/TagsContainer';
+import { AppText } from '@app/i18n';
 import { getFeriedagerIUkeTekst } from '@app/utils';
 import React from 'react';
 
@@ -20,18 +21,18 @@ const UkeTags = ({ dagerMedFerie = [], dagerMedFjernetFerie = [], visDagNavn, er
     if (dagerMedFerie?.length > 0) {
         tags.push(
             <FerieTag style={{ marginRight: '.5rem', marginBottom: '.25rem' }}>
-                {visDagNavn
-                    ? `Ferie: ${getFeriedagerIUkeTekst(dagerMedFerie)}`
-                    : dagerMedFerie?.length === 1
-                      ? 'Feriedag'
-                      : 'Feriedager'}
+                {visDagNavn ? (
+                    <AppText id="ukeTags.ferie" values={{ dager: getFeriedagerIUkeTekst(dagerMedFerie) }} />
+                ) : (
+                    <AppText id="ukeTags.feriedager" values={{ antall: dagerMedFerie.length }} />
+                )}
             </FerieTag>,
         );
     }
     if (dagerMedFjernetFerie?.length > 0) {
         tags.push(
             <FerieTag type="fjernet" size="small">
-                Ferie fjernet
+                <AppText id="ukeTags.ferieFjernet" />
             </FerieTag>,
         );
     }
@@ -43,16 +44,16 @@ const UkeTags = ({ dagerMedFerie = [], dagerMedFjernetFerie = [], visDagNavn, er
                     {erKortUke && <KortUkeTag tooltip={kortUkeTooltip} />}
                     {dagerMedFerie?.length > 0 && (
                         <FerieTag>
-                            {visDagNavn
-                                ? `Ferie: ${getFeriedagerIUkeTekst(dagerMedFerie)}`
-                                : dagerMedFerie?.length === 1
-                                  ? 'Feriedag'
-                                  : 'Feriedager'}
+                            {visDagNavn ? (
+                                <AppText id="ukeTags.ferie" values={{ dager: getFeriedagerIUkeTekst(dagerMedFerie) }} />
+                            ) : (
+                                <AppText id="ukeTags.feriedager" values={{ antall: dagerMedFerie.length }} />
+                            )}
                         </FerieTag>
                     )}
                     {dagerMedFjernetFerie?.length > 0 && (
                         <FerieTag type="fjernet" size="small">
-                            Ferie fjernet
+                            <AppText id="ukeTags.ferieFjernet" />
                         </FerieTag>
                     )}
                 </TagsContainer>

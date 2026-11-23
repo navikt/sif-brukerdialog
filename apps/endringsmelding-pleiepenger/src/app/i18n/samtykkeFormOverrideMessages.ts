@@ -8,7 +8,7 @@ type OverrideKeys = Pick<
     | '@soknad.samtykkeForm.harForståttRettigheterOgPlikter.notChecked'
 >;
 
-const nb: Record<keyof OverrideKeys, string> = {
+export const samtykkeFormOverrideMessages_nb: Record<keyof OverrideKeys, string> = {
     '@soknad.samtykkeForm.bekreftLabel': 'Jeg bekrefter at jeg har forstått mitt ansvar når jeg sender inn en endring',
     '@soknad.samtykkeForm.ansvar.tittel': 'Ditt ansvar når du melder fra om endring i saken din',
     '@soknad.samtykkeForm.ansvar.list.1':
@@ -17,9 +17,6 @@ const nb: Record<keyof OverrideKeys, string> = {
         'Du må velge at du har forstått ditt ansvar når du sender inn en endring',
 };
 
-const nn: Record<keyof typeof nb, string> = { ...nb };
-
-export const samtykkeFormOverrideMessages = {
-    nb,
-    nn,
+export const samtykkeFormOverrideMessages_nn: Record<keyof typeof samtykkeFormOverrideMessages_nb, string> = {
+    ...samtykkeFormOverrideMessages_nb,
 };
