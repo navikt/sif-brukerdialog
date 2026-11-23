@@ -1,6 +1,5 @@
 import { useSendSøknad, useSøknadContext, useSøknadsdataStatus } from '@app/hooks';
 import { useEndreFraOppsummering } from '@app/hooks/useEndreFraOppsummering';
-import { useSøknadsdataInfo } from '@app/hooks/useSøknadsdataInfo';
 import { useStepConfig } from '@app/hooks/useStepConfig';
 import { AppText, useAppIntl } from '@app/i18n';
 import { getSøknadStepRoute } from '@app/søknad/config/SøknadRoutes';
@@ -19,6 +18,7 @@ import { getCheckedValidator } from '@sif/validation';
 import { useEffect, useRef } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
+import { useSøknadsdataInfo } from '../../../hooks/useSøknadsdataInfo';
 import ArbeidstidOppsummering from './arbeidstid/ArbeidstidOppsummering';
 import EndringerTekstoppsummering from './components/EndringerTekstoppsummering';
 import FlereEndringer from './components/FlereEndringer';
@@ -46,6 +46,7 @@ const getInitialValues = (søknadsdata: Søknadsdata): OppsummeringFormValues =>
 });
 
 const brukConfirmationCheckbox = true;
+const visFjernetFerieMelding = false;
 
 const OppsummeringStep = () => {
     useSkyraReloader();
@@ -147,7 +148,7 @@ const OppsummeringStep = () => {
                         {lovbestemtFerie && <LovbestemtFerieOppsummering lovbestemtFerie={lovbestemtFerie} />}
                     </OppsummeringSeksjon>
 
-                    {harFjernetFerie && (
+                    {visFjernetFerieMelding && harFjernetFerie && (
                         <SifInfoCard variant="warning">
                             <AppText id="arbeidstidStep.fjernetFerie.melding" />
                         </SifInfoCard>

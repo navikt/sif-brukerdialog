@@ -11,10 +11,11 @@ import SøknadStep from '@app/søknad/SøknadStep';
 import { SøknadContextState } from '@app/types';
 import { erFeriedagerEndretIPeriode } from '@app/utils';
 import { lagreSøknadState } from '@app/utils/lagreSøknadState';
-import { Alert, Box, Heading, List, VStack } from '@navikt/ds-react';
+import { Box, Heading, List, VStack } from '@navikt/ds-react';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { dateFormatter, ISODate } from '@navikt/sif-common-utils';
+import { SifInfoCard } from '@sif/soknad-ui';
 import { useIntl } from 'react-intl';
 
 import FeriedagerISøknadsperiode from './FeriedagerISøknadperiode';
@@ -49,7 +50,7 @@ const LovbestemtFerieStep = () => {
 
     const {
         dispatch,
-        state: { søknadsdata, sak },
+        state: { søknadsdata, sak, valgteEndringerInitielt, søknadStepsVedOppsummering },
     } = useSøknadContext();
 
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
@@ -182,9 +183,14 @@ const LovbestemtFerieStep = () => {
                                     />
 
                                     {harFjernetFerieIValues && (
-                                        <Alert variant="warning">
-                                            <AppText id="lovbestemtFerieStep.ferieFjernet.melding" />
-                                        </Alert>
+                                        <SifInfoCard variant="warning">
+                                            {valgteEndringerInitielt.arbeidstid === false &&
+                                            søknadStepsVedOppsummering == undefined ? (
+                                                <AppText id="lovbestemtFerieStep.ferieFjernet.melding.arbeidstid" />
+                                            ) : (
+                                                <AppText id="lovbestemtFerieStep.ferieFjernet.melding" />
+                                            )}
+                                        </SifInfoCard>
                                     )}
                                 </VStack>
                             </Form>

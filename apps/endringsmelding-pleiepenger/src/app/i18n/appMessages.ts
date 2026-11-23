@@ -145,7 +145,8 @@ const nb = {
     'lovbestemtFerieStep.tags.ferieEndret': 'Ferie endret',
     'lovbestemtFerieStep.ferieFjernet.melding':
         'Du har fjernet feriedager. Hvis du skal jobbe disse dagene, må du se over at jobb i perioden er riktig. Dette gjør du på steget Jobb i perioden.',
-
+    'lovbestemtFerieStep.ferieFjernet.melding.arbeidstid':
+        'Du har fjernet feriedager. Hvis du skal jobbe disse dagene, må du se over at jobb i perioden er riktig. Dette gjør du på steget neste steg.',
     'calendarGrid.Mandag': 'Mandag',
     'calendarGrid.Tirsdag': 'Tirsdag',
     'calendarGrid.Onsdag': 'Onsdag',
