@@ -130,7 +130,6 @@ const OppsummeringStep = () => {
                             tittel={text('oppsummeringStep.nyttArbeidsforhold.tittel')}
                             harEndring={true}
                             endreLabel={text('oppsummeringStep.endre.ukjentArbeidsforhold')}
-                            ingenEndringTekst={text('oppsummeringStep.ingenEndringRegistrert.nyttArbeidsforhold')}
                             onEndre={() =>
                                 isSubmitting ? null : navigate(getSøknadStepRoute(StepId.UKJENT_ARBEIDSFOHOLD))
                             }>
@@ -142,7 +141,6 @@ const OppsummeringStep = () => {
                         tittel={text('oppsummeringStep.seksjon.ferie.tittel')}
                         harEndring={endringer.ferie}
                         endreLabel={text('oppsummeringStep.seksjon.ferie.endre')}
-                        ingenEndringTekst={text('oppsummeringStep.ingenEndringRegistrert.ferie')}
                         onEndre={() => (isSubmitting ? null : endre(StepId.LOVBESTEMT_FERIE))}>
                         {lovbestemtFerie && <LovbestemtFerieOppsummering lovbestemtFerie={lovbestemtFerie} />}
                     </OppsummeringSeksjon>
@@ -157,7 +155,6 @@ const OppsummeringStep = () => {
                         tittel={text('oppsummeringStep.seksjon.arbeidstid.tittel')}
                         harEndring={endringer.arbeidstid}
                         endreLabel={text('oppsummeringStep.seksjon.arbeidstid.endre')}
-                        ingenEndringTekst={text('oppsummeringStep.ingenEndringRegistrert.arbeid')}
                         onEndre={() => (isSubmitting ? null : endre(StepId.ARBEIDSTID))}>
                         {arbeidstid && (
                             <ArbeidstidOppsummering
@@ -172,7 +169,6 @@ const OppsummeringStep = () => {
                         tittel={text('oppsummeringStep.seksjon.tilsynsordning.tittel')}
                         harEndring={endringer.tilsynsordning}
                         endreLabel={text('oppsummeringStep.seksjon.tilsynsordning.endre')}
-                        ingenEndringTekst={text('oppsummeringStep.ingenEndringRegistrert.tilsynsordning')}
                         onEndre={() => (isSubmitting ? null : endre(StepId.TILSYNSORDNING))}>
                         {tilsynsordning && (
                             <TilsynsordningOppsummering
