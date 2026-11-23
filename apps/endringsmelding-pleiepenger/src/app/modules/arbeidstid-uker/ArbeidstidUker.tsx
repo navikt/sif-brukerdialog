@@ -38,7 +38,7 @@ const ArbeidstidUker = ({
     arbeidstidKolonneTittel,
     triggerResetValgCounter,
     visEndringSomOpprinnelig,
-    visEndringIEgenKolonne,
+    visEndringIEgenKolonne = false,
     visNormalarbeidstid = false,
     onEndreUker,
 }: Props) => {

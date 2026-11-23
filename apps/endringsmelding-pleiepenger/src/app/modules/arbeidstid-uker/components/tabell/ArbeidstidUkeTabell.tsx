@@ -34,7 +34,7 @@ interface UkeCellsProps {
 const ArbeidstidUkeTabell = ({
     uker,
     visEndringSomOpprinnelig,
-    visEndringIEgenKolonne = true,
+    visEndringIEgenKolonne,
     selectableList,
     arbeidstidKolonneTittel,
     renderCompactTable,
@@ -240,7 +240,7 @@ const EndretFraOgTilCeller = ({ uke, visEndringSomOpprinnelig }: EndretFraOgTilC
                     </span>
                 )}
             </Table.DataCell>
-            <Table.DataCell data-testid="arbeidstid-endret-til">
+            <Table.DataCell data-testid="arbeidstid-faktisk">
                 {endretTil && (
                     <>
                         <strong className="arbeidstidUkeInfo__timer">

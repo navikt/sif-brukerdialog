@@ -44,18 +44,10 @@ test('test', async ({ page }) => {
     await testAccessibility(page);
     await page.getByTestId('typedFormikForm-submitButton').click();
 
-    await expect(page.getByTestId('uke_44').getByTestId('arbeidstid-faktisk')).toContainText(
-        '8 t. 45 m.Endret fra 7 t. 30 m.',
-    );
-    await expect(page.getByTestId('uke_4').getByTestId('arbeidstid-faktisk')).toContainText(
-        '1 t. 30 m.Endret fra 22 t. 30 m.',
-    );
-    await expect(page.getByTestId('uke_5').getByTestId('arbeidstid-faktisk')).toContainText(
-        '2 t. 0 m.Endret fra 22 t. 30 m.',
-    );
-    await expect(page.getByTestId('uke_7').getByTestId('arbeidstid-faktisk')).toContainText(
-        '2 t. 0 m.Endret fra 15 t. 0 m.',
-    );
+    await expect(page.getByTestId('uke_44').getByTestId('arbeidstid-faktisk')).toContainText('8 t. 45 m');
+    await expect(page.getByTestId('uke_4').getByTestId('arbeidstid-faktisk')).toContainText('1 t. 30 m');
+    await expect(page.getByTestId('uke_5').getByTestId('arbeidstid-faktisk')).toContainText('2 t. 0 m.');
+    await expect(page.getByTestId('uke_7').getByTestId('arbeidstid-faktisk')).toContainText('2 t. 0 m.');
     await testAccessibility(page);
     await expect(page.getByText('Endre  ferie')).toBeVisible();
     await expect(page.getByText('Endre tid i omsorgstilbud')).toBeVisible();

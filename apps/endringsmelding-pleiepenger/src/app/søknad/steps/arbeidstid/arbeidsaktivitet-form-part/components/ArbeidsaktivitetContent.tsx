@@ -82,7 +82,6 @@ const ArbeidsaktivitetContent = ({
                 )}
                 visEndringSomOpprinnelig={erNyArbeidsgiver}
                 triggerResetValgCounter={resetUkerTabellCounter}
-                visEndringIEgenKolonne={true}
                 arbeidstidKolonneTittel={text('arbeidstidUkeTabell.header.arbeidstid.title')}
                 onEndreUker={(uker: ArbeidstidUkerItem[]) => {
                     setArbeidsukerForEndring(uker.map((uke) => periode.arbeidsuker[uke.isoDateRange]));
