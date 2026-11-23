@@ -13,11 +13,17 @@ interface Props {
 
 const FlereEndringer = ({ endringer, harIngenEndringer, onEndre }: Props) => {
     const { text } = useAppIntl();
+    // Hvis alle endringer er gjort, vis ikke komponenten
+    if (endringer.ferie && endringer.arbeidstid && endringer.tilsynsordning) {
+        return null;
+    }
     return (
         <VStack gap="space-12" marginBlock="space-24 space-12">
             <VStack gap="space-4">
                 <Heading level="2" size="small">
-                    <AppText id={harIngenEndringer ? 'flereEndringer.ingenEndringer.tittel' : 'flereEndringer.tittel'} />
+                    <AppText
+                        id={harIngenEndringer ? 'flereEndringer.ingenEndringer.tittel' : 'flereEndringer.tittel'}
+                    />
                 </Heading>
                 {!harIngenEndringer && (
                     <BodyLong className="noPadding">
@@ -33,10 +39,7 @@ const FlereEndringer = ({ endringer, harIngenEndringer, onEndre }: Props) => {
                 />
             )}
             {!endringer.arbeidstid && (
-                <EndreLenke
-                    label={text('flereEndringer.endreArbeidstid')}
-                    onClick={() => onEndre(StepId.ARBEIDSTID)}
-                />
+                <EndreLenke label={text('flereEndringer.endreArbeidstid')} onClick={() => onEndre(StepId.ARBEIDSTID)} />
             )}
             {!endringer.tilsynsordning && (
                 <EndreLenke
