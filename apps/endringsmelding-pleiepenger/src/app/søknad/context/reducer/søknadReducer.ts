@@ -45,6 +45,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                 valgteEndringer,
                 valgteEndringerInitielt: valgteEndringer,
                 søknadSteps,
+                søknadStepsVedOppsummering: undefined,
                 søknadRoute: getSøknadStepRoute(søknadSteps[0]),
                 børMellomlagres: true,
             };
@@ -54,6 +55,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                 ...state,
                 søknadsdata: initialSøknadsdata,
                 søknadRoute: undefined,
+                søknadStepsVedOppsummering: undefined,
                 /**
                  * Alle typer legges inn for å unngå at dynamiske steg fjernes når søknadsdata tømmes
                  * Verdien settes på nytt når søker starter ny meldning
@@ -67,6 +69,11 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                 return {
                     ...state,
                     søknadRoute: action.payload,
+                };
+            case SøknadContextActionKeys.SET_OPPSUMMERING_VIST:
+                return {
+                    ...state,
+                    søknadStepsVedOppsummering: state.søknadSteps,
                 };
             case SøknadContextActionKeys.REQUEST_LAGRE_SØKNAD:
                 return {
@@ -176,6 +183,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     ...state,
                     børMellomlagres: false,
                     søknadsdata: initialSøknadsdata,
+                    søknadStepsVedOppsummering: undefined,
                     valgteEndringer: {
                         arbeidstid: false,
                         lovbestemtFerie: false,
@@ -189,6 +197,7 @@ export const søknadReducer = (state: SøknadContextState, action: SøknadContex
                     børMellomlagres: false,
                     søknadsdata: initialSøknadsdata,
                     endringsmeldingSendt: false,
+                    søknadStepsVedOppsummering: undefined,
                     valgteEndringer: {
                         arbeidstid: false,
                         lovbestemtFerie: false,

@@ -11,10 +11,11 @@ import SøknadStep from '@app/søknad/SøknadStep';
 import { SøknadContextState } from '@app/types';
 import { erFeriedagerEndretIPeriode } from '@app/utils';
 import { lagreSøknadState } from '@app/utils/lagreSøknadState';
-import { Alert, Box, Heading, List, VStack } from '@navikt/ds-react';
+import { Box, Heading, List, VStack } from '@navikt/ds-react';
 import { getIntlFormErrorHandler, getTypedFormComponents } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
 import { dateFormatter, ISODate } from '@navikt/sif-common-utils';
+import { SifInfoCard } from '@sif/soknad-ui';
 import { useIntl } from 'react-intl';
 
 import FeriedagerISøknadsperiode from './FeriedagerISøknadperiode';
@@ -49,12 +50,12 @@ const LovbestemtFerieStep = () => {
 
     const {
         dispatch,
-        state: { søknadsdata, sak, valgteEndringer },
+        state: { søknadsdata, sak, valgteEndringerInitielt, søknadStepsVedOppsummering },
     } = useSøknadContext();
 
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
-    const { goBack, stepConfig } = useStepConfig(stepId);
+    const { goBack, includeBackLink, stepConfig } = useStepConfig(stepId);
 
     const onValidSubmitHandler = (values: LovbestemtFerieFormValues) => {
         const perioder = getLovbestemtFerieSøknadsdataFromFormValues(values);
@@ -65,7 +66,7 @@ const LovbestemtFerieStep = () => {
         return [];
     };
 
-    const { handleSubmit, isSubmitting } = useOnValidSubmit(
+    const { handleSubmit, isSubmitting, submitButtonLabel } = useOnValidSubmit(
         onValidSubmitHandler,
         stepId,
         (state: SøknadContextState) => {
@@ -82,7 +83,7 @@ const LovbestemtFerieStep = () => {
     const initialValues = getLovbestemtFerieStepInitialValues(søknadsdata, stepFormValues.lovbestemtFerie);
 
     return (
-        <SøknadStep stepId={stepId} stepConfig={stepConfig}>
+        <SøknadStep stepId={stepId} stepConfig={stepConfig} includeBackLink={includeBackLink}>
             <FormLayout.Guide>
                 <Heading level="2" size="xsmall" spacing={true}>
                     <AppText id="lovbestemtFerieStep.guide.tittel" />
@@ -117,6 +118,7 @@ const LovbestemtFerieStep = () => {
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'lovbestemtFerieForm')}
                                 includeValidationSummary={true}
                                 submitPending={isSubmitting}
+                                submitButtonLabel={submitButtonLabel}
                                 runDelayedFormValidation={true}
                                 onBack={goBack}>
                                 <VStack gap="space-24">
@@ -180,10 +182,15 @@ const LovbestemtFerieStep = () => {
                                         }}
                                     />
 
-                                    {harFjernetFerieIValues && valgteEndringer.arbeidstid === false && (
-                                        <Alert variant="warning">
-                                            <AppText id="lovbestemtFerieStep.ferieFjernet.melding" />
-                                        </Alert>
+                                    {harFjernetFerieIValues && (
+                                        <SifInfoCard variant="warning">
+                                            {valgteEndringerInitielt.arbeidstid === false &&
+                                            søknadStepsVedOppsummering == undefined ? (
+                                                <AppText id="lovbestemtFerieStep.ferieFjernet.melding.arbeidstid" />
+                                            ) : (
+                                                <AppText id="lovbestemtFerieStep.ferieFjernet.melding" />
+                                            )}
+                                        </SifInfoCard>
                                     )}
                                 </VStack>
                             </Form>

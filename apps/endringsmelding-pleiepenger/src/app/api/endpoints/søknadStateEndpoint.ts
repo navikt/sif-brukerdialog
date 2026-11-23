@@ -28,6 +28,7 @@ export type SøknadStatePersistence = {
     valgteEndringer: ValgteEndringer;
     valgteEndringerInitielt: ValgteEndringer;
     søknadSteps: StepId[];
+    søknadStepsVedOppsummering?: StepId[];
     metadata: {
         updatedTimestamp: string;
     };
@@ -139,6 +140,7 @@ export const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
             valgteEndringerInitielt,
             harArbeidsgivereIkkeISak,
             søknadSteps,
+            søknadStepsVedOppsummering,
         },
         søker,
     ) => {
@@ -152,6 +154,7 @@ export const søknadStateEndpoint: SøknadStatePersistenceEndpoint = {
             valgteEndringerInitielt,
             harArbeidsgivereIkkeISak,
             søknadSteps,
+            søknadStepsVedOppsummering,
             metadata: {
                 updatedTimestamp: new Date().toISOString(),
             },

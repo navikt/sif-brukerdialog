@@ -24,6 +24,8 @@ const nb = {
     ...tilsynsordningMessages_nb,
     ...tilsynsordningMånedMessages_nb,
 
+    'step.oppdater': 'Neste',
+
     'psb.timerOgMinutter':
         '{timer, plural, one {# time} other {# timer}} og {minutter, plural, one {# minutt} other {# minutter}}',
 
@@ -142,8 +144,9 @@ const nb = {
     'lovbestemtFerieStep.heading.registrertFerie': 'Registrert ferie',
     'lovbestemtFerieStep.tags.ferieEndret': 'Ferie endret',
     'lovbestemtFerieStep.ferieFjernet.melding':
-        'Du har fjernet dager med ferie. Hvis du skal jobbe disse dagene, må du se over at jobb i perioden er riktig. Dette gjør du på neste steg.',
-
+        'Du har fjernet feriedager. Hvis du skal jobbe disse dagene, må du se over at jobb i perioden er riktig. Dette gjør du på steget Jobb i perioden.',
+    'lovbestemtFerieStep.ferieFjernet.melding.arbeidstid':
+        'Du har fjernet feriedager. Hvis du skal jobbe disse dagene, må du se over at jobb i perioden er riktig. Dette gjør du på steget neste steg.',
     'calendarGrid.Mandag': 'Mandag',
     'calendarGrid.Tirsdag': 'Tirsdag',
     'calendarGrid.Onsdag': 'Onsdag',
