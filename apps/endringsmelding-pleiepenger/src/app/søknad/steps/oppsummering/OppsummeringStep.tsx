@@ -61,7 +61,6 @@ const OppsummeringStep = () => {
 
     useEffect(() => {
         dispatch(actionsCreator.setOppsummeringVist());
-        dispatch(actionsCreator.requestLagreSøknad());
     }, [dispatch]);
 
     const { includeBackLink, stepConfig } = useStepConfig(stepId);

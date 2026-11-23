@@ -11,7 +11,6 @@ import { sendSøknadEndpoint } from '../api/endpoints/sendSøknadEndpoint';
 import { useAppIntl } from '../i18n';
 import { SøknadRoutes } from '../søknad/config/SøknadRoutes';
 import actionsCreator from '../søknad/context/action/actionCreator';
-import { ventPåMellomlagring } from '../utils/lagreSøknadState';
 import { getSøknadApiDataMetadata, SøknadApiDataMetadata } from '../utils/oppsummeringUtils';
 import { useMellomlagring } from './useMellomlagring';
 
@@ -50,7 +49,6 @@ export const useSendSøknad = () => {
     const onSøknadSendSuccess = async (metadata: SøknadApiDataMetadata) => {
         await logSoknadSent(EndringsmeldingPsbApp.key, locale);
         await logInfo(metadata);
-        await ventPåMellomlagring();
         slettMellomlagring();
         setIsSubmitting(false);
         dispatch(actionsCreator.setEndringsmeldingSendt());

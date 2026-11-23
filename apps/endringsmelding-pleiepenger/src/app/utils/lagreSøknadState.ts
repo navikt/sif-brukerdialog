@@ -2,11 +2,6 @@ import { SøknadContextState } from '@app/types';
 
 import { søknadStateEndpoint } from '../api/endpoints/søknadStateEndpoint';
 
-let pågåendeLagring: Promise<unknown> = Promise.resolve();
-
-/** Sletting av mellomlagring må vente på denne, ellers kan en sen lagring gjenopprette kladden */
-export const ventPåMellomlagring = () => pågåendeLagring;
-
 export const lagreSøknadState = (state: SøknadContextState) => {
     const {
         versjon,
@@ -19,7 +14,7 @@ export const lagreSøknadState = (state: SøknadContextState) => {
         søknadStepsVedOppsummering,
         valgteEndringer,
     } = state;
-    const lagring = søknadStateEndpoint.update(
+    return søknadStateEndpoint.update(
         {
             barnAktørId: sak.barn.aktørId,
             søknadsdata,
@@ -36,6 +31,4 @@ export const lagreSøknadState = (state: SøknadContextState) => {
         },
         søker,
     );
-    pågåendeLagring = Promise.allSettled([pågåendeLagring, lagring]);
-    return lagring;
 };
