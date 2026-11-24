@@ -1,6 +1,6 @@
 import { Heading, VStack } from '@navikt/ds-react';
 import { BekreftelseOppgave } from '@sif/api/ung-brukerdialog';
-import { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
+import { ReactNode, useMemo, useState } from 'react';
 
 import { OppgaveStatusTag } from '../../components';
 import { useUngInnsynIntl } from '../../i18n';
@@ -18,7 +18,6 @@ interface Props {
 export const Oppgavebekreftelse = ({ oppgave, navn, children, initialVisKvittering = false }: Props) => {
     const intl = useUngInnsynIntl();
     const [visKvittering, setVisKvittering] = useState(initialVisKvittering);
-    const tittelRef = useRef<HTMLHeadingElement>(null);
 
     const contextValue = useMemo(
         () => ({
@@ -30,12 +29,6 @@ export const Oppgavebekreftelse = ({ oppgave, navn, children, initialVisKvitteri
         [oppgave, navn, visKvittering, setVisKvittering],
     );
 
-    useEffect(() => {
-        if (tittelRef) {
-            tittelRef.current?.focus();
-        }
-    }, []);
-
     return (
         <OppgavebekreftelseContext.Provider value={contextValue}>
             <VStack gap="space-24">
@@ -45,7 +38,7 @@ export const Oppgavebekreftelse = ({ oppgave, navn, children, initialVisKvitteri
                         oppgaveStatusTekst={getOppgaveStatusText(oppgave)}
                     />
                 </div>
-                <Heading level="1" size="large" tabIndex={-1} ref={tittelRef}>
+                <Heading level="1" size="large" tabIndex={-1}>
                     {getOppgaveTittel(oppgave, intl)}
                 </Heading>
                 {children}

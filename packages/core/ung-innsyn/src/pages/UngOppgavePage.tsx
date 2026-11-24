@@ -1,5 +1,5 @@
 import { Oppgave, ParsedOppgavetype } from '@sif/api/ung-brukerdialog';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { OppgaveBesvartMetadata, useOppgaveAnalytics } from '../analytics/oppgaveAnalytics';
 import { useUngInnsynIntl } from '../i18n';
@@ -64,9 +64,14 @@ export const UngOppgavePage = (props: Props) => {
     const { navn, oppgave, applikasjonTittel, onCancel, onSuccess, dokumentarkivUrl } = props;
     const intl = useUngInnsynIntl();
     const { logOppgaveVist, logOppgaveBesvart, logOppgaveAvbrutt } = useOppgaveAnalytics();
+    const pageContentRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         logOppgaveVist(oppgave.parsedOppgavetype, oppgave.status);
+    }, [oppgave.oppgaveReferanse]);
+
+    useEffect(() => {
+        pageContentRef.current?.querySelector<HTMLHeadingElement>('h1')?.focus();
     }, [oppgave.oppgaveReferanse]);
 
     const handleCancel = () => {
@@ -82,7 +87,7 @@ export const UngOppgavePage = (props: Props) => {
     return (
         <OppgavePageContext.Provider value={{ onCancel: handleCancel, onSuccess: handleSuccess }}>
             <UngInnsynPage documentTitle={getOppgaveDokumentTittel(applikasjonTittel, oppgave, intl)}>
-                {getOppgavePageComponent(navn, oppgave, dokumentarkivUrl)}
+                <div ref={pageContentRef}>{getOppgavePageComponent(navn, oppgave, dokumentarkivUrl)}</div>
             </UngInnsynPage>
         </OppgavePageContext.Provider>
     );
