@@ -30,11 +30,11 @@
         "eslint": "10.15.0",
         "globals": "17.14.0",
         "intl": "1.2.5",
-        "postcss": "^8.5.33",
+        "postcss": "^8.5.28",
         "react": "19.3.1",
         "react-dom": "19.3.1",
-        "react-intl": "12.1.7",
+        "react-intl": "12.2.0",
         "typescript": "6.0.3",
-        "vitest": "5.1.0"
+        "vitest": "5.1.1"
     }
 }

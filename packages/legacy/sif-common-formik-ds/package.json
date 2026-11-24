@@ -41,7 +41,7 @@
         "lodash": "4.18.1",
         "react-day-picker": "10.0.2",
         "react-fast-compare": "3.2.3",
-        "react-intl": "12.1.7",
+        "react-intl": "12.2.0",
         "uuid": "^14.0.2"
     },
     "devDependencies": {
@@ -51,10 +51,10 @@
         "@navikt/fnrvalidator": "2.2.1",
         "@sif/config": "workspace:*",
         "@sif/eslint-config": "workspace:*",
-        "@storybook/addon-a11y": "10.6.7",
+        "@storybook/addon-a11y": "10.6.8",
         "@storybook/addon-actions": "9.0.8",
-        "@storybook/builder-vite": "10.6.7",
-        "@storybook/react-vite": "10.6.7",
+        "@storybook/builder-vite": "10.6.8",
+        "@storybook/react-vite": "10.6.8",
         "@types/node": "26.6.6",
         "@types/react": "19.3.0",
         "@types/react-dom": "19.3.0",
@@ -66,10 +66,10 @@
         "react-syntax-highlighter": "16.1.2",
         "rimraf": "6.1.4",
         "sass": "1.108.2",
-        "storybook": "10.6.7",
+        "storybook": "10.6.8",
         "typescript": "6.0.3",
         "vite": "8.3.8",
         "vite-plugin-checker": "1.0.0",
-        "vitest": "5.1.0"
+        "vitest": "5.1.1"
     }
 }

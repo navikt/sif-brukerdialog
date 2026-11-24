@@ -12,7 +12,7 @@
         "lint:tsc": "tsc --noEmit"
     },
     "dependencies": {
-        "@navikt/nav-dekoratoren-moduler": "4.6.0"
+        "@navikt/nav-dekoratoren-moduler": "4.6.1"
     },
     "devDependencies": {
         "@sif/config": "workspace:*",

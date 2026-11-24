@@ -21,7 +21,7 @@
     "dependencies": {
         "@nais/apm": "0.7.3",
         "@navikt/ds-react": "8.23.0",
-        "@navikt/nav-dekoratoren-moduler": "4.6.0",
+        "@navikt/nav-dekoratoren-moduler": "4.6.1",
         "@navikt/sif-common-ui": "workspace:*",
         "@sif/analytics": "workspace:*",
         "@sif/api": "workspace:*",
@@ -31,11 +31,11 @@
         "@sif/soknad-ui": "workspace:*",
         "@sif/surveys": "workspace:*",
         "@sif/utils": "workspace:*",
-        "@tanstack/react-query": "5.107.1",
+        "@tanstack/react-query": "5.108.1",
         "js-cookie": "3.0.8",
         "react-hook-form": "7.92.0",
-        "react-intl": "12.1.7",
-        "react-router-dom": "7.18.5",
+        "react-intl": "12.2.0",
+        "react-router-dom": "7.18.6",
         "zustand": "5.1.0"
     },
     "devDependencies": {
@@ -48,7 +48,7 @@
         "react": "19.3.1",
         "react-dom": "19.3.1",
         "typescript": "6.0.3",
-        "vitest": "5.1.0"
+        "vitest": "5.1.1"
     },
     "peerDependencies": {
         "react": ">=19",
