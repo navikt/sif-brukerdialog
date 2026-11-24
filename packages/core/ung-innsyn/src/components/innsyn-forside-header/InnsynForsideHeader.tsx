@@ -1,4 +1,5 @@
 import { Heading, Show, Stack, VStack } from '@navikt/ds-react';
+import { useEffect, useRef } from 'react';
 
 import { UngdomsprogramPictogram } from '../svg/UngdomsprogramPictogram';
 
@@ -8,6 +9,14 @@ interface Props {
 }
 
 export const InnsynForsideHeader = ({ title, subtitle }: Props) => {
+    const tittelRef = useRef<HTMLHeadingElement>(null);
+    
+    useEffect(() => {
+        if (tittelRef) {
+            tittelRef.current?.focus();
+        }
+    }, []);
+
     return (
         <Stack
             gap="space-24"
@@ -19,7 +28,7 @@ export const InnsynForsideHeader = ({ title, subtitle }: Props) => {
                 <UngdomsprogramPictogram />
             </Show>
             <VStack gap="space-4">
-                <Heading level="1" size="xlarge">
+                <Heading level="1" size="xlarge" tabIndex={-1} ref={tittelRef}>
                     {title}
                 </Heading>
                 {subtitle && <div className="uppercase">{subtitle}</div>}

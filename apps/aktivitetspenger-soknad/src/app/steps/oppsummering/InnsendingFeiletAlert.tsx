@@ -14,7 +14,9 @@ export const InnsendingFeiletAlert = ({ error }: Props) => {
     const invalidParameters = erZodFeil ? [] : getInvalidParametersFromApiError(error);
 
     useEffect(() => {
-        alertRef.current?.focus();
+        setTimeout(() => {
+            alertRef.current?.focus();
+        }, 20);
     }, [error]);
 
     return (
