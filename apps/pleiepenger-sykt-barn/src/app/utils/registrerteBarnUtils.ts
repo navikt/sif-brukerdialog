@@ -1,9 +1,9 @@
 import type { RegistrertBarn } from '@navikt/sif-common-api';
 import { formatName } from '@navikt/sif-common-core-ds/src/utils/personUtils';
-import { dateFormatter } from '@navikt/sif-common-utils';
+import { dateToISODate } from '@navikt/sif-common-utils';
 
 const getVisningsnøkkel = ({ fornavn, mellomnavn, etternavn, fødselsdato }: RegistrertBarn): string =>
-    JSON.stringify([formatName(fornavn, etternavn, mellomnavn), dateFormatter.compact(fødselsdato)]);
+    JSON.stringify([formatName(fornavn, etternavn, mellomnavn), dateToISODate(fødselsdato)]);
 
 export const fjernTvetydigeRegistrerteBarn = (barn: RegistrertBarn[]): RegistrertBarn[] => {
     const antallPerVisningsnøkkel = barn.reduce((antall, registrertBarn) => {

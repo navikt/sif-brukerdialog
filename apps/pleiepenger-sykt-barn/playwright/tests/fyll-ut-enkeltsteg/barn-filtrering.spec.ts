@@ -1,5 +1,4 @@
-import { RegistrertBarn } from '@navikt/sif-common-api';
-import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
+import type { RegistrertBarn } from '@navikt/sif-common-api';
 import { expect, Page, test } from '@playwright/test';
 
 import { StepID } from '../../../src/app/types/StepID';
@@ -42,8 +41,8 @@ test('bruker mellomlagringen videre når valget gjelder et tredje entydig barn',
     await page.goto('http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger/soknad');
 
     await page.waitForURL('**/tidsrom');
-    await expect(page.getByLabel('Fra og med')).toHaveValue('03.01.2023');
-    await expect(page.getByLabel('Til og med')).toHaveValue('15.01.2023');
+    await expect(page.getByRole('textbox', { name: 'Fra og med' })).toHaveValue('03.01.2023');
+    await expect(page.getByRole('textbox', { name: 'Til og med' })).toHaveValue('15.01.2023');
 });
 
 test('bruker mellomlagringen videre når valget gjelder annet barn', async ({ page }) => {
@@ -55,7 +54,7 @@ test('bruker mellomlagringen videre når valget gjelder annet barn', async ({ pa
             ...mellomlagringMock,
             formValues: {
                 ...mellomlagringMock.formValues,
-                barnetSøknadenGjelder: VelgBarn_AnnetBarnValue,
+                barnetSøknadenGjelder: 'annetBarn',
                 barnetsFødselsnummer: '08861999573',
                 barnetsNavn: 'Tore',
                 relasjonTilBarnet: 'MOR',
@@ -69,8 +68,8 @@ test('bruker mellomlagringen videre når valget gjelder annet barn', async ({ pa
     await page.goto('http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger/soknad');
 
     await page.waitForURL('**/tidsrom');
-    await expect(page.getByLabel('Fra og med')).toHaveValue('03.01.2023');
-    await expect(page.getByLabel('Til og med')).toHaveValue('15.01.2023');
+    await expect(page.getByRole('textbox', { name: 'Fra og med' })).toHaveValue('03.01.2023');
+    await expect(page.getByRole('textbox', { name: 'Til og med' })).toHaveValue('15.01.2023');
 });
 
 test('viser annet barn når det mellomlagrede valget er tvetydig og ble fjernet', async ({ page }) => {
