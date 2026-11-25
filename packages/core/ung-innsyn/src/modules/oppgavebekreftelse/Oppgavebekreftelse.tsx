@@ -38,7 +38,7 @@ export const Oppgavebekreftelse = ({ oppgave, navn, children, initialVisKvitteri
                         oppgaveStatusTekst={getOppgaveStatusText(oppgave)}
                     />
                 </div>
-                <Heading level="1" size="large">
+                <Heading level="1" size="large" tabIndex={-1}>
                     {getOppgaveTittel(oppgave, intl)}
                 </Heading>
                 {children}

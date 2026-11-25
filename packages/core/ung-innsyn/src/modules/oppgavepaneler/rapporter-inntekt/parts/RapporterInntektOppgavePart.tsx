@@ -72,7 +72,7 @@ export const RapporterInntektOppgavePart = ({ navn, oppgave, initialKvitteringDa
             <div>
                 <OppgaveStatusTag oppgaveStatus={oppgave.status} oppgaveStatusTekst={getOppgaveStatusText(oppgave)} />
             </div>
-            <Heading level="1" size="large">
+            <Heading level="1" size="large" tabIndex={-1}>
                 <UngInnsynText id="@ungInnsyn.rapporterInntektOppgavePart.tittel" values={{ månedOgÅr }} />
             </Heading>
             {kvitteringData ? (

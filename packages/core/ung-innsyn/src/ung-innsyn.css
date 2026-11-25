@@ -7,6 +7,12 @@ body.innsynAppBody {
     color: var(--ax-text-neutral);
 }
 
+/** Skjul fokus på sideheadere. Sideheadere får fokus satt programmatisk når de vises */
+.innsynApp h1.aksel-heading:focus {
+    border: none;
+    outline: none;
+}
+
 .demoMode {
     position: relative;
 }

@@ -20,7 +20,7 @@ export const SøkYtelseOppgavetekst = ({ oppgave, dokumentarkivUrl }: Props) => 
     if (oppgave.status !== OppgaveStatus.LØST) {
         return (
             <VStack gap="space-24">
-                <Heading level="1" size="large">
+                <Heading level="1" size="large" tabIndex={-1}>
                     <UngInnsynText id={`@ungInnsyn.oppgavetype.SØK_YTELSE.${oppgave.ytelsetype}.oppgavetittel`} />
                 </Heading>
                 <SifInfoCard>
@@ -38,7 +38,7 @@ export const SøkYtelseOppgavetekst = ({ oppgave, dokumentarkivUrl }: Props) => 
             <div>
                 <OppgaveStatusTag oppgaveStatus={oppgave.status} oppgaveStatusTekst={getOppgaveStatusText(oppgave)} />
             </div>
-            <Heading level="1" size="large">
+            <Heading level="1" size="large" tabIndex={-1}>
                 <UngInnsynText id={`@ungInnsyn.oppgavetype.SØK_YTELSE.${oppgave.ytelsetype}.oppgavetittel`} />
             </Heading>
             <section aria-labelledby="summaryHeading">
