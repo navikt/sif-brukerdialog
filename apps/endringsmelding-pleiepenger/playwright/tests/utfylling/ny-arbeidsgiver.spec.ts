@@ -7,14 +7,14 @@ test('test', async ({ page }) => {
     await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN, 'arbeidsgiver-ikke-i-sak');
     await page.getByTestId('endreArbeidstid').check();
     await page.getByTestId('bekreft-label').click();
-    await page.getByTestId('typedFormikForm-submitButton').click();
+    await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
 
     await page.getByTestId('ukjentArbeidsforhold_a_947064642').getByLabel('Ja').check();
     await page.getByLabel('Hvor mange timer jobber du').click();
     await page.getByLabel('Hvor mange timer jobber du').fill('50');
     await page.getByLabel('Hovedinnhold').click();
     await page.getByTestId('ukjentArbeidsforhold_a_947064643').getByLabel('Nei').check();
-    await page.getByTestId('typedFormikForm-submitButton').click();
+    await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
 
     await page.getByTestId('REDUSERT').check();
     await page.getByRole('button', { name: 'Vis flere uker' }).click();
@@ -36,8 +36,8 @@ test('test', async ({ page }) => {
     await page.getByTestId('timer-verdi').click();
     await page.getByTestId('timer-verdi').fill('5');
     await page.getByRole('button', { name: 'Ok' }).click();
-    await page.getByTestId('typedFormikForm-submitButton').click();
+    await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
     await page.getByText('Jeg bekrefter at').click();
-    await page.getByTestId('typedFormikForm-submitButton').click();
+    await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
     await expect(page.getByRole('heading', { name: 'Melding om endring er lagt til saken din' })).toBeVisible();
 });

@@ -8,7 +8,7 @@ test('test', async ({ page }) => {
     await page.getByTestId('endreLovbestemtFerie').check();
     await page.getByTestId('endreArbeidstid').check();
     await page.getByLabel('Jeg bekrefter at jeg har').check();
-    await page.getByTestId('typedFormikForm-submitButton').click();
+    await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
 
     /** Ferie */
     await page.getByTestId('dateRangeAccordion_1_header').click();
@@ -30,7 +30,7 @@ test('test', async ({ page }) => {
         .filter({ hasText: 'tirsdag 31.01.2023Ferie' })
         .getByTestId('angre_fjern_ferie_knapp')
         .click();
-    await page.getByTestId('typedFormikForm-submitButton').click();
+    await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
 
     /** Arbeid */
     await page.getByTestId('dateRangeAccordion_0_header').click();
@@ -43,7 +43,7 @@ test('test', async ({ page }) => {
     await page.getByTestId('timer-verdi').fill('0');
     await page.getByRole('button', { name: 'Ok' }).click();
     await page.getByTestId('dateRangeAccordion_1_header').click();
-    await page.getByTestId('typedFormikForm-submitButton').click();
+    await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
 
     /** Oppsummering */
     await expect(page.getByText('fredag 23.12.2022 - torsdag')).toBeVisible();
@@ -51,6 +51,6 @@ test('test', async ({ page }) => {
     await expect(page.getByText('- 23.12.2022')).toBeVisible();
     await page.getByText('Jeg bekrefter at').click();
     await page.getByTestId('arbeidstid-faktisk').click();
-    await page.getByTestId('typedFormikForm-submitButton').click();
+    await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
     await expect(page.getByRole('heading', { name: 'Melding om endring er lagt til saken din' })).toBeVisible();
 });

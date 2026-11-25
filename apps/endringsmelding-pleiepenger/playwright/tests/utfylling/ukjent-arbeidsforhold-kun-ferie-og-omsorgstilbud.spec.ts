@@ -100,10 +100,10 @@ test('ukjent arbeidsforhold med kun omsorgstilbud valgt', async ({ page }) => {
     await page.getByRole('group', { name: 'Onsdager' }).getByLabel('Timer').fill('5');
     await page.getByRole('group', { name: 'Fredager' }).getByLabel('Timer').fill('3');
     await page.getByRole('button', { name: 'Ok' }).click();
-    await page.getByTestId('typedFormikForm-submitButton').click();
+    await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
 
     /** Oppsummering */
     await page.getByText('Jeg bekrefter at').click();
-    await page.getByTestId('typedFormikForm-submitButton').click();
+    await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
     await expect(page.getByRole('heading', { name: 'Melding om endring er lagt til saken din' })).toBeVisible();
 });

@@ -10,7 +10,7 @@ test('Sende endring om tid omsorgstilbud', async ({ page }) => {
         .locator('div')
         .filter({ hasText: /^Jeg bekrefter at jeg har forstått mitt ansvar når jeg sender inn en endring$/ })
         .click();
-    await page.getByTestId('typedFormikForm-submitButton').click();
+    await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
     await page.getByRole('button', { name: 'Legg til endring for en periode' }).click();
     await page.getByRole('button', { name: 'Åpne datovelger' }).first().click();
     await expect(page.getByLabel('Velg dato').getByText('januar 2023')).toBeVisible();
@@ -28,10 +28,10 @@ test('Sende endring om tid omsorgstilbud', async ({ page }) => {
     await page.getByText('Gjenta denne tiden for flere').click();
     await page.getByText('Alle dager i mars 2023', { exact: true }).click();
     await page.getByRole('button', { name: 'Lagre' }).click();
-    await page.getByTestId('typedFormikForm-submitButton').click();
+    await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
     await expect(page.getByRole('heading', { name: 'Februar 2023 - 9 dager endret' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Mars 2023 - 23 dager endret' })).toBeVisible();
     await page.getByText('Jeg bekrefter at').click();
-    await page.getByTestId('typedFormikForm-submitButton').click();
+    await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
     await expect(page.getByRole('heading', { name: 'Melding om endring er lagt' })).toBeVisible();
 });

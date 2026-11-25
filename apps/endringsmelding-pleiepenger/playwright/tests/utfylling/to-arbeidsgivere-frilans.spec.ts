@@ -9,10 +9,10 @@ test('test', async ({ page }) => {
     await page.getByTestId('endreLovbestemtFerie').check();
     await page.getByTestId('endreArbeidstid').check();
     await page.getByLabel('Jeg bekrefter at jeg har').check();
-    await page.getByTestId('typedFormikForm-submitButton').click();
+    await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
 
     /** Ferie (ingen endringer) */
-    await page.getByTestId('typedFormikForm-submitButton').click();
+    await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
 
     /** Arbeidstid */
     await page.getByTestId('aktivitet_a_947064649').getByRole('button', { name: 'Vis mer' }).click();
@@ -42,7 +42,7 @@ test('test', async ({ page }) => {
     await page.getByTestId('timer-verdi').fill('2');
     await page.getByRole('button', { name: 'Ok', exact: true }).click();
     await testAccessibility(page);
-    await page.getByTestId('typedFormikForm-submitButton').click();
+    await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
 
     await expect(page.getByTestId('uke_44').getByTestId('arbeidstid-faktisk')).toContainText(
         '8 t. 45 m.Endret fra 7 t. 30 m.',
@@ -60,7 +60,7 @@ test('test', async ({ page }) => {
     await expect(page.getByText('Endre  ferie')).toBeVisible();
     await expect(page.getByText('Endre tid i omsorgstilbud')).toBeVisible();
     await page.getByText('Jeg bekrefter at').click();
-    await page.getByTestId('typedFormikForm-submitButton').click();
+    await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
     await expect(page.getByRole('heading', { name: 'Melding om endring er lagt til saken din' })).toBeVisible();
     await testAccessibility(page);
 });

@@ -9,11 +9,11 @@ test('Legge til endring i omsorgstilbud fra oppsummeringen', async ({ page }) =>
     /** Velkommen - velger kun ferie */
     await page.getByTestId('endreLovbestemtFerie').check();
     await page.getByLabel('Jeg bekrefter at jeg har').check();
-    await page.getByTestId('typedFormikForm-submitButton').click();
+    await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
 
     /** Ferie - går videre uten endringer */
     await expect(page).toHaveTitle('Ferie i pleiepengeperioden - Endringsmelding for pleiepenger sykt barn');
-    await page.getByTestId('typedFormikForm-submitButton').click();
+    await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
 
     /** Oppsummering - omsorgstilbud er ikke valgt, men kan legges til */
     await expect(page.getByText('Endre tid i omsorgstilbud')).toBeVisible();
@@ -37,7 +37,7 @@ test('Legge til endring i omsorgstilbud fra oppsummeringen', async ({ page }) =>
     await page.getByRole('button', { name: 'fredag 24' }).click();
     await page.getByRole('group', { name: 'Mandager' }).getByLabel('Timer').fill('1');
     await page.getByRole('button', { name: 'Ok' }).click();
-    await page.getByTestId('typedFormikForm-submitButton').click();
+    await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
 
     /** Oppsummering - endringen i omsorgstilbud vises, og ferie er fortsatt med */
     await expect(page.getByText('Tid i omsorgstilbud').nth(2)).toBeVisible();
@@ -45,6 +45,6 @@ test('Legge til endring i omsorgstilbud fra oppsummeringen', async ({ page }) =>
     await expect(page.getByText('Endre ferie')).toBeVisible();
 
     await page.getByText('Jeg bekrefter at').click();
-    await page.getByTestId('typedFormikForm-submitButton').click();
+    await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
     await expect(page.getByRole('heading', { name: 'Melding om endring er lagt til saken din' })).toBeVisible();
 });
