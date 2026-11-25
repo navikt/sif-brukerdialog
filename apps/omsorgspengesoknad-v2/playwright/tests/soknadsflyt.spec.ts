@@ -77,7 +77,7 @@ test('fyller ut søknaden uten registrerte barn, vedlegg og sender inn', async (
     await page.getByLabel('Barnets fødselsdato').fill('08.06.2019');
     await page.getByLabel('Barnets fødselsnummer/D-nummer').fill('09847696068');
     await page.getByLabel('Barnets navn').fill('Beta Testesen');
-    await page.getByRole('group', { name: 'Min relasjon til barnet' }).getByRole('radio', { name: 'Mor' }).check();
+    await page.getByRole('radiogroup', { name: 'Min relasjon til barnet' }).getByRole('radio', { name: 'Mor' }).check();
     await fyllUtFellesBarnespørsmål(page);
     await lastOppLegeerklæringOgGåTilOppsummering(page);
     await expectFellesOppsummering(page);

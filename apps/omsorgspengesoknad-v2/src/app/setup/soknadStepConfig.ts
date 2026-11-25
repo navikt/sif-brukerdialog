@@ -1,8 +1,25 @@
 import { StepDefinition } from '@sif/soknad-app';
 
 import { BarnSammeAdresse } from '../types/BarnSammeAdresse';
+import { SøkersRelasjonTilBarnet } from '../types/SøkersRelasjonTilBarnet';
 import { Søknadsdata } from '../types/Soknadsdata';
 import { SøknadStepId } from '../types/SoknadStepId';
+
+export const inkluderDeltBostedStep = (omBarnet: Søknadsdata[SøknadStepId.OM_BARNET]): boolean => {
+    if (!omBarnet) {
+        return false;
+    }
+
+    switch (omBarnet.type) {
+        case 'registrertBarn':
+            return omBarnet.sammeAdresse === BarnSammeAdresse.JA_DELT_BOSTED;
+        case 'annetBarn':
+            return (
+                omBarnet.sammeAdresse === BarnSammeAdresse.JA_DELT_BOSTED &&
+                omBarnet.søkersRelasjonTilBarnet !== SøkersRelasjonTilBarnet.FOSTERFORELDER
+            );
+    }
+};
 
 export const søknadStepConfig: Record<SøknadStepId, StepDefinition> = {
     [SøknadStepId.OM_BARNET]: {
@@ -15,7 +32,7 @@ export const søknadStepConfig: Record<SøknadStepId, StepDefinition> = {
     },
     [SøknadStepId.DELT_BOSTED]: {
         route: 'delt-bosted',
-        isIncluded: (s) => (s as Søknadsdata)[SøknadStepId.OM_BARNET]?.sammeAdresse === BarnSammeAdresse.JA_DELT_BOSTED,
+        isIncluded: (s) => inkluderDeltBostedStep((s as Søknadsdata)[SøknadStepId.OM_BARNET]),
         isCompleted: (s) => (s as Søknadsdata)[SøknadStepId.DELT_BOSTED] !== undefined,
     },
     [SøknadStepId.OPPSUMMERING]: {

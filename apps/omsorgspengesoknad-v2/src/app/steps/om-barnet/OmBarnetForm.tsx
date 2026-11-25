@@ -86,10 +86,14 @@ export const OmBarnetForm = () => {
     }, [vedtak, text]);
 
     const sammeAdresse = watch(OmBarnetFormFields.sammeAdresse);
+    const søkersRelasjonTilBarnet = watch(OmBarnetFormFields.søkersRelasjonTilBarnet);
     const kroniskEllerFunksjonshemming = watch(OmBarnetFormFields.kroniskEllerFunksjonshemming);
     const høyereRisikoForFravær = watch(OmBarnetFormFields.høyereRisikoForFravær);
 
-    const visIkkeSammeAdresseAlert = sammeAdresse === BarnSammeAdresse.NEI;
+    const erFosterforelder =
+        (!harRegistrerteBarn || søknadenGjelderAnnetBarn) &&
+        søkersRelasjonTilBarnet === SøkersRelasjonTilBarnet.FOSTERFORELDER;
+    const visIkkeSammeAdresseAlert = sammeAdresse === BarnSammeAdresse.NEI && !erFosterforelder;
     const visHøyereRisikoSpørsmål = harValgtBarn && kroniskEllerFunksjonshemming === YesOrNo.YES;
     const visHøyereRisikoBeskrivelseSpørsmål = visHøyereRisikoSpørsmål && høyereRisikoForFravær === YesOrNo.YES;
 
