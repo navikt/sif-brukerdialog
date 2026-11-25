@@ -1,32 +1,38 @@
 import './lovbestemtFerieModal.css';
 
-import { useAppIntl } from '@app/i18n';
-import { Modal } from '@navikt/ds-react';
-import React, { FunctionComponent } from 'react';
+import { Dialog } from '@navikt/ds-react';
+import React from 'react';
 
 interface Props {
     title: string;
     open?: boolean;
     children: React.ReactNode;
     onClose: () => void;
+    onClosed?: () => void;
 }
 
-const LovbestemtFerieModal: FunctionComponent<Props> = ({ children, title, open = false, onClose }) => {
-    const { text } = useAppIntl();
-    return open ? (
-        <Modal
-            portal={true}
+const LovbestemtFerieModal = ({ children, title, open = false, onClose, onClosed }: Props) => {
+    return (
+        <Dialog
             open={open}
-            onClose={onClose}
-            className="lovbestemtFerieModal"
-            aria-label={text('lovbestemtFerieModal.ariaLabel')}
-            header={{
-                heading: title,
-                closeButton: true,
+            onOpenChange={(nextOpen) => {
+                if (!nextOpen) {
+                    onClose();
+                }
+            }}
+            onOpenChangeComplete={(isOpen) => {
+                if (!isOpen) {
+                    onClosed?.();
+                }
             }}>
-            <Modal.Body>{children}</Modal.Body>
-        </Modal>
-    ) : null;
+            <Dialog.Popup className="lovbestemtFerieModal" closeOnOutsideClick={false}>
+                <Dialog.Header>
+                    <Dialog.Title>{title}</Dialog.Title>
+                </Dialog.Header>
+                <Dialog.Body>{children}</Dialog.Body>
+            </Dialog.Popup>
+        </Dialog>
+    );
 };
 
 export default LovbestemtFerieModal;

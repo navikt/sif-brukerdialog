@@ -105,9 +105,7 @@ const TilsynsordningSøknadsperiode = ({
                     onCancel: () => setVisPeriodeDialog(false),
                     onSubmit: (values) => {
                         onPeriodeChange(oppdaterDagerMedOmsorgstilbudIPeriode(values));
-                        setTimeout(() => {
-                            setVisPeriodeDialog(false);
-                        });
+                        setVisPeriodeDialog(false);
                     },
                 }}
             />
