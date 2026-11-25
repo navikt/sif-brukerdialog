@@ -16,6 +16,7 @@ import { initialValues, SøknadFormField, SøknadFormValues } from '../types/sø
 import { MellomlagringMetadata, SøknadTempStorageData } from '../types/SøknadTempStorageData';
 import { getFeatureToggles } from '../utils/featureToggleUtils';
 import { relocateToLoginPage } from '../utils/navigationUtils';
+import { fjernTvetydigeRegistrerteBarn } from '../utils/registrerteBarnUtils';
 
 interface Props {
     onUgyldigMellomlagring: () => void;
@@ -93,20 +94,27 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
 
     async handleSøkerdataFetchSuccess(mellomlagringResponse: AxiosResponse, søker: Søker, barn: RegistrertBarn[]) {
         const mellomlagring = await this.getValidMellomlagring(mellomlagringResponse?.data);
+        const registrerteBarn = fjernTvetydigeRegistrerteBarn(barn);
         const søkerdata: Søkerdata = {
             søker,
-            barn,
+            barn: registrerteBarn,
         };
-        const formValuesToUse = mellomlagring
+        const harTvetydigeRegistrerteBarn = registrerteBarn.length !== barn.length;
+        const formValuesToUse = mellomlagring && !harTvetydigeRegistrerteBarn
             ? {
                   ...mellomlagring.formValues,
                   [SøknadFormField.legeerklæring]: getValidVedlegg(mellomlagring.formValues.legeerklæring),
               }
             : { ...initialValues };
 
-        this.updateSøkerdata(formValuesToUse, søkerdata, mellomlagring?.metadata, () => {
-            this.stopLoading();
-        });
+        this.updateSøkerdata(
+            formValuesToUse,
+            søkerdata,
+            harTvetydigeRegistrerteBarn ? undefined : mellomlagring?.metadata,
+            () => {
+                this.stopLoading();
+            },
+        );
     }
 
     updateSøkerdata(
