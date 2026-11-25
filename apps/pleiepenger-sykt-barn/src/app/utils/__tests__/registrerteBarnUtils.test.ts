@@ -27,8 +27,8 @@ describe('registrerteBarnUtils', () => {
 
     it('fjerner alle barn med samme navn og fødselsdato', () => {
         const tvetydigeBarn = [
-            createBarn('1', 'Ukjent navn', '2026-01-01T01:00:00+01:00'),
-            createBarn('2', 'Ukjent navn', '2026-01-01T23:00:00+01:00'),
+            createBarn('1', 'Ukjent navn', '2026-01-01T01:00:00'),
+            createBarn('2', 'Ukjent navn', '2026-01-01T23:00:00'),
         ];
         const entydigBarn = createBarn('3', 'Kari', '2026-01-02');
 
