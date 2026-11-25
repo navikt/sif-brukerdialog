@@ -198,7 +198,7 @@ const UkeCeller = ({ uke, ukenummer, visNormalarbeidstid }: UkeCellsProps) => {
                 {ukenummer}
             </Table.DataCell>
             <Table.DataCell data-testid="periode">
-                <HStack justify="space-between" gap="space-8" wrap={false}>
+                <HStack gap="space-8" wrap={false}>
                     <div>
                         {getDateRangeText(uke.periode, intl.locale)}
                         {(uke.harFeriedager || uke.harFjernetFeriedager) && (
