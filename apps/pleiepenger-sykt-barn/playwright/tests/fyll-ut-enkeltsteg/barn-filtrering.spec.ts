@@ -115,7 +115,7 @@ test('viser barn med samme navn og ulik fødselsdato', async ({ page }) => {
     await expect(page.getByText('Kari Nordmann', { exact: true })).toHaveCount(2);
 });
 
-test('fortsetter påbegynt søknad når valgt barn er entydig', async ({ page }) => {
+test('fortsetter påbegynt søknad når valgt barn er entydig', { tag: '@tidssone' }, async ({ page }) => {
     await setupMellomlagring(page, '3');
     await page.goto(søknadUrl);
 

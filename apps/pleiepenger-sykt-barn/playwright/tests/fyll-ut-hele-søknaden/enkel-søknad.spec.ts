@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 import { routeUtils } from '../../utils/routeUtils';
 import { testAccessibility } from '../../utils/testAccessibility';
 
-test('Fyll ut enkel søknad', async ({ page }) => {
+test('Fyll ut enkel søknad', { tag: '@tidssone' }, async ({ page }) => {
     await routeUtils.setupMockRoutes(page);
     await page.goto('http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger/soknad/velkommen');
     await page.getByLabel('Jeg bekrefter at jeg har').check();
@@ -26,6 +26,8 @@ test('Fyll ut enkel søknad', async ({ page }) => {
         .getByRole('button', { name: 'Åpne datovelger' })
         .click();
     await page.getByRole('button', { name: 'søndag 15' }).click();
+    await expect(page.getByLabel('Fra og med', { exact: true })).toHaveValue('02.01.2023');
+    await expect(page.getByLabel('Til og med', { exact: true })).toHaveValue('15.01.2023');
     await page.getByRole('radiogroup', { name: 'Skal du reise til utlandet i' }).getByLabel('Nei').check();
     await page.getByRole('radiogroup', { name: 'Skal du ha ferie i perioden' }).getByLabel('Nei').check();
     await testAccessibility(page);

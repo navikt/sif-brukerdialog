@@ -22,7 +22,7 @@ test.describe('Barn steg', () => {
         await testAccessibility(page);
         await page.getByTestId('typedFormikForm-submitButton').click();
     });
-    test('Annet barn - utlandet', async ({ page }) => {
+    test('Annet barn - utlandet', { tag: '@tidssone' }, async ({ page }) => {
         await page.getByText('Søknaden gjelder et annet barn', { exact: true }).click();
         await page.getByText('Barnet har ikke fødselsnummer').click();
         await page.getByText('Barnet bor i utlandet').click();
