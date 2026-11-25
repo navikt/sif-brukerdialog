@@ -20,6 +20,7 @@ export {
     type ScenarioSelectorHeaderGroup,
     type ScenarioSelectorHeaderOption,
 } from './scenario-selector-header/ScenarioSelectorHeader';
+export { SifAlert } from './sif-alert/SifAlert';
 export { SifGuidePanel } from './sif-guide-panel/SifGuidePanel';
 export { type SifGuidePanelProps } from './sif-guide-panel/SifGuidePanel';
 export { SifInfoCard } from './sif-info-card/SifInfoCard';
