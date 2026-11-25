@@ -50,6 +50,12 @@ export const App = () => {
         <SøknadAppProvider
             applicationKey={OmsorgsdagerKroniskApp.key}
             useAnalytics={env.SIF_PUBLIC_USE_ANALYTICS === 'true'}
+            appStatusConfig={{
+                sanityConfig: {
+                    projectId: env.SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+                    dataset: env.SIF_PUBLIC_APPSTATUS_DATASET,
+                },
+            }}
             intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
             <BrowserRouter basename={env.PUBLIC_PATH}>
                 {__IS_DEMO__ ? (
