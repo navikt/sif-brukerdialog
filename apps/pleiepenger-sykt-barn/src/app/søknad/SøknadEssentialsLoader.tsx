@@ -1,6 +1,7 @@
 import { fetchBarn, fetchSøker, RegistrertBarn, Søker } from '@navikt/sif-common-api';
 import { Vedlegg } from '@navikt/sif-common-core-ds/src/types/Vedlegg';
 import * as apiUtils from '@navikt/sif-common-core-ds/src/utils/apiUtils';
+import { VelgBarn_AnnetBarnValue } from '@navikt/sif-common-forms-ds';
 import { LoadingPage, NoAccessPage } from '@navikt/sif-common-soknad-ds';
 import { appLogger } from '@sif/apm';
 import { AxiosError, AxiosResponse } from 'axios';
@@ -99,18 +100,24 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
             søker,
             barn: registrerteBarn,
         };
-        const harTvetydigeRegistrerteBarn = registrerteBarn.length !== barn.length;
-        const formValuesToUse = mellomlagring && !harTvetydigeRegistrerteBarn
+        const lagretBarnValg = mellomlagring?.formValues[SøknadFormField.barnetSøknadenGjelder];
+        const lagretBarnBleFjernet =
+            lagretBarnValg !== undefined &&
+            lagretBarnValg !== VelgBarn_AnnetBarnValue &&
+            barn.some(({ aktørId }) => aktørId === lagretBarnValg) &&
+            !registrerteBarn.some(({ aktørId }) => aktørId === lagretBarnValg);
+        const formValuesToUse = mellomlagring
             ? {
                   ...mellomlagring.formValues,
                   [SøknadFormField.legeerklæring]: getValidVedlegg(mellomlagring.formValues.legeerklæring),
+                  [SøknadFormField.barnetSøknadenGjelder]: lagretBarnBleFjernet ? '' : (lagretBarnValg ?? ''),
               }
             : { ...initialValues };
 
         this.updateSøkerdata(
             formValuesToUse,
             søkerdata,
-            harTvetydigeRegistrerteBarn ? undefined : mellomlagring?.metadata,
+            lagretBarnBleFjernet ? undefined : mellomlagring?.metadata,
             () => {
                 this.stopLoading();
             },
