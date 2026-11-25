@@ -113,6 +113,16 @@ describe('tidEnkeltdagUtils', () => {
             ]);
         });
 
+        it('utMånedFraDato - returnerer ukedager fra dato til endringsperiode.to, ikke inn i neste måned', () => {
+            const result = getGjentagendeDager(
+                søknadsperiode,
+                ISODateRangeToDateRange('2022-01-10/2022-01-25'),
+                ISODateToDate('2022-01-19'),
+                { gjentagelsetype: GjentagelseType.utMånedFraDato },
+            );
+            expect(result).toEqual(['2022-01-19', '2022-01-20', '2022-01-21', '2022-01-24', '2022-01-25']);
+        });
+
         it('alleDagerUtSøknadsperioden - returnerer alle ukedager fra dato til søknadsperiode.to', () => {
             const result = getGjentagendeDager(søknadsperiode, endringsperiodeIMåned, dato, {
                 gjentagelsetype: GjentagelseType.alleDagerUtSøknadsperioden,

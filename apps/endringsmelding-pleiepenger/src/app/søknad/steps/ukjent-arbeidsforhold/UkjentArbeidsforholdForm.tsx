@@ -3,6 +3,7 @@ import IkkeAnsattMelding from '@app/components/ikke-ansatt-melding/IkkeAnsattMel
 import InfoNormalarbeidstid from '@app/components/info-normalarbeidstid/InfoNormalarbeidstid';
 import PersistStepFormValues from '@app/components/persist-step-form-values/PersistStepFormValues';
 import { useOnValidSubmit } from '@app/hooks';
+import { useAppIntl } from '@app/i18n';
 import { StepId } from '@app/søknad/config/StepId';
 import actionsCreator from '@app/søknad/context/action/actionCreator';
 import { useStepFormValuesContext } from '@app/søknad/context/StepFormValuesContext';
@@ -23,7 +24,6 @@ import {
     YesOrNo,
 } from '@navikt/sif-common-formik-ds';
 import { FormLayout } from '@navikt/sif-common-ui';
-import { useIntl } from 'react-intl';
 
 import {
     getErAnsattValidator,
@@ -77,7 +77,7 @@ const UkjentArbeidsforholdForm = ({
     arbeidsgivereIkkeISak,
     ukjentArbeidsforholdSøknadsdata,
 }: Props) => {
-    const intl = useIntl();
+    const { text, intl } = useAppIntl();
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values: UkjentArbeidsforholdFormValues) => {
@@ -89,7 +89,7 @@ const UkjentArbeidsforholdForm = ({
         return [];
     };
 
-    const { handleSubmit, isSubmitting } = useOnValidSubmit(
+    const { handleSubmit, isSubmitting, submitButtonLabel } = useOnValidSubmit(
         onValidSubmitHandler,
         stepId,
         (state: SøknadContextState) => {
@@ -114,6 +114,7 @@ const UkjentArbeidsforholdForm = ({
                             formErrorHandler={getIntlFormErrorHandler(intl, 'ukjentArbeidsforholdForm')}
                             includeValidationSummary={true}
                             submitPending={isSubmitting}
+                            submitButtonLabel={submitButtonLabel}
                             runDelayedFormValidation={true}
                             onBack={goBack}>
                             <VStack gap="space-32">
@@ -133,7 +134,7 @@ const UkjentArbeidsforholdForm = ({
                                                     <FormikYesOrNoQuestion
                                                         name={`${arbeidsgiverFieldName}.${UkjentArbeidsgiverFormField.erAnsatt}`}
                                                         validate={getErAnsattValidator(arbeidsgiver.navn)}
-                                                        legend={`Stemmer det at du er ansatt hos ${arbeidsgiver.navn} i perioden du har søkt pleiepenger?`}
+                                                        legend={text('ukjentArbeidsforholdForm.erAnsatt.legend', { navn: arbeidsgiver.navn })}
                                                     />
                                                     {arbeidsgiverValues.erAnsatt === YesOrNo.NO && (
                                                         <FormLayout.QuestionRelatedMessage>
@@ -143,7 +144,7 @@ const UkjentArbeidsforholdForm = ({
                                                     {arbeidsgiverValues.erAnsatt === YesOrNo.YES && (
                                                         <FormikNumberInput
                                                             name={`${arbeidsgiverFieldName}.${UkjentArbeidsgiverFormField.timerPerUke}`}
-                                                            label={`Hvor mange timer jobber du normalt per uke hos ${arbeidsgiver.navn}?`}
+                                                            label={text('ukjentArbeidsforholdForm.timerPerUke.label', { navn: arbeidsgiver.navn })}
                                                             description={<InfoNormalarbeidstid />}
                                                             min={0}
                                                             max={100}

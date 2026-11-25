@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-const nb = {
+export const arbeidstidStepMessages_nb = {
     'arbeidstidStep.title': 'Slik endrer du jobb i pleiepengeperioden',
     'arbeidstidStep.info.1': 'Du oppgir hvor mye du jobber i timer per uke.',
     'arbeidstidStep.info.2': 'Du kan endre flere uker samtidig, eller én og én uke.',
@@ -8,7 +8,7 @@ const nb = {
     'arbeidstidStep.info.4':
         'Fra 1. januar 2027 vil vurderingen av tapt arbeidstid vurderes ut fra den arbeidstiden du vanligvis jobbet før du startet perioden med pleiepenger. Endringen vil kun påvirke saken din hvis du søker forlengelse av perioden med pleiepenger, og i tillegg har endret stillingsprosent hos arbeidsgiver etter at du startet med pleiepenger.',
     'arbeidstidStep.fjernetFerie.melding':
-        'Du har fjernet dager med ferie. Skal du jobbe disse dagene, se over at jobb i perioden er riktig.',
+        'Du har fjernet feriedager. Hvis du skal jobbe disse dagene, må du se over at arbeidstiden er riktig.',
     'arbeidstidStep.arbeiderIPeriodenSpm.heltFravær': 'Jeg jobber ikke og har fullt fravær her',
     'arbeidstidStep.arbeiderIPeriodenSpm.redusert': 'Jeg kombinerer delvis jobb med pleiepenger',
     'arbeidstidStep.arbeiderIPeriodenSpm.somVanlig': 'Jeg jobber som normalt og har ingen fravær her',
@@ -41,11 +41,5 @@ const nb = {
         'Når du får omsorgsstønad, regnes dette som arbeid som frilanser. Du må derfor registrere de timene du får omsorgsstønad for.',
     'arbeidsaktivitetContent.omsorgsstønad.2':
         'Hvis du jobber som frilanser i tillegg til å få omsorgsstønad, skal du oppgi samlet arbeidstid som frilanser og for omsorgsstønad.',
-};
-
-const nn: Record<keyof typeof nb, string> = { ...nb };
-
-export const arbeidstidStepMessages = {
-    nb,
-    nn,
+    'arbeidsaktivitetContent.omsorgsstønad.legend': 'Mottar du omsorgsstønad i perioden du skal endre?',
 };

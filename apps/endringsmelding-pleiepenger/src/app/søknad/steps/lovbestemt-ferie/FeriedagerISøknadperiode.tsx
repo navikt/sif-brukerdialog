@@ -25,6 +25,7 @@ interface Props {
 const FeriedagerISøknadsperiode = ({ alleFeriedager, søknadsperiode, onChange }: Props) => {
     const { text } = useAppIntl();
     const [visFerieModal, setVisFerieModal] = useState<{ periode: DateRange | undefined } | undefined>();
+    const [ferieModalErÅpen, setFerieModalErÅpen] = useState(false);
 
     const perioder = getFeriedagerMeta(getFeriedagerIPeriode(alleFeriedager, søknadsperiode)).ferieperioder;
 
@@ -48,6 +49,7 @@ const FeriedagerISøknadsperiode = ({ alleFeriedager, søknadsperiode, onChange 
                     setVisFerieModal({
                         periode,
                     });
+                    setFerieModalErÅpen(true);
                 }}
                 onDelete={(periode) => {
                     onChange(fjernFerie(alleFeriedager, periode));
@@ -60,6 +62,7 @@ const FeriedagerISøknadsperiode = ({ alleFeriedager, søknadsperiode, onChange 
                         setVisFerieModal({
                             periode: undefined,
                         });
+                        setFerieModalErÅpen(true);
                     }}
                     type="button"
                     variant="secondary"
@@ -67,11 +70,12 @@ const FeriedagerISøknadsperiode = ({ alleFeriedager, søknadsperiode, onChange 
                     <AppText id="feriedagerISøknadsperiode.leggTilFerie" />
                 </Button>
             </div>
-            {visFerieModal && (
-                <LovbestemtFerieModal
-                    onClose={() => setVisFerieModal(undefined)}
-                    title={text('feriedagerISøknadsperiode.modal.tittel')}
-                    open={visFerieModal !== undefined}>
+            <LovbestemtFerieModal
+                onClose={() => setFerieModalErÅpen(false)}
+                onClosed={() => setVisFerieModal(undefined)}
+                title={text('feriedagerISøknadsperiode.modal.tittel')}
+                open={ferieModalErÅpen}>
+                {visFerieModal && (
                     <FerieuttakForm
                         ferieuttak={visFerieModal.periode}
                         alleFerieuttak={getAndreFerieperioder()}
@@ -83,12 +87,12 @@ const FeriedagerISøknadsperiode = ({ alleFeriedager, søknadsperiode, onChange 
                             } else {
                                 onChange(leggTilFerie(alleFeriedager, ferieuttak));
                             }
-                            setVisFerieModal(undefined);
+                            setFerieModalErÅpen(false);
                         }}
-                        onCancel={() => setVisFerieModal(undefined)}
+                        onCancel={() => setFerieModalErÅpen(false)}
                     />
-                </LovbestemtFerieModal>
-            )}
+                )}
+            </LovbestemtFerieModal>
         </VStack>
     );
 };

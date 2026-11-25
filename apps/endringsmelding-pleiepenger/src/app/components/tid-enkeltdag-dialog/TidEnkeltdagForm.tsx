@@ -64,6 +64,7 @@ export enum GjentagelseType {
     sammeDagUtMånedFom = 'sammeDagUtMånedFom',
     heleUken = 'heleUken',
     heleMåneden = 'heleMåneden',
+    utMånedFraDato = 'utMånedFraDato',
     sammeDagUtSøknadsperiodenFom = 'sammeDagUtSøknadsperiodenFom',
     alleDagerUtSøknadsperioden = 'alleDagerUtSøknadsperioden',
 }
@@ -171,9 +172,9 @@ const TidEnkeltdagForm = ({
                         formErrorHandler={getIntlFormErrorHandler(intl, 'tidEnkeltdagForm.validation')}
                         includeValidationSummary={false}
                         includeButtons={true}
-                        submitButtonLabel="Lagre"
+                        submitButtonLabel={text('tidEnkeltdagForm.submitButtonLabel')}
                         showButtonArrows={false}
-                        cancelButtonLabel="Avbryt">
+                        cancelButtonLabel={text('tidEnkeltdagForm.cancelButtonLabel')}>
                         <VStack gap="space-24">
                             <BodyLong className="noPadding">{introRenderer(dato)}</BodyLong>
                             <VStack gap="space-32">
@@ -234,6 +235,13 @@ const TidEnkeltdagForm = ({
                                                             månedNavn,
                                                         }),
                                                         value: GjentagelseType.heleMåneden,
+                                                    },
+                                                    {
+                                                        label: text('tidEnkeltdagForm.gjentagelse.utMånedFraDato', {
+                                                            månedNavn,
+                                                            fra: dateFormatter.dayDateMonth(dato),
+                                                        }),
+                                                        value: GjentagelseType.utMånedFraDato,
                                                     },
                                                     {
                                                         label: text(

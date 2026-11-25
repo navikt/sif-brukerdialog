@@ -1,4 +1,4 @@
-const nb = {
+export const velkommenPageMessages_nb = {
     'velkommenPage.tittel': 'Velkommen til endringsskjemaet',
     'velkommenForm.submitButtonLabel': 'Start',
     'velkommenForm.harForståttRettigheterOgPlikter.notChecked':
@@ -12,8 +12,8 @@ const nb = {
         'Du kan melde fra om endringer i pleiepenger i tidsrommet {samletSøknadsperiodeTekst}.',
 
     'velkommenPage.endre.spm': 'Hva ønsker du å endre?',
-    'velkommenPage.endre.ferie': 'Ferie',
-    'velkommenPage.endre.jobb': 'Jobb',
+    'velkommenPage.endre.ferie': 'Feriedager',
+    'velkommenPage.endre.jobb': 'Jobb i pleiepengeperioden',
     'velkommenPage.endre.tilsynsordning': 'Tid i omsorgstilbud',
 
     'velkommenPage.omSøknaden.tittel': 'Om utfylling av skjemaet',
@@ -39,11 +39,4 @@ const nb = {
         'trygdeordninger du kan ha rett til i andre land. Vi kan også sende opplysninger om deg til trygdemyndigheter i andre land',
     'personopplysninger.5':
         'Du har rett til innsyn i saken din. Vil du vite mer om hvordan Nav behandler personopplysninger? Se <Link>nav.no/personvern</Link>.',
-};
-
-const nn: Record<keyof typeof nb, string> = { ...nb };
-
-export const velkommenPageMessages = {
-    nb,
-    nn,
 };

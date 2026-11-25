@@ -52,6 +52,12 @@ export const tilsynsordningMånedMessages_nb = {
         'Antall timer og minutter {dag}  kan ikke være mindre enn 0 timer og 0 minutter.',
 
     'tilsynsordningMåned.ukeOgÅr': '{ukeOgÅr}',
+    'tilsynsordningMåned.fjernEndringer.label': 'Fjern endringer i {månedNavn}',
+    'tilsynsordningMåned.fjernEndringerDialog.tittel': 'Fjern endringer i {månedNavn}',
+    'tilsynsordningMåned.fjernEndringerDialog.okLabel': 'Ja, fjern',
+    'tilsynsordningMåned.fjernEndringerDialog.cancelLabel': 'Nei, avbryt',
+    'tilsynsordningMåned.fjernEndringerDialog.tekst':
+        'Bekreft at du ønsker å fjerne alle endringer du har lagt til i {månedNavn}.',
     'tilsynsordningMåned.dagerRegistrert.dager': '{dager, plural, one {# dag} other {# dager}} endret',
     'tilsynsordningMåned.dagerRegistrert.ingenDager': 'Ingen dager med omsorgstilbud endret',
     'tilsynsordningPeriodeDialog.contentLabel': 'Endre tid i omsorgstilbud',
@@ -71,12 +77,15 @@ export const tilsynsordningMånedMessages_nb = {
     'tidEnkeltdagForm.intro':
         'Du skal kun fylle inn endringer som er faste og regelmessige. Skal du fjerne omsorgstilbud, svarer du nei.',
     'tidEnkeltdagForm.opprinneligTid': 'Opprinnelig tid: ',
+    'tidEnkeltdagForm.submitButtonLabel': 'Lagre',
+    'tidEnkeltdagForm.cancelButtonLabel': 'Avbryt',
     'tidEnkeltdagForm.ingenOpprinneligTid': 'Opprinnelig tid: ingen tid registrert',
     'tidEnkeltdagForm.endretFra': 'Endret fra',
     'tidEnkeltdagForm.gjelderFlereDager.label': 'Gjenta denne tiden for flere dager',
     'tidEnkeltdagForm.gjelderFlereDager.info': 'Velg hvilke andre dager du ønsker at denne tiden skal registreres på:',
     'tidEnkeltdagForm.gjentagelse.alleDagerIUke': 'Alle dager i uke {ukeNavn}',
     'tidEnkeltdagForm.gjentagelse.alleDagerIMåned': 'Alle dager i {månedNavn}',
+    'tidEnkeltdagForm.gjentagelse.utMånedFraDato': 'Alle dager i {månedNavn}, fra og med {fra}',
     'tidEnkeltdagForm.gjentagelse.sammeDagUtMånedFom': 'Alle {dagerNavn} i {månedNavn}, fra og med {fra}',
     'tidEnkeltdagForm.gjentagelse.sammeDagUtSøknadsperiodenFom':
         'Alle {dagerNavn} i hele søknadsperioden, fra og med {fra}',

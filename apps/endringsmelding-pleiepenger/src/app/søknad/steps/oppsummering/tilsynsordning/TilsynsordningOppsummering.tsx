@@ -1,47 +1,61 @@
-import { TilsynsordningApiData } from '@app/types';
-import { BodyShort, ExpansionCard, VStack } from '@navikt/ds-react';
-import { DateDurationMap, dateFormatter, dateToISODate } from '@navikt/sif-common-utils';
+import './tilsynsordningOppsummering.css';
 
-import { AppText } from '../../../../i18n';
-import { getMånederMedDagerEndretTilsyn } from '../oppsummeringStepUtils';
-import EndretTilsynTabell from './EndretTilsynTabell';
+import TidsbrukKalender from '@app/components/tidsbruk-kalender/TidsbrukKalender';
+import { AppText } from '@app/i18n';
+import { TilsynsordningApiData } from '@app/types';
+import { DagMedEndretTilsyn } from '@app/utils';
+import { BodyShort, Heading, VStack } from '@navikt/ds-react';
+import {
+    capsFirstCharacter,
+    DateDurationMap,
+    dateFormatter,
+    DateRange,
+    dateToISODate,
+    getDatesInMonth,
+    getMonthDateRange,
+    isDateInDateRanges,
+} from '@navikt/sif-common-utils';
+
+import { oppsummeringStepUtils } from '../oppsummeringStepUtils';
 
 interface Props {
     tilsynsordning: TilsynsordningApiData;
-    tidOpprinnelig?: DateDurationMap;
+    søknadsperioder?: DateRange[];
 }
 
-const TilsynsordningOppsummering = ({ tilsynsordning, tidOpprinnelig }: Props) => {
-    const månederMedDager = getMånederMedDagerEndretTilsyn(tilsynsordning, tidOpprinnelig);
+const getDatoerUtenforPerioder = (måned: Date, perioder?: DateRange[]): Date[] | undefined =>
+    perioder ? getDatesInMonth(måned, true).filter((dato) => !isDateInDateRanges(dato, perioder)) : undefined;
+
+const getDagerMedTid = (dager: DagMedEndretTilsyn[]): DateDurationMap =>
+    Object.fromEntries(dager.map(({ dato, tid }) => [dateToISODate(dato), tid]));
+
+const TilsynsordningOppsummering = ({ tilsynsordning, søknadsperioder }: Props) => {
+    const månederMedDager = oppsummeringStepUtils.getMånederMedDagerEndretTilsyn(tilsynsordning);
 
     return (
-        <VStack gap="space-8">
-            {månederMedDager.map(({ måned, dagerMedEndretTilsyn }) => {
-                const tittelId = `tittel-${dateToISODate(måned)}`;
-                const antallDagerEndret = dagerMedEndretTilsyn.length;
-
-                return (
-                    <ExpansionCard aria-labelledby={tittelId} key={tittelId} size="small">
-                        <ExpansionCard.Header>
-                            <ExpansionCard.Title size="small" id={tittelId}>
-                                <div className="capsFirstLetter">
-                                    {`${dateFormatter.monthFullYear(måned)}`}
-                                    <BodyShort as="span" weight="regular">
-                                        {' '}
-                                        <AppText
-                                            id="oppsummeringStep.tilsynsordning.dagerEndret"
-                                            values={{ antall: antallDagerEndret }}
-                                        />
-                                    </BodyShort>
-                                </div>
-                            </ExpansionCard.Title>
-                        </ExpansionCard.Header>
-                        <ExpansionCard.Content>
-                            <EndretTilsynTabell dagerMedEndretTilsyn={dagerMedEndretTilsyn} />
-                        </ExpansionCard.Content>
-                    </ExpansionCard>
-                );
-            })}
+        <VStack gap="space-32" marginBlock="space-8 space-0" className="tilsynsordningOppsummering">
+            {månederMedDager.map(({ måned, dagerMedEndretTilsyn }) => (
+                <VStack gap="space-8" key={dateToISODate(måned)}>
+                    <Heading level="3" size="xsmall">
+                        {capsFirstCharacter(dateFormatter.monthFullYear(måned))}{' '}
+                        <BodyShort as="span" weight="regular">
+                            <AppText
+                                id="oppsummeringStep.tilsynsordning.dagerEndret"
+                                values={{ antall: dagerMedEndretTilsyn.length }}
+                            />
+                        </BodyShort>
+                    </Heading>
+                    <TidsbrukKalender
+                        måned={getMonthDateRange(måned)}
+                        dagerMedTid={getDagerMedTid(dagerMedEndretTilsyn)}
+                        utilgjengeligeDatoer={getDatoerUtenforPerioder(måned, søknadsperioder)}
+                        skjulTommeDagerIListe={false}
+                        visOpprinneligTid={false}
+                        skjulUkerMedKunUtilgjengeligeDager={true}
+                        skjulUendredeDager={true}
+                    />
+                </VStack>
+            ))}
         </VStack>
     );
 };

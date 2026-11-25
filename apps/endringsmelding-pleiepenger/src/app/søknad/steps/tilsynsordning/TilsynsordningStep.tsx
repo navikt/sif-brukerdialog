@@ -36,7 +36,7 @@ const TilsynsordningStep = () => {
     } = useSøknadContext();
     const { samletSøknadsperiodeTekstVariant3 } = useSakUtledet();
 
-    const { goBack, stepConfig } = useStepConfig(stepId);
+    const { goBack, includeBackLink, stepConfig } = useStepConfig(stepId);
     const { stepFormValues, clearStepFormValues } = useStepFormValuesContext();
 
     const onValidSubmitHandler = (values: TilsynsordningFormValues) => {
@@ -48,7 +48,7 @@ const TilsynsordningStep = () => {
         return [];
     };
 
-    const { handleSubmit, isSubmitting } = useOnValidSubmit(
+    const { handleSubmit, isSubmitting, submitButtonLabel } = useOnValidSubmit(
         onValidSubmitHandler,
         stepId,
         (state: SøknadContextState) => {
@@ -64,7 +64,7 @@ const TilsynsordningStep = () => {
     const initialValues = getTilsynsordningStepInitialValues(tilsynsordning, stepFormValues.tilsynsordning);
 
     return (
-        <SøknadStep stepId={stepId} stepConfig={stepConfig}>
+        <SøknadStep stepId={stepId} stepConfig={stepConfig} includeBackLink={includeBackLink}>
             <FormLayout.Guide>
                 <Heading level="2" size="xsmall" spacing={true}>
                     <AppText id="omsorgstilbudStep.title" />
@@ -111,6 +111,7 @@ const TilsynsordningStep = () => {
                                     søknadsperioder={sak.søknadsperioder}
                                     opprinneligTilsynsdager={sak.tilsynsordning.tilsynsdagerMap}
                                     isSubmitting={isSubmitting}
+                                    submitButtonLabel={submitButtonLabel}
                                     onTilsynsordningChanged={(values) => {
                                         oppdaterSøknadState(values);
                                     }}

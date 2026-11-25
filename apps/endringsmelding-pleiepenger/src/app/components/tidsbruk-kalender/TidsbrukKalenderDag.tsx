@@ -1,5 +1,6 @@
 import './tidsbrukKalenderDag.less';
 
+import { AppText } from '@app/i18n';
 import { BodyShort } from '@navikt/ds-react';
 import bemUtils from '@navikt/sif-common-core-ds/src/utils/bemUtils';
 import { DurationText } from '@navikt/sif-common-ui';
@@ -72,8 +73,16 @@ const TidsbrukKalenderDag = ({
                                     {tidOpprinnelig || tid ? (
                                         <div className={bem.element('opprinneligTidWrapper')}>
                                             <BodyShort size="small" as="span" className={bem.element('opprinneligTid')}>
-                                                (<span className="sr-only">Endret fra: </span>
-                                                {tidOpprinnelig ? renderOpprinneligTid(tidOpprinnelig) : 'Ingen tid'})
+                                                (
+                                                <span className="sr-only">
+                                                    <AppText id="tidsbrukKalenderDag.endretFra" />{' '}
+                                                </span>
+                                                {tidOpprinnelig ? (
+                                                    renderOpprinneligTid(tidOpprinnelig)
+                                                ) : (
+                                                    <AppText id="tidsbrukKalenderDag.ingenTid" />
+                                                )}
+                                                )
                                             </BodyShort>
                                         </div>
                                     ) : null}
@@ -82,7 +91,10 @@ const TidsbrukKalenderDag = ({
                         </span>
                     ) : (
                         <BodyShort className={bem.block} size="small">
-                            {renderTid(tid)} <span className="sr-only">(uendret)</span>
+                            {renderTid(tid)}{' '}
+                            <span className="sr-only">
+                                <AppText id="tidsbrukKalenderDag.uendret" />
+                            </span>
                         </BodyShort>
                     )}
                     {footerRenderer && <>{footerRenderer(dato)}</>}

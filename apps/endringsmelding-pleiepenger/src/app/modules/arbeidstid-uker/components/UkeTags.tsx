@@ -1,8 +1,9 @@
 import FerieTag from '@app/components/tags/FerieTag';
 import KortUkeTag from '@app/components/tags/KortUkeTag';
 import TagsContainer from '@app/components/tags/tags-container/TagsContainer';
+import { AppText, useAppIntl } from '@app/i18n';
 import { getFeriedagerIUkeTekst } from '@app/utils';
-import React from 'react';
+import { Tooltip } from '@navikt/ds-react';
 
 interface Props {
     kortUkeTooltip?: string;
@@ -13,53 +14,37 @@ interface Props {
 }
 
 const UkeTags = ({ dagerMedFerie = [], dagerMedFjernetFerie = [], visDagNavn, erKortUke, kortUkeTooltip }: Props) => {
-    const tags: React.ReactNode[] = [];
-    if (erKortUke) {
-        tags.push(<KortUkeTag tooltip={kortUkeTooltip} style={{ marginRight: '.5rem', marginBottom: '.25rem' }} />);
-    }
-    if (dagerMedFerie?.length > 0) {
-        tags.push(
-            <FerieTag style={{ marginRight: '.5rem', marginBottom: '.25rem' }}>
-                {visDagNavn
-                    ? `Ferie: ${getFeriedagerIUkeTekst(dagerMedFerie)}`
-                    : dagerMedFerie?.length === 1
-                      ? 'Feriedag'
-                      : 'Feriedager'}
-            </FerieTag>,
-        );
-    }
-    if (dagerMedFjernetFerie?.length > 0) {
-        tags.push(
-            <FerieTag type="fjernet" size="small">
-                Ferie fjernet
-            </FerieTag>,
-        );
+    const { text } = useAppIntl();
+    if (!erKortUke && dagerMedFerie.length === 0 && dagerMedFjernetFerie.length === 0) {
+        return null;
     }
 
-    if (dagerMedFjernetFerie.length + dagerMedFerie.length > 0 || erKortUke) {
-        return (
-            <>
-                <TagsContainer>
-                    {erKortUke && <KortUkeTag tooltip={kortUkeTooltip} />}
-                    {dagerMedFerie?.length > 0 && (
-                        <FerieTag>
-                            {visDagNavn
-                                ? `Ferie: ${getFeriedagerIUkeTekst(dagerMedFerie)}`
-                                : dagerMedFerie?.length === 1
-                                  ? 'Feriedag'
-                                  : 'Feriedager'}
-                        </FerieTag>
-                    )}
-                    {dagerMedFjernetFerie?.length > 0 && (
-                        <FerieTag type="fjernet" size="small">
-                            Ferie fjernet
-                        </FerieTag>
-                    )}
-                </TagsContainer>
-            </>
-        );
-    }
-    return null;
+    return (
+        <TagsContainer>
+            {erKortUke && <KortUkeTag tooltip={kortUkeTooltip} />}
+            {dagerMedFerie.length > 0 && (
+                <Tooltip content={text('ukeTags.ferieTooltip', { dager: getFeriedagerIUkeTekst(dagerMedFerie) })}>
+                    <FerieTag>
+                        {visDagNavn ? (
+                            <AppText id="ukeTags.ferie" values={{ dager: getFeriedagerIUkeTekst(dagerMedFerie) }} />
+                        ) : (
+                            <AppText id="ukeTags.feriedager" values={{ antall: dagerMedFerie.length }} />
+                        )}
+                    </FerieTag>
+                </Tooltip>
+            )}
+            {dagerMedFjernetFerie.length > 0 && (
+                <Tooltip
+                    content={text('ukeTags.ferieFjernetTooltip', {
+                        dager: getFeriedagerIUkeTekst(dagerMedFjernetFerie),
+                    })}>
+                    <FerieTag type="fjernet" size="small">
+                        <AppText id="ukeTags.ferieFjernet" />
+                    </FerieTag>
+                </Tooltip>
+            )}
+        </TagsContainer>
+    );
 };
 
 export default UkeTags;

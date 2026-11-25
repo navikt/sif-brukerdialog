@@ -52,3 +52,35 @@ export const getSøknadStepConfig = (søknadSteps: StepId[]): SoknadStepsConfig<
     soknadStepUtils.getStepsConfig(søknadSteps, SoknadApplicationType.MELDING, (stepId: StepId) =>
         getSøknadStepRoute(stepId),
     );
+
+const harUbesvartArbeidstidForNyttArbeidsforhold = (søknadsdata?: Søknadsdata): boolean => {
+    const { ukjentArbeidsforhold, arbeidstid } = søknadsdata || {};
+    return (ukjentArbeidsforhold?.arbeidsforhold || []).some(
+        (a) => a.erAnsatt === true && !arbeidstid?.arbeidsaktivitet[a.arbeidsgiverKey]?.arbeiderIPerioden,
+    );
+};
+
+/** Steg som mangler svar bruker må gi før meldingen kan sendes inn */
+export const getStegMedManglendeSvar = (søknadsdata?: Søknadsdata): StepId[] =>
+    harUbesvartArbeidstidForNyttArbeidsforhold(søknadsdata) ? [StepId.ARBEIDSTID] : [];
+
+/**
+ * Har bruker vært på oppsummeringen, sendes hen tilbake dit med mindre det har kommet til
+ * nye steg, eller steg med manglende svar, etter gjeldende steg. Da må bruker innom det første av dem først.
+ */
+export const getNesteSteg = (
+    stepId: StepId,
+    søknadSteps: StepId[],
+    søknadStepsVedOppsummering?: StepId[],
+    stegMedManglendeSvar: StepId[] = [],
+): StepId | undefined => {
+    const etterfølgendeSteg = søknadSteps.slice(søknadSteps.indexOf(stepId) + 1);
+    if (!søknadStepsVedOppsummering) {
+        return etterfølgendeSteg[0];
+    }
+    return (
+        etterfølgendeSteg.find(
+            (steg) => !søknadStepsVedOppsummering.includes(steg) || stegMedManglendeSvar.includes(steg),
+        ) ?? StepId.OPPSUMMERING
+    );
+};

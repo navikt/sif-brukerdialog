@@ -1,0 +1,124 @@
+/* ArbeidstidUker */
+.arbeidstidUker--liste {
+    position: relative;
+}
+
+/* Footer med «Endre valgte uker» ligger fast nederst i listevisning */
+.arbeidstidUker--liste .endreUkerFooter {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0%) 0px, rgba(255, 255, 255, 1) 0.5rem);
+    padding: 0.25rem 0 0.25rem 0;
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0;
+}
+
+.arbeidstidUker--liste .endreUkerFooter button {
+    width: 100%;
+}
+
+/* ArbeidstidUkeListe */
+.arbeidstidUkeListe {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 2px solid var(--ac-table-row-border, var(--ax-border-neutral));
+}
+
+.arbeidstidUkeListe__uke {
+    padding: var(--ax-space-16) var(--ax-space-8);
+    border-bottom: 1px solid var(--ac-table-row-border, var(--ax-border-neutral));
+}
+
+.arbeidstidUkeListe__uke--velgUker {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.arbeidstidUkeListe__uke--valgt {
+    background-color: var(--ac-table-row-selected, var(--ax-bg-accent-soft));
+}
+
+.arbeidstidUkeListe__velgUke {
+    min-width: 2.5rem;
+    flex-grow: 0;
+    margin-top: -0.75rem;
+    align-self: flex-start;
+}
+
+.arbeidstidUkeListe__info {
+    flex-grow: 1;
+}
+
+.arbeidstidUkeListe__endre {
+    flex-grow: 0;
+}
+
+/* ArbeidstidUkeInfoListe */
+.arbeidstidUkeInfoListe {
+    margin-bottom: 0.5rem;
+}
+
+.arbeidstidUkeInfoListe__label {
+    width: 50%;
+}
+
+.arbeidstidUkeInfoListe__opprinnelig {
+    text-decoration: line-through;
+    opacity: 0.8;
+}
+
+.arbeidstidUkeInfoListe__timer {
+    white-space: nowrap;
+}
+
+/* ArbeidstidUkeTabell */
+.arbeidstidUkeTabell tbody tr {
+    vertical-align: top;
+}
+
+.arbeidstidUkeTabell__ukenummer {
+    width: 3.5rem;
+}
+
+.arbeidstidUkeTabell__arbeidstid {
+    width: 10rem;
+}
+.arbeidstidUkeTabell__arbeidstid__endretFra {
+    width: 8rem;
+}
+.arbeidstidUkeTabell__arbeidstid__endretTil {
+    width: 8rem;
+}
+
+.arbeidstidUkeTabell__endre {
+    width: 5ch;
+}
+
+/* Hindrer at rader med knapp blir høyere enn rader uten */
+.arbeidstidUkeTabell__endre button {
+    margin-block: -0.3rem;
+}
+
+.arbeidstidUkeTabell td.arbeidstidUkeTabell__endre {
+    padding-bottom: 0;
+}
+
+.arbeidstidUkeTabell__varighet {
+    white-space: nowrap;
+}
+
+/* I oppsummeringen er arbeidstid siste kolonne og skal ikke ta all bredden */
+.aksel-form-summary .arbeidstidUkeTabell__arbeidstid {
+    width: 14rem;
+}
+
+/* ArbeidstidUkeInfo */
+.arbeidstidUkeInfo__opprinnelig {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.arbeidstidUkeInfo__timer {
+    white-space: nowrap;
+}

@@ -118,24 +118,23 @@ const TilsynsordningMåned = ({
                                 data-color="accent"
                                 onClick={() => setVisTilbakestillEndringerDialog(true)}
                                 icon={<TrashIcon role="presentation" />}>
-                                Fjern endringer i{' '}
-                                <AppText id="tilsynsordningMåned.ukeOgÅr" values={{ ukeOgÅr: månedNavn }} />
+                                <AppText id="tilsynsordningMåned.fjernEndringer.label" values={{ månedNavn }} />
                             </Button>
                         </HStack>
                     )}
                 </VStack>
                 {onTilbakestillEndringer && (
                     <ConfirmationDialog
-                        title={`Fjern endringer i ${månedNavn}`}
+                        title={text('tilsynsordningMåned.fjernEndringerDialog.tittel', { månedNavn })}
                         open={visTilbakestillEndringerDialog}
-                        okLabel="Ja, fjern"
-                        cancelLabel="Nei, avbryt"
+                        okLabel={text('tilsynsordningMåned.fjernEndringerDialog.okLabel')}
+                        cancelLabel={text('tilsynsordningMåned.fjernEndringerDialog.cancelLabel')}
                         onConfirm={() => {
                             onTilbakestillEndringer(måned);
                             setVisTilbakestillEndringerDialog(false);
                         }}
                         onCancel={() => setVisTilbakestillEndringerDialog(false)}>
-                        Bekreft at du ønsker å fjerne alle endringer du har lagt til i {månedNavn}.
+                        <AppText id="tilsynsordningMåned.fjernEndringerDialog.tekst" values={{ månedNavn }} />
                     </ConfirmationDialog>
                 )}
 

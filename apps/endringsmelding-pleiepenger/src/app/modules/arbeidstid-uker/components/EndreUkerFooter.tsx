@@ -10,7 +10,7 @@ interface Props {
 
 const EndreUkerFooter = ({ visVelgUkerMelding, onEndreUker }: Props) => {
     return (
-        <VStack gap="space-20" className="arbeidstidUkeFooter" as="span">
+        <VStack gap="space-20" className="endreUkerFooter" as="span">
             <div aria-relevant="additions removals" aria-live="polite">
                 {visVelgUkerMelding && (
                     <Alert variant="info">

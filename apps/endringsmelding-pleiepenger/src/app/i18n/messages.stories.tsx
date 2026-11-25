@@ -3,7 +3,8 @@ import MessagesPreview from '@navikt/sif-common-core-ds/src/dev-utils/intl/messa
 import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { withIntl } from '../../storybook/decorators/withIntl';
-import { appMessages } from './appMessages';
+import { appMessages_nb } from './nb';
+import { appMessages_nn } from './nn';
 
 const meta: Meta = {
     title: 'i18n/Messages',
@@ -17,7 +18,7 @@ type Story = StoryObj<any>;
 export const Default: Story = {
     render: () => (
         <Box marginBlock="space-32">
-            <MessagesPreview messages={appMessages} showExplanation={false} />
+            <MessagesPreview messages={{ nb: appMessages_nb, nn: appMessages_nn }} showExplanation={false} />
         </Box>
     ),
 };

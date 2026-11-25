@@ -1,29 +1,37 @@
 import './endreArbeidstidModal.css';
 
-import { Modal } from '@navikt/ds-react';
-import React, { FunctionComponent } from 'react';
+import { Dialog } from '@navikt/ds-react';
+import React from 'react';
 
 interface Props {
     title: string;
-    isVisible?: boolean;
+    open: boolean;
     children: React.ReactNode;
     onClose: () => void;
+    /** Kalles når lukkeanimasjonen er ferdig, og innholdet kan nullstilles */
+    onClosed?: () => void;
 }
 
-const EndreArbeidstidModal: FunctionComponent<Props> = ({ children, title, isVisible = false, onClose }) => {
-    return isVisible ? (
-        <Modal
-            portal={true}
-            open={isVisible}
-            onClose={onClose}
-            className="endreArbeidstidModal"
-            aria-label="Endre arbeidstid dialog"
-            header={{
-                heading: title,
-            }}>
-            <Modal.Body>{children}</Modal.Body>
-        </Modal>
-    ) : null;
-};
+const EndreArbeidstidModal = ({ children, title, open, onClose, onClosed }: Props) => (
+    <Dialog
+        open={open}
+        onOpenChange={(nextOpen) => {
+            if (!nextOpen) {
+                onClose();
+            }
+        }}
+        onOpenChangeComplete={(isOpen) => {
+            if (!isOpen) {
+                onClosed?.();
+            }
+        }}>
+        <Dialog.Popup className="endreArbeidstidModal" closeOnOutsideClick={false}>
+            <Dialog.Header>
+                <Dialog.Title>{title}</Dialog.Title>
+            </Dialog.Header>
+            <Dialog.Body>{open && children}</Dialog.Body>
+        </Dialog.Popup>
+    </Dialog>
+);
 
 export default EndreArbeidstidModal;

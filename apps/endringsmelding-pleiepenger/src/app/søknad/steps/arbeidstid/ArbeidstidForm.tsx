@@ -66,7 +66,7 @@ const ArbeidstidForm = ({ goBack }: Props) => {
         return [];
     };
 
-    const { handleSubmit, isSubmitting } = useOnValidSubmit(
+    const { handleSubmit, isSubmitting, submitButtonLabel } = useOnValidSubmit(
         onValidSubmitHandler,
         stepId,
         (state: SøknadContextState) => {
@@ -141,6 +141,7 @@ const ArbeidstidForm = ({ goBack }: Props) => {
                             formErrorHandler={getIntlFormErrorHandler(intl, 'arbeidstidForm')}
                             includeValidationSummary={true}
                             submitPending={isSubmitting}
+                            submitButtonLabel={submitButtonLabel}
                             runDelayedFormValidation={true}
                             onBack={goBack}>
                             <VStack gap="space-16">

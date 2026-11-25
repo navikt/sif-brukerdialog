@@ -1,4 +1,4 @@
-import { AppText } from '@app/i18n';
+import { AppText, useAppIntl } from '@app/i18n';
 import { BodyShort } from '@navikt/ds-react';
 import ConfirmationDialog from '@navikt/sif-common-core-ds/src/components/dialogs/confirmation-dialog/ConfirmationDialog';
 
@@ -8,14 +8,16 @@ interface Props {
     onCancel: () => void;
 }
 
-const StartPåNyttDialog = ({ open, onCancel, onConfirm }: Props) => (
+const StartPåNyttDialog = ({ open, onCancel, onConfirm }: Props) => {
+    const { text } = useAppIntl();
+    return (
     <ConfirmationDialog
         open={open}
-        title="Oops"
+        title={text('startPåNyttDialog.tittel')}
         onConfirm={onConfirm}
         onCancel={onCancel}
-        okLabel="Starte på nytt"
-        cancelLabel="Fortsette der jeg var">
+        okLabel={text('startPåNyttDialog.okLabel')}
+        cancelLabel={text('startPåNyttDialog.cancelLabel')}>
         <BodyShort spacing={true}>
             <AppText id="startPåNyttDialog.tekst.1" />
         </BodyShort>
@@ -23,6 +25,7 @@ const StartPåNyttDialog = ({ open, onCancel, onConfirm }: Props) => (
             <AppText id="startPåNyttDialog.tekst.2" />
         </BodyShort>
     </ConfirmationDialog>
-);
+    );
+};
 
 export default StartPåNyttDialog;

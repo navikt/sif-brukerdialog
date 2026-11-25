@@ -35,6 +35,8 @@ interface Props {
     disabledDateInfo?: string;
     hideEmptyContentInListMode?: boolean;
     hideWeeksWithOnlyDisabledContent?: boolean;
+    /** Skjuler datoer i listevisning. Uker der alle datoer skjules, skjules i begge visninger. */
+    hideDate?: (date: Date) => boolean;
     onDateClick?: (date: Date) => void;
     dateContentRenderer: (date: Date, isDisabled?: boolean) => React.ReactNode;
     dateRendererShort?: (date: Date) => React.ReactNode;
@@ -95,6 +97,7 @@ const CalendarGrid = ({
     renderAsList,
     hideEmptyContentInListMode,
     hideWeeksWithOnlyDisabledContent,
+    hideDate,
     onDateClick,
     dateContentRenderer,
     dateRendererShort = dateFormatter.compact,
@@ -152,7 +155,11 @@ const CalendarGrid = ({
     };
 
     const renderWeek = (week: WeekToRender) => {
-        const datesInWeek = week.dates;
+        const visibleDates = hideDate ? week.dates.filter((date) => !hideDate(date)) : week.dates;
+        if (visibleDates.length === 0) {
+            return null;
+        }
+        const datesInWeek = doRenderAsList ? visibleDates : week.dates;
         const weekNum = week.weekNumber;
         const areAllDaysInWeekDisabledOrOutsideMonth =
             datesInWeek.filter(
@@ -173,7 +180,9 @@ const CalendarGrid = ({
                     <AppText id="calendarGrid.Uke" /> {` `}
                 </span>
                 <span>
-                    <span className="sr-only">Uke </span>
+                    <span className="sr-only">
+                        <AppText id="calendarGrid.Uke" />{' '}
+                    </span>
                     {weekNum}
                 </span>
                 {areAllDaysInWeekDisabledOrOutsideMonth && allDaysInWeekDisabledContentRenderer ? (

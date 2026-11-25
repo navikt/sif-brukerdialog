@@ -1,8 +1,7 @@
 import { DatePickerProps } from '@navikt/ds-react';
-import { FastField, Field, FieldProps } from 'formik';
 import React from 'react';
 import { DayOfWeek } from 'react-day-picker';
-
+import { FastField, Field, FieldProps } from 'formik';
 import { DateRange, FormError, TestProps, TypedFormInputValidationProps, UseFastFieldProps } from '../../types';
 import { inputPropsToRemove } from '../../utils/inputPropsToRemove';
 import { getErrorPropForFormikInput } from '../../utils/typedFormErrorUtils';
@@ -26,6 +25,7 @@ export interface DatePickerBaseProps<FieldName, ErrorType>
     onChange?: (date: ISODateString) => void;
     defaultMonth?: Date;
     inputDisabled?: boolean;
+    showWeekNumber?: boolean;
 }
 
 interface OwnProps<FieldName, ErrorType> extends DatePickerBaseProps<FieldName, ErrorType> {

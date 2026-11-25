@@ -62,8 +62,9 @@ export const getGjentagendeDager = (
         case GjentagelseType.alleDagerUtSøknadsperioden:
             dager = getDatesInDateRange({ from: dato, to: søknadsperiode.to }, true);
             break;
-        default:
-            dager = [];
+        case GjentagelseType.utMånedFraDato:
+            dager = getDatesInDateRange({ from: dato, to: endringsperiodeIMåned.to }, true);
+            break;
     }
 
     return dager.filter(isDateWeekDay).map(dateToISODate);

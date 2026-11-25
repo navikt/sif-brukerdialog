@@ -1,7 +1,7 @@
 import './tilsynsordningPeriodeDialog.less';
 
 import { useAppIntl } from '@app/i18n';
-import { Modal } from '@navikt/ds-react';
+import { Dialog } from '@navikt/ds-react';
 
 import TilsynsordningPeriodeForm, {
     TilsynsordningPeriodeFormProps,
@@ -14,21 +14,22 @@ interface Props {
 
 const TilsynsordningPeriodeDialog = ({ formProps, isOpen }: Props) => {
     const { text } = useAppIntl();
-    return isOpen ? (
-        <Modal
+    return (
+        <Dialog
             open={isOpen}
-            onClose={formProps.onCancel}
-            className="tilsynsordningPeriodeDialog"
-            portal={true}
-            header={{
-                heading: text('tilsynsordningPeriodeDialog.contentLabel'),
-                closeButton: true,
+            onOpenChange={(nextOpen) => {
+                if (!nextOpen) {
+                    formProps.onCancel();
+                }
             }}>
-            <Modal.Body>
-                <TilsynsordningPeriodeForm {...formProps} />
-            </Modal.Body>
-        </Modal>
-    ) : null;
+            <Dialog.Popup className="tilsynsordningPeriodeDialog" closeOnOutsideClick={false}>
+                <Dialog.Header>
+                    <Dialog.Title>{text('tilsynsordningPeriodeDialog.contentLabel')}</Dialog.Title>
+                </Dialog.Header>
+                <Dialog.Body>{isOpen && <TilsynsordningPeriodeForm {...formProps} />}</Dialog.Body>
+            </Dialog.Popup>
+        </Dialog>
+    );
 };
 
 export default TilsynsordningPeriodeDialog;

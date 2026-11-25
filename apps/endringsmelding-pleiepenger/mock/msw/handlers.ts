@@ -23,6 +23,8 @@ export const getHandlers = () => {
     };
 
     const handlers = [
+        http.all('https://cdn.nav.no/*', () => passthrough()),
+        http.all('https://*.api.sanity.io/*', () => passthrough()),
         http.all('https://widget.uxsignals.com/*', () => passthrough()),
         http.get(`${baseUrl}/oppslag/soker`, () => {
             return new HttpResponse(JSON.stringify(søker), { status: 200 });

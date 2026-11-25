@@ -1,4 +1,4 @@
-const nb = {
+export const sifCommonSoknadOverrideMessages_nb = {
     '@soknad.soknadErrorMessages.applicationUnavailable.title': 'Endringsmeldingen er dessverre ikke tilgjengelig',
     '@soknad.soknadErrorMessages.applicationUnavailable.content':
         'Vi jobber så raskt vi kan med å få den tilgjengelig. Vennligst kom tilbake litt senere.',
@@ -6,11 +6,6 @@ const nb = {
     '@soknad.stepFooter.avbryt': 'Slett melding om endring',
 };
 
-const nn: Record<keyof typeof nb, string> = {
-    ...nb,
-};
-
-export const sifCommonSoknadOverrideMessages = {
-    nb,
-    nn,
+export const sifCommonSoknadOverrideMessages_nn: Record<keyof typeof sifCommonSoknadOverrideMessages_nb, string> = {
+    ...sifCommonSoknadOverrideMessages_nb,
 };

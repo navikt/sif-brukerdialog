@@ -1,4 +1,4 @@
-const nb = {
+export const infoNormalarbeidstidMessages_nb = {
     'info.normalarbeidstid.tittel': 'Hva menes med normalt?',
     'info.normalarbeidstid.tekst.1':
         'Med <q>normalt</q> mener vi hvor mye du jobber når du ikke har fravær på grunn av pleiepenger. Det er altså normalarbeidstiden din før du starter med pleiepenger som vi er ute etter.',
@@ -46,11 +46,4 @@ const nb = {
     'arbeidsforhold.normalTimer.info.utbetalingFraNAV.tittel': 'Hva om jeg får utbetaling fra Nav nå?',
     'arbeidsforhold.normalTimer.info.utbetalingFraNAV.avsnitt.1':
         'Hvis du for eksempel får foreldrepenger eller sykepenger i dette arbeidsforholdet nå, registrerer du det om var den normale arbeidstiden din før du begynte å få denne utbetalingen fra Nav.',
-};
-
-const nn: Record<keyof typeof nb, string> = { ...nb };
-
-export const infoNormalarbeidstid = {
-    nb,
-    nn,
 };

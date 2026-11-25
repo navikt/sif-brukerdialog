@@ -1,4 +1,5 @@
 import { useSøknadContext } from '@app/hooks';
+import { AppText, useAppIntl } from '@app/i18n';
 import { getSøknadStepRoute, SøknadRoutes } from '@app/søknad/config/SøknadRoutes';
 import { StepId } from '@app/søknad/config/StepId';
 import actionsCreator from '@app/søknad/context/action/actionCreator';
@@ -10,7 +11,6 @@ import { getIntlFormErrorHandler, getTypedFormComponents, ValidationError } from
 import { FormLayout } from '@navikt/sif-common-ui';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { getRequiredFieldValidator } from '@sif/validation';
-import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 
 enum FormFields {
@@ -24,7 +24,7 @@ interface FormValues {
 const { FormikWrapper, Form, RadioGroup } = getTypedFormComponents<FormFields, FormValues, ValidationError>();
 
 const VelgSakPage = () => {
-    const intl = useIntl();
+    const { text, intl } = useAppIntl();
     const {
         state: { søker, k9saker, arbeidsgivere, tillattEndringsperiode },
         dispatch,
@@ -44,20 +44,19 @@ const VelgSakPage = () => {
                 });
             } else {
                 /** TODO - håndtere dette */
-                alert('Kunne ikke hente ut sak');
+                alert(text('velgSakPage.kunneIkkeHenteSak'));
             }
         }
     };
 
     return (
-        <Page title="Velkommen">
+        <Page title={text('velgSakPage.pageTitle')}>
             <FormLayout.Guide>
                 <Heading level="1" size="large" spacing={true}>
-                    Hei {søker.fornavn}
+                    <AppText id="velgSakPage.tittel" values={{ fornavn: søker.fornavn }} />
                 </Heading>
                 <p>
-                    Vi ser at du har pleiepengesaker for flere barn. Du kan kun endre én sak om gangen, så du må velge
-                    hvilken sak du ønsker å sende inn endring på.
+                    <AppText id="velgSakPage.intro" />
                 </p>
             </FormLayout.Guide>
 
@@ -66,9 +65,11 @@ const VelgSakPage = () => {
                 initialValues={{}}
                 renderForm={() => {
                     return (
-                        <Form submitButtonLabel="Velg" formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}>
+                        <Form
+                            submitButtonLabel={text('velgSakPage.submitButtonLabel')}
+                            formErrorHandler={getIntlFormErrorHandler(intl, 'validation')}>
                             <RadioGroup
-                                legend="Velg barn/sak"
+                                legend={text('velgSakPage.barnAktørId.legend')}
                                 name={FormFields.barnAktørId}
                                 validate={getRequiredFieldValidator()}
                                 radios={k9saker.map((sak) => {
@@ -85,8 +86,14 @@ const VelgSakPage = () => {
                                                     - ({dateFormatter.dayDateMonthYear(sak.barn.fødselsdato)})
                                                 </Heading>
                                                 <p style={{ marginTop: '.5rem' }}>
-                                                    Siste dag med pleiepenger:{' '}
-                                                    {dateFormatter.dayCompactDate(sisteSøknadperiodeISak.to)}
+                                                    <AppText
+                                                        id="velgSakPage.sak.sisteDag"
+                                                        values={{
+                                                            dato: dateFormatter.dayCompactDate(
+                                                                sisteSøknadperiodeISak.to,
+                                                            ),
+                                                        }}
+                                                    />
                                                 </p>
                                             </BodyShort>
                                         ),
