@@ -41,6 +41,15 @@ export const isApiAxiosError = (error: unknown): error is ApiAxiosError => {
     return (error as ApiError).type === ApiErrorType.NetworkError && isAxiosError((error as ApiError).originalError);
 };
 
+export const isForbiddenApiError = (error: unknown): boolean => {
+    if (!isApiAxiosError(error)) {
+        return false;
+    }
+
+    const status = error.originalError.response?.status;
+    return status === 403 || status === 451;
+};
+
 /**
  * Bygger en teknisk feilbeskrivelse fra zod-issues: `feltnavn: melding`.
  */

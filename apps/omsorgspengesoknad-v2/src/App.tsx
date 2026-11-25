@@ -3,7 +3,7 @@ import './app.css';
 
 import { OmsorgsdagerKroniskApp } from '@sif/app-register';
 import { SøknadAppProvider } from '@sif/soknad-app';
-import { DemoInfoAlert, InitialDataErrorPage, LoadingPage } from '@sif/soknad-ui';
+import { DemoInfoAlert, InitialDataErrorPage, LoadingPage, NoAccessPage } from '@sif/soknad-ui';
 import { BrowserRouter } from 'react-router-dom';
 
 import { initApiClients } from './app/api/initApiClients';
@@ -20,6 +20,8 @@ const SøknadDataWrapper = () => {
     switch (result.status) {
         case 'loading':
             return <LoadingPage applicationTitle={text('application.title')} />;
+        case 'forbidden':
+            return <NoAccessPage applicationTitle={text('application.title')} />;
         case 'error':
             if (import.meta.env.MODE === 'development') {
                 // eslint-disable-next-line no-console

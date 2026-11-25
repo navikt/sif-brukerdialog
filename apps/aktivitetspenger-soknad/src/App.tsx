@@ -2,7 +2,7 @@ import './app.css';
 
 import { AktivitetspengerSoknadApp } from '@sif/app-register';
 import { SøknadAppProvider } from '@sif/soknad-app';
-import { InitialDataErrorPage, LoadingPage } from '@sif/soknad-ui';
+import { InitialDataErrorPage, LoadingPage, NoAccessPage } from '@sif/soknad-ui';
 import { SkyraHandler, SkyraSlug, SkyraTestPage } from '@sif/surveys';
 import { TilgjengeligSøknadType } from '@sif/ung-brukerdialog-api';
 
@@ -24,6 +24,8 @@ const SøknadDataWrapper = ({ åpnerDato }: { åpnerDato: string }) => {
     switch (result.status) {
         case 'loading':
             return <LoadingPage applicationTitle={text('application.title')} />;
+        case 'forbidden':
+            return <NoAccessPage applicationTitle={text('application.title')} />;
         case 'error':
             if (import.meta.env.MODE === 'development') {
                 // eslint-disable-next-line no-console

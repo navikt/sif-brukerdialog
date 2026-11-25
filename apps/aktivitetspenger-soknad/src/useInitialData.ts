@@ -1,3 +1,4 @@
+import { isForbiddenApiError } from '@sif/api';
 import {
     RegistrertBarn,
     Søker,
@@ -20,7 +21,10 @@ interface InitialData {
 }
 
 type InitialDataResult =
-    { status: 'loading' } | { status: 'error'; errors: unknown[] } | { status: 'success'; data: InitialData };
+    | { status: 'loading' }
+    | { status: 'forbidden' }
+    | { status: 'error'; errors: unknown[] }
+    | { status: 'success'; data: InitialData };
 
 export const useInitialData = (): InitialDataResult => {
     const søker = useSøker();
@@ -37,6 +41,9 @@ export const useInitialData = (): InitialDataResult => {
 
     const errors = requiredQueries.filter((q) => q.isError).map((q) => q.error);
     if (errors.length > 0) {
+        if (errors.some(isForbiddenApiError)) {
+            return { status: 'forbidden' };
+        }
         return { status: 'error', errors };
     }
 

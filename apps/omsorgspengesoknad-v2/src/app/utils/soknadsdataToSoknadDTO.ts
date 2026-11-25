@@ -1,10 +1,10 @@
 import { Søker } from '@sif/api/k9-brukerdialog-prosessering';
 import { dateToISODate } from '@sif/utils';
 
-import { inkluderDeltBostedStep } from '../setup/soknadStepConfig';
 import { SøknadApiData } from '../types/SoknadApiData';
 import { Søknadsdata } from '../types/Soknadsdata';
 import { SøknadStepId } from '../types/SoknadStepId';
+import { inkluderDeltBostedStep } from './deltBostedUtils';
 
 interface Params {
     søker: Søker;
