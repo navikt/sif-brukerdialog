@@ -32,7 +32,7 @@ export const oppsummeringStepMessages_nb = {
 
     'oppsummeringStep.arbeidstid.flereTimerEnnTilgjengelig':
         'Det er registrert flere timer enn det er tilgjengelig for en periode. Vennligst gå tilbake til steget for arbeidstid og korriger dette.',
-    'oppsummeringStep.arbeidstid.kolonne.endretArbeidstid': 'Arbeidstid',
+    'oppsummeringStep.arbeidstid.kolonne.endretArbeidstid': 'Timer med jobb',
     'oppsummeringStep.arbeidstid.frilanser.tittel': 'Frilanser',
     'oppsummeringStep.arbeidstid.sn.tittel': 'Selvstendig næringsdrivende',
 
