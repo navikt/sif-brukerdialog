@@ -26,9 +26,7 @@ const TilsynsordningPeriodeDialog = ({ formProps, isOpen }: Props) => {
                 <Dialog.Header>
                     <Dialog.Title>{text('tilsynsordningPeriodeDialog.contentLabel')}</Dialog.Title>
                 </Dialog.Header>
-                <Dialog.Body>
-                    <TilsynsordningPeriodeForm {...formProps} />
-                </Dialog.Body>
+                <Dialog.Body>{isOpen && <TilsynsordningPeriodeForm {...formProps} />}</Dialog.Body>
             </Dialog.Popup>
         </Dialog>
     );

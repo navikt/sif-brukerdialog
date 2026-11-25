@@ -29,7 +29,7 @@ const LovbestemtFerieModal = ({ children, title, open = false, onClose, onClosed
                 <Dialog.Header>
                     <Dialog.Title>{title}</Dialog.Title>
                 </Dialog.Header>
-                <Dialog.Body>{children}</Dialog.Body>
+                <Dialog.Body>{open && children}</Dialog.Body>
             </Dialog.Popup>
         </Dialog>
     );
