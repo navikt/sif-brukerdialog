@@ -100,28 +100,22 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
             søker,
             barn: registrerteBarn,
         };
-        const lagretBarnValg = mellomlagring?.formValues[SøknadFormField.barnetSøknadenGjelder];
-        const lagretBarnBleFjernet =
-            lagretBarnValg !== undefined &&
-            lagretBarnValg !== VelgBarn_AnnetBarnValue &&
-            barn.some(({ aktørId }) => aktørId === lagretBarnValg) &&
-            !registrerteBarn.some(({ aktørId }) => aktørId === lagretBarnValg);
+        const lagretBarnValg = mellomlagring?.formValues[SøknadFormField.barnetSøknadenGjelder] ?? '';
+        /** Valg av barn som ikke lenger finnes i listen nullstilles, slik at søker må velge barn på nytt */
+        const lagretBarnValgErGyldig =
+            lagretBarnValg === VelgBarn_AnnetBarnValue ||
+            registrerteBarn.some(({ aktørId }) => aktørId === lagretBarnValg);
         const formValuesToUse = mellomlagring
             ? {
                   ...mellomlagring.formValues,
                   [SøknadFormField.legeerklæring]: getValidVedlegg(mellomlagring.formValues.legeerklæring),
-                  [SøknadFormField.barnetSøknadenGjelder]: lagretBarnBleFjernet ? '' : (lagretBarnValg ?? ''),
+                  [SøknadFormField.barnetSøknadenGjelder]: lagretBarnValgErGyldig ? lagretBarnValg : '',
               }
             : { ...initialValues };
 
-        this.updateSøkerdata(
-            formValuesToUse,
-            søkerdata,
-            lagretBarnBleFjernet ? undefined : mellomlagring?.metadata,
-            () => {
-                this.stopLoading();
-            },
-        );
+        this.updateSøkerdata(formValuesToUse, søkerdata, mellomlagring?.metadata, () => {
+            this.stopLoading();
+        });
     }
 
     updateSøkerdata(

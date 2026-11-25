@@ -23,31 +23,27 @@ export const opplysningerOmBarnetStepIsValid = ({
     relasjonTilBarnetBeskrivelse,
 }: SøknadFormValues) => {
     /** Valgt registrert barn */
-    if (
-        barnetSøknadenGjelder !== VelgBarn_AnnetBarnValue &&
-        validateFødselsnummer(barnetsFødselsnummer) === undefined
-    ) {
+    if (barnetSøknadenGjelder && barnetSøknadenGjelder !== VelgBarn_AnnetBarnValue) {
         return true;
     }
-    if (barnetSøknadenGjelder === VelgBarn_AnnetBarnValue) {
-        if (barnetHarIkkeFnr && (barnetsFødselsdato === undefined || årsakManglerIdentitetsnummer === undefined)) {
-            return false;
-        }
-        if (!barnetHarIkkeFnr && validateFødselsnummer(barnetsFødselsnummer) !== undefined) {
-            return false;
-        }
-        if (validateNavn(barnetsNavn) !== undefined) {
-            return false;
-        }
-        if (relasjonTilBarnet === undefined) {
-            return false;
-        }
-        if (
-            relasjonTilBarnet === BarnRelasjon.ANNET &&
-            validateRelasjonTilBarnBeskrivelse(relasjonTilBarnetBeskrivelse) !== undefined
-        ) {
-            return false;
-        }
+    /** Annet barn, eller ingen registrerte barn å velge: barnet må være fylt ut manuelt */
+    if (barnetHarIkkeFnr && (barnetsFødselsdato === undefined || årsakManglerIdentitetsnummer === undefined)) {
+        return false;
+    }
+    if (!barnetHarIkkeFnr && validateFødselsnummer(barnetsFødselsnummer) !== undefined) {
+        return false;
+    }
+    if (validateNavn(barnetsNavn) !== undefined) {
+        return false;
+    }
+    if (relasjonTilBarnet === undefined) {
+        return false;
+    }
+    if (
+        relasjonTilBarnet === BarnRelasjon.ANNET &&
+        validateRelasjonTilBarnBeskrivelse(relasjonTilBarnetBeskrivelse) !== undefined
+    ) {
+        return false;
     }
     return true;
 };

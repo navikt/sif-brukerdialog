@@ -87,6 +87,14 @@ describe('stepValidation tests', () => {
                 expect(opplysningerOmBarnetStepIsValid(formValues as SøknadFormValues)).toBe(false);
             });
         });
+
+        it('er gyldig når et registrert barn er valgt', () => {
+            expect(opplysningerOmBarnetStepIsValid({ barnetSøknadenGjelder: '123' } as SøknadFormValues)).toBe(true);
+        });
+
+        it('er ugyldig når ingen barn er valgt og barnet ikke er fylt ut', () => {
+            expect(opplysningerOmBarnetStepIsValid({ barnetSøknadenGjelder: '' } as SøknadFormValues)).toBe(false);
+        });
     });
 
     describe('opplysningerOmTidsromStepIsValid', () => {

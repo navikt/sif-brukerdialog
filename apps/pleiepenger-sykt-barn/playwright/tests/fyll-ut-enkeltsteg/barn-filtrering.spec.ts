@@ -72,13 +72,7 @@ test('bruker mellomlagringen videre når valget gjelder annet barn', async ({ pa
     await expect(page.getByRole('textbox', { name: 'Til og med' })).toHaveValue('15.01.2023');
 });
 
-test('viser annet barn når det mellomlagrede valget er tvetydig og ble fjernet', async ({ page }) => {
-    const slettedeMellomlagringer: string[] = [];
-    page.on('request', (request) => {
-        if (request.url().includes('/mellomlagring/') && request.method() === 'DELETE') {
-            slettedeMellomlagringer.push(request.url());
-        }
-    });
+test('sender søker til barnesteget med beholdte svar når det mellomlagrede valget ble fjernet', async ({ page }) => {
     await routeUtils.setupMockRoutes(page, {
         barnRespons: {
             barn: [createBarn('1', 'Ukjent navn'), createBarn('2', 'Ukjent navn')],
@@ -92,18 +86,18 @@ test('viser annet barn når det mellomlagrede valget er tvetydig og ble fjernet'
         },
         lastStep: StepID.OPPLYSNINGER_OM_BARNET,
     });
-    await page.goto('http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger/soknad');
+    await page.goto('http://localhost:8080/familie/sykdom-i-familien/soknad/pleiepenger/soknad/tidsrom');
 
-    await expect(page.getByRole('heading', { name: 'Hei, Test' })).toBeVisible();
-    await expect(page).toHaveURL(/\/velkommen$/);
-    expect(slettedeMellomlagringer).toHaveLength(0);
-
-    const samtykke = page.getByLabel('Jeg bekrefter at jeg har');
-    await expect(samtykke).not.toBeChecked();
-    await samtykke.check();
-    await page.getByRole('button', { name: 'Start søknad' }).click();
+    await page.waitForURL('**/opplysninger-om-barnet');
     await expect(page.getByText('Ukjent navn Nordmann', { exact: true })).toHaveCount(0);
-    await expect(page.getByLabel('Barnets fødselsnummer/D-nummer')).toBeVisible();
+
+    await page.getByLabel('Barnets fødselsnummer/D-nummer').fill('08861999573');
+    await page.getByLabel('Barnets navn').fill('Tore');
+    await page.getByLabel('Mor', { exact: true }).check();
+    await page.getByRole('button', { name: 'Neste steg' }).click();
+
+    await page.waitForURL('**/tidsrom');
+    await expect(page.getByRole('textbox', { name: 'Fra og med' })).toHaveValue('03.01.2023');
 });
 
 test('beholder et tredje entydig barn og fjerner de tvetydige', async ({ page }) => {
