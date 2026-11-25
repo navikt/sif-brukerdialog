@@ -25,6 +25,8 @@ export const arbeidstidUkerMessages_nb = {
 
     'ukeTags.ferie': 'Ferie: {dager}',
     'ukeTags.feriedager': '{antall, plural, one {Feriedag} other {Feriedager}}',
+    'ukeTags.ferieTooltip': 'Ferie: {dager}',
+    'ukeTags.ferieFjernetTooltip': 'Ferie fjernet: {dager}',
     'ukeTags.ferieFjernet': 'Ferie fjernet',
 
     'ukeInfoTooltip.kortUke': 'Kort uke - {dager}',
