@@ -165,7 +165,6 @@ export const appMessages_nb = {
     'tidsbrukKalenderDag.ingenTid': 'Ingen tid',
     'tidsbrukKalenderDag.uendret': '(uendret)',
 
-    'endreArbeidstidModal.ariaLabel': 'Endre arbeidstid dialog',
     'lovbestemtFerieModal.ariaLabel': 'Lovbestemt ferie',
 
     'søknad.ingenTilgang.pageTitle': 'Ingen tilgang',

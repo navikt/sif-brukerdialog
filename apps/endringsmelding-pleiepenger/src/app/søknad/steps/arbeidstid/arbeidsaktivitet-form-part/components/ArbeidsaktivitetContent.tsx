@@ -63,6 +63,7 @@ const ArbeidsaktivitetContent = ({
 }: Props) => {
     const { text } = useAppIntl();
     const [arbeidsukerForEndring, setArbeidsukerForEndring] = useState<Arbeidsuke[] | undefined>();
+    const [dialogErÅpen, setDialogErÅpen] = useState(false);
     const [resetUkerTabellCounter, setResetUkerTabellCounter] = useState(0);
 
     const erNyArbeidsgiver =
@@ -85,6 +86,7 @@ const ArbeidsaktivitetContent = ({
                 arbeidstidKolonneTittel={text('arbeidstidUkeTabell.header.arbeidstid.title')}
                 onEndreUker={(uker: ArbeidstidUkerItem[]) => {
                     setArbeidsukerForEndring(uker.map((uke) => periode.arbeidsuker[uke.isoDateRange]));
+                    setDialogErÅpen(true);
                 }}
             />
         );
@@ -202,35 +204,36 @@ const ArbeidsaktivitetContent = ({
             )}
             <EndreArbeidstidModal
                 title={arbeidsaktivitet.navn}
-                isVisible={arbeidsukerForEndring !== undefined}
-                onClose={() => setArbeidsukerForEndring(undefined)}>
-                <EndreArbeidstidForm
-                    arbeidsuker={arbeidsukerForEndring || []}
-                    lovbestemtFerie={lovbestemtFerie}
-                    endring={
-                        arbeidsukerForEndring && endringer
-                            ? getEndringerForArbeidsukeForm(arbeidsukerForEndring, endringer)
-                            : undefined
-                    }
-                    onCancel={() => setArbeidsukerForEndring(undefined)}
-                    onSubmit={(data) => {
-                        setArbeidsukerForEndring(undefined);
-                        const nyeEndringer: ArbeidstidEndringMap = {};
-                        data.perioder.forEach((periode) => {
-                            nyeEndringer[dateRangeToISODateRange(periode)] = data.endring;
-                        });
-                        onArbeidstidAktivitetChange(
-                            cleanupArbeidsaktivitetEndringer(
-                                {
-                                    ...endringer,
-                                    ...nyeEndringer,
-                                },
-                                arbeidsaktivitet,
-                            ),
-                        );
-                        setResetUkerTabellCounter(resetUkerTabellCounter + 1);
-                    }}
-                />
+                open={dialogErÅpen}
+                onClose={() => setDialogErÅpen(false)}
+                onClosed={() => setArbeidsukerForEndring(undefined)}>
+                {arbeidsukerForEndring && (
+                    <EndreArbeidstidForm
+                        arbeidsuker={arbeidsukerForEndring}
+                        lovbestemtFerie={lovbestemtFerie}
+                        endring={
+                            endringer ? getEndringerForArbeidsukeForm(arbeidsukerForEndring, endringer) : undefined
+                        }
+                        onCancel={() => setDialogErÅpen(false)}
+                        onSubmit={(data) => {
+                            setDialogErÅpen(false);
+                            const nyeEndringer: ArbeidstidEndringMap = {};
+                            data.perioder.forEach((periode) => {
+                                nyeEndringer[dateRangeToISODateRange(periode)] = data.endring;
+                            });
+                            onArbeidstidAktivitetChange(
+                                cleanupArbeidsaktivitetEndringer(
+                                    {
+                                        ...endringer,
+                                        ...nyeEndringer,
+                                    },
+                                    arbeidsaktivitet,
+                                ),
+                            );
+                            setResetUkerTabellCounter(resetUkerTabellCounter + 1);
+                        }}
+                    />
+                )}
             </EndreArbeidstidModal>
         </VStack>
     );
