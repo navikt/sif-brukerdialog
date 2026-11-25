@@ -4,58 +4,45 @@ import {
     InformationSquareFillIcon,
     XMarkOctagonFillIcon,
 } from '@navikt/aksel-icons';
-import { InfoCard, InfoCardProps } from '@navikt/ds-react';
+import { BodyShort, InfoCard, InfoCardProps } from '@navikt/ds-react';
 import { ReactNode, Ref } from 'react';
+
+import { useSifSoknadUiIntl } from '../../i18n';
+
+type Variant = 'info' | 'warning' | 'error' | 'success';
 
 interface Props extends InfoCardProps {
     children: ReactNode;
-    variant?: 'info' | 'warning' | 'error' | 'success';
+    variant?: Variant;
     ref?: Ref<HTMLDivElement>;
 }
 
-export const SifInfoCard = ({ children, ref, ...props }: Props) => {
-    switch (props.variant) {
-        case 'success':
-            return (
-                <InfoCard data-color="success" ref={ref} {...props}>
-                    <InfoCard.Message
-                        icon={<CheckmarkCircleFillIcon style={{ color: 'var(--ax-bg-success-strong)' }} aria-hidden />}>
-                        {children}
-                    </InfoCard.Message>
-                </InfoCard>
-            );
-        case 'error':
-            return (
-                <InfoCard data-color="danger" ref={ref} {...props}>
-                    <InfoCard.Message
-                        icon={<XMarkOctagonFillIcon style={{ color: 'var(--ax-bg-danger-strong)' }} aria-hidden />}>
-                        {children}
-                    </InfoCard.Message>
-                </InfoCard>
-            );
-        case 'warning':
-            return (
-                <InfoCard data-color="warning" ref={ref} {...props}>
-                    <InfoCard.Message
-                        icon={
-                            <ExclamationmarkTriangleFillIcon
-                                style={{ color: 'var(--ax-bg-warning-strong)' }}
-                                aria-hidden
-                            />
-                        }>
-                        {children}
-                    </InfoCard.Message>
-                </InfoCard>
-            );
-        case 'info':
-        case undefined:
-            return (
-                <InfoCard data-color="info" ref={ref} {...props}>
-                    <InfoCard.Message
-                        icon={<InformationSquareFillIcon style={{ color: 'var(--ax-bg-info-strong)' }} aria-hidden />}>
-                        {children}
-                    </InfoCard.Message>
-                </InfoCard>
-            );
-    }
+const variantConfig = {
+    info: { color: 'info', Icon: InformationSquareFillIcon, statusKey: undefined },
+    success: { color: 'success', Icon: CheckmarkCircleFillIcon, statusKey: undefined },
+    warning: {
+        color: 'warning',
+        Icon: ExclamationmarkTriangleFillIcon,
+        statusKey: '@sifSoknadUi.sifInfoCard.status.warning',
+    },
+    error: { color: 'danger', Icon: XMarkOctagonFillIcon, statusKey: '@sifSoknadUi.sifInfoCard.status.error' },
+} as const;
+
+export const SifInfoCard = ({ children, variant = 'info', ref, ...props }: Props) => {
+    const { text } = useSifSoknadUiIntl();
+    const { color, Icon, statusKey } = variantConfig[variant];
+
+    return (
+        <InfoCard data-color={color} ref={ref} {...props}>
+            <InfoCard.Message icon={<Icon style={{ color: `var(--ax-bg-${color}-strong)` }} aria-hidden />}>
+                {/* Alvorlighetsgraden vises bare med farge og ikon, så skjermlesere får den som tekst */}
+                {statusKey && (
+                    <BodyShort as="span" visuallyHidden>
+                        {`${text(statusKey)}: `}
+                    </BodyShort>
+                )}
+                {children}
+            </InfoCard.Message>
+        </InfoCard>
+    );
 };

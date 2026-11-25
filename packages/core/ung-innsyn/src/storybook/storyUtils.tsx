@@ -2,6 +2,7 @@ import '../ung-innsyn.css';
 
 import { Box, Heading, Theme, VStack } from '@navikt/ds-react';
 import { Oppgave } from '@sif/api/ung-brukerdialog';
+import { sifSoknadUiMessages } from '@sif/soknad-ui/i18n';
 import { OppgaveStatus } from '@sif/ung-brukerdialog-api';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactNode } from 'react';
@@ -53,7 +54,7 @@ const panelPreviewQueryClient = new QueryClient({
 
 export const PanelPreviewWrapper = ({ children }: { children: ReactNode }) => (
     <Theme hasBackground={false}>
-        <IntlProvider locale="nb" messages={ungInnsyn_messages_nb}>
+        <IntlProvider locale="nb" messages={{ ...sifSoknadUiMessages.nb, ...ungInnsyn_messages_nb }}>
             <QueryClientProvider client={panelPreviewQueryClient}>
                 <BrowserRouter basename="/">
                     <OppgavePageContext.Provider value={{ onCancel: fn(), onSuccess: fn() }}>

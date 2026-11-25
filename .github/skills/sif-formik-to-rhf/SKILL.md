@@ -289,13 +289,15 @@ Sjekk tabellen:
     </>
 )}
 
-// Melding som skal annonseres til skjermlesere — bruk AriaLiveRegion
-<AriaLiveRegion visible={feltVerdi === YesOrNo.NO}>
+// Tilleggsinfo rett etter feltet — bruk && (trenger ikke annonseres)
+{feltVerdi === YesOrNo.NO && (
     <QuestionRelatedMessage>
         <SifInfoCard>...</SifInfoCard>
     </QuestionRelatedMessage>
-</AriaLiveRegion>
+)}
 ```
+
+Valg av meldingskomponent og når `AriaLiveRegion` (`polite`, alltid rendret) eller `SifAlert` (`role="alert"`) skal brukes, står i `sif-soknad-modify-step` under «Meldinger og annonsering for skjermlesere». Bruk ikke `LocalAlert`.
 
 `FormLayout.Questions` er ikke nødvendig rundt betinget innhold — gapet styres av den ytre `FormLayout.Questions`.
 
@@ -503,7 +505,8 @@ i18n-nøkler for cross-field-feilen bruker gruppens navn som felt: `scope.valida
 - [ ] Interpolasjonsverdier matcher originalen
 - [ ] Locale-avhengig presentasjon matcher originalen
 - [ ] Tekster matcher originalen i `sif-common-forms-ds` — ikke omskrevet
-- [ ] `AriaLiveRegion` brukes kun rundt dynamiske meldinger (`SifInfoCard`, `InlineMessage`, `LocalAlert`)
+- [ ] `AriaLiveRegion` brukes kun rundt meldinger som skal annonseres, med `politeness="polite"` og alltid rendret
+- [ ] Feil etter en handling bruker `SifAlert`, ikke `LocalAlert`
 - [ ] Betingede felter som skjules får `clearErrors` i `useEffect`
 - [ ] `useSifValidate` brukes når key-strukturen følger standardmønsteret, med `values` ved behov
 - [ ] i18n-nøkler bruker eksakte feilkoder fra `@sif/validation` (sjekk `enum Validate*Error`)

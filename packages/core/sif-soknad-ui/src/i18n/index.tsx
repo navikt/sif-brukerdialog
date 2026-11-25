@@ -15,6 +15,8 @@ import { registrerteBarnKildeInfoMessages_nb } from '../components/registrerte-b
 import { registrerteBarnKildeInfoMessages_nn } from '../components/registrerte-barn-kilde/i18n/nn';
 import { registrerteBarnListeMessages_nb } from '../components/registrerte-barn-liste/i18n/nb';
 import { registrerteBarnListeMessages_nn } from '../components/registrerte-barn-liste/i18n/nn';
+import { sifInfoCardMessages_nb } from '../components/sif-info-card/i18n/nb';
+import { sifInfoCardMessages_nn } from '../components/sif-info-card/i18n/nn';
 import { vedleggSummaryListMessages_nb } from '../components/vedlegg-summary-list/i18n/nb';
 import { vedleggSummaryListMessages_nn } from '../components/vedlegg-summary-list/i18n/nn';
 import { errorPageMessages_nb } from '../pages/error-page/i18n/nb';
@@ -41,6 +43,7 @@ const nb = {
     ...registrerteBarnListeMessages_nb,
     ...pictureScanningGuideMessages_nb,
     ...vedleggSummaryListMessages_nb,
+    ...sifInfoCardMessages_nb,
 };
 
 const nn: Record<keyof typeof nb, string> = {
@@ -58,6 +61,7 @@ const nn: Record<keyof typeof nb, string> = {
     ...registrerteBarnListeMessages_nn,
     ...pictureScanningGuideMessages_nn,
     ...vedleggSummaryListMessages_nn,
+    ...sifInfoCardMessages_nn,
 };
 
 type SifSoknadUiMessageKeys = keyof typeof nb;
