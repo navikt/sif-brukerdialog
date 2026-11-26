@@ -4,7 +4,7 @@ import {
     InformationSquareFillIcon,
     XMarkOctagonFillIcon,
 } from '@navikt/aksel-icons';
-import { BodyShort, InfoCard, InfoCardProps } from '@navikt/ds-react';
+import { InfoCard, InfoCardProps } from '@navikt/ds-react';
 import { ReactNode, Ref } from 'react';
 
 import { useSifSoknadUiIntl } from '../../i18n';
@@ -34,13 +34,14 @@ export const SifInfoCard = ({ children, variant = 'info', ref, ...props }: Props
 
     return (
         <InfoCard data-color={color} ref={ref} {...props}>
-            <InfoCard.Message icon={<Icon style={{ color: `var(--ax-bg-${color}-strong)` }} aria-hidden />}>
-                {/* Alvorlighetsgraden vises bare med farge og ikon, så skjermlesere får den som tekst */}
-                {statusKey && (
-                    <BodyShort as="span" visuallyHidden>
-                        {`${text(statusKey)}: `}
-                    </BodyShort>
-                )}
+            <InfoCard.Message
+                icon={
+                    <Icon
+                        style={{ color: `var(--ax-bg-${color}-strong)` }}
+                        aria-label={statusKey ? text(statusKey) : ''}
+                        visually-hidden={!statusKey}
+                    />
+                }>
                 {children}
             </InfoCard.Message>
         </InfoCard>
