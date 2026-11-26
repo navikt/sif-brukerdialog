@@ -41,7 +41,7 @@
         "postcss": "^8.5.28",
         "react": "19.3.1",
         "react-dom": "19.3.1",
-        "react-intl": "12.2.0",
+        "react-intl": "12.2.1",
         "storybook": "10.6.8",
         "typescript": "6.0.3"
     }

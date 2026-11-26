@@ -29,7 +29,7 @@
         "@sif/ung-brukerdialog-api": "workspace:*",
         "@sif/ung-deltakelse-opplyser-api-deltaker": "workspace:*",
         "@sif/utils": "workspace:*",
-        "@tanstack/react-query": "5.108.1",
+        "@tanstack/react-query": "5.108.3",
         "axios": "1.21.1",
         "dayjs": "1.11.23",
         "uuid": "^14.0.2"

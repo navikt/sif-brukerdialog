@@ -26,7 +26,7 @@
         "@navikt/ds-react": "8.23.0",
         "@sif/utils": "workspace:*",
         "react-hook-form": "7.92.0",
-        "react-intl": "12.2.0"
+        "react-intl": "12.2.1"
     },
     "devDependencies": {
         "@sif/config": "workspace:*",

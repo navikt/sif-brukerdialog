@@ -32,7 +32,7 @@
         "@sif/utils": "workspace:*",
         "@sif/validation": "workspace:*",
         "react-hook-form": "7.92.0",
-        "react-intl": "12.2.0"
+        "react-intl": "12.2.1"
     },
     "devDependencies": {
         "@navikt/ds-css": "8.23.0",

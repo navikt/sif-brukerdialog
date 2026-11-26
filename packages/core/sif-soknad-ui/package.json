@@ -43,7 +43,7 @@
         "@sif/hooks": "workspace:*",
         "@sif/utils": "workspace:*",
         "js-cookie": "3.0.8",
-        "react-intl": "12.2.0",
+        "react-intl": "12.2.1",
         "react-responsive": "10.0.1"
     },
     "devDependencies": {
