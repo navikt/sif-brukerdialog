@@ -5,7 +5,7 @@ import { SøknadStepId } from '@app/types/SoknadStepId';
 import { FormSummary, InlineMessage, LocalAlert } from '@navikt/ds-react';
 import { Søker, useManglendeVedlegg } from '@sif/api/k9-brukerdialog-prosessering';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
-import { SøknadStep, SøknadStepForm, useSøknadsdata } from '@sif/soknad-app';
+import { SøknadStep, SøknadStepForm, useSøknadsdata, useStepNavigation } from '@sif/soknad-app';
 import { PersistedVedlegg } from '@sif/soknad-forms';
 import { FormLayout, VedleggSummaryList } from '@sif/soknad-ui/components';
 import { useSkyraReloader } from '@sif/surveys';
@@ -91,13 +91,20 @@ export const OppsummeringSteg = () => {
                     )}
                     {dto && (
                         <>
-                            <OmSøkerOppsummering søker={søker} />
-                            <OmBarnetOppsummering dto={dto} />
-                            <VedleggOppsummering
-                                legeerklæring={legeerklæring}
-                                samværsavtale={samværsavtale}
-                                manglendeVedleggIder={manglendeVedleggIder}
-                            />
+                            <FormLayout.Summary>
+                                <OmSøkerOppsummering søker={søker} />
+                                <OmBarnetOppsummering dto={dto} />
+                                <LegeerklæringOppsummering
+                                    legeerklæring={legeerklæring}
+                                    manglendeVedleggIder={manglendeVedleggIder}
+                                />
+                                {samværsavtale !== undefined && (
+                                    <DeltBostedOppsummering
+                                        samværsavtale={samværsavtale}
+                                        manglendeVedleggIder={manglendeVedleggIder}
+                                    />
+                                )}
+                            </FormLayout.Summary>
                         </>
                     )}
                     <Checkbox
@@ -141,6 +148,7 @@ type DtoUtenBekreftelse = Omit<SøknadApiData, 'harBekreftetOpplysninger'>;
 
 const OmBarnetOppsummering = ({ dto }: { dto: DtoUtenBekreftelse }) => {
     const { text } = useAppIntl();
+    const { navigateToStep } = useStepNavigation();
     const {
         barn,
         relasjonTilBarnet,
@@ -250,30 +258,39 @@ const OmBarnetOppsummering = ({ dto }: { dto: DtoUtenBekreftelse }) => {
                     </>
                 ) : null}
             </FormSummary.Answers>
+            <FormSummary.Footer>
+                <FormSummary.EditLink
+                    href="#"
+                    onClick={(evt) => {
+                        evt.preventDefault();
+                        evt.stopPropagation();
+                        navigateToStep(SøknadStepId.OM_BARNET);
+                    }}
+                />
+            </FormSummary.Footer>
         </FormSummary>
     );
 };
 
-const VedleggOppsummering = ({
+const LegeerklæringOppsummering = ({
     legeerklæring,
-    samværsavtale,
     manglendeVedleggIder,
 }: {
     legeerklæring: PersistedVedlegg[];
-    samværsavtale?: PersistedVedlegg[];
     manglendeVedleggIder: string[];
 }) => {
+    const { navigateToStep } = useStepNavigation();
     return (
         <FormSummary>
             <FormSummary.Header>
                 <FormSummary.Heading level="2">
-                    <AppText id="oppsummeringSteg.vedlegg.header" />
+                    <AppText id="oppsummeringSteg.legeerklæring.header" />
                 </FormSummary.Heading>
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
                     <FormSummary.Label>
-                        <AppText id="oppsummeringSteg.legeerklæring.header" />
+                        <AppText id="oppsummeringSteg.vedlegg.lastetOpp" values={{ antall: legeerklæring.length }} />
                     </FormSummary.Label>
                     <FormSummary.Value>
                         {legeerklæring.length === 0 ? (
@@ -285,26 +302,62 @@ const VedleggOppsummering = ({
                         )}
                     </FormSummary.Value>
                 </FormSummary.Answer>
-                {samværsavtale !== undefined ? (
-                    <FormSummary.Answer>
-                        <FormSummary.Label>
-                            <AppText id="oppsummeringSteg.samværsavtale.header" />
-                        </FormSummary.Label>
-                        <FormSummary.Value>
-                            {samværsavtale.length === 0 ? (
-                                <InlineMessage status="info">
-                                    <AppText id="oppsummeringSteg.vedlegg.ingenLastetOpp" />
-                                </InlineMessage>
-                            ) : (
-                                <VedleggSummaryList
-                                    vedlegg={samværsavtale}
-                                    manglendeVedleggIder={manglendeVedleggIder}
-                                />
-                            )}
-                        </FormSummary.Value>
-                    </FormSummary.Answer>
-                ) : null}
             </FormSummary.Answers>
+            <FormSummary.Footer>
+                <FormSummary.EditLink
+                    href="#"
+                    onClick={(evt) => {
+                        evt.preventDefault();
+                        evt.stopPropagation();
+                        navigateToStep(SøknadStepId.LEGEERKLÆRING);
+                    }}
+                />
+            </FormSummary.Footer>
+        </FormSummary>
+    );
+};
+
+const DeltBostedOppsummering = ({
+    samværsavtale,
+    manglendeVedleggIder,
+}: {
+    samværsavtale: PersistedVedlegg[];
+    manglendeVedleggIder: string[];
+}) => {
+    const { navigateToStep } = useStepNavigation();
+    return (
+        <FormSummary>
+            <FormSummary.Header>
+                <FormSummary.Heading level="2">
+                    <AppText id="oppsummeringSteg.samværsavtale.header" />
+                </FormSummary.Heading>
+            </FormSummary.Header>
+            <FormSummary.Answers>
+                <FormSummary.Answer>
+                    <FormSummary.Label>
+                        <AppText id="oppsummeringSteg.vedlegg.lastetOpp" values={{ antall: samværsavtale.length }} />
+                    </FormSummary.Label>
+                    <FormSummary.Value>
+                        {samværsavtale.length === 0 ? (
+                            <InlineMessage status="info">
+                                <AppText id="oppsummeringSteg.vedlegg.ingenLastetOpp" />
+                            </InlineMessage>
+                        ) : (
+                            <VedleggSummaryList vedlegg={samværsavtale} manglendeVedleggIder={manglendeVedleggIder} />
+                        )}
+                    </FormSummary.Value>
+                </FormSummary.Answer>
+            </FormSummary.Answers>
+            <FormSummary.Footer>
+                <FormSummary.EditLink
+                    href="#"
+                    onClick={(evt) => {
+                        evt.preventDefault();
+                        evt.stopPropagation();
+                        navigateToStep(SøknadStepId.DELT_BOSTED);
+                    }}
+                />
+            </FormSummary.Footer>
         </FormSummary>
     );
 };

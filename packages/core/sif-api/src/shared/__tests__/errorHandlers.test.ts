@@ -2,7 +2,13 @@ import { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { describe, expect, it } from 'vitest';
 import { ZodError, ZodIssue } from 'zod';
 
-import { ApiErrorType, getFeltOgMeldingFraZodError, handleApiError, isProblemDetail } from '../errorHandlers';
+import {
+    ApiErrorType,
+    getFeltOgMeldingFraZodError,
+    handleApiError,
+    isForbiddenApiError,
+    isProblemDetail,
+} from '../errorHandlers';
 
 const issue = (path: Array<string | number>): ZodIssue =>
     ({
@@ -109,5 +115,21 @@ describe('handleApiError med nettverksfeil', () => {
 
         expect(apiError.type).toBe(ApiErrorType.NetworkError);
         expect(apiError.message).toBe('Tjenesten er ikke tilgjengelig');
+    });
+});
+
+describe('isForbiddenApiError', () => {
+    it('gjenkjenner 403 og 451 som ingen tilgang', () => {
+        expect(isForbiddenApiError(handleApiError(axiosFeil({}, 403)))).toBe(true);
+        expect(isForbiddenApiError(handleApiError(axiosFeil({}, 451)))).toBe(true);
+    });
+
+    it('klassifiserer ikke 401 som ingen tilgang', () => {
+        expect(isForbiddenApiError(handleApiError(axiosFeil({}, 401)))).toBe(false);
+    });
+
+    it('avviser feil som ikke er pakket som nettverksfeil', () => {
+        expect(isForbiddenApiError(axiosFeil({}, 403))).toBe(false);
+        expect(isForbiddenApiError(new Error('Feil'))).toBe(false);
     });
 });

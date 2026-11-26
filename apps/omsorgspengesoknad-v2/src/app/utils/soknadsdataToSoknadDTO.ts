@@ -1,10 +1,10 @@
 import { Søker } from '@sif/api/k9-brukerdialog-prosessering';
 import { dateToISODate } from '@sif/utils';
 
-import { BarnSammeAdresse } from '../types/BarnSammeAdresse';
 import { SøknadApiData } from '../types/SoknadApiData';
 import { Søknadsdata } from '../types/Soknadsdata';
 import { SøknadStepId } from '../types/SoknadStepId';
+import { inkluderDeltBostedStep } from './deltBostedUtils';
 
 interface Params {
     søker: Søker;
@@ -47,7 +47,7 @@ export const søknadsdataToSøknadDTO = ({
         språk,
         barn,
         legeerklæring,
-        samværsavtale: omBarnet.sammeAdresse === BarnSammeAdresse.JA_DELT_BOSTED ? samværsavtale : undefined,
+        samværsavtale: inkluderDeltBostedStep(omBarnet) ? samværsavtale : undefined,
         relasjonTilBarnet,
         kroniskEllerFunksjonshemming: omBarnet.kroniskEllerFunksjonshemming,
         søkerNorskIdent: søker.fødselsnummer,

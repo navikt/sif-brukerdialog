@@ -55,7 +55,7 @@ export const lastOppLegeerklæringOgGåTilOppsummering = async (page: Page) => {
     await lastOppVedleggOgFortsett(page, 'Last opp legeerklæringen');
     await expect(page.getByRole('heading', { name: 'Om deg' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Om barnet' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Vedlegg' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Legeerklæring' })).toBeVisible();
 };
 
 export const gåTilOppsummeringMedRegistrertBarn = async (page: Page, scenario: ScenarioType) => {
@@ -99,7 +99,8 @@ export const expectFellesOppsummering = async (page: Page) => {
         'Beskrivelse på hvordan barnets sykdom eller funksjonshemning gir høyere risiko for fravær fra jobb',
         høyereRisikoBeskrivelse,
     );
-    await expect(page.getByRole('term').filter({ hasText: 'Legeerklæring' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Legeerklæring' })).toBeVisible();
     await expect(page.getByText('navlogopng.png')).toBeVisible();
+    await expect(page.getByRole('term').filter({ hasText: 'Fil lastet opp' })).toBeVisible();
     await expect(page.getByText('Avtale om delt fast bosted')).toHaveCount(0);
 };

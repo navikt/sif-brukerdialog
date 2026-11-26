@@ -1,8 +1,8 @@
 import { StepDefinition } from '@sif/soknad-app';
 
-import { BarnSammeAdresse } from '../types/BarnSammeAdresse';
 import { Søknadsdata } from '../types/Soknadsdata';
 import { SøknadStepId } from '../types/SoknadStepId';
+import { inkluderDeltBostedStep } from '../utils/deltBostedUtils';
 
 export const søknadStepConfig: Record<SøknadStepId, StepDefinition> = {
     [SøknadStepId.OM_BARNET]: {
@@ -15,7 +15,7 @@ export const søknadStepConfig: Record<SøknadStepId, StepDefinition> = {
     },
     [SøknadStepId.DELT_BOSTED]: {
         route: 'delt-bosted',
-        isIncluded: (s) => (s as Søknadsdata)[SøknadStepId.OM_BARNET]?.sammeAdresse === BarnSammeAdresse.JA_DELT_BOSTED,
+        isIncluded: (s) => inkluderDeltBostedStep((s as Søknadsdata)[SøknadStepId.OM_BARNET]),
         isCompleted: (s) => (s as Søknadsdata)[SøknadStepId.DELT_BOSTED] !== undefined,
     },
     [SøknadStepId.OPPSUMMERING]: {

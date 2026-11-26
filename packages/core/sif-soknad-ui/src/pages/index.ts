@@ -3,6 +3,7 @@ export { ApplicationUnavailableContent } from './error-page/content/ApplicationU
 export { InitialDataErrorContent } from './error-page/content/InitialDataErrorContent';
 export { ErrorPage } from './error-page/ErrorPage';
 export { InitialDataErrorPage } from './error-page/InitialDataErrorPage';
+export { NoAccessPage } from './error-page/NoAccessPage';
 export { FallbackErrorPage } from './fallback-error-page/FallbackErrorPage';
 export { LoadingPage } from './loading-page/LoadingPage';
 export { SøknadKvitteringPage } from './soknad-kvittering-page/SoknadKvitteringPage';

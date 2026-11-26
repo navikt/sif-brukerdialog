@@ -3,7 +3,7 @@ import './app.css';
 
 import { OmsorgsdagerKroniskApp } from '@sif/app-register';
 import { SøknadAppProvider } from '@sif/soknad-app';
-import { DemoInfoAlert, InitialDataErrorPage, LoadingPage } from '@sif/soknad-ui';
+import { DemoInfoAlert, InitialDataErrorPage, LoadingPage, NoAccessPage } from '@sif/soknad-ui';
 import { BrowserRouter } from 'react-router-dom';
 
 import { initApiClients } from './app/api/initApiClients';
@@ -20,6 +20,8 @@ const SøknadDataWrapper = () => {
     switch (result.status) {
         case 'loading':
             return <LoadingPage applicationTitle={text('application.title')} />;
+        case 'forbidden':
+            return <NoAccessPage applicationTitle={text('application.title')} />;
         case 'error':
             if (import.meta.env.MODE === 'development') {
                 // eslint-disable-next-line no-console
@@ -50,6 +52,12 @@ export const App = () => {
         <SøknadAppProvider
             applicationKey={OmsorgsdagerKroniskApp.key}
             useAnalytics={env.SIF_PUBLIC_USE_ANALYTICS === 'true'}
+            appStatusConfig={{
+                sanityConfig: {
+                    projectId: env.SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+                    dataset: env.SIF_PUBLIC_APPSTATUS_DATASET,
+                },
+            }}
             intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
             <BrowserRouter basename={env.PUBLIC_PATH}>
                 {__IS_DEMO__ ? (

@@ -3,6 +3,8 @@ export const errorPageMessages_nb = {
     '@sifSoknadUi.initialDataError.title': 'Noe gikk galt',
     '@sifSoknadUi.initialDataError.description':
         'Vi klarte dessverre ikke å hente informasjonen vi trenger for å starte søknaden. Prøv å laste siden på nytt. Dersom feilen fortsetter, prøv igjen litt senere.',
+    '@sifSoknadUi.noAccess.title': 'Ingen tilgang',
+    '@sifSoknadUi.noAccess.description': 'Du har ikke tilgang til denne siden.',
     '@sifSoknadUi.applicationUnavailable.title': 'Søknaden er dessverre ikke tilgjengelig',
     '@sifSoknadUi.applicationUnavailable.description': 'Vi jobber så raskt vi kan med å få den tilgjengelig.',
 } as const;

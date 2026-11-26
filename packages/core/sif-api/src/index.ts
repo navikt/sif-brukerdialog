@@ -10,6 +10,7 @@ export {
     handleApiError,
     isApiAxiosError,
     isApiError,
+    isForbiddenApiError,
 } from './shared/errorHandlers';
 
 // Komponenter (kryssdomene)

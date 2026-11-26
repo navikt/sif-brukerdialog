@@ -7,6 +7,7 @@ const createQueryClient = () =>
     new QueryClient({
         queryCache: new QueryCache({
             onError: (error, query) => {
+                // 401 sendes til innlogging og er ikke en feil i appen
                 if (isApiAxiosError(error) && error.originalError.response?.status === 401) {
                     return;
                 }
