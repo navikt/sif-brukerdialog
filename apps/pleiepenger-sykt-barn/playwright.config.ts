@@ -20,6 +20,7 @@ export default defineConfig({
         },
         {
             name: 'chromium-los-angeles',
+            grep: /@tidssone/,
             use: {
                 ...devices['Desktop Chrome'],
                 timezoneId: 'America/Los_Angeles',

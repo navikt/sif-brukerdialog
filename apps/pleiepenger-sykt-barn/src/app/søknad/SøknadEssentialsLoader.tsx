@@ -16,6 +16,7 @@ import { initialValues, SøknadFormField, SøknadFormValues } from '../types/sø
 import { MellomlagringMetadata, SøknadTempStorageData } from '../types/SøknadTempStorageData';
 import { getFeatureToggles } from '../utils/featureToggleUtils';
 import { relocateToLoginPage } from '../utils/navigationUtils';
+import { fjernTvetydigeRegistrerteBarn } from '../utils/registrerteBarnUtils';
 
 interface Props {
     onUgyldigMellomlagring: () => void;
@@ -42,12 +43,16 @@ const getValidVedlegg = (vedlegg: Vedlegg[] = []): Vedlegg[] => {
     });
 };
 
-const isMellomlagringValid = ({ metadata, formValues }: SøknadTempStorageData): boolean => {
+const isMellomlagringValid = (
+    { metadata, formValues }: SøknadTempStorageData,
+    fjernedeBarn: RegistrertBarn[],
+): boolean => {
     if (metadata) {
         const isValid =
             metadata.version === MELLOMLAGRING_VERSJON &&
             metadata.featureToggles.spørOmSluttetISøknadsperiode === getFeatureToggles().spørOmSluttetISøknadsperiode &&
-            formValues?.harForståttRettigheterOgPlikter === true;
+            formValues?.harForståttRettigheterOgPlikter === true &&
+            !fjernedeBarn.some(({ aktørId }) => aktørId === formValues.barnetSøknadenGjelder);
         return isValid;
     }
     return false;
@@ -78,9 +83,12 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
         }
     }
 
-    getValidMellomlagring = async (data?: SøknadTempStorageData): Promise<SøknadTempStorageData | undefined> => {
+    getValidMellomlagring = async (
+        data: SøknadTempStorageData | undefined,
+        fjernedeBarn: RegistrertBarn[],
+    ): Promise<SøknadTempStorageData | undefined> => {
         if (data) {
-            if (isMellomlagringValid(data)) {
+            if (isMellomlagringValid(data, fjernedeBarn)) {
                 return data;
             } else if (Object.keys(data).length > 0) {
                 /** Mellomlagring inneholder data, men er ikke gyldig - slettes */
@@ -92,10 +100,13 @@ class SøknadEssentialsLoader extends React.Component<Props, State> {
     };
 
     async handleSøkerdataFetchSuccess(mellomlagringResponse: AxiosResponse, søker: Søker, barn: RegistrertBarn[]) {
-        const mellomlagring = await this.getValidMellomlagring(mellomlagringResponse?.data);
+        const registrerteBarn = fjernTvetydigeRegistrerteBarn(barn);
+        /** Søknad påbegynt for et barn som nå er filtrert bort, må startes på nytt */
+        const fjernedeBarn = barn.filter((b) => !registrerteBarn.includes(b));
+        const mellomlagring = await this.getValidMellomlagring(mellomlagringResponse?.data, fjernedeBarn);
         const søkerdata: Søkerdata = {
             søker,
-            barn,
+            barn: registrerteBarn,
         };
         const formValuesToUse = mellomlagring
             ? {

@@ -4,7 +4,7 @@ import { StepID } from '../../../src/app/types/StepID';
 import { mellomlagringMock } from '../../mock-data/mellomlagring';
 import { routeUtils } from '../../utils/routeUtils';
 
-test('Fyll ut periodesteget', async ({ page }) => {
+test('Fyll ut periodesteget', { tag: '@tidssone' }, async ({ page }) => {
     await routeUtils.setupMockRoutes(page, {
         mellomlagring: mellomlagringMock,
         lastStep: StepID.OPPLYSNINGER_OM_BARNET,
