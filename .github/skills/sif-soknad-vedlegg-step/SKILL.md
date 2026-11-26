@@ -28,7 +28,7 @@ description: Implementer et vedleggssteg i en v2-app — VedleggPanel, Persisted
 - `src/app/steps/<steg>/<prefix>StegUtils.ts`
 - `src/app/steps/<steg>/<Prefix>Form.tsx`
 - `src/app/types/Soknadsdata.ts`
-- `src/app/utils/formValuesToSoknadsdata.ts`
+- Konverteringen som `SøknadProvider` bruker
 - `src/app/utils/soknadsdataToSoknadDTO.ts`
 - `mock/msw/handlers.ts`
 - `src/app/steps/oppsummering/OppsummeringSteg.tsx`
@@ -153,12 +153,14 @@ Dette er viktigere enn at filen fjernes umiddelbart i backend, siden backend uan
 
 ## 5. Wire opp mapping
 
-### formValuesToSoknadsdata
+### Appens konvertering til søknadsdata
 
 ```ts
 case SøknadStepId.<PREFIX>:
     return toSøknadsdata(formValues as <Prefix>FormValues);
 ```
+
+Legg full mapping inn der appen leverer `formValuesToSøknadsdata` til `SøknadProvider`, etter kontrakten i `sif-soknad-setup`. Det kan være en fil i `utils/` eller en memoized hook.
 
 ### soknadsdataToSoknadDTO
 

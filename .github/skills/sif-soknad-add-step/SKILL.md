@@ -17,7 +17,7 @@ description: Legg til et nytt steg i en søknadsapp som bruker @sif/soknad-app o
 - `src/app/steps/<steg>/<Prefix>Form.tsx` — skjemakomponent
 - `src/app/steps/<steg>/<prefix>StegUtils.ts` — mapping mellom FormValues og søknadsdata
 - `src/app/steps/<steg>/i18n/nb.ts` og `nn.ts` — tekster og valideringsmeldinger
-- Oppdatert `SoknadStepId`, `soknadStepConfig`, `Soknadsdata`, `formValuesToSoknadsdata`, `steps/index.ts` og i18n-aggregering
+- Oppdatert `SoknadStepId`, `soknadStepConfig`, `Soknadsdata`, appens konvertering av skjemaverdier, `steps/index.ts` og i18n-aggregering
 
 ## Avgrensning
 
@@ -37,7 +37,7 @@ description: Legg til et nytt steg i en søknadsapp som bruker @sif/soknad-app o
 2. `src/app/setup/soknadStepConfig.ts` — stepConfig og stepOrder
 3. `src/app/i18n/nb.ts` — eksisterende i18n-nøkler og aggregering
 4. `src/app/types/Soknadsdata.ts` — eksisterende søknadsdatatype
-5. `src/app/utils/formValuesToSoknadsdata.ts` — mapping fra form values til søknadsdata
+5. Filen som leverer `formValuesToSøknadsdata` til `SøknadProvider` — kan ligge i `utils/` eller være en hook
 6. `src/app/steps/index.ts` og `src/app/Soknad.tsx` — eksporterer steg og ruter dem her
 
 Ikke les andre steg-mapper eller gjør generell utforsking utover dette med mindre appen faktisk avviker fra standardoppsettet.
@@ -289,9 +289,9 @@ Legg til i `Søknadsdata`-interface:
 [SøknadStepId.<STEP_ID>]?: <Prefix>Søknadsdata;
 ```
 
-#### 4. `src/app/utils/formValuesToSoknadsdata.ts`
+#### 4. Appens `formValuesToSøknadsdata`-konvertering
 
-Legg til import av utils og types fra det nye steget, og ny `case` i switch:
+Finn konverteringen via propen på `SøknadProvider`. Legg til full mapping for det nye steget etter kontrakten i `sif-soknad-setup` → «Konvertering fra skjemaverdier til søknadsdata». Hvis konverteringen er en hook, behold hook-kontrakten og dependency-listen.
 
 ```ts
 case SøknadStepId.<STEP_ID>:
@@ -331,7 +331,7 @@ Kjør `pnpm --filter <app> lint:tsc` (eller `check:types` der det finnes). Ingen
 - [ ] `SoknadStepId.ts` — ny enum-verdi
 - [ ] `soknadStepConfig.ts` — config + stepOrder
 - [ ] `Soknadsdata.ts` — type + interface-felt
-- [ ] `formValuesToSoknadsdata.ts` — import + case
+- [ ] Appens `formValuesToSøknadsdata` — full mapping for steget
 - [ ] `nb.ts` — import + spread + steg-tittel
 - [ ] `steps/index.ts` — eksport
 - [ ] `Soknad.tsx` — import + Route

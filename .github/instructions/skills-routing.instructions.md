@@ -33,10 +33,10 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
 - `sif-soknad-app`:
     - Rammeverket selv: `@sif/soknad-app`, `sif-soknad-app`, `packages/core/sif-soknad-app`, `utvide rammeverket`, `endre rammeverket`.
     - Komponenter: `SøknadProvider`, `SøknadStep`, `SøknadStepGuard`, `StepRouteGuard`, `SøknadAppContext`, `SøknadFormValuesProvider`.
-    - Hooks: `useStepData`, `useMellomlagring`, `useSaveSøknadFormValues`, `useCheckConsistency`, `useStartSøknad`, `useSøknadSendt`.
-    - Store og typer: `createSøknadAppStore`, `commitState`, `MellomlagringBlob`, `resumeStepId`, `draftFormValues`, `SøknadStoreState`, `formValuesToSøknadsdata`.
+    - Feilsøking og intern mekanikk: `useStepData`, `useMellomlagring`, `useSaveSøknadFormValues`, `useCheckConsistency`, `checkConsistencyForSteps`, `createSøknadAppStore`, `commitState`, `resumeStepId`, `draftFormValues`.
 - `sif-soknad-setup`:
-    - Oppsett av `src/app/setup`, `soknadContext`, `soknadStepConfig`, `useStepSubmit`, `useStepDefaultValues`.
+    - Appkontrakter: `formValuesToSøknadsdata`, mapping mellom `FormValues` og `Søknadsdata`, `konsistenssjekk`, `mellomlagringGrunnlag`, `SøknadProvider` i app.
+    - Oppsett av `src/app/setup`, `soknadContext`, `soknadStepConfig`, `AppContext`, `useInitialData`.
     - Routing shell og pages: `Soknad.tsx`, `VelkommenPage`, `KvitteringPage`, `steps/index.ts`, `pages/index.ts`, `routing-skall`, `sett opp sider`, `legg til routing`.
 - `sif-soknad-add-step`:
     - Legge til steg: `nytt steg`, `legg til steg`, `ny side i søknaden`, `opprett steg`, `førstesteg`, `neste steg`, `eget steg`, `egen side`.
@@ -108,8 +108,11 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
 - Hvis oppgaven handler om CDN-hosting av Vite-assets eller sourcemaps, prioriter `sif-cdn`.
 - Rene domeneord alene (f.eks. `barn`, `søker`) skal ikke trigge `sif-api` uten tydelig API-hentekontekst.
 - Hvis oppgaven handler om setup-arkitektur i app, prioriter `sif-soknad-setup`.
+- Når `SøknadProvider`, `SøknadStep` eller framework-hooks brukes eller konfigureres i en app, prioriter appens oppgave-skill. Bruk `sif-soknad-app` når oppgaven handler om rammeverkets implementasjon, intern mekanikk eller feilsøking i `packages/core/sif-soknad-app`.
+- Hvis oppgaven handler om appens mapping fra `FormValues` til `Søknadsdata` eller bruker `formValuesToSøknadsdata` i en app, prioriter `sif-soknad-setup`; bruk `sif-soknad-app` i tillegg bare når selve framework-mekanikken må endres eller feilsøkes.
 - Bruk flere skills ved behov, men hold endringer scoped til aktuell workspace.
 - Hvis oppgaven handler om å legge til nye felter/spørsmål i et eksisterende steg, prioriter `sif-soknad-modify-step`. Hvis det er et helt nytt steg, prioriter `sif-soknad-add-step`.
+- Når `add-step`, `modify-step` eller `vedlegg-step` påvirker mappingen til søknadsdata, bruk også `sif-soknad-setup` for kontrakten. Action-skillen eier arbeidsflyten, setup-skillen eier mappingregelen.
 - Hvis oppgaven handler om å bytte formik med rhf i et eksisterende skjema (uten nye felter), prioriter `sif-formik-to-rhf`.
 - Hvis oppgaven handler om initial data-henting (kombinere hooks, loading/error-state før søknaden starter), prioriter `sif-initial-data-loader` over `sif-api`.
 - Hvis oppgaven handler om Playwright/e2e-oppsett eller accessibility/axe i Playwright-tester, prioriter `sif-playwright`.

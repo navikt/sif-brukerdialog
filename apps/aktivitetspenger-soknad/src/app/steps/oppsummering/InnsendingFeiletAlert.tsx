@@ -1,6 +1,7 @@
 import { AppText, useAppIntl } from '@app/i18n';
-import { BodyLong, List, LocalAlert, ReadMore, VStack } from '@navikt/ds-react';
+import { BodyLong, Heading, List, ReadMore, VStack } from '@navikt/ds-react';
 import { ApiError, ApiErrorType, getInvalidParametersFromApiError } from '@sif/api';
+import { SifAlert } from '@sif/soknad-ui';
 import { useEffect, useRef } from 'react';
 
 interface Props {
@@ -18,15 +19,13 @@ export const InnsendingFeiletAlert = ({ error }: Props) => {
     }, [error]);
 
     return (
-        <LocalAlert status="error" ref={alertRef} tabIndex={-1}>
-            <LocalAlert.Header>
-                <LocalAlert.Title>
+        <SifAlert variant="error" ref={alertRef} tabIndex={-1}>
+            <VStack gap="space-16">
+                <Heading level="2" size="small">
                     <AppText id="oppsummeringSteg.innsendingFeilet.tittel" />
-                </LocalAlert.Title>
-            </LocalAlert.Header>
-            <LocalAlert.Content>
+                </Heading>
                 {invalidParameters ? (
-                    <VStack gap="space-16">
+                    <>
                         <BodyLong>
                             <AppText id="oppsummeringSteg.innsendingFeilet.tekst.generell.1" />
                         </BodyLong>
@@ -47,11 +46,13 @@ export const InnsendingFeiletAlert = ({ error }: Props) => {
                                 values={{ Telefon: (value) => <span style={{ whiteSpace: 'nowrap' }}>{value}</span> }}
                             />
                         </BodyLong>
-                    </VStack>
+                    </>
                 ) : (
-                    <AppText id="oppsummeringSteg.innsendingFeilet.tekst.generell.1" />
+                    <BodyLong>
+                        <AppText id="oppsummeringSteg.innsendingFeilet.tekst.generell.1" />
+                    </BodyLong>
                 )}
-            </LocalAlert.Content>
-        </LocalAlert>
+            </VStack>
+        </SifAlert>
     );
 };

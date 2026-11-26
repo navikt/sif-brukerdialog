@@ -2,12 +2,12 @@ import { useAppContext } from '@app/context/AppContext';
 import { AppText, useAppIntl } from '@app/i18n';
 import { Søknadsdata } from '@app/types/Soknadsdata';
 import { SøknadStepId } from '@app/types/SoknadStepId';
-import { FormSummary, InlineMessage, LocalAlert } from '@navikt/ds-react';
+import { BodyLong, FormSummary, Heading, InlineMessage, VStack } from '@navikt/ds-react';
 import { Søker, useManglendeVedlegg } from '@sif/api/k9-brukerdialog-prosessering';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { SøknadStep, SøknadStepForm, useSøknadsdata, useStepNavigation } from '@sif/soknad-app';
 import { PersistedVedlegg } from '@sif/soknad-forms';
-import { FormLayout, VedleggSummaryList } from '@sif/soknad-ui/components';
+import { FormLayout, SifInfoCard, VedleggSummaryList } from '@sif/soknad-ui/components';
 import { useSkyraReloader } from '@sif/surveys';
 import { dateFormatter, formatName, ISODate } from '@sif/utils';
 import { getCheckedValidator } from '@sif/validation';
@@ -78,16 +78,16 @@ export const OppsummeringSteg = () => {
                 submitDisabled={!kanSendeInn}>
                 <FormLayout.Content>
                     {!dto && (
-                        <LocalAlert status="error">
-                            <LocalAlert.Header>
-                                <LocalAlert.Title>
+                        <SifInfoCard variant="error">
+                            <VStack gap="space-8">
+                                <Heading level="2" size="small">
                                     <AppText id="oppsummeringSteg.feil.tittel" />
-                                </LocalAlert.Title>
-                            </LocalAlert.Header>
-                            <LocalAlert.Content>
-                                <AppText id="oppsummeringSteg.feil.innhold" />
-                            </LocalAlert.Content>
-                        </LocalAlert>
+                                </Heading>
+                                <BodyLong>
+                                    <AppText id="oppsummeringSteg.feil.innhold" />
+                                </BodyLong>
+                            </VStack>
+                        </SifInfoCard>
                     )}
                     {dto && (
                         <>

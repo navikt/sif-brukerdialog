@@ -285,11 +285,13 @@ Når appen bruker mellomlagring, bør første Playwright-runde inkludere én tes
 Anbefalt mønster:
 
 1. Start søknaden og fyll ut minst første steg.
-2. Naviger videre slik at `currentStepId` og `søknadsdata` lagres.
+2. Naviger videre slik at `resumeStepId` og `søknadsdata` lagres.
 3. Gå til `/` på nytt eller reload siden.
 4. Verifiser at appen sender brukeren tilbake til riktig steg og at tidligere valg fortsatt er synlige.
 
 Dette er særlig nyttig i referanseapper, fordi det bekrefter at `useInitialData`, mellomlagring og routing spiller sammen.
+
+Bruk enten en ferdig mellomlagringsblob eller appens reelle lagringsflyt. Når testen bruker reell lagring, opprett responsventingen før submit. Matcher requestmetoden mot appens faktiske API-kall (nå `PUT` for oppdatering), og vent på ferdig mellomlagring før reload. `resumeStepId` er en steg-ID, ikke nødvendigvis samme streng som route-navnet.
 
 ## Vedlegg i e2e
 

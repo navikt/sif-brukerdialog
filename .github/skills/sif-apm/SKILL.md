@@ -19,9 +19,9 @@ description: Bruk denne skillen for å sette opp, feilsøke eller verifisere bro
 
 ---
 
-## Kritisk regel — `app`-nøkkelen MÅ matche NAIS deployment-navn
+## Normalregel: `app`-nøkkelen matcher NAIS deployment-navn
 
-Grafana henter browser-telemetri under `<namespace>/<app>`. Verdien av `app` i `initApm`-kallet bestemmer hvilken nøkkel telemetrien lagres under.
+Grafana henter browser-telemetri under `<namespace>/<app>`. Verdien av `app` i `initApm`-kallet bestemmer hvilken nøkkel telemetrien lagres under. I en normal deployment skal den matche det aktuelle NAIS-navnet.
 
 ```ts
 // main.tsx
@@ -32,13 +32,19 @@ import { getMaybeEnv } from '@sif/env';
 void initApm({ app: PleiepengerSyktBarnApp.key, namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
 ```
 
-`PleiepengerSyktBarnApp.key` (fra `@sif/app-register`) **må** matche `app`-feltet i `nais/prod-gcp.json`:
+`PleiepengerSyktBarnApp.key` (fra `@sif/app-register`) skal normalt matche `app`-feltet i `nais/prod-gcp.json`:
 
 ```json
 { "app": "pleiepengesoknad" }
 ```
 
-Hvis disse ikke er identiske, finnes telemetrien ikke i Grafana.
+Hvis verdiene ikke er identiske, havner telemetrien ikke under deployment-navnet du forventer i Grafana.
+
+### Midlertidig v1/v2-overgang
+
+Under en kontrollert overgang kan v1 og v2 deployes under forskjellige NAIS-navn mens de beholder samme produktnøkkel i analytics og app-status. Dette er et midlertidig, dokumentert unntak fra en direkte nøkkelkobling i `@sif/app-register`.
+
+Ikke endre produktnøkkelen eller NAIS-navnet bare for å få verdiene til å se like ut. Ved overgangen der v2 erstatter v1, verifiser dev- og prod-navn på nytt og koble `initApm` til v2-ens endelige deployment-navn. Fjern den midlertidige avgrensningen som del av cutover.
 
 ---
 
@@ -50,13 +56,13 @@ Hvis disse ikke er identiske, finnes telemetrien ikke i Grafana.
     jq -r '.app' apps/<app-mappe>/nais/prod-gcp.json
     ```
 
-2. Finn nøkkelen som sendes til `initApm`:
+2. Finn nøkkelen som sendes til `initApm` og sjekk eventuelle miljøvalg:
 
     ```bash
     grep -r "initApm" apps/<app-mappe>/src/ -A1
     ```
 
-3. Sjekk at `SifAppKeys`-verdien i `packages/core/sif-app-register/src/index.ts` er identisk med NAIS app-navn.
+3. Sjekk vanligvis at `SifAppKeys`-verdien i `packages/core/sif-app-register/src/index.ts` er identisk med NAIS app-navn. Ved v1/v2-overgang må en eventuell avvikende verdi være eksplisitt dokumentert frem til cutover.
 
 ---
 

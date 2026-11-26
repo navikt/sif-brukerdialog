@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test';
 
 import { ScenarioType } from '../../mock/scenarios/types';
 import { setScenario } from '../utils/scenario';
+import { testAccessibility } from '../utils/testAccessibility';
 
 test('viser forside for søknaden', async ({ page }) => {
     await setScenario(page, ScenarioType.default);
@@ -20,4 +21,5 @@ test('viser forside for søknaden', async ({ page }) => {
     ).toBeVisible();
     await expect(page.locator('input[type="checkbox"]')).toHaveCount(1);
     await expect(page.locator('button[type="submit"]')).toBeVisible();
+    await testAccessibility(page);
 });

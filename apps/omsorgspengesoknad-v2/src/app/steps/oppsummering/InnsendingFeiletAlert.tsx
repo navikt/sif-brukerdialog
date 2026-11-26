@@ -1,5 +1,6 @@
-import { List, LocalAlert } from '@navikt/ds-react';
+import { Heading, List, VStack } from '@navikt/ds-react';
 import { ApiError, ApiErrorType, getInvalidParametersFromApiError, InvalidParameterViolation } from '@sif/api';
+import { SifAlert } from '@sif/soknad-ui';
 import { useEffect, useRef } from 'react';
 
 import { AppText } from '../../i18n';
@@ -50,15 +51,13 @@ export const InnsendingFeiletAlert = ({ error }: Props) => {
     }, [error]);
 
     return (
-        <LocalAlert status="error" ref={alertRef} tabIndex={-1}>
-            <LocalAlert.Header>
-                <LocalAlert.Title>
+        <SifAlert variant="error" ref={alertRef} tabIndex={-1}>
+            <VStack gap="space-16">
+                <Heading level="2" size="small">
                     <AppText id="oppsummeringSteg.innsendingFeilet.tittel" />
-                </LocalAlert.Title>
-            </LocalAlert.Header>
-            <LocalAlert.Content>
+                </Heading>
                 {invalidParameters ? renderFeilmelding(invalidParameters[0]) : error.message}
-            </LocalAlert.Content>
-        </LocalAlert>
+            </VStack>
+        </SifAlert>
     );
 };

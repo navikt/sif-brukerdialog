@@ -1,5 +1,6 @@
 // src/app/Soknad.tsx
-// Tilpass: import steg, legg til <Route> per steg
+// Tilpass: importer steg og legg til <Route> per steg.
+// Bruk en hook som leverer formValuesToSøknadsdata hvis mappingen trenger appdata.
 import { søknadStepConfig, søknadStepOrder } from '@app/setup/soknadStepConfig';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from '@app/setup/constants';

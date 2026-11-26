@@ -4,11 +4,11 @@ import { AppText, useAppIntl } from '@app/i18n';
 import { Søknadsdata } from '@app/types/Soknadsdata';
 import { SøknadStepId } from '@app/types/SoknadStepId';
 import { søknadsdataToSøknadDTO } from '@app/utils/soknadsdataToSoknadDTO';
-import { InfoCard } from '@navikt/ds-react';
+import { BodyLong, Heading, VStack } from '@navikt/ds-react';
 import { isProd } from '@sif/env';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
 import { SøknadStep, SøknadStepForm, useSøknadsdata } from '@sif/soknad-app';
-import { FormLayout } from '@sif/soknad-ui';
+import { FormLayout, SifInfoCard } from '@sif/soknad-ui';
 import { dateToISODate, ISODate } from '@sif/utils';
 import { getCheckedValidator } from '@sif/validation';
 import { useState } from 'react';
@@ -81,16 +81,16 @@ export const OppsummeringSteg = () => {
                 )}
 
                 {!dto && (
-                    <InfoCard data-color="warning">
-                        <InfoCard.Header>
-                            <InfoCard.Title>
+                    <SifInfoCard variant="warning">
+                        <VStack gap="space-8">
+                            <Heading level="2" size="small">
                                 <AppText id="oppsummeringSteg.feil.tittel" />
-                            </InfoCard.Title>
-                        </InfoCard.Header>
-                        <InfoCard.Content>
-                            <AppText id="oppsummeringSteg.feil.innhold" />
-                        </InfoCard.Content>
-                    </InfoCard>
+                            </Heading>
+                            <BodyLong>
+                                <AppText id="oppsummeringSteg.feil.innhold" />
+                            </BodyLong>
+                        </VStack>
+                    </SifInfoCard>
                 )}
 
                 {dto && (

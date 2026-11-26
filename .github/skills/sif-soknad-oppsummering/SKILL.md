@@ -148,7 +148,7 @@ Finn oppsummeringstekstene i v1-appen (typisk `oppsummeringMessages.ts` eller ti
 
 ## Struktur
 
-Alt i én fil. Hoved-eksporten håndterer form og submit; domeneseksjonene er interne komponenter:
+Behold strukturen i den aktuelle appen. En liten oppsummering kan ligge samlet i én fil. Del opp i `parts/` når domeneseksjonene blir mange eller har uavhengig kompleksitet. Hoved-eksporten eier form og innsending.
 
 ```
 OppsummeringSteg          ← hoved-eksport, form + submit-logikk
@@ -204,7 +204,7 @@ Sjekk at vedleggene finnes i backend med `useManglendeVedlegg`, send `manglendeV
 
 ### Feil-tilstand
 
-Hvis DTO ikke kan bygges (`dto === undefined`), vis `InfoCard data-color="warning"` og disable submit. Oppsummeringssteget er siste steg, så `isFinalSubmit` skal settes:
+Hvis DTO ikke kan bygges (`dto === undefined`), vis `SifInfoCard`, sperr innsending og sett `isFinalSubmit`. Velg `warning` eller `error` etter appens faglige alvor, men behold statisk presentasjon uten live region.
 
 ```tsx
 <SøknadStepForm
@@ -219,16 +219,16 @@ Hvis DTO ikke kan bygges (`dto === undefined`), vis `InfoCard data-color="warnin
 ```tsx
 {
     !dto && (
-        <InfoCard data-color="warning">
-            <InfoCard.Header>
-                <InfoCard.Title>
+        <SifInfoCard variant="warning">
+            <VStack gap="space-8">
+                <Heading level="2" size="small">
                     <AppText id="oppsummeringSteg.feil.tittel" />
-                </InfoCard.Title>
-            </InfoCard.Header>
-            <InfoCard.Content>
-                <AppText id="oppsummeringSteg.feil.innhold" />
-            </InfoCard.Content>
-        </InfoCard>
+                </Heading>
+                <BodyLong>
+                    <AppText id="oppsummeringSteg.feil.innhold" />
+                </BodyLong>
+            </VStack>
+        </SifInfoCard>
     );
 }
 {
@@ -259,21 +259,17 @@ Nøkkelprefikset for oppsummeringssteget er `oppsummeringSteg.*`. Alltid inklude
 
 ### Innsendingsfeil
 
-Feil fra `useSendSøknad` blir liggende i mutasjonens `error`-state (`sendSøknadError`) og rendres av steget. Bruk `getInvalidParametersFromApiError` fra `@sif/api` for å sjekke om feilen inneholder ugyldige parametre.
+Feil fra `useSendSøknad` blir liggende i mutasjonens `error`-state (`sendSøknadError`) og rendres av steget. Bruk `SifAlert` for feilen, siden den oppstår etter at brukeren har sendt inn søknaden. Komponenten kan lese ut ugyldige parametre med `getInvalidParametersFromApiError` og velge domenespesifikk eller generell tekst.
 
 Mønster:
 
 1. Hent `sendSøknadError` fra `useSendSøknad()`
 2. Bruk `getInvalidParametersFromApiError(sendSøknadError)` for å ekstrahere eventuelle `InvalidParameterViolation[]`
-3. Vis domenespesifikk feilmelding via `InnsendingFeiletAlert` hvis `invalidParameters` finnes
-4. Vis generell `ErrorSummary` med `error.message` ellers
+3. Send feilen til `InnsendingFeiletAlert`
+4. Bevar fokus på varselet etter en ny feilmelding
 
 ```tsx
-import { getInvalidParametersFromApiError } from '@sif/api';
-
 const { sendSøknad, isPending, sendSøknadError } = useSendSøknad();
-const invalidParameters = getInvalidParametersFromApiError(sendSøknadError);
-
 const onSubmit = () => {
     if (dto === undefined) {
         return;
@@ -283,16 +279,11 @@ const onSubmit = () => {
 
 // I JSX:
 {
-    sendSøknadError && invalidParameters && <InnsendingFeiletAlert invalidParameters={invalidParameters} />;
-}
-{
-    sendSøknadError && !invalidParameters && (
-        <ErrorSummary ref={errorSummaryRef}>
-            <ErrorSummaryItem>{sendSøknadError.message}</ErrorSummaryItem>
-        </ErrorSummary>
-    );
+    sendSøknadError && <InnsendingFeiletAlert error={sendSøknadError} />;
 }
 ```
+
+`InnsendingFeiletAlert` bruker `SifAlert variant="error"`. `role="alert"` følger fra komponenten, og en ref fokuseres i en effekt når feilen endres. Ikke bruk `LocalAlert` eller en generell `ErrorSummary` som standard for denne tilstanden.
 
 i18n-nøkler for innsendingsfeil (prefiks `oppsummeringSteg.innsendingFeilet.*`):
 

@@ -14,7 +14,7 @@ description: Legg til nye spørsmål/felter i et eksisterende steg i en søknads
 
 ## Leveranse
 
-- Oppdatert `types.ts` — nye felter i `FormValues` (og fjernet `FormFields`-enum hvis steget fortsatt har det, se under)
+- Oppdatert `types.ts` — nye felter i `FormValues`
 - Oppdatert `<Prefix>Form.tsx` — nye skjemakomponenter med validering
 - Oppdatert `<prefix>StegUtils.ts` — mapping for nye felter
 - Oppdatert `i18n/nb.ts` og `nn.ts` — labels og valideringsmeldinger
@@ -38,10 +38,11 @@ description: Legg til nye spørsmål/felter i et eksisterende steg i en søknads
 4. `src/app/steps/<steg>/i18n/nb.ts` — eksisterende tekster
 5. `src/app/types/Soknadsdata.ts` — eksisterende søknadsdatatype
 6. `src/app/steps/<steg>/i18n/nn.ts` — hvis steget allerede har separat nynorsk-fil
+7. Konverteringen som `SøknadProvider` bruker, hvis endringen påvirker mappingen
 
 Ikke les andre steg eller utforsk mappestruktur utover dette.
 
-Hvis `types.ts` har en `FormFields`-enum, skal den fjernes som del av endringen (se steg 2).
+Hvis `types.ts` har en `FormFields`-enum, behold den når endringen ellers ikke gjelder feltnavn. Bruk direkte feltnavn i ny kode.
 
 ---
 
@@ -186,14 +187,16 @@ export enum <EnumNavn> {
 }
 ```
 
-#### Fjern `FormFields`-enum hvis steget fortsatt har den
+#### Valgfri opprydding av `FormFields`-enum
 
-Hvis `types.ts` har `export enum <Prefix>FormFields`, migrer steget først (se `sif-soknad-setup` → «Feltnavn uten `FormFields`-enum»):
+Hvis oppgaven uttrykkelig inkluderer å forenkle feltnavn, og `types.ts` har `export enum <Prefix>FormFields`:
 
 1. Bytt `[<Prefix>FormFields.felt]?: …` til `felt?: …` i `FormValues`.
 2. Bytt alle `<Prefix>FormFields.felt` i steget til `'felt'` (`name="felt"` i JSX).
 3. Slett enumen og importene av den. Søk etter `<Prefix>FormFields` i hele appen, også stories, tester og `mock/`.
 4. Strengverdiene skal være uendret — i18n-nøkler og mellomlagrede verdier avhenger av dem.
+
+Ikke gjør oppryddingen som automatisk sideoppgave når brukerens mål er å endre funksjonalitet. En eksisterende enum er ikke en feil i appens ryggmarg.
 
 #### Utvid FormValues-interface
 
@@ -385,14 +388,14 @@ Velg komponent ut fra hva som utløser meldingen, ikke ut fra fargen:
 | Tilleggsinfo et annet sted enn rett etter feltet, som skal annonseres | `AriaLiveRegion politeness="polite"` rundt `SifInfoCard` | `polite` |
 | Feil eller advarsel som oppstår etter en handling | `SifAlert` | `role="alert"` |
 
-Tilleggsinfo rett etter feltet trenger ikke annonseres. Brukeren treffer den når hen leser eller tabber videre. Bruk `QuestionRelatedMessage` (fra `@navikt/sif-common-ui`) for å trekke meldingen visuelt nærmere spørsmålet:
+Tilleggsinfo rett etter feltet trenger ikke annonseres. Brukeren treffer den når hen leser eller tabber videre. Bruk `FormLayout.QuestionRelatedMessage` fra `@sif/soknad-ui` for å trekke meldingen visuelt nærmere spørsmålet:
 
 ```tsx
 <YesOrNoQuestion name={...} ... />
 {feltVerdi === YesOrNo.NO && (
-    <QuestionRelatedMessage>
+    <FormLayout.QuestionRelatedMessage>
         <SifInfoCard>...</SifInfoCard>
-    </QuestionRelatedMessage>
+    </FormLayout.QuestionRelatedMessage>
 )}
 ```
 
@@ -415,7 +418,7 @@ steps/oppsummering/alert/UgyldigSøknadAlert.tsx               → SifAlert vari
 
 ## Sjekkliste
 
-- [ ] `types.ts` — evt. verdienum, nytt felt i `FormValues`, ingen `FormFields`-enum igjen
+- [ ] `types.ts` — evt. verdienum og nytt felt i `FormValues`
 - [ ] `i18n/nb.ts` — spørsmålstekst, alternativ-labels, valideringsmelding
 - [ ] `i18n/nn.ts` — opprettet eller oppdatert med nynorsk (typed mot `nb`)
 - [ ] `Soknadsdata.ts` — nytt felt i søknadsdatatype
