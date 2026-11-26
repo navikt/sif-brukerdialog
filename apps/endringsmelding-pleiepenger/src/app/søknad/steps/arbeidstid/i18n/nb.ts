@@ -7,7 +7,7 @@ export const arbeidstidStepMessages_nb = {
     'arbeidstidStep.endring.tittel':
         'Fra 1. januar 2027 blir det endringer for de som har endret normalarbeidstiden i pleiepengeperioden',
     'arbeidstidStep.endring.tekst':
-        'Fra 1. januar 2027 vurderer vi tapt arbeidstid ut fra den arbeidstiden du vanligvis jobbet da du startet perioden med pleiepenger. Dette vil kun påvirke saken din hvis du søker forlengelse av perioden med pleiepenger, og i tillegg har endret og i tillegg har endret stillingsprosent hos arbeidsgiver etter at du startet med pleiepenger.',
+        'Fra 1. januar 2027 vurderer vi tapt arbeidstid ut fra den arbeidstiden du vanligvis hadde da du startet perioden med pleiepenger. Dette vil kun påvirke saken din hvis du søker forlengelse av perioden med pleiepenger og har endret stillingsprosenten hos arbeidsgiver etter at du startet med pleiepenger.',
     'arbeidstidStep.fjernetFerie.melding':
         'Du har fjernet feriedager. Hvis du skal jobbe disse dagene, må du se over at arbeidstiden er riktig.',
     'arbeidstidStep.arbeiderIPeriodenSpm.heltFravær': 'Jeg jobber ikke og har fullt fravær her',

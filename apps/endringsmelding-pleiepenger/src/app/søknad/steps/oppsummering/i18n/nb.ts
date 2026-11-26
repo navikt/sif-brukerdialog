@@ -14,7 +14,7 @@ export const oppsummeringStepMessages_nb = {
 
     'oppsummeringStep.ingenEndringer': 'Du har ikke registrert noen endringer.',
     'oppsummeringStep.manglerArbeidstid':
-        'Vi mangler informasjon om arbeidstid. Vennligst gå tilbake til steget <Lenke>{steg}</Lenke> og fortsett derfra.',
+        'Vi mangler informasjon om arbeidstid. Gå tilbake til steget <Lenke>{steg}</Lenke> og fyll inn den manglende informasjonen.',
 
     'oppsummeringStep.seksjon.ferie.tittel': 'Ferie',
     'oppsummeringStep.seksjon.ferie.endre': 'Endre ferie',
@@ -49,7 +49,7 @@ export const oppsummeringStepMessages_nb = {
         'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til pleiepenger.',
 
     'flereEndringer.tittel': 'Ønsker du å melde fra om flere endringer?',
-    'flereEndringer.tekst': 'Hvis du skal melde fra om flere endringer, kan du velge dette nedenfor.',
+    'flereEndringer.tekst': 'Velg hva du vil endre.',
     'flereEndringer.ingenEndringer.tittel': 'Hva ønsker du å endre?',
     'flereEndringer.endreFerie': 'Endre ferie',
     'flereEndringer.endreArbeidstid': 'Endre jobb',
