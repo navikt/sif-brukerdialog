@@ -17,7 +17,7 @@
     },
     "dependencies": {
         "@navikt/sif-common-utils": "workspace:*",
-        "react-intl": "12.2.0"
+        "react-intl": "12.2.1"
     },
     "devDependencies": {
         "@sif/config": "workspace:*",

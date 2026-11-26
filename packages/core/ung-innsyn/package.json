@@ -41,10 +41,10 @@
         "@sif/ung-brukerdialog-api": "workspace:*",
         "@sif/utils": "workspace:*",
         "@sif/validation": "workspace:*",
-        "@tanstack/react-query": "5.108.1",
-        "dompurify": "3.4.18",
+        "@tanstack/react-query": "5.108.3",
+        "dompurify": "3.5.0",
         "react-hook-form": "7.92.0",
-        "react-intl": "12.2.0",
+        "react-intl": "12.2.1",
         "react-router-dom": "7.18.6"
     },
     "devDependencies": {
