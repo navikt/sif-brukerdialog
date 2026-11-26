@@ -1,4 +1,5 @@
 import '@navikt/ds-css';
+import '@sif/ung-innsyn/ung-innsyn.css';
 import './app.css';
 
 import { Theme } from '@navikt/ds-react';
@@ -55,7 +56,7 @@ export const App = () => {
     }, []);
 
     return (
-        <Theme hasBackground={false}>
+        <Theme hasBackground={false} className="innsynApp">
             <AppErrorBoundary>
                 <AnalyticsProvider
                     applicationKey={AktivitetspengerInnsynApp.key}
