@@ -40,6 +40,7 @@ export const SifInfoCard = ({ children, variant = 'info', ref, ...props }: Props
                         style={{ color: `var(--ax-bg-${color}-strong)` }}
                         aria-label={statusKey ? text(statusKey) : ''}
                         visually-hidden={!statusKey}
+                        aria-hidden={!statusKey}
                     />
                 }>
                 {children}
