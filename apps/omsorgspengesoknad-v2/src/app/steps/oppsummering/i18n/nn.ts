@@ -23,7 +23,6 @@ export const oppsummeringStegMessages_nn: Record<keyof typeof oppsummeringStegMe
     'oppsummeringSteg.ja': 'Ja',
     'oppsummeringSteg.nei': 'Nei',
 
-    'oppsummeringSteg.vedlegg.header': 'Vedlegg',
     'oppsummeringSteg.legeerklæring.header': 'Legeerklæring',
     'oppsummeringSteg.samværsavtale.header': 'Avtale om delt fast bustad',
     'oppsummeringSteg.vedlegg.ingenLastetOpp': 'Ingen vedlegg lasta opp',

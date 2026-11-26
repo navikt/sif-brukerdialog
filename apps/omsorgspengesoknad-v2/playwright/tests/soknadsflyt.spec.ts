@@ -58,15 +58,14 @@ test('fyller ut søknaden med registrerte barn, velger annet barn med delt boste
 
     await expect(page.getByRole('heading', { name: 'Om deg' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Om barnet' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Vedlegg' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Legeerklæring' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Avtale om delt fast bosted' })).toBeVisible();
     await expect(page.getByText('02068599258')).toBeVisible();
     await expect(page.getByText('Gamma Testesen')).toBeVisible();
     await expect(page.getByText('09847696068')).toBeVisible();
     await expect(page.getByText('8. juni 2019')).toBeVisible();
     await expectSummaryValue(page, 'Din relasjon til barnet', 'Far');
     await expectSummaryValue(page, 'Bor du sammen med barnet?', 'Ja, barnet har delt fast bosted');
-    await expect(page.getByRole('term').filter({ hasText: 'Legeerklæring' })).toBeVisible();
-    await expect(page.getByRole('term').filter({ hasText: 'Avtale om delt fast bosted' })).toBeVisible();
 
     await sendInnSøknad(page);
 });
