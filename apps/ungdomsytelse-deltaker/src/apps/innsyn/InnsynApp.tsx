@@ -1,3 +1,5 @@
+import '@sif/ung-innsyn/ung-innsyn.css';
+
 import { Theme } from '@navikt/ds-react';
 import { useDeltakerContext } from '@shared/hooks/useDeltakerContext';
 import { applicationIntlMessages } from '@shared/i18n';
@@ -31,17 +33,15 @@ const InnsynApp = () => {
     }, []);
 
     return (
-        <Theme hasBackground={false}>
-            <div className="innsynApp">
-                <IntlProvider messages={applicationIntlMessages.nb} locale="nb">
-                    {/* v2-analytics for @sif/ung-innsyn (oppgavelogging) */}
-                    <AnalyticsProvider
-                        applicationKey={UngdomsytelseDeltakerApp.key}
-                        isActive={getAppEnv()[EnvKey.SIF_PUBLIC_USE_ANALYTICS] === 'true'}>
-                        <InnsynRouter />
-                    </AnalyticsProvider>
-                </IntlProvider>
-            </div>
+        <Theme hasBackground={false} className="innsynApp">
+            <IntlProvider messages={applicationIntlMessages.nb} locale="nb">
+                {/* v2-analytics for @sif/ung-innsyn (oppgavelogging) */}
+                <AnalyticsProvider
+                    applicationKey={UngdomsytelseDeltakerApp.key}
+                    isActive={getAppEnv()[EnvKey.SIF_PUBLIC_USE_ANALYTICS] === 'true'}>
+                    <InnsynRouter />
+                </AnalyticsProvider>
+            </IntlProvider>
         </Theme>
     );
 };

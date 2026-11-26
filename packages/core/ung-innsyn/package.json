@@ -9,6 +9,7 @@
     "type": "module",
     "exports": {
         ".": "./src/index.ts",
+        "./ung-innsyn.css": "./src/ung-innsyn.css",
         "./components": "./src/components/index.ts",
         "./i18n": "./src/i18n/index.tsx",
         "./modules": "./src/modules/index.ts",
