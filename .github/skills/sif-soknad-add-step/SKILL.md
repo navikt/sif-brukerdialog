@@ -291,7 +291,7 @@ Legg til i `Søknadsdata`-interface:
 
 #### 4. Appens `formValuesToSøknadsdata`-konvertering
 
-Finn konverteringen via propen på `SøknadProvider`. Legg til import og mapping for det nye steget. Hvis konverteringen er en hook, behold hook-kontrakten og dependency-listen.
+Finn konverteringen via propen på `SøknadProvider`. Legg til full mapping for det nye steget etter kontrakten i `sif-soknad-setup` → «Konvertering fra skjemaverdier til søknadsdata». Hvis konverteringen er en hook, behold hook-kontrakten og dependency-listen.
 
 ```ts
 case SøknadStepId.<STEP_ID>:
@@ -331,7 +331,7 @@ Kjør `pnpm --filter <app> lint:tsc` (eller `check:types` der det finnes). Ingen
 - [ ] `SoknadStepId.ts` — ny enum-verdi
 - [ ] `soknadStepConfig.ts` — config + stepOrder
 - [ ] `Soknadsdata.ts` — type + interface-felt
-- [ ] Appens `formValuesToSøknadsdata` — mapping for steget
+- [ ] Appens `formValuesToSøknadsdata` — full mapping for steget
 - [ ] `nb.ts` — import + spread + steg-tittel
 - [ ] `steps/index.ts` — eksport
 - [ ] `Soknad.tsx` — import + Route

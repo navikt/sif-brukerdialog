@@ -3,13 +3,16 @@
 // Legg til case per steg etter hvert.
 import { SøknadStepId } from '@app/types/SoknadStepId';
 
+import { toMittStegSøknadsdata } from '../steps/mitt-steg/mittStegUtils';
+import { MittStegFormValues } from '../steps/mitt-steg/types';
+
 export const formValuesToSøknadsdata = (
     stepId: string,
     formValues: Record<string, unknown>,
 ): Record<string, unknown> | undefined => {
     switch (stepId) {
         case SøknadStepId.MITT_STEG:
-            return undefined; // TODO: implementer
+            return toMittStegSøknadsdata(formValues as MittStegFormValues) as Record<string, unknown>;
         default:
             return undefined;
     }

@@ -344,7 +344,7 @@ validateMellomlagring?: (blob: MellomlagringBlob) => MellomlagringBlob | null;
 mellomlagringGrunnlag?: Record<string, unknown>;
 ```
 
-`formValuesToSøknadsdata` er opt-in — uten den er konsistenssjekken deaktivert.
+`formValuesToSøknadsdata` er opt-in: uten funksjonen er konsistenssjekken deaktivert. Når funksjonen er satt, er appens fullstendige mappingkontrakt beskrevet i `sif-soknad-setup` under «Konvertering fra skjemaverdier til søknadsdata».
 
 **Implementasjonsmønster i appen:** Lag en deterministisk `formValuesToSøknadsdata`-konvertering. Bruk en statisk funksjon når all nødvendig data finnes i skjemaverdiene. Bruk en memoized hook når mappingen trenger appdata som allerede ligger i `AppContext`.
 
@@ -366,7 +366,7 @@ export const formValuesToSøknadsdata = (
 // src/app/Soknad.tsx
 ```
 
-`undefined` fra `default`-casen betyr «hopp over konsistenssjekk for dette steget». Bruk det som et bevisst valg, ikke som en standardverdi. For steg med konsistenssjekk må konverteringen produsere samme domeneform som commit-flyten for de samme verdiene og appdataene.
+`checkConsistencyForSteps` sammenligner konverteringsresultatet med stegets committede søknadsdata. Derfor er `undefined` ikke en skip-indikator når steget allerede har committede data. App-regler for full mapping hører hjemme i `sif-soknad-setup`.
 
 ## `SøknadStepGuard` — props
 
@@ -385,7 +385,7 @@ export const formValuesToSøknadsdata = (
 | -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `lagre()` lagrer ikke for steget brukeren er på                      | `resumeStepId` ≠ montert steg                                                             | `getAllLiveFormValues()` brukes nå — løst                                     |
 | Konsistenssjekk virker ikke                                          | `formValuesToSøknadsdata` ikke satt på `SøknadProvider`                                     | Lag funksjon med switch per stepId                                            |
-| Falsk inconsistency-advarsel for ett steg                            | `formValuesToSøknadsdata` returnerer `undefined` for steget, men søknadsdata er committet | Implementer konverteringen for steget                                          |
+| Inkonsistensvarsler sperrer submit                                  | Mappingen avviker fra eller mangler for et committet steg                                 | Følg mappingkontrakten i `sif-soknad-setup`                                    |
 | Kvitteringssiden vises ikke                                          | `useSøknadSendt` navigerte selv, før `søknadSendt` var satt i storen                      | `SøknadProvider` synker URL mot `søknadSendt` i en effekt — rekkefølgen er løst |
 | Navigerer til feil steg etter back+re-submit                         | `resumeStepId` peker på et steg lenger frem                                               | `commitState` bruker alltid `includedSteps[fromIndex + 1]` — løst             |
 | Velkommensiden blinker ved reload med mellomlagring                  | `children` ble rendret før init + navigate                                                | `SøknadProvider` holder `children` tilbake til `isInitialized = true` — løst    |

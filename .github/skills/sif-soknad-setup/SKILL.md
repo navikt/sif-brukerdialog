@@ -166,7 +166,9 @@ export const formValuesToSøknadsdata = (
 };
 ```
 
-**Viktig:** `undefined` betyr at steget ikke kan konverteres og at konsistenssjekken hoppes over. Bruk bare dette bevisst. Konverteringen skal være fullstendig for steg med konsistenssjekk og kan både være en statisk funksjon og en callback fra en hook.
+**Viktig:** `undefined` hopper ikke over konsistenssjekken. `checkConsistencyForSteps` sammenligner konverteringsresultatet med committede søknadsdata. Har steget både draft-verdier og committede data, gir `undefined` en feil som sperrer submit. Alle skjema-steg som kan ligge før gjeldende steg må derfor ha full mapping i `formValuesToSøknadsdata`.
+
+Resultatet skal ha samme domeneform som commit-flyten for de samme formverdiene og appdataene. `default` kan returnere `undefined` bare for steg som ikke lagrer sammenlignbare draft-verdier eller committede søknadsdata.
 
 ### 6. `src/app/context/AppContext.tsx`
 
@@ -508,7 +510,7 @@ Kaller `useStartSøknad` internt. Ingen manuell navigering eller `lagreSøknad()
 - [ ] `setup/soknadStepConfig.ts` med routes og isCompleted
 - [ ] `setup/constants.ts` med riktig `APP_YTELSE`
 - [ ] `types/Soknadsdata.ts` med per-steg typer (ikke BaseSøknadsdata)
-- [ ] `formValuesToSøknadsdata` med mapping per steg
+- [ ] `formValuesToSøknadsdata` med full mapping for hvert foregående skjema-steg
 - [ ] `context/AppContext.tsx` med app-spesifikke felt
 - [ ] `i18n/nb.ts` med `application.title` og `step.<id>.title` per steg
 - [ ] `i18n/index.tsx` med `applicationIntlMessages`

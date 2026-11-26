@@ -160,7 +160,7 @@ case SøknadStepId.<PREFIX>:
     return toSøknadsdata(formValues as <Prefix>FormValues);
 ```
 
-Legg casen inn der appen allerede leverer `formValuesToSøknadsdata` til `SøknadProvider`. Det kan være en fil i `utils/` eller en memoized hook.
+Legg full mapping inn der appen leverer `formValuesToSøknadsdata` til `SøknadProvider`, etter kontrakten i `sif-soknad-setup`. Det kan være en fil i `utils/` eller en memoized hook.
 
 ### soknadsdataToSoknadDTO
 
