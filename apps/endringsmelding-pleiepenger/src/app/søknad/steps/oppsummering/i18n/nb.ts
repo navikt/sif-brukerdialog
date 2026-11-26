@@ -19,9 +19,9 @@ export const oppsummeringStepMessages_nb = {
     'oppsummeringStep.seksjon.ferie.tittel': 'Ferie',
     'oppsummeringStep.seksjon.ferie.endre': 'Endre ferie',
     'oppsummeringStep.seksjon.arbeidstid.tittel': 'Jobb i perioden',
-    'oppsummeringStep.seksjon.arbeidstid.endre': 'Endre jobb i perioden',
+    'oppsummeringStep.seksjon.arbeidstid.endre': 'Endre jobb',
     'oppsummeringStep.seksjon.tilsynsordning.tittel': 'Tid i omsorgstilbud',
-    'oppsummeringStep.seksjon.tilsynsordning.endre': 'Endre tid i omsorgstilbud',
+    'oppsummeringStep.seksjon.tilsynsordning.endre': 'Endre omsorgstilbud',
 
     'oppsummeringStep.arbeidsgiver.erAnsatt':
         'Stemmer det at du er ansatt hos {arbeidsgivernavn} i perioden du har søkt pleiepenger?',
@@ -52,8 +52,8 @@ export const oppsummeringStepMessages_nb = {
     'flereEndringer.tekst': 'Hvis du skal melde fra om flere endringer, kan du velge dette nedenfor.',
     'flereEndringer.ingenEndringer.tittel': 'Hva ønsker du å endre?',
     'flereEndringer.endreFerie': 'Endre ferie',
-    'flereEndringer.endreArbeidstid': 'Endre jobb i pleiepengeperioden',
-    'flereEndringer.endreTilsynsordning': 'Endre tid i omsorgstilbud',
+    'flereEndringer.endreArbeidstid': 'Endre jobb',
+    'flereEndringer.endreTilsynsordning': 'Endre omsorgstilbud',
 
     'oppsummeringForm.harBekreftetOpplysninger.notChecked': 'Du må bekrefte at opplysningene er riktig',
 };

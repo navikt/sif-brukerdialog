@@ -140,7 +140,7 @@ export const appMessages_nb = {
         'Du kan se endringsmeldingen etter ca. 15 minutter på <Lenke>Dine Pleiepenger</Lenke>.  Der finner du svar på endringene, når meldingen er behandlet.',
 
     'lovbestemtFerieStep.guide.tittel': 'Slik endrer du ferie',
-    'lovbestemtFerieStep.guide.tekst.1': 'Du kan endre, legge til, eller fjerne ferie i pleiepengeperioden din.',
+    'lovbestemtFerieStep.guide.tekst.1': 'Du kan endre, legge til eller fjerne ferie i pleiepengeperioden din.',
     'lovbestemtFerieStep.guide.tekst.2': 'Du skal kun registrere ferie for ukedager (mandag til fredag).',
 
     'lovbestemtFerieStep.heading.perioder':

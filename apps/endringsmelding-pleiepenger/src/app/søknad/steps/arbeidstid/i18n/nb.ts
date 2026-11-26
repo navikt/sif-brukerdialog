@@ -1,12 +1,13 @@
 /* eslint-disable max-len */
 export const arbeidstidStepMessages_nb = {
     'arbeidstidStep.title': 'Slik endrer du jobb i pleiepengeperioden',
-    'arbeidstidStep.info.1': 'Du oppgir hvor mye du jobber i timer per uke.',
-    'arbeidstidStep.info.2': 'Du kan endre flere uker samtidig, eller én og én uke.',
-    'arbeidstidStep.info.3':
-        'Hvis du har endring som gjelder kun enkeltdager, skal du fremdeles oppgi hvor mye du jobber samlet for hele uken.',
-    'arbeidstidStep.info.4':
-        'Fra 1. januar 2027 vil vurderingen av tapt arbeidstid vurderes ut fra den arbeidstiden du vanligvis jobbet før du startet perioden med pleiepenger. Endringen vil kun påvirke saken din hvis du søker forlengelse av perioden med pleiepenger, og i tillegg har endret stillingsprosent hos arbeidsgiver etter at du startet med pleiepenger.',
+    'arbeidstidStep.info.1': 'Oppgi hvor mye du faktisk jobber når du har pleiepenger.',
+    'arbeidstidStep.info.2':
+        'Du legger alltid inn hvor mange timer du jobber per uke, selv om du kun skal endre enkeltdager.',
+    'arbeidstidStep.endring.tittel':
+        'Fra 1. januar 2027 blir det endringer for de som har endret normalarbeidstiden i pleiepengeperioden',
+    'arbeidstidStep.endring.tekst':
+        'Fra 1. januar 2027 vurderer vi tapt arbeidstid ut fra den arbeidstiden du vanligvis jobbet da du startet perioden med pleiepenger. Dette vil kun påvirke saken din hvis du søker forlengelse av perioden med pleiepenger, og i tillegg har endret og i tillegg har endret stillingsprosent hos arbeidsgiver etter at du startet med pleiepenger.',
     'arbeidstidStep.fjernetFerie.melding':
         'Du har fjernet feriedager. Hvis du skal jobbe disse dagene, må du se over at arbeidstiden er riktig.',
     'arbeidstidStep.arbeiderIPeriodenSpm.heltFravær': 'Jeg jobber ikke og har fullt fravær her',

@@ -12,9 +12,9 @@ export const velkommenPageMessages_nb = {
         'Du kan melde fra om endringer i pleiepenger i tidsrommet {samletSøknadsperiodeTekst}.',
 
     'velkommenPage.endre.spm': 'Hva ønsker du å endre?',
-    'velkommenPage.endre.ferie': 'Feriedager',
-    'velkommenPage.endre.jobb': 'Jobb i pleiepengeperioden',
-    'velkommenPage.endre.tilsynsordning': 'Tid i omsorgstilbud',
+    'velkommenPage.endre.ferie': 'Ferie',
+    'velkommenPage.endre.jobb': 'Jobb',
+    'velkommenPage.endre.tilsynsordning': 'Omsorgstilbud',
 
     'velkommenPage.omSøknaden.tittel': 'Om utfylling av skjemaet',
     'velkommenPage.omSøknaden.1': 'Du får veiledning underveis om hva du skal fylle inn, og hvordan.',

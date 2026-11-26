@@ -2,16 +2,17 @@ import ArbeidsaktiviteterMedUkjentArbeidsgiver from '@app/components/arbeidsakti
 import { useSøknadContext } from '@app/hooks';
 import { useSøknadsdataInfo } from '@app/hooks/useSøknadsdataInfo';
 import { useStepConfig } from '@app/hooks/useStepConfig';
-import { AppText } from '@app/i18n';
+import { AppText, useAppIntl } from '@app/i18n';
 import { StepId } from '@app/søknad/config/StepId';
 import SøknadStep from '@app/søknad/SøknadStep';
-import { Alert, Heading, InlineMessage, List, VStack } from '@navikt/ds-react';
+import { Alert, Heading, List, ReadMore, VStack } from '@navikt/ds-react';
 import { FormLayout } from '@navikt/sif-common-ui';
 
 import ArbeidstidForm from './ArbeidstidForm';
 
 const ArbeidstidStep = () => {
     const stepId = StepId.ARBEIDSTID;
+    const { text } = useAppIntl();
 
     const {
         state: {
@@ -37,13 +38,10 @@ const ArbeidstidStep = () => {
                         <List.Item>
                             <AppText id="arbeidstidStep.info.2" />
                         </List.Item>
-                        <List.Item>
-                            <AppText id="arbeidstidStep.info.3" />
-                        </List.Item>
                     </List>
-                    <InlineMessage status="info">
-                        <AppText id="arbeidstidStep.info.4" />
-                    </InlineMessage>
+                    <ReadMore header={text('arbeidstidStep.endring.tittel')}>
+                        <AppText id="arbeidstidStep.endring.tekst" />
+                    </ReadMore>
                 </VStack>
             </FormLayout.Guide>
             <VStack gap="space-32">
