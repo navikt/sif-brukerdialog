@@ -57,8 +57,8 @@ test('test', async ({ page }) => {
         '2 t. 0 m.Endret fra 15 t. 0 m.',
     );
     await testAccessibility(page);
-    await expect(page.getByText('Endre  ferie')).toBeVisible();
-    await expect(page.getByText('Endre tid i omsorgstilbud')).toBeVisible();
+    await expect(page.getByText('Endre ferie')).toBeVisible();
+    await expect(page.getByText('Endre omsorgstilbud')).toBeVisible();
     await page.getByText('Jeg bekrefter at').click();
     await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
     await expect(page.getByRole('heading', { name: 'Melding om endring er lagt til saken din' })).toBeVisible();

@@ -5,7 +5,7 @@ import { routeUtils } from '../../utils/routeUtils';
 
 test('Sende endring om tid omsorgstilbud', async ({ page }) => {
     await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN, 'arbeidsgivere-og-frilanser');
-    await page.getByText('Tid i omsorgstilbud').click();
+    await page.getByText('Omsorgstilbud').click();
     await page
         .locator('div')
         .filter({ hasText: /^Jeg bekrefter at jeg har forstått mitt ansvar når jeg sender inn en endring$/ })

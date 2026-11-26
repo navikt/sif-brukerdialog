@@ -58,7 +58,7 @@ test('ukjent arbeidsforhold med kun omsorgstilbud valgt', async ({ page }) => {
     await routeUtils.resumeFromRoute(page, SøknadRoutes.VELKOMMEN, 'arbeidsgiver-ikke-i-sak');
 
     /** Velkommen: kun omsorgstilbud */
-    await page.getByText('Tid i omsorgstilbud').click();
+    await page.getByText('Omsorgstilbud').click();
     await page.getByTestId('bekreft-label').click();
     await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
 

@@ -16,7 +16,7 @@ test('Legge til endring i omsorgstilbud fra oppsummeringen', async ({ page }) =>
     await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
 
     /** Oppsummering - omsorgstilbud er ikke valgt, men kan legges til */
-    await expect(page.getByText('Endre tid i omsorgstilbud')).toBeVisible();
+    await expect(page.getByText('Endre omsorgstilbud')).toBeVisible();
 
     const mellomlagringMedOmsorgstilbud = page.waitForRequest(
         (request) =>
@@ -24,7 +24,7 @@ test('Legge til endring i omsorgstilbud fra oppsummeringen', async ({ page }) =>
             request.method() !== 'GET' &&
             request.postDataJSON()?.valgteEndringer?.tilsynsordning === true,
     );
-    await page.getByRole('link', { name: 'Endre tid i omsorgstilbud' }).click();
+    await page.getByRole('link', { name: 'Endre omsorgstilbud' }).click();
     await mellomlagringMedOmsorgstilbud;
 
     /** Omsorgstilbud - steget er lagt til og kan fylles ut */
@@ -40,7 +40,7 @@ test('Legge til endring i omsorgstilbud fra oppsummeringen', async ({ page }) =>
     await page.getByRole('main').getByTestId('typedFormikForm-submitButton').click();
 
     /** Oppsummering - endringen i omsorgstilbud vises, og ferie er fortsatt med */
-    await expect(page.getByText('Tid i omsorgstilbud').nth(2)).toBeVisible();
+    await expect(page.getByText('Omsorgstilbud').nth(2)).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Februar 2023 - 3 dager endret' })).toBeVisible();
     await expect(page.getByText('Endre ferie')).toBeVisible();
 
