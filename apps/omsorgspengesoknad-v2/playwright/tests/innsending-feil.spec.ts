@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 import { ScenarioType } from '../../mock/scenarios/types';
-import { bekreftOpplysningerOgSend, gåTilOppsummeringMedRegistrertBarn } from '../utils/soknadFlow';
+import { bekreftOpplysningerOgSend, gåTilOppsummeringMedRegistrertBarn } from '../utils/soknadsflyt';
 
 test('viser spesifikk innsendingsfeil ved ugyldige parametre', async ({ page }) => {
     await gåTilOppsummeringMedRegistrertBarn(page, ScenarioType.innsendingFeilerMedUgyldigeParametre);

@@ -10,7 +10,7 @@ import {
     lastOppVedleggOgFortsett,
     sendInnSøknad,
     startSøknad,
-} from '../utils/soknadFlow';
+} from '../utils/soknadsflyt';
 
 test('fyller ut søknaden med registrert barn, vedlegg og sender inn', async ({ page }) => {
     await gåTilOppsummeringMedRegistrertBarn(page, ScenarioType.default);
@@ -60,6 +60,7 @@ test('fyller ut søknaden med registrerte barn, velger annet barn med delt boste
     await expect(page.getByRole('heading', { name: 'Om barnet' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Legeerklæring' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Avtale om delt fast bosted' })).toBeVisible();
+    await expect(page.getByRole('term').filter({ hasText: 'Fil lastet opp' })).toHaveCount(2);
     await expect(page.getByText('02068599258')).toBeVisible();
     await expect(page.getByText('Gamma Testesen')).toBeVisible();
     await expect(page.getByText('09847696068')).toBeVisible();

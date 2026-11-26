@@ -25,6 +25,7 @@ export const oppsummeringStegMessages_nn: Record<keyof typeof oppsummeringStegMe
 
     'oppsummeringSteg.legeerklæring.header': 'Legeerklæring',
     'oppsummeringSteg.samværsavtale.header': 'Avtale om delt fast bustad',
+    'oppsummeringSteg.vedlegg.lastetOpp': '{antall, plural, one {Fil lastet opp} other {Filer lastet opp}}',
     'oppsummeringSteg.vedlegg.ingenLastetOpp': 'Ingen vedlegg lasta opp',
 
     'oppsummeringSteg.bekrefterOpplysninger.label':

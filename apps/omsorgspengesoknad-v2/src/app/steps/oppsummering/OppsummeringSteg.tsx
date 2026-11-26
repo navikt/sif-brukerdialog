@@ -289,6 +289,9 @@ const LegeerklæringOppsummering = ({
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
+                    <FormSummary.Label>
+                        <AppText id="oppsummeringSteg.vedlegg.lastetOpp" values={{ antall: legeerklæring.length }} />
+                    </FormSummary.Label>
                     <FormSummary.Value>
                         {legeerklæring.length === 0 ? (
                             <InlineMessage status="info">
@@ -331,16 +334,16 @@ const DeltBostedOppsummering = ({
             </FormSummary.Header>
             <FormSummary.Answers>
                 <FormSummary.Answer>
+                    <FormSummary.Label>
+                        <AppText id="oppsummeringSteg.vedlegg.lastetOpp" values={{ antall: samværsavtale.length }} />
+                    </FormSummary.Label>
                     <FormSummary.Value>
                         {samværsavtale.length === 0 ? (
                             <InlineMessage status="info">
                                 <AppText id="oppsummeringSteg.vedlegg.ingenLastetOpp" />
                             </InlineMessage>
                         ) : (
-                            <VedleggSummaryList
-                                vedlegg={samværsavtale}
-                                manglendeVedleggIder={manglendeVedleggIder}
-                            />
+                            <VedleggSummaryList vedlegg={samværsavtale} manglendeVedleggIder={manglendeVedleggIder} />
                         )}
                     </FormSummary.Value>
                 </FormSummary.Answer>

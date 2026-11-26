@@ -26,6 +26,7 @@ export const oppsummeringStegMessages_nb = {
 
     'oppsummeringSteg.legeerklæring.header': 'Legeerklæring',
     'oppsummeringSteg.samværsavtale.header': 'Avtale om delt fast bosted',
+    'oppsummeringSteg.vedlegg.lastetOpp': '{antall, plural, one {Fil lastet opp} other {Filer lastet opp}}',
     'oppsummeringSteg.vedlegg.ingenLastetOpp': 'Ingen vedlegg lastet opp',
 
     'oppsummeringSteg.bekrefterOpplysninger.label':

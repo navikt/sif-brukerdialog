@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 import { ScenarioType } from '../../mock/scenarios/types';
-import { gåTilOppsummeringMedRegistrertBarn } from '../utils/soknadFlow';
+import { gåTilOppsummeringMedRegistrertBarn } from '../utils/soknadsflyt';
 
 test('markerer manglende vedlegg og hindrer innsending', async ({ page }) => {
     await gåTilOppsummeringMedRegistrertBarn(page, ScenarioType.vedleggMangler);

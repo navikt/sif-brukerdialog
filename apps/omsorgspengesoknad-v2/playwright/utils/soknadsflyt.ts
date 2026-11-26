@@ -101,5 +101,6 @@ export const expectFellesOppsummering = async (page: Page) => {
     );
     await expect(page.getByRole('heading', { name: 'Legeerklæring' })).toBeVisible();
     await expect(page.getByText('navlogopng.png')).toBeVisible();
+    await expect(page.getByRole('term').filter({ hasText: 'Fil lastet opp' })).toBeVisible();
     await expect(page.getByText('Avtale om delt fast bosted')).toHaveCount(0);
 };
