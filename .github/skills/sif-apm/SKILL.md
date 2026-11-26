@@ -42,7 +42,7 @@ Hvis verdiene ikke er identiske, havner telemetrien ikke under deployment-navnet
 
 ### Midlertidig v1/v2-overgang
 
-Under en kontrollert overgang kan v1 og v2 deployes under forskjellige NAIS-navn mens de beholder samme produktnøkkel i analytics og app-status. Dette er et midlertidig, dokumentert unntak fra en direkte nøkkekobling i `@sif/app-register`.
+Under en kontrollert overgang kan v1 og v2 deployes under forskjellige NAIS-navn mens de beholder samme produktnøkkel i analytics og app-status. Dette er et midlertidig, dokumentert unntak fra en direkte nøkkelkobling i `@sif/app-register`.
 
 Ikke endre produktnøkkelen eller NAIS-navnet bare for å få verdiene til å se like ut. Ved overgangen der v2 erstatter v1, verifiser dev- og prod-navn på nytt og koble `initApm` til v2-ens endelige deployment-navn. Fjern den midlertidige avgrensningen som del av cutover.
 
