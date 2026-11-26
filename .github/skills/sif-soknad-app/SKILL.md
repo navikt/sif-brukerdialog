@@ -37,7 +37,7 @@ packages/core/sif-soknad-app/src/
   utils/            stepUtils, routeUtils
 ```
 
-Referanseimplementasjon: `apps/aktivitetspenger-soknad`
+Referanseimplementasjoner: `apps/aktivitetspenger-soknad` og `apps/omsorgspengesoknad-v2`. Skillen beskriver rammeverkets kontrakter. Appene kan ha ulik domenestruktur rundt dem.
 
 ---
 
@@ -205,7 +205,7 @@ Ytterste wrapper-komponent — brukes av apper som ikke setter opp providers sel
 ```tsx
 // main.tsx — APM initialiseres før rendering
 import { PleiepengerSyktBarnApp } from '@sif/app-register';
-// app-verdien MÅ matche "app"-feltet i nais/prod-gcp.json — se sif-apm-skillen
+// Normalregel: app-verdien matcher miljøets "app"-felt i NAIS. Se sif-apm for overgang fra v1 til v2.
 void initApm({ app: PleiepengerSyktBarnApp.key, namespace: 'dusseldorf', version: getMaybeEnv('APP_VERSION') });
 
 // App.tsx
@@ -346,7 +346,7 @@ mellomlagringGrunnlag?: Record<string, unknown>;
 
 `formValuesToSøknadsdata` er opt-in — uten den er konsistenssjekken deaktivert.
 
-**Implementasjonsmønster i appen:** Lag en statisk `formValuesToSøknadsdata`-funksjon. Data som trengs for konverteringen skal være en del av stegets lagrede data:
+**Implementasjonsmønster i appen:** Lag en deterministisk `formValuesToSøknadsdata`-konvertering. Bruk en statisk funksjon når all nødvendig data finnes i skjemaverdiene. Bruk en memoized hook når mappingen trenger appdata som allerede ligger i `AppContext`.
 
 ```ts
 // src/app/utils/formValuesToSøknadsdata.ts
@@ -366,7 +366,7 @@ export const formValuesToSøknadsdata = (
 // src/app/Soknad.tsx
 ```
 
-`undefined` fra `default`-casen betyr "hopp over konsistenssjekk for dette steget" — bruk som bevisst escape hatch, ikke som placeholder. Steg som trenger dynamisk data (f.eks. arbeidsgivere hentet basert på brukervalg): commit den hentede dataen som del av søknadsdata, slik at konverteringen forblir en ren funksjon av formValues.
+`undefined` fra `default`-casen betyr «hopp over konsistenssjekk for dette steget». Bruk det som et bevisst valg, ikke som en standardverdi. For steg med konsistenssjekk må konverteringen produsere samme domeneform som commit-flyten for de samme verdiene og appdataene.
 
 ## `SøknadStepGuard` — props
 
@@ -385,7 +385,7 @@ export const formValuesToSøknadsdata = (
 | -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `lagre()` lagrer ikke for steget brukeren er på                      | `resumeStepId` ≠ montert steg                                                             | `getAllLiveFormValues()` brukes nå — løst                                     |
 | Konsistenssjekk virker ikke                                          | `formValuesToSøknadsdata` ikke satt på `SøknadProvider`                                     | Lag funksjon med switch per stepId                                            |
-| Falsk inconsistency-advarsel for ett steg                            | `formValuesToSøknadsdata` returnerer `undefined` for steget, men søknadsdata er committet | Implementer konverteringen som en ren funksjon                                |
+| Falsk inconsistency-advarsel for ett steg                            | `formValuesToSøknadsdata` returnerer `undefined` for steget, men søknadsdata er committet | Implementer konverteringen for steget                                          |
 | Kvitteringssiden vises ikke                                          | `useSøknadSendt` navigerte selv, før `søknadSendt` var satt i storen                      | `SøknadProvider` synker URL mot `søknadSendt` i en effekt — rekkefølgen er løst |
 | Navigerer til feil steg etter back+re-submit                         | `resumeStepId` peker på et steg lenger frem                                               | `commitState` bruker alltid `includedSteps[fromIndex + 1]` — løst             |
 | Velkommensiden blinker ved reload med mellomlagring                  | `children` ble rendret før init + navigate                                                | `SøknadProvider` holder `children` tilbake til `isInitialized = true` — løst    |

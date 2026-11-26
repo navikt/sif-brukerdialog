@@ -96,7 +96,7 @@ Skriv hele komponenten på nytt basert på analysen, **ikke** basert på Formik-
 
 Behold: feltnavn, filnavn, mappestruktur, layout/JSX inni felter.
 
-**`FormFields`-enum:** i v2-apper (som bruker `@sif/soknad-app`) fjernes enumen og feltnavn skrives som streng-literaler — se `sif-soknad-setup` → «Feltnavn uten `FormFields`-enum». I delte pakker (f.eks. dialoger i `sif-soknad-forms`) følges pakkens eksisterende konvensjon.
+**`FormFields`-enum:** bruk direkte, typede feltnavn i ny v2-kode. Bevar eksisterende enums i migreringssteget hvis de ellers fungerer og opprydding ikke er en del av oppgaven. I delte pakker (for eksempel dialoger i `sif-soknad-forms`) følger du pakkens konvensjon.
 
 **Fase 3 — Verifiser**
 
@@ -510,7 +510,7 @@ i18n-nøkler for cross-field-feilen bruker gruppens navn som felt: `scope.valida
 - [ ] Betingede felter som skjules får `clearErrors` i `useEffect`
 - [ ] `useSifValidate` brukes når key-strukturen følger standardmønsteret, med `values` ved behov
 - [ ] i18n-nøkler bruker eksakte feilkoder fra `@sif/validation` (sjekk `enum Validate*Error`)
-- [ ] Feltnavnene (strengverdiene) er uendret, og `FormFields`-enum er fjernet i v2-apper
+- [ ] Feltnavnene (strengverdiene) er uendret; en eksisterende `FormFields`-enum er bare fjernet hvis det var en del av oppgaven
 - [ ] `@sif/rhf: workspace:*` finnes i `package.json`
 - [ ] `DateRange`-importer er oppdatert (hvis aktuelt)
 - [ ] Filen kompilerer uten feil

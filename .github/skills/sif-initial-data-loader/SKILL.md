@@ -14,12 +14,13 @@ description: Mønster for å kombinere flere API-hooks til én asynkron laster (
 
 ## Leveranse
 
-- `src/useInitialData.ts` — samler bootstrap-queries med loading/error/success-kontrakt
+- `src/useInitialData.ts` — samler bootstrap-queries med loading/forbidden/error/success-kontrakt
 - Kobling til `App.tsx` via `SøknadDataWrapper`-mønsteret
 
-## Kildereferanse
+## Kildereferanser
 
 - `apps/aktivitetspenger-soknad/src/useInitialData.ts`
+- `apps/omsorgspengesoknad-v2/src/useInitialData.ts`
 
 ## Anbefalt plassering
 
@@ -42,6 +43,7 @@ src/
 
 `SøknadDataWrapper` i `App.tsx` kaller `useInitialData()` og switcher på status:
 - `loading` → `<LoadingPage />`
+- `forbidden` → `<NoAccessPage />`
 - `error` → `<InitialDataErrorPage />`
 - `success` → `<AppContextProvider value={data}><Søknad /></AppContextProvider>`
 
@@ -70,6 +72,7 @@ interface InitialData {
 
 type InitialDataResult =
     | { status: 'loading' }
+    | { status: 'forbidden' }
     | { status: 'error'; errors: unknown[] }
     | { status: 'success'; data: InitialData };
 ```
@@ -80,6 +83,8 @@ type InitialDataResult =
 - **Optional queries** (f.eks. `kontonummer`): Venter på `isLoading`, men returnerer `fallback`-verdi ved manglende data.
 
 ```typescript
+import { isForbiddenApiError } from '@sif/api';
+
 export const useInitialData = (): InitialDataResult => {
     const søker = useSøker();
     const registrerteBarn = useRegistrerteBarn();
@@ -93,6 +98,9 @@ export const useInitialData = (): InitialDataResult => {
 
     const errors = requiredQueries.filter((q) => q.isError).map((q) => q.error);
     if (errors.length > 0) {
+        if (errors.some(isForbiddenApiError)) {
+            return { status: 'forbidden' };
+        }
         return { status: 'error', errors };
     }
 
@@ -131,3 +139,4 @@ export const useInitialData = (): InitialDataResult => {
 | --------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | Appen er stuck i loading          | En hook er aldri ferdig (`isFetched` forblir false). Sjekk at API-klient er initialisert og env-variabler er satt.    |
 | Feilside vises selv om API svarer | En query i `requiredQueries` har `isError: true`. Logg `errors` i dev-mode for å finne hvilken.                       |
+| Tilgangsfeil vises som generell feilside | `403` er ikke skilt ut. Sjekk feilene med `isForbiddenApiError` og bruk `NoAccessPage`. |

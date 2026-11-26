@@ -12,9 +12,9 @@ description: Veiledning for oppsett av en ny søknadsapp med @sif/soknad-app —
 - Du kobler en eksisterende app til rammeverket og trenger setup-laget.
 - Du skal opprette routing-skallet (`Soknad.tsx`, `Velkommen`, `Kvittering`).
 
-## Referanseapp
+## Referanseapper
 
-`apps/aktivitetspenger-soknad` er den eneste fullstendig migrerte referanseappen. Les den alltid som fasit — den vinner over denne skillen ved motstrid.
+Bruk `apps/aktivitetspenger-soknad` og `apps/omsorgspengesoknad-v2` som referanser. De deler kontraktene i denne skillen, men beholder appspesifikk domene-, side- og mappestruktur. Les den aktuelle appen før du standardiserer detaljer den allerede har løst lokalt.
 
 ## Leveranse
 
@@ -27,10 +27,10 @@ description: Veiledning for oppsett av en ny søknadsapp med @sif/soknad-app —
 - `src/app/setup/appEnv.ts` — env-henting
 - `src/app/types/SoknadStepId.ts` — steg-enum
 - `src/app/types/Soknadsdata.ts` — per-steg domentyper
-- `src/app/utils/formValuesToSøknadsdata.ts` — konverterer skjemaverdier til søknadsdata
+- Konvertering fra skjemaverdier til søknadsdata, som funksjon eller hook
 - `src/app/i18n/index.tsx` + `src/app/i18n/nb.ts` — i18n-aggregering
-- `src/app/content/velkommen/Velkommen.tsx` — `SøknadVelkommenPage`
-- `src/app/content/kvittering/Kvittering.tsx` — `SøknadKvitteringPage`
+- Velkomstside under `content/` eller `pages/` — `SøknadVelkommenPage`
+- Kvitteringsside under `content/` eller `pages/` — `SøknadKvitteringPage`
 - `src/app/steps/index.ts` — barrel-eksport
 
 ## Omfang
@@ -66,10 +66,12 @@ src/
       SoknadApiData.ts
       SoknadStepId.ts
       Soknadsdata.ts
+    hooks/
+      <konvertering>               # når mappingen trenger appdata
     utils/
-      formValuesToSøknadsdata.ts
+      <konvertering>               # alternativ for ren mapping
       soknadsdataToSoknadDTO.ts
-    content/
+    content/ eller pages/
       velkommen/
         Velkommen.tsx
         i18n/nb.ts, nn.ts
@@ -142,9 +144,9 @@ export type Søknadsdata = {
 
 Ingen `BaseSøknadsdata`-extend — det er en interim-v2-type.
 
-### 5. `src/app/utils/formValuesToSøknadsdata.ts`
+### 5. Konvertering fra skjemaverdier til søknadsdata
 
-Statisk funksjon som konverterer skjemaverdier til søknadsdata per steg. Data som trengs for konverteringen skal være en del av stegets lagrede data.
+Gi `SøknadProvider` en deterministisk `formValuesToSøknadsdata`-funksjon. En statisk funksjon er enklest når all nødvendig data kommer fra skjemaverdiene. Hvis mappingen trenger appdata, kan appen lage en stabil funksjon med en hook, som omsorgspengesøknaden gjør for registrerte barn.
 
 ```ts
 import { SøknadStepId } from '../types/SoknadStepId';
@@ -164,7 +166,7 @@ export const formValuesToSøknadsdata = (
 };
 ```
 
-**Viktig:** `undefined` betyr at steget ikke kan konverteres og konsistenssjekken hoppes over. Bruk det bare bevisst. Steg som trenger dynamisk lastet data må lagre dataen som del av søknadsdata.
+**Viktig:** `undefined` betyr at steget ikke kan konverteres og at konsistenssjekken hoppes over. Bruk bare dette bevisst. Konverteringen skal være fullstendig for steg med konsistenssjekk og kan både være en statisk funksjon og en callback fra en hook.
 
 ### 6. `src/app/context/AppContext.tsx`
 
@@ -326,7 +328,7 @@ export const Kvittering = () => {
 import '@navikt/ds-css';
 import { SomAppKey } from '@sif/app-register';
 import { SøknadAppProvider } from '@sif/soknad-app';
-import { InitialDataErrorPage, LoadingPage } from '@sif/soknad-ui';
+import { InitialDataErrorPage, LoadingPage, NoAccessPage } from '@sif/soknad-ui';
 import { BrowserRouter } from 'react-router-dom';
 
 import { initApiClients } from './app/api/initApiClients';
@@ -343,6 +345,8 @@ const SøknadDataWrapper = () => {
     switch (result.status) {
         case 'loading':
             return <LoadingPage applicationTitle={text('application.title')} />;
+        case 'forbidden':
+            return <NoAccessPage applicationTitle={text('application.title')} />;
         case 'error':
             return <InitialDataErrorPage applicationTitle={text('application.title')} />;
         case 'success':
@@ -381,7 +385,7 @@ export const App = () => {
 
 APM initialiseres her — utenfor React-treet — slik at telemetri er aktiv fra første render.
 
-> **Kritisk:** `app`-verdien MÅ matche `"app"`-feltet i `nais/prod-gcp.json`. Se `sif-apm`-skillen for detaljer og kjente mismatches.
+APM-navnet skal samsvare med miljøets NAIS deployment-navn. Se `sif-apm` for verifisering og håndtering av en planlagt v1/v2-overgang.
 
 ```tsx
 import { initApm } from '@sif/apm';
@@ -418,9 +422,9 @@ Se `sif-initial-data-loader` for fullt mønster. Mellomlagring håndteres av `S�
 | `setup/appEnv.ts`                  | Ytelse-spesifikke env-variabler                                           |
 | `types/Soknadsdata.ts`             | Per-steg søknadsdatatyper                                                 |
 | `context/AppContext.tsx`           | App-spesifikke dataprop (søker, barn, kontonummer osv.)                   |
-| `utils/formValuesToSøknadsdata.ts` | Statisk funksjon med switch per steg                                      |
+| Konverteringen                     | Statisk funksjon eller hook/callback, med mapping per steg               |
 | `i18n/nb.ts`                       | Aggreger steg-meldinger + `application.title`, `step.<id>.title` per steg |
-| `content/velkommen/Velkommen.tsx`  | `guide.content` — app-spesifikt innhold                                   |
+| Velkomstside                       | `guide.content` — app-spesifikt innhold                                  |
 | `App.tsx`                          | `applicationKey`, `AppContextProvider` props                              |
 
 ## Viktige regler
@@ -437,11 +441,11 @@ Knappetekster, avbryt- og fortsett-senere-dialogene eies av `@sif/soknad-ui` und
 
 ### `FormValues` i `types.ts`
 
-Definer alltid `FormValues` i `steps/<steg>/types.ts`, ikke i komponentfilen. Unngår sirkulær avhengighet via `formValuesToSøknadsdata`.
+Definer `FormValues` i `steps/<steg>/types.ts` når typen brukes av mapping, tester eller flere filer. Et skjema med lokal, isolert type kan definere typen i komponenten. For oppsummering er det vanlig at formverdien bare brukes lokalt.
 
 ### Feltnavn uten `FormFields`-enum
 
-I v2-apper brukes **ikke** `enum <Prefix>FormFields` for feltnavn. Det er et Formik-mønster: der var `name` en vanlig `string`, og enumen ga typesikkerhet. I RHF er `name` typet som `Path<FormValues>`, så kompilatoren sjekker feltnavnet direkte.
+Bruk direkte, typede feltnavn i ny v2-kode. Det er et Formik-mønster å bruke `enum <Prefix>FormFields` for feltnavn. I RHF er `name` typet som `Path<FormValues>`, så kompilatoren sjekker feltet direkte.
 
 ```ts
 // ❌ Gammelt mønster
@@ -464,7 +468,7 @@ useController<BostedFormValues, 'erBosattITrondheim'>({ name: 'erBosattITrondhei
 
 Hvorfor: feltnavnet skrives én gang i stedet for tre, `enum` er ikke «erasable syntax» (se `erasableSyntaxOnly` i TypeScript 5.8), og strenger kan brukes direkte i tester og mock-data.
 
-**Når du endrer et eksisterende v2-steg som fortsatt har `FormFields`-enum:** fjern enumen for steget og bytt referansene til streng-literaler. Strengverdiene skal være uendret, ellers brytes i18n-nøkler (`<scope>.validation.<felt>.<feilkode>`), DOM-id-er og mellomlagrede `draftFormValues`.
+Eksisterende v2-steg kan fortsatt bruke `FormFields`-enum. Bevar den når en endring ellers ikke trenger å berøre stegets feltnavn. Ved en målrettet opprydding skal strengverdiene være uendret, ellers brytes i18n-nøkler (`<scope>.validation.<felt>.<feilkode>`), DOM-id-er og mellomlagrede `draftFormValues`.
 
 Gjelder kun enum for **feltnavn**. Enum for **verdier** (f.eks. `YesOrNo`, svaralternativer som lagres) er en egen beslutning og endres ikke som del av dette.
 
@@ -504,12 +508,12 @@ Kaller `useStartSøknad` internt. Ingen manuell navigering eller `lagreSøknad()
 - [ ] `setup/soknadStepConfig.ts` med routes og isCompleted
 - [ ] `setup/constants.ts` med riktig `APP_YTELSE`
 - [ ] `types/Soknadsdata.ts` med per-steg typer (ikke BaseSøknadsdata)
-- [ ] `utils/formValuesToSøknadsdata.ts` med switch per steg
+- [ ] `formValuesToSøknadsdata` med mapping per steg
 - [ ] `context/AppContext.tsx` med app-spesifikke felt
 - [ ] `i18n/nb.ts` med `application.title` og `step.<id>.title` per steg
 - [ ] `i18n/index.tsx` med `applicationIntlMessages`
-- [ ] `content/velkommen/Velkommen.tsx` med `SøknadVelkommenPage`
-- [ ] `content/kvittering/Kvittering.tsx` med `SøknadKvitteringPage`
+- [ ] Velkomstside med `SøknadVelkommenPage`
+- [ ] Kvitteringsside med `SøknadKvitteringPage`
 - [ ] `app/Soknad.tsx` med `SøknadProvider` og `SøknadStepGuard`
 - [ ] `App.tsx` med `SøknadAppProvider` og `SøknadDataWrapper`
 - [ ] `pnpm check:types` passerer
