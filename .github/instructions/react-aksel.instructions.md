@@ -18,9 +18,10 @@ Use these instructions for non-Next React apps in this monorepo.
 - Keep styling aligned with Aksel tokens and established app conventions.
 - Never use Tailwind padding/margin (`p-`, `m-`, `px-`, `py-`) with Aksel components. Use Aksel spacing-tokens (`space-4`, `space-6`, etc.).
 - Do not use the `Alert` component.
-- Use `SifInfoCard` for info- og warning-meldinger.
+- Use `SifInfoCard` for static info and for extra info shown right after a form choice (no live region).
+- Use `SifAlert` for errors or warnings that appear after a user action (`role="alert"`). Do not use `LocalAlert`.
+- Use `AriaLiveRegion` with `politeness="polite"`, always rendered, only when extra info appears away from the field and must be announced.
 - Use `InlineMessage` when the old solution used inline alerting.
-- Use `LocalAlert` with `status="error"` for error-meldinger.
 
 ## Forms and dialogs
 

@@ -374,33 +374,41 @@ useEffect(() => {
 }, [feltVerdi]);
 ```
 
-### AriaLiveRegion — kun for meldinger
+### Meldinger og annonsering for skjermlesere
 
-`AriaLiveRegion` skal **kun** brukes rundt dynamiske meldinger som skjermlesere skal annonsere. Bruk **ikke** `AriaLiveRegion` rundt spørsmål/skjemafelter — bruk `&&` i stedet.
+Velg komponent ut fra hva som utløser meldingen, ikke ut fra fargen:
 
-Kombinert med `QuestionRelatedMessage` (fra `@navikt/sif-common-ui`) trekkes meldingen visuelt nærmere spørsmålet den tilhører via `Bleed` med negativ top-margin:
+| Behov | Komponent | Annonsering |
+| --- | --- | --- |
+| Statisk info, og feil som vises når siden lastes | `SifInfoCard` | Ingen |
+| Tilleggsinfo rett etter et valg i skjemaet | `SifInfoCard` med `&&`, rett etter feltet | Ingen |
+| Tilleggsinfo et annet sted enn rett etter feltet, som skal annonseres | `AriaLiveRegion politeness="polite"` rundt `SifInfoCard` | `polite` |
+| Feil eller advarsel som oppstår etter en handling | `SifAlert` | `role="alert"` |
+
+Tilleggsinfo rett etter feltet trenger ikke annonseres. Brukeren treffer den når hen leser eller tabber videre. Bruk `QuestionRelatedMessage` (fra `@navikt/sif-common-ui`) for å trekke meldingen visuelt nærmere spørsmålet:
 
 ```tsx
-import { AriaLiveRegion } from '@sif/soknad-ui/components';
-import { QuestionRelatedMessage } from '@navikt/sif-common-ui';
-
 <YesOrNoQuestion name={...} ... />
-<AriaLiveRegion visible={feltVerdi === YesOrNo.NO}>
+{feltVerdi === YesOrNo.NO && (
     <QuestionRelatedMessage>
         <SifInfoCard>...</SifInfoCard>
     </QuestionRelatedMessage>
-</AriaLiveRegion>
+)}
 ```
 
-`QuestionRelatedMessage` inne i `AriaLiveRegion` fungerer korrekt — `Bleed`'s negative top-margin trekker meldingen opp mot spørsmålet over.
+Regler:
 
-**Komponentvalg ved migrering:** Sjekk alltid hvilken status og presentasjon v1 bruker på tilsvarende melding. Bruk `SifInfoCard` for info/warning, `InlineMessage` når den gamle løsningen var inline, og `LocalAlert status="error"` for feil. Ikke gjett. Finn meldingskomponenten i v1 (gjerne under `alert/`-mappe i steget) og bevar betydningen.
+- `AriaLiveRegion` må alltid rendres og styres med `visible`. En live region som monteres samtidig med innholdet, blir ikke annonsert pålitelig.
+- `SifAlert` monteres betinget og skal ikke ligge i en `AriaLiveRegion` (gir dobbel opplesing). Endre `key` hvis samme feil skal annonseres på nytt.
+- Bruk ikke `LocalAlert`. `SifAlert` gir samme annonsering med vår layout.
+
+**Komponentvalg ved migrering:** Sjekk hvilken status og presentasjon v1 bruker på tilsvarende melding, og velg etter tabellen over. Bruk `InlineMessage` når den gamle løsningen var inline. Ikke gjett. Finn meldingskomponenten i v1 (gjerne under `alert/`-mappe i steget) og bevar betydningen.
 
 ```
 # Eksempel fra v1-mappestruktur:
 steps/om-barnet/alert/IkkeKroniskEllerFuksjonshemningAlert.tsx → SifInfoCard
 steps/om-barnet/alert/TrengerIkkeSøkeForBarnAlert.tsx         → SifInfoCard
-steps/oppsummering/alert/UgyldigSøknadAlert.tsx               → LocalAlert status="error"
+steps/oppsummering/alert/UgyldigSøknadAlert.tsx               → SifAlert variant="error"
 ```
 
 ---

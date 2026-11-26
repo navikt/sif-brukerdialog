@@ -1,9 +1,11 @@
+import { sifSoknadUiMessages } from '@sif/soknad-ui/i18n';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
 
 import { ungInnsyn_messages_nb } from '../i18n/nb';
 
 const allMessages: Record<string, string> = {
+    ...sifSoknadUiMessages.nb,
     ...ungInnsyn_messages_nb,
 };
 

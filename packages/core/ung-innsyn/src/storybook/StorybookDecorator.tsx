@@ -1,6 +1,7 @@
 import '../ung-innsyn.css';
 
 import { Theme } from '@navikt/ds-react';
+import { sifSoknadUiMessages } from '@sif/soknad-ui/i18n';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React, { useEffect } from 'react';
 import { IntlProvider } from 'react-intl';
@@ -17,6 +18,7 @@ const queryClient = new QueryClient({
 });
 
 const allMessages: Record<string, string> = {
+    ...sifSoknadUiMessages.nb,
     ...ungInnsyn_messages_nb,
 };
 
