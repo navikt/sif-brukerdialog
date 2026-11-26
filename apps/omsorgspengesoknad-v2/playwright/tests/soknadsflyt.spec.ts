@@ -12,6 +12,47 @@ import {
 } from '../utils/soknadsflyt';
 import { testAccessibility } from '../utils/testAccessibility';
 
+test('gjenopptar søknaden og bevarer svar etter reload', async ({ page }) => {
+    await startSøknad(page, ScenarioType.default);
+    await page.getByText('Alfa Testesen').click();
+
+    const mellomlagring = page.waitForResponse((response) => {
+        const request = response.request();
+        if (!request.url().includes('/mellomlagring/') || request.method() !== 'PUT') {
+            return false;
+        }
+        return request.postDataJSON()?.resumeStepId === 'legeerklaering';
+    });
+
+    await fyllUtFellesBarnespørsmål(page);
+    await mellomlagring;
+
+    await page.goto('/');
+    await expect(page).toHaveURL(/\/soknad\/legeerklaring$/);
+    await expect(page.getByText('Last opp legeerklæringen')).toBeVisible();
+
+    await page.getByRole('button', { name: 'Forrige' }).click();
+    await expect(page).toHaveURL(/\/soknad\/om-barnet$/);
+    await expect(page.getByRole('radio', { name: /Alfa Testesen/ })).toBeChecked();
+    await expect(
+        page.getByRole('radiogroup', { name: 'Bor du sammen med barnet?' }).getByLabel('Ja', { exact: true }),
+    ).toBeChecked();
+    await expect(
+        page
+            .getByRole('radiogroup', {
+                name: 'Har barnet kronisk/langvarig sykdom eller funksjonshemning?',
+            })
+            .getByRole('radio', { name: 'Ja' }),
+    ).toBeChecked();
+    await expect(
+        page
+            .getByRole('radiogroup', {
+                name: 'Har du høyere risiko for fravær på jobb på grunn av barnets sykdom eller funksjonshemning?',
+            })
+            .getByRole('radio', { name: 'Ja' }),
+    ).toBeChecked();
+});
+
 test('fyller ut søknaden med registrert barn, vedlegg og sender inn', async ({ page }) => {
     await startSøknad(page, ScenarioType.default);
     await testAccessibility(page);
