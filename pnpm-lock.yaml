@@ -1530,12 +1530,18 @@ importers:
       '@sif/soknad-app':
         specifier: workspace:*
         version: link:../../packages/core/sif-soknad-app
+      '@sif/soknad-forms':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-soknad-forms
       '@sif/soknad-ui':
         specifier: workspace:*
         version: link:../../packages/core/sif-soknad-ui
       '@sif/utils':
         specifier: workspace:*
         version: link:../../packages/core/sif-utils
+      '@sif/validation':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-validation
       '@tanstack/react-query':
         specifier: 5.108.3
         version: 5.108.3(@types/react@19.3.0)(react@19.3.1)

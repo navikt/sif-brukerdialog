@@ -44,6 +44,28 @@ Ikke les andre steg eller utforsk mappestruktur utover dette.
 
 Hvis `types.ts` har en `FormFields`-enum, behold den når endringen ellers ikke gjelder feltnavn. Bruk direkte feltnavn i ny kode.
 
+## Struktur med FormLayout
+
+Bruk `FormLayout`-komponentene etter den semantiske rollen deres:
+
+- `FormLayout.Content` gir spacing mellom seksjoner og andre toppnivådeler.
+- `FormLayout.Section` gir en navngitt seksjon semantisk `<section>` og overskrift.
+- `FormLayout.Questions` gir spacing mellom flere spørsmål eller mellom et spørsmål og relatert innhold.
+- Ikke bruk `FormLayout.Sections` i ny v2-kode. `FormLayout.Content` gir samme spacing.
+
+```tsx
+<FormLayout.Content>
+    <FormLayout.Section title={text('steg.<prefix>.seksjonTittel')}>
+        <FormLayout.Questions>
+            <EksisterendeSpørsmål />
+            {visNyttSpørsmål && <NyttSpørsmål />}
+        </FormLayout.Questions>
+    </FormLayout.Section>
+</FormLayout.Content>
+```
+
+En spørsmålsfil skal bare inneholde selve spørsmålet: feltbinding, label, validering og feltets beskrivelse. Den skal ikke inneholde overskrift, `FormLayout.Questions`, `FormLayout.Section`, stegflyt eller meldinger som hører til gruppen. Steget eier dette.
+
 ---
 
 ## Paneler fra @sif/soknad-forms

@@ -1,4 +1,5 @@
 import { IntlMessageObjectFormat } from '@sif/soknad-app';
+import { sifSoknadFormsMessages } from '@sif/soknad-forms';
 import { sifSoknadUiMessages } from '@sif/soknad-ui/i18n';
 import { typedIntlHelper } from '@sif/utils';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -8,11 +9,13 @@ import { appMessages_nn } from './nn';
 
 const nb = {
     ...sifSoknadUiMessages.nb,
+    ...sifSoknadFormsMessages.nb,
     ...appMessages_nb,
 };
 
 const nn: Record<keyof typeof nb, string> = {
     ...sifSoknadUiMessages.nn,
+    ...sifSoknadFormsMessages.nn,
     ...appMessages_nn,
 };
 

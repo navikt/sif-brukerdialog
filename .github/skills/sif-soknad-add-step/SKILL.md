@@ -42,6 +42,34 @@ description: Legg til et nytt steg i en søknadsapp som bruker @sif/soknad-app o
 
 Ikke les andre steg-mapper eller gjør generell utforsking utover dette med mindre appen faktisk avviker fra standardoppsettet.
 
+### Struktur med FormLayout
+
+Bruk `FormLayout`-komponentene etter den semantiske rollen deres:
+
+- `FormLayout.Content` gir spacing mellom seksjoner og andre toppnivådeler.
+- `FormLayout.Section` gir en navngitt seksjon semantisk `<section>` og overskrift.
+- `FormLayout.Questions` gir spacing mellom flere spørsmål eller mellom et spørsmål og relatert innhold.
+- Ikke bruk `FormLayout.Sections` i ny v2-kode. `FormLayout.Content` gir samme spacing.
+
+```tsx
+<FormLayout.Content>
+    <FormLayout.Section title={text('steg.<prefix>.seksjonTittel')}>
+        <FormLayout.Questions>
+            <HarSvarSpørsmål />
+            {harSvar && <BetingetSpørsmål />}
+        </FormLayout.Questions>
+    </FormLayout.Section>
+</FormLayout.Content>
+```
+
+Når spørsmål skilles ut i egne filer, skal filen bare inneholde selve spørsmålet:
+
+- feltbinding, label, validering og feltets beskrivelse
+- ingen `FormLayout.Questions`, `FormLayout.Section` eller overskrift
+- ingen stegflyt, synlighetsregel eller melding som gjelder flere spørsmål
+
+Steget eier rekkefølge, grupper, overskrifter, synlighet og meldinger utenfor feltet.
+
 ### Steg 1 — Bestem navnekonvensjoner
 
 Utled navnene fra brukerens beskrivelse. Alle navn er konsekvente:

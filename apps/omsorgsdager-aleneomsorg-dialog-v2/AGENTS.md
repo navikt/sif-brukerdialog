@@ -2,6 +2,10 @@
 
 ## Hva som er fasit
 
+V2-appen skal ikke bruke legacy-komponenter eller pakker fra `@navikt/sif-common-*`.
+Dette gjelder også komponenter som kommer indirekte via `@sif/*`-pakker. Legacy-importer
+skal erstattes med v2-ekvivalenter i `packages/core`, ikke flyttes bak en ny wrapper.
+
 Les v1-appen i `apps/omsorgsdager-aleneomsorg-dialog` før du endrer tekst, steg eller synlig oppførsel. v1 er fasit for:
 
 - brukerflyt og stegrekkefølge
@@ -17,7 +21,7 @@ Den genererte typen `OmsorgsdagerAleneOmOmsorgenSøknad` fra `@sif/k9-brukerdial
 ## Hva som er ferdig og hva som er midlertidig
 
 - Routing, initialdata, mellomlagring, i18n-rammeverk, velkomstside, kvittering, API-init, MSW, Nais og Docker er grunnlaget som v2-appen bygger videre på.
-- De to skjemastegene er mocksteg.
+- «Tidspunkt for aleneomsorg» er fortsatt et mocksteg.
 - Oppsummeringen og DTO-mappingen bruker midlertidig mockdata.
 - Mockoppførselen skal ikke oppgraderes til en ny fasit. Erstatt den med faktisk v1-oppførsel når steget implementeres.
 
@@ -29,6 +33,14 @@ Den genererte typen `OmsorgsdagerAleneOmOmsorgenSøknad` fra `@sif/k9-brukerdial
 4. La mocksteget erstattes, ikke pakkes inn i nytt tilstandslag.
 5. Oppdater mappingen fra skjemaverdier til søknadsdata og videre til generert DTO.
 6. Legg til målrettede tester for validering, betinget flyt og DTO.
+
+Spørsmål i egne filer skal bare inneholde selve spørsmålet. Overskrifter, `FormLayout.Questions`,
+gruppering, synlighetsregler og meldinger knyttet til stegflyten skal ligge i steget.
+Spørsmålet eier feltbinding, tekster, validering og feltets beskrivelsetekst.
+
+Bruk `FormLayout.Content` for toppnivået i steget, `FormLayout.Questions` for spacing mellom spørsmål
+og relatert innhold, og `FormLayout.Section` for navngitte seksjoner. Ikke bruk
+`FormLayout.Sections` i ny kode. Den gir samme spacing som `FormLayout.Content` og er utdatert.
 
 ## Kontrakter i grunnrammen
 
@@ -56,3 +68,7 @@ pnpm build
 ```
 
 Ikke kjør Playwright i denne oppgaven. Brukeren kjører den.
+
+## Avhengigheter
+
+Nye avhengigheter legges bare inn i `package.json`. Ikke kjør `pnpm install`, og ikke endre `pnpm-lock.yaml`. Det gjør brukeren.

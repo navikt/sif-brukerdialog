@@ -39,7 +39,6 @@ export const SifInfoCard = ({ children, variant = 'info', ref, ...props }: Props
                     <Icon
                         style={{ color: `var(--ax-bg-${color}-strong)` }}
                         aria-label={statusKey ? text(statusKey) : ''}
-                        visually-hidden={!statusKey}
                         aria-hidden={!statusKey}
                     />
                 }>
