@@ -1,5 +1,7 @@
 import { toOmOmsorgenForBarnSøknadsdata } from '../steps/om-omsorgen-for-barn/omOmsorgenForBarnStegUtils';
 import type { OmOmsorgenForBarnFormValues } from '../steps/om-omsorgen-for-barn/types';
+import { toTidspunktForAleneomsorgSøknadsdata } from '../steps/tidspunkt-for-aleneomsorg/tidspunktForAleneomsorgStegUtils';
+import type { TidspunktForAleneomsorgFormValues } from '../steps/tidspunkt-for-aleneomsorg/types';
 import { SøknadStepId } from '../types/SoknadStepId';
 
 export const formValuesToSøknadsdata = (
@@ -12,7 +14,9 @@ export const formValuesToSøknadsdata = (
     }
 
     if (stepId === SøknadStepId.TIDSPUNKT_FOR_ALENEOMSORG) {
-        return { mock: true };
+        const values = formValues as unknown as TidspunktForAleneomsorgFormValues;
+        const søknadsdata = toTidspunktForAleneomsorgSøknadsdata(values);
+        return søknadsdata ? { ...søknadsdata } : undefined;
     }
 
     return undefined;

@@ -4,7 +4,7 @@ Oppdatert: 2026-11-27
 
 ## Nå
 
-V2-appen har et kjørbart grunnlag for migreringen. «Om aleneomsorg for barn» er implementert med v2-komponenter, mens «Tidspunkt for aleneomsorg» fortsatt er et mocksteg.
+V2-appen har et kjørbart grunnlag for migreringen. «Om aleneomsorg for barn» og «Tidspunkt for aleneomsorg» er implementert med v2-komponenter.
 
 ## Grunnramme som er implementert
 
@@ -21,21 +21,21 @@ Punktene under finnes i appskallet. De er ikke sluttverifisert mot hele v1-flyte
 - Docker- og Nais-oppsett
 - test som låser stegrekkefølgen
 - «Om aleneomsorg for barn» med v1-tekster, validering, betingelser, v2-dialoger og mapping begge veier. Avvik fra v1: ubrukt logikk for delt bosted er fjernet, valg for slettede barn ryddes bort, og en skrivefeil i valideringsteksten på bokmål er rettet.
+- «Tidspunkt for aleneomsorg» med v1-tekster, validering per barn, betinget datofelt og mapping begge veier. Valgt «I fjor eller tidligere» beholder ikke en tidligere utfylt dato.
 
 Mappingen for «Om aleneomsorg for barn» bruker `ISODate` for datoer og er låst med enhetstester. Etter at `@sif/soknad-forms` og `@sif/validation` ble lagt til som direkte avhengigheter, passerer `pnpm lint:tsc`, `pnpm lint:eslint`, `pnpm test` og `pnpm build`.
 
 ## Bevisst midlertidig
 
-- «Tidspunkt for aleneomsorg» er et tomt mocksteg.
 - Oppsummeringen har ikke v1-innhold eller bekreftelsescheckbox.
 - DTO-mappingen bruker alle registrerte mockbarn med `TIDLIGERE`.
 - Innsending bruker mockhandleren; payloaden er ikke godkjent som v1-ekvivalent.
 
 ## Neste steg
 
-1. Implementer «Tidspunkt for aleneomsorg».
-2. Implementer oppsummering, bekreftelse og v1-ekvivalent DTO-mapping.
-3. Verifiser MSW-scenarier og brukerreise mot v1.
+1. Implementer oppsummering og bekreftelse.
+2. Verifiser hele DTO-mappingen og MSW-scenariene mot v1.
+3. Verifiser brukerreisen mot v1.
 
 ## Når statusen oppdateres
 

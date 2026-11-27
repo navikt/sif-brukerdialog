@@ -37,6 +37,9 @@ Den genererte typen `OmsorgsdagerAleneOmOmsorgenSøknad` fra `@sif/k9-brukerdial
 Spørsmål i egne filer skal bare inneholde selve spørsmålet. Overskrifter, `FormLayout.Questions`,
 gruppering, synlighetsregler og meldinger knyttet til stegflyten skal ligge i steget.
 Spørsmålet eier feltbinding, tekster, validering og feltets beskrivelsetekst.
+Legg også betingete spørsmål i egne filer. Hvert skjemaelement, for eksempel en radiogruppe og
+en datovelger, skal da ha én ansvarlig spørsmålsfil som bare binder feltet, tekstene og valideringen.
+Steg- eller gruppekomponenten eier `watch`, `clearErrors`, overskrift og betinget visning.
 
 Bruk `FormLayout.Content` for toppnivået i steget, `FormLayout.Questions` for spacing mellom spørsmål
 og relatert innhold, og `FormLayout.Section` for navngitte seksjoner. Ikke bruk
