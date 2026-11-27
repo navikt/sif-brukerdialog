@@ -1,7 +1,8 @@
 import { BodyShort, VStack } from '@navikt/ds-react';
-import { ActionLink, ItemListDarkside, useUiIntl } from '@navikt/sif-common-ui';
-import { dateRangeFormatter, getCountryName, Locale } from '@sif/utils';
+import { ActionLink, ItemListDarkside } from '@sif/soknad-ui/components';
+import { dateRangeFormatter, getCountryName, getValidLocale, Locale } from '@sif/utils';
 import { ReactNode } from 'react';
+import { useIntl } from 'react-intl';
 
 import { BostedUtland } from '.';
 
@@ -31,7 +32,7 @@ const renderBostedUtlandLabel = (
     );
 };
 export const BostedUtlandList = ({ bosteder, onEdit, onDelete }: Props) => {
-    const { locale } = useUiIntl();
+    const locale = getValidLocale(useIntl().locale);
     return (
         <ItemListDarkside<BostedUtland>
             getItemId={(bosted): string => bosted.id}

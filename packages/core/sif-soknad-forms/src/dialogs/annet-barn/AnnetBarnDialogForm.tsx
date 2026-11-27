@@ -1,5 +1,5 @@
-import { FormLayout } from '@navikt/sif-common-ui';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
+import { FormLayout } from '@sif/soknad-ui/components';
 import { ISODate } from '@sif/utils';
 import {
     getFødselsnummerValidator,

@@ -1,7 +1,8 @@
 import { BodyShort, VStack } from '@navikt/ds-react';
-import { ActionLink, ItemListDarkside, useUiIntl } from '@navikt/sif-common-ui';
+import { ActionLink, ItemListDarkside } from '@sif/soknad-ui/components';
 import { dateFormatter, getCountryName } from '@sif/utils';
 import { ReactNode } from 'react';
+import { useIntl } from 'react-intl';
 
 import { SifSoknadFormsText, useSifSoknadFormsIntl } from '../../i18n';
 import { OpptjeningAktivitet, OpptjeningUtland } from './types';
@@ -40,7 +41,7 @@ const renderOpptjeningLabel = (
 };
 
 export const OpptjeningUtlandList = ({ opptjeninger, onEdit, onDelete }: Props) => {
-    const { locale } = useUiIntl();
+    const { locale } = useIntl();
     const sifIntl = useSifSoknadFormsIntl();
 
     const getAktivitetLabel = (aktivitet: OpptjeningAktivitet): string => {

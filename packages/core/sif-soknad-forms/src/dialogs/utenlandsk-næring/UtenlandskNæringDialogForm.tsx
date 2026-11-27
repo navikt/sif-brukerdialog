@@ -1,5 +1,5 @@
-import { FormLayout } from '@navikt/sif-common-ui';
 import { createSifFormComponents, datePickerUtils, useSifValidate } from '@sif/rhf';
+import { FormLayout } from '@sif/soknad-ui/components';
 import { dateToISODate, getDateToday } from '@sif/utils';
 import { getISODateRangeValidator, getRequiredFieldValidator, getStringValidator } from '@sif/validation';
 import { useEffect } from 'react';

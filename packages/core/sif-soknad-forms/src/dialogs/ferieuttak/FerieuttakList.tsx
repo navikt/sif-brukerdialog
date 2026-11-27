@@ -1,4 +1,4 @@
-import { ActionLink, ItemListDarkside } from '@navikt/sif-common-ui';
+import { ActionLink, ItemListDarkside } from '@sif/soknad-ui/components';
 import { dateRangeFormatter } from '@sif/utils';
 import { ReactNode } from 'react';
 

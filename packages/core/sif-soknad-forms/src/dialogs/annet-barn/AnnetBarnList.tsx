@@ -1,7 +1,8 @@
 import { BodyShort, VStack } from '@navikt/ds-react';
-import { ActionLink, ItemListDarkside, useUiIntl } from '@navikt/sif-common-ui';
+import { ActionLink, ItemListDarkside } from '@sif/soknad-ui/components';
 import { dateFormatter } from '@sif/utils';
 import { ReactNode } from 'react';
+import { useIntl } from 'react-intl';
 
 import { SifSoknadFormsText, useSifSoknadFormsIntl } from '../../i18n';
 import { AnnetBarn, BarnType } from './index';
@@ -47,7 +48,7 @@ const renderAnnetBarnLabel = (
 };
 
 export const AnnetBarnList = ({ annetBarn, onEdit, onDelete }: Props) => {
-    const { locale } = useUiIntl();
+    const { locale } = useIntl();
     const { text } = useSifSoknadFormsIntl();
 
     return (

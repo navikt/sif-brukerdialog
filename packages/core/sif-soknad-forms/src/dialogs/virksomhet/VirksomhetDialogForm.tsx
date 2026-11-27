@@ -1,7 +1,7 @@
 import { Heading } from '@navikt/ds-react';
-import { FormLayout } from '@navikt/sif-common-ui';
 import { createSifFormComponents, datePickerUtils, useSifValidate, YesOrNo } from '@sif/rhf';
 import { SifInfoCard } from '@sif/soknad-ui';
+import { FormLayout } from '@sif/soknad-ui/components';
 import { getDate3YearsAgo, getDate4YearsAgo, getDateToday } from '@sif/utils';
 import {
     getISODateRangeValidator,
