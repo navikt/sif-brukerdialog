@@ -58,7 +58,7 @@ describe('søknadsdata til DTO', () => {
         });
     });
 
-    it('feiler når tidspunkt mangler for valgt barn', () => {
+    it('kan ikke lage DTO når tidspunkt mangler for valgt barn', () => {
         const søknadsdata: Søknadsdata = {
             [SøknadStepId.OM_OMSORGEN_FOR_BARN]: {
                 annetBarn: [],
@@ -69,8 +69,6 @@ describe('søknadsdata til DTO', () => {
             },
         };
 
-        expect(() => soknadsdataToSoknadDTO({ søker, registrerteBarn, søknadsdata, språk: 'nb' })).toThrow(
-            'Tidspunkt for aleneomsorg mangler for valgt barn',
-        );
+        expect(soknadsdataToSoknadDTO({ søker, registrerteBarn, søknadsdata, språk: 'nb' })).toBeUndefined();
     });
 });

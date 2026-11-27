@@ -21,9 +21,8 @@ Den genererte typen `OmsorgsdagerAleneOmOmsorgenSøknad` fra `@sif/k9-brukerdial
 ## Hva som er ferdig og hva som er midlertidig
 
 - Routing, initialdata, mellomlagring, i18n-rammeverk, velkomstside, kvittering, API-init, MSW, Nais og Docker er grunnlaget som v2-appen bygger videre på.
-- «Tidspunkt for aleneomsorg» er fortsatt et mocksteg.
-- Oppsummeringen og DTO-mappingen bruker midlertidig mockdata.
-- Mockoppførselen skal ikke oppgraderes til en ny fasit. Erstatt den med faktisk v1-oppførsel når steget implementeres.
+- «Tidspunkt for aleneomsorg» og oppsummeringen er portert fra v1 med ekte v2-flyt.
+- DTO-mappingen bygger payload fra brukerens valgte barn og tidspunkt.
 
 ## Når et steg implementeres
 

@@ -19,7 +19,7 @@ export const soknadsdataToSoknadDTO = ({
     registrerteBarn,
     søknadsdata,
     språk,
-}: SoknadsdataToSoknadDTOParams): SøknadApiData | undefined => {
+}: SoknadsdataToSoknadDTOParams): Omit<SøknadApiData, 'harBekreftetOpplysninger'> | undefined => {
     const omOmsorgenForBarn = søknadsdata[SøknadStepId.OM_OMSORGEN_FOR_BARN];
     const tidspunktForAleneomsorg = søknadsdata[SøknadStepId.TIDSPUNKT_FOR_ALENEOMSORG];
 
@@ -30,10 +30,10 @@ export const soknadsdataToSoknadDTO = ({
     const getTidspunkt = (id: string) => {
         const tidspunkt = tidspunktForAleneomsorg.aleneomsorgTidspunkt[prefixBarnId(id)];
         if (!tidspunkt?.tidspunktForAleneomsorg) {
-            throw new Error('Tidspunkt for aleneomsorg mangler for valgt barn');
+            return undefined;
         }
         if (tidspunkt.tidspunktForAleneomsorg === TidspunktForAleneomsorg.SISTE_2_ÅRENE && !tidspunkt.dato) {
-            throw new Error('Dato for aleneomsorg mangler for valgt barn');
+            return undefined;
         }
         return tidspunkt;
     };
@@ -44,9 +44,16 @@ export const soknadsdataToSoknadDTO = ({
     const valgteRegistrerteBarn = registrerteBarn.filter((barn) =>
         omOmsorgenForBarn.harAleneomsorgFor.includes(barn.aktørId),
     );
+    const harGyldigeTidspunkt = [...valgteAnnetBarn, ...valgteRegistrerteBarn].every((barnet) =>
+        getTidspunkt('fnr' in barnet ? barnet.fnr : barnet.aktørId),
+    );
+    if (!harGyldigeTidspunkt) {
+        return undefined;
+    }
+
     const barn = [
         ...valgteAnnetBarn.map((barnet) => {
-            const tidspunkt = getTidspunkt(barnet.fnr);
+            const tidspunkt = getTidspunkt(barnet.fnr)!;
             return {
                 navn: barnet.navn,
                 identitetsnummer: barnet.fnr,
@@ -60,7 +67,7 @@ export const soknadsdataToSoknadDTO = ({
             } as const;
         }),
         ...valgteRegistrerteBarn.map((barnet) => {
-            const tidspunkt = getTidspunkt(barnet.aktørId);
+            const tidspunkt = getTidspunkt(barnet.aktørId)!;
             return {
                 aktørId: barnet.aktørId,
                 navn: formatName(barnet),
@@ -83,7 +90,6 @@ export const soknadsdataToSoknadDTO = ({
         søkerNorskIdent: søker.fødselsnummer,
         språk,
         harForståttRettigheterOgPlikter: søknadsdata.harForståttRettigheterOgPlikter === true,
-        harBekreftetOpplysninger: true,
         barn,
     };
 };

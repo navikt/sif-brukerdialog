@@ -33,12 +33,12 @@ export const TidspunktForAleneomsorgSteg = () => {
     const omOmsorgenForBarn = søknadsdata[SøknadStepId.OM_OMSORGEN_FOR_BARN];
     const valgteBarn = omOmsorgenForBarn?.harAleneomsorgFor ?? [];
     const barnMedAleneomsorg: BarnMedAleneomsorg[] = [
-        ...(omOmsorgenForBarn?.annetBarn ?? [])
-            .filter((barn) => valgteBarn.includes(barn.fnr))
-            .map((barn) => ({ id: barn.fnr, navn: barn.navn })),
         ...registrerteBarn
             .filter((barn) => valgteBarn.includes(barn.aktørId))
             .map((barn) => ({ id: barn.aktørId, navn: formatName(barn) })),
+        ...(omOmsorgenForBarn?.annetBarn ?? [])
+            .filter((barn) => valgteBarn.includes(barn.fnr))
+            .map((barn) => ({ id: barn.fnr, navn: barn.navn })),
     ];
     const methods = useForm<TidspunktForAleneomsorgFormValues>({
         defaultValues: toTidspunktForAleneomsorgFormValues(lagretData, barnMedAleneomsorg, draftFormValues),
