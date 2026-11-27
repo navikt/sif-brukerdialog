@@ -1,65 +1,52 @@
-# Brukerflyt og innhold
+# Innhold og brukeroppførsel
 
-Dette dokumentet beskriver hva søknaden skal inneholde for brukeren. Det er fasit for migreringen, uavhengig av hvordan stegene bygges.
-
-## Mål for søknaden
-
-Brukeren skal kunne søke om ekstra omsorgsdager fordi brukeren er alene om omsorgen for ett eller flere barn. Søknaden skal bare gjelde barn brukeren er alene om omsorgen for.
-
-## Brukerflyten
-
-1. Velkomstside med informasjon om når søknaden skal brukes.
-2. Steget «Om aleneomsorg for barn».
-3. Steget «Tidspunkt for aleneomsorg».
-4. Oppsummering med kontroll og innsending.
-5. Kvittering.
+`apps/omsorgsdager-aleneomsorg-dialog` er fasit for tekst, synlig flyt og oppførsel i v1-appen. Dette dokumentet dupliserer ikke fasiten. Les kildene i v1 når et steg flyttes, og kontroller eventuelle avvik direkte mot v1.
 
 ## Velkomstside
 
-Brukeren får:
+Kilder:
 
-- en kort forklaring av hva aleneomsorg betyr
-- informasjon om at søknaden ikke skal brukes når foreldrene har avtale om delt fast bosted
-- en henvisning til riktig søknad når den andre forelderen ikke kan ha tilsyn med barnet
-- informasjon om mellomlagring og hva brukeren må svare på
+- `apps/omsorgsdager-aleneomsorg-dialog/src/app/pages/velkommen/VelkommenPage.tsx`
+- `apps/omsorgsdager-aleneomsorg-dialog/src/app/pages/velkommen/VelkommenGuideContent.tsx`
+- `apps/omsorgsdager-aleneomsorg-dialog/src/app/pages/velkommen/OmSøknaden.tsx`
+- `apps/omsorgsdager-aleneomsorg-dialog/src/app/pages/velkommen/BehandlingAvPersonopplysningerContent.tsx`
+- `apps/omsorgsdager-aleneomsorg-dialog/src/app/pages/velkommen/i18n/nb.ts`
+- `apps/omsorgsdager-aleneomsorg-dialog/src/app/pages/velkommen/i18n/nn.ts`
 
-## Om aleneomsorg for barn
+## Steg: Om aleneomsorg for barn
 
-Steget skal vise registrerte barn og la brukeren legge til barn som ikke er registrert i oppslaget.
+Kilder:
 
-Brukeren skal:
+- `apps/omsorgsdager-aleneomsorg-dialog/src/app/søknad/steps/om-omsorgen-for-barn/`
+- `apps/omsorgsdager-aleneomsorg-dialog/src/app/types/søknadsdata/OmOmsorgenForBarnSøknadsdata.ts`
 
-- velge minst ett barn brukeren er alene om omsorgen for
-- svare om det finnes avtale om delt fast bosted
-- få beskjed om at søknaden ikke gjelder barn med delt fast bosted
+## Steg: Tidspunkt for aleneomsorg
 
-Det skal ikke være mulig å gå videre uten et valgt barn eller med en avtale om delt fast bosted for valgt barn.
+Kilder:
 
-## Tidspunkt for aleneomsorg
-
-Steget vises for hvert barn brukeren valgte i forrige steg.
-
-Brukeren skal oppgi om aleneomsorgen startet:
-
-- i inneværende år eller året før, med nøyaktig dato
-- to år siden eller tidligere, uten nøyaktig dato
+- `apps/omsorgsdager-aleneomsorg-dialog/src/app/søknad/steps/tidspunkt-for-aleneomsorg/`
+- `apps/omsorgsdager-aleneomsorg-dialog/src/app/types/søknadsdata/TidspunktForAleneomsorgSøknadsdata.ts`
 
 ## Oppsummering
 
-Oppsummeringen skal vise:
+Kilder:
 
-- informasjon om søkeren
-- hvert barn brukeren søker for
-- tidspunktet for aleneomsorg for hvert barn
+- `apps/omsorgsdager-aleneomsorg-dialog/src/app/søknad/steps/oppsummering/`
+- `apps/omsorgsdager-aleneomsorg-dialog/src/app/søknad/steps/oppsummering/i18n/nb.ts`
+- `apps/omsorgsdager-aleneomsorg-dialog/src/app/søknad/steps/oppsummering/i18n/nn.ts`
 
-Brukeren må bekrefte at opplysningene er riktige før søknaden sendes inn. Feil ved innsending skal vises uten at opplysningene går tapt.
+## Kvittering
+
+Kilder:
+
+- `apps/omsorgsdager-aleneomsorg-dialog/src/app/pages/kvittering/KvitteringPage.tsx`
+- `apps/omsorgsdager-aleneomsorg-dialog/src/app/pages/kvittering/i18n/nb.ts`
+- `apps/omsorgsdager-aleneomsorg-dialog/src/app/pages/kvittering/i18n/nn.ts`
 
 ## Innsending
 
-Innsendingen skal bruke den genererte typen `OmsorgsdagerAleneOmOmsorgenSøknad`. Payloaden skal samsvare med tekstene og valgene i skjemaflyten.
+Sammenlign synlig oppførsel mot v1, men bruk den genererte typen `OmsorgsdagerAleneOmOmsorgenSøknad` fra `@sif/k9-brukerdialog-prosessering-api` som payload-kontrakt.
 
-## Midlertidig mock-innhold
+## Midlertidig tilstand
 
-Det nye appskallet har ennå ingen ekte skjemafelt. Begge skjema-stegene lagrer derfor bare en midlertidig markør slik at flyten kan klikkes gjennom. Innsendingen bruker alle registrerte mock-barn med tidspunktet «to år siden eller tidligere».
-
-Denne oppførselen er bare en teknisk test av flyten. Den skal erstattes når ekte skjemainnhold legges til.
+De to skjemastegene er eksplisitte mocksteg. Oppsummeringen bruker midlertidig mockdata for å teste innsending. Dette er ikke v1-fasit og skal erstattes stegvis.

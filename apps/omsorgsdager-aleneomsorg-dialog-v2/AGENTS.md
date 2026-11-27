@@ -1,0 +1,58 @@
+# Instrukser for v2-migreringen
+
+## Hva som er fasit
+
+Les v1-appen i `apps/omsorgsdager-aleneomsorg-dialog` før du endrer tekst, steg eller synlig oppførsel. v1 er fasit for:
+
+- brukerflyt og stegrekkefølge
+- bokmål og nynorsk
+- validering og feilmeldinger
+- betinget visning
+- oppsummering
+
+Filer å starte med står i `INNHOLD.md`. Ikke erstatt v1 som fasit med en oppsummering i dokumentasjonen. Hvis v1 og dokumentasjonen avviker, undersøk v1 og kjørende v2-kode før du endrer noe.
+
+Den genererte typen `OmsorgsdagerAleneOmOmsorgenSøknad` fra `@sif/k9-brukerdialog-prosessering-api` er fasit for innsendingens kontrakt. Ikke erstatt den med lokale API-typer eller casts.
+
+## Hva som er ferdig og hva som er midlertidig
+
+- Routing, initialdata, mellomlagring, i18n-rammeverk, velkomstside, kvittering, API-init, MSW, Nais og Docker er grunnlaget som v2-appen bygger videre på.
+- De to skjemastegene er mocksteg.
+- Oppsummeringen og DTO-mappingen bruker midlertidig mockdata.
+- Mockoppførselen skal ikke oppgraderes til en ny fasit. Erstatt den med faktisk v1-oppførsel når steget implementeres.
+
+## Når et steg implementeres
+
+1. Les v1-komponenten, i18n-filene, hjelpefunksjonene og typene som tilhører steget.
+2. Portér tekst og synlig oppførsel ordrett til RHF og `@sif/soknad-app`.
+3. Bruk v2-dialoger fra `@sif/soknad-forms` der de finnes.
+4. La mocksteget erstattes, ikke pakkes inn i nytt tilstandslag.
+5. Oppdater mappingen fra skjemaverdier til søknadsdata og videre til generert DTO.
+6. Legg til målrettede tester for validering, betinget flyt og DTO.
+
+## Kontrakter i grunnrammen
+
+- `PUBLIC_PATH` normaliseres til avsluttende `/` ved klientens miljøgrense i `src/app/setup/appEnv.ts`. Bruk `getAppEnv().PUBLIC_PATH` videre.
+- Generelle søker- og barnmocks hentes fra `@sif/api/mock-data`.
+- MSW-handlere skal være eksplisitte. Ikke legg tilbake en catch-all-handler som skjuler manglende API-oppsett.
+- `public/mockServiceWorker.js` skal være generert med samme MSW-versjon som appen, og Vite-proxyen skal følge `PUBLIC_PATH`.
+- Vite-, CSS-, Tailwind- og dependency-riggen skal sammenlignes med en fungerende v2-app før den endres.
+- Docker bygger v2-workspacen. Nais-navn må vurderes mot v1/v2-overgang per miljø, ikke utledes bare fra mappenavnet.
+- Genererte controller-typer og Zod-validering skal bli stående i innsendingen.
+- Innsendingsfeil skal rapporteres med analytics og `appLogger`, uten persondata eller payload i logger.
+
+Denne filen beskriver forsøket i denne appen. Ikke utled felles repo-regler fra den før mønsteret er prøvd med ekte skjemasteg og minst én migrering til.
+Les `STATUS.md` før du fortsetter, og oppdater den når et mocksteg, en testet kontrakt eller payload-mappingen endres.
+
+## Verifisering
+
+Kjør fra appen:
+
+```bash
+pnpm lint:tsc
+pnpm lint:eslint
+pnpm test
+pnpm build
+```
+
+Ikke kjør Playwright i denne oppgaven. Brukeren kjører den.
