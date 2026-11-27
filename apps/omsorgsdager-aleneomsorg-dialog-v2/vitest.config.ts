@@ -15,7 +15,7 @@ export default defineConfig({
         },
     },
     test: {
-        exclude: ['./build/**/*', './dist/**/*', 'node_modules'],
+        exclude: ['./playwright/**/*', './build/**/*', './dist/**/*', 'node_modules'],
         globals: true,
         environment: 'jsdom',
         css: false,

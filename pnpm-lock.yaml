@@ -1503,9 +1503,6 @@ importers:
       '@navikt/ds-tailwind':
         specifier: 8.23.0
         version: 8.23.0
-      '@navikt/sif-common-core-ds':
-        specifier: workspace:*
-        version: link:../../packages/legacy/sif-common-core-ds
       '@sif/api':
         specifier: workspace:*
         version: link:../../packages/core/sif-api
@@ -1570,6 +1567,12 @@ importers:
         specifier: 4.6.7
         version: 4.6.7
     devDependencies:
+      '@axe-core/playwright':
+        specifier: 4.14.0
+        version: 4.14.0(playwright-core@1.65.1)
+      '@playwright/test':
+        specifier: 1.65.1
+        version: 1.65.1
       '@sif/config':
         specifier: workspace:*
         version: link:../../packages/tooling/config
@@ -4656,9 +4659,6 @@ importers:
       '@navikt/ds-react':
         specifier: 8.23.0
         version: 8.23.0(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      '@navikt/sif-common-ui':
-        specifier: workspace:*
-        version: link:../../legacy/sif-common-ui
       '@sif/api':
         specifier: workspace:*
         version: link:../sif-api

@@ -16,6 +16,8 @@ Punktene under finnes i appskallet. De er ikke sluttverifisert mot hele v1-flyte
 - velkomstside og kvittering med bokmål og nynorsk fra v1
 - mock-API med felles mockdata fra `@sif/api` og scenarioer for registrerte barn og ingen registrerte barn
 - scenarioheader i demo-modus
+- Playwright-oppsett med scenarioer for registrert barn, fosterbarn og aleneomsorg til ulike tidspunkter
+- a11y-sjekker i Playwright-flytene
 - generert API-type og innsending mot mock-endepunkt
 - logging og analytics ved innsendingfeil
 - Vite-, Aksel-, Tailwind- og CSS-rigg

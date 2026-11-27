@@ -10,5 +10,13 @@
         }
     },
     "exclude": ["node_modules", "dist"],
-    "include": ["./src/**/*", "./mock/**/*", "./vite-env.d.ts", "./vite*.config.ts", "env.schema.ts"]
+    "include": [
+        "./src/**/*",
+        "./mock/**/*",
+        "./playwright/**/*",
+        "./playwright.config.ts",
+        "./vite-env.d.ts",
+        "./vite*.config.ts",
+        "env.schema.ts"
+    ]
 }
