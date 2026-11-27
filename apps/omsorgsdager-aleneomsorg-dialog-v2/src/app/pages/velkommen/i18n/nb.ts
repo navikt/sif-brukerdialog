@@ -11,7 +11,7 @@ export const velkommenPageMessages_nb = {
     'page.velkommen.guide.tekst.1.2':
         'Hvis dere vanligvis bor sammen, men den andre forelderen ikke kan ha tilsyn med barnet, skal du bruke <Lenke>Søknad om ekstra omsorgsdager når den andre forelderen ikke kan ha tilsyn med barn</Lenke>',
     'page.velkommen.guide.tekst.2':
-        'Hvis dere har avtale om delt fast bosted for barnet har begge foreldre rett på omsorgsdager, og ingen av dere skal søke om ekstra omsorgsdager på grunn av aleneomsorg.',
+        'Hvis dere har avtalt delt fast bosted for barnet har begge foreldre rett på omsorgsdager, og ingen av dere skal søke om ekstra omsorgsdager på grunn av aleneomsorg.',
     'page.velkommen.guide.tekst.3':
         'Du trenger ikke å søke flere ganger for samme barn, hvis du tidligere har fått godkjent søknad.',
     'page.velkommen.omSøknaden.tittel': 'Om søknaden',

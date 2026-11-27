@@ -82,16 +82,10 @@ export const OmOmsorgenForBarnSteg = () => {
                 submitDisabled={harIkkeAleneomsorgForNoenBarn || harAvtaleOmDeltBosted}>
                 <FormLayout.Content>
                     <FormLayout.Questions>
-                        {registrerteBarn.length > 0 ? (
-                            <RegistrerteBarnListe
-                                listetittel={text('steg.omOmsorgenForBarn.dineBarn.seksjonsTittel')}
-                                registrerteBarn={registrerteBarn}
-                            />
-                        ) : (
-                            <Heading level="2" size="medium">
-                                {text('steg.omOmsorgenForBarn.dineBarn.seksjonsTittel')}
-                            </Heading>
-                        )}
+                        <RegistrerteBarnListe
+                            listetittel={text('steg.omOmsorgenForBarn.dineBarn.seksjonsTittel')}
+                            registrerteBarn={registrerteBarn}
+                        />
                         <div>
                             <Heading level="3" size="xsmall" spacing={true}>
                                 {text(
