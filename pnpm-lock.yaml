@@ -1492,6 +1492,121 @@ importers:
         specifier: 5.1.1
         version: 5.1.1(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.1)(@vitest/coverage-v8@5.1.1)(@vitest/ui@5.1.1)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.3)(tsx@4.23.13)(yaml@2.9.1))
 
+  apps/omsorgsdager-aleneomsorg-dialog-v2:
+    dependencies:
+      '@navikt/ds-css':
+        specifier: 8.23.0
+        version: 8.23.0
+      '@navikt/ds-react':
+        specifier: 8.23.0
+        version: 8.23.0(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      '@navikt/ds-tailwind':
+        specifier: 8.23.0
+        version: 8.23.0
+      '@navikt/sif-common-core-ds':
+        specifier: workspace:*
+        version: link:../../packages/legacy/sif-common-core-ds
+      '@sif/api':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-api
+      '@sif/apm':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-apm
+      '@sif/app-register':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-app-register
+      '@sif/env':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-env
+      '@sif/k9-brukerdialog-prosessering-api':
+        specifier: workspace:*
+        version: link:../../packages/api/k9-brukerdialog-prosessering-api
+      '@sif/mock-utils':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-mock-utils
+      '@sif/rhf':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-rhf
+      '@sif/soknad-app':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-soknad-app
+      '@sif/soknad-ui':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-soknad-ui
+      '@sif/utils':
+        specifier: workspace:*
+        version: link:../../packages/core/sif-utils
+      '@tanstack/react-query':
+        specifier: 5.108.3
+        version: 5.108.3(@types/react@19.3.0)(react@19.3.1)
+      jsdom:
+        specifier: ^30.1.1
+        version: 30.1.3(@noble/hashes@2.4.0)
+      react:
+        specifier: 19.3.1
+        version: 19.3.1
+      react-dom:
+        specifier: 19.3.1
+        version: 19.3.1(react@19.3.1)
+      react-hook-form:
+        specifier: 7.92.0
+        version: 7.92.0(@types/react@19.3.0)(react@19.3.1)
+      react-intl:
+        specifier: 12.2.1
+        version: 12.2.1(@types/react@19.3.0)(react@19.3.1)
+      react-loading-skeleton:
+        specifier: 3.5.0
+        version: 3.5.0(react@19.3.1)
+      react-router-dom:
+        specifier: 7.18.6
+        version: 7.18.6(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      zod:
+        specifier: 4.6.7
+        version: 4.6.7
+    devDependencies:
+      '@sif/config':
+        specifier: workspace:*
+        version: link:../../packages/tooling/config
+      '@sif/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/tooling/eslint-config-sif
+      '@tailwindcss/vite':
+        specifier: 4.3.5
+        version: 4.3.5(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.3)(tsx@4.23.13)(yaml@2.9.1))
+      '@types/node':
+        specifier: 26.6.6
+        version: 26.6.6
+      '@types/react':
+        specifier: 19.3.0
+        version: 19.3.0
+      '@types/react-dom':
+        specifier: 19.3.0
+        version: 19.3.0(@types/react@19.3.0)
+      '@vitejs/plugin-react':
+        specifier: 6.3.0
+        version: 6.3.0(@rolldown/plugin-babel@0.3.1(@babel/core@7.29.13)(@babel/plugin-transform-runtime@7.29.7(@babel/core@7.29.13))(@babel/runtime@7.29.14)(rolldown@1.2.19)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.3)(tsx@4.23.13)(yaml@2.9.1)))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.3)(tsx@4.23.13)(yaml@2.9.1))
+      eslint:
+        specifier: 10.15.0
+        version: 10.15.0(jiti@2.7.0)
+      msw:
+        specifier: 2.15.0
+        version: 2.15.0(@types/node@26.6.6)(typescript@6.0.3)
+      tailwindcss:
+        specifier: 4.3.5
+        version: 4.3.5
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: 8.3.8
+        version: 8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.3)(tsx@4.23.13)(yaml@2.9.1)
+      vite-plugin-checker:
+        specifier: 1.0.0
+        version: 1.0.0(eslint@10.15.0(jiti@2.7.0))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.16.0(typescript@6.0.3))(typescript@6.0.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.3)(tsx@4.23.13)(yaml@2.9.1))
+      vitest:
+        specifier: 5.1.1
+        version: 5.1.1(@opentelemetry/api@1.9.1)(@types/node@26.6.6)(@vitest/browser-playwright@5.1.1)(@vitest/coverage-v8@5.1.1)(@vitest/ui@5.1.1)(jsdom@30.1.3(@noble/hashes@2.4.0))(msw@2.15.0(@types/node@26.6.6)(typescript@6.0.3))(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1)(sass-embedded@1.108.2)(sass@1.108.2)(terser@5.51.3)(tsx@4.23.13)(yaml@2.9.1))
+
   apps/omsorgsdager-kalkulator:
     dependencies:
       '@navikt/aksel-icons':
@@ -7012,13 +7127,6 @@ packages:
     resolution: {integrity: sha512-grhRy3OKmniaAEKXMjua5z/EODX0MSqBGjunw8+j/3HQjOnahs2AGhvEOIYVUWcU6ScApbhLhVrQTX8XqrMrow==}
     engines: {node: '>=20.19.0'}
 
-  '@csstools/css-calc@3.4.3':
-    resolution: {integrity: sha512-iex20d8CHVkyvg6B7UKV7uHnI2Bqo9g+EFfT9E0y+GvTvhZ/DwONJ+9aKb1dlqm0ZiGsL5RXjp0fCoJYnkeDjA==}
-    engines: {node: '>=20.19.0'}
-    peerDependencies:
-      '@csstools/css-parser-algorithms': ^4.0.2
-      '@csstools/css-tokenizer': ^4.0.2
-
   '@csstools/css-calc@3.4.4':
     resolution: {integrity: sha512-Jwo1Z8DUsZ8xVOLBdLMfhjJFvWD6pqaUTlBNQZ+qIB2i9g7yG8kd/UBJj2c9J9Twr+u87cjy9BjkmfvMbyOk3Q==}
     engines: {node: '>=20.19.0'}
@@ -7033,25 +7141,11 @@ packages:
       '@csstools/css-parser-algorithms': ^4.0.2
       '@csstools/css-tokenizer': ^4.0.2
 
-  '@csstools/css-parser-algorithms@4.0.2':
-    resolution: {integrity: sha512-40cSKyMvK+tq4qz6Awrlye2WGuOKt3FwPgtGg6KTfbHOWNw+Rk1rzbAtZnZ6IBhsY491HLRnDXwoyBAijmmILA==}
-    engines: {node: '>=20.19.0'}
-    peerDependencies:
-      '@csstools/css-tokenizer': ^4.0.2
-
   '@csstools/css-parser-algorithms@4.0.3':
     resolution: {integrity: sha512-EpCfUDaJtwohPHC7egoXxPGT/R1/WyyAhw87MKB/7BPPZvZU+IcEqo4er5FpLnby2Gvwt9Lpxy+WNEDyFjoXtA==}
     engines: {node: '>=20.19.0'}
     peerDependencies:
       '@csstools/css-tokenizer': ^4.0.3
-
-  '@csstools/css-syntax-patches-for-csstree@1.1.15':
-    resolution: {integrity: sha512-J0u7HkVl2nzSlhsiTOp4AmwcUQ3D+mGEEKfBy/7To5/y7F2OHwyLrXfrhR0SMgr4p5Lo+eaMVSeai24zUcBIxA==}
-    peerDependencies:
-      css-tree: ^3.2.1
-    peerDependenciesMeta:
-      css-tree:
-        optional: true
 
   '@csstools/css-syntax-patches-for-csstree@1.1.17':
     resolution: {integrity: sha512-IPx9W33+t0Yt5TVb+Y7oICrThOIry0TY6GuXfSHOatxA0uiHqbzi98Gai905lpBAX1m/LH7iI96e9jcI7Dkvxw==}
@@ -7060,10 +7154,6 @@ packages:
     peerDependenciesMeta:
       css-tree:
         optional: true
-
-  '@csstools/css-tokenizer@4.0.2':
-    resolution: {integrity: sha512-OoKoR0f76dCY666JlcbhmVTs2drYj1GUXZTYTcbUgJjh9Nv41aFfZ21bPQTERm5+L5cBDo466NltB2lplS5GBw==}
-    engines: {node: '>=20.19.0'}
 
   '@csstools/css-tokenizer@4.0.3':
     resolution: {integrity: sha512-gdkFe/Z4KU1q8Y5S3GYScXGcOnO56dgWwIs5+97Ij1VIKISItOIUlCXUq4VLbdnRclF+SSQ49sLsn3KeV111AA==}
@@ -15930,10 +16020,10 @@ snapshots:
 
   '@asamuzakjp/css-color@7.1.5':
     dependencies:
-      '@csstools/css-calc': 3.4.3(@csstools/css-parser-algorithms@4.0.2(@csstools/css-tokenizer@4.0.2))(@csstools/css-tokenizer@4.0.2)
-      '@csstools/css-color-parser': 4.2.6(@csstools/css-parser-algorithms@4.0.2(@csstools/css-tokenizer@4.0.2))(@csstools/css-tokenizer@4.0.2)
-      '@csstools/css-parser-algorithms': 4.0.2(@csstools/css-tokenizer@4.0.2)
-      '@csstools/css-tokenizer': 4.0.2
+      '@csstools/css-calc': 3.4.4(@csstools/css-parser-algorithms@4.0.3(@csstools/css-tokenizer@4.0.3))(@csstools/css-tokenizer@4.0.3)
+      '@csstools/css-color-parser': 4.2.6(@csstools/css-parser-algorithms@4.0.3(@csstools/css-tokenizer@4.0.3))(@csstools/css-tokenizer@4.0.3)
+      '@csstools/css-parser-algorithms': 4.0.3(@csstools/css-tokenizer@4.0.3)
+      '@csstools/css-tokenizer': 4.0.3
       lru-cache: 11.5.3
 
   '@asamuzakjp/dom-selector@10.0.3':
@@ -17193,46 +17283,27 @@ snapshots:
 
   '@csstools/color-helpers@6.1.2': {}
 
-  '@csstools/css-calc@3.4.3(@csstools/css-parser-algorithms@4.0.2(@csstools/css-tokenizer@4.0.2))(@csstools/css-tokenizer@4.0.2)':
-    dependencies:
-      '@csstools/css-parser-algorithms': 4.0.2(@csstools/css-tokenizer@4.0.2)
-      '@csstools/css-tokenizer': 4.0.2
-
   '@csstools/css-calc@3.4.4(@csstools/css-parser-algorithms@4.0.3(@csstools/css-tokenizer@4.0.3))(@csstools/css-tokenizer@4.0.3)':
     dependencies:
       '@csstools/css-parser-algorithms': 4.0.3(@csstools/css-tokenizer@4.0.3)
       '@csstools/css-tokenizer': 4.0.3
-    optional: true
 
-  '@csstools/css-color-parser@4.2.6(@csstools/css-parser-algorithms@4.0.2(@csstools/css-tokenizer@4.0.2))(@csstools/css-tokenizer@4.0.2)':
+  '@csstools/css-color-parser@4.2.6(@csstools/css-parser-algorithms@4.0.3(@csstools/css-tokenizer@4.0.3))(@csstools/css-tokenizer@4.0.3)':
     dependencies:
       '@csstools/color-helpers': 6.1.2
-      '@csstools/css-calc': 3.4.3(@csstools/css-parser-algorithms@4.0.2(@csstools/css-tokenizer@4.0.2))(@csstools/css-tokenizer@4.0.2)
-      '@csstools/css-parser-algorithms': 4.0.2(@csstools/css-tokenizer@4.0.2)
-      '@csstools/css-tokenizer': 4.0.2
-
-  '@csstools/css-parser-algorithms@4.0.2(@csstools/css-tokenizer@4.0.2)':
-    dependencies:
-      '@csstools/css-tokenizer': 4.0.2
+      '@csstools/css-calc': 3.4.4(@csstools/css-parser-algorithms@4.0.3(@csstools/css-tokenizer@4.0.3))(@csstools/css-tokenizer@4.0.3)
+      '@csstools/css-parser-algorithms': 4.0.3(@csstools/css-tokenizer@4.0.3)
+      '@csstools/css-tokenizer': 4.0.3
 
   '@csstools/css-parser-algorithms@4.0.3(@csstools/css-tokenizer@4.0.3)':
     dependencies:
       '@csstools/css-tokenizer': 4.0.3
-    optional: true
-
-  '@csstools/css-syntax-patches-for-csstree@1.1.15(css-tree@3.2.1)':
-    optionalDependencies:
-      css-tree: 3.2.1
 
   '@csstools/css-syntax-patches-for-csstree@1.1.17(css-tree@3.2.1)':
     optionalDependencies:
       css-tree: 3.2.1
-    optional: true
 
-  '@csstools/css-tokenizer@4.0.2': {}
-
-  '@csstools/css-tokenizer@4.0.3':
-    optional: true
+  '@csstools/css-tokenizer@4.0.3': {}
 
   '@csstools/media-query-list-parser@5.0.3(@csstools/css-parser-algorithms@4.0.3(@csstools/css-tokenizer@4.0.3))(@csstools/css-tokenizer@4.0.3)':
     dependencies:
@@ -21903,7 +21974,7 @@ snapshots:
   css-tree@3.2.1:
     dependencies:
       mdn-data: 2.27.1
-      source-map-js: 1.2.2
+      source-map-js: 1.2.4
 
   css-what@6.2.2: {}
 
@@ -23520,7 +23591,7 @@ snapshots:
       '@asamuzakjp/css-color': 7.1.5
       '@asamuzakjp/dom-selector': 10.0.3
       '@bramus/specificity': 2.4.3
-      '@csstools/css-syntax-patches-for-csstree': 1.1.15(css-tree@3.2.1)
+      '@csstools/css-syntax-patches-for-csstree': 1.1.17(css-tree@3.2.1)
       '@exodus/bytes': 1.16.0(@noble/hashes@2.4.0)
       css-tree: 3.2.1
       data-urls: 8.0.0(@noble/hashes@2.4.0)
