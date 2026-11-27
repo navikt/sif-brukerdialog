@@ -1,27 +1,24 @@
-import { standardProfil } from '@sif/api/mock-data';
 import { http, HttpResponse } from 'msw';
 
-const storageKey = 'OMSORGSDAGER_ALENEOMSORG_V2_MOCK_MELLOMLAGRING';
+import { ScenarioType } from '../scenarios/types';
+import { store } from '../state/store';
 
-const getMellomlagring = () => {
-    const data = localStorage.getItem(storageKey);
-    return data ? JSON.parse(data) : {};
-};
+store.init(ScenarioType.default);
 
 export const handlers = [
-    http.get('**/oppslag/soker', () => HttpResponse.json(standardProfil.søker)),
-    http.get('**/oppslag/barn', () => HttpResponse.json(standardProfil.barn)),
-    http.get('**/mellomlagring/:ytelse', () => HttpResponse.json(getMellomlagring())),
+    http.get('**/oppslag/soker', () => HttpResponse.json(store.get().søker)),
+    http.get('**/oppslag/barn', () => HttpResponse.json(store.get().barn)),
+    http.get('**/mellomlagring/:ytelse', () => HttpResponse.json(store.get().mellomlagring ?? {})),
     http.post('**/mellomlagring/:ytelse', async ({ request }) => {
-        localStorage.setItem(storageKey, JSON.stringify(await request.json()));
+        store.update({ mellomlagring: (await request.json()) as Record<string, unknown> });
         return HttpResponse.json({});
     }),
     http.put('**/mellomlagring/:ytelse', async ({ request }) => {
-        localStorage.setItem(storageKey, JSON.stringify(await request.json()));
+        store.update({ mellomlagring: (await request.json()) as Record<string, unknown> });
         return HttpResponse.json({});
     }),
     http.delete('**/mellomlagring/:ytelse', () => {
-        localStorage.removeItem(storageKey);
+        store.update({ mellomlagring: undefined });
         return HttpResponse.json({});
     }),
     http.post('**/omsorgsdager-aleneomsorg/innsending', () => HttpResponse.json({}, { status: 202 })),

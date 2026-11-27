@@ -14,7 +14,8 @@ Punktene under finnes i appskallet. De er ikke sluttverifisert mot hele v1-flyte
 - initialdata for søker og barn
 - mellomlagring gjennom `@sif/soknad-app`
 - velkomstside og kvittering med bokmål og nynorsk fra v1
-- mock-API med felles mockdata fra `@sif/api`
+- mock-API med felles mockdata fra `@sif/api` og scenarioer for registrerte barn og ingen registrerte barn
+- scenarioheader i demo-modus
 - generert API-type og innsending mot mock-endepunkt
 - logging og analytics ved innsendingfeil
 - Vite-, Aksel-, Tailwind- og CSS-rigg

@@ -3,7 +3,7 @@ import './app.css';
 
 import { OmsorgsdagerAleneomsorgApp } from '@sif/app-register';
 import { SøknadAppProvider } from '@sif/soknad-app';
-import { InitialDataErrorPage, LoadingPage, NoAccessPage } from '@sif/soknad-ui';
+import { DemoInfoAlert, InitialDataErrorPage, LoadingPage, NoAccessPage } from '@sif/soknad-ui';
 import { BrowserRouter } from 'react-router-dom';
 
 import { initApiClients } from './app/api/initApiClients';
@@ -11,6 +11,7 @@ import { AppContextProvider } from './app/context/AppContext';
 import { applicationIntlMessages, useAppIntl } from './app/i18n';
 import { getAppEnv } from './app/setup/appEnv';
 import { Søknad } from './app/Soknad';
+import { ScenarioHeader } from './demo/ScenarioHeader';
 import { useInitialData } from './useInitialData';
 
 const SøknadDataWrapper = () => {
@@ -49,6 +50,12 @@ export const App = () => {
             useAnalytics={env.SIF_PUBLIC_USE_ANALYTICS === 'true'}
             intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
             <BrowserRouter basename={env.PUBLIC_PATH}>
+                {__IS_DEMO__ ? (
+                    <>
+                        <ScenarioHeader />
+                        <DemoInfoAlert appTitle={OmsorgsdagerAleneomsorgApp.tittel.nb} />
+                    </>
+                ) : null}
                 <SøknadDataWrapper />
             </BrowserRouter>
         </SøknadAppProvider>
