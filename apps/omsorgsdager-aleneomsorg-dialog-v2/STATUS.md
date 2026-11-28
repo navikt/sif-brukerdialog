@@ -20,10 +20,13 @@ Punktene under finnes i appskallet. De er ikke sluttverifisert mot hele v1-flyte
 - a11y-sjekker i Playwright-flytene
 - generert API-type og innsending mot mock-endepunkt
 - logging og analytics ved innsendingfeil
+- appstatus fra Sanity (driftsmeldinger og stenging av søknaden), som i v1
 - Vite-, Aksel-, Tailwind- og CSS-rigg
 - Docker- og Nais-oppsett
+- appspesifikk `Dockerfile.dockerignore` som holder hemmeligheter og generert innhold utenfor byggkonteksten
 - test som låser stegrekkefølgen
 - «Om aleneomsorg for barn» med v1-tekster, validering, betingelser, v2-dialoger og mapping begge veier. Avvik fra v1: ubrukt logikk for delt bosted er fjernet, valg for slettede barn ryddes bort, og en skrivefeil i valideringsteksten på bokmål er rettet.
+- Navn på manuelt tilknyttede barn begrenses til 50 tegn i v2-dialogen.
 - «Tidspunkt for aleneomsorg» med v1-tekster, validering per barn, betinget datofelt og mapping begge veier. Valgt «I fjor eller tidligere» beholder ikke en tidligere utfylt dato.
 - Oppsummering med v1-tekster og rekkefølge, søker- og barnopplysninger, bekreftelsescheckbox og innsending av brukerens bekreftelsesverdi.
 

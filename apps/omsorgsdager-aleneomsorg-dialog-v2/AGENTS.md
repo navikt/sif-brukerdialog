@@ -47,6 +47,9 @@ og relatert innhold, og `FormLayout.Section` for navngitte seksjoner. Ikke bruk
 
 ## Kontrakter i grunnrammen
 
+- Appskallet skal ta med innstillinger fra v1 sin `SoknadApplication`, ikke bare rutene. Sammenlign `appStatus`, språkvelger og analytics mot v1 før `SøknadAppProvider` endres. `appStatusConfig` skal kobles til `SIF_PUBLIC_APPSTATUS_*`, ellers ignoreres driftsmeldinger og stenging av søknaden.
+- Språkvelgeren skal styres med `SIF_PUBLIC_FEATURE_NYNORSK`; ikke hardkod `useLanguageSelector: true`.
+- Docker-byggene skal ha `Dockerfile.dockerignore` ved siden av appens `Dockerfile`, slik at `.git`, `node_modules`, byggresultater og miljøfiler holdes utenfor byggkonteksten.
 - `PUBLIC_PATH` normaliseres til avsluttende `/` ved klientens miljøgrense i `src/app/setup/appEnv.ts`. Bruk `getAppEnv().PUBLIC_PATH` videre.
 - Generelle søker- og barnmocks hentes fra `@sif/api/mock-data`.
 - MSW-handlere skal være eksplisitte. Ikke legg tilbake en catch-all-handler som skjuler manglende API-oppsett.

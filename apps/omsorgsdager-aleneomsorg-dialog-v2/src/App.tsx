@@ -48,7 +48,16 @@ export const App = () => {
         <SøknadAppProvider
             applicationKey={OmsorgsdagerAleneomsorgApp.key}
             useAnalytics={env.SIF_PUBLIC_USE_ANALYTICS === 'true'}
-            intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
+            appStatusConfig={{
+                sanityConfig: {
+                    projectId: env.SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+                    dataset: env.SIF_PUBLIC_APPSTATUS_DATASET,
+                },
+            }}
+            intlConfig={{
+                intlMessages: applicationIntlMessages,
+                useLanguageSelector: env.SIF_PUBLIC_FEATURE_NYNORSK === 'on',
+            }}>
             <BrowserRouter basename={env.PUBLIC_PATH}>
                 {__IS_DEMO__ ? (
                     <>

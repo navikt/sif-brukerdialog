@@ -11,6 +11,8 @@ export const annetBarnMessages_nb = {
     '@sifSoknadForms.annetBarn.form.årsak.FOSTERBARN': 'Barnet er mitt fosterbarn',
     '@sifSoknadForms.annetBarn.form.årsak.ANNET': 'Annet',
     '@sifSoknadForms.annetBarnForm.validation.navn.stringHasNoValue': 'Skriv inn barnets navn',
+    '@sifSoknadForms.annetBarnForm.validation.navn.stringIsTooLong':
+        'Barnets navn kan ikke inneholde flere enn {maks} tegn.',
     '@sifSoknadForms.annetBarnForm.validation.fødselsdato.dateHasNoValue':
         'Du må oppgi barnets fødselsdato. Skriv inn eller velg dato fra datovelgeren.',
     '@sifSoknadForms.annetBarnForm.validation.fødselsdato.dateIsBeforeMin':
