@@ -262,7 +262,7 @@ Standard wrapper for RHF-baserte steg-skjema. Eksporteres fra `@sif/soknad-app`.
 
 Håndterer automatisk:
 
-- Forrige-knapp via `useStepNavigation`
+- Forrige-knapp via `useStepNavigation`, deaktivert mens `isPending` er satt
 - Deaktivering av submit-knapp ved konsistenssjekk-treff (`useCheckConsistency`)
 - Valgfri `submitDisabled`, `isFinalSubmit`, `submitLabel`
 
@@ -404,3 +404,4 @@ export const formValuesToSøknadsdata = (
 | Submit aktivt selv om `InconsistentFormValuesMessage` vises          | `submitDisabled`-prop videresendt uten konsistenssjekk                                    | Bruk `SøknadStepForm` — deaktiverer submit automatisk via `SøknadStepContext` |
 | Unhandled rejection ved feilet innsending                            | `mutateAsync` uten `try/catch` — RHF `handleSubmit` re-kaster, `SifForm` fanger ikke      | Bruk `mutate`, og render mutasjonens `error`-state                            |
 | Bruker rekker å klikke «Send inn» to ganger                          | `onSøknadSendt` lagt i per-kall-`mutate(data, { onSuccess })` — kjører etter `success`    | Legg `onSuccess: onSøknadSendt` i mutasjonsoppsettet; da holder `isPending`   |
+| Søknaden sendes to ganger etter «Forrige» under treg innsending      | Ny mutasjonsobserver på oppsummeringen arver ikke `isPending` fra første innsending       | Send `isPending` til `SøknadStepForm`; den deaktiverer da «Forrige»           |
