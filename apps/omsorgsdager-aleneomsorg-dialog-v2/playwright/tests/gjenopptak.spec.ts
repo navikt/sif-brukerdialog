@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 import { ScenarioType } from '../../mock/scenarios/types';
 import {
     gåTilTidspunkt,
-    recentDate,
+    nyligDato,
     startSøknad,
     velgRegistrertBarn,
     velgTidspunkt,
@@ -31,6 +31,6 @@ test('gjenopptar søknaden med lagret svar', async ({ page }) => {
 
     await expect(page).toHaveURL(/\/soknad\/oppsummering$/);
     await expect(page.getByText('Alfa Testesen')).toBeVisible();
-    await expect(page.getByText(new RegExp(`Tidspunkt for aleneomsorg:.*${recentDate.slice(-4)}`))).toBeVisible();
+    await expect(page.getByText(new RegExp(`Tidspunkt for aleneomsorg:.*${nyligDato.slice(-4)}`))).toBeVisible();
     await testAccessibility(page);
 });

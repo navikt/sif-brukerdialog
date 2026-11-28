@@ -1,5 +1,5 @@
 import type { RegistrertBarn, Søker } from '@sif/api/k9-brukerdialog-prosessering';
-import type { AnnetBarn } from '@sif/soknad-forms';
+import { type AnnetBarn, BarnType } from '@sif/soknad-forms';
 import type { ISODate } from '@sif/utils';
 import { describe, expect, it } from 'vitest';
 
@@ -23,16 +23,17 @@ const annetBarn = [
         fnr: '12345678902',
         navn: 'Annet Barn',
         fødselsdato: '2018-02-03' as ISODate,
+        type: BarnType.fosterbarn,
     },
 ] as AnnetBarn[];
 
 describe('søknadsdata til DTO', () => {
-    it('mapper bare valgte barn med valgt tidspunkt', () => {
+    it('mapper hele payloaden for valgte registrerte og manuelt tilknyttede barn', () => {
         const søknadsdata: Søknadsdata = {
             harForståttRettigheterOgPlikter: true,
             [SøknadStepId.OM_OMSORGEN_FOR_BARN]: {
                 annetBarn,
-                harAleneomsorgFor: ['12345678902'],
+                harAleneomsorgFor: ['12345678902', 'aktør-1'],
             },
             [SøknadStepId.TIDSPUNKT_FOR_ALENEOMSORG]: {
                 aleneomsorgTidspunkt: {
@@ -40,11 +41,17 @@ describe('søknadsdata til DTO', () => {
                         tidspunktForAleneomsorg: TidspunktForAleneomsorg.SISTE_2_ÅRENE,
                         dato: '2026-05-12' as ISODate,
                     },
+                    [prefixBarnId('aktør-1')]: {
+                        tidspunktForAleneomsorg: TidspunktForAleneomsorg.TIDLIGERE,
+                    },
                 },
             },
         };
 
-        expect(soknadsdataToSoknadDTO({ søker, registrerteBarn, søknadsdata, språk: 'nb' })).toMatchObject({
+        expect(soknadsdataToSoknadDTO({ søker, registrerteBarn, søknadsdata, språk: 'nb' })).toEqual({
+            søkerNorskIdent: '12345678901',
+            språk: 'nb',
+            harForståttRettigheterOgPlikter: true,
             barn: [
                 {
                     navn: 'Annet Barn',
@@ -52,7 +59,14 @@ describe('søknadsdata til DTO', () => {
                     fødselsdato: '2018-02-03',
                     tidspunktForAleneomsorg: TidspunktForAleneomsorg.SISTE_2_ÅRENE,
                     dato: '2026-05-12',
-                    type: 'ANNET',
+                    type: 'FOSTERBARN',
+                },
+                {
+                    aktørId: 'aktør-1',
+                    navn: 'Registrert Barn',
+                    tidspunktForAleneomsorg: TidspunktForAleneomsorg.TIDLIGERE,
+                    dato: undefined,
+                    type: 'FRA_OPPSLAG',
                 },
             ],
         });

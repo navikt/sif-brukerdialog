@@ -4,10 +4,20 @@ import { ScenarioType } from '../../mock/scenarios/types';
 import { setScenario } from './scenario';
 import { testAccessibility } from './testAccessibility';
 
-const currentYear = new Date().getFullYear();
-export const recentDate = `10.10.${currentYear - 1}`;
-export const recentYearLabel = `I ${currentYear - 1} eller ${currentYear}`;
-export const earlierYearLabel = `I ${currentYear - 2} eller tidligere`;
+const inneværendeÅr = new Date().getFullYear();
+export const nyligDato = `10.10.${inneværendeÅr - 1}`;
+export const nyligÅrLedetekst = `I ${inneværendeÅr - 1} eller ${inneværendeÅr}`;
+export const tidligereÅrLedetekst = `I ${inneværendeÅr - 2} eller tidligere`;
+
+type InnsendtBarn = {
+    aktørId?: string;
+    identitetsnummer?: string;
+    navn: string;
+    fødselsdato?: string;
+    tidspunktForAleneomsorg: 'SISTE_2_ÅRENE' | 'TIDLIGERE';
+    dato?: string;
+    type: 'FRA_OPPSLAG' | 'FOSTERBARN' | 'ANNET';
+};
 
 export const startSøknad = async (page: Page, scenario: ScenarioType) => {
     await setScenario(page, scenario);
@@ -61,10 +71,10 @@ export const velgTidspunkt = async (page: Page, barnNavn: string, tidligere: boo
     });
 
     if (tidligere) {
-        await tidspunktGruppe.getByLabel(earlierYearLabel).check();
+        await tidspunktGruppe.getByLabel(tidligereÅrLedetekst).check();
     } else {
-        await tidspunktGruppe.getByLabel(recentYearLabel).check();
-        await page.getByLabel(`Hvilken dato ble du alene om omsorgen for ${barnNavn}?`).fill(recentDate);
+        await tidspunktGruppe.getByLabel(nyligÅrLedetekst).check();
+        await page.getByLabel(`Hvilken dato ble du alene om omsorgen for ${barnNavn}?`).fill(nyligDato);
     }
 };
 
@@ -75,13 +85,23 @@ export const gåTilOppsummering = async (page: Page) => {
     await testAccessibility(page);
 };
 
-export const sendSøknad = async (page: Page) => {
+export const sendSøknad = async (page: Page, barn: InnsendtBarn[]) => {
     await page
         .getByRole('checkbox', {
             name: 'Jeg bekrefter at opplysningene jeg har gitt er riktige, og at jeg ikke har holdt tilbake opplysninger som har betydning for min rett til omsorgsdager.',
         })
         .check();
+    const innsending = page.waitForRequest('**/omsorgsdager-aleneomsorg/innsending');
     await page.getByRole('button', { name: 'Send søknad', exact: true }).click();
+
+    expect((await innsending).postDataJSON()).toEqual({
+        søkerNorskIdent: '02068599258',
+        språk: 'nb',
+        harForståttRettigheterOgPlikter: true,
+        harBekreftetOpplysninger: true,
+        barn,
+    });
+
     await expect(
         page.getByRole('heading', { name: 'Vi har mottatt søknad om ekstra omsorgsdager', level: 1 }),
     ).toBeVisible();

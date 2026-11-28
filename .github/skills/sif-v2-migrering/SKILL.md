@@ -16,8 +16,15 @@ Regler for hvordan en v2-app er bygd, står i `sif-soknad-setup`, `sif-soknad-ad
 ## Fasit
 
 - **v1-appen** er fasit for flyt, stegrekkefølge, tekst (nb og nn), validering, betinget visning og oppsummering.
+- **Samtykket på velkomstsiden** er et bevisst unntak. En migrert app bruker teksten og komponenten fra v2-rammeverket. Ordlyden i v1 skal ikke kopieres til v2.
 - **Den genererte DTO-typen** fra `@sif/*-api` er fasit for innsendingen. Ikke lag lokale API-typer eller casts.
 - **En fungerende v2-app** (se referanseappene i `sif-soknad-setup`) er fasit for Vite-, CSS-, Tailwind-, MSW- og Docker-riggen.
+
+## Overgang fra v1 til v2
+
+- Gjenopptak av v1-mellomlagring er ikke et krav. v1- og v2-mellomlagring har ulike skjemaer, og det er akseptabelt at brukeren må starte på nytt etter migreringen.
+- Bruk en v2-versjon som gjør den gamle blob-en ugyldig. Verifiser at appen da starter på velkomstsiden og ikke prøver å bruke felt fra v1-formatet.
+- Sammenlign v1 sin invalidering av mellomlagring med v2. Hvis søknaden avhenger av endringer i oppstartsdata, bruk `mellomlagringGrunnlag` med ikke-sensitive, grove verdier.
 
 ## Arbeidsflyt
 
@@ -41,9 +48,13 @@ Regler for hvordan en v2-app er bygd, står i `sif-soknad-setup`, `sif-soknad-ad
 - [ ] Ingen treff på `sif-common` i appens `src`, `package.json` og CSS
 - [ ] `SøknadAppProvider` dekker alle innstillinger fra v1 sitt appskall
 - [ ] Alle `SIF_PUBLIC_*`-variabler i v1 sine Nais-filer finnes i v2 og er enten brukt i koden eller bevisst utelatt
+- [ ] Endringer i oppstartsdata som gjør en mellomlagret søknad ugyldig, har en v2-mekanisme i `mellomlagringGrunnlag`
+- [ ] V1-mellomlagring blir ignorert og appen starter ryddig på velkomstsiden
 - [ ] `Dockerfile.dockerignore` ligger ved siden av appens `Dockerfile`
 - [ ] nb- og nn-tekster er sammenlignet med v1, og avvik står i PR-en
 - [ ] Endringer i delte pakker står i PR-en
 - [ ] MSW har eksplisitte handlere, uten catch-all
-- [ ] Payload fra innsendingen er sammenlignet med v1 for minst én fullført søknad
+- [ ] Payload-testen sammenligner hele request-body-en, ikke bare deler av DTO-en. Den dekker v1-paritet og appens bekreftelsesverdier.
+- [ ] Playwright-testen fanger og validerer innsendingens request-body minst én gang
+- [ ] Initialdatafeil er vurdert eksplisitt for logging. 401/403 håndteres som tilgangsfeil, mens klientparsefeil og nettverksfeil må vurderes separat fra feil backend allerede logger. Ikke logg persondata eller request-/response-body.
 - [ ] Arbeidsnotatene i appen stemmer med koden, og varig lærdom er flyttet til skills

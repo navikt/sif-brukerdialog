@@ -71,7 +71,6 @@ export const soknadsdataToSoknadDTO = ({
             return {
                 aktørId: barnet.aktørId,
                 navn: formatName(barnet),
-                fødselsdato: barnet.fødselsdato,
                 tidspunktForAleneomsorg: tidspunkt.tidspunktForAleneomsorg!,
                 dato:
                     tidspunkt.tidspunktForAleneomsorg === TidspunktForAleneomsorg.SISTE_2_ÅRENE
