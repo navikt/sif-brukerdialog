@@ -212,8 +212,16 @@ void initApm({ app: PleiepengerSyktBarnApp.key, namespace: 'dusseldorf', version
 <SøknadAppProvider
     applicationKey={PleiepengerSyktBarnApp.key}
     useAnalytics={env.SIF_PUBLIC_USE_ANALYTICS === 'true'}
-    intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}
-    appStatusConfig={{ sanityConfig: { projectId: '...', dataset: '...' } }}>
+    intlConfig={{
+        intlMessages: applicationIntlMessages,
+        useLanguageSelector: env.SIF_PUBLIC_FEATURE_NYNORSK === 'on',
+    }}
+    appStatusConfig={{
+        sanityConfig: {
+            projectId: env.SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+            dataset: env.SIF_PUBLIC_APPSTATUS_DATASET,
+        },
+    }}>
     <App />
 </SøknadAppProvider>;
 ```

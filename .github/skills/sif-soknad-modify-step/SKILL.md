@@ -64,7 +64,7 @@ Bruk `FormLayout`-komponentene etter den semantiske rollen deres:
 </FormLayout.Content>
 ```
 
-En spørsmålsfil skal bare inneholde selve spørsmålet: feltbinding, label, validering og feltets beskrivelse. Den skal ikke inneholde overskrift, `FormLayout.Questions`, `FormLayout.Section`, stegflyt eller meldinger som hører til gruppen. Steget eier dette.
+En spørsmålsfil skal bare inneholde selve spørsmålet: feltbinding, label, validering og feltets beskrivelse. Den skal ikke inneholde overskrift, `FormLayout.Questions`, `FormLayout.Section`, stegflyt eller meldinger som hører til gruppen. Steget eier dette. Et nytt betinget spørsmål skal ligge i en egen fil, og steget eier `watch`, `clearErrors` og vilkåret for visning.
 
 ---
 

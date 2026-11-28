@@ -70,6 +70,10 @@ Når spørsmål skilles ut i egne filer, skal filen bare inneholde selve spørsm
 
 Steget eier rekkefølge, grupper, overskrifter, synlighet og meldinger utenfor feltet.
 
+Betingete spørsmål skal også ligge i egne filer, én fil per skjemaelement. Steget (eller en gruppekomponent) eier `watch`, `clearErrors` og vilkåret for visning.
+
+Bruker steget noe fra `@sif/soknad-forms` eller `@sif/validation`, skal pakken stå direkte i appens `package.json`.
+
 ### Steg 1 — Bestem navnekonvensjoner
 
 Utled navnene fra brukerens beskrivelse. Alle navn er konsekvente:

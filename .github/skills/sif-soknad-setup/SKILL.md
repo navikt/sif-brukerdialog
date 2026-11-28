@@ -12,6 +12,8 @@ description: Veiledning for oppsett av en ny søknadsapp med @sif/soknad-app —
 - Du kobler en eksisterende app til rammeverket og trenger setup-laget.
 - Du skal opprette routing-skallet (`Soknad.tsx`, `Velkommen`, `Kvittering`).
 
+Ved migrering av en v1-app: les også `sif-v2-migrering`.
+
 ## Referanseapper
 
 Bruk `apps/aktivitetspenger-soknad` og `apps/omsorgspengesoknad-v2` som referanser. De deler kontraktene i denne skillen, men beholder appspesifikk domene-, side- og mappestruktur. Les den aktuelle appen før du standardiserer detaljer den allerede har løst lokalt.
@@ -36,7 +38,7 @@ Bruk `apps/aktivitetspenger-soknad` og `apps/omsorgspengesoknad-v2` som referans
 ## Omfang
 
 - **Innenfor:** alt ovenfor
-- **Utenfor:** steginnhold → `sif-soknad-add-step`, API-henting → `sif-api`, initial data-logikk → `sif-initial-data-loader`
+- **Utenfor:** steginnhold → `sif-soknad-add-step`, API-henting → `sif-api`, initial data-logikk → `sif-initial-data-loader`, migrering fra v1 → `sif-v2-migrering`
 
 ## Mappestruktur
 
@@ -373,7 +375,16 @@ export const App = () => {
         <SøknadAppProvider
             applicationKey={SomAppKey.key}
             useAnalytics={env.SIF_PUBLIC_USE_ANALYTICS === 'true'}
-            intlConfig={{ intlMessages: applicationIntlMessages, useLanguageSelector: true }}>
+            appStatusConfig={{
+                sanityConfig: {
+                    projectId: env.SIF_PUBLIC_APPSTATUS_PROJECT_ID,
+                    dataset: env.SIF_PUBLIC_APPSTATUS_DATASET,
+                },
+            }}
+            intlConfig={{
+                intlMessages: applicationIntlMessages,
+                useLanguageSelector: env.SIF_PUBLIC_FEATURE_NYNORSK === 'on',
+            }}>
             <BrowserRouter basename={env.PUBLIC_PATH}>
                 {__IS_DEMO__ ? <ScenarioHeader /> : null}
                 <SøknadDataWrapper />
@@ -518,4 +529,5 @@ Kaller `useStartSøknad` internt. Ingen manuell navigering eller `lagreSøknad()
 - [ ] Kvitteringsside med `SøknadKvitteringPage`
 - [ ] `app/Soknad.tsx` med `SøknadProvider` og `SøknadStepGuard`
 - [ ] `App.tsx` med `SøknadAppProvider` og `SøknadDataWrapper`
+- [ ] `appStatusConfig` og `useLanguageSelector` er koblet til env, ikke hardkodet
 - [ ] `pnpm check:types` passerer

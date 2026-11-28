@@ -17,6 +17,11 @@ Bruk denne indeksen for rask routing til riktig skill.
     - Triggerord: `soknadContext`, `stepConfig`, `useStepSubmit`, `useStepDefaultValues`, `VelkommenPage`, `KvitteringPage`, `Soknad.tsx`, `routing-skall`.
     - Fil: `.github/skills/sif-soknad-setup/SKILL.md`
 
+- `sif-v2-migrering`
+    - Når: migrere en hel søknadsapp fra v1 til v2, eller verifisere en migrert app før merge.
+    - Triggerord: `migrer til v2`, `v1 til v2`, `porter appen`, `-v2`-app, `verifiser migrering`.
+    - Fil: `.github/skills/sif-v2-migrering/SKILL.md`
+
 - `sif-soknad-app`
     - Når: endre eller feilsøke selve søknadsrammeverket, inkludert steg-navigering, mellomlagring og gjenopptak.
     - Triggerord: `@sif/soknad-app`, `SøknadProvider`, `SøknadStep`, `SøknadStepGuard`, `useStepData`, `useMellomlagring`, `resumeStepId`.

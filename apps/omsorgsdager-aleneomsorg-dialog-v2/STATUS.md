@@ -1,10 +1,10 @@
 # Status
 
-Oppdatert: 2026-11-27
+Oppdatert: 2026-11-28
 
 ## Nå
 
-V2-appen har et kjørbart grunnlag for migreringen. Alle skjemasteg er implementert med v2-komponenter.
+Alle skjemasteg, oppsummering og kvittering er portert fra v1 med v2-komponenter. Funn fra code review er rettet. Det som gjenstår, er sluttverifisering av payload og brukerreise mot v1.
 
 ## Grunnramme som er implementert
 
@@ -26,11 +26,11 @@ Punktene under finnes i appskallet. De er ikke sluttverifisert mot hele v1-flyte
 - appspesifikk `Dockerfile.dockerignore` som holder hemmeligheter og generert innhold utenfor byggkonteksten
 - test som låser stegrekkefølgen
 - «Om aleneomsorg for barn» med v1-tekster, validering, betingelser, v2-dialoger og mapping begge veier. Avvik fra v1: ubrukt logikk for delt bosted er fjernet, valg for slettede barn ryddes bort, og en skrivefeil i valideringsteksten på bokmål er rettet.
-- Navn på manuelt tilknyttede barn begrenses til 50 tegn i v2-dialogen.
+- Navn på manuelt tilknyttede barn begrenses til 100 tegn i den delte `AnnetBarnDialog` i `@sif/soknad-forms`. Avvik fra v1, som ikke hadde grense. Endringen gjelder alle apper som bruker dialogen.
 - «Tidspunkt for aleneomsorg» med v1-tekster, validering per barn, betinget datofelt og mapping begge veier. Valgt «I fjor eller tidligere» beholder ikke en tidligere utfylt dato.
 - Oppsummering med v1-tekster og rekkefølge, søker- og barnopplysninger, bekreftelsescheckbox og innsending av brukerens bekreftelsesverdi.
 
-Mappingen for «Om aleneomsorg for barn» bruker `ISODate` for datoer og er låst med enhetstester. Etter at `@sif/soknad-forms` og `@sif/validation` ble lagt til som direkte avhengigheter, passerer `pnpm lint:tsc`, `pnpm lint:eslint`, `pnpm test` og `pnpm build`.
+Mappingen for begge skjemasteg og DTO-en bruker `ISODate` for datoer og er låst med enhetstester. Playwright-flytene er skrevet, men må kjøres av utvikleren.
 
 ## Bevisst midlertidig
 

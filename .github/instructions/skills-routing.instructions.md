@@ -38,6 +38,8 @@ Før verktøykall eller kodebase-søk: skann brukerens melding mot signalordene 
     - Appkontrakter: `formValuesToSøknadsdata`, mapping mellom `FormValues` og `Søknadsdata`, `konsistenssjekk`, `mellomlagringGrunnlag`, `SøknadProvider` i app.
     - Oppsett av `src/app/setup`, `soknadContext`, `soknadStepConfig`, `AppContext`, `useInitialData`.
     - Routing shell og pages: `Soknad.tsx`, `VelkommenPage`, `KvitteringPage`, `steps/index.ts`, `pages/index.ts`, `routing-skall`, `sett opp sider`, `legg til routing`.
+- `sif-v2-migrering`:
+    - Migrering av hel app: `migrer til v2`, `v1 til v2`, `porter appen`, `-v2`-app, `verifiser migrering`, `før merge av migrering`.
 - `sif-soknad-add-step`:
     - Legge til steg: `nytt steg`, `legg til steg`, `ny side i søknaden`, `opprett steg`, `førstesteg`, `neste steg`, `eget steg`, `egen side`.
     - Steg-filer: `StegUtils`, `FormFields`, `FormValues`, `SøknadStep`, `stepOrder`, `stepConfig`.
