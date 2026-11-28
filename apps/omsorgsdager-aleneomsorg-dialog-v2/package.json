@@ -1,0 +1,69 @@
+{
+    "name": "@navikt/omsorgsdager-aleneomsorg-dialog-v2",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "vite build",
+        "check:types": "tsc --noEmit",
+        "clean": "rm -rf node_modules dist",
+        "dev": "vite --config vite.dev.config.ts",
+        "lint:eslint": "eslint src",
+        "lint:fix": "eslint src --fix",
+        "lint:tsc": "tsc --noEmit",
+        "pw:build": "vite build --config vite.playwright.config.ts",
+        "pw:run": "playwright test",
+        "pw:run:headed": "playwright test --headed",
+        "pw:start": "vite preview --host 127.0.0.1 --port 4173 --config vite.playwright.config.ts",
+        "test": "vitest run"
+    },
+    "dependencies": {
+        "@navikt/ds-css": "8.23.0",
+        "@navikt/ds-react": "8.23.0",
+        "@navikt/ds-tailwind": "8.23.0",
+        "@sif/api": "workspace:*",
+        "@sif/apm": "workspace:*",
+        "@sif/app-register": "workspace:*",
+        "@sif/env": "workspace:*",
+        "@sif/k9-brukerdialog-prosessering-api": "workspace:*",
+        "@sif/mock-utils": "workspace:*",
+        "@sif/rhf": "workspace:*",
+        "@sif/soknad-app": "workspace:*",
+        "@sif/soknad-forms": "workspace:*",
+        "@sif/soknad-ui": "workspace:*",
+        "@sif/utils": "workspace:*",
+        "@sif/validation": "workspace:*",
+        "@tanstack/react-query": "5.108.3",
+        "jsdom": "^30.1.1",
+        "react": "19.3.1",
+        "react-dom": "19.3.1",
+        "react-hook-form": "7.92.0",
+        "react-intl": "12.2.1",
+        "react-loading-skeleton": "3.5.0",
+        "react-router-dom": "7.18.6",
+        "zod": "4.6.7"
+    },
+    "devDependencies": {
+        "@axe-core/playwright": "4.14.0",
+        "@playwright/test": "1.65.1",
+        "@sif/config": "workspace:*",
+        "@sif/eslint-config": "workspace:*",
+        "@tailwindcss/vite": "4.3.5",
+        "@types/node": "26.6.6",
+        "@types/react": "19.3.0",
+        "@types/react-dom": "19.3.0",
+        "@vitejs/plugin-react": "6.3.0",
+        "eslint": "10.15.0",
+        "msw": "2.15.0",
+        "tailwindcss": "4.3.5",
+        "typescript": "6.0.3",
+        "vite": "8.3.8",
+        "vite-plugin-checker": "1.0.0",
+        "vitest": "5.1.1"
+    },
+    "msw": {
+        "workerDirectory": [
+            "public"
+        ]
+    }
+}

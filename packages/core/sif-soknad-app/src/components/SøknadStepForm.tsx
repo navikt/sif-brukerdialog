@@ -53,6 +53,7 @@ export function SøknadStepForm<T extends FieldValues>({
             buttons={
                 <FormLayout.FormButtons
                     submitPending={isPending}
+                    previousDisabled={isPending}
                     submitDisabled={submitDisabled || !!inconsistentStepId}
                     onPrevious={onPrevious}
                     isFinalSubmit={isFinalSubmit}

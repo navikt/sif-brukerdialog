@@ -13,6 +13,8 @@ export const annetBarnMessages_nn: Record<keyof typeof annetBarnMessages_nb, str
     '@sifSoknadForms.annetBarn.form.årsak.FOSTERBARN': 'Barnet er fosterbarnet mitt',
     '@sifSoknadForms.annetBarn.form.årsak.ANNET': 'Anna',
     '@sifSoknadForms.annetBarnForm.validation.navn.stringHasNoValue': 'Skriv inn namnet til barnet',
+    '@sifSoknadForms.annetBarnForm.validation.navn.stringIsTooLong':
+        'Namnet til barnet kan ikkje innehalde meir enn {maks} teikn.',
     '@sifSoknadForms.annetBarnForm.validation.fødselsdato.dateHasNoValue':
         'Du må oppgje fødselsdatoen til barnet. Skriv inn eller vel dato frå datoveljaren.',
     '@sifSoknadForms.annetBarnForm.validation.fødselsdato.dateIsBeforeMin':

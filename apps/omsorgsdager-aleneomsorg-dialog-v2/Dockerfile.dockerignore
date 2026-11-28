@@ -1,0 +1,12 @@
+.git
+.github
+**/node_modules
+**/dist
+**/.turbo
+**/.next
+**/build
+**/coverage
+.env
+.env.*
+*.md
+docker-compose*.yml

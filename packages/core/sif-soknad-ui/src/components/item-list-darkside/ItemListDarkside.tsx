@@ -1,5 +1,6 @@
 import './itemListDarkside.css';
 
+import { List } from '@navikt/ds-react';
 import { guid } from '@sif/utils';
 import { ReactNode } from 'react';
 
@@ -10,6 +11,7 @@ import DeleteButton from '../delete-button/DeleteButton';
 interface Props<T> {
     items: T[];
     useTrashcan?: boolean;
+    variant?: 'default' | 'summary';
     getItemId: (item: T) => string;
     getItemTitle: (item: T) => string;
     labelRenderer?: (item: T, onEdit?: (item: T) => void) => ReactNode;
@@ -29,8 +31,21 @@ function ItemListDarkside<T>({
     getItemTitle,
     deleteRenderer,
     useTrashcan = false,
+    variant = 'default',
 }: Props<T>) {
     const { text } = useSifSoknadUiIntl();
+
+    if (variant === 'summary') {
+        return (
+            <List>
+                {items.map((item) => (
+                    <List.Item key={getItemId(item) || guid()}>
+                        {labelRenderer ? labelRenderer(item) : getItemTitle(item)}
+                    </List.Item>
+                ))}
+            </List>
+        );
+    }
 
     return (
         <ol className="itemListDarkside">

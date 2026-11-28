@@ -1,5 +1,5 @@
 import { BodyShort, VStack } from '@navikt/ds-react';
-import { ActionLink, ItemListDarkside, useUiIntl } from '@navikt/sif-common-ui';
+import { ActionLink, ItemListDarkside } from '@sif/soknad-ui/components';
 import { dateFormatter, getCountryName } from '@sif/utils';
 import { ReactNode } from 'react';
 
@@ -38,9 +38,9 @@ const renderNæringLabel = (
 };
 
 export const UtenlandskNæringList = ({ næringer, onEdit, onDelete }: Props) => {
-    const { locale } = useUiIntl();
-    const sifIntl = useSifSoknadFormsIntl();
-    const pågåendeLabel = sifIntl.text('@sifSoknadForms.utenlandskNæring.list.pågående');
+    const { locale, text } = useSifSoknadFormsIntl();
+
+    const pågåendeLabel = text('@sifSoknadForms.utenlandskNæring.list.pågående');
 
     return (
         <ItemListDarkside<UtenlandskNæring>

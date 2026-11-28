@@ -1,6 +1,6 @@
 import { Button } from '@navikt/ds-react';
-import { FormLayout } from '@navikt/sif-common-ui';
 import { createSifFormComponents, datePickerUtils, SifInputGroup, useSifValidate, YesOrNo } from '@sif/rhf';
+import { FormLayout } from '@sif/soknad-ui/components';
 import { countryIsMemberOfEøsOrEfta, DateRange, getCountryName, ISODate } from '@sif/utils';
 import { getISODateRangeValidator, getRequiredFieldValidator, getYesOrNoValidator } from '@sif/validation';
 import { useEffect, useState } from 'react';

@@ -7,8 +7,8 @@ import { SifGuidePanel, SifGuidePanelProps } from '../sif-guide-panel/SifGuidePa
 
 /**
  * Setter opp default spacing mellom sections
+ * @deprecated Bruk FormLayout.Content direkte rundt seksjoner. Denne wrapperen gir samme spacing.
  */
-
 const Sections = ({ ...rest }: VStackProps) => <VStack gap="space-48" {...rest} />;
 
 /**

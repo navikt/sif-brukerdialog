@@ -1,0 +1,22 @@
+import { initApm } from '@sif/apm';
+import { OmsorgsdagerAleneomsorgApp } from '@sif/app-register';
+import { getMaybeEnv } from '@sif/env';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+
+import { enableMocking } from '../mock/enableMocking';
+import { App } from './App';
+
+void initApm({
+    app: OmsorgsdagerAleneomsorgApp.key,
+    namespace: 'dusseldorf',
+    version: getMaybeEnv('APP_VERSION'),
+});
+
+enableMocking().then(() => {
+    createRoot(document.getElementById('root')!).render(
+        <StrictMode>
+            <App />
+        </StrictMode>,
+    );
+});

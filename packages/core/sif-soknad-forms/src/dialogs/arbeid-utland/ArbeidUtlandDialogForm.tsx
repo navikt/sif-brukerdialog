@@ -1,5 +1,5 @@
-import { FormLayout } from '@navikt/sif-common-ui';
 import { createSifFormComponents, SifForm, useSifValidate, YesOrNo } from '@sif/rhf';
+import { FormLayout } from '@sif/soknad-ui/components';
 import { countryIsMemberOfEøsOrEfta, dateRangesCollide, ISODate } from '@sif/utils';
 import {
     getISODateValidator,

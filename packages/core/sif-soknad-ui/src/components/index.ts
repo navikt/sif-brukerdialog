@@ -1,3 +1,4 @@
+export { default as ActionLink } from './action-link/ActionLink';
 export { AppHeader } from './app-header/AppHeader';
 export { ApplicationPictogram } from './app-header/ApplicationPictogram';
 export { AriaLiveRegion } from './aria-live-region/AriaLiveRegion';
@@ -9,6 +10,7 @@ export { FormContentLoader } from './form-content-loader/FormContentLoader';
 export { FormLayout } from './form-layout';
 export { I18nMessagesPreview, type I18nMessagesPreviewProps } from './i18n-messages-preview/I18nMessagesPreview';
 export { InfoList } from './info-list/InfoList';
+export { default as ItemListDarkside } from './item-list-darkside/ItemListDarkside';
 export { Kvittering } from './kvittering/Kvittering';
 export { JaNeiSvar } from './oppsummering-svar/JaNeiSvar';
 export { PictureScanningGuide } from './picture-scanning-guide/PictureScanningGuide';

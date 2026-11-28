@@ -1,0 +1,22 @@
+{
+    "extends": "@sif/config/tsconfig-apps.json",
+    "compilerOptions": {
+        "allowImportingTsExtensions": true,
+        "noEmit": true,
+        "outDir": "build/dist",
+        "lib": ["ES2022", "DOM"],
+        "paths": {
+            "@app/*": ["./src/app/*"]
+        }
+    },
+    "exclude": ["node_modules", "dist"],
+    "include": [
+        "./src/**/*",
+        "./mock/**/*",
+        "./playwright/**/*",
+        "./playwright.config.ts",
+        "./vite-env.d.ts",
+        "./vite*.config.ts",
+        "env.schema.ts"
+    ]
+}

@@ -1,5 +1,5 @@
-import { FormLayout } from '@navikt/sif-common-ui';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
+import { FormLayout } from '@sif/soknad-ui/components';
 import { ISODate } from '@sif/utils';
 import {
     getFødselsnummerValidator,
@@ -87,7 +87,12 @@ export const AnnetBarnDialogForm = ({
                         <TextField
                             name={AnnetBarnFormFields.navn}
                             label={sifIntl.text('@sifSoknadForms.annetBarn.form.navn')}
-                            validate={validateField(AnnetBarnFormFields.navn, getStringValidator({ required: true }))}
+                            maxLength={100}
+                            validate={validateField(
+                                AnnetBarnFormFields.navn,
+                                getStringValidator({ required: true, maxLength: 100 }),
+                                (errorCode) => (errorCode === 'stringIsTooLong' ? { maks: 100 } : undefined),
+                            )}
                         />
 
                         <Datepicker

@@ -1,5 +1,5 @@
-import { FormLayout } from '@navikt/sif-common-ui';
 import { createSifFormComponents, useSifValidate } from '@sif/rhf';
+import { FormLayout } from '@sif/soknad-ui/components';
 import { getFødselsnummerValidator, getStringValidator } from '@sif/validation';
 import { FormProvider, useForm } from 'react-hook-form';
 

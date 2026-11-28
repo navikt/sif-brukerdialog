@@ -1,5 +1,5 @@
 import { BodyShort, VStack } from '@navikt/ds-react';
-import { ActionLink, ItemListDarkside } from '@navikt/sif-common-ui';
+import { ActionLink, ItemListDarkside } from '@sif/soknad-ui/components';
 import { dateFormatter } from '@sif/utils';
 import { ReactNode } from 'react';
 
