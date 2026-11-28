@@ -49,4 +49,4 @@ Sammenlign synlig oppførsel mot v1, men bruk den genererte typen `OmsorgsdagerA
 
 ## Midlertidig tilstand
 
-De to skjemastegene er eksplisitte mocksteg. Oppsummeringen bruker midlertidig mockdata for å teste innsending. Dette er ikke v1-fasit og skal erstattes stegvis.
+Innsendingen går mot mockhandleren. Payloaden er ikke sluttverifisert i brukerreisen. Se `STATUS.md`.

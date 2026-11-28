@@ -21,7 +21,8 @@ Den genererte typen `OmsorgsdagerAleneOmOmsorgenSøknad` fra `@sif/k9-brukerdial
 ## Hva som er ferdig og hva som er midlertidig
 
 - Routing, initialdata, mellomlagring, i18n-rammeverk, velkomstside, kvittering, API-init, MSW, Nais og Docker er grunnlaget som v2-appen bygger videre på.
-- «Tidspunkt for aleneomsorg» og oppsummeringen er portert fra v1 med ekte v2-flyt.
+- «Om aleneomsorg for barn», «Tidspunkt for aleneomsorg» og oppsummeringen er portert fra v1 med ekte v2-flyt.
+- Innsendingen går mot mockhandleren og er ikke sluttverifisert i brukerreisen.
 - DTO-mappingen bygger payload fra brukerens valgte barn og tidspunkt.
 
 ## Når et steg implementeres
