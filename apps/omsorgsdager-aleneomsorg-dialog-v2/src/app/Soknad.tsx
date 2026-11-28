@@ -6,6 +6,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAppIntl } from './i18n';
 import { Kvittering } from './pages/kvittering/Kvittering';
 import { Velkommen } from './pages/velkommen/Velkommen';
+import { getAppEnv } from './setup/appEnv';
 import { APP_YTELSE, MELLOMLAGRING_VERSJON } from './setup/constants';
 import { søknadStepConfig, søknadStepOrder } from './setup/soknadStepConfig';
 import { OmOmsorgenForBarnSteg, OppsummeringSteg, TidspunktForAleneomsorgSteg } from './steps';
@@ -13,6 +14,7 @@ import { SøknadStepId } from './types/SoknadStepId';
 
 export const Søknad = () => {
     const { text } = useAppIntl();
+    const { SIF_PUBLIC_MINSIDE_URL } = getAppEnv();
 
     return (
         <SøknadProvider
@@ -21,6 +23,7 @@ export const Søknad = () => {
             ytelse={APP_YTELSE}
             versjon={MELLOMLAGRING_VERSJON}
             applicationTitle={text('application.title')}
+            resumeLaterUrl={SIF_PUBLIC_MINSIDE_URL}
             formValuesToSøknadsdata={formValuesToSøknadsdata}
             kvitteringElement={<Kvittering />}
             loadingElement={<LoadingPage applicationTitle={text('application.title')} />}>

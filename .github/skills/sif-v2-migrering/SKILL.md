@@ -50,7 +50,7 @@ Regler for hvordan en v2-app er bygd, står i `sif-soknad-setup`, `sif-soknad-ad
 - [ ] Alle `SIF_PUBLIC_*`-variabler i v1 sine Nais-filer finnes i v2 og er enten brukt i koden eller bevisst utelatt
 - [ ] Endringer i oppstartsdata som gjør en mellomlagret søknad ugyldig, har en v2-mekanisme i `mellomlagringGrunnlag`
 - [ ] V1-mellomlagring blir ignorert og appen starter ryddig på velkomstsiden
-- [ ] `Dockerfile.dockerignore` ligger ved siden av appens `Dockerfile`
+- [ ] `Dockerfile` og `Dockerfile.dockerignore` er sammenlignet med en fungerende v2 Vite-app og bruker samme base images og oppsett
 - [ ] nb- og nn-tekster er sammenlignet med v1, og avvik står i PR-en
 - [ ] Endringer i delte pakker står i PR-en
 - [ ] MSW har eksplisitte handlere, uten catch-all

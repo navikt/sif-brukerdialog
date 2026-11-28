@@ -1,12 +1,8 @@
-FROM node:26-alpine AS base
+FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:26-dev AS base
 
 ENV APP="omsorgsdager-aleneomsorg-dialog-v2"
 ENV SERVER="server"
 ENV SCOPE=@navikt/omsorgsdager-aleneomsorg-dialog-v2
-
-RUN apk fix \
-    && apk add --no-cache --update libc6-compat \
-    && rm -rf /var/cache/apk/*
 
 RUN npm install -g turbo@2.10.13
 RUN npm install -g pnpm@10.33.4
