@@ -2,7 +2,6 @@ import { BodyShort, VStack } from '@navikt/ds-react';
 import { ActionLink, ItemListDarkside } from '@sif/soknad-ui/components';
 import { dateFormatter, getCountryName } from '@sif/utils';
 import { ReactNode } from 'react';
-import { useIntl } from 'react-intl';
 
 import { SifSoknadFormsText, useSifSoknadFormsIntl } from '../../i18n';
 import { OpptjeningAktivitet, OpptjeningUtland } from './types';
@@ -41,15 +40,14 @@ const renderOpptjeningLabel = (
 };
 
 export const OpptjeningUtlandList = ({ opptjeninger, onEdit, onDelete }: Props) => {
-    const { locale } = useIntl();
-    const sifIntl = useSifSoknadFormsIntl();
+    const { text, locale } = useSifSoknadFormsIntl();
 
     const getAktivitetLabel = (aktivitet: OpptjeningAktivitet): string => {
         switch (aktivitet) {
             case OpptjeningAktivitet.ARBEIDSTAKER:
-                return sifIntl.text('@sifSoknadForms.opptjeningUtland.list.aktivitet.ARBEIDSTAKER');
+                return text('@sifSoknadForms.opptjeningUtland.list.aktivitet.ARBEIDSTAKER');
             case OpptjeningAktivitet.FRILANSER:
-                return sifIntl.text('@sifSoknadForms.opptjeningUtland.list.aktivitet.FRILANSER');
+                return text('@sifSoknadForms.opptjeningUtland.list.aktivitet.FRILANSER');
         }
     };
 

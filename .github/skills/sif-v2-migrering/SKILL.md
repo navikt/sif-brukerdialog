@@ -39,6 +39,7 @@ Regler for hvordan en v2-app er bygd, står i `sif-soknad-setup`, `sif-soknad-ad
 - **Legacy kommer inn bakveien.** Kopierte filer tar med seg `@navikt/sif-common-*`, også CSS-importer som `sif-ds-theme.css` (v2-versjonen ligger i `@sif/soknad-ui`). Legacy skal erstattes, ikke pakkes inn i en wrapper.
 - **Indirekte avhengigheter.** Bygget kan virke selv om `@sif/soknad-forms` eller `@sif/validation` bare kommer med via en annen pakke. Hver pakke appen importerer fra, skal stå i appens `package.json`.
 - **Tekst skrives om.** Agenten «forbedrer» formuleringer. Kopier ordrett. Bevisste avvik skal stå i PR-en.
+- **Direkte `useIntl`.** Når appen eller pakken allerede har en intl-hook, for eksempel `useAppIntl` eller `useSifSoknadFormsIntl`, skal migrert kode bruke den også for `locale`. Bruk `useIntl` direkte bare hvis det ikke finnes en lokal wrapper, eller når selve wrapperen defineres i `i18n/index.tsx`.
 - **Ekstra grener rundt delte komponenter.** Sjekk hva v2-komponenten gjør selv (for eksempel med en tom liste) før du legger til egne varianter.
 - **Delte pakker.** En endring i `packages/core` for å dekke et behov i én app gjelder alle apper. Den er et avvik fra v1 og skal stå i PR-en.
 - **Notater i utakt med koden.** Status som skrives før koden er endelig, blir feil (for eksempel en annen tallgrense enn den koden bruker).
@@ -52,6 +53,7 @@ Regler for hvordan en v2-app er bygd, står i `sif-soknad-setup`, `sif-soknad-ad
 - [ ] V1-mellomlagring blir ignorert og appen starter ryddig på velkomstsiden
 - [ ] `Dockerfile` og `Dockerfile.dockerignore` er sammenlignet med en fungerende v2 Vite-app og bruker samme base images og oppsett
 - [ ] nb- og nn-tekster er sammenlignet med v1, og avvik står i PR-en
+- [ ] Kode i appen eller pakken bruker lokal intl-hook i stedet for direkte `useIntl` når en slik hook finnes
 - [ ] Endringer i delte pakker står i PR-en
 - [ ] MSW har eksplisitte handlere, uten catch-all
 - [ ] Payload-testen sammenligner hele request-body-en, ikke bare deler av DTO-en. Den dekker v1-paritet og appens bekreftelsesverdier.

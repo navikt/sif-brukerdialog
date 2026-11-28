@@ -2,10 +2,9 @@ import { BodyShort, VStack } from '@navikt/ds-react';
 import { ActionLink, ItemListDarkside } from '@sif/soknad-ui/components';
 import { dateRangeFormatter, getCountryName, getValidLocale, Locale } from '@sif/utils';
 import { ReactNode } from 'react';
-import { useIntl } from 'react-intl';
 
-import { SifSoknadFormsText } from '../../i18n';
-import { ArbeidUtlandFormData, ArbeidUtlandVariant } from '.';
+import { SifSoknadFormsText, useSifSoknadFormsIntl } from '../../i18n';
+import { ArbeidUtlandFormData, ArbeidUtlandVariant } from './';
 
 interface Props {
     arbeidssteder: ArbeidUtlandFormData[];
@@ -53,7 +52,7 @@ const renderArbeidUtlandLabel = (
     );
 };
 export const ArbeidUtlandList = ({ arbeidssteder, onEdit, onDelete, variant, arbeidUtlandVariant }: Props) => {
-    const locale = getValidLocale(useIntl().locale);
+    const locale = getValidLocale(useSifSoknadFormsIntl().locale);
     return (
         <ItemListDarkside<ArbeidUtlandFormData>
             getItemId={(arbeidssted): string => arbeidssted.id}

@@ -1,8 +1,8 @@
 import { ActionLink, ItemListDarkside } from '@sif/soknad-ui/components';
 import { dateRangeFormatter, getCountryName } from '@sif/utils';
 import { ReactNode } from 'react';
-import { useIntl } from 'react-intl';
 
+import { useSifSoknadFormsIntl } from '../../i18n';
 import { Utenlandsopphold } from './types';
 
 interface Props {
@@ -26,7 +26,7 @@ const renderOppholdLabel = (
 };
 
 export const UtenlandsoppholdList = ({ utenlandsopphold, onEdit, onDelete }: Props) => {
-    const { locale } = useIntl();
+    const { locale } = useSifSoknadFormsIntl();
     return (
         <ItemListDarkside<Utenlandsopphold>
             getItemId={(opphold): string => opphold.id}
